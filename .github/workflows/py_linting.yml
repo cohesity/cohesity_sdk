@@ -1,0 +1,63 @@
+name: Lint and Black Formatters
+
+on: push
+
+jobs:
+  run-lint:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - id: changed-files
+      name: Get changed files
+      uses: dorny/paths-filter@v2
+      with:
+        token: ${{ github.token }}
+        list-files: json
+        filters: |
+          files:
+            - added|modified:
+              - cohesity_sdk/**/*.py
+    - name: Lint Changed Files
+      if: steps.changed-files.outputs.files == 'true'
+      run: |
+        pip install pylint
+        pylint ${{ join(fromJSON(steps.changed-files.outputs.files_files), ' ') }}
+
+  run-Black:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - id: changed-files
+      name: Get changed files
+      uses: dorny/paths-filter@v2
+      with:
+        token: ${{ github.token }}
+        list-files: json
+        filters: |
+          files:
+            - added|modified:
+              - cohesity_sdk/**/*.py
+    - name: Lint with Black
+      run: |
+        pip install black
+        black --check ${{ join(fromJSON(steps.changed-files.outputs.files_files), ' ') }}
