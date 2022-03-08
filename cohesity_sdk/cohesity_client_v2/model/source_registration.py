@@ -27,8 +27,10 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cohesity_client_v2.model.aws_source_registration_params import AwsSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.cassandra_source_registration_params import CassandraSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.common_source_registration_reponse_params import CommonSourceRegistrationReponseParams
+    from cohesity_sdk.cohesity_client_v2.model.connection_config import ConnectionConfig
     from cohesity_sdk.cohesity_client_v2.model.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.elastifile_registration_params import ElastifileRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.flashblade_registration_params import FlashbladeRegistrationParams
@@ -37,16 +39,21 @@ def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.hbase_source_registration_params import HbaseSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.hdfs_source_registration_params import HdfsSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.hive_source_registration_params import HiveSourceRegistrationParams
+    from cohesity_sdk.cohesity_client_v2.model.hyper_v_source_registration_params import HyperVSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.isilon_registration_params import IsilonRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.netapp_registration_params import NetappRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.object import Object
+    from cohesity_sdk.cohesity_client_v2.model.office365_source_registration_params import Office365SourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.physical_source_registration_params import PhysicalSourceRegistrationParams
+    from cohesity_sdk.cohesity_client_v2.model.sfdc_source_registration_params import SfdcSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.source_registration_all_of import SourceRegistrationAllOf
     from cohesity_sdk.cohesity_client_v2.model.uda_source_registration_params import UdaSourceRegistrationParams
     from cohesity_sdk.cohesity_client_v2.model.vmware_source_registration_params import VmwareSourceRegistrationParams
+    globals()['AwsSourceRegistrationParams'] = AwsSourceRegistrationParams
     globals()['CassandraSourceRegistrationParams'] = CassandraSourceRegistrationParams
     globals()['CommonSourceRegistrationReponseParams'] = CommonSourceRegistrationReponseParams
+    globals()['ConnectionConfig'] = ConnectionConfig
     globals()['CouchbaseSourceRegistrationParams'] = CouchbaseSourceRegistrationParams
     globals()['ElastifileRegistrationParams'] = ElastifileRegistrationParams
     globals()['FlashbladeRegistrationParams'] = FlashbladeRegistrationParams
@@ -55,11 +62,14 @@ def lazy_import():
     globals()['HbaseSourceRegistrationParams'] = HbaseSourceRegistrationParams
     globals()['HdfsSourceRegistrationParams'] = HdfsSourceRegistrationParams
     globals()['HiveSourceRegistrationParams'] = HiveSourceRegistrationParams
+    globals()['HyperVSourceRegistrationParams'] = HyperVSourceRegistrationParams
     globals()['IsilonRegistrationParams'] = IsilonRegistrationParams
     globals()['MongoDBSourceRegistrationParams'] = MongoDBSourceRegistrationParams
     globals()['NetappRegistrationParams'] = NetappRegistrationParams
     globals()['Object'] = Object
+    globals()['Office365SourceRegistrationParams'] = Office365SourceRegistrationParams
     globals()['PhysicalSourceRegistrationParams'] = PhysicalSourceRegistrationParams
+    globals()['SfdcSourceRegistrationParams'] = SfdcSourceRegistrationParams
     globals()['SourceRegistrationAllOf'] = SourceRegistrationAllOf
     globals()['UdaSourceRegistrationParams'] = UdaSourceRegistrationParams
     globals()['VmwareSourceRegistrationParams'] = VmwareSourceRegistrationParams
@@ -120,6 +130,9 @@ class SourceRegistration(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSQL': "kSQL",
+            'KORACLE': "kOracle",
+            'KSFDC': "kSfdc",
         },
     }
 
@@ -146,8 +159,8 @@ class SourceRegistration(ModelComposed):
             'source_id': (int, none_type,),  # noqa: E501
             'source_info': (Object,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
+            'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
             'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
             'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
@@ -163,6 +176,10 @@ class SourceRegistration(ModelComposed):
             'hbase_params': (HbaseSourceRegistrationParams,),  # noqa: E501
             'hive_params': (HiveSourceRegistrationParams,),  # noqa: E501
             'uda_params': (UdaSourceRegistrationParams,),  # noqa: E501
+            'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
+            'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
+            'hyperv_params': (HyperVSourceRegistrationParams,),  # noqa: E501
+            'sfdc_params': (SfdcSourceRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -176,8 +193,8 @@ class SourceRegistration(ModelComposed):
         'source_id': 'sourceId',  # noqa: E501
         'source_info': 'sourceInfo',  # noqa: E501
         'environment': 'environment',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
+        'connections': 'connections',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
@@ -193,6 +210,10 @@ class SourceRegistration(ModelComposed):
         'hbase_params': 'hbaseParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -247,8 +268,8 @@ class SourceRegistration(ModelComposed):
             source_id (int, none_type): ID of top level source object discovered after the registration.. [optional]  # noqa: E501
             source_info (Object): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment type of the Protection Source.. [optional]  # noqa: E501
-            name (str, none_type): The user specified name for this source.. [optional]  # noqa: E501
-            connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
+            connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.. [optional]  # noqa: E501
+            connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
             physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
@@ -264,6 +285,10 @@ class SourceRegistration(ModelComposed):
             hbase_params (HbaseSourceRegistrationParams): [optional]  # noqa: E501
             hive_params (HiveSourceRegistrationParams): [optional]  # noqa: E501
             uda_params (UdaSourceRegistrationParams): [optional]  # noqa: E501
+            office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
+            aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
+            hyperv_params (HyperVSourceRegistrationParams): [optional]  # noqa: E501
+            sfdc_params (SfdcSourceRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -70,7 +70,6 @@ class UdaSourceRegistrationParams(ModelNormal):
             'KSAPORACLE': "kSapOracle",
             'KSAPSYBASE': "kSapSybase",
             'KSAPSYBASEIQ': "kSapSybaseIQ",
-            'KSAPASE': "kSapASE",
         },
     }
 

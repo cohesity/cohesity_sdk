@@ -70,6 +70,7 @@ class CreateView(ModelComposed):
             'SHORT': "Short",
             'LONG': "Long",
             'HIERARCHICAL': "Hierarchical",
+            'OBJECTID': "ObjectId",
         },
         ('category',): {
             'None': None,
@@ -134,6 +135,7 @@ class CreateView(ModelComposed):
             'is_read_only': (bool, none_type,),  # noqa: E501
             'view_pinning_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'self_service_snapshot_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'enable_metadata_accelerator': (bool, none_type,),  # noqa: E501
             'is_externally_triggered_backup_target': (bool, none_type,),  # noqa: E501
             'enable_nfs_view_discovery': (bool, none_type,),  # noqa: E501
             'nfs_all_squash': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -197,6 +199,7 @@ class CreateView(ModelComposed):
         'is_read_only': 'isReadOnly',  # noqa: E501
         'view_pinning_config': 'viewPinningConfig',  # noqa: E501
         'self_service_snapshot_config': 'selfServiceSnapshotConfig',  # noqa: E501
+        'enable_metadata_accelerator': 'enableMetadataAccelerator',  # noqa: E501
         'is_externally_triggered_backup_target': 'isExternallyTriggeredBackupTarget',  # noqa: E501
         'enable_nfs_view_discovery': 'enableNfsViewDiscovery',  # noqa: E501
         'nfs_all_squash': 'nfsAllSquash',  # noqa: E501
@@ -301,6 +304,7 @@ class CreateView(ModelComposed):
             is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
             view_pinning_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the pinning config of this view.. [optional]  # noqa: E501
             self_service_snapshot_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies self service config of this view.. [optional]  # noqa: E501
+            enable_metadata_accelerator (bool, none_type): Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.. [optional]  # noqa: E501
             is_externally_triggered_backup_target (bool, none_type): Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.. [optional]  # noqa: E501
             enable_nfs_view_discovery (bool, none_type): If set, it enables discovery of view for NFS.. [optional]  # noqa: E501
             nfs_all_squash ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the NFS all squash config.. [optional]  # noqa: E501

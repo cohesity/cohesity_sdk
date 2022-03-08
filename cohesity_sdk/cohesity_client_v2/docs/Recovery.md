@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **messages** | **[str], none_type** | Specifies messages about the recovery. | [optional] 
 **is_parent_recovery** | **bool, none_type** | Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery. | [optional] 
 **parent_recovery_id** | **str, none_type** | If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery. | [optional] 
+**retrieve_archive_tasks** | [**[RetrieveArchiveTask], none_type**](RetrieveArchiveTask.md) | Specifies the list of persistent state of a retrieve of an archive task. | [optional] 
 **vmware_params** | [**RecoverVmwareParams**](RecoverVmwareParams.md) |  | [optional] 
 **aws_params** | [**RecoverAwsParams**](RecoverAwsParams.md) |  | [optional] 
 **gcp_params** | [**RecoverGcpParams**](RecoverGcpParams.md) |  | [optional] 

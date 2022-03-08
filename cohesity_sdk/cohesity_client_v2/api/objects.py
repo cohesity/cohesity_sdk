@@ -23,23 +23,30 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.cohesity_client_v2.model.cancel_object_runs_request import CancelObjectRunsRequest
 from cohesity_sdk.cohesity_client_v2.model.cancel_object_runs_results import CancelObjectRunsResults
-from cohesity_sdk.cohesity_client_v2.model.common_object_action_requeste14b183831254c12_ba17_d31a545f0cc3 import CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3
 from cohesity_sdk.cohesity_client_v2.model.construct_meta_info_params import ConstructMetaInfoParams
 from cohesity_sdk.cohesity_client_v2.model.construct_meta_info_result import ConstructMetaInfoResult
 from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.file_folder_info import FileFolderInfo
 from cohesity_sdk.cohesity_client_v2.model.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
 from cohesity_sdk.cohesity_client_v2.model.get_object_runs_response_body import GetObjectRunsResponseBody
 from cohesity_sdk.cohesity_client_v2.model.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
 from cohesity_sdk.cohesity_client_v2.model.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.cohesity_client_v2.model.get_protected_objects_response import GetProtectedObjectsResponse
+from cohesity_sdk.cohesity_client_v2.model.local_global_object_id_list import LocalGlobalObjectIdList
+from cohesity_sdk.cohesity_client_v2.model.object_action_request import ObjectActionRequest
+from cohesity_sdk.cohesity_client_v2.model.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.cohesity_client_v2.model.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.cohesity_client_v2.model.object_snapshot import ObjectSnapshot
+from cohesity_sdk.cohesity_client_v2.model.object_snapshot_id_params import ObjectSnapshotIdParams
+from cohesity_sdk.cohesity_client_v2.model.object_snapshot_id_result import ObjectSnapshotIdResult
 from cohesity_sdk.cohesity_client_v2.model.object_snapshot_volume_info import ObjectSnapshotVolumeInfo
 from cohesity_sdk.cohesity_client_v2.model.object_stats import ObjectStats
 from cohesity_sdk.cohesity_client_v2.model.object_with_children import ObjectWithChildren
 from cohesity_sdk.cohesity_client_v2.model.objects_action_request import ObjectsActionRequest
 from cohesity_sdk.cohesity_client_v2.model.objects_last_run import ObjectsLastRun
 from cohesity_sdk.cohesity_client_v2.model.protected_object_info import ProtectedObjectInfo
+from cohesity_sdk.cohesity_client_v2.model.snapshot_diff_params import SnapshotDiffParams
+from cohesity_sdk.cohesity_client_v2.model.snapshot_diff_result import SnapshotDiffResult
 from cohesity_sdk.cohesity_client_v2.model.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
 from cohesity_sdk.cohesity_client_v2.model.update_object_snapshot_request import UpdateObjectSnapshotRequest
 
@@ -55,6 +62,138 @@ class ObjectsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __browse_object_contents(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Fetch the contents (files & folders) for the specified object.  # noqa: E501
+
+            Fetch the contents (files & folders) of the specified path inside the specified object.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.browse_object_contents(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the Object.
+                body (ObjectBrowseRequest): Specifies the parameters to fetch contents of an object.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FileFolderInfo
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.browse_object_contents = _Endpoint(
+            settings={
+                'response_type': (FileFolderInfo,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{id}/browse',
+                'operation_id': 'browse_object_contents',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (ObjectBrowseRequest,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__browse_object_contents
+        )
 
         def __cancel_object_runs(
             self,
@@ -664,6 +803,129 @@ class ObjectsApi(object):
             callable=__get_indexed_object_snapshots
         )
 
+        def __get_object_identifiers(
+            self,
+            **kwargs
+        ):
+            """Get Object Identifiers  # noqa: E501
+
+            Get Object Identifiers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_object_identifiers(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                global_ids ([str]): Get the object identifier matching specified global IDs.. [optional]
+                local_ids ([int]): Get the object identifier matching specified local IDs.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                LocalGlobalObjectIdList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_object_identifiers = _Endpoint(
+            settings={
+                'response_type': (LocalGlobalObjectIdList,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/object-identifiers',
+                'operation_id': 'get_object_identifiers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'global_ids',
+                    'local_ids',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'global_ids':
+                        ([str],),
+                    'local_ids':
+                        ([int],),
+                },
+                'attribute_map': {
+                    'global_ids': 'globalIds',
+                    'local_ids': 'localIds',
+                },
+                'location_map': {
+                    'global_ids': 'query',
+                    'local_ids': 'query',
+                },
+                'collection_format_map': {
+                    'global_ids': 'csv',
+                    'local_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_object_identifiers
+        )
+
         def __get_object_run_by_run_id(
             self,
             id,
@@ -930,10 +1192,10 @@ class ObjectsApi(object):
                     ('run_types',): {
 
                         "KALL": "kAll",
-                        "KLOG": "kLog",
                         "KSYSTEM": "kSystem",
                         "KINCREMENTAL": "kIncremental",
-                        "KFULL": "kFull"
+                        "KFULL": "kFull",
+                        "KLOG": "kLog"
                     },
                     ('local_backup_object_status',): {
 
@@ -941,7 +1203,8 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused"
                     },
                     ('replication_object_status',): {
 
@@ -949,7 +1212,8 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused"
                     },
                     ('archival_object_status',): {
 
@@ -957,7 +1221,8 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused"
                     },
                     ('cloud_spin_run_status',): {
 
@@ -965,7 +1230,8 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused"
                     },
                 },
                 'openapi_types': {
@@ -1047,6 +1313,138 @@ class ObjectsApi(object):
             },
             api_client=api_client,
             callable=__get_object_runs
+        )
+
+        def __get_object_snapshot_id(
+            self,
+            object_id,
+            body,
+            **kwargs
+        ):
+            """Get snapshot id for a given object.  # noqa: E501
+
+            Get snapshot id for object for given params.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_object_snapshot_id(object_id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                object_id (int): Specifies the object id.
+                body (ObjectSnapshotIdParams): Specifies the parameters to fetch snapshot id for object.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ObjectSnapshotIdResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['object_id'] = \
+                object_id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.get_object_snapshot_id = _Endpoint(
+            settings={
+                'response_type': (ObjectSnapshotIdResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{objectId}/snapshotId',
+                'operation_id': 'get_object_snapshot_id',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'object_id',
+                    'body',
+                ],
+                'required': [
+                    'object_id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'object_id':
+                        (int,),
+                    'body':
+                        (ObjectSnapshotIdParams,),
+                },
+                'attribute_map': {
+                    'object_id': 'objectId',
+                },
+                'location_map': {
+                    'object_id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__get_object_snapshot_id
         )
 
         def __get_object_snapshot_info(
@@ -1321,11 +1719,15 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
-                from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.. [optional]
-                to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.. [optional]
+                from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.. [optional]
+                to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.. [optional]
+                run_start_from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run after this value.. [optional]
+                run_start_to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run before this value.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 protection_group_ids ([str]): If specified, this returns only the snapshots of the specified object ID, which belong to the provided protection group IDs.. [optional]
                 run_instance_ids ([int]): Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
+                object_action_keys ([str]): Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1392,9 +1794,13 @@ class ObjectsApi(object):
                     'id',
                     'from_time_usecs',
                     'to_time_usecs',
+                    'run_start_from_time_usecs',
+                    'run_start_to_time_usecs',
                     'run_types',
                     'protection_group_ids',
                     'run_instance_ids',
+                    'region_ids',
+                    'object_action_keys',
                 ],
                 'required': [
                     'id',
@@ -1403,6 +1809,7 @@ class ObjectsApi(object):
                 ],
                 'enum': [
                     'run_types',
+                    'object_action_keys',
                 ],
                 'validation': [
                     'run_types',
@@ -1423,6 +1830,50 @@ class ObjectsApi(object):
                         "KSYSTEM": "kSystem",
                         "KHYDRATECDP": "kHydrateCDP"
                     },
+                    ('object_action_keys',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -1431,33 +1882,51 @@ class ObjectsApi(object):
                         (int,),
                     'to_time_usecs':
                         (int,),
+                    'run_start_from_time_usecs':
+                        (int,),
+                    'run_start_to_time_usecs':
+                        (int,),
                     'run_types':
                         ([str],),
                     'protection_group_ids':
                         ([str],),
                     'run_instance_ids':
                         ([int],),
+                    'region_ids':
+                        ([str],),
+                    'object_action_keys':
+                        ([str],),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'from_time_usecs': 'fromTimeUsecs',
                     'to_time_usecs': 'toTimeUsecs',
+                    'run_start_from_time_usecs': 'runStartFromTimeUsecs',
+                    'run_start_to_time_usecs': 'runStartToTimeUsecs',
                     'run_types': 'runTypes',
                     'protection_group_ids': 'protectionGroupIds',
                     'run_instance_ids': 'runInstanceIds',
+                    'region_ids': 'regionIds',
+                    'object_action_keys': 'objectActionKeys',
                 },
                 'location_map': {
                     'id': 'path',
                     'from_time_usecs': 'query',
                     'to_time_usecs': 'query',
+                    'run_start_from_time_usecs': 'query',
+                    'run_start_to_time_usecs': 'query',
                     'run_types': 'query',
                     'protection_group_ids': 'query',
                     'run_instance_ids': 'query',
+                    'region_ids': 'query',
+                    'object_action_keys': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
                     'protection_group_ids': 'csv',
                     'run_instance_ids': 'csv',
+                    'region_ids': 'csv',
+                    'object_action_keys': 'csv',
                 }
             },
             headers_map={
@@ -1488,6 +1957,7 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
+                region_ids ([str]): Filter by a list of region ids.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1552,6 +2022,7 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'region_ids',
                 ],
                 'required': [
                     'id',
@@ -1571,14 +2042,19 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'region_ids':
+                        ([str],),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'region_ids': 'regionIds',
                 },
                 'location_map': {
                     'id': 'path',
+                    'region_ids': 'query',
                 },
                 'collection_format_map': {
+                    'region_ids': 'csv',
                 }
             },
             headers_map={
@@ -1860,7 +2336,7 @@ class ObjectsApi(object):
         ):
             """Get PIT ranges for an object  # noqa: E501
 
-            Returns the time ranges within which the specified protected object can be restored to any Point in time.  # noqa: E501
+            Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1871,8 +2347,8 @@ class ObjectsApi(object):
                 id (int): Specifies the ID of the protected object.
 
             Keyword Args:
-                from_time_usecs (int): If specified, return the time ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
-                to_time_usecs (int): If specified, return the time ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
+                from_time_usecs (int): If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
+                to_time_usecs (int): If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
                 protection_group_ids ([str]): If specified, return only the points in time corresponding to these protection group IDs.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -2011,6 +2487,7 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
+                object_action_key ([str]): Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.. [optional]
                 only_protected_objects (bool): If true, the response will include only objects which have been protected.. [optional]
                 storage_domain_id (int): Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.. [optional]
                 environments ([str]): Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.. [optional]
@@ -2083,6 +2560,7 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'object_action_key',
                     'only_protected_objects',
                     'storage_domain_id',
                     'environments',
@@ -2098,6 +2576,7 @@ class ObjectsApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'object_action_key',
                     'environments',
                 ],
                 'validation': [
@@ -2107,7 +2586,7 @@ class ObjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                    ('environments',): {
+                    ('object_action_key',): {
 
                         "KVMWARE": "kVMware",
                         "KHYPERV": "kHyperV",
@@ -2116,6 +2595,10 @@ class ObjectsApi(object):
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
@@ -2131,6 +2614,12 @@ class ObjectsApi(object):
                         "KVIEW": "kView",
                         "KREMOTEADAPTER": "kRemoteAdapter",
                         "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
                         "KKUBERNETES": "kKubernetes",
                         "KCASSANDRA": "kCassandra",
                         "KMONGODB": "kMongoDB",
@@ -2138,12 +2627,59 @@ class ObjectsApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
+                    ('environments',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                 },
                 'openapi_types': {
                     'id':
                         (int,),
+                    'object_action_key':
+                        ([str],),
                     'only_protected_objects':
                         (bool,),
                     'storage_domain_id':
@@ -2163,6 +2699,7 @@ class ObjectsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'object_action_key': 'objectActionKey',
                     'only_protected_objects': 'onlyProtectedObjects',
                     'storage_domain_id': 'storageDomainId',
                     'environments': 'environments',
@@ -2174,6 +2711,7 @@ class ObjectsApi(object):
                 },
                 'location_map': {
                     'id': 'path',
+                    'object_action_key': 'query',
                     'only_protected_objects': 'query',
                     'storage_domain_id': 'query',
                     'environments': 'query',
@@ -2184,6 +2722,7 @@ class ObjectsApi(object):
                     'only_leaf_objects': 'query',
                 },
                 'collection_format_map': {
+                    'object_action_key': 'csv',
                     'environments': 'csv',
                     'tenant_ids': 'csv',
                 }
@@ -2214,6 +2753,7 @@ class ObjectsApi(object):
 
             Keyword Args:
                 ids ([int]): Filter by a list of Object ids.. [optional]
+                object_action_keys ([str]): Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'ids'.. [optional]
                 policy_ids ([str]): Filter by Policy ids that are associated with Protected Objects.. [optional]
                 parent_id (int): Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.. [optional]
                 only_protected_objects (bool): If true, the response will include only objects which have been protected.. [optional]
@@ -2224,6 +2764,8 @@ class ObjectsApi(object):
                 include_last_run_info (bool): If true, the response will include information about the last protection run on this object.. [optional]
                 only_auto_protected_objects (bool): If true, the response will include only the auto protected objects.. [optional]
                 only_leaf_objects (bool): If true, the response will include only the leaf level objects.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
+                protection_types ([str]): Filter by a list of protection types.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2286,6 +2828,7 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'ids',
+                    'object_action_keys',
                     'policy_ids',
                     'parent_id',
                     'only_protected_objects',
@@ -2296,12 +2839,16 @@ class ObjectsApi(object):
                     'include_last_run_info',
                     'only_auto_protected_objects',
                     'only_leaf_objects',
+                    'region_ids',
+                    'protection_types',
                 ],
                 'required': [],
                 'nullable': [
                 ],
                 'enum': [
+                    'object_action_keys',
                     'environments',
+                    'protection_types',
                 ],
                 'validation': [
                 ]
@@ -2310,7 +2857,7 @@ class ObjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                    ('environments',): {
+                    ('object_action_keys',): {
 
                         "KVMWARE": "kVMware",
                         "KHYPERV": "kHyperV",
@@ -2319,6 +2866,10 @@ class ObjectsApi(object):
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
@@ -2334,6 +2885,12 @@ class ObjectsApi(object):
                         "KVIEW": "kView",
                         "KREMOTEADAPTER": "kRemoteAdapter",
                         "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
                         "KKUBERNETES": "kKubernetes",
                         "KCASSANDRA": "kCassandra",
                         "KMONGODB": "kMongoDB",
@@ -2341,12 +2898,69 @@ class ObjectsApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
+                    ('environments',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
+                    ('protection_types',): {
+
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KSQL": "kSQL",
+                        "KORACLE": "kOracle",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager"
                     },
                 },
                 'openapi_types': {
                     'ids':
                         ([int],),
+                    'object_action_keys':
+                        ([str],),
                     'policy_ids':
                         ([str],),
                     'parent_id':
@@ -2367,9 +2981,14 @@ class ObjectsApi(object):
                         (bool,),
                     'only_leaf_objects':
                         (bool,),
+                    'region_ids':
+                        ([str],),
+                    'protection_types':
+                        ([str],),
                 },
                 'attribute_map': {
                     'ids': 'ids',
+                    'object_action_keys': 'objectActionKeys',
                     'policy_ids': 'policyIds',
                     'parent_id': 'parentId',
                     'only_protected_objects': 'onlyProtectedObjects',
@@ -2380,9 +2999,12 @@ class ObjectsApi(object):
                     'include_last_run_info': 'includeLastRunInfo',
                     'only_auto_protected_objects': 'onlyAutoProtectedObjects',
                     'only_leaf_objects': 'onlyLeafObjects',
+                    'region_ids': 'regionIds',
+                    'protection_types': 'protectionTypes',
                 },
                 'location_map': {
                     'ids': 'query',
+                    'object_action_keys': 'query',
                     'policy_ids': 'query',
                     'parent_id': 'query',
                     'only_protected_objects': 'query',
@@ -2393,12 +3015,17 @@ class ObjectsApi(object):
                     'include_last_run_info': 'query',
                     'only_auto_protected_objects': 'query',
                     'only_leaf_objects': 'query',
+                    'region_ids': 'query',
+                    'protection_types': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
+                    'object_action_keys': 'csv',
                     'policy_ids': 'csv',
                     'environments': 'csv',
                     'tenant_ids': 'csv',
+                    'region_ids': 'csv',
+                    'protection_types': 'csv',
                 }
             },
             headers_map={
@@ -2409,6 +3036,138 @@ class ObjectsApi(object):
             },
             api_client=api_client,
             callable=__get_protected_objects_of_any_type
+        )
+
+        def __get_snapshot_diff(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Get diff between two snapshots of a given object.  # noqa: E501
+
+            Get diff (files added/deleted) between two snapshots of a given object.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_snapshot_diff(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int):
+                body (SnapshotDiffParams):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SnapshotDiffResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.get_snapshot_diff = _Endpoint(
+            settings={
+                'response_type': (SnapshotDiffResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{id}/snapshotDiff',
+                'operation_id': 'get_snapshot_diff',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (SnapshotDiffParams,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__get_snapshot_diff
         )
 
         def __get_source_hierarchy_objects(
@@ -2743,6 +3502,7 @@ class ObjectsApi(object):
                         "KRDSINSTANCE": "kRDSInstance",
                         "KRDSSUBNET": "kRDSSubnet",
                         "KRDSTAG": "kRDSTag",
+                        "KAURORATAG": "kAuroraTag",
                         "KAURORACLUSTER": "kAuroraCluster",
                         "KACCOUNT": "kAccount",
                         "KSUBTASKPERMIT": "kSubTaskPermit"
@@ -2827,6 +3587,8 @@ class ObjectsApi(object):
                         "KNAMESPACE": "kNamespace",
                         "KSERVICE": "kService",
                         "KPVC": "kPVC",
+                        "KPERSISTENTVOLUMECLAIM": "kPersistentVolumeClaim",
+                        "KPERSISTENTVOLUME": "kPersistentVolume",
                         "KLABEL": "kLabel"
                     },
                     ('exchange_object_types',): {
@@ -3178,7 +3940,7 @@ class ObjectsApi(object):
 
             Args:
                 id (int): Specifies the id of the Object.
-                body (CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3): Specifies the parameters to perform an action on an object.
+                body (ObjectActionRequest): Specifies the parameters to perform an action on an object.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -3269,7 +4031,7 @@ class ObjectsApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3,),
+                        (ObjectActionRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',

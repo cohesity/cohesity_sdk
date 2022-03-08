@@ -79,7 +79,7 @@ class OdpRemoteClusters(ModelNormal):
         """
         lazy_import()
         return {
-            'odp_remote_clusters': ([OdpRemoteCluster], none_type,),  # noqa: E501
+            'odp_remote_clusters': ([OdpRemoteCluster],),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class OdpRemoteClusters(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            odp_remote_clusters ([OdpRemoteCluster], none_type): Specifies the list of ODP Remote Cluster configs.. [optional]  # noqa: E501
+            odp_remote_clusters ([OdpRemoteCluster]): Specifies the list of ODP Remote Cluster configs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

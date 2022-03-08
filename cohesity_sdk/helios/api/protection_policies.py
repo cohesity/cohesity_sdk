@@ -59,6 +59,8 @@ class ProtectionPoliciesApi(object):
                 body (ProtectionPolicyRequest): Request to create a Protection Policy.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -123,6 +125,8 @@ class ProtectionPoliciesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -142,11 +146,19 @@ class ProtectionPoliciesApi(object):
                 'openapi_types': {
                     'body':
                         (ProtectionPolicyRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -181,6 +193,8 @@ class ProtectionPoliciesApi(object):
                 id (str): Specifies a unique id of the Protection Policy to delete.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -245,6 +259,8 @@ class ProtectionPoliciesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -264,12 +280,20 @@ class ProtectionPoliciesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -302,6 +326,8 @@ class ProtectionPoliciesApi(object):
                 id (str): Specifies a unique id of the Policy Template to return.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -366,6 +392,8 @@ class ProtectionPoliciesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -385,12 +413,20 @@ class ProtectionPoliciesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -420,6 +456,8 @@ class ProtectionPoliciesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Filter policies by a list of policy template ids.. [optional]
                 policy_names ([str]): Filter policies by a list of policy names.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the organizations for which objects are to be returned.. [optional]
@@ -485,6 +523,8 @@ class ProtectionPoliciesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'policy_names',
                     'tenant_ids',
@@ -504,6 +544,10 @@ class ProtectionPoliciesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                     'policy_names':
@@ -514,12 +558,16 @@ class ProtectionPoliciesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'policy_names': 'policyNames',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'policy_names': 'query',
                     'tenant_ids': 'query',
@@ -556,6 +604,8 @@ class ProtectionPoliciesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Filter policies by a list of policy ids.. [optional]
                 policy_names ([str]): Filter policies by a list of policy names.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the organizations for which objects are to be returned.. [optional]
@@ -624,6 +674,8 @@ class ProtectionPoliciesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'policy_names',
                     'tenant_ids',
@@ -652,6 +704,10 @@ class ProtectionPoliciesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                     'policy_names':
@@ -668,6 +724,8 @@ class ProtectionPoliciesApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'policy_names': 'policyNames',
                     'tenant_ids': 'tenantIds',
@@ -677,6 +735,8 @@ class ProtectionPoliciesApi(object):
                     'include_replicated_policies': 'includeReplicatedPolicies',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'policy_names': 'query',
                     'tenant_ids': 'query',
@@ -720,6 +780,8 @@ class ProtectionPoliciesApi(object):
                 id (str): Specifies a unique id of the Protection Policy to return.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -784,6 +846,8 @@ class ProtectionPoliciesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -803,12 +867,20 @@ class ProtectionPoliciesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -843,6 +915,8 @@ class ProtectionPoliciesApi(object):
                 body (ProtectionPolicyRequest): Request to update a Protection Policy.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -910,6 +984,8 @@ class ProtectionPoliciesApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -932,13 +1008,21 @@ class ProtectionPoliciesApi(object):
                         (str,),
                     'body':
                         (ProtectionPolicyRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

@@ -75,7 +75,6 @@ class NodeRemovalParams(ModelNormal):
         """
         return {
             'cancel': (bool, none_type,),  # noqa: E501
-            'is_offline': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,7 +85,6 @@ class NodeRemovalParams(ModelNormal):
 
     attribute_map = {
         'cancel': 'cancel',  # noqa: E501
-        'is_offline': 'isOffline',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +137,6 @@ class NodeRemovalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_offline (bool, none_type): Specifies whether node being removed is offline.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

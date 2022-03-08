@@ -122,6 +122,7 @@ class IsilonProtectionGroupParams(ModelNormal):
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'modify_source_permissions': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -147,6 +148,7 @@ class IsilonProtectionGroupParams(ModelNormal):
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
+        'modify_source_permissions': 'modifySourcePermissions',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -214,6 +216,7 @@ class IsilonProtectionGroupParams(ModelNormal):
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
+            modify_source_permissions (bool, none_type): Specifies if the Isilon source permissions should be modified internally to allow backups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

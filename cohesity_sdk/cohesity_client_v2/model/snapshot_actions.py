@@ -77,6 +77,7 @@ class SnapshotActions(ModelNormal):
             'RECOVERONEDRIVE': "RecoverOneDrive",
             'RECOVERMSTEAM': "RecoverMsTeam",
             'RECOVERMSGROUP': "RecoverMsGroup",
+            'RECOVERSHAREPOINT': "RecoverSharePoint",
             'CONVERTTOPST': "ConvertToPst",
         },
     }

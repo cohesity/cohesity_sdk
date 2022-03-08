@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_recoveries**](RecoveriesApi.md#get_recoveries) | **GET** /data-protect/recoveries | Lists the Recoveries.
 [**get_recovery_by_id**](RecoveriesApi.md#get_recovery_by_id) | **GET** /data-protect/recoveries/{id} | Get Recovery for a given id.
 [**get_recovery_debug_logs**](RecoveriesApi.md#get_recovery_debug_logs) | **GET** /data-protect/recoveries/{id}/debug-logs | Get the debug logs for a particular recovery operation.
+[**get_recovery_errors_report**](RecoveriesApi.md#get_recovery_errors_report) | **GET** /data-protect/recoveries/{id}/download-messages | Get the CSV of errors/warnings for a given recovery operation.
 [**tear_down_recovery_by_id**](RecoveriesApi.md#tear_down_recovery_by_id) | **POST** /data-protect/recoveries/{id}/tearDown | Tear down Recovery for a given id.
 
 
@@ -116,6 +117,7 @@ body = DownloadFilesAndFoldersRequestParams(
             archival_target_info={},
             recover_from_standby=True,
         ),
+        parent_recovery_id="4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
         files_and_folders=[
             FilesAndFoldersObject(
                 absolute_path="absolute_path_example",
@@ -163,7 +165,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_recovery**
-> CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb create_recovery(body)
+> Recovery create_recovery(body)
 
 Performs a Recovery.
 
@@ -174,9 +176,9 @@ Performs a Recovery.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.recovery import Recovery
 from cohesity_sdk.cohesity_client_v2.model.error import Error
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_response_params8c60ab25210e4ab097394c9e12eb86fb import CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_request_params6cc0a9973f4b47a8_a51f_bdda823aab75 import CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75
+from cohesity_sdk.cohesity_client_v2.model.create_recovery_request import CreateRecoveryRequest
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
 from pprint import pprint
 
@@ -189,10 +191,7 @@ client = CohesityClientV2(
 )
 
 
-body = CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75(
-        name="name_example",
-        snapshot_environment="kVMware",
-    ) # CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75 | Specifies the parameters to create a Recovery.
+body = CreateRecoveryRequest() # CreateRecoveryRequest | Specifies the parameters to create a Recovery.
 
 # example passing only required values which don't have defaults set
 try:
@@ -208,11 +207,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75**](CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75.md)| Specifies the parameters to create a Recovery. |
+ **body** | [**CreateRecoveryRequest**](CreateRecoveryRequest.md)| Specifies the parameters to create a Recovery. |
 
 ### Return type
 
-[**CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb**](CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb.md)
+[**Recovery**](Recovery.md)
 
 ### Authorization
 
@@ -492,7 +491,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_recovery_by_id**
-> CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb get_recovery_by_id(id)
+> Recovery get_recovery_by_id(id)
 
 Get Recovery for a given id.
 
@@ -503,8 +502,8 @@ Get Recovery for a given id.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.recovery import Recovery
 from cohesity_sdk.cohesity_client_v2.model.error import Error
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_response_params8c60ab25210e4ab097394c9e12eb86fb import CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
 from pprint import pprint
 
@@ -548,7 +547,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb**](CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb.md)
+[**Recovery**](Recovery.md)
 
 ### Authorization
 
@@ -609,6 +608,70 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of a Recovery job. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_recovery_errors_report**
+> get_recovery_errors_report(id)
+
+Get the CSV of errors/warnings for a given recovery operation.
+
+Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique ID of a Recovery.
+
+# example passing only required values which don't have defaults set
+try:
+	# Get the CSV of errors/warnings for a given recovery operation.
+	client.recoveries.get_recovery_errors_report(id)
+except ApiException as e:
+	print("Exception when calling RecoveriesApi->get_recovery_errors_report: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies a unique ID of a Recovery. |
 
 ### Return type
 

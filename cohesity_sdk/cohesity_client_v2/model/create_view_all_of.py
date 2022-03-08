@@ -60,6 +60,7 @@ class CreateViewAllOf(ModelNormal):
             'SHORT': "Short",
             'LONG': "Long",
             'HIERARCHICAL': "Hierarchical",
+            'OBJECTID': "ObjectId",
         },
     }
 

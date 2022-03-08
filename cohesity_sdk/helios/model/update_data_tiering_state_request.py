@@ -114,8 +114,8 @@ class UpdateDataTieringStateRequest(ModelNormal):
         """UpdateDataTieringStateRequest - a model defined in OpenAPI
 
         Args:
-            action (str, none_type): Specifies the action to be performed on all the specified data   tiering groups.   'Pause'  specifies to pause.   'Resume' specifies to resume.
-            ids ([str], none_type): Specifies a list of data tiering groups ids for   which the state should change.
+            action (str, none_type): Specifies the action to be performed on all the specified data tiering groups. 'Pause'  specifies to pause. 'Resume' specifies to resume.
+            ids ([str], none_type): Specifies a list of data tiering groups ids for which the state should change.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -59,6 +59,8 @@ class ActiveDirectoryApi(object):
                 body (CreateActiveDirectoryRequest): Specifies the parameters to create an Active Directory.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -123,6 +125,8 @@ class ActiveDirectoryApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -142,11 +146,19 @@ class ActiveDirectoryApi(object):
                 'openapi_types': {
                     'body':
                         (CreateActiveDirectoryRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -185,6 +197,8 @@ class ActiveDirectoryApi(object):
                 active_directory_admin_password (str): Specifies the password of the Active Direcotry Admin.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -255,6 +269,8 @@ class ActiveDirectoryApi(object):
                     'id',
                     'active_directory_admin_username',
                     'active_directory_admin_password',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -280,16 +296,24 @@ class ActiveDirectoryApi(object):
                         (str,),
                     'active_directory_admin_password':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'active_directory_admin_username': 'activeDirectoryAdminUsername',
                     'active_directory_admin_password': 'activeDirectoryAdminPassword',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'active_directory_admin_username': 'header',
                     'active_directory_admin_password': 'header',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -319,10 +343,12 @@ class ActiveDirectoryApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 domain_names ([str]): Filter by a list of Active Directory domain names.. [optional]
                 ids ([int]): Filter by a list of Active Directory Ids.. [optional]
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
-                include_tenants (bool): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which Active Directories are to be returned.. [optional]
+                include_tenants (bool): If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -384,6 +410,8 @@ class ActiveDirectoryApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'domain_names',
                     'ids',
                     'tenant_ids',
@@ -403,6 +431,10 @@ class ActiveDirectoryApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'domain_names':
                         ([str],),
                     'ids':
@@ -413,12 +445,16 @@ class ActiveDirectoryApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'domain_names': 'domainNames',
                     'ids': 'ids',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'domain_names': 'query',
                     'ids': 'query',
                     'tenant_ids': 'query',
@@ -458,6 +494,8 @@ class ActiveDirectoryApi(object):
                 id (int): Specifies id of an Active Directory.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_centrify_zones (bool): Specifies whether to include Centrify Zones of the Active Directory in response.. [optional]
                 include_domain_controllers (bool): Specifies whether to include Domain Controllers of the Active Directory in response.. [optional]
                 include_security_principals (bool): Specifies whether to include Security Principals of the Active Directory in response.. [optional]
@@ -527,6 +565,8 @@ class ActiveDirectoryApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'include_centrify_zones',
                     'include_domain_controllers',
                     'include_security_principals',
@@ -563,6 +603,10 @@ class ActiveDirectoryApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_centrify_zones':
                         (bool,),
                     'include_domain_controllers':
@@ -576,6 +620,8 @@ class ActiveDirectoryApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_centrify_zones': 'includeCentrifyZones',
                     'include_domain_controllers': 'includeDomainControllers',
                     'include_security_principals': 'includeSecurityPrincipals',
@@ -584,6 +630,8 @@ class ActiveDirectoryApi(object):
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_centrify_zones': 'query',
                     'include_domain_controllers': 'query',
                     'include_security_principals': 'query',
@@ -622,6 +670,8 @@ class ActiveDirectoryApi(object):
                 domain_names ([str]): Specifies a list of domain names.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 connection_id (int, none_type): Specifies the Id of the connection which the connector belongs to.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -687,6 +737,8 @@ class ActiveDirectoryApi(object):
             params_map={
                 'all': [
                     'domain_names',
+                    'access_cluster_id',
+                    'region_id',
                     'connection_id',
                 ],
                 'required': [
@@ -713,15 +765,23 @@ class ActiveDirectoryApi(object):
                 'openapi_types': {
                     'domain_names':
                         ([str],),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'connection_id':
                         (int, none_type,),
                 },
                 'attribute_map': {
                     'domain_names': 'domainNames',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'connection_id': 'connectionId',
                 },
                 'location_map': {
                     'domain_names': 'query',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'connection_id': 'query',
                 },
                 'collection_format_map': {
@@ -758,6 +818,8 @@ class ActiveDirectoryApi(object):
                 body (UpdateActiveDirectoryRequest): Request to update an Active Directory.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -825,6 +887,8 @@ class ActiveDirectoryApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -847,13 +911,21 @@ class ActiveDirectoryApi(object):
                         (int,),
                     'body':
                         (UpdateActiveDirectoryRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

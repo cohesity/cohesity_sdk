@@ -33,6 +33,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 search_string = "searchString_example" # str, none_type | Search audit logs by 'entityName' or 'details'. (optional)
 usernames = [
         "usernames_example",
@@ -59,7 +61,7 @@ count = 1 # int, none_type | Specifies the number of indexed obejcts to be fetch
 # and optional values
 try:
 	# Get cluster audit logs.
-	api_response = client.audit_log.get_audit_logs(search_string=search_string, usernames=usernames, domains=domains, entity_types=entity_types, actions=actions, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, tenant_ids=tenant_ids, include_tenants=include_tenants, start_index=start_index, count=count)
+	api_response = client.audit_log.get_audit_logs(access_cluster_id=access_cluster_id, region_id=region_id, search_string=search_string, usernames=usernames, domains=domains, entity_types=entity_types, actions=actions, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, tenant_ids=tenant_ids, include_tenants=include_tenants, start_index=start_index, count=count)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling AuditLogApi->get_audit_logs: %s\n" % e)
@@ -70,6 +72,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **search_string** | **str, none_type**| Search audit logs by &#39;entityName&#39; or &#39;details&#39;. | [optional]
  **usernames** | **[str], none_type**| Specifies a list of usernames, only audit logs made by these users will be returned. | [optional]
  **domains** | **[str], none_type**| Specifies a list of domains, only audit logs made by user in these domains will be returned. | [optional]
@@ -127,11 +131,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get cluster audit logs actions.
-	api_response = client.audit_log.get_audit_logs_actions()
+	api_response = client.audit_log.get_audit_logs_actions(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling AuditLogApi->get_audit_logs_actions: %s\n" % e)
@@ -139,7 +146,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -186,11 +197,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get cluster audit logs entity types.
-	api_response = client.audit_log.get_audit_logs_entity_types()
+	api_response = client.audit_log.get_audit_logs_entity_types(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling AuditLogApi->get_audit_logs_entity_types: %s\n" % e)
@@ -198,7 +212,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -245,11 +263,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get filer audit log configs.
-	api_response = client.audit_log.get_filer_audit_log_configs()
+	api_response = client.audit_log.get_filer_audit_log_configs(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling AuditLogApi->get_filer_audit_log_configs: %s\n" % e)
@@ -257,7 +278,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -332,11 +357,22 @@ body = FilerAuditLogConfigs(
         ],
         override_global_subnet_whitelist=True,
     ) # FilerAuditLogConfigs | Specifies the filer audit log config to update.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update filer audit log configs.
 	api_response = client.audit_log.update_filer_audit_log_configs(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling AuditLogApi->update_filer_audit_log_configs: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update filer audit log configs.
+	api_response = client.audit_log.update_filer_audit_log_configs(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling AuditLogApi->update_filer_audit_log_configs: %s\n" % e)
@@ -348,6 +384,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**FilerAuditLogConfigs**](FilerAuditLogConfigs.md)| Specifies the filer audit log config to update. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

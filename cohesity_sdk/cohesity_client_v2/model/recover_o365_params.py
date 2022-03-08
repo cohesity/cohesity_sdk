@@ -95,6 +95,7 @@ class RecoverO365Params(ModelNormal):
             'recover_public_folders_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'recover_ms_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'recover_ms_team_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recover_site_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -112,6 +113,7 @@ class RecoverO365Params(ModelNormal):
         'recover_public_folders_params': 'recoverPublicFoldersParams',  # noqa: E501
         'recover_ms_group_params': 'recoverMsGroupParams',  # noqa: E501
         'recover_ms_team_params': 'recoverMsTeamParams',  # noqa: E501
+        'recover_site_params': 'recoverSiteParams',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
     }
 
@@ -171,6 +173,7 @@ class RecoverO365Params(ModelNormal):
             recover_public_folders_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Office 365 Public Folders.. [optional]  # noqa: E501
             recover_ms_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Microsoft 365 Group.. [optional]  # noqa: E501
             recover_ms_team_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Microsoft 365 Teams.. [optional]  # noqa: E501
+            recover_site_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Microsoft Office 365 Sharepoint Site.. [optional]  # noqa: E501
             download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery information to download files and folders. For instance, downloading mailbox items as PST.. [optional]  # noqa: E501
         """
 

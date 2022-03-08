@@ -74,6 +74,15 @@ class Disk(ModelNormal):
             'HDDDISK': "HddDisk",
             'UNKNOWN': "Unknown",
         },
+        ('encryption_status',): {
+            'ACTIVATING': "Activating",
+            'ACTIVE': "Active",
+            'NOTINCLUSTER': "NotInCluster",
+            'KEYROTATING': "KeyRotating",
+            'LOCKED': "Locked",
+            'UNKNOWN': "Unknown",
+            'NOTSUPPORTED': "NotSupported",
+        },
     }
 
     validations = {
@@ -102,6 +111,7 @@ class Disk(ModelNormal):
             'status': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'location': (str, none_type,),  # noqa: E501
+            'encryption_status': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -119,6 +129,7 @@ class Disk(ModelNormal):
         'status': 'status',  # noqa: E501
         'type': 'type',  # noqa: E501
         'location': 'location',  # noqa: E501
+        'encryption_status': 'encryptionStatus',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -176,6 +187,7 @@ class Disk(ModelNormal):
             status (str): Specifies status of the disk.. [optional]  # noqa: E501
             type (str): Specifies type of the disk.. [optional]  # noqa: E501
             location (str, none_type): Specifies location of the disk in node.. [optional]  # noqa: E501
+            encryption_status (str): Specifies disk encryption state.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -27,10 +27,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.hbase_source_registration_update_params_ssh_password_credentials import HbaseSourceRegistrationUpdateParamsSshPasswordCredentials
-    from cohesity_sdk.helios.model.hbase_source_registration_update_params_ssh_private_key_credentials import HbaseSourceRegistrationUpdateParamsSshPrivateKeyCredentials
-    globals()['HbaseSourceRegistrationUpdateParamsSshPasswordCredentials'] = HbaseSourceRegistrationUpdateParamsSshPasswordCredentials
-    globals()['HbaseSourceRegistrationUpdateParamsSshPrivateKeyCredentials'] = HbaseSourceRegistrationUpdateParamsSshPrivateKeyCredentials
+    from cohesity_sdk.helios.model.hbase_source_registration_params_all_of_ssh_password_credentials import HbaseSourceRegistrationParamsAllOfSshPasswordCredentials
+    from cohesity_sdk.helios.model.hbase_source_registration_params_all_of_ssh_private_key_credentials import HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials
+    globals()['HbaseSourceRegistrationParamsAllOfSshPasswordCredentials'] = HbaseSourceRegistrationParamsAllOfSshPasswordCredentials
+    globals()['HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials'] = HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials
 
 
 class HiveSourceRegistrationUpdateParams(ModelNormal):
@@ -83,8 +83,8 @@ class HiveSourceRegistrationUpdateParams(ModelNormal):
         return {
             'host': (str, none_type,),  # noqa: E501
             'configuration_directory': (str, none_type,),  # noqa: E501
-            'ssh_password_credentials': (HbaseSourceRegistrationUpdateParamsSshPasswordCredentials,),  # noqa: E501
-            'ssh_private_key_credentials': (HbaseSourceRegistrationUpdateParamsSshPrivateKeyCredentials,),  # noqa: E501
+            'ssh_password_credentials': (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
+            'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
             'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
@@ -151,8 +151,8 @@ class HiveSourceRegistrationUpdateParams(ModelNormal):
 
             host (str, none_type): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.. [optional]  # noqa: E501
             configuration_directory (str, none_type): The directory containing the hive-site.xml.. [optional]  # noqa: E501
-            ssh_password_credentials (HbaseSourceRegistrationUpdateParamsSshPasswordCredentials): [optional]  # noqa: E501
-            ssh_private_key_credentials (HbaseSourceRegistrationUpdateParamsSshPrivateKeyCredentials): [optional]  # noqa: E501
+            ssh_password_credentials (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
+            ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
             kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
         """
 

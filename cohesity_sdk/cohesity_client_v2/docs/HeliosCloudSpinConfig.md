@@ -1,6 +1,6 @@
 # HeliosCloudSpinConfig
 
-Specifies settings for copying Snapshots to Cloud. This also specifies the retention policy that should be applied to Snapshots after they have been copied to Cloud.
+Specifies settings for copying Snapshots to on prem.
 
 ## Properties
 Name | Type | Description | Notes

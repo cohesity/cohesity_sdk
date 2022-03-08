@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **status** | **str** | Specifies status of the disk. | [optional] 
 **type** | **str** | Specifies type of the disk. | [optional] 
 **location** | **str, none_type** | Specifies location of the disk in node. | [optional] 
+**encryption_status** | **str** | Specifies disk encryption state. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

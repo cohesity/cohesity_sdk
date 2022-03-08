@@ -35,11 +35,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = CreateKeystoneRequest() # CreateKeystoneRequest | Specifies the paremters to create a Keystone configuration.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a Keystone configuration.
 	api_response = client.keystone.create_keystone(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->create_keystone: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a Keystone configuration.
+	api_response = client.keystone.create_keystone(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KeystoneApi->create_keystone: %s\n" % e)
@@ -51,6 +62,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateKeystoneRequest**](CreateKeystoneRequest.md)| Specifies the paremters to create a Keystone configuration. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -98,11 +111,21 @@ client = HeliosClient(api_key=api_key)
 
 id = 1 # int | Specifies the Keystone id.
 admin_password = "adminPassword_example" # str | Specifies the password of Keystone administrator.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Keystone configuration.
 	client.keystone.delete_keystone(id, admin_password)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->delete_keystone: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Keystone configuration.
+	client.keystone.delete_keystone(id, admin_password, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling KeystoneApi->delete_keystone: %s\n" % e)
 ```
@@ -114,6 +137,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the Keystone id. |
  **admin_password** | **str**| Specifies the password of Keystone administrator. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -160,6 +185,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 names = [
         "names_example",
     ] # [str] | Specifies a list of Keystone names. (optional)
@@ -172,7 +199,7 @@ include_tenants = True # bool | If true, the response will include Keystones whi
 # and optional values
 try:
 	# Get Keystones.
-	api_response = client.keystone.get_keystones(names=names, tenant_ids=tenant_ids, include_tenants=include_tenants)
+	api_response = client.keystone.get_keystones(access_cluster_id=access_cluster_id, region_id=region_id, names=names, tenant_ids=tenant_ids, include_tenants=include_tenants)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KeystoneApi->get_keystones: %s\n" % e)
@@ -183,6 +210,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **names** | **[str]**| Specifies a list of Keystone names. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
  **include_tenants** | **bool**| If true, the response will include Keystones which were created by all tenants which the current user has permission to see. If false, then only Keystones created by the current user will be returned. | [optional]
@@ -233,11 +262,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the Keystone id.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get a Keystone by its id.
 	api_response = client.keystone.get_keystones_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->get_keystones_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a Keystone by its id.
+	api_response = client.keystone.get_keystones_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KeystoneApi->get_keystones_by_id: %s\n" % e)
@@ -249,6 +289,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the Keystone id. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -298,11 +340,22 @@ client = HeliosClient(api_key=api_key)
 
 id = 1 # int | Specifies the Keystone id.
 body = UpdateKeystoneRequest() # UpdateKeystoneRequest | Specifies the paremters to update a Keystone configuration.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Keystone configuration.
 	api_response = client.keystone.update_keystone(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->update_keystone: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Keystone configuration.
+	api_response = client.keystone.update_keystone(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KeystoneApi->update_keystone: %s\n" % e)
@@ -315,6 +368,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the Keystone id. |
  **body** | [**UpdateKeystoneRequest**](UpdateKeystoneRequest.md)| Specifies the paremters to update a Keystone configuration. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

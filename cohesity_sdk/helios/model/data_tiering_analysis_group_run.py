@@ -150,7 +150,7 @@ class DataTieringAnalysisGroupRun(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies the ID of the data tiering analysis group run.. [optional]  # noqa: E501
-            objects ([DataTieringObjectInfo], none_type): Specifies the objects details analyzed during data tiering analysis   group run.. [optional]  # noqa: E501
+            objects ([DataTieringObjectInfo], none_type): Specifies the objects details analyzed during data tiering analysis group run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of analysis run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of analysis run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             analysis_info (DataTieringAnalysisInfo): [optional]  # noqa: E501

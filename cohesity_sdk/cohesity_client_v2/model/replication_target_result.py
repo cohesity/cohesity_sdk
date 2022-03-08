@@ -79,6 +79,9 @@ class ReplicationTargetResult(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
+            'PAUSING': "Pausing",
+            'RESUMING': "Resuming",
         },
     }
 
@@ -206,7 +209,7 @@ class ReplicationTargetResult(ModelComposed):
             start_time_usecs (int, none_type): Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             queued_time_usecs (int, none_type): Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            status (str, none_type): Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             message (str, none_type): Message about the replication run.. [optional]  # noqa: E501
             percentage_completed (int, none_type): Specifies the progress in percentage.. [optional]  # noqa: E501
             stats (ReplicationDataStats): [optional]  # noqa: E501

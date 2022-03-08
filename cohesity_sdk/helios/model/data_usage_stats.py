@@ -105,6 +105,8 @@ class DataUsageStats(ModelNormal):
             'total_logical_usage_bytes': (int, none_type,),  # noqa: E501
             'total_logical_usage_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
             'unique_physical_data_bytes': (int, none_type,),  # noqa: E501
+            'num_files': (int, none_type,),  # noqa: E501
+            'num_directories': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -145,6 +147,8 @@ class DataUsageStats(ModelNormal):
         'total_logical_usage_bytes': 'totalLogicalUsageBytes',  # noqa: E501
         'total_logical_usage_bytes_timestamp_usec': 'totalLogicalUsageBytesTimestampUsec',  # noqa: E501
         'unique_physical_data_bytes': 'uniquePhysicalDataBytes',  # noqa: E501
+        'num_files': 'numFiles',  # noqa: E501
+        'num_directories': 'numDirectories',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -194,37 +198,39 @@ class DataUsageStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cloud_data_written_bytes (int, none_type): Specifies the total data written on cloud tiers, as computed by the   Cohesity Cluster.. [optional]  # noqa: E501
+            cloud_data_written_bytes (int, none_type): Specifies the total data written on cloud tiers, as computed by the Cohesity Cluster.. [optional]  # noqa: E501
             cloud_data_written_bytes_timestamp_usec (int, none_type): Specifies Timestamp of CloudDataWrittenBytes.. [optional]  # noqa: E501
-            cloud_total_physical_usage_bytes (int, none_type): Specifies the total cloud capacity, as computed by the Cohesity Cluster,   after the size of the data has been reduced by change-block tracking,   compression and deduplication.. [optional]  # noqa: E501
+            cloud_total_physical_usage_bytes (int, none_type): Specifies the total cloud capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication.. [optional]  # noqa: E501
             cloud_total_physical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of CloudTotalPhysicalUsageBytes.. [optional]  # noqa: E501
-            data_in_bytes (int, none_type): Specifies the data read from the protected objects by the Cohesity   Cluster before any data reduction using deduplication and compression.. [optional]  # noqa: E501
-            data_in_bytes_after_dedup (int, none_type): Specifies the size of the data has been reduced by change-block   tracking and deduplication but before compression or data is replicated to   other nodes as per RF or Erasure Coding policy.. [optional]  # noqa: E501
+            data_in_bytes (int, none_type): Specifies the data read from the protected objects by the Cohesity Cluster before any data reduction using deduplication and compression.. [optional]  # noqa: E501
+            data_in_bytes_after_dedup (int, none_type): Specifies the size of the data has been reduced by change-block tracking and deduplication but before compression or data is replicated to other nodes as per RF or Erasure Coding policy.. [optional]  # noqa: E501
             data_in_bytes_after_dedup_timestamp_usec (int, none_type): Specifies Timestamp of DataInBytesAfterDedup.. [optional]  # noqa: E501
             data_in_bytes_timestamp_usec (int, none_type): Specifies Timestamp of DataInBytes.. [optional]  # noqa: E501
             data_protect_logical_usage_bytes (int, none_type): Specifies the logical data used by Data Protect on Cohesity cluster.. [optional]  # noqa: E501
             data_protect_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of DataProtectLogicalUsageBytes.. [optional]  # noqa: E501
             data_protect_physical_usage_bytes (int, none_type): Specifies the physical data used by Data Protect on Cohesity cluster.. [optional]  # noqa: E501
             data_protect_physical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of DataProtectPhysicalUsageBytes.. [optional]  # noqa: E501
-            data_written_bytes (int, none_type): Specifies the data written after it has been reduced by deduplication   and compression. This does not include resiliency impact.. [optional]  # noqa: E501
+            data_written_bytes (int, none_type): Specifies the data written after it has been reduced by deduplication and compression. This does not include resiliency impact.. [optional]  # noqa: E501
             data_written_bytes_timestamp_usec (int, none_type): Specifies Timestamp of DataWrittenBytes.. [optional]  # noqa: E501
             file_services_logical_usage_bytes (int, none_type): Specifies the logical data used by File services on Cohesity cluster.. [optional]  # noqa: E501
             file_services_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of FileServicesLogicalUsageBytes.. [optional]  # noqa: E501
             file_services_physical_usage_bytes (int, none_type): Specifies the physical data used by File services on Cohesity cluster.. [optional]  # noqa: E501
             file_services_physical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of FileServicesPhysicalUsageBytes.. [optional]  # noqa: E501
-            local_data_written_bytes (int, none_type): Specifies the total data written on local tiers, as computed by the   Cohesity Cluster, after the size of the data has been reduced by   change-block tracking, deduplication and compression. This does not   include resiliency impact.. [optional]  # noqa: E501
+            local_data_written_bytes (int, none_type): Specifies the total data written on local tiers, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, deduplication and compression. This does not include resiliency impact.. [optional]  # noqa: E501
             local_data_written_bytes_timestamp_usec (int, none_type): Specifies Timestamp of LocalDataWrittenBytes.. [optional]  # noqa: E501
-            local_tier_resiliency_impact_bytes (int, none_type): Specifies the size of the data has been replicated to other nodes as per   RF or Erasure Coding policy.. [optional]  # noqa: E501
+            local_tier_resiliency_impact_bytes (int, none_type): Specifies the size of the data has been replicated to other nodes as per RF or Erasure Coding policy.. [optional]  # noqa: E501
             local_tier_resiliency_impact_bytes_timestamp_usec (int, none_type): Specifies Timestamp of LocalTierResiliencyImpactBytes.. [optional]  # noqa: E501
-            local_total_physical_usage_bytes (int, none_type): Specifies the total local capacity, as computed by the Cohesity Cluster,   after the size of the data has been reduced by change-block tracking,   compression and deduplication.. [optional]  # noqa: E501
+            local_total_physical_usage_bytes (int, none_type): Specifies the total local capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication.. [optional]  # noqa: E501
             local_total_physical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of LocalTotalPhysicalUsageBytes.. [optional]  # noqa: E501
-            outdated_logical_usage_bytes (int, none_type): Specifies the logical usage as computed by the Cohesity Cluster. This   field is computed on a same frequency as 'StorageConsumedBytes',   and it may not be the latest value. It is used to compute reduction ratio.. [optional]  # noqa: E501
+            outdated_logical_usage_bytes (int, none_type): Specifies the logical usage as computed by the Cohesity Cluster. This field is computed on a same frequency as 'StorageConsumedBytes', and it may not be the latest value. It is used to compute reduction ratio.. [optional]  # noqa: E501
             outdated_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of OutdatedLogicalUsageBytes.. [optional]  # noqa: E501
-            storage_consumed_bytes (int, none_type): Specifies the total capacity, as computed by the Cohesity Cluster,   after the size of the data has been reduced by change-block tracking,   compression and deduplication. This includes resiliency impact.. [optional]  # noqa: E501
+            storage_consumed_bytes (int, none_type): Specifies the total capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication. This includes resiliency impact.. [optional]  # noqa: E501
             storage_consumed_bytes_timestamp_usec (int, none_type): Specifies Timestamp of StorageConsumedBytes.. [optional]  # noqa: E501
-            total_logical_usage_bytes (int, none_type): Provides the combined data residing on protected objects.   The size of data before reduction by deduplication and compression.. [optional]  # noqa: E501
+            total_logical_usage_bytes (int, none_type): Provides the combined data residing on protected objects. The size of data before reduction by deduplication and compression.. [optional]  # noqa: E501
             total_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of TotalLogicalUsageBytes.. [optional]  # noqa: E501
             unique_physical_data_bytes (int, none_type): Specifies the unique physical data usage in bytes.. [optional]  # noqa: E501
+            num_files (int, none_type): Specifies the number of files.. [optional]  # noqa: E501
+            num_directories (int, none_type): Specifies the number of directories.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -110,6 +110,8 @@ class CreateStorageDomainParam(ModelComposed):
             'stats': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'schemas': ([Schema], none_type,),  # noqa: E501
             'file_count_by_size': ([FileCount], none_type,),  # noqa: E501
+            'cloud_domain_id': (int, none_type,),  # noqa: E501
+            'vault_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -144,6 +146,8 @@ class CreateStorageDomainParam(ModelComposed):
         'stats': 'stats',  # noqa: E501
         'schemas': 'schemas',  # noqa: E501
         'file_count_by_size': 'fileCountBySize',  # noqa: E501
+        'cloud_domain_id': 'cloudDomainId',  # noqa: E501
+        'vault_id': 'vaultId',  # noqa: E501
     }
 
     required_properties = set([
@@ -221,6 +225,8 @@ class CreateStorageDomainParam(ModelComposed):
             stats ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Storage Domain stats.. [optional]  # noqa: E501
             schemas ([Schema], none_type): Specifies the Storage Domain schemas.. [optional]  # noqa: E501
             file_count_by_size ([FileCount], none_type): Specifies the file count by size for the View.. [optional]  # noqa: E501
+            cloud_domain_id (int, none_type): Specifies the cloud domain Id.. [optional]  # noqa: E501
+            vault_id (int, none_type): Specifies the vault Id associated with cloud domain ID.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **expiry_time_usecs** | **int, none_type** | Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object. | [optional] 
 **total_file_count** | **int, none_type** | The total number of file and directory entities visited in this backup. Only applicable to file based backups. | [optional] 
 **backup_file_count** | **int, none_type** | The total number of file and directory entities that are backed up in this run. Only applicable to file based backups. | [optional] 
+**data_lock_constraints** | [**DataLockConstraints**](DataLockConstraints.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

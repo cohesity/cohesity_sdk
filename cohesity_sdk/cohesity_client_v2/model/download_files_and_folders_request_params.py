@@ -67,6 +67,12 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
             'min_items': 1,
         },
 
+        ('parent_recovery_id',): {
+            'regex': {
+                'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+            },
+        },
+
     }
 
     additional_properties_type = None
@@ -88,6 +94,7 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'object': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
             'files_and_folders': ([FilesAndFoldersObject], none_type,),  # noqa: E501
+            'parent_recovery_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +107,7 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'object': 'object',  # noqa: E501
         'files_and_folders': 'filesAndFolders',  # noqa: E501
+        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +162,7 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            parent_recovery_id (str, none_type): If current recovery is child task triggered through another parent recovery operation, then this field will specify the id of the parent recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -29,12 +29,13 @@ from cohesity_sdk.helios.model.cluster import Cluster
 from cohesity_sdk.helios.model.cluster_amqp_target_config import ClusterAMQPTargetConfig
 from cohesity_sdk.helios.model.cluster_free_disks import ClusterFreeDisks
 from cohesity_sdk.helios.model.cluster_interfaces import ClusterInterfaces
+from cohesity_sdk.helios.model.cluster_local_domain_sid import ClusterLocalDomainSID
 from cohesity_sdk.helios.model.create_cluster_params import CreateClusterParams
+from cohesity_sdk.helios.model.d_maa_s_info import DMaaSInfo
 from cohesity_sdk.helios.model.disk_identify import DiskIdentify
 from cohesity_sdk.helios.model.disk_removal_params import DiskRemovalParams
 from cohesity_sdk.helios.model.disks_list import DisksList
 from cohesity_sdk.helios.model.error import Error
-from cohesity_sdk.helios.model.mcm_rigel_claim_response_params import McmRigelClaimResponseParams
 from cohesity_sdk.helios.model.node_identify_params import NodeIdentifyParams
 from cohesity_sdk.helios.model.node_power_operation import NodePowerOperation
 from cohesity_sdk.helios.model.node_removal_params import NodeRemovalParams
@@ -50,6 +51,7 @@ from cohesity_sdk.helios.model.syslog_audit_tag import SyslogAuditTag
 from cohesity_sdk.helios.model.syslog_server import SyslogServer
 from cohesity_sdk.helios.model.syslog_server_status import SyslogServerStatus
 from cohesity_sdk.helios.model.syslog_servers import SyslogServers
+from cohesity_sdk.helios.model.update_feature_flag_params import UpdateFeatureFlagParams
 
 
 class PlatformApi(object):
@@ -82,6 +84,8 @@ class PlatformApi(object):
                 body (RemoteDisks): Specifies the remote disk configuration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -146,6 +150,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -165,11 +171,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (RemoteDisks,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -204,6 +218,8 @@ class PlatformApi(object):
                 body (SyslogServer): Specifies parameters to add syslog server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -268,6 +284,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -287,11 +305,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (SyslogServer,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -326,6 +352,8 @@ class PlatformApi(object):
                 body (CreateClusterParams): Specifies the parameters to create cluster.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -390,6 +418,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -409,11 +439,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (CreateClusterParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -448,6 +486,8 @@ class PlatformApi(object):
                 body (Racks): Specifies the parameters to create racks.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -512,6 +552,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -531,11 +573,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (Racks,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -567,6 +617,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -628,6 +680,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -643,10 +697,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -679,6 +741,8 @@ class PlatformApi(object):
                 id (str): Specifies a unique id of the rack.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -743,6 +807,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -762,12 +828,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -797,6 +871,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -858,6 +934,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -873,10 +951,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -909,6 +995,8 @@ class PlatformApi(object):
                 id (int): Specifies the registration id of the registered remote storage.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -973,6 +1061,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -992,12 +1082,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1027,6 +1125,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1088,6 +1188,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -1103,10 +1205,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1139,6 +1249,8 @@ class PlatformApi(object):
                 body (DiskIdentify): Specifies the parameter to identify disk.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1203,6 +1315,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1222,11 +1336,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (DiskIdentify,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1261,6 +1383,8 @@ class PlatformApi(object):
                 body (ClusterFreeDisks): Specifies the parameter to assimilate disks.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1325,6 +1449,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1344,11 +1470,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (ClusterFreeDisks,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1380,11 +1514,13 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 start_time_usecs (int): Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.. [optional]
                 end_time_usecs (int): Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.. [optional]
-                include_tenants (bool, none_type): IncludeTenants specifies if alerts of all the tenants under the   hierarchy of the logged in user's organization should be used to   compute summary.. [optional]
-                tenant_ids ([str], none_type): TenantIds contains ids of the tenants for which alerts are to be   used to compute summary.. [optional]
-                states_list ([str], none_type): Specifies list of alert states to filter alerts by. If not specified,   only open alerts will be used to get summary.. [optional]
+                include_tenants (bool, none_type): IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user's organization should be used to compute summary.. [optional]
+                tenant_ids ([str], none_type): TenantIds contains ids of the tenants for which alerts are to be used to compute summary.. [optional]
+                states_list ([str], none_type): Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1446,6 +1582,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'start_time_usecs',
                     'end_time_usecs',
                     'include_tenants',
@@ -1477,6 +1615,10 @@ class PlatformApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'start_time_usecs':
                         (int,),
                     'end_time_usecs':
@@ -1489,6 +1631,8 @@ class PlatformApi(object):
                         ([str], none_type,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'start_time_usecs': 'startTimeUsecs',
                     'end_time_usecs': 'endTimeUsecs',
                     'include_tenants': 'includeTenants',
@@ -1496,6 +1640,8 @@ class PlatformApi(object):
                     'states_list': 'statesList',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'start_time_usecs': 'query',
                     'end_time_usecs': 'query',
                     'include_tenants': 'query',
@@ -1532,6 +1678,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1593,6 +1741,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -1608,10 +1758,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1641,6 +1799,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 no_rack_assigned (bool): Filters chassis that have no rack assigned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -1703,6 +1863,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'no_rack_assigned',
                 ],
                 'required': [],
@@ -1719,13 +1881,21 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'no_rack_assigned':
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'no_rack_assigned': 'noRackAssigned',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'no_rack_assigned': 'query',
                 },
                 'collection_format_map': {
@@ -1759,6 +1929,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of chassis.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1823,6 +1995,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1842,12 +2016,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1877,6 +2059,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1938,6 +2122,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -1953,10 +2139,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1969,6 +2163,248 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__get_cluster
+        )
+
+        def __get_cluster_local_domain_sid(
+            self,
+            **kwargs
+        ):
+            """Get Cluster Local Domain SID  # noqa: E501
+
+            Fetch SID of cluster local domain.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_cluster_local_domain_sid(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ClusterLocalDomainSID
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_cluster_local_domain_sid = _Endpoint(
+            settings={
+                'response_type': (ClusterLocalDomainSID,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/local-domain-sid',
+                'operation_id': 'get_cluster_local_domain_sid',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_cluster_local_domain_sid
+        )
+
+        def __get_is_d_maa_s_cluster(
+            self,
+            **kwargs
+        ):
+            """Get whether the cluster is a DMaaS cluster.  # noqa: E501
+
+            Get whether the cluster is a DMaaS cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_is_d_maa_s_cluster(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DMaaSInfo
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_is_d_maa_s_cluster = _Endpoint(
+            settings={
+                'response_type': (DMaaSInfo,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/is-dmaas',
+                'operation_id': 'get_is_d_maa_s_cluster',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_is_d_maa_s_cluster
         )
 
         def __get_network_interfaces(
@@ -1986,6 +2422,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2047,6 +2485,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -2062,10 +2502,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2098,6 +2546,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of rack.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2162,6 +2612,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -2181,12 +2633,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2216,6 +2676,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2277,6 +2739,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -2292,10 +2756,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2325,6 +2797,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2386,6 +2860,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -2401,10 +2877,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2434,6 +2918,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 disk_ids ([int]): Specifies a list of disk ids, only disks having these ids will be returned.. [optional]
                 node_ids ([int]): Specifies a list of node ids, only disks in these nodes will be returned.. [optional]
                 tiers ([str]): Specifies a list of disk tiers, only disks with given tiers will be returned.. [optional]
@@ -2500,6 +2986,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'disk_ids',
                     'node_ids',
                     'tiers',
@@ -2528,6 +3016,10 @@ class PlatformApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'disk_ids':
                         ([int],),
                     'node_ids':
@@ -2540,6 +3032,8 @@ class PlatformApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'disk_ids': 'diskIds',
                     'node_ids': 'nodeIds',
                     'tiers': 'tiers',
@@ -2547,6 +3041,8 @@ class PlatformApi(object):
                     'file_system': 'fileSystem',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'disk_ids': 'query',
                     'node_ids': 'query',
                     'tiers': 'query',
@@ -2587,6 +3083,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of the registered remote storage.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_available_space (bool): Specifies whether to include available capacity on remote storage.. [optional] if omitted the server will use the default value of False
                 include_available_data_vips (bool): Specifies whether to include available data vips on remote storage.. [optional] if omitted the server will use the default value of False
                 include_array_info (bool): Includes flashblade specific info like name, software os and version of pure flashblade.. [optional] if omitted the server will use the default value of False
@@ -2654,6 +3152,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'include_available_space',
                     'include_available_data_vips',
                     'include_array_info',
@@ -2676,6 +3176,10 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_available_space':
                         (bool,),
                     'include_available_data_vips':
@@ -2685,12 +3189,16 @@ class PlatformApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_available_space': 'includeAvailableSpace',
                     'include_available_data_vips': 'includeAvailableDataVips',
                     'include_array_info': 'includeArrayInfo',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_available_space': 'query',
                     'include_available_data_vips': 'query',
                     'include_array_info': 'query',
@@ -2723,6 +3231,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2784,6 +3294,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -2799,10 +3311,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2832,6 +3352,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2893,6 +3415,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -2908,10 +3432,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2941,6 +3473,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3002,6 +3536,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -3017,10 +3553,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3053,6 +3597,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of syslog server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3117,6 +3663,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3136,12 +3684,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3174,6 +3730,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of syslog server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3238,6 +3796,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3257,12 +3817,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3292,6 +3860,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3353,6 +3923,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -3368,10 +3940,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3406,6 +3986,8 @@ class PlatformApi(object):
                 body (NodeIdentifyParams): Specifies the parameter to identify node.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3473,6 +4055,8 @@ class PlatformApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3495,13 +4079,21 @@ class PlatformApi(object):
                         (int,),
                     'body':
                         (NodeIdentifyParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3533,6 +4125,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 node_id (int): Specifies node id of the node to get list of disks. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -3595,6 +4189,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'node_id',
                 ],
                 'required': [],
@@ -3611,13 +4207,21 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'node_id':
                         (int,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'node_id': 'nodeId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'node_id': 'query',
                 },
                 'collection_format_map': {
@@ -3631,6 +4235,127 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__list_disks
+        )
+
+        def __list_feature_flag(
+            self,
+            **kwargs
+        ):
+            """Get feature flag overrides list.  # noqa: E501
+
+            Get the list of feature flag overrides defined on cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_feature_flag(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.list_feature_flag = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/feature-flag',
+                'operation_id': 'list_feature_flag',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_feature_flag
         )
 
         def __mark_disk_removal(
@@ -3653,6 +4378,8 @@ class PlatformApi(object):
                 body (DiskRemovalParams): Specifies parameters to mark/cancel disk removal.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3720,6 +4447,8 @@ class PlatformApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3742,13 +4471,21 @@ class PlatformApi(object):
                         (int,),
                     'body':
                         (DiskRemovalParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3785,6 +4522,8 @@ class PlatformApi(object):
                 body (NodeRemovalParams): Specifies parameters to initiate/cancel node removal .
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3852,6 +4591,8 @@ class PlatformApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3874,13 +4615,21 @@ class PlatformApi(object):
                         (int,),
                     'body':
                         (NodeRemovalParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3915,6 +4664,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of syslog server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 body (SyslogServer): Specifies the body of syslog server fields to patch.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -3980,6 +4731,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'body',
                 ],
                 'required': [
@@ -4000,14 +4753,22 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'body':
                         (SyslogServer,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'body': 'body',
                 },
                 'collection_format_map': {
@@ -4043,6 +4804,8 @@ class PlatformApi(object):
                 body (RemoteStorageInfo): Specifies the parameters to register a remote storage management server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4107,6 +4870,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -4126,11 +4891,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (RemoteStorageInfo,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4165,6 +4938,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of the remote disk to remove.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4229,6 +5004,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -4248,12 +5025,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4286,6 +5071,8 @@ class PlatformApi(object):
                 id (int): Specifies a unique id of the syslog server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4350,6 +5137,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -4369,12 +5158,20 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4404,6 +5201,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4465,6 +5264,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -4480,10 +5281,18 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4516,6 +5325,8 @@ class PlatformApi(object):
                 body (NodePowerOperation): Specifies the reboot or shutdown operation.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4580,6 +5391,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -4599,11 +5412,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (NodePowerOperation,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4638,6 +5459,8 @@ class PlatformApi(object):
                 body (ClusterAMQPTargetConfig): Specifies the parameters to update cluster AMQP target config.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4702,6 +5525,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -4721,11 +5546,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (ClusterAMQPTargetConfig,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4760,6 +5593,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of chassis.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 body (Chassis): Specifies the parameters to update chassis.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -4825,6 +5660,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'body',
                 ],
                 'required': [
@@ -4845,14 +5682,22 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'body':
                         (Chassis,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'body': 'body',
                 },
                 'collection_format_map': {
@@ -4888,6 +5733,8 @@ class PlatformApi(object):
                 body (Cluster): Specifies the parameters to update cluster.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4952,6 +5799,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -4971,11 +5820,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (Cluster,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -4992,24 +5849,26 @@ class PlatformApi(object):
             callable=__update_cluster
         )
 
-        def __update_cluster_bifrost_config(
+        def __update_feature_flag(
             self,
             body,
             **kwargs
         ):
-            """Update cluster Bifrost config.  # noqa: E501
+            """Update feature flag override status.  # noqa: E501
 
-            Update cluster Bifrost config.  # noqa: E501
+            Update a feature flag override status to cluster.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.update_cluster_bifrost_config(body, async_req=True)
+            >>> thread = api.update_feature_flag(body, async_req=True)
             >>> result = thread.get()
 
             Args:
-                body (McmRigelClaimResponseParams): Specifies the request to update Bifrost config.
+                body (UpdateFeatureFlagParams): Param for feature flag override request.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5031,7 +5890,7 @@ class PlatformApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                McmRigelClaimResponseParams
+                None
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -5058,22 +5917,24 @@ class PlatformApi(object):
                 body
             return self.call_with_http_info(**kwargs)
 
-        self.update_cluster_bifrost_config = _Endpoint(
+        self.update_feature_flag = _Endpoint(
             settings={
-                'response_type': (McmRigelClaimResponseParams,),
+                'response_type': None,
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/clusters/bifrost-config',
-                'operation_id': 'update_cluster_bifrost_config',
+                'endpoint_path': '/clusters/feature-flag',
+                'operation_id': 'update_feature_flag',
                 'http_method': 'PUT',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -5092,12 +5953,20 @@ class PlatformApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (McmRigelClaimResponseParams,),
+                        (UpdateFeatureFlagParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -5111,7 +5980,141 @@ class PlatformApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__update_cluster_bifrost_config
+            callable=__update_feature_flag
+        )
+
+        def __update_is_d_maa_s_cluster(
+            self,
+            body,
+            **kwargs
+        ):
+            """Update whether the cluster is a DMaaS cluster.  # noqa: E501
+
+            Update whether the cluster is a DMaaS cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_is_d_maa_s_cluster(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (DMaaSInfo): Param to update whether the cluster is a DMaaS cluster.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DMaaSInfo
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_is_d_maa_s_cluster = _Endpoint(
+            settings={
+                'response_type': (DMaaSInfo,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/is-dmaas',
+                'operation_id': 'update_is_d_maa_s_cluster',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (DMaaSInfo,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_is_d_maa_s_cluster
         )
 
         def __update_rack_by_id(
@@ -5132,6 +6135,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of rack.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 body (Rack): Specifies the parameters to update rack.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -5197,6 +6202,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'body',
                 ],
                 'required': [
@@ -5217,14 +6224,22 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'body':
                         (Rack,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'body': 'body',
                 },
                 'collection_format_map': {
@@ -5260,6 +6275,8 @@ class PlatformApi(object):
                 body (Racks): Specifies the parameters to update racks.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5324,6 +6341,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -5343,11 +6362,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (Racks,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -5384,6 +6411,8 @@ class PlatformApi(object):
                 body (RemoteStorageInfo): Specifies the parameters to update the registration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5451,6 +6480,8 @@ class PlatformApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -5473,13 +6504,21 @@ class PlatformApi(object):
                         (int,),
                     'body':
                         (RemoteStorageInfo,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -5514,6 +6553,8 @@ class PlatformApi(object):
                 body (SupportChannelConfig): Specifies the support channel configuration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5578,6 +6619,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -5597,11 +6640,19 @@ class PlatformApi(object):
                 'openapi_types': {
                     'body':
                         (SupportChannelConfig,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -5633,6 +6684,8 @@ class PlatformApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 body (SyslogAuditTag): Specifies syslog audit tag to update.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -5695,6 +6748,8 @@ class PlatformApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'body',
                 ],
                 'required': [],
@@ -5711,12 +6766,20 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'body':
                         (SyslogAuditTag,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'body': 'body',
                 },
                 'collection_format_map': {
@@ -5752,6 +6815,8 @@ class PlatformApi(object):
                 id (int): Specifies the id of syslog server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 body (SyslogServer): Specifies the body of syslog server body to update.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -5817,6 +6882,8 @@ class PlatformApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'body',
                 ],
                 'required': [
@@ -5837,14 +6904,22 @@ class PlatformApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'body':
                         (SyslogServer,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'body': 'body',
                 },
                 'collection_format_map': {

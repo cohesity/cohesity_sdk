@@ -61,6 +61,7 @@ class RecoveryType(ModelNormal):
             'RECOVERVMDISKS': "RecoverVmDisks",
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
+            'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERAPPS': "RecoverApps",

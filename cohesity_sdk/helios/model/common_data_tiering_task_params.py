@@ -132,7 +132,7 @@ class CommonDataTieringTaskParams(ModelNormal):
 
         Args:
             name (str, none_type): Specifies the name of the data tiering task.
-            type (str, none_type): Type of data tiering task.   'Downtier' indicates downtiering task.   'Uptier' indicates uptiering task.
+            type (str, none_type): Type of data tiering task. 'Downtier' indicates downtiering task. 'Uptier' indicates uptiering task.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

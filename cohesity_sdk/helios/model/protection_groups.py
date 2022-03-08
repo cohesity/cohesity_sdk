@@ -27,8 +27,8 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.common_protection_group_response_params8f08b02618d44fe5_bb54_fce1dfb4f732 import CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
-    globals()['CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732'] = CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+    from cohesity_sdk.helios.model.protection_group import ProtectionGroup
+    globals()['ProtectionGroup'] = ProtectionGroup
 
 
 class ProtectionGroups(ModelNormal):
@@ -79,7 +79,7 @@ class ProtectionGroups(ModelNormal):
         """
         lazy_import()
         return {
-            'protection_groups': ([CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732], none_type,),  # noqa: E501
+            'protection_groups': ([ProtectionGroup], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class ProtectionGroups(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_groups ([CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732], none_type): Specifies the list of Protection Groups which were returned by the request.. [optional]  # noqa: E501
+            protection_groups ([ProtectionGroup], none_type): Specifies the list of Protection Groups which were returned by the request.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

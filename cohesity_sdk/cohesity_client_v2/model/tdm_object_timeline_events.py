@@ -27,8 +27,8 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cohesity_client_v2.model.common_tdm_object_timeline_events_response_params10793fe839ac48a3_a61d_e421a8d4143d import CommonTdmObjectTimelineEventsResponseParams10793fe839ac48a3A61dE421a8d4143d
-    globals()['CommonTdmObjectTimelineEventsResponseParams10793fe839ac48a3A61dE421a8d4143d'] = CommonTdmObjectTimelineEventsResponseParams10793fe839ac48a3A61dE421a8d4143d
+    from cohesity_sdk.cohesity_client_v2.model.tdm_object_timeline_event import TdmObjectTimelineEvent
+    globals()['TdmObjectTimelineEvent'] = TdmObjectTimelineEvent
 
 
 class TdmObjectTimelineEvents(ModelNormal):
@@ -79,7 +79,7 @@ class TdmObjectTimelineEvents(ModelNormal):
         """
         lazy_import()
         return {
-            'events': ([CommonTdmObjectTimelineEventsResponseParams10793fe839ac48a3A61dE421a8d4143d], none_type,),  # noqa: E501
+            'events': ([TdmObjectTimelineEvent], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class TdmObjectTimelineEvents(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            events ([CommonTdmObjectTimelineEventsResponseParams10793fe839ac48a3A61dE421a8d4143d], none_type): Specifies the collection of the timeline events, filtered by the specified criteria.. [optional]  # noqa: E501
+            events ([TdmObjectTimelineEvent], none_type): Specifies the collection of the timeline events, filtered by the specified criteria.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

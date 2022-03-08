@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **auto_orphan_data_cleanup** | **bool, none_type** | Specifies whether to remove the orphan data from the target if the symlink is removed from the source. | [optional]  if omitted the server will use the default value of True
 **tiering_goal** | **int, none_type** | Specifies the maximum amount of data that should be present on source after downtiering. | [optional] 
 **file_age** | [**DowntieringFileAgePolicy**](DowntieringFileAgePolicy.md) |  | [optional] 
+**target** | [**DowntieringTarget**](DowntieringTarget.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

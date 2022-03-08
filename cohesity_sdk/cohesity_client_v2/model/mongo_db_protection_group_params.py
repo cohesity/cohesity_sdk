@@ -96,7 +96,6 @@ class MongoDBProtectionGroupParams(ModelComposed):
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'custom_source_name': (str, none_type,),  # noqa: E501
             'cdp_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -113,7 +112,6 @@ class MongoDBProtectionGroupParams(ModelComposed):
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'custom_source_name': 'customSourceName',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
     }
 
@@ -171,7 +169,6 @@ class MongoDBProtectionGroupParams(ModelComposed):
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
-            custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
             cdp_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the CDP related information for a given protection group. This field will only be populated when protection group is configured with a CDP policy.. [optional]  # noqa: E501
         """
 

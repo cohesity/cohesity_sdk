@@ -58,6 +58,8 @@ class KeystoneApi(object):
                 body (CreateKeystoneRequest): Specifies the paremters to create a Keystone configuration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -122,6 +124,8 @@ class KeystoneApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -141,11 +145,19 @@ class KeystoneApi(object):
                 'openapi_types': {
                     'body':
                         (CreateKeystoneRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -182,6 +194,8 @@ class KeystoneApi(object):
                 admin_password (str): Specifies the password of Keystone administrator.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -249,6 +263,8 @@ class KeystoneApi(object):
                 'all': [
                     'id',
                     'admin_password',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -271,14 +287,22 @@ class KeystoneApi(object):
                         (int,),
                     'admin_password':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'admin_password': 'adminPassword',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'admin_password': 'header',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -308,6 +332,8 @@ class KeystoneApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 names ([str]): Specifies a list of Keystone names.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Keystones which were created by all tenants which the current user has permission to see. If false, then only Keystones created by the current user will be returned.. [optional]
@@ -372,6 +398,8 @@ class KeystoneApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'names',
                     'tenant_ids',
                     'include_tenants',
@@ -398,6 +426,10 @@ class KeystoneApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'names':
                         ([str],),
                     'tenant_ids':
@@ -406,11 +438,15 @@ class KeystoneApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'names': 'names',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'names': 'query',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
@@ -448,6 +484,8 @@ class KeystoneApi(object):
                 id (int): Specifies the Keystone id.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -512,6 +550,8 @@ class KeystoneApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -531,12 +571,20 @@ class KeystoneApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -571,6 +619,8 @@ class KeystoneApi(object):
                 body (UpdateKeystoneRequest): Specifies the paremters to update a Keystone configuration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -638,6 +688,8 @@ class KeystoneApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -660,13 +712,21 @@ class KeystoneApi(object):
                         (int,),
                     'body':
                         (UpdateKeystoneRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

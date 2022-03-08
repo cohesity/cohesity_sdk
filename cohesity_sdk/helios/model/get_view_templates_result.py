@@ -139,7 +139,7 @@ class GetViewTemplatesResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            templates ([Template], none_type): Array of view template.   Specifies the list of view templates returned in this response.. [optional]  # noqa: E501
+            templates ([Template], none_type): Array of view template. Specifies the list of view templates returned in this response.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **recovery_mode** | **bool, none_type** | Specifies if database should be left in recovery mode. | [optional] 
 **shell_evironment_vars** | [**[ShellKeyValuePair], none_type**](ShellKeyValuePair.md) | Specifies key value pairs of shell variables which defines the restore shell environment. | [optional] 
 **granular_restore_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies information about list of objects (PDBs) to restore. | [optional] 
+**oracle_archive_log_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies Range in Time, Scn or Sequence to restore archive logs of a DB. | [optional] 
+**oracle_recovery_validation_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies parameters related to Oracle Recovery Validation. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

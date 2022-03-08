@@ -137,7 +137,7 @@ class FileFilteringPolicy(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             include_list ([str]): Specifies the list of included files for this Protection Group.. [optional]  # noqa: E501
-            exclude_list ([str]): Specifies the list of excluded files for this protection   Protection Group. Exclude filters have a higher priority than include   filters.. [optional]  # noqa: E501
+            exclude_list ([str]): Specifies the list of excluded files for this protection Protection Group. Exclude filters have a higher priority than include filters.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

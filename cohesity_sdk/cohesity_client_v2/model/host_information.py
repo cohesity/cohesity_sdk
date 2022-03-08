@@ -88,6 +88,7 @@ class HostInformation(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 

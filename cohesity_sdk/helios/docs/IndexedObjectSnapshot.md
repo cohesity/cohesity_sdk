@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **storage_domain_id** | **int, none_type** | Specifies the storage domain id containing this snapshot. | [optional] 
 **attempts** | **int, none_type** | Specifies the number of runs have been executed before the run completed successfully. | [optional] 
 **size_bytes** | **int, none_type** | Specifies the indexed object size in bytes. | [optional] 
+**inode_id** | **int, none_type** | Specifies the source inode number of the file being recovered. | [optional] [readonly] 
 **last_modified_time_usecs** | **int, none_type** | Specifies the last time file was modified in unix timestamp. | [optional] 
 **external_target_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the external target information if this is an archival snapshot. | [optional] 
 

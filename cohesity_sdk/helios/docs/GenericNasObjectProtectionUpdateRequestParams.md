@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **file_filters** | [**FileFilteringPolicy**](FileFilteringPolicy.md) |  | [optional] 
 **pre_post_script** | [**HostBasedBackupScriptParams**](HostBasedBackupScriptParams.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
-**protocol** | **str, none_type** | Specifies the protocol of the NAS device being backed up. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

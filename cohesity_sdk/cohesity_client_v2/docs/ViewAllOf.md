@@ -21,8 +21,9 @@ Name | Type | Description | Notes
 **is_target_for_migrated_data** | **bool, none_type** | Specifies if a view contains migrated data. | [optional] [readonly] 
 **view_failover** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the information about the failover of the view. | [optional] 
 **stats** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies statistics about the View. | [optional] 
-**file_count_by_size** | [**[FileCount]**](FileCount.md) | Specifies the file count by size for the View. | [optional] 
+**file_count_by_size** | [**[FileCount], none_type**](FileCount.md) | Specifies the file count by size for the View. | [optional] 
 **owner_sid** | **str, none_type** | Specifies the sid of the view owner. | [optional] 
+**s3_folder_support_enabled** | **bool, none_type** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

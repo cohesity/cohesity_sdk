@@ -92,7 +92,6 @@ class NoSqlProtectionGroupParams(ModelNormal):
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'custom_source_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -108,7 +107,6 @@ class NoSqlProtectionGroupParams(ModelNormal):
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'custom_source_name': 'customSourceName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -164,7 +162,6 @@ class NoSqlProtectionGroupParams(ModelNormal):
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
-            custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -85,6 +85,8 @@ class FileAllOf(ModelNormal):
             'type': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
@@ -101,6 +103,8 @@ class FileAllOf(ModelNormal):
         'type': 'type',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'source_info': 'sourceInfo',  # noqa: E501
     }
@@ -157,7 +161,9 @@ class FileAllOf(ModelNormal):
             type (str, none_type): Specifies the file type.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the protection group id which contains this file.\". [optional]  # noqa: E501
             protection_group_name (str, none_type): \"Specifies the protection group name which contains this file.\". [optional]  # noqa: E501
-            storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object   is present.\". [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the protection policy id for this file.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies the protection policy name for this file.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
         """
 

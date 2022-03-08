@@ -54,11 +54,6 @@ class ErasureCodingParams(ModelNormal):
     """
 
     allowed_values = {
-        ('algorithm',): {
-            'None': None,
-            'REED_SOLOMON': "REED_SOLOMON",
-            'LRC': "LRC",
-        },
     }
 
     validations = {
@@ -82,7 +77,6 @@ class ErasureCodingParams(ModelNormal):
             'enabled': (bool, none_type,),  # noqa: E501
             'num_data_stripes': (int, none_type,),  # noqa: E501
             'num_coded_stripes': (int, none_type,),  # noqa: E501
-            'algorithm': (str, none_type,),  # noqa: E501
             'inline_enabled': (bool, none_type,),  # noqa: E501
             'delay_secs': (int, none_type,),  # noqa: E501
         }
@@ -97,7 +91,6 @@ class ErasureCodingParams(ModelNormal):
         'enabled': 'enabled',  # noqa: E501
         'num_data_stripes': 'numDataStripes',  # noqa: E501
         'num_coded_stripes': 'numCodedStripes',  # noqa: E501
-        'algorithm': 'algorithm',  # noqa: E501
         'inline_enabled': 'inlineEnabled',  # noqa: E501
         'delay_secs': 'delaySecs',  # noqa: E501
     }
@@ -154,7 +147,6 @@ class ErasureCodingParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            algorithm (str, none_type): Specifies the algorithm used for erasure coding.. [optional]  # noqa: E501
             inline_enabled (bool, none_type): Specifies whether inline erasure coding is enabled. This field is appliciable only if enabled is set to true.. [optional]  # noqa: E501
             delay_secs (int, none_type): Specifies the time in seconds when erasure coding starts.. [optional]  # noqa: E501
         """

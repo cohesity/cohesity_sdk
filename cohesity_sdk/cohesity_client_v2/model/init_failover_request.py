@@ -60,6 +60,50 @@ class InitFailoverRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('protection_group_environment',): {
+            'None': None,
+            'KVMWARE': "kVMware",
+            'KHYPERV': "kHyperV",
+            'KAZURE': "kAzure",
+            'KGCP': "kGCP",
+            'KKVM': "kKVM",
+            'KACROPOLIS': "kAcropolis",
+            'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KPHYSICAL': "kPhysical",
+            'KGPFS': "kGPFS",
+            'KELASTIFILE': "kElastifile",
+            'KNETAPP': "kNetapp",
+            'KGENERICNAS': "kGenericNas",
+            'KISILON': "kIsilon",
+            'KFLASHBLADE': "kFlashBlade",
+            'KPURE': "kPure",
+            'KSQL': "kSQL",
+            'KEXCHANGE': "kExchange",
+            'KAD': "kAD",
+            'KORACLE': "kOracle",
+            'KVIEW': "kView",
+            'KREMOTEADAPTER': "kRemoteAdapter",
+            'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
+            'KKUBERNETES': "kKubernetes",
+            'KCASSANDRA': "kCassandra",
+            'KMONGODB': "kMongoDB",
+            'KCOUCHBASE': "kCouchbase",
+            'KHDFS': "kHdfs",
+            'KHIVE': "kHive",
+            'KHBASE': "kHBase",
+            'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
+        },
     }
 
     validations = {
@@ -83,6 +127,7 @@ class InitFailoverRequest(ModelNormal):
         return {
             'source_cluster': (FailoverSourceCluster,),  # noqa: E501
             'replication_cluster': (FailoverReplicaCluster,),  # noqa: E501
+            'protection_group_environment': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +139,7 @@ class InitFailoverRequest(ModelNormal):
     attribute_map = {
         'source_cluster': 'sourceCluster',  # noqa: E501
         'replication_cluster': 'replicationCluster',  # noqa: E501
+        'protection_group_environment': 'protectionGroupEnvironment',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,6 +191,7 @@ class InitFailoverRequest(ModelNormal):
 
             source_cluster (FailoverSourceCluster): [optional]  # noqa: E501
             replication_cluster (FailoverReplicaCluster): [optional]  # noqa: E501
+            protection_group_environment (str, none_type): If this field is specified then protection groups will be looked up only for this specific environment. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

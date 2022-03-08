@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**get_tenant_by_id**](TenantsApi.md#get_tenant_by_id) | **GET** /tenants/{id} | Get Tenant by ID.
 [**get_tenant_swift**](TenantsApi.md#get_tenant_swift) | **GET** /tenants/swift | Get a Swift configuration.
 [**list_tenants**](TenantsApi.md#list_tenants) | **GET** /tenants | Get a list of Tenants.
-[**perform_tenant_action**](TenantsApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions like activate and deactivate on a given Tenant.
+[**perform_tenant_action**](TenantsApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions on a Tenant.
 [**register_swift**](TenantsApi.md#register_swift) | **POST** /tenants/swift/register | Register Swift service on a Keystone server.
 [**unregister_swift**](TenantsApi.md#unregister_swift) | **POST** /tenants/swift/unregister | Unregister Swift service from a Keystone server.
 [**update_on_prem_tenant_config**](TenantsApi.md#update_on_prem_tenant_config) | **POST** /clusters/tenant-config | Update Tenants Config.
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 Update assginment of properties for a tenant.
 
-Assign/Unassign properties like storage domain, entities, policies etc.   to the tenant.   The API expects a list of all the assignments (policies etc.) that are   supposed to be associated to the Tenant. The list of assignments passed   get assigned to the Tenant and anything else that was already assigned   gets unassigned.   In case a few objects fail the assignment and some objects get assigned,   error is returned for all assignments except for policies.
+Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
 
 ### Example
 
@@ -43,7 +43,7 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 body = TenantAssignmentsParams(
         storage_domain_ids=[
             1,
@@ -61,11 +61,22 @@ body = TenantAssignmentsParams(
             "policy_ids_example",
         ],
     ) # TenantAssignmentsParams | 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update assginment of properties for a tenant.
 	api_response = client.tenants.assign_properties_to_tenant(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->assign_properties_to_tenant: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update assginment of properties for a tenant.
+	api_response = client.tenants.assign_properties_to_tenant(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->assign_properties_to_tenant: %s\n" % e)
@@ -78,6 +89,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The Tenant id. |
  **body** | [**TenantAssignmentsParams**](TenantAssignmentsParams.md)|  |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -112,7 +125,7 @@ Create a new Tenant.
 ```python
 from cohesity_sdk import HeliosClient
 from cohesity_sdk.helios.model.tenant_info import TenantInfo
-from cohesity_sdk.helios.model.unknownbasetype import UNKNOWNBASETYPE
+from cohesity_sdk.helios.model.create_tenant_params import CreateTenantParams
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
@@ -123,12 +136,27 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-body =  # UNKNOWN_BASE_TYPE | 
+body = CreateTenantParams(
+        name="name_example",
+        tenant_id_suffix="Cu2LC4aWwWL9Y864DZtaGR",
+        description="description_example",
+    ) # CreateTenantParams | 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a new Tenant.
 	api_response = client.tenants.create_tenant(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->create_tenant: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a new Tenant.
+	api_response = client.tenants.create_tenant(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->create_tenant: %s\n" % e)
@@ -139,7 +167,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  |
+ **body** | [**CreateTenantParams**](CreateTenantParams.md)|  |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -183,12 +213,22 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete Tenant with given ID.
 	client.tenants.delete_tenant(id)
+except ApiException as e:
+	print("Exception when calling TenantsApi->delete_tenant: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete Tenant with given ID.
+	client.tenants.delete_tenant(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling TenantsApi->delete_tenant: %s\n" % e)
 ```
@@ -199,6 +239,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The Tenant id. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -227,7 +269,7 @@ void (empty response body)
 
 Get tenant assignments.
 
-Get all assigned properties like storage domain, entities, policies,   objects, views etc for a given tenant.
+Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
 
 ### Example
 
@@ -245,12 +287,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get tenant assignments.
 	api_response = client.tenants.get_assigned_properties_for_tenant(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->get_assigned_properties_for_tenant: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get tenant assignments.
+	api_response = client.tenants.get_assigned_properties_for_tenant(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->get_assigned_properties_for_tenant: %s\n" % e)
@@ -262,6 +315,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The Tenant id. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -308,11 +363,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get Tenants Config.
-	api_response = client.tenants.get_on_prem_tenant_config()
+	api_response = client.tenants.get_on_prem_tenant_config(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->get_on_prem_tenant_config: %s\n" % e)
@@ -320,7 +378,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -365,12 +427,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get Tenant by ID.
 	api_response = client.tenants.get_tenant_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->get_tenant_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get Tenant by ID.
+	api_response = client.tenants.get_tenant_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->get_tenant_by_id: %s\n" % e)
@@ -382,6 +455,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The Tenant id. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -428,13 +503,15 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 tenant_id = "tenantId_example" # str | Specifies the tenant Id. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get a Swift configuration.
-	api_response = client.tenants.get_tenant_swift(tenant_id=tenant_id)
+	api_response = client.tenants.get_tenant_swift(access_cluster_id=access_cluster_id, region_id=region_id, tenant_id=tenant_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->get_tenant_swift: %s\n" % e)
@@ -445,6 +522,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **tenant_id** | **str**| Specifies the tenant Id. | [optional]
 
 ### Return type
@@ -490,18 +569,20 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str, none_type] | List of tenantIds to filter. (optional)
 statuses = [
         "Active",
-    ] # [str, none_type] | Filter by current status of tenant.   If left blank, only active and inactive tenants are returned. (optional)
+    ] # [str, none_type] | Filter by current status of tenant. If left blank, only active and inactive tenants are returned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get a list of Tenants.
-	api_response = client.tenants.list_tenants(ids=ids, statuses=statuses)
+	api_response = client.tenants.list_tenants(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, statuses=statuses)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->list_tenants: %s\n" % e)
@@ -512,8 +593,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | [**[str, none_type]**](str, none_type.md)| List of tenantIds to filter. | [optional]
- **statuses** | [**[str, none_type]**](str, none_type.md)| Filter by current status of tenant.   If left blank, only active and inactive tenants are returned. | [optional]
+ **statuses** | [**[str, none_type]**](str, none_type.md)| Filter by current status of tenant. If left blank, only active and inactive tenants are returned. | [optional]
 
 ### Return type
 
@@ -540,9 +623,9 @@ Name | Type | Description  | Notes
 # **perform_tenant_action**
 > TenantInfo perform_tenant_action(id, body)
 
-Perform actions like activate and deactivate on a given Tenant.
-
 Perform actions on a Tenant.
+
+Perform actions like activate and deactivate on a given Tenant.
 
 ### Example
 
@@ -561,15 +644,26 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 body = TenantActionBody(
         action="Activate",
     ) # TenantActionBody | Specifies the parameters to perform an action on a Tenant.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
-	# Perform actions like activate and deactivate on a given Tenant.
+	# Perform actions on a Tenant.
 	api_response = client.tenants.perform_tenant_action(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->perform_tenant_action: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Perform actions on a Tenant.
+	api_response = client.tenants.perform_tenant_action(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->perform_tenant_action: %s\n" % e)
@@ -582,6 +676,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| The Tenant id. |
  **body** | [**TenantActionBody**](TenantActionBody.md)| Specifies the parameters to perform an action on a Tenant. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -635,11 +731,21 @@ body = RegisterSwiftParams(
             scope={},
         ),
     ) # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Register Swift service on a Keystone server.
 	client.tenants.register_swift(body)
+except ApiException as e:
+	print("Exception when calling TenantsApi->register_swift: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Register Swift service on a Keystone server.
+	client.tenants.register_swift(body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling TenantsApi->register_swift: %s\n" % e)
 ```
@@ -650,6 +756,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**RegisterSwiftParams**](RegisterSwiftParams.md)| Specifies the parameters to register a Swift service on Keystone server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -703,11 +811,21 @@ body = UnregisterSwiftParams(
             scope={},
         ),
     ) # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Unregister Swift service from a Keystone server.
 	client.tenants.unregister_swift(body)
+except ApiException as e:
+	print("Exception when calling TenantsApi->unregister_swift: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Unregister Swift service from a Keystone server.
+	client.tenants.unregister_swift(body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling TenantsApi->unregister_swift: %s\n" % e)
 ```
@@ -718,6 +836,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**UnregisterSwiftParams**](UnregisterSwiftParams.md)| Specifies the parameters to unregister a Swift service from Keystone server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -768,11 +888,22 @@ body = OnPremTenantConfig(
         organizations_enabled=True,
         organizations_storage_domain_sharing_enabled=True,
     ) # OnPremTenantConfig | 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update Tenants Config.
 	api_response = client.tenants.update_on_prem_tenant_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->update_on_prem_tenant_config: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update Tenants Config.
+	api_response = client.tenants.update_on_prem_tenant_config(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->update_on_prem_tenant_config: %s\n" % e)
@@ -784,6 +915,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**OnPremTenantConfig**](OnPremTenantConfig.md)|  |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -833,11 +966,22 @@ client = HeliosClient(api_key=api_key)
 
 id = "C/" # str, none_type | 
 body = UpdateTenantBody() # UpdateTenantBody | 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update Tenant.
 	api_response = client.tenants.update_tenant(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->update_tenant: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update Tenant.
+	api_response = client.tenants.update_tenant(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->update_tenant: %s\n" % e)
@@ -850,6 +994,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str, none_type**|  |
  **body** | [**UpdateTenantBody**](UpdateTenantBody.md)|  |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -903,11 +1049,22 @@ body = SwiftParams(
             "operator_roles_example",
         ],
     ) # SwiftParams | Specifies the parameters to update a Swift configuration.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Swift configuration.
 	api_response = client.tenants.update_tenant_swift(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantsApi->update_tenant_swift: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Swift configuration.
+	api_response = client.tenants.update_tenant_swift(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TenantsApi->update_tenant_swift: %s\n" % e)
@@ -919,6 +1076,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SwiftParams**](SwiftParams.md)| Specifies the parameters to update a Swift configuration. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

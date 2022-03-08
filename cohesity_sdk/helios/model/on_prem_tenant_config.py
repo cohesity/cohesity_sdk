@@ -106,7 +106,7 @@ class OnPremTenantConfig(ModelNormal):
 
         Args:
             organizations_enabled (bool, none_type): Wether organizations is enabled on the cluster.
-            organizations_storage_domain_sharing_enabled (bool, none_type): Wether storage domain sharing is enabled for organizations on   the cluster.
+            organizations_storage_domain_sharing_enabled (bool, none_type): Wether storage domain sharing is enabled for organizations on the cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

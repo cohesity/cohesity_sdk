@@ -27,26 +27,30 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.cassandra_indexed_object import CassandraIndexedObject
-    from cohesity_sdk.helios.model.couchbase_indexed_object import CouchbaseIndexedObject
-    from cohesity_sdk.helios.model.email import Email
-    from cohesity_sdk.helios.model.exchange_indexed_object import ExchangeIndexedObject
-    from cohesity_sdk.helios.model.file import File
-    from cohesity_sdk.helios.model.hbase_indexed_object import HbaseIndexedObject
-    from cohesity_sdk.helios.model.hdfs_indexed_object import HDFSIndexedObject
-    from cohesity_sdk.helios.model.hive_indexed_object import HiveIndexedObject
-    from cohesity_sdk.helios.model.mongo_indexed_object import MongoIndexedObject
-    from cohesity_sdk.helios.model.public_folder_item import PublicFolderItem
-    globals()['CassandraIndexedObject'] = CassandraIndexedObject
-    globals()['CouchbaseIndexedObject'] = CouchbaseIndexedObject
-    globals()['Email'] = Email
-    globals()['ExchangeIndexedObject'] = ExchangeIndexedObject
-    globals()['File'] = File
-    globals()['HDFSIndexedObject'] = HDFSIndexedObject
-    globals()['HbaseIndexedObject'] = HbaseIndexedObject
-    globals()['HiveIndexedObject'] = HiveIndexedObject
-    globals()['MongoIndexedObject'] = MongoIndexedObject
-    globals()['PublicFolderItem'] = PublicFolderItem
+    from cohesity_sdk.helios.model.cassandra_indexed_objects import CassandraIndexedObjects
+    from cohesity_sdk.helios.model.couchbase_indexed_objects import CouchbaseIndexedObjects
+    from cohesity_sdk.helios.model.emails import Emails
+    from cohesity_sdk.helios.model.exchange_indexed_objects import ExchangeIndexedObjects
+    from cohesity_sdk.helios.model.files import Files
+    from cohesity_sdk.helios.model.hbase_indexed_objects import HbaseIndexedObjects
+    from cohesity_sdk.helios.model.hdfs_indexed_objects import HDFSIndexedObjects
+    from cohesity_sdk.helios.model.hive_indexed_objects import HiveIndexedObjects
+    from cohesity_sdk.helios.model.mongo_indexed_objects import MongoIndexedObjects
+    from cohesity_sdk.helios.model.one_drive_items import OneDriveItems
+    from cohesity_sdk.helios.model.public_folder_items import PublicFolderItems
+    from cohesity_sdk.helios.model.sharepoint_items import SharepointItems
+    globals()['CassandraIndexedObjects'] = CassandraIndexedObjects
+    globals()['CouchbaseIndexedObjects'] = CouchbaseIndexedObjects
+    globals()['Emails'] = Emails
+    globals()['ExchangeIndexedObjects'] = ExchangeIndexedObjects
+    globals()['Files'] = Files
+    globals()['HDFSIndexedObjects'] = HDFSIndexedObjects
+    globals()['HbaseIndexedObjects'] = HbaseIndexedObjects
+    globals()['HiveIndexedObjects'] = HiveIndexedObjects
+    globals()['MongoIndexedObjects'] = MongoIndexedObjects
+    globals()['OneDriveItems'] = OneDriveItems
+    globals()['PublicFolderItems'] = PublicFolderItems
+    globals()['SharepointItems'] = SharepointItems
 
 
 class SearchIndexedObjectsResponseBodyAllOf(ModelNormal):
@@ -97,16 +101,18 @@ class SearchIndexedObjectsResponseBodyAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'emails': ([Email], none_type,),  # noqa: E501
-            'files': ([File], none_type,),  # noqa: E501
-            'cassandra_objects': ([CassandraIndexedObject], none_type,),  # noqa: E501
-            'couchbase_objects': ([CouchbaseIndexedObject], none_type,),  # noqa: E501
-            'hbase_objects': ([HbaseIndexedObject], none_type,),  # noqa: E501
-            'hive_objects': ([HiveIndexedObject], none_type,),  # noqa: E501
-            'mongo_objects': ([MongoIndexedObject], none_type,),  # noqa: E501
-            'hdfs_objects': ([HDFSIndexedObject], none_type,),  # noqa: E501
-            'exchange_objects': ([ExchangeIndexedObject], none_type,),  # noqa: E501
-            'public_folder_items': ([PublicFolderItem], none_type,),  # noqa: E501
+            'emails': (Emails,),  # noqa: E501
+            'files': (Files,),  # noqa: E501
+            'cassandra_objects': (CassandraIndexedObjects,),  # noqa: E501
+            'couchbase_objects': (CouchbaseIndexedObjects,),  # noqa: E501
+            'hbase_objects': (HbaseIndexedObjects,),  # noqa: E501
+            'hive_objects': (HiveIndexedObjects,),  # noqa: E501
+            'mongo_objects': (MongoIndexedObjects,),  # noqa: E501
+            'hdfs_objects': (HDFSIndexedObjects,),  # noqa: E501
+            'exchange_objects': (ExchangeIndexedObjects,),  # noqa: E501
+            'public_folder_items': (PublicFolderItems,),  # noqa: E501
+            'sharepoint_items': (SharepointItems,),  # noqa: E501
+            'one_drive_items': (OneDriveItems,),  # noqa: E501
         }
 
     @cached_property
@@ -126,6 +132,8 @@ class SearchIndexedObjectsResponseBodyAllOf(ModelNormal):
         'hdfs_objects': 'hdfsObjects',  # noqa: E501
         'exchange_objects': 'exchangeObjects',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
+        'sharepoint_items': 'sharepointItems',  # noqa: E501
+        'one_drive_items': 'oneDriveItems',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -175,16 +183,18 @@ class SearchIndexedObjectsResponseBodyAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            emails ([Email], none_type): Specifies the indexed emails and email folders.. [optional]  # noqa: E501
-            files ([File], none_type): Specifies the indexed files and file folders.. [optional]  # noqa: E501
-            cassandra_objects ([CassandraIndexedObject], none_type): Specifies the indexed Cassandra objects.. [optional]  # noqa: E501
-            couchbase_objects ([CouchbaseIndexedObject], none_type): Specifies the indexed Couchbase objects.. [optional]  # noqa: E501
-            hbase_objects ([HbaseIndexedObject], none_type): Specifies the indexed Hbase objects.. [optional]  # noqa: E501
-            hive_objects ([HiveIndexedObject], none_type): Specifies the indexed Hive objects.. [optional]  # noqa: E501
-            mongo_objects ([MongoIndexedObject], none_type): Specifies the indexed Mongo objects.. [optional]  # noqa: E501
-            hdfs_objects ([HDFSIndexedObject], none_type): Specifies the indexed HDFS objects.. [optional]  # noqa: E501
-            exchange_objects ([ExchangeIndexedObject], none_type): Specifies the indexed HDFS objects.. [optional]  # noqa: E501
-            public_folder_items ([PublicFolderItem], none_type): Specifies the indexed Public folder items.. [optional]  # noqa: E501
+            emails (Emails): [optional]  # noqa: E501
+            files (Files): [optional]  # noqa: E501
+            cassandra_objects (CassandraIndexedObjects): [optional]  # noqa: E501
+            couchbase_objects (CouchbaseIndexedObjects): [optional]  # noqa: E501
+            hbase_objects (HbaseIndexedObjects): [optional]  # noqa: E501
+            hive_objects (HiveIndexedObjects): [optional]  # noqa: E501
+            mongo_objects (MongoIndexedObjects): [optional]  # noqa: E501
+            hdfs_objects (HDFSIndexedObjects): [optional]  # noqa: E501
+            exchange_objects (ExchangeIndexedObjects): [optional]  # noqa: E501
+            public_folder_items (PublicFolderItems): [optional]  # noqa: E501
+            sharepoint_items (SharepointItems): [optional]  # noqa: E501
+            one_drive_items (OneDriveItems): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

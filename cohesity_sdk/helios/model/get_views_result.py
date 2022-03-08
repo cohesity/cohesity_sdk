@@ -143,9 +143,9 @@ class GetViewsResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            views ([View], none_type): Array of Views.   Specifies the list of Views returned in this response.   The list is sorted by decreasing View ids.. [optional]  # noqa: E501
-            last_result (bool, none_type): If false, more Views are available to return. If the number of   Views to return exceeds the number of Views specified in maxCount   (default of 1000) of the original GET /public/views request,   the first set of Views are returned and this field returns false.   To get the next set of Views, in the next GET /public/views request   send the last id from the previous viewList.. [optional]  # noqa: E501
-            count (int, none_type): Number of views returned. This will only be returned if ViewCountOnly is   set in arguments.. [optional]  # noqa: E501
+            views ([View], none_type): Array of Views. Specifies the list of Views returned in this response. The list is sorted by decreasing View ids.. [optional]  # noqa: E501
+            last_result (bool, none_type): If false, more Views are available to return. If the number of Views to return exceeds the number of Views specified in maxCount (default of 1000) of the original GET /public/views request, the first set of Views are returned and this field returns false. To get the next set of Views, in the next GET /public/views request send the last id from the previous viewList.. [optional]  # noqa: E501
+            count (int, none_type): Number of views returned. This will only be returned if ViewCountOnly is set in arguments.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

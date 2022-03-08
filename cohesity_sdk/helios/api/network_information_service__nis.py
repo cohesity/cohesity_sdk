@@ -58,6 +58,8 @@ class NetworkInformationServiceNISApi(object):
                 body (NisNetgroup): Specifies the parameters to create an NIS netgroup.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -122,6 +124,8 @@ class NetworkInformationServiceNISApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -141,11 +145,19 @@ class NetworkInformationServiceNISApi(object):
                 'openapi_types': {
                     'body':
                         (NisNetgroup,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -180,6 +192,8 @@ class NetworkInformationServiceNISApi(object):
                 body (NisProvider): Specifies the parameters to create an NIS provider entry.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -244,6 +258,8 @@ class NetworkInformationServiceNISApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -263,11 +279,19 @@ class NetworkInformationServiceNISApi(object):
                 'openapi_types': {
                     'body':
                         (NisProvider,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -304,6 +328,8 @@ class NetworkInformationServiceNISApi(object):
                 body (NisNetgroup): Request to delete the NIS netgroup.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -371,6 +397,8 @@ class NetworkInformationServiceNISApi(object):
                 'all': [
                     'name',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'name',
@@ -393,13 +421,21 @@ class NetworkInformationServiceNISApi(object):
                         (str,),
                     'body':
                         (NisNetgroup,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'name': 'name',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'name': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -434,6 +470,8 @@ class NetworkInformationServiceNISApi(object):
                 domain (str): Specifies domain name of an NIS Provider.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -498,6 +536,8 @@ class NetworkInformationServiceNISApi(object):
             params_map={
                 'all': [
                     'domain',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'domain',
@@ -517,12 +557,20 @@ class NetworkInformationServiceNISApi(object):
                 'openapi_types': {
                     'domain':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'domain': 'domain',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'domain': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -555,6 +603,8 @@ class NetworkInformationServiceNISApi(object):
                 name (str): Specifies name of the NIS netgroup.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -619,6 +669,8 @@ class NetworkInformationServiceNISApi(object):
             params_map={
                 'all': [
                     'name',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'name',
@@ -638,12 +690,20 @@ class NetworkInformationServiceNISApi(object):
                 'openapi_types': {
                     'name':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'name': 'name',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'name': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -673,6 +733,8 @@ class NetworkInformationServiceNISApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 netgroup_names ([str]): Filter by a list of NIS netgroup names.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -735,6 +797,8 @@ class NetworkInformationServiceNISApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'netgroup_names',
                 ],
                 'required': [],
@@ -751,13 +815,21 @@ class NetworkInformationServiceNISApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'netgroup_names':
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'netgroup_names': 'netgroupNames',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'netgroup_names': 'query',
                 },
                 'collection_format_map': {
@@ -792,6 +864,8 @@ class NetworkInformationServiceNISApi(object):
                 domain (str): Specifies domain of an NIS Provider.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -856,6 +930,8 @@ class NetworkInformationServiceNISApi(object):
             params_map={
                 'all': [
                     'domain',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'domain',
@@ -875,12 +951,20 @@ class NetworkInformationServiceNISApi(object):
                 'openapi_types': {
                     'domain':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'domain': 'domain',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'domain': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -910,6 +994,8 @@ class NetworkInformationServiceNISApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 domain_names ([str]): Filter by a list of NIS domain names.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -972,6 +1058,8 @@ class NetworkInformationServiceNISApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'domain_names',
                 ],
                 'required': [],
@@ -988,13 +1076,21 @@ class NetworkInformationServiceNISApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'domain_names':
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'domain_names': 'domainNames',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'domain_names': 'query',
                 },
                 'collection_format_map': {
@@ -1031,6 +1127,8 @@ class NetworkInformationServiceNISApi(object):
                 body (NisNetgroup): Request to update the NIS netgroup.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1098,6 +1196,8 @@ class NetworkInformationServiceNISApi(object):
                 'all': [
                     'name',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'name',
@@ -1120,13 +1220,21 @@ class NetworkInformationServiceNISApi(object):
                         (str,),
                     'body':
                         (NisNetgroup,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'name': 'name',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'name': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1163,6 +1271,8 @@ class NetworkInformationServiceNISApi(object):
                 body (NisProvider): Request to update an NIS Provider.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1230,6 +1340,8 @@ class NetworkInformationServiceNISApi(object):
                 'all': [
                     'domain',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'domain',
@@ -1252,13 +1364,21 @@ class NetworkInformationServiceNISApi(object):
                         (str,),
                     'body':
                         (NisProvider,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'domain': 'domain',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'domain': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

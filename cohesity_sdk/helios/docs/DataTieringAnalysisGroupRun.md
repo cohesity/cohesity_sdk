@@ -6,7 +6,7 @@ Specifies the data tiering analysis group run.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str, none_type** | Specifies the ID of the data tiering analysis group run. | [optional] 
-**objects** | [**[DataTieringObjectInfo], none_type**](DataTieringObjectInfo.md) | Specifies the objects details analyzed during data tiering analysis   group run. | [optional] 
+**objects** | [**[DataTieringObjectInfo], none_type**](DataTieringObjectInfo.md) | Specifies the objects details analyzed during data tiering analysis group run. | [optional] 
 **start_time_usecs** | **int, none_type** | Specifies the start time of analysis run in Unix epoch Timestamp(in microseconds). | [optional] 
 **end_time_usecs** | **int, none_type** | Specifies the end time of analysis run in Unix epoch Timestamp(in microseconds). | [optional] 
 **analysis_info** | [**DataTieringAnalysisInfo**](DataTieringAnalysisInfo.md) |  | [optional] 

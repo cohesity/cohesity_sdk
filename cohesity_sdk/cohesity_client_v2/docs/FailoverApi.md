@@ -403,6 +403,7 @@ body = InitFailoverRequest(
             ],
             protection_group_id="protection_group_id_example",
         ),
+        protection_group_environment="kVMware",
     ) # InitFailoverRequest | Specifies the parameters to initiate a failover. This failover request should be intiaited from replication cluster.
 
 # example passing only required values which don't have defaults set
@@ -637,6 +638,10 @@ body = ReplicationBackupActivation(
         ],
         protection_group_id="protection_group_id_example",
         enable_reverse_replication=True,
+        do_not_protect=True,
+        create_object_backup=True,
+        target_failover_policy_id="target_failover_policy_id_example",
+        target_failover_environment="kVMware",
     ) # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
 
 # example passing only required values which don't have defaults set

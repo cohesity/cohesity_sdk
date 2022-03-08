@@ -98,6 +98,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
         ('object_type',): {
             'None': None,
@@ -183,6 +184,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KRDSINSTANCE': "kRDSInstance",
             'KRDSSUBNET': "kRDSSubnet",
             'KRDSTAG': "kRDSTag",
+            'KAURORATAG': "kAuroraTag",
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
@@ -208,6 +210,8 @@ class ObjectProtectionSummary(ModelComposed):
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KSERVICE': "kService",
             'KPVC': "kPVC",
+            'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
+            'KPERSISTENTVOLUME': "kPersistentVolume",
             'KROOTCONTAINER': "kRootContainer",
             'KDAGROOTCONTAINER': "kDAGRootContainer",
             'KEXCHANGENODE': "kExchangeNode",
@@ -223,6 +227,8 @@ class ObjectProtectionSummary(ModelComposed):
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
             'KOBJECT': "kObject",
+            'KORG': "kOrg",
+            'KAPPINSTANCE': "kAppInstance",
         },
         ('protection_type',): {
             'None': None,
@@ -242,6 +248,11 @@ class ObjectProtectionSummary(ModelComposed):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+        },
+        ('error_type',): {
+            'None': None,
+            'INTERNALERROR': "InternalError",
+            'ALREADYEXISTSERROR': "AlreadyExistsError",
         },
     }
 
@@ -273,10 +284,12 @@ class ObjectProtectionSummary(ModelComposed):
             'object_type': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
             'uuid': (str, none_type,),  # noqa: E501
+            'global_id': (str, none_type,),  # noqa: E501
             'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'error_type': (str, none_type,),  # noqa: E501
             'error': (str, none_type,),  # noqa: E501
         }
 
@@ -296,10 +309,12 @@ class ObjectProtectionSummary(ModelComposed):
         'object_type': 'objectType',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'uuid': 'uuid',  # noqa: E501
+        'global_id': 'globalId',  # noqa: E501
         'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'error_type': 'errorType',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -360,10 +375,12 @@ class ObjectProtectionSummary(ModelComposed):
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
+            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
             protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            error_type (str, none_type): Specifies the type of error which occurred during creation of the object protection.. [optional]  # noqa: E501
             error (str, none_type): Specifies the error message if an error occurred during creation of the object protection.. [optional]  # noqa: E501
         """
 

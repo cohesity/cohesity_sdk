@@ -137,6 +137,7 @@ class ObjectType(ModelNormal):
             'KRDSINSTANCE': "kRDSInstance",
             'KRDSSUBNET': "kRDSSubnet",
             'KRDSTAG': "kRDSTag",
+            'KAURORATAG': "kAuroraTag",
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
@@ -162,6 +163,8 @@ class ObjectType(ModelNormal):
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KSERVICE': "kService",
             'KPVC': "kPVC",
+            'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
+            'KPERSISTENTVOLUME': "kPersistentVolume",
             'KROOTCONTAINER': "kRootContainer",
             'KDAGROOTCONTAINER': "kDAGRootContainer",
             'KEXCHANGENODE': "kExchangeNode",
@@ -177,6 +180,8 @@ class ObjectType(ModelNormal):
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
             'KOBJECT': "kObject",
+            'KORG': "kOrg",
+            'KAPPINSTANCE': "kAppInstance",
         },
     }
 

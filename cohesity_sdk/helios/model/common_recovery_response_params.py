@@ -28,8 +28,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.helios.model.creation_info import CreationInfo
+    from cohesity_sdk.helios.model.retrieve_archive_task import RetrieveArchiveTask
     from cohesity_sdk.helios.model.tenant import Tenant
     globals()['CreationInfo'] = CreationInfo
+    globals()['RetrieveArchiveTask'] = RetrieveArchiveTask
     globals()['Tenant'] = Tenant
 
 
@@ -111,6 +113,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'RECOVERVMDISKS': "RecoverVmDisks",
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
+            'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERAPPS': "RecoverApps",
@@ -186,6 +189,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'messages': ([str], none_type,),  # noqa: E501
             'is_parent_recovery': (bool, none_type,),  # noqa: E501
             'parent_recovery_id': (str, none_type,),  # noqa: E501
+            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -211,6 +215,7 @@ class CommonRecoveryResponseParams(ModelNormal):
         'messages': 'messages',  # noqa: E501
         'is_parent_recovery': 'isParentRecovery',  # noqa: E501
         'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
+        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -276,6 +281,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
             is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
             parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
+            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

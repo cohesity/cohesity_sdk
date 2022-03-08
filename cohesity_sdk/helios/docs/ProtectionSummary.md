@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **policy_name** | **str, none_type** | Specifies the policy name for this group. | [optional] 
 **policy_id** | **str, none_type** | Specifies the policy id for this protection. | [optional] 
+**storage_domain_id** | **str, none_type** | Specifies the storage domain id of this protection. Format is clusterId:clusterIncarnationId:storageDomainId. | [optional] 
 **last_backup_run_status** | **str, none_type** | Specifies the status of last local back up run. | [optional] 
 **last_archival_run_status** | **str, none_type** | Specifies the status of last archival run. | [optional] 
 **last_replication_run_status** | **str, none_type** | Specifies the status of last replication run. | [optional] 

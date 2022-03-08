@@ -74,15 +74,6 @@ class GenericNasProtectionGroupParams(ModelComposed):
     """
 
     allowed_values = {
-        ('protocol',): {
-            'None': None,
-            'KNOPROTOCOL': "kNoProtocol",
-            'KNFS3': "kNfs3",
-            'KNFS4_1': "kNfs4_1",
-            'KCIFS1': "kCifs1",
-            'KCIFS2': "kCifs2",
-            'KCIFS3': "kCifs3",
-        },
     }
 
     validations = {
@@ -118,7 +109,6 @@ class GenericNasProtectionGroupParams(ModelComposed):
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
             'direct_cloud_archive': (bool, none_type,),  # noqa: E501
             'native_format': (bool, none_type,),  # noqa: E501
-            'protocol': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -138,7 +128,6 @@ class GenericNasProtectionGroupParams(ModelComposed):
         'throttling_config': 'throttlingConfig',  # noqa: E501
         'direct_cloud_archive': 'directCloudArchive',  # noqa: E501
         'native_format': 'nativeFormat',  # noqa: E501
-        'protocol': 'protocol',  # noqa: E501
     }
 
     required_properties = set([
@@ -201,7 +190,6 @@ class GenericNasProtectionGroupParams(ModelComposed):
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
             direct_cloud_archive (bool, none_type): Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is 'false'.. [optional]  # noqa: E501
             native_format (bool, none_type): Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving.. [optional]  # noqa: E501
-            protocol (str, none_type): Specifies the preferred protocol to use if this device supports multiple protocols.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

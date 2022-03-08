@@ -57,6 +57,9 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
     }
 
     validations = {
+        ('exclude_object_ids',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -76,6 +79,8 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
         return {
             'id': (int,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'should_auto_protect_object': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +92,8 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'should_auto_protect_object': 'shouldAutoProtectObject',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,7 +112,7 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
         """Office365ObjectProtectionObjectParams - a model defined in OpenAPI
 
         Args:
-            id (int): Specifies the id of the object.
+            id (int): Specifies the ID of the object being protected. If this is a non leaf level object, then the object will be auto-protected unless leaf objects are specified for exclusion.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,6 +147,8 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the ID of the objects to be excluded in the Object Protection.. [optional]  # noqa: E501
+            should_auto_protect_object (bool, none_type): Specifies if the object has to be autoprotected. This is applicable only for sharepoint sites.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

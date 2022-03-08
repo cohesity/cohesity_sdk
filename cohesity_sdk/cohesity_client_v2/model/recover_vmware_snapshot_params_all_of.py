@@ -79,7 +79,7 @@ class RecoverVmwareSnapshotParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'child_snapshots': ([RecoverVmwareChildSnapshotParams],),  # noqa: E501
+            'child_snapshots': ([RecoverVmwareChildSnapshotParams], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class RecoverVmwareSnapshotParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            child_snapshots ([RecoverVmwareChildSnapshotParams]): Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here.. [optional]  # noqa: E501
+            child_snapshots ([RecoverVmwareChildSnapshotParams], none_type): Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

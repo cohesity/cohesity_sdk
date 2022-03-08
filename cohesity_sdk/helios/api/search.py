@@ -58,6 +58,8 @@ class SearchApi(object):
                 body (SearchIndexedObjectsRequest): Specifies the parameters to search for indexed objects.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -122,6 +124,8 @@ class SearchApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -141,11 +145,19 @@ class SearchApi(object):
                 'openapi_types': {
                     'body':
                         (SearchIndexedObjectsRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -177,6 +189,8 @@ class SearchApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 search_string (str): Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria.. [optional]
                 environments ([str]): Specifies the environment type to filter objects.. [optional]
                 protection_types ([str]): Specifies the protection type to filter objects.. [optional]
@@ -188,15 +202,18 @@ class SearchApi(object):
                 source_ids ([int]): Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 source_uuids ([str]): Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 is_protected (bool): Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.. [optional]
+                is_deleted (bool): If set to true, then objects which are deleted on atleast one cluster will be returned. If not set or set to false then objects which are registered on atleast one cluster are returned.. [optional]
                 last_run_status_list ([str]): Specifies a list of status of the object's last protection run. Only objects with last run status of these will be returned.. [optional]
                 region_ids ([str]): Specifies a list of region ids. Only records from clusters having these region ids will be returned.. [optional]
                 cluster_identifiers ([str]): Specifies the list of cluster identifiers. Format is clusterId:clusterIncarnationId. Only records from clusters having these identifiers will be returned.. [optional]
+                storage_domain_ids ([str]): Specifies the list of storage domain ids. Format is clusterId:clusterIncarnationId:storageDomainId. Only objects having protection in these storage domains will be returned.. [optional]
+                include_deleted_objects (bool): Specifies whether to include deleted objects in response. These objects can't be protected but can be recovered. This field is deprecated.. [optional]
                 pagination_cookie (str): Specifies the pagination cookie with which subsequent parts of the response can be fetched.. [optional]
                 count (int): Specifies the number of objects to be fetched for the specified pagination cookie.. [optional]
                 must_have_tag_ids ([str]): Specifies tags which must be all present in the document.. [optional]
-                might_have_tag_ids ([str]): Specifies list of tags, one or more of which might be present in   the document. These are OR'ed together and the resulting criteria   AND'ed with the rest of the query.. [optional]
+                might_have_tag_ids ([str]): Specifies list of tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.. [optional]
                 must_have_snapshot_tag_ids ([str]): Specifies snapshot tags which must be all present in the document.. [optional]
-                might_have_snapshot_tag_ids ([str]): Specifies list of snapshot tags, one or more of which might be   present in the document. These are OR'ed together and the resulting   criteria AND'ed with the rest of the query.. [optional]
+                might_have_snapshot_tag_ids ([str]): Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -258,6 +275,8 @@ class SearchApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'search_string',
                     'environments',
                     'protection_types',
@@ -269,9 +288,12 @@ class SearchApi(object):
                     'source_ids',
                     'source_uuids',
                     'is_protected',
+                    'is_deleted',
                     'last_run_status_list',
                     'region_ids',
                     'cluster_identifiers',
+                    'storage_domain_ids',
+                    'include_deleted_objects',
                     'pagination_cookie',
                     'count',
                     'must_have_tag_ids',
@@ -352,7 +374,8 @@ class SearchApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                     ('protection_types',): {
 
@@ -387,6 +410,10 @@ class SearchApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'search_string':
                         (str,),
                     'environments':
@@ -409,12 +436,18 @@ class SearchApi(object):
                         ([str],),
                     'is_protected':
                         (bool,),
+                    'is_deleted':
+                        (bool,),
                     'last_run_status_list':
                         ([str],),
                     'region_ids':
                         ([str],),
                     'cluster_identifiers':
                         ([str],),
+                    'storage_domain_ids':
+                        ([str],),
+                    'include_deleted_objects':
+                        (bool,),
                     'pagination_cookie':
                         (str,),
                     'count':
@@ -429,6 +462,8 @@ class SearchApi(object):
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'search_string': 'searchString',
                     'environments': 'environments',
                     'protection_types': 'protectionTypes',
@@ -440,9 +475,12 @@ class SearchApi(object):
                     'source_ids': 'sourceIds',
                     'source_uuids': 'sourceUuids',
                     'is_protected': 'isProtected',
+                    'is_deleted': 'isDeleted',
                     'last_run_status_list': 'lastRunStatusList',
                     'region_ids': 'regionIds',
                     'cluster_identifiers': 'clusterIdentifiers',
+                    'storage_domain_ids': 'storageDomainIds',
+                    'include_deleted_objects': 'includeDeletedObjects',
                     'pagination_cookie': 'paginationCookie',
                     'count': 'count',
                     'must_have_tag_ids': 'mustHaveTagIds',
@@ -451,6 +489,8 @@ class SearchApi(object):
                     'might_have_snapshot_tag_ids': 'mightHaveSnapshotTagIds',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'search_string': 'query',
                     'environments': 'query',
                     'protection_types': 'query',
@@ -462,9 +502,12 @@ class SearchApi(object):
                     'source_ids': 'query',
                     'source_uuids': 'query',
                     'is_protected': 'query',
+                    'is_deleted': 'query',
                     'last_run_status_list': 'query',
                     'region_ids': 'query',
                     'cluster_identifiers': 'query',
+                    'storage_domain_ids': 'query',
+                    'include_deleted_objects': 'query',
                     'pagination_cookie': 'query',
                     'count': 'query',
                     'must_have_tag_ids': 'query',
@@ -484,6 +527,7 @@ class SearchApi(object):
                     'last_run_status_list': 'csv',
                     'region_ids': 'csv',
                     'cluster_identifiers': 'csv',
+                    'storage_domain_ids': 'csv',
                     'must_have_tag_ids': 'csv',
                     'might_have_tag_ids': 'csv',
                     'must_have_snapshot_tag_ids': 'csv',
@@ -515,6 +559,8 @@ class SearchApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 search_string (str): Specifies the search string to filter the objects. This search string will be applicable for objectnames and Protection Group names. User can specify a wildcard character '*' as a suffix to a string where all object and their Protection Group names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects with Protection Groups will be returned which will match other filtering criteria.. [optional]
                 environments ([str]): Specifies the environment type to filter objects.. [optional]
                 snapshot_actions ([str]): Specifies a list of recovery actions. Only snapshots that applies to these actions will be returned.. [optional]
@@ -530,6 +576,7 @@ class SearchApi(object):
                 source_ids ([int]): Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 run_instance_ids ([int]): Specifies a list of run instance ids. If specified only objects belonging to the provided run id will be retunrned.. [optional]
                 cdp_protected_only (bool): Specifies whether to only return the CDP protected objects.. [optional]
+                region_ids ([str]): Specifies a list of region ids. Only records from clusters having these region ids will be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -591,6 +638,8 @@ class SearchApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'search_string',
                     'environments',
                     'snapshot_actions',
@@ -606,6 +655,7 @@ class SearchApi(object):
                     'source_ids',
                     'run_instance_ids',
                     'cdp_protected_only',
+                    'region_ids',
                 ],
                 'required': [],
                 'nullable': [
@@ -663,7 +713,8 @@ class SearchApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                     ('snapshot_actions',): {
 
@@ -689,6 +740,7 @@ class SearchApi(object):
                         "RECOVERONEDRIVE": "RecoverOneDrive",
                         "RECOVERMSTEAM": "RecoverMsTeam",
                         "RECOVERMSGROUP": "RecoverMsGroup",
+                        "RECOVERSHAREPOINT": "RecoverSharePoint",
                         "CONVERTTOPST": "ConvertToPst"
                     },
                     ('os_types',): {
@@ -702,6 +754,10 @@ class SearchApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'search_string':
                         (str,),
                     'environments':
@@ -732,8 +788,12 @@ class SearchApi(object):
                         ([int],),
                     'cdp_protected_only':
                         (bool,),
+                    'region_ids':
+                        ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'search_string': 'searchString',
                     'environments': 'environments',
                     'snapshot_actions': 'snapshotActions',
@@ -749,8 +809,11 @@ class SearchApi(object):
                     'source_ids': 'sourceIds',
                     'run_instance_ids': 'runInstanceIds',
                     'cdp_protected_only': 'cdpProtectedOnly',
+                    'region_ids': 'regionIds',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'search_string': 'query',
                     'environments': 'query',
                     'snapshot_actions': 'query',
@@ -766,6 +829,7 @@ class SearchApi(object):
                     'source_ids': 'query',
                     'run_instance_ids': 'query',
                     'cdp_protected_only': 'query',
+                    'region_ids': 'query',
                 },
                 'collection_format_map': {
                     'environments': 'csv',
@@ -777,6 +841,7 @@ class SearchApi(object):
                     'os_types': 'csv',
                     'source_ids': 'csv',
                     'run_instance_ids': 'csv',
+                    'region_ids': 'csv',
                 }
             },
             headers_map={

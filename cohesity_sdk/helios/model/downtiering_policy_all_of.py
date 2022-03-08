@@ -28,9 +28,11 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.helios.model.downtiering_file_age_policy import DowntieringFileAgePolicy
+    from cohesity_sdk.helios.model.downtiering_target import DowntieringTarget
     from cohesity_sdk.helios.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.helios.model.retention import Retention
     globals()['DowntieringFileAgePolicy'] = DowntieringFileAgePolicy
+    globals()['DowntieringTarget'] = DowntieringTarget
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['Retention'] = Retention
 
@@ -97,6 +99,7 @@ class DowntieringPolicyAllOf(ModelNormal):
             'auto_orphan_data_cleanup': (bool, none_type,),  # noqa: E501
             'tiering_goal': (int, none_type,),  # noqa: E501
             'file_age': (DowntieringFileAgePolicy,),  # noqa: E501
+            'target': (DowntieringTarget,),  # noqa: E501
         }
 
     @cached_property
@@ -113,6 +116,7 @@ class DowntieringPolicyAllOf(ModelNormal):
         'auto_orphan_data_cleanup': 'autoOrphanDataCleanup',  # noqa: E501
         'tiering_goal': 'tieringGoal',  # noqa: E501
         'file_age': 'fileAge',  # noqa: E501
+        'target': 'target',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,13 +166,14 @@ class DowntieringPolicyAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            qos_policy (str, none_type): Specifies whether the data tiering task will be written to HDD or   SSD.. [optional]  # noqa: E501
+            qos_policy (str, none_type): Specifies whether the data tiering task will be written to HDD or SSD.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             retention (Retention): [optional]  # noqa: E501
-            skip_back_symlink (bool, none_type): Specifies whether to create a symlink for the migrated data from   source to target.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            auto_orphan_data_cleanup (bool, none_type): Specifies whether to remove the orphan data from the target if the   symlink is removed from the source.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            tiering_goal (int, none_type): Specifies the maximum amount of data that should be present on source   after downtiering.. [optional]  # noqa: E501
+            skip_back_symlink (bool, none_type): Specifies whether to create a symlink for the migrated data from source to target.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            auto_orphan_data_cleanup (bool, none_type): Specifies whether to remove the orphan data from the target if the symlink is removed from the source.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            tiering_goal (int, none_type): Specifies the maximum amount of data that should be present on source after downtiering.. [optional]  # noqa: E501
             file_age (DowntieringFileAgePolicy): [optional]  # noqa: E501
+            target (DowntieringTarget): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -27,8 +27,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.policy_config import PolicyConfig
     from cohesity_sdk.helios.model.sla_rule import SlaRule
     from cohesity_sdk.helios.model.time_of_day import TimeOfDay
+    globals()['PolicyConfig'] = PolicyConfig
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
 
@@ -95,12 +97,14 @@ class CommonBackupParams(ModelNormal):
         lazy_import()
         return {
             'policy_id': (str, none_type,),  # noqa: E501
+            'policy_config': (PolicyConfig,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'start_time': (TimeOfDay,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -111,12 +115,14 @@ class CommonBackupParams(ModelNormal):
 
     attribute_map = {
         'policy_id': 'policyId',  # noqa: E501
+        'policy_config': 'policyConfig',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'start_time': 'startTime',  # noqa: E501
         'priority': 'priority',  # noqa: E501
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -131,11 +137,8 @@ class CommonBackupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, policy_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CommonBackupParams - a model defined in OpenAPI
-
-        Args:
-            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,12 +172,15 @@ class CommonBackupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
+            policy_config (PolicyConfig): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
             start_time (TimeOfDay): [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
             sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -201,7 +207,6 @@ class CommonBackupParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.policy_id = policy_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

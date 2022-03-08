@@ -21,6 +21,7 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.helios.model.create_tenant_params import CreateTenantParams
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.on_prem_tenant_config import OnPremTenantConfig
 from cohesity_sdk.helios.model.register_swift_params import RegisterSwiftParams
@@ -31,7 +32,6 @@ from cohesity_sdk.helios.model.tenant_assignments import TenantAssignments
 from cohesity_sdk.helios.model.tenant_assignments_params import TenantAssignmentsParams
 from cohesity_sdk.helios.model.tenant_info import TenantInfo
 from cohesity_sdk.helios.model.tenants_info import TenantsInfo
-#from cohesity_sdk.helios.model.unknownbasetype import UNKNOWNBASETYPE
 from cohesity_sdk.helios.model.unregister_swift_params import UnregisterSwiftParams
 from cohesity_sdk.helios.model.update_tenant_body import UpdateTenantBody
 
@@ -56,7 +56,7 @@ class TenantsApi(object):
         ):
             """Update assginment of properties for a tenant.  # noqa: E501
 
-            Assign/Unassign properties like storage domain, entities, policies etc.   to the tenant.   The API expects a list of all the assignments (policies etc.) that are   supposed to be associated to the Tenant. The list of assignments passed   get assigned to the Tenant and anything else that was already assigned   gets unassigned.   In case a few objects fail the assignment and some objects get assigned,   error is returned for all assignments except for policies.  # noqa: E501
+            Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -68,6 +68,8 @@ class TenantsApi(object):
                 body (TenantAssignmentsParams):
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -135,6 +137,8 @@ class TenantsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -145,10 +149,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -157,13 +168,21 @@ class TenantsApi(object):
                         (str,),
                     'body':
                         (TenantAssignmentsParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -194,9 +213,11 @@ class TenantsApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UNKNOWN_BASE_TYPE):
+                body (CreateTenantParams):
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -261,6 +282,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -279,12 +302,20 @@ class TenantsApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (UNKNOWN_BASE_TYPE,),
+                        (CreateTenantParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -318,6 +349,8 @@ class TenantsApi(object):
                 id (str): The Tenant id.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -382,6 +415,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -391,22 +426,37 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -428,7 +478,7 @@ class TenantsApi(object):
         ):
             """Get tenant assignments.  # noqa: E501
 
-            Get all assigned properties like storage domain, entities, policies,   objects, views etc for a given tenant.  # noqa: E501
+            Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -439,6 +489,8 @@ class TenantsApi(object):
                 id (str): The Tenant id.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -503,6 +555,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -512,22 +566,37 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -557,6 +626,8 @@ class TenantsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -618,6 +689,8 @@ class TenantsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -633,10 +706,18 @@ class TenantsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -668,6 +749,8 @@ class TenantsApi(object):
                 id (str): The Tenant id.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -732,6 +815,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -741,22 +826,37 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -786,6 +886,8 @@ class TenantsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 tenant_id (str): Specifies the tenant Id.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -848,6 +950,8 @@ class TenantsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'tenant_id',
                 ],
                 'required': [],
@@ -864,13 +968,21 @@ class TenantsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'tenant_id':
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'tenant_id': 'tenantId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'tenant_id': 'query',
                 },
                 'collection_format_map': {
@@ -900,8 +1012,10 @@ class TenantsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str, none_type]): List of tenantIds to filter.. [optional]
-                statuses ([str, none_type]): Filter by current status of tenant.   If left blank, only active and inactive tenants are returned.. [optional]
+                statuses ([str, none_type]): Filter by current status of tenant. If left blank, only active and inactive tenants are returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -963,6 +1077,8 @@ class TenantsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'statuses',
                 ],
@@ -988,16 +1104,24 @@ class TenantsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str, none_type],),
                     'statuses':
                         ([str, none_type],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'statuses': 'statuses',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'statuses': 'query',
                 },
@@ -1022,9 +1146,9 @@ class TenantsApi(object):
             body,
             **kwargs
         ):
-            """Perform actions like activate and deactivate on a given Tenant.  # noqa: E501
+            """Perform actions on a Tenant.  # noqa: E501
 
-            Perform actions on a Tenant.  # noqa: E501
+            Perform actions like activate and deactivate on a given Tenant.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1036,6 +1160,8 @@ class TenantsApi(object):
                 body (TenantActionBody): Specifies the parameters to perform an action on a Tenant.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1103,6 +1229,8 @@ class TenantsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1113,10 +1241,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -1125,13 +1260,21 @@ class TenantsApi(object):
                         (str,),
                     'body':
                         (TenantActionBody,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1166,6 +1309,8 @@ class TenantsApi(object):
                 body (RegisterSwiftParams): Specifies the parameters to register a Swift service on Keystone server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1230,6 +1375,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1249,11 +1396,19 @@ class TenantsApi(object):
                 'openapi_types': {
                     'body':
                         (RegisterSwiftParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1288,6 +1443,8 @@ class TenantsApi(object):
                 body (UnregisterSwiftParams): Specifies the parameters to unregister a Swift service from Keystone server.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1352,6 +1509,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1371,11 +1530,19 @@ class TenantsApi(object):
                 'openapi_types': {
                     'body':
                         (UnregisterSwiftParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1410,6 +1577,8 @@ class TenantsApi(object):
                 body (OnPremTenantConfig):
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1474,6 +1643,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1493,11 +1664,19 @@ class TenantsApi(object):
                 'openapi_types': {
                     'body':
                         (OnPremTenantConfig,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1534,6 +1713,8 @@ class TenantsApi(object):
                 body (UpdateTenantBody):
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1601,6 +1782,8 @@ class TenantsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1632,13 +1815,21 @@ class TenantsApi(object):
                         (str, none_type,),
                     'body':
                         (UpdateTenantBody,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1673,6 +1864,8 @@ class TenantsApi(object):
                 body (SwiftParams): Specifies the parameters to update a Swift configuration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1737,6 +1930,8 @@ class TenantsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1756,11 +1951,19 @@ class TenantsApi(object):
                 'openapi_types': {
                     'body':
                         (SwiftParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

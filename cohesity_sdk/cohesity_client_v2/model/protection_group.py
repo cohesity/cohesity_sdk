@@ -58,6 +58,7 @@ def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.protection_group_run import ProtectionGroupRun
     from cohesity_sdk.cohesity_client_v2.model.pure_protection_group_params import PureProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
+    from cohesity_sdk.cohesity_client_v2.model.sfdc_protection_group_params import SfdcProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.sla_rule import SlaRule
     from cohesity_sdk.cohesity_client_v2.model.tenant import Tenant
     from cohesity_sdk.cohesity_client_v2.model.time_of_day import TimeOfDay
@@ -95,6 +96,7 @@ def lazy_import():
     globals()['ProtectionGroupRun'] = ProtectionGroupRun
     globals()['PureProtectionGroupParams'] = PureProtectionGroupParams
     globals()['RemoteAdapterProtectionGroupParams'] = RemoteAdapterProtectionGroupParams
+    globals()['SfdcProtectionGroupParams'] = SfdcProtectionGroupParams
     globals()['SlaRule'] = SlaRule
     globals()['Tenant'] = Tenant
     globals()['TimeOfDay'] = TimeOfDay
@@ -152,6 +154,10 @@ class ProtectionGroup(ModelComposed):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
@@ -167,6 +173,12 @@ class ProtectionGroup(ModelComposed):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -175,6 +187,7 @@ class ProtectionGroup(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 
@@ -209,6 +222,7 @@ class ProtectionGroup(ModelComposed):
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'pause_in_blackouts': (bool, none_type,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
             'is_deleted': (bool, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
@@ -217,6 +231,7 @@ class ProtectionGroup(ModelComposed):
             'permissions': ([Tenant], none_type,),  # noqa: E501
             'is_protect_once': (bool, none_type,),  # noqa: E501
             'missing_entities': ([MissingEntityParams], none_type,),  # noqa: E501
+            'num_protected_objects': (int, none_type,),  # noqa: E501
             'vmware_params': (VmwareProtectionGroupParams,),  # noqa: E501
             'acropolis_params': (AcropolisProtectionGroupParams,),  # noqa: E501
             'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
@@ -248,6 +263,7 @@ class ProtectionGroup(ModelComposed):
             'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
             'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
+            'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -269,6 +285,7 @@ class ProtectionGroup(ModelComposed):
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
         'is_deleted': 'isDeleted',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
@@ -277,6 +294,7 @@ class ProtectionGroup(ModelComposed):
         'permissions': 'permissions',  # noqa: E501
         'is_protect_once': 'isProtectOnce',  # noqa: E501
         'missing_entities': 'missingEntities',  # noqa: E501
+        'num_protected_objects': 'numProtectedObjects',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
@@ -308,6 +326,7 @@ class ProtectionGroup(ModelComposed):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -370,6 +389,7 @@ class ProtectionGroup(ModelComposed):
             sla ([SlaRule], none_type): Specifies the SLA parameters for this Protection Group.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
             is_active (bool, none_type): Specifies if the Protection Group is active or not.. [optional]  # noqa: E501
             is_deleted (bool, none_type): Specifies if the Protection Group has been deleted.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
@@ -378,6 +398,7 @@ class ProtectionGroup(ModelComposed):
             permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this protection group.. [optional]  # noqa: E501
             is_protect_once (bool, none_type): Specifies if the the Protection Group is using a protect once type of policy. This field is helpful to identify run happen for this group.. [optional]  # noqa: E501
             missing_entities ([MissingEntityParams], none_type): Specifies the Information about missing entities.. [optional]  # noqa: E501
+            num_protected_objects (int, none_type): Specifies the number of protected objects of the Protection Group.. [optional]  # noqa: E501
             vmware_params (VmwareProtectionGroupParams): [optional]  # noqa: E501
             acropolis_params (AcropolisProtectionGroupParams): [optional]  # noqa: E501
             kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
@@ -409,6 +430,7 @@ class ProtectionGroup(ModelComposed):
             hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
             hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
+            sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -28,9 +28,9 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.helios.model.common_cloud_tier_settings import CommonCloudTierSettings
-    from cohesity_sdk.helios.model.oracle_tier_all_of import OracleTierAllOf
+    from cohesity_sdk.helios.model.helios_oracle_tier_all_of import HeliosOracleTierAllOf
     globals()['CommonCloudTierSettings'] = CommonCloudTierSettings
-    globals()['OracleTierAllOf'] = OracleTierAllOf
+    globals()['HeliosOracleTierAllOf'] = HeliosOracleTierAllOf
 
 
 class OracleTier(ModelComposed):
@@ -236,7 +236,7 @@ class OracleTier(ModelComposed):
           ],
           'allOf': [
               CommonCloudTierSettings,
-              OracleTierAllOf,
+              HeliosOracleTierAllOf,
           ],
           'oneOf': [
           ],

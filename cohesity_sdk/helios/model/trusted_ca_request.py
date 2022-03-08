@@ -107,7 +107,7 @@ class TrustedCaRequest(ModelNormal):
         """TrustedCaRequest - a model defined in OpenAPI
 
         Args:
-            certificate (str, none_type): Specifies the certificate to be imported. Certificate should be in   PEM format.
+            certificate (str, none_type): Specifies the certificate to be imported. Certificate should be in PEM format.
             name (str, none_type): Descriptive name of the certificate.
 
         Keyword Args:

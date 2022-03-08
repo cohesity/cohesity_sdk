@@ -96,6 +96,8 @@ class MongoIndexedObject(ModelComposed):
             'path': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'tags': ([TagInfo], none_type,),  # noqa: E501
@@ -116,6 +118,8 @@ class MongoIndexedObject(ModelComposed):
         'path': 'path',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'source_info': 'sourceInfo',  # noqa: E501
         'tags': 'tags',  # noqa: E501
@@ -177,7 +181,9 @@ class MongoIndexedObject(ModelComposed):
             path (str, none_type): Specifies the path of the object.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the protection group id which contains this object.\". [optional]  # noqa: E501
             protection_group_name (str, none_type): \"Specifies the protection group name which contains this object.\". [optional]  # noqa: E501
-            storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object   is present.\". [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the protection policy id for this file.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies the protection policy name for this file.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
             tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501

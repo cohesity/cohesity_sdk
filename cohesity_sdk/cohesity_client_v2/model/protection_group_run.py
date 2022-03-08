@@ -101,7 +101,7 @@ class ProtectionGroupRun(ModelComposed):
             'origin_protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
             'is_local_snapshots_deleted': (bool, none_type,),  # noqa: E501
-            'objects': ([ObjectRunResult],),  # noqa: E501
+            'objects': ([ObjectRunResult], none_type,),  # noqa: E501
             'local_backup_info': (BackupRunSummary,),  # noqa: E501
             'original_backup_info': (BackupRunSummary,),  # noqa: E501
             'replication_info': (ReplicationRunSummary,),  # noqa: E501
@@ -200,7 +200,7 @@ class ProtectionGroupRun(ModelComposed):
             origin_protection_group_id (str, none_type): ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Name of the Protection Group to which this run belongs.. [optional]  # noqa: E501
             is_local_snapshots_deleted (bool, none_type): Specifies if snapshots for this run has been deleted.. [optional]  # noqa: E501
-            objects ([ObjectRunResult]): Snapahot, replication, archival results for each object.. [optional]  # noqa: E501
+            objects ([ObjectRunResult], none_type): Snapahot, replication, archival results for each object.. [optional]  # noqa: E501
             local_backup_info (BackupRunSummary): [optional]  # noqa: E501
             original_backup_info (BackupRunSummary): [optional]  # noqa: E501
             replication_info (ReplicationRunSummary): [optional]  # noqa: E501

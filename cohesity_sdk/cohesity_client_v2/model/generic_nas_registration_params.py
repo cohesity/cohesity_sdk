@@ -64,7 +64,6 @@ class GenericNasRegistrationParams(ModelNormal):
             'None': None,
             'KNFS3': "kNfs3",
             'KCIFS1': "kCifs1",
-            'KNFS4_1': "kNfs4_1",
         },
     }
 
@@ -127,7 +126,7 @@ class GenericNasRegistrationParams(ModelNormal):
 
         Args:
             mount_point (str, none_type): Specifies the MountPoint for Generic NAS Source.
-            mode (str, none_type): Specifies the mode of the source. 'kNfs3' indicates NFS mode. 'kNfs4_1' indicates NFS4.1 mode. 'kCifs1' indicates SMB mode.
+            mode (str, none_type): Specifies the mode of the source. 'kNfs3' indicates NFS mode. 'kCifs1' indicates SMB mode.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

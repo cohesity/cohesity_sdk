@@ -58,6 +58,8 @@ class StorageDomainsApi(object):
                 body (CreateStorageDomainParam): Specified the request to create a Storage Domain.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -122,6 +124,8 @@ class StorageDomainsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -141,11 +145,19 @@ class StorageDomainsApi(object):
                 'openapi_types': {
                     'body':
                         (CreateStorageDomainParam,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -180,6 +192,8 @@ class StorageDomainsApi(object):
                 id (int): Specified the Storage Domain id to delete.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -244,6 +258,8 @@ class StorageDomainsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -263,12 +279,20 @@ class StorageDomainsApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -301,6 +325,8 @@ class StorageDomainsApi(object):
                 id (int): Specified the Storage Domain id to fetch.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_stats (bool): Whether to include Storage Domain stats in response.. [optional]
                 include_time_series_schema (bool): Whether to include Storage Domain time series schema in response.. [optional]
                 include_file_count_by_size (bool): Whether to include Storage Domain file count by size.. [optional]
@@ -368,6 +394,8 @@ class StorageDomainsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'include_stats',
                     'include_time_series_schema',
                     'include_file_count_by_size',
@@ -390,6 +418,10 @@ class StorageDomainsApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_stats':
                         (bool,),
                     'include_time_series_schema':
@@ -399,12 +431,16 @@ class StorageDomainsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_stats': 'includeStats',
                     'include_time_series_schema': 'includeTimeSeriesSchema',
                     'include_file_count_by_size': 'includeFileCountBySize',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_stats': 'query',
                     'include_time_series_schema': 'query',
                     'include_file_count_by_size': 'query',
@@ -437,6 +473,8 @@ class StorageDomainsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([int]): Filter by a list of Storage Domain ids.. [optional]
                 names ([str]): Filter by a list of Storage Domain names.. [optional]
                 cluster_partition_ids ([int]): Filter by a list of cluster partition ids.. [optional]
@@ -508,6 +546,8 @@ class StorageDomainsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'names',
                     'cluster_partition_ids',
@@ -533,6 +573,10 @@ class StorageDomainsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([int],),
                     'names':
@@ -555,6 +599,8 @@ class StorageDomainsApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'names': 'names',
                     'cluster_partition_ids': 'clusterPartitionIds',
@@ -567,6 +613,8 @@ class StorageDomainsApi(object):
                     'view_template_id': 'viewTemplateId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'names': 'query',
                     'cluster_partition_ids': 'query',
@@ -615,6 +663,8 @@ class StorageDomainsApi(object):
                 body (UpdateStorageDomainParam): Specified the request to update a Storage Domain.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -682,6 +732,8 @@ class StorageDomainsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -704,13 +756,21 @@ class StorageDomainsApi(object):
                         (int,),
                     'body':
                         (UpdateStorageDomainParam,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

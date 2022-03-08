@@ -123,7 +123,7 @@ class DataLockConfig(ModelNormal):
         """DataLockConfig - a model defined in OpenAPI
 
         Args:
-            mode (str, none_type): Specifies the type of WORM retention type.  'Compliance' implies  WORM retention is set for compliance reason.  'Administrative' implies  WORM retention is set for administrative purposes.
+            mode (str, none_type): Specifies the type of WORM retention type.  'Compliance' implies WORM retention is set for compliance reason.  'Administrative' implies WORM retention is set for administrative purposes.
             unit (str, none_type): Specificies the Retention Unit of a dataLock measured in days, months or years. <br> If unit is 'Months', then number specified in duration is multiplied to 30. <br> Example: If duration is 4 and unit is 'Months' then number of retention days will be 30 * 4 = 120 days. <br> If unit is 'Years', then number specified in duration is multiplied to 365. <br> If duration is 2 and unit is 'Months' then number of retention days will be 365 * 2 = 730 days.
             duration (int, none_type): Specifies the duration for a dataLock. <br> Example. If duration is 7 and unit is Months, the dataLock is enabled for last 7 * 30 = 210 days of the backup.
 

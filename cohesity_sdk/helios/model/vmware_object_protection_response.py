@@ -31,10 +31,12 @@ def lazy_import():
     from cohesity_sdk.helios.model.disk_info import DiskInfo
     from cohesity_sdk.helios.model.vmware_cdp_object import VmwareCdpObject
     from cohesity_sdk.helios.model.vmware_object_protection_response_all_of import VmwareObjectProtectionResponseAllOf
+    from cohesity_sdk.helios.model.vmware_standby_object import VmwareStandbyObject
     globals()['CommonVmwareObjectParams'] = CommonVmwareObjectParams
     globals()['DiskInfo'] = DiskInfo
     globals()['VmwareCdpObject'] = VmwareCdpObject
     globals()['VmwareObjectProtectionResponseAllOf'] = VmwareObjectProtectionResponseAllOf
+    globals()['VmwareStandbyObject'] = VmwareStandbyObject
 
 
 class VmwareObjectProtectionResponse(ModelComposed):
@@ -89,6 +91,7 @@ class VmwareObjectProtectionResponse(ModelComposed):
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'cdp_info': (VmwareCdpObject,),  # noqa: E501
+            'standby_info': (VmwareStandbyObject,),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +105,7 @@ class VmwareObjectProtectionResponse(ModelComposed):
         'truncate_exchange_logs': 'truncateExchangeLogs',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
+        'standby_info': 'standbyInfo',  # noqa: E501
     }
 
     required_properties = set([
@@ -156,6 +160,7 @@ class VmwareObjectProtectionResponse(ModelComposed):
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
             cdp_info (VmwareCdpObject): [optional]  # noqa: E501
+            standby_info (VmwareStandbyObject): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

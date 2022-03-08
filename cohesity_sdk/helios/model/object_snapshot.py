@@ -108,6 +108,7 @@ class ObjectSnapshot(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 
@@ -161,6 +162,9 @@ class ObjectSnapshot(ModelNormal):
             'object_id': (int, none_type,),  # noqa: E501
             'object_name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
+            'region_id': (str, none_type,),  # noqa: E501
+            'cluster_id': (int, none_type,),  # noqa: E501
+            'cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'hyperv_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'aws_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -200,6 +204,9 @@ class ObjectSnapshot(ModelNormal):
         'object_id': 'objectId',  # noqa: E501
         'object_name': 'objectName',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
+        'region_id': 'regionId',  # noqa: E501
+        'cluster_id': 'clusterId',  # noqa: E501
+        'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
@@ -279,6 +286,9 @@ class ObjectSnapshot(ModelNormal):
             object_id (int, none_type): Specifies the object id which the snapshot is taken from.. [optional]  # noqa: E501
             object_name (str, none_type): Specifies the object name which the snapshot is taken from.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the object source id which the snapshot is taken from.. [optional]  # noqa: E501
+            region_id (str, none_type): Specifies the region id where this snapshot belongs to.. [optional]  # noqa: E501
+            cluster_id (int, none_type): Specifies the cluster id where this snapshot belongs to.. [optional]  # noqa: E501
+            cluster_incarnation_id (int, none_type): Specifies the cluster incarnation id where this snapshot belongs to.. [optional]  # noqa: E501
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to Physical type snapshot.. [optional]  # noqa: E501
             hyperv_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to HyperV type snapshot.. [optional]  # noqa: E501
             aws_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to AWS type snapshot.. [optional]  # noqa: E501

@@ -163,11 +163,11 @@ class TrustedCa(ModelNormal):
             name (str, none_type): Unique name for the certificate.. [optional]  # noqa: E501
             issued_by (str, none_type): Specifies the issuer.. [optional]  # noqa: E501
             issued_to (str, none_type): Specifies whom it was issued to.. [optional]  # noqa: E501
-            issued_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate   will start being valid.. [optional]  # noqa: E501
-            expiration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate   will no longer be valid.. [optional]  # noqa: E501
+            issued_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate will start being valid.. [optional]  # noqa: E501
+            expiration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate will no longer be valid.. [optional]  # noqa: E501
             description (str, none_type): description of the certificate.. [optional]  # noqa: E501
-            registration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate   was registered on the cluster.. [optional]  # noqa: E501
-            last_validated_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate   was last validated.. [optional]  # noqa: E501
+            registration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate was registered on the cluster.. [optional]  # noqa: E501
+            last_validated_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate was last validated.. [optional]  # noqa: E501
             status (str, none_type): Validation Status of the certificate.. [optional]  # noqa: E501
         """
 

@@ -123,7 +123,7 @@ class KerberosProvider(ModelNormal):
         Args:
             realm_name (str, none_type): Specifies the realm name.
             kdc_servers ([str]): Specifies a list of Key distribution Centre(KDC) Severs.
-            admin_server (str, none_type): Specifies the admin server used for registration from   the list of KDC servers.
+            admin_server (str, none_type): Specifies the admin server used for registration from the list of KDC servers.
             host_alias ([str]): Specifies the DNS routable host alias names.
 
         Keyword Args:
@@ -160,7 +160,7 @@ class KerberosProvider(ModelNormal):
 
             id (str, none_type): Specifies the id.. [optional]  # noqa: E501
             ldap_provider_id (int, none_type): Specifies the LDAP provider id to be mapped. [optional]  # noqa: E501
-            overwritehost_alias (bool, none_type): Specifies if specified host alias should   overwrite existing host alias.. [optional]  # noqa: E501
+            overwritehost_alias (bool, none_type): Specifies if specified host alias should overwrite existing host alias.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -58,6 +58,7 @@ class SlaRule(ModelNormal):
             'None': None,
             'KINCREMENTAL': "kIncremental",
             'KFULL': "kFull",
+            'KLOG': "kLog",
         },
     }
 

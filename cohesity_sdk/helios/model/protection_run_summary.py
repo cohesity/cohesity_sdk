@@ -63,6 +63,10 @@ class ProtectionRunSummary(ModelNormal):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
@@ -78,6 +82,12 @@ class ProtectionRunSummary(ModelNormal):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -86,6 +96,7 @@ class ProtectionRunSummary(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
         ('status',): {
             'None': None,
@@ -98,6 +109,7 @@ class ProtectionRunSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
         },
     }
 
@@ -210,7 +222,7 @@ class ProtectionRunSummary(ModelNormal):
             is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            status (str, none_type): Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             is_full_run (bool, none_type): Specifies if the protection run is a full run.. [optional]  # noqa: E501
             total_objects_count (int, none_type): Specifies the total number of objects protected in this run.. [optional]  # noqa: E501
             success_objects_count (int, none_type): Specifies the number of objects which are successfully protected in this run.. [optional]  # noqa: E501

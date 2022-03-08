@@ -42,11 +42,22 @@ body = Tag(
             "ui_path_elements_example",
         ],
     ) # Tag | Request to create a Tag.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a Tag
 	api_response = client.tags.create_tag(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TagsApi->create_tag: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a Tag
+	api_response = client.tags.create_tag(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TagsApi->create_tag: %s\n" % e)
@@ -58,6 +69,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**Tag**](Tag.md)| Request to create a Tag. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -104,11 +117,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D" # str | Specifies the Id of the tag.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Tag
 	client.tags.delete_tag(id)
+except ApiException as e:
+	print("Exception when calling TagsApi->delete_tag: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Tag
+	client.tags.delete_tag(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling TagsApi->delete_tag: %s\n" % e)
 ```
@@ -119,6 +142,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the Id of the tag. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -166,11 +191,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D" # str | Specifies the Id of the tag.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get Tag by id.
 	api_response = client.tags.get_tag_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TagsApi->get_tag_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get Tag by id.
+	api_response = client.tags.get_tag_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TagsApi->get_tag_by_id: %s\n" % e)
@@ -182,6 +218,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the Id of the tag. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -210,7 +248,7 @@ Name | Type | Description  | Notes
 
 Get tags based on filters.
 
-If no parameters are specified, all tags are returned.   Specifying parameters filters the results that are returned.
+If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.
 
 ### Example
 
@@ -228,9 +266,11 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-    ] # [str] | Filter by a list of Tag Ids. If Ids are mentioned all other fields   will be ignored. (optional)
+    ] # [str] | Filter by a list of Tag Ids. If Ids are mentioned all other fields will be ignored. (optional)
 names = [
         "names_example",
     ] # [str] | Filter by a list of Tag names. (optional)
@@ -239,15 +279,15 @@ namespaces = [
     ] # [str] | Filter by a list of Namespaces. (optional)
 tenant_ids = [
         "tenantIds_example",
-    ] # [str] | TenantIds contains ids of the tenants for which tags are to be   returned. (optional)
-include_tenants = True # bool | IncludeTenants specifies if tags of all the tenants under the   hierarchy of the logged in user's organization should be returned.   False, by default. (optional)
-include_marked_for_deletion = True # bool | Specifies if tags marked for deletion should be shown. These are   tags which are undergoing deletion. False, by default. (optional)
+    ] # [str] | TenantIds contains ids of the tenants for which tags are to be returned. (optional)
+include_tenants = True # bool | IncludeTenants specifies if tags of all the tenants under the hierarchy of the logged in user's organization should be returned. False, by default. (optional)
+include_marked_for_deletion = True # bool | Specifies if tags marked for deletion should be shown. These are tags which are undergoing deletion. False, by default. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get tags based on filters.
-	api_response = client.tags.get_tags(ids=ids, names=names, namespaces=namespaces, tenant_ids=tenant_ids, include_tenants=include_tenants, include_marked_for_deletion=include_marked_for_deletion)
+	api_response = client.tags.get_tags(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, names=names, namespaces=namespaces, tenant_ids=tenant_ids, include_tenants=include_tenants, include_marked_for_deletion=include_marked_for_deletion)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TagsApi->get_tags: %s\n" % e)
@@ -258,12 +298,14 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[str]**| Filter by a list of Tag Ids. If Ids are mentioned all other fields   will be ignored. | [optional]
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **ids** | **[str]**| Filter by a list of Tag Ids. If Ids are mentioned all other fields will be ignored. | [optional]
  **names** | **[str]**| Filter by a list of Tag names. | [optional]
  **namespaces** | **[str]**| Filter by a list of Namespaces. | [optional]
- **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which tags are to be   returned. | [optional]
- **include_tenants** | **bool**| IncludeTenants specifies if tags of all the tenants under the   hierarchy of the logged in user&#39;s organization should be returned.   False, by default. | [optional]
- **include_marked_for_deletion** | **bool**| Specifies if tags marked for deletion should be shown. These are   tags which are undergoing deletion. False, by default. | [optional]
+ **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which tags are to be returned. | [optional]
+ **include_tenants** | **bool**| IncludeTenants specifies if tags of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. False, by default. | [optional]
+ **include_marked_for_deletion** | **bool**| Specifies if tags marked for deletion should be shown. These are tags which are undergoing deletion. False, by default. | [optional]
 
 ### Return type
 
@@ -320,11 +362,22 @@ body = Tag(
             "ui_path_elements_example",
         ],
     ) # Tag | Request to update a tag.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Tag
 	api_response = client.tags.update_tag(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TagsApi->update_tag: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Tag
+	api_response = client.tags.update_tag(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TagsApi->update_tag: %s\n" % e)
@@ -337,6 +390,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the Id of the tag. |
  **body** | [**Tag**](Tag.md)| Request to update a tag. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

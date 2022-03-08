@@ -14,7 +14,11 @@ Name | Type | Description | Notes
 **isilon_params** | [**IsilonObjectProtectionUpdateRequestParams**](IsilonObjectProtectionUpdateRequestParams.md) |  | [optional] 
 **flashblade_params** | [**FlashbladeObjectProtectionUpdateRequestParams**](FlashbladeObjectProtectionUpdateRequestParams.md) |  | [optional] 
 **mssql_params** | [**MssqlObjectProtectionUpdateRequestParams**](MssqlObjectProtectionUpdateRequestParams.md) |  | [optional] 
-**office365_user_mailbox_params** | [**Office365UserMailboxObjectProtectionUpdateRequestParams**](Office365UserMailboxObjectProtectionUpdateRequestParams.md) |  | [optional] 
+**oracle_params** | [**OracleObjectProtectionUpdateRequestParams**](OracleObjectProtectionUpdateRequestParams.md) |  | [optional] 
+**office365_params** | [**Office365ObjectProtectionUpdateRequestParams**](Office365ObjectProtectionUpdateRequestParams.md) |  | [optional] 
+**aws_params** | [**AwsObjectProtectionUpdateRequestParams**](AwsObjectProtectionUpdateRequestParams.md) |  | [optional] 
+**hyperv_params** | [**HyperVObjectProtectionUpdateRequestParams**](HyperVObjectProtectionUpdateRequestParams.md) |  | [optional] 
+**physical_params** | [**PhysicalObjectProtectionUpdateRequestParams**](PhysicalObjectProtectionUpdateRequestParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

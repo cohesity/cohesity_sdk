@@ -96,7 +96,7 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
             'pre_post_script': (PrePostScriptParams,),  # noqa: E501
             'leverage_san_transport': (bool, none_type,),  # noqa: E501
             'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
-            'exclude_disks': ([DiskInfo],),  # noqa: E501
+            'exclude_disks': ([DiskInfo], none_type,),  # noqa: E501
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
         }
@@ -175,7 +175,7 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
             pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
             leverage_san_transport (bool, none_type): If this field is set to true, then the backup for the objects will be performed using dedicated storage area network (SAN) instead of LAN or managment network.. [optional]  # noqa: E501
             enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport backup fails, then backup will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
-            exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
+            exclude_disks ([DiskInfo], none_type): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
         """

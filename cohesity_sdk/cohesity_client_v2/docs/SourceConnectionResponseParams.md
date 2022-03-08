@@ -6,6 +6,7 @@ Specifies the response from a test connection request.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **environment** | **str, none_type** | Specifies the environment type of the Protection Source. | 
+**connection_id** | **int, none_type** | Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. | [optional] 
 **cassandra_connection_response_params** | [**CassandraSourceConfigParams**](CassandraSourceConfigParams.md) |  | [optional] 
 **hive_connection_response_params** | [**HiveAdditionalParams**](HiveAdditionalParams.md) |  | [optional] 
 **hbase_connection_response_params** | [**HBaseAdditionalParams**](HBaseAdditionalParams.md) |  | [optional] 

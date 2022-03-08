@@ -98,6 +98,7 @@ class CassandraProtectionGroupParams(ModelComposed):
             'source_name': (str, none_type,),  # noqa: E501
             'custom_source_name': (str, none_type,),  # noqa: E501
             'data_centers': ([str],),  # noqa: E501
+            'is_log_backup': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -115,6 +116,7 @@ class CassandraProtectionGroupParams(ModelComposed):
         'source_name': 'sourceName',  # noqa: E501
         'custom_source_name': 'customSourceName',  # noqa: E501
         'data_centers': 'dataCenters',  # noqa: E501
+        'is_log_backup': 'isLogBackup',  # noqa: E501
     }
 
     required_properties = set([
@@ -173,6 +175,7 @@ class CassandraProtectionGroupParams(ModelComposed):
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
             custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
             data_centers ([str]): Only the specified data centers will be considered while taking backup. The keyspaces having replication strategy 'Simple' can be backed up only if all the datacenters for the cassandra cluster are specified. For any keyspace having replication strategy as 'Network', all the associated data centers should be specified.. [optional]  # noqa: E501
+            is_log_backup (bool, none_type): Specifies the type of job for Cassandra. If true, only log backup job will be scheduled for the source. This requires a policy with log Backup option enabled.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

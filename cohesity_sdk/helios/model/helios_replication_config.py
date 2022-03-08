@@ -27,11 +27,17 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.helios_aws_target_config import HeliosAWSTargetConfig
+    from cohesity_sdk.helios.model.helios_azure_target_config import HeliosAzureTargetConfig
     from cohesity_sdk.helios.model.helios_common_target_configuration import HeliosCommonTargetConfiguration
+    from cohesity_sdk.helios.model.helios_remote_target_config import HeliosRemoteTargetConfig
     from cohesity_sdk.helios.model.helios_replication_config_all_of import HeliosReplicationConfigAllOf
     from cohesity_sdk.helios.model.helios_retention import HeliosRetention
     from cohesity_sdk.helios.model.helios_target_schedule import HeliosTargetSchedule
+    globals()['HeliosAWSTargetConfig'] = HeliosAWSTargetConfig
+    globals()['HeliosAzureTargetConfig'] = HeliosAzureTargetConfig
     globals()['HeliosCommonTargetConfiguration'] = HeliosCommonTargetConfiguration
+    globals()['HeliosRemoteTargetConfig'] = HeliosRemoteTargetConfig
     globals()['HeliosReplicationConfigAllOf'] = HeliosReplicationConfigAllOf
     globals()['HeliosRetention'] = HeliosRetention
     globals()['HeliosTargetSchedule'] = HeliosTargetSchedule
@@ -96,6 +102,9 @@ class HeliosReplicationConfig(ModelComposed):
             'copy_on_run_success': (bool, none_type,),  # noqa: E501
             'config_id': (str, none_type,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
+            'remote_target_config': (HeliosRemoteTargetConfig,),  # noqa: E501
+            'aws_target_config': (HeliosAWSTargetConfig,),  # noqa: E501
+            'azure_target_config': (HeliosAzureTargetConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -110,6 +119,9 @@ class HeliosReplicationConfig(ModelComposed):
         'copy_on_run_success': 'copyOnRunSuccess',  # noqa: E501
         'config_id': 'configId',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
+        'remote_target_config': 'remoteTargetConfig',  # noqa: E501
+        'aws_target_config': 'awsTargetConfig',  # noqa: E501
+        'azure_target_config': 'azureTargetConfig',  # noqa: E501
     }
 
     required_properties = set([
@@ -165,6 +177,9 @@ class HeliosReplicationConfig(ModelComposed):
             copy_on_run_success (bool, none_type): Specifies if Snapshots are copied from the first completely successful Protection Group Run or the first partially successful Protection Group Run occurring at the start of the replication schedule. <br> If true, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule that was completely successful i.e. Snapshots for all the Objects in the Protection Group were successfully captured. <br> If false, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule, even if first Protection Group Run was not completely successful i.e. Snapshots were not captured for all Objects in the Protection Group.. [optional]  # noqa: E501
             config_id (str, none_type): Specifies the unique identifier for the target getting added. This field need to be passed only when helios policies are updated.. [optional]  # noqa: E501
             target_type (str, none_type): Specifies the type of target to which replication need to be performed.. [optional]  # noqa: E501
+            remote_target_config (HeliosRemoteTargetConfig): [optional]  # noqa: E501
+            aws_target_config (HeliosAWSTargetConfig): [optional]  # noqa: E501
+            azure_target_config (HeliosAzureTargetConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

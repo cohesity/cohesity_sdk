@@ -67,9 +67,6 @@ class Office365ObjectProtectionCommonParams(ModelNormal):
             'min_items': 1,
         },
 
-        ('exclude_object_ids',): {
-        },
-
     }
 
     additional_properties_type = None
@@ -89,7 +86,6 @@ class Office365ObjectProtectionCommonParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([Office365ObjectProtectionObjectParams],),  # noqa: E501
-            'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
@@ -103,7 +99,6 @@ class Office365ObjectProtectionCommonParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
@@ -159,7 +154,6 @@ class Office365ObjectProtectionCommonParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Object Protection.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501

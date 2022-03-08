@@ -85,6 +85,7 @@ class ErasureCodingParams(ModelNormal):
             'algorithm': (str, none_type,),  # noqa: E501
             'inline_enabled': (bool, none_type,),  # noqa: E501
             'delay_secs': (int, none_type,),  # noqa: E501
+            'use_container': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +101,7 @@ class ErasureCodingParams(ModelNormal):
         'algorithm': 'algorithm',  # noqa: E501
         'inline_enabled': 'inlineEnabled',  # noqa: E501
         'delay_secs': 'delaySecs',  # noqa: E501
+        'use_container': 'useContainer',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,6 +159,7 @@ class ErasureCodingParams(ModelNormal):
             algorithm (str, none_type): Specifies the algorithm used for erasure coding.. [optional]  # noqa: E501
             inline_enabled (bool, none_type): Specifies whether inline erasure coding is enabled. This field is appliciable only if enabled is set to true.. [optional]  # noqa: E501
             delay_secs (int, none_type): Specifies the time in seconds when erasure coding starts.. [optional]  # noqa: E501
+            use_container (bool, none_type): Whether to encode chunk files as part of a container. This field is appliciable only if enabled is set to true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

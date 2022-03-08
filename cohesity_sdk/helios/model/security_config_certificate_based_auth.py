@@ -149,7 +149,7 @@ class SecurityConfigCertificateBasedAuth(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_mapping_based_authentication (bool, none_type): If true, certfication based authentication is done via configured   mapping. Else it will proceed based on legacy serial number match.. [optional]  # noqa: E501
+            enable_mapping_based_authentication (bool, none_type): If true, certfication based authentication is done via configured mapping. Else it will proceed based on legacy serial number match.. [optional]  # noqa: E501
             certificate_mapping (str, none_type): Specifies the field to be used in certificate for authentication.. [optional]  # noqa: E501
             ad_mapping (str, none_type): Specifies the field to be used in AD user for authentication.. [optional]  # noqa: E501
         """

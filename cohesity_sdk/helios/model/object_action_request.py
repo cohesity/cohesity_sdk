@@ -96,6 +96,7 @@ class ObjectActionRequest(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 

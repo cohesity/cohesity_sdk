@@ -112,6 +112,7 @@ class SearchObject(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
         ('object_type',): {
             'None': None,
@@ -197,6 +198,7 @@ class SearchObject(ModelComposed):
             'KRDSINSTANCE': "kRDSInstance",
             'KRDSSUBNET': "kRDSSubnet",
             'KRDSTAG': "kRDSTag",
+            'KAURORATAG': "kAuroraTag",
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
@@ -222,6 +224,8 @@ class SearchObject(ModelComposed):
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KSERVICE': "kService",
             'KPVC': "kPVC",
+            'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
+            'KPERSISTENTVOLUME': "kPersistentVolume",
             'KROOTCONTAINER': "kRootContainer",
             'KDAGROOTCONTAINER': "kDAGRootContainer",
             'KEXCHANGENODE': "kExchangeNode",
@@ -237,6 +241,8 @@ class SearchObject(ModelComposed):
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
             'KOBJECT': "kObject",
+            'KORG': "kOrg",
+            'KAPPINSTANCE': "kAppInstance",
         },
         ('protection_type',): {
             'None': None,
@@ -287,6 +293,7 @@ class SearchObject(ModelComposed):
             'object_type': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
             'uuid': (str, none_type,),  # noqa: E501
+            'global_id': (str, none_type,),  # noqa: E501
             'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
@@ -302,6 +309,8 @@ class SearchObject(ModelComposed):
             'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'tags': ([TagInfo], none_type,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
             'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -324,6 +333,7 @@ class SearchObject(ModelComposed):
         'object_type': 'objectType',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'uuid': 'uuid',  # noqa: E501
+        'global_id': 'globalId',  # noqa: E501
         'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
@@ -339,6 +349,8 @@ class SearchObject(ModelComposed):
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
+        'sharepoint_params': 'sharepointParams',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'snapshot_tags': 'snapshotTags',  # noqa: E501
         'source_info': 'sourceInfo',  # noqa: E501
@@ -402,6 +414,7 @@ class SearchObject(ModelComposed):
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
+            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
             protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
@@ -417,6 +430,8 @@ class SearchObject(ModelComposed):
             gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
             mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
+            physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
+            sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
             tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501
             source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501

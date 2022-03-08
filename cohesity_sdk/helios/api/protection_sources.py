@@ -21,13 +21,14 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.helios.model.common_source_registration_reponse_params5664183a76b842b48044_ac90d2dc4b64 import CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
-from cohesity_sdk.helios.model.common_source_registration_request_params16d8ee7c_e6e04528_aa629785aae5dc08 import CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.source import Source
 from cohesity_sdk.helios.model.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
 from cohesity_sdk.helios.model.source_connection_request_params import SourceConnectionRequestParams
 from cohesity_sdk.helios.model.source_connection_response_params import SourceConnectionResponseParams
+from cohesity_sdk.helios.model.source_registration import SourceRegistration
+from cohesity_sdk.helios.model.source_registration_request_params import SourceRegistrationRequestParams
+from cohesity_sdk.helios.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.helios.model.source_registrations import SourceRegistrations
 from cohesity_sdk.helios.model.sources import Sources
 from cohesity_sdk.helios.model.vdc_object import VdcObject
@@ -63,6 +64,8 @@ class ProtectionSourcesApi(object):
                 id (int): Specifies the ID of the Protection Source Registration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -127,6 +130,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -146,12 +151,20 @@ class ProtectionSourcesApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -184,6 +197,8 @@ class ProtectionSourcesApi(object):
                 id (int): Specifies the id of the Protection Source registration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -205,7 +220,7 @@ class ProtectionSourcesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -234,7 +249,7 @@ class ProtectionSourcesApi(object):
 
         self.get_protection_source_registration = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -248,6 +263,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -267,12 +284,20 @@ class ProtectionSourcesApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -302,6 +327,8 @@ class ProtectionSourcesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which Sources are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned.. [optional]
                 include_source_credentials (bool): If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key.. [optional]
@@ -367,6 +394,8 @@ class ProtectionSourcesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'tenant_ids',
                     'include_tenants',
                     'include_source_credentials',
@@ -386,6 +415,10 @@ class ProtectionSourcesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'tenant_ids':
                         ([str],),
                     'include_tenants':
@@ -396,12 +429,16 @@ class ProtectionSourcesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                     'include_source_credentials': 'includeSourceCredentials',
                     'encryption_key': 'encryptionKey',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
                     'include_source_credentials': 'query',
@@ -439,6 +476,8 @@ class ProtectionSourcesApi(object):
                 source_uuid (str): Specifies the source UUID of the parent entity.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 environment (str, none_type): Specifies the environment type of the Protection Source.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -504,6 +543,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'source_uuid',
+                    'access_cluster_id',
+                    'region_id',
                     'environment',
                 ],
                 'required': [
@@ -549,21 +590,32 @@ class ProtectionSourcesApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSQL": "kSQL",
+                        "KORACLE": "kOracle",
+                        "KSFDC": "kSfdc"
                     },
                 },
                 'openapi_types': {
                     'source_uuid':
+                        (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
                         (str,),
                     'environment':
                         (str, none_type,),
                 },
                 'attribute_map': {
                     'source_uuid': 'sourceUuid',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'environment': 'environment',
                 },
                 'location_map': {
                     'source_uuid': 'query',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'environment': 'query',
                 },
                 'collection_format_map': {
@@ -594,6 +646,8 @@ class ProtectionSourcesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([int]): Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned.. [optional]
@@ -660,6 +714,8 @@ class ProtectionSourcesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'tenant_ids',
                     'include_tenants',
@@ -680,6 +736,10 @@ class ProtectionSourcesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([int],),
                     'tenant_ids':
@@ -692,6 +752,8 @@ class ProtectionSourcesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
@@ -699,6 +761,8 @@ class ProtectionSourcesApi(object):
                     'encryption_key': 'encryptionKey',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
@@ -738,6 +802,8 @@ class ProtectionSourcesApi(object):
                 id (int): Specifies the ID of the VMware virtual datacenter.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -802,6 +868,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -821,12 +889,20 @@ class ProtectionSourcesApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -859,6 +935,8 @@ class ProtectionSourcesApi(object):
                 id (int): Specifies the id of the Protection Source.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -923,6 +1001,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -942,12 +1022,20 @@ class ProtectionSourcesApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -977,9 +1065,11 @@ class ProtectionSourcesApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08): Specifies the parameters to register a Protection Source.
+                body (SourceRegistrationRequestParams): Specifies the parameters to register a Protection Source.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1001,7 +1091,7 @@ class ProtectionSourcesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1030,7 +1120,7 @@ class ProtectionSourcesApi(object):
 
         self.register_protection_source = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -1044,6 +1134,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1062,12 +1154,20 @@ class ProtectionSourcesApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08,),
+                        (SourceRegistrationRequestParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1102,6 +1202,8 @@ class ProtectionSourcesApi(object):
                 body (SourceConnectionRequestParams): Specifies the parameters to test connectivity with a source.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1166,6 +1268,8 @@ class ProtectionSourcesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1185,11 +1289,19 @@ class ProtectionSourcesApi(object):
                 'openapi_types': {
                     'body':
                         (SourceConnectionRequestParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1223,9 +1335,11 @@ class ProtectionSourcesApi(object):
 
             Args:
                 id (int): Specifies the id of the Protection Source registration.
-                body (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08): Specifies the parameters to update the registration.
+                body (SourceRegistrationUpdateRequestParams): Specifies the parameters to update the registration.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1247,7 +1361,7 @@ class ProtectionSourcesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1278,7 +1392,7 @@ class ProtectionSourcesApi(object):
 
         self.update_protection_source_registration = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -1293,6 +1407,8 @@ class ProtectionSourcesApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1314,14 +1430,22 @@ class ProtectionSourcesApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08,),
+                        (SourceRegistrationUpdateRequestParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

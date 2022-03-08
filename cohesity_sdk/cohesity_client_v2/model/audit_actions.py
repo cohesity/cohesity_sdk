@@ -98,8 +98,6 @@ class AuditActions(ModelNormal):
             'REVERT': "Revert",
             'IMPORT': "Import",
             'VALIDATE': "Validate",
-            'CLUSTEREXPAND': "ClusterExpand",
-            'FETCH': "Fetch",
         },
     }
 

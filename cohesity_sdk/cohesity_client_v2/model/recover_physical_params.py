@@ -91,7 +91,6 @@ class RecoverPhysicalParams(ModelNormal):
             'mount_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'system_recovery_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -107,7 +106,6 @@ class RecoverPhysicalParams(ModelNormal):
         'mount_volume_params': 'mountVolumeParams',  # noqa: E501
         'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
-        'system_recovery_params': 'systemRecoveryParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -165,7 +163,6 @@ class RecoverPhysicalParams(ModelNormal):
             mount_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to mount Physical Volumes.. [optional]  # noqa: E501
             recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to perform a file and folder recovery.. [optional]  # noqa: E501
             download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
-            system_recovery_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to perform a system recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

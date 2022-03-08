@@ -163,7 +163,7 @@ class Template(ModelNormal):
             compress (bool, none_type): Specifies whether to enable compression in storage domain.. [optional]  # noqa: E501
             is_default (bool, none_type): Specifies if the tempate is custom or static.. [optional]  # noqa: E501
             default_template_name (str, none_type): Used for uniquely indentifying a default template.. [optional]  # noqa: E501
-            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters which is used to create the view.   No field is required.. [optional]  # noqa: E501
+            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters which is used to create the view. No field is required.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

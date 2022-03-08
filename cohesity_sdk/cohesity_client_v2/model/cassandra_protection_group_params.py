@@ -96,7 +96,6 @@ class CassandraProtectionGroupParams(ModelComposed):
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'custom_source_name': (str, none_type,),  # noqa: E501
             'data_centers': ([str],),  # noqa: E501
         }
 
@@ -113,7 +112,6 @@ class CassandraProtectionGroupParams(ModelComposed):
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'custom_source_name': 'customSourceName',  # noqa: E501
         'data_centers': 'dataCenters',  # noqa: E501
     }
 
@@ -171,7 +169,6 @@ class CassandraProtectionGroupParams(ModelComposed):
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
-            custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
             data_centers ([str]): Only the specified data centers will be considered while taking backup. The keyspaces having replication strategy 'Simple' can be backed up only if all the datacenters for the cassandra cluster are specified. For any keyspace having replication strategy as 'Network', all the associated data centers should be specified.. [optional]  # noqa: E501
         """
 

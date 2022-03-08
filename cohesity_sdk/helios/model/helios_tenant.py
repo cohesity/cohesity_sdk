@@ -92,6 +92,9 @@ class HeliosTenant(ModelNormal):
             'managed_on_helios': (bool, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'systems': ([HeliosClusterTenant],),  # noqa: E501
+            'created_at_time_msecs': (int, none_type,),  # noqa: E501
+            'last_updated_at_time_msecs': (int, none_type,),  # noqa: E501
+            'deleted_at_time_msecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -107,6 +110,9 @@ class HeliosTenant(ModelNormal):
         'managed_on_helios': 'managedOnHelios',  # noqa: E501
         'status': 'status',  # noqa: E501
         'systems': 'systems',  # noqa: E501
+        'created_at_time_msecs': 'createdAtTimeMsecs',  # noqa: E501
+        'last_updated_at_time_msecs': 'lastUpdatedAtTimeMsecs',  # noqa: E501
+        'deleted_at_time_msecs': 'deletedAtTimeMsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,6 +168,9 @@ class HeliosTenant(ModelNormal):
             managed_on_helios (bool, none_type): Wether managed on helios or not.. [optional]  # noqa: E501
             status (str, none_type): Current Status of the Tenant.. [optional]  # noqa: E501
             systems ([HeliosClusterTenant]): Details of tenant on each system that it is living.. [optional]  # noqa: E501
+            created_at_time_msecs (int, none_type): Epoch time when tenant was created.. [optional]  # noqa: E501
+            last_updated_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
+            deleted_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

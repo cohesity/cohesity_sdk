@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**get_tenant_by_id**](TenantsApi.md#get_tenant_by_id) | **GET** /tenants/{id} | Get Tenant by ID.
 [**get_tenant_swift**](TenantsApi.md#get_tenant_swift) | **GET** /tenants/swift | Get a Swift configuration.
 [**list_tenants**](TenantsApi.md#list_tenants) | **GET** /tenants | Get a list of Tenants.
-[**perform_tenant_action**](TenantsApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions like activate and deactivate on a given Tenant.
+[**perform_tenant_action**](TenantsApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions on a Tenant.
 [**register_swift**](TenantsApi.md#register_swift) | **POST** /tenants/swift/register | Register Swift service on a Keystone server.
 [**unregister_swift**](TenantsApi.md#unregister_swift) | **POST** /tenants/swift/unregister | Unregister Swift service from a Keystone server.
 [**update_on_prem_tenant_config**](TenantsApi.md#update_on_prem_tenant_config) | **POST** /clusters/tenant-config | Update Tenants Config.
@@ -46,7 +46,7 @@ client = CohesityClientV2(
 )
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 body = TenantAssignmentsParams(
         storage_domain_ids=[
             1,
@@ -114,7 +114,7 @@ Create a new Tenant.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cohesity_client_v2.model.unknownbasetype import UNKNOWNBASETYPE
+from cohesity_sdk.cohesity_client_v2.model.create_tenant_params_with_network import CreateTenantParamsWithNetwork
 from cohesity_sdk.cohesity_client_v2.model.error import Error
 from cohesity_sdk.cohesity_client_v2.model.tenant_info import TenantInfo
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
@@ -129,7 +129,7 @@ client = CohesityClientV2(
 )
 
 
-body =  # UNKNOWN_BASE_TYPE | 
+body = CreateTenantParamsWithNetwork() # CreateTenantParamsWithNetwork | 
 
 # example passing only required values which don't have defaults set
 try:
@@ -145,7 +145,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  |
+ **body** | [**CreateTenantParamsWithNetwork**](CreateTenantParamsWithNetwork.md)|  |
 
 ### Return type
 
@@ -192,7 +192,7 @@ client = CohesityClientV2(
 )
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 
 # example passing only required values which don't have defaults set
 try:
@@ -257,7 +257,7 @@ client = CohesityClientV2(
 )
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 
 # example passing only required values which don't have defaults set
 try:
@@ -383,7 +383,7 @@ client = CohesityClientV2(
 )
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 
 # example passing only required values which don't have defaults set
 try:
@@ -564,9 +564,9 @@ Name | Type | Description  | Notes
 # **perform_tenant_action**
 > TenantInfo perform_tenant_action(id, body)
 
-Perform actions like activate and deactivate on a given Tenant.
-
 Perform actions on a Tenant.
+
+Perform actions like activate and deactivate on a given Tenant.
 
 ### Example
 
@@ -588,14 +588,14 @@ client = CohesityClientV2(
 )
 
 
-id = "id_example" # str | The Tenant id.
+id = "C/" # str | The Tenant id.
 body = TenantActionBody(
         action="Activate",
     ) # TenantActionBody | Specifies the parameters to perform an action on a Tenant.
 
 # example passing only required values which don't have defaults set
 try:
-	# Perform actions like activate and deactivate on a given Tenant.
+	# Perform actions on a Tenant.
 	api_response = client.tenants.perform_tenant_action(id, body)
 	pprint(api_response)
 except ApiException as e:

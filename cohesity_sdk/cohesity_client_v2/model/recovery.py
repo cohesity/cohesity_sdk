@@ -57,6 +57,7 @@ def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.recover_view_params import RecoverViewParams
     from cohesity_sdk.cohesity_client_v2.model.recover_vmware_params import RecoverVmwareParams
     from cohesity_sdk.cohesity_client_v2.model.recovery_all_of import RecoveryAllOf
+    from cohesity_sdk.cohesity_client_v2.model.retrieve_archive_task import RetrieveArchiveTask
     from cohesity_sdk.cohesity_client_v2.model.tenant import Tenant
     from cohesity_sdk.cohesity_client_v2.model.uda_params import UdaParams
     globals()['CassandraParams'] = CassandraParams
@@ -89,6 +90,7 @@ def lazy_import():
     globals()['RecoverViewParams'] = RecoverViewParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
     globals()['RecoveryAllOf'] = RecoveryAllOf
+    globals()['RetrieveArchiveTask'] = RetrieveArchiveTask
     globals()['Tenant'] = Tenant
     globals()['UdaParams'] = UdaParams
 
@@ -171,6 +173,7 @@ class Recovery(ModelComposed):
             'RECOVERVMDISKS': "RecoverVmDisks",
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
+            'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERAPPS': "RecoverApps",
@@ -246,6 +249,7 @@ class Recovery(ModelComposed):
             'messages': ([str], none_type,),  # noqa: E501
             'is_parent_recovery': (bool, none_type,),  # noqa: E501
             'parent_recovery_id': (str, none_type,),  # noqa: E501
+            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
             'vmware_params': (RecoverVmwareParams,),  # noqa: E501
             'aws_params': (RecoverAwsParams,),  # noqa: E501
             'gcp_params': (RecoverGcpParams,),  # noqa: E501
@@ -299,6 +303,7 @@ class Recovery(ModelComposed):
         'messages': 'messages',  # noqa: E501
         'is_parent_recovery': 'isParentRecovery',  # noqa: E501
         'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
+        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
@@ -393,6 +398,7 @@ class Recovery(ModelComposed):
             messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
             is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
             parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
+            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
             vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
             aws_params (RecoverAwsParams): [optional]  # noqa: E501
             gcp_params (RecoverGcpParams): [optional]  # noqa: E501

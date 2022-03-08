@@ -66,6 +66,11 @@ class Email(ModelComposed):
     """
 
     allowed_values = {
+        ('type',): {
+            'None': None,
+            'EMAIL': "Email",
+            'FOLDER': "Folder",
+        },
     }
 
     validations = {
@@ -90,7 +95,10 @@ class Email(ModelComposed):
             'id': (str, none_type,),  # noqa: E501
             'user_object_info': (ObjectSummary,),  # noqa: E501
             'folder_name': (str, none_type,),  # noqa: E501
-            'is_email_folder': (bool, none_type,),  # noqa: E501
+            'parent_folder_id': (int, none_type,),  # noqa: E501
+            'path': (str, none_type,),  # noqa: E501
+            'directory_path': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
             'email_subject': (str, none_type,),  # noqa: E501
             'has_attachment': (bool, none_type,),  # noqa: E501
             'sender_address': (str, none_type,),  # noqa: E501
@@ -116,7 +124,10 @@ class Email(ModelComposed):
         'id': 'id',  # noqa: E501
         'user_object_info': 'userObjectInfo',  # noqa: E501
         'folder_name': 'folderName',  # noqa: E501
-        'is_email_folder': 'isEmailFolder',  # noqa: E501
+        'parent_folder_id': 'parentFolderId',  # noqa: E501
+        'path': 'path',  # noqa: E501
+        'directory_path': 'directoryPath',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'email_subject': 'emailSubject',  # noqa: E501
         'has_attachment': 'hasAttachment',  # noqa: E501
         'sender_address': 'senderAddress',  # noqa: E501
@@ -183,7 +194,10 @@ class Email(ModelComposed):
             id (str, none_type): Specifies the id of the email object.. [optional]  # noqa: E501
             user_object_info (ObjectSummary): [optional]  # noqa: E501
             folder_name (str, none_type): Specify the name of the email folder.. [optional]  # noqa: E501
-            is_email_folder (bool, none_type): Specify if the object is an email folder.. [optional]  # noqa: E501
+            parent_folder_id (int, none_type): Specifies the id of parent folder the mailbox item.. [optional]  # noqa: E501
+            path (str, none_type): Specifies the path to this mailbox item.. [optional]  # noqa: E501
+            directory_path (str, none_type): Specifies the directory path to this mailbox item.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the Mailbox item type.. [optional]  # noqa: E501
             email_subject (str, none_type): Specifies the subject of this email.. [optional]  # noqa: E501
             has_attachment (bool, none_type): Specifies whether email has an attachment.. [optional]  # noqa: E501
             sender_address (str, none_type): Specifies the sender's email address.. [optional]  # noqa: E501

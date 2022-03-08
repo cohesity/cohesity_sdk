@@ -38,11 +38,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the id of the failover workflow.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Cancel failover workflow.
 	client.failover.cancel_failover(id)
+except ApiException as e:
+	print("Exception when calling FailoverApi->cancel_failover: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Cancel failover workflow.
+	client.failover.cancel_failover(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling FailoverApi->cancel_failover: %s\n" % e)
 ```
@@ -53,6 +63,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the failover workflow. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -99,11 +111,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies a view id to cancel it's failover.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Cancel View Failover Task.
 	client.failover.cancel_view_failover(id)
+except ApiException as e:
+	print("Exception when calling FailoverApi->cancel_view_failover: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Cancel View Failover Task.
+	client.failover.cancel_view_failover(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling FailoverApi->cancel_view_failover: %s\n" % e)
 ```
@@ -114,6 +136,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies a view id to cancel it&#39;s failover. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -175,11 +199,22 @@ body = FailoverRunConfiguration(
         cancel_non_failover_runs=True,
         pause_next_runs=True,
     ) # FailoverRunConfiguration | Specifies the paramteres to create a planned run while failover workflow.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a planned run for backup and replication.
 	api_response = client.failover.create_planned_run(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->create_planned_run: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a planned run for backup and replication.
+	api_response = client.failover.create_planned_run(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FailoverApi->create_planned_run: %s\n" % e)
@@ -192,6 +227,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the failover workflow. |
  **body** | [**FailoverRunConfiguration**](FailoverRunConfiguration.md)| Specifies the paramteres to create a planned run while failover workflow. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -245,11 +282,22 @@ body = CreateViewFailoverRequest(
         planned_failover_params={},
         unplanned_failover_params={},
     ) # CreateViewFailoverRequest | Specifies the request body to create failover task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create View Failover Task.
 	api_response = client.failover.create_view_failover(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->create_view_failover: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create View Failover Task.
+	api_response = client.failover.create_view_failover(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FailoverApi->create_view_failover: %s\n" % e)
@@ -262,6 +310,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies a view id to create an failover task. |
  **body** | [**CreateViewFailoverRequest**](CreateViewFailoverRequest.md)| Specifies the request body to create failover task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -309,11 +359,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies a view id to create an failover task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get View Failover.
 	api_response = client.failover.get_view_failover(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->get_view_failover: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get View Failover.
+	api_response = client.failover.get_view_failover(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FailoverApi->get_view_failover: %s\n" % e)
@@ -325,6 +386,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies a view id to create an failover task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -385,12 +448,24 @@ body = InitFailoverRequest(
             ],
             protection_group_id="protection_group_id_example",
         ),
+        protection_group_environment="kVMware",
     ) # InitFailoverRequest | Specifies the parameters to initiate a failover. This failover request should be intiaited from replication cluster.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Initiate a failover request.
 	api_response = client.failover.init_failover(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->init_failover: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Initiate a failover request.
+	api_response = client.failover.init_failover(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FailoverApi->init_failover: %s\n" % e)
@@ -403,6 +478,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the failover workflow. |
  **body** | [**InitFailoverRequest**](InitFailoverRequest.md)| Specifies the parameters to initiate a failover. This failover request should be intiaited from replication cluster. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -458,11 +535,21 @@ body = ObjectLinkingRequest(
             ),
         ],
     ) # ObjectLinkingRequest | Specifies the paramteres to create links between replicated objects and failover objects.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Linking between replicated objects and failover objects
 	client.failover.object_linkage(id, body)
+except ApiException as e:
+	print("Exception when calling FailoverApi->object_linkage: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Linking between replicated objects and failover objects
+	client.failover.object_linkage(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling FailoverApi->object_linkage: %s\n" % e)
 ```
@@ -474,6 +561,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the failover workflow. |
  **body** | [**ObjectLinkingRequest**](ObjectLinkingRequest.md)| Specifies the paramteres to create links between replicated objects and failover objects. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -523,6 +612,8 @@ client = HeliosClient(api_key=api_key)
 failover_ids = [
         "failoverIds_example",
     ] # [str] | Get runs for specific failover workflows.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 tenant_ids = [
         "tenantIds_example",
     ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
@@ -540,7 +631,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get the list of failover planned runs.
-	api_response = client.failover.poll_planned_runs(failover_ids, tenant_ids=tenant_ids, include_tenants=include_tenants)
+	api_response = client.failover.poll_planned_runs(failover_ids, access_cluster_id=access_cluster_id, region_id=region_id, tenant_ids=tenant_ids, include_tenants=include_tenants)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FailoverApi->poll_planned_runs: %s\n" % e)
@@ -552,6 +643,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **failover_ids** | **[str]**| Get runs for specific failover workflows. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
  **include_tenants** | **bool**| If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. | [optional]
 
@@ -610,12 +703,27 @@ body = ReplicationBackupActivation(
         ],
         protection_group_id="protection_group_id_example",
         enable_reverse_replication=True,
+        do_not_protect=True,
+        create_object_backup=True,
+        target_failover_policy_id="target_failover_policy_id_example",
+        target_failover_environment="kVMware",
     ) # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Activate failover entity backup on replication clsuter.
 	api_response = client.failover.replication_backup_activation(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->replication_backup_activation: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Activate failover entity backup on replication clsuter.
+	api_response = client.failover.replication_backup_activation(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FailoverApi->replication_backup_activation: %s\n" % e)
@@ -628,6 +736,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the failover workflow. |
  **body** | [**ReplicationBackupActivation**](ReplicationBackupActivation.md)| Specifies the paramteres to activate the backup of failover entities. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -685,11 +795,21 @@ body = SourceBackupDeactivation(
         protection_group_id="protection_group_id_example",
         keep_failover_objects=True,
     ) # SourceBackupDeactivation | Specifies the paramteres to deactivate the backup of failover entities.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Deactivate failover entity backup on source clsuter.
 	client.failover.source_backup_deactivation(id, body)
+except ApiException as e:
+	print("Exception when calling FailoverApi->source_backup_deactivation: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Deactivate failover entity backup on source clsuter.
+	client.failover.source_backup_deactivation(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling FailoverApi->source_backup_deactivation: %s\n" % e)
 ```
@@ -701,6 +821,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the failover workflow. |
  **body** | [**SourceBackupDeactivation**](SourceBackupDeactivation.md)| Specifies the paramteres to deactivate the backup of failover entities. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

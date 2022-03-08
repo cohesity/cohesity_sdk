@@ -25,8 +25,18 @@ from cohesity_sdk.cohesity_client_v2.model.create_view_request import CreateView
 from cohesity_sdk.cohesity_client_v2.model.error import Error
 from cohesity_sdk.cohesity_client_v2.model.get_view_templates_result import GetViewTemplatesResult
 from cohesity_sdk.cohesity_client_v2.model.get_views_result import GetViewsResult
+from cohesity_sdk.cohesity_client_v2.model.share import Share
+from cohesity_sdk.cohesity_client_v2.model.shares import Shares
 from cohesity_sdk.cohesity_client_v2.model.template import Template
+from cohesity_sdk.cohesity_client_v2.model.update_share_param import UpdateShareParam
 from cohesity_sdk.cohesity_client_v2.model.view import View
+from cohesity_sdk.cohesity_client_v2.model.view_clients import ViewClients
+from cohesity_sdk.cohesity_client_v2.model.view_clients_summary import ViewClientsSummary
+from cohesity_sdk.cohesity_client_v2.model.view_directory_quota import ViewDirectoryQuota
+from cohesity_sdk.cohesity_client_v2.model.view_directory_quotas import ViewDirectoryQuotas
+from cohesity_sdk.cohesity_client_v2.model.view_user_quotas import ViewUserQuotas
+from cohesity_sdk.cohesity_client_v2.model.view_user_quotas_config import ViewUserQuotasConfig
+from cohesity_sdk.cohesity_client_v2.model.views_summary import ViewsSummary
 
 
 class ViewsApi(object):
@@ -40,6 +50,128 @@ class ViewsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __create_share(
+            self,
+            body,
+            **kwargs
+        ):
+            """Create a Share.  # noqa: E501
+
+            Create a Share.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_share(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (Share): Specifies the request to create a Share.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Share
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.create_share = _Endpoint(
+            settings={
+                'response_type': (Share,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/shares',
+                'operation_id': 'create_share',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (Share,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_share
+        )
 
         def __create_view(
             self,
@@ -285,6 +417,127 @@ class ViewsApi(object):
             callable=__create_view_template
         )
 
+        def __delete_share(
+            self,
+            name,
+            **kwargs
+        ):
+            """Delete a Share.  # noqa: E501
+
+            Delete a Share.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_share(name, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                name (str): Specifies the Share name to delete.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['name'] = \
+                name
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_share = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/shares/{name}',
+                'operation_id': 'delete_share',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'name',
+                ],
+                'required': [
+                    'name',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'name':
+                        (str,),
+                },
+                'attribute_map': {
+                    'name': 'name',
+                },
+                'location_map': {
+                    'name': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_share
+        )
+
         def __delete_view(
             self,
             id,
@@ -404,6 +657,139 @@ class ViewsApi(object):
             },
             api_client=api_client,
             callable=__delete_view
+        )
+
+        def __delete_view_directory_quota(
+            self,
+            id,
+            **kwargs
+        ):
+            """Delete directory quota for the View.  # noqa: E501
+
+            Delete directory quota for the View.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_view_directory_quota(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the View id.
+
+            Keyword Args:
+                directory_path (str): Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.. [optional]
+                delete_all_directory_quotas (bool): Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_view_directory_quota = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/views/{id}/directory-quotas',
+                'operation_id': 'delete_view_directory_quota',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'directory_path',
+                    'delete_all_directory_quotas',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'directory_path':
+                        (str,),
+                    'delete_all_directory_quotas':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'directory_path': 'directoryPath',
+                    'delete_all_directory_quotas': 'deleteAllDirectoryQuotas',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'directory_path': 'query',
+                    'delete_all_directory_quotas': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_view_directory_quota
         )
 
         def __delete_view_template(
@@ -527,6 +913,273 @@ class ViewsApi(object):
             callable=__delete_view_template
         )
 
+        def __get_share_by_name(
+            self,
+            name,
+            **kwargs
+        ):
+            """Get a Share by name.  # noqa: E501
+
+            Get a Share by name.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_share_by_name(name, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                name (str): Specifies the Share name.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Share
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['name'] = \
+                name
+            return self.call_with_http_info(**kwargs)
+
+        self.get_share_by_name = _Endpoint(
+            settings={
+                'response_type': (Share,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/shares/{name}',
+                'operation_id': 'get_share_by_name',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'name',
+                ],
+                'required': [
+                    'name',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'name':
+                        (str,),
+                },
+                'attribute_map': {
+                    'name': 'name',
+                },
+                'location_map': {
+                    'name': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_share_by_name
+        )
+
+        def __get_shares(
+            self,
+            **kwargs
+        ):
+            """Get Shares.  # noqa: E501
+
+            Get Shares.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_shares(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                name (str): Specifies the Share name.. [optional]
+                match_partial_name (bool): If true, the share nane is matched by any partial rather than exactly matched.. [optional]
+                max_count (int): Specifies a limit on the number of Views returned.. [optional]
+                cookie (str): Specifies the cookie.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
+                include_tenants (bool): IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Shares
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_shares = _Endpoint(
+            settings={
+                'response_type': (Shares,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/shares',
+                'operation_id': 'get_shares',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'name',
+                    'match_partial_name',
+                    'max_count',
+                    'cookie',
+                    'tenant_ids',
+                    'include_tenants',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'name':
+                        (str,),
+                    'match_partial_name':
+                        (bool,),
+                    'max_count':
+                        (int,),
+                    'cookie':
+                        (str,),
+                    'tenant_ids':
+                        ([str],),
+                    'include_tenants':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'name': 'name',
+                    'match_partial_name': 'matchPartialName',
+                    'max_count': 'maxCount',
+                    'cookie': 'cookie',
+                    'tenant_ids': 'tenantIds',
+                    'include_tenants': 'includeTenants',
+                },
+                'location_map': {
+                    'name': 'query',
+                    'match_partial_name': 'query',
+                    'max_count': 'query',
+                    'cookie': 'query',
+                    'tenant_ids': 'query',
+                    'include_tenants': 'query',
+                },
+                'collection_format_map': {
+                    'tenant_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_shares
+        )
+
         def __get_view_by_id(
             self,
             id,
@@ -542,7 +1195,7 @@ class ViewsApi(object):
             >>> result = thread.get()
 
             Args:
-                id (int): Specifies a unique id of the View to delete.
+                id (int): Specifies a unique id of the View to fetch.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -648,6 +1301,644 @@ class ViewsApi(object):
             callable=__get_view_by_id
         )
 
+        def __get_view_clients(
+            self,
+            **kwargs
+        ):
+            """Get View Clients.  # noqa: E501
+
+            Get View Clients.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_view_clients(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                protocols ([str]): Specifies a list of protocols to filter the clients.. [optional]
+                view_ids ([int]): Specifies a list of View ids. Only clients connected to these Views will be returned.. [optional]
+                node_ip (str): Specifies a node ip. Only clients connected to this node will be returned.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewClients
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_view_clients = _Endpoint(
+            settings={
+                'response_type': (ViewClients,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/view-clients',
+                'operation_id': 'get_view_clients',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'protocols',
+                    'view_ids',
+                    'node_ip',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'protocols',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('protocols',): {
+
+                        "NFS": "NFS",
+                        "SMB": "SMB"
+                    },
+                },
+                'openapi_types': {
+                    'protocols':
+                        ([str],),
+                    'view_ids':
+                        ([int],),
+                    'node_ip':
+                        (str,),
+                },
+                'attribute_map': {
+                    'protocols': 'protocols',
+                    'view_ids': 'viewIds',
+                    'node_ip': 'nodeIp',
+                },
+                'location_map': {
+                    'protocols': 'query',
+                    'view_ids': 'query',
+                    'node_ip': 'query',
+                },
+                'collection_format_map': {
+                    'protocols': 'csv',
+                    'view_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_view_clients
+        )
+
+        def __get_view_clients_summary(
+            self,
+            **kwargs
+        ):
+            """Get View Clients Summary.  # noqa: E501
+
+            Get View Clients Summary.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_view_clients_summary(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                view_ids ([int]): Specifies a list of View ids. Only clients connected to these Views will be included in the summary.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewClientsSummary
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_view_clients_summary = _Endpoint(
+            settings={
+                'response_type': (ViewClientsSummary,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/view-clients/summary',
+                'operation_id': 'get_view_clients_summary',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'view_ids',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'view_ids':
+                        ([int],),
+                },
+                'attribute_map': {
+                    'view_ids': 'viewIds',
+                },
+                'location_map': {
+                    'view_ids': 'query',
+                },
+                'collection_format_map': {
+                    'view_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_view_clients_summary
+        )
+
+        def __get_view_directory_quotas(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get directory quotas for the View.  # noqa: E501
+
+            Get directory quotas for the View.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_view_directory_quotas(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the View id.
+
+            Keyword Args:
+                max_count (int): Specifies a limit on the number of quotas returned.. [optional]
+                cookie (int): Specifies the cookie.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewDirectoryQuotas
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_view_directory_quotas = _Endpoint(
+            settings={
+                'response_type': (ViewDirectoryQuotas,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/views/{id}/directory-quotas',
+                'operation_id': 'get_view_directory_quotas',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'max_count',
+                    'cookie',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'max_count':
+                        (int,),
+                    'cookie':
+                        (int,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'max_count': 'maxCount',
+                    'cookie': 'cookie',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'max_count': 'query',
+                    'cookie': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_view_directory_quotas
+        )
+
+        def __get_view_user_quotas(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get user quotas for the View.  # noqa: E501
+
+            Get user quotas for the View.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_view_user_quotas(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the View id.
+
+            Keyword Args:
+                max_count (int): Specifies a limit on the number of quotas returned.. [optional]
+                cookie (str): Specifies the cookie.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewUserQuotas
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_view_user_quotas = _Endpoint(
+            settings={
+                'response_type': (ViewUserQuotas,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/views/{id}/user-quotas',
+                'operation_id': 'get_view_user_quotas',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'max_count',
+                    'cookie',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'max_count':
+                        (int,),
+                    'cookie':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'max_count': 'maxCount',
+                    'cookie': 'cookie',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'max_count': 'query',
+                    'cookie': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_view_user_quotas
+        )
+
+        def __get_view_user_quotas_config(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get View user quotas config.  # noqa: E501
+
+            Get View user quotas config.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_view_user_quotas_config(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the View id.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewUserQuotasConfig
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_view_user_quotas_config = _Endpoint(
+            settings={
+                'response_type': (ViewUserQuotasConfig,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/views/{id}/user-quotas-config',
+                'operation_id': 'get_view_user_quotas_config',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_view_user_quotas_config
+        )
+
         def __get_views(
             self,
             **kwargs
@@ -677,6 +1968,7 @@ class ViewsApi(object):
                 protection_group_ids ([int]): This field will be deprecated. Filter by Protection Group ids. Return Views that are being protected by listed Groups, which are specified by ids. If both protectionGroupIds and viewProtectionGroupIds are specified, only viewProtectionGroupIds will be used.. [optional]
                 view_protection_group_ids ([str]): Filter by Protection Group ids. Return Views that are being protected by listed Groups, which are specified by ids.. [optional]
                 view_count_only (bool): Whether to get just the total number of views with the given input filters. If the flag is true, we ignore the parameter 'maxViews' for the count. Also, if flag is true, list of views will not be returned.. [optional]
+                summary_only (bool): Whether to get only view summary including 'name', 'viewId', 'storageDomainName', 'storageDomainId' and 'tenantId'.. [optional]
                 sort_by_logical_usage (bool): If set to true, the list is sorted descending by logical usage.. [optional]
                 internal_access_sids ([str]): Sids of restricted principals who can access the view. This is an internal field and therefore does not have json tag.. [optional]
                 match_alias_names (bool): If true, view aliases are also matched with the names in viewNames.. [optional]
@@ -687,6 +1979,12 @@ class ViewsApi(object):
                 include_views_with_antivirus_enabled_only (bool): If set to true, the list will contain only the views for which antivirus scan is enabled.. [optional]
                 include_views_with_data_lock_enabled_only (bool): If set to true, the list will contain only the views for which either file level data lock is enabled or view level data lock is enabled.. [optional]
                 filer_audit_log_enabled (bool): If set to true, only views with filer audit log enabled will be returned. If set to false, only views with filer audit log disabled will be returned.. [optional]
+                categories ([str]): Filter by a list of View categories.. [optional]
+                view_protection_types ([str]): Filter by a list of View protection types.. [optional]
+                last_run_any_statuses ([str]): Filter by last any run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_local_backup_statuses ([str]): Filter by last local backup run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_replication_statuses ([str]): Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_archival_statuses ([str]): Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -762,6 +2060,7 @@ class ViewsApi(object):
                     'protection_group_ids',
                     'view_protection_group_ids',
                     'view_count_only',
+                    'summary_only',
                     'sort_by_logical_usage',
                     'internal_access_sids',
                     'match_alias_names',
@@ -772,12 +2071,24 @@ class ViewsApi(object):
                     'include_views_with_antivirus_enabled_only',
                     'include_views_with_data_lock_enabled_only',
                     'filer_audit_log_enabled',
+                    'categories',
+                    'view_protection_types',
+                    'last_run_any_statuses',
+                    'last_run_local_backup_statuses',
+                    'last_run_replication_statuses',
+                    'last_run_archival_statuses',
                 ],
                 'required': [],
                 'nullable': [
                 ],
                 'enum': [
                     'protocol_accesses',
+                    'categories',
+                    'view_protection_types',
+                    'last_run_any_statuses',
+                    'last_run_local_backup_statuses',
+                    'last_run_replication_statuses',
+                    'last_run_archival_statuses',
                 ],
                 'validation': [
                 ]
@@ -793,6 +2104,67 @@ class ViewsApi(object):
                         "SMB": "SMB",
                         "S3": "S3",
                         "SWIFT": "Swift"
+                    },
+                    ('categories',): {
+
+                        "BACKUPTARGET": "BackupTarget",
+                        "FILESERVICES": "FileServices",
+                        "OBJECTSERVICES": "ObjectServices"
+                    },
+                    ('view_protection_types',): {
+
+                        "LOCAL": "Local",
+                        "ARCHIVAL": "Archival",
+                        "REPLICATIONOUT": "ReplicationOut",
+                        "REPLICATIONIN": "ReplicationIn"
+                    },
+                    ('last_run_any_statuses',): {
+
+                        "ACCEPTED": "Accepted",
+                        "RUNNING": "Running",
+                        "CANCELED": "Canceled",
+                        "CANCELING": "Canceling",
+                        "FAILED": "Failed",
+                        "MISSED": "Missed",
+                        "SUCCEEDED": "Succeeded",
+                        "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
+                        "ONHOLD": "OnHold"
+                    },
+                    ('last_run_local_backup_statuses',): {
+
+                        "ACCEPTED": "Accepted",
+                        "RUNNING": "Running",
+                        "CANCELED": "Canceled",
+                        "CANCELING": "Canceling",
+                        "FAILED": "Failed",
+                        "MISSED": "Missed",
+                        "SUCCEEDED": "Succeeded",
+                        "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
+                        "ONHOLD": "OnHold"
+                    },
+                    ('last_run_replication_statuses',): {
+
+                        "ACCEPTED": "Accepted",
+                        "RUNNING": "Running",
+                        "CANCELED": "Canceled",
+                        "CANCELING": "Canceling",
+                        "FAILED": "Failed",
+                        "MISSED": "Missed",
+                        "SUCCEEDED": "Succeeded",
+                        "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
+                        "ONHOLD": "OnHold"
+                    },
+                    ('last_run_archival_statuses',): {
+
+                        "ACCEPTED": "Accepted",
+                        "RUNNING": "Running",
+                        "CANCELED": "Canceled",
+                        "CANCELING": "Canceling",
+                        "FAILED": "Failed",
+                        "MISSED": "Missed",
+                        "SUCCEEDED": "Succeeded",
+                        "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
+                        "ONHOLD": "OnHold"
                     },
                 },
                 'openapi_types': {
@@ -824,6 +2196,8 @@ class ViewsApi(object):
                         ([str],),
                     'view_count_only':
                         (bool,),
+                    'summary_only':
+                        (bool,),
                     'sort_by_logical_usage':
                         (bool,),
                     'internal_access_sids':
@@ -844,6 +2218,18 @@ class ViewsApi(object):
                         (bool,),
                     'filer_audit_log_enabled':
                         (bool,),
+                    'categories':
+                        ([str],),
+                    'view_protection_types':
+                        ([str],),
+                    'last_run_any_statuses':
+                        ([str],),
+                    'last_run_local_backup_statuses':
+                        ([str],),
+                    'last_run_replication_statuses':
+                        ([str],),
+                    'last_run_archival_statuses':
+                        ([str],),
                 },
                 'attribute_map': {
                     'view_names': 'viewNames',
@@ -860,6 +2246,7 @@ class ViewsApi(object):
                     'protection_group_ids': 'protectionGroupIds',
                     'view_protection_group_ids': 'viewProtectionGroupIds',
                     'view_count_only': 'viewCountOnly',
+                    'summary_only': 'summaryOnly',
                     'sort_by_logical_usage': 'sortByLogicalUsage',
                     'internal_access_sids': 'internalAccessSids',
                     'match_alias_names': 'matchAliasNames',
@@ -870,6 +2257,12 @@ class ViewsApi(object):
                     'include_views_with_antivirus_enabled_only': 'includeViewsWithAntivirusEnabledOnly',
                     'include_views_with_data_lock_enabled_only': 'includeViewsWithDataLockEnabledOnly',
                     'filer_audit_log_enabled': 'filerAuditLogEnabled',
+                    'categories': 'categories',
+                    'view_protection_types': 'viewProtectionTypes',
+                    'last_run_any_statuses': 'lastRunAnyStatuses',
+                    'last_run_local_backup_statuses': 'lastRunLocalBackupStatuses',
+                    'last_run_replication_statuses': 'lastRunReplicationStatuses',
+                    'last_run_archival_statuses': 'lastRunArchivalStatuses',
                 },
                 'location_map': {
                     'view_names': 'query',
@@ -886,6 +2279,7 @@ class ViewsApi(object):
                     'protection_group_ids': 'query',
                     'view_protection_group_ids': 'query',
                     'view_count_only': 'query',
+                    'summary_only': 'query',
                     'sort_by_logical_usage': 'query',
                     'internal_access_sids': 'query',
                     'match_alias_names': 'query',
@@ -896,6 +2290,12 @@ class ViewsApi(object):
                     'include_views_with_antivirus_enabled_only': 'query',
                     'include_views_with_data_lock_enabled_only': 'query',
                     'filer_audit_log_enabled': 'query',
+                    'categories': 'query',
+                    'view_protection_types': 'query',
+                    'last_run_any_statuses': 'query',
+                    'last_run_local_backup_statuses': 'query',
+                    'last_run_replication_statuses': 'query',
+                    'last_run_archival_statuses': 'query',
                 },
                 'collection_format_map': {
                     'view_names': 'csv',
@@ -907,6 +2307,12 @@ class ViewsApi(object):
                     'view_protection_group_ids': 'csv',
                     'internal_access_sids': 'csv',
                     'tenant_ids': 'csv',
+                    'categories': 'csv',
+                    'view_protection_types': 'csv',
+                    'last_run_any_statuses': 'csv',
+                    'last_run_local_backup_statuses': 'csv',
+                    'last_run_replication_statuses': 'csv',
+                    'last_run_archival_statuses': 'csv',
                 }
             },
             headers_map={
@@ -917,6 +2323,115 @@ class ViewsApi(object):
             },
             api_client=api_client,
             callable=__get_views
+        )
+
+        def __get_views_summary(
+            self,
+            **kwargs
+        ):
+            """Get Views summary.  # noqa: E501
+
+            Get Views summary.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_views_summary(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewsSummary
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_views_summary = _Endpoint(
+            settings={
+                'response_type': (ViewsSummary,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/views-summary',
+                'operation_id': 'get_views_summary',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_views_summary
         )
 
         def __read_view_template_by_id(
@@ -1149,6 +2664,138 @@ class ViewsApi(object):
             callable=__read_view_templates
         )
 
+        def __update_share(
+            self,
+            name,
+            body,
+            **kwargs
+        ):
+            """Update a Share.  # noqa: E501
+
+            Update a Share.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_share(name, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                name (str): Specifies the Share name to update.
+                body (UpdateShareParam): Specifies the request to update a Share.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                Share
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['name'] = \
+                name
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_share = _Endpoint(
+            settings={
+                'response_type': (Share,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/shares/{name}',
+                'operation_id': 'update_share',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'name',
+                    'body',
+                ],
+                'required': [
+                    'name',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'name':
+                        (str,),
+                    'body':
+                        (UpdateShareParam,),
+                },
+                'attribute_map': {
+                    'name': 'name',
+                },
+                'location_map': {
+                    'name': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_share
+        )
+
         def __update_view(
             self,
             id,
@@ -1279,6 +2926,138 @@ class ViewsApi(object):
             },
             api_client=api_client,
             callable=__update_view
+        )
+
+        def __update_view_directory_quota(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Upadte directory quota for the View.  # noqa: E501
+
+            Update directory quota for the View.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_view_directory_quota(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the View id.
+                body (ViewDirectoryQuota): Specifies the request to update directory quota.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewDirectoryQuota
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_view_directory_quota = _Endpoint(
+            settings={
+                'response_type': (ViewDirectoryQuota,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/file-services/views/{id}/directory-quotas',
+                'operation_id': 'update_view_directory_quota',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (ViewDirectoryQuota,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_view_directory_quota
         )
 
         def __update_view_template(

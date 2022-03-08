@@ -54,6 +54,11 @@ class ObjectProtectionSummaryAllOf(ModelNormal):
     """
 
     allowed_values = {
+        ('error_type',): {
+            'None': None,
+            'INTERNALERROR': "InternalError",
+            'ALREADYEXISTSERROR': "AlreadyExistsError",
+        },
     }
 
     validations = {
@@ -74,6 +79,7 @@ class ObjectProtectionSummaryAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'error_type': (str, none_type,),  # noqa: E501
             'error': (str, none_type,),  # noqa: E501
         }
 
@@ -84,6 +90,7 @@ class ObjectProtectionSummaryAllOf(ModelNormal):
 
 
     attribute_map = {
+        'error_type': 'errorType',  # noqa: E501
         'error': 'error',  # noqa: E501
     }
 
@@ -134,6 +141,7 @@ class ObjectProtectionSummaryAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            error_type (str, none_type): Specifies the type of error which occurred during creation of the object protection.. [optional]  # noqa: E501
             error (str, none_type): Specifies the error message if an error occurred during creation of the object protection.. [optional]  # noqa: E501
         """
 

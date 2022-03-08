@@ -136,8 +136,8 @@ class UpdateDataTieringState(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            failed_ids ([str], none_type): Specifies a list of data tiering groups ids for which   updation of state failed.. [optional]  # noqa: E501
-            successful_ids ([str], none_type): Specifies a list of data tiering groups ids for which updation of   state was successful.. [optional]  # noqa: E501
+            failed_ids ([str], none_type): Specifies a list of data tiering groups ids for which updation of state failed.. [optional]  # noqa: E501
+            successful_ids ([str], none_type): Specifies a list of data tiering groups ids for which updation of state was successful.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

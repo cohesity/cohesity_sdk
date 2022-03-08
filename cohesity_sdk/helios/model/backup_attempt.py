@@ -69,6 +69,7 @@ class BackupAttempt(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
         },
     }
 
@@ -175,7 +176,7 @@ class BackupAttempt(ModelNormal):
             permit_grant_time_usecs (int, none_type): Specifies the time when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated to the time when permit is granted again.. [optional]  # noqa: E501
             queue_duration_usecs (int, none_type): Specifies the duration between the startTime and when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated considering the time when permit is granted again. Queue duration = PermitGrantTimeUsecs - StartTimeUsecs. [optional]  # noqa: E501
             snapshot_creation_time_usecs (int, none_type): Specifies the time at which the source snapshot was taken in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
-            status (str, none_type): Status of the attempt for an object. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the attempt for an object. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Pausing' indicates that the ongoing run is in the process of being paused. 'Resuming' indicates that the already paused run is in the process of being running again. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             stats (BackupDataStats): [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task for an object... [optional]  # noqa: E501
             message (str, none_type): A message about the error if encountered while performing backup.. [optional]  # noqa: E501

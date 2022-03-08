@@ -21,13 +21,14 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.helios.model.cancel_protection_group_run_request import CancelProtectionGroupRunRequest
-from cohesity_sdk.helios.model.common_protection_group_request_paramsc063637996c5484a88d414cc62db2335 import CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335
-from cohesity_sdk.helios.model.common_protection_group_response_params8f08b02618d44fe5_bb54_fce1dfb4f732 import CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+from cohesity_sdk.helios.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.helios.model.create_protection_group_run_request import CreateProtectionGroupRunRequest
 from cohesity_sdk.helios.model.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.get_protection_run_progress_body import GetProtectionRunProgressBody
+from cohesity_sdk.helios.model.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
+from cohesity_sdk.helios.model.perform_run_action_response import PerformRunActionResponse
+from cohesity_sdk.helios.model.protection_group import ProtectionGroup
 from cohesity_sdk.helios.model.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.helios.model.protection_group_runs import ProtectionGroupRuns
 from cohesity_sdk.helios.model.protection_groups import ProtectionGroups
@@ -50,155 +51,6 @@ class ProtectionGroupsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __cancel_protection_group_run(
-            self,
-            id,
-            run_id,
-            body,
-            **kwargs
-        ):
-            """Cancel protection group run.  # noqa: E501
-
-            Cancel protection run for a given protection group ID and run ID.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.cancel_protection_group_run(id, run_id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (str): Specifies a unique id of the Protection Group.
-                run_id (str): Specifies a unique run id of the Protection Group run.
-                body (CancelProtectionGroupRunRequest): Specifies the parameters to cancel a protection run.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            kwargs['run_id'] = \
-                run_id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.cancel_protection_group_run = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/cancel',
-                'operation_id': 'cancel_protection_group_run',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'run_id',
-                    'body',
-                ],
-                'required': [
-                    'id',
-                    'run_id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                    'run_id',
-                ]
-            },
-            root_map={
-                'validations': {
-                    ('run_id',): {
-
-                        'regex': {
-                            'pattern': r'^\d+:\d+$',  # noqa: E501
-                        },
-                    },
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (str,),
-                    'run_id':
-                        (str,),
-                    'body':
-                        (CancelProtectionGroupRunRequest,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                    'run_id': 'runId',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'run_id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__cancel_protection_group_run
-        )
-
         def __create_protection_group(
             self,
             body,
@@ -214,9 +66,11 @@ class ProtectionGroupsApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335): Specifies the parameters to create a Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to create a Protection Group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -238,7 +92,7 @@ class ProtectionGroupsApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -267,7 +121,7 @@ class ProtectionGroupsApi(object):
 
         self.create_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -281,6 +135,8 @@ class ProtectionGroupsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -299,12 +155,20 @@ class ProtectionGroupsApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335,),
+                        (CreateOrUpdateProtectionGroupRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -341,6 +205,8 @@ class ProtectionGroupsApi(object):
                 body (CreateProtectionGroupRunRequest): Specifies the parameters to start a protection run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -408,6 +274,8 @@ class ProtectionGroupsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -430,13 +298,21 @@ class ProtectionGroupsApi(object):
                         (str,),
                     'body':
                         (CreateProtectionGroupRunRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -471,6 +347,8 @@ class ProtectionGroupsApi(object):
                 id (str): Specifies a unique id of the Protection Group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 delete_snapshots (bool): Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -536,6 +414,8 @@ class ProtectionGroupsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'delete_snapshots',
                 ],
                 'required': [
@@ -556,15 +436,23 @@ class ProtectionGroupsApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'delete_snapshots':
                         (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'delete_snapshots': 'deleteSnapshots',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'delete_snapshots': 'query',
                 },
                 'collection_format_map': {
@@ -578,6 +466,389 @@ class ProtectionGroupsApi(object):
             },
             api_client=api_client,
             callable=__delete_protection_group
+        )
+
+        def __get_mcm_protection_group_by_id(
+            self,
+            id,
+            **kwargs
+        ):
+            """List details about single Protection Group.  # noqa: E501
+
+            Returns the Protection Group corresponding to the specified Group id.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_mcm_protection_group_by_id(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies a unique id of the Protection Group.
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
+                include_last_run_info (bool): If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProtectionGroup
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_mcm_protection_group_by_id = _Endpoint(
+            settings={
+                'response_type': (ProtectionGroup,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/data-protect/protection-groups/{id}',
+                'operation_id': 'get_mcm_protection_group_by_id',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'region_id',
+                    'request_initiator_type',
+                    'include_last_run_info',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'request_initiator_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto"
+                    },
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'region_id':
+                        (str,),
+                    'request_initiator_type':
+                        (str,),
+                    'include_last_run_info':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'region_id': 'regionId',
+                    'request_initiator_type': 'requestInitiatorType',
+                    'include_last_run_info': 'includeLastRunInfo',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'region_id': 'header',
+                    'request_initiator_type': 'header',
+                    'include_last_run_info': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_mcm_protection_group_by_id
+        )
+
+        def __get_mcm_protection_groups(
+            self,
+            **kwargs
+        ):
+            """Get the list of Protection Groups.  # noqa: E501
+
+            Get the list of Protection Groups.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_mcm_protection_groups(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                ids ([str]): Filter by a list of Protection Group ids.. [optional]
+                names ([str]): Filter by a list of Protection Group names.. [optional]
+                policy_ids ([str]): Filter by Policy ids that are associated with Protection Groups. Only Protection Groups associated with the specified Policy ids, are returned.. [optional]
+                environments ([str]): Filter by environment types such as 'kVMware', 'kView', etc. Only Protection Groups protecting the specified environment types are returned.. [optional]
+                is_active (bool): Filter by Inactive or Active Protection Groups. If not set, all Inactive and Active Protection Groups are returned. If true, only Active Protection Groups are returned. If false, only Inactive Protection Groups are returned. When you create a Protection Group on a Primary Cluster with a replication schedule, the Cluster creates an Inactive copy of the Protection Group on the Remote Cluster. In addition, when an Active and running Protection Group is deactivated, the Protection Group becomes Inactive.. [optional]
+                is_deleted (bool): If true, return only Protection Groups that have been deleted but still have Snapshots associated with them. If false, return all Protection Groups except those Protection Groups that have been deleted and still have Snapshots associated with them. A Protection Group that is deleted with all its Snapshots is not returned for either of these cases.. [optional]
+                is_paused (bool): Filter by paused or non paused Protection Groups, If not set, all paused and non paused Protection Groups are returned. If true, only paused Protection Groups are returned. If false, only non paused Protection Groups are returned.. [optional]
+                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                is_last_run_sla_violated (bool): If true, return Protection Groups for which last run SLA was violated.. [optional]
+                include_last_run_info (bool): If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProtectionGroups
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_mcm_protection_groups = _Endpoint(
+            settings={
+                'response_type': (ProtectionGroups,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/data-protect/protection-groups',
+                'operation_id': 'get_mcm_protection_groups',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'ids',
+                    'names',
+                    'policy_ids',
+                    'environments',
+                    'is_active',
+                    'is_deleted',
+                    'is_paused',
+                    'last_run_any_status',
+                    'is_last_run_sla_violated',
+                    'include_last_run_info',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'environments',
+                    'last_run_any_status',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('environments',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
+                    ('last_run_any_status',): {
+
+                        "ACCEPTED": "Accepted",
+                        "RUNNING": "Running",
+                        "CANCELED": "Canceled",
+                        "CANCELING": "Canceling",
+                        "FAILED": "Failed",
+                        "MISSED": "Missed",
+                        "SUCCEEDED": "Succeeded",
+                        "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
+                        "ONHOLD": "OnHold"
+                    },
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'ids':
+                        ([str],),
+                    'names':
+                        ([str],),
+                    'policy_ids':
+                        ([str],),
+                    'environments':
+                        ([str],),
+                    'is_active':
+                        (bool,),
+                    'is_deleted':
+                        (bool,),
+                    'is_paused':
+                        (bool,),
+                    'last_run_any_status':
+                        ([str],),
+                    'is_last_run_sla_violated':
+                        (bool,),
+                    'include_last_run_info':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'ids': 'ids',
+                    'names': 'names',
+                    'policy_ids': 'policyIds',
+                    'environments': 'environments',
+                    'is_active': 'isActive',
+                    'is_deleted': 'isDeleted',
+                    'is_paused': 'isPaused',
+                    'last_run_any_status': 'lastRunAnyStatus',
+                    'is_last_run_sla_violated': 'isLastRunSlaViolated',
+                    'include_last_run_info': 'includeLastRunInfo',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'ids': 'query',
+                    'names': 'query',
+                    'policy_ids': 'query',
+                    'environments': 'query',
+                    'is_active': 'query',
+                    'is_deleted': 'query',
+                    'is_paused': 'query',
+                    'last_run_any_status': 'query',
+                    'is_last_run_sla_violated': 'query',
+                    'include_last_run_info': 'query',
+                },
+                'collection_format_map': {
+                    'ids': 'csv',
+                    'names': 'csv',
+                    'policy_ids': 'csv',
+                    'environments': 'csv',
+                    'last_run_any_status': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_mcm_protection_groups
         )
 
         def __get_protection_group_by_id(
@@ -598,6 +869,8 @@ class ProtectionGroupsApi(object):
                 id (str): Specifies a unique id of the Protection Group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 include_last_run_info (bool): If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.. [optional]
                 prune_excluded_source_ids (bool): If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.. [optional]
@@ -622,7 +895,7 @@ class ProtectionGroupsApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -651,7 +924,7 @@ class ProtectionGroupsApi(object):
 
         self.get_protection_group_by_id = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -665,6 +938,8 @@ class ProtectionGroupsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'request_initiator_type',
                     'include_last_run_info',
                     'prune_excluded_source_ids',
@@ -693,6 +968,10 @@ class ProtectionGroupsApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'request_initiator_type':
                         (str,),
                     'include_last_run_info':
@@ -702,12 +981,16 @@ class ProtectionGroupsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'request_initiator_type': 'requestInitiatorType',
                     'include_last_run_info': 'includeLastRunInfo',
                     'prune_excluded_source_ids': 'pruneExcludedSourceIds',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'request_initiator_type': 'header',
                     'include_last_run_info': 'query',
                     'prune_excluded_source_ids': 'query',
@@ -745,6 +1028,8 @@ class ProtectionGroupsApi(object):
                 run_id (str): Specifies a unique run id of the Protection Group run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which the run is to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.. [optional]
@@ -816,6 +1101,8 @@ class ProtectionGroupsApi(object):
                 'all': [
                     'id',
                     'run_id',
+                    'access_cluster_id',
+                    'region_id',
                     'request_initiator_type',
                     'tenant_ids',
                     'include_tenants',
@@ -855,6 +1142,10 @@ class ProtectionGroupsApi(object):
                         (str,),
                     'run_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'request_initiator_type':
                         (str,),
                     'tenant_ids':
@@ -867,6 +1158,8 @@ class ProtectionGroupsApi(object):
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'request_initiator_type': 'requestInitiatorType',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
@@ -875,6 +1168,8 @@ class ProtectionGroupsApi(object):
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'request_initiator_type': 'header',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
@@ -912,6 +1207,8 @@ class ProtectionGroupsApi(object):
                 id (str): Specifies a unique id of the Protection Group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 run_id (str): Specifies the protection run id.. [optional]
                 start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
@@ -920,10 +1217,10 @@ class ProtectionGroupsApi(object):
                 include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Group Runs created by the current user will be returned.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned.. [optional]
                 include_object_details (bool): Specifies if the result includes the object details for each protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.. [optional]
-                local_backup_run_status ([str]): Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                replication_run_status ([str]): Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                archival_run_status ([str]): Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                cloud_spin_run_status ([str]): Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                local_backup_run_status ([str]): Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                replication_run_status ([str]): Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                archival_run_status ([str]): Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                cloud_spin_run_status ([str]): Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
                 num_runs (int): Specifies the max number of runs. If not specified, at most 100 runs will be returned.. [optional]
                 exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
                 run_tags ([str]): Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned.. [optional]
@@ -991,6 +1288,8 @@ class ProtectionGroupsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'request_initiator_type',
                     'run_id',
                     'start_time_usecs',
@@ -1046,10 +1345,10 @@ class ProtectionGroupsApi(object):
                     ('run_types',): {
 
                         "KALL": "kAll",
-                        "KLOG": "kLog",
                         "KSYSTEM": "kSystem",
                         "KINCREMENTAL": "kIncremental",
-                        "KFULL": "kFull"
+                        "KFULL": "kFull",
+                        "KLOG": "kLog"
                     },
                     ('local_backup_run_status',): {
 
@@ -1061,7 +1360,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('replication_run_status',): {
 
@@ -1073,7 +1373,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('archival_run_status',): {
 
@@ -1085,7 +1386,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('cloud_spin_run_status',): {
 
@@ -1097,11 +1399,16 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                 },
                 'openapi_types': {
                     'id':
+                        (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
                         (str,),
                     'request_initiator_type':
                         (str,),
@@ -1136,6 +1443,8 @@ class ProtectionGroupsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'request_initiator_type': 'requestInitiatorType',
                     'run_id': 'runId',
                     'start_time_usecs': 'startTimeUsecs',
@@ -1154,6 +1463,8 @@ class ProtectionGroupsApi(object):
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'request_initiator_type': 'header',
                     'run_id': 'query',
                     'start_time_usecs': 'query',
@@ -1205,6 +1516,8 @@ class ProtectionGroupsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 ids ([str]): Filter by a list of Protection Group ids.. [optional]
                 names ([str]): Filter by a list of Protection Group names.. [optional]
@@ -1216,11 +1529,11 @@ class ProtectionGroupsApi(object):
                 is_active (bool): Filter by Inactive or Active Protection Groups. If not set, all Inactive and Active Protection Groups are returned. If true, only Active Protection Groups are returned. If false, only Inactive Protection Groups are returned. When you create a Protection Group on a Primary Cluster with a replication schedule, the Cluster creates an Inactive copy of the Protection Group on the Remote Cluster. In addition, when an Active and running Protection Group is deactivated, the Protection Group becomes Inactive.. [optional]
                 is_deleted (bool): If true, return only Protection Groups that have been deleted but still have Snapshots associated with them. If false, return all Protection Groups except those Protection Groups that have been deleted and still have Snapshots associated with them. A Protection Group that is deleted with all its Snapshots is not returned for either of these cases.. [optional]
                 is_paused (bool): Filter by paused or non paused Protection Groups, If not set, all paused and non paused Protection Groups are returned. If true, only paused Protection Groups are returned. If false, only non paused Protection Groups are returned.. [optional]
-                last_run_local_backup_status ([str]): Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_replication_status ([str]): Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_archival_status ([str]): Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_cloud_spin_status ([str]): Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_local_backup_status ([str]): Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_replication_status ([str]): Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_archival_status ([str]): Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_cloud_spin_status ([str]): Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
                 is_last_run_sla_violated (bool): If true, return Protection Groups for which last run SLA was violated.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
@@ -1288,6 +1601,8 @@ class ProtectionGroupsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'request_initiator_type',
                     'ids',
                     'names',
@@ -1346,6 +1661,10 @@ class ProtectionGroupsApi(object):
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
@@ -1361,6 +1680,12 @@ class ProtectionGroupsApi(object):
                         "KVIEW": "kView",
                         "KREMOTEADAPTER": "kRemoteAdapter",
                         "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
                         "KKUBERNETES": "kKubernetes",
                         "KCASSANDRA": "kCassandra",
                         "KMONGODB": "kMongoDB",
@@ -1368,7 +1693,8 @@ class ProtectionGroupsApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                     ('office365_workloads',): {
 
@@ -1389,7 +1715,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('last_run_replication_status',): {
 
@@ -1401,7 +1728,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('last_run_archival_status',): {
 
@@ -1413,7 +1741,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('last_run_cloud_spin_status',): {
 
@@ -1425,7 +1754,8 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                     ('last_run_any_status',): {
 
@@ -1437,10 +1767,15 @@ class ProtectionGroupsApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "PAUSED": "Paused"
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'request_initiator_type':
                         (str,),
                     'ids':
@@ -1487,6 +1822,8 @@ class ProtectionGroupsApi(object):
                         (bool, none_type,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'request_initiator_type': 'requestInitiatorType',
                     'ids': 'ids',
                     'names': 'names',
@@ -1511,6 +1848,8 @@ class ProtectionGroupsApi(object):
                     'prune_source_ids': 'pruneSourceIds',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'request_initiator_type': 'header',
                     'ids': 'query',
                     'names': 'query',
@@ -1576,6 +1915,8 @@ class ProtectionGroupsApi(object):
                 run_id (str): Specifies a unique run id of the Protection Run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 objects ([int]): Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which the run is to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.. [optional]
@@ -1585,6 +1926,7 @@ class ProtectionGroupsApi(object):
                 max_tasks_num (int): Specifies the maximum number of tasks to return.. [optional]
                 exclude_object_details (bool): Specifies whether to return objects. By default all the task tree are returned.. [optional]
                 include_event_logs (bool): Specifies whether to include event logs. [optional]
+                max_log_level (int): Specifies the number of levels till which to fetch the event logs. This is applicable only when includeEventLogs is true.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1649,6 +1991,8 @@ class ProtectionGroupsApi(object):
             params_map={
                 'all': [
                     'run_id',
+                    'access_cluster_id',
+                    'region_id',
                     'objects',
                     'tenant_ids',
                     'include_tenants',
@@ -1658,6 +2002,7 @@ class ProtectionGroupsApi(object):
                     'max_tasks_num',
                     'exclude_object_details',
                     'include_event_logs',
+                    'max_log_level',
                 ],
                 'required': [
                     'run_id',
@@ -1677,6 +2022,10 @@ class ProtectionGroupsApi(object):
                 'openapi_types': {
                     'run_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'objects':
                         ([int],),
                     'tenant_ids':
@@ -1695,9 +2044,13 @@ class ProtectionGroupsApi(object):
                         (bool,),
                     'include_event_logs':
                         (bool,),
+                    'max_log_level':
+                        (int,),
                 },
                 'attribute_map': {
                     'run_id': 'runId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'objects': 'objects',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
@@ -1707,9 +2060,12 @@ class ProtectionGroupsApi(object):
                     'max_tasks_num': 'maxTasksNum',
                     'exclude_object_details': 'excludeObjectDetails',
                     'include_event_logs': 'includeEventLogs',
+                    'max_log_level': 'maxLogLevel',
                 },
                 'location_map': {
                     'run_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'objects': 'query',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
@@ -1719,6 +2075,7 @@ class ProtectionGroupsApi(object):
                     'max_tasks_num': 'query',
                     'exclude_object_details': 'query',
                     'include_event_logs': 'query',
+                    'max_log_level': 'query',
                 },
                 'collection_format_map': {
                     'objects': 'csv',
@@ -1750,6 +2107,8 @@ class ProtectionGroupsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
                 end_time_usecs (int): Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
                 run_status ([str]): Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
@@ -1814,6 +2173,8 @@ class ProtectionGroupsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'start_time_usecs',
                     'end_time_usecs',
                     'run_status',
@@ -1845,6 +2206,10 @@ class ProtectionGroupsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'start_time_usecs':
                         (int,),
                     'end_time_usecs':
@@ -1853,11 +2218,15 @@ class ProtectionGroupsApi(object):
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'start_time_usecs': 'startTimeUsecs',
                     'end_time_usecs': 'endTimeUsecs',
                     'run_status': 'runStatus',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'start_time_usecs': 'query',
                     'end_time_usecs': 'query',
                     'run_status': 'query',
@@ -1896,6 +2265,8 @@ class ProtectionGroupsApi(object):
                 run_id (str): Specifies a unique run id of the Protection Group run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 object_id (str): Specifies the id of the object for which debug logs are to be returned. . [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -1964,6 +2335,8 @@ class ProtectionGroupsApi(object):
                 'all': [
                     'id',
                     'run_id',
+                    'access_cluster_id',
+                    'region_id',
                     'object_id',
                 ],
                 'required': [
@@ -2001,17 +2374,25 @@ class ProtectionGroupsApi(object):
                         (str,),
                     'run_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'object_id':
                         (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'object_id': 'objectId',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'object_id': 'query',
                 },
                 'collection_format_map': {
@@ -2049,6 +2430,8 @@ class ProtectionGroupsApi(object):
                 object_id (str): Specifies the id of the object for which debug logs are to be returned. 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2119,6 +2502,8 @@ class ProtectionGroupsApi(object):
                     'id',
                     'run_id',
                     'object_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -2158,16 +2543,24 @@ class ProtectionGroupsApi(object):
                         (str,),
                     'object_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
                     'object_id': 'objectId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
                     'object_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2204,6 +2597,8 @@ class ProtectionGroupsApi(object):
                 object_id (str): Specifies the id of the object for which errors/warnings are to be returned. 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2274,6 +2669,8 @@ class ProtectionGroupsApi(object):
                     'id',
                     'run_id',
                     'object_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -2306,16 +2703,24 @@ class ProtectionGroupsApi(object):
                         (str,),
                     'object_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
                     'object_id': 'objectId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
                     'object_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2330,26 +2735,28 @@ class ProtectionGroupsApi(object):
             callable=__get_run_errors_report
         )
 
-        def __update_protection_group(
+        def __perform_action_on_protection_group_run(
             self,
             id,
             body,
             **kwargs
         ):
-            """Update a Protection Group.  # noqa: E501
+            """Actions on protection group run.  # noqa: E501
 
-            Update the specified Protection Group.  # noqa: E501
+            Perform various actions on a Protection Group run.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.update_protection_group(id, body, async_req=True)
+            >>> thread = api.perform_action_on_protection_group_run(id, body, async_req=True)
             >>> result = thread.get()
 
             Args:
-                id (str): Specifies the id of the Protection Group.
-                body (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335): Specifies the parameters to update a Protection Group.
+                id (str): Specifies a unique id of the Protection Group.
+                body (PerformActionOnProtectionGroupRunRequest): Specifies the parameters to perform an action on a protection run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2371,7 +2778,151 @@ class ProtectionGroupsApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+                PerformRunActionResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.perform_action_on_protection_group_run = _Endpoint(
+            settings={
+                'response_type': (PerformRunActionResponse,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/protection-groups/{id}/runs/actions',
+                'operation_id': 'perform_action_on_protection_group_run',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'body':
+                        (PerformActionOnProtectionGroupRunRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__perform_action_on_protection_group_run
+        )
+
+        def __update_protection_group(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Update a Protection Group.  # noqa: E501
+
+            Update the specified Protection Group.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_protection_group(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies the id of the Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to update a Protection Group.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2402,7 +2953,7 @@ class ProtectionGroupsApi(object):
 
         self.update_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -2417,6 +2968,8 @@ class ProtectionGroupsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -2438,14 +2991,22 @@ class ProtectionGroupsApi(object):
                     'id':
                         (str,),
                     'body':
-                        (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335,),
+                        (CreateOrUpdateProtectionGroupRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2482,6 +3043,8 @@ class ProtectionGroupsApi(object):
                 body (UpdateProtectionGroupRunRequestBody): Specifies the parameters to update a Protection Group Run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2549,6 +3112,8 @@ class ProtectionGroupsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -2571,13 +3136,21 @@ class ProtectionGroupsApi(object):
                         (str,),
                     'body':
                         (UpdateProtectionGroupRunRequestBody,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -2612,6 +3185,8 @@ class ProtectionGroupsApi(object):
                 body (UpdateProtectionGroupsStateRequest): Specifies the parameters to perform an action of list of Protection Groups.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2676,6 +3251,8 @@ class ProtectionGroupsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -2695,11 +3272,19 @@ class ProtectionGroupsApi(object):
                 'openapi_types': {
                     'body':
                         (UpdateProtectionGroupsStateRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

@@ -60,6 +60,7 @@ class ObjectBackupSnapshotStatus(ModelNormal):
             'KFAILED': "kFailed",
             'KWAITINGFORNEXTATTEMPT': "kWaitingForNextAttempt",
             'KWARNING': "kWarning",
+            'KCURRENTATTEMPTPAUSED': "kCurrentAttemptPaused",
         },
     }
 

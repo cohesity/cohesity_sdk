@@ -21,13 +21,14 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cohesity_client_v2.model.cancel_protection_group_run_request import CancelProtectionGroupRunRequest
-from cohesity_sdk.cohesity_client_v2.model.common_protection_group_request_paramsc063637996c5484a88d414cc62db2335 import CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335
-from cohesity_sdk.cohesity_client_v2.model.common_protection_group_response_params8f08b02618d44fe5_bb54_fce1dfb4f732 import CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+from cohesity_sdk.cohesity_client_v2.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cohesity_client_v2.model.create_protection_group_run_request import CreateProtectionGroupRunRequest
 from cohesity_sdk.cohesity_client_v2.model.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
 from cohesity_sdk.cohesity_client_v2.model.error import Error
 from cohesity_sdk.cohesity_client_v2.model.get_protection_run_progress_body import GetProtectionRunProgressBody
+from cohesity_sdk.cohesity_client_v2.model.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
+from cohesity_sdk.cohesity_client_v2.model.perform_run_action_response import PerformRunActionResponse
+from cohesity_sdk.cohesity_client_v2.model.protection_group import ProtectionGroup
 from cohesity_sdk.cohesity_client_v2.model.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.cohesity_client_v2.model.protection_group_runs import ProtectionGroupRuns
 from cohesity_sdk.cohesity_client_v2.model.protection_groups import ProtectionGroups
@@ -50,155 +51,6 @@ class ProtectionGroupsApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-        def __cancel_protection_group_run(
-            self,
-            id,
-            run_id,
-            body,
-            **kwargs
-        ):
-            """Cancel protection group run.  # noqa: E501
-
-            Cancel protection run for a given protection group ID and run ID.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.cancel_protection_group_run(id, run_id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (str): Specifies a unique id of the Protection Group.
-                run_id (str): Specifies a unique run id of the Protection Group run.
-                body (CancelProtectionGroupRunRequest): Specifies the parameters to cancel a protection run.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            kwargs['run_id'] = \
-                run_id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.cancel_protection_group_run = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/cancel',
-                'operation_id': 'cancel_protection_group_run',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'run_id',
-                    'body',
-                ],
-                'required': [
-                    'id',
-                    'run_id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                    'run_id',
-                ]
-            },
-            root_map={
-                'validations': {
-                    ('run_id',): {
-
-                        'regex': {
-                            'pattern': r'^\d+:\d+$',  # noqa: E501
-                        },
-                    },
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (str,),
-                    'run_id':
-                        (str,),
-                    'body':
-                        (CancelProtectionGroupRunRequest,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                    'run_id': 'runId',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'run_id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__cancel_protection_group_run
-        )
-
         def __create_protection_group(
             self,
             body,
@@ -214,7 +66,7 @@ class ProtectionGroupsApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335): Specifies the parameters to create a Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to create a Protection Group.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -238,7 +90,7 @@ class ProtectionGroupsApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -267,7 +119,7 @@ class ProtectionGroupsApi(object):
 
         self.create_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
         
@@ -299,7 +151,7 @@ class ProtectionGroupsApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335,),
+                        (CreateOrUpdateProtectionGroupRequest,),
                 },
                 'attribute_map': {
                 },
@@ -622,7 +474,7 @@ class ProtectionGroupsApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -651,7 +503,7 @@ class ProtectionGroupsApi(object):
 
         self.get_protection_group_by_id = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
         
@@ -1046,10 +898,10 @@ class ProtectionGroupsApi(object):
                     ('run_types',): {
 
                         "KALL": "kAll",
-                        "KLOG": "kLog",
                         "KSYSTEM": "kSystem",
                         "KINCREMENTAL": "kIncremental",
-                        "KFULL": "kFull"
+                        "KFULL": "kFull",
+                        "KLOG": "kLog"
                     },
                     ('local_backup_run_status',): {
 
@@ -1346,6 +1198,10 @@ class ProtectionGroupsApi(object):
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
@@ -1361,6 +1217,12 @@ class ProtectionGroupsApi(object):
                         "KVIEW": "kView",
                         "KREMOTEADAPTER": "kRemoteAdapter",
                         "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
                         "KKUBERNETES": "kKubernetes",
                         "KCASSANDRA": "kCassandra",
                         "KMONGODB": "kMongoDB",
@@ -1368,7 +1230,8 @@ class ProtectionGroupsApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                     ('office365_workloads',): {
 
@@ -1585,6 +1448,7 @@ class ProtectionGroupsApi(object):
                 max_tasks_num (int): Specifies the maximum number of tasks to return.. [optional]
                 exclude_object_details (bool): Specifies whether to return objects. By default all the task tree are returned.. [optional]
                 include_event_logs (bool): Specifies whether to include event logs. [optional]
+                max_log_level (int): Specifies the number of levels till which to fetch the event logs. This is applicable only when includeEventLogs is true.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1658,6 +1522,7 @@ class ProtectionGroupsApi(object):
                     'max_tasks_num',
                     'exclude_object_details',
                     'include_event_logs',
+                    'max_log_level',
                 ],
                 'required': [
                     'run_id',
@@ -1695,6 +1560,8 @@ class ProtectionGroupsApi(object):
                         (bool,),
                     'include_event_logs':
                         (bool,),
+                    'max_log_level':
+                        (int,),
                 },
                 'attribute_map': {
                     'run_id': 'runId',
@@ -1707,6 +1574,7 @@ class ProtectionGroupsApi(object):
                     'max_tasks_num': 'maxTasksNum',
                     'exclude_object_details': 'excludeObjectDetails',
                     'include_event_logs': 'includeEventLogs',
+                    'max_log_level': 'maxLogLevel',
                 },
                 'location_map': {
                     'run_id': 'path',
@@ -1719,6 +1587,7 @@ class ProtectionGroupsApi(object):
                     'max_tasks_num': 'query',
                     'exclude_object_details': 'query',
                     'include_event_logs': 'query',
+                    'max_log_level': 'query',
                 },
                 'collection_format_map': {
                     'objects': 'csv',
@@ -2330,24 +2199,24 @@ class ProtectionGroupsApi(object):
             callable=__get_run_errors_report
         )
 
-        def __update_protection_group(
+        def __perform_action_on_protection_group_run(
             self,
             id,
             body,
             **kwargs
         ):
-            """Update a Protection Group.  # noqa: E501
+            """Actions on protection group run.  # noqa: E501
 
-            Update the specified Protection Group.  # noqa: E501
+            Perform various actions on a Protection Group run.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.update_protection_group(id, body, async_req=True)
+            >>> thread = api.perform_action_on_protection_group_run(id, body, async_req=True)
             >>> result = thread.get()
 
             Args:
-                id (str): Specifies the id of the Protection Group.
-                body (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335): Specifies the parameters to update a Protection Group.
+                id (str): Specifies a unique id of the Protection Group.
+                body (PerformActionOnProtectionGroupRunRequest): Specifies the parameters to perform an action on a protection run.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2371,7 +2240,139 @@ class ProtectionGroupsApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732
+                PerformRunActionResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.perform_action_on_protection_group_run = _Endpoint(
+            settings={
+                'response_type': (PerformRunActionResponse,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/protection-groups/{id}/runs/actions',
+                'operation_id': 'perform_action_on_protection_group_run',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'body':
+                        (PerformActionOnProtectionGroupRunRequest,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__perform_action_on_protection_group_run
+        )
+
+        def __update_protection_group(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Update a Protection Group.  # noqa: E501
+
+            Update the specified Protection Group.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_protection_group(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies the id of the Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to update a Protection Group.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2402,7 +2403,7 @@ class ProtectionGroupsApi(object):
 
         self.update_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams8f08b02618d44fe5Bb54Fce1dfb4f732,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
         
@@ -2438,7 +2439,7 @@ class ProtectionGroupsApi(object):
                     'id':
                         (str,),
                     'body':
-                        (CommonProtectionGroupRequestParamsc063637996c5484a88d414cc62db2335,),
+                        (CreateOrUpdateProtectionGroupRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',

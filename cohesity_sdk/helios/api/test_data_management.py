@@ -21,8 +21,7 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.helios.model.common_tdm_task_request_paramscf03306f7ae04da2_ba484fb6b21dd7e6 import CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6
-from cohesity_sdk.helios.model.common_tdm_task_response_paramsf8ee32ff963c4a329255_cc254d7965f7 import CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7
+from cohesity_sdk.helios.model.create_tdm_task_request import CreateTdmTaskRequest
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.tdm_object import TdmObject
 from cohesity_sdk.helios.model.tdm_object_timeline_events import TdmObjectTimelineEvents
@@ -60,9 +59,11 @@ class TestDataManagementApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6): Specifies the parameters to create a TDM task.
+                body (CreateTdmTaskRequest): Specifies the parameters to create a TDM task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -84,7 +85,7 @@ class TestDataManagementApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7
+                TdmTask
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -113,7 +114,7 @@ class TestDataManagementApi(object):
 
         self.create_tdm_task = _Endpoint(
             settings={
-                'response_type': (CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7,),
+                'response_type': (TdmTask,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -127,6 +128,8 @@ class TestDataManagementApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -145,12 +148,20 @@ class TestDataManagementApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6,),
+                        (CreateTdmTaskRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -185,6 +196,8 @@ class TestDataManagementApi(object):
                 id (str): Specifies the ID of the snapshot.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -249,6 +262,8 @@ class TestDataManagementApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -268,12 +283,20 @@ class TestDataManagementApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -306,6 +329,8 @@ class TestDataManagementApi(object):
                 id (str): Specifies the ID of the TDM object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -370,6 +395,8 @@ class TestDataManagementApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -389,12 +416,20 @@ class TestDataManagementApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -424,6 +459,8 @@ class TestDataManagementApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Get the objects matching specifies IDs.. [optional]
                 environments ([str]): Get the objects matching specified environments.. [optional]
                 name (str): Get the objects matching specified name.. [optional]
@@ -491,6 +528,8 @@ class TestDataManagementApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'environments',
                     'name',
@@ -527,6 +566,10 @@ class TestDataManagementApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                     'environments':
@@ -541,6 +584,8 @@ class TestDataManagementApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'environments': 'environments',
                     'name': 'name',
@@ -549,6 +594,8 @@ class TestDataManagementApi(object):
                     'pagination_cookie': 'paginationCookie',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'environments': 'query',
                     'name': 'query',
@@ -591,6 +638,8 @@ class TestDataManagementApi(object):
                 id (str): Specifies the ID of the TDM task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -655,6 +704,8 @@ class TestDataManagementApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -674,12 +725,20 @@ class TestDataManagementApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -709,6 +768,8 @@ class TestDataManagementApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Get the tasks matching specified IDs.. [optional]
                 actions ([str]): Get the tasks matching specified actions.. [optional]
                 environments ([str]): Get the tasks matching specified environments.. [optional]
@@ -778,6 +839,8 @@ class TestDataManagementApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'actions',
                     'environments',
@@ -825,6 +888,10 @@ class TestDataManagementApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                     'actions':
@@ -843,6 +910,8 @@ class TestDataManagementApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'actions': 'actions',
                     'environments': 'environments',
@@ -853,6 +922,8 @@ class TestDataManagementApi(object):
                     'pagination_cookie': 'paginationCookie',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'actions': 'query',
                     'environments': 'query',
@@ -898,6 +969,8 @@ class TestDataManagementApi(object):
                 id (str): Specifies the ID of the TDM object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 created_after (int): Get the events created after the specified time (in usecs from epoch).. [optional]
                 created_before (int): Get the events created before the specified time (in usecs from epoch).. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -964,6 +1037,8 @@ class TestDataManagementApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'created_after',
                     'created_before',
                 ],
@@ -985,6 +1060,10 @@ class TestDataManagementApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'created_after':
                         (int,),
                     'created_before':
@@ -992,11 +1071,15 @@ class TestDataManagementApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'created_after': 'createdAfter',
                     'created_before': 'createdBefore',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'created_after': 'query',
                     'created_before': 'query',
                 },
@@ -1033,6 +1116,8 @@ class TestDataManagementApi(object):
                 body (UpdateTdmSnapshotRequest): Specifies the parameters to update the snapshot.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1100,6 +1185,8 @@ class TestDataManagementApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1122,13 +1209,21 @@ class TestDataManagementApi(object):
                         (str,),
                     'body':
                         (UpdateTdmSnapshotRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

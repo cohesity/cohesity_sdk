@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **messages** | **[str], none_type** | Specify error messages about the object. | [optional] [readonly] 
 **instant_recovery_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the info about instant recovery. This is only applicable for RecoverVm. | [optional] 
 **datastore_migration_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the info about datastore migration. This is only applicable for RecoverVm. | [optional] 
-**child_snapshots** | [**[RecoverVmwareChildSnapshotParams]**](RecoverVmwareChildSnapshotParams.md) | Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here. | [optional] 
+**child_snapshots** | [**[RecoverVmwareChildSnapshotParams], none_type**](RecoverVmwareChildSnapshotParams.md) | Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -79,6 +79,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
         },
     }
 
@@ -213,7 +214,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
             queued_time_usecs (int, none_type): Specifies the time when the archival is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             is_incremental (bool, none_type): Whether this is an incremental archive. If set to true, this is an incremental archive, otherwise this is a full archive.. [optional]  # noqa: E501
             is_forever_incremental (bool, none_type): Whether this is forever incremental or not. [optional]  # noqa: E501
-            status (str, none_type): Status of the replication run for an archival target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the replication run for an archival target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             message (str, none_type): Message about the archival run.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for archival.. [optional]  # noqa: E501
             indexing_task_id (str, none_type): Progress monitor task for indexing.. [optional]  # noqa: E501

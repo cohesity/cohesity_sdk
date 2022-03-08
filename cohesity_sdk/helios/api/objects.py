@@ -23,15 +23,18 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.helios.model.cancel_object_runs_request import CancelObjectRunsRequest
 from cohesity_sdk.helios.model.cancel_object_runs_results import CancelObjectRunsResults
-from cohesity_sdk.helios.model.common_object_action_requeste14b183831254c12_ba17_d31a545f0cc3 import CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3
 from cohesity_sdk.helios.model.construct_meta_info_params import ConstructMetaInfoParams
 from cohesity_sdk.helios.model.construct_meta_info_result import ConstructMetaInfoResult
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.file_folder_info import FileFolderInfo
 from cohesity_sdk.helios.model.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
 from cohesity_sdk.helios.model.get_object_runs_response_body import GetObjectRunsResponseBody
 from cohesity_sdk.helios.model.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
 from cohesity_sdk.helios.model.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.helios.model.get_protected_objects_response import GetProtectedObjectsResponse
+from cohesity_sdk.helios.model.local_global_object_id_list import LocalGlobalObjectIdList
+from cohesity_sdk.helios.model.object_action_request import ObjectActionRequest
+from cohesity_sdk.helios.model.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.helios.model.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.helios.model.object_snapshot import ObjectSnapshot
 from cohesity_sdk.helios.model.object_snapshot_volume_info import ObjectSnapshotVolumeInfo
@@ -40,6 +43,8 @@ from cohesity_sdk.helios.model.object_with_children import ObjectWithChildren
 from cohesity_sdk.helios.model.objects_action_request import ObjectsActionRequest
 from cohesity_sdk.helios.model.objects_last_run import ObjectsLastRun
 from cohesity_sdk.helios.model.protected_object_info import ProtectedObjectInfo
+from cohesity_sdk.helios.model.snapshot_diff_params import SnapshotDiffParams
+from cohesity_sdk.helios.model.snapshot_diff_result import SnapshotDiffResult
 from cohesity_sdk.helios.model.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
 from cohesity_sdk.helios.model.update_object_snapshot_request import UpdateObjectSnapshotRequest
 
@@ -55,6 +60,150 @@ class ObjectsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __browse_object_contents(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Fetch the contents (files & folders) for the specified object.  # noqa: E501
+
+            Fetch the contents (files & folders) of the specified path inside the specified object.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.browse_object_contents(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the Object.
+                body (ObjectBrowseRequest): Specifies the parameters to fetch contents of an object.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FileFolderInfo
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.browse_object_contents = _Endpoint(
+            settings={
+                'response_type': (FileFolderInfo,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{id}/browse',
+                'operation_id': 'browse_object_contents',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (ObjectBrowseRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__browse_object_contents
+        )
 
         def __cancel_object_runs(
             self,
@@ -74,6 +223,8 @@ class ObjectsApi(object):
                 body (CancelObjectRunsRequest): Specifies the parameters to cancel object runs.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -138,6 +289,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -157,11 +310,19 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'body':
                         (CancelObjectRunsRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -198,6 +359,8 @@ class ObjectsApi(object):
                 body (ConstructMetaInfoParams): Specifies the parameters to construct meta info for desired workflow.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -265,6 +428,8 @@ class ObjectsApi(object):
                 'all': [
                     'snapshot_id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'snapshot_id',
@@ -287,13 +452,21 @@ class ObjectsApi(object):
                         (str,),
                     'body':
                         (ConstructMetaInfoParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'snapshot_id': 'snapshotId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'snapshot_id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -330,6 +503,8 @@ class ObjectsApi(object):
                 indexed_object_name (str): Specifies the indexed object name.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 protection_group_id (str): Specifies the protection group id.. [optional]
                 include_indexed_snapshots_only (bool): Specifies whether to only return snapshots which are indexed. In an indexed snapshot files are guaranteed to exist, while in a non-indexed snapshot files may not exist.. [optional] if omitted the server will use the default value of False
                 from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.. [optional]
@@ -402,6 +577,8 @@ class ObjectsApi(object):
                 'all': [
                     'object_id',
                     'indexed_object_name',
+                    'access_cluster_id',
+                    'region_id',
                     'protection_group_id',
                     'include_indexed_snapshots_only',
                     'from_time_usecs',
@@ -442,6 +619,10 @@ class ObjectsApi(object):
                         (int,),
                     'indexed_object_name':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'protection_group_id':
                         (str,),
                     'include_indexed_snapshots_only':
@@ -456,6 +637,8 @@ class ObjectsApi(object):
                 'attribute_map': {
                     'object_id': 'objectId',
                     'indexed_object_name': 'indexedObjectName',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'protection_group_id': 'protectionGroupId',
                     'include_indexed_snapshots_only': 'includeIndexedSnapshotsOnly',
                     'from_time_usecs': 'fromTimeUsecs',
@@ -465,6 +648,8 @@ class ObjectsApi(object):
                 'location_map': {
                     'object_id': 'path',
                     'indexed_object_name': 'query',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'protection_group_id': 'query',
                     'include_indexed_snapshots_only': 'query',
                     'from_time_usecs': 'query',
@@ -507,6 +692,8 @@ class ObjectsApi(object):
                 indexed_object_name (str): Specifies the indexed object name.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_indexed_snapshots_only (bool): Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteened to exist, while in a non-indexed snapshots file may not exist.. [optional] if omitted the server will use the default value of False
                 from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.. [optional]
                 to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.. [optional]
@@ -581,6 +768,8 @@ class ObjectsApi(object):
                     'protection_group_id',
                     'object_id',
                     'indexed_object_name',
+                    'access_cluster_id',
+                    'region_id',
                     'include_indexed_snapshots_only',
                     'from_time_usecs',
                     'to_time_usecs',
@@ -623,6 +812,10 @@ class ObjectsApi(object):
                         (int,),
                     'indexed_object_name':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_indexed_snapshots_only':
                         (bool,),
                     'from_time_usecs':
@@ -636,6 +829,8 @@ class ObjectsApi(object):
                     'protection_group_id': 'protectionGroupId',
                     'object_id': 'objectId',
                     'indexed_object_name': 'indexedObjectName',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_indexed_snapshots_only': 'includeIndexedSnapshotsOnly',
                     'from_time_usecs': 'fromTimeUsecs',
                     'to_time_usecs': 'toTimeUsecs',
@@ -645,6 +840,8 @@ class ObjectsApi(object):
                     'protection_group_id': 'path',
                     'object_id': 'path',
                     'indexed_object_name': 'query',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_indexed_snapshots_only': 'query',
                     'from_time_usecs': 'query',
                     'to_time_usecs': 'query',
@@ -662,6 +859,141 @@ class ObjectsApi(object):
             },
             api_client=api_client,
             callable=__get_indexed_object_snapshots
+        )
+
+        def __get_object_identifiers(
+            self,
+            **kwargs
+        ):
+            """Get Object Identifiers  # noqa: E501
+
+            Get Object Identifiers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_object_identifiers(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                global_ids ([str]): Get the object identifier matching specified global IDs.. [optional]
+                local_ids ([int]): Get the object identifier matching specified local IDs.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                LocalGlobalObjectIdList
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_object_identifiers = _Endpoint(
+            settings={
+                'response_type': (LocalGlobalObjectIdList,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/object-identifiers',
+                'operation_id': 'get_object_identifiers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                    'global_ids',
+                    'local_ids',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'global_ids':
+                        ([str],),
+                    'local_ids':
+                        ([int],),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'global_ids': 'globalIds',
+                    'local_ids': 'localIds',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'global_ids': 'query',
+                    'local_ids': 'query',
+                },
+                'collection_format_map': {
+                    'global_ids': 'csv',
+                    'local_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_object_identifiers
         )
 
         def __get_object_run_by_run_id(
@@ -684,6 +1016,8 @@ class ObjectsApi(object):
                 run_id (str): Specifies the id of the run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -751,6 +1085,8 @@ class ObjectsApi(object):
                 'all': [
                     'id',
                     'run_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -773,14 +1109,22 @@ class ObjectsApi(object):
                         (int,),
                     'run_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -813,6 +1157,8 @@ class ObjectsApi(object):
                 id (int): Specifies a unique id of the object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 run_id (str): Specifies a unique id of the run.. [optional]
                 start_time_usecs (int): Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
                 end_time_usecs (int): Filter by a end time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
@@ -890,6 +1236,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'run_id',
                     'start_time_usecs',
                     'end_time_usecs',
@@ -930,10 +1278,10 @@ class ObjectsApi(object):
                     ('run_types',): {
 
                         "KALL": "kAll",
-                        "KLOG": "kLog",
                         "KSYSTEM": "kSystem",
                         "KINCREMENTAL": "kIncremental",
-                        "KFULL": "kFull"
+                        "KFULL": "kFull",
+                        "KLOG": "kLog"
                     },
                     ('local_backup_object_status',): {
 
@@ -941,7 +1289,10 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
+                        "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
+                        "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing"
                     },
                     ('replication_object_status',): {
 
@@ -949,7 +1300,10 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
+                        "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
+                        "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing"
                     },
                     ('archival_object_status',): {
 
@@ -957,7 +1311,10 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
+                        "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
+                        "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing"
                     },
                     ('cloud_spin_run_status',): {
 
@@ -965,12 +1322,19 @@ class ObjectsApi(object):
                         "KSUCCESSFUL": "kSuccessful",
                         "KFAILED": "kFailed",
                         "KWAITINGFORNEXTATTEMPT": "kWaitingForNextAttempt",
-                        "KWARNING": "kWarning"
+                        "KWARNING": "kWarning",
+                        "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
+                        "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
+                        "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing"
                     },
                 },
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'run_id':
                         (str,),
                     'start_time_usecs':
@@ -1000,6 +1364,8 @@ class ObjectsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'run_id': 'runId',
                     'start_time_usecs': 'startTimeUsecs',
                     'end_time_usecs': 'endTimeUsecs',
@@ -1016,6 +1382,8 @@ class ObjectsApi(object):
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'run_id': 'query',
                     'start_time_usecs': 'query',
                     'end_time_usecs': 'query',
@@ -1067,6 +1435,8 @@ class ObjectsApi(object):
                 snapshot_id (str): Specifies the snapshot id.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1131,6 +1501,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'snapshot_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'snapshot_id',
@@ -1150,12 +1522,20 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'snapshot_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'snapshot_id': 'snapshotId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'snapshot_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1188,6 +1568,8 @@ class ObjectsApi(object):
                 snapshot_id (str): Specifies the snapshot id.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_supported_only (bool): Specifies whether to only return supported volumes.. [optional]
                 point_in_time_usecs (float): Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -1254,6 +1636,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'snapshot_id',
+                    'access_cluster_id',
+                    'region_id',
                     'include_supported_only',
                     'point_in_time_usecs',
                 ],
@@ -1275,6 +1659,10 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'snapshot_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_supported_only':
                         (bool,),
                     'point_in_time_usecs':
@@ -1282,11 +1670,15 @@ class ObjectsApi(object):
                 },
                 'attribute_map': {
                     'snapshot_id': 'snapshotId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_supported_only': 'includeSupportedOnly',
                     'point_in_time_usecs': 'pointInTimeUsecs',
                 },
                 'location_map': {
                     'snapshot_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_supported_only': 'query',
                     'point_in_time_usecs': 'query',
                 },
@@ -1321,11 +1713,17 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
-                from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value.. [optional]
-                to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value.. [optional]
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value.. [optional]
+                to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value.. [optional]
+                run_start_from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run after this value.. [optional]
+                run_start_to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run before this value.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 protection_group_ids ([str]): If specified, this returns only the snapshots of the specified object ID, which belong to the provided protection group IDs.. [optional]
                 run_instance_ids ([int]): Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
+                object_action_keys ([str]): Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1390,11 +1788,17 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'from_time_usecs',
                     'to_time_usecs',
+                    'run_start_from_time_usecs',
+                    'run_start_to_time_usecs',
                     'run_types',
                     'protection_group_ids',
                     'run_instance_ids',
+                    'region_ids',
+                    'object_action_keys',
                 ],
                 'required': [
                     'id',
@@ -1403,6 +1807,7 @@ class ObjectsApi(object):
                 ],
                 'enum': [
                     'run_types',
+                    'object_action_keys',
                 ],
                 'validation': [
                     'run_types',
@@ -1423,13 +1828,65 @@ class ObjectsApi(object):
                         "KSYSTEM": "kSystem",
                         "KHYDRATECDP": "kHydrateCDP"
                     },
+                    ('object_action_keys',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
                 },
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'from_time_usecs':
                         (int,),
                     'to_time_usecs':
+                        (int,),
+                    'run_start_from_time_usecs':
+                        (int,),
+                    'run_start_to_time_usecs':
                         (int,),
                     'run_types':
                         ([str],),
@@ -1437,27 +1894,45 @@ class ObjectsApi(object):
                         ([str],),
                     'run_instance_ids':
                         ([int],),
+                    'region_ids':
+                        ([str],),
+                    'object_action_keys':
+                        ([str],),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'from_time_usecs': 'fromTimeUsecs',
                     'to_time_usecs': 'toTimeUsecs',
+                    'run_start_from_time_usecs': 'runStartFromTimeUsecs',
+                    'run_start_to_time_usecs': 'runStartToTimeUsecs',
                     'run_types': 'runTypes',
                     'protection_group_ids': 'protectionGroupIds',
                     'run_instance_ids': 'runInstanceIds',
+                    'region_ids': 'regionIds',
+                    'object_action_keys': 'objectActionKeys',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'from_time_usecs': 'query',
                     'to_time_usecs': 'query',
+                    'run_start_from_time_usecs': 'query',
+                    'run_start_to_time_usecs': 'query',
                     'run_types': 'query',
                     'protection_group_ids': 'query',
                     'run_instance_ids': 'query',
+                    'region_ids': 'query',
+                    'object_action_keys': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
                     'protection_group_ids': 'csv',
                     'run_instance_ids': 'csv',
+                    'region_ids': 'csv',
+                    'object_action_keys': 'csv',
                 }
             },
             headers_map={
@@ -1488,6 +1963,9 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1552,6 +2030,9 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
+                    'region_ids',
                 ],
                 'required': [
                     'id',
@@ -1571,14 +2052,27 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'region_ids':
+                        ([str],),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'region_ids': 'regionIds',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'region_ids': 'query',
                 },
                 'collection_format_map': {
+                    'region_ids': 'csv',
                 }
             },
             headers_map={
@@ -1609,6 +2103,8 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1673,6 +2169,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1692,12 +2190,20 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1727,6 +2233,8 @@ class ObjectsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([int]): Specifies a list of object ids, only last runs for these objects will be returned.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Objects which belongs to all tenants which the current user has permission to see.. [optional]
@@ -1793,6 +2301,8 @@ class ObjectsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'tenant_ids',
                     'include_tenants',
@@ -1813,6 +2323,10 @@ class ObjectsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([int],),
                     'tenant_ids':
@@ -1825,6 +2339,8 @@ class ObjectsApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
@@ -1832,6 +2348,8 @@ class ObjectsApi(object):
                     'count': 'count',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
@@ -1860,7 +2378,7 @@ class ObjectsApi(object):
         ):
             """Get PIT ranges for an object  # noqa: E501
 
-            Returns the time ranges within which the specified protected object can be restored to any Point in time.  # noqa: E501
+            Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1871,8 +2389,10 @@ class ObjectsApi(object):
                 id (int): Specifies the ID of the protected object.
 
             Keyword Args:
-                from_time_usecs (int): If specified, return the time ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
-                to_time_usecs (int): If specified, return the time ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                from_time_usecs (int): If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
+                to_time_usecs (int): If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds.. [optional]
                 protection_group_ids ([str]): If specified, return only the points in time corresponding to these protection group IDs.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -1938,6 +2458,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'from_time_usecs',
                     'to_time_usecs',
                     'protection_group_ids',
@@ -1960,6 +2482,10 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'from_time_usecs':
                         (int,),
                     'to_time_usecs':
@@ -1969,12 +2495,16 @@ class ObjectsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'from_time_usecs': 'fromTimeUsecs',
                     'to_time_usecs': 'toTimeUsecs',
                     'protection_group_ids': 'protectionGroupIds',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'from_time_usecs': 'query',
                     'to_time_usecs': 'query',
                     'protection_group_ids': 'query',
@@ -2011,6 +2541,9 @@ class ObjectsApi(object):
                 id (int): Specifies the id of the Object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                object_action_key ([str]): Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'.. [optional]
                 only_protected_objects (bool): If true, the response will include only objects which have been protected.. [optional]
                 storage_domain_id (int): Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned.. [optional]
                 environments ([str]): Filter by environment types such as 'kVMware', 'kView', etc. Only Protected objects protecting the specified environment types are returned.. [optional]
@@ -2083,6 +2616,9 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
+                    'object_action_key',
                     'only_protected_objects',
                     'storage_domain_id',
                     'environments',
@@ -2098,6 +2634,7 @@ class ObjectsApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'object_action_key',
                     'environments',
                 ],
                 'validation': [
@@ -2107,7 +2644,7 @@ class ObjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                    ('environments',): {
+                    ('object_action_key',): {
 
                         "KVMWARE": "kVMware",
                         "KHYPERV": "kHyperV",
@@ -2116,6 +2653,10 @@ class ObjectsApi(object):
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
@@ -2131,6 +2672,12 @@ class ObjectsApi(object):
                         "KVIEW": "kView",
                         "KREMOTEADAPTER": "kRemoteAdapter",
                         "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
                         "KKUBERNETES": "kKubernetes",
                         "KCASSANDRA": "kCassandra",
                         "KMONGODB": "kMongoDB",
@@ -2138,12 +2685,63 @@ class ObjectsApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
+                    ('environments',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                 },
                 'openapi_types': {
                     'id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'object_action_key':
+                        ([str],),
                     'only_protected_objects':
                         (bool,),
                     'storage_domain_id':
@@ -2163,6 +2761,9 @@ class ObjectsApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'object_action_key': 'objectActionKey',
                     'only_protected_objects': 'onlyProtectedObjects',
                     'storage_domain_id': 'storageDomainId',
                     'environments': 'environments',
@@ -2174,6 +2775,9 @@ class ObjectsApi(object):
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'object_action_key': 'query',
                     'only_protected_objects': 'query',
                     'storage_domain_id': 'query',
                     'environments': 'query',
@@ -2184,6 +2788,7 @@ class ObjectsApi(object):
                     'only_leaf_objects': 'query',
                 },
                 'collection_format_map': {
+                    'object_action_key': 'csv',
                     'environments': 'csv',
                     'tenant_ids': 'csv',
                 }
@@ -2213,7 +2818,10 @@ class ObjectsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([int]): Filter by a list of Object ids.. [optional]
+                object_action_keys ([str]): Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'ids'.. [optional]
                 policy_ids ([str]): Filter by Policy ids that are associated with Protected Objects.. [optional]
                 parent_id (int): Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree.. [optional]
                 only_protected_objects (bool): If true, the response will include only objects which have been protected.. [optional]
@@ -2224,6 +2832,9 @@ class ObjectsApi(object):
                 include_last_run_info (bool): If true, the response will include information about the last protection run on this object.. [optional]
                 only_auto_protected_objects (bool): If true, the response will include only the auto protected objects.. [optional]
                 only_leaf_objects (bool): If true, the response will include only the leaf level objects.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
+                max_count (int): Specifies the max number of objects to return.. [optional]
+                cookie (str): Specifies the pagination cookie.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2285,7 +2896,10 @@ class ObjectsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
+                    'object_action_keys',
                     'policy_ids',
                     'parent_id',
                     'only_protected_objects',
@@ -2296,11 +2910,15 @@ class ObjectsApi(object):
                     'include_last_run_info',
                     'only_auto_protected_objects',
                     'only_leaf_objects',
+                    'region_ids',
+                    'max_count',
+                    'cookie',
                 ],
                 'required': [],
                 'nullable': [
                 ],
                 'enum': [
+                    'object_action_keys',
                     'environments',
                 ],
                 'validation': [
@@ -2310,7 +2928,7 @@ class ObjectsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
-                    ('environments',): {
+                    ('object_action_keys',): {
 
                         "KVMWARE": "kVMware",
                         "KHYPERV": "kHyperV",
@@ -2319,6 +2937,10 @@ class ObjectsApi(object):
                         "KKVM": "kKVM",
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KGPFS": "kGPFS",
                         "KELASTIFILE": "kElastifile",
@@ -2334,6 +2956,12 @@ class ObjectsApi(object):
                         "KVIEW": "kView",
                         "KREMOTEADAPTER": "kRemoteAdapter",
                         "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
                         "KKUBERNETES": "kKubernetes",
                         "KCASSANDRA": "kCassandra",
                         "KMONGODB": "kMongoDB",
@@ -2341,12 +2969,63 @@ class ObjectsApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
+                    ('environments',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([int],),
+                    'object_action_keys':
+                        ([str],),
                     'policy_ids':
                         ([str],),
                     'parent_id':
@@ -2367,9 +3046,18 @@ class ObjectsApi(object):
                         (bool,),
                     'only_leaf_objects':
                         (bool,),
+                    'region_ids':
+                        ([str],),
+                    'max_count':
+                        (int,),
+                    'cookie':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
+                    'object_action_keys': 'objectActionKeys',
                     'policy_ids': 'policyIds',
                     'parent_id': 'parentId',
                     'only_protected_objects': 'onlyProtectedObjects',
@@ -2380,9 +3068,15 @@ class ObjectsApi(object):
                     'include_last_run_info': 'includeLastRunInfo',
                     'only_auto_protected_objects': 'onlyAutoProtectedObjects',
                     'only_leaf_objects': 'onlyLeafObjects',
+                    'region_ids': 'regionIds',
+                    'max_count': 'maxCount',
+                    'cookie': 'cookie',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
+                    'object_action_keys': 'query',
                     'policy_ids': 'query',
                     'parent_id': 'query',
                     'only_protected_objects': 'query',
@@ -2393,12 +3087,17 @@ class ObjectsApi(object):
                     'include_last_run_info': 'query',
                     'only_auto_protected_objects': 'query',
                     'only_leaf_objects': 'query',
+                    'region_ids': 'query',
+                    'max_count': 'query',
+                    'cookie': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
+                    'object_action_keys': 'csv',
                     'policy_ids': 'csv',
                     'environments': 'csv',
                     'tenant_ids': 'csv',
+                    'region_ids': 'csv',
                 }
             },
             headers_map={
@@ -2409,6 +3108,150 @@ class ObjectsApi(object):
             },
             api_client=api_client,
             callable=__get_protected_objects_of_any_type
+        )
+
+        def __get_snapshot_diff(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Get diff between two snapshots of a given object.  # noqa: E501
+
+            Get diff (files added/deleted) between two snapshots of a given object.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_snapshot_diff(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int):
+                body (SnapshotDiffParams):
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SnapshotDiffResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.get_snapshot_diff = _Endpoint(
+            settings={
+                'response_type': (SnapshotDiffResult,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/{id}/snapshotDiff',
+                'operation_id': 'get_snapshot_diff',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (SnapshotDiffParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__get_snapshot_diff
         )
 
         def __get_source_hierarchy_objects(
@@ -2429,6 +3272,8 @@ class ObjectsApi(object):
                 source_id (int): Specifies the source ID for which objects should be returned.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 parent_id (int, none_type): Specifies the parent ID under which objects should be returned.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Objects which belongs to all tenants which the current user has permission to see.. [optional]
@@ -2524,6 +3369,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'source_id',
+                    'access_cluster_id',
+                    'region_id',
                     'parent_id',
                     'tenant_ids',
                     'include_tenants',
@@ -2743,6 +3590,7 @@ class ObjectsApi(object):
                         "KRDSINSTANCE": "kRDSInstance",
                         "KRDSSUBNET": "kRDSSubnet",
                         "KRDSTAG": "kRDSTag",
+                        "KAURORATAG": "kAuroraTag",
                         "KAURORACLUSTER": "kAuroraCluster",
                         "KACCOUNT": "kAccount",
                         "KSUBTASKPERMIT": "kSubTaskPermit"
@@ -2827,6 +3675,8 @@ class ObjectsApi(object):
                         "KNAMESPACE": "kNamespace",
                         "KSERVICE": "kService",
                         "KPVC": "kPVC",
+                        "KPERSISTENTVOLUMECLAIM": "kPersistentVolumeClaim",
+                        "KPERSISTENTVOLUME": "kPersistentVolume",
                         "KLABEL": "kLabel"
                     },
                     ('exchange_object_types',): {
@@ -2866,6 +3716,10 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'source_id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'parent_id':
                         (int, none_type,),
                     'tenant_ids':
@@ -2931,6 +3785,8 @@ class ObjectsApi(object):
                 },
                 'attribute_map': {
                     'source_id': 'sourceId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'parent_id': 'parentId',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
@@ -2965,6 +3821,8 @@ class ObjectsApi(object):
                 },
                 'location_map': {
                     'source_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'parent_id': 'query',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
@@ -3057,6 +3915,8 @@ class ObjectsApi(object):
                 body (ObjectsActionRequest): Specifies the paramteres to execute actions on given list of objects.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3121,6 +3981,8 @@ class ObjectsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -3140,11 +4002,19 @@ class ObjectsApi(object):
                 'openapi_types': {
                     'body':
                         (ObjectsActionRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3178,9 +4048,11 @@ class ObjectsApi(object):
 
             Args:
                 id (int): Specifies the id of the Object.
-                body (CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3): Specifies the parameters to perform an action on an object.
+                body (ObjectActionRequest): Specifies the parameters to perform an action on an object.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3248,6 +4120,8 @@ class ObjectsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3269,14 +4143,22 @@ class ObjectsApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3,),
+                        (ObjectActionRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -3315,6 +4197,8 @@ class ObjectsApi(object):
                 body (UpdateObjectSnapshotRequest): Specifies the parameters update an object snapshot.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3385,6 +4269,8 @@ class ObjectsApi(object):
                     'id',
                     'snapshot_id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -3410,15 +4296,23 @@ class ObjectsApi(object):
                         (str,),
                     'body':
                         (UpdateObjectSnapshotRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'snapshot_id': 'snapshotId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'snapshot_id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

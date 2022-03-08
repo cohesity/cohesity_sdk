@@ -37,11 +37,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to create a Protection Policy.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a Protection Policy.
 	api_response = client.protection_policies.create_protection_policy(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ProtectionPoliciesApi->create_protection_policy: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a Protection Policy.
+	api_response = client.protection_policies.create_protection_policy(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->create_protection_policy: %s\n" % e)
@@ -53,6 +64,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ProtectionPolicyRequest**](ProtectionPolicyRequest.md)| Request to create a Protection Policy. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -99,11 +112,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to delete.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Protection Policy.
 	client.protection_policies.delete_protection_policy(id)
+except ApiException as e:
+	print("Exception when calling ProtectionPoliciesApi->delete_protection_policy: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Protection Policy.
+	client.protection_policies.delete_protection_policy(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->delete_protection_policy: %s\n" % e)
 ```
@@ -114,6 +137,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the Protection Policy to delete. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -161,11 +186,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies a unique id of the Policy Template to return.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# List details about a single Policy Template.
 	api_response = client.protection_policies.get_policy_template_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ProtectionPoliciesApi->get_policy_template_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List details about a single Policy Template.
+	api_response = client.protection_policies.get_policy_template_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->get_policy_template_by_id: %s\n" % e)
@@ -177,6 +213,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the Policy Template to return. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -223,6 +261,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Filter policies by a list of policy template ids. (optional)
@@ -238,7 +278,7 @@ include_tenants = True # bool | IncludeTenantPolicies specifies if objects of al
 # and optional values
 try:
 	# List Policy Templates filtered by query parameters.
-	api_response = client.protection_policies.get_policy_templates(ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants)
+	api_response = client.protection_policies.get_policy_templates(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->get_policy_templates: %s\n" % e)
@@ -249,6 +289,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Filter policies by a list of policy template ids. | [optional]
  **policy_names** | **[str]**| Filter policies by a list of policy names. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the organizations for which objects are to be returned. | [optional]
@@ -299,6 +341,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Filter policies by a list of policy ids. (optional)
@@ -319,7 +363,7 @@ include_replicated_policies = True # bool | If includeReplicatedPolicies is set 
 # and optional values
 try:
 	# List Protection Policies based on provided filtering parameters.
-	api_response = client.protection_policies.get_protection_policies(ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants, types=types, exclude_linked_policies=exclude_linked_policies, include_replicated_policies=include_replicated_policies)
+	api_response = client.protection_policies.get_protection_policies(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants, types=types, exclude_linked_policies=exclude_linked_policies, include_replicated_policies=include_replicated_policies)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->get_protection_policies: %s\n" % e)
@@ -330,6 +374,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Filter policies by a list of policy ids. | [optional]
  **policy_names** | **[str]**| Filter policies by a list of policy names. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the organizations for which objects are to be returned. | [optional]
@@ -384,11 +430,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to return.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# List details about a single Protection Policy.
 	api_response = client.protection_policies.get_protection_policy_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ProtectionPoliciesApi->get_protection_policy_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List details about a single Protection Policy.
+	api_response = client.protection_policies.get_protection_policy_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->get_protection_policy_by_id: %s\n" % e)
@@ -400,6 +457,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the Protection Policy to return. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -449,11 +508,22 @@ client = HeliosClient(api_key=api_key)
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to update.
 body = ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to update a Protection Policy.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Protection Policy.
 	api_response = client.protection_policies.update_protection_policy(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ProtectionPoliciesApi->update_protection_policy: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Protection Policy.
+	api_response = client.protection_policies.update_protection_policy(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionPoliciesApi->update_protection_policy: %s\n" % e)
@@ -466,6 +536,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the Protection Policy to update. |
  **body** | [**ProtectionPolicyRequest**](ProtectionPolicyRequest.md)| Request to update a Protection Policy. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

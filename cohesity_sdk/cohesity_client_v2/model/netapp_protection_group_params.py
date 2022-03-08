@@ -35,6 +35,7 @@ def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.cohesity_client_v2.model.nas_throttling_config import NasThrottlingConfig
     from cohesity_sdk.cohesity_client_v2.model.netapp_protection_group_object_params import NetappProtectionGroupObjectParams
+    from cohesity_sdk.cohesity_client_v2.model.snap_mirror_config import SnapMirrorConfig
     from cohesity_sdk.cohesity_client_v2.model.snapshot_label import SnapshotLabel
     globals()['ContinuousSnapshotParams'] = ContinuousSnapshotParams
     globals()['FileFilteringPolicy'] = FileFilteringPolicy
@@ -44,6 +45,7 @@ def lazy_import():
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
     globals()['NetappProtectionGroupObjectParams'] = NetappProtectionGroupObjectParams
+    globals()['SnapMirrorConfig'] = SnapMirrorConfig
     globals()['SnapshotLabel'] = SnapshotLabel
 
 
@@ -121,6 +123,7 @@ class NetappProtectionGroupParams(ModelNormal):
             'direct_cloud_archive': (bool, none_type,),  # noqa: E501
             'native_format': (bool, none_type,),  # noqa: E501
             'snapshot_label': (SnapshotLabel,),  # noqa: E501
+            'snap_mirror_config': (SnapMirrorConfig,),  # noqa: E501
             'backup_existing_snapshot': (bool, none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'protocol': (str, none_type,),  # noqa: E501
@@ -133,9 +136,9 @@ class NetappProtectionGroupParams(ModelNormal):
             'source_name': (str, none_type,),  # noqa: E501
             'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
-            'is_source_initiated_protection': (bool, none_type,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'modify_source_permissions': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -150,6 +153,7 @@ class NetappProtectionGroupParams(ModelNormal):
         'direct_cloud_archive': 'directCloudArchive',  # noqa: E501
         'native_format': 'nativeFormat',  # noqa: E501
         'snapshot_label': 'snapshotLabel',  # noqa: E501
+        'snap_mirror_config': 'snapMirrorConfig',  # noqa: E501
         'backup_existing_snapshot': 'backupExistingSnapshot',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
         'protocol': 'protocol',  # noqa: E501
@@ -162,9 +166,9 @@ class NetappProtectionGroupParams(ModelNormal):
         'source_name': 'sourceName',  # noqa: E501
         'pre_post_script': 'prePostScript',  # noqa: E501
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
-        'is_source_initiated_protection': 'isSourceInitiatedProtection',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
+        'modify_source_permissions': 'modifySourcePermissions',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -221,6 +225,7 @@ class NetappProtectionGroupParams(ModelNormal):
             direct_cloud_archive (bool, none_type): Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is 'false'.. [optional]  # noqa: E501
             native_format (bool, none_type): Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving.. [optional]  # noqa: E501
             snapshot_label (SnapshotLabel): [optional]  # noqa: E501
+            snap_mirror_config (SnapMirrorConfig): [optional]  # noqa: E501
             backup_existing_snapshot (bool, none_type): Specifies that snapshot label is not set for Data-Protect Netapp Volumes backup. If field is set to true, existing oldest snapshot is used for backup and subsequent incremental will be selected in ascending order of snapshot create time on the source. If snapshot label is set, this field is set to false.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             protocol (str, none_type): Specifies the preferred protocol to use if this device supports multiple protocols.. [optional]  # noqa: E501
@@ -233,9 +238,9 @@ class NetappProtectionGroupParams(ModelNormal):
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
             pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
-            is_source_initiated_protection (bool, none_type): Specifies if this is a source initated backup where the source pushes the data like snapmirror based backup for netapp. If this is set to true, keyMappingConfig must also be set.. [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
+            modify_source_permissions (bool, none_type): Specifies if the Netapp source permissions should be modified internally to allow backups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

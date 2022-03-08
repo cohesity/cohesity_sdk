@@ -140,7 +140,7 @@ class CreateEmailOtpRequestBody(ModelNormal):
 
             username (str, none_type): Specifies the login name of the Cohesity user. [optional]  # noqa: E501
             password (str, none_type): Specifies the password of the Cohesity user. [optional]  # noqa: E501
-            domain (str, none_type): Specifies the domain the user is logging in to. For a local user the domain is LOCAL. For LDAP/AD user, the domain will map to a LDAP connection string. A user is uniquely identified by a combination of username and domain. LOCAL is the default domain.. [optional]  # noqa: E501
+            domain (str, none_type): Specifies the domain the user is logging in to. For a local user the domain is LOCAL. For LDAP/AD user, the domain will map to a LDAP connection string. A user is uniquely identified by a combination of username and domain. LOCAL is the default domain. . [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

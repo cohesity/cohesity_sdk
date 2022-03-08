@@ -19,6 +19,8 @@ Method | HTTP request | Description
 [**get_chassis**](PlatformApi.md#get_chassis) | **GET** /chassis | Get list of chassis
 [**get_chassis_by_id**](PlatformApi.md#get_chassis_by_id) | **GET** /chassis/{id} | Get a chassis by chassis id.
 [**get_cluster**](PlatformApi.md#get_cluster) | **GET** /clusters | Retrieve Cluster Configuration
+[**get_cluster_local_domain_sid**](PlatformApi.md#get_cluster_local_domain_sid) | **GET** /clusters/local-domain-sid | Get Cluster Local Domain SID
+[**get_is_d_maa_s_cluster**](PlatformApi.md#get_is_d_maa_s_cluster) | **GET** /clusters/is-dmaas | Get whether the cluster is a DMaaS cluster.
 [**get_network_interfaces**](PlatformApi.md#get_network_interfaces) | **GET** /network-interfaces | Get list of interfaces
 [**get_rack_by_id**](PlatformApi.md#get_rack_by_id) | **GET** /racks/{id} | Get a rack by rack id.
 [**get_racks**](PlatformApi.md#get_racks) | **GET** /racks | Get list of racks
@@ -33,6 +35,7 @@ Method | HTTP request | Description
 [**get_syslog_servers**](PlatformApi.md#get_syslog_servers) | **GET** /syslogs | Get list of syslog servers.
 [**identify_node**](PlatformApi.md#identify_node) | **POST** /nodes/{id}/identify | Identify node
 [**list_disks**](PlatformApi.md#list_disks) | **GET** /disks/local | Get list of disks
+[**list_feature_flag**](PlatformApi.md#list_feature_flag) | **GET** /clusters/feature-flag | Get feature flag overrides list.
 [**mark_disk_removal**](PlatformApi.md#mark_disk_removal) | **POST** /disks/{id}/remove | Mark Disk for removal
 [**mark_node_removal**](PlatformApi.md#mark_node_removal) | **POST** /nodes/{id}/remove | Mark Node for removal
 [**patch_syslog_server_by_id**](PlatformApi.md#patch_syslog_server_by_id) | **PATCH** /syslogs/{id} | Patch a syslog server by id.
@@ -44,7 +47,8 @@ Method | HTTP request | Description
 [**update_amqp_target_config**](PlatformApi.md#update_amqp_target_config) | **PUT** /clusters/amqp-target-config | Update AMQP Target Config
 [**update_chassis_by_id**](PlatformApi.md#update_chassis_by_id) | **PATCH** /chassis/{id} | Update a chassis by chassis id.
 [**update_cluster**](PlatformApi.md#update_cluster) | **PUT** /clusters | Update a cluster.
-[**update_cluster_bifrost_config**](PlatformApi.md#update_cluster_bifrost_config) | **PUT** /clusters/bifrost-config | Update cluster Bifrost config.
+[**update_feature_flag**](PlatformApi.md#update_feature_flag) | **PUT** /clusters/feature-flag | Update feature flag override status.
+[**update_is_d_maa_s_cluster**](PlatformApi.md#update_is_d_maa_s_cluster) | **PUT** /clusters/is-dmaas | Update whether the cluster is a DMaaS cluster.
 [**update_rack_by_id**](PlatformApi.md#update_rack_by_id) | **PATCH** /racks/{id} | 
 [**update_racks**](PlatformApi.md#update_racks) | **PATCH** /racks | Update racks
 [**update_remote_storage_registration**](PlatformApi.md#update_remote_storage_registration) | **PATCH** /remote-storage/{id} | Update Remote Storage Config
@@ -89,11 +93,22 @@ body = RemoteDisks(
             ),
         ],
     ) # RemoteDisks | Specifies the remote disk configuration.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Add remote disk
 	api_response = client.platform.add_remote_disk(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->add_remote_disk: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Add remote disk
+	api_response = client.platform.add_remote_disk(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->add_remote_disk: %s\n" % e)
@@ -105,6 +120,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**RemoteDisks**](RemoteDisks.md)| Specifies the remote disk configuration. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -173,11 +190,22 @@ body = SyslogServer(
         is_tls_enabled=True,
         ca_certificate="ca_certificate_example",
     ) # SyslogServer | Specifies parameters to add syslog server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Add Syslog Server
 	api_response = client.platform.add_syslog_server(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->add_syslog_server: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Add Syslog Server
+	api_response = client.platform.add_syslog_server(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->add_syslog_server: %s\n" % e)
@@ -189,6 +217,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SyslogServer**](SyslogServer.md)| Specifies parameters to add syslog server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -301,11 +331,22 @@ body = CreateClusterParams(
             claim_token="claim_token_example",
         ),
     ) # CreateClusterParams | Specifies the parameters to create cluster.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a cluster.
 	api_response = client.platform.create_cluster(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->create_cluster: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a cluster.
+	api_response = client.platform.create_cluster(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->create_cluster: %s\n" % e)
@@ -317,6 +358,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateClusterParams**](CreateClusterParams.md)| Specifies the parameters to create cluster. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -375,11 +418,22 @@ body = Racks(
             ),
         ],
     ) # Racks | Specifies the parameters to create racks.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create racks
 	api_response = client.platform.create_racks(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->create_racks: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create racks
+	api_response = client.platform.create_racks(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->create_racks: %s\n" % e)
@@ -391,6 +445,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**Racks**](Racks.md)| Specifies the parameters to create racks. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -436,18 +492,25 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Delete AMQP Target Config
-	client.platform.delete_amqp_target_config()
+	client.platform.delete_amqp_target_config(access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->delete_amqp_target_config: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -494,11 +557,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies a unique id of the rack.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a rack by id.
 	client.platform.delete_rack_by_id(id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->delete_rack_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a rack by id.
+	client.platform.delete_rack_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->delete_rack_by_id: %s\n" % e)
 ```
@@ -509,6 +582,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the rack. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -554,18 +629,25 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Delete all the racks.
-	client.platform.delete_racks()
+	client.platform.delete_racks(access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->delete_racks: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -612,11 +694,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the registration id of the registered remote storage.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete Remote Storage Registration
 	client.platform.delete_remote_storage_registration(id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->delete_remote_storage_registration: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete Remote Storage Registration
+	client.platform.delete_remote_storage_registration(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->delete_remote_storage_registration: %s\n" % e)
 ```
@@ -627,6 +719,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the registration id of the registered remote storage. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -673,11 +767,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Discover new disks
-	api_response = client.platform.discover_disks()
+	api_response = client.platform.discover_disks(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->discover_disks: %s\n" % e)
@@ -685,7 +782,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -737,11 +838,22 @@ body = DiskIdentify(
         serial_number="serial_number_example",
         identify=True,
     ) # DiskIdentify | Specifies the parameter to identify disk.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Identify a disk
 	api_response = client.platform.disk_identify(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->disk_identify: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Identify a disk
+	api_response = client.platform.disk_identify(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->disk_identify: %s\n" % e)
@@ -753,6 +865,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**DiskIdentify**](DiskIdentify.md)| Specifies the parameter to identify disk. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -816,11 +930,22 @@ body = ClusterFreeDisks(
             ),
         ],
     ) # ClusterFreeDisks | Specifies the parameter to assimilate disks.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Assimilate disks.
 	api_response = client.platform.disks_assimilate(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->disks_assimilate: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Assimilate disks.
+	api_response = client.platform.disks_assimilate(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->disks_assimilate: %s\n" % e)
@@ -832,6 +957,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ClusterFreeDisks**](ClusterFreeDisks.md)| Specifies the parameter to assimilate disks. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -878,21 +1005,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 start_time_usecs = 1 # int | Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. (optional)
 end_time_usecs = 1 # int | Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. (optional)
-include_tenants = True # bool, none_type | IncludeTenants specifies if alerts of all the tenants under the   hierarchy of the logged in user's organization should be used to   compute summary. (optional)
+include_tenants = True # bool, none_type | IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user's organization should be used to compute summary. (optional)
 tenant_ids = [
         "tenantIds_example",
-    ] # [str], none_type | TenantIds contains ids of the tenants for which alerts are to be   used to compute summary. (optional)
+    ] # [str], none_type | TenantIds contains ids of the tenants for which alerts are to be used to compute summary. (optional)
 states_list = [
         "kResolved",
-    ] # [str], none_type | Specifies list of alert states to filter alerts by. If not specified,   only open alerts will be used to get summary. (optional)
+    ] # [str], none_type | Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get alerts summary.
-	api_response = client.platform.get_alert_summary(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, include_tenants=include_tenants, tenant_ids=tenant_ids, states_list=states_list)
+	api_response = client.platform.get_alert_summary(access_cluster_id=access_cluster_id, region_id=region_id, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, include_tenants=include_tenants, tenant_ids=tenant_ids, states_list=states_list)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_alert_summary: %s\n" % e)
@@ -903,11 +1032,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **start_time_usecs** | **int**| Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. | [optional]
  **end_time_usecs** | **int**| Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. | [optional]
- **include_tenants** | **bool, none_type**| IncludeTenants specifies if alerts of all the tenants under the   hierarchy of the logged in user&#39;s organization should be used to   compute summary. | [optional]
- **tenant_ids** | **[str], none_type**| TenantIds contains ids of the tenants for which alerts are to be   used to compute summary. | [optional]
- **states_list** | **[str], none_type**| Specifies list of alert states to filter alerts by. If not specified,   only open alerts will be used to get summary. | [optional]
+ **include_tenants** | **bool, none_type**| IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user&#39;s organization should be used to compute summary. | [optional]
+ **tenant_ids** | **[str], none_type**| TenantIds contains ids of the tenants for which alerts are to be used to compute summary. | [optional]
+ **states_list** | **[str], none_type**| Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary. | [optional]
 
 ### Return type
 
@@ -954,11 +1085,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get AMQP Target Config
-	api_response = client.platform.get_amqp_target_config()
+	api_response = client.platform.get_amqp_target_config(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_amqp_target_config: %s\n" % e)
@@ -966,7 +1100,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1013,13 +1151,15 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 no_rack_assigned = True # bool | Filters chassis that have no rack assigned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get list of chassis
-	api_response = client.platform.get_chassis(no_rack_assigned=no_rack_assigned)
+	api_response = client.platform.get_chassis(access_cluster_id=access_cluster_id, region_id=region_id, no_rack_assigned=no_rack_assigned)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_chassis: %s\n" % e)
@@ -1030,6 +1170,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **no_rack_assigned** | **bool**| Filters chassis that have no rack assigned. | [optional]
 
 ### Return type
@@ -1078,11 +1220,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of chassis.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get a chassis by chassis id.
 	api_response = client.platform.get_chassis_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_chassis_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a chassis by chassis id.
+	api_response = client.platform.get_chassis_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_chassis_by_id: %s\n" % e)
@@ -1094,6 +1247,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of chassis. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1140,11 +1295,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Retrieve Cluster Configuration
-	api_response = client.platform.get_cluster()
+	api_response = client.platform.get_cluster(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_cluster: %s\n" % e)
@@ -1152,11 +1310,147 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
 [**Cluster**](Cluster.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cluster_local_domain_sid**
+> ClusterLocalDomainSID get_cluster_local_domain_sid()
+
+Get Cluster Local Domain SID
+
+Fetch SID of cluster local domain.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.cluster_local_domain_sid import ClusterLocalDomainSID
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get Cluster Local Domain SID
+	api_response = client.platform.get_cluster_local_domain_sid(access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_cluster_local_domain_sid: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**ClusterLocalDomainSID**](ClusterLocalDomainSID.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_is_d_maa_s_cluster**
+> DMaaSInfo get_is_d_maa_s_cluster()
+
+Get whether the cluster is a DMaaS cluster.
+
+Get whether the cluster is a DMaaS cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.d_maa_s_info import DMaaSInfo
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get whether the cluster is a DMaaS cluster.
+	api_response = client.platform.get_is_d_maa_s_cluster(access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_is_d_maa_s_cluster: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**DMaaSInfo**](DMaaSInfo.md)
 
 ### Authorization
 
@@ -1199,11 +1493,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get list of interfaces
-	api_response = client.platform.get_network_interfaces()
+	api_response = client.platform.get_network_interfaces(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_network_interfaces: %s\n" % e)
@@ -1211,7 +1508,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1259,11 +1560,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of rack.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get a rack by rack id.
 	api_response = client.platform.get_rack_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_rack_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a rack by rack id.
+	api_response = client.platform.get_rack_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_rack_by_id: %s\n" % e)
@@ -1275,6 +1587,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of rack. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1321,11 +1635,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get list of racks
-	api_response = client.platform.get_racks()
+	api_response = client.platform.get_racks(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_racks: %s\n" % e)
@@ -1333,7 +1650,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1380,11 +1701,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get Registered Remote Storage Servers List
-	api_response = client.platform.get_registered_remote_storage_list()
+	api_response = client.platform.get_registered_remote_storage_list(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_registered_remote_storage_list: %s\n" % e)
@@ -1392,7 +1716,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1439,6 +1767,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 disk_ids = [
         1,
     ] # [int] | Specifies a list of disk ids, only disks having these ids will be returned. (optional)
@@ -1455,7 +1785,7 @@ file_system = "fileSystem_example" # str | Specified file system name to search.
 # and optional values
 try:
 	# Get remote disks
-	api_response = client.platform.get_remote_disks(disk_ids=disk_ids, node_ids=node_ids, tiers=tiers, mount_path=mount_path, file_system=file_system)
+	api_response = client.platform.get_remote_disks(access_cluster_id=access_cluster_id, region_id=region_id, disk_ids=disk_ids, node_ids=node_ids, tiers=tiers, mount_path=mount_path, file_system=file_system)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_remote_disks: %s\n" % e)
@@ -1466,6 +1796,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **disk_ids** | **[int]**| Specifies a list of disk ids, only disks having these ids will be returned. | [optional]
  **node_ids** | **[int]**| Specifies a list of node ids, only disks in these nodes will be returned. | [optional]
  **tiers** | **[str]**| Specifies a list of disk tiers, only disks with given tiers will be returned. | [optional]
@@ -1518,6 +1850,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of the registered remote storage.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 include_available_space = False # bool | Specifies whether to include available capacity on remote storage. (optional) if omitted the server will use the default value of False
 include_available_data_vips = False # bool | Specifies whether to include available data vips on remote storage. (optional) if omitted the server will use the default value of False
 include_array_info = False # bool | Includes flashblade specific info like name, software os and version of pure flashblade. (optional) if omitted the server will use the default value of False
@@ -1534,7 +1868,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get remote storage details
-	api_response = client.platform.get_remote_storage_details(id, include_available_space=include_available_space, include_available_data_vips=include_available_data_vips, include_array_info=include_array_info)
+	api_response = client.platform.get_remote_storage_details(id, access_cluster_id=access_cluster_id, region_id=region_id, include_available_space=include_available_space, include_available_data_vips=include_available_data_vips, include_array_info=include_array_info)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_remote_storage_details: %s\n" % e)
@@ -1546,6 +1880,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the registered remote storage. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **include_available_space** | **bool**| Specifies whether to include available capacity on remote storage. | [optional] if omitted the server will use the default value of False
  **include_available_data_vips** | **bool**| Specifies whether to include available data vips on remote storage. | [optional] if omitted the server will use the default value of False
  **include_array_info** | **bool**| Includes flashblade specific info like name, software os and version of pure flashblade. | [optional] if omitted the server will use the default value of False
@@ -1595,11 +1931,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get support channel configuration.
-	api_response = client.platform.get_support_channel_config()
+	api_response = client.platform.get_support_channel_config(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_support_channel_config: %s\n" % e)
@@ -1607,7 +1946,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1653,11 +1996,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get supported program names.
-	api_response = client.platform.get_supported_syslog_program_names()
+	api_response = client.platform.get_supported_syslog_program_names(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_supported_syslog_program_names: %s\n" % e)
@@ -1665,7 +2011,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1712,11 +2062,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get cluster audit tags.
-	api_response = client.platform.get_syslog_audit_tags()
+	api_response = client.platform.get_syslog_audit_tags(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_syslog_audit_tags: %s\n" % e)
@@ -1724,7 +2077,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1772,11 +2129,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of syslog server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get a syslog server by id.
 	api_response = client.platform.get_syslog_server_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_syslog_server_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a syslog server by id.
+	api_response = client.platform.get_syslog_server_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_syslog_server_by_id: %s\n" % e)
@@ -1788,6 +2156,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of syslog server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1835,11 +2205,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of syslog server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get a syslog server reachability status.
 	api_response = client.platform.get_syslog_server_status_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_syslog_server_status_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a syslog server reachability status.
+	api_response = client.platform.get_syslog_server_status_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_syslog_server_status_by_id: %s\n" % e)
@@ -1851,6 +2232,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of syslog server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1897,11 +2280,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Get list of syslog servers.
-	api_response = client.platform.get_syslog_servers()
+	api_response = client.platform.get_syslog_servers(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->get_syslog_servers: %s\n" % e)
@@ -1909,7 +2295,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1960,11 +2350,22 @@ id = 1 # int | Specifies id of node to identify.
 body = NodeIdentifyParams(
         identify=True,
     ) # NodeIdentifyParams | Specifies the parameter to identify node.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Identify node
 	api_response = client.platform.identify_node(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->identify_node: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Identify node
+	api_response = client.platform.identify_node(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->identify_node: %s\n" % e)
@@ -1977,6 +2378,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies id of node to identify. |
  **body** | [**NodeIdentifyParams**](NodeIdentifyParams.md)| Specifies the parameter to identify node. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2023,13 +2426,15 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 node_id = 1 # int | Specifies node id of the node to get list of disks (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get list of disks
-	api_response = client.platform.list_disks(node_id=node_id)
+	api_response = client.platform.list_disks(access_cluster_id=access_cluster_id, region_id=region_id, node_id=node_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->list_disks: %s\n" % e)
@@ -2040,6 +2445,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **node_id** | **int**| Specifies node id of the node to get list of disks | [optional]
 
 ### Return type
@@ -2060,6 +2467,70 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_feature_flag**
+> list_feature_flag()
+
+Get feature flag overrides list.
+
+Get the list of feature flag overrides defined on cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get feature flag overrides list.
+	client.platform.list_feature_flag(access_cluster_id=access_cluster_id, region_id=region_id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->list_feature_flag: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2092,11 +2563,22 @@ id = 1 # int | Specifies unique id of the disk to mark for removal.
 body = DiskRemovalParams(
         cancel=True,
     ) # DiskRemovalParams | Specifies parameters to mark/cancel disk removal.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Mark Disk for removal
 	api_response = client.platform.mark_disk_removal(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->mark_disk_removal: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Mark Disk for removal
+	api_response = client.platform.mark_disk_removal(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->mark_disk_removal: %s\n" % e)
@@ -2109,6 +2591,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies unique id of the disk to mark for removal. |
  **body** | [**DiskRemovalParams**](DiskRemovalParams.md)| Specifies parameters to mark/cancel disk removal. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2161,11 +2645,22 @@ body = NodeRemovalParams(
         cancel=True,
         is_offline=False,
     ) # NodeRemovalParams | Specifies parameters to initiate/cancel node removal .
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Mark Node for removal
 	api_response = client.platform.mark_node_removal(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->mark_node_removal: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Mark Node for removal
+	api_response = client.platform.mark_node_removal(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->mark_node_removal: %s\n" % e)
@@ -2178,6 +2673,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies id of node to cancel removal. |
  **body** | [**NodeRemovalParams**](NodeRemovalParams.md)| Specifies parameters to initiate/cancel node removal . |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2225,6 +2722,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of syslog server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = SyslogServer(
         id=1,
         ip="ip_example",
@@ -2260,7 +2759,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Patch a syslog server by id.
-	api_response = client.platform.patch_syslog_server_by_id(id, body=body)
+	api_response = client.platform.patch_syslog_server_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->patch_syslog_server_by_id: %s\n" % e)
@@ -2272,6 +2771,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of syslog server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server fields to patch. | [optional]
 
 ### Return type
@@ -2320,11 +2821,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to register a remote storage management server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Register Remote Storage
 	api_response = client.platform.register_new_remote_storage(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->register_new_remote_storage: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Register Remote Storage
+	api_response = client.platform.register_new_remote_storage(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->register_new_remote_storage: %s\n" % e)
@@ -2336,6 +2848,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**RemoteStorageInfo**](RemoteStorageInfo.md)| Specifies the parameters to register a remote storage management server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2382,11 +2896,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of the remote disk to remove.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Remove remote disk
 	client.platform.remove_remote_disk(id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->remove_remote_disk: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Remove remote disk
+	client.platform.remove_remote_disk(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->remove_remote_disk: %s\n" % e)
 ```
@@ -2397,6 +2921,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the remote disk to remove. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2443,11 +2969,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies a unique id of the syslog server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Remove syslog server by id
 	client.platform.remove_syslog_server(id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->remove_syslog_server: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Remove syslog server by id
+	client.platform.remove_syslog_server(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->remove_syslog_server: %s\n" % e)
 ```
@@ -2458,6 +2994,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies a unique id of the syslog server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2503,18 +3041,25 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Remove syslog servers
-	client.platform.remove_syslog_servers()
+	client.platform.remove_syslog_servers(access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->remove_syslog_servers: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2565,11 +3110,21 @@ body = NodePowerOperation(
         operation="poweroff",
         node_id=1,
     ) # NodePowerOperation | Specifies the reboot or shutdown operation.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Reboot or shutdown nodes in cluster.
 	client.platform.set_node_power(body)
+except ApiException as e:
+	print("Exception when calling PlatformApi->set_node_power: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Reboot or shutdown nodes in cluster.
+	client.platform.set_node_power(body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling PlatformApi->set_node_power: %s\n" % e)
 ```
@@ -2580,6 +3135,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**NodePowerOperation**](NodePowerOperation.md)| Specifies the reboot or shutdown operation. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2635,11 +3192,22 @@ body = ClusterAMQPTargetConfig(
         filer_id=1,
         certificate="certificate_example",
     ) # ClusterAMQPTargetConfig | Specifies the parameters to update cluster AMQP target config.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update AMQP Target Config
 	api_response = client.platform.update_amqp_target_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_amqp_target_config: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update AMQP Target Config
+	api_response = client.platform.update_amqp_target_config(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_amqp_target_config: %s\n" % e)
@@ -2651,6 +3219,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ClusterAMQPTargetConfig**](ClusterAMQPTargetConfig.md)| Specifies the parameters to update cluster AMQP target config. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2698,6 +3268,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of chassis.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = Chassis(
         id=1,
         hardware_model="hardware_model_example",
@@ -2721,7 +3293,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Update a chassis by chassis id.
-	api_response = client.platform.update_chassis_by_id(id, body=body)
+	api_response = client.platform.update_chassis_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_chassis_by_id: %s\n" % e)
@@ -2733,6 +3305,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of chassis. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**Chassis**](Chassis.md)| Specifies the parameters to update chassis. | [optional]
 
 ### Return type
@@ -2790,6 +3364,7 @@ body = Cluster(
                     node_id=1,
                 ),
             ],
+            dataplane_endpoint="dataplane_endpoint_example",
         ),
         network_config=ClusterCreateNetworkConfig(
             ntp_servers=[
@@ -2822,11 +3397,22 @@ body = Cluster(
             password="password_example",
         ),
     ) # Cluster | Specifies the parameters to update cluster.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a cluster.
 	api_response = client.platform.update_cluster(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_cluster: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a cluster.
+	api_response = client.platform.update_cluster(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_cluster: %s\n" % e)
@@ -2838,6 +3424,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**Cluster**](Cluster.md)| Specifies the parameters to update cluster. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -2861,19 +3449,100 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_cluster_bifrost_config**
-> McmRigelClaimResponseParams update_cluster_bifrost_config(body)
+# **update_feature_flag**
+> update_feature_flag(body)
 
-Update cluster Bifrost config.
+Update feature flag override status.
 
-Update cluster Bifrost config.
+Update a feature flag override status to cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.mcm_rigel_claim_response_params import McmRigelClaimResponseParams
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.update_feature_flag_params import UpdateFeatureFlagParams
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+body = UpdateFeatureFlagParams(
+        name="name_example",
+        is_ui_feature=True,
+        is_approved=True,
+        reason="reason_example",
+        clear=True,
+        timestamp=1,
+    ) # UpdateFeatureFlagParams | Param for feature flag override request.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Update feature flag override status.
+	client.platform.update_feature_flag(body)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_feature_flag: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update feature flag override status.
+	client.platform.update_feature_flag(body, access_cluster_id=access_cluster_id, region_id=region_id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_feature_flag: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UpdateFeatureFlagParams**](UpdateFeatureFlagParams.md)| Param for feature flag override request. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_is_d_maa_s_cluster**
+> DMaaSInfo update_is_d_maa_s_cluster(body)
+
+Update whether the cluster is a DMaaS cluster.
+
+Update whether the cluster is a DMaaS cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.d_maa_s_info import DMaaSInfo
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
@@ -2884,29 +3553,28 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-body = McmRigelClaimResponseParams(
-        rigel_guid=1,
-        connection_id=1,
-        tenant_id="tenant_id_example",
-        rigel_type="OnPrem",
-        rigel_certificate="rigel_certificate_example",
-        rigel_private_key="rigel_private_key_example",
-        rigel_ca_chain="rigel_ca_chain_example",
-        tenant_ca_chain=[
-            "tenant_ca_chain_example",
-        ],
-        helios_certificate="helios_certificate_example",
-        dataplane_endpoint="dataplane_endpoint_example",
-        region_id="region_id_example",
-    ) # McmRigelClaimResponseParams | Specifies the request to update Bifrost config.
+body = DMaaSInfo(
+        is_dmaas=True,
+    ) # DMaaSInfo | Param to update whether the cluster is a DMaaS cluster.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
-	# Update cluster Bifrost config.
-	api_response = client.platform.update_cluster_bifrost_config(body)
+	# Update whether the cluster is a DMaaS cluster.
+	api_response = client.platform.update_is_d_maa_s_cluster(body)
 	pprint(api_response)
 except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_bifrost_config: %s\n" % e)
+	print("Exception when calling PlatformApi->update_is_d_maa_s_cluster: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update whether the cluster is a DMaaS cluster.
+	api_response = client.platform.update_is_d_maa_s_cluster(body, access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_is_d_maa_s_cluster: %s\n" % e)
 ```
 
 
@@ -2914,11 +3582,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**McmRigelClaimResponseParams**](McmRigelClaimResponseParams.md)| Specifies the request to update Bifrost config. |
+ **body** | [**DMaaSInfo**](DMaaSInfo.md)| Param to update whether the cluster is a DMaaS cluster. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
-[**McmRigelClaimResponseParams**](McmRigelClaimResponseParams.md)
+[**DMaaSInfo**](DMaaSInfo.md)
 
 ### Authorization
 
@@ -2962,6 +3632,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of rack.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = Rack(
         id=1,
         name="name_example",
@@ -2981,7 +3653,7 @@ except ApiException as e:
 # example passing only required values which don't have defaults set
 # and optional values
 try:
-	api_response = client.platform.update_rack_by_id(id, body=body)
+	api_response = client.platform.update_rack_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_rack_by_id: %s\n" % e)
@@ -2993,6 +3665,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of rack. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**Rack**](Rack.md)| Specifies the parameters to update rack. | [optional]
 
 ### Return type
@@ -3052,11 +3726,22 @@ body = Racks(
             ),
         ],
     ) # Racks | Specifies the parameters to update racks.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update racks
 	api_response = client.platform.update_racks(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_racks: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update racks
+	api_response = client.platform.update_racks(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_racks: %s\n" % e)
@@ -3068,6 +3753,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**Racks**](Racks.md)| Specifies the parameters to update racks. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -3116,11 +3803,22 @@ client = HeliosClient(api_key=api_key)
 
 id = 1 # int | Specifies the registration id of the registered remote storage.
 body = RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to update the registration.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update Remote Storage Config
 	api_response = client.platform.update_remote_storage_registration(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_remote_storage_registration: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update Remote Storage Config
+	api_response = client.platform.update_remote_storage_registration(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_remote_storage_registration: %s\n" % e)
@@ -3133,6 +3831,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the registration id of the registered remote storage. |
  **body** | [**RemoteStorageInfo**](RemoteStorageInfo.md)| Specifies the parameters to update the registration. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -3183,11 +3883,22 @@ body = SupportChannelConfig(
         is_enabled=True,
         end_time_usecs=1,
     ) # SupportChannelConfig | Specifies the support channel configuration.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update support channel configuration.
 	api_response = client.platform.update_support_channel_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_support_channel_config: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update support channel configuration.
+	api_response = client.platform.update_support_channel_config(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_support_channel_config: %s\n" % e)
@@ -3199,6 +3910,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SupportChannelConfig**](SupportChannelConfig.md)| Specifies the support channel configuration. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -3245,6 +3958,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = SyslogAuditTag(
         cluster_audit="cluster_audit_example",
         filer_audit="filer_audit_example",
@@ -3256,7 +3971,7 @@ body = SyslogAuditTag(
 # and optional values
 try:
 	# Update cluster audit tags.
-	api_response = client.platform.update_syslog_audit_tags(body=body)
+	api_response = client.platform.update_syslog_audit_tags(access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_syslog_audit_tags: %s\n" % e)
@@ -3267,6 +3982,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**SyslogAuditTag**](SyslogAuditTag.md)| Specifies syslog audit tag to update. | [optional]
 
 ### Return type
@@ -3315,6 +4032,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies the id of syslog server.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = SyslogServer(
         id=1,
         ip="ip_example",
@@ -3350,7 +4069,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Update a syslog server by id.
-	api_response = client.platform.update_syslog_server_by_id(id, body=body)
+	api_response = client.platform.update_syslog_server_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PlatformApi->update_syslog_server_by_id: %s\n" % e)
@@ -3362,6 +4081,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of syslog server. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server body to update. | [optional]
 
 ### Return type

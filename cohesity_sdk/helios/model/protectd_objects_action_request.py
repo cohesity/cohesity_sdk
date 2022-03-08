@@ -70,9 +70,66 @@ class ProtectdObjectsActionRequest(ModelNormal):
             'UNPROTECT': "UnProtect",
             'PROTECTNOW': "ProtectNow",
         },
+        ('object_action_key',): {
+            'None': None,
+            'KVMWARE': "kVMware",
+            'KHYPERV': "kHyperV",
+            'KAZURE': "kAzure",
+            'KGCP': "kGCP",
+            'KKVM': "kKVM",
+            'KACROPOLIS': "kAcropolis",
+            'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KPHYSICAL': "kPhysical",
+            'KGPFS': "kGPFS",
+            'KELASTIFILE': "kElastifile",
+            'KNETAPP': "kNetapp",
+            'KGENERICNAS': "kGenericNas",
+            'KISILON': "kIsilon",
+            'KFLASHBLADE': "kFlashBlade",
+            'KPURE': "kPure",
+            'KSQL': "kSQL",
+            'KEXCHANGE': "kExchange",
+            'KAD': "kAD",
+            'KORACLE': "kOracle",
+            'KVIEW': "kView",
+            'KREMOTEADAPTER': "kRemoteAdapter",
+            'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
+            'KKUBERNETES': "kKubernetes",
+            'KCASSANDRA': "kCassandra",
+            'KMONGODB': "kMongoDB",
+            'KCOUCHBASE': "kCouchbase",
+            'KHDFS': "kHdfs",
+            'KHIVE': "kHive",
+            'KHBASE': "kHBase",
+            'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
+        },
+        ('snapshot_backend_types',): {
+            'None': None,
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KPHYSICAL': "kPhysical",
+            'KSQL': "kSQL",
+            'KORACLE': "kOracle",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+        },
     }
 
     validations = {
+        ('snapshot_backend_types',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -92,10 +149,12 @@ class ProtectdObjectsActionRequest(ModelNormal):
         lazy_import()
         return {
             'action': (str,),  # noqa: E501
+            'object_action_key': (str, none_type,),  # noqa: E501
             'pause_params': (ProtectedObjectPauseActionParams,),  # noqa: E501
             'resume_params': (ProtectedObjectResumeActionParams,),  # noqa: E501
             'run_now_params': (ProtectedObjectRunNowActionParams,),  # noqa: E501
             'un_protect_params': (ProtectedObjectUnProtectActionParams,),  # noqa: E501
+            'snapshot_backend_types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,10 +165,12 @@ class ProtectdObjectsActionRequest(ModelNormal):
 
     attribute_map = {
         'action': 'action',  # noqa: E501
+        'object_action_key': 'objectActionKey',  # noqa: E501
         'pause_params': 'pauseParams',  # noqa: E501
         'resume_params': 'resumeParams',  # noqa: E501
         'run_now_params': 'runNowParams',  # noqa: E501
         'un_protect_params': 'unProtectParams',  # noqa: E501
+        'snapshot_backend_types': 'snapshotBackendTypes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,10 +223,12 @@ class ProtectdObjectsActionRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            object_action_key (str, none_type): Specifies the object action key for any action on the given object.. [optional]  # noqa: E501
             pause_params (ProtectedObjectPauseActionParams): [optional]  # noqa: E501
             resume_params (ProtectedObjectResumeActionParams): [optional]  # noqa: E501
             run_now_params (ProtectedObjectRunNowActionParams): [optional]  # noqa: E501
             un_protect_params (ProtectedObjectUnProtectActionParams): [optional]  # noqa: E501
+            snapshot_backend_types ([str], none_type): Specifies the protections type on which action to be performed. This is used when an object is protected by multiple protection types. If not specified action will be performed on all protection types.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

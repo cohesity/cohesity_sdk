@@ -3,12 +3,15 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**browse_object_contents**](ObjectsApi.md#browse_object_contents) | **POST** /data-protect/objects/{id}/browse | Fetch the contents (files &amp; folders) for the specified object.
 [**cancel_object_runs**](ObjectsApi.md#cancel_object_runs) | **POST** /data-protect/objects/runs/cancel | Cancel object runs.
 [**construct_meta_info**](ObjectsApi.md#construct_meta_info) | **POST** /data-protect/snapshots/{snapshotId}/metaInfo | Construct meta info for any workflow from object snapshot and some other information.
 [**get_all_indexed_object_snapshots**](ObjectsApi.md#get_all_indexed_object_snapshots) | **GET** /data-protect/objects/{objectId}/indexed-objects/snapshots | Get snapshots of indexed object.
 [**get_indexed_object_snapshots**](ObjectsApi.md#get_indexed_object_snapshots) | **GET** /data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots | Get snapshots of indexed object.
+[**get_object_identifiers**](ObjectsApi.md#get_object_identifiers) | **GET** /data-protect/objects/object-identifiers | Get Object Identifiers
 [**get_object_run_by_run_id**](ObjectsApi.md#get_object_run_by_run_id) | **GET** /data-protect/objects/{id}/runs/{runId} | Get a run for an object.
 [**get_object_runs**](ObjectsApi.md#get_object_runs) | **GET** /data-protect/objects/{id}/runs | Get the list of runs for an object.
+[**get_object_snapshot_id**](ObjectsApi.md#get_object_snapshot_id) | **POST** /data-protect/objects/{objectId}/snapshotId | Get snapshot id for a given object.
 [**get_object_snapshot_info**](ObjectsApi.md#get_object_snapshot_info) | **GET** /data-protect/snapshots/{snapshotId} | Get details of object snapshot.
 [**get_object_snapshot_volume_info**](ObjectsApi.md#get_object_snapshot_volume_info) | **GET** /data-protect/snapshots/{snapshotId}/volume | Get volume info of object snapshot.
 [**get_object_snapshots**](ObjectsApi.md#get_object_snapshots) | **GET** /data-protect/objects/{id}/snapshots | List the snapshots for a given object.
@@ -18,11 +21,81 @@ Method | HTTP request | Description
 [**get_pit_ranges_for_protected_object**](ObjectsApi.md#get_pit_ranges_for_protected_object) | **GET** /data-protect/objects/{id}/pit-ranges | Get PIT ranges for an object
 [**get_protected_object_of_any_type_by_id**](ObjectsApi.md#get_protected_object_of_any_type_by_id) | **GET** /data-protect/objects/{id} | Get an Object.
 [**get_protected_objects_of_any_type**](ObjectsApi.md#get_protected_objects_of_any_type) | **GET** /data-protect/objects | Get Objects.
+[**get_snapshot_diff**](ObjectsApi.md#get_snapshot_diff) | **POST** /data-protect/objects/{id}/snapshotDiff | Get diff between two snapshots of a given object.
 [**get_source_hierarchy_objects**](ObjectsApi.md#get_source_hierarchy_objects) | **GET** /data-protect/sources/{sourceId}/objects | List objects on a source which can be used for data protection.
 [**objects_actions**](ObjectsApi.md#objects_actions) | **POST** /data-protect/objects/actions | Actions on Objects
 [**perform_action_on_object**](ObjectsApi.md#perform_action_on_object) | **POST** /data-protect/objects/{id}/actions | Perform an action on an object.
 [**update_object_snapshot**](ObjectsApi.md#update_object_snapshot) | **PUT** /data-protect/objects/{id}/snapshots/{snapshotId} | Update an object snapshot.
 
+
+# **browse_object_contents**
+> FileFolderInfo browse_object_contents(id, body)
+
+Fetch the contents (files & folders) for the specified object.
+
+Fetch the contents (files & folders) of the specified path inside the specified object.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.object_browse_request import ObjectBrowseRequest
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.file_folder_info import FileFolderInfo
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of the Object.
+body = ObjectBrowseRequest() # ObjectBrowseRequest | Specifies the parameters to fetch contents of an object.
+
+# example passing only required values which don't have defaults set
+try:
+	# Fetch the contents (files & folders) for the specified object.
+	api_response = client.objects.browse_object_contents(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectsApi->browse_object_contents: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of the Object. |
+ **body** | [**ObjectBrowseRequest**](ObjectBrowseRequest.md)| Specifies the parameters to fetch contents of an object. |
+
+### Return type
+
+[**FileFolderInfo**](FileFolderInfo.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancel_object_runs**
 > CancelObjectRunsResults cancel_object_runs(body)
@@ -72,6 +145,9 @@ body = CancelObjectRunsRequest(
                             1,
                         ],
                     ),
+                ],
+                snapshot_backend_types=[
+                    "kAWSNative",
                 ],
             ),
         ],
@@ -365,6 +441,79 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_object_identifiers**
+> LocalGlobalObjectIdList get_object_identifiers()
+
+Get Object Identifiers
+
+Get Object Identifiers.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.local_global_object_id_list import LocalGlobalObjectIdList
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+global_ids = [
+        "globalIds_example",
+    ] # [str] | Get the object identifier matching specified global IDs. (optional)
+local_ids = [
+        1,
+    ] # [int] | Get the object identifier matching specified local IDs. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get Object Identifiers
+	api_response = client.objects.get_object_identifiers(global_ids=global_ids, local_ids=local_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectsApi->get_object_identifiers: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **global_ids** | **[str]**| Get the object identifier matching specified global IDs. | [optional]
+ **local_ids** | **[int]**| Get the object identifier matching specified local IDs. | [optional]
+
+### Return type
+
+[**LocalGlobalObjectIdList**](LocalGlobalObjectIdList.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_object_run_by_run_id**
 > ObjectProtectionRunSummary get_object_run_by_run_id(id, run_id)
 
@@ -535,6 +684,81 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_object_snapshot_id**
+> ObjectSnapshotIdResult get_object_snapshot_id(object_id, body)
+
+Get snapshot id for a given object.
+
+Get snapshot id for object for given params.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.object_snapshot_id_params import ObjectSnapshotIdParams
+from cohesity_sdk.cohesity_client_v2.model.object_snapshot_id_result import ObjectSnapshotIdResult
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+object_id = 1 # int | Specifies the object id.
+body = ObjectSnapshotIdParams(
+        protection_group_id="protection_group_id_example",
+        snapshot_job_instance_id=1,
+        run_start_time_usecs=1,
+        source_group_id="source_group_id_example",
+        vault_id=1,
+    ) # ObjectSnapshotIdParams | Specifies the parameters to fetch snapshot id for object.
+
+# example passing only required values which don't have defaults set
+try:
+	# Get snapshot id for a given object.
+	api_response = client.objects.get_object_snapshot_id(object_id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectsApi->get_object_snapshot_id: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **object_id** | **int**| Specifies the object id. |
+ **body** | [**ObjectSnapshotIdParams**](ObjectSnapshotIdParams.md)| Specifies the parameters to fetch snapshot id for object. |
+
+### Return type
+
+[**ObjectSnapshotIdResult**](ObjectSnapshotIdResult.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -718,8 +942,10 @@ client = CohesityClientV2(
 
 
 id = 1 # int | Specifies the id of the Object.
-from_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken after this value. (optional)
-to_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which are taken before this value. (optional)
+from_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value. (optional)
+to_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value. (optional)
+run_start_from_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run after this value. (optional)
+run_start_to_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were run before this value. (optional)
 run_types = [
         "kRegular",
     ] # [str] | Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. (optional)
@@ -729,6 +955,12 @@ protection_group_ids = [
 run_instance_ids = [
         1,
     ] # [int] | Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned. (optional)
+region_ids = [
+        "regionIds_example",
+    ] # [str] | Filter by a list of region ids. (optional)
+object_action_keys = [
+        "kVMware",
+    ] # [str] | Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -742,7 +974,7 @@ except ApiException as e:
 # and optional values
 try:
 	# List the snapshots for a given object.
-	api_response = client.objects.get_object_snapshots(id, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, protection_group_ids=protection_group_ids, run_instance_ids=run_instance_ids)
+	api_response = client.objects.get_object_snapshots(id, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_start_from_time_usecs=run_start_from_time_usecs, run_start_to_time_usecs=run_start_to_time_usecs, run_types=run_types, protection_group_ids=protection_group_ids, run_instance_ids=run_instance_ids, region_ids=region_ids, object_action_keys=object_action_keys)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectsApi->get_object_snapshots: %s\n" % e)
@@ -754,11 +986,15 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Object. |
- **from_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter Object&#39;s snapshots which are taken after this value. | [optional]
- **to_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter Object&#39;s snapshots which are taken before this value. | [optional]
+ **from_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter Object&#39;s snapshots which were taken after this value. | [optional]
+ **to_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter Object&#39;s snapshots which were taken before this value. | [optional]
+ **run_start_from_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter Object&#39;s snapshots which were run after this value. | [optional]
+ **run_start_to_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter Object&#39;s snapshots which were run before this value. | [optional]
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. | [optional]
  **protection_group_ids** | **[str]**| If specified, this returns only the snapshots of the specified object ID, which belong to the provided protection group IDs. | [optional]
  **run_instance_ids** | **[int]**| Filter by a list run instance ids. If specified, only snapshots created by these protection runs will be returned. | [optional]
+ **region_ids** | **[str]**| Filter by a list of region ids. | [optional]
+ **object_action_keys** | **[str]**| Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, only snapshots matching given action keys are returned for corresponding object. | [optional]
 
 ### Return type
 
@@ -809,11 +1045,23 @@ client = CohesityClientV2(
 
 
 id = 1 # int | Specifies the id of the Object.
+region_ids = [
+        "regionIds_example",
+    ] # [str] | Filter by a list of region ids. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get stats for a given object.
 	api_response = client.objects.get_object_stats(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectsApi->get_object_stats: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get stats for a given object.
+	api_response = client.objects.get_object_stats(id, region_ids=region_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectsApi->get_object_stats: %s\n" % e)
@@ -825,6 +1073,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Object. |
+ **region_ids** | **[str]**| Filter by a list of region ids. | [optional]
 
 ### Return type
 
@@ -998,7 +1247,7 @@ Name | Type | Description  | Notes
 
 Get PIT ranges for an object
 
-Returns the time ranges within which the specified protected object can be restored to any Point in time.
+Returns the ranges in various types like time, SCN etc. within which the specified protected object can be restored to any Point in time.
 
 ### Example
 
@@ -1020,8 +1269,8 @@ client = CohesityClientV2(
 
 
 id = 1 # int | Specifies the ID of the protected object.
-from_time_usecs = 1 # int | If specified, return the time ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
-to_time_usecs = 1 # int | If specified, return the time ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
+from_time_usecs = 1 # int | If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
+to_time_usecs = 1 # int | If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
 protection_group_ids = [
         "protectionGroupIds_example",
     ] # [str] | If specified, return only the points in time corresponding to these protection group IDs. (optional)
@@ -1050,8 +1299,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the ID of the protected object. |
- **from_time_usecs** | **int**| If specified, return the time ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. | [optional]
- **to_time_usecs** | **int**| If specified, return the time ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. | [optional]
+ **from_time_usecs** | **int**| If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. | [optional]
+ **to_time_usecs** | **int**| If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. | [optional]
  **protection_group_ids** | **[str]**| If specified, return only the points in time corresponding to these protection group IDs. | [optional]
 
 ### Return type
@@ -1103,6 +1352,9 @@ client = CohesityClientV2(
 
 
 id = 1 # int | Specifies the id of the Object.
+object_action_key = [
+        "kVMware",
+    ] # [str] | Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'. (optional)
 only_protected_objects = True # bool | If true, the response will include only objects which have been protected. (optional)
 storage_domain_id = 1 # int | Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned. (optional)
 environments = [
@@ -1128,7 +1380,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get an Object.
-	api_response = client.objects.get_protected_object_of_any_type_by_id(id, only_protected_objects=only_protected_objects, storage_domain_id=storage_domain_id, environments=environments, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, only_auto_protected_objects=only_auto_protected_objects, only_leaf_objects=only_leaf_objects)
+	api_response = client.objects.get_protected_object_of_any_type_by_id(id, object_action_key=object_action_key, only_protected_objects=only_protected_objects, storage_domain_id=storage_domain_id, environments=environments, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, only_auto_protected_objects=only_auto_protected_objects, only_leaf_objects=only_leaf_objects)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectsApi->get_protected_object_of_any_type_by_id: %s\n" % e)
@@ -1140,6 +1392,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Object. |
+ **object_action_key** | **[str]**| Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec&#39;s size needs to be same as &#39;id&#39;. | [optional]
  **only_protected_objects** | **bool**| If true, the response will include only objects which have been protected. | [optional]
  **storage_domain_id** | **int**| Filter by Storage Domain id. Only Objects protected to this Storage Domain will be returned. | [optional]
  **environments** | **[str]**| Filter by environment types such as &#39;kVMware&#39;, &#39;kView&#39;, etc. Only Protected objects protecting the specified environment types are returned. | [optional]
@@ -1200,6 +1453,9 @@ client = CohesityClientV2(
 ids = [
         1,
     ] # [int] | Filter by a list of Object ids. (optional)
+object_action_keys = [
+        "kVMware",
+    ] # [str] | Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'ids'. (optional)
 policy_ids = [
         "policyIds_example",
     ] # [str] | Filter by Policy ids that are associated with Protected Objects. (optional)
@@ -1216,12 +1472,18 @@ include_tenants = True # bool | If true, the response will include Objects which
 include_last_run_info = True # bool | If true, the response will include information about the last protection run on this object. (optional)
 only_auto_protected_objects = True # bool | If true, the response will include only the auto protected objects. (optional)
 only_leaf_objects = True # bool | If true, the response will include only the leaf level objects. (optional)
+region_ids = [
+        "regionIds_example",
+    ] # [str] | Filter by a list of region ids. (optional)
+protection_types = [
+        "kAWSNative",
+    ] # [str] | Filter by a list of protection types. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get Objects.
-	api_response = client.objects.get_protected_objects_of_any_type(ids=ids, policy_ids=policy_ids, parent_id=parent_id, only_protected_objects=only_protected_objects, storage_domain_id=storage_domain_id, environments=environments, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, only_auto_protected_objects=only_auto_protected_objects, only_leaf_objects=only_leaf_objects)
+	api_response = client.objects.get_protected_objects_of_any_type(ids=ids, object_action_keys=object_action_keys, policy_ids=policy_ids, parent_id=parent_id, only_protected_objects=only_protected_objects, storage_domain_id=storage_domain_id, environments=environments, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, only_auto_protected_objects=only_auto_protected_objects, only_leaf_objects=only_leaf_objects, region_ids=region_ids, protection_types=protection_types)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectsApi->get_protected_objects_of_any_type: %s\n" % e)
@@ -1233,6 +1495,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **[int]**| Filter by a list of Object ids. | [optional]
+ **object_action_keys** | **[str]**| Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec&#39;s size needs to be same as &#39;ids&#39;. | [optional]
  **policy_ids** | **[str]**| Filter by Policy ids that are associated with Protected Objects. | [optional]
  **parent_id** | **int**| Filter by Parent Id. Parent id is a unique object Id which may contain protected objects underneath in the source tree. | [optional]
  **only_protected_objects** | **bool**| If true, the response will include only objects which have been protected. | [optional]
@@ -1243,6 +1506,8 @@ Name | Type | Description  | Notes
  **include_last_run_info** | **bool**| If true, the response will include information about the last protection run on this object. | [optional]
  **only_auto_protected_objects** | **bool**| If true, the response will include only the auto protected objects. | [optional]
  **only_leaf_objects** | **bool**| If true, the response will include only the leaf level objects. | [optional]
+ **region_ids** | **[str]**| Filter by a list of region ids. | [optional]
+ **protection_types** | **[str]**| Filter by a list of protection types. | [optional]
 
 ### Return type
 
@@ -1255,6 +1520,87 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_snapshot_diff**
+> SnapshotDiffResult get_snapshot_diff(id, body)
+
+Get diff between two snapshots of a given object.
+
+Get diff (files added/deleted) between two snapshots of a given object.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.snapshot_diff_params import SnapshotDiffParams
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.snapshot_diff_result import SnapshotDiffResult
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | 
+body = SnapshotDiffParams(
+        cluster_id=1,
+        incarnation_id=1,
+        partition_id=1,
+        job_id=1,
+        entity_type="kVMware",
+        base_snapshot_job_instance_id=1,
+        base_snapshot_time_usecs=1,
+        snapshot_job_instance_id=1,
+        snapshot_time_usecs=1,
+        page_number=1,
+        page_size=1,
+    ) # SnapshotDiffParams | 
+
+# example passing only required values which don't have defaults set
+try:
+	# Get diff between two snapshots of a given object.
+	api_response = client.objects.get_snapshot_diff(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ObjectsApi->get_snapshot_diff: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**|  |
+ **body** | [**SnapshotDiffParams**](SnapshotDiffParams.md)|  |
+
+### Return type
+
+[**SnapshotDiffResult**](SnapshotDiffResult.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -1543,7 +1889,7 @@ Perform an action on an object. Depending on the object environment type, differ
 ```python
 from cohesity_sdk import CohesityClientV2
 from cohesity_sdk.cohesity_client_v2.model.error import Error
-from cohesity_sdk.cohesity_client_v2.model.common_object_action_requeste14b183831254c12_ba17_d31a545f0cc3 import CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3
+from cohesity_sdk.cohesity_client_v2.model.object_action_request import ObjectActionRequest
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
 from pprint import pprint
 
@@ -1557,9 +1903,7 @@ client = CohesityClientV2(
 
 
 id = 1 # int | Specifies the id of the Object.
-body = CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3(
-        environment="kVMware",
-    ) # CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3 | Specifies the parameters to perform an action on an object.
+body = ObjectActionRequest() # ObjectActionRequest | Specifies the parameters to perform an action on an object.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1575,7 +1919,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Object. |
- **body** | [**CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3**](CommonObjectActionRequeste14b183831254c12Ba17D31a545f0cc3.md)| Specifies the parameters to perform an action on an object. |
+ **body** | [**ObjectActionRequest**](ObjectActionRequest.md)| Specifies the parameters to perform an action on an object. |
 
 ### Return type
 

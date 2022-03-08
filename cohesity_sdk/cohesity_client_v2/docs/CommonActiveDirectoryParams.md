@@ -5,7 +5,7 @@ Specifies the params of Active Directory which are used across creating and upda
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**machine_accounts** | [**[MachineAccount], none_type**](MachineAccount.md) | Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. | 
+**machine_accounts** | [**[MachineAccount], none_type**](MachineAccount.md) | Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. The first machine account is used as primary machine account and it can not be modified. | 
 **id** | **int, none_type** | Specifies the id of the Active Directory. | [optional] [readonly] 
 **organizational_unit_name** | **str, none_type** | Specifies an optional organizational unit name. | [optional] 
 **work_group_name** | **str, none_type** | Specifies a work group name. | [optional] 

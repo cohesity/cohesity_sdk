@@ -53,6 +53,7 @@ def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.physical_protection_group_params import PhysicalProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.pure_protection_group_params import PureProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
+    from cohesity_sdk.cohesity_client_v2.model.sfdc_protection_group_params import SfdcProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.uda_protection_group_params import UdaProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.view_protection_group_params import ViewProtectionGroupParams
     from cohesity_sdk.cohesity_client_v2.model.vmware_protection_group_params import VmwareProtectionGroupParams
@@ -82,6 +83,7 @@ def lazy_import():
     globals()['PhysicalProtectionGroupParams'] = PhysicalProtectionGroupParams
     globals()['PureProtectionGroupParams'] = PureProtectionGroupParams
     globals()['RemoteAdapterProtectionGroupParams'] = RemoteAdapterProtectionGroupParams
+    globals()['SfdcProtectionGroupParams'] = SfdcProtectionGroupParams
     globals()['UdaProtectionGroupParams'] = UdaProtectionGroupParams
     globals()['ViewProtectionGroupParams'] = ViewProtectionGroupParams
     globals()['VmwareProtectionGroupParams'] = VmwareProtectionGroupParams
@@ -166,6 +168,7 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
             'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
             'exchange_params': (ExchangeProtectionGroupParams,),  # noqa: E501
             'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
+            'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -206,6 +209,7 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
         'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -286,6 +290,7 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
             remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
             exchange_params (ExchangeProtectionGroupParams): [optional]  # noqa: E501
             uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
+            sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

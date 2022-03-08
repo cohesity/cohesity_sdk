@@ -65,6 +65,9 @@ class ObjectLastRunAllOf(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
+            'PAUSING': "Pausing",
+            'RESUMING': "Resuming",
         },
         ('archival_run_status',): {
             'None': None,
@@ -77,6 +80,9 @@ class ObjectLastRunAllOf(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
+            'PAUSING': "Pausing",
+            'RESUMING': "Resuming",
         },
         ('replication_run_status',): {
             'None': None,
@@ -89,6 +95,9 @@ class ObjectLastRunAllOf(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'PAUSED': "Paused",
+            'PAUSING': "Pausing",
+            'RESUMING': "Resuming",
         },
     }
 

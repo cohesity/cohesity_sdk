@@ -58,6 +58,7 @@ class CreateTenantParams(ModelNormal):
 
     validations = {
         ('tenant_id_suffix',): {
+            'max_length': 10,
             'regex': {
                 'pattern': r'^([a-zA-Z0-9]*)$',  # noqa: E501
             },

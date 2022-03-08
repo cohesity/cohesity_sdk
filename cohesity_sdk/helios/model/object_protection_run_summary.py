@@ -33,6 +33,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.cluster_identifier import ClusterIdentifier
     from cohesity_sdk.helios.model.object_identifier import ObjectIdentifier
     from cohesity_sdk.helios.model.object_protection_run_info import ObjectProtectionRunInfo
+    from cohesity_sdk.helios.model.on_prem_deploy_run import OnPremDeployRun
     from cohesity_sdk.helios.model.replication_run import ReplicationRun
     from cohesity_sdk.helios.model.tenant import Tenant
     globals()['ArchivalRun'] = ArchivalRun
@@ -41,6 +42,7 @@ def lazy_import():
     globals()['ClusterIdentifier'] = ClusterIdentifier
     globals()['ObjectIdentifier'] = ObjectIdentifier
     globals()['ObjectProtectionRunInfo'] = ObjectProtectionRunInfo
+    globals()['OnPremDeployRun'] = OnPremDeployRun
     globals()['ReplicationRun'] = ReplicationRun
     globals()['Tenant'] = Tenant
 
@@ -106,6 +108,7 @@ class ObjectProtectionRunSummary(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
         ('run_type',): {
             'None': None,
@@ -165,8 +168,10 @@ class ObjectProtectionRunSummary(ModelComposed):
             'replication_info': (ReplicationRun,),  # noqa: E501
             'archival_info': (ArchivalRun,),  # noqa: E501
             'cloud_spin_info': (CloudSpinRun,),  # noqa: E501
+            'on_prem_deploy_info': (OnPremDeployRun,),  # noqa: E501
             'on_legal_hold': (bool, none_type,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
+            'run_label': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -200,8 +205,10 @@ class ObjectProtectionRunSummary(ModelComposed):
         'replication_info': 'replicationInfo',  # noqa: E501
         'archival_info': 'archivalInfo',  # noqa: E501
         'cloud_spin_info': 'cloudSpinInfo',  # noqa: E501
+        'on_prem_deploy_info': 'onPremDeployInfo',  # noqa: E501
         'on_legal_hold': 'onLegalHold',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
+        'run_label': 'runLabel',  # noqa: E501
     }
 
     required_properties = set([
@@ -276,8 +283,10 @@ class ObjectProtectionRunSummary(ModelComposed):
             replication_info (ReplicationRun): [optional]  # noqa: E501
             archival_info (ArchivalRun): [optional]  # noqa: E501
             cloud_spin_info (CloudSpinRun): [optional]  # noqa: E501
+            on_prem_deploy_info (OnPremDeployRun): [optional]  # noqa: E501
             on_legal_hold (bool, none_type): Specifies if object's snapshot is on legal hold.. [optional]  # noqa: E501
-            data_lock (str, none_type): Specifies WORM retention type for the local backeup. When a  WORM retention type is specified, the snapshots of the Protection Groups  using this policy will be kept until the maximum of the snapshot retention  time. During that time, the snapshots cannot be deleted.  'Compliance'  implies WORM retention is set for compliance reason.  'Administrative'  implies WORM retention is set for administrative purposes.. [optional]  # noqa: E501
+            data_lock (str, none_type): Specifies WORM retention type for the local backeup. When a WORM retention type is specified, the snapshots of the Protection Groups using this policy will be kept until the maximum of the snapshot retention time. During that time, the snapshots cannot be deleted. <br>'Compliance' implies WORM retention is set for compliance reason. <br>'Administrative' implies WORM retention is set for administrative purposes.. [optional]  # noqa: E501
+            run_label (str, none_type): Specifies a label with which this run is created. Only applicable for user triggered protect now action.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

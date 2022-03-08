@@ -64,6 +64,12 @@ class RecoverVMwareFileAndFolderParams(ModelNormal):
     }
 
     validations = {
+        ('parent_recovery_id',): {
+            'regex': {
+                'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+            },
+        },
+
     }
 
     additional_properties_type = None
@@ -85,6 +91,7 @@ class RecoverVMwareFileAndFolderParams(ModelNormal):
             'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
             'vmware_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'parent_recovery_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +104,7 @@ class RecoverVMwareFileAndFolderParams(ModelNormal):
         'files_and_folders': 'filesAndFolders',  # noqa: E501
         'target_environment': 'targetEnvironment',  # noqa: E501
         'vmware_target_params': 'vmwareTargetParams',  # noqa: E501
+        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,6 +159,7 @@ class RecoverVMwareFileAndFolderParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             vmware_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover to a VMware target.. [optional]  # noqa: E501
+            parent_recovery_id (str, none_type): If current recovery is child task triggered through another parent recovery operation, then this field will specify the id of the parent recovery.. [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kVMware")

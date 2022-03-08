@@ -1,6 +1,6 @@
 # EnvSpecificObjectProtectionRequestParams
 
-Specifies the parameters which are specific to adapter identified by enviournment.
+Specifies the parameters which are specific to adapter identified by environment.
 
 ## Properties
 Name | Type | Description | Notes
@@ -14,7 +14,11 @@ Name | Type | Description | Notes
 **isilon_params** | [**IsilonObjectProtectionRequestParams**](IsilonObjectProtectionRequestParams.md) |  | [optional] 
 **flashblade_params** | [**FlashbladeObjectProtectionRequestParams**](FlashbladeObjectProtectionRequestParams.md) |  | [optional] 
 **mssql_params** | [**MssqlObjectProtectionRequestParams**](MssqlObjectProtectionRequestParams.md) |  | [optional] 
-**office365_user_mailbox_params** | [**Office365UserMailboxObjectProtectionRequestParams**](Office365UserMailboxObjectProtectionRequestParams.md) |  | [optional] 
+**oracle_params** | [**OracleObjectProtectionRequestParams**](OracleObjectProtectionRequestParams.md) |  | [optional] 
+**office365_params** | [**Office365ObjectProtectionRequestParams**](Office365ObjectProtectionRequestParams.md) |  | [optional] 
+**aws_params** | [**AwsObjectProtectionRequestParams**](AwsObjectProtectionRequestParams.md) |  | [optional] 
+**hyperv_params** | [**HyperVObjectProtectionRequestParams**](HyperVObjectProtectionRequestParams.md) |  | [optional] 
+**physical_params** | [**PhysicalObjectProtectionRequestParams**](PhysicalObjectProtectionRequestParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

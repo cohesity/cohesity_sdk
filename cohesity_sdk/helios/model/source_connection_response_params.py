@@ -75,6 +75,7 @@ class SourceConnectionResponseParams(ModelNormal):
             'KHBASE': "kHBase",
             'KHDFS': "kHdfs",
             'KSQL': "kSQL",
+            'KORACLE': "kOracle",
         },
     }
 
@@ -98,6 +99,7 @@ class SourceConnectionResponseParams(ModelNormal):
         lazy_import()
         return {
             'environment': (str, none_type,),  # noqa: E501
+            'connection_id': (int, none_type,),  # noqa: E501
             'cassandra_connection_response_params': (CassandraSourceConfigParams,),  # noqa: E501
             'hive_connection_response_params': (HiveAdditionalParams,),  # noqa: E501
             'hbase_connection_response_params': (HBaseAdditionalParams,),  # noqa: E501
@@ -114,6 +116,7 @@ class SourceConnectionResponseParams(ModelNormal):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
+        'connection_id': 'connectionId',  # noqa: E501
         'cassandra_connection_response_params': 'cassandraConnectionResponseParams',  # noqa: E501
         'hive_connection_response_params': 'hiveConnectionResponseParams',  # noqa: E501
         'hbase_connection_response_params': 'hbaseConnectionResponseParams',  # noqa: E501
@@ -172,6 +175,7 @@ class SourceConnectionResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             cassandra_connection_response_params (CassandraSourceConfigParams): [optional]  # noqa: E501
             hive_connection_response_params (HiveAdditionalParams): [optional]  # noqa: E501
             hbase_connection_response_params (HBaseAdditionalParams): [optional]  # noqa: E501

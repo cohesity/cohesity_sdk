@@ -21,8 +21,7 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_request_params6cc0a9973f4b47a8_a51f_bdda823aab75 import CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_response_params8c60ab25210e4ab097394c9e12eb86fb import CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
+from cohesity_sdk.cohesity_client_v2.model.create_recovery_request import CreateRecoveryRequest
 from cohesity_sdk.cohesity_client_v2.model.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
 from cohesity_sdk.cohesity_client_v2.model.error import Error
 from cohesity_sdk.cohesity_client_v2.model.recoveries import Recoveries
@@ -306,7 +305,7 @@ class RecoveriesApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75): Specifies the parameters to create a Recovery.
+                body (CreateRecoveryRequest): Specifies the parameters to create a Recovery.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -330,7 +329,7 @@ class RecoveriesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -359,7 +358,7 @@ class RecoveriesApi(object):
 
         self.create_recovery = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
         
@@ -391,7 +390,7 @@ class RecoveriesApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75,),
+                        (CreateRecoveryRequest,),
                 },
                 'attribute_map': {
                 },
@@ -896,6 +895,7 @@ class RecoveriesApi(object):
                         "RECOVERVMDISKS": "RecoverVmDisks",
                         "RECOVERVAPPS": "RecoverVApps",
                         "RECOVERVAPPTEMPLATES": "RecoverVAppTemplates",
+                        "UPTIERSNAPSHOT": "UptierSnapshot",
                         "RECOVERRDS": "RecoverRDS",
                         "RECOVERAURORA": "RecoverAurora",
                         "RECOVERAPPS": "RecoverApps",
@@ -1030,7 +1030,7 @@ class RecoveriesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1059,7 +1059,7 @@ class RecoveriesApi(object):
 
         self.get_recovery_by_id = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
         
@@ -1250,6 +1250,134 @@ class RecoveriesApi(object):
             },
             api_client=api_client,
             callable=__get_recovery_debug_logs
+        )
+
+        def __get_recovery_errors_report(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get the CSV of errors/warnings for a given recovery operation.  # noqa: E501
+
+            Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_recovery_errors_report(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies a unique ID of a Recovery.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_recovery_errors_report = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/recoveries/{id}/download-messages',
+                'operation_id': 'get_recovery_errors_report',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'id',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_recovery_errors_report
         )
 
         def __tear_down_recovery_by_id(

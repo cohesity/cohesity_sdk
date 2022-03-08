@@ -87,6 +87,7 @@ class VolumeInfo(ModelNormal):
             'filesystem_uuid': (str, none_type,),  # noqa: E501
             'volume_guid': (str, none_type,),  # noqa: E501
             'volume_size_in_bytes': (int, none_type,),  # noqa: E501
+            'is_dedupe': (bool, none_type,),  # noqa: E501
             'logical_volume_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -104,6 +105,7 @@ class VolumeInfo(ModelNormal):
         'filesystem_uuid': 'filesystemUuid',  # noqa: E501
         'volume_guid': 'volumeGuid',  # noqa: E501
         'volume_size_in_bytes': 'volumeSizeInBytes',  # noqa: E501
+        'is_dedupe': 'isDedupe',  # noqa: E501
         'logical_volume_info': 'logicalVolumeInfo',  # noqa: E501
     }
 
@@ -161,6 +163,7 @@ class VolumeInfo(ModelNormal):
             filesystem_uuid (str, none_type): Specifies the filesystem uuid.. [optional]  # noqa: E501
             volume_guid (str, none_type): Specifies the volume guid.. [optional]  # noqa: E501
             volume_size_in_bytes (int, none_type): Specifies volume size in bytes.. [optional]  # noqa: E501
+            is_dedupe (bool, none_type): Specifies if this is NTFS dedupe volume. [optional]  # noqa: E501
             logical_volume_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the logical volume info. This fields is for 'LVM' and 'LDM' volume type only.. [optional]  # noqa: E501
         """
 

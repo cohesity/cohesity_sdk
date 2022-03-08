@@ -152,7 +152,7 @@ class TargetSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the copy schedule.   For example if set to 2 and the unit is hourly, then Snapshots from the first eligible Job Run for every 2 hour period is copied.. [optional]  # noqa: E501
+            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the copy schedule. For example if set to 2 and the unit is hourly, then Snapshots from the first eligible Job Run for every 2 hour period is copied.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

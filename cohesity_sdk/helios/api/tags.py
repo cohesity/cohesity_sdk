@@ -56,6 +56,8 @@ class TagsApi(object):
                 body (Tag): Request to create a Tag.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -120,6 +122,8 @@ class TagsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -139,11 +143,19 @@ class TagsApi(object):
                 'openapi_types': {
                     'body':
                         (Tag,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -178,6 +190,8 @@ class TagsApi(object):
                 id (str): Specifies the Id of the tag.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -242,6 +256,8 @@ class TagsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -268,12 +284,20 @@ class TagsApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -306,6 +330,8 @@ class TagsApi(object):
                 id (str): Specifies the Id of the tag.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -370,6 +396,8 @@ class TagsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -396,12 +424,20 @@ class TagsApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -422,7 +458,7 @@ class TagsApi(object):
         ):
             """Get tags based on filters.  # noqa: E501
 
-            If no parameters are specified, all tags are returned.   Specifying parameters filters the results that are returned.  # noqa: E501
+            If no parameters are specified, all tags are returned. Specifying parameters filters the results that are returned.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -431,12 +467,14 @@ class TagsApi(object):
 
 
             Keyword Args:
-                ids ([str]): Filter by a list of Tag Ids. If Ids are mentioned all other fields   will be ignored.. [optional]
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                ids ([str]): Filter by a list of Tag Ids. If Ids are mentioned all other fields will be ignored.. [optional]
                 names ([str]): Filter by a list of Tag names.. [optional]
                 namespaces ([str]): Filter by a list of Namespaces.. [optional]
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which tags are to be   returned.. [optional]
-                include_tenants (bool): IncludeTenants specifies if tags of all the tenants under the   hierarchy of the logged in user's organization should be returned.   False, by default.. [optional]
-                include_marked_for_deletion (bool): Specifies if tags marked for deletion should be shown. These are   tags which are undergoing deletion. False, by default.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which tags are to be returned.. [optional]
+                include_tenants (bool): IncludeTenants specifies if tags of all the tenants under the hierarchy of the logged in user's organization should be returned. False, by default.. [optional]
+                include_marked_for_deletion (bool): Specifies if tags marked for deletion should be shown. These are tags which are undergoing deletion. False, by default.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -498,6 +536,8 @@ class TagsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'names',
                     'namespaces',
@@ -519,6 +559,10 @@ class TagsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                     'names':
@@ -533,6 +577,8 @@ class TagsApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'names': 'names',
                     'namespaces': 'namespaces',
@@ -541,6 +587,8 @@ class TagsApi(object):
                     'include_marked_for_deletion': 'includeMarkedForDeletion',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'names': 'query',
                     'namespaces': 'query',
@@ -585,6 +633,8 @@ class TagsApi(object):
                 body (Tag): Request to update a tag.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -652,6 +702,8 @@ class TagsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -681,13 +733,21 @@ class TagsApi(object):
                         (str,),
                     'body':
                         (Tag,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

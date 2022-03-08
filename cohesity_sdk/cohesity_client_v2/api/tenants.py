@@ -21,6 +21,7 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cohesity_client_v2.model.create_tenant_params_with_network import CreateTenantParamsWithNetwork
 from cohesity_sdk.cohesity_client_v2.model.error import Error
 from cohesity_sdk.cohesity_client_v2.model.on_prem_tenant_config import OnPremTenantConfig
 from cohesity_sdk.cohesity_client_v2.model.register_swift_params import RegisterSwiftParams
@@ -31,7 +32,6 @@ from cohesity_sdk.cohesity_client_v2.model.tenant_assignments import TenantAssig
 from cohesity_sdk.cohesity_client_v2.model.tenant_assignments_params import TenantAssignmentsParams
 from cohesity_sdk.cohesity_client_v2.model.tenant_info import TenantInfo
 from cohesity_sdk.cohesity_client_v2.model.tenants_info import TenantsInfo
-#from cohesity_sdk.cohesity_client_v2.model.unknownbasetype import UNKNOWNBASETYPE
 from cohesity_sdk.cohesity_client_v2.model.unregister_swift_params import UnregisterSwiftParams
 from cohesity_sdk.cohesity_client_v2.model.update_tenant_body import UpdateTenantBody
 
@@ -145,10 +145,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -194,7 +201,7 @@ class TenantsApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UNKNOWN_BASE_TYPE):
+                body (CreateTenantParamsWithNetwork):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -279,7 +286,7 @@ class TenantsApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (UNKNOWN_BASE_TYPE,),
+                        (CreateTenantParamsWithNetwork,),
                 },
                 'attribute_map': {
                 },
@@ -391,10 +398,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -512,10 +526,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -741,10 +762,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -1022,9 +1050,9 @@ class TenantsApi(object):
             body,
             **kwargs
         ):
-            """Perform actions like activate and deactivate on a given Tenant.  # noqa: E501
+            """Perform actions on a Tenant.  # noqa: E501
 
-            Perform actions on a Tenant.  # noqa: E501
+            Perform actions like activate and deactivate on a given Tenant.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1113,10 +1141,17 @@ class TenantsApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]+\/)$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },

@@ -35,11 +35,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = NodeGroupRequest() # NodeGroupRequest | Request to create a Node Group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a Node Group.
 	api_response = client.node_groups.create_node_group(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling NodeGroupsApi->create_node_group: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a Node Group.
+	api_response = client.node_groups.create_node_group(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling NodeGroupsApi->create_node_group: %s\n" % e)
@@ -51,6 +62,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**NodeGroupRequest**](NodeGroupRequest.md)| Request to create a Node Group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -97,11 +110,21 @@ client = HeliosClient(api_key=api_key)
 
 
 group_name = "groupName_example" # str | Specifies a unique name of the Node Group to delete.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Node Group.
 	client.node_groups.delete_node_group(group_name)
+except ApiException as e:
+	print("Exception when calling NodeGroupsApi->delete_node_group: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Node Group.
+	client.node_groups.delete_node_group(group_name, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling NodeGroupsApi->delete_node_group: %s\n" % e)
 ```
@@ -112,6 +135,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_name** | **str**| Specifies a unique name of the Node Group to delete. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -159,11 +184,22 @@ client = HeliosClient(api_key=api_key)
 
 
 group_name = "groupName_example" # str | Specifies a unique id of Node Group to return.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# List Node Groups for a given Group Name.
 	api_response = client.node_groups.get_node_group_by_name(group_name)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling NodeGroupsApi->get_node_group_by_name: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List Node Groups for a given Group Name.
+	api_response = client.node_groups.get_node_group_by_name(group_name, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling NodeGroupsApi->get_node_group_by_name: %s\n" % e)
@@ -175,6 +211,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_name** | **str**| Specifies a unique id of Node Group to return. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -221,6 +259,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 group_names = [
         "groupNames_example",
     ] # [str] | Filter node groups by a list of node group names. (optional)
@@ -230,7 +270,7 @@ group_type = 1 # int | Filter node groups by a node group type. (optional)
 # and optional values
 try:
 	# List Node Groups based on provided filtering parameters.
-	api_response = client.node_groups.get_node_groups(group_names=group_names, group_type=group_type)
+	api_response = client.node_groups.get_node_groups(access_cluster_id=access_cluster_id, region_id=region_id, group_names=group_names, group_type=group_type)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling NodeGroupsApi->get_node_groups: %s\n" % e)
@@ -241,6 +281,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **group_names** | **[str]**| Filter node groups by a list of node group names. | [optional]
  **group_type** | **int**| Filter node groups by a node group type. | [optional]
 
@@ -292,11 +334,22 @@ client = HeliosClient(api_key=api_key)
 
 group_name = "groupName_example" # str | Specifies a unique name of the Node Group to update.
 body = NodeGroupRequest() # NodeGroupRequest | Request to update a Node Group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Node Group.
 	api_response = client.node_groups.update_node_group(group_name, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling NodeGroupsApi->update_node_group: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Node Group.
+	api_response = client.node_groups.update_node_group(group_name, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling NodeGroupsApi->update_node_group: %s\n" % e)
@@ -309,6 +362,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group_name** | **str**| Specifies a unique name of the Node Group to update. |
  **body** | [**NodeGroupRequest**](NodeGroupRequest.md)| Request to update a Node Group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

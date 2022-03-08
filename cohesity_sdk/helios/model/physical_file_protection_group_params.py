@@ -95,6 +95,7 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
             'pre_post_script': (PrePostScriptParams,),  # noqa: E501
             'dedup_exclusion_source_ids': ([int],),  # noqa: E501
             'global_exclude_paths': ([str],),  # noqa: E501
+            'global_exclude_fs': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +113,7 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
         'pre_post_script': 'prePostScript',  # noqa: E501
         'dedup_exclusion_source_ids': 'dedupExclusionSourceIds',  # noqa: E501
         'global_exclude_paths': 'globalExcludePaths',  # noqa: E501
+        'global_exclude_fs': 'globalExcludeFS',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -171,6 +173,7 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
             pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
             dedup_exclusion_source_ids ([int]): Specifies ids of sources for which deduplication has to be disabled.. [optional]  # noqa: E501
             global_exclude_paths ([str]): Specifies global exclude filters which are applied to all sources in a job.. [optional]  # noqa: E501
+            global_exclude_fs ([str]): Specifies global exclude filesystems which are applied to all sources in a job.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

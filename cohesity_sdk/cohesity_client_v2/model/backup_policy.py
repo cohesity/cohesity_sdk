@@ -31,10 +31,12 @@ def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.cdp_backup_policy import CdpBackupPolicy
     from cohesity_sdk.cohesity_client_v2.model.log_backup_policy import LogBackupPolicy
     from cohesity_sdk.cohesity_client_v2.model.regular_backup_policy import RegularBackupPolicy
+    from cohesity_sdk.cohesity_client_v2.model.storage_snapshot_mgmt_backup_policy import StorageSnapshotMgmtBackupPolicy
     globals()['BmrBackupPolicy'] = BmrBackupPolicy
     globals()['CdpBackupPolicy'] = CdpBackupPolicy
     globals()['LogBackupPolicy'] = LogBackupPolicy
     globals()['RegularBackupPolicy'] = RegularBackupPolicy
+    globals()['StorageSnapshotMgmtBackupPolicy'] = StorageSnapshotMgmtBackupPolicy
 
 
 class BackupPolicy(ModelNormal):
@@ -89,6 +91,7 @@ class BackupPolicy(ModelNormal):
             'log': (LogBackupPolicy,),  # noqa: E501
             'bmr': (BmrBackupPolicy,),  # noqa: E501
             'cdp': (CdpBackupPolicy,),  # noqa: E501
+            'storage_snapshot_mgmt': (StorageSnapshotMgmtBackupPolicy,),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +105,7 @@ class BackupPolicy(ModelNormal):
         'log': 'log',  # noqa: E501
         'bmr': 'bmr',  # noqa: E501
         'cdp': 'cdp',  # noqa: E501
+        'storage_snapshot_mgmt': 'storageSnapshotMgmt',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,6 +161,7 @@ class BackupPolicy(ModelNormal):
             log (LogBackupPolicy): [optional]  # noqa: E501
             bmr (BmrBackupPolicy): [optional]  # noqa: E501
             cdp (CdpBackupPolicy): [optional]  # noqa: E501
+            storage_snapshot_mgmt (StorageSnapshotMgmtBackupPolicy): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

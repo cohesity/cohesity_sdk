@@ -282,9 +282,7 @@ class AuditLogApi(object):
                         "APPLY": "Apply",
                         "REVERT": "Revert",
                         "IMPORT": "Import",
-                        "VALIDATE": "Validate",
-                        "CLUSTEREXPAND": "ClusterExpand",
-                        "FETCH": "Fetch"
+                        "VALIDATE": "Validate"
                     },
                 },
                 'openapi_types': {

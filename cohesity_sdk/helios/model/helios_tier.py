@@ -56,8 +56,8 @@ class HeliosTier(ModelNormal):
     allowed_values = {
         ('type',): {
             'None': None,
-            'S3': "S3",
-            'GLACIER': "Glacier",
+            'KAMAZONS3STANDARD': "kAmazonS3Standard",
+            'KAMAZONS3GLACIER': "kAmazonS3Glacier",
         },
         ('unit',): {
             'None': None,

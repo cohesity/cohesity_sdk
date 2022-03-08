@@ -32,11 +32,13 @@ def lazy_import():
     from cohesity_sdk.helios.model.file_size_policy import FileSizePolicy
     from cohesity_sdk.helios.model.uptiering_file_age_policy import UptieringFileAgePolicy
     from cohesity_sdk.helios.model.uptiering_policy_all_of import UptieringPolicyAllOf
+    from cohesity_sdk.helios.model.uptiering_target import UptieringTarget
     globals()['CommonTieringPolicy'] = CommonTieringPolicy
     globals()['FileFilteringPolicy'] = FileFilteringPolicy
     globals()['FileSizePolicy'] = FileSizePolicy
     globals()['UptieringFileAgePolicy'] = UptieringFileAgePolicy
     globals()['UptieringPolicyAllOf'] = UptieringPolicyAllOf
+    globals()['UptieringTarget'] = UptieringTarget
 
 
 class UptieringPolicy(ModelComposed):
@@ -89,6 +91,7 @@ class UptieringPolicy(ModelComposed):
         return {
             'file_age': (UptieringFileAgePolicy,),  # noqa: E501
             'include_all_files': (bool, none_type,),  # noqa: E501
+            'target': (UptieringTarget,),  # noqa: E501
             'enable_audit_logging': (bool, none_type,),  # noqa: E501
             'file_size': (FileSizePolicy,),  # noqa: E501
             'file_path': (FileFilteringPolicy,),  # noqa: E501
@@ -103,6 +106,7 @@ class UptieringPolicy(ModelComposed):
     attribute_map = {
         'file_age': 'fileAge',  # noqa: E501
         'include_all_files': 'includeAllFiles',  # noqa: E501
+        'target': 'target',  # noqa: E501
         'enable_audit_logging': 'enableAuditLogging',  # noqa: E501
         'file_size': 'fileSize',  # noqa: E501
         'file_path': 'filePath',  # noqa: E501
@@ -157,7 +161,8 @@ class UptieringPolicy(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             file_age (UptieringFileAgePolicy): [optional]  # noqa: E501
-            include_all_files (bool, none_type): If set, all files in the view will be uptiered regardless of   file_select_policy, num_file_access, hot_file_window, file_size   constraints.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            include_all_files (bool, none_type): If set, all files in the view will be uptiered regardless of file_select_policy, num_file_access, hot_file_window, file_size constraints.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            target (UptieringTarget): [optional]  # noqa: E501
             enable_audit_logging (bool, none_type): Specifies whether to audit log the file tiering activity.. [optional] if omitted the server will use the default value of False  # noqa: E501
             file_size (FileSizePolicy): [optional]  # noqa: E501
             file_path (FileFilteringPolicy): [optional]  # noqa: E501

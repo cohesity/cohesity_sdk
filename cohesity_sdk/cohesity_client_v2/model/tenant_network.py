@@ -103,8 +103,11 @@ class TenantNetwork(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, connector_enabled, *args, **kwargs):  # noqa: E501
         """TenantNetwork - a model defined in OpenAPI
+
+        Args:
+            connector_enabled (bool, none_type): Whether connector (hybrid extender) is enabled.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -138,7 +141,6 @@ class TenantNetwork(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            connector_enabled (bool, none_type): Whether connector (hybrid extender) is enabled.. [optional]  # noqa: E501
             cluster_hostname (str, none_type): The hostname for Cohesity cluster as seen by tenants and as is routable from the tenant's network. Tenant's VLAN's hostname, if available can be used instead but it is mandatory to provide this value if there's no VLAN hostname to use. Also, when set, this field would take precedence over VLAN hostname.. [optional]  # noqa: E501
             cluster_ips ([str, none_type], none_type): Set of IPs as seen from the tenant's network for the Cohesity cluster. Only one from 'clusterHostname' and 'clusterIps' is needed.. [optional]  # noqa: E501
         """
@@ -167,6 +169,7 @@ class TenantNetwork(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.connector_enabled = connector_enabled
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

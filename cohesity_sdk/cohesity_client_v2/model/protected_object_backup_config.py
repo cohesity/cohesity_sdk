@@ -27,30 +27,40 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cohesity_client_v2.model.aws_object_protection_response_params import AwsObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.common_object_protect_params import CommonObjectProtectParams
     from cohesity_sdk.cohesity_client_v2.model.elastifile_object_protection_response_params import ElastifileObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.env_specific_object_protection_response_params import EnvSpecificObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.flashblade_object_protection_response_params import FlashbladeObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.generic_nas_object_protection_response_params import GenericNasObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.gpfs_object_protection_response_params import GpfsObjectProtectionResponseParams
+    from cohesity_sdk.cohesity_client_v2.model.hyper_v_object_protection_response_params import HyperVObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.isilon_object_protection_response_params import IsilonObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.mssql_object_protection_response_params import MssqlObjectProtectionResponseParams
     from cohesity_sdk.cohesity_client_v2.model.netapp_object_protection_response_params import NetappObjectProtectionResponseParams
-    from cohesity_sdk.cohesity_client_v2.model.office365_user_mailbox_object_protection_response_params import Office365UserMailboxObjectProtectionResponseParams
+    from cohesity_sdk.cohesity_client_v2.model.office365_object_protection_response_params import Office365ObjectProtectionResponseParams
+    from cohesity_sdk.cohesity_client_v2.model.oracle_object_protection_response_params import OracleObjectProtectionResponseParams
+    from cohesity_sdk.cohesity_client_v2.model.physical_object_protection_response_params import PhysicalObjectProtectionResponseParams
+    from cohesity_sdk.cohesity_client_v2.model.policy_config import PolicyConfig
     from cohesity_sdk.cohesity_client_v2.model.protected_object_backup_config_all_of import ProtectedObjectBackupConfigAllOf
     from cohesity_sdk.cohesity_client_v2.model.sla_rule import SlaRule
     from cohesity_sdk.cohesity_client_v2.model.time_of_day import TimeOfDay
     from cohesity_sdk.cohesity_client_v2.model.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
+    globals()['AwsObjectProtectionResponseParams'] = AwsObjectProtectionResponseParams
     globals()['CommonObjectProtectParams'] = CommonObjectProtectParams
     globals()['ElastifileObjectProtectionResponseParams'] = ElastifileObjectProtectionResponseParams
     globals()['EnvSpecificObjectProtectionResponseParams'] = EnvSpecificObjectProtectionResponseParams
     globals()['FlashbladeObjectProtectionResponseParams'] = FlashbladeObjectProtectionResponseParams
     globals()['GenericNasObjectProtectionResponseParams'] = GenericNasObjectProtectionResponseParams
     globals()['GpfsObjectProtectionResponseParams'] = GpfsObjectProtectionResponseParams
+    globals()['HyperVObjectProtectionResponseParams'] = HyperVObjectProtectionResponseParams
     globals()['IsilonObjectProtectionResponseParams'] = IsilonObjectProtectionResponseParams
     globals()['MssqlObjectProtectionResponseParams'] = MssqlObjectProtectionResponseParams
     globals()['NetappObjectProtectionResponseParams'] = NetappObjectProtectionResponseParams
-    globals()['Office365UserMailboxObjectProtectionResponseParams'] = Office365UserMailboxObjectProtectionResponseParams
+    globals()['Office365ObjectProtectionResponseParams'] = Office365ObjectProtectionResponseParams
+    globals()['OracleObjectProtectionResponseParams'] = OracleObjectProtectionResponseParams
+    globals()['PhysicalObjectProtectionResponseParams'] = PhysicalObjectProtectionResponseParams
+    globals()['PolicyConfig'] = PolicyConfig
     globals()['ProtectedObjectBackupConfigAllOf'] = ProtectedObjectBackupConfigAllOf
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
@@ -106,6 +116,10 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
@@ -121,6 +135,12 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -129,6 +149,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 
@@ -152,12 +173,14 @@ class ProtectedObjectBackupConfig(ModelComposed):
         lazy_import()
         return {
             'policy_id': (str, none_type,),  # noqa: E501
+            'policy_config': (PolicyConfig,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'start_time': (TimeOfDay,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionResponseParams,),  # noqa: E501
             'generic_nas_params': (GenericNasObjectProtectionResponseParams,),  # noqa: E501
@@ -167,7 +190,11 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'isilon_params': (IsilonObjectProtectionResponseParams,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionResponseParams,),  # noqa: E501
             'mssql_params': (MssqlObjectProtectionResponseParams,),  # noqa: E501
-            'office365_user_mailbox_params': (Office365UserMailboxObjectProtectionResponseParams,),  # noqa: E501
+            'oracle_params': (OracleObjectProtectionResponseParams,),  # noqa: E501
+            'office365_params': (Office365ObjectProtectionResponseParams,),  # noqa: E501
+            'aws_params': (AwsObjectProtectionResponseParams,),  # noqa: E501
+            'hyperv_params': (HyperVObjectProtectionResponseParams,),  # noqa: E501
+            'physical_params': (PhysicalObjectProtectionResponseParams,),  # noqa: E501
             'is_auto_protect_config': (bool, none_type,),  # noqa: E501
             'auto_protect_parent_id': (int, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
@@ -182,12 +209,14 @@ class ProtectedObjectBackupConfig(ModelComposed):
 
     attribute_map = {
         'policy_id': 'policyId',  # noqa: E501
+        'policy_config': 'policyConfig',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'start_time': 'startTime',  # noqa: E501
         'priority': 'priority',  # noqa: E501
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
@@ -197,7 +226,11 @@ class ProtectedObjectBackupConfig(ModelComposed):
         'isilon_params': 'isilonParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
-        'office365_user_mailbox_params': 'office365UserMailboxParams',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
         'is_auto_protect_config': 'isAutoProtectConfig',  # noqa: E501
         'auto_protect_parent_id': 'autoProtectParentId',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
@@ -217,11 +250,8 @@ class ProtectedObjectBackupConfig(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, policy_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ProtectedObjectBackupConfig - a model defined in OpenAPI
-
-        Args:
-            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -255,12 +285,15 @@ class ProtectedObjectBackupConfig(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
+            policy_config (PolicyConfig): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
             start_time (TimeOfDay): [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
             sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionResponseParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasObjectProtectionResponseParams): [optional]  # noqa: E501
@@ -270,7 +303,11 @@ class ProtectedObjectBackupConfig(ModelComposed):
             isilon_params (IsilonObjectProtectionResponseParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionResponseParams): [optional]  # noqa: E501
             mssql_params (MssqlObjectProtectionResponseParams): [optional]  # noqa: E501
-            office365_user_mailbox_params (Office365UserMailboxObjectProtectionResponseParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectProtectionResponseParams): [optional]  # noqa: E501
+            office365_params (Office365ObjectProtectionResponseParams): [optional]  # noqa: E501
+            aws_params (AwsObjectProtectionResponseParams): [optional]  # noqa: E501
+            hyperv_params (HyperVObjectProtectionResponseParams): [optional]  # noqa: E501
+            physical_params (PhysicalObjectProtectionResponseParams): [optional]  # noqa: E501
             is_auto_protect_config (bool, none_type): Specifies whether or not this configuration is applied to an autoprotected object rather than this specific object.. [optional]  # noqa: E501
             auto_protect_parent_id (int, none_type): Specifies the parent ID of the object which the backup configuration is applied to if this is an auto protect config.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies whether or not protection has been paused on this object.. [optional]  # noqa: E501
@@ -309,7 +346,6 @@ class ProtectedObjectBackupConfig(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'policy_id': policy_id,
         }
         model_args = {}
         model_args.update(required_args)

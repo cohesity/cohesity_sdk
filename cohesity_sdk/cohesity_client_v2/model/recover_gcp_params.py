@@ -85,7 +85,6 @@ class RecoverGcpParams(ModelNormal):
             'recovery_action': (str,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recover_vm_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,7 +97,6 @@ class RecoverGcpParams(ModelNormal):
         'recovery_action': 'recoveryAction',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'recover_vm_params': 'recoverVmParams',  # noqa: E501
-        'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,7 +151,6 @@ class RecoverGcpParams(ModelNormal):
 
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run.. [optional]  # noqa: E501
             recover_vm_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover GCP VM.. [optional]  # noqa: E501
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
         """
 
         recovery_action = kwargs.get('recovery_action', "RecoverVMs")

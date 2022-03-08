@@ -107,6 +107,8 @@ class CommonMssqlNativeObjectProtectionParams(ModelComposed):
             'full_backups_copy_only': (bool, none_type,),  # noqa: E501
             'pre_post_script': (PrePostScriptParams,),  # noqa: E501
             'exclude_filters': ([Filter], none_type,),  # noqa: E501
+            'log_backup_num_streams': (int, none_type,),  # noqa: E501
+            'log_backup_with_clause': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -125,6 +127,8 @@ class CommonMssqlNativeObjectProtectionParams(ModelComposed):
         'full_backups_copy_only': 'fullBackupsCopyOnly',  # noqa: E501
         'pre_post_script': 'prePostScript',  # noqa: E501
         'exclude_filters': 'excludeFilters',  # noqa: E501
+        'log_backup_num_streams': 'logBackupNumStreams',  # noqa: E501
+        'log_backup_with_clause': 'logBackupWithClause',  # noqa: E501
     }
 
     required_properties = set([
@@ -184,6 +188,8 @@ class CommonMssqlNativeObjectProtectionParams(ModelComposed):
             full_backups_copy_only (bool, none_type): Specifies whether full backups should be copy-only.. [optional]  # noqa: E501
             pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
             exclude_filters ([Filter], none_type): Specifies the list of exclusion filters applied during the group creation or edit. These exclusion filters can be wildcard supported strings or regular expressions. Objects satisfying the will filters will be excluded during backup and also auto protected objects will be ignored if filtered by any of the filters.. [optional]  # noqa: E501
+            log_backup_num_streams (int, none_type): Specifies the number of streams to be used for log backups.. [optional]  # noqa: E501
+            log_backup_with_clause (str, none_type): Specifies the WithClause to be used for log backups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

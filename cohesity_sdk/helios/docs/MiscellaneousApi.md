@@ -47,11 +47,22 @@ body = FilterObjectsRequest(
         ],
         include_tenants=False,
     ) # FilterObjectsRequest | Specifies the parameters to filter objects.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# List all the filtered objects.
 	api_response = client.miscellaneous.filter_objects(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MiscellaneousApi->filter_objects: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List all the filtered objects.
+	api_response = client.miscellaneous.filter_objects(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MiscellaneousApi->filter_objects: %s\n" % e)
@@ -63,6 +74,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**FilterObjectsRequest**](FilterObjectsRequest.md)| Specifies the parameters to filter objects. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

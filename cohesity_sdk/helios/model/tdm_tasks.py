@@ -27,10 +27,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.common_tdm_task_response_paramsf8ee32ff963c4a329255_cc254d7965f7 import CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7
     from cohesity_sdk.helios.model.pagination_info import PaginationInfo
-    globals()['CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7'] = CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7
+    from cohesity_sdk.helios.model.tdm_task import TdmTask
     globals()['PaginationInfo'] = PaginationInfo
+    globals()['TdmTask'] = TdmTask
 
 
 class TdmTasks(ModelNormal):
@@ -81,7 +81,7 @@ class TdmTasks(ModelNormal):
         """
         lazy_import()
         return {
-            'tasks': ([CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7], none_type,),  # noqa: E501
+            'tasks': ([TdmTask], none_type,),  # noqa: E501
             'pagination_info': (PaginationInfo,),  # noqa: E501
         }
 
@@ -143,7 +143,7 @@ class TdmTasks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            tasks ([CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7], none_type): Specifies the collection of TDM tasks, filtered by the specified criteria.. [optional]  # noqa: E501
+            tasks ([TdmTask], none_type): Specifies the collection of TDM tasks, filtered by the specified criteria.. [optional]  # noqa: E501
             pagination_info (PaginationInfo): [optional]  # noqa: E501
         """
 

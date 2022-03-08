@@ -19,6 +19,9 @@ Method | HTTP request | Description
 [**get_chassis**](PlatformApi.md#get_chassis) | **GET** /chassis | Get list of chassis
 [**get_chassis_by_id**](PlatformApi.md#get_chassis_by_id) | **GET** /chassis/{id} | Get a chassis by chassis id.
 [**get_cluster**](PlatformApi.md#get_cluster) | **GET** /clusters | Retrieve Cluster Configuration
+[**get_cluster_local_domain_sid**](PlatformApi.md#get_cluster_local_domain_sid) | **GET** /clusters/local-domain-sid | Get Cluster Local Domain SID
+[**get_cluster_ui_config**](PlatformApi.md#get_cluster_ui_config) | **GET** /clusters/ui-config | Get cluster UI Config.
+[**get_is_d_maa_s_cluster**](PlatformApi.md#get_is_d_maa_s_cluster) | **GET** /clusters/is-dmaas | Get whether the cluster is a DMaaS cluster.
 [**get_network_interfaces**](PlatformApi.md#get_network_interfaces) | **GET** /network-interfaces | Get list of interfaces
 [**get_rack_by_id**](PlatformApi.md#get_rack_by_id) | **GET** /racks/{id} | Get a rack by rack id.
 [**get_racks**](PlatformApi.md#get_racks) | **GET** /racks | Get list of racks
@@ -33,6 +36,7 @@ Method | HTTP request | Description
 [**get_syslog_servers**](PlatformApi.md#get_syslog_servers) | **GET** /syslogs | Get list of syslog servers.
 [**identify_node**](PlatformApi.md#identify_node) | **POST** /nodes/{id}/identify | Identify node
 [**list_disks**](PlatformApi.md#list_disks) | **GET** /disks/local | Get list of disks
+[**list_feature_flag**](PlatformApi.md#list_feature_flag) | **GET** /clusters/feature-flag | Get feature flag overrides list.
 [**mark_disk_removal**](PlatformApi.md#mark_disk_removal) | **POST** /disks/{id}/remove | Mark Disk for removal
 [**mark_node_removal**](PlatformApi.md#mark_node_removal) | **POST** /nodes/{id}/remove | Mark Node for removal
 [**patch_syslog_server_by_id**](PlatformApi.md#patch_syslog_server_by_id) | **PATCH** /syslogs/{id} | Patch a syslog server by id.
@@ -45,6 +49,9 @@ Method | HTTP request | Description
 [**update_chassis_by_id**](PlatformApi.md#update_chassis_by_id) | **PATCH** /chassis/{id} | Update a chassis by chassis id.
 [**update_cluster**](PlatformApi.md#update_cluster) | **PUT** /clusters | Update a cluster.
 [**update_cluster_bifrost_config**](PlatformApi.md#update_cluster_bifrost_config) | **PUT** /clusters/bifrost-config | Update cluster Bifrost config.
+[**update_cluster_ui_config**](PlatformApi.md#update_cluster_ui_config) | **PUT** /clusters/ui-config | Update cluster UI Config.
+[**update_feature_flag**](PlatformApi.md#update_feature_flag) | **PUT** /clusters/feature-flag | Update feature flag override status.
+[**update_is_d_maa_s_cluster**](PlatformApi.md#update_is_d_maa_s_cluster) | **PUT** /clusters/is-dmaas | Update whether the cluster is a DMaaS cluster.
 [**update_rack_by_id**](PlatformApi.md#update_rack_by_id) | **PATCH** /racks/{id} | 
 [**update_racks**](PlatformApi.md#update_racks) | **PATCH** /racks | Update racks
 [**update_remote_storage_registration**](PlatformApi.md#update_remote_storage_registration) | **PATCH** /remote-storage/{id} | Update Remote Storage Config
@@ -1224,6 +1231,192 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_cluster_local_domain_sid**
+> ClusterLocalDomainSID get_cluster_local_domain_sid()
+
+Get Cluster Local Domain SID
+
+Fetch SID of cluster local domain.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.cluster_local_domain_sid import ClusterLocalDomainSID
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get Cluster Local Domain SID
+	api_response = client.platform.get_cluster_local_domain_sid()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_cluster_local_domain_sid: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ClusterLocalDomainSID**](ClusterLocalDomainSID.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cluster_ui_config**
+> ClusterUiConfig get_cluster_ui_config()
+
+Get cluster UI Config.
+
+Get customized UI config for the cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.cluster_ui_config import ClusterUiConfig
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get cluster UI Config.
+	api_response = client.platform.get_cluster_ui_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_cluster_ui_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ClusterUiConfig**](ClusterUiConfig.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_is_d_maa_s_cluster**
+> DMaaSInfo get_is_d_maa_s_cluster()
+
+Get whether the cluster is a DMaaS cluster.
+
+Get whether the cluster is a DMaaS cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.d_maa_s_info import DMaaSInfo
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get whether the cluster is a DMaaS cluster.
+	api_response = client.platform.get_is_d_maa_s_cluster()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_is_d_maa_s_cluster: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DMaaSInfo**](DMaaSInfo.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_network_interfaces**
 > ClusterInterfaces get_network_interfaces()
 
@@ -2154,6 +2347,66 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_feature_flag**
+> list_feature_flag()
+
+Get feature flag overrides list.
+
+Get the list of feature flag overrides defined on cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get feature flag overrides list.
+	client.platform.list_feature_flag()
+except ApiException as e:
+	print("Exception when calling PlatformApi->list_feature_flag: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **mark_disk_removal**
 > RemoveDisk mark_disk_removal(id, body)
 
@@ -2255,7 +2508,6 @@ client = CohesityClientV2(
 id = 1 # int | Specifies id of node to cancel removal.
 body = NodeRemovalParams(
         cancel=True,
-        is_offline=False,
     ) # NodeRemovalParams | Specifies parameters to initiate/cancel node removal .
 
 # example passing only required values which don't have defaults set
@@ -2913,6 +3165,7 @@ body = Cluster(
                     node_id=1,
                 ),
             ],
+            dataplane_endpoint="dataplane_endpoint_example",
         ),
         network_config=ClusterCreateNetworkConfig(
             ntp_servers=[
@@ -3023,6 +3276,7 @@ body = McmRigelClaimResponseParams(
         ],
         helios_certificate="helios_certificate_example",
         dataplane_endpoint="dataplane_endpoint_example",
+        rigel_use_case="Baas",
         region_id="region_id_example",
     ) # McmRigelClaimResponseParams | Specifies the request to update Bifrost config.
 
@@ -3045,6 +3299,214 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**McmRigelClaimResponseParams**](McmRigelClaimResponseParams.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_cluster_ui_config**
+> ClusterUiConfig update_cluster_ui_config(body)
+
+Update cluster UI Config.
+
+Update customized UI config for the cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.cluster_ui_config import ClusterUiConfig
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = ClusterUiConfig(
+        ui_config="ui_config_example",
+    ) # ClusterUiConfig | Specifies the UI config.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update cluster UI Config.
+	api_response = client.platform.update_cluster_ui_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_cluster_ui_config: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ClusterUiConfig**](ClusterUiConfig.md)| Specifies the UI config. |
+
+### Return type
+
+[**ClusterUiConfig**](ClusterUiConfig.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_feature_flag**
+> update_feature_flag(body)
+
+Update feature flag override status.
+
+Update a feature flag override status to cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.update_feature_flag_params import UpdateFeatureFlagParams
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = UpdateFeatureFlagParams(
+        name="name_example",
+        is_ui_feature=True,
+        is_approved=True,
+        reason="reason_example",
+        clear=True,
+        timestamp=1,
+    ) # UpdateFeatureFlagParams | Param for feature flag override request.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update feature flag override status.
+	client.platform.update_feature_flag(body)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_feature_flag: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UpdateFeatureFlagParams**](UpdateFeatureFlagParams.md)| Param for feature flag override request. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_is_d_maa_s_cluster**
+> DMaaSInfo update_is_d_maa_s_cluster(body)
+
+Update whether the cluster is a DMaaS cluster.
+
+Update whether the cluster is a DMaaS cluster.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.d_maa_s_info import DMaaSInfo
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = DMaaSInfo(
+        is_dmaas=True,
+    ) # DMaaSInfo | Param to update whether the cluster is a DMaaS cluster.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update whether the cluster is a DMaaS cluster.
+	api_response = client.platform.update_is_d_maa_s_cluster(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_is_d_maa_s_cluster: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DMaaSInfo**](DMaaSInfo.md)| Param to update whether the cluster is a DMaaS cluster. |
+
+### Return type
+
+[**DMaaSInfo**](DMaaSInfo.md)
 
 ### Authorization
 

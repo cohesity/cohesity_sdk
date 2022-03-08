@@ -35,11 +35,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = CreateStorageDomainParam() # CreateStorageDomainParam | Specified the request to create a Storage Domain.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a Storage Domain.
 	api_response = client.storage_domains.create_storage_domain(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainsApi->create_storage_domain: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a Storage Domain.
+	api_response = client.storage_domains.create_storage_domain(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling StorageDomainsApi->create_storage_domain: %s\n" % e)
@@ -51,6 +62,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateStorageDomainParam**](CreateStorageDomainParam.md)| Specified the request to create a Storage Domain. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -97,11 +110,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specified the Storage Domain id to delete.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Storage Domain.
 	client.storage_domains.delete_storage_domain(id)
+except ApiException as e:
+	print("Exception when calling StorageDomainsApi->delete_storage_domain: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Storage Domain.
+	client.storage_domains.delete_storage_domain(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling StorageDomainsApi->delete_storage_domain: %s\n" % e)
 ```
@@ -112,6 +135,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specified the Storage Domain id to delete. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -159,6 +184,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specified the Storage Domain id to fetch.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
 include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
 include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
@@ -175,7 +202,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get a Storage Domain by id.
-	api_response = client.storage_domains.get_storage_domain_by_id(id, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size)
+	api_response = client.storage_domains.get_storage_domain_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling StorageDomainsApi->get_storage_domain_by_id: %s\n" % e)
@@ -187,6 +214,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specified the Storage Domain id to fetch. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional]
  **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional]
  **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional]
@@ -236,6 +265,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         1,
     ] # [int] | Filter by a list of Storage Domain ids. (optional)
@@ -259,7 +290,7 @@ view_template_id = 1 # int | Specifies a view template id for Storage Domain. St
 # and optional values
 try:
 	# Get Storage Domains.
-	api_response = client.storage_domains.get_storage_domains(ids=ids, names=names, cluster_partition_ids=cluster_partition_ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, match_partial_names=match_partial_names, view_template_id=view_template_id)
+	api_response = client.storage_domains.get_storage_domains(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, names=names, cluster_partition_ids=cluster_partition_ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, match_partial_names=match_partial_names, view_template_id=view_template_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling StorageDomainsApi->get_storage_domains: %s\n" % e)
@@ -270,6 +301,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[int]**| Filter by a list of Storage Domain ids. | [optional]
  **names** | **[str]**| Filter by a list of Storage Domain names. | [optional]
  **cluster_partition_ids** | **[int]**| Filter by a list of cluster partition ids. | [optional]
@@ -329,11 +362,22 @@ client = HeliosClient(api_key=api_key)
 
 id = 1 # int | Specified the Storage Domain id to update.
 body = UpdateStorageDomainParam() # UpdateStorageDomainParam | Specified the request to update a Storage Domain.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Storage Domain.
 	api_response = client.storage_domains.update_storage_domain(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainsApi->update_storage_domain: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Storage Domain.
+	api_response = client.storage_domains.update_storage_domain(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling StorageDomainsApi->update_storage_domain: %s\n" % e)
@@ -346,6 +390,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specified the Storage Domain id to update. |
  **body** | [**UpdateStorageDomainParam**](UpdateStorageDomainParam.md)| Specified the request to update a Storage Domain. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

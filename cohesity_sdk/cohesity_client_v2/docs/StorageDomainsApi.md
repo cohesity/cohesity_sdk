@@ -3,12 +3,82 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_cad_storage_domains**](StorageDomainsApi.md#create_cad_storage_domains) | **POST** /cad-storage-domains | Create CAD Storage Domains.
 [**create_storage_domain**](StorageDomainsApi.md#create_storage_domain) | **POST** /storage-domains | Create a Storage Domain.
 [**delete_storage_domain**](StorageDomainsApi.md#delete_storage_domain) | **DELETE** /storage-domains/{id} | Delete a Storage Domain.
 [**get_storage_domain_by_id**](StorageDomainsApi.md#get_storage_domain_by_id) | **GET** /storage-domains/{id} | Get a Storage Domain by id.
 [**get_storage_domains**](StorageDomainsApi.md#get_storage_domains) | **GET** /storage-domains | Get Storage Domains.
 [**update_storage_domain**](StorageDomainsApi.md#update_storage_domain) | **PUT** /storage-domains/{id} | Update a Storage Domain.
 
+
+# **create_cad_storage_domains**
+> StorageDomain create_cad_storage_domains(body)
+
+Create CAD Storage Domains.
+
+Create CAD Storage Domains. Instead of returning error, This API will return the CAD Storage Domain mapped to the external target if there is one.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.error import Error
+from cohesity_sdk.cohesity_client_v2.model.storage_domain import StorageDomain
+from cohesity_sdk.cohesity_client_v2.model.create_cad_storage_domain_param import CreateCadStorageDomainParam
+from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = CreateCadStorageDomainParam(
+        external_target_id=1,
+    ) # CreateCadStorageDomainParam | Specified the request to create a CAD Storage Domain.
+
+# example passing only required values which don't have defaults set
+try:
+	# Create CAD Storage Domains.
+	api_response = client.storage_domains.create_cad_storage_domains(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainsApi->create_cad_storage_domains: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateCadStorageDomainParam**](CreateCadStorageDomainParam.md)| Specified the request to create a CAD Storage Domain. |
+
+### Return type
+
+[**StorageDomain**](StorageDomain.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_storage_domain**
 > StorageDomain create_storage_domain(body)

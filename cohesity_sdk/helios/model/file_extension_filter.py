@@ -145,7 +145,7 @@ class FileExtensionFilter(ModelNormal):
 
             file_extensions_list ([str], none_type): The list of file extensions to apply. [optional]  # noqa: E501
             is_enabled (bool, none_type): If set, it enables the file extension filter. [optional]  # noqa: E501
-            mode (str, none_type): The mode applied to the list of file extensions   'Whitelist' indicates a whitelist extension filter.   'Blacklist' indicates a blacklist extension filter.. [optional]  # noqa: E501
+            mode (str, none_type): The mode applied to the list of file extensions 'Whitelist' indicates a whitelist extension filter. 'Blacklist' indicates a blacklist extension filter.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

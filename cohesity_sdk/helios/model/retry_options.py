@@ -144,7 +144,7 @@ class RetryOptions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            retries (int, none_type): Specifies the number of times to retry capturing Snapshots before   the Protection Group Run fails.. [optional]  # noqa: E501
+            retries (int, none_type): Specifies the number of times to retry capturing Snapshots before the Protection Group Run fails.. [optional]  # noqa: E501
             retry_interval_mins (int, none_type): Specifies the number of minutes before retrying a failed Protection Group.. [optional]  # noqa: E501
         """
 

@@ -66,6 +66,7 @@ class ViewAllOf(ModelNormal):
             'SHORT': "Short",
             'LONG': "Long",
             'HIERARCHICAL': "Hierarchical",
+            'OBJECTID': "ObjectId",
         },
     }
 
@@ -105,8 +106,9 @@ class ViewAllOf(ModelNormal):
             'is_target_for_migrated_data': (bool, none_type,),  # noqa: E501
             'view_failover': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'stats': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'file_count_by_size': ([FileCount],),  # noqa: E501
+            'file_count_by_size': ([FileCount], none_type,),  # noqa: E501
             'owner_sid': (str, none_type,),  # noqa: E501
+            's3_folder_support_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -135,6 +137,7 @@ class ViewAllOf(ModelNormal):
         'stats': 'stats',  # noqa: E501
         'file_count_by_size': 'fileCountBySize',  # noqa: E501
         'owner_sid': 'ownerSid',  # noqa: E501
+        's3_folder_support_enabled': 's3FolderSupportEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -201,8 +204,9 @@ class ViewAllOf(ModelNormal):
             is_target_for_migrated_data (bool, none_type): Specifies if a view contains migrated data.. [optional]  # noqa: E501
             view_failover ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the information about the failover of the view.. [optional]  # noqa: E501
             stats ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies statistics about the View.. [optional]  # noqa: E501
-            file_count_by_size ([FileCount]): Specifies the file count by size for the View.. [optional]  # noqa: E501
+            file_count_by_size ([FileCount], none_type): Specifies the file count by size for the View.. [optional]  # noqa: E501
             owner_sid (str, none_type): Specifies the sid of the view owner.. [optional]  # noqa: E501
+            s3_folder_support_enabled (bool, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

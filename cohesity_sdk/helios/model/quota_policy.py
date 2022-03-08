@@ -138,9 +138,9 @@ class QuotaPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            alert_limit_bytes (int, none_type): Specifies if an alert should be triggered when the usage of this   resource exceeds this quota limit.   This limit is optional and is specified in bytes.   If no value is specified, there is no limit.. [optional]  # noqa: E501
-            alert_threshold_percentage (int, none_type): Supported only for user quota policy.   Specifies when the usage goes above an alert threshold percentage   which is:   HardLimitBytes * AlertThresholdPercentage, eg: 80% of HardLimitBytes   Can only be set if HardLimitBytes is set.   Cannot be set if AlertLimitBytes is already set.. [optional]  # noqa: E501
-            hard_limit_bytes (int, none_type): Specifies an optional quota limit on the usage allowed for this   resource. This limit is specified in bytes. If no value is specified,   there is no limit.. [optional]  # noqa: E501
+            alert_limit_bytes (int, none_type): Specifies if an alert should be triggered when the usage of this resource exceeds this quota limit. This limit is optional and is specified in bytes. If no value is specified, there is no limit.. [optional]  # noqa: E501
+            alert_threshold_percentage (int, none_type): Supported only for user quota policy. Specifies when the usage goes above an alert threshold percentage which is: HardLimitBytes * AlertThresholdPercentage, eg: 80% of HardLimitBytes Can only be set if HardLimitBytes is set. Cannot be set if AlertLimitBytes is already set.. [optional]  # noqa: E501
+            hard_limit_bytes (int, none_type): Specifies an optional quota limit on the usage allowed for this resource. This limit is specified in bytes. If no value is specified, there is no limit.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

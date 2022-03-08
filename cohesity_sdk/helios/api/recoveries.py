@@ -21,10 +21,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.helios.model.common_recovery_request_params6cc0a9973f4b47a8_a51f_bdda823aab75 import CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75
-from cohesity_sdk.helios.model.common_recovery_response_params8c60ab25210e4ab097394c9e12eb86fb import CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
+from cohesity_sdk.helios.model.create_recovery_request import CreateRecoveryRequest
 from cohesity_sdk.helios.model.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.fetch_uptier_data_response import FetchUptierDataResponse
 from cohesity_sdk.helios.model.recoveries import Recoveries
 from cohesity_sdk.helios.model.recovery import Recovery
 
@@ -59,6 +59,8 @@ class RecoveriesApi(object):
                 id (str): Specifies the id of a Recovery.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -123,6 +125,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -149,12 +153,20 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -187,6 +199,8 @@ class RecoveriesApi(object):
                 body (DownloadFilesAndFoldersRequestParams): Specifies the parameters to create a download files and folder recovery.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -251,6 +265,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -270,11 +286,19 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'body':
                         (DownloadFilesAndFoldersRequestParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -306,9 +330,11 @@ class RecoveriesApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75): Specifies the parameters to create a Recovery.
+                body (CreateRecoveryRequest): Specifies the parameters to create a Recovery.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -330,7 +356,7 @@ class RecoveriesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -359,7 +385,7 @@ class RecoveriesApi(object):
 
         self.create_recovery = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -373,6 +399,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -391,12 +419,20 @@ class RecoveriesApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonRecoveryRequestParams6cc0a9973f4b47a8A51fBdda823aab75,),
+                        (CreateRecoveryRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -431,6 +467,8 @@ class RecoveriesApi(object):
                 id (str): Specifies the id of a Recovery.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 start_offset (int): Specifies the start offset of file chunk to be downloaded.. [optional]
                 length (int): Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets). [optional]
                 _return_http_data_only (bool): response data without head status
@@ -497,6 +535,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'start_offset',
                     'length',
                 ],
@@ -525,6 +565,10 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'start_offset':
                         (int,),
                     'length':
@@ -532,11 +576,15 @@ class RecoveriesApi(object):
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'start_offset': 'startOffset',
                     'length': 'length',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'start_offset': 'query',
                     'length': 'query',
                 },
@@ -571,6 +619,8 @@ class RecoveriesApi(object):
                 snapshots_id (str): Specifies the snapshot id to download from.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 file_path (str): Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified.. [optional]
                 retry_attempt (int): Specifies the number of attempts the protection run took to create this file.. [optional]
                 start_offset (int): Specifies the start offset of file chunk to be downloaded.. [optional]
@@ -639,6 +689,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'snapshots_id',
+                    'access_cluster_id',
+                    'region_id',
                     'file_path',
                     'retry_attempt',
                     'start_offset',
@@ -662,6 +714,10 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'snapshots_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'file_path':
                         (str,),
                     'retry_attempt':
@@ -673,6 +729,8 @@ class RecoveriesApi(object):
                 },
                 'attribute_map': {
                     'snapshots_id': 'snapshotsId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'file_path': 'filePath',
                     'retry_attempt': 'retryAttempt',
                     'start_offset': 'startOffset',
@@ -680,6 +738,8 @@ class RecoveriesApi(object):
                 },
                 'location_map': {
                     'snapshots_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'file_path': 'query',
                     'retry_attempt': 'query',
                     'start_offset': 'query',
@@ -698,6 +758,146 @@ class RecoveriesApi(object):
             callable=__download_indexed_file
         )
 
+        def __fetch_uptier_data(
+            self,
+            archive_uid,
+            **kwargs
+        ):
+            """Fetches the uptier data.  # noqa: E501
+
+            Fetches the uptier data for a restore job.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.fetch_uptier_data(archive_uid, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                archive_uid (str): Archive UID of the current restore.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FetchUptierDataResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['archive_uid'] = \
+                archive_uid
+            return self.call_with_http_info(**kwargs)
+
+        self.fetch_uptier_data = _Endpoint(
+            settings={
+                'response_type': (FetchUptierDataResponse,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/recoveries/fetchUptierData',
+                'operation_id': 'fetch_uptier_data',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'archive_uid',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'archive_uid',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'archive_uid',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('archive_uid',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'archive_uid':
+                        (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'archive_uid': 'archiveUId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'archive_uid': 'query',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__fetch_uptier_data
+        )
+
         def __get_recoveries(
             self,
             **kwargs
@@ -713,6 +913,8 @@ class RecoveriesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Filter Recoveries for given ids.. [optional]
                 return_only_child_recoveries (bool): Returns only child recoveries if passed as true. This filter should always be used along with 'ids' filter. . [optional]
                 tenant_ids ([str]): TenantIds contains ids of the organizations for which recoveries are to be returned.. [optional]
@@ -786,6 +988,8 @@ class RecoveriesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'return_only_child_recoveries',
                     'tenant_ids',
@@ -896,6 +1100,7 @@ class RecoveriesApi(object):
                         "RECOVERVMDISKS": "RecoverVmDisks",
                         "RECOVERVAPPS": "RecoverVApps",
                         "RECOVERVAPPTEMPLATES": "RecoverVAppTemplates",
+                        "UPTIERSNAPSHOT": "UptierSnapshot",
                         "RECOVERRDS": "RecoverRDS",
                         "RECOVERAURORA": "RecoverAurora",
                         "RECOVERAPPS": "RecoverApps",
@@ -917,6 +1122,10 @@ class RecoveriesApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                     'return_only_child_recoveries':
@@ -943,6 +1152,8 @@ class RecoveriesApi(object):
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'return_only_child_recoveries': 'returnOnlyChildRecoveries',
                     'tenant_ids': 'tenantIds',
@@ -957,6 +1168,8 @@ class RecoveriesApi(object):
                     'recovery_actions': 'recoveryActions',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'return_only_child_recoveries': 'query',
                     'tenant_ids': 'query',
@@ -1008,6 +1221,8 @@ class RecoveriesApi(object):
                 id (str): Specifies the id of a Recovery.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_tenants (bool): Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -1030,7 +1245,7 @@ class RecoveriesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1059,7 +1274,7 @@ class RecoveriesApi(object):
 
         self.get_recovery_by_id = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParams8c60ab25210e4ab097394c9e12eb86fb,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -1073,6 +1288,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'include_tenants',
                 ],
                 'required': [
@@ -1100,15 +1317,23 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_tenants':
                         (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_tenants': 'query',
                 },
                 'collection_format_map': {
@@ -1142,6 +1367,8 @@ class RecoveriesApi(object):
                 id (str): Specifies the id of a Recovery job.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1206,6 +1433,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1232,12 +1461,20 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1250,6 +1487,146 @@ class RecoveriesApi(object):
             },
             api_client=api_client,
             callable=__get_recovery_debug_logs
+        )
+
+        def __get_recovery_errors_report(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get the CSV of errors/warnings for a given recovery operation.  # noqa: E501
+
+            Get a CSV error report for given recovery operation. Each row in CSV report contains the File Path, error/warning code and error/warning message.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_recovery_errors_report(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies a unique ID of a Recovery.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_recovery_errors_report = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/recoveries/{id}/download-messages',
+                'operation_id': 'get_recovery_errors_report',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'id',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_recovery_errors_report
         )
 
         def __tear_down_recovery_by_id(
@@ -1270,6 +1647,8 @@ class RecoveriesApi(object):
                 id (str): Specifies the id of a Recovery.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1334,6 +1713,8 @@ class RecoveriesApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1360,12 +1741,20 @@ class RecoveriesApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

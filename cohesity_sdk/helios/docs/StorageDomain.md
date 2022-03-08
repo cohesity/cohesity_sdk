@@ -30,6 +30,8 @@ Name | Type | Description | Notes
 **stats** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the Storage Domain stats. | [optional] 
 **schemas** | [**[Schema], none_type**](Schema.md) | Specifies the Storage Domain schemas. | [optional] [readonly] 
 **file_count_by_size** | [**[FileCount], none_type**](FileCount.md) | Specifies the file count by size for the View. | [optional] [readonly] 
+**cloud_domain_id** | **int, none_type** | Specifies the cloud domain Id. | [optional] 
+**vault_id** | **int, none_type** | Specifies the vault Id associated with cloud domain ID. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

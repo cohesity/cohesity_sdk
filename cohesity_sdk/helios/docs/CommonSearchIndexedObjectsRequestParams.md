@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **tags** | **[str], none_type** | \&quot;This field is deprecated. Please use mightHaveTagIds.\&quot; | [optional] 
 **snapshot_tags** | **[str]** | \&quot;This field is deprecated. Please use mightHaveSnapshotTagIds.\&quot; | [optional] 
 **must_have_tag_ids** | **[str], none_type** | Specifies tags which must be all present in the document. | [optional] 
-**might_have_tag_ids** | **[str], none_type** | Specifies list of tags, one or more of which might be present in the   document. These are OR&#39;ed together and the resulting criteria AND&#39;ed   with the rest of the query. | [optional] 
+**might_have_tag_ids** | **[str], none_type** | Specifies list of tags, one or more of which might be present in the document. These are OR&#39;ed together and the resulting criteria AND&#39;ed with the rest of the query. | [optional] 
 **must_have_snapshot_tag_ids** | **[str], none_type** | Specifies snapshot tags which must be all present in the document. | [optional] 
-**might_have_snapshot_tag_ids** | **[str], none_type** | Specifies list of snapshot tags, one or more of which might be   present in the document. These are OR&#39;ed together and the resulting   criteria AND&#39;ed with the rest of the query. | [optional] 
+**might_have_snapshot_tag_ids** | **[str], none_type** | Specifies list of snapshot tags, one or more of which might be present in the document. These are OR&#39;ed together and the resulting criteria AND&#39;ed with the rest of the query. | [optional] 
 **pagination_cookie** | **str, none_type** | Specifies the pagination cookie with which subsequent parts of the response can be fetched. | [optional] 
 **count** | **int, none_type** | Specifies the number of indexed objects to be fetched for the specified pagination cookie. | [optional] 
 

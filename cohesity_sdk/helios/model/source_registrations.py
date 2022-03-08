@@ -27,8 +27,8 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.common_source_registration_reponse_params5664183a76b842b48044_ac90d2dc4b64 import CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
-    globals()['CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64'] = CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+    from cohesity_sdk.helios.model.source_registration import SourceRegistration
+    globals()['SourceRegistration'] = SourceRegistration
 
 
 class SourceRegistrations(ModelNormal):
@@ -79,7 +79,7 @@ class SourceRegistrations(ModelNormal):
         """
         lazy_import()
         return {
-            'registrations': ([CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64], none_type,),  # noqa: E501
+            'registrations': ([SourceRegistration], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class SourceRegistrations(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            registrations ([CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64], none_type): Specifies the list of Protection Source Registrations.. [optional]  # noqa: E501
+            registrations ([SourceRegistration], none_type): Specifies the list of Protection Source Registrations.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

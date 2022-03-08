@@ -137,7 +137,7 @@ class QoS(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             principal_id (int, none_type): Specifies the name of the QoS Policy used for the View.. [optional]  # noqa: E501
-            principal_name (str, none_type): Specifies the name of the QoS Policy used for the View such as   'TestAndDev High', 'Backup Target SSD', 'Backup Target High'   'TestAndDev Low' and 'Backup Target Low'. For a complete list   and descriptions, see the 'Create or Edit Views' topic in the   documentation. If not specified, the default is 'Backup Target Low'.. [optional]  # noqa: E501
+            principal_name (str, none_type): Specifies the name of the QoS Policy used for the View such as 'TestAndDev High', 'Backup Target SSD', 'Backup Target High' 'TestAndDev Low' and 'Backup Target Low'. For a complete list and descriptions, see the 'Create or Edit Views' topic in the documentation. If not specified, the default is 'Backup Target Low'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

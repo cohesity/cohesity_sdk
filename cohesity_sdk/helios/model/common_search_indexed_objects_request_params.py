@@ -65,6 +65,9 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
             'HDFSOBJECTS': "HDFSObjects",
             'EXCHANGEOBJECTS': "ExchangeObjects",
             'PUBLICFOLDERS': "PublicFolders",
+            'TEAMSOBJECTS': "TeamsObjects",
+            'SHAREPOINTOBJECTS': "SharepointObjects",
+            'ONEDRIVEOBJECTS': "OneDriveObjects",
         },
     }
 
@@ -195,9 +198,9 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
             tags ([str], none_type): \"This field is deprecated. Please use mightHaveTagIds.\". [optional]  # noqa: E501
             snapshot_tags ([str]): \"This field is deprecated. Please use mightHaveSnapshotTagIds.\". [optional]  # noqa: E501
             must_have_tag_ids ([str], none_type): Specifies tags which must be all present in the document.. [optional]  # noqa: E501
-            might_have_tag_ids ([str], none_type): Specifies list of tags, one or more of which might be present in the   document. These are OR'ed together and the resulting criteria AND'ed   with the rest of the query.. [optional]  # noqa: E501
+            might_have_tag_ids ([str], none_type): Specifies list of tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.. [optional]  # noqa: E501
             must_have_snapshot_tag_ids ([str], none_type): Specifies snapshot tags which must be all present in the document.. [optional]  # noqa: E501
-            might_have_snapshot_tag_ids ([str], none_type): Specifies list of snapshot tags, one or more of which might be   present in the document. These are OR'ed together and the resulting   criteria AND'ed with the rest of the query.. [optional]  # noqa: E501
+            might_have_snapshot_tag_ids ([str], none_type): Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.. [optional]  # noqa: E501
             pagination_cookie (str, none_type): Specifies the pagination cookie with which subsequent parts of the response can be fetched.. [optional]  # noqa: E501
             count (int, none_type): Specifies the number of indexed objects to be fetched for the specified pagination cookie.. [optional]  # noqa: E501
         """

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **origin_protection_group_id** | **str, none_type** | ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run. | [optional] 
 **protection_group_name** | **str, none_type** | Name of the Protection Group to which this run belongs. | [optional] 
 **is_local_snapshots_deleted** | **bool, none_type** | Specifies if snapshots for this run has been deleted. | [optional] 
-**objects** | [**[ObjectRunResult]**](ObjectRunResult.md) | Snapahot, replication, archival results for each object. | [optional] 
+**objects** | [**[ObjectRunResult], none_type**](ObjectRunResult.md) | Snapahot, replication, archival results for each object. | [optional] 
 **local_backup_info** | [**BackupRunSummary**](BackupRunSummary.md) |  | [optional] 
 **original_backup_info** | [**BackupRunSummary**](BackupRunSummary.md) |  | [optional] 
 **replication_info** | [**ReplicationRunSummary**](ReplicationRunSummary.md) |  | [optional] 

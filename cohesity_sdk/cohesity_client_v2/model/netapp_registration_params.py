@@ -64,6 +64,11 @@ class NetappRegistrationParams(ModelNormal):
     """
 
     allowed_values = {
+        ('source_type',): {
+            'None': None,
+            'KCLUSTER': "kCluster",
+            'KVSERVER': "kVServer",
+        },
     }
 
     validations = {
@@ -85,7 +90,7 @@ class NetappRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'source_type': (bool, none_type,),  # noqa: E501
+            'source_type': (str, none_type,),  # noqa: E501
             'endpoint': (str, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
             'back_up_smb_volumes': (bool, none_type,),  # noqa: E501
@@ -126,7 +131,7 @@ class NetappRegistrationParams(ModelNormal):
         """NetappRegistrationParams - a model defined in OpenAPI
 
         Args:
-            source_type (bool, none_type): Specifies the Netapp source type. Can be either kCluster or kVServer (SVM).
+            source_type (str, none_type): Specifies the Netapp source type. Can be either kCluster or kVServer (SVM).
             endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Netapp Source.
             credentials (Credentials):
 

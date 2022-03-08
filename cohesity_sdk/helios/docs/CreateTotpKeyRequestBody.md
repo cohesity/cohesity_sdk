@@ -1,6 +1,6 @@
 # CreateTotpKeyRequestBody
 
-Specifies create TOTP key request parameters.
+Specifies create Time based OTP key request parameters.
 
 ## Properties
 Name | Type | Description | Notes

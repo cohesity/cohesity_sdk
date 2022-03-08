@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **replication_cluster_id** | **int, none_type** | Specifies the replication cluster Id where planned run will replicate objects. | 
 **objects** | [**[FailoverObject], none_type**](FailoverObject.md) | Specifies the list of all local entity ids of all the objects being failed from the source cluster. | 
-**protection_group_id** | **str, none_type** | Specifies the active protection group id on the source cluster from where the objects are being failed over. | 
+**protection_group_id** | **str, none_type** | Specifies the active protection group id on the source cluster from where the objects are being failed over. | [optional] 
 **run_type** | **str** | Specifies the type of the backup run to be triggered by this request. If this is not set defaults to incremental backup. | [optional] 
 **view_id** | **int, none_type** | If failover is initiated by view based orchastrator, then this field specifies the local view id of source cluster which is being failed over. | [optional] 
 **cancel_non_failover_runs** | **bool, none_type** | If set to true, other ongoing runs backing up the same set of entities being failed over will be initiated for cancellation. Non conflicting run operations such as replications to other clusters, archivals will not be cancelled. If set to false, then new run will wait for all the pending operations to finish normally before scheduling a new backup/replication. | [optional] 

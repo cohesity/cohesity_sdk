@@ -27,8 +27,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.error import Error
     from cohesity_sdk.helios.model.failover_object import FailoverObject
     from cohesity_sdk.helios.model.reverse_replication_result import ReverseReplicationResult
+    globals()['Error'] = Error
     globals()['FailoverObject'] = FailoverObject
     globals()['ReverseReplicationResult'] = ReverseReplicationResult
 
@@ -84,6 +86,7 @@ class ReplicationBackupActivationResult(ModelNormal):
             'protection_group_id': (str, none_type,),  # noqa: E501
             'reverse_replication_result': (ReverseReplicationResult,),  # noqa: E501
             'objects': ([FailoverObject], none_type,),  # noqa: E501
+            'object_errors': ([Error], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class ReplicationBackupActivationResult(ModelNormal):
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'reverse_replication_result': 'reverseReplicationResult',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'object_errors': 'objectErrors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +152,7 @@ class ReplicationBackupActivationResult(ModelNormal):
             protection_group_id (str, none_type): Specifies the protection group id that will be returned upon creation of new group or existing group for backing up failover entities.. [optional]  # noqa: E501
             reverse_replication_result (ReverseReplicationResult): [optional]  # noqa: E501
             objects ([FailoverObject], none_type): Specifies the list of failover object that are going to be protected on replication cluster.. [optional]  # noqa: E501
+            object_errors ([Error], none_type): Specifies the protection errors, if any, pertaining to each object specified in 'objects'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

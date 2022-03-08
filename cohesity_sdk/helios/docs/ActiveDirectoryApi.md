@@ -36,11 +36,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = CreateActiveDirectoryRequest() # CreateActiveDirectoryRequest | Specifies the parameters to create an Active Directory.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create an Active Directory.
 	api_response = client.active_directory.create_active_directory(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->create_active_directory: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create an Active Directory.
+	api_response = client.active_directory.create_active_directory(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->create_active_directory: %s\n" % e)
@@ -52,6 +63,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateActiveDirectoryRequest**](CreateActiveDirectoryRequest.md)| Specifies the parameters to create an Active Directory. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -100,11 +113,21 @@ client = HeliosClient(api_key=api_key)
 id = 1 # int | Specifies id of an Active Directory.
 active_directory_admin_username = "activeDirectoryAdminUsername_example" # str | Specifies the username of the Active Direcotry Admin.
 active_directory_admin_password = "activeDirectoryAdminPassword_example" # str | Specifies the password of the Active Direcotry Admin.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete an Active Directory.
 	client.active_directory.delete_active_directory(id, active_directory_admin_username, active_directory_admin_password)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->delete_active_directory: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete an Active Directory.
+	client.active_directory.delete_active_directory(id, active_directory_admin_username, active_directory_admin_password, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->delete_active_directory: %s\n" % e)
 ```
@@ -117,6 +140,8 @@ Name | Type | Description  | Notes
  **id** | **int**| Specifies id of an Active Directory. |
  **active_directory_admin_username** | **str**| Specifies the username of the Active Direcotry Admin. |
  **active_directory_admin_password** | **str**| Specifies the password of the Active Direcotry Admin. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -163,6 +188,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 domain_names = [
         "CWzyBAw2ZuufUOHOEhA8IcFQXnuaZcdyyvKX7HzKpul80FcVjSkp5IHYCD.y.FZfUofvKERjsmInY9s-EmMH6kw8gsnXv2Z7jRPd.LXGp8ZohR8pb-ziKqEde8fXg9wO.fa2-zRi2iAxU4NCUavTrirUe4ba7JnjrgEdBCJE-ArE6U3CZ-Vnrj9RmauFxv7y.0CjOv6MeuI.nb.pUIQ8yNXhXoEdbZpGptfI4pvLXGuLk-kN.ijcMEEkIauW5ApNaDi5ackLaR2kw9-zmvqRnM-dar09VaHC0.q.c.D42Jml4PJXMbVMO8G0e5q9Z4WMWovY63Gk6ixTd5NxRU25mQYd6VBLRGkQ5b.WH2v5iUaMQ6iIJ-7auxDSR-lIIfhhw9bP3XhsKpT6YkX2ymMVo.u.Px8OyxaBZ75cAiG.hlvrLQxb.H.E.DjhCbEZunVXTqV3VI.z.OzY-c9WhD1h649M9.q.K7NG9dihNlL1YPO1GvRUDnbsR0-SswaNr.w.7NPZw-HNPtVfykpnotMPK4Aqhv7VjToBNn1oLFWRpSx-dyd2clYhZAGia.PPB5iVX1lhmY7Gh2I3pT2SDuv66tyxEBpX6RQusWUzrY2IaluFJfz8Zwxi.YNhQCndVdQ8Zqh8o9Fu3-luW1PzrlptgIbB7lMjnQXJdim087U4e00bXq.E63P2Qk0LGzQ-Q5b8qpf900OPrJ7NsXeu0SeHiClor8kJwu9CQe1tTxWj.9.WObZMXxUrUZPuO24g6xCEEGYs5NZ9BhURG1p1vKPKEsaka3T.uXM15Q-LQUOofFYT6wb4OCgvTgDaAqbKuYuD.TTDCxuHecKtov6lMCwqpGvF10AyNzV.KKNXeFooO85mDfP6.L.T.WUItRxglXsbfmNlQ5dxg25oBYSAJH9pP2AsvJ1ScQkpd0.Yb48VqkgYNMd7LrDcYKGedFO0HBfI81yv9G-D76SNMA.zPPPdI22mRwNS.q.Pp92k53h1KEc7ag0ak9d.wLnPl34V25Jc4YC3rXILhaa6Jcc4hzAqllACM9319wGio4p44OFkGlf.3lbtJZS0AaW9X3CHj-n2hyQAB8SPpfjusH.H.B.Xb-Hj0LrcV6H8x",
     ] # [str] | Filter by a list of Active Directory domain names. (optional)
@@ -171,14 +198,14 @@ ids = [
     ] # [int] | Filter by a list of Active Directory Ids. (optional)
 tenant_ids = [
         "tenantIds_example",
-    ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
-include_tenants = True # bool | If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. (optional)
+    ] # [str] | TenantIds contains ids of the tenants for which Active Directories are to be returned. (optional)
+include_tenants = True # bool | If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of Active Directories.
-	api_response = client.active_directory.get_active_directory(domain_names=domain_names, ids=ids, tenant_ids=tenant_ids, include_tenants=include_tenants)
+	api_response = client.active_directory.get_active_directory(access_cluster_id=access_cluster_id, region_id=region_id, domain_names=domain_names, ids=ids, tenant_ids=tenant_ids, include_tenants=include_tenants)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->get_active_directory: %s\n" % e)
@@ -189,10 +216,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **domain_names** | **[str]**| Filter by a list of Active Directory domain names. | [optional]
  **ids** | **[int]**| Filter by a list of Active Directory Ids. | [optional]
- **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
- **include_tenants** | **bool**| If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. | [optional]
+ **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which Active Directories are to be returned. | [optional]
+ **include_tenants** | **bool**| If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned. | [optional]
 
 ### Return type
 
@@ -240,6 +269,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies id of an Active Directory.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 include_centrify_zones = True # bool | Specifies whether to include Centrify Zones of the Active Directory in response. (optional)
 include_domain_controllers = True # bool | Specifies whether to include Domain Controllers of the Active Directory in response. (optional)
 include_security_principals = True # bool | Specifies whether to include Security Principals of the Active Directory in response. (optional)
@@ -260,7 +291,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get an Active Directory by id.
-	api_response = client.active_directory.get_active_directory_by_id(id, include_centrify_zones=include_centrify_zones, include_domain_controllers=include_domain_controllers, include_security_principals=include_security_principals, prefix=prefix, object_class=object_class)
+	api_response = client.active_directory.get_active_directory_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, include_centrify_zones=include_centrify_zones, include_domain_controllers=include_domain_controllers, include_security_principals=include_security_principals, prefix=prefix, object_class=object_class)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->get_active_directory_by_id: %s\n" % e)
@@ -272,6 +303,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies id of an Active Directory. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **include_centrify_zones** | **bool**| Specifies whether to include Centrify Zones of the Active Directory in response. | [optional]
  **include_domain_controllers** | **bool**| Specifies whether to include Domain Controllers of the Active Directory in response. | [optional]
  **include_security_principals** | **bool**| Specifies whether to include Security Principals of the Active Directory in response. | [optional]
@@ -326,6 +359,8 @@ client = HeliosClient(api_key=api_key)
 domain_names = [
         "CWzyBAw2ZuufUOHOEhA8IcFQXnuaZcdyyvKX7HzKpul80FcVjSkp5IHYCD.y.FZfUofvKERjsmInY9s-EmMH6kw8gsnXv2Z7jRPd.LXGp8ZohR8pb-ziKqEde8fXg9wO.fa2-zRi2iAxU4NCUavTrirUe4ba7JnjrgEdBCJE-ArE6U3CZ-Vnrj9RmauFxv7y.0CjOv6MeuI.nb.pUIQ8yNXhXoEdbZpGptfI4pvLXGuLk-kN.ijcMEEkIauW5ApNaDi5ackLaR2kw9-zmvqRnM-dar09VaHC0.q.c.D42Jml4PJXMbVMO8G0e5q9Z4WMWovY63Gk6ixTd5NxRU25mQYd6VBLRGkQ5b.WH2v5iUaMQ6iIJ-7auxDSR-lIIfhhw9bP3XhsKpT6YkX2ymMVo.u.Px8OyxaBZ75cAiG.hlvrLQxb.H.E.DjhCbEZunVXTqV3VI.z.OzY-c9WhD1h649M9.q.K7NG9dihNlL1YPO1GvRUDnbsR0-SswaNr.w.7NPZw-HNPtVfykpnotMPK4Aqhv7VjToBNn1oLFWRpSx-dyd2clYhZAGia.PPB5iVX1lhmY7Gh2I3pT2SDuv66tyxEBpX6RQusWUzrY2IaluFJfz8Zwxi.YNhQCndVdQ8Zqh8o9Fu3-luW1PzrlptgIbB7lMjnQXJdim087U4e00bXq.E63P2Qk0LGzQ-Q5b8qpf900OPrJ7NsXeu0SeHiClor8kJwu9CQe1tTxWj.9.WObZMXxUrUZPuO24g6xCEEGYs5NZ9BhURG1p1vKPKEsaka3T.uXM15Q-LQUOofFYT6wb4OCgvTgDaAqbKuYuD.TTDCxuHecKtov6lMCwqpGvF10AyNzV.KKNXeFooO85mDfP6.L.T.WUItRxglXsbfmNlQ5dxg25oBYSAJH9pP2AsvJ1ScQkpd0.Yb48VqkgYNMd7LrDcYKGedFO0HBfI81yv9G-D76SNMA.zPPPdI22mRwNS.q.Pp92k53h1KEc7ag0ak9d.wLnPl34V25Jc4YC3rXILhaa6Jcc4hzAqllACM9319wGio4p44OFkGlf.3lbtJZS0AaW9X3CHj-n2hyQAB8SPpfjusH.H.B.Xb-Hj0LrcV6H8x",
     ] # [str] | Specifies a list of domain names.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 connection_id = 1 # int, none_type | Specifies the Id of the connection which the connector belongs to. (optional)
 
 # example passing only required values which don't have defaults set
@@ -340,7 +375,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get Domain Controllers of specified domains.
-	api_response = client.active_directory.get_domain_controllers(domain_names, connection_id=connection_id)
+	api_response = client.active_directory.get_domain_controllers(domain_names, access_cluster_id=access_cluster_id, region_id=region_id, connection_id=connection_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->get_domain_controllers: %s\n" % e)
@@ -352,6 +387,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **domain_names** | **[str]**| Specifies a list of domain names. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **connection_id** | **int, none_type**| Specifies the Id of the connection which the connector belongs to. | [optional]
 
 ### Return type
@@ -402,11 +439,22 @@ client = HeliosClient(api_key=api_key)
 
 id = 1 # int | Specifies id of an Active Directory.
 body = UpdateActiveDirectoryRequest() # UpdateActiveDirectoryRequest | Request to update an Active Directory.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update an Active Directory.
 	api_response = client.active_directory.update_active_directory(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->update_active_directory: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update an Active Directory.
+	api_response = client.active_directory.update_active_directory(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->update_active_directory: %s\n" % e)
@@ -419,6 +467,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies id of an Active Directory. |
  **body** | [**UpdateActiveDirectoryRequest**](UpdateActiveDirectoryRequest.md)| Request to update an Active Directory. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

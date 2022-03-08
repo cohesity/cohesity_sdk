@@ -128,7 +128,7 @@ class Tag(ModelNormal):
 
         Args:
             name (str, none_type): Name of the Tag. Name has to be unique under Namespace.
-            namespace (str, none_type): Namespace of the Tag. This is used to filter tags based on   application or usecase. For example all tags related to vcenter can   be put under one namespace or different departments could have their   own namespaces e.g. finance/tag1 or operations/tag2 etc.
+            namespace (str, none_type): Namespace of the Tag. This is used to filter tags based on application or usecase. For example all tags related to vcenter can be put under one namespace or different departments could have their own namespaces e.g. finance/tag1 or operations/tag2 etc.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,8 +165,8 @@ class Tag(ModelNormal):
             id (str, none_type): Specifies unique id of the Tag.. [optional]  # noqa: E501
             tenant_id (str, none_type): Tenant Id to whom the Tag belongs.. [optional]  # noqa: E501
             description (str, none_type): Description of the Tag.. [optional]  # noqa: E501
-            created_time_usecs (int, none_type): Specifies the timestamp in microseconds since the epoch   when this Tag was created.. [optional]  # noqa: E501
-            last_updated_time_usecs (int, none_type): Specifies the timestamp in microseconds since the epoch   when this Tag was last updated.. [optional]  # noqa: E501
+            created_time_usecs (int, none_type): Specifies the timestamp in microseconds since the epoch when this Tag was created.. [optional]  # noqa: E501
+            last_updated_time_usecs (int, none_type): Specifies the timestamp in microseconds since the epoch when this Tag was last updated.. [optional]  # noqa: E501
             marked_for_deletion (bool, none_type): If true, Tag is marked for deletion.. [optional]  # noqa: E501
             ui_color (str, none_type): Color of the tag in UI.. [optional]  # noqa: E501
             ui_path_elements ([str], none_type): Path of the tag for UI nesting purposes.. [optional]  # noqa: E501

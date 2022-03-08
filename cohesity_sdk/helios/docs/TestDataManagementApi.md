@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **create_tdm_task**
-> CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7 create_tdm_task(body)
+> TdmTask create_tdm_task(body)
 
 Create a TDM task
 
@@ -25,9 +25,9 @@ Create a task for the Test Data Management (TDM) workflow.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.common_tdm_task_request_paramscf03306f7ae04da2_ba484fb6b21dd7e6 import CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6
-from cohesity_sdk.helios.model.common_tdm_task_response_paramsf8ee32ff963c4a329255_cc254d7965f7 import CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7
+from cohesity_sdk.helios.model.create_tdm_task_request import CreateTdmTaskRequest
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.tdm_task import TdmTask
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
 
@@ -37,15 +37,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-body = CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6(
-        name="name_example",
-        action="clone",
-    ) # CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6 | Specifies the parameters to create a TDM task.
+body = CreateTdmTaskRequest() # CreateTdmTaskRequest | Specifies the parameters to create a TDM task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a TDM task
 	api_response = client.test_data_management.create_tdm_task(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->create_tdm_task: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a TDM task
+	api_response = client.test_data_management.create_tdm_task(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->create_tdm_task: %s\n" % e)
@@ -56,11 +64,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6**](CommonTdmTaskRequestParamscf03306f7ae04da2Ba484fb6b21dd7e6.md)| Specifies the parameters to create a TDM task. |
+ **body** | [**CreateTdmTaskRequest**](CreateTdmTaskRequest.md)| Specifies the parameters to create a TDM task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
-[**CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7**](CommonTdmTaskResponseParamsf8ee32ff963c4a329255Cc254d7965f7.md)
+[**TdmTask**](TdmTask.md)
 
 ### Authorization
 
@@ -103,11 +113,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the ID of the snapshot.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a snapshot by ID
 	client.test_data_management.delete_tdm_snapshot_by_id(id)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->delete_tdm_snapshot_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a snapshot by ID
+	client.test_data_management.delete_tdm_snapshot_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->delete_tdm_snapshot_by_id: %s\n" % e)
 ```
@@ -118,6 +138,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the ID of the snapshot. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -165,11 +187,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the ID of the TDM object.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get TDM object by ID
 	api_response = client.test_data_management.get_tdm_object_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->get_tdm_object_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get TDM object by ID
+	api_response = client.test_data_management.get_tdm_object_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->get_tdm_object_by_id: %s\n" % e)
@@ -181,6 +214,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the ID of the TDM object. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -227,6 +262,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Get the objects matching specifies IDs. (optional)
@@ -246,7 +283,7 @@ pagination_cookie = "paginationCookie_example" # str | Get the next set of objec
 # and optional values
 try:
 	# Get all TDM objects
-	api_response = client.test_data_management.get_tdm_objects(ids=ids, environments=environments, name=name, task_ids=task_ids, statuses=statuses, pagination_cookie=pagination_cookie)
+	api_response = client.test_data_management.get_tdm_objects(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, environments=environments, name=name, task_ids=task_ids, statuses=statuses, pagination_cookie=pagination_cookie)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->get_tdm_objects: %s\n" % e)
@@ -257,6 +294,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Get the objects matching specifies IDs. | [optional]
  **environments** | **[str]**| Get the objects matching specified environments. | [optional]
  **name** | **str**| Get the objects matching specified name. | [optional]
@@ -310,11 +349,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the ID of the TDM task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get a TDM task by ID
 	api_response = client.test_data_management.get_tdm_task_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->get_tdm_task_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a TDM task by ID
+	api_response = client.test_data_management.get_tdm_task_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->get_tdm_task_by_id: %s\n" % e)
@@ -326,6 +376,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the ID of the TDM task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -372,6 +424,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Get the tasks matching specified IDs. (optional)
@@ -395,7 +449,7 @@ pagination_cookie = "paginationCookie_example" # str | Get the next set of tasks
 # and optional values
 try:
 	# Get all TDM tasks
-	api_response = client.test_data_management.get_tdm_tasks(ids=ids, actions=actions, environments=environments, created_after_usecs=created_after_usecs, created_before_usecs=created_before_usecs, statuses=statuses, object_ids=object_ids, pagination_cookie=pagination_cookie)
+	api_response = client.test_data_management.get_tdm_tasks(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, actions=actions, environments=environments, created_after_usecs=created_after_usecs, created_before_usecs=created_before_usecs, statuses=statuses, object_ids=object_ids, pagination_cookie=pagination_cookie)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->get_tdm_tasks: %s\n" % e)
@@ -406,6 +460,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Get the tasks matching specified IDs. | [optional]
  **actions** | **[str]**| Get the tasks matching specified actions. | [optional]
  **environments** | **[str]**| Get the tasks matching specified environments. | [optional]
@@ -461,6 +517,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the ID of the TDM object.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 created_after = 1 # int | Get the events created after the specified time (in usecs from epoch). (optional)
 created_before = 1 # int | Get the events created before the specified time (in usecs from epoch). (optional)
 
@@ -476,7 +534,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get timeline events of object
-	api_response = client.test_data_management.get_tdm_timeline_events_by_object_id(id, created_after=created_after, created_before=created_before)
+	api_response = client.test_data_management.get_tdm_timeline_events_by_object_id(id, access_cluster_id=access_cluster_id, region_id=region_id, created_after=created_after, created_before=created_before)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->get_tdm_timeline_events_by_object_id: %s\n" % e)
@@ -488,6 +546,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the ID of the TDM object. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **created_after** | **int**| Get the events created after the specified time (in usecs from epoch). | [optional]
  **created_before** | **int**| Get the events created before the specified time (in usecs from epoch). | [optional]
 
@@ -539,11 +599,22 @@ client = HeliosClient(api_key=api_key)
 
 id = "id_example" # str | Specifies the ID of the snapshot.
 body = UpdateTdmSnapshotRequest() # UpdateTdmSnapshotRequest | Specifies the parameters to update the snapshot.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a snapshot by ID
 	api_response = client.test_data_management.update_tdm_snapshot_by_id(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->update_tdm_snapshot_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a snapshot by ID
+	api_response = client.test_data_management.update_tdm_snapshot_by_id(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TestDataManagementApi->update_tdm_snapshot_by_id: %s\n" % e)
@@ -556,6 +627,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the ID of the snapshot. |
  **body** | [**UpdateTdmSnapshotRequest**](UpdateTdmSnapshotRequest.md)| Specifies the parameters to update the snapshot. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

@@ -76,6 +76,7 @@ class HeliosPolicyResponseAllOf(ModelNormal):
         return {
             'id': (str, none_type,),  # noqa: E501
             'num_linked_policies': (int, none_type,),  # noqa: E501
+            'num_object_protections': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +88,7 @@ class HeliosPolicyResponseAllOf(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'num_linked_policies': 'numLinkedPolicies',  # noqa: E501
+        'num_object_protections': 'numObjectProtections',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +140,7 @@ class HeliosPolicyResponseAllOf(ModelNormal):
 
             id (str, none_type): Specifies a unique policy id assigned by the Helios.. [optional]  # noqa: E501
             num_linked_policies (int, none_type): In case of global policy response, specifies the number of policies linked to this global policy on the cluster.. [optional]  # noqa: E501
+            num_object_protections (int, none_type): Specifies the number of object protections using the protection policy.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

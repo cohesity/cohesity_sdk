@@ -162,7 +162,7 @@ class RecoverMsTeamParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_ms_team ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target Team to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
+            target_ms_team ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): This field is deprecated. Use targetTeamNickName and targetTeamFullName instead.. [optional]  # noqa: E501
             target_team_nick_name (str, none_type): This field is deprecated. Specifies target team nickname in case restoreToOriginal is false.. [optional]  # noqa: E501
             target_team_full_name (str, none_type): This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user).. [optional]  # noqa: E501
             restore_to_original (bool, none_type): Specifies whether or not all Microsoft 365 Teams are restored to original location.. [optional]  # noqa: E501

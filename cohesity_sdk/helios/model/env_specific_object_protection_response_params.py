@@ -27,23 +27,31 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.aws_object_protection_response_params import AwsObjectProtectionResponseParams
     from cohesity_sdk.helios.model.elastifile_object_protection_response_params import ElastifileObjectProtectionResponseParams
     from cohesity_sdk.helios.model.flashblade_object_protection_response_params import FlashbladeObjectProtectionResponseParams
     from cohesity_sdk.helios.model.generic_nas_object_protection_response_params import GenericNasObjectProtectionResponseParams
     from cohesity_sdk.helios.model.gpfs_object_protection_response_params import GpfsObjectProtectionResponseParams
+    from cohesity_sdk.helios.model.hyper_v_object_protection_response_params import HyperVObjectProtectionResponseParams
     from cohesity_sdk.helios.model.isilon_object_protection_response_params import IsilonObjectProtectionResponseParams
     from cohesity_sdk.helios.model.mssql_object_protection_response_params import MssqlObjectProtectionResponseParams
     from cohesity_sdk.helios.model.netapp_object_protection_response_params import NetappObjectProtectionResponseParams
-    from cohesity_sdk.helios.model.office365_user_mailbox_object_protection_response_params import Office365UserMailboxObjectProtectionResponseParams
+    from cohesity_sdk.helios.model.office365_object_protection_response_params import Office365ObjectProtectionResponseParams
+    from cohesity_sdk.helios.model.oracle_object_protection_response_params import OracleObjectProtectionResponseParams
+    from cohesity_sdk.helios.model.physical_object_protection_response_params import PhysicalObjectProtectionResponseParams
     from cohesity_sdk.helios.model.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
+    globals()['AwsObjectProtectionResponseParams'] = AwsObjectProtectionResponseParams
     globals()['ElastifileObjectProtectionResponseParams'] = ElastifileObjectProtectionResponseParams
     globals()['FlashbladeObjectProtectionResponseParams'] = FlashbladeObjectProtectionResponseParams
     globals()['GenericNasObjectProtectionResponseParams'] = GenericNasObjectProtectionResponseParams
     globals()['GpfsObjectProtectionResponseParams'] = GpfsObjectProtectionResponseParams
+    globals()['HyperVObjectProtectionResponseParams'] = HyperVObjectProtectionResponseParams
     globals()['IsilonObjectProtectionResponseParams'] = IsilonObjectProtectionResponseParams
     globals()['MssqlObjectProtectionResponseParams'] = MssqlObjectProtectionResponseParams
     globals()['NetappObjectProtectionResponseParams'] = NetappObjectProtectionResponseParams
-    globals()['Office365UserMailboxObjectProtectionResponseParams'] = Office365UserMailboxObjectProtectionResponseParams
+    globals()['Office365ObjectProtectionResponseParams'] = Office365ObjectProtectionResponseParams
+    globals()['OracleObjectProtectionResponseParams'] = OracleObjectProtectionResponseParams
+    globals()['PhysicalObjectProtectionResponseParams'] = PhysicalObjectProtectionResponseParams
     globals()['VmwareObjectProtectionResponseParams'] = VmwareObjectProtectionResponseParams
 
 
@@ -83,6 +91,10 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
@@ -98,6 +110,12 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -106,6 +124,7 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 
@@ -137,7 +156,11 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             'isilon_params': (IsilonObjectProtectionResponseParams,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionResponseParams,),  # noqa: E501
             'mssql_params': (MssqlObjectProtectionResponseParams,),  # noqa: E501
-            'office365_user_mailbox_params': (Office365UserMailboxObjectProtectionResponseParams,),  # noqa: E501
+            'oracle_params': (OracleObjectProtectionResponseParams,),  # noqa: E501
+            'office365_params': (Office365ObjectProtectionResponseParams,),  # noqa: E501
+            'aws_params': (AwsObjectProtectionResponseParams,),  # noqa: E501
+            'hyperv_params': (HyperVObjectProtectionResponseParams,),  # noqa: E501
+            'physical_params': (PhysicalObjectProtectionResponseParams,),  # noqa: E501
         }
 
     @cached_property
@@ -156,7 +179,11 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
         'isilon_params': 'isilonParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
-        'office365_user_mailbox_params': 'office365UserMailboxParams',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -215,7 +242,11 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             isilon_params (IsilonObjectProtectionResponseParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionResponseParams): [optional]  # noqa: E501
             mssql_params (MssqlObjectProtectionResponseParams): [optional]  # noqa: E501
-            office365_user_mailbox_params (Office365UserMailboxObjectProtectionResponseParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectProtectionResponseParams): [optional]  # noqa: E501
+            office365_params (Office365ObjectProtectionResponseParams): [optional]  # noqa: E501
+            aws_params (AwsObjectProtectionResponseParams): [optional]  # noqa: E501
+            hyperv_params (HyperVObjectProtectionResponseParams): [optional]  # noqa: E501
+            physical_params (PhysicalObjectProtectionResponseParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

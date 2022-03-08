@@ -29,8 +29,9 @@ Name | Type | Description | Notes
 **replication_info** | [**ReplicationRun**](ReplicationRun.md) |  | [optional] 
 **archival_info** | [**ArchivalRun**](ArchivalRun.md) |  | [optional] 
 **cloud_spin_info** | [**CloudSpinRun**](CloudSpinRun.md) |  | [optional] 
+**on_prem_deploy_info** | [**OnPremDeployRun**](OnPremDeployRun.md) |  | [optional] 
 **on_legal_hold** | **bool, none_type** | Specifies if object&#39;s snapshot is on legal hold. | [optional] 
-**data_lock** | **str, none_type** | Specifies WORM retention type for the local backeup. When a WORM retention type is specified, the snapshots of the Protection Groups using this policy will be kept until the maximum of the snapshot retention time. During that time, the snapshots cannot be deleted.  &#39;Compliance&#39; implies WORM retention is set for compliance reason.  &#39;Administrative&#39; implies WORM retention is set for administrative purposes. | [optional] 
+**data_lock** | **str, none_type** | Specifies WORM retention type for the local backeup. When a WORM retention type is specified, the snapshots of the Protection Groups using this policy will be kept until the maximum of the snapshot retention time. During that time, the snapshots cannot be deleted. &lt;br&gt;&#39;Compliance&#39; implies WORM retention is set for compliance reason. &lt;br&gt;&#39;Administrative&#39; implies WORM retention is set for administrative purposes. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

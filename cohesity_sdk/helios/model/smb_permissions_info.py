@@ -141,8 +141,8 @@ class SmbPermissionsInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            owner_sid (str, none_type): Specifies the security identifier (SID) of the owner of the SMB   share.. [optional]  # noqa: E501
-            permissions ([SmbPermission], none_type): Array of SMB Permissions.   Specifies a list of SMB permissions.. [optional]  # noqa: E501
+            owner_sid (str, none_type): Specifies the security identifier (SID) of the owner of the SMB share.. [optional]  # noqa: E501
+            permissions ([SmbPermission], none_type): Array of SMB Permissions. Specifies a list of SMB permissions.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

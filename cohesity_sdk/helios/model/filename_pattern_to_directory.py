@@ -137,7 +137,7 @@ class FilenamePatternToDirectory(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             directory (str, none_type): Specifies the directory where to keep the files matching the pattern.. [optional]  # noqa: E501
-            filename_pattern (str, none_type): Specifies a pattern to be matched with filenames. This can be a   regex expression.. [optional]  # noqa: E501
+            filename_pattern (str, none_type): Specifies a pattern to be matched with filenames. This can be a regex expression.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

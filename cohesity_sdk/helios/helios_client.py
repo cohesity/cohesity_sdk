@@ -1,21 +1,39 @@
 from cohesity_sdk.helios.configuration import Configuration
 from cohesity_sdk.helios.api_client import ApiClient
 from cohesity_sdk.helios.exceptions import ApiException
-#from cohesity_sdk.helios.model.create_access_token_request_params import CreateAccessTokenRequestParams
+from cohesity_sdk.helios.model.create_access_token_request_params import CreateAccessTokenRequestParams
 
 
+from cohesity_sdk.helios.api.access_tokens import AccessTokensApi
 from cohesity_sdk.helios.api.active_directory import ActiveDirectoryApi
+from cohesity_sdk.helios.api.agent import AgentApi
+from cohesity_sdk.helios.api.antivirus_service import AntivirusServiceApi
 from cohesity_sdk.helios.api.audit_log import AuditLogApi
-from cohesity_sdk.helios.api.connectors import ConnectorsApi
-from cohesity_sdk.helios.api.d_maa_s_tenant_certificate import DMaaSTenantCertificateApi
 from cohesity_sdk.helios.api.data_tiering import DataTieringApi
-from cohesity_sdk.helios.api.external_connection import ExternalConnectionApi
+from cohesity_sdk.helios.api.external_target import ExternalTargetApi
 from cohesity_sdk.helios.api.failover import FailoverApi
-from cohesity_sdk.helios.api.fleet_instance import FleetInstanceApi
+from cohesity_sdk.helios.api.groups import GroupsApi
+from cohesity_sdk.helios.api.helios_alerts import HeliosAlertsApi
+from cohesity_sdk.helios.api.helios_audit_log import HeliosAuditLogApi
+from cohesity_sdk.helios.api.helios_mfa import HeliosMfaApi
+from cohesity_sdk.helios.api.helios_objects import HeliosObjectsApi
+from cohesity_sdk.helios.api.helios_protection_policies import HeliosProtectionPoliciesApi
+from cohesity_sdk.helios.api.helios_protection_sources import HeliosProtectionSourcesApi
 from cohesity_sdk.helios.api.helios_registration import HeliosRegistrationApi
-from cohesity_sdk.helios.api.internal import InternalApi
+from cohesity_sdk.helios.api.helios_security import HeliosSecurityApi
+from cohesity_sdk.helios.api.helios_stats import HeliosStatsApi
+from cohesity_sdk.helios.api.helios_tagging import HeliosTaggingApi
+from cohesity_sdk.helios.api.helios_users import HeliosUsersApi
+from cohesity_sdk.helios.api.helios_alerts import HeliosAlertsApi
+from cohesity_sdk.helios.api.helios_certificate import HeliosCertificateApi
+from cohesity_sdk.helios.api.helios_global_search import HeliosGlobalSearchApi
+from cohesity_sdk.helios.api.helios_identity_providers import HeliosIdentityProvidersApi
+from cohesity_sdk.helios.api.helios_on_prem import HeliosOnPremApi
+from cohesity_sdk.helios.api.helios_tenants import HeliosTenantsApi
 from cohesity_sdk.helios.api.kerberos_providers import KerberosProvidersApi
 from cohesity_sdk.helios.api.keystone import KeystoneApi
+from cohesity_sdk.helios.api.ldap import LDAPApi
+from cohesity_sdk.helios.api.mcm_protection_groups import McmProtectionGroupsApi
 from cohesity_sdk.helios.api.mfa import MfaApi
 from cohesity_sdk.helios.api.miscellaneous import MiscellaneousApi
 from cohesity_sdk.helios.api.network_information_service__nis import NetworkInformationServiceNISApi
@@ -23,23 +41,22 @@ from cohesity_sdk.helios.api.node_groups import NodeGroupsApi
 from cohesity_sdk.helios.api.objects import ObjectsApi
 from cohesity_sdk.helios.api.patches import PatchesApi
 from cohesity_sdk.helios.api.platform import PlatformApi
+from cohesity_sdk.helios.api.privileges import PrivilegesApi
 from cohesity_sdk.helios.api.protected_objects import ProtectedObjectsApi
 from cohesity_sdk.helios.api.protection_groups import ProtectionGroupsApi
 from cohesity_sdk.helios.api.protection_policies import ProtectionPoliciesApi
 from cohesity_sdk.helios.api.protection_sources import ProtectionSourcesApi
 from cohesity_sdk.helios.api.recoveries import RecoveriesApi
-from cohesity_sdk.helios.api.remote_clusters import RemoteClustersApi
+from cohesity_sdk.helios.api.roles import RolesApi
 from cohesity_sdk.helios.api.search import SearchApi
 from cohesity_sdk.helios.api.security import SecurityApi
 from cohesity_sdk.helios.api.stats import StatsApi
 from cohesity_sdk.helios.api.storage_domains import StorageDomainsApi
 from cohesity_sdk.helios.api.tags import TagsApi
-from cohesity_sdk.helios.api.tasks import TasksApi
 from cohesity_sdk.helios.api.tenants import TenantsApi
 from cohesity_sdk.helios.api.test_data_management import TestDataManagementApi
 from cohesity_sdk.helios.api.users import UsersApi
 from cohesity_sdk.helios.api.views import ViewsApi
-from cohesity_sdk.helios.api.network_reset import NetworkResetApi
 
 import re
 from urllib3.exceptions import MaxRetryError
@@ -153,10 +170,28 @@ class HeliosClient:
 
 
     @lazy_property
+    def access_tokens(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AccessTokensApi(api_client)
+
+    @lazy_property
     def active_directory(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ActiveDirectoryApi(api_client)
+
+    @lazy_property
+    def agent(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AgentApi(api_client)
+
+    @lazy_property
+    def antivirus_service(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AntivirusServiceApi(api_client)
 
     @lazy_property
     def audit_log(self):
@@ -165,28 +200,16 @@ class HeliosClient:
             return AuditLogApi(api_client)
 
     @lazy_property
-    def connectors(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return ConnectorsApi(api_client)
-
-    @lazy_property
-    def d_maa_s_tenant_certificate(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return DMaaSTenantCertificateApi(api_client)
-
-    @lazy_property
     def data_tiering(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return DataTieringApi(api_client)
 
     @lazy_property
-    def external_connection(self):
+    def external_target(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return ExternalConnectionApi(api_client)
+            return ExternalTargetApi(api_client)
 
     @lazy_property
     def failover(self):
@@ -195,10 +218,46 @@ class HeliosClient:
             return FailoverApi(api_client)
 
     @lazy_property
-    def fleet_instance(self):
+    def groups(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return FleetInstanceApi(api_client)
+            return GroupsApi(api_client)
+
+    @lazy_property
+    def helios_alerts(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosAlertsApi(api_client)
+
+    @lazy_property
+    def helios_audit_log(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosAuditLogApi(api_client)
+
+    @lazy_property
+    def helios_mfa(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosMfaApi(api_client)
+
+    @lazy_property
+    def helios_objects(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosObjectsApi(api_client)
+
+    @lazy_property
+    def helios_protection_policies(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosProtectionPoliciesApi(api_client)
+
+    @lazy_property
+    def helios_protection_sources(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosProtectionSourcesApi(api_client)
 
     @lazy_property
     def helios_registration(self):
@@ -207,10 +266,64 @@ class HeliosClient:
             return HeliosRegistrationApi(api_client)
 
     @lazy_property
-    def internal(self):
+    def helios_security(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return InternalApi(api_client)
+            return HeliosSecurityApi(api_client)
+
+    @lazy_property
+    def helios_stats(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosStatsApi(api_client)
+
+    @lazy_property
+    def helios_tagging(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosTaggingApi(api_client)
+
+    @lazy_property
+    def helios_users(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosUsersApi(api_client)
+
+    @lazy_property
+    def helios_alerts(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosAlertsApi(api_client)
+
+    @lazy_property
+    def helios_certificate(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosCertificateApi(api_client)
+
+    @lazy_property
+    def helios_global_search(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosGlobalSearchApi(api_client)
+
+    @lazy_property
+    def helios_identity_providers(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosIdentityProvidersApi(api_client)
+
+    @lazy_property
+    def helios_on_prem(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosOnPremApi(api_client)
+
+    @lazy_property
+    def helios_tenants(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosTenantsApi(api_client)
 
     @lazy_property
     def kerberos_providers(self):
@@ -223,6 +336,18 @@ class HeliosClient:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return KeystoneApi(api_client)
+
+    @lazy_property
+    def ldap(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return LDAPApi(api_client)
+
+    @lazy_property
+    def mcm_protection_groups(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return McmProtectionGroupsApi(api_client)
 
     @lazy_property
     def mfa(self):
@@ -267,6 +392,12 @@ class HeliosClient:
             return PlatformApi(api_client)
 
     @lazy_property
+    def privileges(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return PrivilegesApi(api_client)
+
+    @lazy_property
     def protected_objects(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -297,10 +428,10 @@ class HeliosClient:
             return RecoveriesApi(api_client)
 
     @lazy_property
-    def remote_clusters(self):
+    def roles(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
-            return RemoteClustersApi(api_client)
+            return RolesApi(api_client)
 
     @lazy_property
     def search(self):
@@ -333,12 +464,6 @@ class HeliosClient:
             return TagsApi(api_client)
 
     @lazy_property
-    def tasks(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return TasksApi(api_client)
-
-    @lazy_property
     def tenants(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -361,9 +486,3 @@ class HeliosClient:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ViewsApi(api_client)
-
-    @lazy_property
-    def network_reset(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return NetworkResetApi(api_client)

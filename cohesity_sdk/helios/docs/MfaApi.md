@@ -3,6 +3,7 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_authenticator_key**](MfaApi.md#create_authenticator_key) | **POST** /mcm/mfa/authenticator-key | Initiate OTP from Helios.
 [**create_email_otp**](MfaApi.md#create_email_otp) | **POST** /email-otp | Creates a new OTP to be sent to the user email.
 [**create_totp_key**](MfaApi.md#create_totp_key) | **POST** /totp-key | Create a new TOTP secret URI and store the secret key.
 [**get_mfa_config**](MfaApi.md#get_mfa_config) | **GET** /mfa-config | Returns the current MFA configuration.
@@ -13,6 +14,81 @@ Method | HTTP request | Description
 [**update_support_mfa_config**](MfaApi.md#update_support_mfa_config) | **PATCH** /support-user/mfa | Stores the updated MFA configuration.
 [**verify_support_user_totp**](MfaApi.md#verify_support_user_totp) | **POST** /support-user/verify-totp | Verify the totp code for support user.
 
+
+# **create_authenticator_key**
+> CreateAuthenticatorKeyResponse create_authenticator_key(body)
+
+Initiate OTP from Helios.
+
+Initiate Time based OTP Setup or send Email OTP from Helios for the current user. 
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.create_authenticator_key_body import CreateAuthenticatorKeyBody
+from cohesity_sdk.helios.model.create_authenticator_key_response import CreateAuthenticatorKeyResponse
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+body = CreateAuthenticatorKeyBody() # CreateAuthenticatorKeyBody | Parameters required for initiating OTP.
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Initiate OTP from Helios.
+	api_response = client.mfa.create_authenticator_key(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MfaApi->create_authenticator_key: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Initiate OTP from Helios.
+	api_response = client.mfa.create_authenticator_key(body, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MfaApi->create_authenticator_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateAuthenticatorKeyBody**](CreateAuthenticatorKeyBody.md)| Parameters required for initiating OTP. |
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**CreateAuthenticatorKeyResponse**](CreateAuthenticatorKeyResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_email_otp**
 > create_email_otp()
@@ -37,6 +113,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = CreateEmailOtpRequestBody(
         username="username_example",
         password="password_example",
@@ -47,7 +125,7 @@ body = CreateEmailOtpRequestBody(
 # and optional values
 try:
 	# Creates a new OTP to be sent to the user email.
-	client.mfa.create_email_otp(body=body)
+	client.mfa.create_email_otp(access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 except ApiException as e:
 	print("Exception when calling MfaApi->create_email_otp: %s\n" % e)
 ```
@@ -57,6 +135,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**CreateEmailOtpRequestBody**](CreateEmailOtpRequestBody.md)| Specifies the parameters to send email OTP. | [optional]
 
 ### Return type
@@ -108,11 +188,22 @@ client = HeliosClient(api_key=api_key)
 body = CreateTotpKeyRequestBody(
         totp_key_name="totp_key_name_example",
     ) # CreateTotpKeyRequestBody | Specifies the key id for creating the TOTP key.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a new TOTP secret URI and store the secret key.
 	api_response = client.mfa.create_totp_key(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MfaApi->create_totp_key: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a new TOTP secret URI and store the secret key.
+	api_response = client.mfa.create_totp_key(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MfaApi->create_totp_key: %s\n" % e)
@@ -124,6 +215,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateTotpKeyRequestBody**](CreateTotpKeyRequestBody.md)| Specifies the key id for creating the TOTP key. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -170,11 +263,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Returns the current MFA configuration.
-	api_response = client.mfa.get_mfa_config()
+	api_response = client.mfa.get_mfa_config(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MfaApi->get_mfa_config: %s\n" % e)
@@ -182,7 +278,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -229,11 +329,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Returns the current MFA configuration.
-	api_response = client.mfa.get_support_mfa_config()
+	api_response = client.mfa.get_support_mfa_config(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MfaApi->get_support_mfa_config: %s\n" % e)
@@ -241,7 +344,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -287,18 +394,25 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Creates a new OTP to be sent to the user email.
-	client.mfa.send_email_otp()
+	client.mfa.send_email_otp(access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling MfaApi->send_email_otp: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -344,18 +458,25 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Creates a new OTP to be sent to the linux support user email.
-	client.mfa.send_support_email_otp()
+	client.mfa.send_support_email_otp(access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling MfaApi->send_support_email_otp: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -409,11 +530,22 @@ body = MfaConfigInfo(
         ],
         retain_user_mfa_settings=True,
     ) # MfaConfigInfo | The update request for the MFA Settings
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Stores the updated MFA configuration.
 	api_response = client.mfa.update_mfa_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MfaApi->update_mfa_config: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Stores the updated MFA configuration.
+	api_response = client.mfa.update_mfa_config(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MfaApi->update_mfa_config: %s\n" % e)
@@ -425,6 +557,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**MfaConfigInfo**](MfaConfigInfo.md)| The update request for the MFA Settings |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -477,11 +611,22 @@ body = SupportMfaConfigInfo(
         mfa_type="email",
         email="email_example",
     ) # SupportMfaConfigInfo | The update request for the MFA Settings
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Stores the updated MFA configuration.
 	api_response = client.mfa.update_support_mfa_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MfaApi->update_support_mfa_config: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Stores the updated MFA configuration.
+	api_response = client.mfa.update_support_mfa_config(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MfaApi->update_support_mfa_config: %s\n" % e)
@@ -493,6 +638,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**SupportMfaConfigInfo**](SupportMfaConfigInfo.md)| The update request for the MFA Settings |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -543,11 +690,22 @@ client = HeliosClient(api_key=api_key)
 body = VerifyTotpRequest(
         totp_code="totp_code_example",
     ) # VerifyTotpRequest | Totp code to be verified.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Verify the totp code for support user.
 	api_response = client.mfa.verify_support_user_totp(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MfaApi->verify_support_user_totp: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Verify the totp code for support user.
+	api_response = client.mfa.verify_support_user_totp(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling MfaApi->verify_support_user_totp: %s\n" % e)
@@ -559,6 +717,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**VerifyTotpRequest**](VerifyTotpRequest.md)| Totp code to be verified. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

@@ -88,6 +88,8 @@ class ObjectAllOf(ModelNormal):
             'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +108,8 @@ class ObjectAllOf(ModelNormal):
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
+        'sharepoint_params': 'sharepointParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -164,6 +168,8 @@ class ObjectAllOf(ModelNormal):
             gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
             mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
+            physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
+            sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

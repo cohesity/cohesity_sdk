@@ -115,7 +115,7 @@ class RecoverVmwareSnapshotParams(ModelComposed):
             'messages': ([str], none_type,),  # noqa: E501
             'instant_recovery_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'datastore_migration_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'child_snapshots': ([RecoverVmwareChildSnapshotParams],),  # noqa: E501
+            'child_snapshots': ([RecoverVmwareChildSnapshotParams], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -212,7 +212,7 @@ class RecoverVmwareSnapshotParams(ModelComposed):
             messages ([str], none_type): Specify error messages about the object.. [optional]  # noqa: E501
             instant_recovery_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about instant recovery. This is only applicable for RecoverVm.. [optional]  # noqa: E501
             datastore_migration_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about datastore migration. This is only applicable for RecoverVm.. [optional]  # noqa: E501
-            child_snapshots ([RecoverVmwareChildSnapshotParams]): Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here.. [optional]  # noqa: E501
+            child_snapshots ([RecoverVmwareChildSnapshotParams], none_type): Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

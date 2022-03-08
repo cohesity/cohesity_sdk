@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str, none_type** | Specifies the name of the Protection Policy. | 
 **type** | **str, none_type** | Specifies the type of the Protection Policy to be created on Helios. | 
+**cluster_identifier** | **str, none_type** | Specifies the cluster to which this policy belongs. This required is only for type OnPremPolicy. The format is clusterId:clusterIncarnationId. | [optional] 
+**tenant_ids** | **[str, none_type]** | Specifies the tenants which have access to this object. | [optional] [readonly] 
 **backup_policy** | [**HeliosBackupPolicy**](HeliosBackupPolicy.md) |  | [optional] 
 **description** | **str, none_type** | Specifies the description of the Protection Policy. | [optional] 
 **blackout_window** | [**[HeliosBlackoutWindow], none_type**](HeliosBlackoutWindow.md) | List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod. | [optional] 
@@ -16,6 +18,7 @@ Name | Type | Description | Notes
 **data_lock** | **str, none_type** | This field is now deprecated. Please use the DataLockConfig in the backup retention. | [optional] 
 **id** | **str, none_type** | Specifies a unique policy id assigned by the Helios. | [optional] 
 **num_linked_policies** | **int, none_type** | In case of global policy response, specifies the number of policies linked to this global policy on the cluster. | [optional] 
+**num_object_protections** | **int, none_type** | Specifies the number of object protections using the protection policy. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

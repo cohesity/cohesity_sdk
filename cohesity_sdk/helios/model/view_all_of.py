@@ -66,6 +66,7 @@ class ViewAllOf(ModelNormal):
             'SHORT': "Short",
             'LONG': "Long",
             'HIERARCHICAL': "Hierarchical",
+            'OBJECTID': "ObjectId",
         },
     }
 
@@ -107,6 +108,8 @@ class ViewAllOf(ModelNormal):
             'stats': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'file_count_by_size': ([FileCount],),  # noqa: E501
             'owner_sid': (str, none_type,),  # noqa: E501
+            'intent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            's3_folder_support_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -135,6 +138,8 @@ class ViewAllOf(ModelNormal):
         'stats': 'stats',  # noqa: E501
         'file_count_by_size': 'fileCountBySize',  # noqa: E501
         'owner_sid': 'ownerSid',  # noqa: E501
+        'intent': 'intent',  # noqa: E501
+        's3_folder_support_enabled': 's3FolderSupportEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -185,24 +190,26 @@ class ViewAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             view_id (int, none_type): Specifies an id of the View assigned by the Cohesity Cluster.. [optional]  # noqa: E501
-            is_category_inferred (bool, none_type): If True, category in response is not set by user but inferred  by Iris because none is set. Category can only be none when view was  created by v1 API or cloned from a view created by v1 API.  Inference  Logic is as follows: 1. Object Services if only S3 or Swift protocol  is selected. 2. Backup Target only if one read-write protocol is selected  and    QoS is \"Backup Target Commvault\" or \"Backup Target SSD\" . 3. File Services if there are more than 1 read-write protocol or     it doesn't fit any other category.. [optional]  # noqa: E501
-            data_lock_expiry_usecs (int, none_type): DataLock (Write Once Read Many) lock expiry epoch time in microseconds. If   a view is marked as a DataLock view, only a Data Security Officer (a user   having Data Security Privilege) can delete the view until the lock expiry   time.. [optional]  # noqa: E501
-            object_services_mapping_config (str, none_type): Specifies the Object Services key mapping config of the view. This parameter can only   be set during create and cannot be changed.   Configuration of Object Services key mapping.   Specifies the type of Object Services key mapping config.. [optional]  # noqa: E501
-            storage_domain_id (int, none_type): Specifies the id of the Storage Domain (View Box) where the View is   stored.. [optional]  # noqa: E501
-            storage_domain_name (str, none_type): Specifies the name of the Storage Domain (View Box) where the View is   stored.. [optional]  # noqa: E501
-            case_insensitive_names_enabled (bool, none_type): Specifies whether to support case insensitive file/folder names. This   parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
+            is_category_inferred (bool, none_type): If True, category in response is not set by user but inferred by Iris because none is set. Category can only be none when view was created by v1 API or cloned from a view created by v1 API.  Inference Logic is as follows: 1. Object Services if only S3 or Swift protocol is selected. 2. Backup Target only if one read-write protocol is selected and    QoS is \"Backup Target Commvault\" or \"Backup Target SSD\". 3. File Services if there are more than 1 read-write protocol or    it doesn't fit any other category.. [optional]  # noqa: E501
+            data_lock_expiry_usecs (int, none_type): DataLock (Write Once Read Many) lock expiry epoch time in microseconds. If a view is marked as a DataLock view, only a Data Security Officer (a user having Data Security Privilege) can delete the view until the lock expiry time.. [optional]  # noqa: E501
+            object_services_mapping_config (str, none_type): Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the id of the Storage Domain (View Box) where the View is stored.. [optional]  # noqa: E501
+            storage_domain_name (str, none_type): Specifies the name of the Storage Domain (View Box) where the View is stored.. [optional]  # noqa: E501
+            case_insensitive_names_enabled (bool, none_type): Specifies whether to support case insensitive file/folder names. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
             create_time_msecs (int, none_type): Specifies the time that the View was created in milliseconds.. [optional]  # noqa: E501
-            basic_mount_path (str, none_type): Specifies the NFS mount path of the View (without the hostname   information).   This path is used to support NFS mounting of the paths specified in the   nfsExportPathList on Windows systems.. [optional]  # noqa: E501
-            nfs_mount_path (str, none_type): This field is currently deprecated. Please use NFS MountPaths   which would be an array of strings.. [optional]  # noqa: E501
-            nfs_mount_paths ([str], none_type): Array of NFS Paths. Specifies the path for mounting this  View as an NFS share. If Kerberos Provider has multiple hostaliases,  each host alias has  its own path.. [optional]  # noqa: E501
-            smb_mount_paths ([str], none_type): Array of SMB Paths.   Specifies the possible paths that can be used to mount this View   as a SMB share. If Active Directory has multiple account names;   each machine account has its own path.. [optional]  # noqa: E501
+            basic_mount_path (str, none_type): Specifies the NFS mount path of the View (without the hostname information). This path is used to support NFS mounting of the paths specified in the nfsExportPathList on Windows systems.. [optional]  # noqa: E501
+            nfs_mount_path (str, none_type): This field is currently deprecated. Please use NFS MountPaths which would be an array of strings.. [optional]  # noqa: E501
+            nfs_mount_paths ([str], none_type): Array of NFS Paths. Specifies the path for mounting this View as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has  its own path.. [optional]  # noqa: E501
+            smb_mount_paths ([str], none_type): Array of SMB Paths. Specifies the possible paths that can be used to mount this View as a SMB share. If Active Directory has multiple account names; each machine account has its own path.. [optional]  # noqa: E501
             view_protection ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
-            aliases ([ViewAliasInfo], none_type): Aliases created for the view. A view alias allows a directory path inside   a view to be mounted using the alias name.. [optional]  # noqa: E501
+            aliases ([ViewAliasInfo], none_type): Aliases created for the view. A view alias allows a directory path inside a view to be mounted using the alias name.. [optional]  # noqa: E501
             is_target_for_migrated_data (bool, none_type): Specifies if a view contains migrated data.. [optional]  # noqa: E501
-            view_failover ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the information about the failover of the   view.. [optional]  # noqa: E501
+            view_failover ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the information about the failover of the view.. [optional]  # noqa: E501
             stats ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies statistics about the View.. [optional]  # noqa: E501
             file_count_by_size ([FileCount]): Specifies the file count by size for the View.. [optional]  # noqa: E501
             owner_sid (str, none_type): Specifies the sid of the view owner.. [optional]  # noqa: E501
+            intent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the intent of the View.. [optional]  # noqa: E501
+            s3_folder_support_enabled (bool, none_type): Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

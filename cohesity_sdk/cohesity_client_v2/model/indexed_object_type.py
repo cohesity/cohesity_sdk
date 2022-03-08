@@ -65,6 +65,9 @@ class IndexedObjectType(ModelNormal):
             'HDFSOBJECTS': "HDFSObjects",
             'EXCHANGEOBJECTS': "ExchangeObjects",
             'PUBLICFOLDERS': "PublicFolders",
+            'TEAMSOBJECTS': "TeamsObjects",
+            'SHAREPOINTOBJECTS': "SharepointObjects",
+            'ONEDRIVEOBJECTS': "OneDriveObjects",
         },
     }
 

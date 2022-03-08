@@ -157,7 +157,7 @@ class NisNetgroup(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             nfs_access (str, none_type): Specifies NFS protocol acess level for clients from the netgroup.. [optional]  # noqa: E501
-            nfs_squash (str, none_type): Specifies which nfsSquash Mounted.   'kNone' mounts none.   'kRootSquash' mounts nfsRootSquash. Whether clients from this subnet can   mount as root on NFS.   'kAllSquash' mounts nfsAllSquash. Whether all clients from this subnet can   map view with view_all_squash_uid/view_all_squash_gid configured in   the view.. [optional]  # noqa: E501
+            nfs_squash (str, none_type): Specifies which nfsSquash Mounted. 'kNone' mounts none. 'kRootSquash' mounts nfsRootSquash. Whether clients from this subnet can mount as root on NFS. 'kAllSquash' mounts nfsAllSquash. Whether all clients from this subnet can map view with view_all_squash_uid/view_all_squash_gid configured in the view.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

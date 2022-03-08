@@ -58,6 +58,7 @@ class CreateTenantParams(ModelNormal):
 
     validations = {
         ('tenant_id_suffix',): {
+            'max_length': 10,
             'regex': {
                 'pattern': r'^([a-zA-Z0-9]*)$',  # noqa: E501
             },
@@ -114,7 +115,7 @@ class CreateTenantParams(ModelNormal):
 
         Args:
             name (str, none_type): Name of the Tenant.
-            tenant_id_suffix (str, none_type): This suffix is used by cohesity to generate the actual tenant Id by   appending the parent's tenant id to it.
+            tenant_id_suffix (str, none_type): This suffix is used by cohesity to generate the actual tenant Id by appending the parent's tenant id to it.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -144,8 +144,8 @@ class ViewProtection(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             magneto_entity_id (int, none_type): Specifies the id of the Protection Source that is using this View.. [optional]  # noqa: E501
-            protection_groups ([ProtectionGroupInfo], none_type): Array of Protection Group.   Specifies the Protection Group that are protecting the View.. [optional]  # noqa: E501
-            inactive (bool, none_type): Specifies if this View is an inactive View that was created on this   Remote Cluster to store the Snapshots created by replication.   This inactive View cannot be NFS or SMB mounted.. [optional]  # noqa: E501
+            protection_groups ([ProtectionGroupInfo], none_type): Array of Protection Group. Specifies the Protection Group that are protecting the View.. [optional]  # noqa: E501
+            inactive (bool, none_type): Specifies if this View is an inactive View that was created on this Remote Cluster to store the Snapshots created by replication. This inactive View cannot be NFS or SMB mounted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -21,8 +21,13 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.helios.model.cluster_storage_stats import ClusterStorageStats
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.files_stats import FilesStats
 from cohesity_sdk.helios.model.get_protection_runs_status_response_body import GetProtectionRunsStatusResponseBody
+from cohesity_sdk.helios.model.time_series_stats import TimeSeriesStats
+from cohesity_sdk.helios.model.view_clients_stats import ViewClientsStats
+from cohesity_sdk.helios.model.views_stats import ViewsStats
 
 
 class StatsApi(object):
@@ -36,6 +41,260 @@ class StatsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __get_cluster_storage_stats(
+            self,
+            **kwargs
+        ):
+            """Get Cluster Storage Stats.  # noqa: E501
+
+            Get Cluster Storage Stats.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_cluster_storage_stats(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ClusterStorageStats
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_cluster_storage_stats = _Endpoint(
+            settings={
+                'response_type': (ClusterStorageStats,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/stats/cluster-storage',
+                'operation_id': 'get_cluster_storage_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_cluster_storage_stats
+        )
+
+        def __get_files_stats(
+            self,
+            **kwargs
+        ):
+            """Get Stats of Files.  # noqa: E501
+
+            Get Stats of files.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_files_stats(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                entity_type (str): Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FilesStats
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_files_stats = _Endpoint(
+            settings={
+                'response_type': (FilesStats,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/stats/files',
+                'operation_id': 'get_files_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                    'entity_type',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'entity_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('entity_type',): {
+
+                        "KCLUSTER": "kCluster",
+                        "KSTORAGEDOMAIN": "kStorageDomain"
+                    },
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'entity_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'entity_type': 'entityType',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'entity_type': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_files_stats
+        )
 
         def __get_protection_runs_stats(
             self,
@@ -52,6 +311,8 @@ class StatsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 start_time_usecs (int): Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day.. [optional]
                 end_time_usecs (int): Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time.. [optional]
                 run_status ([str]): Specifies a list of status, runs matching the status will be returned. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Failed' indicates that the run has failed. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
@@ -116,6 +377,8 @@ class StatsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'start_time_usecs',
                     'end_time_usecs',
                     'run_status',
@@ -143,6 +406,10 @@ class StatsApi(object):
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'start_time_usecs':
                         (int,),
                     'end_time_usecs':
@@ -151,11 +418,15 @@ class StatsApi(object):
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'start_time_usecs': 'startTimeUsecs',
                     'end_time_usecs': 'endTimeUsecs',
                     'run_status': 'runStatus',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'start_time_usecs': 'query',
                     'end_time_usecs': 'query',
                     'run_status': 'query',
@@ -172,4 +443,703 @@ class StatsApi(object):
             },
             api_client=api_client,
             callable=__get_protection_runs_stats
+        )
+
+        def __get_time_series_stats(
+            self,
+            schema_name,
+            metric_names,
+            entity_id,
+            start_time_msecs,
+            **kwargs
+        ):
+            """Get Time Series Stats.  # noqa: E501
+
+            Get Time Series Stats.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_time_series_stats(schema_name, metric_names, entity_id, start_time_msecs, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                schema_name (str): Specifies the schema name.
+                metric_names ([str]): Specifies a list of metric names.
+                entity_id (str): Specifies the entity id.
+                start_time_msecs (int): Specifies the start time of series stats.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                end_time_msecs (int): Specifies the end time of series stats, by default it is current time.. [optional]
+                rollup_function (str): Specifies the rollup function to apply to the data points for the time interval specified by rollupInternalSecs.. [optional]
+                rollup_interval_secs (int): Specifies the time interval granularity for the specified rollup function.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TimeSeriesStats
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['schema_name'] = \
+                schema_name
+            kwargs['metric_names'] = \
+                metric_names
+            kwargs['entity_id'] = \
+                entity_id
+            kwargs['start_time_msecs'] = \
+                start_time_msecs
+            return self.call_with_http_info(**kwargs)
+
+        self.get_time_series_stats = _Endpoint(
+            settings={
+                'response_type': (TimeSeriesStats,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/stats/time-series-stats',
+                'operation_id': 'get_time_series_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'schema_name',
+                    'metric_names',
+                    'entity_id',
+                    'start_time_msecs',
+                    'access_cluster_id',
+                    'region_id',
+                    'end_time_msecs',
+                    'rollup_function',
+                    'rollup_interval_secs',
+                ],
+                'required': [
+                    'schema_name',
+                    'metric_names',
+                    'entity_id',
+                    'start_time_msecs',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'rollup_function',
+                ],
+                'validation': [
+                    'metric_names',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('metric_names',): {
+
+                        'min_items': 1,
+                    },
+                },
+                'allowed_values': {
+                    ('rollup_function',): {
+
+                        "KSUM": "kSum",
+                        "KAVERAGE": "kAverage",
+                        "KCOUNT": "kCount",
+                        "KMAX": "kMax",
+                        "KMIN": "kMin",
+                        "KMEDIAN": "kMedian",
+                        "KPERCENTILE95": "kPercentile95",
+                        "KLATEST": "kLatest",
+                        "KRATE": "kRate"
+                    },
+                },
+                'openapi_types': {
+                    'schema_name':
+                        (str,),
+                    'metric_names':
+                        ([str],),
+                    'entity_id':
+                        (str,),
+                    'start_time_msecs':
+                        (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'end_time_msecs':
+                        (int,),
+                    'rollup_function':
+                        (str,),
+                    'rollup_interval_secs':
+                        (int,),
+                },
+                'attribute_map': {
+                    'schema_name': 'schemaName',
+                    'metric_names': 'metricNames',
+                    'entity_id': 'entityId',
+                    'start_time_msecs': 'startTimeMsecs',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'end_time_msecs': 'endTimeMsecs',
+                    'rollup_function': 'rollupFunction',
+                    'rollup_interval_secs': 'rollupIntervalSecs',
+                },
+                'location_map': {
+                    'schema_name': 'query',
+                    'metric_names': 'query',
+                    'entity_id': 'query',
+                    'start_time_msecs': 'query',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'end_time_msecs': 'query',
+                    'rollup_function': 'query',
+                    'rollup_interval_secs': 'query',
+                },
+                'collection_format_map': {
+                    'metric_names': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_time_series_stats
+        )
+
+        def __get_view_client_stats(
+            self,
+            **kwargs
+        ):
+            """Get Stats of View Clients  # noqa: E501
+
+            Get Stats of View Clients.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_view_client_stats(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                metric (str, none_type): Specifies the metric to which stats has to be sorted.. [optional]
+                num_top_view_clients (int, none_type): Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified.. [optional]
+                last_hours (int, none_type): Specifies the last hours of stats to sort.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewClientsStats
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_view_client_stats = _Endpoint(
+            settings={
+                'response_type': (ViewClientsStats,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/stats/view-clients',
+                'operation_id': 'get_view_client_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                    'metric',
+                    'num_top_view_clients',
+                    'last_hours',
+                ],
+                'required': [],
+                'nullable': [
+                    'metric',
+                    'num_top_view_clients',
+                    'last_hours',
+                ],
+                'enum': [
+                    'metric',
+                ],
+                'validation': [
+                    'num_top_view_clients',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('num_top_view_clients',): {
+
+                        'inclusive_minimum': 1,
+                    },
+                },
+                'allowed_values': {
+                    ('metric',): {
+                        'None': None,
+                        "KNUMBYTESREAD": "kNumBytesRead",
+                        "KNUMBYTESWRITTEN": "kNumBytesWritten",
+                        "KREADIOS": "kReadIos",
+                        "KWRITEIOS": "kWriteIos",
+                        "KREADLATENCYUSECS": "kReadLatencyUsecs",
+                        "KWRITELATENCYUSECS": "kWriteLatencyUsecs",
+                        "KNUMREADERRORS": "kNumReadErrors",
+                        "KNUMWRITEERRORS": "kNumWriteErrors",
+                        "KNFSV3MNTLATUSECS": "kNFSv3MntLatUsecs",
+                        "KNFSV3MNTOPS": "kNFSv3MntOps",
+                        "KNFSV3MNTERR": "kNFSv3MntErr",
+                        "KNFSV3UMNTLATUSECS": "kNFSv3UmntLatUsecs",
+                        "KNFSV3UMNTOPS": "kNFSv3UmntOps",
+                        "KNFSV3UMNTERR": "kNFSv3UmntErr",
+                        "KNFSV3CREATELATUSECS": "kNFSv3CreateLatUsecs",
+                        "KNFSV3CREATEOPS": "kNFSv3CreateOps",
+                        "KNFSV3CREATEERR": "kNFSv3CreateErr",
+                        "KNFSV3REMOVELATUSECS": "kNFSv3RemoveLatUsecs",
+                        "KNFSV3REMOVEOPS": "kNFSv3RemoveOps",
+                        "KNFSV3REMOVEERR": "kNFSv3RemoveErr",
+                        "KNFSV3MKDIRLATUSECS": "kNFSv3MkdirLatUsecs",
+                        "KNFSV3MKDIROPS": "kNFSv3MkdirOps",
+                        "KNFSV3MKDIRERR": "kNFSv3MkdirErr",
+                        "KNFSV3RMDIRLATUSECS": "kNFSv3RmdirLatUsecs",
+                        "KNFSV3RMDIROPS": "kNFSv3RmdirOps",
+                        "KNFSV3RMDIRERR": "kNFSv3RmdirErr",
+                        "KNFSV3LOOKUPLATUSECS": "kNFSv3LookupLatUsecs",
+                        "KNFSV3LOOKUPOPS": "kNFSv3LookupOps",
+                        "KNFSV3LOOKUPERR": "kNFSv3LookupErr",
+                        "KNFSV3READDIRLATUSECS": "kNFSv3ReaddirLatUsecs",
+                        "KNFSV3READDIROPS": "kNFSv3ReaddirOps",
+                        "KNFSV3READDIRERR": "kNFSv3ReaddirErr",
+                        "KNFSV3READDIRPLUSLATUSECS": "kNFSv3ReaddirplusLatUsecs",
+                        "KNFSV3READDIRPLUSOPS": "kNFSv3ReaddirplusOps",
+                        "KNFSV3READDIRPLUSERR": "kNFSv3ReaddirplusErr",
+                        "KNFSV3SYMLINKLATUSECS": "kNFSv3SymlinkLatUsecs",
+                        "KNFSV3SYMLINKOPS": "kNFSv3SymlinkOps",
+                        "KNFSV3SYMLINKERR": "kNFSv3SymlinkErr",
+                        "KNFSV3RENAMELATUSECS": "kNFSv3RenameLatUsecs",
+                        "KNFSV3RENAMEOPS": "kNFSv3RenameOps",
+                        "KNFSV3RENAMEERR": "kNFSv3RenameErr",
+                        "KSMBSESSIONSETUPLATUSECS": "kSMBSessionSetupLatUsecs",
+                        "KSMBSESSIONSETUPOPS": "kSMBSessionSetupOps",
+                        "KSMBSESSIONSETUPERR": "kSMBSessionSetupErr",
+                        "KSMBLOGOFFLATUSECS": "kSMBLogoffLatUsecs",
+                        "KSMBLOGOFFOPS": "kSMBLogoffOps",
+                        "KSMBLOGOFFERR": "kSMBLogoffErr",
+                        "KSMBTREECONNECTLATUSECS": "kSMBTreeConnectLatUsecs",
+                        "KSMBTREECONNECTOPS": "kSMBTreeConnectOps",
+                        "KSMBTREECONNECTERR": "kSMBTreeConnectErr",
+                        "KSMBTREEDISCONNECTLATUSECS": "kSMBTreeDisconnectLatUsecs",
+                        "KSMBTREEDISCONNECTOPS": "kSMBTreeDisconnectOps",
+                        "KSMBTREEDISCONNECTERR": "kSMBTreeDisconnectErr",
+                        "KSMBOPENLATUSECS": "kSMBOpenLatUsecs",
+                        "KSMBOPENOPS": "kSMBOpenOps",
+                        "KSMBOPENERR": "kSMBOpenErr",
+                        "KSMBCLOSELATUSECS": "kSMBCloseLatUsecs",
+                        "KSMBCLOSEOPS": "kSMBCloseOps",
+                        "KSMBCLOSEERR": "kSMBCloseErr",
+                        "KSMBCREATEFILELATUSECS": "kSMBCreateFileLatUsecs",
+                        "KSMBCREATEFILEOPS": "kSMBCreateFileOps",
+                        "KSMBCREATEFILEERR": "kSMBCreateFileErr",
+                        "KSMBDELETEFILELATUSECS": "kSMBDeleteFileLatUsecs",
+                        "KSMBDELETEFILEOPS": "kSMBDeleteFileOps",
+                        "KSMBDELETEFILEERR": "kSMBDeleteFileErr",
+                        "KSMBMKDIRLATUSECS": "kSMBMkdirLatUsecs",
+                        "KSMBMKDIROPS": "kSMBMkdirOps",
+                        "KSMBMKDIRERR": "kSMBMkdirErr",
+                        "KSMBRMDIRLATUSECS": "kSMBRmdirLatUsecs",
+                        "KSMBRMDIROPS": "kSMBRmdirOps",
+                        "KSMBRMDIRERR": "kSMBRmdirErr",
+                        "KSMBREADDIRLATUSECS": "kSMBReaddirLatUsecs",
+                        "KSMBREADDIROPS": "kSMBReaddirOps",
+                        "KSMBREADDIRERR": "kSMBReaddirErr",
+                        "KSMBGETINFOLATUSECS": "kSMBGetInfoLatUsecs",
+                        "KSMBGETINFOOPS": "kSMBGetInfoOps",
+                        "KSMBGETINFOERR": "kSMBGetInfoErr",
+                        "KSMBSETINFOLATUSECS": "kSMBSetInfoLatUsecs",
+                        "KSMBSETINFOOPS": "kSMBSetInfoOps",
+                        "KSMBSETINFOERR": "kSMBSetInfoErr",
+                        "KSMBRENAMELATUSECS": "kSMBRenameLatUsecs",
+                        "KSMBRENAMEOPS": "kSMBRenameOps",
+                        "KSMBRENAMEERR": "kSMBRenameErr"
+                    },
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'metric':
+                        (str, none_type,),
+                    'num_top_view_clients':
+                        (int, none_type,),
+                    'last_hours':
+                        (int, none_type,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'metric': 'metric',
+                    'num_top_view_clients': 'numTopViewClients',
+                    'last_hours': 'lastHours',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'metric': 'query',
+                    'num_top_view_clients': 'query',
+                    'last_hours': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_view_client_stats
+        )
+
+        def __get_views_stats(
+            self,
+            **kwargs
+        ):
+            """Get Views Stats.  # noqa: E501
+
+            Get Views Stats.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_views_stats(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                metric (str, none_type): Specifies the metric to which stats has to be sorted.. [optional]
+                protocol (str, none_type): Specifies the protocol to sort.. [optional]
+                num_top_views (int, none_type): Specifies the number of view for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view will be returned. If metric is not specified, this parameter must also not be specified.. [optional]
+                last_hours (int, none_type): Specifies the last hours of stats to sort.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ViewsStats
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_views_stats = _Endpoint(
+            settings={
+                'response_type': (ViewsStats,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/stats/views',
+                'operation_id': 'get_views_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                    'metric',
+                    'protocol',
+                    'num_top_views',
+                    'last_hours',
+                ],
+                'required': [],
+                'nullable': [
+                    'metric',
+                    'protocol',
+                    'num_top_views',
+                    'last_hours',
+                ],
+                'enum': [
+                    'metric',
+                    'protocol',
+                ],
+                'validation': [
+                    'num_top_views',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('num_top_views',): {
+
+                        'inclusive_minimum': 1,
+                    },
+                },
+                'allowed_values': {
+                    ('metric',): {
+                        'None': None,
+                        "KNUMBYTESREAD": "kNumBytesRead",
+                        "KNUMBYTESWRITTEN": "kNumBytesWritten",
+                        "KREADIOS": "kReadIos",
+                        "KWRITEIOS": "kWriteIos",
+                        "KREADLATENCYUSECS": "kReadLatencyUsecs",
+                        "KWRITELATENCYUSECS": "kWriteLatencyUsecs",
+                        "KNUMREADERRORS": "kNumReadErrors",
+                        "KNUMWRITEERRORS": "kNumWriteErrors",
+                        "KNFSV3MNTLATUSECS": "kNFSv3MntLatUsecs",
+                        "KNFSV3MNTOPS": "kNFSv3MntOps",
+                        "KNFSV3MNTERR": "kNFSv3MntErr",
+                        "KNFSV3UMNTLATUSECS": "kNFSv3UmntLatUsecs",
+                        "KNFSV3UMNTOPS": "kNFSv3UmntOps",
+                        "KNFSV3UMNTERR": "kNFSv3UmntErr",
+                        "KNFSV3CREATELATUSECS": "kNFSv3CreateLatUsecs",
+                        "KNFSV3CREATEOPS": "kNFSv3CreateOps",
+                        "KNFSV3CREATEERR": "kNFSv3CreateErr",
+                        "KNFSV3REMOVELATUSECS": "kNFSv3RemoveLatUsecs",
+                        "KNFSV3REMOVEOPS": "kNFSv3RemoveOps",
+                        "KNFSV3REMOVEERR": "kNFSv3RemoveErr",
+                        "KNFSV3MKDIRLATUSECS": "kNFSv3MkdirLatUsecs",
+                        "KNFSV3MKDIROPS": "kNFSv3MkdirOps",
+                        "KNFSV3MKDIRERR": "kNFSv3MkdirErr",
+                        "KNFSV3RMDIRLATUSECS": "kNFSv3RmdirLatUsecs",
+                        "KNFSV3RMDIROPS": "kNFSv3RmdirOps",
+                        "KNFSV3RMDIRERR": "kNFSv3RmdirErr",
+                        "KNFSV3LOOKUPLATUSECS": "kNFSv3LookupLatUsecs",
+                        "KNFSV3LOOKUPOPS": "kNFSv3LookupOps",
+                        "KNFSV3LOOKUPERR": "kNFSv3LookupErr",
+                        "KNFSV3READDIRLATUSECS": "kNFSv3ReaddirLatUsecs",
+                        "KNFSV3READDIROPS": "kNFSv3ReaddirOps",
+                        "KNFSV3READDIRERR": "kNFSv3ReaddirErr",
+                        "KNFSV3READDIRPLUSLATUSECS": "kNFSv3ReaddirplusLatUsecs",
+                        "KNFSV3READDIRPLUSOPS": "kNFSv3ReaddirplusOps",
+                        "KNFSV3READDIRPLUSERR": "kNFSv3ReaddirplusErr",
+                        "KNFSV3SYMLINKLATUSECS": "kNFSv3SymlinkLatUsecs",
+                        "KNFSV3SYMLINKOPS": "kNFSv3SymlinkOps",
+                        "KNFSV3SYMLINKERR": "kNFSv3SymlinkErr",
+                        "KNFSV3RENAMELATUSECS": "kNFSv3RenameLatUsecs",
+                        "KNFSV3RENAMEOPS": "kNFSv3RenameOps",
+                        "KNFSV3RENAMEERR": "kNFSv3RenameErr",
+                        "KSMBSESSIONSETUPLATUSECS": "kSMBSessionSetupLatUsecs",
+                        "KSMBSESSIONSETUPOPS": "kSMBSessionSetupOps",
+                        "KSMBSESSIONSETUPERR": "kSMBSessionSetupErr",
+                        "KSMBLOGOFFLATUSECS": "kSMBLogoffLatUsecs",
+                        "KSMBLOGOFFOPS": "kSMBLogoffOps",
+                        "KSMBLOGOFFERR": "kSMBLogoffErr",
+                        "KSMBTREECONNECTLATUSECS": "kSMBTreeConnectLatUsecs",
+                        "KSMBTREECONNECTOPS": "kSMBTreeConnectOps",
+                        "KSMBTREECONNECTERR": "kSMBTreeConnectErr",
+                        "KSMBTREEDISCONNECTLATUSECS": "kSMBTreeDisconnectLatUsecs",
+                        "KSMBTREEDISCONNECTOPS": "kSMBTreeDisconnectOps",
+                        "KSMBTREEDISCONNECTERR": "kSMBTreeDisconnectErr",
+                        "KSMBOPENLATUSECS": "kSMBOpenLatUsecs",
+                        "KSMBOPENOPS": "kSMBOpenOps",
+                        "KSMBOPENERR": "kSMBOpenErr",
+                        "KSMBCLOSELATUSECS": "kSMBCloseLatUsecs",
+                        "KSMBCLOSEOPS": "kSMBCloseOps",
+                        "KSMBCLOSEERR": "kSMBCloseErr",
+                        "KSMBCREATEFILELATUSECS": "kSMBCreateFileLatUsecs",
+                        "KSMBCREATEFILEOPS": "kSMBCreateFileOps",
+                        "KSMBCREATEFILEERR": "kSMBCreateFileErr",
+                        "KSMBDELETEFILELATUSECS": "kSMBDeleteFileLatUsecs",
+                        "KSMBDELETEFILEOPS": "kSMBDeleteFileOps",
+                        "KSMBDELETEFILEERR": "kSMBDeleteFileErr",
+                        "KSMBMKDIRLATUSECS": "kSMBMkdirLatUsecs",
+                        "KSMBMKDIROPS": "kSMBMkdirOps",
+                        "KSMBMKDIRERR": "kSMBMkdirErr",
+                        "KSMBRMDIRLATUSECS": "kSMBRmdirLatUsecs",
+                        "KSMBRMDIROPS": "kSMBRmdirOps",
+                        "KSMBRMDIRERR": "kSMBRmdirErr",
+                        "KSMBREADDIRLATUSECS": "kSMBReaddirLatUsecs",
+                        "KSMBREADDIROPS": "kSMBReaddirOps",
+                        "KSMBREADDIRERR": "kSMBReaddirErr",
+                        "KSMBGETINFOLATUSECS": "kSMBGetInfoLatUsecs",
+                        "KSMBGETINFOOPS": "kSMBGetInfoOps",
+                        "KSMBGETINFOERR": "kSMBGetInfoErr",
+                        "KSMBSETINFOLATUSECS": "kSMBSetInfoLatUsecs",
+                        "KSMBSETINFOOPS": "kSMBSetInfoOps",
+                        "KSMBSETINFOERR": "kSMBSetInfoErr",
+                        "KSMBRENAMELATUSECS": "kSMBRenameLatUsecs",
+                        "KSMBRENAMEOPS": "kSMBRenameOps",
+                        "KSMBRENAMEERR": "kSMBRenameErr",
+                        "KS3GETLATENCY": "kS3GetLatency",
+                        "KS3PUTLATENCY": "kS3PutLatency",
+                        "KS3LISTLATENCY": "kS3ListLatency",
+                        "KS3GETIO": "kS3GetIO",
+                        "KS3PUTIO": "kS3PutIO",
+                        "KS3LISTIO": "kS3ListIO",
+                        "KS3GETSIZE": "kS3GetSize",
+                        "KS3PUTSIZE": "kS3PutSize",
+                        "KS3DELETELATENCY": "kS3DeleteLatency",
+                        "KS3DELETEIO": "kS3DeleteIO",
+                        "KS3GETBANDWIDTH": "kS3GetBandwidth",
+                        "KS3PUTBANDWIDTH": "kS3PutBandwidth",
+                        "KS3GETIOERROR": "kS3GetIOError",
+                        "KS3PUTIOERROR": "kS3PutIOError",
+                        "KS3DELETEIOERROR": "kS3DeleteIOError",
+                        "KS3LISTIOERROR": "kS3ListIOError"
+                    },
+                    ('protocol',): {
+                        'None': None,
+                        "KANY": "kAny",
+                        "KNFS": "kNfs",
+                        "KSMB": "kSmb",
+                        "KS3": "kS3"
+                    },
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'metric':
+                        (str, none_type,),
+                    'protocol':
+                        (str, none_type,),
+                    'num_top_views':
+                        (int, none_type,),
+                    'last_hours':
+                        (int, none_type,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'metric': 'metric',
+                    'protocol': 'protocol',
+                    'num_top_views': 'numTopViews',
+                    'last_hours': 'lastHours',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'metric': 'query',
+                    'protocol': 'query',
+                    'num_top_views': 'query',
+                    'last_hours': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_views_stats
         )

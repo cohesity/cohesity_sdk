@@ -27,9 +27,7 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cohesity_client_v2.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cohesity_client_v2.model.oracle_pdb_object_info import OraclePdbObjectInfo
-    globals()['KeyValuePair'] = KeyValuePair
     globals()['OraclePdbObjectInfo'] = OraclePdbObjectInfo
 
 
@@ -84,7 +82,6 @@ class OraclePdbRestoreParams(ModelNormal):
             'drop_duplicate_pdb': (bool, none_type,),  # noqa: E501
             'pdb_objects': ([OraclePdbObjectInfo], none_type,),  # noqa: E501
             'restore_to_existing_cdb': (bool, none_type,),  # noqa: E501
-            'rename_pdb_map': ([KeyValuePair], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,7 +94,6 @@ class OraclePdbRestoreParams(ModelNormal):
         'drop_duplicate_pdb': 'dropDuplicatePDB',  # noqa: E501
         'pdb_objects': 'pdbObjects',  # noqa: E501
         'restore_to_existing_cdb': 'restoreToExistingCdb',  # noqa: E501
-        'rename_pdb_map': 'renamePdbMap',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,7 +146,6 @@ class OraclePdbRestoreParams(ModelNormal):
             drop_duplicate_pdb (bool, none_type): Specifies if the PDB should be ignored if a PDB already exists with same name.. [optional]  # noqa: E501
             pdb_objects ([OraclePdbObjectInfo], none_type): Specifies list of PDB objects to restore.. [optional]  # noqa: E501
             restore_to_existing_cdb (bool, none_type): Specifies if pdbs should be restored to an existing CDB.. [optional]  # noqa: E501
-            rename_pdb_map ([KeyValuePair], none_type): Specifies the new PDB name mapping to existing PDBs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

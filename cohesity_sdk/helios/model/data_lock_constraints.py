@@ -141,7 +141,7 @@ class DataLockConstraints(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            mode (str, none_type): Specifies the type of WORM retention type.  'Compliance' implies  WORM retention is set for compliance reason.  'Administrative' implies  WORM retention is set for administrative purposes.. [optional]  # noqa: E501
+            mode (str, none_type): Specifies the type of WORM retention type. <br>'Compliance' implies WORM retention is set for compliance reason. <br>'Administrative' implies WORM retention is set for administrative purposes.. [optional]  # noqa: E501
             expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
         """
 

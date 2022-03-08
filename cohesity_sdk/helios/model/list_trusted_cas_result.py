@@ -139,7 +139,7 @@ class ListTrustedCasResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            certificates ([TrustedCa], none_type): Array of trusted certificates.   Specifies the list of certificates returned in this response.   List is not sorted.. [optional]  # noqa: E501
+            certificates ([TrustedCa], none_type): Array of trusted certificates. Specifies the list of certificates returned in this response. List is not sorted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

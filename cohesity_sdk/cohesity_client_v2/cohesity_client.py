@@ -1,21 +1,29 @@
 from cohesity_sdk.cohesity_client_v2.configuration import Configuration
 from cohesity_sdk.cohesity_client_v2.api_client import ApiClient
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
-#from cohesity_sdk.cohesity_client_v2.model.create_access_token_request_params import CreateAccessTokenRequestParams
+from cohesity_sdk.cohesity_client_v2.model.create_access_token_request_params import CreateAccessTokenRequestParams
 
 
+from cohesity_sdk.cohesity_client_v2.api.access_tokens import AccessTokensApi
 from cohesity_sdk.cohesity_client_v2.api.active_directory import ActiveDirectoryApi
+from cohesity_sdk.cohesity_client_v2.api.agents import AgentsApi
+from cohesity_sdk.cohesity_client_v2.api.antivirus_service import AntivirusServiceApi
 from cohesity_sdk.cohesity_client_v2.api.audit_log import AuditLogApi
 from cohesity_sdk.cohesity_client_v2.api.connectors import ConnectorsApi
 from cohesity_sdk.cohesity_client_v2.api.d_maa_s_tenant_certificate import DMaaSTenantCertificateApi
 from cohesity_sdk.cohesity_client_v2.api.data_tiering import DataTieringApi
 from cohesity_sdk.cohesity_client_v2.api.external_connection import ExternalConnectionApi
+from cohesity_sdk.cohesity_client_v2.api.external_target import ExternalTargetApi
 from cohesity_sdk.cohesity_client_v2.api.failover import FailoverApi
 from cohesity_sdk.cohesity_client_v2.api.fleet_instance import FleetInstanceApi
+from cohesity_sdk.cohesity_client_v2.api.groups import GroupsApi
 from cohesity_sdk.cohesity_client_v2.api.helios_registration import HeliosRegistrationApi
+from cohesity_sdk.cohesity_client_v2.api.helios_on_prem import HeliosOnPremApi
+from cohesity_sdk.cohesity_client_v2.api.indexing_cloud_config import IndexingCloudConfigApi
 from cohesity_sdk.cohesity_client_v2.api.internal import InternalApi
 from cohesity_sdk.cohesity_client_v2.api.kerberos_providers import KerberosProvidersApi
 from cohesity_sdk.cohesity_client_v2.api.keystone import KeystoneApi
+from cohesity_sdk.cohesity_client_v2.api.ldap import LDAPApi
 from cohesity_sdk.cohesity_client_v2.api.mfa import MfaApi
 from cohesity_sdk.cohesity_client_v2.api.miscellaneous import MiscellaneousApi
 from cohesity_sdk.cohesity_client_v2.api.network_information_service__nis import NetworkInformationServiceNISApi
@@ -23,12 +31,14 @@ from cohesity_sdk.cohesity_client_v2.api.node_groups import NodeGroupsApi
 from cohesity_sdk.cohesity_client_v2.api.objects import ObjectsApi
 from cohesity_sdk.cohesity_client_v2.api.patches import PatchesApi
 from cohesity_sdk.cohesity_client_v2.api.platform import PlatformApi
+from cohesity_sdk.cohesity_client_v2.api.privileges import PrivilegesApi
 from cohesity_sdk.cohesity_client_v2.api.protected_objects import ProtectedObjectsApi
 from cohesity_sdk.cohesity_client_v2.api.protection_groups import ProtectionGroupsApi
 from cohesity_sdk.cohesity_client_v2.api.protection_policies import ProtectionPoliciesApi
 from cohesity_sdk.cohesity_client_v2.api.protection_sources import ProtectionSourcesApi
 from cohesity_sdk.cohesity_client_v2.api.recoveries import RecoveriesApi
 from cohesity_sdk.cohesity_client_v2.api.remote_clusters import RemoteClustersApi
+from cohesity_sdk.cohesity_client_v2.api.roles import RolesApi
 from cohesity_sdk.cohesity_client_v2.api.search import SearchApi
 from cohesity_sdk.cohesity_client_v2.api.security import SecurityApi
 from cohesity_sdk.cohesity_client_v2.api.stats import StatsApi
@@ -125,10 +135,28 @@ class CohesityClientV2:
 
 
     @lazy_property
+    def access_tokens(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AccessTokensApi(api_client)
+
+    @lazy_property
     def active_directory(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ActiveDirectoryApi(api_client)
+
+    @lazy_property
+    def agents(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AgentsApi(api_client)
+
+    @lazy_property
+    def antivirus_service(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return AntivirusServiceApi(api_client)
 
     @lazy_property
     def audit_log(self):
@@ -161,6 +189,12 @@ class CohesityClientV2:
             return ExternalConnectionApi(api_client)
 
     @lazy_property
+    def external_target(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return ExternalTargetApi(api_client)
+
+    @lazy_property
     def failover(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -173,10 +207,28 @@ class CohesityClientV2:
             return FleetInstanceApi(api_client)
 
     @lazy_property
+    def groups(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return GroupsApi(api_client)
+
+    @lazy_property
     def helios_registration(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return HeliosRegistrationApi(api_client)
+
+    @lazy_property
+    def helios_on_prem(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return HeliosOnPremApi(api_client)
+
+    @lazy_property
+    def indexing_cloud_config(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return IndexingCloudConfigApi(api_client)
 
     @lazy_property
     def internal(self):
@@ -195,6 +247,12 @@ class CohesityClientV2:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return KeystoneApi(api_client)
+
+    @lazy_property
+    def ldap(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return LDAPApi(api_client)
 
     @lazy_property
     def mfa(self):
@@ -239,6 +297,12 @@ class CohesityClientV2:
             return PlatformApi(api_client)
 
     @lazy_property
+    def privileges(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return PrivilegesApi(api_client)
+
+    @lazy_property
     def protected_objects(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
@@ -273,6 +337,12 @@ class CohesityClientV2:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RemoteClustersApi(api_client)
+
+    @lazy_property
+    def roles(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return RolesApi(api_client)
 
     @lazy_property
     def search(self):

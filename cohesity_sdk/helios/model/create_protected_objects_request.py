@@ -30,11 +30,13 @@ def lazy_import():
     from cohesity_sdk.helios.model.common_object_protect_params import CommonObjectProtectParams
     from cohesity_sdk.helios.model.create_protected_objects_request_all_of import CreateProtectedObjectsRequestAllOf
     from cohesity_sdk.helios.model.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
+    from cohesity_sdk.helios.model.policy_config import PolicyConfig
     from cohesity_sdk.helios.model.sla_rule import SlaRule
     from cohesity_sdk.helios.model.time_of_day import TimeOfDay
     globals()['CommonObjectProtectParams'] = CommonObjectProtectParams
     globals()['CreateProtectedObjectsRequestAllOf'] = CreateProtectedObjectsRequestAllOf
     globals()['EnvSpecificObjectProtectionRequestParams'] = EnvSpecificObjectProtectionRequestParams
+    globals()['PolicyConfig'] = PolicyConfig
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
 
@@ -101,13 +103,16 @@ class CreateProtectedObjectsRequest(ModelComposed):
         lazy_import()
         return {
             'objects': ([EnvSpecificObjectProtectionRequestParams], none_type,),  # noqa: E501
+            'activate_remote_object_protection': (bool, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
+            'policy_config': (PolicyConfig,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'start_time': (TimeOfDay,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -118,13 +123,16 @@ class CreateProtectedObjectsRequest(ModelComposed):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
+        'activate_remote_object_protection': 'activateRemoteObjectProtection',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
+        'policy_config': 'policyConfig',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'start_time': 'startTime',  # noqa: E501
         'priority': 'priority',  # noqa: E501
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
     }
 
     required_properties = set([
@@ -140,12 +148,11 @@ class CreateProtectedObjectsRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, objects, policy_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, objects, *args, **kwargs):  # noqa: E501
         """CreateProtectedObjectsRequest - a model defined in OpenAPI
 
         Args:
             objects ([EnvSpecificObjectProtectionRequestParams], none_type): Specifies the list of objects to be protected. Multiple objects from different adapters can be provided as input.
-            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,12 +186,16 @@ class CreateProtectedObjectsRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            activate_remote_object_protection (bool, none_type): If set to true, it will look for the remote backup of the given user and object, and activates it. Creates a new backup if the remote backup is not found. After activation, this object cannot get snapshots from remote clusters.. [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
+            policy_config (PolicyConfig): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
             start_time (TimeOfDay): [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
             sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -220,7 +231,6 @@ class CreateProtectedObjectsRequest(ModelComposed):
         }
         required_args = {
             'objects': objects,
-            'policy_id': policy_id,
         }
         model_args = {}
         model_args.update(required_args)

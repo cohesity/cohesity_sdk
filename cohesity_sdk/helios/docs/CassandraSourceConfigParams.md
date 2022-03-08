@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **cassandra_port_info** | [**CassandraPortInfo**](CassandraPortInfo.md) |  | [optional] 
 **cassandra_security_info** | [**CassandraSecurityInfo**](CassandraSecurityInfo.md) |  | [optional] 
 **data_center_names** | **[str]** | Data centers for this cluster. | [optional] 
+**commit_log_backup_location** | **str, none_type** | Commit Logs backup location on cassandra nodes | [optional] 
 **endpoint_snitch** | **str, none_type** | Endpoint snitch used for this cluster. | [optional] 
 **cassandra_partitioner** | **str, none_type** | Cassandra partitioner required in compaction. | [optional] 
 **kerberos_sasl_protocol** | **str, none_type** | Populated if cassandraAuthType is Kerberos. | [optional] 

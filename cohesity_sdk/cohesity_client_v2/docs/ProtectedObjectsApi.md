@@ -37,6 +37,7 @@ client = CohesityClientV2(
 
 body = ProtectdObjectsActionRequest(
         action="Pause",
+        object_action_key="kVMware",
         pause_params=ProtectedObjectPauseActionParams(
             objects=[
                 PauseActionObjectLevelParams(),
@@ -57,6 +58,9 @@ body = ProtectdObjectsActionRequest(
                 UnprotectActionObjectLevelParams(),
             ],
         ),
+        snapshot_backend_types=[
+            "kAWSNative",
+        ],
     ) # ProtectdObjectsActionRequest | Specifies the parameters to perform an action on an already protected object.
 
 # example passing only required values which don't have defaults set
@@ -92,7 +96,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | Success |  -  |
+**207** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

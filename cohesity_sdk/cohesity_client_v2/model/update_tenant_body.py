@@ -27,11 +27,11 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cohesity_client_v2.model.create_tenant_params_with_network_all_of import CreateTenantParamsWithNetworkAllOf
     from cohesity_sdk.cohesity_client_v2.model.tenant_network import TenantNetwork
-    from cohesity_sdk.cohesity_client_v2.model.update_tenant_body_all_of import UpdateTenantBodyAllOf
     from cohesity_sdk.cohesity_client_v2.model.update_tenant_params import UpdateTenantParams
+    globals()['CreateTenantParamsWithNetworkAllOf'] = CreateTenantParamsWithNetworkAllOf
     globals()['TenantNetwork'] = TenantNetwork
-    globals()['UpdateTenantBodyAllOf'] = UpdateTenantBodyAllOf
     globals()['UpdateTenantParams'] = UpdateTenantParams
 
 
@@ -222,7 +222,7 @@ class UpdateTenantBody(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              UpdateTenantBodyAllOf,
+              CreateTenantParamsWithNetworkAllOf,
               UpdateTenantParams,
           ],
           'oneOf': [

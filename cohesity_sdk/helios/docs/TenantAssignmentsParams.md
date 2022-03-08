@@ -1,6 +1,6 @@
 # TenantAssignmentsParams
 
-Parameters to be specified for assigning properties like storage domain,   entities, policies to the tenant.
+Parameters to be specified for assigning properties like storage domain, entities, policies to the tenant.
 
 ## Properties
 Name | Type | Description | Notes

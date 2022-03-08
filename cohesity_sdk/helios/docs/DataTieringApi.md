@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**get_data_tiering_analysis_groups**](DataTieringApi.md#get_data_tiering_analysis_groups) | **GET** /data-tiering/analysis-groups | Get the list of data tiering analysis groups.
 [**get_data_tiering_task_by_id**](DataTieringApi.md#get_data_tiering_task_by_id) | **GET** /data-tiering/tasks/{id} | Get data tiering task by id.
 [**get_data_tiering_tasks**](DataTieringApi.md#get_data_tiering_tasks) | **GET** /data-tiering/tasks | Get the list of data tiering tasks.
+[**update_data_tiering_analysis_group**](DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources only.
 [**update_data_tiering_analysis_group_tags_config**](DataTieringApi.md#update_data_tiering_analysis_group_tags_config) | **PUT** /data-tiering/analysis-groups/{id}/config | Update data tiering analysis group config.
 [**update_data_tiering_analysis_groups_state**](DataTieringApi.md#update_data_tiering_analysis_groups_state) | **POST** /data-tiering/analysis-groups/states | Update data tiering analysis groups state.
 [**update_data_tiering_task**](DataTieringApi.md#update_data_tiering_task) | **PUT** /data-tiering/tasks/{id} | Update a data tiering task.
@@ -26,7 +27,7 @@ Method | HTTP request | Description
 
 Cancel data tiering analysis run.
 
-Cancel data tiering analysis run for given analysis group ID   and run ID
+Cancel data tiering analysis run for given analysis group ID and run ID
 
 ### Example
 
@@ -45,11 +46,21 @@ client = HeliosClient(api_key=api_key)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of data tiering group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of data tiering group run.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Cancel data tiering analysis run.
 	client.data_tiering.cancel_data_tiering_analysis_group_run(id, run_id)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->cancel_data_tiering_analysis_group_run: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Cancel data tiering analysis run.
+	client.data_tiering.cancel_data_tiering_analysis_group_run(id, run_id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->cancel_data_tiering_analysis_group_run: %s\n" % e)
 ```
@@ -61,6 +72,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of data tiering group. |
  **run_id** | **str**| Specifies a unique run id of data tiering group run. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -108,11 +121,21 @@ client = HeliosClient(api_key=api_key)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of data tiering task.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of data tiering task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Cancel data tiering task.
 	client.data_tiering.cancel_data_tiering_task_run(id, run_id)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->cancel_data_tiering_task_run: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Cancel data tiering task.
+	client.data_tiering.cancel_data_tiering_task_run(id, run_id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->cancel_data_tiering_task_run: %s\n" % e)
 ```
@@ -124,6 +147,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of data tiering task. |
  **run_id** | **str**| Specifies a unique run id of data tiering task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -181,6 +206,7 @@ body = CommonDataTieringAnalysisGroupParams(
                         id=1,
                     ),
                 ],
+                source_id=1,
             ),
             isilon_params=IsilonDataTieringParams(
                 objects=[
@@ -188,6 +214,7 @@ body = CommonDataTieringAnalysisGroupParams(
                         id=1,
                     ),
                 ],
+                source_id=1,
             ),
             netapp_params=NetappDataTieringParams(
                 objects=[
@@ -195,14 +222,26 @@ body = CommonDataTieringAnalysisGroupParams(
                         id=1,
                     ),
                 ],
+                source_id=1,
             ),
         ),
     ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a data tiering analysis group.
 	api_response = client.data_tiering.create_data_tiering_analysis_group(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->create_data_tiering_analysis_group: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a data tiering analysis group.
+	api_response = client.data_tiering.create_data_tiering_analysis_group(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->create_data_tiering_analysis_group: %s\n" % e)
@@ -214,6 +253,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CommonDataTieringAnalysisGroupParams**](CommonDataTieringAnalysisGroupParams.md)| Specifies the data tiering analysis group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -249,6 +290,7 @@ Create a data tiering analysis group run.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
@@ -260,11 +302,28 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering analysis group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+body = DataTieringAnalysisRunRequest(
+        shares=[
+            DataTieringAnalysisShareInfo(
+                share_id=1,
+            ),
+        ],
+    ) # DataTieringAnalysisRunRequest | Specifies the request to run analysis group once. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a data tiering analysis group run.
 	client.data_tiering.create_data_tiering_analysis_group_run(id)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->create_data_tiering_analysis_group_run: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a data tiering analysis group run.
+	client.data_tiering.create_data_tiering_analysis_group_run(id, access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->create_data_tiering_analysis_group_run: %s\n" % e)
 ```
@@ -275,6 +334,9 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering analysis group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **body** | [**DataTieringAnalysisRunRequest**](DataTieringAnalysisRunRequest.md)| Specifies the request to run analysis group once. | [optional]
 
 ### Return type
 
@@ -286,7 +348,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -299,7 +361,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_data_tiering_task**
-> CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d create_data_tiering_task(body)
+> DataTieringTask create_data_tiering_task(body)
 
 Create a data tiering task.
 
@@ -310,9 +372,9 @@ Create a data tiering task.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.common_data_tiering_task_paramsc9d6faa4_feda477a_affa033c21f67ca0 import CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0
+from cohesity_sdk.helios.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
+from cohesity_sdk.helios.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.helios.model.error import Error
-from cohesity_sdk.helios.model.common_data_tiering_task_response81207a8d5a124823_a1d8_b55a4424cc6d import CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
 
@@ -322,72 +384,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-body = CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0(
-        name="name_example",
-        description="description_example",
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-            ),
-        ),
-        target=DataTieringTarget(
-            view_name="view_name_example",
-            mount_path="mount_path_example",
-            storage_domain_id=1,
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
-        type="Downtier",
-    ) # CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0 | Specifies the parameters to create a data tiering task.
+body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a data tiering task.
 	api_response = client.data_tiering.create_data_tiering_task(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->create_data_tiering_task: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a data tiering task.
+	api_response = client.data_tiering.create_data_tiering_task(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->create_data_tiering_task: %s\n" % e)
@@ -398,11 +411,13 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0**](CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0.md)| Specifies the parameters to create a data tiering task. |
+ **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to create a data tiering task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
-[**CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d**](CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
@@ -446,8 +461,16 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering tasks.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 body = DataTieringTaskRunRequest(
         uptier_path="uptier_path_example",
+        shares=[
+            DataTieringShareInfo(
+                share_id=1,
+                uptier_path="uptier_path_example",
+            ),
+        ],
     ) # DataTieringTaskRunRequest | Specifies the request to run tiering task once. (optional)
 
 # example passing only required values which don't have defaults set
@@ -461,7 +484,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Create a data tiering tasks run.
-	client.data_tiering.create_data_tiering_task_run(id, body=body)
+	client.data_tiering.create_data_tiering_task_run(id, access_cluster_id=access_cluster_id, region_id=region_id, body=body)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->create_data_tiering_task_run: %s\n" % e)
 ```
@@ -472,6 +495,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering tasks. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **body** | [**DataTieringTaskRunRequest**](DataTieringTaskRunRequest.md)| Specifies the request to run tiering task once. | [optional]
 
 ### Return type
@@ -501,7 +526,7 @@ void (empty response body)
 
 Delete data tiering analysis group.
 
-Returns NoContentResponse if the data tiering analysis group is   deleted.
+Returns NoContentResponse if the data tiering analysis group is deleted.
 
 ### Example
 
@@ -518,12 +543,22 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | Specifies a unique id of the data tiering analysis group.
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete data tiering analysis group.
 	client.data_tiering.delete_data_tiering_analysis_group(id)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->delete_data_tiering_analysis_group: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete data tiering analysis group.
+	client.data_tiering.delete_data_tiering_analysis_group(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->delete_data_tiering_analysis_group: %s\n" % e)
 ```
@@ -534,6 +569,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the data tiering analysis group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -580,11 +617,21 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the id of the data tiering task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# delete the data tiering task.
 	client.data_tiering.delete_data_tiering_task(id)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->delete_data_tiering_task: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# delete the data tiering task.
+	client.data_tiering.delete_data_tiering_task(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->delete_data_tiering_task: %s\n" % e)
 ```
@@ -595,6 +642,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -641,12 +690,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | Specifies a unique id of the data tiering analysis group.
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get data tiering analysis group by id.
 	api_response = client.data_tiering.get_data_tiering_analysis_group_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_analysis_group_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get data tiering analysis group by id.
+	api_response = client.data_tiering.get_data_tiering_analysis_group_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_analysis_group_by_id: %s\n" % e)
@@ -658,6 +718,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the data tiering analysis group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -704,6 +766,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Filter by a list of Analysis Group IDs. (optional)
@@ -712,7 +776,7 @@ ids = [
 # and optional values
 try:
 	# Get the list of data tiering analysis groups.
-	api_response = client.data_tiering.get_data_tiering_analysis_groups(ids=ids)
+	api_response = client.data_tiering.get_data_tiering_analysis_groups(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_analysis_groups: %s\n" % e)
@@ -723,6 +787,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Filter by a list of Analysis Group IDs. | [optional]
 
 ### Return type
@@ -748,7 +814,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_data_tiering_task_by_id**
-> CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d get_data_tiering_task_by_id(id)
+> DataTieringTask get_data_tiering_task_by_id(id)
 
 Get data tiering task by id.
 
@@ -759,8 +825,8 @@ Get data tiering task by id.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.helios.model.error import Error
-from cohesity_sdk.helios.model.common_data_tiering_task_response81207a8d5a124823_a1d8_b55a4424cc6d import CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
 
@@ -771,11 +837,22 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the id of the data tiering task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get data tiering task by id.
 	api_response = client.data_tiering.get_data_tiering_task_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_task_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get data tiering task by id.
+	api_response = client.data_tiering.get_data_tiering_task_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_task_by_id: %s\n" % e)
@@ -787,10 +864,12 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
-[**CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d**](CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
@@ -833,15 +912,18 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Filter by a list of data tiering task ids. (optional)
+include_downtiered_data_location = True # bool | If true, it will also return a list of downtiered data locations for downtiered tasks. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of data tiering tasks.
-	api_response = client.data_tiering.get_data_tiering_tasks(ids=ids)
+	api_response = client.data_tiering.get_data_tiering_tasks(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, include_downtiered_data_location=include_downtiered_data_location)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_tasks: %s\n" % e)
@@ -852,7 +934,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Filter by a list of data tiering task ids. | [optional]
+ **include_downtiered_data_location** | **bool**| If true, it will also return a list of downtiered data locations for downtiered tasks. | [optional]
 
 ### Return type
 
@@ -865,6 +950,114 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_data_tiering_analysis_group**
+> DataTieringAnalysisGroup update_data_tiering_analysis_group(id, body)
+
+Update a data tiering analysis group. Currently, it supports updating sources only.
+
+Update a data tiering analysis group.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
+from cohesity_sdk.helios.model.data_tiering_analysis_group import DataTieringAnalysisGroup
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+body = CommonDataTieringAnalysisGroupParams(
+        name="name_example",
+        source=DataTieringSource(
+            environment="kGenericNas",
+            generic_nas_params=GenericNasDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+                source_id=1,
+            ),
+            isilon_params=IsilonDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+                source_id=1,
+            ),
+            netapp_params=NetappDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+                source_id=1,
+            ),
+        ),
+    ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Update a data tiering analysis group. Currently, it supports updating sources only.
+	api_response = client.data_tiering.update_data_tiering_analysis_group(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->update_data_tiering_analysis_group: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a data tiering analysis group. Currently, it supports updating sources only.
+	api_response = client.data_tiering.update_data_tiering_analysis_group(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->update_data_tiering_analysis_group: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies a unique id of the data tiering analysis group. |
+ **body** | [**CommonDataTieringAnalysisGroupParams**](CommonDataTieringAnalysisGroupParams.md)| Specifies the data tiering analysis group. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**DataTieringAnalysisGroup**](DataTieringAnalysisGroup.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -899,7 +1092,7 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "id_example" # str | Specifies a unique id of the data tiering analysis group.
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 body = DataTieringTagConfig(
         tags_info=[
             DataTieringTagObject(
@@ -913,11 +1106,22 @@ body = DataTieringTagConfig(
             ),
         ],
     ) # DataTieringTagConfig | Specifies the data tiering analysis Tags Config.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update data tiering analysis group config.
 	api_response = client.data_tiering.update_data_tiering_analysis_group_tags_config(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->update_data_tiering_analysis_group_tags_config: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update data tiering analysis group config.
+	api_response = client.data_tiering.update_data_tiering_analysis_group_tags_config(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->update_data_tiering_analysis_group_tags_config: %s\n" % e)
@@ -930,6 +1134,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the data tiering analysis group. |
  **body** | [**DataTieringTagConfig**](DataTieringTagConfig.md)| Specifies the data tiering analysis Tags Config. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -958,7 +1164,7 @@ Name | Type | Description  | Notes
 
 Update data tiering analysis groups state.
 
-Perform actions like pause or resume on the data tiering analysis   groups for the specified sources.
+Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
 
 ### Example
 
@@ -982,12 +1188,23 @@ body = UpdateDataTieringStateRequest(
         ids=[
             "ids_example",
         ],
-    ) # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering   analysis groups.
+    ) # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering analysis groups.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update data tiering analysis groups state.
 	api_response = client.data_tiering.update_data_tiering_analysis_groups_state(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->update_data_tiering_analysis_groups_state: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update data tiering analysis groups state.
+	api_response = client.data_tiering.update_data_tiering_analysis_groups_state(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->update_data_tiering_analysis_groups_state: %s\n" % e)
@@ -998,7 +1215,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateDataTieringStateRequest**](UpdateDataTieringStateRequest.md)| Specifies the parameters to perform an action of list of data tiering   analysis groups. |
+ **body** | [**UpdateDataTieringStateRequest**](UpdateDataTieringStateRequest.md)| Specifies the parameters to perform an action of list of data tiering analysis groups. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -1023,7 +1242,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_data_tiering_task**
-> CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d update_data_tiering_task(id, body)
+> DataTieringTask update_data_tiering_task(id, body)
 
 Update a data tiering task.
 
@@ -1034,9 +1253,9 @@ Update a data tiering task.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.common_data_tiering_task_paramsc9d6faa4_feda477a_affa033c21f67ca0 import CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0
+from cohesity_sdk.helios.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
+from cohesity_sdk.helios.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.helios.model.error import Error
-from cohesity_sdk.helios.model.common_data_tiering_task_response81207a8d5a124823_a1d8_b55a4424cc6d import CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
 
@@ -1047,72 +1266,23 @@ client = HeliosClient(api_key=api_key)
 
 
 id = "id_example" # str | Specifies the id of the data tiering task.
-body = CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0(
-        name="name_example",
-        description="description_example",
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-            ),
-        ),
-        target=DataTieringTarget(
-            view_name="view_name_example",
-            mount_path="mount_path_example",
-            storage_domain_id=1,
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
-        type="Downtier",
-    ) # CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0 | Specifies the parameters to update a data tiering task.
+body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a data tiering task.
 	api_response = client.data_tiering.update_data_tiering_task(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->update_data_tiering_task: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a data tiering task.
+	api_response = client.data_tiering.update_data_tiering_task(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->update_data_tiering_task: %s\n" % e)
@@ -1124,11 +1294,13 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering task. |
- **body** | [**CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0**](CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0.md)| Specifies the parameters to update a data tiering task. |
+ **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to update a data tiering task. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
-[**CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d**](CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
@@ -1177,12 +1349,23 @@ body = UpdateDataTieringStateRequest(
         ids=[
             "ids_example",
         ],
-    ) # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering   tasks.
+    ) # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering tasks.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update data tiering source analysis tasks state.
 	api_response = client.data_tiering.update_data_tiering_tasks_state(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->update_data_tiering_tasks_state: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update data tiering source analysis tasks state.
+	api_response = client.data_tiering.update_data_tiering_tasks_state(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->update_data_tiering_tasks_state: %s\n" % e)
@@ -1193,7 +1376,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateDataTieringStateRequest**](UpdateDataTieringStateRequest.md)| Specifies the parameters to perform an action of list of data tiering   tasks. |
+ **body** | [**UpdateDataTieringStateRequest**](UpdateDataTieringStateRequest.md)| Specifies the parameters to perform an action of list of data tiering tasks. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

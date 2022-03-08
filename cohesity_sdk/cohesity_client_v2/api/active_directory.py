@@ -321,8 +321,8 @@ class ActiveDirectoryApi(object):
             Keyword Args:
                 domain_names ([str]): Filter by a list of Active Directory domain names.. [optional]
                 ids ([int]): Filter by a list of Active Directory Ids.. [optional]
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
-                include_tenants (bool): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which Active Directories are to be returned.. [optional]
+                include_tenants (bool): If true, the response will include Active Directories which were created by all tenants which the current user has permission to see. If false, then only Active Directories created by the current user will be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object

@@ -55,6 +55,8 @@ class AuditLogApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 search_string (str, none_type): Search audit logs by 'entityName' or 'details'.. [optional]
                 usernames ([str], none_type): Specifies a list of usernames, only audit logs made by these users will be returned.. [optional]
                 domains ([str], none_type): Specifies a list of domains, only audit logs made by user in these domains will be returned.. [optional]
@@ -127,6 +129,8 @@ class AuditLogApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'search_string',
                     'usernames',
                     'domains',
@@ -283,11 +287,14 @@ class AuditLogApi(object):
                         "REVERT": "Revert",
                         "IMPORT": "Import",
                         "VALIDATE": "Validate",
-                        "CLUSTEREXPAND": "ClusterExpand",
-                        "FETCH": "Fetch"
+                        "CLUSTEREXPAND": "ClusterExpand"
                     },
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'search_string':
                         (str, none_type,),
                     'usernames':
@@ -312,6 +319,8 @@ class AuditLogApi(object):
                         (int, none_type,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'search_string': 'searchString',
                     'usernames': 'usernames',
                     'domains': 'domains',
@@ -325,6 +334,8 @@ class AuditLogApi(object):
                     'count': 'count',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'search_string': 'query',
                     'usernames': 'query',
                     'domains': 'query',
@@ -370,6 +381,8 @@ class AuditLogApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -431,6 +444,8 @@ class AuditLogApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -446,10 +461,18 @@ class AuditLogApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -479,6 +502,8 @@ class AuditLogApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -540,6 +565,8 @@ class AuditLogApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -555,10 +582,18 @@ class AuditLogApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -588,6 +623,8 @@ class AuditLogApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -649,6 +686,8 @@ class AuditLogApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [],
                 'nullable': [
@@ -664,10 +703,18 @@ class AuditLogApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -700,6 +747,8 @@ class AuditLogApi(object):
                 body (FilerAuditLogConfigs): Specifies the filer audit log config to update.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -764,6 +813,8 @@ class AuditLogApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -783,11 +834,19 @@ class AuditLogApi(object):
                 'openapi_types': {
                     'body':
                         (FilerAuditLogConfigs,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

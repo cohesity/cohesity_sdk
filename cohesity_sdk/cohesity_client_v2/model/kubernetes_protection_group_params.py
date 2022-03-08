@@ -27,7 +27,9 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cohesity_client_v2.model.kubernetes_filter_params import KubernetesFilterParams
     from cohesity_sdk.cohesity_client_v2.model.kubernetes_protection_group_object_params import KubernetesProtectionGroupObjectParams
+    globals()['KubernetesFilterParams'] = KubernetesFilterParams
     globals()['KubernetesProtectionGroupObjectParams'] = KubernetesProtectionGroupObjectParams
 
 
@@ -91,6 +93,9 @@ class KubernetesProtectionGroupParams(ModelNormal):
             'source_name': (str, none_type,),  # noqa: E501
             'label_ids': ([[int]], none_type,),  # noqa: E501
             'exclude_label_ids': ([[int]],),  # noqa: E501
+            'include_params': (KubernetesFilterParams,),  # noqa: E501
+            'exclude_params': (KubernetesFilterParams,),  # noqa: E501
+            'leverage_csi_snapshot': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +111,9 @@ class KubernetesProtectionGroupParams(ModelNormal):
         'source_name': 'sourceName',  # noqa: E501
         'label_ids': 'labelIds',  # noqa: E501
         'exclude_label_ids': 'excludeLabelIds',  # noqa: E501
+        'include_params': 'includeParams',  # noqa: E501
+        'exclude_params': 'excludeParams',  # noqa: E501
+        'leverage_csi_snapshot': 'leverageCSISnapshot',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,6 +169,9 @@ class KubernetesProtectionGroupParams(ModelNormal):
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
             label_ids ([[int]], none_type): Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array.. [optional]  # noqa: E501
             exclude_label_ids ([[int]]): Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array.. [optional]  # noqa: E501
+            include_params (KubernetesFilterParams): [optional]  # noqa: E501
+            exclude_params (KubernetesFilterParams): [optional]  # noqa: E501
+            leverage_csi_snapshot (bool, none_type): Specifies if CSI snapshots should be used for backup of namespaces.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -1,6 +1,6 @@
 # CertificateAuthMapping
 
-Describes certificate mapping options for certificate based   authentication.
+Describes certificate mapping options for certificate based authentication.
 
 ## Properties
 Name | Type | Description | Notes

@@ -80,7 +80,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_source_registration**
-> CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64 get_protection_source_registration(id)
+> SourceRegistration get_protection_source_registration(id)
 
 Get a Protection Source registration.
 
@@ -91,8 +91,8 @@ Get a Protection Source registration.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.source_registration import SourceRegistration
 from cohesity_sdk.cohesity_client_v2.model.error import Error
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_reponse_params5664183a76b842b48044_ac90d2dc4b64 import CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
 from pprint import pprint
 
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64**](CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64.md)
+[**SourceRegistration**](SourceRegistration.md)
 
 ### Authorization
 
@@ -509,7 +509,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **register_protection_source**
-> CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64 register_protection_source(body)
+> SourceRegistration register_protection_source(body)
 
 Register a Protection Source.
 
@@ -520,9 +520,9 @@ Register a Protection Source.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.source_registration import SourceRegistration
 from cohesity_sdk.cohesity_client_v2.model.error import Error
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_reponse_params5664183a76b842b48044_ac90d2dc4b64 import CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_request_params16d8ee7c_e6e04528_aa629785aae5dc08 import CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08
+from cohesity_sdk.cohesity_client_v2.model.source_registration_request_params import SourceRegistrationRequestParams
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
 from pprint import pprint
 
@@ -535,13 +535,7 @@ client = CohesityClientV2(
 )
 
 
-body = CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08(
-        environment="kVMware",
-        name="name_example",
-        is_internal_encrypted=True,
-        encryption_key="encryption_key_example",
-        connection_id=1,
-    ) # CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08 | Specifies the parameters to register a Protection Source.
+body = SourceRegistrationRequestParams() # SourceRegistrationRequestParams | Specifies the parameters to register a Protection Source.
 
 # example passing only required values which don't have defaults set
 try:
@@ -557,11 +551,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08**](CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08.md)| Specifies the parameters to register a Protection Source. |
+ **body** | [**SourceRegistrationRequestParams**](SourceRegistrationRequestParams.md)| Specifies the parameters to register a Protection Source. |
 
 ### Return type
 
-[**CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64**](CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64.md)
+[**SourceRegistration**](SourceRegistration.md)
 
 ### Authorization
 
@@ -608,69 +602,7 @@ client = CohesityClientV2(
 )
 
 
-body = SourceConnectionRequestParams(
-        environment="kCassandra",
-        cassandra_connection_params=CassandraConnectionParams(
-            seed_node="seed_node_example",
-            config_directory="config_directory_example",
-            dse_configuration_directory="dse_configuration_directory_example",
-            is_dse_tiered_storage=True,
-            is_dse_authenticator=True,
-            ssh_password_credentials=CassandraConnectionParamsSshPasswordCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            ssh_private_key_credentials=CassandraConnectionParamsSshPrivateKeyCredentials(
-                passphrase="passphrase_example",
-                private_key="private_key_example",
-                user_id="user_id_example",
-            ),
-        ),
-        hive_connection_params=HadoopConnectionParams(
-            host="host_example",
-            configuration_directory="configuration_directory_example",
-            ssh_password_credentials=HadoopConnectionParamsSshPasswordCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            ssh_private_key_credentials=HadoopConnectionParamsSshPrivateKeyCredentials(
-                passphrase="passphrase_example",
-                private_key="private_key_example",
-                user_id="user_id_example",
-            ),
-        ),
-        hbase_connection_params=HadoopConnectionParams(
-            host="host_example",
-            configuration_directory="configuration_directory_example",
-            ssh_password_credentials=HadoopConnectionParamsSshPasswordCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            ssh_private_key_credentials=HadoopConnectionParamsSshPrivateKeyCredentials(
-                passphrase="passphrase_example",
-                private_key="private_key_example",
-                user_id="user_id_example",
-            ),
-        ),
-        hdfs_connection_params=HadoopConnectionParams(
-            host="host_example",
-            configuration_directory="configuration_directory_example",
-            ssh_password_credentials=HadoopConnectionParamsSshPasswordCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            ssh_private_key_credentials=HadoopConnectionParamsSshPrivateKeyCredentials(
-                passphrase="passphrase_example",
-                private_key="private_key_example",
-                user_id="user_id_example",
-            ),
-        ),
-        mssql_connection_params=MssqlConnectionParams(),
-        vmware_connection_params=VmwareConnectionParams(
-            type="kVCenter",
-            vcd_params=VcdConnectionParams(),
-        ),
-    ) # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
+body = SourceConnectionRequestParams() # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
 
 # example passing only required values which don't have defaults set
 try:
@@ -711,7 +643,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_protection_source_registration**
-> CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64 update_protection_source_registration(id, body)
+> SourceRegistration update_protection_source_registration(id, body)
 
 Update Protection Source registration.
 
@@ -722,9 +654,9 @@ Update Protection Source registration.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cohesity_client_v2.model.source_registration import SourceRegistration
 from cohesity_sdk.cohesity_client_v2.model.error import Error
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_reponse_params5664183a76b842b48044_ac90d2dc4b64 import CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_request_params16d8ee7c_e6e04528_aa629785aae5dc08 import CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08
+from cohesity_sdk.cohesity_client_v2.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cohesity_client_v2.exceptions import ApiException
 from pprint import pprint
 
@@ -738,13 +670,7 @@ client = CohesityClientV2(
 
 
 id = 1 # int | Specifies the id of the Protection Source registration.
-body = CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08(
-        environment="kVMware",
-        name="name_example",
-        is_internal_encrypted=True,
-        encryption_key="encryption_key_example",
-        connection_id=1,
-    ) # CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08 | Specifies the parameters to update the registration.
+body = SourceRegistrationUpdateRequestParams() # SourceRegistrationUpdateRequestParams | Specifies the parameters to update the registration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -761,11 +687,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Protection Source registration. |
- **body** | [**CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08**](CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08.md)| Specifies the parameters to update the registration. |
+ **body** | [**SourceRegistrationUpdateRequestParams**](SourceRegistrationUpdateRequestParams.md)| Specifies the parameters to update the registration. |
 
 ### Return type
 
-[**CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64**](CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64.md)
+[**SourceRegistration**](SourceRegistration.md)
 
 ### Authorization
 

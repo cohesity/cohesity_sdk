@@ -40,11 +40,22 @@ body = ApplyPatchesRequest(
         service="service_example",
         all=True,
     ) # ApplyPatchesRequest | Request to apply patches.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Apply patches
 	api_response = client.patches.apply_patches(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchesApi->apply_patches: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Apply patches
+	api_response = client.patches.apply_patches(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->apply_patches: %s\n" % e)
@@ -56,6 +67,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ApplyPatchesRequest**](ApplyPatchesRequest.md)| Request to apply patches. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -102,6 +115,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 service = "service_example" # str | Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. (optional)
 include_details = True # bool | Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
 
@@ -109,7 +124,7 @@ include_details = True # bool | Specifies whether to return the details of all t
 # and optional values
 try:
 	# Get applied patches
-	api_response = client.patches.get_applied_patches(service=service, include_details=include_details)
+	api_response = client.patches.get_applied_patches(access_cluster_id=access_cluster_id, region_id=region_id, service=service, include_details=include_details)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->get_applied_patches: %s\n" % e)
@@ -120,6 +135,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **service** | **str**| Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. | [optional]
  **include_details** | **bool**| Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. | [optional]
 
@@ -168,6 +185,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 service = "service_example" # str | Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. (optional)
 include_details = True # bool | Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
 
@@ -175,7 +194,7 @@ include_details = True # bool | Specifies whether to return the description of a
 # and optional values
 try:
 	# Get available patches
-	api_response = client.patches.get_available_patches(service=service, include_details=include_details)
+	api_response = client.patches.get_available_patches(access_cluster_id=access_cluster_id, region_id=region_id, service=service, include_details=include_details)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->get_available_patches: %s\n" % e)
@@ -186,6 +205,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **service** | **str**| Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. | [optional]
  **include_details** | **bool**| Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. | [optional]
 
@@ -234,13 +255,15 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 include_details = True # bool | Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get patch operation status
-	api_response = client.patches.get_patch_operation_status(include_details=include_details)
+	api_response = client.patches.get_patch_operation_status(access_cluster_id=access_cluster_id, region_id=region_id, include_details=include_details)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->get_patch_operation_status: %s\n" % e)
@@ -251,6 +274,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **include_details** | **bool**| Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. | [optional]
 
 ### Return type
@@ -298,13 +323,15 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 service = "service_example" # str | Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get patches history
-	api_response = client.patches.get_patches_history(service=service)
+	api_response = client.patches.get_patches_history(access_cluster_id=access_cluster_id, region_id=region_id, service=service)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->get_patches_history: %s\n" % e)
@@ -315,6 +342,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **service** | **str**| Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. | [optional]
 
 ### Return type
@@ -365,11 +394,22 @@ client = HeliosClient(api_key=api_key)
 file_name = "file_name_example" # str | 
 checksum = "checksum_example" # str | 
 patch = open('/path/to/file', 'rb') # file_type | 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Import patches
 	api_response = client.patches.import_patches(file_name, checksum, patch)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchesApi->import_patches: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Import patches
+	api_response = client.patches.import_patches(file_name, checksum, patch, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->import_patches: %s\n" % e)
@@ -383,6 +423,8 @@ Name | Type | Description  | Notes
  **file_name** | **str**|  |
  **checksum** | **str**|  |
  **patch** | **file_type**|  |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -394,7 +436,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/formData
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 
@@ -434,11 +476,22 @@ body = RevertPatchesRequest(
         service="service_example",
         patch_level=1,
     ) # RevertPatchesRequest | Request to revert patches.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Revert patches
 	api_response = client.patches.revert_patches(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchesApi->revert_patches: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Revert patches
+	api_response = client.patches.revert_patches(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PatchesApi->revert_patches: %s\n" % e)
@@ -450,6 +503,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**RevertPatchesRequest**](RevertPatchesRequest.md)| Request to revert patches. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

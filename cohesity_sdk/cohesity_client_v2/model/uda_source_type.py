@@ -64,7 +64,6 @@ class UdaSourceType(ModelNormal):
             'KSAPORACLE': "kSapOracle",
             'KSAPSYBASE': "kSapSybase",
             'KSAPSYBASEIQ': "kSapSybaseIQ",
-            'KSAPASE': "kSapASE",
         },
     }
 

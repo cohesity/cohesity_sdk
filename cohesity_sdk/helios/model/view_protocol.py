@@ -147,7 +147,7 @@ class ViewProtocol(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str): Type of protocol. Specifies the supported Protocols for the  View.   'NFS' enables protocol access to NFS v3.   'NFS4' enables protocol  access to NFS v4.1.   'SMB' enables protocol access to SMB.   'S3' enables  protocol access to S3.   'Swift' enables protocol access to Swift.. [optional]  # noqa: E501
+            type (str): Type of protocol. Specifies the supported Protocols for the View.   'NFS' enables protocol access to NFS v3.   'NFS4' enables protocol access to NFS v4.1.   'SMB' enables protocol access to SMB.   'S3' enables protocol access to S3.   'Swift' enables protocol access to Swift.. [optional]  # noqa: E501
             mode (str): Mode of protocol access.   'ReadOnly'   'ReadWrite'. [optional]  # noqa: E501
         """
 

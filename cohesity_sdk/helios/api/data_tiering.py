@@ -22,11 +22,12 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.helios.model.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
-from cohesity_sdk.helios.model.common_data_tiering_task_paramsc9d6faa4_feda477a_affa033c21f67ca0 import CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0
-from cohesity_sdk.helios.model.common_data_tiering_task_response81207a8d5a124823_a1d8_b55a4424cc6d import CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
+from cohesity_sdk.helios.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.helios.model.data_tiering_analysis_group import DataTieringAnalysisGroup
 from cohesity_sdk.helios.model.data_tiering_analysis_groups import DataTieringAnalysisGroups
+from cohesity_sdk.helios.model.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
 from cohesity_sdk.helios.model.data_tiering_tag_config import DataTieringTagConfig
+from cohesity_sdk.helios.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.helios.model.data_tiering_task_run_request import DataTieringTaskRunRequest
 from cohesity_sdk.helios.model.data_tiering_tasks import DataTieringTasks
 from cohesity_sdk.helios.model.error import Error
@@ -54,7 +55,7 @@ class DataTieringApi(object):
         ):
             """Cancel data tiering analysis run.  # noqa: E501
 
-            Cancel data tiering analysis run for given analysis group ID   and run ID  # noqa: E501
+            Cancel data tiering analysis run for given analysis group ID and run ID  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -66,6 +67,8 @@ class DataTieringApi(object):
                 run_id (str): Specifies a unique run id of data tiering group run.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -133,6 +136,8 @@ class DataTieringApi(object):
                 'all': [
                     'id',
                     'run_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -169,14 +174,22 @@ class DataTieringApi(object):
                         (str,),
                     'run_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -211,6 +224,8 @@ class DataTieringApi(object):
                 run_id (str): Specifies a unique run id of data tiering task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -278,6 +293,8 @@ class DataTieringApi(object):
                 'all': [
                     'id',
                     'run_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -314,14 +331,22 @@ class DataTieringApi(object):
                         (str,),
                     'run_id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -354,6 +379,8 @@ class DataTieringApi(object):
                 body (CommonDataTieringAnalysisGroupParams): Specifies the data tiering analysis group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -418,6 +445,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -437,11 +466,19 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'body':
                         (CommonDataTieringAnalysisGroupParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -476,6 +513,9 @@ class DataTieringApi(object):
                 id (str): Specifies the id of the data tiering analysis group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                body (DataTieringAnalysisRunRequest): Specifies the request to run analysis group once.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -540,6 +580,9 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
+                    'body',
                 ],
                 'required': [
                     'id',
@@ -566,12 +609,23 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'body':
+                        (DataTieringAnalysisRunRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'body': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -580,7 +634,9 @@ class DataTieringApi(object):
                 'accept': [
                     'application/json'
                 ],
-                'content_type': [],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client,
             callable=__create_data_tiering_analysis_group_run
@@ -601,9 +657,11 @@ class DataTieringApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0): Specifies the parameters to create a data tiering task.
+                body (CreateOrUpdateDataTieringTaskRequest): Specifies the parameters to create a data tiering task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -625,7 +683,7 @@ class DataTieringApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
+                DataTieringTask
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -654,7 +712,7 @@ class DataTieringApi(object):
 
         self.create_data_tiering_task = _Endpoint(
             settings={
-                'response_type': (CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d,),
+                'response_type': (DataTieringTask,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -668,6 +726,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -686,12 +746,20 @@ class DataTieringApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0,),
+                        (CreateOrUpdateDataTieringTaskRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -726,6 +794,8 @@ class DataTieringApi(object):
                 id (str): Specifies the id of the data tiering tasks.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 body (DataTieringTaskRunRequest): Specifies the request to run tiering task once.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -791,6 +861,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'body',
                 ],
                 'required': [
@@ -818,14 +890,22 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'body':
                         (DataTieringTaskRunRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'body': 'body',
                 },
                 'collection_format_map': {
@@ -850,7 +930,7 @@ class DataTieringApi(object):
         ):
             """Delete data tiering analysis group.  # noqa: E501
 
-            Returns NoContentResponse if the data tiering analysis group is   deleted.  # noqa: E501
+            Returns NoContentResponse if the data tiering analysis group is deleted.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -861,6 +941,8 @@ class DataTieringApi(object):
                 id (str): Specifies a unique id of the data tiering analysis group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -925,6 +1007,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -934,22 +1018,37 @@ class DataTieringApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -982,6 +1081,8 @@ class DataTieringApi(object):
                 id (str): Specifies the id of the data tiering task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1046,6 +1147,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1065,12 +1168,20 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1103,6 +1214,8 @@ class DataTieringApi(object):
                 id (str): Specifies a unique id of the data tiering analysis group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1167,6 +1280,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1176,22 +1291,37 @@ class DataTieringApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1221,6 +1351,8 @@ class DataTieringApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Filter by a list of Analysis Group IDs.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -1283,6 +1415,8 @@ class DataTieringApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                 ],
                 'required': [],
@@ -1299,13 +1433,21 @@ class DataTieringApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                 },
                 'collection_format_map': {
@@ -1340,6 +1482,8 @@ class DataTieringApi(object):
                 id (str): Specifies the id of the data tiering task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1361,7 +1505,7 @@ class DataTieringApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
+                DataTieringTask
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1390,7 +1534,7 @@ class DataTieringApi(object):
 
         self.get_data_tiering_task_by_id = _Endpoint(
             settings={
-                'response_type': (CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d,),
+                'response_type': (DataTieringTask,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -1404,6 +1548,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1423,12 +1569,20 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'id':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1458,7 +1612,10 @@ class DataTieringApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Filter by a list of data tiering task ids.. [optional]
+                include_downtiered_data_location (bool): If true, it will also return a list of downtiered data locations for downtiered tasks.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1520,7 +1677,10 @@ class DataTieringApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
+                    'include_downtiered_data_location',
                 ],
                 'required': [],
                 'nullable': [
@@ -1536,14 +1696,26 @@ class DataTieringApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
+                    'include_downtiered_data_location':
+                        (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
+                    'include_downtiered_data_location': 'includeDowntieredDataLocation',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
+                    'include_downtiered_data_location': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -1557,6 +1729,157 @@ class DataTieringApi(object):
             },
             api_client=api_client,
             callable=__get_data_tiering_tasks
+        )
+
+        def __update_data_tiering_analysis_group(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Update a data tiering analysis group. Currently, it supports updating sources only.  # noqa: E501
+
+            Update a data tiering analysis group.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_data_tiering_analysis_group(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies a unique id of the data tiering analysis group.
+                body (CommonDataTieringAnalysisGroupParams): Specifies the data tiering analysis group.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DataTieringAnalysisGroup
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_data_tiering_analysis_group = _Endpoint(
+            settings={
+                'response_type': (DataTieringAnalysisGroup,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-tiering/analysis-groups/{id}',
+                'operation_id': 'update_data_tiering_analysis_group',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'id',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'body':
+                        (CommonDataTieringAnalysisGroupParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_data_tiering_analysis_group
         )
 
         def __update_data_tiering_analysis_group_tags_config(
@@ -1579,6 +1902,8 @@ class DataTieringApi(object):
                 body (DataTieringTagConfig): Specifies the data tiering analysis Tags Config.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1646,6 +1971,8 @@ class DataTieringApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1656,10 +1983,17 @@ class DataTieringApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
                 },
                 'allowed_values': {
                 },
@@ -1668,13 +2002,21 @@ class DataTieringApi(object):
                         (str,),
                     'body':
                         (DataTieringTagConfig,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1698,7 +2040,7 @@ class DataTieringApi(object):
         ):
             """Update data tiering analysis groups state.  # noqa: E501
 
-            Perform actions like pause or resume on the data tiering analysis   groups for the specified sources.  # noqa: E501
+            Perform actions like pause or resume on the data tiering analysis groups for the specified sources.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1706,9 +2048,11 @@ class DataTieringApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UpdateDataTieringStateRequest): Specifies the parameters to perform an action of list of data tiering   analysis groups.
+                body (UpdateDataTieringStateRequest): Specifies the parameters to perform an action of list of data tiering analysis groups.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1773,6 +2117,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -1792,11 +2138,19 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'body':
                         (UpdateDataTieringStateRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1830,9 +2184,11 @@ class DataTieringApi(object):
 
             Args:
                 id (str): Specifies the id of the data tiering task.
-                body (CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0): Specifies the parameters to update a data tiering task.
+                body (CreateOrUpdateDataTieringTaskRequest): Specifies the parameters to update a data tiering task.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1854,7 +2210,7 @@ class DataTieringApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d
+                DataTieringTask
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1885,7 +2241,7 @@ class DataTieringApi(object):
 
         self.update_data_tiering_task = _Endpoint(
             settings={
-                'response_type': (CommonDataTieringTaskResponse81207a8d5a124823A1d8B55a4424cc6d,),
+                'response_type': (DataTieringTask,),
                 'auth': [
                     'TokenHeader',
                     'ClusterId',
@@ -1900,6 +2256,8 @@ class DataTieringApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1921,14 +2279,22 @@ class DataTieringApi(object):
                     'id':
                         (str,),
                     'body':
-                        (CommonDataTieringTaskParamsc9d6faa4Feda477aAffa033c21f67ca0,),
+                        (CreateOrUpdateDataTieringTaskRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1960,9 +2326,11 @@ class DataTieringApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UpdateDataTieringStateRequest): Specifies the parameters to perform an action of list of data tiering   tasks.
+                body (UpdateDataTieringStateRequest): Specifies the parameters to perform an action of list of data tiering tasks.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2027,6 +2395,8 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -2046,11 +2416,19 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'body':
                         (UpdateDataTieringStateRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

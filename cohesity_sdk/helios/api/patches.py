@@ -62,6 +62,8 @@ class PatchesApi(object):
                 body (ApplyPatchesRequest): Request to apply patches.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -126,6 +128,8 @@ class PatchesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -145,11 +149,19 @@ class PatchesApi(object):
                 'openapi_types': {
                     'body':
                         (ApplyPatchesRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -181,6 +193,8 @@ class PatchesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 service (str): Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned.. [optional]
                 include_details (bool): Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch.. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -244,6 +258,8 @@ class PatchesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'service',
                     'include_details',
                 ],
@@ -261,16 +277,24 @@ class PatchesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'service':
                         (str,),
                     'include_details':
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'service': 'service',
                     'include_details': 'includeDetails',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'service': 'query',
                     'include_details': 'query',
                 },
@@ -302,6 +326,8 @@ class PatchesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 service (str): Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned.. [optional]
                 include_details (bool): Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch.. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -365,6 +391,8 @@ class PatchesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'service',
                     'include_details',
                 ],
@@ -382,16 +410,24 @@ class PatchesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'service':
                         (str,),
                     'include_details':
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'service': 'service',
                     'include_details': 'includeDetails',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'service': 'query',
                     'include_details': 'query',
                 },
@@ -423,6 +459,8 @@ class PatchesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 include_details (bool): Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -485,6 +523,8 @@ class PatchesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'include_details',
                 ],
                 'required': [],
@@ -501,13 +541,21 @@ class PatchesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'include_details':
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'include_details': 'includeDetails',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'include_details': 'query',
                 },
                 'collection_format_map': {
@@ -538,6 +586,8 @@ class PatchesApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 service (str): Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -600,6 +650,8 @@ class PatchesApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'service',
                 ],
                 'required': [],
@@ -616,13 +668,21 @@ class PatchesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'service':
                         (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'service': 'service',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'service': 'query',
                 },
                 'collection_format_map': {
@@ -660,6 +720,8 @@ class PatchesApi(object):
                 patch (file_type):
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -730,6 +792,8 @@ class PatchesApi(object):
                     'file_name',
                     'checksum',
                     'patch',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'file_name',
@@ -755,16 +819,24 @@ class PatchesApi(object):
                         (str,),
                     'patch':
                         (file_type,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'file_name': 'fileName',
                     'checksum': 'checksum',
                     'patch': 'patch',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'file_name': 'form',
                     'checksum': 'form',
                     'patch': 'form',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -774,7 +846,7 @@ class PatchesApi(object):
                     'application/json'
                 ],
                 'content_type': [
-                    'multipart/formData'
+                    'multipart/form-data'
                 ]
             },
             api_client=api_client,
@@ -799,6 +871,8 @@ class PatchesApi(object):
                 body (RevertPatchesRequest): Request to revert patches.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -863,6 +937,8 @@ class PatchesApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -882,11 +958,19 @@ class PatchesApi(object):
                 'openapi_types': {
                     'body':
                         (RevertPatchesRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

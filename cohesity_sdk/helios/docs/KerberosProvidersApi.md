@@ -33,12 +33,23 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id which will be of the pattern   cluster_id:clusterincarnation_id:resource_id.
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Get the Registered Kerberos Provider by id.
 	api_response = client.kerberos_providers.get_kerberos_provider_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KerberosProvidersApi->get_kerberos_provider_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get the Registered Kerberos Provider by id.
+	api_response = client.kerberos_providers.get_kerberos_provider_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KerberosProvidersApi->get_kerberos_provider_by_id: %s\n" % e)
@@ -49,7 +60,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id which will be of the pattern   cluster_id:clusterincarnation_id:resource_id. |
+ **id** | **str**| Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -96,6 +109,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 realm_names = [
         "realmNames_example",
     ] # [str] | Filter by a list of realm names. (optional)
@@ -110,7 +125,7 @@ kdc_servers = [
 # and optional values
 try:
 	# Get the list of Kerberos Providers.
-	api_response = client.kerberos_providers.get_kerberos_providers(realm_names=realm_names, ids=ids, kdc_servers=kdc_servers)
+	api_response = client.kerberos_providers.get_kerberos_providers(access_cluster_id=access_cluster_id, region_id=region_id, realm_names=realm_names, ids=ids, kdc_servers=kdc_servers)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KerberosProvidersApi->get_kerberos_providers: %s\n" % e)
@@ -121,6 +136,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **realm_names** | **[str]**| Filter by a list of realm names. | [optional]
  **ids** | **[int]**| Filter by a list of Kerberos Provider Ids. | [optional]
  **kdc_servers** | **[str]**| Filter by a list of KDC servers. | [optional]
@@ -172,11 +189,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = RegisterOrUpdateKerberosProviderRequest() # RegisterOrUpdateKerberosProviderRequest | Specifies the parameters to Register a Kerberos Provider.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Register a Kerberos Authentication Provider.
 	api_response = client.kerberos_providers.register_kerberos_provider(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KerberosProvidersApi->register_kerberos_provider: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Register a Kerberos Authentication Provider.
+	api_response = client.kerberos_providers.register_kerberos_provider(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KerberosProvidersApi->register_kerberos_provider: %s\n" % e)
@@ -188,6 +216,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**RegisterOrUpdateKerberosProviderRequest**](RegisterOrUpdateKerberosProviderRequest.md)| Specifies the parameters to Register a Kerberos Provider. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -239,11 +269,22 @@ id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729
 body = UnregisterKerberosRequest(
         admin_password="admin_password_example",
     ) # UnregisterKerberosRequest | Request to unregister a Kerberos Provider.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Unregister a Kerberos Provider.
 	api_response = client.kerberos_providers.unregister_kerberos_provider(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KerberosProvidersApi->unregister_kerberos_provider: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Unregister a Kerberos Provider.
+	api_response = client.kerberos_providers.unregister_kerberos_provider(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KerberosProvidersApi->unregister_kerberos_provider: %s\n" % e)
@@ -256,6 +297,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id. |
  **body** | [**UnregisterKerberosRequest**](UnregisterKerberosRequest.md)| Request to unregister a Kerberos Provider. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -303,13 +346,24 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id which will be of the pattern   cluster_id:clusterincarnation_id:resource_id.
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.
 body = RegisterOrUpdateKerberosProviderRequest() # RegisterOrUpdateKerberosProviderRequest | Request to update a Kerberos Provider.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update the Kerberos Provider Registration.
 	api_response = client.kerberos_providers.update_kerberos_provider(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KerberosProvidersApi->update_kerberos_provider: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update the Kerberos Provider Registration.
+	api_response = client.kerberos_providers.update_kerberos_provider(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KerberosProvidersApi->update_kerberos_provider: %s\n" % e)
@@ -320,8 +374,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id which will be of the pattern   cluster_id:clusterincarnation_id:resource_id. |
+ **id** | **str**| Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id. |
  **body** | [**RegisterOrUpdateKerberosProviderRequest**](RegisterOrUpdateKerberosProviderRequest.md)| Request to update a Kerberos Provider. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

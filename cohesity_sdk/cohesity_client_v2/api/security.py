@@ -32,6 +32,8 @@ from cohesity_sdk.cohesity_client_v2.model.import_certificate_by_clientcsr_reque
 from cohesity_sdk.cohesity_client_v2.model.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
 from cohesity_sdk.cohesity_client_v2.model.list_trusted_cas_result import ListTrustedCasResult
 from cohesity_sdk.cohesity_client_v2.model.modify_ciphers_request_body import ModifyCiphersRequestBody
+from cohesity_sdk.cohesity_client_v2.model.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
+from cohesity_sdk.cohesity_client_v2.model.object_store_ciphers_resp import ObjectStoreCiphersResp
 from cohesity_sdk.cohesity_client_v2.model.register_trusted_cas import RegisterTrustedCas
 from cohesity_sdk.cohesity_client_v2.model.security_config_response import SecurityConfigResponse
 from cohesity_sdk.cohesity_client_v2.model.trusted_ca import TrustedCa
@@ -774,6 +776,115 @@ class SecurityApi(object):
             callable=__get_csr_list
         )
 
+        def __get_object_store_ciphers(
+            self,
+            **kwargs
+        ):
+            """Gets the list of object store ciphers enabled on the cluster.  # noqa: E501
+
+            Gets the list of object store ciphers enabled on the cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_object_store_ciphers(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ObjectStoreCiphersResp
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_object_store_ciphers = _Endpoint(
+            settings={
+                'response_type': (ObjectStoreCiphersResp,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/security/object-store-ciphers',
+                'operation_id': 'get_object_store_ciphers',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_object_store_ciphers
+        )
+
         def __get_security_config(
             self,
             **kwargs
@@ -1369,6 +1480,128 @@ class SecurityApi(object):
             },
             api_client=api_client,
             callable=__modify_ciphers
+        )
+
+        def __modify_object_store_ciphers(
+            self,
+            body,
+            **kwargs
+        ):
+            """Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.  # noqa: E501
+
+            Enable/Disable a list of object store ciphers on the cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.modify_object_store_ciphers(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (ModifyObjectStoreCiphersRequestBody): Enable/Disable object store ciphers.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ObjectStoreCiphersResp
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.modify_object_store_ciphers = _Endpoint(
+            settings={
+                'response_type': (ObjectStoreCiphersResp,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/security/object-store-ciphers',
+                'operation_id': 'modify_object_store_ciphers',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (ModifyObjectStoreCiphersRequestBody,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__modify_object_store_ciphers
         )
 
         def __register_trusted_cas(

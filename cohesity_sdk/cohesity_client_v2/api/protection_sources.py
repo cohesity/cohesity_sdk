@@ -21,13 +21,14 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_reponse_params5664183a76b842b48044_ac90d2dc4b64 import CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
-from cohesity_sdk.cohesity_client_v2.model.common_source_registration_request_params16d8ee7c_e6e04528_aa629785aae5dc08 import CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08
 from cohesity_sdk.cohesity_client_v2.model.error import Error
 from cohesity_sdk.cohesity_client_v2.model.source import Source
 from cohesity_sdk.cohesity_client_v2.model.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
 from cohesity_sdk.cohesity_client_v2.model.source_connection_request_params import SourceConnectionRequestParams
 from cohesity_sdk.cohesity_client_v2.model.source_connection_response_params import SourceConnectionResponseParams
+from cohesity_sdk.cohesity_client_v2.model.source_registration import SourceRegistration
+from cohesity_sdk.cohesity_client_v2.model.source_registration_request_params import SourceRegistrationRequestParams
+from cohesity_sdk.cohesity_client_v2.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cohesity_client_v2.model.source_registrations import SourceRegistrations
 from cohesity_sdk.cohesity_client_v2.model.sources import Sources
 from cohesity_sdk.cohesity_client_v2.model.vdc_object import VdcObject
@@ -205,7 +206,7 @@ class ProtectionSourcesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -234,7 +235,7 @@ class ProtectionSourcesApi(object):
 
         self.get_protection_source_registration = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
         
@@ -549,7 +550,10 @@ class ProtectionSourcesApi(object):
                         "KHDFS": "kHdfs",
                         "KHIVE": "kHive",
                         "KHBASE": "kHBase",
-                        "KUDA": "kUDA"
+                        "KUDA": "kUDA",
+                        "KSQL": "kSQL",
+                        "KORACLE": "kOracle",
+                        "KSFDC": "kSfdc"
                     },
                 },
                 'openapi_types': {
@@ -977,7 +981,7 @@ class ProtectionSourcesApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08): Specifies the parameters to register a Protection Source.
+                body (SourceRegistrationRequestParams): Specifies the parameters to register a Protection Source.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -1001,12 +1005,10 @@ class ProtectionSourcesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
-            print(":"*100)
-            print(body)
             kwargs['async_req'] = kwargs.get(
                 'async_req', False
             )
@@ -1032,7 +1034,7 @@ class ProtectionSourcesApi(object):
 
         self.register_protection_source = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
         
@@ -1064,7 +1066,7 @@ class ProtectionSourcesApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08,),
+                        (SourceRegistrationRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -1225,7 +1227,7 @@ class ProtectionSourcesApi(object):
 
             Args:
                 id (int): Specifies the id of the Protection Source registration.
-                body (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08): Specifies the parameters to update the registration.
+                body (SourceRegistrationUpdateRequestParams): Specifies the parameters to update the registration.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -1249,7 +1251,7 @@ class ProtectionSourcesApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1280,7 +1282,7 @@ class ProtectionSourcesApi(object):
 
         self.update_protection_source_registration = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams5664183a76b842b48044Ac90d2dc4b64,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
         
@@ -1316,7 +1318,7 @@ class ProtectionSourcesApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonSourceRegistrationRequestParams16d8ee7cE6e04528Aa629785aae5dc08,),
+                        (SourceRegistrationUpdateRequestParams,),
                 },
                 'attribute_map': {
                     'id': 'id',

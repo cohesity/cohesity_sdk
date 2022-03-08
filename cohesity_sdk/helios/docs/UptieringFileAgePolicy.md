@@ -1,6 +1,6 @@
 # UptieringFileAgePolicy
 
-Specifies the file's selection rule by file age for up tiering data   tiering task eg.   1. select files last accessed 2 weeks ago.   2. select files last modified 1 month ago.
+Specifies the file's selection rule by file age for up tiering data tiering task eg. 1. select files last accessed 2 weeks ago. 2. select files last modified 1 month ago.
 
 ## Properties
 Name | Type | Description | Notes

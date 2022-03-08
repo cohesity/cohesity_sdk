@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **pre_post_script** | [**PrePostScriptParams**](PrePostScriptParams.md) |  | [optional] 
 **dedup_exclusion_source_ids** | **[int]** | Specifies ids of sources for which deduplication has to be disabled. | [optional] 
 **global_exclude_paths** | **[str]** | Specifies global exclude filters which are applied to all sources in a job. | [optional] 
+**global_exclude_fs** | **[str]** | Specifies global exclude filesystems which are applied to all sources in a job. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

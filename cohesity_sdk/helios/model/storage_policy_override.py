@@ -136,8 +136,8 @@ class StoragePolicyOverride(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            disable_inline_dedup_and_compression (bool, none_type): If false, the inline deduplication and compression settings inherited   from the Storage Domain (View Box) apply to this View.   If true, both inline deduplication and compression are disabled for this   View. This can only be set to true if inline deduplication is set for   the Storage Domain (View Box).. [optional]  # noqa: E501
-            disable_dedup (bool, none_type): If it is set to true, we would disable dedup for writes made in this   view irrespective of the view box's storage policy.. [optional]  # noqa: E501
+            disable_inline_dedup_and_compression (bool, none_type): If false, the inline deduplication and compression settings inherited from the Storage Domain (View Box) apply to this View. If true, both inline deduplication and compression are disabled for this View. This can only be set to true if inline deduplication is set for the Storage Domain (View Box).. [optional]  # noqa: E501
+            disable_dedup (bool, none_type): If it is set to true, we would disable dedup for writes made in this view irrespective of the view box's storage policy.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

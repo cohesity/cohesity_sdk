@@ -100,6 +100,7 @@ class ObjectProgressInfo(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
         ('status',): {
             'None': None,

@@ -4,7 +4,6 @@
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_helios_reg_config**](HeliosRegistrationApi.md#get_helios_reg_config) | **GET** /helios-registration-config | Lists the Helios Registration Config.
-[**get_rigel_claim_logs**](HeliosRegistrationApi.md#get_rigel_claim_logs) | **GET** /rigel-claim-logs | Lists the claim logs for rigel.
 [**helios_claim**](HeliosRegistrationApi.md#helios_claim) | **POST** /helios-registration | Register to Helios.
 
 
@@ -31,11 +30,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Lists the Helios Registration Config.
-	api_response = client.helios_registration.get_helios_reg_config()
+	api_response = client.helios_registration.get_helios_reg_config(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling HeliosRegistrationApi->get_helios_reg_config: %s\n" % e)
@@ -43,70 +45,15 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
 [**HeliosRegConfig**](HeliosRegConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_rigel_claim_logs**
-> RigelClaimLogs get_rigel_claim_logs()
-
-Lists the claim logs for rigel.
-
-Lists the logs during rigel cluster creation and claim.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.rigel_claim_logs import RigelClaimLogs
-from cohesity_sdk.helios.model.error import Error
-from cohesity_sdk.helios.exceptions import ApiException
-from pprint import pprint
-
-
-api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
-
-client = HeliosClient(api_key=api_key)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Lists the claim logs for rigel.
-	api_response = client.helios_registration.get_rigel_claim_logs()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling HeliosRegistrationApi->get_rigel_claim_logs: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**RigelClaimLogs**](RigelClaimLogs.md)
 
 ### Authorization
 
@@ -152,11 +99,21 @@ client = HeliosClient(api_key=api_key)
 body = HeliosClaimRequest(
         registration_token="registration_token_example",
     ) # HeliosClaimRequest | Specifies the parameters to claim to Helios.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Register to Helios.
 	client.helios_registration.helios_claim(body)
+except ApiException as e:
+	print("Exception when calling HeliosRegistrationApi->helios_claim: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Register to Helios.
+	client.helios_registration.helios_claim(body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling HeliosRegistrationApi->helios_claim: %s\n" % e)
 ```
@@ -167,6 +124,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**HeliosClaimRequest**](HeliosClaimRequest.md)| Specifies the parameters to claim to Helios. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

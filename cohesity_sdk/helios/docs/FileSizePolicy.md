@@ -1,6 +1,6 @@
 # FileSizePolicy
 
-Specifies the file's selection rule by file size eg.   1. select files greather than 10 Bytes.   2. select files less than 20 TiB.   3. select files greather than 5 MiB.   type: object
+Specifies the file's selection rule by file size eg. 1. select files greather than 10 Bytes. 2. select files less than 20 TiB. 3. select files greather than 5 MiB. type: object
 
 ## Properties
 Name | Type | Description | Notes

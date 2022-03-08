@@ -81,6 +81,7 @@ class RunTargetsConfiguration(ModelNormal):
         """
         lazy_import()
         return {
+            'use_policy_defaults': (bool, none_type,),  # noqa: E501
             'replications': ([RunReplicationConfig], none_type,),  # noqa: E501
             'archivals': ([RunArchivalConfig], none_type,),  # noqa: E501
         }
@@ -92,6 +93,7 @@ class RunTargetsConfiguration(ModelNormal):
 
 
     attribute_map = {
+        'use_policy_defaults': 'usePolicyDefaults',  # noqa: E501
         'replications': 'replications',  # noqa: E501
         'archivals': 'archivals',  # noqa: E501
     }
@@ -143,6 +145,7 @@ class RunTargetsConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            use_policy_defaults (bool, none_type): Specifies whether to use default policy settings or not. If specified as true then 'replications' and 'arcihvals' should not be specified. In case of true value, replicatioan targets congfigured in the policy will be added internally.. [optional] if omitted the server will use the default value of False  # noqa: E501
             replications ([RunReplicationConfig], none_type): Specifies a list of replication targets configurations.. [optional]  # noqa: E501
             archivals ([RunArchivalConfig], none_type): Specifies a list of archival targets configurations.. [optional]  # noqa: E501
         """

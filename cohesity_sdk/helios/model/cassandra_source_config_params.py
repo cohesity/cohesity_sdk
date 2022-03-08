@@ -86,6 +86,7 @@ class CassandraSourceConfigParams(ModelNormal):
             'cassandra_port_info': (CassandraPortInfo,),  # noqa: E501
             'cassandra_security_info': (CassandraSecurityInfo,),  # noqa: E501
             'data_center_names': ([str],),  # noqa: E501
+            'commit_log_backup_location': (str, none_type,),  # noqa: E501
             'endpoint_snitch': (str, none_type,),  # noqa: E501
             'cassandra_partitioner': (str, none_type,),  # noqa: E501
             'kerberos_sasl_protocol': (str, none_type,),  # noqa: E501
@@ -105,6 +106,7 @@ class CassandraSourceConfigParams(ModelNormal):
         'cassandra_port_info': 'cassandraPortInfo',  # noqa: E501
         'cassandra_security_info': 'cassandraSecurityInfo',  # noqa: E501
         'data_center_names': 'dataCenterNames',  # noqa: E501
+        'commit_log_backup_location': 'commitLogBackupLocation',  # noqa: E501
         'endpoint_snitch': 'endpointSnitch',  # noqa: E501
         'cassandra_partitioner': 'cassandraPartitioner',  # noqa: E501
         'kerberos_sasl_protocol': 'kerberosSaslProtocol',  # noqa: E501
@@ -164,6 +166,7 @@ class CassandraSourceConfigParams(ModelNormal):
             cassandra_port_info (CassandraPortInfo): [optional]  # noqa: E501
             cassandra_security_info (CassandraSecurityInfo): [optional]  # noqa: E501
             data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501
+            commit_log_backup_location (str, none_type): Commit Logs backup location on cassandra nodes. [optional]  # noqa: E501
             endpoint_snitch (str, none_type): Endpoint snitch used for this cluster.. [optional]  # noqa: E501
             cassandra_partitioner (str, none_type): Cassandra partitioner required in compaction.. [optional]  # noqa: E501
             kerberos_sasl_protocol (str, none_type): Populated if cassandraAuthType is Kerberos.. [optional]  # noqa: E501

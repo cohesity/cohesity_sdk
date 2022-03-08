@@ -56,6 +56,8 @@ class NodeGroupsApi(object):
                 body (NodeGroupRequest): Request to create a Node Group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -120,6 +122,8 @@ class NodeGroupsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -139,11 +143,19 @@ class NodeGroupsApi(object):
                 'openapi_types': {
                     'body':
                         (NodeGroupRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -178,6 +190,8 @@ class NodeGroupsApi(object):
                 group_name (str): Specifies a unique name of the Node Group to delete.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -242,6 +256,8 @@ class NodeGroupsApi(object):
             params_map={
                 'all': [
                     'group_name',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'group_name',
@@ -261,12 +277,20 @@ class NodeGroupsApi(object):
                 'openapi_types': {
                     'group_name':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'group_name': 'groupName',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'group_name': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -299,6 +323,8 @@ class NodeGroupsApi(object):
                 group_name (str): Specifies a unique id of Node Group to return.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -363,6 +389,8 @@ class NodeGroupsApi(object):
             params_map={
                 'all': [
                     'group_name',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'group_name',
@@ -382,12 +410,20 @@ class NodeGroupsApi(object):
                 'openapi_types': {
                     'group_name':
                         (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'group_name': 'groupName',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'group_name': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -417,6 +453,8 @@ class NodeGroupsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 group_names ([str]): Filter node groups by a list of node group names.. [optional]
                 group_type (int): Filter node groups by a node group type.. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -480,6 +518,8 @@ class NodeGroupsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'group_names',
                     'group_type',
                 ],
@@ -497,16 +537,24 @@ class NodeGroupsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'group_names':
                         ([str],),
                     'group_type':
                         (int,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'group_names': 'groupNames',
                     'group_type': 'groupType',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'group_names': 'query',
                     'group_type': 'query',
                 },
@@ -544,6 +592,8 @@ class NodeGroupsApi(object):
                 body (NodeGroupRequest): Request to update a Node Group.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -611,6 +661,8 @@ class NodeGroupsApi(object):
                 'all': [
                     'group_name',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'group_name',
@@ -633,13 +685,21 @@ class NodeGroupsApi(object):
                         (str,),
                     'body':
                         (NodeGroupRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'group_name': 'groupName',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'group_name': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

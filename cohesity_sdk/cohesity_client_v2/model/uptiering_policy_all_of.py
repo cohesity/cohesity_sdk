@@ -28,7 +28,9 @@ from cohesity_sdk.cohesity_client_v2.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cohesity_client_v2.model.uptiering_file_age_policy import UptieringFileAgePolicy
+    from cohesity_sdk.cohesity_client_v2.model.uptiering_target import UptieringTarget
     globals()['UptieringFileAgePolicy'] = UptieringFileAgePolicy
+    globals()['UptieringTarget'] = UptieringTarget
 
 
 class UptieringPolicyAllOf(ModelNormal):
@@ -81,6 +83,7 @@ class UptieringPolicyAllOf(ModelNormal):
         return {
             'file_age': (UptieringFileAgePolicy,),  # noqa: E501
             'include_all_files': (bool, none_type,),  # noqa: E501
+            'target': (UptieringTarget,),  # noqa: E501
         }
 
     @cached_property
@@ -92,6 +95,7 @@ class UptieringPolicyAllOf(ModelNormal):
     attribute_map = {
         'file_age': 'fileAge',  # noqa: E501
         'include_all_files': 'includeAllFiles',  # noqa: E501
+        'target': 'target',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +147,7 @@ class UptieringPolicyAllOf(ModelNormal):
 
             file_age (UptieringFileAgePolicy): [optional]  # noqa: E501
             include_all_files (bool, none_type): If set, all files in the view will be uptiered regardless of file_select_policy, num_file_access, hot_file_window, file_size constraints.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            target (UptieringTarget): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
