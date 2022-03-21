@@ -1,0 +1,29 @@
+# ApplicationDetails
+
+Specifies details of quorum applications.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **str, none_type** | Unique application id. | 
+**action_after_expiry** | **str, none_type** | Action performed after application expired. | [optional] 
+**quorum_decisions** | [**[QuorumMemberDecision], none_type**](QuorumMemberDecision.md) | List of decisions made by quorum group members. | [optional] 
+**operation** | [**Operation**](Operation.md) |  | [optional] 
+**key_info** | **str, none_type** | Application used key. | [optional] 
+**http_params** | [**HttpParams**](HttpParams.md) |  | [optional] 
+**pre_value** | **str, none_type** | Previous value for this application info. | [optional] 
+**new_value** | **str, none_type** | New value for this application info. | [optional] 
+**requester** | [**UserInfo**](UserInfo.md) |  | [optional] 
+**initiated_time** | **int, none_type** | Initiated time of the application request. | [optional] 
+**status** | **str, none_type** | Current status of the application. | [optional] 
+**expiration_period_days** | **int, none_type** | Application expiration period in days. | [optional] 
+**final_decision_made_time** | **int, none_type** | Specifies the timestamp in milliseconds since the epoch when the final decision on quorum request is made. | [optional] 
+**approval_count** | **int, none_type** | Number of current quorum approvals received. | [optional] 
+**required_approval_count** | **int, none_type** | Total number of required quorum approval count for the application to be approved. | [optional] 
+**cluster_id** | **int, none_type** | Specifies the id of the cluster. | [optional] 
+**cluster_incarnation_id** | **int, none_type** | Specifies the incarnation id of the cluster. | [optional] 
+**cluster_name** | **str, none_type** | Specifies the name of the cluster. | [optional] [readonly] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

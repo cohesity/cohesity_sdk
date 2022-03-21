@@ -75,6 +75,10 @@ class ObjectsDiscoveryParams(ModelNormal):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
         },
     }
 

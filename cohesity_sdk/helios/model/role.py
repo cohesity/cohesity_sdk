@@ -86,8 +86,8 @@ class Role(ModelComposed):
         lazy_import()
         return {
             'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'privileges': ([str], none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'label': (str, none_type,),  # noqa: E501
             'created_timestamp_msecs': (int, none_type,),  # noqa: E501
             'last_updated_timestamp_msecs': (int, none_type,),  # noqa: E501
@@ -103,8 +103,8 @@ class Role(ModelComposed):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'privileges': 'privileges',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'label': 'label',  # noqa: E501
         'created_timestamp_msecs': 'createdTimestampMsecs',  # noqa: E501
         'last_updated_timestamp_msecs': 'lastUpdatedTimestampMsecs',  # noqa: E501
@@ -125,11 +125,12 @@ class Role(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, privileges, *args, **kwargs):  # noqa: E501
         """Role - a model defined in OpenAPI
 
         Args:
             name (str, none_type): Specifies the Role name.
+            privileges ([str], none_type): Specifies the list of Privileges of the Role.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -164,7 +165,6 @@ class Role(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description message for the Role.. [optional]  # noqa: E501
-            privileges ([str], none_type): Specifies the list of Privileges of the Role.. [optional]  # noqa: E501
             label (str, none_type): Specifies the Role label.. [optional]  # noqa: E501
             created_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is created in milliseconds.. [optional]  # noqa: E501
             last_updated_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is last updated in milliseconds.. [optional]  # noqa: E501
@@ -205,6 +205,7 @@ class Role(ModelComposed):
         }
         required_args = {
             'name': name,
+            'privileges': privileges,
         }
         model_args = {}
         model_args.update(required_args)

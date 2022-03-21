@@ -39,6 +39,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.office365_object_protection_request_params import Office365ObjectProtectionRequestParams
     from cohesity_sdk.helios.model.oracle_object_protection_request_params import OracleObjectProtectionRequestParams
     from cohesity_sdk.helios.model.physical_object_protection_request_params import PhysicalObjectProtectionRequestParams
+    from cohesity_sdk.helios.model.sfdc_object_protection_request_params import SfdcObjectProtectionRequestParams
     from cohesity_sdk.helios.model.vmware_object_protection_request_params import VmwareObjectProtectionRequestParams
     globals()['AwsObjectProtectionRequestParams'] = AwsObjectProtectionRequestParams
     globals()['ElastifileObjectProtectionRequestParams'] = ElastifileObjectProtectionRequestParams
@@ -52,6 +53,7 @@ def lazy_import():
     globals()['Office365ObjectProtectionRequestParams'] = Office365ObjectProtectionRequestParams
     globals()['OracleObjectProtectionRequestParams'] = OracleObjectProtectionRequestParams
     globals()['PhysicalObjectProtectionRequestParams'] = PhysicalObjectProtectionRequestParams
+    globals()['SfdcObjectProtectionRequestParams'] = SfdcObjectProtectionRequestParams
     globals()['VmwareObjectProtectionRequestParams'] = VmwareObjectProtectionRequestParams
 
 
@@ -116,6 +118,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
             'aws_params': (AwsObjectProtectionRequestParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionRequestParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionRequestParams,),  # noqa: E501
+            'sfdc_params': (SfdcObjectProtectionRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -138,6 +141,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
         'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -200,6 +204,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
             aws_params (AwsObjectProtectionRequestParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionRequestParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionRequestParams): [optional]  # noqa: E501
+            sfdc_params (SfdcObjectProtectionRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

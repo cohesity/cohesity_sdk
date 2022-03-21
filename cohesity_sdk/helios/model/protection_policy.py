@@ -100,6 +100,8 @@ class ProtectionPolicy(ModelNormal):
             'remote_target_policy': (TargetsConfiguration,),  # noqa: E501
             'retry_options': (RetryOptions,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
+            'version': (int, none_type,),  # noqa: E501
+            'is_cbs_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -117,6 +119,8 @@ class ProtectionPolicy(ModelNormal):
         'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
         'retry_options': 'retryOptions',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
+        'version': 'version',  # noqa: E501
+        'is_cbs_enabled': 'isCBSEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -176,6 +180,8 @@ class ProtectionPolicy(ModelNormal):
             remote_target_policy (TargetsConfiguration): [optional]  # noqa: E501
             retry_options (RetryOptions): [optional]  # noqa: E501
             data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
+            version (int, none_type): Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.. [optional]  # noqa: E501
+            is_cbs_enabled (bool, none_type): Specifies true if Calender Based Schedule is supported by client. Default value is assumed as false for this feature.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

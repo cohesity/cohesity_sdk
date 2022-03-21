@@ -57,6 +57,7 @@ class RunFilterValues(ModelNormal):
         ('run_filter_values',): {
             'KALL': "kAll",
             'KSYSTEM': "kSystem",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
             'KINCREMENTAL': "kIncremental",
             'KFULL': "kFull",
             'KLOG': "kLog",

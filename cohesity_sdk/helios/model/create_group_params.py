@@ -74,13 +74,13 @@ class CreateGroupParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'domain': (str, none_type,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'domain': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'roles': ([str], none_type,),  # noqa: E501
-            'users': ([str], none_type,),  # noqa: E501
+            'local_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'roles': ([str],),  # noqa: E501
             'restricted': (bool, none_type,),  # noqa: E501
-            'tenant_ids': ([str], none_type,),  # noqa: E501
+            'tenant_ids': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class CreateGroupParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'domain': 'domain',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'local_group_params': 'localGroupParams',  # noqa: E501
         'roles': 'roles',  # noqa: E501
-        'users': 'users',  # noqa: E501
         'restricted': 'restricted',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
     }
@@ -115,8 +115,8 @@ class CreateGroupParams(ModelNormal):
         """CreateGroupParams - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the Group name.
-            domain (str, none_type): Specifies the Group domain.
+            name (str): Specifies the name of the group.
+            domain (str): Specifies the domain of the group. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local groups on the Cohesity Cluster. A group is uniquely identified by combination of the name and the domain.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,11 +150,11 @@ class CreateGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            description (str, none_type): Specifies the description of the Group.. [optional]  # noqa: E501
-            roles ([str], none_type): Specifies the Roles of the Group.. [optional]  # noqa: E501
-            users ([str], none_type): Specifies a list of Users who are member of this Group.. [optional]  # noqa: E501
-            restricted (bool, none_type): Specifies whether the Group is restricted.. [optional]  # noqa: E501
-            tenant_ids ([str], none_type): Specifies a list of tenant ids who can access this group.. [optional]  # noqa: E501
+            description (str, none_type): Specifies the description of the group.. [optional]  # noqa: E501
+            local_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL group properties.. [optional]  # noqa: E501
+            roles ([str]): Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.. [optional]  # noqa: E501
+            restricted (bool, none_type): Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
+            tenant_ids ([str]): Specifies a list of tenant ids who can access this group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

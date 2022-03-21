@@ -73,6 +73,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -105,6 +106,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
         ('recovery_action',): {
             'RECOVERVMS': "RecoverVMs",
@@ -131,6 +133,9 @@ class CommonRecoveryResponseParams(ModelNormal):
             'CONVERTTOPST': "ConvertToPst",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
+            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
+            'RECOVERSFDCORG': "RecoverSfdcOrg",
+            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
         ('tear_down_status',): {
@@ -190,6 +195,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'is_parent_recovery': (bool, none_type,),  # noqa: E501
             'parent_recovery_id': (str, none_type,),  # noqa: E501
             'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
+            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -216,6 +222,7 @@ class CommonRecoveryResponseParams(ModelNormal):
         'is_parent_recovery': 'isParentRecovery',  # noqa: E501
         'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
         'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
+        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -282,6 +289,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
             parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
             retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
+            is_multi_stage_restore (bool, none_type): Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

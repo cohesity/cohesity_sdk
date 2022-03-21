@@ -27,9 +27,7 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.connection_subnet import ConnectionSubnet
     from cohesity_sdk.helios.model.network_connection_info import NetworkConnectionInfo
-    globals()['ConnectionSubnet'] = ConnectionSubnet
     globals()['NetworkConnectionInfo'] = NetworkConnectionInfo
 
 
@@ -83,9 +81,9 @@ class BifrostConnection(ModelNormal):
         return {
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'subnet': (ConnectionSubnet,),  # noqa: E501
             'certificate_version': (int, none_type,),  # noqa: E501
             'network_connection_info': (NetworkConnectionInfo,),  # noqa: E501
+            'connectors': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +95,9 @@ class BifrostConnection(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'subnet': 'subnet',  # noqa: E501
         'certificate_version': 'certificateVersion',  # noqa: E501
         'network_connection_info': 'networkConnectionInfo',  # noqa: E501
+        'connectors': 'connectors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,8 +112,12 @@ class BifrostConnection(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, name, *args, **kwargs):  # noqa: E501
         """BifrostConnection - a model defined in OpenAPI
+
+        Args:
+            id (int, none_type): Specifies the id of the connection.
+            name (str, none_type): Specifies the name of the connection.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,11 +151,9 @@ class BifrostConnection(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the id of the connection.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the connection.. [optional]  # noqa: E501
-            subnet (ConnectionSubnet): [optional]  # noqa: E501
             certificate_version (int, none_type): Specifies the version of the connection's certificate. The version is used to revoke/renew connection's certificates.. [optional]  # noqa: E501
             network_connection_info (NetworkConnectionInfo): [optional]  # noqa: E501
+            connectors ([str]): Specifies the ids of the connectors in this connection. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -180,6 +180,8 @@ class BifrostConnection(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.id = id
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

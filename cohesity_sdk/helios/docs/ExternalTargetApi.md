@@ -409,6 +409,9 @@ region_id = "regionId_example" # str | This field uniquely represents a region a
 ids = [
         1,
     ] # [int] | Filter by a list of External Target ids. (optional)
+global_ids = [
+        "globalIds_example",
+    ] # [str] | Filter by a list of External Target global ids. (optional)
 names = [
         "names_example",
     ] # [str] | Filter by a list of External Target names. (optional)
@@ -421,12 +424,15 @@ storage_types = [
 storage_classes = [
         "AmazonS3Standard",
     ] # [str] | Filter by a list of External Target storage classes. (optional)
+ownership_contexts = [
+        "Local",
+    ] # [str] | Specifies whether how this external target is being consumed either Local or FortKnox. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of External Targets.
-	api_response = client.external_target.get_external_targets(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, names=names, purpose_types=purpose_types, storage_types=storage_types, storage_classes=storage_classes)
+	api_response = client.external_target.get_external_targets(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, global_ids=global_ids, names=names, purpose_types=purpose_types, storage_types=storage_types, storage_classes=storage_classes, ownership_contexts=ownership_contexts)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ExternalTargetApi->get_external_targets: %s\n" % e)
@@ -440,10 +446,12 @@ Name | Type | Description  | Notes
  **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
  **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[int]**| Filter by a list of External Target ids. | [optional]
+ **global_ids** | **[str]**| Filter by a list of External Target global ids. | [optional]
  **names** | **[str]**| Filter by a list of External Target names. | [optional]
  **purpose_types** | **[str]**| Filter by a list of External Target purpose types. | [optional]
  **storage_types** | **[str]**| Filter by a list of External Target storage types. | [optional]
  **storage_classes** | **[str]**| Filter by a list of External Target storage classes. | [optional]
+ **ownership_contexts** | **[str]**| Specifies whether how this external target is being consumed either Local or FortKnox. | [optional]
 
 ### Return type
 

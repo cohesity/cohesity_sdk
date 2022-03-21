@@ -58,6 +58,7 @@ class ViewCategory(ModelNormal):
             'BACKUPTARGET': "BackupTarget",
             'FILESERVICES': "FileServices",
             'OBJECTSERVICES': "ObjectServices",
+            'ARCHIVESERVICES': "ArchiveServices",
         },
     }
 

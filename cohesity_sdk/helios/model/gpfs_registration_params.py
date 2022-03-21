@@ -28,8 +28,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.helios.model.credentials import Credentials
+    from cohesity_sdk.helios.model.filter_ip_config import FilterIpConfig
     from cohesity_sdk.helios.model.nas_throttling_config import NasThrottlingConfig
     globals()['Credentials'] = Credentials
+    globals()['FilterIpConfig'] = FilterIpConfig
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
 
 
@@ -84,6 +86,7 @@ class GpfsRegistrationParams(ModelNormal):
             'endpoint': (str, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'filter_ip_config': (FilterIpConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class GpfsRegistrationParams(ModelNormal):
         'endpoint': 'endpoint',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
+        'filter_ip_config': 'filterIpConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,6 +154,7 @@ class GpfsRegistrationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
+            filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -71,6 +71,7 @@ class AwsAuthenticationMethodsParams(ModelComposed):
             'KUSEIAMUSER': "kUseIAMUser",
             'KUSEIAMROLE': "kUseIAMRole",
             'KUSESTS': "kUseSTS",
+            'KUSEHELIOS': "kUseHelios",
         },
     }
 

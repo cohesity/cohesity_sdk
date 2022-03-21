@@ -17,6 +17,13 @@ Name | Type | Description | Notes
 **progress_task_id** | **str, none_type** | Progress monitor task id for the Run. | [optional] 
 **protection_environment_type** | **str, none_type** | Specifies the type of protection environment. | [optional] 
 **is_stubbed_run** | **bool, none_type** | Specifies whether this is a stubbed run. This is set by the server and if set to true, this run entry specifies the user intent to create a run instead of actual run itself | [optional] 
+**is_sla_violated** | **bool, none_type** | Indicated if SLA has been violated for this run. | [optional] 
+**logical_size_bytes** | **int, none_type** | Specifies total logical size of the object in bytes. | [optional] 
+**bytes_written** | **int, none_type** | Specifies total size of data in bytes written after taking backup. | [optional] 
+**bytes_read** | **int, none_type** | Specifies total logical bytes read for creating the snapshot. | [optional] 
+**message_code** | **str, none_type** | Specifies a short message describing the type of error which occurred. | [optional] 
+**message_guid** | **str, none_type** | Specifies the identifier of the error code. | [optional] 
+**error_message** | **str, none_type** | Specifies the full text of the error message if any error occurs. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

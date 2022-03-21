@@ -113,6 +113,7 @@ class ObjectProtectionStatsSummary(ModelNormal):
             'environment': (str, none_type,),  # noqa: E501
             'protected_count': (int, none_type,),  # noqa: E501
             'unprotected_count': (int, none_type,),  # noqa: E501
+            'deleted_protected_count': (int, none_type,),  # noqa: E501
             'protected_size_bytes': (int, none_type,),  # noqa: E501
             'unprotected_size_bytes': (int, none_type,),  # noqa: E501
         }
@@ -127,6 +128,7 @@ class ObjectProtectionStatsSummary(ModelNormal):
         'environment': 'environment',  # noqa: E501
         'protected_count': 'protectedCount',  # noqa: E501
         'unprotected_count': 'unprotectedCount',  # noqa: E501
+        'deleted_protected_count': 'deletedProtectedCount',  # noqa: E501
         'protected_size_bytes': 'protectedSizeBytes',  # noqa: E501
         'unprotected_size_bytes': 'unprotectedSizeBytes',  # noqa: E501
     }
@@ -181,6 +183,7 @@ class ObjectProtectionStatsSummary(ModelNormal):
             environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             protected_count (int, none_type): Specifies the count of the protected leaf objects.. [optional]  # noqa: E501
             unprotected_count (int, none_type): Specifies the count of the unprotected leaf objects.. [optional]  # noqa: E501
+            deleted_protected_count (int, none_type): Specifies the count of protected leaf objects which were deleted from the source after being protected.. [optional]  # noqa: E501
             protected_size_bytes (int, none_type): Specifies the protected logical size in bytes.. [optional]  # noqa: E501
             unprotected_size_bytes (int, none_type): Specifies the unprotected logical size in bytes.. [optional]  # noqa: E501
         """

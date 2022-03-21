@@ -28,18 +28,25 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# Refresh bulletin board from Helios.
-	client.internal.refresh_bulletin_board()
+	client.internal.refresh_bulletin_board(access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling InternalApi->refresh_bulletin_board: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

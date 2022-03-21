@@ -193,12 +193,13 @@ class ActiveDirectoryApi(object):
 
             Args:
                 id (int): Specifies id of an Active Directory.
-                active_directory_admin_username (str): Specifies the username of the Active Direcotry Admin.
-                active_directory_admin_password (str): Specifies the password of the Active Direcotry Admin.
+                active_directory_admin_username (str): Specifies the username of the Active Directory Admin.
+                active_directory_admin_password (str): Specifies the password of the Active Directory Admin.
 
             Keyword Args:
                 access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
                 region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                force_remove (bool): To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -271,6 +272,7 @@ class ActiveDirectoryApi(object):
                     'active_directory_admin_password',
                     'access_cluster_id',
                     'region_id',
+                    'force_remove',
                 ],
                 'required': [
                     'id',
@@ -300,6 +302,8 @@ class ActiveDirectoryApi(object):
                         (int,),
                     'region_id':
                         (str,),
+                    'force_remove':
+                        (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -307,6 +311,7 @@ class ActiveDirectoryApi(object):
                     'active_directory_admin_password': 'activeDirectoryAdminPassword',
                     'access_cluster_id': 'accessClusterId',
                     'region_id': 'regionId',
+                    'force_remove': 'forceRemove',
                 },
                 'location_map': {
                     'id': 'path',
@@ -314,6 +319,7 @@ class ActiveDirectoryApi(object):
                     'active_directory_admin_password': 'header',
                     'access_cluster_id': 'header',
                     'region_id': 'header',
+                    'force_remove': 'query',
                 },
                 'collection_format_map': {
                 }

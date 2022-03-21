@@ -41,6 +41,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.search_file_request_params_base import SearchFileRequestParamsBase
     from cohesity_sdk.helios.model.search_ms_teams_request_params import SearchMsTeamsRequestParams
     from cohesity_sdk.helios.model.search_public_folder_request_params import SearchPublicFolderRequestParams
+    from cohesity_sdk.helios.model.uda_search_params import UdaSearchParams
     globals()['CassandraSearchParams'] = CassandraSearchParams
     globals()['CouchbaseSearchParams'] = CouchbaseSearchParams
     globals()['EmailHeliosSearchParams'] = EmailHeliosSearchParams
@@ -55,6 +56,7 @@ def lazy_import():
     globals()['SearchFileRequestParamsBase'] = SearchFileRequestParamsBase
     globals()['SearchMsTeamsRequestParams'] = SearchMsTeamsRequestParams
     globals()['SearchPublicFolderRequestParams'] = SearchPublicFolderRequestParams
+    globals()['UdaSearchParams'] = UdaSearchParams
 
 
 class HeliosSearchIndexedObjectsRequest(ModelComposed):
@@ -99,6 +101,8 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",
+            'UDAOBJECTS': "UdaObjects",
+            'SFDCRECORDS': "SfdcRecords",
         },
     }
 
@@ -143,6 +147,7 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
             'exchange_params': (SearchExchangeObjectsRequestParams,),  # noqa: E501
             'public_folder_params': (SearchPublicFolderRequestParams,),  # noqa: E501
             'ms_teams_params': (SearchMsTeamsRequestParams,),  # noqa: E501
+            'uda_params': (UdaSearchParams,),  # noqa: E501
         }
 
     @cached_property
@@ -168,6 +173,7 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
         'exchange_params': 'exchangeParams',  # noqa: E501
         'public_folder_params': 'publicFolderParams',  # noqa: E501
         'ms_teams_params': 'msTeamsParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -236,6 +242,7 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
             exchange_params (SearchExchangeObjectsRequestParams): [optional]  # noqa: E501
             public_folder_params (SearchPublicFolderRequestParams): [optional]  # noqa: E501
             ms_teams_params (SearchMsTeamsRequestParams): [optional]  # noqa: E501
+            uda_params (UdaSearchParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

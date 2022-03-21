@@ -136,7 +136,6 @@ body = HeliosOnPremConfig(
             password="password_example",
         ),
         ssh_config=HeliosOnPremSSHConfig(
-            ssh_enabled=True,
         ),
     ) # HeliosOnPremConfig | Specifies the parameters for config update.
 access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)

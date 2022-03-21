@@ -85,7 +85,8 @@ class UpdateRigelConnectionRequest(ModelComposed):
         return {
             'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'ungrouped_connectrs': ([int],),  # noqa: E501
+            'scalable': (bool, none_type,),  # noqa: E501
+            'ungrouped_connectors': ([int],),  # noqa: E501
             'connector_groups': ([ConnectorGroup],),  # noqa: E501
         }
 
@@ -98,7 +99,8 @@ class UpdateRigelConnectionRequest(ModelComposed):
     attribute_map = {
         'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'ungrouped_connectrs': 'ungroupedConnectrs',  # noqa: E501
+        'scalable': 'scalable',  # noqa: E501
+        'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
         'connector_groups': 'connectorGroups',  # noqa: E501
     }
 
@@ -154,7 +156,8 @@ class UpdateRigelConnectionRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            ungrouped_connectrs ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
+            scalable (bool, none_type): Flag to specify if the connection is scalable.. [optional]  # noqa: E501
+            ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
             connector_groups ([ConnectorGroup]): Specifies the connector groups in the connection.. [optional]  # noqa: E501
         """
 

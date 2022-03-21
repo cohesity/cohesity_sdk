@@ -94,6 +94,7 @@ class TenantInfo(ModelNormal):
             'created_at_time_msecs': (int, none_type,),  # noqa: E501
             'last_updated_at_time_msecs': (int, none_type,),  # noqa: E501
             'deleted_at_time_msecs': (int, none_type,),  # noqa: E501
+            'is_managed_on_helios': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -111,6 +112,7 @@ class TenantInfo(ModelNormal):
         'created_at_time_msecs': 'createdAtTimeMsecs',  # noqa: E501
         'last_updated_at_time_msecs': 'lastUpdatedAtTimeMsecs',  # noqa: E501
         'deleted_at_time_msecs': 'deletedAtTimeMsecs',  # noqa: E501
+        'is_managed_on_helios': 'isManagedOnHelios',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,6 +170,7 @@ class TenantInfo(ModelNormal):
             created_at_time_msecs (int, none_type): Epoch time when tenant was created.. [optional]  # noqa: E501
             last_updated_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
             deleted_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
+            is_managed_on_helios (bool, none_type): Flag to indicate if tenant is managed on helios. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

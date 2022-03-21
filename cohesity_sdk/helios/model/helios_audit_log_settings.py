@@ -27,7 +27,9 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.helios_audit_log_role_setting import HeliosAuditLogRoleSetting
     from cohesity_sdk.helios.model.helios_audit_log_user_setting import HeliosAuditLogUserSetting
+    globals()['HeliosAuditLogRoleSetting'] = HeliosAuditLogRoleSetting
     globals()['HeliosAuditLogUserSetting'] = HeliosAuditLogUserSetting
 
 
@@ -64,6 +66,9 @@ class HeliosAuditLogSettings(ModelNormal):
         ('user_settings',): {
         },
 
+        ('role_settings',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -83,7 +88,9 @@ class HeliosAuditLogSettings(ModelNormal):
         lazy_import()
         return {
             'user_settings': ([HeliosAuditLogUserSetting],),  # noqa: E501
+            'role_settings': ([HeliosAuditLogRoleSetting],),  # noqa: E501
             'read_logging': (bool, none_type,),  # noqa: E501
+            'retention_period_days': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,7 +101,9 @@ class HeliosAuditLogSettings(ModelNormal):
 
     attribute_map = {
         'user_settings': 'userSettings',  # noqa: E501
+        'role_settings': 'roleSettings',  # noqa: E501
         'read_logging': 'readLogging',  # noqa: E501
+        'retention_period_days': 'retentionPeriodDays',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,7 +154,9 @@ class HeliosAuditLogSettings(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             user_settings ([HeliosAuditLogUserSetting]): List of users level Helios audit log settings.. [optional]  # noqa: E501
+            role_settings ([HeliosAuditLogRoleSetting]): List of role level Helios audit log settings.. [optional]  # noqa: E501
             read_logging (bool, none_type): Toggle global level verbose logging for read events.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            retention_period_days (int, none_type): Helios Log retention period in days.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -57,6 +57,8 @@ class SnapshotTargetType(ModelNormal):
         ('snapshot_target_type',): {
             'LOCAL': "Local",
             'ARCHIVAL': "Archival",
+            'RPAASARCHIVAL': "RpaasArchival",
+            'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
         },
     }
 

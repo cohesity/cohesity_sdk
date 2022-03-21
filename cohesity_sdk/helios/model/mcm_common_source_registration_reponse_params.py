@@ -120,6 +120,7 @@ class McmCommonSourceRegistrationReponseParams(ModelNormal):
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'source_id': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
+            'connector_group_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -138,6 +139,7 @@ class McmCommonSourceRegistrationReponseParams(ModelNormal):
         'connections': 'connections',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
+        'connector_group_id': 'connectorGroupId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -196,6 +198,7 @@ class McmCommonSourceRegistrationReponseParams(ModelNormal):
             connections ([ConnectionConfig], none_type): Specifies the list of connections associated with this source.. [optional]  # noqa: E501
             source_id (str, none_type): ID of top level source object discovered after the registration.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment type of the Protection Source.. [optional]  # noqa: E501
+            connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **details** | **str, none_type** | Specifies the change details of this audit log. | [optional] 
 **username** | **str, none_type** | Specifies the username who made this audit log. | [optional] 
 **domain** | **str, none_type** | Specifies the domain of user who made this audit log. | [optional] 
+**source_type** | **str, none_type** | Specifies the source type for this audit log. | [optional] 
 **entity_name** | **str, none_type** | Specifies the entity name. | [optional] 
 **entity_type** | **str, none_type** | Specifies the entity type. | [optional] 
 **action** | **str, none_type** | Specifies the action type of this audit log. | [optional] 

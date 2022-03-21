@@ -65,6 +65,7 @@ class ProtectionSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('last_archival_run_status',): {
@@ -78,6 +79,7 @@ class ProtectionSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('last_replication_run_status',): {
@@ -91,6 +93,7 @@ class ProtectionSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
     }

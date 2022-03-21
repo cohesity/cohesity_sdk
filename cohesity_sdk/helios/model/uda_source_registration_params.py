@@ -27,8 +27,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.key_value_pair import KeyValuePair
     from cohesity_sdk.helios.model.uda_source_registration_params_credentials import UdaSourceRegistrationParamsCredentials
     from cohesity_sdk.helios.model.uda_source_registration_params_view_params import UdaSourceRegistrationParamsViewParams
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['UdaSourceRegistrationParamsCredentials'] = UdaSourceRegistrationParamsCredentials
     globals()['UdaSourceRegistrationParamsViewParams'] = UdaSourceRegistrationParamsViewParams
 
@@ -60,16 +62,11 @@ class UdaSourceRegistrationParams(ModelNormal):
     """
 
     allowed_values = {
-        ('source_type',): {
-            'KCOCKROACHDB': "kCockroachDB",
-            'KDB2': "kDB2",
-            'KMYSQL': "kMySQL",
-            'KOTHER': "kOther",
-            'KSAPHANA': "kSapHana",
-            'KSAPMAXDB': "kSapMaxDB",
-            'KSAPORACLE': "kSapOracle",
-            'KSAPSYBASE': "kSapSybase",
-            'KSAPSYBASEIQ': "kSapSybaseIQ",
+        ('os_type',): {
+            'None': None,
+            'KLINUX': "kLinux",
+            'KWINDOWS': "kWindows",
+            'KAIX': "kAix",
         },
     }
 
@@ -99,10 +96,12 @@ class UdaSourceRegistrationParams(ModelNormal):
             'source_type': (str,),  # noqa: E501
             'hosts': ([str],),  # noqa: E501
             'script_dir': (str,),  # noqa: E501
+            'os_type': (str, none_type,),  # noqa: E501
             'credentials': (UdaSourceRegistrationParamsCredentials,),  # noqa: E501
             'mount_view': (bool, none_type,),  # noqa: E501
             'view_params': (UdaSourceRegistrationParamsViewParams,),  # noqa: E501
             'source_registration_args': (str, none_type,),  # noqa: E501
+            'source_registration_arguments': ([KeyValuePair], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -115,10 +114,12 @@ class UdaSourceRegistrationParams(ModelNormal):
         'source_type': 'sourceType',  # noqa: E501
         'hosts': 'hosts',  # noqa: E501
         'script_dir': 'scriptDir',  # noqa: E501
+        'os_type': 'osType',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
         'mount_view': 'mountView',  # noqa: E501
         'view_params': 'viewParams',  # noqa: E501
         'source_registration_args': 'sourceRegistrationArgs',  # noqa: E501
+        'source_registration_arguments': 'sourceRegistrationArguments',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -173,10 +174,12 @@ class UdaSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            os_type (str, none_type): Specifies the OS type for Universal Data Adapter source.. [optional]  # noqa: E501
             credentials (UdaSourceRegistrationParamsCredentials): [optional]  # noqa: E501
             mount_view (bool, none_type): Specifies if SMB/NFS view mounting should be enabled on source. Default value is false.. [optional]  # noqa: E501
             view_params (UdaSourceRegistrationParamsViewParams): [optional]  # noqa: E501
-            source_registration_args (str, none_type): Specifies custom arguments to be supplied to the source registration scripts.. [optional]  # noqa: E501
+            source_registration_args (str, none_type): Specifies custom arguments to be supplied to the source registration scripts. This field is deprecated. Use sourceRegistrationArguments instead.. [optional]  # noqa: E501
+            source_registration_arguments ([KeyValuePair], none_type): Specifies the map of custom arguments to be supplied to the source registration scripts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -39,6 +39,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.office365_object_protection_response_params import Office365ObjectProtectionResponseParams
     from cohesity_sdk.helios.model.oracle_object_protection_response_params import OracleObjectProtectionResponseParams
     from cohesity_sdk.helios.model.physical_object_protection_response_params import PhysicalObjectProtectionResponseParams
+    from cohesity_sdk.helios.model.sfdc_object_protection_response_params import SfdcObjectProtectionResponseParams
     from cohesity_sdk.helios.model.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
     globals()['AwsObjectProtectionResponseParams'] = AwsObjectProtectionResponseParams
     globals()['ElastifileObjectProtectionResponseParams'] = ElastifileObjectProtectionResponseParams
@@ -52,6 +53,7 @@ def lazy_import():
     globals()['Office365ObjectProtectionResponseParams'] = Office365ObjectProtectionResponseParams
     globals()['OracleObjectProtectionResponseParams'] = OracleObjectProtectionResponseParams
     globals()['PhysicalObjectProtectionResponseParams'] = PhysicalObjectProtectionResponseParams
+    globals()['SfdcObjectProtectionResponseParams'] = SfdcObjectProtectionResponseParams
     globals()['VmwareObjectProtectionResponseParams'] = VmwareObjectProtectionResponseParams
 
 
@@ -96,6 +98,7 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -161,6 +164,7 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             'aws_params': (AwsObjectProtectionResponseParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionResponseParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionResponseParams,),  # noqa: E501
+            'sfdc_params': (SfdcObjectProtectionResponseParams,),  # noqa: E501
         }
 
     @cached_property
@@ -184,6 +188,7 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
         'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -247,6 +252,7 @@ class EnvSpecificObjectProtectionResponseParams(ModelNormal):
             aws_params (AwsObjectProtectionResponseParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionResponseParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionResponseParams): [optional]  # noqa: E501
+            sfdc_params (SfdcObjectProtectionResponseParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

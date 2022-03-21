@@ -28,10 +28,12 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.helios.model.full_backup_policy import FullBackupPolicy
+    from cohesity_sdk.helios.model.full_schedule_and_retention import FullScheduleAndRetention
     from cohesity_sdk.helios.model.incremental_backup_policy import IncrementalBackupPolicy
     from cohesity_sdk.helios.model.primary_backup_target import PrimaryBackupTarget
     from cohesity_sdk.helios.model.retention import Retention
     globals()['FullBackupPolicy'] = FullBackupPolicy
+    globals()['FullScheduleAndRetention'] = FullScheduleAndRetention
     globals()['IncrementalBackupPolicy'] = IncrementalBackupPolicy
     globals()['PrimaryBackupTarget'] = PrimaryBackupTarget
     globals()['Retention'] = Retention
@@ -85,9 +87,10 @@ class RegularBackupPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'retention': (Retention,),  # noqa: E501
             'incremental': (IncrementalBackupPolicy,),  # noqa: E501
             'full': (FullBackupPolicy,),  # noqa: E501
+            'full_backups': ([FullScheduleAndRetention],),  # noqa: E501
+            'retention': (Retention,),  # noqa: E501
             'primary_backup_target': (PrimaryBackupTarget,),  # noqa: E501
         }
 
@@ -98,9 +101,10 @@ class RegularBackupPolicy(ModelNormal):
 
 
     attribute_map = {
-        'retention': 'retention',  # noqa: E501
         'incremental': 'incremental',  # noqa: E501
         'full': 'full',  # noqa: E501
+        'full_backups': 'fullBackups',  # noqa: E501
+        'retention': 'retention',  # noqa: E501
         'primary_backup_target': 'primaryBackupTarget',  # noqa: E501
     }
 
@@ -116,11 +120,8 @@ class RegularBackupPolicy(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, retention, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """RegularBackupPolicy - a model defined in OpenAPI
-
-        Args:
-            retention (Retention):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,6 +157,8 @@ class RegularBackupPolicy(ModelNormal):
 
             incremental (IncrementalBackupPolicy): [optional]  # noqa: E501
             full (FullBackupPolicy): [optional]  # noqa: E501
+            full_backups ([FullScheduleAndRetention]): Specifies multiple schedules and retentions for full backup. Specify either of the 'full' or 'fullBackups' values. Its recommended to use 'fullBaackups' value since 'full' will be deprecated after few releases.. [optional]  # noqa: E501
+            retention (Retention): [optional]  # noqa: E501
             primary_backup_target (PrimaryBackupTarget): [optional]  # noqa: E501
         """
 
@@ -183,7 +186,6 @@ class RegularBackupPolicy(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.retention = retention
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -58,6 +58,8 @@ class SnapshotsSummary(ModelNormal):
             'None': None,
             'LOCAL': "Local",
             'ARCHIVAL': "Archival",
+            'RPAASARCHIVAL': "RpaasArchival",
+            'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
         },
         ('latest_run_status',): {
             'None': None,
@@ -70,6 +72,7 @@ class SnapshotsSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
     }
 

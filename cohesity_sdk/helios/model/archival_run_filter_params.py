@@ -61,6 +61,7 @@ class ArchivalRunFilterParams(ModelNormal):
             'KLOG': "kLog",
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
         },
         ('protection_environment_types',): {
             'None': None,
@@ -76,6 +77,7 @@ class ArchivalRunFilterParams(ModelNormal):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -128,6 +130,7 @@ class ArchivalRunFilterParams(ModelNormal):
         return {
             'run_types': ([str], none_type,),  # noqa: E501
             'protection_environment_types': ([str], none_type,),  # noqa: E501
+            'is_rpaas': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,6 +142,7 @@ class ArchivalRunFilterParams(ModelNormal):
     attribute_map = {
         'run_types': 'runTypes',  # noqa: E501
         'protection_environment_types': 'protectionEnvironmentTypes',  # noqa: E501
+        'is_rpaas': 'isRpaas',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -190,6 +194,7 @@ class ArchivalRunFilterParams(ModelNormal):
 
             run_types ([str], none_type): Specifies the run types to filter archival runs.. [optional]  # noqa: E501
             protection_environment_types ([str], none_type): Specifies the protection environment types to filter archival runs.. [optional]  # noqa: E501
+            is_rpaas (bool, none_type): Specifies whether the run is an RPaaS run or not. If this is true then only RPaaS archival runs are returned. Default is false.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

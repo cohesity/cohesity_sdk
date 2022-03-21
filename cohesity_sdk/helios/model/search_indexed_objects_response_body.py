@@ -40,7 +40,10 @@ def lazy_import():
     from cohesity_sdk.helios.model.one_drive_items import OneDriveItems
     from cohesity_sdk.helios.model.public_folder_items import PublicFolderItems
     from cohesity_sdk.helios.model.search_indexed_objects_response_body_all_of import SearchIndexedObjectsResponseBodyAllOf
+    from cohesity_sdk.helios.model.sfdc_records import SfdcRecords
     from cohesity_sdk.helios.model.sharepoint_items import SharepointItems
+    from cohesity_sdk.helios.model.teams_items import TeamsItems
+    from cohesity_sdk.helios.model.uda_indexed_objects import UdaIndexedObjects
     globals()['CassandraIndexedObjects'] = CassandraIndexedObjects
     globals()['CommonSearchIndexedObjectsResponseParams'] = CommonSearchIndexedObjectsResponseParams
     globals()['CouchbaseIndexedObjects'] = CouchbaseIndexedObjects
@@ -54,7 +57,10 @@ def lazy_import():
     globals()['OneDriveItems'] = OneDriveItems
     globals()['PublicFolderItems'] = PublicFolderItems
     globals()['SearchIndexedObjectsResponseBodyAllOf'] = SearchIndexedObjectsResponseBodyAllOf
+    globals()['SfdcRecords'] = SfdcRecords
     globals()['SharepointItems'] = SharepointItems
+    globals()['TeamsItems'] = TeamsItems
+    globals()['UdaIndexedObjects'] = UdaIndexedObjects
 
 
 class SearchIndexedObjectsResponseBody(ModelComposed):
@@ -98,6 +104,8 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",
+            'UDAOBJECTS': "UdaObjects",
+            'SFDCRECORDS': "SfdcRecords",
         },
     }
 
@@ -135,6 +143,9 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
             'public_folder_items': (PublicFolderItems,),  # noqa: E501
             'sharepoint_items': (SharepointItems,),  # noqa: E501
             'one_drive_items': (OneDriveItems,),  # noqa: E501
+            'uda_objects': (UdaIndexedObjects,),  # noqa: E501
+            'teams_items': (TeamsItems,),  # noqa: E501
+            'sfdc_records': (SfdcRecords,),  # noqa: E501
         }
 
     @cached_property
@@ -159,6 +170,9 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
         'public_folder_items': 'publicFolderItems',  # noqa: E501
         'sharepoint_items': 'sharepointItems',  # noqa: E501
         'one_drive_items': 'oneDriveItems',  # noqa: E501
+        'uda_objects': 'udaObjects',  # noqa: E501
+        'teams_items': 'teamsItems',  # noqa: E501
+        'sfdc_records': 'sfdcRecords',  # noqa: E501
     }
 
     required_properties = set([
@@ -224,6 +238,9 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
             public_folder_items (PublicFolderItems): [optional]  # noqa: E501
             sharepoint_items (SharepointItems): [optional]  # noqa: E501
             one_drive_items (OneDriveItems): [optional]  # noqa: E501
+            uda_objects (UdaIndexedObjects): [optional]  # noqa: E501
+            teams_items (TeamsItems): [optional]  # noqa: E501
+            sfdc_records (SfdcRecords): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

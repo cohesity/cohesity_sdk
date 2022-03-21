@@ -79,6 +79,7 @@ class CloudSpinTargetResult(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
     }

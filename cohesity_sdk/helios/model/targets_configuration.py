@@ -31,10 +31,12 @@ def lazy_import():
     from cohesity_sdk.helios.model.cloud_spin_config import CloudSpinConfig
     from cohesity_sdk.helios.model.onprem_deploy_config import OnpremDeployConfig
     from cohesity_sdk.helios.model.replication_config import ReplicationConfig
+    from cohesity_sdk.helios.model.rpaas_config import RpaasConfig
     globals()['ArchivalConfig'] = ArchivalConfig
     globals()['CloudSpinConfig'] = CloudSpinConfig
     globals()['OnpremDeployConfig'] = OnpremDeployConfig
     globals()['ReplicationConfig'] = ReplicationConfig
+    globals()['RpaasConfig'] = RpaasConfig
 
 
 class TargetsConfiguration(ModelNormal):
@@ -89,6 +91,7 @@ class TargetsConfiguration(ModelNormal):
             'archival_targets': ([ArchivalConfig],),  # noqa: E501
             'cloud_spin_targets': ([CloudSpinConfig],),  # noqa: E501
             'onprem_deploy_targets': ([OnpremDeployConfig],),  # noqa: E501
+            'rpaas_targets': ([RpaasConfig],),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +105,7 @@ class TargetsConfiguration(ModelNormal):
         'archival_targets': 'archivalTargets',  # noqa: E501
         'cloud_spin_targets': 'cloudSpinTargets',  # noqa: E501
         'onprem_deploy_targets': 'onpremDeployTargets',  # noqa: E501
+        'rpaas_targets': 'rpaasTargets',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,6 +159,7 @@ class TargetsConfiguration(ModelNormal):
             archival_targets ([ArchivalConfig]): [optional]  # noqa: E501
             cloud_spin_targets ([CloudSpinConfig]): [optional]  # noqa: E501
             onprem_deploy_targets ([OnpremDeployConfig]): [optional]  # noqa: E501
+            rpaas_targets ([RpaasConfig]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

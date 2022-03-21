@@ -73,6 +73,7 @@ class HeliosIncrementalSchedule(ModelNormal):
             'DAYS': "Days",
             'WEEKS': "Weeks",
             'MONTHS': "Months",
+            'YEARS': "Years",
         },
     }
 

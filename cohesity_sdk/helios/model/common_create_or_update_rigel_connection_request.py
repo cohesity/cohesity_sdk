@@ -76,6 +76,7 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
         return {
             'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'scalable': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +88,7 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
     attribute_map = {
         'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'scalable': 'scalable',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +142,7 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            scalable (bool, none_type): Flag to specify if the connection is scalable.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

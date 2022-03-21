@@ -22,6 +22,8 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.helios_search_indexed_objects_request import HeliosSearchIndexedObjectsRequest
+from cohesity_sdk.helios.model.helios_search_indexed_objects_response_body import HeliosSearchIndexedObjectsResponseBody
 from cohesity_sdk.helios.model.objects_search_response_body import ObjectsSearchResponseBody
 from cohesity_sdk.helios.model.protected_objects_search_response_body import ProtectedObjectsSearchResponseBody
 from cohesity_sdk.helios.model.search_indexed_objects_request import SearchIndexedObjectsRequest
@@ -39,6 +41,134 @@ class SearchApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __global_search_indexed_objects(
+            self,
+            body,
+            **kwargs
+        ):
+            """Search for indexed objects.  # noqa: E501
+
+            Search for indexed objects like files, emails etc across clusters.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.global_search_indexed_objects(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (HeliosSearchIndexedObjectsRequest): Specifies the parameters to search for indexed objects.
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosSearchIndexedObjectsResponseBody
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.global_search_indexed_objects = _Endpoint(
+            settings={
+                'response_type': (HeliosSearchIndexedObjectsResponseBody,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/search/indexed-objects',
+                'operation_id': 'global_search_indexed_objects',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (HeliosSearchIndexedObjectsRequest,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__global_search_indexed_objects
+        )
 
         def __search_indexed_objects(
             self,
@@ -191,6 +321,7 @@ class SearchApi(object):
             Keyword Args:
                 access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
                 region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 search_string (str): Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria.. [optional]
                 environments ([str]): Specifies the environment type to filter objects.. [optional]
                 protection_types ([str]): Specifies the protection type to filter objects.. [optional]
@@ -199,6 +330,7 @@ class SearchApi(object):
                 protection_group_ids ([str]): Specifies a list of Protection Group ids to filter the objects. If specified, the objects protected by specified Protection Group ids will be returned.. [optional]
                 object_ids ([int]): Specifies a list of Object ids to filter.. [optional]
                 os_types ([str]): Specifies the operating system types to filter objects on.. [optional]
+                o365_object_types ([str]): Specifies the object types to filter objects on. Only applicable if the environment is o365.. [optional]
                 source_ids ([int]): Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 source_uuids ([str]): Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 is_protected (bool): Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.. [optional]
@@ -277,6 +409,7 @@ class SearchApi(object):
                 'all': [
                     'access_cluster_id',
                     'region_id',
+                    'request_initiator_type',
                     'search_string',
                     'environments',
                     'protection_types',
@@ -285,6 +418,7 @@ class SearchApi(object):
                     'protection_group_ids',
                     'object_ids',
                     'os_types',
+                    'o365_object_types',
                     'source_ids',
                     'source_uuids',
                     'is_protected',
@@ -305,9 +439,11 @@ class SearchApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'request_initiator_type',
                     'environments',
                     'protection_types',
                     'os_types',
+                    'o365_object_types',
                     'last_run_status_list',
                 ],
                 'validation': [
@@ -341,6 +477,11 @@ class SearchApi(object):
                     },
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto"
+                    },
                     ('environments',): {
 
                         "KVMWARE": "kVMware",
@@ -396,6 +537,28 @@ class SearchApi(object):
                         "KSAPHANA": "kSapHana",
                         "KOTHER": "kOther"
                     },
+                    ('o365_object_types',): {
+
+                        "KDOMAIN": "kDomain",
+                        "KOUTLOOK": "kOutlook",
+                        "KMAILBOX": "kMailbox",
+                        "KUSERS": "kUsers",
+                        "KGROUPS": "kGroups",
+                        "KSITES": "kSites",
+                        "KUSER": "kUser",
+                        "KGROUP": "kGroup",
+                        "KSITE": "kSite",
+                        "KAPPLICATION": "kApplication",
+                        "KGRAPHUSER": "kGraphUser",
+                        "KPUBLICFOLDERS": "kPublicFolders",
+                        "KPUBLICFOLDER": "kPublicFolder",
+                        "KTEAMS": "kTeams",
+                        "KTEAM": "kTeam",
+                        "KROOTPUBLICFOLDER": "kRootPublicFolder",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint"
+                    },
                     ('last_run_status_list',): {
 
                         "ACCEPTED": "Accepted",
@@ -406,13 +569,16 @@ class SearchApi(object):
                         "MISSED": "Missed",
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
-                        "ONHOLD": "OnHold"
+                        "ONHOLD": "OnHold",
+                        "FINALIZING": "Finalizing"
                     },
                 },
                 'openapi_types': {
                     'access_cluster_id':
                         (int,),
                     'region_id':
+                        (str,),
+                    'request_initiator_type':
                         (str,),
                     'search_string':
                         (str,),
@@ -429,6 +595,8 @@ class SearchApi(object):
                     'object_ids':
                         ([int],),
                     'os_types':
+                        ([str],),
+                    'o365_object_types':
                         ([str],),
                     'source_ids':
                         ([int],),
@@ -464,6 +632,7 @@ class SearchApi(object):
                 'attribute_map': {
                     'access_cluster_id': 'accessClusterId',
                     'region_id': 'regionId',
+                    'request_initiator_type': 'requestInitiatorType',
                     'search_string': 'searchString',
                     'environments': 'environments',
                     'protection_types': 'protectionTypes',
@@ -472,6 +641,7 @@ class SearchApi(object):
                     'protection_group_ids': 'protectionGroupIds',
                     'object_ids': 'objectIds',
                     'os_types': 'osTypes',
+                    'o365_object_types': 'o365ObjectTypes',
                     'source_ids': 'sourceIds',
                     'source_uuids': 'sourceUuids',
                     'is_protected': 'isProtected',
@@ -491,6 +661,7 @@ class SearchApi(object):
                 'location_map': {
                     'access_cluster_id': 'header',
                     'region_id': 'header',
+                    'request_initiator_type': 'header',
                     'search_string': 'query',
                     'environments': 'query',
                     'protection_types': 'query',
@@ -499,6 +670,7 @@ class SearchApi(object):
                     'protection_group_ids': 'query',
                     'object_ids': 'query',
                     'os_types': 'query',
+                    'o365_object_types': 'query',
                     'source_ids': 'query',
                     'source_uuids': 'query',
                     'is_protected': 'query',
@@ -522,6 +694,7 @@ class SearchApi(object):
                     'protection_group_ids': 'csv',
                     'object_ids': 'csv',
                     'os_types': 'csv',
+                    'o365_object_types': 'csv',
                     'source_ids': 'csv',
                     'source_uuids': 'csv',
                     'last_run_status_list': 'csv',
@@ -561,9 +734,11 @@ class SearchApi(object):
             Keyword Args:
                 access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
                 region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 search_string (str): Specifies the search string to filter the objects. This search string will be applicable for objectnames and Protection Group names. User can specify a wildcard character '*' as a suffix to a string where all object and their Protection Group names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects with Protection Groups will be returned which will match other filtering criteria.. [optional]
                 environments ([str]): Specifies the environment type to filter objects.. [optional]
                 snapshot_actions ([str]): Specifies a list of recovery actions. Only snapshots that applies to these actions will be returned.. [optional]
+                object_action_key (str, none_type): Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, latest snapshot info matching the objectActionKey is for corresponding object.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Objects which belongs to all tenants which the current user has permission to see.. [optional]
                 protection_group_ids ([str]): Specifies a list of Protection Group ids to filter the objects. If specified, the objects protected by specified Protection Group ids will be returned.. [optional]
@@ -640,9 +815,11 @@ class SearchApi(object):
                 'all': [
                     'access_cluster_id',
                     'region_id',
+                    'request_initiator_type',
                     'search_string',
                     'environments',
                     'snapshot_actions',
+                    'object_action_key',
                     'tenant_ids',
                     'include_tenants',
                     'protection_group_ids',
@@ -659,10 +836,13 @@ class SearchApi(object):
                 ],
                 'required': [],
                 'nullable': [
+                    'object_action_key',
                 ],
                 'enum': [
+                    'request_initiator_type',
                     'environments',
                     'snapshot_actions',
+                    'object_action_key',
                     'os_types',
                 ],
                 'validation': [
@@ -680,6 +860,11 @@ class SearchApi(object):
                     },
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto"
+                    },
                     ('environments',): {
 
                         "KVMWARE": "kVMware",
@@ -741,7 +926,53 @@ class SearchApi(object):
                         "RECOVERMSTEAM": "RecoverMsTeam",
                         "RECOVERMSGROUP": "RecoverMsGroup",
                         "RECOVERSHAREPOINT": "RecoverSharePoint",
-                        "CONVERTTOPST": "ConvertToPst"
+                        "CONVERTTOPST": "ConvertToPst",
+                        "RECOVERSFDCRECORDS": "RecoverSfdcRecords"
+                    },
+                    ('object_action_key',): {
+                        'None': None,
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KPHYSICALFILES": "kPhysicalFiles",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
                     },
                     ('os_types',): {
 
@@ -758,12 +989,16 @@ class SearchApi(object):
                         (int,),
                     'region_id':
                         (str,),
+                    'request_initiator_type':
+                        (str,),
                     'search_string':
                         (str,),
                     'environments':
                         ([str],),
                     'snapshot_actions':
                         ([str],),
+                    'object_action_key':
+                        (str, none_type,),
                     'tenant_ids':
                         ([str],),
                     'include_tenants':
@@ -794,9 +1029,11 @@ class SearchApi(object):
                 'attribute_map': {
                     'access_cluster_id': 'accessClusterId',
                     'region_id': 'regionId',
+                    'request_initiator_type': 'requestInitiatorType',
                     'search_string': 'searchString',
                     'environments': 'environments',
                     'snapshot_actions': 'snapshotActions',
+                    'object_action_key': 'objectActionKey',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                     'protection_group_ids': 'protectionGroupIds',
@@ -814,9 +1051,11 @@ class SearchApi(object):
                 'location_map': {
                     'access_cluster_id': 'header',
                     'region_id': 'header',
+                    'request_initiator_type': 'header',
                     'search_string': 'query',
                     'environments': 'query',
                     'snapshot_actions': 'query',
+                    'object_action_key': 'query',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
                     'protection_group_ids': 'query',

@@ -88,6 +88,7 @@ class RunArchivalConfig(ModelNormal):
             'id': (int, none_type,),  # noqa: E501
             'archival_target_type': (str, none_type,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
+            'copy_only_fully_successful': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +101,7 @@ class RunArchivalConfig(ModelNormal):
         'id': 'id',  # noqa: E501
         'archival_target_type': 'archivalTargetType',  # noqa: E501
         'retention': 'retention',  # noqa: E501
+        'copy_only_fully_successful': 'copyOnlyFullySuccessful',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +156,7 @@ class RunArchivalConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             retention (Retention): [optional]  # noqa: E501
+            copy_only_fully_successful (bool, none_type): Specifies if Snapshots are copied from a fully successful Protection Group Run or a partially successful Protection Group Run. If false, Snapshots are copied the Protection Group Run, even if the Run was not fully successful i.e. Snapshots were not captured for all Objects in the Protection Group. If true, Snapshots are copied only when the run is fully successful.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

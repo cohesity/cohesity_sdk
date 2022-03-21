@@ -87,6 +87,7 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
             'attempt_differential_restore': (bool, none_type,),  # noqa: E501
             'overwrite_existing_vm': (bool, none_type,),  # noqa: E501
             'power_off_and_rename_existing_vm': (bool, none_type,),  # noqa: E501
+            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,6 +106,7 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
         'attempt_differential_restore': 'attemptDifferentialRestore',  # noqa: E501
         'overwrite_existing_vm': 'overwriteExistingVm',  # noqa: E501
         'power_off_and_rename_existing_vm': 'powerOffAndRenameExistingVm',  # noqa: E501
+        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -163,6 +165,7 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
             attempt_differential_restore (bool, none_type): Specifies whether to attempt differential restore.. [optional]  # noqa: E501
             overwrite_existing_vm (bool, none_type): Specifies whether to overwrite the VM at the target location. This is a data destructive operation and if this is selected, the original VM may no longer be accessible. This option is only applicable if renameRecoveredVmParams is null and powerOffAndRenameExistingVm is false. This option is not supported for vApp or vApp template recoveries. Default value is false.. [optional]  # noqa: E501
             power_off_and_rename_existing_vm (bool, none_type): Specifies whether to power off and mark the VM at the target location as deprecated. As an example, <vm_name> will be renamed to deprecated::<vm_name>, and a new VM with the name <vm_name> in place of the now deprecated VM. Both deprecated::<vm_name> and <vm_name> will exist on the primary, but the corresponding protection job will only backup <vm_name> on its next run. Only applicable if renameRecoveredVmParams is null and overwriteExistingVm is false. This option is not supported for vApp or vApp template recoveries. Default value is false.. [optional]  # noqa: E501
+            is_multi_stage_restore (bool, none_type): Specifies whether this is a multistage restore which is used for migration/hot-standby purpose.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

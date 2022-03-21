@@ -66,15 +66,30 @@ class EmailHeliosSearchParams(ModelComposed):
             'None': None,
             'EMAIL': "Email",
             'FOLDER': "Folder",
+            'CALENDAR': "Calendar",
+            'CONTACT': "Contact",
+            'TASK': "Task",
+            'NOTE': "Note",
         },
         ('source_environment',): {
             'None': None,
             'KO365': "kO365",
         },
+        ('task_status_types',): {
+            'None': None,
+            'NOTSTARTED': "NotStarted",
+            'INPROGRESS': "InProgress",
+            'COMPLETED': "Completed",
+            'WAITINGONOTHERS': "WaitingOnOthers",
+            'DEFERRED': "Deferred",
+        },
     }
 
     validations = {
         ('types',): {
+        },
+
+        ('task_status_types',): {
         },
 
     }
@@ -106,6 +121,19 @@ class EmailHeliosSearchParams(ModelComposed):
             'email_subject': (str, none_type,),  # noqa: E501
             'folder_names': ([str], none_type,),  # noqa: E501
             'source_environment': (str, none_type,),  # noqa: E501
+            'created_start_time_secs': (int, none_type,),  # noqa: E501
+            'created_end_time_secs': (int, none_type,),  # noqa: E501
+            'last_modified_start_time_secs': (int, none_type,),  # noqa: E501
+            'last_modified_end_time_secs': (int, none_type,),  # noqa: E501
+            'organizer_address': (str, none_type,),  # noqa: E501
+            'attendees_addresses': ([str], none_type,),  # noqa: E501
+            'first_name': (str, none_type,),  # noqa: E501
+            'middle_name': (str, none_type,),  # noqa: E501
+            'last_name': (str, none_type,),  # noqa: E501
+            'email_address': (str, none_type,),  # noqa: E501
+            'due_date_start_time_secs': (int, none_type,),  # noqa: E501
+            'due_date_end_time_secs': (int, none_type,),  # noqa: E501
+            'task_status_types': ([str], none_type,),  # noqa: E501
             'o365_params': ([O365HeliosSearchEmailsRequestParams], none_type,),  # noqa: E501
         }
 
@@ -127,6 +155,19 @@ class EmailHeliosSearchParams(ModelComposed):
         'email_subject': 'emailSubject',  # noqa: E501
         'folder_names': 'folderNames',  # noqa: E501
         'source_environment': 'sourceEnvironment',  # noqa: E501
+        'created_start_time_secs': 'createdStartTimeSecs',  # noqa: E501
+        'created_end_time_secs': 'createdEndTimeSecs',  # noqa: E501
+        'last_modified_start_time_secs': 'lastModifiedStartTimeSecs',  # noqa: E501
+        'last_modified_end_time_secs': 'lastModifiedEndTimeSecs',  # noqa: E501
+        'organizer_address': 'organizerAddress',  # noqa: E501
+        'attendees_addresses': 'attendeesAddresses',  # noqa: E501
+        'first_name': 'firstName',  # noqa: E501
+        'middle_name': 'middleName',  # noqa: E501
+        'last_name': 'lastName',  # noqa: E501
+        'email_address': 'emailAddress',  # noqa: E501
+        'due_date_start_time_secs': 'dueDateStartTimeSecs',  # noqa: E501
+        'due_date_end_time_secs': 'dueDateEndTimeSecs',  # noqa: E501
+        'task_status_types': 'taskStatusTypes',  # noqa: E501
         'o365_params': 'o365Params',  # noqa: E501
     }
 
@@ -189,6 +230,19 @@ class EmailHeliosSearchParams(ModelComposed):
             email_subject (str, none_type): Filters the emails which have the specified text in its subject.. [optional]  # noqa: E501
             folder_names ([str], none_type): Filters the emails which are categorized to specified folders.. [optional]  # noqa: E501
             source_environment (str, none_type): Specifies the source environment.. [optional] if omitted the server will use the default value of "kO365"  # noqa: E501
+            created_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds where the created time of the email/item is more than specified value.. [optional]  # noqa: E501
+            created_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds where the created time of the email/item is less than specified value.. [optional]  # noqa: E501
+            last_modified_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds where the last modification time of the email/item is more than specified value.. [optional]  # noqa: E501
+            last_modified_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds where the last modification time of the email/item is less than specified value.. [optional]  # noqa: E501
+            organizer_address (str, none_type): Filters the calendar items which are organized by specified User's email address.. [optional]  # noqa: E501
+            attendees_addresses ([str], none_type): Filters the calendar items which have specified email addresses as attendees.. [optional]  # noqa: E501
+            first_name (str, none_type): Filters the contacts with specified text in first name.. [optional]  # noqa: E501
+            middle_name (str, none_type): Filters the contacts with specified text in middle name.. [optional]  # noqa: E501
+            last_name (str, none_type): Filters the contacts with specified text in last name.. [optional]  # noqa: E501
+            email_address (str, none_type): Filters the contact items which have specified text in email address.. [optional]  # noqa: E501
+            due_date_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds where the last modification time of the email/item is more than specified value.. [optional]  # noqa: E501
+            due_date_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds where the last modification time of the email/item is less than specified value.. [optional]  # noqa: E501
+            task_status_types ([str], none_type): Specifies a list of task item status types. Task items having status within the given types will be returned.. [optional]  # noqa: E501
             o365_params ([O365HeliosSearchEmailsRequestParams], none_type): Specifies the O365 specific params to search emails.. [optional]  # noqa: E501
         """
 

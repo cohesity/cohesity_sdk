@@ -62,6 +62,7 @@ class CommonExternalTargetParams(ModelNormal):
             'None': None,
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
+            'RPAAS': "Rpaas",
         },
         ('compression',): {
             'None': None,
@@ -74,6 +75,11 @@ class CommonExternalTargetParams(ModelNormal):
             'REGISTERED': "Registered",
             'UNREGISTERING': "Unregistering",
             'UNREGISTERED': "Unregistered",
+        },
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
         },
     }
 
@@ -99,11 +105,15 @@ class CommonExternalTargetParams(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'purpose_type': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
+            'global_id': (str, none_type,),  # noqa: E501
             'compression': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
             'tenant_ids': ([str],),  # noqa: E501
             'cloud_domains': ([CloudDomain], none_type,),  # noqa: E501
+            'storage_domain_name': (str, none_type,),  # noqa: E501
+            'is_worm_capable': (bool, none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -116,11 +126,15 @@ class CommonExternalTargetParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'purpose_type': 'purposeType',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'global_id': 'globalId',  # noqa: E501
         'compression': 'compression',  # noqa: E501
         'status': 'status',  # noqa: E501
         'error_message': 'errorMessage',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
         'cloud_domains': 'cloudDomains',  # noqa: E501
+        'storage_domain_name': 'storageDomainName',  # noqa: E501
+        'is_worm_capable': 'isWormCapable',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -175,11 +189,15 @@ class CommonExternalTargetParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (int, none_type): Specifies the ID of the External Target.. [optional]  # noqa: E501
+            global_id (str, none_type): Specifies the global identifier of the External Target.. [optional]  # noqa: E501
             compression (str, none_type): Specifies whether the type of compression of the External Target. [optional]  # noqa: E501
             status (str, none_type): Specifies the registration status of the External Target. [optional]  # noqa: E501
             error_message (str, none_type): Specifies the error message if the event is in failed state.. [optional]  # noqa: E501
             tenant_ids ([str]): Specifies the list of tenantIds for the External Target. [optional]  # noqa: E501
             cloud_domains ([CloudDomain], none_type): Specifies the cloud domain information.. [optional]  # noqa: E501
+            storage_domain_name (str, none_type): Specifies the storage domain associated with the target.. [optional]  # noqa: E501
+            is_worm_capable (bool, none_type): Specifies whether this external target has been found to be capable of supporting WORM archives.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies whether how this external target is being consumed either Local or FortKnox.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

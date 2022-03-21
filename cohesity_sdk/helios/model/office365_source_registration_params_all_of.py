@@ -27,8 +27,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.helios.model.credentials import Credentials
     from cohesity_sdk.helios.model.objects_discovery_params import ObjectsDiscoveryParams
     from cohesity_sdk.helios.model.office365_app_credentials import Office365AppCredentials
+    globals()['Credentials'] = Credentials
     globals()['ObjectsDiscoveryParams'] = ObjectsDiscoveryParams
     globals()['Office365AppCredentials'] = Office365AppCredentials
 
@@ -75,6 +77,10 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
             'min_items': 1,
         },
 
+        ('office365_service_account_credentials_list',): {
+            'min_items': 1,
+        },
+
     }
 
     additional_properties_type = None
@@ -94,6 +100,7 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'office365_app_credentials_list': ([Office365AppCredentials],),  # noqa: E501
+            'office365_service_account_credentials_list': ([Credentials], none_type,),  # noqa: E501
             'use_o_auth_for_exchange_online': (bool, none_type,),  # noqa: E501
             'proxy_host_source_id_list': ([int], none_type,),  # noqa: E501
             'office365_region': (str, none_type,),  # noqa: E501
@@ -109,6 +116,7 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
 
     attribute_map = {
         'office365_app_credentials_list': 'office365AppCredentialsList',  # noqa: E501
+        'office365_service_account_credentials_list': 'office365ServiceAccountCredentialsList',  # noqa: E501
         'use_o_auth_for_exchange_online': 'useOAuthForExchangeOnline',  # noqa: E501
         'proxy_host_source_id_list': 'proxyHostSourceIdList',  # noqa: E501
         'office365_region': 'office365Region',  # noqa: E501
@@ -164,6 +172,7 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             office365_app_credentials_list ([Office365AppCredentials]): Specifies a list of office365 azure application credentials needed to authenticate & authorize users for Office 365.. [optional]  # noqa: E501
+            office365_service_account_credentials_list ([Credentials], none_type): Specifies the list of Office365 service account credentials which can be used for Mailbox Backups.. [optional]  # noqa: E501
             use_o_auth_for_exchange_online (bool, none_type): Specifies whether OAuth should be used for authentication in case of Exchange Online.. [optional]  # noqa: E501
             proxy_host_source_id_list ([int], none_type): Specifies the list of the protection source id of the windows physical host which will be used during the protection and recovery of the sites that belong to a office365 domain.. [optional]  # noqa: E501
             office365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501

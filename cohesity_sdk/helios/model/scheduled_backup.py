@@ -60,6 +60,7 @@ class ScheduledBackup(ModelNormal):
             'KLOG': "kLog",
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
         },
     }
 

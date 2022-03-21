@@ -28,6 +28,7 @@ from cohesity_sdk.helios.model.agent_upgrade_task_states import AgentUpgradeTask
 from cohesity_sdk.helios.model.create_upgrade_task_request import CreateUpgradeTaskRequest
 from cohesity_sdk.helios.model.download_agent_request_params import DownloadAgentRequestParams
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.mcm_agent_images_response import McmAgentImagesResponse
 
 
 class AgentApi(object):
@@ -449,6 +450,148 @@ class AgentApi(object):
             },
             api_client=api_client,
             callable=__get_upgrade_tasks
+        )
+
+        def __mcm_get_agent_image_details(
+            self,
+            **kwargs
+        ):
+            """Get agent images details.  # noqa: E501
+
+            Get agent information on Helios.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.mcm_get_agent_image_details(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                platform (str): Specifies a platform for which agent information need to be fetched.. [optional]
+                package_type (str): Specifies a package type for which agent information need to be fetched.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                McmAgentImagesResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.mcm_get_agent_image_details = _Endpoint(
+            settings={
+                'response_type': (McmAgentImagesResponse,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/data-protect/agents/images',
+                'operation_id': 'mcm_get_agent_image_details',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'platform',
+                    'package_type',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'platform',
+                    'package_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('platform',): {
+
+                        "WINDOWS": "Windows",
+                        "LINUX": "Linux",
+                        "SOLARIS": "Solaris"
+                    },
+                    ('package_type',): {
+
+                        "SCRIPT": "Script",
+                        "RPM": "RPM",
+                        "SUSERPM": "SuseRPM",
+                        "DEB": "DEB"
+                    },
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'platform':
+                        (str,),
+                    'package_type':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'platform': 'platform',
+                    'package_type': 'packageType',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'platform': 'query',
+                    'package_type': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__mcm_get_agent_image_details
         )
 
         def __perform_action_on_agent_upgrade_task(

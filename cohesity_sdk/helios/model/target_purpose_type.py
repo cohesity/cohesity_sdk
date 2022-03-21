@@ -57,6 +57,7 @@ class TargetPurposeType(ModelNormal):
         ('enum',): {
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
+            'RPAAS': "Rpaas",
         },
     }
 

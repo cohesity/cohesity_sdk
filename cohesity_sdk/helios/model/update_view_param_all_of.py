@@ -65,6 +65,7 @@ class UpdateViewParamAllOf(ModelNormal):
             'BACKUPTARGET': "BackupTarget",
             'FILESERVICES': "FileServices",
             'OBJECTSERVICES': "ObjectServices",
+            'ARCHIVESERVICES': "ArchiveServices",
         },
         ('security_mode',): {
             'None': None,

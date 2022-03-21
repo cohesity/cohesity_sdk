@@ -95,6 +95,7 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
             'id': (str, none_type,),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
             'overwritehost_alias': (bool, none_type,),  # noqa: E501
+            'admin_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +113,7 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
         'id': 'id',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
         'overwritehost_alias': 'overwritehostAlias',  # noqa: E501
+        'admin_principal': 'adminPrincipal',  # noqa: E501
     }
 
     required_properties = set([
@@ -135,7 +137,7 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
             kdc_servers ([str]): Specifies a list of Key distribution Centre(KDC) Severs.
             admin_server (str, none_type): Specifies the admin server used for registration from the list of KDC servers.
             host_alias ([str]): Specifies the DNS routable host alias names.
-            admin_password (str, none_type): Specifies the password
+            admin_password (str, none_type): Specifies the password of Kerberos admin principal.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,6 +174,7 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
             id (str, none_type): Specifies the id.. [optional]  # noqa: E501
             ldap_provider_id (int, none_type): Specifies the LDAP provider id to be mapped. [optional]  # noqa: E501
             overwritehost_alias (bool, none_type): Specifies if specified host alias should overwrite existing host alias.. [optional]  # noqa: E501
+            admin_principal (str, none_type): Specifies the name of the Kerberos admin principal.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

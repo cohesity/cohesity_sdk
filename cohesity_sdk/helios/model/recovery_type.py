@@ -79,6 +79,9 @@ class RecoveryType(ModelNormal):
             'CONVERTTOPST': "ConvertToPst",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
+            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
+            'RECOVERSFDCORG': "RecoverSfdcOrg",
+            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
     }

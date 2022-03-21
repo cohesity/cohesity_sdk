@@ -120,6 +120,7 @@ class CommonSourceRegistrationReponseParamsAllOf(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
+            'connector_group_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -136,6 +137,7 @@ class CommonSourceRegistrationReponseParamsAllOf(ModelNormal):
         'name': 'name',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
+        'connector_group_id': 'connectorGroupId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -192,6 +194,7 @@ class CommonSourceRegistrationReponseParamsAllOf(ModelNormal):
             name (str, none_type): The user specified name for this source.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
+            connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

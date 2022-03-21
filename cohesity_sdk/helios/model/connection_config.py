@@ -76,6 +76,7 @@ class ConnectionConfig(ModelNormal):
         return {
             'connection_id': (int, none_type,),  # noqa: E501
             'entity_id': (int, none_type,),  # noqa: E501
+            'connector_group_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +88,7 @@ class ConnectionConfig(ModelNormal):
     attribute_map = {
         'connection_id': 'connectionId',  # noqa: E501
         'entity_id': 'entityId',  # noqa: E501
+        'connector_group_id': 'connectorGroupId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +140,7 @@ class ConnectionConfig(ModelNormal):
 
             connection_id (int, none_type): Specifies the id of the connection.. [optional]  # noqa: E501
             entity_id (int, none_type): Specifies the entity id of the source. The source can a non-root entity.. [optional]  # noqa: E501
+            connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -110,7 +110,7 @@ class AntivirusServiceApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/antivirus-service-groups',
+                'endpoint_path': '/antivirus-service/groups',
                 'operation_id': 'get_antivirus_service_groups',
                 'http_method': 'GET',
                 'servers': None,
@@ -232,7 +232,7 @@ class AntivirusServiceApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/icap-uri-connection-status',
+                'endpoint_path': '/antivirus-service/icap-uri-connection-status',
                 'operation_id': 'get_icap_uri_connection_status',
                 'http_method': 'GET',
                 'servers': None,
@@ -364,7 +364,7 @@ class AntivirusServiceApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/infected-files',
+                'endpoint_path': '/antivirus-service/infected-files',
                 'operation_id': 'get_infected_files',
                 'http_method': 'GET',
                 'servers': None,

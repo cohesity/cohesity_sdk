@@ -67,6 +67,7 @@ class BackupRunSummary(ModelNormal):
             'KLOG': "kLog",
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
         },
         ('status',): {
             'None': None,
@@ -79,6 +80,7 @@ class BackupRunSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('data_lock',): {
@@ -201,7 +203,7 @@ class BackupRunSummary(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            run_type (str, none_type): Type of Protection Group run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery.. [optional]  # noqa: E501
+            run_type (str, none_type): Type of Protection Group run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery. 'kStorageArraySnapshot' indicates storage array snapshot backup.. [optional]  # noqa: E501
             is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501

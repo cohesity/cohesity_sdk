@@ -30,11 +30,14 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
+# and optional values
 try:
 	# List of nodes reset states.
-	api_response = client.network_reset.get_network_reset_states()
+	api_response = client.network_reset.get_network_reset_states(access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling NetworkResetApi->get_network_reset_states: %s\n" % e)
@@ -42,7 +45,11 @@ except ApiException as e:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -92,11 +99,21 @@ client = HeliosClient(api_key=api_key)
 body = ResetOrRestoreNetworking(
         operation="network-reset",
     ) # ResetOrRestoreNetworking | Request to reset or restore cluster networking.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Set or cancel cluster reset state. This is destructive operation.
 	client.network_reset.reset_nodes_network(body)
+except ApiException as e:
+	print("Exception when calling NetworkResetApi->reset_nodes_network: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Set or cancel cluster reset state. This is destructive operation.
+	client.network_reset.reset_nodes_network(body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling NetworkResetApi->reset_nodes_network: %s\n" % e)
 ```
@@ -107,6 +124,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ResetOrRestoreNetworking**](ResetOrRestoreNetworking.md)| Request to reset or restore cluster networking. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

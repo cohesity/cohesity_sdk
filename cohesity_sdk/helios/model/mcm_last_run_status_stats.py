@@ -65,6 +65,7 @@ class McmLastRunStatusStats(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
     }
 

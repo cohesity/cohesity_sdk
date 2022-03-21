@@ -91,6 +91,7 @@ class VmwareCdpObjectAllOf(ModelNormal):
         return {
             'io_filter_status': (str, none_type,),  # noqa: E501
             'io_filter_error_message': (str, none_type,),  # noqa: E501
+            'pre_processing_error_message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,6 +103,7 @@ class VmwareCdpObjectAllOf(ModelNormal):
     attribute_map = {
         'io_filter_status': 'ioFilterStatus',  # noqa: E501
         'io_filter_error_message': 'ioFilterErrorMessage',  # noqa: E501
+        'pre_processing_error_message': 'preProcessingErrorMessage',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,6 +155,7 @@ class VmwareCdpObjectAllOf(ModelNormal):
 
             io_filter_status (str, none_type): Specifies the state of CDP IO filter. CDP IO filter is an agent which will be installed on the object for performing continuous backup. <br> 1. 'kNotInstalled' specifies that CDP is enabled on this object but filter is not installed. <br> 2. 'kInstallFilterInProgress' specifies that IO filter installation is triggered and in progress. <br> 3. 'kFilterInstalledIOInactive' specifies that IO filter is installed but IO streaming is disabled due to missing backup or explicitly disabled by the user. <br> 4. 'kIOActivationInProgress' specifies that IO filter is activated to start streaming. <br> 5. 'kIOActive' specifies that filter is attached to the object and started streaming. <br> 6. 'kIODeactivationInProgress' specifies that deactivation has been initiated to stop the IO streaming. <br> 7. 'kUninstallFilterInProgress' specifies that uninstallation of IO filter is in progress.. [optional]  # noqa: E501
             io_filter_error_message (str, none_type): Specifies the error message related to IO filter if there is any.. [optional]  # noqa: E501
+            pre_processing_error_message (str, none_type): Specifies the error message from the cdp pre-processing stage if any.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

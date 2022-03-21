@@ -29,6 +29,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         "ids_example",
     ] # [str] | Specifies a unique task id to get the deatils of a task. To fetch the status of multiple tasks, pass comma seperated list of taskIds. (optional)
@@ -37,7 +39,7 @@ ids = [
 # and optional values
 try:
 	# Get tasks details.
-	api_response = client.tasks.get_progress_tasks(ids=ids)
+	api_response = client.tasks.get_progress_tasks(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling TasksApi->get_progress_tasks: %s\n" % e)
@@ -48,6 +50,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[str]**| Specifies a unique task id to get the deatils of a task. To fetch the status of multiple tasks, pass comma seperated list of taskIds. | [optional]
 
 ### Return type

@@ -31,6 +31,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.object_protection_stats_summary import ObjectProtectionStatsSummary
     from cohesity_sdk.helios.model.object_snapshots_info import ObjectSnapshotsInfo
     from cohesity_sdk.helios.model.object_type_v_center_params import ObjectTypeVCenterParams
+    from cohesity_sdk.helios.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.helios.model.permission_info import PermissionInfo
     from cohesity_sdk.helios.model.protected_object_all_of import ProtectedObjectAllOf
     from cohesity_sdk.helios.model.sharepoint_object_params import SharepointObjectParams
@@ -39,6 +40,7 @@ def lazy_import():
     globals()['ObjectProtectionStatsSummary'] = ObjectProtectionStatsSummary
     globals()['ObjectSnapshotsInfo'] = ObjectSnapshotsInfo
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
+    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['PermissionInfo'] = PermissionInfo
     globals()['ProtectedObjectAllOf'] = ProtectedObjectAllOf
     globals()['SharepointObjectParams'] = SharepointObjectParams
@@ -152,6 +154,10 @@ class ProtectedObject(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -292,6 +298,7 @@ class ProtectedObject(ModelComposed):
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
@@ -305,6 +312,7 @@ class ProtectedObject(ModelComposed):
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'latest_snapshots_info': ([ObjectSnapshotsInfo], none_type,),  # noqa: E501
         }
@@ -330,6 +338,7 @@ class ProtectedObject(ModelComposed):
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'protection_stats': 'protectionStats',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -343,6 +352,7 @@ class ProtectedObject(ModelComposed):
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
         'source_info': 'sourceInfo',  # noqa: E501
         'latest_snapshots_info': 'latestSnapshotsInfo',  # noqa: E501
     }
@@ -409,6 +419,7 @@ class ProtectedObject(ModelComposed):
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
@@ -422,6 +433,7 @@ class ProtectedObject(ModelComposed):
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
             sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
+            uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
             source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Source Object information.. [optional]  # noqa: E501
             latest_snapshots_info ([ObjectSnapshotsInfo], none_type): Specifies the latest snapshot information for every Protection Group for a given object.. [optional]  # noqa: E501
         """

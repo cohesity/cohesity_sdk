@@ -111,10 +111,11 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int | Specifies id of an Active Directory.
-active_directory_admin_username = "activeDirectoryAdminUsername_example" # str | Specifies the username of the Active Direcotry Admin.
-active_directory_admin_password = "activeDirectoryAdminPassword_example" # str | Specifies the password of the Active Direcotry Admin.
+active_directory_admin_username = "activeDirectoryAdminUsername_example" # str | Specifies the username of the Active Directory Admin.
+active_directory_admin_password = "activeDirectoryAdminPassword_example" # str | Specifies the password of the Active Directory Admin.
 access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
 region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+force_remove = True # bool | To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -127,7 +128,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Delete an Active Directory.
-	client.active_directory.delete_active_directory(id, active_directory_admin_username, active_directory_admin_password, access_cluster_id=access_cluster_id, region_id=region_id)
+	client.active_directory.delete_active_directory(id, active_directory_admin_username, active_directory_admin_password, access_cluster_id=access_cluster_id, region_id=region_id, force_remove=force_remove)
 except ApiException as e:
 	print("Exception when calling ActiveDirectoryApi->delete_active_directory: %s\n" % e)
 ```
@@ -138,10 +139,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies id of an Active Directory. |
- **active_directory_admin_username** | **str**| Specifies the username of the Active Direcotry Admin. |
- **active_directory_admin_password** | **str**| Specifies the password of the Active Direcotry Admin. |
+ **active_directory_admin_username** | **str**| Specifies the username of the Active Directory Admin. |
+ **active_directory_admin_password** | **str**| Specifies the password of the Active Directory Admin. |
  **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
  **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **force_remove** | **bool**| To force delete the Active directory from cluster. This will skip all the checks that prevents cluster from leaving an AD domain. | [optional]
 
 ### Return type
 

@@ -97,6 +97,8 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",
+            'UDAOBJECTS': "UdaObjects",
+            'SFDCRECORDS': "SfdcRecords",
         },
     }
 

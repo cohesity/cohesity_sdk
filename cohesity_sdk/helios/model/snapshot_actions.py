@@ -79,6 +79,7 @@ class SnapshotActions(ModelNormal):
             'RECOVERMSGROUP': "RecoverMsGroup",
             'RECOVERSHAREPOINT': "RecoverSharePoint",
             'CONVERTTOPST': "ConvertToPst",
+            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
         },
     }
 

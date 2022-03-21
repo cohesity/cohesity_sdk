@@ -29,8 +29,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.helios.model.nas_throttling_config import NasThrottlingConfig
     from cohesity_sdk.helios.model.smb_mount_credentials import SmbMountCredentials
+    from cohesity_sdk.helios.model.universal_id import UniversalId
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
     globals()['SmbMountCredentials'] = SmbMountCredentials
+    globals()['UniversalId'] = UniversalId
 
 
 class GenericNasRegistrationParams(ModelNormal):
@@ -91,6 +93,7 @@ class GenericNasRegistrationParams(ModelNormal):
             'mode': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'skip_validation': (bool, none_type,),  # noqa: E501
+            'uid': (UniversalId,),  # noqa: E501
             'smb_mount_credentials': (SmbMountCredentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
@@ -106,6 +109,7 @@ class GenericNasRegistrationParams(ModelNormal):
         'mode': 'mode',  # noqa: E501
         'description': 'description',  # noqa: E501
         'skip_validation': 'skipValidation',  # noqa: E501
+        'uid': 'uid',  # noqa: E501
         'smb_mount_credentials': 'smbMountCredentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
     }
@@ -163,6 +167,7 @@ class GenericNasRegistrationParams(ModelNormal):
 
             description (str, none_type): Specifies the Description for Generic NAS Source.. [optional]  # noqa: E501
             skip_validation (bool, none_type): Specifies if validation has to be skipped while registering the mount point.. [optional]  # noqa: E501
+            uid (UniversalId): [optional]  # noqa: E501
             smb_mount_credentials (SmbMountCredentials): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
         """

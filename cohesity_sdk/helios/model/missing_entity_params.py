@@ -76,6 +76,8 @@ class MissingEntityParams(ModelNormal):
         return {
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'parent_source_id': (int, none_type,),  # noqa: E501
+            'parent_source_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +89,8 @@ class MissingEntityParams(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'parent_source_id': 'parentSourceId',  # noqa: E501
+        'parent_source_name': 'parentSourceName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +144,8 @@ class MissingEntityParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
+            parent_source_id (int, none_type): Specifies the id of the parent source of the object.. [optional]  # noqa: E501
+            parent_source_name (str, none_type): Specifies the name of the parent source of the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

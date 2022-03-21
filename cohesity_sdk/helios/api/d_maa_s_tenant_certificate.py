@@ -56,6 +56,8 @@ class DMaaSTenantCertificateApi(object):
                 body (AddDmaasTenantCertRequest): Specifies the parameters to add the tenant certificate.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -120,6 +122,8 @@ class DMaaSTenantCertificateApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -139,11 +143,19 @@ class DMaaSTenantCertificateApi(object):
                 'openapi_types': {
                     'body':
                         (AddDmaasTenantCertRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -178,6 +190,8 @@ class DMaaSTenantCertificateApi(object):
                 tenant_id (str, none_type): Specifies the id of tenant.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -242,6 +256,8 @@ class DMaaSTenantCertificateApi(object):
             params_map={
                 'all': [
                     'tenant_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'tenant_id',
@@ -262,12 +278,20 @@ class DMaaSTenantCertificateApi(object):
                 'openapi_types': {
                     'tenant_id':
                         (str, none_type,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'tenant_id': 'tenantId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'tenant_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -297,6 +321,8 @@ class DMaaSTenantCertificateApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which tenants are returned. If no tenant id is specified, all tenant certificates are returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -359,6 +385,8 @@ class DMaaSTenantCertificateApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'tenant_ids',
                 ],
                 'required': [],
@@ -375,13 +403,21 @@ class DMaaSTenantCertificateApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'tenant_ids':
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'tenant_ids': 'tenantIds',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'tenant_ids': 'query',
                 },
                 'collection_format_map': {

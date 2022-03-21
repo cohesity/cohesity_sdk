@@ -68,6 +68,7 @@ class ProtectionRunSummary(ModelNormal):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -109,6 +110,7 @@ class ProtectionRunSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
     }

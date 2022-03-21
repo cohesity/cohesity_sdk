@@ -78,6 +78,7 @@ class ViewFailover(ModelNormal):
             'remote_view_id': (int, none_type,),  # noqa: E501
             'remote_cluster_id': (int, none_type,),  # noqa: E501
             'remote_cluster_incarnation_id': (int, none_type,),  # noqa: E501
+            'view_uid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +92,7 @@ class ViewFailover(ModelNormal):
         'remote_view_id': 'remoteViewId',  # noqa: E501
         'remote_cluster_id': 'remoteClusterId',  # noqa: E501
         'remote_cluster_incarnation_id': 'remoteClusterIncarnationId',  # noqa: E501
+        'view_uid': 'viewUid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,6 +146,7 @@ class ViewFailover(ModelNormal):
             remote_view_id (int, none_type): Specifies the remote view id.. [optional]  # noqa: E501
             remote_cluster_id (int, none_type): Specifies the remote cluster id.. [optional]  # noqa: E501
             remote_cluster_incarnation_id (int, none_type): Specifies the remote cluster incarnation id.. [optional]  # noqa: E501
+            view_uid (str, none_type): View uid.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

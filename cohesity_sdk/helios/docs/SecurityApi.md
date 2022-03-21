@@ -3,21 +3,23 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_clientcsr**](SecurityApi.md#create_clientcsr) | **POST** /clientcsr | Create Certificate Signing Requests on the cluster.
+[**create_clientcsr**](SecurityApi.md#create_clientcsr) | **POST** /client-csr | Create Certificate Signing Requests on the cluster.
 [**create_csr**](SecurityApi.md#create_csr) | **POST** /csr | Create a Certificate Signing Request on the cluster.
 [**delete_csr**](SecurityApi.md#delete_csr) | **DELETE** /csr/{id} | Delete a Certificate Signing Request on the cluster.
+[**get_anomaly_alert_notif_level**](SecurityApi.md#get_anomaly_alert_notif_level) | **GET** /mcm/security/anomalies | Get the anomaly details.
 [**get_ciphers**](SecurityApi.md#get_ciphers) | **GET** /security/ciphers | Gets the list of ciphers enabled on the cluster.
 [**get_csr_by_id**](SecurityApi.md#get_csr_by_id) | **GET** /csr/{id} | List the specified Certificate Signing Request.
 [**get_csr_list**](SecurityApi.md#get_csr_list) | **GET** /csr | List Certificate Signing Requests on the cluster.
 [**get_object_store_ciphers**](SecurityApi.md#get_object_store_ciphers) | **GET** /security/object-store-ciphers | Gets the list of object store ciphers enabled on the cluster.
 [**get_security_config**](SecurityApi.md#get_security_config) | **GET** /security-config | Get cluster security settings.
-[**import_certificate_by_clientcsr**](SecurityApi.md#import_certificate_by_clientcsr) | **POST** /clientcsr/certificate | Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+[**import_certificate_by_clientcsr**](SecurityApi.md#import_certificate_by_clientcsr) | **POST** /client-csr/certificate | Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 [**list_trusted_ca_by_id**](SecurityApi.md#list_trusted_ca_by_id) | **GET** /trusted-cas/{id} | List the specified Certificate.
 [**list_trusted_cas**](SecurityApi.md#list_trusted_cas) | **GET** /trusted-cas | List all Certificates with cluster trust store.
 [**modify_ciphers**](SecurityApi.md#modify_ciphers) | **POST** /security/ciphers | Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
 [**modify_object_store_ciphers**](SecurityApi.md#modify_object_store_ciphers) | **POST** /security/object-store-ciphers | Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
 [**register_trusted_cas**](SecurityApi.md#register_trusted_cas) | **POST** /trusted-cas | Register CA Certificate to the cluster trust store.
 [**unregister_trusted_ca**](SecurityApi.md#unregister_trusted_ca) | **DELETE** /trusted-cas/{id} | Unregister CA Certificate from the cluster trust store.
+[**update_anomaly_alert_notif_level**](SecurityApi.md#update_anomaly_alert_notif_level) | **PUT** /mcm/security/anomalies | Updates the anomaly notification threshold.
 [**update_certificate_by_csr**](SecurityApi.md#update_certificate_by_csr) | **POST** /csr/certificate | Update the signed certificate on the cluster after a Certificate Signing Request is created.
 [**update_security_config**](SecurityApi.md#update_security_config) | **PUT** /security-config | Update cluster security settings.
 [**validate_trusted_ca_by_id**](SecurityApi.md#validate_trusted_ca_by_id) | **POST** /trusted-cas/{id}/validate | Validate CA Certificate.
@@ -246,6 +248,70 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_anomaly_alert_notif_level**
+> AnomalyAlert get_anomaly_alert_notif_level()
+
+Get the anomaly details.
+
+Get the anomaly details.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.anomaly_alert import AnomalyAlert
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get the anomaly details.
+	api_response = client.security.get_anomaly_alert_notif_level(region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SecurityApi->get_anomaly_alert_notif_level: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**AnomalyAlert**](AnomalyAlert.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returns the response of the notification operation. |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1145,6 +1211,106 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_anomaly_alert_notif_level**
+> update_anomaly_alert_notif_level(body)
+
+Updates the anomaly notification threshold.
+
+Update the anomaly settings such as notification threshold.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.anomaly_alert import AnomalyAlert
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+body = AnomalyAlert(
+        notification_info=NotificationInfo(
+            anomaly_strength_threshold=1,
+            email_config=EmailConfig(
+                to=[
+                    "to_example",
+                ],
+                cc=[
+                    "cc_example",
+                ],
+                options=[
+                    ConfigItem(
+                        key="key_example",
+                        value="value_example",
+                    ),
+                ],
+            ),
+            webhook_config=WebhookConfig(
+                url="url_example",
+                options="options_example",
+                max_alerts=1,
+            ),
+        ),
+        tagging_info=TaggingInfo(
+            block_restore=True,
+            tag_id=1,
+            tag_name="tag_name_example",
+        ),
+    ) # AnomalyAlert | Specifies the parameters to update an account notification threshold
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Updates the anomaly notification threshold.
+	client.security.update_anomaly_alert_notif_level(body)
+except ApiException as e:
+	print("Exception when calling SecurityApi->update_anomaly_alert_notif_level: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Updates the anomaly notification threshold.
+	client.security.update_anomaly_alert_notif_level(body, region_id=region_id)
+except ApiException as e:
+	print("Exception when calling SecurityApi->update_anomaly_alert_notif_level: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AnomalyAlert**](AnomalyAlert.md)| Specifies the parameters to update an account notification threshold |
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Updated successfully |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

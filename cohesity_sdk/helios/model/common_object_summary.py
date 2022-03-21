@@ -31,12 +31,14 @@ def lazy_import():
     from cohesity_sdk.helios.model.object_protection_stats_summary import ObjectProtectionStatsSummary
     from cohesity_sdk.helios.model.object_summary import ObjectSummary
     from cohesity_sdk.helios.model.object_type_v_center_params import ObjectTypeVCenterParams
+    from cohesity_sdk.helios.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.helios.model.permission_info import PermissionInfo
     from cohesity_sdk.helios.model.sharepoint_object_params import SharepointObjectParams
     globals()['CommonObjectSummaryAllOf'] = CommonObjectSummaryAllOf
     globals()['ObjectProtectionStatsSummary'] = ObjectProtectionStatsSummary
     globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
+    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['PermissionInfo'] = PermissionInfo
     globals()['SharepointObjectParams'] = SharepointObjectParams
 
@@ -148,6 +150,10 @@ class CommonObjectSummary(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -288,6 +294,7 @@ class CommonObjectSummary(ModelComposed):
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
         }
@@ -313,6 +320,7 @@ class CommonObjectSummary(ModelComposed):
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'protection_stats': 'protectionStats',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
     }
@@ -379,6 +387,7 @@ class CommonObjectSummary(ModelComposed):
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
         """

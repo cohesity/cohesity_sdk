@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_tdm_task_by_id**](TestDataManagementApi.md#get_tdm_task_by_id) | **GET** /tdm/tasks/{id} | Get a TDM task by ID
 [**get_tdm_tasks**](TestDataManagementApi.md#get_tdm_tasks) | **GET** /tdm/tasks | Get all TDM tasks
 [**get_tdm_timeline_events_by_object_id**](TestDataManagementApi.md#get_tdm_timeline_events_by_object_id) | **GET** /tdm/objects/{id}/timeline-events | Get timeline events of object
+[**perform_action_on_clones**](TestDataManagementApi.md#perform_action_on_clones) | **POST** /tdm/clones/actions | Perform actions on clones
 [**update_tdm_snapshot_by_id**](TestDataManagementApi.md#update_tdm_snapshot_by_id) | **PUT** /tdm/snapshots/{id} | Update a snapshot by ID
 
 
@@ -569,6 +570,103 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **perform_action_on_clones**
+> perform_action_on_clones(body)
+
+Perform actions on clones
+
+Performs various actions on clones. Supports actions on multiple clones.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.perform_action_on_clones_request import PerformActionOnClonesRequest
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+body = PerformActionOnClonesRequest(
+        action="Cleanup",
+        cleanup_params=CloneActionCleanupParams(
+            cleanup_type="PowerOffVM",
+            power_off_vm_params=CloneActionCleanupPowerOffVmParams(
+                vm_ids=[
+                    3.14,
+                ],
+            ),
+            cloud_resources_cleanup_params=CloneActionCleanupCloudResourcesCleanupParams(
+                restore_tasks=[
+                    CloudResourcesCleanupRestoreTaskDetails(
+                        task_id=3.14,
+                        ami_instance_ids=[
+                            CloudResourcesCleanupAmiInstanceId(
+                                ami_id="ami_id_example",
+                                instance_id="instance_id_example",
+                            ),
+                        ],
+                    ),
+                ],
+            ),
+        ),
+    ) # PerformActionOnClonesRequest | Specifies the parameters to perform an action on multiple clones.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Perform actions on clones
+	client.test_data_management.perform_action_on_clones(body)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->perform_action_on_clones: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Perform actions on clones
+	client.test_data_management.perform_action_on_clones(body, access_cluster_id=access_cluster_id, region_id=region_id)
+except ApiException as e:
+	print("Exception when calling TestDataManagementApi->perform_action_on_clones: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**PerformActionOnClonesRequest**](PerformActionOnClonesRequest.md)| Specifies the parameters to perform an action on multiple clones. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

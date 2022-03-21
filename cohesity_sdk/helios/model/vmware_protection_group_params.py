@@ -117,6 +117,7 @@ class VmwareProtectionGroupParams(ModelComposed):
             'leverage_hyperflex_snapshots': (bool, none_type,),  # noqa: E501
             'leverage_nutanix_snapshots': (bool, none_type,),  # noqa: E501
             'cloud_migration': (bool, none_type,),  # noqa: E501
+            'allow_parallel_runs': (bool, none_type,),  # noqa: E501
             'enable_cdp_sync_replication': (bool, none_type,),  # noqa: E501
         }
 
@@ -147,6 +148,7 @@ class VmwareProtectionGroupParams(ModelComposed):
         'leverage_hyperflex_snapshots': 'leverageHyperflexSnapshots',  # noqa: E501
         'leverage_nutanix_snapshots': 'leverageNutanixSnapshots',  # noqa: E501
         'cloud_migration': 'cloudMigration',  # noqa: E501
+        'allow_parallel_runs': 'allowParallelRuns',  # noqa: E501
         'enable_cdp_sync_replication': 'enableCdpSyncReplication',  # noqa: E501
     }
 
@@ -218,6 +220,7 @@ class VmwareProtectionGroupParams(ModelComposed):
             leverage_hyperflex_snapshots (bool, none_type): Whether to leverage the hyperflex based snapshots for this backup. To leverage hyperflex snapshots, it has to first be registered. If hyperflex based snapshots cannot be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
             leverage_nutanix_snapshots (bool, none_type): Whether to leverage the nutanix based snapshots for this backup. To leverage nutanix snapshots, it has to first be registered. If nutanix based snapshots cannot be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            allow_parallel_runs (bool, none_type): Specifies whether or not this job can have parallel runs.. [optional]  # noqa: E501
             enable_cdp_sync_replication (bool, none_type): Specifies whether synchronous replication is enabled for CDP Protection Group when replication target is specified in attached policy.. [optional]  # noqa: E501
         """
 

@@ -43,6 +43,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.netapp_registration_params import NetappRegistrationParams
     from cohesity_sdk.helios.model.office365_source_registration_params import Office365SourceRegistrationParams
     from cohesity_sdk.helios.model.physical_source_registration_params import PhysicalSourceRegistrationParams
+    from cohesity_sdk.helios.model.sfdc_source_registration_params import SfdcSourceRegistrationParams
     from cohesity_sdk.helios.model.vmware_source_registration_params import VmwareSourceRegistrationParams
     globals()['AwsSourceRegistrationParams'] = AwsSourceRegistrationParams
     globals()['CassandraSourceRegistrationParams'] = CassandraSourceRegistrationParams
@@ -60,6 +61,7 @@ def lazy_import():
     globals()['NetappRegistrationParams'] = NetappRegistrationParams
     globals()['Office365SourceRegistrationParams'] = Office365SourceRegistrationParams
     globals()['PhysicalSourceRegistrationParams'] = PhysicalSourceRegistrationParams
+    globals()['SfdcSourceRegistrationParams'] = SfdcSourceRegistrationParams
     globals()['VmwareSourceRegistrationParams'] = VmwareSourceRegistrationParams
 
 
@@ -152,6 +154,7 @@ class McmSourceRegistration(ModelComposed):
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'source_id': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
+            'connector_group_id': (int, none_type,),  # noqa: E501
             'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
             'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
             'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
@@ -166,6 +169,7 @@ class McmSourceRegistration(ModelComposed):
             'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
             'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
             'hyperv_params': (HyperVSourceRegistrationParams,),  # noqa: E501
+            'sfdc_params': (SfdcSourceRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -184,6 +188,7 @@ class McmSourceRegistration(ModelComposed):
         'connections': 'connections',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
+        'connector_group_id': 'connectorGroupId',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
@@ -198,6 +203,7 @@ class McmSourceRegistration(ModelComposed):
         'aws_params': 'awsParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -257,6 +263,7 @@ class McmSourceRegistration(ModelComposed):
             connections ([ConnectionConfig], none_type): Specifies the list of connections associated with this source.. [optional]  # noqa: E501
             source_id (str, none_type): ID of top level source object discovered after the registration.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment type of the Protection Source.. [optional]  # noqa: E501
+            connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
             vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
             physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
@@ -271,6 +278,7 @@ class McmSourceRegistration(ModelComposed):
             aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
             office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
             hyperv_params (HyperVSourceRegistrationParams): [optional]  # noqa: E501
+            sfdc_params (SfdcSourceRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

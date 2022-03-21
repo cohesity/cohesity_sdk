@@ -104,6 +104,8 @@ class ProtectionPolicyResponse(ModelComposed):
             'remote_target_policy': (TargetsConfiguration,),  # noqa: E501
             'retry_options': (RetryOptions,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
+            'version': (int, none_type,),  # noqa: E501
+            'is_cbs_enabled': (bool, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'template_id': (str, none_type,),  # noqa: E501
             'is_usable': (bool, none_type,),  # noqa: E501
@@ -127,6 +129,8 @@ class ProtectionPolicyResponse(ModelComposed):
         'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
         'retry_options': 'retryOptions',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
+        'version': 'version',  # noqa: E501
+        'is_cbs_enabled': 'isCBSEnabled',  # noqa: E501
         'id': 'id',  # noqa: E501
         'template_id': 'templateId',  # noqa: E501
         'is_usable': 'isUsable',  # noqa: E501
@@ -193,6 +197,8 @@ class ProtectionPolicyResponse(ModelComposed):
             remote_target_policy (TargetsConfiguration): [optional]  # noqa: E501
             retry_options (RetryOptions): [optional]  # noqa: E501
             data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
+            version (int, none_type): Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.. [optional]  # noqa: E501
+            is_cbs_enabled (bool, none_type): Specifies true if Calender Based Schedule is supported by client. Default value is assumed as false for this feature.. [optional]  # noqa: E501
             id (str, none_type): Specifies a unique Policy id assigned by the Cohesity Cluster.. [optional]  # noqa: E501
             template_id (str, none_type): Specifies the parent policy template id to which the policy is linked to. This field is set only when policy is created from template.. [optional]  # noqa: E501
             is_usable (bool, none_type): This field is set to true if the linked policy which is internally created from a policy templates qualifies as usable to create more policies on the cluster. If the linked policy is partially filled and can not create a working policy then this field will be set to false. In case of normal policy created on the cluster, this field wont be populated.. [optional]  # noqa: E501

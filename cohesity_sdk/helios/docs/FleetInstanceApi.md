@@ -36,11 +36,22 @@ body = UpdateFleetEnvInfoRequest(
         subnet_id="subnet_id_example",
         security_group_id="security_group_id_example",
     ) # UpdateFleetEnvInfoRequest | Specifies the parameters to add fleet env info.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update Fleet Env Info.
 	api_response = client.fleet_instance.update_fleet_env_info(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FleetInstanceApi->update_fleet_env_info: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update Fleet Env Info.
+	api_response = client.fleet_instance.update_fleet_env_info(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling FleetInstanceApi->update_fleet_env_info: %s\n" % e)
@@ -52,6 +63,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**UpdateFleetEnvInfoRequest**](UpdateFleetEnvInfoRequest.md)| Specifies the parameters to add fleet env info. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

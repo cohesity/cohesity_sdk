@@ -30,6 +30,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.object_protection_run_summary import ObjectProtectionRunSummary
     from cohesity_sdk.helios.model.object_summary import ObjectSummary
     from cohesity_sdk.helios.model.object_type_v_center_params import ObjectTypeVCenterParams
+    from cohesity_sdk.helios.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.helios.model.protected_object_backup_config import ProtectedObjectBackupConfig
     from cohesity_sdk.helios.model.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
     from cohesity_sdk.helios.model.protected_object_info_all_of import ProtectedObjectInfoAllOf
@@ -38,6 +39,7 @@ def lazy_import():
     globals()['ObjectProtectionRunSummary'] = ObjectProtectionRunSummary
     globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
+    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['ProtectedObjectBackupConfig'] = ProtectedObjectBackupConfig
     globals()['ProtectedObjectGroupBackupConfig'] = ProtectedObjectGroupBackupConfig
     globals()['ProtectedObjectInfoAllOf'] = ProtectedObjectInfoAllOf
@@ -152,6 +154,10 @@ class ProtectedObjectInfo(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -292,6 +298,7 @@ class ProtectedObjectInfo(ModelComposed):
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'permissions': ([Tenant], none_type,),  # noqa: E501
             'object_backup_configuration': (ProtectedObjectBackupConfig,),  # noqa: E501
             'protection_group_configurations': ([ProtectedObjectGroupBackupConfig], none_type,),  # noqa: E501
@@ -319,6 +326,7 @@ class ProtectedObjectInfo(ModelComposed):
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'object_backup_configuration': 'objectBackupConfiguration',  # noqa: E501
         'protection_group_configurations': 'protectionGroupConfigurations',  # noqa: E501
@@ -387,6 +395,7 @@ class ProtectedObjectInfo(ModelComposed):
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this accessing given protected object.. [optional]  # noqa: E501
             object_backup_configuration (ProtectedObjectBackupConfig): [optional]  # noqa: E501
             protection_group_configurations ([ProtectedObjectGroupBackupConfig], none_type): Specifies the protection info associated with every object. There can be multiple instances of protection info since the same object can be protected in multiple protection groups.. [optional]  # noqa: E501

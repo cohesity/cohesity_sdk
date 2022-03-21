@@ -52,6 +52,8 @@ class TasksApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([str]): Specifies a unique task id to get the deatils of a task. To fetch the status of multiple tasks, pass comma seperated list of taskIds.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -114,6 +116,8 @@ class TasksApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                 ],
                 'required': [],
@@ -135,13 +139,21 @@ class TasksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([str],),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                 },
                 'collection_format_map': {

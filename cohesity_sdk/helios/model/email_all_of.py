@@ -62,6 +62,18 @@ class EmailAllOf(ModelNormal):
             'None': None,
             'EMAIL': "Email",
             'FOLDER': "Folder",
+            'CALENDAR': "Calendar",
+            'CONTACT': "Contact",
+            'TASK': "Task",
+            'NOTE': "Note",
+        },
+        ('task_status',): {
+            'None': None,
+            'NOTSTARTED': "NotStarted",
+            'INPROGRESS': "InProgress",
+            'COMPLETED': "Completed",
+            'WAITINGONOTHERS': "WaitingOnOthers",
+            'DEFERRED': "Deferred",
         },
     }
 
@@ -99,6 +111,18 @@ class EmailAllOf(ModelNormal):
             'bcc_recipient_addresses': ([str], none_type,),  # noqa: E501
             'sent_time_secs': (int, none_type,),  # noqa: E501
             'received_time_secs': (int, none_type,),  # noqa: E501
+            'created_time_secs': (int, none_type,),  # noqa: E501
+            'organizer_address': (str, none_type,),  # noqa: E501
+            'required_attendees_addresses': ([str], none_type,),  # noqa: E501
+            'optional_attendees_addresses': ([str], none_type,),  # noqa: E501
+            'first_name': (str, none_type,),  # noqa: E501
+            'last_name': (str, none_type,),  # noqa: E501
+            'email_addresses': ([str], none_type,),  # noqa: E501
+            'last_modification_time_secs': (int, none_type,),  # noqa: E501
+            'last_modification_name': (str, none_type,),  # noqa: E501
+            'task_due_date_time_secs': (int, none_type,),  # noqa: E501
+            'task_completion_date_time_secs': (int, none_type,),  # noqa: E501
+            'task_status': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
@@ -126,6 +150,18 @@ class EmailAllOf(ModelNormal):
         'bcc_recipient_addresses': 'bccRecipientAddresses',  # noqa: E501
         'sent_time_secs': 'sentTimeSecs',  # noqa: E501
         'received_time_secs': 'receivedTimeSecs',  # noqa: E501
+        'created_time_secs': 'createdTimeSecs',  # noqa: E501
+        'organizer_address': 'organizerAddress',  # noqa: E501
+        'required_attendees_addresses': 'requiredAttendeesAddresses',  # noqa: E501
+        'optional_attendees_addresses': 'optionalAttendeesAddresses',  # noqa: E501
+        'first_name': 'firstName',  # noqa: E501
+        'last_name': 'lastName',  # noqa: E501
+        'email_addresses': 'emailAddresses',  # noqa: E501
+        'last_modification_time_secs': 'lastModificationTimeSecs',  # noqa: E501
+        'last_modification_name': 'lastModificationName',  # noqa: E501
+        'task_due_date_time_secs': 'taskDueDateTimeSecs',  # noqa: E501
+        'task_completion_date_time_secs': 'taskCompletionDateTimeSecs',  # noqa: E501
+        'task_status': 'taskStatus',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
@@ -193,6 +229,18 @@ class EmailAllOf(ModelNormal):
             bcc_recipient_addresses ([str], none_type): \"Specifies the email addresses of all the BCC receipients of this email.\". [optional]  # noqa: E501
             sent_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this email is sent.\". [optional]  # noqa: E501
             received_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this email is received.\". [optional]  # noqa: E501
+            created_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this item is created.\". [optional]  # noqa: E501
+            organizer_address (str, none_type): \"Specifies the calendar item organizer's email address.\". [optional]  # noqa: E501
+            required_attendees_addresses ([str], none_type): \"Specifies the email addresses of all required attendees of this calendar item.\". [optional]  # noqa: E501
+            optional_attendees_addresses ([str], none_type): \"Specifies the email addresses of all the optional attendees of this calendar item.\". [optional]  # noqa: E501
+            first_name (str, none_type): Specifies the contact's first name.. [optional]  # noqa: E501
+            last_name (str, none_type): Specifies the contact's last name.. [optional]  # noqa: E501
+            email_addresses ([str], none_type): Specifies the email addresses of a contact.. [optional]  # noqa: E501
+            last_modification_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this item was modified.\". [optional]  # noqa: E501
+            last_modification_name (str, none_type): \"Specifies the name of the person who modified this item.\". [optional]  # noqa: E501
+            task_due_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item is due.\". [optional]  # noqa: E501
+            task_completion_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item was completed.\". [optional]  # noqa: E501
+            task_status (str, none_type): Specifies the task item status type.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the Protection Group id protecting the mailbox.\". [optional]  # noqa: E501
             storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             tenant_id (str, none_type): \"Specify the tenant id to which this email belongs to.\". [optional]  # noqa: E501

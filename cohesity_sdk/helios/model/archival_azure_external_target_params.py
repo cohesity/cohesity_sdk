@@ -32,11 +32,13 @@ def lazy_import():
     from cohesity_sdk.helios.model.azure_cool_blob_params import AzureCoolBlobParams
     from cohesity_sdk.helios.model.azure_hot_blob_params import AzureHotBlobParams
     from cohesity_sdk.helios.model.common_archival_azure_external_target_params import CommonArchivalAzureExternalTargetParams
+    from cohesity_sdk.helios.model.worm_specific_target_params import WormSpecificTargetParams
     globals()['ArchivalAzureExternalTargetParamsAllOf'] = ArchivalAzureExternalTargetParamsAllOf
     globals()['AzureArchiveBlobParams'] = AzureArchiveBlobParams
     globals()['AzureCoolBlobParams'] = AzureCoolBlobParams
     globals()['AzureHotBlobParams'] = AzureHotBlobParams
     globals()['CommonArchivalAzureExternalTargetParams'] = CommonArchivalAzureExternalTargetParams
+    globals()['WormSpecificTargetParams'] = WormSpecificTargetParams
 
 
 class ArchivalAzureExternalTargetParams(ModelComposed):
@@ -100,6 +102,8 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_worm_enabled': (bool, none_type,),  # noqa: E501
+            'worm_specific_target_params': (WormSpecificTargetParams,),  # noqa: E501
             'cool_blob_params': (AzureCoolBlobParams,),  # noqa: E501
             'hot_blob_params': (AzureHotBlobParams,),  # noqa: E501
             'archive_blob_params': (AzureArchiveBlobParams,),  # noqa: E501
@@ -119,6 +123,8 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_worm_enabled': 'isWormEnabled',  # noqa: E501
+        'worm_specific_target_params': 'wormSpecificTargetParams',  # noqa: E501
         'cool_blob_params': 'coolBlobParams',  # noqa: E501
         'hot_blob_params': 'hotBlobParams',  # noqa: E501
         'archive_blob_params': 'archiveBlobParams',  # noqa: E501
@@ -181,6 +187,8 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_worm_enabled (bool, none_type): Specifies whether write once read many (WORM) protection is enabled for the Azure container or not.. [optional]  # noqa: E501
+            worm_specific_target_params (WormSpecificTargetParams): [optional]  # noqa: E501
             cool_blob_params (AzureCoolBlobParams): [optional]  # noqa: E501
             hot_blob_params (AzureHotBlobParams): [optional]  # noqa: E501
             archive_blob_params (AzureArchiveBlobParams): [optional]  # noqa: E501

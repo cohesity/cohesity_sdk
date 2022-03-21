@@ -42,6 +42,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.oracle_object_protection_update_request_params import OracleObjectProtectionUpdateRequestParams
     from cohesity_sdk.helios.model.physical_object_protection_update_request_params import PhysicalObjectProtectionUpdateRequestParams
     from cohesity_sdk.helios.model.policy_config import PolicyConfig
+    from cohesity_sdk.helios.model.sfdc_object_protection_update_request_params import SfdcObjectProtectionUpdateRequestParams
     from cohesity_sdk.helios.model.sla_rule import SlaRule
     from cohesity_sdk.helios.model.time_of_day import TimeOfDay
     from cohesity_sdk.helios.model.vmware_object_protection_update_request_params import VmwareObjectProtectionUpdateRequestParams
@@ -60,6 +61,7 @@ def lazy_import():
     globals()['OracleObjectProtectionUpdateRequestParams'] = OracleObjectProtectionUpdateRequestParams
     globals()['PhysicalObjectProtectionUpdateRequestParams'] = PhysicalObjectProtectionUpdateRequestParams
     globals()['PolicyConfig'] = PolicyConfig
+    globals()['SfdcObjectProtectionUpdateRequestParams'] = SfdcObjectProtectionUpdateRequestParams
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
     globals()['VmwareObjectProtectionUpdateRequestParams'] = VmwareObjectProtectionUpdateRequestParams
@@ -119,6 +121,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -178,6 +181,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'skip_rigel_for_backup': (bool, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionUpdateRequestParams,),  # noqa: E501
@@ -193,6 +197,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'aws_params': (AwsObjectProtectionUpdateRequestParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionUpdateRequestParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'sfdc_params': (SfdcObjectProtectionUpdateRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -210,6 +215,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'skip_rigel_for_backup': 'skipRigelForBackup',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -225,6 +231,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
         'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -283,6 +290,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            skip_rigel_for_backup (bool, none_type): Specifies whether to skip Rigel for backup or not.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
@@ -298,6 +306,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             aws_params (AwsObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            sfdc_params (SfdcObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

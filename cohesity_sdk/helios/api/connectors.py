@@ -23,12 +23,13 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.helios.model.bifrost_connector import BifrostConnector
 from cohesity_sdk.helios.model.bifrost_connectors import BifrostConnectors
-from cohesity_sdk.helios.model.create_or_update_bifrost_connector_request import CreateOrUpdateBifrostConnectorRequest
+from cohesity_sdk.helios.model.connectivity_check_response_body import ConnectivityCheckResponseBody
 from cohesity_sdk.helios.model.create_rigel_connector_request import CreateRigelConnectorRequest
 from cohesity_sdk.helios.model.delete_rigel_connector_request import DeleteRigelConnectorRequest
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.rigel_connector import RigelConnector
 from cohesity_sdk.helios.model.rigel_connectors import RigelConnectors
+from cohesity_sdk.helios.model.update_bifrost_connector_request import UpdateBifrostConnectorRequest
 from cohesity_sdk.helios.model.update_rigel_connector_request import UpdateRigelConnectorRequest
 
 
@@ -43,128 +44,6 @@ class ConnectorsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __create_bifrost_connector(
-            self,
-            body,
-            **kwargs
-        ):
-            """Create a Bifrost connector on the cluster.  # noqa: E501
-
-            Create a Bifrost connector on the cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_bifrost_connector(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (CreateOrUpdateBifrostConnectorRequest): Specifies the parameters to create a connector.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                BifrostConnector
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.create_bifrost_connector = _Endpoint(
-            settings={
-                'response_type': (BifrostConnector,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/connector-hybrid-extender',
-                'operation_id': 'create_bifrost_connector',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (CreateOrUpdateBifrostConnectorRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__create_bifrost_connector
-        )
 
         def __create_rigel_connector(
             self,
@@ -184,6 +63,8 @@ class ConnectorsApi(object):
                 body (CreateRigelConnectorRequest): Specifies the parameters to create a connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -248,6 +129,8 @@ class ConnectorsApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -267,11 +150,19 @@ class ConnectorsApi(object):
                 'openapi_types': {
                     'body':
                         (CreateRigelConnectorRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -303,9 +194,11 @@ class ConnectorsApi(object):
             >>> result = thread.get()
 
             Args:
-                id (int, none_type): Specifies the id of connector.
+                id (str, none_type): Specifies the id of connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -370,6 +263,8 @@ class ConnectorsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -389,13 +284,21 @@ class ConnectorsApi(object):
                 },
                 'openapi_types': {
                     'id':
-                        (int, none_type,),
+                        (str, none_type,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -430,6 +333,8 @@ class ConnectorsApi(object):
                 body (DeleteRigelConnectorRequest): Specifies the parameters to delete a connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -497,6 +402,8 @@ class ConnectorsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -520,13 +427,21 @@ class ConnectorsApi(object):
                         (int, none_type,),
                     'body':
                         (DeleteRigelConnectorRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -558,7 +473,9 @@ class ConnectorsApi(object):
 
 
             Keyword Args:
-                ids ([int], none_type): Specifies the id of the connectors.. [optional]
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                ids ([str], none_type): Specifies the id of the connectors.. [optional]
                 names ([str], none_type): Specifies the name of the connectors.. [optional]
                 tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.. [optional]
                 connection_id (int, none_type): Specifies the Id of the connection which the connector belongs to.. [optional]
@@ -623,6 +540,8 @@ class ConnectorsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'names',
                     'tenant_id',
@@ -646,8 +565,12 @@ class ConnectorsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
-                        ([int], none_type,),
+                        ([str], none_type,),
                     'names':
                         ([str], none_type,),
                     'tenant_id':
@@ -656,12 +579,16 @@ class ConnectorsApi(object):
                         (int, none_type,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'names': 'names',
                     'tenant_id': 'tenantId',
                     'connection_id': 'connectionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'names': 'query',
                     'tenant_id': 'query',
@@ -697,9 +624,11 @@ class ConnectorsApi(object):
             >>> result = thread.get()
 
             Args:
-                id (int, none_type): Specifies the id of connector.
+                id (str, none_type): Specifies the id of connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -765,6 +694,8 @@ class ConnectorsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'tenant_id',
                 ],
                 'required': [
@@ -786,16 +717,24 @@ class ConnectorsApi(object):
                 },
                 'openapi_types': {
                     'id':
-                        (int, none_type,),
+                        (str, none_type,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'tenant_id':
                         (str, none_type,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'tenant_id': 'tenantId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'tenant_id': 'query',
                 },
                 'collection_format_map': {
@@ -809,6 +748,127 @@ class ConnectorsApi(object):
             },
             api_client=api_client,
             callable=__get_bifrost_connector_by_id
+        )
+
+        def __get_connectivity_check(
+            self,
+            **kwargs
+        ):
+            """Get connectivity check results.  # noqa: E501
+
+            Get connectivity check results.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_connectivity_check(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ConnectivityCheckResponseBody
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_connectivity_check = _Endpoint(
+            settings={
+                'response_type': (ConnectivityCheckResponseBody,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/connectivity-endpoints',
+                'operation_id': 'get_connectivity_check',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_connectivity_check
         )
 
         def __get_rigel_connector(
@@ -826,6 +886,8 @@ class ConnectorsApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([int], none_type): Specifies the id of the connector.. [optional]
                 names ([str], none_type): Specifies the name of the connectors.. [optional]
                 tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.. [optional]
@@ -891,6 +953,8 @@ class ConnectorsApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'ids',
                     'names',
                     'tenant_id',
@@ -914,6 +978,10 @@ class ConnectorsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'ids':
                         ([int], none_type,),
                     'names':
@@ -924,12 +992,16 @@ class ConnectorsApi(object):
                         (int, none_type,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'ids': 'ids',
                     'names': 'names',
                     'tenant_id': 'tenantId',
                     'connection_id': 'connectionId',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'ids': 'query',
                     'names': 'query',
                     'tenant_id': 'query',
@@ -968,6 +1040,8 @@ class ConnectorsApi(object):
                 id (int, none_type): Specifies the id of connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -1033,6 +1107,8 @@ class ConnectorsApi(object):
             params_map={
                 'all': [
                     'id',
+                    'access_cluster_id',
+                    'region_id',
                     'tenant_id',
                 ],
                 'required': [
@@ -1055,15 +1131,23 @@ class ConnectorsApi(object):
                 'openapi_types': {
                     'id':
                         (int, none_type,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'tenant_id':
                         (str, none_type,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'tenant_id': 'tenantId',
                 },
                 'location_map': {
                     'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'tenant_id': 'query',
                 },
                 'collection_format_map': {
@@ -1077,6 +1161,127 @@ class ConnectorsApi(object):
             },
             api_client=api_client,
             callable=__get_rigel_connector_by_id
+        )
+
+        def __perform_connectivity_check(
+            self,
+            **kwargs
+        ):
+            """Perform Connectivity Check.  # noqa: E501
+
+            Perform connectivity checks on endpoints.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.perform_connectivity_check(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.perform_connectivity_check = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/connectivity-endpoints',
+                'operation_id': 'perform_connectivity_check',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__perform_connectivity_check
         )
 
         def __update_bifrost_connector(
@@ -1095,10 +1300,12 @@ class ConnectorsApi(object):
             >>> result = thread.get()
 
             Args:
-                id (int, none_type): Specifies the id of connector.
-                body (CreateOrUpdateBifrostConnectorRequest): Specifies the parameters to update a connector.
+                id (str, none_type): Specifies the id of connector.
+                body (UpdateBifrostConnectorRequest): Specifies the parameters to update a connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1166,6 +1373,8 @@ class ConnectorsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1186,16 +1395,24 @@ class ConnectorsApi(object):
                 },
                 'openapi_types': {
                     'id':
-                        (int, none_type,),
+                        (str, none_type,),
                     'body':
-                        (CreateOrUpdateBifrostConnectorRequest,),
+                        (UpdateBifrostConnectorRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -1232,6 +1449,8 @@ class ConnectorsApi(object):
                 body (UpdateRigelConnectorRequest): Specifies the parameters to update a connector.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1299,6 +1518,8 @@ class ConnectorsApi(object):
                 'all': [
                     'id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'id',
@@ -1322,13 +1543,21 @@ class ConnectorsApi(object):
                         (int, none_type,),
                     'body':
                         (UpdateRigelConnectorRequest,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }

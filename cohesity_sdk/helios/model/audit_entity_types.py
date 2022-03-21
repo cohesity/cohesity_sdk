@@ -126,6 +126,15 @@ class AuditEntityTypes(ModelNormal):
             'AMQPTARGETCONFIGURATION': "AMQPTargetConfiguration",
             'PATCH': "Patch",
             'HOTFIX': "Hotfix",
+            'NISNETGROUP': "NisNetgroup",
+            'GFLAGRECIPE': "GflagRecipe",
+            'GFLAG': "Gflag",
+            'QUORUMGROUP': "QuorumGroup",
+            'QUORUMAPPLICATION': "QuorumApplication",
+            'BIFROSTCONNECTION': "BifrostConnection",
+            'BIFROSTCONNECTOR': "BifrostConnector",
+            'WHITELABELINGSETTING': "WhitelabelingSetting",
+            'AUDITLOGSETTING': "AuditLogSetting",
         },
     }
 

@@ -30,6 +30,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.object import Object
     from cohesity_sdk.helios.model.object_protection_stats_summary import ObjectProtectionStatsSummary
     from cohesity_sdk.helios.model.object_type_v_center_params import ObjectTypeVCenterParams
+    from cohesity_sdk.helios.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.helios.model.object_with_children_all_of import ObjectWithChildrenAllOf
     from cohesity_sdk.helios.model.permission_info import PermissionInfo
     from cohesity_sdk.helios.model.sharepoint_object_params import SharepointObjectParams
@@ -37,6 +38,7 @@ def lazy_import():
     globals()['Object'] = Object
     globals()['ObjectProtectionStatsSummary'] = ObjectProtectionStatsSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
+    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['ObjectWithChildrenAllOf'] = ObjectWithChildrenAllOf
     globals()['PermissionInfo'] = PermissionInfo
     globals()['SharepointObjectParams'] = SharepointObjectParams
@@ -150,6 +152,10 @@ class ObjectWithChildren(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -290,6 +296,7 @@ class ObjectWithChildren(ModelComposed):
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
@@ -303,6 +310,7 @@ class ObjectWithChildren(ModelComposed):
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'objects': ([ObjectWithChildren],),  # noqa: E501
         }
 
@@ -327,6 +335,7 @@ class ObjectWithChildren(ModelComposed):
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'protection_stats': 'protectionStats',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -340,6 +349,7 @@ class ObjectWithChildren(ModelComposed):
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
     }
 
@@ -405,6 +415,7 @@ class ObjectWithChildren(ModelComposed):
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
@@ -418,6 +429,7 @@ class ObjectWithChildren(ModelComposed):
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
             sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
+            uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
             objects ([ObjectWithChildren]): Specifies a list of child nodes for this specific node.. [optional]  # noqa: E501
         """
 

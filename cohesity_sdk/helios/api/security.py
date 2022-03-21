@@ -21,6 +21,7 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.helios.model.anomaly_alert import AnomalyAlert
 from cohesity_sdk.helios.model.ciphers_resp import CiphersResp
 from cohesity_sdk.helios.model.common_csr_response_params import CommonCsrResponseParams
 from cohesity_sdk.helios.model.create_clientcsr_response_body import CreateClientcsrResponseBody
@@ -130,7 +131,7 @@ class SecurityApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/clientcsr',
+                'endpoint_path': '/client-csr',
                 'operation_id': 'create_clientcsr',
                 'http_method': 'POST',
                 'servers': None,
@@ -453,6 +454,121 @@ class SecurityApi(object):
             },
             api_client=api_client,
             callable=__delete_csr
+        )
+
+        def __get_anomaly_alert_notif_level(
+            self,
+            **kwargs
+        ):
+            """Get the anomaly details.  # noqa: E501
+
+            Get the anomaly details.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_anomaly_alert_notif_level(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AnomalyAlert
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_anomaly_alert_notif_level = _Endpoint(
+            settings={
+                'response_type': (AnomalyAlert,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/security/anomalies',
+                'operation_id': 'get_anomaly_alert_notif_level',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_anomaly_alert_notif_level
         )
 
         def __get_ciphers(
@@ -1166,7 +1282,7 @@ class SecurityApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/clientcsr/certificate',
+                'endpoint_path': '/client-csr/certificate',
                 'operation_id': 'import_certificate_by_clientcsr',
                 'http_method': 'POST',
                 'servers': None,
@@ -2025,6 +2141,134 @@ class SecurityApi(object):
             },
             api_client=api_client,
             callable=__unregister_trusted_ca
+        )
+
+        def __update_anomaly_alert_notif_level(
+            self,
+            body,
+            **kwargs
+        ):
+            """Updates the anomaly notification threshold.  # noqa: E501
+
+            Update the anomaly settings such as notification threshold.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_anomaly_alert_notif_level(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (AnomalyAlert): Specifies the parameters to update an account notification threshold
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_anomaly_alert_notif_level = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/security/anomalies',
+                'operation_id': 'update_anomaly_alert_notif_level',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (AnomalyAlert,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_anomaly_alert_notif_level
         )
 
         def __update_certificate_by_csr(

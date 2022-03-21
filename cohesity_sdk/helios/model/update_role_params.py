@@ -78,8 +78,8 @@ class UpdateRoleParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'description': (str, none_type,),  # noqa: E501
             'privileges': ([str], none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class UpdateRoleParams(ModelNormal):
 
 
     attribute_map = {
-        'description': 'description',  # noqa: E501
         'privileges': 'privileges',  # noqa: E501
+        'description': 'description',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,8 +105,11 @@ class UpdateRoleParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, privileges, *args, **kwargs):  # noqa: E501
         """UpdateRoleParams - a model defined in OpenAPI
+
+        Args:
+            privileges ([str], none_type): Specifies the list of Privileges of the Role.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -141,7 +144,6 @@ class UpdateRoleParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description message for the Role.. [optional]  # noqa: E501
-            privileges ([str], none_type): Specifies the list of Privileges of the Role.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -168,6 +170,7 @@ class UpdateRoleParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.privileges = privileges
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

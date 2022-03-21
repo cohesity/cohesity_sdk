@@ -58,6 +58,8 @@ class ObjectSnapshot(ModelNormal):
             'None': None,
             'LOCAL': "Local",
             'ARCHIVAL': "Archival",
+            'RPAASARCHIVAL': "RpaasArchival",
+            'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
         },
         ('indexing_status',): {
             'None': None,
@@ -73,6 +75,7 @@ class ObjectSnapshot(ModelNormal):
             'KLOG': "kLog",
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
         },
         ('environment',): {
             'None': None,
@@ -175,6 +178,7 @@ class ObjectSnapshot(ModelNormal):
             'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'elastifile_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'sfdc_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -217,6 +221,7 @@ class ObjectSnapshot(ModelNormal):
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -299,6 +304,7 @@ class ObjectSnapshot(ModelNormal):
             flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to Flashblade type snapshot.. [optional]  # noqa: E501
             generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to Generic NAS type snapshot.. [optional]  # noqa: E501
             elastifile_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to NetApp type snapshot.. [optional]  # noqa: E501
+            sfdc_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters specific to Salesforce type snapshot.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

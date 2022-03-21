@@ -140,6 +140,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",

@@ -3,9 +3,9 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_antivirus_service_groups**](AntivirusServiceApi.md#get_antivirus_service_groups) | **GET** /antivirus-service-groups | Get Antivirus Service groups.
-[**get_icap_uri_connection_status**](AntivirusServiceApi.md#get_icap_uri_connection_status) | **GET** /icap-uri-connection-status | Get ICAP Uri connection status.
-[**get_infected_files**](AntivirusServiceApi.md#get_infected_files) | **GET** /infected-files | Get infected files.
+[**get_antivirus_service_groups**](AntivirusServiceApi.md#get_antivirus_service_groups) | **GET** /antivirus-service/groups | Get Antivirus Service groups.
+[**get_icap_uri_connection_status**](AntivirusServiceApi.md#get_icap_uri_connection_status) | **GET** /antivirus-service/icap-uri-connection-status | Get ICAP Uri connection status.
+[**get_infected_files**](AntivirusServiceApi.md#get_infected_files) | **GET** /antivirus-service/infected-files | Get infected files.
 
 
 # **get_antivirus_service_groups**

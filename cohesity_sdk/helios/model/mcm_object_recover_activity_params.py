@@ -65,6 +65,7 @@ class McmObjectRecoverActivityParams(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('recovery_type',): {
             'None': None,
@@ -92,6 +93,9 @@ class McmObjectRecoverActivityParams(ModelNormal):
             'CONVERTTOPST': "ConvertToPst",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
+            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
+            'RECOVERSFDCORG': "RecoverSfdcOrg",
+            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
     }
@@ -127,6 +131,7 @@ class McmObjectRecoverActivityParams(ModelNormal):
             'status': (str, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
             'recovery_type': (str, none_type,),  # noqa: E501
+            'snapshot_creation_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -143,6 +148,7 @@ class McmObjectRecoverActivityParams(ModelNormal):
         'status': 'status',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
         'recovery_type': 'recoveryType',  # noqa: E501
+        'snapshot_creation_time_usecs': 'snapshotCreationTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -199,6 +205,7 @@ class McmObjectRecoverActivityParams(ModelNormal):
             status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for Recovery.. [optional]  # noqa: E501
             recovery_type (str, none_type): Specifies the recovery type.. [optional]  # noqa: E501
+            snapshot_creation_time_usecs (int, none_type): Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

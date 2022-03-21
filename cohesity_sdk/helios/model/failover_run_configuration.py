@@ -61,6 +61,7 @@ class FailoverRunConfiguration(ModelNormal):
         ('run_type',): {
             'KALL': "kAll",
             'KSYSTEM': "kSystem",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
             'KINCREMENTAL': "kIncremental",
             'KFULL': "kFull",
             'KLOG': "kLog",

@@ -51,6 +51,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.recover_oracle_params import RecoverOracleParams
     from cohesity_sdk.helios.model.recover_physical_params import RecoverPhysicalParams
     from cohesity_sdk.helios.model.recover_pure_params import RecoverPureParams
+    from cohesity_sdk.helios.model.recover_salesforce_params import RecoverSalesforceParams
     from cohesity_sdk.helios.model.recover_sql_params import RecoverSqlParams
     from cohesity_sdk.helios.model.recover_vmware_params import RecoverVmwareParams
     from cohesity_sdk.helios.model.uda_params import UdaParams
@@ -78,6 +79,7 @@ def lazy_import():
     globals()['RecoverOracleParams'] = RecoverOracleParams
     globals()['RecoverPhysicalParams'] = RecoverPhysicalParams
     globals()['RecoverPureParams'] = RecoverPureParams
+    globals()['RecoverSalesforceParams'] = RecoverSalesforceParams
     globals()['RecoverSqlParams'] = RecoverSqlParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
     globals()['UdaParams'] = UdaParams
@@ -158,6 +160,7 @@ class CreateRecoveryRequestAllOf(ModelNormal):
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
             'office365_params': (RecoverO365Params,),  # noqa: E501
             'oracle_params': (RecoverOracleParams,),  # noqa: E501
+            'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
         }
 
     @cached_property
@@ -194,6 +197,7 @@ class CreateRecoveryRequestAllOf(ModelNormal):
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -270,6 +274,7 @@ class CreateRecoveryRequestAllOf(ModelNormal):
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
             office365_params (RecoverO365Params): [optional]  # noqa: E501
             oracle_params (RecoverOracleParams): [optional]  # noqa: E501
+            sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

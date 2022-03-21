@@ -57,6 +57,10 @@ class MailboxItemType(ModelNormal):
         ('type',): {
             'EMAIL': "Email",
             'FOLDER': "Folder",
+            'CALENDAR': "Calendar",
+            'CONTACT': "Contact",
+            'TASK': "Task",
+            'NOTE': "Note",
         },
     }
 

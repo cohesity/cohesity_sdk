@@ -25,7 +25,13 @@ from cohesity_sdk.helios.model.create_odp_remote_cluster_params import CreateOdp
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.odp_remote_cluster import OdpRemoteCluster
 from cohesity_sdk.helios.model.odp_remote_clusters import OdpRemoteClusters
+from cohesity_sdk.helios.model.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.helios.model.remote_cluster import RemoteCluster
+from cohesity_sdk.helios.model.remote_clusters import RemoteClusters
+from cohesity_sdk.helios.model.replication_encryption_key import ReplicationEncryptionKey
 from cohesity_sdk.helios.model.update_odp_remote_cluster_params import UpdateOdpRemoteClusterParams
+from cohesity_sdk.helios.model.update_remote_cluster_params import UpdateRemoteClusterParams
+from cohesity_sdk.helios.model.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
 
 
 class RemoteClustersApi(object):
@@ -58,6 +64,8 @@ class RemoteClustersApi(object):
                 body (CreateOdpRemoteClusterParams): Specifies the request to create ODP Remote Cluster config.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -122,6 +130,8 @@ class RemoteClustersApi(object):
             params_map={
                 'all': [
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'body',
@@ -141,11 +151,19 @@ class RemoteClustersApi(object):
                 'openapi_types': {
                     'body':
                         (CreateOdpRemoteClusterParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -160,6 +178,139 @@ class RemoteClustersApi(object):
             },
             api_client=api_client,
             callable=__create_odp_remote_cluster
+        )
+
+        def __delete_remote_cluster(
+            self,
+            cluster_id,
+            **kwargs
+        ):
+            """Unregister a Remote Cluster.  # noqa: E501
+
+            Unregister an external Remote Cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_remote_cluster(cluster_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                cluster_id (int): Specifies the cluster id of the Remote Cluster to unregister.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['cluster_id'] = \
+                cluster_id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_remote_cluster = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/remote-clusters/{clusterId}',
+                'operation_id': 'delete_remote_cluster',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cluster_id',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'cluster_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'cluster_id':
+                        (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'cluster_id': 'clusterId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'cluster_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_remote_cluster
         )
 
         def __get_odp_remote_cluster_by_id(
@@ -180,6 +331,8 @@ class RemoteClustersApi(object):
                 cluster_id (int): Specifies the id of ODP Remote Cluster to fetch.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -244,6 +397,8 @@ class RemoteClustersApi(object):
             params_map={
                 'all': [
                     'cluster_id',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'cluster_id',
@@ -263,12 +418,20 @@ class RemoteClustersApi(object):
                 'openapi_types': {
                     'cluster_id':
                         (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'cluster_id': 'clusterId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'cluster_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -298,10 +461,12 @@ class RemoteClustersApi(object):
 
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 cluster_ids ([int]): Specifies a list of ODP Remote Cluster ids to filter.. [optional]
                 cluster_names ([str]): Specifies a list of ODP Remote Cluster names to filter.. [optional]
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which ODP remote clusters are to be returned.. [optional]
-                include_tenants (bool): If true, the response will include ODP remote clusters which were created by all tenants which the current user has permission to see. If false, then only ODP remote clusters created by the current user will be returned.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which ODP Remote Clusters are to be returned.. [optional]
+                include_tenants (bool): If true, the response will include ODP Remote Clusters which were created by all tenants which the current user has permission to see. If false, then only ODP Remote Clusters created by the current user will be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -363,6 +528,8 @@ class RemoteClustersApi(object):
             },
             params_map={
                 'all': [
+                    'access_cluster_id',
+                    'region_id',
                     'cluster_ids',
                     'cluster_names',
                     'tenant_ids',
@@ -382,6 +549,10 @@ class RemoteClustersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                     'cluster_ids':
                         ([int],),
                     'cluster_names':
@@ -392,12 +563,16 @@ class RemoteClustersApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                     'cluster_ids': 'clusterIds',
                     'cluster_names': 'clusterNames',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                     'cluster_ids': 'query',
                     'cluster_names': 'query',
                     'tenant_ids': 'query',
@@ -417,6 +592,549 @@ class RemoteClustersApi(object):
             },
             api_client=api_client,
             callable=__get_odp_remote_clusters
+        )
+
+        def __get_remote_cluster_by_id(
+            self,
+            cluster_id,
+            **kwargs
+        ):
+            """Get Remote Cluster config by id.  # noqa: E501
+
+            Get Remote Cluster config by cluster id.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_remote_cluster_by_id(cluster_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                cluster_id (int): Specifies the cluster id of Remote Cluster to fetch.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                RemoteCluster
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['cluster_id'] = \
+                cluster_id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_remote_cluster_by_id = _Endpoint(
+            settings={
+                'response_type': (RemoteCluster,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/remote-clusters/{clusterId}',
+                'operation_id': 'get_remote_cluster_by_id',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cluster_id',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'cluster_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'cluster_id':
+                        (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'cluster_id': 'clusterId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'cluster_id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_remote_cluster_by_id
+        )
+
+        def __get_remote_clusters(
+            self,
+            **kwargs
+        ):
+            """Get all registered Remote Clusters.  # noqa: E501
+
+            List the Remote Clusters that are registered on this local Cluster and that matches the filter criteria specified using parameters.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_remote_clusters(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                cluster_ids ([int]): Specifies a list of Remote Cluster ids to filter.. [optional]
+                cluster_names ([str]): Specifies a list of Remote Cluster names to filter.. [optional]
+                node_addresses ([str]): Specifies a list of Remote Cluster IPs to filter.. [optional]
+                purpose ([str]): Specifies the purpose for which the remote cluster is being registered.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                RemoteClusters
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_remote_clusters = _Endpoint(
+            settings={
+                'response_type': (RemoteClusters,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/remote-clusters',
+                'operation_id': 'get_remote_clusters',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                    'cluster_ids',
+                    'cluster_names',
+                    'node_addresses',
+                    'purpose',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'purpose',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('purpose',): {
+
+                        "REPLICATION": "Replication",
+                        "REMOTEACCESS": "RemoteAccess"
+                    },
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'cluster_ids':
+                        ([int],),
+                    'cluster_names':
+                        ([str],),
+                    'node_addresses':
+                        ([str],),
+                    'purpose':
+                        ([str],),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'cluster_ids': 'clusterIds',
+                    'cluster_names': 'clusterNames',
+                    'node_addresses': 'nodeAddresses',
+                    'purpose': 'purpose',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'cluster_ids': 'query',
+                    'cluster_names': 'query',
+                    'node_addresses': 'query',
+                    'purpose': 'query',
+                },
+                'collection_format_map': {
+                    'cluster_ids': 'csv',
+                    'cluster_names': 'csv',
+                    'node_addresses': 'csv',
+                    'purpose': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_remote_clusters
+        )
+
+        def __get_replication_encryption_key(
+            self,
+            **kwargs
+        ):
+            """Get Replication Encryption Key  # noqa: E501
+
+            List the Replication Encryption Key. It is used for encrypting replication data between this Cluster and a remote Cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_replication_encryption_key(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ReplicationEncryptionKey
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_replication_encryption_key = _Endpoint(
+            settings={
+                'response_type': (ReplicationEncryptionKey,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/replicationEncryptionKey',
+                'operation_id': 'get_replication_encryption_key',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_replication_encryption_key
+        )
+
+        def __register_remote_cluster(
+            self,
+            body,
+            **kwargs
+        ):
+            """Register a Remote Cluster.  # noqa: E501
+
+            Register a Remote Cluster on this local cluster for remote access and/or replication.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.register_remote_cluster(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (RegisterRemoteClusterParams): Specifies the request to register Remote Cluster.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                RemoteCluster
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.register_remote_cluster = _Endpoint(
+            settings={
+                'response_type': (RemoteCluster,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/remote-clusters',
+                'operation_id': 'register_remote_cluster',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (RegisterRemoteClusterParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__register_remote_cluster
         )
 
         def __update_odp_remote_cluster(
@@ -439,6 +1157,8 @@ class RemoteClustersApi(object):
                 body (UpdateOdpRemoteClusterParams): Specifies the request to update ODP Remote Cluster config.
 
             Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -506,6 +1226,8 @@ class RemoteClustersApi(object):
                 'all': [
                     'cluster_id',
                     'body',
+                    'access_cluster_id',
+                    'region_id',
                 ],
                 'required': [
                     'cluster_id',
@@ -528,13 +1250,21 @@ class RemoteClustersApi(object):
                         (int,),
                     'body':
                         (UpdateOdpRemoteClusterParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
                 },
                 'attribute_map': {
                     'cluster_id': 'clusterId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
                 },
                 'location_map': {
                     'cluster_id': 'path',
                     'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -549,4 +1279,282 @@ class RemoteClustersApi(object):
             },
             api_client=api_client,
             callable=__update_odp_remote_cluster
+        )
+
+        def __update_remote_cluster(
+            self,
+            cluster_id,
+            body,
+            **kwargs
+        ):
+            """Update a Remote Cluster config.  # noqa: E501
+
+            Update the connection settings of the specified Remote Cluster that is registered on this Cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_remote_cluster(cluster_id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                cluster_id (int): Specifies the cluster id of the Remote Cluster to update.
+                body (UpdateRemoteClusterParams): Specifies the request to update Remote Cluster config.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                RemoteCluster
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['cluster_id'] = \
+                cluster_id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_remote_cluster = _Endpoint(
+            settings={
+                'response_type': (RemoteCluster,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/remote-clusters/{clusterId}',
+                'operation_id': 'update_remote_cluster',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cluster_id',
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'cluster_id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'cluster_id':
+                        (int,),
+                    'body':
+                        (UpdateRemoteClusterParams,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'cluster_id': 'clusterId',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'cluster_id': 'path',
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_remote_cluster
+        )
+
+        def __validate_remote_cluster(
+            self,
+            body,
+            **kwargs
+        ):
+            """Validate Remote Cluster config.  # noqa: E501
+
+            Validate a Remote Cluster credentials.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.validate_remote_cluster(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (ValidateRemoteClusterConnectionParam): Specifies the request to validate Remote Cluster.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.validate_remote_cluster = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/remote-clusters/validate',
+                'operation_id': 'validate_remote_cluster',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (ValidateRemoteClusterConnectionParam,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__validate_remote_cluster
         )

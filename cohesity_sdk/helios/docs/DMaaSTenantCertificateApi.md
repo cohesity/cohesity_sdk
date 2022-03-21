@@ -38,11 +38,22 @@ body = AddDmaasTenantCertRequest(
         connector_ca_chain="connector_ca_chain_example",
         passphrase="passphrase_example",
     ) # AddDmaasTenantCertRequest | Specifies the parameters to add the tenant certificate.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Add a DMaaS tenant certificate to the cluster.
 	api_response = client.d_maa_s_tenant_certificate.add_dmaas_tenant_cert(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DMaaSTenantCertificateApi->add_dmaas_tenant_cert: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Add a DMaaS tenant certificate to the cluster.
+	api_response = client.d_maa_s_tenant_certificate.add_dmaas_tenant_cert(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DMaaSTenantCertificateApi->add_dmaas_tenant_cert: %s\n" % e)
@@ -54,6 +65,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**AddDmaasTenantCertRequest**](AddDmaasTenantCertRequest.md)| Specifies the parameters to add the tenant certificate. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -100,11 +113,21 @@ client = HeliosClient(api_key=api_key)
 
 
 tenant_id = "tenantId_example" # str, none_type | Specifies the id of tenant.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a tenant certificate.
 	client.d_maa_s_tenant_certificate.delete_dmaas_tenant_cert(tenant_id)
+except ApiException as e:
+	print("Exception when calling DMaaSTenantCertificateApi->delete_dmaas_tenant_cert: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a tenant certificate.
+	client.d_maa_s_tenant_certificate.delete_dmaas_tenant_cert(tenant_id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling DMaaSTenantCertificateApi->delete_dmaas_tenant_cert: %s\n" % e)
 ```
@@ -115,6 +138,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **str, none_type**| Specifies the id of tenant. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -161,6 +186,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 tenant_ids = [
         "tenantIds_example",
     ] # [str] | TenantIds contains ids of the tenants for which tenants are returned. If no tenant id is specified, all tenant certificates are returned. (optional)
@@ -169,7 +196,7 @@ tenant_ids = [
 # and optional values
 try:
 	# Get DMaaS tenant certificates on the cluster.
-	api_response = client.d_maa_s_tenant_certificate.get_dmaas_tenant_certs(tenant_ids=tenant_ids)
+	api_response = client.d_maa_s_tenant_certificate.get_dmaas_tenant_certs(access_cluster_id=access_cluster_id, region_id=region_id, tenant_ids=tenant_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DMaaSTenantCertificateApi->get_dmaas_tenant_certs: %s\n" % e)
@@ -180,6 +207,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which tenants are returned. If no tenant id is specified, all tenant certificates are returned. | [optional]
 
 ### Return type

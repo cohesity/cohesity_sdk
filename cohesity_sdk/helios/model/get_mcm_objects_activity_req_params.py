@@ -109,6 +109,7 @@ class GetMcmObjectsActivityReqParams(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('activity_types',): {
             'None': None,
@@ -140,12 +141,14 @@ class GetMcmObjectsActivityReqParams(ModelNormal):
             'object_identifiers': ([McmObjectIdentifier], none_type,),  # noqa: E501
             'environments': ([str], none_type,),  # noqa: E501
             'statuses': ([str], none_type,),  # noqa: E501
+            'message_codes': ([str], none_type,),  # noqa: E501
             'from_time_usecs': (int, none_type,),  # noqa: E501
             'to_time_usecs': (int, none_type,),  # noqa: E501
             'activity_types': ([str], none_type,),  # noqa: E501
             'backup_run_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'archival_run_params': (ArchivalRunFilterParams,),  # noqa: E501
             'restore_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'is_sla_violated': (bool, none_type,),  # noqa: E501
             'exclude_data': (bool, none_type,),  # noqa: E501
             'exclude_stats': (bool, none_type,),  # noqa: E501
             'stats_params': (ActivityStatsParams,),  # noqa: E501
@@ -161,12 +164,14 @@ class GetMcmObjectsActivityReqParams(ModelNormal):
         'object_identifiers': 'objectIdentifiers',  # noqa: E501
         'environments': 'environments',  # noqa: E501
         'statuses': 'statuses',  # noqa: E501
+        'message_codes': 'messageCodes',  # noqa: E501
         'from_time_usecs': 'fromTimeUsecs',  # noqa: E501
         'to_time_usecs': 'toTimeUsecs',  # noqa: E501
         'activity_types': 'activityTypes',  # noqa: E501
         'backup_run_params': 'backupRunParams',  # noqa: E501
         'archival_run_params': 'archivalRunParams',  # noqa: E501
         'restore_params': 'restoreParams',  # noqa: E501
+        'is_sla_violated': 'isSlaViolated',  # noqa: E501
         'exclude_data': 'excludeData',  # noqa: E501
         'exclude_stats': 'excludeStats',  # noqa: E501
         'stats_params': 'statsParams',  # noqa: E501
@@ -222,12 +227,14 @@ class GetMcmObjectsActivityReqParams(ModelNormal):
             object_identifiers ([McmObjectIdentifier], none_type): Specifies the list of object identifiers to filter the activity.. [optional]  # noqa: E501
             environments ([str], none_type): Specifies the list of environments.. [optional]  # noqa: E501
             statuses ([str], none_type): Specifies the list of statuses to filter activity events.. [optional]  # noqa: E501
+            message_codes ([str], none_type): Specifies the error codes to filter backup runs.. [optional]  # noqa: E501
             from_time_usecs (int, none_type): Specifies the time in Unix timestamp epoch in microsecond which filters all the activity started after this value.. [optional]  # noqa: E501
             to_time_usecs (int, none_type): Specifies the time in Unix timestamp epoch in microsecond which filters all the activity started before this value.. [optional]  # noqa: E501
             activity_types ([str], none_type): Specifies the activity types.. [optional]  # noqa: E501
             backup_run_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the additional filters in case activity type is set to 'BackupRun'.. [optional]  # noqa: E501
             archival_run_params (ArchivalRunFilterParams): [optional]  # noqa: E501
             restore_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the additional filters in case activity type is set to 'Restore'.. [optional]  # noqa: E501
+            is_sla_violated (bool, none_type): Specifies whether to only return activities which violated SLA. Default is false.. [optional]  # noqa: E501
             exclude_data (bool, none_type): Specifies whether to exclude activity information from the response. If not specified or false, activity information will be included.. [optional]  # noqa: E501
             exclude_stats (bool, none_type): Specifies whether to exclude stats information from the response. If not specified or false, stats information will be included.. [optional]  # noqa: E501
             stats_params (ActivityStatsParams): [optional]  # noqa: E501

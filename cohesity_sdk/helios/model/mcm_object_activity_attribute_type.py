@@ -59,6 +59,7 @@ class McmObjectActivityAttributeType(ModelNormal):
             'OBJECTENVIRONMENT': "ObjectEnvironment",
             'PROTECTIONENVIRONMENT': "ProtectionEnvironment",
             'ACTIVITYTYPE': "ActivityType",
+            'MESSAGECODE': "MessageCode",
         },
     }
 

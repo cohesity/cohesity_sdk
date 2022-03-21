@@ -3,13 +3,104 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**fetch_throttling_stats**](StatsApi.md#fetch_throttling_stats) | **GET** /mcm/stats/{registrationId}/throttling | Fetch the throttling stats of a source.
 [**get_cluster_storage_stats**](StatsApi.md#get_cluster_storage_stats) | **GET** /stats/cluster-storage | Get Cluster Storage Stats.
 [**get_files_stats**](StatsApi.md#get_files_stats) | **GET** /stats/files | Get Stats of Files.
 [**get_protection_runs_stats**](StatsApi.md#get_protection_runs_stats) | **GET** /stats/protection-runs | Get statistics of protection runs.
 [**get_time_series_stats**](StatsApi.md#get_time_series_stats) | **GET** /stats/time-series-stats | Get Time Series Stats.
 [**get_view_client_stats**](StatsApi.md#get_view_client_stats) | **GET** /stats/view-clients | Get Stats of View Clients
 [**get_views_stats**](StatsApi.md#get_views_stats) | **GET** /stats/views | Get Views Stats.
+[**mcm_get_policy_last_run_stats**](StatsApi.md#mcm_get_policy_last_run_stats) | **GET** /mcm/stats/policies/last-run | Compute stats of last Protection Run of Protection Policies.
+[**mcm_get_protection_run_last_run_stats**](StatsApi.md#mcm_get_protection_run_last_run_stats) | **GET** /mcm/stats/protection-runs/last-run | Compute stats of last Protection Run across all objects.
 
+
+# **fetch_throttling_stats**
+> FetchThrottlingStatsResponseBody fetch_throttling_stats(registration_id, source_id)
+
+Fetch the throttling stats of a source.
+
+Compute the throttling stats for a source and return time series data.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.fetch_throttling_stats_response_body import FetchThrottlingStatsResponseBody
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+registration_id = "registrationId_example" # str, none_type | Specifies the registration id of the protected source. It is of the format {clusterID}:{IncarnationId}:{EntityId}.
+source_id = "sourceId_example" # str, none_type | Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique.
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+start_time_usecs = 1 # int | Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. (optional)
+end_time_usecs = 1 # int | Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. (optional)
+workload_type = [
+        "kO365Exchange",
+    ] # [str], none_type | Specifies the list of workload types within the source for which throttling stats are needed. (optional)
+api_type = [
+        "kEWS",
+    ] # [str], none_type | Specifies the list of api type within the source for which throttling stats are needed. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Fetch the throttling stats of a source.
+	api_response = client.stats.fetch_throttling_stats(registration_id, source_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StatsApi->fetch_throttling_stats: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Fetch the throttling stats of a source.
+	api_response = client.stats.fetch_throttling_stats(registration_id, source_id, region_id=region_id, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, workload_type=workload_type, api_type=api_type)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StatsApi->fetch_throttling_stats: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registration_id** | **str, none_type**| Specifies the registration id of the protected source. It is of the format {clusterID}:{IncarnationId}:{EntityId}. |
+ **source_id** | **str, none_type**| Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique. |
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **start_time_usecs** | **int**| Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. | [optional]
+ **end_time_usecs** | **int**| Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. | [optional]
+ **workload_type** | **[str], none_type**| Specifies the list of workload types within the source for which throttling stats are needed. | [optional]
+ **api_type** | **[str], none_type**| Specifies the list of api type within the source for which throttling stats are needed. | [optional]
+
+### Return type
+
+[**FetchThrottlingStatsResponseBody**](FetchThrottlingStatsResponseBody.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_cluster_storage_stats**
 > ClusterStorageStats get_cluster_storage_stats()
@@ -436,6 +527,142 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ViewsStats**](ViewsStats.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mcm_get_policy_last_run_stats**
+> McmGetPolicyLastRunStatsResponseBody mcm_get_policy_last_run_stats()
+
+Compute stats of last Protection Run of Protection Policies.
+
+Compute stats of last Protection Run of Protection Policies.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.mcm_get_policy_last_run_stats_response_body import McmGetPolicyLastRunStatsResponseBody
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+region_ids = [
+        "regionIds_example",
+    ] # [str] | Filter by a list of region ids. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Compute stats of last Protection Run of Protection Policies.
+	api_response = client.stats.mcm_get_policy_last_run_stats(region_id=region_id, region_ids=region_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StatsApi->mcm_get_policy_last_run_stats: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **region_ids** | **[str]**| Filter by a list of region ids. | [optional]
+
+### Return type
+
+[**McmGetPolicyLastRunStatsResponseBody**](McmGetPolicyLastRunStatsResponseBody.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mcm_get_protection_run_last_run_stats**
+> McmGetProtectionLastRunStatsResponseBody mcm_get_protection_run_last_run_stats()
+
+Compute stats of last Protection Run across all objects.
+
+Compute stats of last Protection Run across all objects.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.mcm_get_protection_last_run_stats_response_body import McmGetProtectionLastRunStatsResponseBody
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+region_ids = [
+        "regionIds_example",
+    ] # [str] | Filter by a list of region ids. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Compute stats of last Protection Run across all objects.
+	api_response = client.stats.mcm_get_protection_run_last_run_stats(region_id=region_id, region_ids=region_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StatsApi->mcm_get_protection_run_last_run_stats: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **region_ids** | **[str]**| Filter by a list of region ids. | [optional]
+
+### Return type
+
+[**McmGetProtectionLastRunStatsResponseBody**](McmGetProtectionLastRunStatsResponseBody.md)
 
 ### Authorization
 

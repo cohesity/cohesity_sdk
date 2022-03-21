@@ -65,6 +65,7 @@ class McmObjectActivityStats(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('activity_type',): {
             'None': None,
@@ -122,6 +123,7 @@ class McmObjectActivityStats(ModelNormal):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -174,6 +176,7 @@ class McmObjectActivityStats(ModelNormal):
         return {
             'activity_count': (int, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
+            'message_code': (str, none_type,),  # noqa: E501
             'activity_type': (str, none_type,),  # noqa: E501
             'object_environment': (str, none_type,),  # noqa: E501
             'protection_environment': (str, none_type,),  # noqa: E501
@@ -188,6 +191,7 @@ class McmObjectActivityStats(ModelNormal):
     attribute_map = {
         'activity_count': 'activityCount',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'message_code': 'messageCode',  # noqa: E501
         'activity_type': 'activityType',  # noqa: E501
         'object_environment': 'objectEnvironment',  # noqa: E501
         'protection_environment': 'protectionEnvironment',  # noqa: E501
@@ -242,6 +246,7 @@ class McmObjectActivityStats(ModelNormal):
 
             activity_count (int, none_type): Specifies the count of activities.. [optional]  # noqa: E501
             status (str, none_type): Status of the activity. [optional]  # noqa: E501
+            message_code (str, none_type): Specifies a short message describing the type of error which occurred.. [optional]  # noqa: E501
             activity_type (str, none_type): Type of the activity. [optional]  # noqa: E501
             object_environment (str, none_type): Environment type of object.. [optional]  # noqa: E501
             protection_environment (str, none_type): Environment type of the protection.. [optional]  # noqa: E501

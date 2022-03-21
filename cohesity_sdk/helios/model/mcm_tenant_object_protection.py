@@ -85,6 +85,7 @@ class McmTenantObjectProtection(ModelNormal):
             'tenant_ids': ([str, none_type],),  # noqa: E501
             'account_id': (str, none_type,),  # noqa: E501
             'dmaas_tenant_id': (str, none_type,),  # noqa: E501
+            'region_id': (str, none_type,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
             'user_details': (User,),  # noqa: E501
@@ -104,6 +105,7 @@ class McmTenantObjectProtection(ModelNormal):
         'tenant_ids': 'tenantIds',  # noqa: E501
         'account_id': 'accountId',  # noqa: E501
         'dmaas_tenant_id': 'dmaasTenantId',  # noqa: E501
+        'region_id': 'regionId',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
         'user_details': 'userDetails',  # noqa: E501
@@ -163,6 +165,7 @@ class McmTenantObjectProtection(ModelNormal):
             tenant_ids ([str, none_type]): Specifies the tenants which have access to this object.. [optional]  # noqa: E501
             account_id (str, none_type): Specifies the account ID to which this source belongs.. [optional]  # noqa: E501
             dmaas_tenant_id (str, none_type): Specifies the DMaaS tenant ID to which this source belongs.. [optional]  # noqa: E501
+            region_id (str, none_type): Specifies the region ID of the cluster.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the ID of the cluster to which the source is registered.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the object hash of the source.. [optional]  # noqa: E501
             user_details (User): [optional]  # noqa: E501

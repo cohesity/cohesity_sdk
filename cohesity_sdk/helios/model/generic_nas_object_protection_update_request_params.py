@@ -30,12 +30,14 @@ def lazy_import():
     from cohesity_sdk.helios.model.common_nas_protection_params import CommonNasProtectionParams
     from cohesity_sdk.helios.model.file_filtering_policy import FileFilteringPolicy
     from cohesity_sdk.helios.model.file_level_data_lock_config import FileLevelDataLockConfig
+    from cohesity_sdk.helios.model.generic_nas_object_protection_params import GenericNasObjectProtectionParams
     from cohesity_sdk.helios.model.host_based_backup_script_params import HostBasedBackupScriptParams
     from cohesity_sdk.helios.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.helios.model.nas_throttling_config import NasThrottlingConfig
     globals()['CommonNasProtectionParams'] = CommonNasProtectionParams
     globals()['FileFilteringPolicy'] = FileFilteringPolicy
     globals()['FileLevelDataLockConfig'] = FileLevelDataLockConfig
+    globals()['GenericNasObjectProtectionParams'] = GenericNasObjectProtectionParams
     globals()['HostBasedBackupScriptParams'] = HostBasedBackupScriptParams
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
@@ -68,6 +70,15 @@ class GenericNasObjectProtectionUpdateRequestParams(ModelComposed):
     """
 
     allowed_values = {
+        ('protocol',): {
+            'None': None,
+            'KNOPROTOCOL': "kNoProtocol",
+            'KNFS3': "kNfs3",
+            'KNFS4_1': "kNfs4_1",
+            'KCIFS1': "kCifs1",
+            'KCIFS2': "kCifs2",
+            'KCIFS3': "kCifs3",
+        },
     }
 
     validations = {
@@ -96,6 +107,7 @@ class GenericNasObjectProtectionUpdateRequestParams(ModelComposed):
             'file_filters': (FileFilteringPolicy,),  # noqa: E501
             'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +124,7 @@ class GenericNasObjectProtectionUpdateRequestParams(ModelComposed):
         'file_filters': 'fileFilters',  # noqa: E501
         'pre_post_script': 'prePostScript',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
     }
 
     required_properties = set([
@@ -169,6 +182,7 @@ class GenericNasObjectProtectionUpdateRequestParams(ModelComposed):
             file_filters (FileFilteringPolicy): [optional]  # noqa: E501
             pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -241,6 +255,7 @@ class GenericNasObjectProtectionUpdateRequestParams(ModelComposed):
           ],
           'allOf': [
               CommonNasProtectionParams,
+              GenericNasObjectProtectionParams,
           ],
           'oneOf': [
           ],

@@ -61,6 +61,7 @@ class BackupRunFilterParams(ModelNormal):
             'KLOG': "kLog",
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
+            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
         },
         ('protection_environment_types',): {
             'None': None,
@@ -76,6 +77,7 @@ class BackupRunFilterParams(ModelNormal):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",

@@ -80,6 +80,8 @@ class AzureHotBlobParams(ModelNormal):
         """
         return {
             'category': (str, none_type,),  # noqa: E501
+            'function_app_name': (str, none_type,),  # noqa: E501
+            'function_app_deployment_key': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +92,8 @@ class AzureHotBlobParams(ModelNormal):
 
     attribute_map = {
         'category': 'category',  # noqa: E501
+        'function_app_name': 'functionAppName',  # noqa: E501
+        'function_app_deployment_key': 'functionAppDeploymentKey',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,6 +146,8 @@ class AzureHotBlobParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            function_app_name (str, none_type): Specifies the name of the Azure function app, which is the host of Azure functions.. [optional]  # noqa: E501
+            function_app_deployment_key (str, none_type): Specifies the access key to deploy Azure function to function app. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

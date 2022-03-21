@@ -76,7 +76,7 @@ class TenantNetwork(ModelNormal):
         return {
             'connector_enabled': (bool, none_type,),  # noqa: E501
             'cluster_hostname': (str, none_type,),  # noqa: E501
-            'cluster_ips': ([str, none_type], none_type,),  # noqa: E501
+            'cluster_ips': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +142,7 @@ class TenantNetwork(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cluster_hostname (str, none_type): The hostname for Cohesity cluster as seen by tenants and as is routable from the tenant's network. Tenant's VLAN's hostname, if available can be used instead but it is mandatory to provide this value if there's no VLAN hostname to use. Also, when set, this field would take precedence over VLAN hostname.. [optional]  # noqa: E501
-            cluster_ips ([str, none_type], none_type): Set of IPs as seen from the tenant's network for the Cohesity cluster. Only one from 'clusterHostname' and 'clusterIps' is needed.. [optional]  # noqa: E501
+            cluster_ips ([str], none_type): Set of IPs as seen from the tenant's network for the Cohesity cluster. Only one from 'clusterHostname' and 'clusterIps' is needed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -54,6 +54,28 @@ class QoS(ModelNormal):
     """
 
     allowed_values = {
+        ('principal_name',): {
+            'None': None,
+            'BACKUP_TARGET_HIGH': "Backup Target High",
+            'BACKUP_TARGET_LOW': "Backup Target Low",
+            'TESTANDDEV_HIGH': "TestAndDev High",
+            'TESTANDDEV_LOW': "TestAndDev Low",
+            'BACKUP_TARGET_SSD': "Backup Target SSD",
+            'BACKUP_TARGET_COMMVAULT': "Backup Target Commvault",
+            'JOURNALED_SEQUENTIAL_DUMP': "Journaled Sequential Dump",
+            'BACKUP_TARGET_AUTO': "Backup Target Auto",
+        },
+        ('name',): {
+            'None': None,
+            'BACKUPTARGETHIGH': "BackupTargetHigh",
+            'BACKUPTARGETLOW': "BackupTargetLow",
+            'TESTANDDEVHIGH': "TestAndDevHigh",
+            'TESTANDDEVLOW': "TestAndDevLow",
+            'BACKUPTARGETSSD': "BackupTargetSSD",
+            'BACKUPTARGETCOMMVAULT': "BackupTargetCommvault",
+            'JOURNALEDSEQUENTIALDUMP': "JournaledSequentialDump",
+            'BACKUPTARGETAUTO': "BackupTargetAuto",
+        },
     }
 
     validations = {
@@ -76,6 +98,7 @@ class QoS(ModelNormal):
         return {
             'principal_id': (int, none_type,),  # noqa: E501
             'principal_name': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +110,7 @@ class QoS(ModelNormal):
     attribute_map = {
         'principal_id': 'principalId',  # noqa: E501
         'principal_name': 'principalName',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +160,9 @@ class QoS(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            principal_id (int, none_type): Specifies the name of the QoS Policy used for the View.. [optional]  # noqa: E501
-            principal_name (str, none_type): Specifies the name of the QoS Policy used for the View such as 'TestAndDev High', 'Backup Target SSD', 'Backup Target High' 'TestAndDev Low' and 'Backup Target Low'. For a complete list and descriptions, see the 'Create or Edit Views' topic in the documentation. If not specified, the default is 'Backup Target Low'.. [optional]  # noqa: E501
+            principal_id (int, none_type): Specifies the id of the QoS Policy used for the View. (Deprecated) This parameter is deprecated and shall not be supported in future releases. Use name instead.. [optional]  # noqa: E501
+            principal_name (str, none_type): Specifies the name of the QoS Policy. If not specified, the default is 'Backup Target Low'. (To be deprecated in future release, use name instead). [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the QoS Policy. If not specified, the default is 'BackupTargetLow'.  BackupTargetAuto: (Applicable only for C6K Platform) Use this policy for workloads such as backups, which keep many I/Os outstanding. This policy splits I/Os across SSDs and HDDs to achieve maximum performance based on the current usage. The priority for processing workload with this policy is the same as Backup Target High and Backup Target SSD.  JournaledSequentialDump: Use this policy for workloads that write large amounts of data sequentially to a very small number of files and do not keep many I/Os outstanding. By default data is written to the SSD and has the highest priority and low latency.  TestAndDevHigh: Use this policy for workloads that require lower I/O latency or do not keep many I/Os outstanding, as the I/Os are given higher priority compared to other QoS policies. Data is written to the SSD.  TestAndDevLow: The same as TestAndDev High, except that the I/Os with this QoS policy are given lower priority compared to I/Os with TestAndDev High when there is contention.  BackupTargetCommvault: Use this policy to intelligently detect and exclude application-specific markers to achieve better deduplication when CommVault backup application is writing to a Cohesity View. Data is written to SSD and has the same priority and latency as TestAndDev High.  BackupTargetSSD: Use this policy for workloads such as backups, which keep many I/Os outstanding, but in this case, DataPlatform sends both sequential and random I/Os to SSD. The latency is lower than other Backup Target policies. The priority for processing workload with this policy is the same as Backup Target Auto.  BackupTargetHigh: Use this policy for non-latency sensitive workloads such as backups, which keep many I/Os outstanding. Data is written to HDD and has higher latency compared to other QoS policies writing to a SSD The priority for processing workload with this policy is the same as Backup Target Auto.  BackupTargetLow: The same as Backup Target High, except that the priority for processing workloads with this policy is lower than workloads with Backup Target Auto / High /SSD when there is contention.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

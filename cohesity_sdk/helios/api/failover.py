@@ -27,6 +27,8 @@ from cohesity_sdk.helios.model.failover import Failover
 from cohesity_sdk.helios.model.failover_create_run_response import FailoverCreateRunResponse
 from cohesity_sdk.helios.model.failover_run_configuration import FailoverRunConfiguration
 from cohesity_sdk.helios.model.failover_runs_response import FailoverRunsResponse
+from cohesity_sdk.helios.model.get_failover_ops_response import GetFailoverOpsResponse
+from cohesity_sdk.helios.model.get_tracking_view_id_response import GetTrackingViewIdResponse
 from cohesity_sdk.helios.model.get_view_failover_response_body import GetViewFailoverResponseBody
 from cohesity_sdk.helios.model.init_failover_request import InitFailoverRequest
 from cohesity_sdk.helios.model.init_failover_response import InitFailoverResponse
@@ -394,7 +396,7 @@ class FailoverApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/data-protect/failover/{id}/plannedRun',
+                'endpoint_path': '/data-protect/failover/{id}/planned-run',
                 'operation_id': 'create_planned_run',
                 'http_method': 'POST',
                 'servers': None,
@@ -600,6 +602,278 @@ class FailoverApi(object):
             },
             api_client=api_client,
             callable=__create_view_failover
+        )
+
+        def __get_failover_ops(
+            self,
+            id,
+            **kwargs
+        ):
+            """Gets all the failover operations which can be performed on this view.  # noqa: E501
+
+            Gets all the failover operations which can be performed on this view.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_failover_ops(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the view id.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetFailoverOpsResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_failover_ops = _Endpoint(
+            settings={
+                'response_type': (GetFailoverOpsResponse,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/failover/views/{id}/operations',
+                'operation_id': 'get_failover_ops',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_failover_ops
+        )
+
+        def __get_tracking_view_id(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get tracking View Id  # noqa: E501
+
+            Get tracking View Id  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_tracking_view_id(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies the view_uid of the source view.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                is_forwarded (bool): Indicates whether the request is forwarded. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetTrackingViewIdResponse
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_tracking_view_id = _Endpoint(
+            settings={
+                'response_type': (GetTrackingViewIdResponse,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/failover/views/trackingViewId/{id}',
+                'operation_id': 'get_tracking_view_id',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'access_cluster_id',
+                    'region_id',
+                    'is_forwarded',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                    'is_forwarded':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                    'is_forwarded': 'isForwarded',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                    'is_forwarded': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_tracking_view_id
         )
 
         def __get_view_failover(
@@ -879,6 +1153,150 @@ class FailoverApi(object):
             callable=__init_failover
         )
 
+        def __internal_api_replication_backup_activation(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Activate failover entity backup on replication clsuter.  # noqa: E501
+
+            Specifies the configuration required for activating backup for failover objects on replication cluster. Here orchastrator can call this API multiple times as long as full set of object are non-overlapping. They can also use the existing job if its compatible to backup failover objects.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.internal_api_replication_backup_activation(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies the id of the failover workflow.
+                body (ReplicationBackupActivation): Specifies the paramteres to activate the backup of failover entities.
+
+            Keyword Args:
+                access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ReplicationBackupActivationResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.internal_api_replication_backup_activation = _Endpoint(
+            settings={
+                'response_type': (ReplicationBackupActivationResult,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/failover/{id}/backupActivation',
+                'operation_id': 'internal_api_replication_backup_activation',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                    'access_cluster_id',
+                    'region_id',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'body':
+                        (ReplicationBackupActivation,),
+                    'access_cluster_id':
+                        (int,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'access_cluster_id': 'accessClusterId',
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                    'access_cluster_id': 'header',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__internal_api_replication_backup_activation
+        )
+
         def __object_linkage(
             self,
             id,
@@ -959,7 +1377,7 @@ class FailoverApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/data-protect/failover/{id}/objectLinkage',
+                'endpoint_path': '/data-protect/failover/{id}/object-linkage',
                 'operation_id': 'object_linkage',
                 'http_method': 'POST',
                 'servers': None,
@@ -1101,7 +1519,7 @@ class FailoverApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/data-protect/failover/pollPlannedRuns',
+                'endpoint_path': '/data-protect/failover/planned-runs',
                 'operation_id': 'poll_planned_runs',
                 'http_method': 'GET',
                 'servers': None,
@@ -1250,7 +1668,7 @@ class FailoverApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/data-protect/failover/{id}/backupActivation',
+                'endpoint_path': '/data-protect/failover/{id}/backup-activation',
                 'operation_id': 'replication_backup_activation',
                 'http_method': 'POST',
                 'servers': None,
@@ -1394,7 +1812,7 @@ class FailoverApi(object):
                     'ClusterId',
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/data-protect/failover/{id}/backupDeactivation',
+                'endpoint_path': '/data-protect/failover/{id}/backup-deactivation',
                 'operation_id': 'source_backup_deactivation',
                 'http_method': 'POST',
                 'servers': None,

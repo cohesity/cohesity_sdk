@@ -32,11 +32,13 @@ def lazy_import():
     from cohesity_sdk.helios.model.minute_schedule import MinuteSchedule
     from cohesity_sdk.helios.model.month_schedule import MonthSchedule
     from cohesity_sdk.helios.model.week_schedule import WeekSchedule
+    from cohesity_sdk.helios.model.year_schedule import YearSchedule
     globals()['DaySchedule'] = DaySchedule
     globals()['HourSchedule'] = HourSchedule
     globals()['MinuteSchedule'] = MinuteSchedule
     globals()['MonthSchedule'] = MonthSchedule
     globals()['WeekSchedule'] = WeekSchedule
+    globals()['YearSchedule'] = YearSchedule
 
 
 class IncrementalSchedule(ModelNormal):
@@ -73,6 +75,7 @@ class IncrementalSchedule(ModelNormal):
             'DAYS': "Days",
             'WEEKS': "Weeks",
             'MONTHS': "Months",
+            'YEARS': "Years",
         },
     }
 
@@ -101,6 +104,7 @@ class IncrementalSchedule(ModelNormal):
             'day_schedule': (DaySchedule,),  # noqa: E501
             'week_schedule': (WeekSchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
+            'year_schedule': (YearSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -116,6 +120,7 @@ class IncrementalSchedule(ModelNormal):
         'day_schedule': 'daySchedule',  # noqa: E501
         'week_schedule': 'weekSchedule',  # noqa: E501
         'month_schedule': 'monthSchedule',  # noqa: E501
+        'year_schedule': 'yearSchedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -173,6 +178,7 @@ class IncrementalSchedule(ModelNormal):
             day_schedule (DaySchedule): [optional]  # noqa: E501
             week_schedule (WeekSchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
+            year_schedule (YearSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -54,6 +54,26 @@ class ViewIntent(ModelNormal):
     """
 
     allowed_values = {
+        ('default_template_name',): {
+            'None': None,
+            'UNKNOWN': "Unknown",
+            'BACKUPGENERAL': "BackupGeneral",
+            'BACKUPCOMMVAULT': "BackupCommvault",
+            'BACKUPVEEAM': "BackupVeeam",
+            'FILESERVICEVIDEOS': "FileServiceVideos",
+            'FILESERVICEMULTIMEDIA': "FileServiceMultimedia",
+            'FILESERVICEARCHIVE': "FileServiceArchive",
+            'OBJECTSERVICECONTAINER': "ObjectServiceContainer",
+            'ZDLRA': "ZDLRA",
+            'TSM': "TSM",
+            'APPLICATIONSDUMP': "ApplicationsDump",
+            'FILESERVICEGENERAL': "FileServiceGeneral",
+            'DIGITALARCHIVE': "DigitalArchive",
+            'OBJECTSERVICEGENERAL': "ObjectServiceGeneral",
+            'SPLUNKSMARTSTORE': "SplunkSmartStore",
+            'HADOOP': "Hadoop",
+            'ARCHIVESERVICESGENERAL': "ArchiveServicesGeneral",
+        },
     }
 
     validations = {
@@ -76,6 +96,7 @@ class ViewIntent(ModelNormal):
         return {
             'template_id': (int, none_type,),  # noqa: E501
             'template_name': (str, none_type,),  # noqa: E501
+            'default_template_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +108,7 @@ class ViewIntent(ModelNormal):
     attribute_map = {
         'template_id': 'templateId',  # noqa: E501
         'template_name': 'templateName',  # noqa: E501
+        'default_template_name': 'defaultTemplateName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,6 +160,7 @@ class ViewIntent(ModelNormal):
 
             template_id (int, none_type): Specifies the template id from which the View is created.. [optional]  # noqa: E501
             template_name (str, none_type): Specifies the template name from which the View is created.. [optional]  # noqa: E501
+            default_template_name (str, none_type): Used for uniquely indentifying a default template. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

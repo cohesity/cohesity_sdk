@@ -159,6 +159,7 @@ class SourceRegistrationRequestParams(ModelComposed):
             'encryption_key': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
+            'connector_group_id': (int, none_type,),  # noqa: E501
             'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
             'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
             'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
@@ -193,6 +194,7 @@ class SourceRegistrationRequestParams(ModelComposed):
         'encryption_key': 'encryptionKey',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
+        'connector_group_id': 'connectorGroupId',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
@@ -270,6 +272,7 @@ class SourceRegistrationRequestParams(ModelComposed):
             encryption_key (str, none_type): Specifies the key that user has encrypted the credential with.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
+            connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
             vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
             physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501

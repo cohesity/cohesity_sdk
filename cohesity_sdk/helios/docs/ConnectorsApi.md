@@ -3,85 +3,18 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_bifrost_connector**](ConnectorsApi.md#create_bifrost_connector) | **POST** /connector-hybrid-extender | Create a Bifrost connector on the cluster.
 [**create_rigel_connector**](ConnectorsApi.md#create_rigel_connector) | **POST** /connector-rigel | Create a Rigel connector on the cluster.
 [**delete_bifrost_connector**](ConnectorsApi.md#delete_bifrost_connector) | **DELETE** /connector-hybrid-extender/{id} | Delete a Bifrost connector.
 [**delete_rigel_connector**](ConnectorsApi.md#delete_rigel_connector) | **DELETE** /connector-rigel/{id} | Delete a Rigel connector.
 [**get_bifrost_connector**](ConnectorsApi.md#get_bifrost_connector) | **GET** /connector-hybrid-extender | Get Bifrost connectors on the cluster.
 [**get_bifrost_connector_by_id**](ConnectorsApi.md#get_bifrost_connector_by_id) | **GET** /connector-hybrid-extender/{id} | Get a Bifrost connector by the id.
+[**get_connectivity_check**](ConnectorsApi.md#get_connectivity_check) | **GET** /connectivity-endpoints | Get connectivity check results.
 [**get_rigel_connector**](ConnectorsApi.md#get_rigel_connector) | **GET** /connector-rigel | Get Rigel connectors on the cluster.
 [**get_rigel_connector_by_id**](ConnectorsApi.md#get_rigel_connector_by_id) | **GET** /connector-rigel/{id} | Get a Rigel connector by the id.
+[**perform_connectivity_check**](ConnectorsApi.md#perform_connectivity_check) | **POST** /connectivity-endpoints | Perform Connectivity Check.
 [**update_bifrost_connector**](ConnectorsApi.md#update_bifrost_connector) | **PUT** /connector-hybrid-extender/{id} | Update a Bifrost connector.
 [**update_rigel_connector**](ConnectorsApi.md#update_rigel_connector) | **PUT** /connector-rigel/{id} | Update a Rigel connector.
 
-
-# **create_bifrost_connector**
-> BifrostConnector create_bifrost_connector(body)
-
-Create a Bifrost connector on the cluster.
-
-Create a Bifrost connector on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.create_or_update_bifrost_connector_request import CreateOrUpdateBifrostConnectorRequest
-from cohesity_sdk.helios.model.error import Error
-from cohesity_sdk.helios.model.bifrost_connector import BifrostConnector
-from cohesity_sdk.helios.exceptions import ApiException
-from pprint import pprint
-
-
-api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
-
-client = HeliosClient(api_key=api_key)
-
-
-body = CreateOrUpdateBifrostConnectorRequest(
-        connection_id=1,
-        tenant_id="tenant_id_example",
-        name="name_example",
-    ) # CreateOrUpdateBifrostConnectorRequest | Specifies the parameters to create a connector.
-
-# example passing only required values which don't have defaults set
-try:
-	# Create a Bifrost connector on the cluster.
-	api_response = client.connectors.create_bifrost_connector(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling ConnectorsApi->create_bifrost_connector: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CreateOrUpdateBifrostConnectorRequest**](CreateOrUpdateBifrostConnectorRequest.md)| Specifies the parameters to create a connector. |
-
-### Return type
-
-[**BifrostConnector**](BifrostConnector.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_rigel_connector**
 > RigelConnector create_rigel_connector(body)
@@ -108,11 +41,22 @@ client = HeliosClient(api_key=api_key)
 
 
 body = CreateRigelConnectorRequest() # CreateRigelConnectorRequest | Specifies the parameters to create a connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a Rigel connector on the cluster.
 	api_response = client.connectors.create_rigel_connector(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->create_rigel_connector: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Create a Rigel connector on the cluster.
+	api_response = client.connectors.create_rigel_connector(body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->create_rigel_connector: %s\n" % e)
@@ -124,6 +68,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateRigelConnectorRequest**](CreateRigelConnectorRequest.md)| Specifies the parameters to create a connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -169,12 +115,22 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = 1 # int, none_type | Specifies the id of connector.
+id = "id_example" # str, none_type | Specifies the id of connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Bifrost connector.
 	client.connectors.delete_bifrost_connector(id)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->delete_bifrost_connector: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Bifrost connector.
+	client.connectors.delete_bifrost_connector(id, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->delete_bifrost_connector: %s\n" % e)
 ```
@@ -184,7 +140,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int, none_type**| Specifies the id of connector. |
+ **id** | **str, none_type**| Specifies the id of connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -235,11 +193,21 @@ id = 1 # int, none_type | Specifies the id of connector.
 body = DeleteRigelConnectorRequest(
         tenant_id="tenant_id_example",
     ) # DeleteRigelConnectorRequest | Specifies the parameters to delete a connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Delete a Rigel connector.
 	client.connectors.delete_rigel_connector(id, body)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->delete_rigel_connector: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Rigel connector.
+	client.connectors.delete_rigel_connector(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->delete_rigel_connector: %s\n" % e)
 ```
@@ -251,6 +219,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int, none_type**| Specifies the id of connector. |
  **body** | [**DeleteRigelConnectorRequest**](DeleteRigelConnectorRequest.md)| Specifies the parameters to delete a connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -297,9 +267,11 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
-        1,
-    ] # [int], none_type | Specifies the id of the connectors. (optional)
+        "ids_example",
+    ] # [str], none_type | Specifies the id of the connectors. (optional)
 names = [
         "names_example",
     ] # [str], none_type | Specifies the name of the connectors. (optional)
@@ -310,7 +282,7 @@ connection_id = 1 # int, none_type | Specifies the Id of the connection which th
 # and optional values
 try:
 	# Get Bifrost connectors on the cluster.
-	api_response = client.connectors.get_bifrost_connector(ids=ids, names=names, tenant_id=tenant_id, connection_id=connection_id)
+	api_response = client.connectors.get_bifrost_connector(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, names=names, tenant_id=tenant_id, connection_id=connection_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->get_bifrost_connector: %s\n" % e)
@@ -321,7 +293,9 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | **[int], none_type**| Specifies the id of the connectors. | [optional]
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **ids** | **[str], none_type**| Specifies the id of the connectors. | [optional]
  **names** | **[str], none_type**| Specifies the name of the connectors. | [optional]
  **tenant_id** | **str, none_type**| Specifies the id of the tenant which the connector belongs to. | [optional]
  **connection_id** | **int, none_type**| Specifies the Id of the connection which the connector belongs to. | [optional]
@@ -371,7 +345,9 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = 1 # int, none_type | Specifies the id of connector.
+id = "id_example" # str, none_type | Specifies the id of connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 tenant_id = "tenantId_example" # str, none_type | Specifies the id of the tenant which the connector belongs to. (optional)
 
 # example passing only required values which don't have defaults set
@@ -386,7 +362,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get a Bifrost connector by the id.
-	api_response = client.connectors.get_bifrost_connector_by_id(id, tenant_id=tenant_id)
+	api_response = client.connectors.get_bifrost_connector_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, tenant_id=tenant_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->get_bifrost_connector_by_id: %s\n" % e)
@@ -397,12 +373,80 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int, none_type**| Specifies the id of connector. |
+ **id** | **str, none_type**| Specifies the id of connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **tenant_id** | **str, none_type**| Specifies the id of the tenant which the connector belongs to. | [optional]
 
 ### Return type
 
 [**BifrostConnector**](BifrostConnector.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_connectivity_check**
+> ConnectivityCheckResponseBody get_connectivity_check()
+
+Get connectivity check results.
+
+Get connectivity check results.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.connectivity_check_response_body import ConnectivityCheckResponseBody
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get connectivity check results.
+	api_response = client.connectors.get_connectivity_check(access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->get_connectivity_check: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**ConnectivityCheckResponseBody**](ConnectivityCheckResponseBody.md)
 
 ### Authorization
 
@@ -445,6 +489,8 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 ids = [
         1,
     ] # [int], none_type | Specifies the id of the connector. (optional)
@@ -458,7 +504,7 @@ connection_id = 1 # int, none_type | Specifies the Id of the connection which th
 # and optional values
 try:
 	# Get Rigel connectors on the cluster.
-	api_response = client.connectors.get_rigel_connector(ids=ids, names=names, tenant_id=tenant_id, connection_id=connection_id)
+	api_response = client.connectors.get_rigel_connector(access_cluster_id=access_cluster_id, region_id=region_id, ids=ids, names=names, tenant_id=tenant_id, connection_id=connection_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->get_rigel_connector: %s\n" % e)
@@ -469,6 +515,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **ids** | **[int], none_type**| Specifies the id of the connector. | [optional]
  **names** | **[str], none_type**| Specifies the name of the connectors. | [optional]
  **tenant_id** | **str, none_type**| Specifies the id of the tenant which the connector belongs to. | [optional]
@@ -520,6 +568,8 @@ client = HeliosClient(api_key=api_key)
 
 
 id = 1 # int, none_type | Specifies the id of connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 tenant_id = "tenantId_example" # str, none_type | Specifies the id of the tenant which the connector belongs to. (optional)
 
 # example passing only required values which don't have defaults set
@@ -534,7 +584,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get a Rigel connector by the id.
-	api_response = client.connectors.get_rigel_connector_by_id(id, tenant_id=tenant_id)
+	api_response = client.connectors.get_rigel_connector_by_id(id, access_cluster_id=access_cluster_id, region_id=region_id, tenant_id=tenant_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->get_rigel_connector_by_id: %s\n" % e)
@@ -546,6 +596,8 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int, none_type**| Specifies the id of connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
  **tenant_id** | **str, none_type**| Specifies the id of the tenant which the connector belongs to. | [optional]
 
 ### Return type
@@ -570,6 +622,70 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **perform_connectivity_check**
+> perform_connectivity_check()
+
+Perform Connectivity Check.
+
+Perform connectivity checks on endpoints.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Perform Connectivity Check.
+	client.connectors.perform_connectivity_check(access_cluster_id=access_cluster_id, region_id=region_id)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->perform_connectivity_check: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_bifrost_connector**
 > BifrostConnector update_bifrost_connector(id, body)
 
@@ -582,9 +698,9 @@ Update a Bifrost connector.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import HeliosClient
-from cohesity_sdk.helios.model.create_or_update_bifrost_connector_request import CreateOrUpdateBifrostConnectorRequest
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.bifrost_connector import BifrostConnector
+from cohesity_sdk.helios.model.update_bifrost_connector_request import UpdateBifrostConnectorRequest
 from cohesity_sdk.helios.exceptions import ApiException
 from pprint import pprint
 
@@ -594,17 +710,24 @@ api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
 client = HeliosClient(api_key=api_key)
 
 
-id = 1 # int, none_type | Specifies the id of connector.
-body = CreateOrUpdateBifrostConnectorRequest(
-        connection_id=1,
-        tenant_id="tenant_id_example",
-        name="name_example",
-    ) # CreateOrUpdateBifrostConnectorRequest | Specifies the parameters to update a connector.
+id = "id_example" # str, none_type | Specifies the id of connector.
+body = UpdateBifrostConnectorRequest() # UpdateBifrostConnectorRequest | Specifies the parameters to update a connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Bifrost connector.
 	api_response = client.connectors.update_bifrost_connector(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->update_bifrost_connector: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Bifrost connector.
+	api_response = client.connectors.update_bifrost_connector(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->update_bifrost_connector: %s\n" % e)
@@ -615,8 +738,10 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int, none_type**| Specifies the id of connector. |
- **body** | [**CreateOrUpdateBifrostConnectorRequest**](CreateOrUpdateBifrostConnectorRequest.md)| Specifies the parameters to update a connector. |
+ **id** | **str, none_type**| Specifies the id of connector. |
+ **body** | [**UpdateBifrostConnectorRequest**](UpdateBifrostConnectorRequest.md)| Specifies the parameters to update a connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 
@@ -666,11 +791,22 @@ client = HeliosClient(api_key=api_key)
 
 id = 1 # int, none_type | Specifies the id of connector.
 body = UpdateRigelConnectorRequest() # UpdateRigelConnectorRequest | Specifies the parameters to update a connector.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Update a Rigel connector.
 	api_response = client.connectors.update_rigel_connector(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->update_rigel_connector: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a Rigel connector.
+	api_response = client.connectors.update_rigel_connector(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ConnectorsApi->update_rigel_connector: %s\n" % e)
@@ -683,6 +819,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int, none_type**| Specifies the id of connector. |
  **body** | [**UpdateRigelConnectorRequest**](UpdateRigelConnectorRequest.md)| Specifies the parameters to update a connector. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
 
 ### Return type
 

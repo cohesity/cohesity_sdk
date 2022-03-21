@@ -86,8 +86,8 @@ class CreateRoleParams(ModelComposed):
         lazy_import()
         return {
             'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'privileges': ([str], none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +98,8 @@ class CreateRoleParams(ModelComposed):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'privileges': 'privileges',  # noqa: E501
+        'description': 'description',  # noqa: E501
     }
 
     required_properties = set([
@@ -115,11 +115,12 @@ class CreateRoleParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, privileges, *args, **kwargs):  # noqa: E501
         """CreateRoleParams - a model defined in OpenAPI
 
         Args:
             name (str, none_type): Specifies the Role name.
+            privileges ([str], none_type): Specifies the list of Privileges of the Role.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -154,7 +155,6 @@ class CreateRoleParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description message for the Role.. [optional]  # noqa: E501
-            privileges ([str], none_type): Specifies the list of Privileges of the Role.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -190,6 +190,7 @@ class CreateRoleParams(ModelComposed):
         }
         required_args = {
             'name': name,
+            'privileges': privileges,
         }
         model_args = {}
         model_args.update(required_args)

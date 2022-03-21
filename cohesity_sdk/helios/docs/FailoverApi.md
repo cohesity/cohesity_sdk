@@ -5,14 +5,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_failover**](FailoverApi.md#cancel_failover) | **POST** /data-protect/failover/{id}/cancel | Cancel failover workflow.
 [**cancel_view_failover**](FailoverApi.md#cancel_view_failover) | **POST** /data-protect/failover/views/{id}/cancel | Cancel View Failover Task.
-[**create_planned_run**](FailoverApi.md#create_planned_run) | **POST** /data-protect/failover/{id}/plannedRun | Create a planned run for backup and replication.
+[**create_planned_run**](FailoverApi.md#create_planned_run) | **POST** /data-protect/failover/{id}/planned-run | Create a planned run for backup and replication.
 [**create_view_failover**](FailoverApi.md#create_view_failover) | **POST** /data-protect/failover/views/{id} | Create View Failover Task.
+[**get_failover_ops**](FailoverApi.md#get_failover_ops) | **GET** /data-protect/failover/views/{id}/operations | Gets all the failover operations which can be performed on this view.
+[**get_tracking_view_id**](FailoverApi.md#get_tracking_view_id) | **GET** /data-protect/failover/views/trackingViewId/{id} | Get tracking View Id
 [**get_view_failover**](FailoverApi.md#get_view_failover) | **GET** /data-protect/failover/views/{id} | Get View Failover.
 [**init_failover**](FailoverApi.md#init_failover) | **POST** /data-protect/failover/{id} | Initiate a failover request.
-[**object_linkage**](FailoverApi.md#object_linkage) | **POST** /data-protect/failover/{id}/objectLinkage | Linking between replicated objects and failover objects
-[**poll_planned_runs**](FailoverApi.md#poll_planned_runs) | **GET** /data-protect/failover/pollPlannedRuns | Get the list of failover planned runs.
-[**replication_backup_activation**](FailoverApi.md#replication_backup_activation) | **POST** /data-protect/failover/{id}/backupActivation | Activate failover entity backup on replication clsuter.
-[**source_backup_deactivation**](FailoverApi.md#source_backup_deactivation) | **POST** /data-protect/failover/{id}/backupDeactivation | Deactivate failover entity backup on source clsuter.
+[**internal_api_replication_backup_activation**](FailoverApi.md#internal_api_replication_backup_activation) | **POST** /data-protect/failover/{id}/backupActivation | Activate failover entity backup on replication clsuter.
+[**object_linkage**](FailoverApi.md#object_linkage) | **POST** /data-protect/failover/{id}/object-linkage | Linking between replicated objects and failover objects
+[**poll_planned_runs**](FailoverApi.md#poll_planned_runs) | **GET** /data-protect/failover/planned-runs | Get the list of failover planned runs.
+[**replication_backup_activation**](FailoverApi.md#replication_backup_activation) | **POST** /data-protect/failover/{id}/backup-activation | Activate failover entity backup on replication clsuter.
+[**source_backup_deactivation**](FailoverApi.md#source_backup_deactivation) | **POST** /data-protect/failover/{id}/backup-deactivation | Deactivate failover entity backup on source clsuter.
 
 
 # **cancel_failover**
@@ -335,6 +338,160 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_failover_ops**
+> GetFailoverOpsResponse get_failover_ops(id)
+
+Gets all the failover operations which can be performed on this view.
+
+Gets all the failover operations which can be performed on this view.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.get_failover_ops_response import GetFailoverOpsResponse
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+id = 1 # int | Specifies the view id.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Gets all the failover operations which can be performed on this view.
+	api_response = client.failover.get_failover_ops(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->get_failover_ops: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Gets all the failover operations which can be performed on this view.
+	api_response = client.failover.get_failover_ops(id, access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->get_failover_ops: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the view id. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**GetFailoverOpsResponse**](GetFailoverOpsResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_tracking_view_id**
+> GetTrackingViewIdResponse get_tracking_view_id(id)
+
+Get tracking View Id
+
+Get tracking View Id
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.get_tracking_view_id_response import GetTrackingViewIdResponse
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+id = "id_example" # str | Specifies the view_uid of the source view.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+is_forwarded = True # bool | Indicates whether the request is forwarded (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get tracking View Id
+	api_response = client.failover.get_tracking_view_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->get_tracking_view_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get tracking View Id
+	api_response = client.failover.get_tracking_view_id(id, access_cluster_id=access_cluster_id, region_id=region_id, is_forwarded=is_forwarded)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->get_tracking_view_id: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies the view_uid of the source view. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **is_forwarded** | **bool**| Indicates whether the request is forwarded | [optional]
+
+### Return type
+
+[**GetTrackingViewIdResponse**](GetTrackingViewIdResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_view_failover**
 > GetViewFailoverResponseBody get_view_failover(id)
 
@@ -484,6 +641,97 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InitFailoverResponse**](InitFailoverResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **internal_api_replication_backup_activation**
+> ReplicationBackupActivationResult internal_api_replication_backup_activation(id, body)
+
+Activate failover entity backup on replication clsuter.
+
+Specifies the configuration required for activating backup for failover objects on replication cluster. Here orchastrator can call this API multiple times as long as full set of object are non-overlapping. They can also use the existing job if its compatible to backup failover objects.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.replication_backup_activation import ReplicationBackupActivation
+from cohesity_sdk.helios.model.replication_backup_activation_result import ReplicationBackupActivationResult
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+id = "id_example" # str | Specifies the id of the failover workflow.
+body = ReplicationBackupActivation(
+        objects=[
+            FailoverObject(
+                object_id=1,
+            ),
+        ],
+        protection_group_id="protection_group_id_example",
+        enable_reverse_replication=True,
+        do_not_protect=True,
+        create_object_backup=True,
+        target_failover_policy_id="target_failover_policy_id_example",
+        target_failover_environment="kVMware",
+    ) # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
+access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Activate failover entity backup on replication clsuter.
+	api_response = client.failover.internal_api_replication_backup_activation(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->internal_api_replication_backup_activation: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Activate failover entity backup on replication clsuter.
+	api_response = client.failover.internal_api_replication_backup_activation(id, body, access_cluster_id=access_cluster_id, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FailoverApi->internal_api_replication_backup_activation: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies the id of the failover workflow. |
+ **body** | [**ReplicationBackupActivation**](ReplicationBackupActivation.md)| Specifies the paramteres to activate the backup of failover entities. |
+ **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**ReplicationBackupActivationResult**](ReplicationBackupActivationResult.md)
 
 ### Authorization
 

@@ -29,10 +29,12 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.helios.model.object_summary import ObjectSummary
     from cohesity_sdk.helios.model.object_type_v_center_params import ObjectTypeVCenterParams
+    from cohesity_sdk.helios.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.helios.model.sharepoint_object_params import SharepointObjectParams
     from cohesity_sdk.helios.model.source_hierarchy_object_summary_all_of import SourceHierarchyObjectSummaryAllOf
     globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
+    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['SharepointObjectParams'] = SharepointObjectParams
     globals()['SourceHierarchyObjectSummaryAllOf'] = SourceHierarchyObjectSummaryAllOf
 
@@ -144,6 +146,10 @@ class SourceHierarchyObjectSummary(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -284,6 +290,7 @@ class SourceHierarchyObjectSummary(ModelComposed):
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'parent_id': (int, none_type,),  # noqa: E501
         }
 
@@ -308,6 +315,7 @@ class SourceHierarchyObjectSummary(ModelComposed):
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'parent_id': 'parentId',  # noqa: E501
     }
 
@@ -373,6 +381,7 @@ class SourceHierarchyObjectSummary(ModelComposed):
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             parent_id (int, none_type): Specifies the ID of the direct parent of this object in the source hierarchy.. [optional]  # noqa: E501
         """
 

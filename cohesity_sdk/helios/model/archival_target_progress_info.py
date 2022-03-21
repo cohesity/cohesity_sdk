@@ -76,6 +76,12 @@ class ArchivalTargetProgressInfo(ModelComposed):
             'CLOUD': "Cloud",
             'NAS': "Nas",
         },
+        ('usage_type',): {
+            'None': None,
+            'ARCHIVAL': "Archival",
+            'TIERING': "Tiering",
+            'RPAAS': "Rpaas",
+        },
         ('status',): {
             'None': None,
             'ACTIVE': "Active",
@@ -109,6 +115,8 @@ class ArchivalTargetProgressInfo(ModelComposed):
             'archival_task_id': (str, none_type,),  # noqa: E501
             'target_name': (str, none_type,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
+            'usage_type': (str, none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
             'tier_settings': (ArchivalTargetTierInfo,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'percentage_completed': (float, none_type,),  # noqa: E501
@@ -131,6 +139,8 @@ class ArchivalTargetProgressInfo(ModelComposed):
         'archival_task_id': 'archivalTaskId',  # noqa: E501
         'target_name': 'targetName',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
+        'usage_type': 'usageType',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
         'tier_settings': 'tierSettings',  # noqa: E501
         'status': 'status',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
@@ -194,6 +204,8 @@ class ArchivalTargetProgressInfo(ModelComposed):
             archival_task_id (str, none_type): Specifies the archival task id. This is a protection group UID which only applies when archival type is 'Tape'.. [optional]  # noqa: E501
             target_name (str, none_type): Specifies the archival target name.. [optional]  # noqa: E501
             target_type (str, none_type): Specifies the archival target type.. [optional]  # noqa: E501
+            usage_type (str, none_type): Specifies the usage type for the target.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context for the target.. [optional]  # noqa: E501
             tier_settings (ArchivalTargetTierInfo): [optional]  # noqa: E501
             status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
             percentage_completed (float, none_type): Specifies the current completed percentage of the progress task.. [optional]  # noqa: E501

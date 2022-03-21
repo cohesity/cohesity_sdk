@@ -23,8 +23,11 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.helios.model.cluster_storage_stats import ClusterStorageStats
 from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.fetch_throttling_stats_response_body import FetchThrottlingStatsResponseBody
 from cohesity_sdk.helios.model.files_stats import FilesStats
 from cohesity_sdk.helios.model.get_protection_runs_status_response_body import GetProtectionRunsStatusResponseBody
+from cohesity_sdk.helios.model.mcm_get_policy_last_run_stats_response_body import McmGetPolicyLastRunStatsResponseBody
+from cohesity_sdk.helios.model.mcm_get_protection_last_run_stats_response_body import McmGetProtectionLastRunStatsResponseBody
 from cohesity_sdk.helios.model.time_series_stats import TimeSeriesStats
 from cohesity_sdk.helios.model.view_clients_stats import ViewClientsStats
 from cohesity_sdk.helios.model.views_stats import ViewsStats
@@ -41,6 +44,189 @@ class StatsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __fetch_throttling_stats(
+            self,
+            registration_id,
+            source_id,
+            **kwargs
+        ):
+            """Fetch the throttling stats of a source.  # noqa: E501
+
+            Compute the throttling stats for a source and return time series data.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.fetch_throttling_stats(registration_id, source_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                registration_id (str, none_type): Specifies the registration id of the protected source. It is of the format {clusterID}:{IncarnationId}:{EntityId}.
+                source_id (str, none_type): Specifies the source name for which throttling stats are needed. In case of Office365, it is the domain name which is unique.
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                start_time_usecs (int): Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day.. [optional]
+                end_time_usecs (int): Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time.. [optional]
+                workload_type ([str], none_type): Specifies the list of workload types within the source for which throttling stats are needed.. [optional]
+                api_type ([str], none_type): Specifies the list of api type within the source for which throttling stats are needed.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FetchThrottlingStatsResponseBody
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['registration_id'] = \
+                registration_id
+            kwargs['source_id'] = \
+                source_id
+            return self.call_with_http_info(**kwargs)
+
+        self.fetch_throttling_stats = _Endpoint(
+            settings={
+                'response_type': (FetchThrottlingStatsResponseBody,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/stats/{registrationId}/throttling',
+                'operation_id': 'fetch_throttling_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'registration_id',
+                    'source_id',
+                    'region_id',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'workload_type',
+                    'api_type',
+                ],
+                'required': [
+                    'registration_id',
+                    'source_id',
+                ],
+                'nullable': [
+                    'registration_id',
+                    'source_id',
+                    'workload_type',
+                    'api_type',
+                ],
+                'enum': [
+                    'workload_type',
+                    'api_type',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('workload_type',): {
+                        'None': None,
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KO365GROUP": "kO365Group",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders"
+                    },
+                    ('api_type',): {
+                        'None': None,
+                        "KEWS": "kEWS",
+                        "KGRAPH": "kGraph"
+                    },
+                },
+                'openapi_types': {
+                    'registration_id':
+                        (str, none_type,),
+                    'source_id':
+                        (str, none_type,),
+                    'region_id':
+                        (str,),
+                    'start_time_usecs':
+                        (int,),
+                    'end_time_usecs':
+                        (int,),
+                    'workload_type':
+                        ([str], none_type,),
+                    'api_type':
+                        ([str], none_type,),
+                },
+                'attribute_map': {
+                    'registration_id': 'registrationId',
+                    'source_id': 'sourceId',
+                    'region_id': 'regionId',
+                    'start_time_usecs': 'startTimeUsecs',
+                    'end_time_usecs': 'endTimeUsecs',
+                    'workload_type': 'workloadType',
+                    'api_type': 'apiType',
+                },
+                'location_map': {
+                    'registration_id': 'path',
+                    'source_id': 'query',
+                    'region_id': 'header',
+                    'start_time_usecs': 'query',
+                    'end_time_usecs': 'query',
+                    'workload_type': 'query',
+                    'api_type': 'query',
+                },
+                'collection_format_map': {
+                    'workload_type': 'csv',
+                    'api_type': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__fetch_throttling_stats
+        )
 
         def __get_cluster_storage_stats(
             self,
@@ -1142,4 +1328,248 @@ class StatsApi(object):
             },
             api_client=api_client,
             callable=__get_views_stats
+        )
+
+        def __mcm_get_policy_last_run_stats(
+            self,
+            **kwargs
+        ):
+            """Compute stats of last Protection Run of Protection Policies.  # noqa: E501
+
+            Compute stats of last Protection Run of Protection Policies.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.mcm_get_policy_last_run_stats(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                McmGetPolicyLastRunStatsResponseBody
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.mcm_get_policy_last_run_stats = _Endpoint(
+            settings={
+                'response_type': (McmGetPolicyLastRunStatsResponseBody,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/stats/policies/last-run',
+                'operation_id': 'mcm_get_policy_last_run_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'region_ids',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'region_ids':
+                        ([str],),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'region_ids': 'regionIds',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'region_ids': 'query',
+                },
+                'collection_format_map': {
+                    'region_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__mcm_get_policy_last_run_stats
+        )
+
+        def __mcm_get_protection_run_last_run_stats(
+            self,
+            **kwargs
+        ):
+            """Compute stats of last Protection Run across all objects.  # noqa: E501
+
+            Compute stats of last Protection Run across all objects.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.mcm_get_protection_run_last_run_stats(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                region_ids ([str]): Filter by a list of region ids.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                McmGetProtectionLastRunStatsResponseBody
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.mcm_get_protection_run_last_run_stats = _Endpoint(
+            settings={
+                'response_type': (McmGetProtectionLastRunStatsResponseBody,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/stats/protection-runs/last-run',
+                'operation_id': 'mcm_get_protection_run_last_run_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'region_ids',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'region_ids':
+                        ([str],),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'region_ids': 'regionIds',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'region_ids': 'query',
+                },
+                'collection_format_map': {
+                    'region_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__mcm_get_protection_run_last_run_stats
         )

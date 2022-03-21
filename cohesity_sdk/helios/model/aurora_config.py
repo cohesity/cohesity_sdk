@@ -83,6 +83,7 @@ class AuroraConfig(ModelNormal):
             'enable_public_accessibility': (bool, none_type,),  # noqa: E501
             'db_option_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'db_parameter_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'point_in_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +102,7 @@ class AuroraConfig(ModelNormal):
         'enable_public_accessibility': 'enablePublicAccessibility',  # noqa: E501
         'db_option_group': 'dbOptionGroup',  # noqa: E501
         'db_parameter_group': 'dbParameterGroup',  # noqa: E501
+        'point_in_time_usecs': 'pointInTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,6 +163,7 @@ class AuroraConfig(ModelNormal):
             enable_public_accessibility (bool, none_type): Specifies whether this DB will be publicly accessible or not.. [optional]  # noqa: E501
             db_option_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies entity representing the Aurora option group to use while restoring the DB.. [optional]  # noqa: E501
             db_parameter_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the entity representing the Aurora parameter group to use while restoring the DB.. [optional]  # noqa: E501
+            point_in_time_usecs (int, none_type): Specifies a point in time for recovery in microseconds.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

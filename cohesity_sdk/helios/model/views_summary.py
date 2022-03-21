@@ -80,11 +80,25 @@ class ViewsSummary(ModelNormal):
             'replicated_in_views': (int, none_type,),  # noqa: E501
             'logical_usage_bytes': (int, none_type,),  # noqa: E501
             'logical_usage_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
+            'logical_usage_bytes_prev': (int, none_type,),  # noqa: E501
+            'logical_usage_bytes_prev_timestamp_usec': (int, none_type,),  # noqa: E501
             'storage_consumed_bytes': (int, none_type,),  # noqa: E501
             'storage_consumed_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
+            'storage_consumed_bytes_prev': (int, none_type,),  # noqa: E501
+            'storage_consumed_bytes_prev_timestamp_usec': (int, none_type,),  # noqa: E501
             'num_files': (int, none_type,),  # noqa: E501
+            'num_files_prev': (int, none_type,),  # noqa: E501
             'num_directories': (int, none_type,),  # noqa: E501
+            'num_directories_prev': (int, none_type,),  # noqa: E501
             'view_entity_id': (str, none_type,),  # noqa: E501
+            'data_written_bytes': (int, none_type,),  # noqa: E501
+            'data_written_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
+            'data_written_bytes_prev': (int, none_type,),  # noqa: E501
+            'data_written_bytes_prev_timestamp_usec': (int, none_type,),  # noqa: E501
+            'local_tier_resiliency_impact_bytes': (int, none_type,),  # noqa: E501
+            'local_tier_resiliency_impact_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
+            'local_tier_resiliency_impact_bytes_prev': (int, none_type,),  # noqa: E501
+            'local_tier_resiliency_impact_bytes_prev_timestamp_usec': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,11 +114,25 @@ class ViewsSummary(ModelNormal):
         'replicated_in_views': 'replicatedInViews',  # noqa: E501
         'logical_usage_bytes': 'logicalUsageBytes',  # noqa: E501
         'logical_usage_bytes_timestamp_usec': 'logicalUsageBytesTimestampUsec',  # noqa: E501
+        'logical_usage_bytes_prev': 'logicalUsageBytesPrev',  # noqa: E501
+        'logical_usage_bytes_prev_timestamp_usec': 'logicalUsageBytesPrevTimestampUsec',  # noqa: E501
         'storage_consumed_bytes': 'storageConsumedBytes',  # noqa: E501
         'storage_consumed_bytes_timestamp_usec': 'storageConsumedBytesTimestampUsec',  # noqa: E501
+        'storage_consumed_bytes_prev': 'storageConsumedBytesPrev',  # noqa: E501
+        'storage_consumed_bytes_prev_timestamp_usec': 'storageConsumedBytesPrevTimestampUsec',  # noqa: E501
         'num_files': 'numFiles',  # noqa: E501
+        'num_files_prev': 'numFilesPrev',  # noqa: E501
         'num_directories': 'numDirectories',  # noqa: E501
+        'num_directories_prev': 'numDirectoriesPrev',  # noqa: E501
         'view_entity_id': 'viewEntityId',  # noqa: E501
+        'data_written_bytes': 'dataWrittenBytes',  # noqa: E501
+        'data_written_bytes_timestamp_usec': 'dataWrittenBytesTimestampUsec',  # noqa: E501
+        'data_written_bytes_prev': 'dataWrittenBytesPrev',  # noqa: E501
+        'data_written_bytes_prev_timestamp_usec': 'dataWrittenBytesPrevTimestampUsec',  # noqa: E501
+        'local_tier_resiliency_impact_bytes': 'localTierResiliencyImpactBytes',  # noqa: E501
+        'local_tier_resiliency_impact_bytes_timestamp_usec': 'localTierResiliencyImpactBytesTimestampUsec',  # noqa: E501
+        'local_tier_resiliency_impact_bytes_prev': 'localTierResiliencyImpactBytesPrev',  # noqa: E501
+        'local_tier_resiliency_impact_bytes_prev_timestamp_usec': 'localTierResiliencyImpactBytesPrevTimestampUsec',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,14 +185,28 @@ class ViewsSummary(ModelNormal):
             total_views (int, none_type): Specifies the number of all the views.. [optional]  # noqa: E501
             protected_views (int, none_type): Specifies the number of all protected views.. [optional]  # noqa: E501
             replicated_out_views (int, none_type): Specifies the number of all the views that are replicated out to remote clusters.. [optional]  # noqa: E501
-            replicated_in_views (int, none_type): Specifies the number of all the views that are relicated from remote clusters.. [optional]  # noqa: E501
+            replicated_in_views (int, none_type): Specifies the number of all the views that are replicated from remote clusters.. [optional]  # noqa: E501
             logical_usage_bytes (int, none_type): Specifies the logical usage of all the views in bytes.. [optional]  # noqa: E501
             logical_usage_bytes_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'logicalUsageBytes' was calculated.. [optional]  # noqa: E501
+            logical_usage_bytes_prev (int, none_type): Specifies the logical usage of all the views in bytes at a specific time.. [optional]  # noqa: E501
+            logical_usage_bytes_prev_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'logicalUsageBytesPrev' was calculated.. [optional]  # noqa: E501
             storage_consumed_bytes (int, none_type): Specifies the storage consumed of all the views in bytes.. [optional]  # noqa: E501
             storage_consumed_bytes_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'storageConsumedBytes' was calculated.. [optional]  # noqa: E501
+            storage_consumed_bytes_prev (int, none_type): Specifies the storage consumed by all the views in bytes at a specific time.. [optional]  # noqa: E501
+            storage_consumed_bytes_prev_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'storageConsumedBytesPrev' was calculated.. [optional]  # noqa: E501
             num_files (int, none_type): Specifies the number of files.. [optional]  # noqa: E501
+            num_files_prev (int, none_type): Specifies the number of files at a specific time.. [optional]  # noqa: E501
             num_directories (int, none_type): Specifies the number of directories.. [optional]  # noqa: E501
+            num_directories_prev (int, none_type): Specifies the number of directories at a specific time.. [optional]  # noqa: E501
             view_entity_id (str, none_type): Specifies the entity id of all the views.. [optional]  # noqa: E501
+            data_written_bytes (int, none_type): Specifies the data written to all the views in bytes.. [optional]  # noqa: E501
+            data_written_bytes_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'dataWrittenBytes' was calculated.. [optional]  # noqa: E501
+            data_written_bytes_prev (int, none_type): Specifies the data written to all the views in bytes at a specific time.. [optional]  # noqa: E501
+            data_written_bytes_prev_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'dataWrittenBytesPrev' was calculated.. [optional]  # noqa: E501
+            local_tier_resiliency_impact_bytes (int, none_type): Specifies the size of the data that has been replicated to other nodes as per RF or Erasure Coding policy.. [optional]  # noqa: E501
+            local_tier_resiliency_impact_bytes_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'localTierResiliencyImpactBytes' was calculated.. [optional]  # noqa: E501
+            local_tier_resiliency_impact_bytes_prev (int, none_type): Specifies the size of the data that has been replicated to other nodes as per RF or Erasure Coding policy at a specific time.. [optional]  # noqa: E501
+            local_tier_resiliency_impact_bytes_prev_timestamp_usec (int, none_type): Specifies the timestamp in micro seconds when 'localTierResiliencyImpactBytesPrev' was calculated.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

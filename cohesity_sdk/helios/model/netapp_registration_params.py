@@ -31,10 +31,12 @@ def lazy_import():
     from cohesity_sdk.helios.model.filter_ip_config import FilterIpConfig
     from cohesity_sdk.helios.model.nas_throttling_config import NasThrottlingConfig
     from cohesity_sdk.helios.model.smb_mount_credentials import SmbMountCredentials
+    from cohesity_sdk.helios.model.storage_array_snapshot_config import StorageArraySnapshotConfig
     globals()['Credentials'] = Credentials
     globals()['FilterIpConfig'] = FilterIpConfig
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
     globals()['SmbMountCredentials'] = SmbMountCredentials
+    globals()['StorageArraySnapshotConfig'] = StorageArraySnapshotConfig
 
 
 class NetappRegistrationParams(ModelNormal):
@@ -97,6 +99,8 @@ class NetappRegistrationParams(ModelNormal):
             'smb_credentials': (SmbMountCredentials,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'storage_array_snapshot_enabled': (bool, none_type,),  # noqa: E501
+            'storage_array_snapshot_config': (StorageArraySnapshotConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -113,6 +117,8 @@ class NetappRegistrationParams(ModelNormal):
         'smb_credentials': 'smbCredentials',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
+        'storage_array_snapshot_enabled': 'storageArraySnapshotEnabled',  # noqa: E501
+        'storage_array_snapshot_config': 'storageArraySnapshotConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -171,6 +177,8 @@ class NetappRegistrationParams(ModelNormal):
             smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
+            storage_array_snapshot_enabled (bool, none_type): Specifies if storage array snapshot is enabled or not in the Source.. [optional]  # noqa: E501
+            storage_array_snapshot_config (StorageArraySnapshotConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

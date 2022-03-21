@@ -56,7 +56,48 @@ class ConstructMetaInfoResult(ModelNormal):
     allowed_values = {
         ('environment',): {
             'None': None,
+            'KVMWARE': "kVMware",
+            'KHYPERV': "kHyperV",
+            'KAZURE': "kAzure",
+            'KGCP': "kGCP",
+            'KKVM': "kKVM",
+            'KACROPOLIS': "kAcropolis",
+            'KAWS': "kAWS",
+            'KAWSNATIVE': "kAWSNative",
+            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
+            'KGPFS': "kGPFS",
+            'KELASTIFILE': "kElastifile",
+            'KNETAPP': "kNetapp",
+            'KGENERICNAS': "kGenericNas",
+            'KISILON': "kIsilon",
+            'KFLASHBLADE': "kFlashBlade",
+            'KPURE': "kPure",
+            'KSQL': "kSQL",
+            'KEXCHANGE': "kExchange",
+            'KAD': "kAD",
             'KORACLE': "kOracle",
+            'KVIEW': "kView",
+            'KREMOTEADAPTER': "kRemoteAdapter",
+            'KO365': "kO365",
+            'KO365PUBLICFOLDERS': "kO365PublicFolders",
+            'KO365TEAMS': "kO365Teams",
+            'KO365GROUP': "kO365Group",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
+            'KKUBERNETES': "kKubernetes",
+            'KCASSANDRA': "kCassandra",
+            'KMONGODB': "kMongoDB",
+            'KCOUCHBASE': "kCouchbase",
+            'KHDFS': "kHdfs",
+            'KHIVE': "kHive",
+            'KHBASE': "kHBase",
+            'KUDA': "kUDA",
+            'KSFDC': "kSfdc",
         },
     }
 
@@ -80,6 +121,7 @@ class ConstructMetaInfoResult(ModelNormal):
         return {
             'environment': (str, none_type,),  # noqa: E501
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'sfdc_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +133,7 @@ class ConstructMetaInfoResult(ModelNormal):
     attribute_map = {
         'environment': 'environment',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,8 +183,9 @@ class ConstructMetaInfoResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            environment (str, none_type): Specifies the environment type of the Protection group. [optional] if omitted the server will use the default value of "kOracle"  # noqa: E501
+            environment (str, none_type): Specifies the environment type for fetching the meta Info.. [optional]  # noqa: E501
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies 3 Maps required to fill pfile text box.. [optional]  # noqa: E501
+            sfdc_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the meta info params for salesforce object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

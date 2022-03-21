@@ -58,6 +58,7 @@ class AwsAuthMethod(ModelNormal):
             'KUSEIAMUSER': "kUseIAMUser",
             'KUSEIAMROLE': "kUseIAMRole",
             'KUSESTS': "kUseSTS",
+            'KUSEHELIOS': "kUseHelios",
         },
     }
 

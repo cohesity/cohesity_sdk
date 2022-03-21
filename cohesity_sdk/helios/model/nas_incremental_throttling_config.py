@@ -57,6 +57,16 @@ class NasIncrementalThrottlingConfig(ModelNormal):
     }
 
     validations = {
+        ('max_metadata_fetch_percentage',): {
+            'inclusive_maximum': 100,
+            'inclusive_minimum': 0,
+        },
+
+        ('max_read_write_percentage',): {
+            'inclusive_maximum': 100,
+            'inclusive_minimum': 0,
+        },
+
     }
 
     additional_properties_type = None

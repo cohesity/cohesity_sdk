@@ -74,7 +74,6 @@ class HeliosOnPremSSHConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'ssh_enabled': (bool, none_type,),  # noqa: E501
             'ssh_support_user_password_set': (bool, none_type,),  # noqa: E501
             'ssh_support_user_sudo_enabled': (bool, none_type,),  # noqa: E501
         }
@@ -86,7 +85,6 @@ class HeliosOnPremSSHConfig(ModelNormal):
 
 
     attribute_map = {
-        'ssh_enabled': 'sshEnabled',  # noqa: E501
         'ssh_support_user_password_set': 'sshSupportUserPasswordSet',  # noqa: E501
         'ssh_support_user_sudo_enabled': 'sshSupportUserSudoEnabled',  # noqa: E501
     }
@@ -138,7 +136,6 @@ class HeliosOnPremSSHConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            ssh_enabled (bool, none_type): Specifies if SSH is enabled on the Helios OnPrem node.. [optional]  # noqa: E501
             ssh_support_user_password_set (bool, none_type): Specifies if SSH password is set for support user.. [optional]  # noqa: E501
             ssh_support_user_sudo_enabled (bool, none_type): Specifies if SSH sudo access is set for support user.. [optional]  # noqa: E501
         """

@@ -114,11 +114,12 @@ class FlashbladeRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, endpoint, *args, **kwargs):  # noqa: E501
+    def __init__(self, endpoint, api_token, *args, **kwargs):  # noqa: E501
         """FlashbladeRegistrationParams - a model defined in OpenAPI
 
         Args:
             endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Flashblade Source.
+            api_token (str, none_type): Specifies the API Token of the Flashblade Source
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,7 +153,6 @@ class FlashbladeRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            api_token (str, none_type): Specifies the API Token of the Flashblade Source. [optional]  # noqa: E501
             back_up_smb_volumes (bool, none_type): Specifies whether or not to back up SMB Volumes.. [optional]  # noqa: E501
             smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
@@ -183,6 +183,7 @@ class FlashbladeRegistrationParams(ModelNormal):
 
 
         self.endpoint = endpoint
+        self.api_token = api_token
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

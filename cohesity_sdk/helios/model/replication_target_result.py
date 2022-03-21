@@ -79,6 +79,7 @@ class ReplicationTargetResult(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
     }
@@ -121,6 +122,7 @@ class ReplicationTargetResult(ModelComposed):
             'is_in_bound': (bool, none_type,),  # noqa: E501
             'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
             'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'multi_object_replication': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -149,6 +151,7 @@ class ReplicationTargetResult(ModelComposed):
         'is_in_bound': 'isInBound',  # noqa: E501
         'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
         'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'multi_object_replication': 'multiObjectReplication',  # noqa: E501
     }
 
     required_properties = set([
@@ -218,6 +221,7 @@ class ReplicationTargetResult(ModelComposed):
             is_in_bound (bool, none_type): Specifies the direction of the replication. If the snapshot is replicated to this cluster, then isInBound is true. If the snapshot is replicated from this cluster to another cluster, then isInBound is false.. [optional]  # noqa: E501
             data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501
             on_legal_hold (bool, none_type): Specifies the legal hold status for a replication target.. [optional]  # noqa: E501
+            multi_object_replication (bool, none_type): Specifies whether view based replication was used. In this case, the view containing all objects is replicated as a whole instead of replicating on a per object basis.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -89,6 +89,7 @@ class VmwareProtectionGroupExtraParams(ModelNormal):
             'leverage_hyperflex_snapshots': (bool, none_type,),  # noqa: E501
             'leverage_nutanix_snapshots': (bool, none_type,),  # noqa: E501
             'cloud_migration': (bool, none_type,),  # noqa: E501
+            'allow_parallel_runs': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -108,6 +109,7 @@ class VmwareProtectionGroupExtraParams(ModelNormal):
         'leverage_hyperflex_snapshots': 'leverageHyperflexSnapshots',  # noqa: E501
         'leverage_nutanix_snapshots': 'leverageNutanixSnapshots',  # noqa: E501
         'cloud_migration': 'cloudMigration',  # noqa: E501
+        'allow_parallel_runs': 'allowParallelRuns',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,6 +169,7 @@ class VmwareProtectionGroupExtraParams(ModelNormal):
             leverage_hyperflex_snapshots (bool, none_type): Whether to leverage the hyperflex based snapshots for this backup. To leverage hyperflex snapshots, it has to first be registered. If hyperflex based snapshots cannot be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
             leverage_nutanix_snapshots (bool, none_type): Whether to leverage the nutanix based snapshots for this backup. To leverage nutanix snapshots, it has to first be registered. If nutanix based snapshots cannot be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            allow_parallel_runs (bool, none_type): Specifies whether or not this job can have parallel runs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

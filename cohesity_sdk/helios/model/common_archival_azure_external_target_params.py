@@ -29,8 +29,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.helios.model.common_archival_azure_external_target_params_all_of import CommonArchivalAzureExternalTargetParamsAllOf
     from cohesity_sdk.helios.model.common_azure_external_target_params import CommonAzureExternalTargetParams
+    from cohesity_sdk.helios.model.worm_specific_target_params import WormSpecificTargetParams
     globals()['CommonArchivalAzureExternalTargetParamsAllOf'] = CommonArchivalAzureExternalTargetParamsAllOf
     globals()['CommonAzureExternalTargetParams'] = CommonAzureExternalTargetParams
+    globals()['WormSpecificTargetParams'] = WormSpecificTargetParams
 
 
 class CommonArchivalAzureExternalTargetParams(ModelComposed):
@@ -94,6 +96,8 @@ class CommonArchivalAzureExternalTargetParams(ModelComposed):
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_worm_enabled': (bool, none_type,),  # noqa: E501
+            'worm_specific_target_params': (WormSpecificTargetParams,),  # noqa: E501
         }
 
     @cached_property
@@ -110,6 +114,8 @@ class CommonArchivalAzureExternalTargetParams(ModelComposed):
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_worm_enabled': 'isWormEnabled',  # noqa: E501
+        'worm_specific_target_params': 'wormSpecificTargetParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -169,6 +175,8 @@ class CommonArchivalAzureExternalTargetParams(ModelComposed):
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_worm_enabled (bool, none_type): Specifies whether write once read many (WORM) protection is enabled for the Azure container or not.. [optional]  # noqa: E501
+            worm_specific_target_params (WormSpecificTargetParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -70,6 +70,7 @@ class SnapshotInfo(ModelNormal):
             'KCURRENTATTEMPTPAUSED': "kCurrentAttemptPaused",
             'KCURRENTATTEMPTRESUMING': "kCurrentAttemptResuming",
             'KCURRENTATTEMPTPAUSING': "kCurrentAttemptPausing",
+            'KWAITINGFOROLDERBACKUPRUN': "kWaitingForOlderBackupRun",
         },
     }
 
@@ -94,6 +95,7 @@ class SnapshotInfo(ModelNormal):
         return {
             'snapshot_id': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
+            'status_message': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'admitted_time_usecs': (int, none_type,),  # noqa: E501
@@ -119,6 +121,7 @@ class SnapshotInfo(ModelNormal):
     attribute_map = {
         'snapshot_id': 'snapshotId',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'status_message': 'statusMessage',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'admitted_time_usecs': 'admittedTimeUsecs',  # noqa: E501
@@ -184,6 +187,7 @@ class SnapshotInfo(ModelNormal):
 
             snapshot_id (str, none_type): Snapshot id for a successful snapshot. This field will not be set if the Protection Group Run has no successful attempt.. [optional]  # noqa: E501
             status (str, none_type): Status of snapshot.. [optional]  # noqa: E501
+            status_message (str, none_type): A message decribing the status. This will be populated currently only for kWaitingForOlderBackupRun status.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             admitted_time_usecs (int, none_type): Specifies the time at which the backup task was admitted to run in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501

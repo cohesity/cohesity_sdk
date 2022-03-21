@@ -68,6 +68,8 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",
+            'UDAOBJECTS': "UdaObjects",
+            'SFDCRECORDS': "SfdcRecords",
         },
     }
 

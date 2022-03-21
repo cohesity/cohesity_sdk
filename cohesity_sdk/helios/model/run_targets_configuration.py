@@ -28,8 +28,10 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.helios.model.run_archival_config import RunArchivalConfig
+    from cohesity_sdk.helios.model.run_cloud_replication_config import RunCloudReplicationConfig
     from cohesity_sdk.helios.model.run_replication_config import RunReplicationConfig
     globals()['RunArchivalConfig'] = RunArchivalConfig
+    globals()['RunCloudReplicationConfig'] = RunCloudReplicationConfig
     globals()['RunReplicationConfig'] = RunReplicationConfig
 
 
@@ -84,6 +86,7 @@ class RunTargetsConfiguration(ModelNormal):
             'use_policy_defaults': (bool, none_type,),  # noqa: E501
             'replications': ([RunReplicationConfig], none_type,),  # noqa: E501
             'archivals': ([RunArchivalConfig], none_type,),  # noqa: E501
+            'cloud_replications': ([RunCloudReplicationConfig], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class RunTargetsConfiguration(ModelNormal):
         'use_policy_defaults': 'usePolicyDefaults',  # noqa: E501
         'replications': 'replications',  # noqa: E501
         'archivals': 'archivals',  # noqa: E501
+        'cloud_replications': 'cloudReplications',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +152,7 @@ class RunTargetsConfiguration(ModelNormal):
             use_policy_defaults (bool, none_type): Specifies whether to use default policy settings or not. If specified as true then 'replications' and 'arcihvals' should not be specified. In case of true value, replicatioan targets congfigured in the policy will be added internally.. [optional] if omitted the server will use the default value of False  # noqa: E501
             replications ([RunReplicationConfig], none_type): Specifies a list of replication targets configurations.. [optional]  # noqa: E501
             archivals ([RunArchivalConfig], none_type): Specifies a list of archival targets configurations.. [optional]  # noqa: E501
+            cloud_replications ([RunCloudReplicationConfig], none_type): Specifies a list of cloud replication targets configurations.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

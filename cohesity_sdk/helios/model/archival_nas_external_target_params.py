@@ -59,6 +59,23 @@ class ArchivalNasExternalTargetParams(ModelNormal):
             'CIFS': "CIFS",
             'NFS': "NFS",
         },
+        ('nfs_version_number',): {
+            'None': None,
+            'NFSV3': "NFSv3",
+            'NFSV4': "NFSv4",
+            'NFSV4_0': "NFSv4_0",
+            'NFSV4_1': "NFSv4_1",
+            'NFSV4_2': "NFSv4_2",
+        },
+        ('nfs_security_type',): {
+            'None': None,
+            'DEFAULT': "Default",
+            'NONE': "None",
+            'SYSTEM': "System",
+            'KRB5': "KRB5",
+            'KRB5I': "KRB5I",
+            'KRB5P': "KRB5P",
+        },
     }
 
     validations = {
@@ -85,6 +102,9 @@ class ArchivalNasExternalTargetParams(ModelNormal):
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'nfs_version_number': (str, none_type,),  # noqa: E501
+            'nfs_security_type': (str, none_type,),  # noqa: E501
+            'kerberos_realm_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +120,9 @@ class ArchivalNasExternalTargetParams(ModelNormal):
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'nfs_version_number': 'nfsVersionNumber',  # noqa: E501
+        'nfs_security_type': 'nfsSecurityType',  # noqa: E501
+        'kerberos_realm_name': 'kerberosRealmName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,6 +180,9 @@ class ArchivalNasExternalTargetParams(ModelNormal):
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Nas external target. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            nfs_version_number (str, none_type): Specifies the NFS version number of the target.. [optional]  # noqa: E501
+            nfs_security_type (str, none_type): Specifies the NFS security type of the target.. [optional]  # noqa: E501
+            kerberos_realm_name (str, none_type): Specifies the Kerberos realm name for a Kerberos-secured target.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

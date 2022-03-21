@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **tenant_ids** | **[str, none_type]** | Specifies the tenants which have access to this object. | [optional] 
 **account_id** | **str, none_type** | Specifies the account ID to which this source belongs. | [optional] 
 **dmaas_tenant_id** | **str, none_type** | Specifies the DMaaS tenant ID to which this source belongs. | [optional] 
+**region_id** | **str, none_type** | Specifies the region ID of the cluster. | [optional] 
 **cluster_id** | **int, none_type** | Specifies the ID of the cluster to which the source is registered. | [optional] 
 **object_hash** | **str, none_type** | Specifies the object hash of the source. | [optional] 
 **user_details** | [**User**](User.md) |  | [optional] 

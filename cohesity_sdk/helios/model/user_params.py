@@ -27,9 +27,9 @@ from cohesity_sdk.helios.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.helios.model.create_user_params import CreateUserParams
+    from cohesity_sdk.helios.model.common_updatable_user_params import CommonUpdatableUserParams
     from cohesity_sdk.helios.model.user_params_all_of import UserParamsAllOf
-    globals()['CreateUserParams'] = CreateUserParams
+    globals()['CommonUpdatableUserParams'] = CommonUpdatableUserParams
     globals()['UserParamsAllOf'] = UserParamsAllOf
 
 
@@ -89,24 +89,25 @@ class UserParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str, none_type,),  # noqa: E501
-            'domain': (str, none_type,),  # noqa: E501
-            'password': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'email': (str, none_type,),  # noqa: E501
-            'roles': ([str], none_type,),  # noqa: E501
-            'primary_group': (str, none_type,),  # noqa: E501
-            'other_groups': ([str], none_type,),  # noqa: E501
-            'restricted': (bool, none_type,),  # noqa: E501
-            'effective_time_msecs': (int, none_type,),  # noqa: E501
-            'expired_time_msecs': (int, none_type,),  # noqa: E501
-            'locked': (bool, none_type,),  # noqa: E501
             'sid': (str, none_type,),  # noqa: E501
+            'username': (str,),  # noqa: E501
+            'domain': (str,),  # noqa: E501
+            'local_user_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'created_time_msecs': (int, none_type,),  # noqa: E501
             'last_updated_time_msecs': (int, none_type,),  # noqa: E501
+            'last_login_time_msecs': (int, none_type,),  # noqa: E501
+            'force_password_change': (bool, none_type,),  # noqa: E501
+            'primary_group': (str, none_type,),  # noqa: E501
+            'other_groups': ([str],),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             's3_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'locked_reason': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'roles': ([str], none_type,),  # noqa: E501
+            'restricted': (bool, none_type,),  # noqa: E501
+            'effective_time_msecs': (int, none_type,),  # noqa: E501
+            'expiry_time_msecs': (int, none_type,),  # noqa: E501
+            'locked': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -116,24 +117,25 @@ class UserParams(ModelComposed):
 
 
     attribute_map = {
+        'sid': 'sid',  # noqa: E501
         'username': 'username',  # noqa: E501
         'domain': 'domain',  # noqa: E501
-        'password': 'password',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'email': 'email',  # noqa: E501
-        'roles': 'roles',  # noqa: E501
-        'primary_group': 'primaryGroup',  # noqa: E501
-        'other_groups': 'otherGroups',  # noqa: E501
-        'restricted': 'restricted',  # noqa: E501
-        'effective_time_msecs': 'effectiveTimeMsecs',  # noqa: E501
-        'expired_time_msecs': 'expiredTimeMsecs',  # noqa: E501
-        'locked': 'locked',  # noqa: E501
-        'sid': 'sid',  # noqa: E501
+        'local_user_params': 'localUserParams',  # noqa: E501
         'created_time_msecs': 'createdTimeMsecs',  # noqa: E501
         'last_updated_time_msecs': 'lastUpdatedTimeMsecs',  # noqa: E501
+        'last_login_time_msecs': 'lastLoginTimeMsecs',  # noqa: E501
+        'force_password_change': 'forcePasswordChange',  # noqa: E501
+        'primary_group': 'primaryGroup',  # noqa: E501
+        'other_groups': 'otherGroups',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
         's3_account_params': 's3AccountParams',  # noqa: E501
         'locked_reason': 'lockedReason',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'roles': 'roles',  # noqa: E501
+        'restricted': 'restricted',  # noqa: E501
+        'effective_time_msecs': 'effectiveTimeMsecs',  # noqa: E501
+        'expiry_time_msecs': 'expiryTimeMsecs',  # noqa: E501
+        'locked': 'locked',  # noqa: E501
     }
 
     required_properties = set([
@@ -149,13 +151,8 @@ class UserParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, domain, password, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """UserParams - a model defined in OpenAPI
-
-        Args:
-            username (str, none_type): Specifies the username.
-            domain (str, none_type): Specifies the domain of the User.
-            password (str, none_type): Specifies the password of the User.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -189,21 +186,25 @@ class UserParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            description (str, none_type): Specifies the description of the User.. [optional]  # noqa: E501
-            email (str, none_type): Specifies the email address of the User.. [optional]  # noqa: E501
-            roles ([str], none_type): Specifies the Roles of the User.. [optional]  # noqa: E501
-            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
-            other_groups ([str], none_type): Specifies other groups of the User.. [optional]  # noqa: E501
-            restricted (bool, none_type): Specifies whether the User is restricted.. [optional]  # noqa: E501
-            effective_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user is effective.. [optional]  # noqa: E501
-            expired_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user is expired.. [optional]  # noqa: E501
-            locked (bool, none_type): Specifies whether the User is locked.. [optional]  # noqa: E501
             sid (str, none_type): Specifies the sid of the User.. [optional]  # noqa: E501
+            username (str): Specifies the username.. [optional]  # noqa: E501
+            domain (str): Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.. [optional]  # noqa: E501
+            local_user_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.. [optional]  # noqa: E501
             created_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user account was created.. [optional]  # noqa: E501
             last_updated_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user account was last modified.. [optional]  # noqa: E501
+            last_login_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user last logged in successfully.. [optional]  # noqa: E501
+            force_password_change (bool, none_type): Specifies if the user must change password.. [optional]  # noqa: E501
+            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
+            other_groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id of the User.. [optional]  # noqa: E501
             s3_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the S3 Account parameters of the User.. [optional]  # noqa: E501
             locked_reason (str, none_type): Specifies the reason for locking the User.. [optional]  # noqa: E501
+            description (str, none_type): Specifies the description of the User.. [optional]  # noqa: E501
+            roles ([str], none_type): Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.. [optional]  # noqa: E501
+            restricted (bool, none_type): Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
+            effective_time_msecs (int, none_type): Specifies the epoch time in milliseconds since when the user can login.. [optional]  # noqa: E501
+            expiry_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.. [optional]  # noqa: E501
+            locked (bool, none_type): Specifies whether the User is locked.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -238,9 +239,6 @@ class UserParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
-            'domain': domain,
-            'password': password,
         }
         model_args = {}
         model_args.update(required_args)
@@ -278,7 +276,7 @@ class UserParams(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              CreateUserParams,
+              CommonUpdatableUserParams,
               UserParamsAllOf,
           ],
           'oneOf': [

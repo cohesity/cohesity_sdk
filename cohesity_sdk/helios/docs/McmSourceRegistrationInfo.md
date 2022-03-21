@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **registration_error** | **str, none_type** | Specifies the error detail occured during the protection source registration. | [optional] 
 **last_refresh_time_usecs** | **int, none_type** | Specifies the registration time of the Source in Unix time epoch in microseconds. | [optional] 
 **refresh_error** | **str, none_type** | Specifies the error detail occured during the refersh of a protection source. | [optional] 
+**connector_group_id** | **int, none_type** | Specifies the connector group id of connector groups. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

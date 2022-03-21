@@ -128,6 +128,7 @@ class ProtectionGroupInfo(ModelNormal):
             'group_id': (int, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'group_name': (str, none_type,),  # noqa: E501
+            'is_paused': (bool, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
             'last_run': (ProtectionGroupRun,),  # noqa: E501
         }
@@ -142,6 +143,7 @@ class ProtectionGroupInfo(ModelNormal):
         'group_id': 'groupId',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'group_name': 'groupName',  # noqa: E501
+        'is_paused': 'isPaused',  # noqa: E501
         'type': 'type',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
     }
@@ -196,6 +198,7 @@ class ProtectionGroupInfo(ModelNormal):
             group_id (int, none_type): This field is deprecated. 'protectionGroupId' should be used instead. Specifies the id of the Protection Group.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id.. [optional]  # noqa: E501
             group_name (str, none_type): Specifies the name of the Protection Group.. [optional]  # noqa: E501
+            is_paused (bool, none_type): Specifies if the Protection Group's run is paused.. [optional]  # noqa: E501
             type (str, none_type): Specifies the type of the Protection Group such as View or Puppeteer. 'Puppeteer' refers to a Remote Adapter Group. Supported environment types such as 'View', 'SQL', 'VMware', etc. NOTE: 'Puppeteer' refers to Cohesity's Remote Adapter. 'VMware' indicates the VMware Protection Source environment. 'HyperV' indicates the HyperV Protection Source environment. 'SQL' indicates the SQL Protection Source environment. 'View' indicates the View Protection Source environment. 'Puppeteer' indicates the Cohesity's Remote Adapter. 'Physical' indicates the physical Protection Source environment. 'Pure' indicates the Pure Storage Protection Source environment. 'Nimble' indicates the Nimble Storage Protection Source environment. 'Azure' indicates the Microsoft's Azure Protection Source environment. 'Netapp' indicates the Netapp Protection Source environment. 'Agent' indicates the Agent Protection Source environment. 'GenericNas' indicates the Generic Network Attached Storage Protection Source environment. 'Acropolis' indicates the Acropolis Protection Source environment. 'PhsicalFiles' indicates the Physical Files Protection Source environment. 'Isilon' indicates the Dell EMC's Isilon Protection Source environment. 'GPFS' indicates IBM's GPFS Protection Source environment. 'KVM' indicates the KVM Protection Source environment. 'AWS' indicates the AWS Protection Source environment. 'Exchange' indicates the Exchange Protection Source environment. 'HyperVVSS' indicates the HyperV VSS Protection Source environment. 'Oracle' indicates the Oracle Protection Source environment. 'GCP' indicates the Google Cloud Platform Protection Source environment. 'FlashBlade' indicates the Flash Blade Protection Source environment. 'AWSNative' indicates the AWS Native Protection Source environment. 'O365' indicates the Office 365 Protection Source environment. 'O365Outlook' indicates Office 365 outlook Protection Source environment. 'HyperFlex' indicates the Hyper Flex Protection Source environment. 'GCPNative' indicates the GCP Native Protection Source environment. 'AzureNative' indicates the Azure Native Protection Source environment. 'Kubernetes' indicates a Kubernetes Protection Source environment. 'Elastifile' indicates Elastifile Protection Source environment. 'AD' indicates Active Directory Protection Source environment.. [optional]  # noqa: E501
             last_run (ProtectionGroupRun): [optional]  # noqa: E501
         """

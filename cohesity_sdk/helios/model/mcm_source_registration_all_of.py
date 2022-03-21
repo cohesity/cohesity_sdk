@@ -40,6 +40,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.netapp_registration_params import NetappRegistrationParams
     from cohesity_sdk.helios.model.office365_source_registration_params import Office365SourceRegistrationParams
     from cohesity_sdk.helios.model.physical_source_registration_params import PhysicalSourceRegistrationParams
+    from cohesity_sdk.helios.model.sfdc_source_registration_params import SfdcSourceRegistrationParams
     from cohesity_sdk.helios.model.vmware_source_registration_params import VmwareSourceRegistrationParams
     globals()['AwsSourceRegistrationParams'] = AwsSourceRegistrationParams
     globals()['CassandraSourceRegistrationParams'] = CassandraSourceRegistrationParams
@@ -54,6 +55,7 @@ def lazy_import():
     globals()['NetappRegistrationParams'] = NetappRegistrationParams
     globals()['Office365SourceRegistrationParams'] = Office365SourceRegistrationParams
     globals()['PhysicalSourceRegistrationParams'] = PhysicalSourceRegistrationParams
+    globals()['SfdcSourceRegistrationParams'] = SfdcSourceRegistrationParams
     globals()['VmwareSourceRegistrationParams'] = VmwareSourceRegistrationParams
 
 
@@ -119,6 +121,7 @@ class McmSourceRegistrationAllOf(ModelNormal):
             'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
             'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
             'hyperv_params': (HyperVSourceRegistrationParams,),  # noqa: E501
+            'sfdc_params': (SfdcSourceRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -142,6 +145,7 @@ class McmSourceRegistrationAllOf(ModelNormal):
         'aws_params': 'awsParams',  # noqa: E501
         'office365_params': 'office365Params',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -205,6 +209,7 @@ class McmSourceRegistrationAllOf(ModelNormal):
             aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
             office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
             hyperv_params (HyperVSourceRegistrationParams): [optional]  # noqa: E501
+            sfdc_params (SfdcSourceRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

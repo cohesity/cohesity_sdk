@@ -3,10 +3,86 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**global_search_indexed_objects**](SearchApi.md#global_search_indexed_objects) | **POST** /mcm/search/indexed-objects | Search for indexed objects.
 [**search_indexed_objects**](SearchApi.md#search_indexed_objects) | **POST** /data-protect/search/indexed-objects | List indexed objects.
 [**search_objects**](SearchApi.md#search_objects) | **GET** /data-protect/search/objects | List Objects.
 [**search_protected_objects**](SearchApi.md#search_protected_objects) | **GET** /data-protect/search/protected-objects | List Protected Objects.
 
+
+# **global_search_indexed_objects**
+> HeliosSearchIndexedObjectsResponseBody global_search_indexed_objects(body)
+
+Search for indexed objects.
+
+Search for indexed objects like files, emails etc across clusters.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.helios_search_indexed_objects_response_body import HeliosSearchIndexedObjectsResponseBody
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.model.helios_search_indexed_objects_request import HeliosSearchIndexedObjectsRequest
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+body = HeliosSearchIndexedObjectsRequest() # HeliosSearchIndexedObjectsRequest | Specifies the parameters to search for indexed objects.
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Search for indexed objects.
+	api_response = client.search.global_search_indexed_objects(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SearchApi->global_search_indexed_objects: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Search for indexed objects.
+	api_response = client.search.global_search_indexed_objects(body, region_id=region_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling SearchApi->global_search_indexed_objects: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**HeliosSearchIndexedObjectsRequest**](HeliosSearchIndexedObjectsRequest.md)| Specifies the parameters to search for indexed objects. |
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+
+### Return type
+
+[**HeliosSearchIndexedObjectsResponseBody**](HeliosSearchIndexedObjectsResponseBody.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **search_indexed_objects**
 > SearchIndexedObjectsResponseBody search_indexed_objects(body)
@@ -110,6 +186,7 @@ client = HeliosClient(api_key=api_key)
 
 access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
 region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 search_string = "searchString_example" # str | Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria. (optional)
 environments = [
         "kVMware",
@@ -130,6 +207,9 @@ object_ids = [
 os_types = [
         "kLinux",
     ] # [str] | Specifies the operating system types to filter objects on. (optional)
+o365_object_types = [
+        "kDomain",
+    ] # [str] | Specifies the object types to filter objects on. Only applicable if the environment is o365. (optional)
 source_ids = [
         1,
     ] # [int] | Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. (optional)
@@ -170,7 +250,7 @@ might_have_snapshot_tag_ids = [
 # and optional values
 try:
 	# List Objects.
-	api_response = client.search.search_objects(access_cluster_id=access_cluster_id, region_id=region_id, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids)
+	api_response = client.search.search_objects(access_cluster_id=access_cluster_id, region_id=region_id, request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling SearchApi->search_objects: %s\n" % e)
@@ -183,6 +263,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
  **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
  **search_string** | **str**| Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character &#39;*&#39; as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria. | [optional]
  **environments** | **[str]**| Specifies the environment type to filter objects. | [optional]
  **protection_types** | **[str]**| Specifies the protection type to filter objects. | [optional]
@@ -191,6 +272,7 @@ Name | Type | Description  | Notes
  **protection_group_ids** | **[str]**| Specifies a list of Protection Group ids to filter the objects. If specified, the objects protected by specified Protection Group ids will be returned. | [optional]
  **object_ids** | **[int]**| Specifies a list of Object ids to filter. | [optional]
  **os_types** | **[str]**| Specifies the operating system types to filter objects on. | [optional]
+ **o365_object_types** | **[str]**| Specifies the object types to filter objects on. Only applicable if the environment is o365. | [optional]
  **source_ids** | **[int]**| Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **source_uuids** | **[str]**| Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **is_protected** | **bool**| Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned. | [optional]
@@ -254,6 +336,7 @@ client = HeliosClient(api_key=api_key)
 
 access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
 region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 search_string = "searchString_example" # str | Specifies the search string to filter the objects. This search string will be applicable for objectnames and Protection Group names. User can specify a wildcard character '*' as a suffix to a string where all object and their Protection Group names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects with Protection Groups will be returned which will match other filtering criteria. (optional)
 environments = [
         "kVMware",
@@ -261,6 +344,7 @@ environments = [
 snapshot_actions = [
         "RecoverVMs",
     ] # [str] | Specifies a list of recovery actions. Only snapshots that applies to these actions will be returned. (optional)
+object_action_key = "kVMware" # str, none_type | Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, latest snapshot info matching the objectActionKey is for corresponding object. (optional)
 tenant_ids = [
         "tenantIds_example",
     ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
@@ -295,7 +379,7 @@ region_ids = [
 # and optional values
 try:
 	# List Protected Objects.
-	api_response = client.search.search_protected_objects(access_cluster_id=access_cluster_id, region_id=region_id, search_string=search_string, environments=environments, snapshot_actions=snapshot_actions, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, storage_domain_ids=storage_domain_ids, sub_result_size=sub_result_size, filter_snapshot_from_usecs=filter_snapshot_from_usecs, filter_snapshot_to_usecs=filter_snapshot_to_usecs, os_types=os_types, source_ids=source_ids, run_instance_ids=run_instance_ids, cdp_protected_only=cdp_protected_only, region_ids=region_ids)
+	api_response = client.search.search_protected_objects(access_cluster_id=access_cluster_id, region_id=region_id, request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, snapshot_actions=snapshot_actions, object_action_key=object_action_key, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, storage_domain_ids=storage_domain_ids, sub_result_size=sub_result_size, filter_snapshot_from_usecs=filter_snapshot_from_usecs, filter_snapshot_to_usecs=filter_snapshot_to_usecs, os_types=os_types, source_ids=source_ids, run_instance_ids=run_instance_ids, cdp_protected_only=cdp_protected_only, region_ids=region_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling SearchApi->search_protected_objects: %s\n" % e)
@@ -308,9 +392,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **access_cluster_id** | **int**| This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. | [optional]
  **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
  **search_string** | **str**| Specifies the search string to filter the objects. This search string will be applicable for objectnames and Protection Group names. User can specify a wildcard character &#39;*&#39; as a suffix to a string where all object and their Protection Group names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects with Protection Groups will be returned which will match other filtering criteria. | [optional]
  **environments** | **[str]**| Specifies the environment type to filter objects. | [optional]
  **snapshot_actions** | **[str]**| Specifies a list of recovery actions. Only snapshots that applies to these actions will be returned. | [optional]
+ **object_action_key** | **str, none_type**| Filter by ObjectActionKey, which uniquely represents protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey. When specified, latest snapshot info matching the objectActionKey is for corresponding object. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
  **include_tenants** | **bool**| If true, the response will include Objects which belongs to all tenants which the current user has permission to see. | [optional]
  **protection_group_ids** | **[str]**| Specifies a list of Protection Group ids to filter the objects. If specified, the objects protected by specified Protection Group ids will be returned. | [optional]

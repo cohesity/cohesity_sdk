@@ -59,6 +59,7 @@ class CommonAuthenticationMethodParams(ModelNormal):
             'KUSEIAMUSER': "kUseIAMUser",
             'KUSEIAMROLE': "kUseIAMRole",
             'KUSESTS': "kUseSTS",
+            'KUSEHELIOS': "kUseHelios",
         },
     }
 

@@ -43,6 +43,7 @@ def lazy_import():
     from cohesity_sdk.helios.model.physical_object_protection_response_params import PhysicalObjectProtectionResponseParams
     from cohesity_sdk.helios.model.policy_config import PolicyConfig
     from cohesity_sdk.helios.model.protected_object_backup_config_all_of import ProtectedObjectBackupConfigAllOf
+    from cohesity_sdk.helios.model.sfdc_object_protection_response_params import SfdcObjectProtectionResponseParams
     from cohesity_sdk.helios.model.sla_rule import SlaRule
     from cohesity_sdk.helios.model.time_of_day import TimeOfDay
     from cohesity_sdk.helios.model.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
@@ -62,6 +63,7 @@ def lazy_import():
     globals()['PhysicalObjectProtectionResponseParams'] = PhysicalObjectProtectionResponseParams
     globals()['PolicyConfig'] = PolicyConfig
     globals()['ProtectedObjectBackupConfigAllOf'] = ProtectedObjectBackupConfigAllOf
+    globals()['SfdcObjectProtectionResponseParams'] = SfdcObjectProtectionResponseParams
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
     globals()['VmwareObjectProtectionResponseParams'] = VmwareObjectProtectionResponseParams
@@ -121,6 +123,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -180,6 +183,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'skip_rigel_for_backup': (bool, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionResponseParams,),  # noqa: E501
@@ -195,6 +199,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'aws_params': (AwsObjectProtectionResponseParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionResponseParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionResponseParams,),  # noqa: E501
+            'sfdc_params': (SfdcObjectProtectionResponseParams,),  # noqa: E501
             'is_auto_protect_config': (bool, none_type,),  # noqa: E501
             'auto_protect_parent_id': (int, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
@@ -216,6 +221,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'skip_rigel_for_backup': 'skipRigelForBackup',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -231,6 +237,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
         'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
         'is_auto_protect_config': 'isAutoProtectConfig',  # noqa: E501
         'auto_protect_parent_id': 'autoProtectParentId',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
@@ -293,6 +300,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            skip_rigel_for_backup (bool, none_type): Specifies whether to skip Rigel for backup or not.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionResponseParams): [optional]  # noqa: E501
@@ -308,6 +316,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             aws_params (AwsObjectProtectionResponseParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionResponseParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionResponseParams): [optional]  # noqa: E501
+            sfdc_params (SfdcObjectProtectionResponseParams): [optional]  # noqa: E501
             is_auto_protect_config (bool, none_type): Specifies whether or not this configuration is applied to an autoprotected object rather than this specific object.. [optional]  # noqa: E501
             auto_protect_parent_id (int, none_type): Specifies the parent ID of the object which the backup configuration is applied to if this is an auto protect config.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies whether or not protection has been paused on this object.. [optional]  # noqa: E501

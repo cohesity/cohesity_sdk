@@ -6,6 +6,7 @@ Method | HTTP request | Description
 [**create_upgrade_task**](AgentApi.md#create_upgrade_task) | **POST** /data-protect/agents/upgrade-tasks | Create an upgrade task
 [**download_agent**](AgentApi.md#download_agent) | **POST** /data-protect/agents/download | Download agent
 [**get_upgrade_tasks**](AgentApi.md#get_upgrade_tasks) | **GET** /data-protect/agents/upgrade-tasks | Get upgrade tasks
+[**mcm_get_agent_image_details**](AgentApi.md#mcm_get_agent_image_details) | **GET** /mcm/data-protect/agents/images | Get agent images details.
 [**perform_action_on_agent_upgrade_task**](AgentApi.md#perform_action_on_agent_upgrade_task) | **POST** /data-protect/agents/upgrade-tasks/actions | Perform action on an upgrade task.
 
 
@@ -136,6 +137,9 @@ body = DownloadAgentRequestParams(
         my_sql_params=MySqlAgentParams(
             package_type="kScript",
         ),
+        vmware_cdp_filter_params=VMWareCDPFilterParams(
+            esxi_version="esxi_version_example",
+        ),
     ) # DownloadAgentRequestParams | Specifies agent details.
 access_cluster_id = 1 # int | This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios. (optional)
 region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
@@ -246,6 +250,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AgentUpgradeTaskStates**](AgentUpgradeTaskStates.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mcm_get_agent_image_details**
+> McmAgentImagesResponse mcm_get_agent_image_details()
+
+Get agent images details.
+
+Get agent information on Helios.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import HeliosClient
+from cohesity_sdk.helios.model.mcm_agent_images_response import McmAgentImagesResponse
+from cohesity_sdk.helios.model.error import Error
+from cohesity_sdk.helios.exceptions import ApiException
+from pprint import pprint
+
+
+api_key = "xxxxxx-xxxxx-xxxx-xxxxxx"
+
+client = HeliosClient(api_key=api_key)
+
+
+region_id = "regionId_example" # str | This field uniquely represents a region and is used for making Helios calls to a specific region. (optional)
+platform = "Windows" # str | Specifies a platform for which agent information need to be fetched. (optional)
+package_type = "Script" # str | Specifies a package type for which agent information need to be fetched. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get agent images details.
+	api_response = client.agent.mcm_get_agent_image_details(region_id=region_id, platform=platform, package_type=package_type)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling AgentApi->mcm_get_agent_image_details: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **region_id** | **str**| This field uniquely represents a region and is used for making Helios calls to a specific region. | [optional]
+ **platform** | **str**| Specifies a platform for which agent information need to be fetched. | [optional]
+ **package_type** | **str**| Specifies a package type for which agent information need to be fetched. | [optional]
+
+### Return type
+
+[**McmAgentImagesResponse**](McmAgentImagesResponse.md)
 
 ### Authorization
 

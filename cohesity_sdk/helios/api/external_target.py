@@ -717,10 +717,12 @@ class ExternalTargetApi(object):
                 access_cluster_id (int): This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.. [optional]
                 region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
                 ids ([int]): Filter by a list of External Target ids.. [optional]
+                global_ids ([str]): Filter by a list of External Target global ids.. [optional]
                 names ([str]): Filter by a list of External Target names.. [optional]
                 purpose_types ([str]): Filter by a list of External Target purpose types.. [optional]
                 storage_types ([str]): Filter by a list of External Target storage types.. [optional]
                 storage_classes ([str]): Filter by a list of External Target storage classes.. [optional]
+                ownership_contexts ([str]): Specifies whether how this external target is being consumed either Local or FortKnox.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -785,10 +787,12 @@ class ExternalTargetApi(object):
                     'access_cluster_id',
                     'region_id',
                     'ids',
+                    'global_ids',
                     'names',
                     'purpose_types',
                     'storage_types',
                     'storage_classes',
+                    'ownership_contexts',
                 ],
                 'required': [],
                 'nullable': [
@@ -797,6 +801,7 @@ class ExternalTargetApi(object):
                     'purpose_types',
                     'storage_types',
                     'storage_classes',
+                    'ownership_contexts',
                 ],
                 'validation': [
                 ]
@@ -808,7 +813,8 @@ class ExternalTargetApi(object):
                     ('purpose_types',): {
 
                         "ARCHIVAL": "Archival",
-                        "TIERING": "Tiering"
+                        "TIERING": "Tiering",
+                        "RPAAS": "Rpaas"
                     },
                     ('storage_types',): {
 
@@ -838,6 +844,11 @@ class ExternalTargetApi(object):
                         "ORACLEOBJECTSTORAGE": "OracleObjectStorage",
                         "ORACLEARCHIVESTORAGE": "OracleArchiveStorage"
                     },
+                    ('ownership_contexts',): {
+
+                        "LOCAL": "Local",
+                        "FORTKNOX": "FortKnox"
+                    },
                 },
                 'openapi_types': {
                     'access_cluster_id':
@@ -846,6 +857,8 @@ class ExternalTargetApi(object):
                         (str,),
                     'ids':
                         ([int],),
+                    'global_ids':
+                        ([str],),
                     'names':
                         ([str],),
                     'purpose_types':
@@ -854,31 +867,39 @@ class ExternalTargetApi(object):
                         ([str],),
                     'storage_classes':
                         ([str],),
+                    'ownership_contexts':
+                        ([str],),
                 },
                 'attribute_map': {
                     'access_cluster_id': 'accessClusterId',
                     'region_id': 'regionId',
                     'ids': 'ids',
+                    'global_ids': 'globalIds',
                     'names': 'names',
                     'purpose_types': 'purposeTypes',
                     'storage_types': 'storageTypes',
                     'storage_classes': 'storageClasses',
+                    'ownership_contexts': 'ownershipContexts',
                 },
                 'location_map': {
                     'access_cluster_id': 'header',
                     'region_id': 'header',
                     'ids': 'query',
+                    'global_ids': 'query',
                     'names': 'query',
                     'purpose_types': 'query',
                     'storage_types': 'query',
                     'storage_classes': 'query',
+                    'ownership_contexts': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
+                    'global_ids': 'csv',
                     'names': 'csv',
                     'purpose_types': 'csv',
                     'storage_types': 'csv',
                     'storage_classes': 'csv',
+                    'ownership_contexts': 'csv',
                 }
             },
             headers_map={

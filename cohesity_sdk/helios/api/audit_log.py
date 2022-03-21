@@ -26,6 +26,12 @@ from cohesity_sdk.helios.model.audit_logs_actions import AuditLogsActions
 from cohesity_sdk.helios.model.audit_logs_entity_types import AuditLogsEntityTypes
 from cohesity_sdk.helios.model.error import Error
 from cohesity_sdk.helios.model.filer_audit_log_configs import FilerAuditLogConfigs
+from cohesity_sdk.helios.model.helios_audit_log_settings import HeliosAuditLogSettings
+from cohesity_sdk.helios.model.helios_audit_log_users import HeliosAuditLogUsers
+from cohesity_sdk.helios.model.helios_audit_logs import HeliosAuditLogs
+from cohesity_sdk.helios.model.helios_audit_logs_actions import HeliosAuditLogsActions
+from cohesity_sdk.helios.model.helios_audit_logs_entity_types import HeliosAuditLogsEntityTypes
+from cohesity_sdk.helios.model.publish_helios_audit_log_request import PublishHeliosAuditLogRequest
 
 
 class AuditLogApi(object):
@@ -39,6 +45,251 @@ class AuditLogApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __download_helios_audit_logs(
+            self,
+            **kwargs
+        ):
+            """Download helios audit logs.  # noqa: E501
+
+            Download helios audit logs.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.download_helios_audit_logs(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                search_string (str, none_type): Search audit logs by 'entityName' or 'details'.. [optional]
+                usernames ([str], none_type): Specifies a list of usernames, only audit logs made by these users will be returned.. [optional]
+                domains ([str], none_type): Specifies a list of domains, only audit logs made by user in these domains will be returned.. [optional]
+                entity_types ([str], none_type): Specifies a list of entity types, only audit logs containing these entity types will be returned.. [optional]
+                actions ([str], none_type): Specifies a list of actions, only audit logs containing these actions will be returned.. [optional]
+                start_time_usecs (int, none_type): Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.. [optional]
+                end_time_usecs (int, none_type): Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.. [optional]
+                tenant_ids ([str], none_type): Specifies a list of tenant ids, only audit logs made by these tenants will be returned.. [optional]
+                include_tenants (bool, none_type): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
+                cluster_identifiers ([str], none_type): Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.. [optional]
+                start_index (int, none_type): Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.. [optional]
+                count (int, none_type): Specifies the number of indexed objects to be fetched from the index.. [optional]
+                include_helios_logs (bool, none_type): Specifies if helios audit logs need to be fetched or not from the index.. [optional]
+                include_dmaas_logs (bool, none_type): Specifies if dmaas audit logs need to be fetched or not from the index.. [optional]
+                region_ids ([str], none_type): Specifies the list of region ids to filter. . [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                file_type
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.download_helios_audit_logs = _Endpoint(
+            settings={
+                'response_type': (file_type,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/download',
+                'operation_id': 'download_helios_audit_logs',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'search_string',
+                    'usernames',
+                    'domains',
+                    'entity_types',
+                    'actions',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'tenant_ids',
+                    'include_tenants',
+                    'cluster_identifiers',
+                    'start_index',
+                    'count',
+                    'include_helios_logs',
+                    'include_dmaas_logs',
+                    'region_ids',
+                ],
+                'required': [],
+                'nullable': [
+                    'search_string',
+                    'usernames',
+                    'domains',
+                    'entity_types',
+                    'actions',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'tenant_ids',
+                    'include_tenants',
+                    'cluster_identifiers',
+                    'start_index',
+                    'count',
+                    'include_helios_logs',
+                    'include_dmaas_logs',
+                    'region_ids',
+                ],
+                'enum': [
+                    'region_ids',
+                ],
+                'validation': [
+                    'count',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('count',): {
+
+                        'inclusive_maximum': 10000,
+                        'inclusive_minimum': 1,
+                    },
+                },
+                'allowed_values': {
+                    ('region_ids',): {
+                        'None': None,
+                        "US-EAST-1": "us-east-1",
+                        "US-EAST-2": "us-east-2",
+                        "US-WEST-1": "us-west-1",
+                        "US-WEST-2": "us-west-2",
+                        "CA-CENTRAL-1": "ca-central-1",
+                        "AP-SOUTHEAST-2": "ap-southeast-2",
+                        "EU-CENTRAL-1": "eu-central-1",
+                        "EU-WEST-2": "eu-west-2"
+                    },
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'search_string':
+                        (str, none_type,),
+                    'usernames':
+                        ([str], none_type,),
+                    'domains':
+                        ([str], none_type,),
+                    'entity_types':
+                        ([str], none_type,),
+                    'actions':
+                        ([str], none_type,),
+                    'start_time_usecs':
+                        (int, none_type,),
+                    'end_time_usecs':
+                        (int, none_type,),
+                    'tenant_ids':
+                        ([str], none_type,),
+                    'include_tenants':
+                        (bool, none_type,),
+                    'cluster_identifiers':
+                        ([str], none_type,),
+                    'start_index':
+                        (int, none_type,),
+                    'count':
+                        (int, none_type,),
+                    'include_helios_logs':
+                        (bool, none_type,),
+                    'include_dmaas_logs':
+                        (bool, none_type,),
+                    'region_ids':
+                        ([str], none_type,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'search_string': 'searchString',
+                    'usernames': 'usernames',
+                    'domains': 'domains',
+                    'entity_types': 'entityTypes',
+                    'actions': 'actions',
+                    'start_time_usecs': 'startTimeUsecs',
+                    'end_time_usecs': 'endTimeUsecs',
+                    'tenant_ids': 'tenantIds',
+                    'include_tenants': 'includeTenants',
+                    'cluster_identifiers': 'clusterIdentifiers',
+                    'start_index': 'startIndex',
+                    'count': 'count',
+                    'include_helios_logs': 'includeHeliosLogs',
+                    'include_dmaas_logs': 'includeDmaasLogs',
+                    'region_ids': 'regionIds',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'search_string': 'query',
+                    'usernames': 'query',
+                    'domains': 'query',
+                    'entity_types': 'query',
+                    'actions': 'query',
+                    'start_time_usecs': 'query',
+                    'end_time_usecs': 'query',
+                    'tenant_ids': 'query',
+                    'include_tenants': 'query',
+                    'cluster_identifiers': 'query',
+                    'start_index': 'query',
+                    'count': 'query',
+                    'include_helios_logs': 'query',
+                    'include_dmaas_logs': 'query',
+                    'region_ids': 'query',
+                },
+                'collection_format_map': {
+                    'usernames': 'csv',
+                    'domains': 'csv',
+                    'entity_types': 'csv',
+                    'actions': 'csv',
+                    'tenant_ids': 'csv',
+                    'cluster_identifiers': 'csv',
+                    'region_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/csv'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__download_helios_audit_logs
+        )
 
         def __get_audit_logs(
             self,
@@ -240,7 +491,16 @@ class AuditLogApi(object):
                         "TRUSTEDCA": "TrustedCA",
                         "AMQPTARGETCONFIGURATION": "AMQPTargetConfiguration",
                         "PATCH": "Patch",
-                        "HOTFIX": "Hotfix"
+                        "HOTFIX": "Hotfix",
+                        "NISNETGROUP": "NisNetgroup",
+                        "GFLAGRECIPE": "GflagRecipe",
+                        "GFLAG": "Gflag",
+                        "QUORUMGROUP": "QuorumGroup",
+                        "QUORUMAPPLICATION": "QuorumApplication",
+                        "BIFROSTCONNECTION": "BifrostConnection",
+                        "BIFROSTCONNECTOR": "BifrostConnector",
+                        "WHITELABELINGSETTING": "WhitelabelingSetting",
+                        "AUDITLOGSETTING": "AuditLogSetting"
                     },
                     ('actions',): {
                         'None': None,
@@ -287,7 +547,9 @@ class AuditLogApi(object):
                         "REVERT": "Revert",
                         "IMPORT": "Import",
                         "VALIDATE": "Validate",
-                        "CLUSTEREXPAND": "ClusterExpand"
+                        "CLUSTEREXPAND": "ClusterExpand",
+                        "FETCH": "Fetch",
+                        "SEARCH": "Search"
                     },
                 },
                 'openapi_types': {
@@ -729,6 +991,869 @@ class AuditLogApi(object):
             callable=__get_filer_audit_log_configs
         )
 
+        def __get_helios_audit_log_settings(
+            self,
+            **kwargs
+        ):
+            """Get Helios Audit Log Settings.  # noqa: E501
+
+            Returns a list of Helios audit log settings.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_helios_audit_log_settings(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosAuditLogSettings
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_helios_audit_log_settings = _Endpoint(
+            settings={
+                'response_type': (HeliosAuditLogSettings,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/settings',
+                'operation_id': 'get_helios_audit_log_settings',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_helios_audit_log_settings
+        )
+
+        def __get_helios_audit_logs(
+            self,
+            **kwargs
+        ):
+            """Get helios audit logs.  # noqa: E501
+
+            Get helios audit logs.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_helios_audit_logs(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                search_string (str, none_type): Search audit logs by 'entityName' or 'details'.. [optional]
+                usernames ([str], none_type): Specifies a list of usernames, only audit logs made by these users will be returned.. [optional]
+                domains ([str], none_type): Specifies a list of domains, only audit logs made by user in these domains will be returned.. [optional]
+                entity_types ([str], none_type): Specifies a list of entity types, only audit logs containing these entity types will be returned.. [optional]
+                actions ([str], none_type): Specifies a list of actions, only audit logs containing these actions will be returned.. [optional]
+                start_time_usecs (int, none_type): Specifies a unix timestamp in microseconds, only audit logs made after this time will be returned.. [optional]
+                end_time_usecs (int, none_type): Specifies a unix timestamp in microseconds, only audit logs made before this time will be returned.. [optional]
+                tenant_ids ([str], none_type): Specifies a list of tenant ids, only audit logs made by these tenants will be returned. These has to be local tenant Id.. [optional]
+                include_tenants (bool, none_type): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
+                cluster_identifiers ([str], none_type): Specifies the list of cluster identifiers. The format is clusterId:clusterIncarnationId.. [optional]
+                start_index (int, none_type): Specifies a start index. The oldest logs before this index will skipped, only audit logs from this index will be fetched.. [optional]
+                count (int, none_type): Specifies the number of indexed objects to be fetched from the index.. [optional]
+                include_helios_logs (bool, none_type): Specifies if helios audit logs need to be fetched or not from the index.. [optional]
+                include_dmaas_logs (bool, none_type): Specifies if dmaas audit logs need to be fetched or not from the index.. [optional]
+                region_ids ([str], none_type): Specifies the list of region ids to filter. . [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosAuditLogs
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_helios_audit_logs = _Endpoint(
+            settings={
+                'response_type': (HeliosAuditLogs,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs',
+                'operation_id': 'get_helios_audit_logs',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'search_string',
+                    'usernames',
+                    'domains',
+                    'entity_types',
+                    'actions',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'tenant_ids',
+                    'include_tenants',
+                    'cluster_identifiers',
+                    'start_index',
+                    'count',
+                    'include_helios_logs',
+                    'include_dmaas_logs',
+                    'region_ids',
+                ],
+                'required': [],
+                'nullable': [
+                    'search_string',
+                    'usernames',
+                    'domains',
+                    'entity_types',
+                    'actions',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'tenant_ids',
+                    'include_tenants',
+                    'cluster_identifiers',
+                    'start_index',
+                    'count',
+                    'include_helios_logs',
+                    'include_dmaas_logs',
+                    'region_ids',
+                ],
+                'enum': [
+                    'region_ids',
+                ],
+                'validation': [
+                    'count',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('count',): {
+
+                        'inclusive_maximum': 10000,
+                        'inclusive_minimum': 1,
+                    },
+                },
+                'allowed_values': {
+                    ('region_ids',): {
+                        'None': None,
+                        "US-EAST-1": "us-east-1",
+                        "US-EAST-2": "us-east-2",
+                        "US-WEST-1": "us-west-1",
+                        "US-WEST-2": "us-west-2",
+                        "CA-CENTRAL-1": "ca-central-1",
+                        "AP-SOUTHEAST-2": "ap-southeast-2",
+                        "EU-CENTRAL-1": "eu-central-1",
+                        "EU-WEST-2": "eu-west-2"
+                    },
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'search_string':
+                        (str, none_type,),
+                    'usernames':
+                        ([str], none_type,),
+                    'domains':
+                        ([str], none_type,),
+                    'entity_types':
+                        ([str], none_type,),
+                    'actions':
+                        ([str], none_type,),
+                    'start_time_usecs':
+                        (int, none_type,),
+                    'end_time_usecs':
+                        (int, none_type,),
+                    'tenant_ids':
+                        ([str], none_type,),
+                    'include_tenants':
+                        (bool, none_type,),
+                    'cluster_identifiers':
+                        ([str], none_type,),
+                    'start_index':
+                        (int, none_type,),
+                    'count':
+                        (int, none_type,),
+                    'include_helios_logs':
+                        (bool, none_type,),
+                    'include_dmaas_logs':
+                        (bool, none_type,),
+                    'region_ids':
+                        ([str], none_type,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'search_string': 'searchString',
+                    'usernames': 'usernames',
+                    'domains': 'domains',
+                    'entity_types': 'entityTypes',
+                    'actions': 'actions',
+                    'start_time_usecs': 'startTimeUsecs',
+                    'end_time_usecs': 'endTimeUsecs',
+                    'tenant_ids': 'tenantIds',
+                    'include_tenants': 'includeTenants',
+                    'cluster_identifiers': 'clusterIdentifiers',
+                    'start_index': 'startIndex',
+                    'count': 'count',
+                    'include_helios_logs': 'includeHeliosLogs',
+                    'include_dmaas_logs': 'includeDmaasLogs',
+                    'region_ids': 'regionIds',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'search_string': 'query',
+                    'usernames': 'query',
+                    'domains': 'query',
+                    'entity_types': 'query',
+                    'actions': 'query',
+                    'start_time_usecs': 'query',
+                    'end_time_usecs': 'query',
+                    'tenant_ids': 'query',
+                    'include_tenants': 'query',
+                    'cluster_identifiers': 'query',
+                    'start_index': 'query',
+                    'count': 'query',
+                    'include_helios_logs': 'query',
+                    'include_dmaas_logs': 'query',
+                    'region_ids': 'query',
+                },
+                'collection_format_map': {
+                    'usernames': 'csv',
+                    'domains': 'csv',
+                    'entity_types': 'csv',
+                    'actions': 'csv',
+                    'tenant_ids': 'csv',
+                    'cluster_identifiers': 'csv',
+                    'region_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_helios_audit_logs
+        )
+
+        def __get_helios_audit_logs_actions(
+            self,
+            **kwargs
+        ):
+            """Get helios audit logs actions.  # noqa: E501
+
+            Get all actions of helios audit logs.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_helios_audit_logs_actions(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                service (str, none_type): Get audit logs actions by service.. [optional] if omitted the server will use the default value of "Mcm"
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosAuditLogsActions
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_helios_audit_logs_actions = _Endpoint(
+            settings={
+                'response_type': (HeliosAuditLogsActions,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/actions',
+                'operation_id': 'get_helios_audit_logs_actions',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'service',
+                ],
+                'required': [],
+                'nullable': [
+                    'service',
+                ],
+                'enum': [
+                    'service',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('service',): {
+                        'None': None,
+                        "DMAAS": "Dmaas",
+                        "MCM": "Mcm",
+                        "DATAGOVERN": "DataGovern",
+                        "FORTKNOX": "FortKnox"
+                    },
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'service':
+                        (str, none_type,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'service': 'service',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'service': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_helios_audit_logs_actions
+        )
+
+        def __get_helios_audit_logs_cluster_users(
+            self,
+            **kwargs
+        ):
+            """Get helios audit logs cluster users.  # noqa: E501
+
+            Get all cluster users of helios audit logs.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_helios_audit_logs_cluster_users(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosAuditLogUsers
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_helios_audit_logs_cluster_users = _Endpoint(
+            settings={
+                'response_type': (HeliosAuditLogUsers,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/clusterUsers',
+                'operation_id': 'get_helios_audit_logs_cluster_users',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_helios_audit_logs_cluster_users
+        )
+
+        def __get_helios_audit_logs_entity_types(
+            self,
+            **kwargs
+        ):
+            """Get helios audit logs entity types.  # noqa: E501
+
+            Get all entity types of helios audit logs.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_helios_audit_logs_entity_types(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                service (str, none_type): Get audit logs entity type by service.. [optional] if omitted the server will use the default value of "Mcm"
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosAuditLogsEntityTypes
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_helios_audit_logs_entity_types = _Endpoint(
+            settings={
+                'response_type': (HeliosAuditLogsEntityTypes,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/entity-types',
+                'operation_id': 'get_helios_audit_logs_entity_types',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'region_id',
+                    'service',
+                ],
+                'required': [],
+                'nullable': [
+                    'service',
+                ],
+                'enum': [
+                    'service',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('service',): {
+                        'None': None,
+                        "DMAAS": "Dmaas",
+                        "MCM": "Mcm",
+                        "DATAGOVERN": "DataGovern",
+                        "FORTKNOX": "FortKnox"
+                    },
+                },
+                'openapi_types': {
+                    'region_id':
+                        (str,),
+                    'service':
+                        (str, none_type,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                    'service': 'service',
+                },
+                'location_map': {
+                    'region_id': 'header',
+                    'service': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_helios_audit_logs_entity_types
+        )
+
+        def __publish_helios_audit_log(
+            self,
+            body,
+            **kwargs
+        ):
+            """Publish helios audit log.  # noqa: E501
+
+            Publish Helios Audit Log  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.publish_helios_audit_log(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (PublishHeliosAuditLogRequest): Specifies the parameters to publish helios audit log.
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.publish_helios_audit_log = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/publish',
+                'operation_id': 'publish_helios_audit_log',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (PublishHeliosAuditLogRequest,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__publish_helios_audit_log
+        )
+
         def __update_filer_audit_log_configs(
             self,
             body,
@@ -861,4 +1986,132 @@ class AuditLogApi(object):
             },
             api_client=api_client,
             callable=__update_filer_audit_log_configs
+        )
+
+        def __update_helios_audit_log_settings(
+            self,
+            body,
+            **kwargs
+        ):
+            """Update Helios Audit Log Settings.  # noqa: E501
+
+            Updates Helios audit log settings.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_helios_audit_log_settings(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (HeliosAuditLogSettings):
+
+            Keyword Args:
+                region_id (str): This field uniquely represents a region and is used for making Helios calls to a specific region.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                HeliosAuditLogSettings
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_helios_audit_log_settings = _Endpoint(
+            settings={
+                'response_type': (HeliosAuditLogSettings,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/mcm/audit-logs/settings',
+                'operation_id': 'update_helios_audit_log_settings',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                    'region_id',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (HeliosAuditLogSettings,),
+                    'region_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'region_id': 'regionId',
+                },
+                'location_map': {
+                    'body': 'body',
+                    'region_id': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_helios_audit_log_settings
         )

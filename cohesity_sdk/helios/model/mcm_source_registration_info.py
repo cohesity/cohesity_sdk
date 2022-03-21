@@ -85,6 +85,7 @@ class McmSourceRegistrationInfo(ModelNormal):
             'registration_error': (str, none_type,),  # noqa: E501
             'last_refresh_time_usecs': (int, none_type,),  # noqa: E501
             'refresh_error': (str, none_type,),  # noqa: E501
+            'connector_group_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +101,7 @@ class McmSourceRegistrationInfo(ModelNormal):
         'registration_error': 'registrationError',  # noqa: E501
         'last_refresh_time_usecs': 'lastRefreshTimeUsecs',  # noqa: E501
         'refresh_error': 'refreshError',  # noqa: E501
+        'connector_group_id': 'connectorGroupId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,6 +157,7 @@ class McmSourceRegistrationInfo(ModelNormal):
             registration_error (str, none_type): Specifies the error detail occured during the protection source registration.. [optional]  # noqa: E501
             last_refresh_time_usecs (int, none_type): Specifies the registration time of the Source in Unix time epoch in microseconds.. [optional]  # noqa: E501
             refresh_error (str, none_type): Specifies the error detail occured during the refersh of a protection source.. [optional]  # noqa: E501
+            connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

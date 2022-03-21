@@ -83,8 +83,15 @@ class UserParamsAllOf(ModelNormal):
         """
         return {
             'sid': (str, none_type,),  # noqa: E501
+            'username': (str,),  # noqa: E501
+            'domain': (str,),  # noqa: E501
+            'local_user_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'created_time_msecs': (int, none_type,),  # noqa: E501
             'last_updated_time_msecs': (int, none_type,),  # noqa: E501
+            'last_login_time_msecs': (int, none_type,),  # noqa: E501
+            'force_password_change': (bool, none_type,),  # noqa: E501
+            'primary_group': (str, none_type,),  # noqa: E501
+            'other_groups': ([str],),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             's3_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'locked_reason': (str, none_type,),  # noqa: E501
@@ -98,8 +105,15 @@ class UserParamsAllOf(ModelNormal):
 
     attribute_map = {
         'sid': 'sid',  # noqa: E501
+        'username': 'username',  # noqa: E501
+        'domain': 'domain',  # noqa: E501
+        'local_user_params': 'localUserParams',  # noqa: E501
         'created_time_msecs': 'createdTimeMsecs',  # noqa: E501
         'last_updated_time_msecs': 'lastUpdatedTimeMsecs',  # noqa: E501
+        'last_login_time_msecs': 'lastLoginTimeMsecs',  # noqa: E501
+        'force_password_change': 'forcePasswordChange',  # noqa: E501
+        'primary_group': 'primaryGroup',  # noqa: E501
+        'other_groups': 'otherGroups',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
         's3_account_params': 's3AccountParams',  # noqa: E501
         'locked_reason': 'lockedReason',  # noqa: E501
@@ -153,8 +167,15 @@ class UserParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             sid (str, none_type): Specifies the sid of the User.. [optional]  # noqa: E501
+            username (str): Specifies the username.. [optional]  # noqa: E501
+            domain (str): Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.. [optional]  # noqa: E501
+            local_user_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.. [optional]  # noqa: E501
             created_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user account was created.. [optional]  # noqa: E501
             last_updated_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user account was last modified.. [optional]  # noqa: E501
+            last_login_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user last logged in successfully.. [optional]  # noqa: E501
+            force_password_change (bool, none_type): Specifies if the user must change password.. [optional]  # noqa: E501
+            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
+            other_groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id of the User.. [optional]  # noqa: E501
             s3_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the S3 Account parameters of the User.. [optional]  # noqa: E501
             locked_reason (str, none_type): Specifies the reason for locking the User.. [optional]  # noqa: E501

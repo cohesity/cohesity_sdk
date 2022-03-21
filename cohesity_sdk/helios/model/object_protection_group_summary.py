@@ -65,6 +65,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('last_archival_run_status',): {
             'None': None,
@@ -77,6 +78,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('last_replication_run_status',): {
             'None': None,
@@ -89,6 +91,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
     }
 

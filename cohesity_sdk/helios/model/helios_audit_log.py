@@ -54,6 +54,11 @@ class HeliosAuditLog(ModelNormal):
     """
 
     allowed_values = {
+        ('source_type',): {
+            'None': None,
+            'CLUSTER': "cluster",
+            'HELIOS': "helios",
+        },
     }
 
     validations = {
@@ -77,6 +82,7 @@ class HeliosAuditLog(ModelNormal):
             'details': (str, none_type,),  # noqa: E501
             'username': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
+            'source_type': (str, none_type,),  # noqa: E501
             'entity_name': (str, none_type,),  # noqa: E501
             'entity_type': (str, none_type,),  # noqa: E501
             'action': (str, none_type,),  # noqa: E501
@@ -103,6 +109,7 @@ class HeliosAuditLog(ModelNormal):
         'details': 'details',  # noqa: E501
         'username': 'username',  # noqa: E501
         'domain': 'domain',  # noqa: E501
+        'source_type': 'sourceType',  # noqa: E501
         'entity_name': 'entityName',  # noqa: E501
         'entity_type': 'entityType',  # noqa: E501
         'action': 'action',  # noqa: E501
@@ -169,6 +176,7 @@ class HeliosAuditLog(ModelNormal):
             details (str, none_type): Specifies the change details of this audit log.. [optional]  # noqa: E501
             username (str, none_type): Specifies the username who made this audit log.. [optional]  # noqa: E501
             domain (str, none_type): Specifies the domain of user who made this audit log.. [optional]  # noqa: E501
+            source_type (str, none_type): Specifies the source type for this audit log.. [optional]  # noqa: E501
             entity_name (str, none_type): Specifies the entity name.. [optional]  # noqa: E501
             entity_type (str, none_type): Specifies the entity type.. [optional]  # noqa: E501
             action (str, none_type): Specifies the action type of this audit log.. [optional]  # noqa: E501

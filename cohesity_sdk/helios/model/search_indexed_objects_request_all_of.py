@@ -39,6 +39,8 @@ def lazy_import():
     from cohesity_sdk.helios.model.search_file_request_params import SearchFileRequestParams
     from cohesity_sdk.helios.model.search_ms_teams_request_params import SearchMsTeamsRequestParams
     from cohesity_sdk.helios.model.search_public_folder_request_params import SearchPublicFolderRequestParams
+    from cohesity_sdk.helios.model.search_sfdc_records_request_params import SearchSfdcRecordsRequestParams
+    from cohesity_sdk.helios.model.uda_on_prem_search_params import UdaOnPremSearchParams
     globals()['CassandraOnPremSearchParams'] = CassandraOnPremSearchParams
     globals()['CouchBaseOnPremSearchParams'] = CouchBaseOnPremSearchParams
     globals()['HDFSOnPremSearchParams'] = HDFSOnPremSearchParams
@@ -51,6 +53,8 @@ def lazy_import():
     globals()['SearchFileRequestParams'] = SearchFileRequestParams
     globals()['SearchMsTeamsRequestParams'] = SearchMsTeamsRequestParams
     globals()['SearchPublicFolderRequestParams'] = SearchPublicFolderRequestParams
+    globals()['SearchSfdcRecordsRequestParams'] = SearchSfdcRecordsRequestParams
+    globals()['UdaOnPremSearchParams'] = UdaOnPremSearchParams
 
 
 class SearchIndexedObjectsRequestAllOf(ModelNormal):
@@ -114,6 +118,8 @@ class SearchIndexedObjectsRequestAllOf(ModelNormal):
             'ms_teams_params': (SearchMsTeamsRequestParams,),  # noqa: E501
             'sharepoint_params': (SearchDocumentLibraryRequestParams,),  # noqa: E501
             'one_drive_params': (SearchDocumentLibraryRequestParams,),  # noqa: E501
+            'uda_params': (UdaOnPremSearchParams,),  # noqa: E501
+            'sfdc_params': (SearchSfdcRecordsRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -136,6 +142,8 @@ class SearchIndexedObjectsRequestAllOf(ModelNormal):
         'ms_teams_params': 'msTeamsParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
         'one_drive_params': 'oneDriveParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -198,6 +206,8 @@ class SearchIndexedObjectsRequestAllOf(ModelNormal):
             ms_teams_params (SearchMsTeamsRequestParams): [optional]  # noqa: E501
             sharepoint_params (SearchDocumentLibraryRequestParams): [optional]  # noqa: E501
             one_drive_params (SearchDocumentLibraryRequestParams): [optional]  # noqa: E501
+            uda_params (UdaOnPremSearchParams): [optional]  # noqa: E501
+            sfdc_params (SearchSfdcRecordsRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

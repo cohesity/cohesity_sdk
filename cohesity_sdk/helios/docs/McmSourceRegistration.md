@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **connections** | [**[ConnectionConfig], none_type**](ConnectionConfig.md) | Specifies the list of connections associated with this source. | [optional] 
 **source_id** | **str, none_type** | ID of top level source object discovered after the registration. | [optional] [readonly] 
 **environment** | **str, none_type** | Specifies the environment type of the Protection Source. | [optional] 
+**connector_group_id** | **int, none_type** | Specifies the connector group id of connector groups. | [optional] 
 **vmware_params** | [**VmwareSourceRegistrationParams**](VmwareSourceRegistrationParams.md) |  | [optional] 
 **physical_params** | [**PhysicalSourceRegistrationParams**](PhysicalSourceRegistrationParams.md) |  | [optional] 
 **generic_nas_params** | [**GenericNasRegistrationParams**](GenericNasRegistrationParams.md) |  | [optional] 
@@ -28,6 +29,7 @@ Name | Type | Description | Notes
 **aws_params** | [**AwsSourceRegistrationParams**](AwsSourceRegistrationParams.md) |  | [optional] 
 **office365_params** | [**Office365SourceRegistrationParams**](Office365SourceRegistrationParams.md) |  | [optional] 
 **hyperv_params** | [**HyperVSourceRegistrationParams**](HyperVSourceRegistrationParams.md) |  | [optional] 
+**sfdc_params** | [**SfdcSourceRegistrationParams**](SfdcSourceRegistrationParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

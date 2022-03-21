@@ -65,6 +65,7 @@ class McmObjectBackupRunActivityParams(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('protection_environment_type',): {
             'None': None,
@@ -80,6 +81,7 @@ class McmObjectBackupRunActivityParams(ModelNormal):
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
+            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -142,6 +144,13 @@ class McmObjectBackupRunActivityParams(ModelNormal):
             'progress_task_id': (str, none_type,),  # noqa: E501
             'protection_environment_type': (str, none_type,),  # noqa: E501
             'is_stubbed_run': (bool, none_type,),  # noqa: E501
+            'is_sla_violated': (bool, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'bytes_written': (int, none_type,),  # noqa: E501
+            'bytes_read': (int, none_type,),  # noqa: E501
+            'message_code': (str, none_type,),  # noqa: E501
+            'message_guid': (str, none_type,),  # noqa: E501
+            'error_message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -163,6 +172,13 @@ class McmObjectBackupRunActivityParams(ModelNormal):
         'progress_task_id': 'progressTaskId',  # noqa: E501
         'protection_environment_type': 'protectionEnvironmentType',  # noqa: E501
         'is_stubbed_run': 'isStubbedRun',  # noqa: E501
+        'is_sla_violated': 'isSlaViolated',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'bytes_written': 'bytesWritten',  # noqa: E501
+        'bytes_read': 'bytesRead',  # noqa: E501
+        'message_code': 'messageCode',  # noqa: E501
+        'message_guid': 'messageGuid',  # noqa: E501
+        'error_message': 'errorMessage',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -224,6 +240,13 @@ class McmObjectBackupRunActivityParams(ModelNormal):
             progress_task_id (str, none_type): Progress monitor task id for the Run.. [optional]  # noqa: E501
             protection_environment_type (str, none_type): Specifies the type of protection environment.. [optional]  # noqa: E501
             is_stubbed_run (bool, none_type): Specifies whether this is a stubbed run. This is set by the server and if set to true, this run entry specifies the user intent to create a run instead of actual run itself. [optional]  # noqa: E501
+            is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies total logical size of the object in bytes.. [optional]  # noqa: E501
+            bytes_written (int, none_type): Specifies total size of data in bytes written after taking backup.. [optional]  # noqa: E501
+            bytes_read (int, none_type): Specifies total logical bytes read for creating the snapshot.. [optional]  # noqa: E501
+            message_code (str, none_type): Specifies a short message describing the type of error which occurred.. [optional]  # noqa: E501
+            message_guid (str, none_type): Specifies the identifier of the error code.. [optional]  # noqa: E501
+            error_message (str, none_type): Specifies the full text of the error message if any error occurs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

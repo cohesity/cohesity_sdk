@@ -30,10 +30,12 @@ def lazy_import():
     from cohesity_sdk.helios.model.object_last_run_all_of import ObjectLastRunAllOf
     from cohesity_sdk.helios.model.object_summary import ObjectSummary
     from cohesity_sdk.helios.model.object_type_v_center_params import ObjectTypeVCenterParams
+    from cohesity_sdk.helios.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.helios.model.sharepoint_object_params import SharepointObjectParams
     globals()['ObjectLastRunAllOf'] = ObjectLastRunAllOf
     globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
+    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['SharepointObjectParams'] = SharepointObjectParams
 
 
@@ -144,6 +146,10 @@ class ObjectLastRun(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
+            'KROOTPUBLICFOLDER': "kRootPublicFolder",
+            'KO365EXCHANGE': "kO365Exchange",
+            'KO365ONEDRIVE': "kO365OneDrive",
+            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -260,6 +266,7 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('archival_run_status',): {
@@ -273,6 +280,7 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('replication_run_status',): {
@@ -286,6 +294,7 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
     }
@@ -323,6 +332,7 @@ class ObjectLastRun(ModelComposed):
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'run_id': (str,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
@@ -355,6 +365,7 @@ class ObjectLastRun(ModelComposed):
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'run_id': 'runId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
@@ -428,6 +439,7 @@ class ObjectLastRun(ModelComposed):
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             run_id (str): Specifies the last run id.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies the protection group name of last run.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id of last run.. [optional]  # noqa: E501
