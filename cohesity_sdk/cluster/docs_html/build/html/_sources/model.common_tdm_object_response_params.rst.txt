@@ -1,0 +1,4 @@
+.. automodule:: model.common_tdm_object_response_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

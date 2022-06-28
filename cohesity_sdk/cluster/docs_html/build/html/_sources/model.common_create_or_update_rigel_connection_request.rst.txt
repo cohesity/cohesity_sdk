@@ -1,0 +1,4 @@
+.. automodule:: model.common_create_or_update_rigel_connection_request
+   :members:
+   :undoc-members:
+   :show-inheritance:

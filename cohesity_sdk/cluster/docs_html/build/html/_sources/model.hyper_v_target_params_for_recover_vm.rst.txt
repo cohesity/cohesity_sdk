@@ -1,0 +1,4 @@
+.. automodule:: model.hyper_v_target_params_for_recover_vm
+   :members:
+   :undoc-members:
+   :show-inheritance:

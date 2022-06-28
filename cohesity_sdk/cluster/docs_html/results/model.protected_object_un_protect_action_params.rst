@@ -1,0 +1,4 @@
+.. automodule:: model.protected_object_un_protect_action_params
+   :members:
+   :undoc-members:
+   :show-inheritance:
