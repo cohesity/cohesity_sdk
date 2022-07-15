@@ -9,8 +9,6 @@ Name | Type | Description | Notes
 **archival_task_id** | **str, none_type** | Specifies the archival task id. This is a protection group UID which only applies when archival type is &#39;Tape&#39;. | [optional] 
 **target_name** | **str, none_type** | Specifies the archival target name. | [optional] 
 **target_type** | **str, none_type** | Specifies the archival target type. | [optional] 
-**usage_type** | **str, none_type** | Specifies the usage type for the target. | [optional] 
-**ownership_context** | **str, none_type** | Specifies the ownership context for the target. | [optional] 
 **tier_settings** | [**ArchivalTargetTierInfo**](ArchivalTargetTierInfo.md) |  | [optional] 
 **status** | **str, none_type** | Specifies the current status of the progress task. | [optional] 
 **percentage_completed** | **float, none_type** | Specifies the current completed percentage of the progress task. | [optional] 

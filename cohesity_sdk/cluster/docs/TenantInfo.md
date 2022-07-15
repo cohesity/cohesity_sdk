@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **created_at_time_msecs** | **int, none_type** | Epoch time when tenant was created. | [optional] [readonly] 
 **last_updated_at_time_msecs** | **int, none_type** | Epoch time when tenant was last updated. | [optional] [readonly] 
 **deleted_at_time_msecs** | **int, none_type** | Epoch time when tenant was last updated. | [optional] [readonly] 
-**is_managed_on_helios** | **bool, none_type** | Flag to indicate if tenant is managed on helios | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

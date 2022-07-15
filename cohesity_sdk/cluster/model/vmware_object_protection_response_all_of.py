@@ -28,9 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.vmware_cdp_object import VmwareCdpObject
-    from cohesity_sdk.cluster.model.vmware_standby_object import VmwareStandbyObject
     globals()['VmwareCdpObject'] = VmwareCdpObject
-    globals()['VmwareStandbyObject'] = VmwareStandbyObject
 
 
 class VmwareObjectProtectionResponseAllOf(ModelNormal):
@@ -83,7 +81,6 @@ class VmwareObjectProtectionResponseAllOf(ModelNormal):
         return {
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'cdp_info': (VmwareCdpObject,),  # noqa: E501
-            'standby_info': (VmwareStandbyObject,),  # noqa: E501
         }
 
     @cached_property
@@ -95,7 +92,6 @@ class VmwareObjectProtectionResponseAllOf(ModelNormal):
     attribute_map = {
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
-        'standby_info': 'standbyInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,7 +143,6 @@ class VmwareObjectProtectionResponseAllOf(ModelNormal):
 
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
             cdp_info (VmwareCdpObject): [optional]  # noqa: E501
-            standby_info (VmwareStandbyObject): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

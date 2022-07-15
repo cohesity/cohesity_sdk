@@ -1,43 +1,44 @@
-from cohesity_sdk.cohesity_client_v2.cohesity_client import CohesityClientV2
-from cohesity_sdk.cohesity_client_v2.model.create_protection_group_run_request import (
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.create_protection_group_run_request import (
     CreateProtectionGroupRunRequest,
 )
-from cohesity_sdk.cohesity_client_v2.model.create_or_update_protection_group_request import (
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import (
     CreateOrUpdateProtectionGroupRequest,
 )
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_request_params import CommonRecoveryRequestParams
-from cohesity_sdk.cohesity_client_v2.model.vmware_source_registration_params import (
+from cohesity_sdk.cluster.model.common_recovery_request_params import CommonRecoveryRequestParams
+from cohesity_sdk.cluster.model.vmware_source_registration_params import (
     VmwareSourceRegistrationParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.vmware_protection_group_object_params import (
+from cohesity_sdk.cluster.model.vmware_protection_group_object_params import (
     VmwareProtectionGroupObjectParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.vcenter_registration_params import (
+from cohesity_sdk.cluster.model.vcenter_registration_params import (
     VcenterRegistrationParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.source_registration_request_params import (
+from cohesity_sdk.cluster.model.source_registration_request_params import (
     SourceRegistrationRequestParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.vmware_protection_group_params import (
+from cohesity_sdk.cluster.model.vmware_protection_group_params import (
     VmwareProtectionGroupParams,
 )
 
-client = CohesityClientV2(
-    api_key="1625435g-4tr43t5f-g54t5r-5gfr",
-    cluster_vip="x.x.x.x",
+client = ClusterClient(
+    cluster_vip="10.2.145.49",
+    username="admin",
+    password="Cohe$1ty",
+    domain="LOCAL"
 )
 
 
 def get_storage_domain_id():
     domains = client.storage_domains.get_storage_domains()["storage_domains"]
     for domain in domains:
-        if domain["name"] == "DefaultStorageDomain":
+        if domain["name"] == "DemoStorageDomain":
             return domain["id"]
     return -1
 
 
 def get_policy_id():
-    return "1744409997479013:1644498100685:3"
     policies = client.protection_policies.get_protection_policies()["policies"]
     for policy in policies:
         if policy["name"] == "Bronze":

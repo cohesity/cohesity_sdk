@@ -15,7 +15,6 @@ Method | HTTP request | Description
 [**get_data_tiering_analysis_groups**](DataTieringApi.md#get_data_tiering_analysis_groups) | **GET** /data-tiering/analysis-groups | Get the list of data tiering analysis groups.
 [**get_data_tiering_task_by_id**](DataTieringApi.md#get_data_tiering_task_by_id) | **GET** /data-tiering/tasks/{id} | Get data tiering task by id.
 [**get_data_tiering_tasks**](DataTieringApi.md#get_data_tiering_tasks) | **GET** /data-tiering/tasks | Get the list of data tiering tasks.
-[**update_data_tiering_analysis_group**](DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources only.
 [**update_data_tiering_analysis_group_tags_config**](DataTieringApi.md#update_data_tiering_analysis_group_tags_config) | **PUT** /data-tiering/analysis-groups/{id}/config | Update data tiering analysis group config.
 [**update_data_tiering_analysis_groups_state**](DataTieringApi.md#update_data_tiering_analysis_groups_state) | **POST** /data-tiering/analysis-groups/states | Update data tiering analysis groups state.
 [**update_data_tiering_task**](DataTieringApi.md#update_data_tiering_task) | **PUT** /data-tiering/tasks/{id} | Update a data tiering task.
@@ -191,7 +190,6 @@ body = CommonDataTieringAnalysisGroupParams(
                         id=1,
                     ),
                 ],
-                source_id=1,
             ),
             isilon_params=IsilonDataTieringParams(
                 objects=[
@@ -199,7 +197,6 @@ body = CommonDataTieringAnalysisGroupParams(
                         id=1,
                     ),
                 ],
-                source_id=1,
             ),
             netapp_params=NetappDataTieringParams(
                 objects=[
@@ -207,7 +204,6 @@ body = CommonDataTieringAnalysisGroupParams(
                         id=1,
                     ),
                 ],
-                source_id=1,
             ),
         ),
     ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
@@ -263,7 +259,6 @@ Create a data tiering analysis group run.
 ```python
 from cohesity_sdk import CohesityClientV2
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -277,26 +272,11 @@ client = CohesityClientV2(
 
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering analysis group.
-body = DataTieringAnalysisRunRequest(
-        shares=[
-            DataTieringAnalysisShareInfo(
-                share_id=1,
-            ),
-        ],
-    ) # DataTieringAnalysisRunRequest | Specifies the request to run analysis group once. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# Create a data tiering analysis group run.
 	client.data_tiering.create_data_tiering_analysis_group_run(id)
-except ApiException as e:
-	print("Exception when calling DataTieringApi->create_data_tiering_analysis_group_run: %s\n" % e)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Create a data tiering analysis group run.
-	client.data_tiering.create_data_tiering_analysis_group_run(id, body=body)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->create_data_tiering_analysis_group_run: %s\n" % e)
 ```
@@ -307,7 +287,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering analysis group. |
- **body** | [**DataTieringAnalysisRunRequest**](DataTieringAnalysisRunRequest.md)| Specifies the request to run analysis group once. | [optional]
 
 ### Return type
 
@@ -319,7 +298,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -332,7 +311,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_data_tiering_task**
-> DataTieringTask create_data_tiering_task(body)
+> CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe create_data_tiering_task(body)
 
 Create a data tiering task.
 
@@ -343,9 +322,9 @@ Create a data tiering task.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
-from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.common_data_tiering_task_paramsd497ea908dc74426_a10a_d5275bf90213 import CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213
+from cohesity_sdk.cluster.model.common_data_tiering_task_response97e3929f63294b05960d4531da7c00fe import CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -358,7 +337,67 @@ client = CohesityClientV2(
 )
 
 
-body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
+body = CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213(
+        name="name_example",
+        description="description_example",
+        alert_policy=ProtectionGroupAlertingPolicy(
+            backup_run_status=[
+                "kSuccess",
+            ],
+            alert_targets=[
+                AlertTarget(
+                    email_address="email_address_example",
+                    language="en-us",
+                    recipient_type="kTo",
+                ),
+            ],
+        ),
+        source=DataTieringSource(
+            environment="kGenericNas",
+            generic_nas_params=GenericNasDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+            ),
+            isilon_params=IsilonDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+            ),
+            netapp_params=NetappDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+            ),
+        ),
+        target=DataTieringTarget(
+            view_name="view_name_example",
+            mount_path="mount_path_example",
+            storage_domain_id=1,
+        ),
+        schedule=DataTieringSchedule(
+            unit="Days",
+            day_schedule=DaySchedule(),
+            week_schedule=WeekSchedule(
+                day_of_week=[
+                    "Sunday",
+                ],
+            ),
+            month_schedule=MonthSchedule(),
+            start_time=TimeOfDay(
+                hour=0,
+                minute=0,
+                time_zone="America/Los_Angeles",
+            ),
+        ),
+        type="Downtier",
+    ) # CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213 | Specifies the parameters to create a data tiering task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -374,11 +413,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to create a data tiering task. |
+ **body** | [**CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213**](CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213.md)| Specifies the parameters to create a data tiering task. |
 
 ### Return type
 
-[**DataTieringTask**](DataTieringTask.md)
+[**CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe**](CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe.md)
 
 ### Authorization
 
@@ -427,12 +466,6 @@ client = CohesityClientV2(
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering tasks.
 body = DataTieringTaskRunRequest(
         uptier_path="uptier_path_example",
-        shares=[
-            DataTieringShareInfo(
-                share_id=1,
-                uptier_path="uptier_path_example",
-            ),
-        ],
     ) # DataTieringTaskRunRequest | Specifies the request to run tiering task once. (optional)
 
 # example passing only required values which don't have defaults set
@@ -506,7 +539,7 @@ client = CohesityClientV2(
 )
 
 
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+id = "id_example" # str | Specifies a unique id of the data tiering analysis group.
 
 # example passing only required values which don't have defaults set
 try:
@@ -635,7 +668,7 @@ client = CohesityClientV2(
 )
 
 
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+id = "id_example" # str | Specifies a unique id of the data tiering analysis group.
 
 # example passing only required values which don't have defaults set
 try:
@@ -745,7 +778,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_data_tiering_task_by_id**
-> DataTieringTask get_data_tiering_task_by_id(id)
+> CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe get_data_tiering_task_by_id(id)
 
 Get data tiering task by id.
 
@@ -756,8 +789,8 @@ Get data tiering task by id.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.common_data_tiering_task_response97e3929f63294b05960d4531da7c00fe import CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -790,7 +823,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DataTieringTask**](DataTieringTask.md)
+[**CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe**](CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe.md)
 
 ### Authorization
 
@@ -839,13 +872,12 @@ client = CohesityClientV2(
 ids = [
         "ids_example",
     ] # [str] | Filter by a list of data tiering task ids. (optional)
-include_downtiered_data_location = True # bool | If true, it will also return a list of downtiered data locations for downtiered tasks. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of data tiering tasks.
-	api_response = client.data_tiering.get_data_tiering_tasks(ids=ids, include_downtiered_data_location=include_downtiered_data_location)
+	api_response = client.data_tiering.get_data_tiering_tasks(ids=ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_tasks: %s\n" % e)
@@ -857,7 +889,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **[str]**| Filter by a list of data tiering task ids. | [optional]
- **include_downtiered_data_location** | **bool**| If true, it will also return a list of downtiered data locations for downtiered tasks. | [optional]
 
 ### Return type
 
@@ -870,104 +901,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_data_tiering_analysis_group**
-> DataTieringAnalysisGroup update_data_tiering_analysis_group(id, body)
-
-Update a data tiering analysis group. Currently, it supports updating sources only.
-
-Update a data tiering analysis group.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
-from cohesity_sdk.cluster.model.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
-body = CommonDataTieringAnalysisGroupParams(
-        name="name_example",
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-        ),
-    ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update a data tiering analysis group. Currently, it supports updating sources only.
-	api_response = client.data_tiering.update_data_tiering_analysis_group(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataTieringApi->update_data_tiering_analysis_group: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies a unique id of the data tiering analysis group. |
- **body** | [**CommonDataTieringAnalysisGroupParams**](CommonDataTieringAnalysisGroupParams.md)| Specifies the data tiering analysis group. |
-
-### Return type
-
-[**DataTieringAnalysisGroup**](DataTieringAnalysisGroup.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -1005,7 +938,7 @@ client = CohesityClientV2(
 )
 
 
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+id = "id_example" # str | Specifies a unique id of the data tiering analysis group.
 body = DataTieringTagConfig(
         tags_info=[
             DataTieringTagObject(
@@ -1132,7 +1065,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_data_tiering_task**
-> DataTieringTask update_data_tiering_task(id, body)
+> CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe update_data_tiering_task(id, body)
 
 Update a data tiering task.
 
@@ -1143,9 +1076,9 @@ Update a data tiering task.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
-from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.common_data_tiering_task_paramsd497ea908dc74426_a10a_d5275bf90213 import CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213
+from cohesity_sdk.cluster.model.common_data_tiering_task_response97e3929f63294b05960d4531da7c00fe import CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1159,7 +1092,67 @@ client = CohesityClientV2(
 
 
 id = "id_example" # str | Specifies the id of the data tiering task.
-body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
+body = CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213(
+        name="name_example",
+        description="description_example",
+        alert_policy=ProtectionGroupAlertingPolicy(
+            backup_run_status=[
+                "kSuccess",
+            ],
+            alert_targets=[
+                AlertTarget(
+                    email_address="email_address_example",
+                    language="en-us",
+                    recipient_type="kTo",
+                ),
+            ],
+        ),
+        source=DataTieringSource(
+            environment="kGenericNas",
+            generic_nas_params=GenericNasDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+            ),
+            isilon_params=IsilonDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+            ),
+            netapp_params=NetappDataTieringParams(
+                objects=[
+                    ProtectionObjectInput(
+                        id=1,
+                    ),
+                ],
+            ),
+        ),
+        target=DataTieringTarget(
+            view_name="view_name_example",
+            mount_path="mount_path_example",
+            storage_domain_id=1,
+        ),
+        schedule=DataTieringSchedule(
+            unit="Days",
+            day_schedule=DaySchedule(),
+            week_schedule=WeekSchedule(
+                day_of_week=[
+                    "Sunday",
+                ],
+            ),
+            month_schedule=MonthSchedule(),
+            start_time=TimeOfDay(
+                hour=0,
+                minute=0,
+                time_zone="America/Los_Angeles",
+            ),
+        ),
+        type="Downtier",
+    ) # CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213 | Specifies the parameters to update a data tiering task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1176,11 +1169,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering task. |
- **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to update a data tiering task. |
+ **body** | [**CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213**](CommonDataTieringTaskParamsd497ea908dc74426A10aD5275bf90213.md)| Specifies the parameters to update a data tiering task. |
 
 ### Return type
 
-[**DataTieringTask**](DataTieringTask.md)
+[**CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe**](CommonDataTieringTaskResponse97e3929f63294b05960d4531da7c00fe.md)
 
 ### Authorization
 

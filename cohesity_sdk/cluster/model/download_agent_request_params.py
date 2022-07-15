@@ -32,13 +32,11 @@ def lazy_import():
     from cohesity_sdk.cluster.model.my_sql_agent_params import MySqlAgentParams
     from cohesity_sdk.cluster.model.sap_hana_agent_params import SapHanaAgentParams
     from cohesity_sdk.cluster.model.sap_oracle_agent_params import SapOracleAgentParams
-    from cohesity_sdk.cluster.model.vm_ware_cdp_filter_params import VMWareCDPFilterParams
     globals()['AixAgentParams'] = AixAgentParams
     globals()['LinuxAgentParams'] = LinuxAgentParams
     globals()['MySqlAgentParams'] = MySqlAgentParams
     globals()['SapHanaAgentParams'] = SapHanaAgentParams
     globals()['SapOracleAgentParams'] = SapOracleAgentParams
-    globals()['VMWareCDPFilterParams'] = VMWareCDPFilterParams
 
 
 class DownloadAgentRequestParams(ModelNormal):
@@ -77,7 +75,6 @@ class DownloadAgentRequestParams(ModelNormal):
             'KSAPORACLE': "kSapOracle",
             'KCOCKROACHDB': "kCockroachDB",
             'KMYSQL': "kMySQL",
-            'KVMWARECDPFILTER': "kVMWareCDPFilter",
         },
     }
 
@@ -106,7 +103,6 @@ class DownloadAgentRequestParams(ModelNormal):
             'sap_hana_params': (SapHanaAgentParams,),  # noqa: E501
             'sap_oracle_params': (SapOracleAgentParams,),  # noqa: E501
             'my_sql_params': (MySqlAgentParams,),  # noqa: E501
-            'vmware_cdp_filter_params': (VMWareCDPFilterParams,),  # noqa: E501
         }
 
     @cached_property
@@ -122,7 +118,6 @@ class DownloadAgentRequestParams(ModelNormal):
         'sap_hana_params': 'sapHanaParams',  # noqa: E501
         'sap_oracle_params': 'sapOracleParams',  # noqa: E501
         'my_sql_params': 'mySqlParams',  # noqa: E501
-        'vmware_cdp_filter_params': 'vmwareCDPFilterParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -180,7 +175,6 @@ class DownloadAgentRequestParams(ModelNormal):
             sap_hana_params (SapHanaAgentParams): [optional]  # noqa: E501
             sap_oracle_params (SapOracleAgentParams): [optional]  # noqa: E501
             my_sql_params (MySqlAgentParams): [optional]  # noqa: E501
-            vmware_cdp_filter_params (VMWareCDPFilterParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

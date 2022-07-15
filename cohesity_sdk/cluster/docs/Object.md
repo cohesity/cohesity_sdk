@@ -14,12 +14,10 @@ Name | Type | Description | Notes
 **object_type** | **str, none_type** | Specifies the type of the object. | [optional] 
 **logical_size_bytes** | **int, none_type** | Specifies the logical size of object in bytes. | [optional] 
 **uuid** | **str, none_type** | Specifies the uuid which is a unique identifier of the object. | [optional] 
-**global_id** | **str, none_type** | Specifies the global id which is a unique identifier of the object. | [optional] 
 **protection_type** | **str, none_type** | Specifies the protection type of the object if any. | [optional] 
 **os_type** | **str, none_type** | Specifies the operating system type of the object. | [optional] 
 **v_center_summary** | [**ObjectTypeVCenterParams**](ObjectTypeVCenterParams.md) |  | [optional] 
 **sharepoint_site_summary** | [**SharepointObjectParams**](SharepointObjectParams.md) |  | [optional] 
-**windows_cluster_summary** | [**ObjectTypeWindowsClusterParams**](ObjectTypeWindowsClusterParams.md) |  | [optional] 
 **protection_stats** | [**[ObjectProtectionStatsSummary], none_type**](ObjectProtectionStatsSummary.md) | Specifies the count and size of protected and unprotected objects for the size. | [optional] 
 **permissions** | [**PermissionInfo**](PermissionInfo.md) |  | [optional] 
 **vmware_params** | [**VmwareObjectEntityParams**](VmwareObjectEntityParams.md) |  | [optional] 
@@ -31,9 +29,6 @@ Name | Type | Description | Notes
 **gpfs_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for GPFS object. | [optional] 
 **mssql_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Msssql object. | [optional] 
 **oracle_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Oracle object. | [optional] 
-**physical_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Physical object. | [optional] 
-**sharepoint_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Sharepoint object. | [optional] 
-**uda_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for UDA object. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

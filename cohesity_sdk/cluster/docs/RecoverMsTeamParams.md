@@ -6,7 +6,7 @@ Specifies the parameters to recover Microsoft 365 Teams.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **objects** | [**[ObjectMsTeamParam], none_type**](ObjectMsTeamParam.md) | Specifies a list of Microsoft 365 Teams params associated with objects to recover. | 
-**target_ms_team** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | This field is deprecated. Use targetTeamNickName and targetTeamFullName instead. | [optional] 
+**target_ms_team** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the target Team to recover to. If not specified, the objects will be recovered to original location. | [optional] 
 **target_team_nick_name** | **str, none_type** | This field is deprecated. Specifies target team nickname in case restoreToOriginal is false. | [optional] 
 **target_team_full_name** | **str, none_type** | This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user). | [optional] 
 **restore_to_original** | **bool, none_type** | Specifies whether or not all Microsoft 365 Teams are restored to original location. | [optional] 

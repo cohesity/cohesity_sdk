@@ -75,7 +75,6 @@ class CreateClusterParams(ModelNormal):
             'CLOUD': "Cloud",
             'RIGEL': "Rigel",
             'UNKNOWN': "Unknown",
-            'HELIOSONPREMVM': "HeliosOnPremVM",
         },
     }
 

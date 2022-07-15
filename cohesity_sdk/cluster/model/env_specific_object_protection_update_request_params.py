@@ -27,33 +27,23 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.aws_object_protection_update_request_params import AwsObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.elastifile_object_protection_update_request_params import ElastifileObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.flashblade_object_protection_update_request_params import FlashbladeObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.generic_nas_object_protection_update_request_params import GenericNasObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.gpfs_object_protection_update_request_params import GpfsObjectProtectionUpdateRequestParams
-    from cohesity_sdk.cluster.model.hyper_v_object_protection_update_request_params import HyperVObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.isilon_object_protection_update_request_params import IsilonObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.mssql_object_protection_update_request_params import MssqlObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.netapp_object_protection_update_request_params import NetappObjectProtectionUpdateRequestParams
-    from cohesity_sdk.cluster.model.office365_object_protection_update_request_params import Office365ObjectProtectionUpdateRequestParams
-    from cohesity_sdk.cluster.model.oracle_object_protection_update_request_params import OracleObjectProtectionUpdateRequestParams
-    from cohesity_sdk.cluster.model.physical_object_protection_update_request_params import PhysicalObjectProtectionUpdateRequestParams
-    from cohesity_sdk.cluster.model.sfdc_object_protection_update_request_params import SfdcObjectProtectionUpdateRequestParams
+    from cohesity_sdk.cluster.model.office365_user_mailbox_object_protection_update_request_params import Office365UserMailboxObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.vmware_object_protection_update_request_params import VmwareObjectProtectionUpdateRequestParams
-    globals()['AwsObjectProtectionUpdateRequestParams'] = AwsObjectProtectionUpdateRequestParams
     globals()['ElastifileObjectProtectionUpdateRequestParams'] = ElastifileObjectProtectionUpdateRequestParams
     globals()['FlashbladeObjectProtectionUpdateRequestParams'] = FlashbladeObjectProtectionUpdateRequestParams
     globals()['GenericNasObjectProtectionUpdateRequestParams'] = GenericNasObjectProtectionUpdateRequestParams
     globals()['GpfsObjectProtectionUpdateRequestParams'] = GpfsObjectProtectionUpdateRequestParams
-    globals()['HyperVObjectProtectionUpdateRequestParams'] = HyperVObjectProtectionUpdateRequestParams
     globals()['IsilonObjectProtectionUpdateRequestParams'] = IsilonObjectProtectionUpdateRequestParams
     globals()['MssqlObjectProtectionUpdateRequestParams'] = MssqlObjectProtectionUpdateRequestParams
     globals()['NetappObjectProtectionUpdateRequestParams'] = NetappObjectProtectionUpdateRequestParams
-    globals()['Office365ObjectProtectionUpdateRequestParams'] = Office365ObjectProtectionUpdateRequestParams
-    globals()['OracleObjectProtectionUpdateRequestParams'] = OracleObjectProtectionUpdateRequestParams
-    globals()['PhysicalObjectProtectionUpdateRequestParams'] = PhysicalObjectProtectionUpdateRequestParams
-    globals()['SfdcObjectProtectionUpdateRequestParams'] = SfdcObjectProtectionUpdateRequestParams
+    globals()['Office365UserMailboxObjectProtectionUpdateRequestParams'] = Office365UserMailboxObjectProtectionUpdateRequestParams
     globals()['VmwareObjectProtectionUpdateRequestParams'] = VmwareObjectProtectionUpdateRequestParams
 
 
@@ -93,12 +83,7 @@ class EnvSpecificObjectProtectionUpdateRequestParams(ModelNormal):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
-            'KAWSNATIVE': "kAWSNative",
-            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
-            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -113,12 +98,6 @@ class EnvSpecificObjectProtectionUpdateRequestParams(ModelNormal):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
-            'KO365PUBLICFOLDERS': "kO365PublicFolders",
-            'KO365TEAMS': "kO365Teams",
-            'KO365GROUP': "kO365Group",
-            'KO365EXCHANGE': "kO365Exchange",
-            'KO365ONEDRIVE': "kO365OneDrive",
-            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -127,7 +106,6 @@ class EnvSpecificObjectProtectionUpdateRequestParams(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
-            'KSFDC': "kSfdc",
         },
     }
 
@@ -159,12 +137,7 @@ class EnvSpecificObjectProtectionUpdateRequestParams(ModelNormal):
             'isilon_params': (IsilonObjectProtectionUpdateRequestParams,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionUpdateRequestParams,),  # noqa: E501
             'mssql_params': (MssqlObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'oracle_params': (OracleObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'office365_params': (Office365ObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'aws_params': (AwsObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'hyperv_params': (HyperVObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'physical_params': (PhysicalObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'sfdc_params': (SfdcObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'office365_user_mailbox_params': (Office365UserMailboxObjectProtectionUpdateRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -183,12 +156,7 @@ class EnvSpecificObjectProtectionUpdateRequestParams(ModelNormal):
         'isilon_params': 'isilonParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
-        'hyperv_params': 'hypervParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
+        'office365_user_mailbox_params': 'office365UserMailboxParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -247,12 +215,7 @@ class EnvSpecificObjectProtectionUpdateRequestParams(ModelNormal):
             isilon_params (IsilonObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             mssql_params (MssqlObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            oracle_params (OracleObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            office365_params (Office365ObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            aws_params (AwsObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            hyperv_params (HyperVObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            physical_params (PhysicalObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            sfdc_params (SfdcObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            office365_user_mailbox_params (Office365UserMailboxObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

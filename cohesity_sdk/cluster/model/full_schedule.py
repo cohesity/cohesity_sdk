@@ -30,11 +30,9 @@ def lazy_import():
     from cohesity_sdk.cluster.model.day_schedule import DaySchedule
     from cohesity_sdk.cluster.model.month_schedule import MonthSchedule
     from cohesity_sdk.cluster.model.week_schedule import WeekSchedule
-    from cohesity_sdk.cluster.model.year_schedule import YearSchedule
     globals()['DaySchedule'] = DaySchedule
     globals()['MonthSchedule'] = MonthSchedule
     globals()['WeekSchedule'] = WeekSchedule
-    globals()['YearSchedule'] = YearSchedule
 
 
 class FullSchedule(ModelNormal):
@@ -69,7 +67,6 @@ class FullSchedule(ModelNormal):
             'DAYS': "Days",
             'WEEKS': "Weeks",
             'MONTHS': "Months",
-            'YEARS': "Years",
             'PROTECTONCE': "ProtectOnce",
         },
     }
@@ -97,7 +94,6 @@ class FullSchedule(ModelNormal):
             'day_schedule': (DaySchedule,),  # noqa: E501
             'week_schedule': (WeekSchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
-            'year_schedule': (YearSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -111,7 +107,6 @@ class FullSchedule(ModelNormal):
         'day_schedule': 'daySchedule',  # noqa: E501
         'week_schedule': 'weekSchedule',  # noqa: E501
         'month_schedule': 'monthSchedule',  # noqa: E501
-        'year_schedule': 'yearSchedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,7 +162,6 @@ class FullSchedule(ModelNormal):
             day_schedule (DaySchedule): [optional]  # noqa: E501
             week_schedule (WeekSchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
-            year_schedule (YearSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

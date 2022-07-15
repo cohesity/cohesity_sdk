@@ -103,11 +103,8 @@ class HeliosFrequencySchedule(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, frequency, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """HeliosFrequencySchedule - a model defined in OpenAPI
-
-        Args:
-            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the backup schedule. <br> Example: If 'frequency' set to 2 and the unit is 'Hours', then Snapshots are backed up every 2 hours. If selected unit is 'Weeks' or 'Months' then frequency will only be applied if policy type is DMaas.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -141,6 +138,7 @@ class HeliosFrequencySchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the backup schedule. <br> Example: If 'frequency' set to 2 and the unit is 'Hours', then Snapshots are backed up every 2 hours. If selected unit is 'Weeks' or 'Months' then frequency will only be applied if policy type is DMaas.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -167,7 +165,6 @@ class HeliosFrequencySchedule(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.frequency = frequency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

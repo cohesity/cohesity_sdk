@@ -68,7 +68,6 @@ class ClusterOperationStatus(ModelNormal):
             'UPLOADPACKAGEBYURL': "UploadPackageByUrl",
             'UPLOADPACKAGEANDUPGRADE': "UploadPackageAndUpgrade",
             'NODEREMOVAL': "NodeRemoval",
-            'PACKAGEREMOVAL': "PackageRemoval",
         },
         ('status',): {
             'INPROGRESS': "InProgress",
@@ -172,7 +171,7 @@ class ClusterOperationStatus(ModelNormal):
 
             cluster_id (int): Specifies the id of the cluster.. [optional]  # noqa: E501
             cluster_incarnation_id (int): Specifies the incarnation id of the cluster.. [optional]  # noqa: E501
-            type (str): Specifies the type of cluster operation. 'Destroy' indicates cluster destroy operation. 'Create' indicates cluster create operation. 'NodeAddition' indicates the operation to add nodes to the cluster. 'Upgrade' indicates cluster upgrade operation. 'UploadPackageByUrl' indicates the operation to upload a package by URL. 'UploadPackageAndUpgrade' indicates the operation to upload package by URL and upgrade the cluster. 'NodeRemoval' indicates a node removal operation. 'PackageRemoval' indicates the operation to remove a software package from the cluster.. [optional]  # noqa: E501
+            type (str): Specifies the type of cluster operation. 'Destroy' indicates cluster destroy operation. 'Create' indicates cluster create operation. 'NodeAddition' indicates the operation to add nodes to the cluster. 'Upgrade' indicates cluster upgrade operation. 'UploadPackageByUrl' indicates the operation to upload a package by URL. 'UploadPackageAndUpgrade' indicates the operation to upload package by URL and upgrade the cluster. 'NodeRemoval' indicates a node removal operation.. [optional]  # noqa: E501
             percentage (int): Specifies an approximate completion percentage for the operation.. [optional]  # noqa: E501
             time_remaining_seconds (int): Specifies an estimated number of seconds until the operation is complete.. [optional]  # noqa: E501
             status (str): Specifies the status of the operation. 'Success' indicates the operation is successful. 'Failed' indicates the operation failed due to an error. 'InProgress' indicates the operation is in progress.. [optional]  # noqa: E501

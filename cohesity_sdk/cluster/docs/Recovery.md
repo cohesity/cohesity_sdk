@@ -21,8 +21,6 @@ Name | Type | Description | Notes
 **messages** | **[str], none_type** | Specifies messages about the recovery. | [optional] 
 **is_parent_recovery** | **bool, none_type** | Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery. | [optional] 
 **parent_recovery_id** | **str, none_type** | If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery. | [optional] 
-**retrieve_archive_tasks** | [**[RetrieveArchiveTask], none_type**](RetrieveArchiveTask.md) | Specifies the list of persistent state of a retrieve of an archive task. | [optional] 
-**is_multi_stage_restore** | **bool, none_type** | Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case. | [optional] 
 **vmware_params** | [**RecoverVmwareParams**](RecoverVmwareParams.md) |  | [optional] 
 **aws_params** | [**RecoverAwsParams**](RecoverAwsParams.md) |  | [optional] 
 **gcp_params** | [**RecoverGcpParams**](RecoverGcpParams.md) |  | [optional] 
@@ -51,7 +49,6 @@ Name | Type | Description | Notes
 **kubernetes_params** | [**RecoverKubernetesParams**](RecoverKubernetesParams.md) |  | [optional] 
 **oracle_params** | [**RecoverOracleParams**](RecoverOracleParams.md) |  | [optional] 
 **view_params** | [**RecoverViewParams**](RecoverViewParams.md) |  | [optional] 
-**sfdc_params** | [**RecoverSalesforceParams**](RecoverSalesforceParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

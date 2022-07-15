@@ -12,8 +12,6 @@ Name | Type | Description | Notes
 **smb_credentials** | [**SmbMountCredentials**](SmbMountCredentials.md) |  | [optional] 
 **filter_ip_config** | [**FilterIpConfig**](FilterIpConfig.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
-**storage_array_snapshot_enabled** | **bool, none_type** | Specifies if storage array snapshot is enabled or not in the Source. | [optional] 
-**storage_array_snapshot_config** | [**StorageArraySnapshotConfig**](StorageArraySnapshotConfig.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -7,8 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str, none_type** | Specifies the name of the Protection Policy. | 
 **type** | **str, none_type** | Specifies the type of the Protection Policy to be created on Helios. | 
-**cluster_identifier** | **str, none_type** | Specifies the cluster to which this policy belongs. This required is only for type OnPremPolicy. The format is clusterId:clusterIncarnationId. | [optional] 
-**tenant_ids** | **[str, none_type]** | Specifies the tenants which have access to this object. | [optional] [readonly] 
 **backup_policy** | [**HeliosBackupPolicy**](HeliosBackupPolicy.md) |  | [optional] 
 **description** | **str, none_type** | Specifies the description of the Protection Policy. | [optional] 
 **blackout_window** | [**[HeliosBlackoutWindow], none_type**](HeliosBlackoutWindow.md) | List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod. | [optional] 

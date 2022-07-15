@@ -139,7 +139,7 @@ class FileCount(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             lower_size_bytes (int, none_type): Specifies the lower bound of file size in bytes. This value is inclusive.. [optional]  # noqa: E501
-            upper_size_bytes (int, none_type): Specifies the upper bound of file size in bytes. This value is exclusive.. [optional]  # noqa: E501
+            upper_size_bytes (int, none_type): Specifies the upper bound of file size in bytes. This value is inclusive.. [optional]  # noqa: E501
             count (int, none_type): Specifies the number of files with size in this range.. [optional]  # noqa: E501
         """
 

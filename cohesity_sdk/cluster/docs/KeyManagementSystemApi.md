@@ -169,13 +169,12 @@ client = CohesityClientV2(
 ids = [
         1,
     ] # [int] | Ids of KMS configured on the cluster. (optional)
-include_rpaas_kms = True # bool, none_type | If true, returns KMS that are configured by FortKnox. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get KMS
-	api_response = client.key_management_system.get_kms_configurations(ids=ids, include_rpaas_kms=include_rpaas_kms)
+	api_response = client.key_management_system.get_kms_configurations(ids=ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling KeyManagementSystemApi->get_kms_configurations: %s\n" % e)
@@ -187,7 +186,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **[int]**| Ids of KMS configured on the cluster. | [optional]
- **include_rpaas_kms** | **bool, none_type**| If true, returns KMS that are configured by FortKnox. | [optional]
 
 ### Return type
 

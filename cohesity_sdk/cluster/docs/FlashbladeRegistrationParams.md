@@ -6,7 +6,7 @@ Specifies parameters to register an Flashblade Source.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **endpoint** | **str, none_type** | Specifies the Hostname or IP Address Endpoint for the Flashblade Source. | 
-**api_token** | **str, none_type** | Specifies the API Token of the Flashblade Source | 
+**api_token** | **str, none_type** | Specifies the API Token of the Flashblade Source | [optional] 
 **back_up_smb_volumes** | **bool, none_type** | Specifies whether or not to back up SMB Volumes. | [optional] 
 **smb_credentials** | [**SmbMountCredentials**](SmbMountCredentials.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 

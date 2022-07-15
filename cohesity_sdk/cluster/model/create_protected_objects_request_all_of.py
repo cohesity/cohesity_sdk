@@ -80,7 +80,6 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
         lazy_import()
         return {
             'objects': ([EnvSpecificObjectProtectionRequestParams], none_type,),  # noqa: E501
-            'activate_remote_object_protection': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,7 +90,6 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'activate_remote_object_protection': 'activateRemoteObjectProtection',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,7 +142,6 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            activate_remote_object_protection (bool, none_type): If set to true, it will look for the remote backup of the given user and object, and activates it. Creates a new backup if the remote backup is not found. After activation, this object cannot get snapshots from remote clusters.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

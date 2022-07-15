@@ -59,7 +59,6 @@ class ObjectServicesKeyMapping(ModelNormal):
             'SHORT': "Short",
             'LONG': "Long",
             'HIERARCHICAL': "Hierarchical",
-            'OBJECTID': "ObjectId",
         },
     }
 

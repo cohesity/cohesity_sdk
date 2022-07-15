@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **name** | **str, none_type** | Name of the new cluster. | [optional] 
 **description** | **str, none_type** | Description of the cluster. | [optional] 
 **type** | **str, none_type** | Specifies the type of the new cluster. | [optional] [readonly] 
-**cluster_size** | **str, none_type** | Specifies the size of the cloud platforms. | [optional] [readonly] 
 **local_tenant_id** | **str, none_type** | Specifies the local tenant id. Only applicable on Helios. | [optional] [readonly] 
 **tenant_id** | **str, none_type** | Specifies the globally unique tenant id. Only applicable on Helios. | [optional] [readonly] 
 **region_id** | **str, none_type** | Specifies the region id on which this cluster is present. Only applicable on Helios for DMaaS clusters. | [optional] [readonly] 

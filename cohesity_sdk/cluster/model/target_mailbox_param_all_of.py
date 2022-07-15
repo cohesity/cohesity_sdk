@@ -75,7 +75,6 @@ class TargetMailboxParamAllOf(ModelNormal):
         """
         return {
             'target_folder_path': (str, none_type,),  # noqa: E501
-            'parent_source_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,7 +85,6 @@ class TargetMailboxParamAllOf(ModelNormal):
 
     attribute_map = {
         'target_folder_path': 'targetFolderPath',  # noqa: E501
-        'parent_source_id': 'parentSourceId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +137,6 @@ class TargetMailboxParamAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            parent_source_id (int, none_type): Specifies the id of the domain for alternate domain recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

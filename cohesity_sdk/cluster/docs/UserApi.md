@@ -4,16 +4,13 @@
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_group**](UserApi.md#create_group) | **POST** /groups | Create Groups
-[**create_session**](UserApi.md#create_session) | **POST** /users/sessions | Create a user session
 [**create_user_api_key**](UserApi.md#create_user_api_key) | **POST** /users/{userSid}/api-keys | Create a new user API key.
 [**create_users**](UserApi.md#create_users) | **POST** /users | Add one or more users to Cohesity Cluster.
 [**delete_group**](UserApi.md#delete_group) | **DELETE** /groups/{sid} | Delete Group
 [**delete_groups**](UserApi.md#delete_groups) | **POST** /groups/delete | Delete Groups
-[**delete_session**](UserApi.md#delete_session) | **DELETE** /users/sessions | Delete user sessions
 [**delete_user**](UserApi.md#delete_user) | **DELETE** /users/{sid} | Delete a Cohesity (LOCAL/IdP/AD) user.
 [**delete_user_api_key_by_id**](UserApi.md#delete_user_api_key_by_id) | **DELETE** /users/{userSid}/api-keys/{id} | Delete a user API key.
 [**delete_users**](UserApi.md#delete_users) | **POST** /users/delete | Delete one or more Cohesity users.
-[**get_active_sessions_count**](UserApi.md#get_active_sessions_count) | **GET** /users/sessions | Get sessions count
 [**get_all_api_keys**](UserApi.md#get_all_api_keys) | **GET** /api-keys | Get the list of all API keys which are created or owned by the user.
 [**get_group_by_sid**](UserApi.md#get_group_by_sid) | **GET** /groups/{sid} | Get Group by SID
 [**get_groups**](UserApi.md#get_groups) | **GET** /groups | Get Groups.
@@ -22,14 +19,12 @@ Method | HTTP request | Description
 [**get_user_api_key_by_id**](UserApi.md#get_user_api_key_by_id) | **GET** /users/{userSid}/api-keys/{id} | Get the API key by id.
 [**get_user_api_keys**](UserApi.md#get_user_api_keys) | **GET** /users/{userSid}/api-keys | Get the list of API keys owned by the user.
 [**get_user_by_sid**](UserApi.md#get_user_by_sid) | **GET** /users/{sid} | Get User by SID.
-[**get_user_ui_config**](UserApi.md#get_user_ui_config) | **GET** /users/ui-config | Get user UI config.
 [**get_users**](UserApi.md#get_users) | **GET** /users | Get Users.
 [**rotate_user_api_key**](UserApi.md#rotate_user_api_key) | **POST** /users/{userSid}/api-keys/{id}/rotate | Refresh an existing user API key.
 [**update_group**](UserApi.md#update_group) | **PUT** /groups/{sid} | Update Group
 [**update_principal_sources**](UserApi.md#update_principal_sources) | **PUT** /security-principals/{sid}/sources | Update protection sources assigned to a user/group.
 [**update_user**](UserApi.md#update_user) | **PUT** /users/{sid} | Update User information.
 [**update_user_api_key_by_id**](UserApi.md#update_user_api_key_by_id) | **PUT** /users/{userSid}/api-keys/{id} | Update a user API key.
-[**update_user_ui_config**](UserApi.md#update_user_ui_config) | **PUT** /users/ui-config | Update user UI config.
 
 
 # **create_group**
@@ -94,81 +89,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Groups**](Groups.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_session**
-> UserSession create_session(body)
-
-Create a user session
-
-Create a user session
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.create_user_session_request_params import CreateUserSessionRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.user_session import UserSession
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = CreateUserSessionRequestParams(
-        username="username_example",
-        password="password_example",
-        domain="domain_example",
-        certificate="certificate_example",
-        private_key="private_key_example",
-        otp_code="otp_code_example",
-        otp_type="email",
-    ) # CreateUserSessionRequestParams | Specifies the parameters to create a user session
-
-# example passing only required values which don't have defaults set
-try:
-	# Create a user session
-	api_response = client.user.create_session(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling UserApi->create_session: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CreateUserSessionRequestParams**](CreateUserSessionRequestParams.md)| Specifies the parameters to create a user session |
-
-### Return type
-
-[**UserSession**](UserSession.md)
 
 ### Authorization
 
@@ -475,71 +395,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_session**
-> delete_session()
-
-Delete user sessions
-
-Deletes all sessions for given user sid or system wide sessions
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-sid = "sid_example" # str | Specifies a user sid. If sid is not given system wide sessions are deleted. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Delete user sessions
-	client.user.delete_session(sid=sid)
-except ApiException as e:
-	print("Exception when calling UserApi->delete_session: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sid** | **str**| Specifies a user sid. If sid is not given system wide sessions are deleted. | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_user**
 > delete_user(sid)
 
@@ -735,75 +590,6 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_active_sessions_count**
-> ActiveSessionsCountParams get_active_sessions_count()
-
-Get sessions count
-
-Get the number of user sessions.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.active_sessions_count_params import ActiveSessionsCountParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-sids = [
-        "sids_example",
-    ] # [str] | Filter sessions based on user sids. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get sessions count
-	api_response = client.user.get_active_sessions_count(sids=sids)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling UserApi->get_active_sessions_count: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sids** | **[str]**| Filter sessions based on user sids. | [optional]
-
-### Return type
-
-[**ActiveSessionsCountParams**](ActiveSessionsCountParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1389,68 +1175,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_user_ui_config**
-> UserUiConfig get_user_ui_config()
-
-Get user UI config.
-
-Get customized UI config for the logged in user.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.user_ui_config import UserUiConfig
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get user UI config.
-	api_response = client.user.get_user_ui_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling UserApi->get_user_ui_config: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**UserUiConfig**](UserUiConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_users**
 > UsersList get_users()
 
@@ -1904,75 +1628,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_user_ui_config**
-> UserUiConfig update_user_ui_config(body)
-
-Update user UI config.
-
-Update customized UI config for the logged in user.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.user_ui_config import UserUiConfig
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = UserUiConfig(
-        preferences="preferences_example",
-        locale="locale_example",
-    ) # UserUiConfig | Specifies the user UI config.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update user UI config.
-	api_response = client.user.update_user_ui_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling UserApi->update_user_ui_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UserUiConfig**](UserUiConfig.md)| Specifies the user UI config. |
-
-### Return type
-
-[**UserUiConfig**](UserUiConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

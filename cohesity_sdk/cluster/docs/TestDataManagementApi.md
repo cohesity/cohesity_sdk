@@ -10,12 +10,11 @@ Method | HTTP request | Description
 [**get_tdm_task_by_id**](TestDataManagementApi.md#get_tdm_task_by_id) | **GET** /tdm/tasks/{id} | Get a TDM task by ID
 [**get_tdm_tasks**](TestDataManagementApi.md#get_tdm_tasks) | **GET** /tdm/tasks | Get all TDM tasks
 [**get_tdm_timeline_events_by_object_id**](TestDataManagementApi.md#get_tdm_timeline_events_by_object_id) | **GET** /tdm/objects/{id}/timeline-events | Get timeline events of object
-[**perform_action_on_clones**](TestDataManagementApi.md#perform_action_on_clones) | **POST** /tdm/clones/actions | Perform actions on clones
 [**update_tdm_snapshot_by_id**](TestDataManagementApi.md#update_tdm_snapshot_by_id) | **PUT** /tdm/snapshots/{id} | Update a snapshot by ID
 
 
 # **create_tdm_task**
-> TdmTask create_tdm_task(body)
+> CommonTdmTaskResponseParamsf06bd8b0C5ac4884B47a096f10d64533 create_tdm_task(body)
 
 Create a TDM task
 
@@ -26,9 +25,9 @@ Create a task for the Test Data Management (TDM) workflow.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.common_tdm_task_response_paramsf06bd8b0_c5ac4884_b47a096f10d64533 import CommonTdmTaskResponseParamsf06bd8b0C5ac4884B47a096f10d64533
+from cohesity_sdk.cluster.model.common_tdm_task_request_paramsa69ce51b0ca64ed2802a748207466ace import CommonTdmTaskRequestParamsa69ce51b0ca64ed2802a748207466ace
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.tdm_task import TdmTask
-from cohesity_sdk.cluster.model.create_tdm_task_request import CreateTdmTaskRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -41,7 +40,10 @@ client = CohesityClientV2(
 )
 
 
-body = CreateTdmTaskRequest() # CreateTdmTaskRequest | Specifies the parameters to create a TDM task.
+body = CommonTdmTaskRequestParamsa69ce51b0ca64ed2802a748207466ace(
+        name="name_example",
+        action="clone",
+    ) # CommonTdmTaskRequestParamsa69ce51b0ca64ed2802a748207466ace | Specifies the parameters to create a TDM task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -57,11 +59,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateTdmTaskRequest**](CreateTdmTaskRequest.md)| Specifies the parameters to create a TDM task. |
+ **body** | [**CommonTdmTaskRequestParamsa69ce51b0ca64ed2802a748207466ace**](CommonTdmTaskRequestParamsa69ce51b0ca64ed2802a748207466ace.md)| Specifies the parameters to create a TDM task. |
 
 ### Return type
 
-[**TdmTask**](TdmTask.md)
+[**CommonTdmTaskResponseParamsf06bd8b0C5ac4884B47a096f10d64533**](CommonTdmTaskResponseParamsf06bd8b0C5ac4884B47a096f10d64533.md)
 
 ### Authorization
 
@@ -528,94 +530,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **perform_action_on_clones**
-> perform_action_on_clones(body)
-
-Perform actions on clones
-
-Performs various actions on clones. Supports actions on multiple clones.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.perform_action_on_clones_request import PerformActionOnClonesRequest
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = PerformActionOnClonesRequest(
-        action="Cleanup",
-        cleanup_params=CloneActionCleanupParams(
-            cleanup_type="PowerOffVM",
-            power_off_vm_params=CloneActionCleanupPowerOffVmParams(
-                vm_ids=[
-                    3.14,
-                ],
-            ),
-            cloud_resources_cleanup_params=CloneActionCleanupCloudResourcesCleanupParams(
-                restore_tasks=[
-                    CloudResourcesCleanupRestoreTaskDetails(
-                        task_id=3.14,
-                        ami_instance_ids=[
-                            CloudResourcesCleanupAmiInstanceId(
-                                ami_id="ami_id_example",
-                                instance_id="instance_id_example",
-                            ),
-                        ],
-                    ),
-                ],
-            ),
-        ),
-    ) # PerformActionOnClonesRequest | Specifies the parameters to perform an action on multiple clones.
-
-# example passing only required values which don't have defaults set
-try:
-	# Perform actions on clones
-	client.test_data_management.perform_action_on_clones(body)
-except ApiException as e:
-	print("Exception when calling TestDataManagementApi->perform_action_on_clones: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**PerformActionOnClonesRequest**](PerformActionOnClonesRequest.md)| Specifies the parameters to perform an action on multiple clones. |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

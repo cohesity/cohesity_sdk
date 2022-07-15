@@ -84,7 +84,6 @@ class IsilonDataTieringParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([ProtectionObjectInput],),  # noqa: E501
-            'source_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,7 +94,6 @@ class IsilonDataTieringParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'source_id': 'sourceId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,7 +146,6 @@ class IsilonDataTieringParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_id (int, none_type): Specifies the id of the root of data tiering source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

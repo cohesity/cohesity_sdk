@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **day_schedule** | [**DaySchedule**](DaySchedule.md) |  | [optional] 
 **week_schedule** | [**WeekSchedule**](WeekSchedule.md) |  | [optional] 
 **month_schedule** | [**MonthSchedule**](MonthSchedule.md) |  | [optional] 
-**year_schedule** | [**YearSchedule**](YearSchedule.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

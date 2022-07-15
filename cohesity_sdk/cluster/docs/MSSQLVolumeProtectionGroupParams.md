@@ -17,8 +17,6 @@ Name | Type | Description | Notes
 **full_backups_copy_only** | **bool, none_type** | Specifies whether full backups should be copy-only. | [optional] 
 **pre_post_script** | [**PrePostScriptParams**](PrePostScriptParams.md) |  | [optional] 
 **exclude_filters** | [**[Filter], none_type**](Filter.md) | Specifies the list of exclusion filters applied during the group creation or edit. These exclusion filters can be wildcard supported strings or regular expressions. Objects satisfying the will filters will be excluded during backup and also auto protected objects will be ignored if filtered by any of the filters. | [optional] 
-**log_backup_num_streams** | **int, none_type** | Specifies the number of streams to be used for log backups. | [optional] 
-**log_backup_with_clause** | **str, none_type** | Specifies the WithClause to be used for log backups. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

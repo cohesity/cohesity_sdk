@@ -53,12 +53,10 @@ def lazy_import():
     from cohesity_sdk.cluster.model.recover_oracle_params import RecoverOracleParams
     from cohesity_sdk.cluster.model.recover_physical_params import RecoverPhysicalParams
     from cohesity_sdk.cluster.model.recover_pure_params import RecoverPureParams
-    from cohesity_sdk.cluster.model.recover_salesforce_params import RecoverSalesforceParams
     from cohesity_sdk.cluster.model.recover_sql_params import RecoverSqlParams
     from cohesity_sdk.cluster.model.recover_view_params import RecoverViewParams
     from cohesity_sdk.cluster.model.recover_vmware_params import RecoverVmwareParams
     from cohesity_sdk.cluster.model.recovery_all_of import RecoveryAllOf
-    from cohesity_sdk.cluster.model.retrieve_archive_task import RetrieveArchiveTask
     from cohesity_sdk.cluster.model.tenant import Tenant
     from cohesity_sdk.cluster.model.uda_params import UdaParams
     globals()['CassandraParams'] = CassandraParams
@@ -87,12 +85,10 @@ def lazy_import():
     globals()['RecoverOracleParams'] = RecoverOracleParams
     globals()['RecoverPhysicalParams'] = RecoverPhysicalParams
     globals()['RecoverPureParams'] = RecoverPureParams
-    globals()['RecoverSalesforceParams'] = RecoverSalesforceParams
     globals()['RecoverSqlParams'] = RecoverSqlParams
     globals()['RecoverViewParams'] = RecoverViewParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
     globals()['RecoveryAllOf'] = RecoveryAllOf
-    globals()['RetrieveArchiveTask'] = RetrieveArchiveTask
     globals()['Tenant'] = Tenant
     globals()['UdaParams'] = UdaParams
 
@@ -135,7 +131,6 @@ class Recovery(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -168,7 +163,6 @@ class Recovery(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
-            'KSFDC': "kSfdc",
         },
         ('recovery_action',): {
             'RECOVERVMS': "RecoverVMs",
@@ -177,7 +171,6 @@ class Recovery(ModelComposed):
             'RECOVERVMDISKS': "RecoverVmDisks",
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
-            'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERAPPS': "RecoverApps",
@@ -195,9 +188,6 @@ class Recovery(ModelComposed):
             'CONVERTTOPST': "ConvertToPst",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
-            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
-            'RECOVERSFDCORG': "RecoverSfdcOrg",
-            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
         ('tear_down_status',): {
@@ -256,8 +246,6 @@ class Recovery(ModelComposed):
             'messages': ([str], none_type,),  # noqa: E501
             'is_parent_recovery': (bool, none_type,),  # noqa: E501
             'parent_recovery_id': (str, none_type,),  # noqa: E501
-            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
-            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
             'vmware_params': (RecoverVmwareParams,),  # noqa: E501
             'aws_params': (RecoverAwsParams,),  # noqa: E501
             'gcp_params': (RecoverGcpParams,),  # noqa: E501
@@ -286,7 +274,6 @@ class Recovery(ModelComposed):
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
             'oracle_params': (RecoverOracleParams,),  # noqa: E501
             'view_params': (RecoverViewParams,),  # noqa: E501
-            'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
         }
 
     @cached_property
@@ -312,8 +299,6 @@ class Recovery(ModelComposed):
         'messages': 'messages',  # noqa: E501
         'is_parent_recovery': 'isParentRecovery',  # noqa: E501
         'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
-        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
-        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
@@ -342,7 +327,6 @@ class Recovery(ModelComposed):
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'view_params': 'viewParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -409,8 +393,6 @@ class Recovery(ModelComposed):
             messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
             is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
             parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
-            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
-            is_multi_stage_restore (bool, none_type): Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case.. [optional]  # noqa: E501
             vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
             aws_params (RecoverAwsParams): [optional]  # noqa: E501
             gcp_params (RecoverGcpParams): [optional]  # noqa: E501
@@ -439,7 +421,6 @@ class Recovery(ModelComposed):
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
             oracle_params (RecoverOracleParams): [optional]  # noqa: E501
             view_params (RecoverViewParams): [optional]  # noqa: E501
-            sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

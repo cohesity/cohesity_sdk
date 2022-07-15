@@ -99,7 +99,6 @@ class KmsConfigurationCreateParams(ModelComposed):
             'type': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'usage_type': (str, none_type,),  # noqa: E501
-            'ownership_context': (str, none_type,),  # noqa: E501
             'aws_kms_params': (AwsKmsConfiguration,),  # noqa: E501
             'storage_domain_ids': ([int], none_type,),  # noqa: E501
             'external_target_ids': ([int], none_type,),  # noqa: E501
@@ -116,7 +115,6 @@ class KmsConfigurationCreateParams(ModelComposed):
         'type': 'type',  # noqa: E501
         'name': 'name',  # noqa: E501
         'usage_type': 'usageType',  # noqa: E501
-        'ownership_context': 'ownershipContext',  # noqa: E501
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
         'storage_domain_ids': 'storageDomainIds',  # noqa: E501
         'external_target_ids': 'externalTargetIds',  # noqa: E501
@@ -176,7 +174,6 @@ class KmsConfigurationCreateParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             usage_type (str, none_type): Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.. [optional]  # noqa: E501
-            ownership_context (str, none_type): Specifies the ownership context of the kms config. 'Local' indicates this is used for regular archival. 'FortKnox' indicates this is used for FortKnox only.. [optional]  # noqa: E501
             aws_kms_params (AwsKmsConfiguration): [optional]  # noqa: E501
             storage_domain_ids ([int], none_type): Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.. [optional]  # noqa: E501
             external_target_ids ([int], none_type): Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.. [optional]  # noqa: E501

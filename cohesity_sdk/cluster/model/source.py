@@ -30,7 +30,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.object_protection_stats_summary import ObjectProtectionStatsSummary
     from cohesity_sdk.cluster.model.object_type_v_center_params import ObjectTypeVCenterParams
-    from cohesity_sdk.cluster.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.cluster.model.permission_info import PermissionInfo
     from cohesity_sdk.cluster.model.sharepoint_object_params import SharepointObjectParams
     from cohesity_sdk.cluster.model.source_all_of import SourceAllOf
@@ -38,7 +37,6 @@ def lazy_import():
     globals()['Object'] = Object
     globals()['ObjectProtectionStatsSummary'] = ObjectProtectionStatsSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
-    globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['PermissionInfo'] = PermissionInfo
     globals()['SharepointObjectParams'] = SharepointObjectParams
     globals()['SourceAllOf'] = SourceAllOf
@@ -106,7 +104,6 @@ class Source(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
-            'KSFDC': "kSfdc",
         },
         ('object_type',): {
             'None': None,
@@ -152,10 +149,6 @@ class Source(ModelComposed):
             'KPUBLICFOLDER': "kPublicFolder",
             'KTEAMS': "kTeams",
             'KTEAM': "kTeam",
-            'KROOTPUBLICFOLDER': "kRootPublicFolder",
-            'KO365EXCHANGE': "kO365Exchange",
-            'KO365ONEDRIVE': "kO365OneDrive",
-            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKEYSPACE': "kKeyspace",
             'KTABLE': "kTable",
             'KDATABASE': "kDatabase",
@@ -196,7 +189,6 @@ class Source(ModelComposed):
             'KRDSINSTANCE': "kRDSInstance",
             'KRDSSUBNET': "kRDSSubnet",
             'KRDSTAG': "kRDSTag",
-            'KAURORATAG': "kAuroraTag",
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
@@ -222,8 +214,6 @@ class Source(ModelComposed):
             'KORACLEAPCLUSTER': "kOracleAPCluster",
             'KSERVICE': "kService",
             'KPVC': "kPVC",
-            'KPERSISTENTVOLUMECLAIM': "kPersistentVolumeClaim",
-            'KPERSISTENTVOLUME': "kPersistentVolume",
             'KROOTCONTAINER': "kRootContainer",
             'KDAGROOTCONTAINER': "kDAGRootContainer",
             'KEXCHANGENODE': "kExchangeNode",
@@ -239,8 +229,6 @@ class Source(ModelComposed):
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
             'KOBJECT': "kObject",
-            'KORG': "kOrg",
-            'KAPPINSTANCE': "kAppInstance",
         },
         ('protection_type',): {
             'None': None,
@@ -291,12 +279,10 @@ class Source(ModelComposed):
             'object_type': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
             'uuid': (str, none_type,),  # noqa: E501
-            'global_id': (str, none_type,),  # noqa: E501
             'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
             'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
-            'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
             'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
@@ -308,9 +294,6 @@ class Source(ModelComposed):
             'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'last_refreshed_time': (int, none_type,),  # noqa: E501
             'registration_id': (int, none_type,),  # noqa: E501
         }
@@ -331,12 +314,10 @@ class Source(ModelComposed):
         'object_type': 'objectType',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'uuid': 'uuid',  # noqa: E501
-        'global_id': 'globalId',  # noqa: E501
         'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
         'v_center_summary': 'vCenterSummary',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
-        'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
         'protection_stats': 'protectionStats',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
@@ -348,9 +329,6 @@ class Source(ModelComposed):
         'gpfs_params': 'gpfsParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'sharepoint_params': 'sharepointParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
         'last_refreshed_time': 'lastRefreshedTime',  # noqa: E501
         'registration_id': 'registrationId',  # noqa: E501
     }
@@ -412,12 +390,10 @@ class Source(ModelComposed):
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
-            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
             protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
             v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
-            windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
             protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
@@ -429,9 +405,6 @@ class Source(ModelComposed):
             gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
             mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
-            physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
-            sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
-            uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
             last_refreshed_time (int, none_type): Time at which the data about this protection source was last refreshed.. [optional]  # noqa: E501
             registration_id (int, none_type): Id of the registration as part of which this source was discovered.. [optional]  # noqa: E501
         """

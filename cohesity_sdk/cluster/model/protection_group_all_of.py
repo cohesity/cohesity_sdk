@@ -53,7 +53,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.physical_protection_group_params import PhysicalProtectionGroupParams
     from cohesity_sdk.cluster.model.pure_protection_group_params import PureProtectionGroupParams
     from cohesity_sdk.cluster.model.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
-    from cohesity_sdk.cluster.model.sfdc_protection_group_params import SfdcProtectionGroupParams
     from cohesity_sdk.cluster.model.uda_protection_group_params import UdaProtectionGroupParams
     from cohesity_sdk.cluster.model.view_protection_group_params import ViewProtectionGroupParams
     from cohesity_sdk.cluster.model.vmware_protection_group_params import VmwareProtectionGroupParams
@@ -83,7 +82,6 @@ def lazy_import():
     globals()['PhysicalProtectionGroupParams'] = PhysicalProtectionGroupParams
     globals()['PureProtectionGroupParams'] = PureProtectionGroupParams
     globals()['RemoteAdapterProtectionGroupParams'] = RemoteAdapterProtectionGroupParams
-    globals()['SfdcProtectionGroupParams'] = SfdcProtectionGroupParams
     globals()['UdaProtectionGroupParams'] = UdaProtectionGroupParams
     globals()['ViewProtectionGroupParams'] = ViewProtectionGroupParams
     globals()['VmwareProtectionGroupParams'] = VmwareProtectionGroupParams
@@ -168,7 +166,6 @@ class ProtectionGroupAllOf(ModelNormal):
             'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
             'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
-            'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -209,7 +206,6 @@ class ProtectionGroupAllOf(ModelNormal):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -290,7 +286,6 @@ class ProtectionGroupAllOf(ModelNormal):
             hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
             hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
-            sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

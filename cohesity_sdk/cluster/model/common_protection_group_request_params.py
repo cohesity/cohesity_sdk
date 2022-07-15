@@ -71,12 +71,7 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
-            'KAWSNATIVE': "kAWSNative",
-            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
-            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -91,12 +86,6 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
-            'KO365PUBLICFOLDERS': "kO365PublicFolders",
-            'KO365TEAMS': "kO365Teams",
-            'KO365GROUP': "kO365Group",
-            'KO365EXCHANGE': "kO365Exchange",
-            'KO365ONEDRIVE': "kO365OneDrive",
-            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -105,7 +94,6 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
-            'KSFDC': "kSfdc",
         },
         ('priority',): {
             'None': None,
@@ -153,7 +141,6 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
-            'pause_in_blackouts': (bool, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
         }
 
@@ -176,7 +163,6 @@ class CommonProtectionGroupRequestParams(ModelNormal):
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
-        'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
     }
 
@@ -240,8 +226,7 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             sla ([SlaRule], none_type): Specifies the SLA parameters for this Protection Group.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
-            abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'pauseInBlackouts' is set to true.. [optional]  # noqa: E501
-            pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
         """
 

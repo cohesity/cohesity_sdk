@@ -73,7 +73,6 @@ class AlertGroupSummary(ModelNormal):
             'KINDEXING': "kIndexing",
             'KHELIOS': "kHelios",
             'KAPPMARKETPLACE': "kAppMarketPlace",
-            'KSYSTEMSERVICE': "kSystemService",
             'KLICENSE': "kLicense",
             'KSECURITY': "kSecurity",
             'KUPGRADE': "kUpgrade",
@@ -88,8 +87,6 @@ class AlertGroupSummary(ModelNormal):
             'KREMOTEREPLICATION': "kRemoteReplication",
             'KQUOTA': "kQuota",
             'KCDP': "kCDP",
-            'KVIEWFAILOVER': "kViewFailover",
-            'KDISASTERRECOVERY': "kDisasterRecovery",
         },
     }
 

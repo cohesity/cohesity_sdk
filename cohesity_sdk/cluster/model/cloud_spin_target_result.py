@@ -79,8 +79,6 @@ class CloudSpinTargetResult(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'PAUSED': "Paused",
         },
     }
 
@@ -198,7 +196,7 @@ class CloudSpinTargetResult(ModelComposed):
             name (str, none_type): Specifies the name of the already added cloud spin target.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of Cloud Spin in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of Cloud Spin in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Cloud Spin for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Cloud Spin for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             message (str, none_type): Message about the Cloud Spin run.. [optional]  # noqa: E501
             stats (CloudSpinDataStats): [optional]  # noqa: E501
             is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501

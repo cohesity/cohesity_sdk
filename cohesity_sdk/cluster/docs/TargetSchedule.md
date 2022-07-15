@@ -1,6 +1,6 @@
 # TargetSchedule
 
-Specifies a schedule fregquency and schedule unit for copying Snapshots to backup targets.
+Specifies a schedule frequency and schedule unit for copying Snapshots to backup targets.
 
 ## Properties
 Name | Type | Description | Notes

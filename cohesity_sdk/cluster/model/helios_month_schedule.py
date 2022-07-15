@@ -81,6 +81,10 @@ class HeliosMonthSchedule(ModelComposed):
     }
 
     validations = {
+        ('frequency',): {
+            'inclusive_minimum': 1,
+        },
+
     }
 
     additional_properties_type = None
@@ -99,6 +103,7 @@ class HeliosMonthSchedule(ModelComposed):
         """
         lazy_import()
         return {
+            'frequency': (int, none_type,),  # noqa: E501
             'day_of_week': ([str], none_type,),  # noqa: E501
             'week_of_month': (str, none_type,),  # noqa: E501
         }
@@ -110,6 +115,7 @@ class HeliosMonthSchedule(ModelComposed):
 
 
     attribute_map = {
+        'frequency': 'frequency',  # noqa: E501
         'day_of_week': 'dayOfWeek',  # noqa: E501
         'week_of_month': 'weekOfMonth',  # noqa: E501
     }
@@ -162,6 +168,7 @@ class HeliosMonthSchedule(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the backup schedule. <br> Example: If 'frequency' set to 2 and the unit is 'Hours', then Snapshots are backed up every 2 hours. If selected unit is 'Weeks' or 'Months' then frequency will only be applied if policy type is DMaas.. [optional]  # noqa: E501
             day_of_week ([str], none_type): Specifies a list of days of the week when to start Protection Group Runs. <br> Example: To run a Protection Group on every Monday and Tuesday, set the schedule with following values: <br>  unit: 'Weeks' <br>  dayOfWeek: ['Monday','Tuesday']. [optional]  # noqa: E501
             week_of_month (str, none_type): Specifies the week of the month (such as 'Third') in a Monthly Schedule specified by unit field as 'Months'. <br>This field is used in combination with 'dayOfWeek' to define the day in the month to start the Protection Group Run. <br> Example: if 'weekOfMonth' is set to 'Third' and day is set to 'Monday', a backup is performed on the third Monday of every month.. [optional]  # noqa: E501
         """

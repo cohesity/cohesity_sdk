@@ -74,7 +74,7 @@ class IndexingPolicy(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enable_indexing': (bool, none_type,),  # noqa: E501
+            'enable_indexing': (bool,),  # noqa: E501
             'include_paths': ([str], none_type,),  # noqa: E501
             'exclude_paths': ([str], none_type,),  # noqa: E501
         }
@@ -107,7 +107,7 @@ class IndexingPolicy(ModelNormal):
         """IndexingPolicy - a model defined in OpenAPI
 
         Args:
-            enable_indexing (bool, none_type): Specifies if the files found in an Object (such as a VM) should be indexed. If true (the default), files are indexed.
+            enable_indexing (bool): Specifies if the files found in an Object (such as a VM) should be indexed. If true (the default), files are indexed.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

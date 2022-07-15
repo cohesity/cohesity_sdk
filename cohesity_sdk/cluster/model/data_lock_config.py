@@ -93,7 +93,6 @@ class DataLockConfig(ModelNormal):
             'mode': (str, none_type,),  # noqa: E501
             'unit': (str, none_type,),  # noqa: E501
             'duration': (int, none_type,),  # noqa: E501
-            'enable_worm_on_external_target': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,7 +105,6 @@ class DataLockConfig(ModelNormal):
         'mode': 'mode',  # noqa: E501
         'unit': 'unit',  # noqa: E501
         'duration': 'duration',  # noqa: E501
-        'enable_worm_on_external_target': 'enableWormOnExternalTarget',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,7 +159,6 @@ class DataLockConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_worm_on_external_target (bool, none_type): Specifies whether objects in the external target associated with this policy need to be made immutable.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

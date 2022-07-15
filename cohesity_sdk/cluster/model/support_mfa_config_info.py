@@ -58,7 +58,6 @@ class SupportMfaConfigInfo(ModelNormal):
             'None': None,
             'EMAIL': "email",
             'TOTP': "totp",
-            'SALESFORCE': "salesforce",
         },
     }
 

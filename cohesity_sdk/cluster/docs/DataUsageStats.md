@@ -36,8 +36,6 @@ Name | Type | Description | Notes
 **total_logical_usage_bytes** | **int, none_type** | Provides the combined data residing on protected objects. The size of data before reduction by deduplication and compression. | [optional] 
 **total_logical_usage_bytes_timestamp_usec** | **int, none_type** | Specifies Timestamp of TotalLogicalUsageBytes. | [optional] 
 **unique_physical_data_bytes** | **int, none_type** | Specifies the unique physical data usage in bytes. | [optional] 
-**num_files** | **int, none_type** | Specifies the number of files. | [optional] 
-**num_directories** | **int, none_type** | Specifies the number of directories. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

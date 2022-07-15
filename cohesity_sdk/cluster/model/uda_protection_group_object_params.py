@@ -74,8 +74,7 @@ class UdaProtectionGroupObjectParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
+            'name': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,7 +84,6 @@ class UdaProtectionGroupObjectParams(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
     }
 
@@ -101,8 +99,11 @@ class UdaProtectionGroupObjectParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, *args, **kwargs):  # noqa: E501
         """UdaProtectionGroupObjectParams - a model defined in OpenAPI
+
+        Args:
+            name (str): Specifies the fully qualified name of the object.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -136,8 +137,6 @@ class UdaProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the ID of the object.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the fully qualified name of the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -164,6 +163,7 @@ class UdaProtectionGroupObjectParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

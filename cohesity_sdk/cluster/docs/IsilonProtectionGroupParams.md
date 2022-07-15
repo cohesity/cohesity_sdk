@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **continuous_snapshots** | [**ContinuousSnapshotParams**](ContinuousSnapshotParams.md) |  | [optional] 
 **filter_ip_config** | [**FilterIpConfig**](FilterIpConfig.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
-**modify_source_permissions** | **bool, none_type** | Specifies if the Isilon source permissions should be modified internally to allow backups. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

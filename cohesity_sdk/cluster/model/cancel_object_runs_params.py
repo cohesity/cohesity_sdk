@@ -58,22 +58,9 @@ class CancelObjectRunsParams(ModelNormal):
     """
 
     allowed_values = {
-        ('snapshot_backend_types',): {
-            'None': None,
-            'KAWSNATIVE': "kAWSNative",
-            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
-            'KPHYSICAL': "kPhysical",
-            'KSQL': "kSQL",
-            'KORACLE': "kOracle",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
-        },
     }
 
     validations = {
-        ('snapshot_backend_types',): {
-        },
-
     }
 
     additional_properties_type = None
@@ -94,7 +81,6 @@ class CancelObjectRunsParams(ModelNormal):
         return {
             'object_id': (int, none_type,),  # noqa: E501
             'runs_config': ([CancelObjectRunParams], none_type,),  # noqa: E501
-            'snapshot_backend_types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,7 +92,6 @@ class CancelObjectRunsParams(ModelNormal):
     attribute_map = {
         'object_id': 'objectId',  # noqa: E501
         'runs_config': 'runsConfig',  # noqa: E501
-        'snapshot_backend_types': 'snapshotBackendTypes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -160,7 +145,6 @@ class CancelObjectRunsParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             runs_config ([CancelObjectRunParams], none_type): Specifies a list of runs to cancel. If no runs are specified, then all the outstanding runs will be canceled.. [optional]  # noqa: E501
-            snapshot_backend_types ([str], none_type): Specifies the protections type on which action to be performed. This is used when an object is protected by multiple protection types. If not specified action will be performed on all protection types.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

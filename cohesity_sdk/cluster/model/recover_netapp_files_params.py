@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.netapp_recover_file_and_folder_info import NetappRecoverFileAndFolderInfo
-    globals()['NetappRecoverFileAndFolderInfo'] = NetappRecoverFileAndFolderInfo
+    from cohesity_sdk.cluster.model.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+    globals()['CommonRecoverFileAndFolderInfo'] = CommonRecoverFileAndFolderInfo
 
 
 class RecoverNetappFilesParams(ModelNormal):
@@ -87,9 +87,8 @@ class RecoverNetappFilesParams(ModelNormal):
         """
         lazy_import()
         return {
-            'files_and_folders': ([NetappRecoverFileAndFolderInfo], none_type,),  # noqa: E501
+            'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'is_from_source_initiated_protection': (bool, none_type,),  # noqa: E501
             'netapp_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'elastifile_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'flashblade_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -107,7 +106,6 @@ class RecoverNetappFilesParams(ModelNormal):
     attribute_map = {
         'files_and_folders': 'filesAndFolders',  # noqa: E501
         'target_environment': 'targetEnvironment',  # noqa: E501
-        'is_from_source_initiated_protection': 'isFromSourceInitiatedProtection',  # noqa: E501
         'netapp_target_params': 'netappTargetParams',  # noqa: E501
         'elastifile_target_params': 'elastifileTargetParams',  # noqa: E501
         'flashblade_target_params': 'flashbladeTargetParams',  # noqa: E501
@@ -132,7 +130,7 @@ class RecoverNetappFilesParams(ModelNormal):
         """RecoverNetappFilesParams - a model defined in OpenAPI
 
         Args:
-            files_and_folders ([NetappRecoverFileAndFolderInfo], none_type): Specifies the list of info about the netapp files and folders to be recovered.
+            files_and_folders ([CommonRecoverFileAndFolderInfo], none_type): Specifies the info about the files and folders to be recovered.
             target_environment (str): Specifies the environment of the recovery target. The corresponding params below must be filled out.
 
         Keyword Args:
@@ -167,7 +165,6 @@ class RecoverNetappFilesParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_from_source_initiated_protection (bool, none_type): Specifies if the snapshot trying to recover is from a source initiated protection.. [optional]  # noqa: E501
             netapp_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Netapp recovery target.. [optional]  # noqa: E501
             elastifile_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Elastifile recovery target.. [optional]  # noqa: E501
             flashblade_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Flashblade recovery target.. [optional]  # noqa: E501

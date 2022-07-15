@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **cloud_migration** | **bool, none_type** | Specifies whether or not to move the workload to the cloud. | [optional] 
 **source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
 **source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 
-**data_transfer_info** | [**DataTransferInfo**](DataTransferInfo.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

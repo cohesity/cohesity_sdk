@@ -3,19 +3,17 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_clientcsr**](SecurityApi.md#create_clientcsr) | **POST** /client-csr | Create Certificate Signing Requests on the cluster.
+[**create_clientcsr**](SecurityApi.md#create_clientcsr) | **POST** /clientcsr | Create Certificate Signing Requests on the cluster.
 [**create_csr**](SecurityApi.md#create_csr) | **POST** /csr | Create a Certificate Signing Request on the cluster.
 [**delete_csr**](SecurityApi.md#delete_csr) | **DELETE** /csr/{id} | Delete a Certificate Signing Request on the cluster.
 [**get_ciphers**](SecurityApi.md#get_ciphers) | **GET** /security/ciphers | Gets the list of ciphers enabled on the cluster.
 [**get_csr_by_id**](SecurityApi.md#get_csr_by_id) | **GET** /csr/{id} | List the specified Certificate Signing Request.
 [**get_csr_list**](SecurityApi.md#get_csr_list) | **GET** /csr | List Certificate Signing Requests on the cluster.
-[**get_object_store_ciphers**](SecurityApi.md#get_object_store_ciphers) | **GET** /security/object-store-ciphers | Gets the list of object store ciphers enabled on the cluster.
 [**get_security_config**](SecurityApi.md#get_security_config) | **GET** /security-config | Get cluster security settings.
-[**import_certificate_by_clientcsr**](SecurityApi.md#import_certificate_by_clientcsr) | **POST** /client-csr/certificate | Import the signed certificates on the cluster after the Certificate Signing Requests are created.
+[**import_certificate_by_clientcsr**](SecurityApi.md#import_certificate_by_clientcsr) | **POST** /clientcsr/certificate | Import the signed certificates on the cluster after the Certificate Signing Requests are created.
 [**list_trusted_ca_by_id**](SecurityApi.md#list_trusted_ca_by_id) | **GET** /trusted-cas/{id} | List the specified Certificate.
 [**list_trusted_cas**](SecurityApi.md#list_trusted_cas) | **GET** /trusted-cas | List all Certificates with cluster trust store.
 [**modify_ciphers**](SecurityApi.md#modify_ciphers) | **POST** /security/ciphers | Enable/Disable a list of ciphers on the cluster. Iris must be restarted for the change to take effect.
-[**modify_object_store_ciphers**](SecurityApi.md#modify_object_store_ciphers) | **POST** /security/object-store-ciphers | Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
 [**register_trusted_cas**](SecurityApi.md#register_trusted_cas) | **POST** /trusted-cas | Register CA Certificate to the cluster trust store.
 [**unregister_trusted_ca**](SecurityApi.md#unregister_trusted_ca) | **DELETE** /trusted-cas/{id} | Unregister CA Certificate from the cluster trust store.
 [**update_certificate_by_csr**](SecurityApi.md#update_certificate_by_csr) | **POST** /csr/certificate | Update the signed certificate on the cluster after a Certificate Signing Request is created.
@@ -420,68 +418,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_object_store_ciphers**
-> ObjectStoreCiphersResp get_object_store_ciphers()
-
-Gets the list of object store ciphers enabled on the cluster.
-
-Gets the list of object store ciphers enabled on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Gets the list of object store ciphers enabled on the cluster.
-	api_response = client.security.get_object_store_ciphers()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->get_object_store_ciphers: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ObjectStoreCiphersResp**](ObjectStoreCiphersResp.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_security_config**
 > SecurityConfigResponse get_security_config()
 
@@ -806,78 +742,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CiphersResp**](CiphersResp.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **modify_object_store_ciphers**
-> ObjectStoreCiphersResp modify_object_store_ciphers(body)
-
-Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
-
-Enable/Disable a list of object store ciphers on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = ModifyObjectStoreCiphersRequestBody(
-        enable=True,
-        ciphers=[
-            "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
-        ],
-    ) # ModifyObjectStoreCiphersRequestBody | Enable/Disable object store ciphers.
-
-# example passing only required values which don't have defaults set
-try:
-	# Enable/Disable a list of object store ciphers on the cluster. Bridge must be restarted for the change to take effect.
-	api_response = client.security.modify_object_store_ciphers(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SecurityApi->modify_object_store_ciphers: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**ModifyObjectStoreCiphersRequestBody**](ModifyObjectStoreCiphersRequestBody.md)| Enable/Disable object store ciphers. |
-
-### Return type
-
-[**ObjectStoreCiphersResp**](ObjectStoreCiphersResp.md)
 
 ### Authorization
 

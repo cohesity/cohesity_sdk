@@ -29,10 +29,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.nas_throttling_config import NasThrottlingConfig
     from cohesity_sdk.cluster.model.smb_mount_credentials import SmbMountCredentials
-    from cohesity_sdk.cluster.model.universal_id import UniversalId
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
     globals()['SmbMountCredentials'] = SmbMountCredentials
-    globals()['UniversalId'] = UniversalId
 
 
 class GenericNasRegistrationParams(ModelNormal):
@@ -64,9 +62,9 @@ class GenericNasRegistrationParams(ModelNormal):
     allowed_values = {
         ('mode',): {
             'None': None,
-            'KNFS4_1': "kNfs4_1",
             'KNFS3': "kNfs3",
             'KCIFS1': "kCifs1",
+            'KNFS4_1': "kNfs4_1",
         },
     }
 
@@ -93,7 +91,6 @@ class GenericNasRegistrationParams(ModelNormal):
             'mode': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'skip_validation': (bool, none_type,),  # noqa: E501
-            'uid': (UniversalId,),  # noqa: E501
             'smb_mount_credentials': (SmbMountCredentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
@@ -109,7 +106,6 @@ class GenericNasRegistrationParams(ModelNormal):
         'mode': 'mode',  # noqa: E501
         'description': 'description',  # noqa: E501
         'skip_validation': 'skipValidation',  # noqa: E501
-        'uid': 'uid',  # noqa: E501
         'smb_mount_credentials': 'smbMountCredentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
     }
@@ -131,7 +127,7 @@ class GenericNasRegistrationParams(ModelNormal):
 
         Args:
             mount_point (str, none_type): Specifies the MountPoint for Generic NAS Source.
-            mode (str, none_type): Specifies the mode of the source. 'kNfs3' indicates NFS3 mode. 'kNfs4_1' indicates NFS4.1 mode. 'kCifs1' indicates SMB mode.
+            mode (str, none_type): Specifies the mode of the source. 'kNfs3' indicates NFS mode. 'kNfs4_1' indicates NFS4.1 mode. 'kCifs1' indicates SMB mode.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -167,7 +163,6 @@ class GenericNasRegistrationParams(ModelNormal):
 
             description (str, none_type): Specifies the Description for Generic NAS Source.. [optional]  # noqa: E501
             skip_validation (bool, none_type): Specifies if validation has to be skipped while registering the mount point.. [optional]  # noqa: E501
-            uid (UniversalId): [optional]  # noqa: E501
             smb_mount_credentials (SmbMountCredentials): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
         """

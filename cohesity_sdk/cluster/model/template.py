@@ -64,15 +64,6 @@ class Template(ModelNormal):
             'FILESERVICEMULTIMEDIA': "FileServiceMultimedia",
             'FILESERVICEARCHIVE': "FileServiceArchive",
             'OBJECTSERVICECONTAINER': "ObjectServiceContainer",
-            'ZDLRA': "ZDLRA",
-            'TSM': "TSM",
-            'APPLICATIONSDUMP': "ApplicationsDump",
-            'FILESERVICEGENERAL': "FileServiceGeneral",
-            'DIGITALARCHIVE': "DigitalArchive",
-            'OBJECTSERVICEGENERAL': "ObjectServiceGeneral",
-            'SPLUNKSMARTSTORE': "SplunkSmartStore",
-            'HADOOP': "Hadoop",
-            'ARCHIVESERVICESGENERAL': "ArchiveServicesGeneral",
         },
     }
 

@@ -1,6 +1,5 @@
 # NasIncrementalThrottlingConfig
 
-Specifies the throttling configuration during incremental backup run.
 
 ## Properties
 Name | Type | Description | Notes

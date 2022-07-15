@@ -237,15 +237,8 @@ class AuditLogApi(object):
                         "AMQPTARGETCONFIGURATION": "AMQPTargetConfiguration",
                         "PATCH": "Patch",
                         "HOTFIX": "Hotfix",
-                        "NISNETGROUP": "NisNetgroup",
-                        "GFLAGRECIPE": "GflagRecipe",
-                        "GFLAG": "Gflag",
-                        "QUORUMGROUP": "QuorumGroup",
-                        "QUORUMAPPLICATION": "QuorumApplication",
                         "BIFROSTCONNECTION": "BifrostConnection",
-                        "BIFROSTCONNECTOR": "BifrostConnector",
-                        "WHITELABELINGSETTING": "WhitelabelingSetting",
-                        "AUDITLOGSETTING": "AuditLogSetting"
+                        "BIFROSTCONNECTOR": "BifrostConnector"
                     },
                     ('actions',): {
                         'None': None,
@@ -293,8 +286,7 @@ class AuditLogApi(object):
                         "IMPORT": "Import",
                         "VALIDATE": "Validate",
                         "CLUSTEREXPAND": "ClusterExpand",
-                        "FETCH": "Fetch",
-                        "SEARCH": "Search"
+                        "FETCH": "Fetch"
                     },
                 },
                 'openapi_types': {

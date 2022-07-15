@@ -79,7 +79,7 @@ class ClusterUpradeParams(ModelNormal):
         """
         return {
             'type': (str,),  # noqa: E501
-            'version_name': (str,),  # noqa: E501
+            'software_version': (str,),  # noqa: E501
             'url': (str,),  # noqa: E501
         }
 
@@ -91,7 +91,7 @@ class ClusterUpradeParams(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'version_name': 'versionName',  # noqa: E501
+        'software_version': 'softwareVersion',  # noqa: E501
         'url': 'url',  # noqa: E501
     }
 
@@ -111,7 +111,7 @@ class ClusterUpradeParams(ModelNormal):
         """ClusterUpradeParams - a model defined in OpenAPI
 
         Args:
-            type (str): The operation type. 'Upgrade' indicates to upgrade the software on the cluster. 'UploadPackageAndUpgrade' indicates to first upload the package using the url where package is hosted and then upgrade the cluster.
+            type (str): The operation type. 'Upgrade' indicates to upgrade the software on the cluster. 'UploadPackageAndUpgrade' indicates to first upload the package using the url where packaage is hosted and then upgrade the cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -145,7 +145,7 @@ class ClusterUpradeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            version_name (str): Version name of the package. Example: 6.3.1h_release-20210714_0fad884e. This is required when the operation type is 'Upgrade'. [optional]  # noqa: E501
+            software_version (str): The target software version. This is required when the operation type is 'Upgrade'. [optional]  # noqa: E501
             url (str): The URL where the package is hosted. This is required when the operation type is 'UploadPackageAndUpgrade'. [optional]  # noqa: E501
         """
 

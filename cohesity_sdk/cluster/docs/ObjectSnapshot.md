@@ -25,9 +25,6 @@ Name | Type | Description | Notes
 **object_id** | **int, none_type** | Specifies the object id which the snapshot is taken from. | [optional] 
 **object_name** | **str, none_type** | Specifies the object name which the snapshot is taken from. | [optional] 
 **source_id** | **int, none_type** | Specifies the object source id which the snapshot is taken from. | [optional] 
-**region_id** | **str, none_type** | Specifies the region id where this snapshot belongs to. | [optional] 
-**cluster_id** | **int, none_type** | Specifies the cluster id where this snapshot belongs to. | [optional] 
-**cluster_incarnation_id** | **int, none_type** | Specifies the cluster incarnation id where this snapshot belongs to. | [optional] 
 **physical_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to Physical type snapshot. | [optional] 
 **hyperv_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to HyperV type snapshot. | [optional] 
 **aws_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to AWS type snapshot. | [optional] 
@@ -38,7 +35,6 @@ Name | Type | Description | Notes
 **flashblade_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to Flashblade type snapshot. | [optional] 
 **generic_nas_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to Generic NAS type snapshot. | [optional] 
 **elastifile_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to NetApp type snapshot. | [optional] 
-**sfdc_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters specific to Salesforce type snapshot. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

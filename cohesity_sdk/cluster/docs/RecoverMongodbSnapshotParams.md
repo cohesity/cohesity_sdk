@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **start_time_usecs** | **int, none_type** | Specifies the start time of the Recovery in Unix timestamp epoch in microseconds. | [optional] [readonly] 
 **end_time_usecs** | **int, none_type** | Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished. | [optional] [readonly] 
 **messages** | **[str], none_type** | Specify error messages about the object. | [optional] [readonly] 
-**bytes_restored** | **int, none_type** | Specify the total bytes restored. | [optional] [readonly] 
 **objects** | [**[RecoverMongodbNoSqlObjectParams], none_type**](RecoverMongodbNoSqlObjectParams.md) | Specifies details of objects to be recovered. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

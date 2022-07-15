@@ -6,6 +6,7 @@ Specifies the parameters which are specific to Microsoft 365 Object Protection.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **objects** | [**[Office365ObjectProtectionObjectParams]**](Office365ObjectProtectionObjectParams.md) | Specifies the objects to be included in the Object Protection. | 
+**exclude_object_ids** | **[int], none_type** | Specifies the objects to be excluded in the Object Protection. | [optional] 
 **indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
 **source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
 **source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 

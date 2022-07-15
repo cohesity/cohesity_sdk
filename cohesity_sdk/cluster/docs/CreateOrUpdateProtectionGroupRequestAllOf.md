@@ -35,7 +35,6 @@ Name | Type | Description | Notes
 **remote_adapter_params** | [**RemoteAdapterProtectionGroupParams**](RemoteAdapterProtectionGroupParams.md) |  | [optional] 
 **exchange_params** | [**ExchangeProtectionGroupParams**](ExchangeProtectionGroupParams.md) |  | [optional] 
 **uda_params** | [**UdaProtectionGroupParams**](UdaProtectionGroupParams.md) |  | [optional] 
-**sfdc_params** | [**SfdcProtectionGroupParams**](SfdcProtectionGroupParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

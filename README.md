@@ -7,7 +7,7 @@ Cohesity SDK
 The *Cohesity SDK*  provides an easy-to-use language binding to
 harness the power of *Cohesity REST APIs* in your python applications.
 
-## Table of contents :scroll:
+## Table of contents 
 
  - [Getting Started](#get-started)
  - [Documentation](#documentation)
@@ -17,7 +17,7 @@ harness the power of *Cohesity REST APIs* in your python applications.
  - [Suggestions and Feedback](#suggest)
  
 
-## <a name="get-started"></a> Let's get started :hammer_and_pick:
+## <a name="get-started"></a> Let's get started 
 
 ### Installation
 
@@ -34,34 +34,34 @@ pip install -r requirements.txt
 python setup.py install
 ```
 
-## <a name="documentation"></a> Documentation :books:
+## <a name="documentation"></a> Documentation 
 
 <a href="https://developer.cohesity.com/versions.html">Refer Python docs for your cluster version. </a>
 
-## <a name="howto"></a> How to Use: :mag_right:
+## <a name="howto"></a> How to Use: 
 
 This SDK exposes all the functionality provided by *Cohesity REST API*.
 
 Initializing the Client:
 ```
-# Helios client Initialization
+# Cluster client Initialization
 
-from cohesity_sdk.helios.cohesity_client import HeliosClient
+from cohesity_sdk.cluster.cluster_client import ClusterClient
 
 cluster_vip = 'prod-cluster.eng.cohesity.com'
-api_key = "87t3w3-42623vcw54-c33v66"
-client = HeliosClient(cluster_vip=cluster_vip, api_key=api_key)
-platform_controller = client.platform
-result = platform_controller.get_cluster()
-result_dict =  result.__dict__
-print(result_dict["_data_store"]["sw_version"])
+username = 'admin'
+password = 'admin'
+domain = "LOCAL"
+client = ClusterClient(
+    cluster_vip=cluster_vip, username=username, password=password, domain=domain)
 
+print(client.platform.get_cluster().sw_version)
 
 #OUTPUT
-6.6.0d_ent_release-20220314_05c9bae3
+6.6.0d_ent_release-20220621_a04bcd28
 ```
 
-## <a name="sample"></a> More sample code to get going: :bulb:
+## <a name="sample"></a> More sample code to get going: 
 
 Check out the scripts included under [`samples`](./samples) for reference.
 
@@ -70,6 +70,6 @@ Check out the scripts included under [`samples`](./samples) for reference.
 * [Refer our contribution guideline](./CONTRIBUTING.md).
 
 
-## <a name ="suggest"></a> Questions or Feedback :raised_hand:
+## <a name ="suggest"></a> Questions or Feedback
 
 We would love to hear from you. Please send your questions and feedback to: *cohesity-api-sdks@cohesity.com*

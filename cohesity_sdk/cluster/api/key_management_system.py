@@ -299,7 +299,6 @@ class KeyManagementSystemApi(object):
 
             Keyword Args:
                 ids ([int]): Ids of KMS configured on the cluster.. [optional]
-                include_rpaas_kms (bool, none_type): If true, returns KMS that are configured by FortKnox.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -362,11 +361,9 @@ class KeyManagementSystemApi(object):
             params_map={
                 'all': [
                     'ids',
-                    'include_rpaas_kms',
                 ],
                 'required': [],
                 'nullable': [
-                    'include_rpaas_kms',
                 ],
                 'enum': [
                 ],
@@ -381,16 +378,12 @@ class KeyManagementSystemApi(object):
                 'openapi_types': {
                     'ids':
                         ([int],),
-                    'include_rpaas_kms':
-                        (bool, none_type,),
                 },
                 'attribute_map': {
                     'ids': 'ids',
-                    'include_rpaas_kms': 'includeRpaasKms',
                 },
                 'location_map': {
                     'ids': 'query',
-                    'include_rpaas_kms': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **restart_immediately** | **bool, none_type** | Specifies whether to restart Cassandra services immediately after the point in time recovery. | [optional] 
 **restart_at_usecs** | **int, none_type** | Specifies the time in Unix epoch timestamp in microseconds at which the Cassandra services are to be restarted. | [optional] 
 **restart_command** | **str, none_type** | Specifies the command to restart Cassandra services after the point in time recovery. | [optional] 
-**restart_services_task_id** | **int, none_type** | Specifies the Id of the task required to restart Cassandra services. | [optional] [readonly] 
+**restart_services_task_id** | **int, none_type** | Specifies the Id of the task requiered to restart Cassandra services. | [optional] [readonly] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

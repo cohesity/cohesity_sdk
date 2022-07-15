@@ -75,11 +75,6 @@ class NetappObjectParams(ModelNormal):
             'TEMP': "Temp",
             'UNKOWNTYPE': "UnkownType",
         },
-        ('volume_extended_style',): {
-            'None': None,
-            'KFLEXVOL': "kFlexVol",
-            'KFLEXGROUP': "kFlexGroup",
-        },
     }
 
     validations = {
@@ -102,7 +97,6 @@ class NetappObjectParams(ModelNormal):
         return {
             'supported_nas_mount_protocols': ([str], none_type,),  # noqa: E501
             'volume_type': (str, none_type,),  # noqa: E501
-            'volume_extended_style': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,7 +108,6 @@ class NetappObjectParams(ModelNormal):
     attribute_map = {
         'supported_nas_mount_protocols': 'supportedNasMountProtocols',  # noqa: E501
         'volume_type': 'volumeType',  # noqa: E501
-        'volume_extended_style': 'volumeExtendedStyle',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -166,7 +159,6 @@ class NetappObjectParams(ModelNormal):
 
             supported_nas_mount_protocols ([str], none_type): Specifies a list of NAS mount protocols supported by this object.. [optional]  # noqa: E501
             volume_type (str, none_type): Specifies the Netapp volume type.. [optional]  # noqa: E501
-            volume_extended_style (str, none_type): Specifies the extended style of a NetApp volume.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

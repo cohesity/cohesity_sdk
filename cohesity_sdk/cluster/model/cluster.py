@@ -69,15 +69,6 @@ class Cluster(ModelNormal):
             'CLOUD': "Cloud",
             'RIGEL': "Rigel",
             'UNKNOWN': "Unknown",
-            'HELIOSONPREMVM': "HeliosOnPremVM",
-        },
-        ('cluster_size',): {
-            'None': None,
-            'SMALL': "Small",
-            'MEDIUM': "Medium",
-            'LARGE': "Large",
-            'XLARGE': "XLarge",
-            'NEXTGEN': "NextGen",
         },
     }
 
@@ -105,7 +96,6 @@ class Cluster(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'cluster_size': (str, none_type,),  # noqa: E501
             'local_tenant_id': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
@@ -128,7 +118,6 @@ class Cluster(ModelNormal):
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'cluster_size': 'clusterSize',  # noqa: E501
         'local_tenant_id': 'localTenantId',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
@@ -191,7 +180,6 @@ class Cluster(ModelNormal):
             name (str, none_type): Name of the new cluster.. [optional]  # noqa: E501
             description (str, none_type): Description of the cluster.. [optional]  # noqa: E501
             type (str, none_type): Specifies the type of the new cluster.. [optional]  # noqa: E501
-            cluster_size (str, none_type): Specifies the size of the cloud platforms.. [optional]  # noqa: E501
             local_tenant_id (str, none_type): Specifies the local tenant id. Only applicable on Helios.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the globally unique tenant id. Only applicable on Helios.. [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id on which this cluster is present. Only applicable on Helios for DMaaS clusters.. [optional]  # noqa: E501

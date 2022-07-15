@@ -20,7 +20,6 @@ Name | Type | Description | Notes
 **start_time_usecs** | **int, none_type** | Specifies the start time of the Recovery in Unix timestamp epoch in microseconds. | [optional] [readonly] 
 **end_time_usecs** | **int, none_type** | Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished. | [optional] [readonly] 
 **messages** | **[str], none_type** | Specify error messages about the object. | [optional] [readonly] 
-**bytes_restored** | **int, none_type** | Specify the total bytes restored. | [optional] [readonly] 
 **instant_recovery_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the info about instant recovery. This is only applicable for RecoverVm. | [optional] 
 **datastore_migration_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the info about datastore migration. This is only applicable for RecoverVm. | [optional] 
 **child_snapshots** | [**[RecoverVmwareChildSnapshotParams]**](RecoverVmwareChildSnapshotParams.md) | Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here. | [optional] 

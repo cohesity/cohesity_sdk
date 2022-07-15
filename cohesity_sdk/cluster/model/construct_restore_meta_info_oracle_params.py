@@ -74,13 +74,12 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'db_name': (str, none_type,),  # noqa: E501
             'base_dir': (str, none_type,),  # noqa: E501
             'home_dir': (str, none_type,),  # noqa: E501
             'is_clone': (bool, none_type,),  # noqa: E501
-            'db_name': (str, none_type,),  # noqa: E501
             'db_file_destination': (str, none_type,),  # noqa: E501
             'is_granular_restore': (bool, none_type,),  # noqa: E501
-            'is_recovery_validation': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,13 +89,12 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
 
 
     attribute_map = {
+        'db_name': 'dbName',  # noqa: E501
         'base_dir': 'baseDir',  # noqa: E501
         'home_dir': 'homeDir',  # noqa: E501
         'is_clone': 'isClone',  # noqa: E501
-        'db_name': 'dbName',  # noqa: E501
         'db_file_destination': 'dbFileDestination',  # noqa: E501
         'is_granular_restore': 'isGranularRestore',  # noqa: E501
-        'is_recovery_validation': 'isRecoveryValidation',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,10 +109,11 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, base_dir, home_dir, is_clone, *args, **kwargs):  # noqa: E501
+    def __init__(self, db_name, base_dir, home_dir, is_clone, *args, **kwargs):  # noqa: E501
         """ConstructRestoreMetaInfoOracleParams - a model defined in OpenAPI
 
         Args:
+            db_name (str, none_type): Specifies the name of the Oracle database that we restore to.
             base_dir (str, none_type): Specifies the base directory of Oracle at destination.
             home_dir (str, none_type): Specifies the home directory of Oracle at destination.
             is_clone (bool, none_type): Specifies whether operation is clone or not
@@ -151,10 +150,8 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            db_name (str, none_type): Specifies the name of the Oracle database that we restore to.. [optional]  # noqa: E501
             db_file_destination (str, none_type): Specifies the location to put the database files(datafiles, logfiles etc.). [optional]  # noqa: E501
             is_granular_restore (bool, none_type): Specifies whether the operation is granular restore or not.. [optional]  # noqa: E501
-            is_recovery_validation (bool, none_type): Specifies whether the operation is recovery validation or not.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,6 +178,7 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.db_name = db_name
         self.base_dir = base_dir
         self.home_dir = home_dir
         self.is_clone = is_clone

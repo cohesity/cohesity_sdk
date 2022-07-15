@@ -67,11 +67,6 @@ class KmsConfigurationResponseParams(ModelNormal):
             'KMIPKMS': "KmipKms",
             'NONE': "None",
         },
-        ('usage_type',): {
-            'None': None,
-            'KARCHIVAL': "kArchival",
-            'KRPAASARCHIVAL': "kRpaasArchival",
-        },
     }
 
     validations = {
@@ -95,12 +90,10 @@ class KmsConfigurationResponseParams(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'usage_type': (str, none_type,),  # noqa: E501
             'aws_kms_params': (AwsKmsConfigurationResponse,),  # noqa: E501
             'kmip_kms_params': (KmipKmsConfigurationResponse,),  # noqa: E501
             'storage_domain_ids': ([int], none_type,),  # noqa: E501
             'external_target_ids': ([int], none_type,),  # noqa: E501
-            'ownership_context': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -112,12 +105,10 @@ class KmsConfigurationResponseParams(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'usage_type': 'usageType',  # noqa: E501
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
         'kmip_kms_params': 'kmipKmsParams',  # noqa: E501
         'storage_domain_ids': 'storageDomainIds',  # noqa: E501
         'external_target_ids': 'externalTargetIds',  # noqa: E501
-        'ownership_context': 'ownershipContext',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -169,12 +160,10 @@ class KmsConfigurationResponseParams(ModelNormal):
 
             name (str, none_type): Name of the KMS.. [optional]  # noqa: E501
             type (str, none_type): Type of KMS. 'InternalKms' indicates the internal cluster KMS. 'AwsKms' indicates AWS KMS. 'KmipKms' indicates any KMIP compliant KMS.. [optional]  # noqa: E501
-            usage_type (str, none_type): Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.. [optional]  # noqa: E501
             aws_kms_params (AwsKmsConfigurationResponse): [optional]  # noqa: E501
             kmip_kms_params (KmipKmsConfigurationResponse): [optional]  # noqa: E501
             storage_domain_ids ([int], none_type): Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.. [optional]  # noqa: E501
             external_target_ids ([int], none_type): Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.. [optional]  # noqa: E501
-            ownership_context (str, none_type): Describes the consumption of the KMS key whether it is used for local or FortKnox.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

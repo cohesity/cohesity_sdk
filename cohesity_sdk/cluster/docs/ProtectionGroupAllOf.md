@@ -35,7 +35,6 @@ Name | Type | Description | Notes
 **hdfs_params** | [**HdfsProtectionGroupParams**](HdfsProtectionGroupParams.md) |  | [optional] 
 **hbase_params** | [**NoSqlProtectionGroupParams**](NoSqlProtectionGroupParams.md) |  | [optional] 
 **uda_params** | [**UdaProtectionGroupParams**](UdaProtectionGroupParams.md) |  | [optional] 
-**sfdc_params** | [**SfdcProtectionGroupParams**](SfdcProtectionGroupParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

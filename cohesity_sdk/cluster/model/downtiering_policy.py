@@ -30,7 +30,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.common_tiering_policy import CommonTieringPolicy
     from cohesity_sdk.cluster.model.downtiering_file_age_policy import DowntieringFileAgePolicy
     from cohesity_sdk.cluster.model.downtiering_policy_all_of import DowntieringPolicyAllOf
-    from cohesity_sdk.cluster.model.downtiering_target import DowntieringTarget
     from cohesity_sdk.cluster.model.file_filtering_policy import FileFilteringPolicy
     from cohesity_sdk.cluster.model.file_size_policy import FileSizePolicy
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
@@ -38,7 +37,6 @@ def lazy_import():
     globals()['CommonTieringPolicy'] = CommonTieringPolicy
     globals()['DowntieringFileAgePolicy'] = DowntieringFileAgePolicy
     globals()['DowntieringPolicyAllOf'] = DowntieringPolicyAllOf
-    globals()['DowntieringTarget'] = DowntieringTarget
     globals()['FileFilteringPolicy'] = FileFilteringPolicy
     globals()['FileSizePolicy'] = FileSizePolicy
     globals()['IndexingPolicy'] = IndexingPolicy
@@ -107,7 +105,6 @@ class DowntieringPolicy(ModelComposed):
             'auto_orphan_data_cleanup': (bool, none_type,),  # noqa: E501
             'tiering_goal': (int, none_type,),  # noqa: E501
             'file_age': (DowntieringFileAgePolicy,),  # noqa: E501
-            'target': (DowntieringTarget,),  # noqa: E501
             'enable_audit_logging': (bool, none_type,),  # noqa: E501
             'file_size': (FileSizePolicy,),  # noqa: E501
             'file_path': (FileFilteringPolicy,),  # noqa: E501
@@ -127,7 +124,6 @@ class DowntieringPolicy(ModelComposed):
         'auto_orphan_data_cleanup': 'autoOrphanDataCleanup',  # noqa: E501
         'tiering_goal': 'tieringGoal',  # noqa: E501
         'file_age': 'fileAge',  # noqa: E501
-        'target': 'target',  # noqa: E501
         'enable_audit_logging': 'enableAuditLogging',  # noqa: E501
         'file_size': 'fileSize',  # noqa: E501
         'file_path': 'filePath',  # noqa: E501
@@ -188,7 +184,6 @@ class DowntieringPolicy(ModelComposed):
             auto_orphan_data_cleanup (bool, none_type): Specifies whether to remove the orphan data from the target if the symlink is removed from the source.. [optional] if omitted the server will use the default value of True  # noqa: E501
             tiering_goal (int, none_type): Specifies the maximum amount of data that should be present on source after downtiering.. [optional]  # noqa: E501
             file_age (DowntieringFileAgePolicy): [optional]  # noqa: E501
-            target (DowntieringTarget): [optional]  # noqa: E501
             enable_audit_logging (bool, none_type): Specifies whether to audit log the file tiering activity.. [optional] if omitted the server will use the default value of False  # noqa: E501
             file_size (FileSizePolicy): [optional]  # noqa: E501
             file_path (FileFilteringPolicy): [optional]  # noqa: E501

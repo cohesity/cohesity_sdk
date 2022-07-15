@@ -5,7 +5,7 @@ Specifies settings for indexing files found in an Object (such as a VM) so these
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**enable_indexing** | **bool, none_type** | Specifies if the files found in an Object (such as a VM) should be indexed. If true (the default), files are indexed. | 
+**enable_indexing** | **bool** | Specifies if the files found in an Object (such as a VM) should be indexed. If true (the default), files are indexed. | 
 **include_paths** | **[str], none_type** | Array of Indexed Directories. Specifies a list of directories to index. Regular expression can also be specified to provide the directory paths. Example: /Users/&lt;wildcard&gt;/AppData | [optional] 
 **exclude_paths** | **[str], none_type** | Array of Excluded Directories. Specifies a list of directories to exclude from indexing.Regular expression can also be specified to provide the directory paths. Example: /Users/&lt;wildcard&gt;/AppData | [optional] 
 

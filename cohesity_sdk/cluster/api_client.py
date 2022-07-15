@@ -76,7 +76,7 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'cohesity-python/2.0.0'
+        self.user_agent = 'cohesity-python/0.0.1_6.6.0d_ent'
 
     def __enter__(self):
         return self
@@ -761,7 +761,7 @@ class Endpoint(object):
         """ This method is invoked when endpoints are called
         Example:
 
-        api_instance = AccessTokenApi()
+        api_instance = AccessTokensApi()
         api_instance.create_access_token  # this is an instance of the class Endpoint
         api_instance.create_access_token()  # this invokes api_instance.create_access_token.__call__()
         which then invokes the callable functions stored in that endpoint at

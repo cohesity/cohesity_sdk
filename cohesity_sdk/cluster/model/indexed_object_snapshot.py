@@ -61,7 +61,6 @@ class IndexedObjectSnapshot(ModelNormal):
             'KLOG': "kLog",
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
-            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
         },
     }
 
@@ -92,10 +91,8 @@ class IndexedObjectSnapshot(ModelNormal):
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'attempts': (int, none_type,),  # noqa: E501
             'size_bytes': (int, none_type,),  # noqa: E501
-            'inode_id': (int, none_type,),  # noqa: E501
             'last_modified_time_usecs': (int, none_type,),  # noqa: E501
             'external_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'indexed_object_source_uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,10 +111,8 @@ class IndexedObjectSnapshot(ModelNormal):
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'attempts': 'attempts',  # noqa: E501
         'size_bytes': 'sizeBytes',  # noqa: E501
-        'inode_id': 'inodeId',  # noqa: E501
         'last_modified_time_usecs': 'lastModifiedTimeUsecs',  # noqa: E501
         'external_target_info': 'externalTargetInfo',  # noqa: E501
-        'indexed_object_source_uuid': 'indexedObjectSourceUuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -176,10 +171,8 @@ class IndexedObjectSnapshot(ModelNormal):
             storage_domain_id (int, none_type): Specifies the storage domain id containing this snapshot.. [optional]  # noqa: E501
             attempts (int, none_type): Specifies the number of runs have been executed before the run completed successfully.. [optional]  # noqa: E501
             size_bytes (int, none_type): Specifies the indexed object size in bytes.. [optional]  # noqa: E501
-            inode_id (int, none_type): Specifies the source inode number of the file being recovered.. [optional]  # noqa: E501
             last_modified_time_usecs (int, none_type): Specifies the last time file was modified in unix timestamp.. [optional]  # noqa: E501
             external_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the external target information if this is an archival snapshot.. [optional]  # noqa: E501
-            indexed_object_source_uuid (str, none_type): Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

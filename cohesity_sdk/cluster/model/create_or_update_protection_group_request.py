@@ -56,7 +56,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
     from cohesity_sdk.cluster.model.pure_protection_group_params import PureProtectionGroupParams
     from cohesity_sdk.cluster.model.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
-    from cohesity_sdk.cluster.model.sfdc_protection_group_params import SfdcProtectionGroupParams
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
     from cohesity_sdk.cluster.model.uda_protection_group_params import UdaProtectionGroupParams
@@ -91,7 +90,6 @@ def lazy_import():
     globals()['ProtectionGroupAlertingPolicy'] = ProtectionGroupAlertingPolicy
     globals()['PureProtectionGroupParams'] = PureProtectionGroupParams
     globals()['RemoteAdapterProtectionGroupParams'] = RemoteAdapterProtectionGroupParams
-    globals()['SfdcProtectionGroupParams'] = SfdcProtectionGroupParams
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
     globals()['UdaProtectionGroupParams'] = UdaProtectionGroupParams
@@ -135,12 +133,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'KKVM': "kKVM",
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
-            'KAWSNATIVE': "kAWSNative",
-            'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
             'KPHYSICAL': "kPhysical",
-            'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
             'KELASTIFILE': "kElastifile",
             'KNETAPP': "kNetapp",
@@ -155,12 +148,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",
             'KO365': "kO365",
-            'KO365PUBLICFOLDERS': "kO365PublicFolders",
-            'KO365TEAMS': "kO365Teams",
-            'KO365GROUP': "kO365Group",
-            'KO365EXCHANGE': "kO365Exchange",
-            'KO365ONEDRIVE': "kO365OneDrive",
-            'KO365SHAREPOINT': "kO365Sharepoint",
             'KKUBERNETES': "kKubernetes",
             'KCASSANDRA': "kCassandra",
             'KMONGODB': "kMongoDB",
@@ -169,7 +156,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
-            'KSFDC': "kSfdc",
         },
         ('priority',): {
             'None': None,
@@ -217,7 +203,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'sla': ([SlaRule], none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
-            'pause_in_blackouts': (bool, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
             'vmware_params': (VmwareProtectionGroupParams,),  # noqa: E501
             'acropolis_params': (AcropolisProtectionGroupParams,),  # noqa: E501
@@ -250,7 +235,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
             'exchange_params': (ExchangeProtectionGroupParams,),  # noqa: E501
             'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
-            'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -272,7 +256,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
         'sla': 'sla',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
-        'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
@@ -305,7 +288,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
         'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -369,8 +351,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             sla ([SlaRule], none_type): Specifies the SLA parameters for this Protection Group.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
-            abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'pauseInBlackouts' is set to true.. [optional]  # noqa: E501
-            pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
             vmware_params (VmwareProtectionGroupParams): [optional]  # noqa: E501
             acropolis_params (AcropolisProtectionGroupParams): [optional]  # noqa: E501
@@ -403,7 +384,6 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
             exchange_params (ExchangeProtectionGroupParams): [optional]  # noqa: E501
             uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
-            sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

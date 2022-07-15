@@ -71,8 +71,6 @@ class ObjectProtectionInfo(ModelNormal):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'PAUSED': "Paused",
         },
     }
 
@@ -97,12 +95,9 @@ class ObjectProtectionInfo(ModelNormal):
         return {
             'object_id': (int, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
-            'view_id': (int, none_type,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
-            'tenant_ids': ([str],),  # noqa: E501
-            'is_deleted': (bool, none_type,),  # noqa: E501
             'protection_groups': ([ObjectProtectionGroupSummary], none_type,),  # noqa: E501
             'object_backup_configuration': ([ProtectionSummary], none_type,),  # noqa: E501
             'last_run_status': (str, none_type,),  # noqa: E501
@@ -117,12 +112,9 @@ class ObjectProtectionInfo(ModelNormal):
     attribute_map = {
         'object_id': 'objectId',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
-        'view_id': 'viewId',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
-        'tenant_ids': 'tenantIds',  # noqa: E501
-        'is_deleted': 'isDeleted',  # noqa: E501
         'protection_groups': 'protectionGroups',  # noqa: E501
         'object_backup_configuration': 'objectBackupConfiguration',  # noqa: E501
         'last_run_status': 'lastRunStatus',  # noqa: E501
@@ -177,12 +169,9 @@ class ObjectProtectionInfo(ModelNormal):
 
             object_id (int, none_type): Specifies the object id.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the source id.. [optional]  # noqa: E501
-            view_id (int, none_type): Specifies the view id for the object.. [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id where this object belongs to.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the cluster id where this object belongs to.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the cluster incarnation id where this object belongs to.. [optional]  # noqa: E501
-            tenant_ids ([str]): List of Tenants the object belongs to.. [optional]  # noqa: E501
-            is_deleted (bool, none_type): Specifies whether the object is deleted. Deleted objects can't be protected but can be recovered or unprotected.. [optional]  # noqa: E501
             protection_groups ([ObjectProtectionGroupSummary], none_type): Specifies a list of protection groups protecting this object.. [optional]  # noqa: E501
             object_backup_configuration ([ProtectionSummary], none_type): Specifies a list of object protections.. [optional]  # noqa: E501
             last_run_status (str, none_type): Specifies the status of the object's last protection run.. [optional]  # noqa: E501

@@ -100,7 +100,6 @@ class AuditActions(ModelNormal):
             'VALIDATE': "Validate",
             'CLUSTEREXPAND': "ClusterExpand",
             'FETCH': "Fetch",
-            'SEARCH': "Search",
         },
     }
 

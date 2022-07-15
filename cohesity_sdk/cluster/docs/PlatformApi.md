@@ -3,160 +3,68 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_hosts**](PlatformApi.md#add_hosts) | **POST** /clusters/host-mappings | Create Cluster Host Mappings
 [**add_remote_disk**](PlatformApi.md#add_remote_disk) | **POST** /disks/remote | Add remote disk
-[**cleanup_tenant_migration**](PlatformApi.md#cleanup_tenant_migration) | **POST** /clusters/cleanup-tenant-migration | Cleanup Tenant Migration.
+[**add_syslog_server**](PlatformApi.md#add_syslog_server) | **POST** /syslogs | Add Syslog Server
 [**clear_smtp_configuration**](PlatformApi.md#clear_smtp_configuration) | **DELETE** /clusters/smtp | Clear SMTP configuration.
 [**create_cluster**](PlatformApi.md#create_cluster) | **POST** /clusters | Create a cluster.
-[**create_cluster_vlan**](PlatformApi.md#create_cluster_vlan) | **POST** /network/vlans | Create vlan
-[**create_interface_group**](PlatformApi.md#create_interface_group) | **POST** /network/interface-groups | Create interface group
-[**create_node_bond_interface**](PlatformApi.md#create_node_bond_interface) | **POST** /network/nodes/bonds | Create bond interface
 [**create_racks**](PlatformApi.md#create_racks) | **POST** /racks | Create racks
 [**delete_amqp_target_config**](PlatformApi.md#delete_amqp_target_config) | **DELETE** /clusters/amqp-target-config | Delete AMQP Target Config
-[**delete_cluster_package**](PlatformApi.md#delete_cluster_package) | **DELETE** /clusters/packages/{versionName} | Delete package
-[**delete_cluster_vlan**](PlatformApi.md#delete_cluster_vlan) | **DELETE** /network/vlans/{interfaceName} | Delete vlan
-[**delete_hosts**](PlatformApi.md#delete_hosts) | **POST** /clusters/host-mappings/delete | Deletes multiple Host Mappings within the cluster
-[**delete_interface_group**](PlatformApi.md#delete_interface_group) | **DELETE** /network/interface-groups/{id} | Delete interface group
-[**delete_node_bond_interface**](PlatformApi.md#delete_node_bond_interface) | **DELETE** /network/nodes/bonds/{name} | Delete bond interface
 [**delete_rack_by_id**](PlatformApi.md#delete_rack_by_id) | **DELETE** /racks/{id} | Delete a rack by id.
 [**delete_racks**](PlatformApi.md#delete_racks) | **DELETE** /racks | Delete all the racks.
+[**delete_remote_storage_registration**](PlatformApi.md#delete_remote_storage_registration) | **DELETE** /remote-storage/{id} | Delete Remote Storage Registration
 [**destroy_cluster**](PlatformApi.md#destroy_cluster) | **DELETE** /clusters | Destroy a cluster.
 [**discover_disks**](PlatformApi.md#discover_disks) | **GET** /disks/discover | Discover new disks
 [**disk_identify**](PlatformApi.md#disk_identify) | **POST** /disks/identify | Identify a disk
 [**disks_assimilate**](PlatformApi.md#disks_assimilate) | **POST** /disks/assimilate | Assimilate disks.
 [**expand_cluster_nodes**](PlatformApi.md#expand_cluster_nodes) | **POST** /clusters/nodes | Expand the cluster.
+[**get_alert_summary**](PlatformApi.md#get_alert_summary) | **GET** /alertsSummary | Get alerts summary.
 [**get_amqp_target_config**](PlatformApi.md#get_amqp_target_config) | **GET** /clusters/amqp-target-config | Get AMQP Target Config
 [**get_chassis**](PlatformApi.md#get_chassis) | **GET** /chassis | Get list of chassis
 [**get_chassis_by_id**](PlatformApi.md#get_chassis_by_id) | **GET** /chassis/{id} | Get a chassis by chassis id.
 [**get_cluster**](PlatformApi.md#get_cluster) | **GET** /clusters | Retrieve Cluster Configuration
 [**get_cluster_destroy_hmac**](PlatformApi.md#get_cluster_destroy_hmac) | **GET** /clusters/api-based-fetch-info | Retrieve specific cluster information.
-[**get_cluster_local_domain_sid**](PlatformApi.md#get_cluster_local_domain_sid) | **GET** /clusters/local-domain-sid | Get Cluster Local Domain SID
 [**get_cluster_operation_status**](PlatformApi.md#get_cluster_operation_status) | **GET** /clusters/operation-status/{operationId} | Get cluster operations status.
-[**get_cluster_packages**](PlatformApi.md#get_cluster_packages) | **GET** /clusters/packages | Get packages
 [**get_cluster_state**](PlatformApi.md#get_cluster_state) | **GET** /clusters/state | Get cluster state
-[**get_cluster_ui_config**](PlatformApi.md#get_cluster_ui_config) | **GET** /clusters/ui-config | Get cluster UI Config.
-[**get_cluster_vlans**](PlatformApi.md#get_cluster_vlans) | **GET** /network/vlans | Get vlans
-[**get_interface_groups**](PlatformApi.md#get_interface_groups) | **GET** /network/interface-groups | Get interface groups
-[**get_interfaces**](PlatformApi.md#get_interfaces) | **GET** /network/interfaces | Get interfaces
-[**get_ipmi_lan_config**](PlatformApi.md#get_ipmi_lan_config) | **GET** /network/ipmi/lan | Get IPMI LAN configuration
-[**get_ipmi_users**](PlatformApi.md#get_ipmi_users) | **GET** /network/ipmi/users | Get IPMI users
-[**get_is_d_maa_s_cluster**](PlatformApi.md#get_is_d_maa_s_cluster) | **GET** /clusters/is-dmaas | Get whether the cluster is a DMaaS cluster.
 [**get_network_interfaces**](PlatformApi.md#get_network_interfaces) | **GET** /network-interfaces | Get list of interfaces
-[**get_nodes**](PlatformApi.md#get_nodes) | **GET** /clusters/nodes | List Nodes of the cluster.
 [**get_rack_by_id**](PlatformApi.md#get_rack_by_id) | **GET** /racks/{id} | Get a rack by rack id.
 [**get_racks**](PlatformApi.md#get_racks) | **GET** /racks | Get list of racks
+[**get_registered_remote_storage_list**](PlatformApi.md#get_registered_remote_storage_list) | **GET** /remote-storage | Get Registered Remote Storage Servers List
 [**get_remote_disks**](PlatformApi.md#get_remote_disks) | **GET** /disks/remote | Get remote disks
+[**get_remote_storage_details**](PlatformApi.md#get_remote_storage_details) | **GET** /remote-storage/{id} | Get remote storage details
 [**get_smtp_configuration**](PlatformApi.md#get_smtp_configuration) | **GET** /clusters/smtp | Get SMTP configuration.
 [**get_support_channel_config**](PlatformApi.md#get_support_channel_config) | **GET** /support-channel-config | Get support channel configuration.
+[**get_supported_syslog_program_names**](PlatformApi.md#get_supported_syslog_program_names) | **GET** /syslogProgramNames | Get supported program names.
+[**get_syslog_audit_tags**](PlatformApi.md#get_syslog_audit_tags) | **GET** /syslogAuditTags | Get cluster audit tags.
+[**get_syslog_server_by_id**](PlatformApi.md#get_syslog_server_by_id) | **GET** /syslogs/{id} | Get a syslog server by id.
+[**get_syslog_server_status_by_id**](PlatformApi.md#get_syslog_server_status_by_id) | **GET** /syslogs/{id}/status | Get a syslog server reachability status.
+[**get_syslog_servers**](PlatformApi.md#get_syslog_servers) | **GET** /syslogs | Get list of syslog servers.
 [**identify_node**](PlatformApi.md#identify_node) | **POST** /nodes/{id}/identify | Identify node
 [**list_disks**](PlatformApi.md#list_disks) | **GET** /disks/local | Get list of disks
-[**list_feature_flag**](PlatformApi.md#list_feature_flag) | **GET** /clusters/feature-flag | Get feature flag overrides list.
-[**list_free_nodes**](PlatformApi.md#list_free_nodes) | **GET** /clusters/nodes/free | List the free Cohesity Nodes present on a network.
-[**list_hosts**](PlatformApi.md#list_hosts) | **GET** /clusters/host-mappings | List Host Mappings
-[**mark_baseos_upgrade**](PlatformApi.md#mark_baseos_upgrade) | **PUT** /clusters/baseos-upgrade | Sets/clears the BaseOS upgrade cluster operation.
 [**mark_disk_removal**](PlatformApi.md#mark_disk_removal) | **POST** /disks/{id}/remove | Mark Disk for removal
 [**mark_node_removal**](PlatformApi.md#mark_node_removal) | **POST** /nodes/{id}/remove | Mark Node for removal
+[**patch_syslog_server_by_id**](PlatformApi.md#patch_syslog_server_by_id) | **PATCH** /syslogs/{id} | Patch a syslog server by id.
+[**register_new_remote_storage**](PlatformApi.md#register_new_remote_storage) | **POST** /remote-storage | Register Remote Storage
 [**remove_cluster_node**](PlatformApi.md#remove_cluster_node) | **DELETE** /clusters/nodes/{id} | Remove node
 [**remove_remote_disk**](PlatformApi.md#remove_remote_disk) | **DELETE** /disks/remote/{id} | Remove remote disk
-[**set_node_power**](PlatformApi.md#set_node_power) | **POST** /node-power | Reboot or shutdown nodes in cluster.
+[**remove_syslog_server**](PlatformApi.md#remove_syslog_server) | **DELETE** /syslogs/{id} | Remove syslog server by id
+[**remove_syslog_servers**](PlatformApi.md#remove_syslog_servers) | **DELETE** /syslogs | Remove syslog servers
+[**set_node_power**](PlatformApi.md#set_node_power) | **POST** /nodePower | Reboot or shutdown nodes in cluster.
 [**update_amqp_target_config**](PlatformApi.md#update_amqp_target_config) | **PUT** /clusters/amqp-target-config | Update AMQP Target Config
 [**update_chassis_by_id**](PlatformApi.md#update_chassis_by_id) | **PATCH** /chassis/{id} | Update a chassis by chassis id.
 [**update_cluster**](PlatformApi.md#update_cluster) | **PUT** /clusters | Update a cluster.
 [**update_cluster_bifrost_config**](PlatformApi.md#update_cluster_bifrost_config) | **PUT** /clusters/bifrost-config | Update cluster Bifrost config.
-[**update_cluster_ui_config**](PlatformApi.md#update_cluster_ui_config) | **PUT** /clusters/ui-config | Update cluster UI Config.
-[**update_cluster_vlan**](PlatformApi.md#update_cluster_vlan) | **PUT** /network/vlans/{interfaceName} | Update vlan
-[**update_feature_flag**](PlatformApi.md#update_feature_flag) | **PUT** /clusters/feature-flag | Update feature flag override status.
-[**update_hosts**](PlatformApi.md#update_hosts) | **PUT** /clusters/host-mappings | Update Host Mappings
-[**update_interface**](PlatformApi.md#update_interface) | **PUT** /network/interfaces/{id} | Update interface
-[**update_interface_group**](PlatformApi.md#update_interface_group) | **PUT** /network/interface-groups/{id} | Update interface group
-[**update_ipmi_lan_config**](PlatformApi.md#update_ipmi_lan_config) | **PATCH** /network/ipmi/lan | Update IPMI LAN configuration
-[**update_ipmi_users**](PlatformApi.md#update_ipmi_users) | **PATCH** /network/ipmi/users | Update IPMI users
-[**update_is_d_maa_s_cluster**](PlatformApi.md#update_is_d_maa_s_cluster) | **PUT** /clusters/is-dmaas | Update whether the cluster is a DMaaS cluster.
-[**update_node_bond_interface**](PlatformApi.md#update_node_bond_interface) | **PUT** /network/nodes/bonds/{name} | Update bond interface
 [**update_rack_by_id**](PlatformApi.md#update_rack_by_id) | **PATCH** /racks/{id} | 
 [**update_racks**](PlatformApi.md#update_racks) | **PATCH** /racks | Update racks
+[**update_remote_storage_registration**](PlatformApi.md#update_remote_storage_registration) | **PATCH** /remote-storage/{id} | Update Remote Storage Config
 [**update_smtp_configuration**](PlatformApi.md#update_smtp_configuration) | **PUT** /clusters/smtp | Update SMTP configuration.
 [**update_support_channel_config**](PlatformApi.md#update_support_channel_config) | **PUT** /support-channel-config | Update support channel configuration.
+[**update_syslog_audit_tags**](PlatformApi.md#update_syslog_audit_tags) | **POST** /syslogAuditTags | Update cluster audit tags.
+[**update_syslog_server_by_id**](PlatformApi.md#update_syslog_server_by_id) | **PUT** /syslogs/{id} | Update a syslog server by id.
 [**upgrade_cluster_software**](PlatformApi.md#upgrade_cluster_software) | **PUT** /clusters/upgrade | Upgrade cluster
 [**upload_file_package**](PlatformApi.md#upload_file_package) | **POST** /clusters/packages/file | Upload package by file
 [**upload_package_by_url**](PlatformApi.md#upload_package_by_url) | **POST** /clusters/packages/url | Upload package by URL
 [**validate_smtp_configuration**](PlatformApi.md#validate_smtp_configuration) | **POST** /clusters/smtp/validate | Validate SMTP configuration.
 
-
-# **add_hosts**
-> HostMappings add_hosts(body)
-
-Create Cluster Host Mappings
-
-Sends a request to add one or more new entries to the Cluster's /etc/hosts
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.host_mappings_parameters import HostMappingsParameters
-from cohesity_sdk.cluster.model.host_mappings import HostMappings
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = HostMappingsParameters([
-        HostEntry(
-            description="description_example",
-            domain_names=[
-                "domain_names_example",
-            ],
-            ip="ip_example",
-        ),
-    ]) # HostMappingsParameters | Specifies the request to add entries to /etc/hosts
-
-# example passing only required values which don't have defaults set
-try:
-	# Create Cluster Host Mappings
-	api_response = client.platform.add_hosts(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->add_hosts: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**HostMappingsParameters**](HostMappingsParameters.md)| Specifies the request to add entries to /etc/hosts |
-
-### Return type
-
-[**HostMappings**](HostMappings.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_remote_disk**
 > AddRemoteDiskResponseBody add_remote_disk(body)
@@ -236,12 +144,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **cleanup_tenant_migration**
-> cleanup_tenant_migration()
+# **add_syslog_server**
+> SyslogServer add_syslog_server(body)
 
-Cleanup Tenant Migration.
+Add Syslog Server
 
-Cleanup in cluster config for tenant migration on rigel.
+Add a new syslog server
 
 ### Example
 
@@ -249,6 +157,7 @@ Cleanup in cluster config for tenant migration on rigel.
 ```python
 from cohesity_sdk import CohesityClientV2
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_server import SyslogServer
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -261,22 +170,48 @@ client = CohesityClientV2(
 )
 
 
+body = SyslogServer(
+        id=1,
+        ip="ip_example",
+        port=1,
+        protocol="protocol_example",
+        name="name_example",
+        enabled=True,
+        facility_list=[
+            "facility_list_example",
+        ],
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        msg_pattern_list=[
+            "msg_pattern_list_example",
+        ],
+        raw_msg_pattern_list=[
+            "raw_msg_pattern_list_example",
+        ],
+        is_tls_enabled=True,
+        ca_certificate="ca_certificate_example",
+    ) # SyslogServer | Specifies parameters to add syslog server.
 
-# example, this endpoint has no required or optional parameters
+# example passing only required values which don't have defaults set
 try:
-	# Cleanup Tenant Migration.
-	client.platform.cleanup_tenant_migration()
+	# Add Syslog Server
+	api_response = client.platform.add_syslog_server(body)
+	pprint(api_response)
 except ApiException as e:
-	print("Exception when calling PlatformApi->cleanup_tenant_migration: %s\n" % e)
+	print("Exception when calling PlatformApi->add_syslog_server: %s\n" % e)
 ```
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SyslogServer**](SyslogServer.md)| Specifies parameters to add syslog server. |
 
 ### Return type
 
-void (empty response body)
+[**SyslogServer**](SyslogServer.md)
 
 ### Authorization
 
@@ -284,14 +219,14 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | No Content |  -  |
+**201** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -487,223 +422,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_cluster_vlan**
-> ClusterVlanParams create_cluster_vlan(body)
-
-Create vlan
-
-Create a vlan on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlan_params import ClusterVlanParams
-from cohesity_sdk.cluster.model.create_cluster_vlan_params import CreateClusterVlanParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = CreateClusterVlanParams() # CreateClusterVlanParams | Parameters to create a vlan.
-
-# example passing only required values which don't have defaults set
-try:
-	# Create vlan
-	api_response = client.platform.create_cluster_vlan(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_cluster_vlan: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**CreateClusterVlanParams**](CreateClusterVlanParams.md)| Parameters to create a vlan. |
-
-### Return type
-
-[**ClusterVlanParams**](ClusterVlanParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_interface_group**
-> InterfaceGroup create_interface_group(body)
-
-Create interface group
-
-Create an interface group on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.interface_group import InterfaceGroup
-from cohesity_sdk.cluster.model.interface_group_params import InterfaceGroupParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = InterfaceGroupParams(
-        name="name_example",
-        type="Bond",
-        node_interface_params=[
-            NodeInterfaceParams(
-                node_id=1,
-                interface_name="interface_name_example",
-            ),
-        ],
-        network_params=InterfaceGroupNetworkParams(
-            bond_interface_params=BondInterfaceNetworkParams(
-                lacp_rate="Slow",
-                bonding_mode="ActiveBackup",
-                xmit_hash_policy="layer2",
-            ),
-            mtu=1,
-        ),
-    ) # InterfaceGroupParams | Parameters to create an interface group.
-
-# example passing only required values which don't have defaults set
-try:
-	# Create interface group
-	api_response = client.platform.create_interface_group(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_interface_group: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**InterfaceGroupParams**](InterfaceGroupParams.md)| Parameters to create an interface group. |
-
-### Return type
-
-[**InterfaceGroup**](InterfaceGroup.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_node_bond_interface**
-> NodeBondInterfaceParams create_node_bond_interface(body)
-
-Create bond interface
-
-Create a bond interface on a free node or cluster node.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.node_bond_interface_params import NodeBondInterfaceParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = NodeBondInterfaceParams() # NodeBondInterfaceParams | Parameters to create bond interface.
-
-# example passing only required values which don't have defaults set
-try:
-	# Create bond interface
-	api_response = client.platform.create_node_bond_interface(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->create_node_bond_interface: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**NodeBondInterfaceParams**](NodeBondInterfaceParams.md)| Parameters to create bond interface. |
-
-### Return type
-
-[**NodeBondInterfaceParams**](NodeBondInterfaceParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_racks**
 > Racks create_racks(body)
 
@@ -841,343 +559,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_cluster_package**
-> ClusterOperationResponseParams delete_cluster_package(version_name)
-
-Delete package
-
-Delete a software package on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_operation_response_params import ClusterOperationResponseParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-version_name = "versionName_example" # str | Version name of the package. Example: 6.3.1h_release-20210714_0fad884e
-
-# example passing only required values which don't have defaults set
-try:
-	# Delete package
-	api_response = client.platform.delete_cluster_package(version_name)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_cluster_package: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **version_name** | **str**| Version name of the package. Example: 6.3.1h_release-20210714_0fad884e |
-
-### Return type
-
-[**ClusterOperationResponseParams**](ClusterOperationResponseParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_cluster_vlan**
-> delete_cluster_vlan(interface_name)
-
-Delete vlan
-
-Delete a vlan on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-interface_name = "interfaceName_example" # str | Vlan interface name, it should be in interface_group_name.vlan_id format.
-
-# example passing only required values which don't have defaults set
-try:
-	# Delete vlan
-	client.platform.delete_cluster_vlan(interface_name)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_cluster_vlan: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **interface_name** | **str**| Vlan interface name, it should be in interface_group_name.vlan_id format. |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_hosts**
-> delete_hosts(body)
-
-Deletes multiple Host Mappings within the cluster
-
-Delete one or more Host Mappings within the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.delete_hosts_parameters import DeleteHostsParameters
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = DeleteHostsParameters(
-        ips=[
-            "ips_example",
-        ],
-    ) # DeleteHostsParameters | Specifies the params to delete host mappings
-
-# example passing only required values which don't have defaults set
-try:
-	# Deletes multiple Host Mappings within the cluster
-	client.platform.delete_hosts(body)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_hosts: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**DeleteHostsParameters**](DeleteHostsParameters.md)| Specifies the params to delete host mappings |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_interface_group**
-> delete_interface_group(id)
-
-Delete interface group
-
-Delete an interface group on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-id = 1 # int | Id of the interface group.
-
-# example passing only required values which don't have defaults set
-try:
-	# Delete interface group
-	client.platform.delete_interface_group(id)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_interface_group: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Id of the interface group. |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_node_bond_interface**
-> delete_node_bond_interface(name)
-
-Delete bond interface
-
-Delete the bond interface on a free or cluster node.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-name = "name_example" # str | Name of the bond interface.
-node_id = 1 # int | Id of the node, this is required when node is part of a cluster. (optional)
-
-# example passing only required values which don't have defaults set
-try:
-	# Delete bond interface
-	client.platform.delete_node_bond_interface(name)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_node_bond_interface: %s\n" % e)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Delete bond interface
-	client.platform.delete_node_bond_interface(name, node_id=node_id)
-except ApiException as e:
-	print("Exception when calling PlatformApi->delete_node_bond_interface: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the bond interface. |
- **node_id** | **int**| Id of the node, this is required when node is part of a cluster. | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_rack_by_id**
 > delete_rack_by_id(id)
 
@@ -1279,6 +660,70 @@ except ApiException as e:
 
 ### Parameters
 This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_remote_storage_registration**
+> delete_remote_storage_registration(id)
+
+Delete Remote Storage Registration
+
+Delete remote storage registration.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the registration id of the registered remote storage.
+
+# example passing only required values which don't have defaults set
+try:
+	# Delete Remote Storage Registration
+	client.platform.delete_remote_storage_registration(id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->delete_remote_storage_registration: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the registration id of the registered remote storage. |
 
 ### Return type
 
@@ -1671,6 +1116,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_alert_summary**
+> AlertsSummaryResponse get_alert_summary()
+
+Get alerts summary.
+
+Get alerts summary grouped by category.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.alerts_summary_response import AlertsSummaryResponse
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+start_time_usecs = 1 # int | Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. (optional)
+end_time_usecs = 1 # int | Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. (optional)
+include_tenants = True # bool, none_type | IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user's organization should be used to compute summary. (optional)
+tenant_ids = [
+        "tenantIds_example",
+    ] # [str], none_type | TenantIds contains ids of the tenants for which alerts are to be used to compute summary. (optional)
+states_list = [
+        "kResolved",
+    ] # [str], none_type | Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get alerts summary.
+	api_response = client.platform.get_alert_summary(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, include_tenants=include_tenants, tenant_ids=tenant_ids, states_list=states_list)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_alert_summary: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_time_usecs** | **int**| Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. | [optional]
+ **end_time_usecs** | **int**| Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. | [optional]
+ **include_tenants** | **bool, none_type**| IncludeTenants specifies if alerts of all the tenants under the hierarchy of the logged in user&#39;s organization should be used to compute summary. | [optional]
+ **tenant_ids** | **[str], none_type**| TenantIds contains ids of the tenants for which alerts are to be used to compute summary. | [optional]
+ **states_list** | **[str], none_type**| Specifies list of alert states to filter alerts by. If not specified, only open alerts will be used to get summary. | [optional]
+
+### Return type
+
+[**AlertsSummaryResponse**](AlertsSummaryResponse.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_amqp_target_config**
 > ClusterAMQPTargetConfig get_amqp_target_config()
 
@@ -1990,68 +1514,6 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_cluster_local_domain_sid**
-> ClusterLocalDomainSID get_cluster_local_domain_sid()
-
-Get Cluster Local Domain SID
-
-Fetch SID of cluster local domain.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.cluster_local_domain_sid import ClusterLocalDomainSID
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get Cluster Local Domain SID
-	api_response = client.platform.get_cluster_local_domain_sid()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_local_domain_sid: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ClusterLocalDomainSID**](ClusterLocalDomainSID.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_cluster_operation_status**
 > ClusterOperationStatus get_cluster_operation_status(operation_id)
 
@@ -2099,68 +1561,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ClusterOperationStatus**](ClusterOperationStatus.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_cluster_packages**
-> ClusterPackages get_cluster_packages()
-
-Get packages
-
-Get software packages on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.cluster_packages import ClusterPackages
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get packages
-	api_response = client.platform.get_cluster_packages()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_packages: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ClusterPackages**](ClusterPackages.md)
 
 ### Authorization
 
@@ -2247,499 +1647,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_cluster_ui_config**
-> ClusterUiConfig get_cluster_ui_config()
-
-Get cluster UI Config.
-
-Get customized UI config for the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_ui_config import ClusterUiConfig
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get cluster UI Config.
-	api_response = client.platform.get_cluster_ui_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_ui_config: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ClusterUiConfig**](ClusterUiConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_cluster_vlans**
-> ClusterVlans get_cluster_vlans()
-
-Get vlans
-
-Get vlans on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlans import ClusterVlans
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-interface_names = [
-        "interfaceNames_example",
-    ] # [str] | Vlan interface names, it should be in interface_group_name.vlan_id format. (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | Ids of the tenants, used to get vlans assigned to tenants. (optional)
-include_tenants = True # bool | If true, the response includes vlans which belongs to all the tenants the current user has permissions to see. (optional) if omitted the server will use the default value of True
-skip_primary_and_bond_iface = False # bool | If true, vlan primary and bond interfaces are not returned in the response. (optional) if omitted the server will use the default value of False
-compress_ips_to_ranges = False # bool | Compress vlan IPs to list of contigous IP ranges with startIp and endIp. (optional) if omitted the server will use the default value of False
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get vlans
-	api_response = client.platform.get_cluster_vlans(interface_names=interface_names, tenant_ids=tenant_ids, include_tenants=include_tenants, skip_primary_and_bond_iface=skip_primary_and_bond_iface, compress_ips_to_ranges=compress_ips_to_ranges)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_cluster_vlans: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **interface_names** | **[str]**| Vlan interface names, it should be in interface_group_name.vlan_id format. | [optional]
- **tenant_ids** | **[str]**| Ids of the tenants, used to get vlans assigned to tenants. | [optional]
- **include_tenants** | **bool**| If true, the response includes vlans which belongs to all the tenants the current user has permissions to see. | [optional] if omitted the server will use the default value of True
- **skip_primary_and_bond_iface** | **bool**| If true, vlan primary and bond interfaces are not returned in the response. | [optional] if omitted the server will use the default value of False
- **compress_ips_to_ranges** | **bool**| Compress vlan IPs to list of contigous IP ranges with startIp and endIp. | [optional] if omitted the server will use the default value of False
-
-### Return type
-
-[**ClusterVlans**](ClusterVlans.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_interface_groups**
-> InterfaceGroups get_interface_groups()
-
-Get interface groups
-
-Get a list of interface groups configured on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.interface_groups import InterfaceGroups
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-ids = [
-        1,
-    ] # [int] | Ids of the interface groups. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get interface groups
-	api_response = client.platform.get_interface_groups(ids=ids)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_interface_groups: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Ids of the interface groups. | [optional]
-
-### Return type
-
-[**InterfaceGroups**](InterfaceGroups.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_interfaces**
-> NetworkInterfaceParams get_interfaces()
-
-Get interfaces
-
-Get interfaces on a cluster or free node.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.network_interface_params import NetworkInterfaceParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-node_id = 1 # int | Node id, used to get interfaces on a particular node. (optional)
-chassis_serial = "chassisSerial_example" # str | Chassis serial number, used to get interfaces on a chassis. (optional)
-slot = 1 # int | Slot number, used to get interfaces on a slot. (optional)
-cache = True # bool | Get interfaces information from cache. (optional) if omitted the server will use the default value of True
-bond_interfaces = False # bool | Get bond interfaces only. (optional) if omitted the server will use the default value of False
-interface_group = False # bool | Get interfaces assigned to a interface group only. (optional) if omitted the server will use the default value of False
-uplink_switch = True # bool | Include uplink switch information. (optional) if omitted the server will use the default value of True
-bond_member = True # bool | Include bond member information for bond interfaces. (optional) if omitted the server will use the default value of True
-stats = True # bool | Include interface stats. (optional) if omitted the server will use the default value of True
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get interfaces
-	api_response = client.platform.get_interfaces(node_id=node_id, chassis_serial=chassis_serial, slot=slot, cache=cache, bond_interfaces=bond_interfaces, interface_group=interface_group, uplink_switch=uplink_switch, bond_member=bond_member, stats=stats)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_interfaces: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **node_id** | **int**| Node id, used to get interfaces on a particular node. | [optional]
- **chassis_serial** | **str**| Chassis serial number, used to get interfaces on a chassis. | [optional]
- **slot** | **int**| Slot number, used to get interfaces on a slot. | [optional]
- **cache** | **bool**| Get interfaces information from cache. | [optional] if omitted the server will use the default value of True
- **bond_interfaces** | **bool**| Get bond interfaces only. | [optional] if omitted the server will use the default value of False
- **interface_group** | **bool**| Get interfaces assigned to a interface group only. | [optional] if omitted the server will use the default value of False
- **uplink_switch** | **bool**| Include uplink switch information. | [optional] if omitted the server will use the default value of True
- **bond_member** | **bool**| Include bond member information for bond interfaces. | [optional] if omitted the server will use the default value of True
- **stats** | **bool**| Include interface stats. | [optional] if omitted the server will use the default value of True
-
-### Return type
-
-[**NetworkInterfaceParams**](NetworkInterfaceParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_ipmi_lan_config**
-> IpmiLanParams get_ipmi_lan_config()
-
-Get IPMI LAN configuration
-
-Get cluster and node level IPMI LAN configuration.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_lan_params import IpmiLanParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-ids = [
-        1,
-    ] # [int] | Node ids to filter node IPMI LAN configuration. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get IPMI LAN configuration
-	api_response = client.platform.get_ipmi_lan_config(ids=ids)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_lan_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Node ids to filter node IPMI LAN configuration. | [optional]
-
-### Return type
-
-[**IpmiLanParams**](IpmiLanParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_ipmi_users**
-> IpmiUsers get_ipmi_users()
-
-Get IPMI users
-
-Get cluster and node level IPMI users.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_users import IpmiUsers
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-ids = [
-        1,
-    ] # [int] | Node ids to filter node IPMI users. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get IPMI users
-	api_response = client.platform.get_ipmi_users(ids=ids)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_ipmi_users: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| Node ids to filter node IPMI users. | [optional]
-
-### Return type
-
-[**IpmiUsers**](IpmiUsers.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_is_d_maa_s_cluster**
-> DMaaSInfo get_is_d_maa_s_cluster()
-
-Get whether the cluster is a DMaaS cluster.
-
-Get whether the cluster is a DMaaS cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.d_maa_s_info import DMaaSInfo
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get whether the cluster is a DMaaS cluster.
-	api_response = client.platform.get_is_d_maa_s_cluster()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_is_d_maa_s_cluster: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DMaaSInfo**](DMaaSInfo.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_network_interfaces**
 > ClusterInterfaces get_network_interfaces()
 
@@ -2783,87 +1690,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**ClusterInterfaces**](ClusterInterfaces.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_nodes**
-> [Node] get_nodes()
-
-List Nodes of the cluster.
-
-Gets the list of Nodes in a cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.node import Node
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-ids = [
-        1,
-    ] # [int] | \"List of IDs to be returned. If empty, all nodes are returned.\" (optional)
-include_marked_for_removal = True # bool | IncludeMarkedForRemoval is used to specify whether to include nodes marked for removal. (optional)
-include_only_unassigned_nodes = True # bool | IncludeOnlyUnassignedNodes will return nodes that are not yet assigned to any cluster partition. If this parameter is specified as true and ClusterPartitionIdList is also non-empty, then no nodes will be returned. (optional)
-cluster_partition_ids = [
-        1,
-    ] # [int] | ClusterPartitionIdList specifies the list of Ids used to filter the nodes by specified cluster partition. (optional)
-fetch_stats = True # bool | FetchStats is used to specify whether to call Stats service to fetch the stats for the nodes. Stats not displayed by default (optional)
-show_system_disks = True # bool | ShowSystemdisks is used to specify whether to display system disks for the nodes. Not populated by default. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List Nodes of the cluster.
-	api_response = client.platform.get_nodes(ids=ids, include_marked_for_removal=include_marked_for_removal, include_only_unassigned_nodes=include_only_unassigned_nodes, cluster_partition_ids=cluster_partition_ids, fetch_stats=fetch_stats, show_system_disks=show_system_disks)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->get_nodes: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ids** | **[int]**| \&quot;List of IDs to be returned. If empty, all nodes are returned.\&quot; | [optional]
- **include_marked_for_removal** | **bool**| IncludeMarkedForRemoval is used to specify whether to include nodes marked for removal. | [optional]
- **include_only_unassigned_nodes** | **bool**| IncludeOnlyUnassignedNodes will return nodes that are not yet assigned to any cluster partition. If this parameter is specified as true and ClusterPartitionIdList is also non-empty, then no nodes will be returned. | [optional]
- **cluster_partition_ids** | **[int]**| ClusterPartitionIdList specifies the list of Ids used to filter the nodes by specified cluster partition. | [optional]
- **fetch_stats** | **bool**| FetchStats is used to specify whether to call Stats service to fetch the stats for the nodes. Stats not displayed by default | [optional]
- **show_system_disks** | **bool**| ShowSystemdisks is used to specify whether to display system disks for the nodes. Not populated by default. | [optional]
-
-### Return type
-
-[**[Node]**](Node.md)
 
 ### Authorization
 
@@ -3011,6 +1837,68 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_registered_remote_storage_list**
+> RegisteredRemoteStorageList get_registered_remote_storage_list()
+
+Get Registered Remote Storage Servers List
+
+Get summary about list of registered remote storage servers.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.registered_remote_storage_list import RegisteredRemoteStorageList
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get Registered Remote Storage Servers List
+	api_response = client.platform.get_registered_remote_storage_list()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_registered_remote_storage_list: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**RegisteredRemoteStorageList**](RegisteredRemoteStorageList.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_remote_disks**
 > RemoteDisks get_remote_disks()
 
@@ -3073,6 +1961,87 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RemoteDisks**](RemoteDisks.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_remote_storage_details**
+> RemoteStorageInfo get_remote_storage_details(id)
+
+Get remote storage details
+
+Get details of remote storage given by id.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.remote_storage_info import RemoteStorageInfo
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of the registered remote storage.
+include_available_space = False # bool | Specifies whether to include available capacity on remote storage. (optional) if omitted the server will use the default value of False
+include_available_data_vips = False # bool | Specifies whether to include available data vips on remote storage. (optional) if omitted the server will use the default value of False
+include_array_info = False # bool | Includes flashblade specific info like name, software os and version of pure flashblade. (optional) if omitted the server will use the default value of False
+
+# example passing only required values which don't have defaults set
+try:
+	# Get remote storage details
+	api_response = client.platform.get_remote_storage_details(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_remote_storage_details: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get remote storage details
+	api_response = client.platform.get_remote_storage_details(id, include_available_space=include_available_space, include_available_data_vips=include_available_data_vips, include_array_info=include_array_info)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_remote_storage_details: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of the registered remote storage. |
+ **include_available_space** | **bool**| Specifies whether to include available capacity on remote storage. | [optional] if omitted the server will use the default value of False
+ **include_available_data_vips** | **bool**| Specifies whether to include available data vips on remote storage. | [optional] if omitted the server will use the default value of False
+ **include_array_info** | **bool**| Includes flashblade specific info like name, software os and version of pure flashblade. | [optional] if omitted the server will use the default value of False
+
+### Return type
+
+[**RemoteStorageInfo**](RemoteStorageInfo.md)
 
 ### Authorization
 
@@ -3197,6 +2166,323 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**SupportChannelConfig**](SupportChannelConfig.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_supported_syslog_program_names**
+> [str] get_supported_syslog_program_names()
+
+Get supported program names.
+
+Get supported program names to configure for a syslog server.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get supported program names.
+	api_response = client.platform.get_supported_syslog_program_names()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_supported_syslog_program_names: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**[str]**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_syslog_audit_tags**
+> SyslogAuditTag get_syslog_audit_tags()
+
+Get cluster audit tags.
+
+Get cluster audit tags.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_audit_tag import SyslogAuditTag
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get cluster audit tags.
+	api_response = client.platform.get_syslog_audit_tags()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_syslog_audit_tags: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SyslogAuditTag**](SyslogAuditTag.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_syslog_server_by_id**
+> SyslogServer get_syslog_server_by_id(id)
+
+Get a syslog server by id.
+
+Get a syslog server by id.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_server import SyslogServer
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of syslog server.
+
+# example passing only required values which don't have defaults set
+try:
+	# Get a syslog server by id.
+	api_response = client.platform.get_syslog_server_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_syslog_server_by_id: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of syslog server. |
+
+### Return type
+
+[**SyslogServer**](SyslogServer.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_syslog_server_status_by_id**
+> SyslogServerStatus get_syslog_server_status_by_id(id)
+
+Get a syslog server reachability status.
+
+Check syslog server reachability by given Id.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.syslog_server_status import SyslogServerStatus
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of syslog server.
+
+# example passing only required values which don't have defaults set
+try:
+	# Get a syslog server reachability status.
+	api_response = client.platform.get_syslog_server_status_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_syslog_server_status_by_id: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of syslog server. |
+
+### Return type
+
+[**SyslogServerStatus**](SyslogServerStatus.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_syslog_servers**
+> SyslogServers get_syslog_servers()
+
+Get list of syslog servers.
+
+Get list of syslog servers.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_servers import SyslogServers
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get list of syslog servers.
+	api_response = client.platform.get_syslog_servers()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->get_syslog_servers: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SyslogServers**](SyslogServers.md)
 
 ### Authorization
 
@@ -3353,261 +2639,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_feature_flag**
-> FeatureFlagList list_feature_flag()
-
-Get feature flag overrides list.
-
-Get the list of feature flag overrides defined on cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.feature_flag_list import FeatureFlagList
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get feature flag overrides list.
-	api_response = client.platform.list_feature_flag()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_feature_flag: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**FeatureFlagList**](FeatureFlagList.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_free_nodes**
-> FreeNodes list_free_nodes()
-
-List the free Cohesity Nodes present on a network.
-
-Sends a request to any Node to list all of the free Nodes that are present on the network.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.free_nodes import FreeNodes
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# List the free Cohesity Nodes present on a network.
-	api_response = client.platform.list_free_nodes()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_free_nodes: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**FreeNodes**](FreeNodes.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_hosts**
-> HostMappings list_hosts()
-
-List Host Mappings
-
-Lists the host mappings in /etc/hosts of the nodes in a cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.host_mappings import HostMappings
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# List Host Mappings
-	api_response = client.platform.list_hosts()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->list_hosts: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**HostMappings**](HostMappings.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **mark_baseos_upgrade**
-> MarkBaseosUpgradeInfo mark_baseos_upgrade(body)
-
-Sets/clears the BaseOS upgrade cluster operation.
-
-Sets/clears the BaseOS upgrade cluster operation.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = MarkBaseosUpgradeInfo(
-        set_operation=True,
-        message="message_example",
-    ) # MarkBaseosUpgradeInfo | Param to whether set/clear BaseOS uprgade  operation.
-
-# example passing only required values which don't have defaults set
-try:
-	# Sets/clears the BaseOS upgrade cluster operation.
-	api_response = client.platform.mark_baseos_upgrade(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->mark_baseos_upgrade: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**MarkBaseosUpgradeInfo**](MarkBaseosUpgradeInfo.md)| Param to whether set/clear BaseOS uprgade  operation. |
-
-### Return type
-
-[**MarkBaseosUpgradeInfo**](MarkBaseosUpgradeInfo.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **mark_disk_removal**
 > RemoveDisk mark_disk_removal(id, body)
 
@@ -3751,6 +2782,170 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **patch_syslog_server_by_id**
+> SyslogServer patch_syslog_server_by_id(id)
+
+Patch a syslog server by id.
+
+Patch syslog server by id.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_server import SyslogServer
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of syslog server.
+body = SyslogServer(
+        id=1,
+        ip="ip_example",
+        port=1,
+        protocol="protocol_example",
+        name="name_example",
+        enabled=True,
+        facility_list=[
+            "facility_list_example",
+        ],
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        msg_pattern_list=[
+            "msg_pattern_list_example",
+        ],
+        raw_msg_pattern_list=[
+            "raw_msg_pattern_list_example",
+        ],
+        is_tls_enabled=True,
+        ca_certificate="ca_certificate_example",
+    ) # SyslogServer | Specifies the body of syslog server fields to patch. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Patch a syslog server by id.
+	api_response = client.platform.patch_syslog_server_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->patch_syslog_server_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Patch a syslog server by id.
+	api_response = client.platform.patch_syslog_server_by_id(id, body=body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->patch_syslog_server_by_id: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of syslog server. |
+ **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server fields to patch. | [optional]
+
+### Return type
+
+[**SyslogServer**](SyslogServer.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **register_new_remote_storage**
+> RemoteStorageInfo register_new_remote_storage(body)
+
+Register Remote Storage
+
+Register a remote storage to be used for disaggregated storage.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.remote_storage_info import RemoteStorageInfo
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to register a remote storage management server.
+
+# example passing only required values which don't have defaults set
+try:
+	# Register Remote Storage
+	api_response = client.platform.register_new_remote_storage(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->register_new_remote_storage: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**RemoteStorageInfo**](RemoteStorageInfo.md)| Specifies the parameters to register a remote storage management server. |
+
+### Return type
+
+[**RemoteStorageInfo**](RemoteStorageInfo.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **remove_cluster_node**
 > ClusterOperationResponseParams remove_cluster_node(id)
 
@@ -3858,6 +3053,130 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the remote disk to remove. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove_syslog_server**
+> remove_syslog_server(id)
+
+Remove syslog server by id
+
+Delete syslog server by id.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies a unique id of the syslog server.
+
+# example passing only required values which don't have defaults set
+try:
+	# Remove syslog server by id
+	client.platform.remove_syslog_server(id)
+except ApiException as e:
+	print("Exception when calling PlatformApi->remove_syslog_server: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies a unique id of the syslog server. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | No Content |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove_syslog_servers**
+> remove_syslog_servers()
+
+Remove syslog servers
+
+Delete all syslog servers.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Remove syslog servers
+	client.platform.remove_syslog_servers()
+except ApiException as e:
+	print("Exception when calling PlatformApi->remove_syslog_servers: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -4145,7 +3464,6 @@ body = Cluster(
                     node_id=1,
                 ),
             ],
-            dataplane_endpoint="dataplane_endpoint_example",
         ),
         network_config=ClusterCreateNetworkConfig(
             ntp_servers=[
@@ -4256,7 +3574,6 @@ body = McmRigelClaimResponseParams(
         ],
         helios_certificate="helios_certificate_example",
         dataplane_endpoint="dataplane_endpoint_example",
-        rigel_use_case="Baas",
         region_id="region_id_example",
     ) # McmRigelClaimResponseParams | Specifies the request to update Bifrost config.
 
@@ -4279,787 +3596,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**McmRigelClaimResponseParams**](McmRigelClaimResponseParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_cluster_ui_config**
-> ClusterUiConfig update_cluster_ui_config(body)
-
-Update cluster UI Config.
-
-Update customized UI config for the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_ui_config import ClusterUiConfig
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = ClusterUiConfig(
-        ui_config="ui_config_example",
-    ) # ClusterUiConfig | Specifies the UI config.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update cluster UI Config.
-	api_response = client.platform.update_cluster_ui_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_ui_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**ClusterUiConfig**](ClusterUiConfig.md)| Specifies the UI config. |
-
-### Return type
-
-[**ClusterUiConfig**](ClusterUiConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_cluster_vlan**
-> ClusterVlanParams update_cluster_vlan(interface_name, body)
-
-Update vlan
-
-Update a vlan on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cluster_vlan_params import ClusterVlanParams
-from cohesity_sdk.cluster.model.update_cluster_vlan_params import UpdateClusterVlanParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-interface_name = "interfaceName_example" # str | Vlan interface name, it should be in interface_group_name.vlan_id format.
-body = UpdateClusterVlanParams(
-        all_tenant_access=False,
-        app_ips=[
-            "app_ips_example",
-        ],
-        description="description_example",
-        ecmp_enabled=False,
-        ip_addresses_type="Ipv4",
-        gateway="gateway_example",
-        subnet="subnet_example",
-        tenant_id="tenant_id_example",
-        vlan_name="vlan_name_example",
-        mtu=1,
-        ips=[
-            "ips_example",
-        ],
-        ip_ranges=[
-            IpRange(
-                start_ip="start_ip_example",
-                end_ip="end_ip_example",
-            ),
-        ],
-        fqdn="fqdn_example",
-        ip_pools=[
-            IpPool(
-                name="name_example",
-                ips=[
-                    "ips_example",
-                ],
-            ),
-        ],
-        dns_delegation_zones=[
-            DnsDelegationZone(
-                name="name_example",
-                dns_zone_vips=[
-                    "dns_zone_vips_example",
-                ],
-                dns_zone_resolved_vips=[
-                    "dns_zone_resolved_vips_example",
-                ],
-            ),
-        ],
-    ) # UpdateClusterVlanParams | Parameters to update vlan on the cluster.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update vlan
-	api_response = client.platform.update_cluster_vlan(interface_name, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_cluster_vlan: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **interface_name** | **str**| Vlan interface name, it should be in interface_group_name.vlan_id format. |
- **body** | [**UpdateClusterVlanParams**](UpdateClusterVlanParams.md)| Parameters to update vlan on the cluster. |
-
-### Return type
-
-[**ClusterVlanParams**](ClusterVlanParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_feature_flag**
-> FeatureFlagList update_feature_flag(body)
-
-Update feature flag override status.
-
-Update a feature flag override status to cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.feature_flag_list import FeatureFlagList
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.update_feature_flag_params import UpdateFeatureFlagParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = UpdateFeatureFlagParams(
-        name="name_example",
-        is_ui_feature=True,
-        is_approved=True,
-        reason="reason_example",
-        clear=True,
-        timestamp=1,
-    ) # UpdateFeatureFlagParams | Param for feature flag override request.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update feature flag override status.
-	api_response = client.platform.update_feature_flag(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_feature_flag: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateFeatureFlagParams**](UpdateFeatureFlagParams.md)| Param for feature flag override request. |
-
-### Return type
-
-[**FeatureFlagList**](FeatureFlagList.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_hosts**
-> HostMappings update_hosts(body)
-
-Update Host Mappings
-
-Updates Host Mapping on the Cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.host_mappings_parameters import HostMappingsParameters
-from cohesity_sdk.cluster.model.host_mappings import HostMappings
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = HostMappingsParameters([
-        HostEntry(
-            description="description_example",
-            domain_names=[
-                "domain_names_example",
-            ],
-            ip="ip_example",
-        ),
-    ]) # HostMappingsParameters | 
-
-# example passing only required values which don't have defaults set
-try:
-	# Update Host Mappings
-	api_response = client.platform.update_hosts(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_hosts: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**HostMappingsParameters**](HostMappingsParameters.md)|  |
-
-### Return type
-
-[**HostMappings**](HostMappings.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_interface**
-> InterfaceParams update_interface(id, body)
-
-Update interface
-
-Update network interface on a free node.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.interface_params import InterfaceParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-id = 1 # int | Id of the interface.
-body = InterfaceParams(
-        name="name_example",
-        network_params=InterfaceNetworkParams(
-            bond_interface_params=BondInterfaceNetworkParams(
-                lacp_rate="Slow",
-                bonding_mode="ActiveBackup",
-                xmit_hash_policy="layer2",
-            ),
-            mtu=1,
-        ),
-    ) # InterfaceParams | Parameters to update an interface on a node or cluster.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update interface
-	api_response = client.platform.update_interface(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_interface: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Id of the interface. |
- **body** | [**InterfaceParams**](InterfaceParams.md)| Parameters to update an interface on a node or cluster. |
-
-### Return type
-
-[**InterfaceParams**](InterfaceParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_interface_group**
-> InterfaceGroup update_interface_group(id, body)
-
-Update interface group
-
-Update an interface group on the cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.interface_group import InterfaceGroup
-from cohesity_sdk.cluster.model.interface_group_params import InterfaceGroupParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-id = 1 # int | Id of the interface group.
-body = InterfaceGroupParams(
-        name="name_example",
-        type="Bond",
-        node_interface_params=[
-            NodeInterfaceParams(
-                node_id=1,
-                interface_name="interface_name_example",
-            ),
-        ],
-        network_params=InterfaceGroupNetworkParams(
-            bond_interface_params=BondInterfaceNetworkParams(
-                lacp_rate="Slow",
-                bonding_mode="ActiveBackup",
-                xmit_hash_policy="layer2",
-            ),
-            mtu=1,
-        ),
-    ) # InterfaceGroupParams | Parameters to update an interface group on the cluster.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update interface group
-	api_response = client.platform.update_interface_group(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_interface_group: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Id of the interface group. |
- **body** | [**InterfaceGroupParams**](InterfaceGroupParams.md)| Parameters to update an interface group on the cluster. |
-
-### Return type
-
-[**InterfaceGroup**](InterfaceGroup.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_ipmi_lan_config**
-> IpmiLanParams update_ipmi_lan_config(body)
-
-Update IPMI LAN configuration
-
-Update cluster and node level IPMI LAN configuration.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_lan_params import IpmiLanParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = IpmiLanParams(
-        cluster_ipmi_lan_params=IpmiLanConfig(
-            ipmi_subnet_mask="ipmi_subnet_mask_example",
-            ipmi_gateway="ipmi_gateway_example",
-        ),
-        nodes_ipmi_lan_params=[
-            NodeIpmiLanParams(),
-        ],
-    ) # IpmiLanParams | Parameters to update cluster and node level IPMI LAN configuration.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update IPMI LAN configuration
-	api_response = client.platform.update_ipmi_lan_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_ipmi_lan_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**IpmiLanParams**](IpmiLanParams.md)| Parameters to update cluster and node level IPMI LAN configuration. |
-
-### Return type
-
-[**IpmiLanParams**](IpmiLanParams.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_ipmi_users**
-> IpmiUsers update_ipmi_users(body)
-
-Update IPMI users
-
-Update cluster and node level IPMI users.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.update_ipmi_users import UpdateIpmiUsers
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.ipmi_users import IpmiUsers
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = UpdateIpmiUsers(
-        cluster_ipmi_user=UpdateClusterIpmiUser(),
-        nodes_impi_user=[
-            UpdateNodeIpmiUser(),
-        ],
-    ) # UpdateIpmiUsers | Parameters to update cluster and node level IPMI users.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update IPMI users
-	api_response = client.platform.update_ipmi_users(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_ipmi_users: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UpdateIpmiUsers**](UpdateIpmiUsers.md)| Parameters to update cluster and node level IPMI users. |
-
-### Return type
-
-[**IpmiUsers**](IpmiUsers.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_is_d_maa_s_cluster**
-> DMaaSInfo update_is_d_maa_s_cluster(body)
-
-Update whether the cluster is a DMaaS cluster.
-
-Update whether the cluster is a DMaaS cluster.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.d_maa_s_info import DMaaSInfo
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = DMaaSInfo(
-        is_dmaas=True,
-    ) # DMaaSInfo | Param to update whether the cluster is a DMaaS cluster.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update whether the cluster is a DMaaS cluster.
-	api_response = client.platform.update_is_d_maa_s_cluster(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_is_d_maa_s_cluster: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**DMaaSInfo**](DMaaSInfo.md)| Param to update whether the cluster is a DMaaS cluster. |
-
-### Return type
-
-[**DMaaSInfo**](DMaaSInfo.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_node_bond_interface**
-> NodeBondInterfaceParams update_node_bond_interface(name, body)
-
-Update bond interface
-
-Update the bond interface on a free node or cluster node.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk import CohesityClientV2
-from cohesity_sdk.cluster.model.node_bond_interface_params import NodeBondInterfaceParams
-from cohesity_sdk.cluster.model.update_node_bond_interface_params import UpdateNodeBondInterfaceParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = CohesityClientV2(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-name = "name_example" # str | Name of the bond interface.
-body = UpdateNodeBondInterfaceParams(
-        members=[
-            "members_example",
-        ],
-        node_type="ClusterNode",
-        node_id=1,
-    ) # UpdateNodeBondInterfaceParams | Parameters to update bond interface.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update bond interface
-	api_response = client.platform.update_node_bond_interface(name, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling PlatformApi->update_node_bond_interface: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the bond interface. |
- **body** | [**UpdateNodeBondInterfaceParams**](UpdateNodeBondInterfaceParams.md)| Parameters to update bond interface. |
-
-### Return type
-
-[**NodeBondInterfaceParams**](NodeBondInterfaceParams.md)
 
 ### Authorization
 
@@ -5238,6 +3774,74 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_remote_storage_registration**
+> RemoteStorageInfo update_remote_storage_registration(id, body)
+
+Update Remote Storage Config
+
+Update Registered Remote Storage Config.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.remote_storage_info import RemoteStorageInfo
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the registration id of the registered remote storage.
+body = RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to update the registration.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update Remote Storage Config
+	api_response = client.platform.update_remote_storage_registration(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_remote_storage_registration: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the registration id of the registered remote storage. |
+ **body** | [**RemoteStorageInfo**](RemoteStorageInfo.md)| Specifies the parameters to update the registration. |
+
+### Return type
+
+[**RemoteStorageInfo**](RemoteStorageInfo.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_smtp_configuration**
 > SMTPConfiguration update_smtp_configuration(body)
 
@@ -5374,6 +3978,176 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_syslog_audit_tags**
+> SyslogAuditTag update_syslog_audit_tags()
+
+Update cluster audit tags.
+
+Update cluster audit tags.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_audit_tag import SyslogAuditTag
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = SyslogAuditTag(
+        cluster_audit="cluster_audit_example",
+        filer_audit="filer_audit_example",
+        data_protection_events_audit="data_protection_events_audit_example",
+        alert_audit="alert_audit_example",
+    ) # SyslogAuditTag | Specifies syslog audit tag to update. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update cluster audit tags.
+	api_response = client.platform.update_syslog_audit_tags(body=body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_syslog_audit_tags: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**SyslogAuditTag**](SyslogAuditTag.md)| Specifies syslog audit tag to update. | [optional]
+
+### Return type
+
+[**SyslogAuditTag**](SyslogAuditTag.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_syslog_server_by_id**
+> SyslogServer update_syslog_server_by_id(id)
+
+Update a syslog server by id.
+
+Update syslog server by id.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.syslog_server import SyslogServer
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = CohesityClientV2(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = 1 # int | Specifies the id of syslog server.
+body = SyslogServer(
+        id=1,
+        ip="ip_example",
+        port=1,
+        protocol="protocol_example",
+        name="name_example",
+        enabled=True,
+        facility_list=[
+            "facility_list_example",
+        ],
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        msg_pattern_list=[
+            "msg_pattern_list_example",
+        ],
+        raw_msg_pattern_list=[
+            "raw_msg_pattern_list_example",
+        ],
+        is_tls_enabled=True,
+        ca_certificate="ca_certificate_example",
+    ) # SyslogServer | Specifies the body of syslog server body to update. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Update a syslog server by id.
+	api_response = client.platform.update_syslog_server_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_syslog_server_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Update a syslog server by id.
+	api_response = client.platform.update_syslog_server_by_id(id, body=body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PlatformApi->update_syslog_server_by_id: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| Specifies the id of syslog server. |
+ **body** | [**SyslogServer**](SyslogServer.md)| Specifies the body of syslog server body to update. | [optional]
+
+### Return type
+
+[**SyslogServer**](SyslogServer.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **upgrade_cluster_software**
 > ClusterOperationResponseParams upgrade_cluster_software(body)
 
@@ -5403,7 +4177,7 @@ client = CohesityClientV2(
 
 body = ClusterUpradeParams(
         type="Upgrade",
-        version_name="version_name_example",
+        software_version="software_version_example",
         url="url_example",
     ) # ClusterUpradeParams | The parameters to upgrade the software on the cluster.
 

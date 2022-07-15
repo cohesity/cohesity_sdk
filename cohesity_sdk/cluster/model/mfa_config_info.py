@@ -58,7 +58,6 @@ class MfaConfigInfo(ModelNormal):
             'None': None,
             'EMAIL': "email",
             'TOTP': "totp",
-            'SALESFORCE': "salesforce",
         },
     }
 
