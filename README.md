@@ -1,8 +1,7 @@
 Cohesity SDK
 =================
 [![License: Apache2](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/cohesity/cohesity_sdk/blob/master/LICENSE)
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/cohesity/cohesity_sdk?include_prereleases)
-![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![Maintenance](https://img.shields.io/maintenance/yes/2022)
 ## Overview
 
 The *Cohesity SDK*  provides an easy-to-use language binding to
