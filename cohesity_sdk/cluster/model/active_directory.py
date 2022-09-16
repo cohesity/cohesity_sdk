@@ -157,7 +157,7 @@ class ActiveDirectory(ModelComposed):
         """ActiveDirectory - a model defined in OpenAPI
 
         Args:
-            machine_accounts ([MachineAccount], none_type): Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. The first machine account is used as primary machine account and it can not be modified.
+            machine_accounts ([MachineAccount], none_type): Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

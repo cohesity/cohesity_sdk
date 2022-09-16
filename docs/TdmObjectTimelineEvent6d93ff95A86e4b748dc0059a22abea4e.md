@@ -1,0 +1,13 @@
+# TdmObjectTimelineEvent6d93ff95A86e4b748dc0059a22abea4e
+
+Specifies a TDM object timeline event.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**clone_params** | [**TdmCloneTaskResponseParams**](TdmCloneTaskResponseParams.md) |  | [optional] 
+**snapshot_params** | [**TdmSnapshot**](TdmSnapshot.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

@@ -56,11 +56,10 @@ class RunFilterValues(ModelNormal):
     allowed_values = {
         ('run_filter_values',): {
             'KALL': "kAll",
+            'KLOG': "kLog",
             'KSYSTEM': "kSystem",
-            'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
             'KINCREMENTAL': "kIncremental",
             'KFULL': "kFull",
-            'KLOG': "kLog",
         },
     }
 

@@ -72,7 +72,6 @@ class HeliosPolicyRequest(ModelComposed):
             'None': None,
             'GLOBALPOLICY': "GlobalPolicy",
             'DMAASPOLICY': "DMaaSPolicy",
-            'ONPREMPOLICY': "OnPremPolicy",
         },
         ('data_lock',): {
             'None': None,
@@ -82,12 +81,6 @@ class HeliosPolicyRequest(ModelComposed):
     }
 
     validations = {
-        ('cluster_identifier',): {
-            'regex': {
-                'pattern': r'^([0-9]+:[0-9]+)$',  # noqa: E501
-            },
-        },
-
     }
 
     additional_properties_type = None
@@ -108,8 +101,6 @@ class HeliosPolicyRequest(ModelComposed):
         return {
             'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'cluster_identifier': (str, none_type,),  # noqa: E501
-            'tenant_ids': ([str, none_type],),  # noqa: E501
             'backup_policy': (HeliosBackupPolicy,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'blackout_window': ([HeliosBlackoutWindow], none_type,),  # noqa: E501
@@ -128,8 +119,6 @@ class HeliosPolicyRequest(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'cluster_identifier': 'clusterIdentifier',  # noqa: E501
-        'tenant_ids': 'tenantIds',  # noqa: E501
         'backup_policy': 'backupPolicy',  # noqa: E501
         'description': 'description',  # noqa: E501
         'blackout_window': 'blackoutWindow',  # noqa: E501
@@ -191,8 +180,6 @@ class HeliosPolicyRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_identifier (str, none_type): Specifies the cluster to which this policy belongs. This required is only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.. [optional]  # noqa: E501
-            tenant_ids ([str, none_type]): Specifies the tenants which have access to this object.. [optional]  # noqa: E501
             backup_policy (HeliosBackupPolicy): [optional]  # noqa: E501
             description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
             blackout_window ([HeliosBlackoutWindow], none_type): List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod.. [optional]  # noqa: E501

@@ -105,8 +105,6 @@ class DataUsageStats(ModelNormal):
             'total_logical_usage_bytes': (int, none_type,),  # noqa: E501
             'total_logical_usage_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
             'unique_physical_data_bytes': (int, none_type,),  # noqa: E501
-            'num_files': (int, none_type,),  # noqa: E501
-            'num_directories': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -147,8 +145,6 @@ class DataUsageStats(ModelNormal):
         'total_logical_usage_bytes': 'totalLogicalUsageBytes',  # noqa: E501
         'total_logical_usage_bytes_timestamp_usec': 'totalLogicalUsageBytesTimestampUsec',  # noqa: E501
         'unique_physical_data_bytes': 'uniquePhysicalDataBytes',  # noqa: E501
-        'num_files': 'numFiles',  # noqa: E501
-        'num_directories': 'numDirectories',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -229,8 +225,6 @@ class DataUsageStats(ModelNormal):
             total_logical_usage_bytes (int, none_type): Provides the combined data residing on protected objects. The size of data before reduction by deduplication and compression.. [optional]  # noqa: E501
             total_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of TotalLogicalUsageBytes.. [optional]  # noqa: E501
             unique_physical_data_bytes (int, none_type): Specifies the unique physical data usage in bytes.. [optional]  # noqa: E501
-            num_files (int, none_type): Specifies the number of files.. [optional]  # noqa: E501
-            num_directories (int, none_type): Specifies the number of directories.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

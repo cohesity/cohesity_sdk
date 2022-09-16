@@ -58,7 +58,6 @@ class FullScheduleUnit(ModelNormal):
             'DAYS': "Days",
             'WEEKS': "Weeks",
             'MONTHS': "Months",
-            'YEARS': "Years",
             'PROTECTONCE': "ProtectOnce",
         },
     }

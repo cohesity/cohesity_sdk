@@ -120,13 +120,8 @@ class HeliosBlackoutWindow(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, day, start_time, end_time, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """HeliosBlackoutWindow - a model defined in OpenAPI
-
-        Args:
-            day (str, none_type): Specifies a day in the week when no new Protection Group Runs should be started such as 'Sunday'. Specifies a day in a week such as 'Sunday', 'Monday', etc.
-            start_time (TimeOfDay):
-            end_time (TimeOfDay):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,6 +155,9 @@ class HeliosBlackoutWindow(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            day (str, none_type): Specifies a day in the week when no new Protection Group Runs should be started such as 'Sunday'. If not set, the time range applies to all days. Specifies a day in a week such as 'Sunday', 'Monday', etc.. [optional]  # noqa: E501
+            start_time (TimeOfDay): [optional]  # noqa: E501
+            end_time (TimeOfDay): [optional]  # noqa: E501
             config_id (str, none_type): Specifies the unique identifier for the blackout getting added. This field should only be set if policy is getting updated.. [optional]  # noqa: E501
         """
 
@@ -187,9 +185,6 @@ class HeliosBlackoutWindow(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.day = day
-        self.start_time = start_time
-        self.end_time = end_time
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

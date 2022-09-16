@@ -57,12 +57,6 @@ class CancelProtectionGroupRunRequest(ModelNormal):
     }
 
     validations = {
-        ('run_id',): {
-            'regex': {
-                'pattern': r'^\d+:\d+$',  # noqa: E501
-            },
-        },
-
         ('local_task_id',): {
             'regex': {
                 'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
@@ -86,7 +80,6 @@ class CancelProtectionGroupRunRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'run_id': (str, none_type,),  # noqa: E501
             'local_task_id': (str, none_type,),  # noqa: E501
             'object_ids': ([int], none_type,),  # noqa: E501
             'replication_task_id': ([str], none_type,),  # noqa: E501
@@ -101,7 +94,6 @@ class CancelProtectionGroupRunRequest(ModelNormal):
 
 
     attribute_map = {
-        'run_id': 'runId',  # noqa: E501
         'local_task_id': 'localTaskId',  # noqa: E501
         'object_ids': 'objectIds',  # noqa: E501
         'replication_task_id': 'replicationTaskId',  # noqa: E501
@@ -121,11 +113,8 @@ class CancelProtectionGroupRunRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, run_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CancelProtectionGroupRunRequest - a model defined in OpenAPI
-
-        Args:
-            run_id (str, none_type): Specifies a unique run id of the Protection Group run.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -190,7 +179,6 @@ class CancelProtectionGroupRunRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.run_id = run_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

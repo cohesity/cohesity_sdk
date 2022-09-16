@@ -80,7 +80,6 @@ class OneDriveParam(ModelNormal):
         lazy_import()
         return {
             'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'recover_entire_drive': (bool, none_type,),  # noqa: E501
             'recover_items': ([OneDriveItem], none_type,),  # noqa: E501
         }
@@ -93,7 +92,6 @@ class OneDriveParam(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'recover_entire_drive': 'recoverEntireDrive',  # noqa: E501
         'recover_items': 'recoverItems',  # noqa: E501
     }
@@ -146,7 +144,6 @@ class OneDriveParam(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies the OneDrive id.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the OneDrive name.. [optional]  # noqa: E501
             recover_entire_drive (bool, none_type): Specifies whether to recover the whole OneDrive. This is set to false when excluding recovering specific drive items.. [optional]  # noqa: E501
             recover_items ([OneDriveItem], none_type): Specifies a list of OneDrive items to recover.. [optional]  # noqa: E501
         """

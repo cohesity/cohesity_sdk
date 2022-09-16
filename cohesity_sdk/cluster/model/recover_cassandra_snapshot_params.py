@@ -66,8 +66,6 @@ class RecoverCassandraSnapshotParams(ModelComposed):
             'None': None,
             'LOCAL': "Local",
             'ARCHIVAL': "Archival",
-            'RPAASARCHIVAL': "RpaasArchival",
-            'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
         },
         ('status',): {
             'None': None,
@@ -80,7 +78,6 @@ class RecoverCassandraSnapshotParams(ModelComposed):
             'SUCCEEDED': "Succeeded",
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
         },
     }
 
@@ -118,7 +115,6 @@ class RecoverCassandraSnapshotParams(ModelComposed):
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'messages': ([str], none_type,),  # noqa: E501
-            'bytes_restored': (int, none_type,),  # noqa: E501
             'objects': ([RecoverCassandraNoSqlObjectParams], none_type,),  # noqa: E501
         }
 
@@ -144,7 +140,6 @@ class RecoverCassandraSnapshotParams(ModelComposed):
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'messages': 'messages',  # noqa: E501
-        'bytes_restored': 'bytesRestored',  # noqa: E501
         'objects': 'objects',  # noqa: E501
     }
 
@@ -213,7 +208,6 @@ class RecoverCassandraSnapshotParams(ModelComposed):
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
             messages ([str], none_type): Specify error messages about the object.. [optional]  # noqa: E501
-            bytes_restored (int, none_type): Specify the total bytes restored.. [optional]  # noqa: E501
             objects ([RecoverCassandraNoSqlObjectParams], none_type): Specifies details of objects to be recovered.. [optional]  # noqa: E501
         """
 

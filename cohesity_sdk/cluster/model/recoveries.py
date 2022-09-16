@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.recovery import Recovery
-    globals()['Recovery'] = Recovery
+    from cohesity_sdk.cluster.model.common_recovery_response_params86f0a20e008c4d4a822f_c30e4df4ee04 import CommonRecoveryResponseParams86f0a20e008c4d4a822fC30e4df4ee04
+    globals()['CommonRecoveryResponseParams86f0a20e008c4d4a822fC30e4df4ee04'] = CommonRecoveryResponseParams86f0a20e008c4d4a822fC30e4df4ee04
 
 
 class Recoveries(ModelNormal):
@@ -79,7 +79,7 @@ class Recoveries(ModelNormal):
         """
         lazy_import()
         return {
-            'recoveries': ([Recovery], none_type,),  # noqa: E501
+            'recoveries': ([CommonRecoveryResponseParams86f0a20e008c4d4a822fC30e4df4ee04], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class Recoveries(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recoveries ([Recovery], none_type): Specifies list of Recoveries.. [optional]  # noqa: E501
+            recoveries ([CommonRecoveryResponseParams86f0a20e008c4d4a822fC30e4df4ee04], none_type): Specifies list of Recoveries.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

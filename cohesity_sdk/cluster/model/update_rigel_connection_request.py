@@ -28,11 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_create_or_update_rigel_connection_request import CommonCreateOrUpdateRigelConnectionRequest
-    from cohesity_sdk.cluster.model.connector_group import ConnectorGroup
-    from cohesity_sdk.cluster.model.update_rigel_connection_request_all_of import UpdateRigelConnectionRequestAllOf
     globals()['CommonCreateOrUpdateRigelConnectionRequest'] = CommonCreateOrUpdateRigelConnectionRequest
-    globals()['ConnectorGroup'] = ConnectorGroup
-    globals()['UpdateRigelConnectionRequestAllOf'] = UpdateRigelConnectionRequestAllOf
 
 
 class UpdateRigelConnectionRequest(ModelComposed):
@@ -85,9 +81,6 @@ class UpdateRigelConnectionRequest(ModelComposed):
         return {
             'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'scalable': (bool, none_type,),  # noqa: E501
-            'ungrouped_connectors': ([int],),  # noqa: E501
-            'connector_groups': ([ConnectorGroup],),  # noqa: E501
         }
 
     @cached_property
@@ -99,9 +92,6 @@ class UpdateRigelConnectionRequest(ModelComposed):
     attribute_map = {
         'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'scalable': 'scalable',  # noqa: E501
-        'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
-        'connector_groups': 'connectorGroups',  # noqa: E501
     }
 
     required_properties = set([
@@ -156,9 +146,6 @@ class UpdateRigelConnectionRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            scalable (bool, none_type): Flag to specify if the connection is scalable.. [optional]  # noqa: E501
-            ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
-            connector_groups ([ConnectorGroup]): Specifies the connector groups in the connection.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,7 +220,6 @@ class UpdateRigelConnectionRequest(ModelComposed):
           ],
           'allOf': [
               CommonCreateOrUpdateRigelConnectionRequest,
-              UpdateRigelConnectionRequestAllOf,
           ],
           'oneOf': [
           ],

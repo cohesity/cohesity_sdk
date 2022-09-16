@@ -54,28 +54,6 @@ class PhysicalSourceRegistrationParams(ModelNormal):
     """
 
     allowed_values = {
-        ('host_type',): {
-            'None': None,
-            'KLINUX': "kLinux",
-            'KWINDOWS': "kWindows",
-            'KAIX': "kAix",
-            'KSOLARIS': "kSolaris",
-            'KSAPHANA': "kSapHana",
-            'KOTHER': "kOther",
-        },
-        ('physical_type',): {
-            'None': None,
-            'KGROUP': "kGroup",
-            'KHOST': "kHost",
-            'KWINDOWSCLUSTER': "kWindowsCluster",
-            'KORACLERACCLUSTER': "kOracleRACCluster",
-            'KORACLEAPCLUSTER': "kOracleAPCluster",
-        },
-        ('applications',): {
-            'None': None,
-            'KSQL': "kSQL",
-            'KORACLE': "kOracle",
-        },
     }
 
     validations = {
@@ -98,9 +76,6 @@ class PhysicalSourceRegistrationParams(ModelNormal):
         return {
             'endpoint': (str,),  # noqa: E501
             'force_register': (bool, none_type,),  # noqa: E501
-            'host_type': (str, none_type,),  # noqa: E501
-            'physical_type': (str, none_type,),  # noqa: E501
-            'applications': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -112,9 +87,6 @@ class PhysicalSourceRegistrationParams(ModelNormal):
     attribute_map = {
         'endpoint': 'endpoint',  # noqa: E501
         'force_register': 'forceRegister',  # noqa: E501
-        'host_type': 'hostType',  # noqa: E501
-        'physical_type': 'physicalType',  # noqa: E501
-        'applications': 'applications',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,9 +140,6 @@ class PhysicalSourceRegistrationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             force_register (bool, none_type): The agent running on a physical host will fail the registration if it is already registered as part of another cluster. By setting this option to true, agent can be forced to register with the current cluster.. [optional]  # noqa: E501
-            host_type (str, none_type): Specifies the type of host.. [optional]  # noqa: E501
-            physical_type (str, none_type): Specifies the type of physical server.. [optional]  # noqa: E501
-            applications ([str], none_type): Specifies the list of applications to be registered with Physical Source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

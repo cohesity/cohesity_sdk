@@ -28,9 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.backup_data_stats import BackupDataStats
-    from cohesity_sdk.cluster.model.data_lock_constraints import DataLockConstraints
     globals()['BackupDataStats'] = BackupDataStats
-    globals()['DataLockConstraints'] = DataLockConstraints
 
 
 class SnapshotInfo(ModelNormal):
@@ -67,9 +65,6 @@ class SnapshotInfo(ModelNormal):
             'KFAILED': "kFailed",
             'KWAITINGFORNEXTATTEMPT': "kWaitingForNextAttempt",
             'KWARNING': "kWarning",
-            'KCURRENTATTEMPTPAUSED': "kCurrentAttemptPaused",
-            'KCURRENTATTEMPTRESUMING': "kCurrentAttemptResuming",
-            'KCURRENTATTEMPTPAUSING': "kCurrentAttemptPausing",
             'KWAITINGFOROLDERBACKUPRUN': "kWaitingForOlderBackupRun",
         },
     }
@@ -109,7 +104,6 @@ class SnapshotInfo(ModelNormal):
             'expiry_time_usecs': (int, none_type,),  # noqa: E501
             'total_file_count': (int, none_type,),  # noqa: E501
             'backup_file_count': (int, none_type,),  # noqa: E501
-            'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
         }
 
     @cached_property
@@ -135,7 +129,6 @@ class SnapshotInfo(ModelNormal):
         'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
         'total_file_count': 'totalFileCount',  # noqa: E501
         'backup_file_count': 'backupFileCount',  # noqa: E501
-        'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -201,7 +194,6 @@ class SnapshotInfo(ModelNormal):
             expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
             total_file_count (int, none_type): The total number of file and directory entities visited in this backup. Only applicable to file based backups.. [optional]  # noqa: E501
             backup_file_count (int, none_type): The total number of file and directory entities that are backed up in this run. Only applicable to file based backups.. [optional]  # noqa: E501
-            data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

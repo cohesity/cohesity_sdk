@@ -76,7 +76,6 @@ class TargetMsTeamParam(ModelNormal):
         return {
             'target_team': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'parent_source_id': (int, none_type,),  # noqa: E501
-            'target_teams_channel_param': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -88,7 +87,6 @@ class TargetMsTeamParam(ModelNormal):
     attribute_map = {
         'target_team': 'targetTeam',  # noqa: E501
         'parent_source_id': 'parentSourceId',  # noqa: E501
-        'target_teams_channel_param': 'targetTeamsChannelParam',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,7 +138,6 @@ class TargetMsTeamParam(ModelNormal):
 
             target_team ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the selected existing target team info.. [optional]  # noqa: E501
             parent_source_id (int, none_type): Specifies the id of the domain during alternate domain recovery.. [optional]  # noqa: E501
-            target_teams_channel_param ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ms team target channel parameters in case of granular restore to alternate location.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

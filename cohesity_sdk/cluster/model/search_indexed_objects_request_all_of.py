@@ -27,34 +27,26 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.cassandra_on_prem_search_params import CassandraOnPremSearchParams
-    from cohesity_sdk.cluster.model.couch_base_on_prem_search_params import CouchBaseOnPremSearchParams
-    from cohesity_sdk.cluster.model.hbase_on_prem_search_params import HbaseOnPremSearchParams
-    from cohesity_sdk.cluster.model.hdfson_prem_search_params import HDFSOnPremSearchParams
-    from cohesity_sdk.cluster.model.hive_on_prem_search_params import HiveOnPremSearchParams
-    from cohesity_sdk.cluster.model.mongo_db_on_prem_search_params import MongoDbOnPremSearchParams
-    from cohesity_sdk.cluster.model.search_document_library_request_params import SearchDocumentLibraryRequestParams
     from cohesity_sdk.cluster.model.search_email_request_params import SearchEmailRequestParams
-    from cohesity_sdk.cluster.model.search_exchange_objects_request_params import SearchExchangeObjectsRequestParams
     from cohesity_sdk.cluster.model.search_file_request_params import SearchFileRequestParams
-    from cohesity_sdk.cluster.model.search_ms_teams_request_params import SearchMsTeamsRequestParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_cassandra_params import SearchIndexedObjectsRequestAllOfCassandraParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_couchbase_params import SearchIndexedObjectsRequestAllOfCouchbaseParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_exchange_params import SearchIndexedObjectsRequestAllOfExchangeParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_hbase_params import SearchIndexedObjectsRequestAllOfHbaseParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_hdfs_params import SearchIndexedObjectsRequestAllOfHdfsParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_hive_params import SearchIndexedObjectsRequestAllOfHiveParams
+    from cohesity_sdk.cluster.model.search_indexed_objects_request_all_of_mongodb_params import SearchIndexedObjectsRequestAllOfMongodbParams
     from cohesity_sdk.cluster.model.search_public_folder_request_params import SearchPublicFolderRequestParams
-    from cohesity_sdk.cluster.model.search_sfdc_records_request_params import SearchSfdcRecordsRequestParams
-    from cohesity_sdk.cluster.model.uda_on_prem_search_params import UdaOnPremSearchParams
-    globals()['CassandraOnPremSearchParams'] = CassandraOnPremSearchParams
-    globals()['CouchBaseOnPremSearchParams'] = CouchBaseOnPremSearchParams
-    globals()['HDFSOnPremSearchParams'] = HDFSOnPremSearchParams
-    globals()['HbaseOnPremSearchParams'] = HbaseOnPremSearchParams
-    globals()['HiveOnPremSearchParams'] = HiveOnPremSearchParams
-    globals()['MongoDbOnPremSearchParams'] = MongoDbOnPremSearchParams
-    globals()['SearchDocumentLibraryRequestParams'] = SearchDocumentLibraryRequestParams
     globals()['SearchEmailRequestParams'] = SearchEmailRequestParams
-    globals()['SearchExchangeObjectsRequestParams'] = SearchExchangeObjectsRequestParams
     globals()['SearchFileRequestParams'] = SearchFileRequestParams
-    globals()['SearchMsTeamsRequestParams'] = SearchMsTeamsRequestParams
+    globals()['SearchIndexedObjectsRequestAllOfCassandraParams'] = SearchIndexedObjectsRequestAllOfCassandraParams
+    globals()['SearchIndexedObjectsRequestAllOfCouchbaseParams'] = SearchIndexedObjectsRequestAllOfCouchbaseParams
+    globals()['SearchIndexedObjectsRequestAllOfExchangeParams'] = SearchIndexedObjectsRequestAllOfExchangeParams
+    globals()['SearchIndexedObjectsRequestAllOfHbaseParams'] = SearchIndexedObjectsRequestAllOfHbaseParams
+    globals()['SearchIndexedObjectsRequestAllOfHdfsParams'] = SearchIndexedObjectsRequestAllOfHdfsParams
+    globals()['SearchIndexedObjectsRequestAllOfHiveParams'] = SearchIndexedObjectsRequestAllOfHiveParams
+    globals()['SearchIndexedObjectsRequestAllOfMongodbParams'] = SearchIndexedObjectsRequestAllOfMongodbParams
     globals()['SearchPublicFolderRequestParams'] = SearchPublicFolderRequestParams
-    globals()['SearchSfdcRecordsRequestParams'] = SearchSfdcRecordsRequestParams
-    globals()['UdaOnPremSearchParams'] = UdaOnPremSearchParams
 
 
 class SearchIndexedObjectsRequestAllOf(ModelNormal):
@@ -107,19 +99,14 @@ class SearchIndexedObjectsRequestAllOf(ModelNormal):
         return {
             'email_params': (SearchEmailRequestParams,),  # noqa: E501
             'file_params': (SearchFileRequestParams,),  # noqa: E501
-            'cassandra_params': (CassandraOnPremSearchParams,),  # noqa: E501
-            'couchbase_params': (CouchBaseOnPremSearchParams,),  # noqa: E501
-            'hbase_params': (HbaseOnPremSearchParams,),  # noqa: E501
-            'hive_params': (HiveOnPremSearchParams,),  # noqa: E501
-            'mongodb_params': (MongoDbOnPremSearchParams,),  # noqa: E501
-            'hdfs_params': (HDFSOnPremSearchParams,),  # noqa: E501
-            'exchange_params': (SearchExchangeObjectsRequestParams,),  # noqa: E501
+            'cassandra_params': (SearchIndexedObjectsRequestAllOfCassandraParams,),  # noqa: E501
+            'couchbase_params': (SearchIndexedObjectsRequestAllOfCouchbaseParams,),  # noqa: E501
+            'hbase_params': (SearchIndexedObjectsRequestAllOfHbaseParams,),  # noqa: E501
+            'hive_params': (SearchIndexedObjectsRequestAllOfHiveParams,),  # noqa: E501
+            'mongodb_params': (SearchIndexedObjectsRequestAllOfMongodbParams,),  # noqa: E501
+            'hdfs_params': (SearchIndexedObjectsRequestAllOfHdfsParams,),  # noqa: E501
+            'exchange_params': (SearchIndexedObjectsRequestAllOfExchangeParams,),  # noqa: E501
             'public_folder_params': (SearchPublicFolderRequestParams,),  # noqa: E501
-            'ms_teams_params': (SearchMsTeamsRequestParams,),  # noqa: E501
-            'sharepoint_params': (SearchDocumentLibraryRequestParams,),  # noqa: E501
-            'one_drive_params': (SearchDocumentLibraryRequestParams,),  # noqa: E501
-            'uda_params': (UdaOnPremSearchParams,),  # noqa: E501
-            'sfdc_params': (SearchSfdcRecordsRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -139,11 +126,6 @@ class SearchIndexedObjectsRequestAllOf(ModelNormal):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
         'public_folder_params': 'publicFolderParams',  # noqa: E501
-        'ms_teams_params': 'msTeamsParams',  # noqa: E501
-        'sharepoint_params': 'sharepointParams',  # noqa: E501
-        'one_drive_params': 'oneDriveParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -195,19 +177,14 @@ class SearchIndexedObjectsRequestAllOf(ModelNormal):
 
             email_params (SearchEmailRequestParams): [optional]  # noqa: E501
             file_params (SearchFileRequestParams): [optional]  # noqa: E501
-            cassandra_params (CassandraOnPremSearchParams): [optional]  # noqa: E501
-            couchbase_params (CouchBaseOnPremSearchParams): [optional]  # noqa: E501
-            hbase_params (HbaseOnPremSearchParams): [optional]  # noqa: E501
-            hive_params (HiveOnPremSearchParams): [optional]  # noqa: E501
-            mongodb_params (MongoDbOnPremSearchParams): [optional]  # noqa: E501
-            hdfs_params (HDFSOnPremSearchParams): [optional]  # noqa: E501
-            exchange_params (SearchExchangeObjectsRequestParams): [optional]  # noqa: E501
+            cassandra_params (SearchIndexedObjectsRequestAllOfCassandraParams): [optional]  # noqa: E501
+            couchbase_params (SearchIndexedObjectsRequestAllOfCouchbaseParams): [optional]  # noqa: E501
+            hbase_params (SearchIndexedObjectsRequestAllOfHbaseParams): [optional]  # noqa: E501
+            hive_params (SearchIndexedObjectsRequestAllOfHiveParams): [optional]  # noqa: E501
+            mongodb_params (SearchIndexedObjectsRequestAllOfMongodbParams): [optional]  # noqa: E501
+            hdfs_params (SearchIndexedObjectsRequestAllOfHdfsParams): [optional]  # noqa: E501
+            exchange_params (SearchIndexedObjectsRequestAllOfExchangeParams): [optional]  # noqa: E501
             public_folder_params (SearchPublicFolderRequestParams): [optional]  # noqa: E501
-            ms_teams_params (SearchMsTeamsRequestParams): [optional]  # noqa: E501
-            sharepoint_params (SearchDocumentLibraryRequestParams): [optional]  # noqa: E501
-            one_drive_params (SearchDocumentLibraryRequestParams): [optional]  # noqa: E501
-            uda_params (UdaOnPremSearchParams): [optional]  # noqa: E501
-            sfdc_params (SearchSfdcRecordsRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

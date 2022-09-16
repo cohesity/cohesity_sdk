@@ -27,10 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_tdm_task_response_params2568d9a56aaf43da_a0049848b3fd9cae import CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae
     from cohesity_sdk.cluster.model.pagination_info import PaginationInfo
-    from cohesity_sdk.cluster.model.tdm_task import TdmTask
+    globals()['CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae'] = CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae
     globals()['PaginationInfo'] = PaginationInfo
-    globals()['TdmTask'] = TdmTask
 
 
 class TdmTasks(ModelNormal):
@@ -81,7 +81,7 @@ class TdmTasks(ModelNormal):
         """
         lazy_import()
         return {
-            'tasks': ([TdmTask], none_type,),  # noqa: E501
+            'tasks': ([CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae], none_type,),  # noqa: E501
             'pagination_info': (PaginationInfo,),  # noqa: E501
         }
 
@@ -143,7 +143,7 @@ class TdmTasks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            tasks ([TdmTask], none_type): Specifies the collection of TDM tasks, filtered by the specified criteria.. [optional]  # noqa: E501
+            tasks ([CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae], none_type): Specifies the collection of TDM tasks, filtered by the specified criteria.. [optional]  # noqa: E501
             pagination_info (PaginationInfo): [optional]  # noqa: E501
         """
 

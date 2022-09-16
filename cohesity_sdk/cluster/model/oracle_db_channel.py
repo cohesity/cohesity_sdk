@@ -87,7 +87,6 @@ class OracleDbChannel(ModelNormal):
         lazy_import()
         return {
             'archive_log_retention_days': (int, none_type,),  # noqa: E501
-            'archive_log_retention_hours': (int, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
             'database_unique_name': (str, none_type,),  # noqa: E501
             'database_uuid': (str, none_type,),  # noqa: E501
@@ -106,7 +105,6 @@ class OracleDbChannel(ModelNormal):
 
     attribute_map = {
         'archive_log_retention_days': 'archiveLogRetentionDays',  # noqa: E501
-        'archive_log_retention_hours': 'archiveLogRetentionHours',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
         'database_unique_name': 'databaseUniqueName',  # noqa: E501
         'database_uuid': 'databaseUuid',  # noqa: E501
@@ -165,7 +163,6 @@ class OracleDbChannel(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             archive_log_retention_days (int, none_type): Specifies the number of days archive log should be stored. For keeping the archived log forever, set this to -1. For deleting the archived log immediately, set this to 0. For deleting the archived log after n days, set this to n.. [optional]  # noqa: E501
-            archive_log_retention_hours (int, none_type): Specifies the number of hours archive log should be stored. For keeping the archived log forever, set this to -1. For deleting the archived log immediately, set this to 0. For deleting the archived log after k hours, set this to k.. [optional]  # noqa: E501
             credentials (Credentials): [optional]  # noqa: E501
             database_unique_name (str, none_type): Specifies the unique Name of the database.. [optional]  # noqa: E501
             database_uuid (str, none_type): Specifies the database unique id. This is an internal field and is filled by magneto master based on corresponding app entity id.. [optional]  # noqa: E501

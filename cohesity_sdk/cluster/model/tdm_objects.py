@@ -27,10 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_tdm_object_response_params76e93cb7_d93d430e992d28534cae6e4c import CommonTdmObjectResponseParams76e93cb7D93d430e992d28534cae6e4c
     from cohesity_sdk.cluster.model.pagination_info import PaginationInfo
-    from cohesity_sdk.cluster.model.tdm_object import TdmObject
+    globals()['CommonTdmObjectResponseParams76e93cb7D93d430e992d28534cae6e4c'] = CommonTdmObjectResponseParams76e93cb7D93d430e992d28534cae6e4c
     globals()['PaginationInfo'] = PaginationInfo
-    globals()['TdmObject'] = TdmObject
 
 
 class TdmObjects(ModelNormal):
@@ -81,7 +81,7 @@ class TdmObjects(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([TdmObject],),  # noqa: E501
+            'objects': ([CommonTdmObjectResponseParams76e93cb7D93d430e992d28534cae6e4c],),  # noqa: E501
             'pagination_info': (PaginationInfo,),  # noqa: E501
         }
 
@@ -143,7 +143,7 @@ class TdmObjects(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([TdmObject]): Specifies the collection of TDM objects, filtered by the specified criteria.. [optional]  # noqa: E501
+            objects ([CommonTdmObjectResponseParams76e93cb7D93d430e992d28534cae6e4c]): Specifies the collection of TDM objects, filtered by the specified criteria.. [optional]  # noqa: E501
             pagination_info (PaginationInfo): [optional]  # noqa: E501
         """
 

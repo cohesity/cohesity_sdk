@@ -86,10 +86,6 @@ class CommonOracleAppSourceConfig(ModelNormal):
             'recovery_mode': (bool, none_type,),  # noqa: E501
             'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_archive_log_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_recovery_validation_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'restore_spfile_or_pfile_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'use_scn_for_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,10 +100,6 @@ class CommonOracleAppSourceConfig(ModelNormal):
         'recovery_mode': 'recoveryMode',  # noqa: E501
         'shell_evironment_vars': 'shellEvironmentVars',  # noqa: E501
         'granular_restore_info': 'granularRestoreInfo',  # noqa: E501
-        'oracle_archive_log_info': 'oracleArchiveLogInfo',  # noqa: E501
-        'oracle_recovery_validation_info': 'oracleRecoveryValidationInfo',  # noqa: E501
-        'restore_spfile_or_pfile_info': 'restoreSpfileOrPfileInfo',  # noqa: E501
-        'use_scn_for_restore': 'useScnForRestore',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,10 +154,6 @@ class CommonOracleAppSourceConfig(ModelNormal):
             recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
             shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501
-            oracle_archive_log_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.. [optional]  # noqa: E501
-            oracle_recovery_validation_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Oracle Recovery Validation.. [optional]  # noqa: E501
-            restore_spfile_or_pfile_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to spfile/pfile restore.. [optional]  # noqa: E501
-            use_scn_for_restore (bool, none_type): Specifies whether database recovery performed should use scn value or not.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

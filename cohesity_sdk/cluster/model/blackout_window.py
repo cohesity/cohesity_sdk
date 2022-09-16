@@ -124,7 +124,7 @@ class BlackoutWindow(ModelNormal):
         """BlackoutWindow - a model defined in OpenAPI
 
         Args:
-            day (str, none_type): Specifies a day in the week when no new Protection Group Runs should be started such as 'Sunday'. Specifies a day in a week such as 'Sunday', 'Monday', etc.
+            day (str, none_type): Specifies a day in the week when no new Protection Group Runs should be started such as 'Sunday'. If not set, the time range applies to all days. Specifies a day in a week such as 'Sunday', 'Monday', etc.
             start_time (TimeOfDay):
             end_time (TimeOfDay):
 

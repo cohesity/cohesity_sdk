@@ -30,9 +30,11 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cluster_create_network_config import ClusterCreateNetworkConfig
     from cohesity_sdk.cluster.model.cluster_proxy_server_config import ClusterProxyServerConfig
     from cohesity_sdk.cluster.model.rigel_cluster_config_params import RigelClusterConfigParams
+    from cohesity_sdk.cluster.model.views_global_settings import ViewsGlobalSettings
     globals()['ClusterCreateNetworkConfig'] = ClusterCreateNetworkConfig
     globals()['ClusterProxyServerConfig'] = ClusterProxyServerConfig
     globals()['RigelClusterConfigParams'] = RigelClusterConfigParams
+    globals()['ViewsGlobalSettings'] = ViewsGlobalSettings
 
 
 class Cluster(ModelNormal):
@@ -69,15 +71,6 @@ class Cluster(ModelNormal):
             'CLOUD': "Cloud",
             'RIGEL': "Rigel",
             'UNKNOWN': "Unknown",
-            'HELIOSONPREMVM': "HeliosOnPremVM",
-        },
-        ('cluster_size',): {
-            'None': None,
-            'SMALL': "Small",
-            'MEDIUM': "Medium",
-            'LARGE': "Large",
-            'XLARGE': "XLarge",
-            'NEXTGEN': "NextGen",
         },
     }
 
@@ -105,7 +98,6 @@ class Cluster(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'cluster_size': (str, none_type,),  # noqa: E501
             'local_tenant_id': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
@@ -114,6 +106,7 @@ class Cluster(ModelNormal):
             'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
             'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
             'enable_encryption': (bool, none_type,),  # noqa: E501
+            'views_global_settings': (ViewsGlobalSettings,),  # noqa: E501
         }
 
     @cached_property
@@ -128,7 +121,6 @@ class Cluster(ModelNormal):
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'cluster_size': 'clusterSize',  # noqa: E501
         'local_tenant_id': 'localTenantId',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
@@ -137,6 +129,7 @@ class Cluster(ModelNormal):
         'network_config': 'networkConfig',  # noqa: E501
         'proxy_server_config': 'proxyServerConfig',  # noqa: E501
         'enable_encryption': 'enableEncryption',  # noqa: E501
+        'views_global_settings': 'viewsGlobalSettings',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -191,7 +184,6 @@ class Cluster(ModelNormal):
             name (str, none_type): Name of the new cluster.. [optional]  # noqa: E501
             description (str, none_type): Description of the cluster.. [optional]  # noqa: E501
             type (str, none_type): Specifies the type of the new cluster.. [optional]  # noqa: E501
-            cluster_size (str, none_type): Specifies the size of the cloud platforms.. [optional]  # noqa: E501
             local_tenant_id (str, none_type): Specifies the local tenant id. Only applicable on Helios.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the globally unique tenant id. Only applicable on Helios.. [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id on which this cluster is present. Only applicable on Helios for DMaaS clusters.. [optional]  # noqa: E501
@@ -200,6 +192,7 @@ class Cluster(ModelNormal):
             network_config (ClusterCreateNetworkConfig): [optional]  # noqa: E501
             proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
             enable_encryption (bool, none_type): Specifies whether or not encryption is enabled. If encryption is enabled, all data on the Cluster will be encrypted.. [optional]  # noqa: E501
+            views_global_settings (ViewsGlobalSettings): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -188,7 +188,7 @@ class RecoverCassandraParams(ModelComposed):
             restart_immediately (bool, none_type): Specifies whether to restart Cassandra services immediately after the point in time recovery.. [optional]  # noqa: E501
             restart_at_usecs (int, none_type): Specifies the time in Unix epoch timestamp in microseconds at which the Cassandra services are to be restarted.. [optional]  # noqa: E501
             restart_command (str, none_type): Specifies the command to restart Cassandra services after the point in time recovery.. [optional]  # noqa: E501
-            restart_services_task_id (int, none_type): Specifies the Id of the task required to restart Cassandra services.. [optional]  # noqa: E501
+            restart_services_task_id (int, none_type): Specifies the Id of the task requiered to restart Cassandra services.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

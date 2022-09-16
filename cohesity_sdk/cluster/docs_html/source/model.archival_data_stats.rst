@@ -1,4 +1,0 @@
-.. automodule:: model.archival_data_stats
-   :members:
-   :undoc-members:
-   :show-inheritance:

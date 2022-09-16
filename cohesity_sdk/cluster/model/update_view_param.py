@@ -75,13 +75,18 @@ class UpdateViewParam(ModelComposed):
             'BACKUPTARGET': "BackupTarget",
             'FILESERVICES': "FileServices",
             'OBJECTSERVICES': "ObjectServices",
-            'ARCHIVESERVICES': "ArchiveServices",
         },
         ('security_mode',): {
             'None': None,
             'NATIVEMODE': "NativeMode",
             'UNIFIEDMODE': "UnifiedMode",
             'NTFSMODE': "NtfsMode",
+        },
+        ('versioning',): {
+            'None': None,
+            'UNVERSIONED': "UnVersioned",
+            'ENABLED': "Enabled",
+            'SUSPENDED': "Suspended",
         },
     }
 
@@ -130,7 +135,6 @@ class UpdateViewParam(ModelComposed):
             'is_read_only': (bool, none_type,),  # noqa: E501
             'view_pinning_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'self_service_snapshot_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'enable_metadata_accelerator': (bool, none_type,),  # noqa: E501
             'is_externally_triggered_backup_target': (bool, none_type,),  # noqa: E501
             'enable_nfs_view_discovery': (bool, none_type,),  # noqa: E501
             'nfs_all_squash': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -151,6 +155,7 @@ class UpdateViewParam(ModelComposed):
             's3_access_path': (str, none_type,),  # noqa: E501
             'acl_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'versioning': (str, none_type,),  # noqa: E501
             'swift_project_domain': (str, none_type,),  # noqa: E501
             'swift_project_name': (str, none_type,),  # noqa: E501
             'swift_user_domain': (str, none_type,),  # noqa: E501
@@ -190,7 +195,6 @@ class UpdateViewParam(ModelComposed):
         'is_read_only': 'isReadOnly',  # noqa: E501
         'view_pinning_config': 'viewPinningConfig',  # noqa: E501
         'self_service_snapshot_config': 'selfServiceSnapshotConfig',  # noqa: E501
-        'enable_metadata_accelerator': 'enableMetadataAccelerator',  # noqa: E501
         'is_externally_triggered_backup_target': 'isExternallyTriggeredBackupTarget',  # noqa: E501
         'enable_nfs_view_discovery': 'enableNfsViewDiscovery',  # noqa: E501
         'nfs_all_squash': 'nfsAllSquash',  # noqa: E501
@@ -211,6 +215,7 @@ class UpdateViewParam(ModelComposed):
         's3_access_path': 's3AccessPath',  # noqa: E501
         'acl_config': 'aclConfig',  # noqa: E501
         'owner_info': 'ownerInfo',  # noqa: E501
+        'versioning': 'versioning',  # noqa: E501
         'swift_project_domain': 'swiftProjectDomain',  # noqa: E501
         'swift_project_name': 'swiftProjectName',  # noqa: E501
         'swift_user_domain': 'swiftUserDomain',  # noqa: E501
@@ -291,7 +296,6 @@ class UpdateViewParam(ModelComposed):
             is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
             view_pinning_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the pinning config of this view.. [optional]  # noqa: E501
             self_service_snapshot_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies self service config of this view.. [optional]  # noqa: E501
-            enable_metadata_accelerator (bool, none_type): Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.. [optional]  # noqa: E501
             is_externally_triggered_backup_target (bool, none_type): Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.. [optional]  # noqa: E501
             enable_nfs_view_discovery (bool, none_type): If set, it enables discovery of view for NFS.. [optional]  # noqa: E501
             nfs_all_squash ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the NFS all squash config.. [optional]  # noqa: E501
@@ -312,6 +316,7 @@ class UpdateViewParam(ModelComposed):
             s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             acl_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ACL config of the View as an S3 bucket.. [optional]  # noqa: E501
             owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the owner info of the View as an S3 bucket.. [optional]  # noqa: E501
+            versioning (str, none_type): Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.. [optional]  # noqa: E501
             swift_project_domain (str, none_type): Specifies the Keystone project domain.. [optional]  # noqa: E501
             swift_project_name (str, none_type): Specifies the Keystone project name.. [optional]  # noqa: E501
             swift_user_domain (str, none_type): Specifies the Keystone user domain.. [optional]  # noqa: E501

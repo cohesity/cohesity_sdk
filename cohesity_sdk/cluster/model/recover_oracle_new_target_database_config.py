@@ -97,18 +97,11 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
             'redo_log_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
             'oracle_update_restore_options': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'skip_clone_nid': (bool, none_type,),  # noqa: E501
-            'no_filename_check': (bool, none_type,),  # noqa: E501
-            'new_name_clause': (str, none_type,),  # noqa: E501
             'restore_time_usecs': (int, none_type,),  # noqa: E501
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
             'recovery_mode': (bool, none_type,),  # noqa: E501
             'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_archive_log_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_recovery_validation_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'restore_spfile_or_pfile_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'use_scn_for_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -130,18 +123,11 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
         'redo_log_config': 'redoLogConfig',  # noqa: E501
         'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
         'oracle_update_restore_options': 'oracleUpdateRestoreOptions',  # noqa: E501
-        'skip_clone_nid': 'skipCloneNid',  # noqa: E501
-        'no_filename_check': 'noFilenameCheck',  # noqa: E501
-        'new_name_clause': 'newNameClause',  # noqa: E501
         'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
         'db_channels': 'dbChannels',  # noqa: E501
         'recovery_mode': 'recoveryMode',  # noqa: E501
         'shell_evironment_vars': 'shellEvironmentVars',  # noqa: E501
         'granular_restore_info': 'granularRestoreInfo',  # noqa: E501
-        'oracle_archive_log_info': 'oracleArchiveLogInfo',  # noqa: E501
-        'oracle_recovery_validation_info': 'oracleRecoveryValidationInfo',  # noqa: E501
-        'restore_spfile_or_pfile_info': 'restoreSpfileOrPfileInfo',  # noqa: E501
-        'use_scn_for_restore': 'useScnForRestore',  # noqa: E501
     }
 
     required_properties = set([
@@ -204,18 +190,11 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
             redo_log_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies redo log config.. [optional]  # noqa: E501
             is_multi_stage_restore (bool, none_type): Specifies whether this task is a multistage restore task. If set, we migrate the DB after clone completes.. [optional]  # noqa: E501
             oracle_update_restore_options ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters that are needed for updating oracle restore options.. [optional]  # noqa: E501
-            skip_clone_nid (bool, none_type): Whether or not to skip the nid step in Oracle Clone workflow. Applicable to both smart and old clone workflow.. [optional]  # noqa: E501
-            no_filename_check (bool, none_type): Specifies whether to validate filenames or not in Oracle alternate restore workflow.. [optional]  # noqa: E501
-            new_name_clause (str, none_type): Specifies newname clause for db files which allows user to have full control on how their database files can be renamed during the oracle alternate restore workflow.. [optional]  # noqa: E501
             restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
             recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
             shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501
-            oracle_archive_log_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.. [optional]  # noqa: E501
-            oracle_recovery_validation_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Oracle Recovery Validation.. [optional]  # noqa: E501
-            restore_spfile_or_pfile_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to spfile/pfile restore.. [optional]  # noqa: E501
-            use_scn_for_restore (bool, none_type): Specifies whether database recovery performed should use scn value or not.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

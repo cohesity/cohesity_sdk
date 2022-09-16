@@ -74,7 +74,6 @@ class HeliosPolicyResponse(ModelComposed):
             'None': None,
             'GLOBALPOLICY': "GlobalPolicy",
             'DMAASPOLICY': "DMaaSPolicy",
-            'ONPREMPOLICY': "OnPremPolicy",
         },
         ('data_lock',): {
             'None': None,
@@ -84,12 +83,6 @@ class HeliosPolicyResponse(ModelComposed):
     }
 
     validations = {
-        ('cluster_identifier',): {
-            'regex': {
-                'pattern': r'^([0-9]+:[0-9]+)$',  # noqa: E501
-            },
-        },
-
     }
 
     additional_properties_type = None
@@ -110,8 +103,6 @@ class HeliosPolicyResponse(ModelComposed):
         return {
             'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'cluster_identifier': (str, none_type,),  # noqa: E501
-            'tenant_ids': ([str, none_type],),  # noqa: E501
             'backup_policy': (HeliosBackupPolicy,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'blackout_window': ([HeliosBlackoutWindow], none_type,),  # noqa: E501
@@ -121,7 +112,6 @@ class HeliosPolicyResponse(ModelComposed):
             'data_lock': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'num_linked_policies': (int, none_type,),  # noqa: E501
-            'num_object_protections': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -133,8 +123,6 @@ class HeliosPolicyResponse(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'cluster_identifier': 'clusterIdentifier',  # noqa: E501
-        'tenant_ids': 'tenantIds',  # noqa: E501
         'backup_policy': 'backupPolicy',  # noqa: E501
         'description': 'description',  # noqa: E501
         'blackout_window': 'blackoutWindow',  # noqa: E501
@@ -144,7 +132,6 @@ class HeliosPolicyResponse(ModelComposed):
         'data_lock': 'dataLock',  # noqa: E501
         'id': 'id',  # noqa: E501
         'num_linked_policies': 'numLinkedPolicies',  # noqa: E501
-        'num_object_protections': 'numObjectProtections',  # noqa: E501
     }
 
     required_properties = set([
@@ -199,8 +186,6 @@ class HeliosPolicyResponse(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_identifier (str, none_type): Specifies the cluster to which this policy belongs. This required is only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.. [optional]  # noqa: E501
-            tenant_ids ([str, none_type]): Specifies the tenants which have access to this object.. [optional]  # noqa: E501
             backup_policy (HeliosBackupPolicy): [optional]  # noqa: E501
             description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
             blackout_window ([HeliosBlackoutWindow], none_type): List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod.. [optional]  # noqa: E501
@@ -210,7 +195,6 @@ class HeliosPolicyResponse(ModelComposed):
             data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
             id (str, none_type): Specifies a unique policy id assigned by the Helios.. [optional]  # noqa: E501
             num_linked_policies (int, none_type): In case of global policy response, specifies the number of policies linked to this global policy on the cluster.. [optional]  # noqa: E501
-            num_object_protections (int, none_type): Specifies the number of object protections using the protection policy.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

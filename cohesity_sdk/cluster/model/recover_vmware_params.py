@@ -65,7 +65,6 @@ class RecoverVmwareParams(ModelNormal):
             'RECOVERVMDISKS': "RecoverVmDisks",
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
-            'UPTIERSNAPSHOT': "UptierSnapshot",
         },
     }
 

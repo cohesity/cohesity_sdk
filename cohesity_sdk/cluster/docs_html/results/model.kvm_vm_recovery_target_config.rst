@@ -1,4 +1,0 @@
-.. automodule:: model.kvm_vm_recovery_target_config
-   :members:
-   :undoc-members:
-   :show-inheritance:

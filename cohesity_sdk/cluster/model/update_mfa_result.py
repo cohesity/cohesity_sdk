@@ -64,7 +64,6 @@ class UpdateMFAResult(ModelComposed):
             'None': None,
             'EMAIL': "email",
             'TOTP': "totp",
-            'SALESFORCE': "salesforce",
         },
     }
 

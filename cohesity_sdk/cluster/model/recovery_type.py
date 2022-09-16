@@ -61,7 +61,6 @@ class RecoveryType(ModelNormal):
             'RECOVERVMDISKS': "RecoverVmDisks",
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
-            'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERAPPS': "RecoverApps",
@@ -79,9 +78,6 @@ class RecoveryType(ModelNormal):
             'CONVERTTOPST': "ConvertToPst",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
-            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
-            'RECOVERSFDCORG': "RecoverSfdcOrg",
-            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
     }

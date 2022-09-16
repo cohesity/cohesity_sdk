@@ -1,4 +1,0 @@
-.. automodule:: model.aws_cloud_spin_params
-   :members:
-   :undoc-members:
-   :show-inheritance:

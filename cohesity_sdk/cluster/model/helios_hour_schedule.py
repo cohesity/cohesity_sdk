@@ -109,11 +109,8 @@ class HeliosHourSchedule(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, frequency, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """HeliosHourSchedule - a model defined in OpenAPI
-
-        Args:
-            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the backup schedule. <br> Example: If 'frequency' set to 2 and the unit is 'Hours', then Snapshots are backed up every 2 hours. If selected unit is 'Weeks' or 'Months' then frequency will only be applied if policy type is DMaas.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,6 +144,7 @@ class HeliosHourSchedule(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the backup schedule. <br> Example: If 'frequency' set to 2 and the unit is 'Hours', then Snapshots are backed up every 2 hours. If selected unit is 'Weeks' or 'Months' then frequency will only be applied if policy type is DMaas.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,7 +179,6 @@ class HeliosHourSchedule(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'frequency': frequency,
         }
         model_args = {}
         model_args.update(required_args)

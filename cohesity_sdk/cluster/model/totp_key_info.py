@@ -140,10 +140,10 @@ class TotpKeyInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            totp_key_name (str): Specifies the Time based OTP key name.. [optional]  # noqa: E501
-            totp_key_id (str): Specifies the Time based OTP key ID.. [optional]  # noqa: E501
-            totp_secret_key (str): Specifies the Time based OTP secret key.. [optional]  # noqa: E501
-            totp_uri (str): Specifies the Time based OTP key URI for generating MFA QR code.. [optional]  # noqa: E501
+            totp_key_name (str): Specifies the TOTP key name.. [optional]  # noqa: E501
+            totp_key_id (str): Specifies the TOTP key ID.. [optional]  # noqa: E501
+            totp_secret_key (str): Specifies the TOTP secret key.. [optional]  # noqa: E501
+            totp_uri (str): Specifies the TOTP key URI for generating MFA QR code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

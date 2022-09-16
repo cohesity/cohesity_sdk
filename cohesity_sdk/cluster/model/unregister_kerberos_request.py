@@ -75,7 +75,6 @@ class UnregisterKerberosRequest(ModelNormal):
         """
         return {
             'admin_password': (str, none_type,),  # noqa: E501
-            'admin_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,7 +85,6 @@ class UnregisterKerberosRequest(ModelNormal):
 
     attribute_map = {
         'admin_password': 'adminPassword',  # noqa: E501
-        'admin_principal': 'adminPrincipal',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,7 +103,7 @@ class UnregisterKerberosRequest(ModelNormal):
         """UnregisterKerberosRequest - a model defined in OpenAPI
 
         Args:
-            admin_password (str, none_type): Specifies the password of Kerberos admin principal.
+            admin_password (str, none_type): Specifies the password
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -139,7 +137,6 @@ class UnregisterKerberosRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            admin_principal (str, none_type): Specifies the name of the Kerberos admin principal.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

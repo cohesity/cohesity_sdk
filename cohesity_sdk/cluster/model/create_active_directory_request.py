@@ -147,7 +147,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
         """CreateActiveDirectoryRequest - a model defined in OpenAPI
 
         Args:
-            machine_accounts ([MachineAccount], none_type): Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. The first machine account is used as primary machine account and it can not be modified.
+            machine_accounts ([MachineAccount], none_type): Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain.
             domain_name (str, none_type): Specifies the domain name of the Active Directory.
             active_directory_admin_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of a user with administrative privilege of this Active Directory.
 

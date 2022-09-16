@@ -28,10 +28,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.azure_native_protection_group_object_params import AzureNativeProtectionGroupObjectParams
-    from cohesity_sdk.cluster.model.data_transfer_info import DataTransferInfo
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     globals()['AzureNativeProtectionGroupObjectParams'] = AzureNativeProtectionGroupObjectParams
-    globals()['DataTransferInfo'] = DataTransferInfo
     globals()['IndexingPolicy'] = IndexingPolicy
 
 
@@ -94,7 +92,6 @@ class AzureNativeProtectionGroupParams(ModelNormal):
             'cloud_migration': (bool, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'data_transfer_info': (DataTransferInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -112,7 +109,6 @@ class AzureNativeProtectionGroupParams(ModelNormal):
         'cloud_migration': 'cloudMigration',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'data_transfer_info': 'dataTransferInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -170,7 +166,6 @@ class AzureNativeProtectionGroupParams(ModelNormal):
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            data_transfer_info (DataTransferInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

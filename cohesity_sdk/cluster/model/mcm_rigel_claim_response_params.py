@@ -59,11 +59,6 @@ class McmRigelClaimResponseParams(ModelNormal):
             'ONPREM': "OnPrem",
             'CLOUD': "Cloud",
         },
-        ('rigel_use_case',): {
-            'None': None,
-            'BAAS': "Baas",
-            'DRAASFAILOVER': "DRaasFailover",
-        },
     }
 
     validations = {
@@ -94,7 +89,6 @@ class McmRigelClaimResponseParams(ModelNormal):
             'tenant_ca_chain': ([str, none_type], none_type,),  # noqa: E501
             'helios_certificate': (str, none_type,),  # noqa: E501
             'dataplane_endpoint': (str, none_type,),  # noqa: E501
-            'rigel_use_case': (str, none_type,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
         }
 
@@ -115,7 +109,6 @@ class McmRigelClaimResponseParams(ModelNormal):
         'tenant_ca_chain': 'tenantCaChain',  # noqa: E501
         'helios_certificate': 'heliosCertificate',  # noqa: E501
         'dataplane_endpoint': 'dataplaneEndpoint',  # noqa: E501
-        'rigel_use_case': 'rigelUseCase',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
     }
 
@@ -176,7 +169,6 @@ class McmRigelClaimResponseParams(ModelNormal):
             tenant_ca_chain ([str, none_type], none_type): Specifies the Tenant CA chain.. [optional]  # noqa: E501
             helios_certificate (str, none_type): Specifies the Helios certificate that can be used to authenticate api calls made from Helios to Rigel.. [optional]  # noqa: E501
             dataplane_endpoint (str, none_type): Endpoint for associated data plane.. [optional]  # noqa: E501
-            rigel_use_case (str, none_type): Specifies the Rigel use case.. [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id of the Rigel cluster.. [optional]  # noqa: E501
         """
 

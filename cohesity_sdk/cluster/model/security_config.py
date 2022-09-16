@@ -34,6 +34,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.security_config_password_reuse import SecurityConfigPasswordReuse
     from cohesity_sdk.cluster.model.security_config_password_strength import SecurityConfigPasswordStrength
     from cohesity_sdk.cluster.model.security_config_session_configuration import SecurityConfigSessionConfiguration
+    from cohesity_sdk.cluster.model.security_config_ssh_configuration import SecurityConfigSshConfiguration
     globals()['SecurityConfigAccountLockout'] = SecurityConfigAccountLockout
     globals()['SecurityConfigCertificateBasedAuth'] = SecurityConfigCertificateBasedAuth
     globals()['SecurityConfigDataClassification'] = SecurityConfigDataClassification
@@ -41,6 +42,7 @@ def lazy_import():
     globals()['SecurityConfigPasswordReuse'] = SecurityConfigPasswordReuse
     globals()['SecurityConfigPasswordStrength'] = SecurityConfigPasswordStrength
     globals()['SecurityConfigSessionConfiguration'] = SecurityConfigSessionConfiguration
+    globals()['SecurityConfigSshConfiguration'] = SecurityConfigSshConfiguration
 
 
 class SecurityConfig(ModelNormal):
@@ -98,6 +100,9 @@ class SecurityConfig(ModelNormal):
             'data_classification': (SecurityConfigDataClassification,),  # noqa: E501
             'session_configuration': (SecurityConfigSessionConfiguration,),  # noqa: E501
             'certificate_based_auth': (SecurityConfigCertificateBasedAuth,),  # noqa: E501
+            'auth_token_timeout_minutes': (int, none_type,),  # noqa: E501
+            'inactivity_timeout_m_secs': (int, none_type,),  # noqa: E501
+            'ssh_configuration': (SecurityConfigSshConfiguration,),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +119,9 @@ class SecurityConfig(ModelNormal):
         'data_classification': 'dataClassification',  # noqa: E501
         'session_configuration': 'sessionConfiguration',  # noqa: E501
         'certificate_based_auth': 'certificateBasedAuth',  # noqa: E501
+        'auth_token_timeout_minutes': 'authTokenTimeoutMinutes',  # noqa: E501
+        'inactivity_timeout_m_secs': 'inactivityTimeoutMSecs',  # noqa: E501
+        'ssh_configuration': 'sshConfiguration',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -170,6 +178,9 @@ class SecurityConfig(ModelNormal):
             data_classification (SecurityConfigDataClassification): [optional]  # noqa: E501
             session_configuration (SecurityConfigSessionConfiguration): [optional]  # noqa: E501
             certificate_based_auth (SecurityConfigCertificateBasedAuth): [optional]  # noqa: E501
+            auth_token_timeout_minutes (int, none_type): Specifies the authentication token timeout in minutes. Applies both for API based access token and browser login cookie.. [optional]  # noqa: E501
+            inactivity_timeout_m_secs (int, none_type): Specifies the UI inactivity timeout in milliseconds. Default value is 30 minutes.. [optional]  # noqa: E501
+            ssh_configuration (SecurityConfigSshConfiguration): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -84,7 +84,6 @@ class CreateRigelConnectionRequest(ModelComposed):
             'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
-            'scalable': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,7 +96,6 @@ class CreateRigelConnectionRequest(ModelComposed):
         'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
-        'scalable': 'scalable',  # noqa: E501
     }
 
     required_properties = set([
@@ -153,7 +151,6 @@ class CreateRigelConnectionRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            scalable (bool, none_type): Flag to specify if the connection is scalable.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

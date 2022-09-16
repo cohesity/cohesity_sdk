@@ -29,14 +29,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.helios_archival_config import HeliosArchivalConfig
     from cohesity_sdk.cluster.model.helios_cloud_spin_config import HeliosCloudSpinConfig
-    from cohesity_sdk.cluster.model.helios_onprem_deploy_config import HeliosOnpremDeployConfig
     from cohesity_sdk.cluster.model.helios_replication_config import HeliosReplicationConfig
-    from cohesity_sdk.cluster.model.helios_rpaas_config import HeliosRpaasConfig
     globals()['HeliosArchivalConfig'] = HeliosArchivalConfig
     globals()['HeliosCloudSpinConfig'] = HeliosCloudSpinConfig
-    globals()['HeliosOnpremDeployConfig'] = HeliosOnpremDeployConfig
     globals()['HeliosReplicationConfig'] = HeliosReplicationConfig
-    globals()['HeliosRpaasConfig'] = HeliosRpaasConfig
 
 
 class HeliosTargetsConfiguration(ModelNormal):
@@ -90,8 +86,6 @@ class HeliosTargetsConfiguration(ModelNormal):
             'replication_targets': ([HeliosReplicationConfig],),  # noqa: E501
             'archival_targets': ([HeliosArchivalConfig],),  # noqa: E501
             'cloud_spin_targets': ([HeliosCloudSpinConfig],),  # noqa: E501
-            'onprem_deploy_targets': ([HeliosOnpremDeployConfig],),  # noqa: E501
-            'rpaas_targets': ([HeliosRpaasConfig],),  # noqa: E501
         }
 
     @cached_property
@@ -104,8 +98,6 @@ class HeliosTargetsConfiguration(ModelNormal):
         'replication_targets': 'replicationTargets',  # noqa: E501
         'archival_targets': 'archivalTargets',  # noqa: E501
         'cloud_spin_targets': 'cloudSpinTargets',  # noqa: E501
-        'onprem_deploy_targets': 'onpremDeployTargets',  # noqa: E501
-        'rpaas_targets': 'rpaasTargets',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,8 +150,6 @@ class HeliosTargetsConfiguration(ModelNormal):
             replication_targets ([HeliosReplicationConfig]): [optional]  # noqa: E501
             archival_targets ([HeliosArchivalConfig]): [optional]  # noqa: E501
             cloud_spin_targets ([HeliosCloudSpinConfig]): [optional]  # noqa: E501
-            onprem_deploy_targets ([HeliosOnpremDeployConfig]): [optional]  # noqa: E501
-            rpaas_targets ([HeliosRpaasConfig]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

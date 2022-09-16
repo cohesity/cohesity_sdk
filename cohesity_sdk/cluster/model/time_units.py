@@ -60,7 +60,6 @@ class TimeUnits(ModelNormal):
             'DAYS': "Days",
             'WEEKS': "Weeks",
             'MONTHS': "Months",
-            'YEARS': "Years",
         },
     }
 

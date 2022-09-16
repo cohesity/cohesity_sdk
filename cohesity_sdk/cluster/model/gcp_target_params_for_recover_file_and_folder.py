@@ -74,10 +74,11 @@ class GcpTargetParamsForRecoverFileAndFolder(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'recover_to_original_target': (bool, none_type,),  # noqa: E501
-            'original_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'new_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'overwrite_existing': (bool, none_type,),  # noqa: E501
+            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_to_original_paths': (bool, none_type,),  # noqa: E501
+            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'alternate_base_directory': (str, none_type,),  # noqa: E501
+            'overwrite_originals': (bool, none_type,),  # noqa: E501
             'preserve_attributes': (bool, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'vlan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -90,10 +91,11 @@ class GcpTargetParamsForRecoverFileAndFolder(ModelNormal):
 
 
     attribute_map = {
-        'recover_to_original_target': 'recoverToOriginalTarget',  # noqa: E501
-        'original_target_config': 'originalTargetConfig',  # noqa: E501
-        'new_target_config': 'newTargetConfig',  # noqa: E501
-        'overwrite_existing': 'overwriteExisting',  # noqa: E501
+        'target_vm': 'targetVm',  # noqa: E501
+        'recover_to_original_paths': 'recoverToOriginalPaths',  # noqa: E501
+        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
+        'alternate_base_directory': 'alternateBaseDirectory',  # noqa: E501
+        'overwrite_originals': 'overwriteOriginals',  # noqa: E501
         'preserve_attributes': 'preserveAttributes',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
         'vlan_config': 'vlanConfig',  # noqa: E501
@@ -111,11 +113,13 @@ class GcpTargetParamsForRecoverFileAndFolder(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recover_to_original_target, *args, **kwargs):  # noqa: E501
+    def __init__(self, target_vm, recover_to_original_paths, target_vm_credentials, *args, **kwargs):  # noqa: E501
         """GcpTargetParamsForRecoverFileAndFolder - a model defined in OpenAPI
 
         Args:
-            recover_to_original_target (bool, none_type): Specifies whether to recover to the original target. If true, originalTargetConfig must be specified. If false, newTargetConfig must be specified.
+            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
+            recover_to_original_paths (bool, none_type): Specifies whether to recover files to original places.
+            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies credentials to access the target VM.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,9 +153,8 @@ class GcpTargetParamsForRecoverFileAndFolder(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            original_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the configuration for recovering to the original target.. [optional]  # noqa: E501
-            new_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the configuration for recovering to a new target.. [optional]  # noqa: E501
-            overwrite_existing (bool, none_type): Specifies whether to override the existing files. Default is true.. [optional]  # noqa: E501
+            alternate_base_directory (str, none_type): Specifies a base directory under which all files and folders will be recovered. This is required if recoverToOriginalPaths is set to false.. [optional]  # noqa: E501
+            overwrite_originals (bool, none_type): Specifies whether to override the existing files. Default is true.. [optional]  # noqa: E501
             preserve_attributes (bool, none_type): Specifies whether to preserve original attributes. Default is true.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other files if one of files or folders failed to recover. Default value is false.. [optional]  # noqa: E501
             vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered files and folders. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
@@ -181,7 +184,9 @@ class GcpTargetParamsForRecoverFileAndFolder(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.recover_to_original_target = recover_to_original_target
+        self.target_vm = target_vm
+        self.recover_to_original_paths = recover_to_original_paths
+        self.target_vm_credentials = target_vm_credentials
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

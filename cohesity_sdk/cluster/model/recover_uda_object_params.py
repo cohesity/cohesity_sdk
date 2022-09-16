@@ -74,7 +74,6 @@ class RecoverUdaObjectParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'object_id': (int, none_type,),  # noqa: E501
             'object_name': (str, none_type,),  # noqa: E501
             'overwrite': (bool, none_type,),  # noqa: E501
             'rename_to': (str, none_type,),  # noqa: E501
@@ -87,7 +86,6 @@ class RecoverUdaObjectParams(ModelNormal):
 
 
     attribute_map = {
-        'object_id': 'objectId',  # noqa: E501
         'object_name': 'objectName',  # noqa: E501
         'overwrite': 'overwrite',  # noqa: E501
         'rename_to': 'renameTo',  # noqa: E501
@@ -140,7 +138,6 @@ class RecoverUdaObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_id (int, none_type): Specifies the ID of the object.. [optional]  # noqa: E501
             object_name (str, none_type): Specifies the fully qualified name of the object to be restored.. [optional]  # noqa: E501
             overwrite (bool, none_type): Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.. [optional]  # noqa: E501
             rename_to (str, none_type): Specifies the new name to which the object should be renamed to after the recovery.. [optional]  # noqa: E501

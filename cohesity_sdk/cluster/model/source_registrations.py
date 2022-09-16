@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.source_registration import SourceRegistration
-    globals()['SourceRegistration'] = SourceRegistration
+    from cohesity_sdk.cluster.model.common_source_registration_reponse_paramsbb51eef19bdd4e3f_b5257fcc70fe0a08 import CommonSourceRegistrationReponseParamsbb51eef19bdd4e3fB5257fcc70fe0a08
+    globals()['CommonSourceRegistrationReponseParamsbb51eef19bdd4e3fB5257fcc70fe0a08'] = CommonSourceRegistrationReponseParamsbb51eef19bdd4e3fB5257fcc70fe0a08
 
 
 class SourceRegistrations(ModelNormal):
@@ -79,7 +79,7 @@ class SourceRegistrations(ModelNormal):
         """
         lazy_import()
         return {
-            'registrations': ([SourceRegistration], none_type,),  # noqa: E501
+            'registrations': ([CommonSourceRegistrationReponseParamsbb51eef19bdd4e3fB5257fcc70fe0a08], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class SourceRegistrations(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            registrations ([SourceRegistration], none_type): Specifies the list of Protection Source Registrations.. [optional]  # noqa: E501
+            registrations ([CommonSourceRegistrationReponseParamsbb51eef19bdd4e3fB5257fcc70fe0a08], none_type): Specifies the list of Protection Source Registrations.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

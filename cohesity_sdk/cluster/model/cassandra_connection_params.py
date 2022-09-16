@@ -27,10 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.cassandra_connection_params_ssh_password_credentials import CassandraConnectionParamsSshPasswordCredentials
-    from cohesity_sdk.cluster.model.cassandra_connection_params_ssh_private_key_credentials import CassandraConnectionParamsSshPrivateKeyCredentials
-    globals()['CassandraConnectionParamsSshPasswordCredentials'] = CassandraConnectionParamsSshPasswordCredentials
-    globals()['CassandraConnectionParamsSshPrivateKeyCredentials'] = CassandraConnectionParamsSshPrivateKeyCredentials
+    from cohesity_sdk.cluster.model.ssh_password_credentials import SshPasswordCredentials
+    from cohesity_sdk.cluster.model.ssh_private_key_credentials import SshPrivateKeyCredentials
+    globals()['SshPasswordCredentials'] = SshPasswordCredentials
+    globals()['SshPrivateKeyCredentials'] = SshPrivateKeyCredentials
 
 
 class CassandraConnectionParams(ModelNormal):
@@ -86,8 +86,8 @@ class CassandraConnectionParams(ModelNormal):
             'is_dse_tiered_storage': (bool,),  # noqa: E501
             'is_dse_authenticator': (bool,),  # noqa: E501
             'dse_configuration_directory': (str, none_type,),  # noqa: E501
-            'ssh_password_credentials': (CassandraConnectionParamsSshPasswordCredentials,),  # noqa: E501
-            'ssh_private_key_credentials': (CassandraConnectionParamsSshPrivateKeyCredentials,),  # noqa: E501
+            'ssh_password_credentials': (SshPasswordCredentials,),  # noqa: E501
+            'ssh_private_key_credentials': (SshPrivateKeyCredentials,),  # noqa: E501
         }
 
     @cached_property
@@ -160,8 +160,8 @@ class CassandraConnectionParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             dse_configuration_directory (str, none_type): Directory from where DSE specific configuration can be read. This should be set only when you are using the DSE distribution of Cassandra.. [optional]  # noqa: E501
-            ssh_password_credentials (CassandraConnectionParamsSshPasswordCredentials): [optional]  # noqa: E501
-            ssh_private_key_credentials (CassandraConnectionParamsSshPrivateKeyCredentials): [optional]  # noqa: E501
+            ssh_password_credentials (SshPasswordCredentials): [optional]  # noqa: E501
+            ssh_private_key_credentials (SshPrivateKeyCredentials): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

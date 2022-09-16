@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
-    globals()['DataTieringTask'] = DataTieringTask
+    from cohesity_sdk.cluster.model.common_data_tiering_task_responsefbe77d13_fcf6433c_bdb813da7859148d import CommonDataTieringTaskResponsefbe77d13Fcf6433cBdb813da7859148d
+    globals()['CommonDataTieringTaskResponsefbe77d13Fcf6433cBdb813da7859148d'] = CommonDataTieringTaskResponsefbe77d13Fcf6433cBdb813da7859148d
 
 
 class DataTieringTasks(ModelSimple):
@@ -75,7 +75,7 @@ class DataTieringTasks(ModelSimple):
         """
         lazy_import()
         return {
-            'value': ([DataTieringTask], none_type,),
+            'value': ([CommonDataTieringTaskResponsefbe77d13Fcf6433cBdb813da7859148d], none_type,),
         }
 
     @cached_property
@@ -104,10 +104,10 @@ class DataTieringTasks(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] ([DataTieringTask], none_type): The list of data tiering tasks..  # noqa: E501
+            args[0] ([CommonDataTieringTaskResponsefbe77d13Fcf6433cBdb813da7859148d], none_type): The list of data tiering tasks..  # noqa: E501
 
         Keyword Args:
-            value ([DataTieringTask], none_type): The list of data tiering tasks..  # noqa: E501
+            value ([CommonDataTieringTaskResponsefbe77d13Fcf6433cBdb813da7859148d], none_type): The list of data tiering tasks..  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

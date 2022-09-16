@@ -87,7 +87,6 @@ class ObjectEnvironment(ModelNormal):
             'KHIVE': "kHive",
             'KHBASE': "kHBase",
             'KUDA': "kUDA",
-            'KSFDC': "kSfdc",
         },
     }
 

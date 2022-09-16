@@ -27,13 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.helios_cloud_spin_config_all_of import HeliosCloudSpinConfigAllOf
-    from cohesity_sdk.cluster.model.helios_cloud_spin_target import HeliosCloudSpinTarget
     from cohesity_sdk.cluster.model.helios_common_target_configuration import HeliosCommonTargetConfiguration
     from cohesity_sdk.cluster.model.helios_retention import HeliosRetention
     from cohesity_sdk.cluster.model.helios_target_schedule import HeliosTargetSchedule
-    globals()['HeliosCloudSpinConfigAllOf'] = HeliosCloudSpinConfigAllOf
-    globals()['HeliosCloudSpinTarget'] = HeliosCloudSpinTarget
     globals()['HeliosCommonTargetConfiguration'] = HeliosCommonTargetConfiguration
     globals()['HeliosRetention'] = HeliosRetention
     globals()['HeliosTargetSchedule'] = HeliosTargetSchedule
@@ -87,7 +83,6 @@ class HeliosCloudSpinConfig(ModelComposed):
         """
         lazy_import()
         return {
-            'target': (HeliosCloudSpinTarget,),  # noqa: E501
             'schedule': (HeliosTargetSchedule,),  # noqa: E501
             'retention': (HeliosRetention,),  # noqa: E501
             'copy_on_run_success': (bool, none_type,),  # noqa: E501
@@ -101,7 +96,6 @@ class HeliosCloudSpinConfig(ModelComposed):
 
 
     attribute_map = {
-        'target': 'target',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
         'retention': 'retention',  # noqa: E501
         'copy_on_run_success': 'copyOnRunSuccess',  # noqa: E501
@@ -121,11 +115,8 @@ class HeliosCloudSpinConfig(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """HeliosCloudSpinConfig - a model defined in OpenAPI
-
-        Args:
-            target (HeliosCloudSpinTarget):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -197,7 +188,6 @@ class HeliosCloudSpinConfig(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'target': target,
         }
         model_args = {}
         model_args.update(required_args)
@@ -235,7 +225,6 @@ class HeliosCloudSpinConfig(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              HeliosCloudSpinConfigAllOf,
               HeliosCommonTargetConfiguration,
           ],
           'oneOf': [

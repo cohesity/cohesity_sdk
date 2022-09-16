@@ -65,11 +65,6 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
             'HDFSOBJECTS': "HDFSObjects",
             'EXCHANGEOBJECTS': "ExchangeObjects",
             'PUBLICFOLDERS': "PublicFolders",
-            'TEAMSOBJECTS': "TeamsObjects",
-            'SHAREPOINTOBJECTS': "SharepointObjects",
-            'ONEDRIVEOBJECTS': "OneDriveObjects",
-            'UDAOBJECTS': "UdaObjects",
-            'SFDCRECORDS': "SfdcRecords",
         },
     }
 

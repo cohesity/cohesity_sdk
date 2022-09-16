@@ -21,9 +21,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.create_tdm_task_request import CreateTdmTaskRequest
+from cohesity_sdk.cluster.model.common_tdm_task_request_params658ee020_d2d64a70_a51b8a2075bac782 import CommonTdmTaskRequestParams658ee020D2d64a70A51b8a2075bac782
+from cohesity_sdk.cluster.model.common_tdm_task_response_params2568d9a56aaf43da_a0049848b3fd9cae import CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.perform_action_on_clones_request import PerformActionOnClonesRequest
 from cohesity_sdk.cluster.model.tdm_object import TdmObject
 from cohesity_sdk.cluster.model.tdm_object_timeline_events import TdmObjectTimelineEvents
 from cohesity_sdk.cluster.model.tdm_objects import TdmObjects
@@ -60,7 +60,7 @@ class TestDataManagementApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateTdmTaskRequest): Specifies the parameters to create a TDM task.
+                body (CommonTdmTaskRequestParams658ee020D2d64a70A51b8a2075bac782): Specifies the parameters to create a TDM task.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -84,7 +84,7 @@ class TestDataManagementApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                TdmTask
+                CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -113,7 +113,7 @@ class TestDataManagementApi(object):
 
         self.create_tdm_task = _Endpoint(
             settings={
-                'response_type': (TdmTask,),
+                'response_type': (CommonTdmTaskResponseParams2568d9a56aaf43daA0049848b3fd9cae,),
                 'auth': [
                     'TokenHeader',
         
@@ -145,7 +145,7 @@ class TestDataManagementApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateTdmTaskRequest,),
+                        (CommonTdmTaskRequestParams658ee020D2d64a70A51b8a2075bac782,),
                 },
                 'attribute_map': {
                 },
@@ -1011,128 +1011,6 @@ class TestDataManagementApi(object):
             },
             api_client=api_client,
             callable=__get_tdm_timeline_events_by_object_id
-        )
-
-        def __perform_action_on_clones(
-            self,
-            body,
-            **kwargs
-        ):
-            """Perform actions on clones  # noqa: E501
-
-            Performs various actions on clones. Supports actions on multiple clones.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.perform_action_on_clones(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (PerformActionOnClonesRequest): Specifies the parameters to perform an action on multiple clones.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.perform_action_on_clones = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/tdm/clones/actions',
-                'operation_id': 'perform_action_on_clones',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (PerformActionOnClonesRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__perform_action_on_clones
         )
 
         def __update_tdm_snapshot_by_id(

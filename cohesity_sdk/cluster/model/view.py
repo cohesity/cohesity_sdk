@@ -74,20 +74,24 @@ class View(ModelComposed):
             'SHORT': "Short",
             'LONG': "Long",
             'HIERARCHICAL': "Hierarchical",
-            'OBJECTID': "ObjectId",
         },
         ('category',): {
             'None': None,
             'BACKUPTARGET': "BackupTarget",
             'FILESERVICES': "FileServices",
             'OBJECTSERVICES': "ObjectServices",
-            'ARCHIVESERVICES': "ArchiveServices",
         },
         ('security_mode',): {
             'None': None,
             'NATIVEMODE': "NativeMode",
             'UNIFIEDMODE': "UnifiedMode",
             'NTFSMODE': "NtfsMode",
+        },
+        ('versioning',): {
+            'None': None,
+            'UNVERSIONED': "UnVersioned",
+            'ENABLED': "Enabled",
+            'SUSPENDED': "Suspended",
         },
     }
 
@@ -127,10 +131,8 @@ class View(ModelComposed):
             'is_target_for_migrated_data': (bool, none_type,),  # noqa: E501
             'view_failover': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'stats': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'file_count_by_size': ([FileCount], none_type,),  # noqa: E501
+            'file_count_by_size': ([FileCount],),  # noqa: E501
             'owner_sid': (str, none_type,),  # noqa: E501
-            'intent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            's3_folder_support_enabled': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'category': (str, none_type,),  # noqa: E501
             'protocol_access': ([ViewProtocol], none_type,),  # noqa: E501
@@ -157,7 +159,6 @@ class View(ModelComposed):
             'is_read_only': (bool, none_type,),  # noqa: E501
             'view_pinning_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'self_service_snapshot_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'enable_metadata_accelerator': (bool, none_type,),  # noqa: E501
             'is_externally_triggered_backup_target': (bool, none_type,),  # noqa: E501
             'enable_nfs_view_discovery': (bool, none_type,),  # noqa: E501
             'nfs_all_squash': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -178,6 +179,7 @@ class View(ModelComposed):
             's3_access_path': (str, none_type,),  # noqa: E501
             'acl_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'versioning': (str, none_type,),  # noqa: E501
             'swift_project_domain': (str, none_type,),  # noqa: E501
             'swift_project_name': (str, none_type,),  # noqa: E501
             'swift_user_domain': (str, none_type,),  # noqa: E501
@@ -210,8 +212,6 @@ class View(ModelComposed):
         'stats': 'stats',  # noqa: E501
         'file_count_by_size': 'fileCountBySize',  # noqa: E501
         'owner_sid': 'ownerSid',  # noqa: E501
-        'intent': 'intent',  # noqa: E501
-        's3_folder_support_enabled': 's3FolderSupportEnabled',  # noqa: E501
         'name': 'name',  # noqa: E501
         'category': 'category',  # noqa: E501
         'protocol_access': 'protocolAccess',  # noqa: E501
@@ -238,7 +238,6 @@ class View(ModelComposed):
         'is_read_only': 'isReadOnly',  # noqa: E501
         'view_pinning_config': 'viewPinningConfig',  # noqa: E501
         'self_service_snapshot_config': 'selfServiceSnapshotConfig',  # noqa: E501
-        'enable_metadata_accelerator': 'enableMetadataAccelerator',  # noqa: E501
         'is_externally_triggered_backup_target': 'isExternallyTriggeredBackupTarget',  # noqa: E501
         'enable_nfs_view_discovery': 'enableNfsViewDiscovery',  # noqa: E501
         'nfs_all_squash': 'nfsAllSquash',  # noqa: E501
@@ -259,6 +258,7 @@ class View(ModelComposed):
         's3_access_path': 's3AccessPath',  # noqa: E501
         'acl_config': 'aclConfig',  # noqa: E501
         'owner_info': 'ownerInfo',  # noqa: E501
+        'versioning': 'versioning',  # noqa: E501
         'swift_project_domain': 'swiftProjectDomain',  # noqa: E501
         'swift_project_name': 'swiftProjectName',  # noqa: E501
         'swift_user_domain': 'swiftUserDomain',  # noqa: E501
@@ -330,10 +330,8 @@ class View(ModelComposed):
             is_target_for_migrated_data (bool, none_type): Specifies if a view contains migrated data.. [optional]  # noqa: E501
             view_failover ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the information about the failover of the view.. [optional]  # noqa: E501
             stats ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies statistics about the View.. [optional]  # noqa: E501
-            file_count_by_size ([FileCount], none_type): Specifies the file count by size for the View.. [optional]  # noqa: E501
+            file_count_by_size ([FileCount]): Specifies the file count by size for the View.. [optional]  # noqa: E501
             owner_sid (str, none_type): Specifies the sid of the view owner.. [optional]  # noqa: E501
-            intent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the intent of the View.. [optional]  # noqa: E501
-            s3_folder_support_enabled (bool, none_type): Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the View.. [optional]  # noqa: E501
             category (str, none_type): Specifies the category of the View.. [optional]  # noqa: E501
             protocol_access ([ViewProtocol], none_type): Specifies the supported Protocols for the View.. [optional]  # noqa: E501
@@ -360,7 +358,6 @@ class View(ModelComposed):
             is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
             view_pinning_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the pinning config of this view.. [optional]  # noqa: E501
             self_service_snapshot_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies self service config of this view.. [optional]  # noqa: E501
-            enable_metadata_accelerator (bool, none_type): Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.. [optional]  # noqa: E501
             is_externally_triggered_backup_target (bool, none_type): Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.. [optional]  # noqa: E501
             enable_nfs_view_discovery (bool, none_type): If set, it enables discovery of view for NFS.. [optional]  # noqa: E501
             nfs_all_squash ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the NFS all squash config.. [optional]  # noqa: E501
@@ -381,6 +378,7 @@ class View(ModelComposed):
             s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             acl_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ACL config of the View as an S3 bucket.. [optional]  # noqa: E501
             owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the owner info of the View as an S3 bucket.. [optional]  # noqa: E501
+            versioning (str, none_type): Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.. [optional]  # noqa: E501
             swift_project_domain (str, none_type): Specifies the Keystone project domain.. [optional]  # noqa: E501
             swift_project_name (str, none_type): Specifies the Keystone project name.. [optional]  # noqa: E501
             swift_user_domain (str, none_type): Specifies the Keystone user domain.. [optional]  # noqa: E501

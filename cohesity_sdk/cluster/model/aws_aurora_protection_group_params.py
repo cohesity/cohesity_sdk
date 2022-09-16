@@ -62,6 +62,7 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
 
     validations = {
         ('objects',): {
+            'min_items': 1,
         },
 
         ('exclude_object_ids',): {
@@ -120,8 +121,11 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, objects, *args, **kwargs):  # noqa: E501
         """AwsAuroraProtectionGroupParams - a model defined in OpenAPI
+
+        Args:
+            objects ([AwsAuroraProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -155,7 +159,6 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([AwsAuroraProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             aurora_tag_ids ([[int]], none_type): Array of arrays of Aurora Tag Ids that specify aurora clusters to protect.. [optional]  # noqa: E501
             exclude_aurora_tag_ids ([[int]], none_type): Array of arrays of RDS Tag Ids that specify aurora clusters to exclude.. [optional]  # noqa: E501
@@ -187,6 +190,7 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.objects = objects
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
