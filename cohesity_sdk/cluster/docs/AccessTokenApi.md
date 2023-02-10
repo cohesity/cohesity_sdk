@@ -17,7 +17,7 @@ Before making other REST API requests, your REST client must make a an access to
 
 * Api Key Authentication (APIKeyHeader):
 ```python
-from cohesity_sdk import CohesityClientV2
+from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.create_access_token_request_params import CreateAccessTokenRequestParams
 from cohesity_sdk.cluster.model.access_token_response import AccessTokenResponse
@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = CohesityClientV2(
+client = ClusterClient(
 	cluster_vip = "0.0.0.0",
 	username = "username",
 	password = "password",
