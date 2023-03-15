@@ -10,6 +10,7 @@ harness the power of *Cohesity REST APIs* in your python applications.
 ## Table of contents :scroll:
 
  - [Getting Started](#get-started)
+ - [Version Matrix](#matrix)
  - [Documentation](#documentation)
  - [How to use](#howto)
  - [More samples](#sample)
@@ -33,6 +34,14 @@ cd cohesity_sdk
 pip install -r requirements.txt
 python setup.py install
 ```
+## <a name="matrix"></a> Version Matrix
+Cluster-SDK support Matrix
+
+|Cluster Version	| SDK version|
+|----------------|------------|
+|6.2, 6.1.x (LTS) |	1.0.x |
+|6.3 , 6.2, 6.1.x(LTS)|	1.1.x |
+|6.4+	|1.1.2|
 
 ## <a name="documentation"></a> Documentation :books:
 
