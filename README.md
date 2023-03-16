@@ -39,9 +39,7 @@ Cluster-SDK support Matrix
 
 |Cluster Version	| SDK version|
 |----------------|------------|
-|6.2, 6.1.x (LTS) |	1.0.x |
-|6.3 , 6.2, 6.1.x(LTS)|	1.1.x |
-|6.4+	|1.1.2|
+|6.6.0d_ent(V2) | 1.1.0|
 
 ## <a name="documentation"></a> Documentation :books:
 
