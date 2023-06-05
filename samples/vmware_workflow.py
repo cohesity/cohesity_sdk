@@ -1,28 +1,28 @@
-from cohesity_sdk.cohesity_client_v2.cohesity_client import CohesityClientV2
-from cohesity_sdk.cohesity_client_v2.model.create_protection_group_run_request import (
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.create_protection_group_run_request import (
     CreateProtectionGroupRunRequest,
 )
-from cohesity_sdk.cohesity_client_v2.model.create_or_update_protection_group_request import (
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import (
     CreateOrUpdateProtectionGroupRequest,
 )
-from cohesity_sdk.cohesity_client_v2.model.common_recovery_request_params import CommonRecoveryRequestParams
-from cohesity_sdk.cohesity_client_v2.model.vmware_source_registration_params import (
+from cohesity_sdk.cluster.model.common_recovery_request_params import CommonRecoveryRequestParams
+from cohesity_sdk.cluster.model.vmware_source_registration_params import (
     VmwareSourceRegistrationParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.vmware_protection_group_object_params import (
+from cohesity_sdk.cluster.model.vmware_protection_group_object_params import (
     VmwareProtectionGroupObjectParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.vcenter_registration_params import (
+from cohesity_sdk.cluster.model.vcenter_registration_params import (
     VcenterRegistrationParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.source_registration_request_params import (
+from cohesity_sdk.cluster.model.source_registration_request_params import (
     SourceRegistrationRequestParams,
 )
-from cohesity_sdk.cohesity_client_v2.model.vmware_protection_group_params import (
+from cohesity_sdk.cluster.model.vmware_protection_group_params import (
     VmwareProtectionGroupParams,
 )
 
-client = CohesityClientV2(
+client = ClusterClient(
     api_key="1625435g-4tr43t5f-g54t5r-5gfr",
     cluster_vip="x.x.x.x",
 )
