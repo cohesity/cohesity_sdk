@@ -74,6 +74,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -119,9 +120,11 @@ class CommonRecoveryResponseParams(ModelNormal):
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERAPPS': "RecoverApps",
+            'CLONEAPPS': "CloneApps",
             'RECOVERNASVOLUME': "RecoverNasVolume",
             'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
             'RECOVERSYSTEM': "RecoverSystem",
+            'RECOVEREXCHANGEDBS': "RecoverExchangeDbs",
             'CLONEAPPVIEW': "CloneAppView",
             'RECOVERSANVOLUMES': "RecoverSanVolumes",
             'RECOVERMAILBOX': "RecoverMailbox",
@@ -137,6 +140,12 @@ class CommonRecoveryResponseParams(ModelNormal):
             'RECOVERSFDCORG': "RecoverSfdcOrg",
             'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
+            'CLONEVMS': "CloneVMs",
+            'CLONEVIEW': "CloneView",
+            'CLONEREFRESHAPP': "CloneRefreshApp",
+            'CLONEVMSTOVIEW': "CloneVMsToView",
+            'CONVERTANDDEPLOYVMS': "ConvertAndDeployVMs",
+            'DEPLOYVMS': "DeployVMs",
         },
         ('tear_down_status',): {
             'None': None,
@@ -276,7 +285,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             name (str, none_type): Specifies the name of the Recovery.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for Recovery.. [optional]  # noqa: E501
             snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
             recovery_action (str): Specifies the type of recover action.. [optional]  # noqa: E501

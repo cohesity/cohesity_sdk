@@ -80,6 +80,7 @@ class CdpObjectInfo(ModelNormal):
         lazy_import()
         return {
             'cdp_enabled': (bool, none_type,),  # noqa: E501
+            'allow_re_enable_cdp': (bool, none_type,),  # noqa: E501
             'last_run_info': (CdpObjectLastRunInfo,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
         }
@@ -92,6 +93,7 @@ class CdpObjectInfo(ModelNormal):
 
     attribute_map = {
         'cdp_enabled': 'cdpEnabled',  # noqa: E501
+        'allow_re_enable_cdp': 'allowReEnableCdp',  # noqa: E501
         'last_run_info': 'lastRunInfo',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
     }
@@ -144,6 +146,7 @@ class CdpObjectInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cdp_enabled (bool, none_type): Specifies whether CDP is currently active or not. CDP might have been active on this object before, but it might not be anymore.. [optional]  # noqa: E501
+            allow_re_enable_cdp (bool, none_type): Specifies if re-enabling CDP is allowed or not through UI without any job or policy update through API.. [optional]  # noqa: E501
             last_run_info (CdpObjectLastRunInfo): [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id to which this CDP object belongs.. [optional]  # noqa: E501
         """

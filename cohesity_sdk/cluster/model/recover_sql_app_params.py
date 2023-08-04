@@ -90,6 +90,7 @@ class RecoverSqlAppParams(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
     }
 
@@ -131,6 +132,7 @@ class RecoverSqlAppParams(ModelComposed):
             'bytes_restored': (int, none_type,),  # noqa: E501
             'host_info': (HostInformation,),  # noqa: E501
             'aag_info': (AAGInfo,),  # noqa: E501
+            'is_encrypted': (bool, none_type,),  # noqa: E501
             'sql_target_params': (SqlTargetParamsForRecoverSqlApp,),  # noqa: E501
         }
 
@@ -160,6 +162,7 @@ class RecoverSqlAppParams(ModelComposed):
         'bytes_restored': 'bytesRestored',  # noqa: E501
         'host_info': 'hostInfo',  # noqa: E501
         'aag_info': 'aagInfo',  # noqa: E501
+        'is_encrypted': 'isEncrypted',  # noqa: E501
         'sql_target_params': 'sqlTargetParams',  # noqa: E501
     }
 
@@ -225,13 +228,14 @@ class RecoverSqlAppParams(ModelComposed):
             archival_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the archival target information if the snapshot is an archival snapshot.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for Recovery of VM.. [optional]  # noqa: E501
             recover_from_standby (bool, none_type): Specifies that user wants to perform standby restore if it is enabled for this object.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
             messages ([str], none_type): Specify error messages about the object.. [optional]  # noqa: E501
             bytes_restored (int, none_type): Specify the total bytes restored.. [optional]  # noqa: E501
             host_info (HostInformation): [optional]  # noqa: E501
             aag_info (AAGInfo): [optional]  # noqa: E501
+            is_encrypted (bool, none_type): Specifies whether the database is TDE enabled.. [optional]  # noqa: E501
             sql_target_params (SqlTargetParamsForRecoverSqlApp): [optional]  # noqa: E501
         """
 

@@ -28,20 +28,24 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.active_directory_all_of import ActiveDirectoryAllOf
+    from cohesity_sdk.cluster.model.active_directory_error import ActiveDirectoryError
     from cohesity_sdk.cluster.model.centrify_zones import CentrifyZones
     from cohesity_sdk.cluster.model.common_active_directory_params import CommonActiveDirectoryParams
     from cohesity_sdk.cluster.model.domain_controller import DomainController
     from cohesity_sdk.cluster.model.domain_controllers import DomainControllers
     from cohesity_sdk.cluster.model.machine_account import MachineAccount
     from cohesity_sdk.cluster.model.security_principal import SecurityPrincipal
+    from cohesity_sdk.cluster.model.task_logs import TaskLogs
     from cohesity_sdk.cluster.model.tenant import Tenant
     globals()['ActiveDirectoryAllOf'] = ActiveDirectoryAllOf
+    globals()['ActiveDirectoryError'] = ActiveDirectoryError
     globals()['CentrifyZones'] = CentrifyZones
     globals()['CommonActiveDirectoryParams'] = CommonActiveDirectoryParams
     globals()['DomainController'] = DomainController
     globals()['DomainControllers'] = DomainControllers
     globals()['MachineAccount'] = MachineAccount
     globals()['SecurityPrincipal'] = SecurityPrincipal
+    globals()['TaskLogs'] = TaskLogs
     globals()['Tenant'] = Tenant
 
 
@@ -102,10 +106,12 @@ class ActiveDirectory(ModelComposed):
             'organizational_unit_name': (str, none_type,),  # noqa: E501
             'work_group_name': (str, none_type,),  # noqa: E501
             'preferred_domain_controllers': ([DomainController], none_type,),  # noqa: E501
+            'domain_controllers_deny_list': ([str, none_type],),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
             'trusted_domain_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'nis_provider_domain_name': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
+            'task_logs': (TaskLogs,),  # noqa: E501
             'id_mapping_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'domain_name': (str, none_type,),  # noqa: E501
             'centrify_zones': ([CentrifyZones], none_type,),  # noqa: E501
@@ -113,6 +119,7 @@ class ActiveDirectory(ModelComposed):
             'security_principals': ([SecurityPrincipal], none_type,),  # noqa: E501
             'permissions': ([Tenant], none_type,),  # noqa: E501
             'transitive_ad_trust_level_limit': (int, none_type,),  # noqa: E501
+            'error': (ActiveDirectoryError,),  # noqa: E501
         }
 
     @cached_property
@@ -127,10 +134,12 @@ class ActiveDirectory(ModelComposed):
         'organizational_unit_name': 'organizationalUnitName',  # noqa: E501
         'work_group_name': 'workGroupName',  # noqa: E501
         'preferred_domain_controllers': 'preferredDomainControllers',  # noqa: E501
+        'domain_controllers_deny_list': 'domainControllersDenyList',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
         'trusted_domain_params': 'trustedDomainParams',  # noqa: E501
         'nis_provider_domain_name': 'nisProviderDomainName',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
+        'task_logs': 'taskLogs',  # noqa: E501
         'id_mapping_params': 'idMappingParams',  # noqa: E501
         'domain_name': 'domainName',  # noqa: E501
         'centrify_zones': 'centrifyZones',  # noqa: E501
@@ -138,6 +147,7 @@ class ActiveDirectory(ModelComposed):
         'security_principals': 'securityPrincipals',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
         'transitive_ad_trust_level_limit': 'transitiveAdTrustLevelLimit',  # noqa: E501
+        'error': 'error',  # noqa: E501
     }
 
     required_properties = set([
@@ -195,10 +205,12 @@ class ActiveDirectory(ModelComposed):
             organizational_unit_name (str, none_type): Specifies an optional organizational unit name.. [optional]  # noqa: E501
             work_group_name (str, none_type): Specifies a work group name.. [optional]  # noqa: E501
             preferred_domain_controllers ([DomainController], none_type): Specifies a list of preferred domain controllers of this Active Directory.. [optional]  # noqa: E501
+            domain_controllers_deny_list ([str, none_type]): Specifies a list of denied domain controllers of this Active Directory Domain.. [optional]  # noqa: E501
             ldap_provider_id (int, none_type): Specifies the LDAP provider id which is mapped to this Active Directory. [optional]  # noqa: E501
             trusted_domain_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of trusted domain info of an Active Directory.. [optional]  # noqa: E501
             nis_provider_domain_name (str, none_type): Specifies the name of the NIS Provider which is mapped to this Active Directory.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection.. [optional]  # noqa: E501
+            task_logs (TaskLogs): [optional]  # noqa: E501
             id_mapping_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of the user id mapping info of an Active Directory.. [optional]  # noqa: E501
             domain_name (str, none_type): Specifies the domain name of the Active Directory.. [optional]  # noqa: E501
             centrify_zones ([CentrifyZones], none_type): Specifies a list of centrify zones.. [optional]  # noqa: E501
@@ -206,6 +218,7 @@ class ActiveDirectory(ModelComposed):
             security_principals ([SecurityPrincipal], none_type): Specifies a list of security principals.. [optional]  # noqa: E501
             permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this Active Directory.. [optional]  # noqa: E501
             transitive_ad_trust_level_limit (int, none_type): Specifies level of transitive Active Directory trust domains to be used.. [optional]  # noqa: E501
+            error (ActiveDirectoryError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

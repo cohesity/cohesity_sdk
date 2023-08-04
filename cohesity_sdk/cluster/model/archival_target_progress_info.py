@@ -82,6 +82,11 @@ class ArchivalTargetProgressInfo(ModelComposed):
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
         },
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
+        },
         ('status',): {
             'None': None,
             'ACTIVE': "Active",

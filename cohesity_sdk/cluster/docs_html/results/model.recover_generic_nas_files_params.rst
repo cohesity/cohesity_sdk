@@ -1,4 +1,0 @@
-.. automodule:: model.recover_generic_nas_files_params
-   :members:
-   :undoc-members:
-   :show-inheritance:

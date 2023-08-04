@@ -69,6 +69,7 @@ class CommonArchivalAwsExternalTargetParams(ModelComposed):
             'AMAZONS3GLACIER': "AmazonS3Glacier",
             'AMAZONS3GLACIERDEEPARCHIVE': "AmazonS3GlacierDeepArchive",
             'AMAZONGLACIER': "AmazonGlacier",
+            'AMAZONS3GLACIERIR': "AmazonS3GlacierIR",
         },
     }
 

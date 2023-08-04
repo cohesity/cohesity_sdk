@@ -73,14 +73,6 @@ class Office365SourceRegistrationParamsAllOf(ModelNormal):
     }
 
     validations = {
-        ('office365_app_credentials_list',): {
-            'min_items': 1,
-        },
-
-        ('office365_service_account_credentials_list',): {
-            'min_items': 1,
-        },
-
     }
 
     additional_properties_type = None

@@ -66,6 +66,7 @@ class PlannedRunPollStatus(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
         ('on_prem_deploy_task_status',): {
@@ -80,6 +81,7 @@ class PlannedRunPollStatus(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -176,8 +178,8 @@ class PlannedRunPollStatus(ModelNormal):
             waiting_on_other_run_cancellations (bool, none_type): If cancelNonFailoverRuns was passed as true during creation of run for current failover then this will return the status of other run cacellations. If other runs are still pending for cancellations then this will be returned as true otherwise it will be return as false.. [optional]  # noqa: E501
             run_id (str, none_type): If run has been scheduled then this field will be populated with unique run id.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id to which this run belongs.. [optional]  # noqa: E501
-            backup_task_status (str, none_type): Status of the backup job. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
-            on_prem_deploy_task_status (str, none_type): Status of the OnPrem deploy task. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            backup_task_status (str, none_type): Status of the backup job. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
+            on_prem_deploy_task_status (str, none_type): Status of the OnPrem deploy task. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

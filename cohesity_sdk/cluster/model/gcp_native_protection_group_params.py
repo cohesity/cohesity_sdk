@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.gcp_disk_exclusion_params import GcpDiskExclusionParams
     from cohesity_sdk.cluster.model.gcp_native_protection_group_object_params import GcpNativeProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
+    globals()['GcpDiskExclusionParams'] = GcpDiskExclusionParams
     globals()['GcpNativeProtectionGroupObjectParams'] = GcpNativeProtectionGroupObjectParams
     globals()['IndexingPolicy'] = IndexingPolicy
 
@@ -89,6 +91,7 @@ class GcpNativeProtectionGroupParams(ModelNormal):
         return {
             'objects': ([GcpNativeProtectionGroupObjectParams],),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'gcp_disk_exclusion_params': (GcpDiskExclusionParams,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
@@ -105,6 +108,7 @@ class GcpNativeProtectionGroupParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'gcp_disk_exclusion_params': 'gcpDiskExclusionParams',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
@@ -161,6 +165,7 @@ class GcpNativeProtectionGroupParams(ModelNormal):
 
             objects ([GcpNativeProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            gcp_disk_exclusion_params (GcpDiskExclusionParams): [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501

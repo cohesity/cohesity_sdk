@@ -81,6 +81,7 @@ class BackupRunSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
         ('data_lock',): {
@@ -124,6 +125,7 @@ class BackupRunSummary(ModelNormal):
             'local_snapshot_stats': (BackupDataStats,),  # noqa: E501
             'indexing_task_id': (str, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
+            'stats_task_id': (str, none_type,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
             'local_task_id': (str, none_type,),  # noqa: E501
             'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
@@ -151,6 +153,7 @@ class BackupRunSummary(ModelNormal):
         'local_snapshot_stats': 'localSnapshotStats',  # noqa: E501
         'indexing_task_id': 'indexingTaskId',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
+        'stats_task_id': 'statsTaskId',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
         'local_task_id': 'localTaskId',  # noqa: E501
         'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
@@ -207,7 +210,7 @@ class BackupRunSummary(ModelNormal):
             is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            status (str, none_type): Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
             messages ([str], none_type): Message about the backup run.. [optional]  # noqa: E501
             successful_objects_count (int, none_type): Specifies the count of objects for which backup was successful.. [optional]  # noqa: E501
             failed_objects_count (int, none_type): Specifies the count of objects for which backup failed.. [optional]  # noqa: E501
@@ -218,6 +221,7 @@ class BackupRunSummary(ModelNormal):
             local_snapshot_stats (BackupDataStats): [optional]  # noqa: E501
             indexing_task_id (str, none_type): Progress monitor task for indexing.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for local backup run.. [optional]  # noqa: E501
+            stats_task_id (str, none_type): Stats task id for local backup run.. [optional]  # noqa: E501
             data_lock (str, none_type): This field is deprecated. Use DataLockConstraints field instead.. [optional]  # noqa: E501
             local_task_id (str, none_type): Task ID for a local protection run.. [optional]  # noqa: E501
             data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501

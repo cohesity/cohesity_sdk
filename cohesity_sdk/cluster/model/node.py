@@ -29,16 +29,20 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.capacity_by_tier import CapacityByTier
     from cohesity_sdk.cluster.model.chassis_info import ChassisInfo
+    from cohesity_sdk.cluster.model.component_removal_progress import ComponentRemovalProgress
     from cohesity_sdk.cluster.model.count_by_tier import CountByTier
     from cohesity_sdk.cluster.model.node_hardware_info import NodeHardwareInfo
     from cohesity_sdk.cluster.model.node_stats import NodeStats
     from cohesity_sdk.cluster.model.node_system_disk_info import NodeSystemDiskInfo
+    from cohesity_sdk.cluster.model.pre_check_validation import PreCheckValidation
     globals()['CapacityByTier'] = CapacityByTier
     globals()['ChassisInfo'] = ChassisInfo
+    globals()['ComponentRemovalProgress'] = ComponentRemovalProgress
     globals()['CountByTier'] = CountByTier
     globals()['NodeHardwareInfo'] = NodeHardwareInfo
     globals()['NodeStats'] = NodeStats
     globals()['NodeSystemDiskInfo'] = NodeSystemDiskInfo
+    globals()['PreCheckValidation'] = PreCheckValidation
 
 
 class Node(ModelNormal):
@@ -127,8 +131,18 @@ class Node(ModelNormal):
             'removal_reason': ([str], none_type,),  # noqa: E501
             'removal_state': (str, none_type,),  # noqa: E501
             'slot_number': (int, none_type,),  # noqa: E501
+            'host_name': (str, none_type,),  # noqa: E501
             'stats': (NodeStats,),  # noqa: E501
             'system_disks': ([NodeSystemDiskInfo], none_type,),  # noqa: E501
+            'services_not_acked': (str, none_type,),  # noqa: E501
+            'services_not_acked_list': ([str], none_type,),  # noqa: E501
+            'services_acked_list': ([str], none_type,),  # noqa: E501
+            'progress_percentage': (int, none_type,),  # noqa: E501
+            'time_remaining': (int, none_type,),  # noqa: E501
+            'removal_progress_list': ([ComponentRemovalProgress], none_type,),  # noqa: E501
+            'removal_timestamp_secs': (int, none_type,),  # noqa: E501
+            'precheck_timestamp_secs': (int, none_type,),  # noqa: E501
+            'validation_checks': ([PreCheckValidation], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -160,8 +174,18 @@ class Node(ModelNormal):
         'removal_reason': 'removalReason',  # noqa: E501
         'removal_state': 'removalState',  # noqa: E501
         'slot_number': 'slotNumber',  # noqa: E501
+        'host_name': 'hostName',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'system_disks': 'systemDisks',  # noqa: E501
+        'services_not_acked': 'servicesNotAcked',  # noqa: E501
+        'services_not_acked_list': 'servicesNotAckedList',  # noqa: E501
+        'services_acked_list': 'servicesAckedList',  # noqa: E501
+        'progress_percentage': 'progressPercentage',  # noqa: E501
+        'time_remaining': 'timeRemaining',  # noqa: E501
+        'removal_progress_list': 'removalProgressList',  # noqa: E501
+        'removal_timestamp_secs': 'removalTimestampSecs',  # noqa: E501
+        'precheck_timestamp_secs': 'precheckTimestampSecs',  # noqa: E501
+        'validation_checks': 'validationChecks',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -233,8 +257,18 @@ class Node(ModelNormal):
             removal_reason ([str], none_type): RemovalReason specifies the removal reason of the node. 'kAutoHealthCheck' means the entity health is bad. 'kUserGracefulRemoval' means user initiated a graceful removal. 'kUserAvoidAccess' means user initiated a mark offline. 'kUserGracefulNodeRemoval' mean users initiated graceful node removal. 'kUserRemoveDownNode' mean user initiated graceful removal of down node. 'kBridgeDataUnavailable' Bridge requested a graceful removal of a disk when it is not available.. [optional]  # noqa: E501
             removal_state (str, none_type): RemovalState specifies the removal state of the node. 'kDontRemove' means the state of object is functional and it is not being removed. 'kMarkedForRemoval' means the object is being removed. 'kOkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.. [optional]  # noqa: E501
             slot_number (int, none_type): Slot number occupied by this node within the chassis.. [optional]  # noqa: E501
+            host_name (str, none_type): Specifies the hostname of the node.. [optional]  # noqa: E501
             stats (NodeStats): [optional]  # noqa: E501
             system_disks ([NodeSystemDiskInfo], none_type): SystemDisk describes the node system disks.. [optional]  # noqa: E501
+            services_not_acked (str, none_type): Specifies the services that are not ACKed after node is marked for removal.. [optional]  # noqa: E501
+            services_not_acked_list ([str], none_type): Specifies the services not ACKed yet for removal of this entity.. [optional]  # noqa: E501
+            services_acked_list ([str], none_type): Specifies the services already ACKed for removal of this entity.. [optional]  # noqa: E501
+            progress_percentage (int, none_type): Specifies the overall progress percentage in removing the Node.. [optional]  # noqa: E501
+            time_remaining (int, none_type): Specifies the total duration in seconds left to remove the Node.. [optional]  # noqa: E501
+            removal_progress_list ([ComponentRemovalProgress], none_type): Specifies the removal progress details for services that are not acked yet.. [optional]  # noqa: E501
+            removal_timestamp_secs (int, none_type): Specifies the Unix epoch timestamp (in seconds) when the Node was marked for removal.. [optional]  # noqa: E501
+            precheck_timestamp_secs (int, none_type): Specifies the last run time of the pre-checks execution in Unix epoch timestamp (in seconds).. [optional]  # noqa: E501
+            validation_checks ([PreCheckValidation], none_type): Specifies the pre-check validations results.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

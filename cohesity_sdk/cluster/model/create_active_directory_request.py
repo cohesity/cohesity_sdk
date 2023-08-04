@@ -73,7 +73,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
 
         ('domain_name',): {
             'regex': {
-                'pattern': r'^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))*$',  # noqa: E501
+                'pattern': r'^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9]))*$',  # noqa: E501
             },
         },
 
@@ -102,6 +102,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
             'organizational_unit_name': (str, none_type,),  # noqa: E501
             'work_group_name': (str, none_type,),  # noqa: E501
             'preferred_domain_controllers': ([DomainController], none_type,),  # noqa: E501
+            'domain_controllers_deny_list': ([str, none_type],),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
             'trusted_domain_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'nis_provider_domain_name': (str, none_type,),  # noqa: E501
@@ -123,6 +124,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
         'organizational_unit_name': 'organizationalUnitName',  # noqa: E501
         'work_group_name': 'workGroupName',  # noqa: E501
         'preferred_domain_controllers': 'preferredDomainControllers',  # noqa: E501
+        'domain_controllers_deny_list': 'domainControllersDenyList',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
         'trusted_domain_params': 'trustedDomainParams',  # noqa: E501
         'nis_provider_domain_name': 'nisProviderDomainName',  # noqa: E501
@@ -187,6 +189,7 @@ class CreateActiveDirectoryRequest(ModelComposed):
             organizational_unit_name (str, none_type): Specifies an optional organizational unit name.. [optional]  # noqa: E501
             work_group_name (str, none_type): Specifies a work group name.. [optional]  # noqa: E501
             preferred_domain_controllers ([DomainController], none_type): Specifies a list of preferred domain controllers of this Active Directory.. [optional]  # noqa: E501
+            domain_controllers_deny_list ([str, none_type]): Specifies a list of denied domain controllers of this Active Directory Domain.. [optional]  # noqa: E501
             ldap_provider_id (int, none_type): Specifies the LDAP provider id which is mapped to this Active Directory. [optional]  # noqa: E501
             trusted_domain_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of trusted domain info of an Active Directory.. [optional]  # noqa: E501
             nis_provider_domain_name (str, none_type): Specifies the name of the NIS Provider which is mapped to this Active Directory.. [optional]  # noqa: E501

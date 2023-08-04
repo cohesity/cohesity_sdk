@@ -73,6 +73,12 @@ class SnapshotsSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
+        },
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
         },
     }
 
@@ -103,6 +109,7 @@ class SnapshotsSummary(ModelNormal):
             'latest_snapshot_timestamp_usecs': (int, none_type,),  # noqa: E501
             'latest_run_start_time_usecs': (int, none_type,),  # noqa: E501
             'latest_run_status': (str, none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -121,6 +128,7 @@ class SnapshotsSummary(ModelNormal):
         'latest_snapshot_timestamp_usecs': 'latestSnapshotTimestampUsecs',  # noqa: E501
         'latest_run_start_time_usecs': 'latestRunStartTimeUsecs',  # noqa: E501
         'latest_run_status': 'latestRunStatus',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -179,6 +187,7 @@ class SnapshotsSummary(ModelNormal):
             latest_snapshot_timestamp_usecs (int, none_type): Specifies the timestamp in Unix time epoch in microseconds when the latest snapshot is taken.. [optional]  # noqa: E501
             latest_run_start_time_usecs (int, none_type): Specifies the timestamp in Unix time epoch in microseconds when the latest run started.. [optional]  # noqa: E501
             latest_run_status (str, none_type): Specifies the status of latest run.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context of the snapshot target.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

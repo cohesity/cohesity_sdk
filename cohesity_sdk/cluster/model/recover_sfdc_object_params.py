@@ -54,9 +54,19 @@ class RecoverSfdcObjectParams(ModelNormal):
     """
 
     allowed_values = {
+        ('mutation_types',): {
+            'None': None,
+            'ALL': "All",
+            'ADDED': "Added",
+            'REMOVED': "Removed",
+            'CHANGED': "Changed",
+        },
     }
 
     validations = {
+        ('mutation_types',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -80,6 +90,7 @@ class RecoverSfdcObjectParams(ModelNormal):
             'parent_object_ids': ([str], none_type,),  # noqa: E501
             'child_object_ids': ([str],),  # noqa: E501
             'filter_query': (str, none_type,),  # noqa: E501
+            'mutation_types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +106,7 @@ class RecoverSfdcObjectParams(ModelNormal):
         'parent_object_ids': 'parentObjectIds',  # noqa: E501
         'child_object_ids': 'childObjectIds',  # noqa: E501
         'filter_query': 'filterQuery',  # noqa: E501
+        'mutation_types': 'mutationTypes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,6 +164,7 @@ class RecoverSfdcObjectParams(ModelNormal):
             parent_object_ids ([str], none_type): Specifies a list of parent object IDs to include in recovery. Specified parent objects will also be recovered as part of this recovery.. [optional]  # noqa: E501
             child_object_ids ([str]): Specifies a list of child object IDs to include in the recovery. Specified object IDs will also be recovered as part of this recovery.. [optional]  # noqa: E501
             filter_query (str, none_type): Specifies a Query to filter the records. This filtered list of records will be used for recovery.. [optional]  # noqa: E501
+            mutation_types ([str], none_type): Specifies a list of mutuation types for an object. Mutation type is required in conjunction with 'filterQuery'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

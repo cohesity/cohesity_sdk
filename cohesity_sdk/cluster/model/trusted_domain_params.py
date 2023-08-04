@@ -58,6 +58,12 @@ class TrustedDomainParams(ModelNormal):
     """
 
     allowed_values = {
+        ('discovery_status',): {
+            'None': None,
+            'COMPLETED': "Completed",
+            'RUNNING': "Running",
+            'ERROR': "Error",
+        },
     }
 
     validations = {
@@ -84,6 +90,8 @@ class TrustedDomainParams(ModelNormal):
             'blacklisted_domains': ([str], none_type,),  # noqa: E501
             'whitelisted_domains': ([str], none_type,),  # noqa: E501
             'only_use_whitelisted_domains': (bool, none_type,),  # noqa: E501
+            'discovery_status': (str, none_type,),  # noqa: E501
+            'task_identifier': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +106,8 @@ class TrustedDomainParams(ModelNormal):
         'blacklisted_domains': 'blacklistedDomains',  # noqa: E501
         'whitelisted_domains': 'whitelistedDomains',  # noqa: E501
         'only_use_whitelisted_domains': 'onlyUseWhitelistedDomains',  # noqa: E501
+        'discovery_status': 'discoveryStatus',  # noqa: E501
+        'task_identifier': 'taskIdentifier',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,9 +161,11 @@ class TrustedDomainParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             trusted_domains ([TrustedDomain], none_type): Specifies a list of trusted domains.. [optional]  # noqa: E501
-            blacklisted_domains ([str], none_type): Specifies a list of domains to add to blacklist. These domains will be blacklisted in trusted domain discorvery.. [optional]  # noqa: E501
+            blacklisted_domains ([str], none_type): Specifies a list of domains to add to blacklist. These domains will be blacklisted in trusted domain discovery.. [optional]  # noqa: E501
             whitelisted_domains ([str], none_type): Specifies a list of domains to add to whitelist. Only these domains will be used for authentication if 'onlyUseWhitelistedDomains' is set.. [optional]  # noqa: E501
             only_use_whitelisted_domains (bool, none_type): Specifies whether to use 'whitelistedDomains' only for authentication.. [optional]  # noqa: E501
+            discovery_status (str, none_type): Specifies the discovery status of trusted domains.. [optional]  # noqa: E501
+            task_identifier (str, none_type): Specifies the identifier for the task running discovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

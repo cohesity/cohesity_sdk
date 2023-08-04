@@ -83,6 +83,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -118,6 +119,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
             'status': (str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
+            'stats_task_id': (str, none_type,),  # noqa: E501
             'indexing_task_id': (str, none_type,),  # noqa: E501
             'successful_objects_count': (int, none_type,),  # noqa: E501
             'failed_objects_count': (int, none_type,),  # noqa: E501
@@ -152,6 +154,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
         'status': 'status',  # noqa: E501
         'message': 'message',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
+        'stats_task_id': 'statsTaskId',  # noqa: E501
         'indexing_task_id': 'indexingTaskId',  # noqa: E501
         'successful_objects_count': 'successfulObjectsCount',  # noqa: E501
         'failed_objects_count': 'failedObjectsCount',  # noqa: E501
@@ -223,9 +226,10 @@ class ArchivalTargetResultAllOf(ModelNormal):
             is_incremental (bool, none_type): Whether this is an incremental archive. If set to true, this is an incremental archive, otherwise this is a full archive.. [optional]  # noqa: E501
             is_forever_incremental (bool, none_type): Whether this is forever incremental or not. [optional]  # noqa: E501
             is_cad_archive (bool, none_type): Whether this is CAD archive or not. [optional]  # noqa: E501
-            status (str, none_type): Status of the replication run for an archival target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the replication run for an archival target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
             message (str, none_type): Message about the archival run.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for archival.. [optional]  # noqa: E501
+            stats_task_id (str, none_type): Run Stats task id for archival.. [optional]  # noqa: E501
             indexing_task_id (str, none_type): Progress monitor task for indexing.. [optional]  # noqa: E501
             successful_objects_count (int, none_type): Specifies the count of objects for which backup was successful.. [optional]  # noqa: E501
             failed_objects_count (int, none_type): Specifies the count of objects for which backup failed.. [optional]  # noqa: E501

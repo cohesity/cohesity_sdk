@@ -81,6 +81,7 @@ class TrustedDomain(ModelNormal):
         return {
             'domain_name': (str, none_type,),  # noqa: E501
             'preferred_domain_controllers': ([DomainController],),  # noqa: E501
+            'domain_controllers_deny_list': ([str, none_type],),  # noqa: E501
         }
 
     @cached_property
@@ -92,6 +93,7 @@ class TrustedDomain(ModelNormal):
     attribute_map = {
         'domain_name': 'domainName',  # noqa: E501
         'preferred_domain_controllers': 'preferredDomainControllers',  # noqa: E501
+        'domain_controllers_deny_list': 'domainControllersDenyList',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +145,7 @@ class TrustedDomain(ModelNormal):
 
             domain_name (str, none_type): Specifies a domain name.. [optional]  # noqa: E501
             preferred_domain_controllers ([DomainController]): Specifies a list of preferred domain controllers for this domain.. [optional]  # noqa: E501
+            domain_controllers_deny_list ([str, none_type]): Specifies a list of denied domain controllers of this domain.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

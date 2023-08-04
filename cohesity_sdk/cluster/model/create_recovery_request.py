@@ -55,6 +55,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.recover_pure_params import RecoverPureParams
     from cohesity_sdk.cluster.model.recover_salesforce_params import RecoverSalesforceParams
     from cohesity_sdk.cluster.model.recover_sql_params import RecoverSqlParams
+    from cohesity_sdk.cluster.model.recover_view_params import RecoverViewParams
     from cohesity_sdk.cluster.model.recover_vmware_params import RecoverVmwareParams
     from cohesity_sdk.cluster.model.uda_params import UdaParams
     globals()['CassandraParams'] = CassandraParams
@@ -85,6 +86,7 @@ def lazy_import():
     globals()['RecoverPureParams'] = RecoverPureParams
     globals()['RecoverSalesforceParams'] = RecoverSalesforceParams
     globals()['RecoverSqlParams'] = RecoverSqlParams
+    globals()['RecoverViewParams'] = RecoverViewParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
     globals()['UdaParams'] = UdaParams
 
@@ -200,6 +202,7 @@ class CreateRecoveryRequest(ModelComposed):
             'office365_params': (RecoverO365Params,),  # noqa: E501
             'oracle_params': (RecoverOracleParams,),  # noqa: E501
             'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
+            'view_params': (RecoverViewParams,),  # noqa: E501
         }
 
     @cached_property
@@ -239,6 +242,7 @@ class CreateRecoveryRequest(ModelComposed):
         'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -321,6 +325,7 @@ class CreateRecoveryRequest(ModelComposed):
             office365_params (RecoverO365Params): [optional]  # noqa: E501
             oracle_params (RecoverOracleParams): [optional]  # noqa: E501
             sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
+            view_params (RecoverViewParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

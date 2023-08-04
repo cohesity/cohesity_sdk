@@ -74,6 +74,9 @@ class MachineAccount(ModelNormal):
         ('encryption',): {
         },
 
+        ('service_principal_names',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -94,6 +97,7 @@ class MachineAccount(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'dns_host_name': (str, none_type,),  # noqa: E501
             'encryption': ([str], none_type,),  # noqa: E501
+            'service_principal_names': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +110,7 @@ class MachineAccount(ModelNormal):
         'name': 'name',  # noqa: E501
         'dns_host_name': 'dnsHostName',  # noqa: E501
         'encryption': 'encryption',  # noqa: E501
+        'service_principal_names': 'servicePrincipalNames',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -160,6 +165,7 @@ class MachineAccount(ModelNormal):
 
             dns_host_name (str, none_type): Specifies the DNS host name of the machine account.. [optional]  # noqa: E501
             encryption ([str], none_type): Specifies a list of encryption types apply to the machine account.. [optional]  # noqa: E501
+            service_principal_names ([str], none_type): Specifies the customized Service Principal Names of the Machine Account.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

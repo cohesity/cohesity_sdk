@@ -29,11 +29,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.backup_policy import BackupPolicy
     from cohesity_sdk.cluster.model.blackout_window import BlackoutWindow
+    from cohesity_sdk.cluster.model.cascaded_target_configuration import CascadedTargetConfiguration
     from cohesity_sdk.cluster.model.extended_retention_policy import ExtendedRetentionPolicy
     from cohesity_sdk.cluster.model.retry_options import RetryOptions
     from cohesity_sdk.cluster.model.targets_configuration import TargetsConfiguration
     globals()['BackupPolicy'] = BackupPolicy
     globals()['BlackoutWindow'] = BlackoutWindow
+    globals()['CascadedTargetConfiguration'] = CascadedTargetConfiguration
     globals()['ExtendedRetentionPolicy'] = ExtendedRetentionPolicy
     globals()['RetryOptions'] = RetryOptions
     globals()['TargetsConfiguration'] = TargetsConfiguration
@@ -98,6 +100,7 @@ class ProtectionPolicy(ModelNormal):
             'blackout_window': ([BlackoutWindow], none_type,),  # noqa: E501
             'extended_retention': ([ExtendedRetentionPolicy], none_type,),  # noqa: E501
             'remote_target_policy': (TargetsConfiguration,),  # noqa: E501
+            'cascaded_targets_config': ([CascadedTargetConfiguration],),  # noqa: E501
             'retry_options': (RetryOptions,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
             'version': (int, none_type,),  # noqa: E501
@@ -117,6 +120,7 @@ class ProtectionPolicy(ModelNormal):
         'blackout_window': 'blackoutWindow',  # noqa: E501
         'extended_retention': 'extendedRetention',  # noqa: E501
         'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
+        'cascaded_targets_config': 'cascadedTargetsConfig',  # noqa: E501
         'retry_options': 'retryOptions',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
         'version': 'version',  # noqa: E501
@@ -178,6 +182,7 @@ class ProtectionPolicy(ModelNormal):
             blackout_window ([BlackoutWindow], none_type): List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod.. [optional]  # noqa: E501
             extended_retention ([ExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
             remote_target_policy (TargetsConfiguration): [optional]  # noqa: E501
+            cascaded_targets_config ([CascadedTargetConfiguration]): Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. Its recommended to create cascaded configuration where protection group will be created.. [optional]  # noqa: E501
             retry_options (RetryOptions): [optional]  # noqa: E501
             data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
             version (int, none_type): Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.. [optional]  # noqa: E501

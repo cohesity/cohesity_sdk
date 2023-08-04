@@ -27,15 +27,15 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_env_specific_object_protection_params424e1a68409147df_b821_c23197b469fb import CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb
     from cohesity_sdk.cluster.model.common_object_protect_params import CommonObjectProtectParams
     from cohesity_sdk.cluster.model.create_protected_objects_request_all_of import CreateProtectedObjectsRequestAllOf
-    from cohesity_sdk.cluster.model.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.policy_config import PolicyConfig
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
+    globals()['CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb'] = CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb
     globals()['CommonObjectProtectParams'] = CommonObjectProtectParams
     globals()['CreateProtectedObjectsRequestAllOf'] = CreateProtectedObjectsRequestAllOf
-    globals()['EnvSpecificObjectProtectionRequestParams'] = EnvSpecificObjectProtectionRequestParams
     globals()['PolicyConfig'] = PolicyConfig
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
@@ -102,8 +102,9 @@ class CreateProtectedObjectsRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'objects': ([EnvSpecificObjectProtectionRequestParams], none_type,),  # noqa: E501
+            'objects': ([CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb], none_type,),  # noqa: E501
             'activate_remote_object_protection': (bool, none_type,),  # noqa: E501
+            'is_paused': (bool, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'policy_config': (PolicyConfig,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
@@ -125,6 +126,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'activate_remote_object_protection': 'activateRemoteObjectProtection',  # noqa: E501
+        'is_paused': 'isPaused',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'policy_config': 'policyConfig',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
@@ -154,7 +156,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
         """CreateProtectedObjectsRequest - a model defined in OpenAPI
 
         Args:
-            objects ([EnvSpecificObjectProtectionRequestParams], none_type): Specifies the list of objects to be protected. Multiple objects from different adapters can be provided as input.
+            objects ([CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb], none_type): Specifies the list of objects to be protected. Multiple objects from different adapters can be provided as input.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -189,6 +191,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             activate_remote_object_protection (bool, none_type): If set to true, it will look for the remote backup of the given user and object, and activates it. Creates a new backup if the remote backup is not found. After activation, this object cannot get snapshots from remote clusters.. [optional]  # noqa: E501
+            is_paused (bool, none_type): If set to true, then the object specs will be created in the paused state preventing any runs from happening until they are unpaused.. [optional]  # noqa: E501
             policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
             policy_config (PolicyConfig): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501

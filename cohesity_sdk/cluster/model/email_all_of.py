@@ -124,6 +124,7 @@ class EmailAllOf(ModelNormal):
             'task_completion_date_time_secs': (int, none_type,),  # noqa: E501
             'task_status': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
+            'protection_group_name': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
         }
@@ -163,6 +164,7 @@ class EmailAllOf(ModelNormal):
         'task_completion_date_time_secs': 'taskCompletionDateTimeSecs',  # noqa: E501
         'task_status': 'taskStatus',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'protection_group_name': 'protectionGroupName',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
     }
@@ -242,6 +244,7 @@ class EmailAllOf(ModelNormal):
             task_completion_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item was completed.\". [optional]  # noqa: E501
             task_status (str, none_type): Specifies the task item status type.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the Protection Group id protecting the mailbox.\". [optional]  # noqa: E501
+            protection_group_name (str, none_type): \"Specifies the Protection Group name protecting the mailbox item.\". [optional]  # noqa: E501
             storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             tenant_id (str, none_type): \"Specify the tenant id to which this email belongs to.\". [optional]  # noqa: E501
         """

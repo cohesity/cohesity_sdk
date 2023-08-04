@@ -27,12 +27,18 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.audit_log_config import AuditLogConfig
+    from cohesity_sdk.cluster.model.cluster_audit_log_config import ClusterAuditLogConfig
     from cohesity_sdk.cluster.model.cluster_create_network_config import ClusterCreateNetworkConfig
     from cohesity_sdk.cluster.model.cluster_proxy_server_config import ClusterProxyServerConfig
     from cohesity_sdk.cluster.model.rigel_cluster_config_params import RigelClusterConfigParams
+    from cohesity_sdk.cluster.model.views_global_settings import ViewsGlobalSettings
+    globals()['AuditLogConfig'] = AuditLogConfig
+    globals()['ClusterAuditLogConfig'] = ClusterAuditLogConfig
     globals()['ClusterCreateNetworkConfig'] = ClusterCreateNetworkConfig
     globals()['ClusterProxyServerConfig'] = ClusterProxyServerConfig
     globals()['RigelClusterConfigParams'] = RigelClusterConfigParams
+    globals()['ViewsGlobalSettings'] = ViewsGlobalSettings
 
 
 class Cluster(ModelNormal):
@@ -114,6 +120,9 @@ class Cluster(ModelNormal):
             'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
             'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
             'enable_encryption': (bool, none_type,),  # noqa: E501
+            'views_global_settings': (ViewsGlobalSettings,),  # noqa: E501
+            'file_services_audit_log_config': (AuditLogConfig,),  # noqa: E501
+            'cluster_audit_log_config': (ClusterAuditLogConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -137,6 +146,9 @@ class Cluster(ModelNormal):
         'network_config': 'networkConfig',  # noqa: E501
         'proxy_server_config': 'proxyServerConfig',  # noqa: E501
         'enable_encryption': 'enableEncryption',  # noqa: E501
+        'views_global_settings': 'viewsGlobalSettings',  # noqa: E501
+        'file_services_audit_log_config': 'fileServicesAuditLogConfig',  # noqa: E501
+        'cluster_audit_log_config': 'clusterAuditLogConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -200,6 +212,9 @@ class Cluster(ModelNormal):
             network_config (ClusterCreateNetworkConfig): [optional]  # noqa: E501
             proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
             enable_encryption (bool, none_type): Specifies whether or not encryption is enabled. If encryption is enabled, all data on the Cluster will be encrypted.. [optional]  # noqa: E501
+            views_global_settings (ViewsGlobalSettings): [optional]  # noqa: E501
+            file_services_audit_log_config (AuditLogConfig): [optional]  # noqa: E501
+            cluster_audit_log_config (ClusterAuditLogConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

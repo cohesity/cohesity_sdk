@@ -86,6 +86,7 @@ class RecoverOracleAppOriginalSourceConfig(ModelComposed):
             'roll_forward_log_path_vec': ([str], none_type,),  # noqa: E501
             'attempt_complete_recovery': (bool, none_type,),  # noqa: E501
             'roll_forward_time_msecs': (int, none_type,),  # noqa: E501
+            'stop_active_passive': (bool, none_type,),  # noqa: E501
             'restore_time_usecs': (int, none_type,),  # noqa: E501
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
             'recovery_mode': (bool, none_type,),  # noqa: E501
@@ -107,6 +108,7 @@ class RecoverOracleAppOriginalSourceConfig(ModelComposed):
         'roll_forward_log_path_vec': 'rollForwardLogPathVec',  # noqa: E501
         'attempt_complete_recovery': 'attemptCompleteRecovery',  # noqa: E501
         'roll_forward_time_msecs': 'rollForwardTimeMsecs',  # noqa: E501
+        'stop_active_passive': 'stopActivePassive',  # noqa: E501
         'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
         'db_channels': 'dbChannels',  # noqa: E501
         'recovery_mode': 'recoveryMode',  # noqa: E501
@@ -169,6 +171,7 @@ class RecoverOracleAppOriginalSourceConfig(ModelComposed):
             roll_forward_log_path_vec ([str], none_type): List of archive logs to apply on Database after overwrite restore.. [optional]  # noqa: E501
             attempt_complete_recovery (bool, none_type): Whether or not this is a complete recovery attempt.. [optional]  # noqa: E501
             roll_forward_time_msecs (int, none_type): UTC time in msecs till which we have to roll-forward the database.. [optional]  # noqa: E501
+            stop_active_passive (bool, none_type): Specifies whether allowed to automatically stop active passive resource.. [optional]  # noqa: E501
             restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
             recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501

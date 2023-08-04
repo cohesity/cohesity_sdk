@@ -94,6 +94,7 @@ class NetappRecoverFileAndFolderInfo(ModelComposed):
             'is_directory': (bool, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'messages': ([str], none_type,),  # noqa: E501
+            'is_view_file_recovery': (bool, none_type,),  # noqa: E501
             'inode_id': (int, none_type,),  # noqa: E501
         }
 
@@ -109,6 +110,7 @@ class NetappRecoverFileAndFolderInfo(ModelComposed):
         'is_directory': 'isDirectory',  # noqa: E501
         'status': 'status',  # noqa: E501
         'messages': 'messages',  # noqa: E501
+        'is_view_file_recovery': 'isViewFileRecovery',  # noqa: E501
         'inode_id': 'inodeId',  # noqa: E501
     }
 
@@ -167,6 +169,7 @@ class NetappRecoverFileAndFolderInfo(ModelComposed):
             is_directory (bool, none_type): Specifies whether this is a directory or not.. [optional]  # noqa: E501
             status (str, none_type): Specifies the recovery status for this file or folder.. [optional]  # noqa: E501
             messages ([str], none_type): Specify error messages about the file during recovery.. [optional]  # noqa: E501
+            is_view_file_recovery (bool, none_type): Specify if the recovery is of type view file/folder.. [optional]  # noqa: E501
             inode_id (int, none_type): Specifies the source inode number of the file being recovered.. [optional]  # noqa: E501
         """
 

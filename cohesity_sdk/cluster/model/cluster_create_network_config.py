@@ -93,6 +93,8 @@ class ClusterCreateNetworkConfig(ModelNormal):
             'ip_preference': (str, none_type,),  # noqa: E501
             'dhcp_network_config': (ClusterDhcpNetworkConfig,),  # noqa: E501
             'manual_network_config': (ClusterManualNetworkConfig,),  # noqa: E501
+            'secondary_dhcp_network_config': (ClusterDhcpNetworkConfig,),  # noqa: E501
+            'secondary_manual_network_config': (ClusterManualNetworkConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -109,6 +111,8 @@ class ClusterCreateNetworkConfig(ModelNormal):
         'ip_preference': 'ipPreference',  # noqa: E501
         'dhcp_network_config': 'dhcpNetworkConfig',  # noqa: E501
         'manual_network_config': 'manualNetworkConfig',  # noqa: E501
+        'secondary_dhcp_network_config': 'secondaryDhcpNetworkConfig',  # noqa: E501
+        'secondary_manual_network_config': 'secondaryManualNetworkConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,6 +171,8 @@ class ClusterCreateNetworkConfig(ModelNormal):
             ip_preference (str, none_type): Specifies IP preference of the cluster to be Ipv4/Ipv6. It is Ipv4 by default.. [optional]  # noqa: E501
             dhcp_network_config (ClusterDhcpNetworkConfig): [optional]  # noqa: E501
             manual_network_config (ClusterManualNetworkConfig): [optional]  # noqa: E501
+            secondary_dhcp_network_config (ClusterDhcpNetworkConfig): [optional]  # noqa: E501
+            secondary_manual_network_config (ClusterManualNetworkConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

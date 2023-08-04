@@ -119,6 +119,7 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
             'might_have_snapshot_tag_ids': ([str], none_type,),  # noqa: E501
             'pagination_cookie': (str, none_type,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
+            'use_cached_data': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -141,6 +142,7 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
         'might_have_snapshot_tag_ids': 'mightHaveSnapshotTagIds',  # noqa: E501
         'pagination_cookie': 'paginationCookie',  # noqa: E501
         'count': 'count',  # noqa: E501
+        'use_cached_data': 'useCachedData',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -205,6 +207,7 @@ class CommonSearchIndexedObjectsRequestParams(ModelNormal):
             might_have_snapshot_tag_ids ([str], none_type): Specifies list of snapshot tags, one or more of which might be present in the document. These are OR'ed together and the resulting criteria AND'ed with the rest of the query.. [optional]  # noqa: E501
             pagination_cookie (str, none_type): Specifies the pagination cookie with which subsequent parts of the response can be fetched.. [optional]  # noqa: E501
             count (int, none_type): Specifies the number of indexed objects to be fetched for the specified pagination cookie.. [optional]  # noqa: E501
+            use_cached_data (bool, none_type): Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

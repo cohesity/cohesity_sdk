@@ -62,6 +62,7 @@ class ScriptHost(ModelNormal):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
     }
 

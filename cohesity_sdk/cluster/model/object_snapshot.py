@@ -61,6 +61,11 @@ class ObjectSnapshot(ModelNormal):
             'RPAASARCHIVAL': "RpaasArchival",
             'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
         },
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
+        },
         ('indexing_status',): {
             'None': None,
             'INPROGRESS': "InProgress",
@@ -147,6 +152,7 @@ class ObjectSnapshot(ModelNormal):
         return {
             'id': (str, none_type,),  # noqa: E501
             'snapshot_target_type': (str, none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
             'indexing_status': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
@@ -190,6 +196,7 @@ class ObjectSnapshot(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'snapshot_target_type': 'snapshotTargetType',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
         'indexing_status': 'indexingStatus',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
@@ -273,6 +280,7 @@ class ObjectSnapshot(ModelNormal):
 
             id (str, none_type): Specifies the id of the snapshot.. [optional]  # noqa: E501
             snapshot_target_type (str, none_type): Specifies the target type where the Object's snapshot resides.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context for the target.. [optional]  # noqa: E501
             indexing_status (str, none_type): Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies id of the Protection Group.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies name of the Protection Group.. [optional]  # noqa: E501

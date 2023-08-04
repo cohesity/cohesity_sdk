@@ -28,19 +28,19 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.cassandra_connection_params import CassandraConnectionParams
-    from cohesity_sdk.cluster.model.cassandra_connection_params_ssh_password_credentials import CassandraConnectionParamsSshPasswordCredentials
-    from cohesity_sdk.cluster.model.cassandra_connection_params_ssh_private_key_credentials import CassandraConnectionParamsSshPrivateKeyCredentials
     from cohesity_sdk.cluster.model.cassandra_source_registration_params_all_of import CassandraSourceRegistrationParamsAllOf
     from cohesity_sdk.cluster.model.cassandra_source_registration_params_all_of_cassandra_credentials import CassandraSourceRegistrationParamsAllOfCassandraCredentials
     from cohesity_sdk.cluster.model.cassandra_source_registration_params_all_of_jmx_credentials import CassandraSourceRegistrationParamsAllOfJmxCredentials
     from cohesity_sdk.cluster.model.dse_solr_info import DSESolrInfo
+    from cohesity_sdk.cluster.model.ssh_password_credentials import SshPasswordCredentials
+    from cohesity_sdk.cluster.model.ssh_private_key_credentials import SshPrivateKeyCredentials
     globals()['CassandraConnectionParams'] = CassandraConnectionParams
-    globals()['CassandraConnectionParamsSshPasswordCredentials'] = CassandraConnectionParamsSshPasswordCredentials
-    globals()['CassandraConnectionParamsSshPrivateKeyCredentials'] = CassandraConnectionParamsSshPrivateKeyCredentials
     globals()['CassandraSourceRegistrationParamsAllOf'] = CassandraSourceRegistrationParamsAllOf
     globals()['CassandraSourceRegistrationParamsAllOfCassandraCredentials'] = CassandraSourceRegistrationParamsAllOfCassandraCredentials
     globals()['CassandraSourceRegistrationParamsAllOfJmxCredentials'] = CassandraSourceRegistrationParamsAllOfJmxCredentials
     globals()['DSESolrInfo'] = DSESolrInfo
+    globals()['SshPasswordCredentials'] = SshPasswordCredentials
+    globals()['SshPrivateKeyCredentials'] = SshPrivateKeyCredentials
 
 
 class CassandraSourceRegistrationParams(ModelComposed):
@@ -96,8 +96,8 @@ class CassandraSourceRegistrationParams(ModelComposed):
             'is_dse_tiered_storage': (bool,),  # noqa: E501
             'is_dse_authenticator': (bool,),  # noqa: E501
             'dse_configuration_directory': (str, none_type,),  # noqa: E501
-            'ssh_password_credentials': (CassandraConnectionParamsSshPasswordCredentials,),  # noqa: E501
-            'ssh_private_key_credentials': (CassandraConnectionParamsSshPrivateKeyCredentials,),  # noqa: E501
+            'ssh_password_credentials': (SshPasswordCredentials,),  # noqa: E501
+            'ssh_private_key_credentials': (SshPrivateKeyCredentials,),  # noqa: E501
             'jmx_credentials': (CassandraSourceRegistrationParamsAllOfJmxCredentials,),  # noqa: E501
             'cassandra_credentials': (CassandraSourceRegistrationParamsAllOfCassandraCredentials,),  # noqa: E501
             'data_center_names': ([str],),  # noqa: E501
@@ -183,8 +183,8 @@ class CassandraSourceRegistrationParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             dse_configuration_directory (str, none_type): Directory from where DSE specific configuration can be read. This should be set only when you are using the DSE distribution of Cassandra.. [optional]  # noqa: E501
-            ssh_password_credentials (CassandraConnectionParamsSshPasswordCredentials): [optional]  # noqa: E501
-            ssh_private_key_credentials (CassandraConnectionParamsSshPrivateKeyCredentials): [optional]  # noqa: E501
+            ssh_password_credentials (SshPasswordCredentials): [optional]  # noqa: E501
+            ssh_private_key_credentials (SshPrivateKeyCredentials): [optional]  # noqa: E501
             jmx_credentials (CassandraSourceRegistrationParamsAllOfJmxCredentials): [optional]  # noqa: E501
             cassandra_credentials (CassandraSourceRegistrationParamsAllOfCassandraCredentials): [optional]  # noqa: E501
             data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501

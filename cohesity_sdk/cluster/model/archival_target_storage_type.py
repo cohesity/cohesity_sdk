@@ -60,6 +60,7 @@ class ArchivalTargetStorageType(ModelNormal):
             'AWS': "AWS",
             'ORACLE': "Oracle",
             'NAS': "Nas",
+            'NAS': "NAS",
             'QSTARTAPE': "QStarTape",
             'S3COMPATIBLE': "S3Compatible",
         },
@@ -143,7 +144,7 @@ class ArchivalTargetStorageType(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enum (str): Specifies the storage type of External Target of archival purpose type.. [optional]  # noqa: E501
+            enum (str): Specifies the storage type of External Target of archival purpose type. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

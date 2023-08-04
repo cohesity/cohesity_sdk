@@ -1,4 +1,0 @@
-.. automodule:: model.recover_aws_file_and_folder_params
-   :members:
-   :undoc-members:
-   :show-inheritance:

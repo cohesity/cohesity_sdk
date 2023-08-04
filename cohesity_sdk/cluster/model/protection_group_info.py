@@ -62,6 +62,7 @@ class ProtectionGroupInfo(ModelNormal):
             'None': None,
             'KVMWARE': "kVMware",
             'KHYPERV': "kHyperV",
+            'KVCD': "kVCD",
             'KSQL': "kSQL",
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",

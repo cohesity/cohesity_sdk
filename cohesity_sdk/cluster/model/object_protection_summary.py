@@ -254,6 +254,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
         ('error_type',): {
             'None': None,

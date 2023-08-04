@@ -59,6 +59,7 @@ class McmServiceType(ModelNormal):
             'MCM': "Mcm",
             'DATAGOVERN': "DataGovern",
             'FORTKNOX': "FortKnox",
+            'SITECONTINUITY': "SiteContinuity",
         },
     }
 

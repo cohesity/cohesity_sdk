@@ -120,8 +120,8 @@ class ExternalTarget(ModelComposed):
             'tenant_ids': ([str],),  # noqa: E501
             'cloud_domains': ([CloudDomain], none_type,),  # noqa: E501
             'storage_domain_name': (str, none_type,),  # noqa: E501
-            'is_worm_capable': (bool, none_type,),  # noqa: E501
             'ownership_context': (str, none_type,),  # noqa: E501
+            'is_worm_capable': (bool, none_type,),  # noqa: E501
             'archival_params': (ArchivalExternalTargetParams,),  # noqa: E501
             'tiering_params': (TieringExternalTargetParams,),  # noqa: E501
         }
@@ -143,8 +143,8 @@ class ExternalTarget(ModelComposed):
         'tenant_ids': 'tenantIds',  # noqa: E501
         'cloud_domains': 'cloudDomains',  # noqa: E501
         'storage_domain_name': 'storageDomainName',  # noqa: E501
-        'is_worm_capable': 'isWormCapable',  # noqa: E501
         'ownership_context': 'ownershipContext',  # noqa: E501
+        'is_worm_capable': 'isWormCapable',  # noqa: E501
         'archival_params': 'archivalParams',  # noqa: E501
         'tiering_params': 'tieringParams',  # noqa: E501
     }
@@ -209,8 +209,8 @@ class ExternalTarget(ModelComposed):
             tenant_ids ([str]): Specifies the list of tenantIds for the External Target. [optional]  # noqa: E501
             cloud_domains ([CloudDomain], none_type): Specifies the cloud domain information.. [optional]  # noqa: E501
             storage_domain_name (str, none_type): Specifies the storage domain associated with the target.. [optional]  # noqa: E501
-            is_worm_capable (bool, none_type): Specifies whether this external target has been found to be capable of supporting WORM archives.. [optional]  # noqa: E501
             ownership_context (str, none_type): Specifies whether how this external target is being consumed either Local or FortKnox.. [optional]  # noqa: E501
+            is_worm_capable (bool, none_type): Specifies whether this external target has been found to be capable of supporting WORM archives.. [optional]  # noqa: E501
             archival_params (ArchivalExternalTargetParams): [optional]  # noqa: E501
             tiering_params (TieringExternalTargetParams): [optional]  # noqa: E501
         """

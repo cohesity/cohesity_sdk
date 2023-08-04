@@ -68,12 +68,16 @@ class KmsConfigurationCreateParams(ModelComposed):
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
-            'NONE': "None",
         },
         ('usage_type',): {
             'None': None,
             'KARCHIVAL': "kArchival",
             'KRPAASARCHIVAL': "kRpaasArchival",
+        },
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
         },
     }
 

@@ -83,6 +83,7 @@ class InfectedFile(ModelNormal):
             'entity_id': (int, none_type,),  # noqa: E501
             'root_inode_id': (int, none_type,),  # noqa: E501
             'view_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
             'threat_descriptions': ([str], none_type,),  # noqa: E501
             'scanned_time_usecs': (int, none_type,),  # noqa: E501
@@ -103,6 +104,7 @@ class InfectedFile(ModelNormal):
         'entity_id': 'entityId',  # noqa: E501
         'root_inode_id': 'rootInodeId',  # noqa: E501
         'view_id': 'viewId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
         'state': 'state',  # noqa: E501
         'threat_descriptions': 'threatDescriptions',  # noqa: E501
         'scanned_time_usecs': 'scannedTimeUsecs',  # noqa: E501
@@ -163,7 +165,8 @@ class InfectedFile(ModelNormal):
             entity_id (int, none_type): Specifies the entity id of the infected file.. [optional]  # noqa: E501
             root_inode_id (int, none_type): Specifies the root inode id of the file system which the infected file belongs to.. [optional]  # noqa: E501
             view_id (int, none_type): Specifies the view id which the infected file belongs to.. [optional]  # noqa: E501
-            state (str, none_type): Sepcifies the state of the infected file.. [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the View name to which the infected file belongs to.. [optional]  # noqa: E501
+            state (str, none_type): Specifies the state of the infected file.. [optional]  # noqa: E501
             threat_descriptions ([str], none_type): Specifies a list of virus threat descriptions found in the file.. [optional]  # noqa: E501
             scanned_time_usecs (int, none_type): Specifies the timestamp in microseconds when inode was scanned for viruses.. [optional]  # noqa: E501
             detected_time_usecs (int, none_type): Specifies the timestamp in microseconds when the threats were detected.. [optional]  # noqa: E501

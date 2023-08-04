@@ -58,6 +58,12 @@ class ViewAliasInfo(ModelNormal):
     """
 
     allowed_values = {
+        ('file_audit_logging_state',): {
+            'None': None,
+            'INHERITED': "Inherited",
+            'ENABLED': "Enabled",
+            'DISABLED': "Disabled",
+        },
     }
 
     validations = {
@@ -84,6 +90,7 @@ class ViewAliasInfo(ModelNormal):
             'smb_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'client_subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
             'enable_filer_audit_log': (bool, none_type,),  # noqa: E501
+            'file_audit_logging_state': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,6 +105,7 @@ class ViewAliasInfo(ModelNormal):
         'smb_config': 'smbConfig',  # noqa: E501
         'client_subnet_whitelist': 'clientSubnetWhitelist',  # noqa: E501
         'enable_filer_audit_log': 'enableFilerAuditLog',  # noqa: E501
+        'file_audit_logging_state': 'fileAuditLoggingState',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,7 +159,8 @@ class ViewAliasInfo(ModelNormal):
             view_path (str, none_type): View path for the alias.. [optional]  # noqa: E501
             smb_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): SMB config for the alias (share).. [optional]  # noqa: E501
             client_subnet_whitelist ([Subnet], none_type): List of external client subnet IPs that are allowed to access the share.. [optional]  # noqa: E501
-            enable_filer_audit_log (bool, none_type): Specifies whether to enable filer audit log on this view alias. This is only used if filer audit logging is enabled in cluster config.. [optional]  # noqa: E501
+            enable_filer_audit_log (bool, none_type): This field is currently deprecated. Specifies whether to enable filer audit log on this view alias. This is only used if filer audit logging is enabled in cluster config.. [optional]  # noqa: E501
+            file_audit_logging_state (str, none_type): Specifies the state of File Audit logging for this Share. Supported types: [Inherited, Enabled, Disabled]. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -58,6 +58,8 @@ class TenantMigrationAction(ModelNormal):
             'None': None,
             'STARTMIGRATION': "StartMigration",
             'STOPMIGRATION': "StopMigration",
+            'DISABLEINLINECHANGES': "DisableInlineChanges",
+            'ENABLEINLINECHANGES': "EnableInlineChanges",
         },
     }
 

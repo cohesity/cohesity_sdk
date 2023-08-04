@@ -258,6 +258,7 @@ class CommonObjectSummary(ModelComposed):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
     }
 

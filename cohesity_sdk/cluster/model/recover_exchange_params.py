@@ -56,6 +56,7 @@ class RecoverExchangeParams(ModelNormal):
     allowed_values = {
         ('recovery_action',): {
             'RECOVERAPPS': "RecoverApps",
+            'RECOVEREXCHANGEDBS': "RecoverExchangeDbs",
         },
     }
 
@@ -79,6 +80,7 @@ class RecoverExchangeParams(ModelNormal):
         return {
             'recovery_action': (str,),  # noqa: E501
             'recover_app_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_exchange_dbs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +92,7 @@ class RecoverExchangeParams(ModelNormal):
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
         'recover_app_params': 'recoverAppParams',  # noqa: E501
+        'recover_exchange_dbs_params': 'recoverExchangeDbsParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -104,13 +107,13 @@ class RecoverExchangeParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, recovery_action, *args, **kwargs):  # noqa: E501
         """RecoverExchangeParams - a model defined in OpenAPI
 
         Args:
+            recovery_action (str): Specifies the type of recover action to be performed.
 
         Keyword Args:
-            recovery_action (str): Specifies the type of recover action to be performed.. defaults to "RecoverApps", must be one of ["RecoverApps", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -142,10 +145,10 @@ class RecoverExchangeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_app_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Exchange databases.. [optional]  # noqa: E501
+            recover_app_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Exchange databases using SMB share.. [optional]  # noqa: E501
+            recover_exchange_dbs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Exchange databases.. [optional]  # noqa: E501
         """
 
-        recovery_action = kwargs.get('recovery_action', "RecoverApps")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

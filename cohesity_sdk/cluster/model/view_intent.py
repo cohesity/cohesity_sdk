@@ -65,6 +65,7 @@ class ViewIntent(ModelNormal):
             'FILESERVICEARCHIVE': "FileServiceArchive",
             'OBJECTSERVICECONTAINER': "ObjectServiceContainer",
             'ZDLRA': "ZDLRA",
+            'SAPHANA': "SAPHANA",
             'TSM': "TSM",
             'APPLICATIONSDUMP': "ApplicationsDump",
             'FILESERVICEGENERAL': "FileServiceGeneral",
@@ -72,7 +73,6 @@ class ViewIntent(ModelNormal):
             'OBJECTSERVICEGENERAL': "ObjectServiceGeneral",
             'SPLUNKSMARTSTORE': "SplunkSmartStore",
             'HADOOP': "Hadoop",
-            'ARCHIVESERVICESGENERAL': "ArchiveServicesGeneral",
         },
     }
 

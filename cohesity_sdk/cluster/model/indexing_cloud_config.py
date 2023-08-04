@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.azure_es_config_for_indexing import AzureESConfigForIndexing
+    from cohesity_sdk.cluster.model.azure_storage_config_for_indexing import AzureStorageConfigForIndexing
     from cohesity_sdk.cluster.model.es_config_for_indexing import ESConfigForIndexing
     from cohesity_sdk.cluster.model.s3_config_for_indexing import S3ConfigForIndexing
+    globals()['AzureESConfigForIndexing'] = AzureESConfigForIndexing
+    globals()['AzureStorageConfigForIndexing'] = AzureStorageConfigForIndexing
     globals()['ESConfigForIndexing'] = ESConfigForIndexing
     globals()['S3ConfigForIndexing'] = S3ConfigForIndexing
 
@@ -84,7 +88,9 @@ class IndexingCloudConfig(ModelNormal):
             'tenant_id': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
             'es_config': (ESConfigForIndexing,),  # noqa: E501
+            'azure_es_config': (AzureESConfigForIndexing,),  # noqa: E501
             's3_config': (S3ConfigForIndexing,),  # noqa: E501
+            'azure_storage_config': (AzureStorageConfigForIndexing,),  # noqa: E501
         }
 
     @cached_property
@@ -97,7 +103,9 @@ class IndexingCloudConfig(ModelNormal):
         'tenant_id': 'tenantId',  # noqa: E501
         'region': 'region',  # noqa: E501
         'es_config': 'esConfig',  # noqa: E501
+        'azure_es_config': 'azureEsConfig',  # noqa: E501
         's3_config': 's3Config',  # noqa: E501
+        'azure_storage_config': 'azureStorageConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,14 +120,12 @@ class IndexingCloudConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, tenant_id, region, es_config, s3_config, *args, **kwargs):  # noqa: E501
+    def __init__(self, tenant_id, region, *args, **kwargs):  # noqa: E501
         """IndexingCloudConfig - a model defined in OpenAPI
 
         Args:
             tenant_id (str, none_type): Tenant ID to which this config belongs.
             region (str, none_type): Name of the cloud region.
-            es_config (ESConfigForIndexing):
-            s3_config (S3ConfigForIndexing):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,6 +159,10 @@ class IndexingCloudConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            es_config (ESConfigForIndexing): [optional]  # noqa: E501
+            azure_es_config (AzureESConfigForIndexing): [optional]  # noqa: E501
+            s3_config (S3ConfigForIndexing): [optional]  # noqa: E501
+            azure_storage_config (AzureStorageConfigForIndexing): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,8 +191,6 @@ class IndexingCloudConfig(ModelNormal):
 
         self.tenant_id = tenant_id
         self.region = region
-        self.es_config = es_config
-        self.s3_config = s3_config
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

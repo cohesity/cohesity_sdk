@@ -260,6 +260,7 @@ class Object(ModelComposed):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
     }
 
@@ -310,7 +311,9 @@ class Object(ModelComposed):
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -348,7 +351,9 @@ class Object(ModelComposed):
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
+        'group_params': 'groupParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -427,7 +432,9 @@ class Object(ModelComposed):
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
             sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
+            group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for M365 Group object.. [optional]  # noqa: E501
             uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
+            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for a View.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

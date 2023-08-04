@@ -60,6 +60,7 @@ class FailoverRunConfiguration(ModelNormal):
     allowed_values = {
         ('run_type',): {
             'KALL': "kAll",
+            'KHYDRATECDP': "kHydrateCDP",
             'KSYSTEM': "kSystem",
             'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
             'KINCREMENTAL': "kIncremental",

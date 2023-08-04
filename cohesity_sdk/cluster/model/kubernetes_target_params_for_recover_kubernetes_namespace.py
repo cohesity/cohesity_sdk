@@ -63,10 +63,6 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
     }
 
     validations = {
-        ('objects',): {
-            'min_items': 1,
-        },
-
     }
 
     additional_properties_type = None

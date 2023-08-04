@@ -59,6 +59,7 @@ class ViewProtectionType(ModelNormal):
             'ARCHIVAL': "Archival",
             'REPLICATIONOUT': "ReplicationOut",
             'REPLICATIONIN': "ReplicationIn",
+            'UNPROTECTED': "UnProtected",
         },
     }
 

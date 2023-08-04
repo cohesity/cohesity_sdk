@@ -214,6 +214,7 @@ class ObjectSummaryAllOf(ModelNormal):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
     }
 

@@ -1,4 +1,0 @@
-.. automodule:: model.object_type_v_center_params
-   :members:
-   :undoc-members:
-   :show-inheritance:

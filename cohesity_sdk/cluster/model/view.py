@@ -81,13 +81,18 @@ class View(ModelComposed):
             'BACKUPTARGET': "BackupTarget",
             'FILESERVICES': "FileServices",
             'OBJECTSERVICES': "ObjectServices",
-            'ARCHIVESERVICES': "ArchiveServices",
         },
         ('security_mode',): {
             'None': None,
             'NATIVEMODE': "NativeMode",
             'UNIFIEDMODE': "UnifiedMode",
             'NTFSMODE': "NtfsMode",
+        },
+        ('versioning',): {
+            'None': None,
+            'UNVERSIONED': "UnVersioned",
+            'ENABLED': "Enabled",
+            'SUSPENDED': "Suspended",
         },
     }
 
@@ -178,6 +183,8 @@ class View(ModelComposed):
             's3_access_path': (str, none_type,),  # noqa: E501
             'acl_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'versioning': (str, none_type,),  # noqa: E501
+            'lifecycle_management': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'swift_project_domain': (str, none_type,),  # noqa: E501
             'swift_project_name': (str, none_type,),  # noqa: E501
             'swift_user_domain': (str, none_type,),  # noqa: E501
@@ -259,6 +266,8 @@ class View(ModelComposed):
         's3_access_path': 's3AccessPath',  # noqa: E501
         'acl_config': 'aclConfig',  # noqa: E501
         'owner_info': 'ownerInfo',  # noqa: E501
+        'versioning': 'versioning',  # noqa: E501
+        'lifecycle_management': 'lifecycleManagement',  # noqa: E501
         'swift_project_domain': 'swiftProjectDomain',  # noqa: E501
         'swift_project_name': 'swiftProjectName',  # noqa: E501
         'swift_user_domain': 'swiftUserDomain',  # noqa: E501
@@ -381,6 +390,8 @@ class View(ModelComposed):
             s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             acl_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ACL config of the View as an S3 bucket.. [optional]  # noqa: E501
             owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the owner info of the View as an S3 bucket.. [optional]  # noqa: E501
+            versioning (str, none_type): Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.. [optional]  # noqa: E501
+            lifecycle_management ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the S3 Lifecycle policy of the bucket. [optional]  # noqa: E501
             swift_project_domain (str, none_type): Specifies the Keystone project domain.. [optional]  # noqa: E501
             swift_project_name (str, none_type): Specifies the Keystone project name.. [optional]  # noqa: E501
             swift_user_domain (str, none_type): Specifies the Keystone user domain.. [optional]  # noqa: E501

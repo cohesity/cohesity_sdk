@@ -1,0 +1,15 @@
+# RecoverAwsAuroraNewSourceNetworkConfig
+
+Specifies the network config parameters to be applied for AWS Aurora if recovering to new Source.
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**vpc** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the Virtual Private Cloud to choose for the instance type. | 
+**subnet** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the subnet within above VPC. | 
+**availability_zone** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the entity representing the availability zone to use while restoring the DB. | [optional] 
+**security_groups** | [**[RecoveryObjectIdentifier], none_type**](RecoveryObjectIdentifier.md) | Specifies the network security groups within above VPC. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

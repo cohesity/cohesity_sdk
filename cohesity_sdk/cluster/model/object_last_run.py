@@ -254,6 +254,7 @@ class ObjectLastRun(ModelComposed):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
         ('backup_run_status',): {
             'None': None,
@@ -267,6 +268,7 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
         ('archival_run_status',): {
@@ -281,6 +283,7 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
         ('replication_run_status',): {
@@ -295,6 +298,7 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }

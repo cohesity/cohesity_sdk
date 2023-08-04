@@ -77,6 +77,7 @@ class DownloadAgentRequestParams(ModelNormal):
             'KSAPORACLE': "kSapOracle",
             'KCOCKROACHDB': "kCockroachDB",
             'KMYSQL': "kMySQL",
+            'KHPUX': "kHPUX",
             'KVMWARECDPFILTER': "kVMWareCDPFilter",
         },
     }

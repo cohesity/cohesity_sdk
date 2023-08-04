@@ -254,6 +254,7 @@ class ObjectSummary(ModelComposed):
             'KSOLARIS': "kSolaris",
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
+            'KHPUX': "kHPUX",
         },
     }
 

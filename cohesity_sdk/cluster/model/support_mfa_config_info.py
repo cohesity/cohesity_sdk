@@ -83,6 +83,7 @@ class SupportMfaConfigInfo(ModelNormal):
             'enabled': (bool,),  # noqa: E501
             'mfa_type': (str, none_type,),  # noqa: E501
             'email': (str, none_type,),  # noqa: E501
+            'mfa_code': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +96,7 @@ class SupportMfaConfigInfo(ModelNormal):
         'enabled': 'enabled',  # noqa: E501
         'mfa_type': 'mfaType',  # noqa: E501
         'email': 'email',  # noqa: E501
+        'mfa_code': 'mfaCode',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,6 +149,7 @@ class SupportMfaConfigInfo(ModelNormal):
             enabled (bool): Specifies whether MFA is enabled for support user.. [optional] if omitted the server will use the default value of False  # noqa: E501
             mfa_type (str, none_type): Specifies the mechanism to receive the OTP code.. [optional]  # noqa: E501
             email (str, none_type): Specifies email address of the support user. Used when MFA mode is email.. [optional]  # noqa: E501
+            mfa_code (str, none_type): MFA code that needs to be passed when disabling MFA or changing email address when email based MFA is configured.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -57,6 +57,8 @@ class DmaasTenantAction(ModelNormal):
         ('enum',): {
             'STARTMIGRATION': "StartMigration",
             'STOPMIGRATION': "StopMigration",
+            'DISABLEINLINECHANGES': "DisableInlineChanges",
+            'ENABLEINLINECHANGES': "EnableInlineChanges",
         },
     }
 

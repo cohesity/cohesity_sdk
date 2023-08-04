@@ -92,6 +92,7 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
             'None': None,
             'KVMWARE': "kVMware",
             'KHYPERV': "kHyperV",
+            'KVCD': "kVCD",
             'KAZURE': "kAzure",
             'KGCP': "kGCP",
             'KKVM': "kKVM",

@@ -57,6 +57,7 @@ class Environment(ModelNormal):
         ('environment',): {
             'KVMWARE': "kVMware",
             'KHYPERV': "kHyperV",
+            'KVCD': "kVCD",
             'KSQL': "kSQL",
             'KVIEW': "kView",
             'KREMOTEADAPTER': "kRemoteAdapter",

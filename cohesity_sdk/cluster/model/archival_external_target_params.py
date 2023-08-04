@@ -85,6 +85,7 @@ class ArchivalExternalTargetParams(ModelComposed):
             'AWS': "AWS",
             'ORACLE': "Oracle",
             'NAS': "Nas",
+            'NAS': "NAS",
             'QSTARTAPE': "QStarTape",
             'S3COMPATIBLE': "S3Compatible",
         },
@@ -157,7 +158,7 @@ class ArchivalExternalTargetParams(ModelComposed):
         """ArchivalExternalTargetParams - a model defined in OpenAPI
 
         Args:
-            storage_type (str, none_type): Specifies the Storage type of the External Target.
+            storage_type (str, none_type): Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.
             encryption (EncryptionSettings):
 
         Keyword Args:

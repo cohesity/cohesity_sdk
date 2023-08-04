@@ -27,11 +27,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.advanced_settings import AdvancedSettings
     from cohesity_sdk.cluster.model.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
     from cohesity_sdk.cluster.model.filter import Filter
     from cohesity_sdk.cluster.model.mssql_native_protection_group_object_params import MSSQLNativeProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.mssql_native_protection_group_params_all_of import MSSQLNativeProtectionGroupParamsAllOf
     from cohesity_sdk.cluster.model.pre_post_script_params import PrePostScriptParams
+    globals()['AdvancedSettings'] = AdvancedSettings
     globals()['CommonMSSQLProtectionGroupParams'] = CommonMSSQLProtectionGroupParams
     globals()['Filter'] = Filter
     globals()['MSSQLNativeProtectionGroupObjectParams'] = MSSQLNativeProtectionGroupObjectParams
@@ -116,6 +118,7 @@ class MSSQLNativeProtectionGroupParams(ModelComposed):
             'exclude_filters': ([Filter], none_type,),  # noqa: E501
             'log_backup_num_streams': (int, none_type,),  # noqa: E501
             'log_backup_with_clause': (str, none_type,),  # noqa: E501
+            'advanced_settings': (AdvancedSettings,),  # noqa: E501
         }
 
     @cached_property
@@ -137,6 +140,7 @@ class MSSQLNativeProtectionGroupParams(ModelComposed):
         'exclude_filters': 'excludeFilters',  # noqa: E501
         'log_backup_num_streams': 'logBackupNumStreams',  # noqa: E501
         'log_backup_with_clause': 'logBackupWithClause',  # noqa: E501
+        'advanced_settings': 'advancedSettings',  # noqa: E501
     }
 
     required_properties = set([
@@ -201,6 +205,7 @@ class MSSQLNativeProtectionGroupParams(ModelComposed):
             exclude_filters ([Filter], none_type): Specifies the list of exclusion filters applied during the group creation or edit. These exclusion filters can be wildcard supported strings or regular expressions. Objects satisfying the will filters will be excluded during backup and also auto protected objects will be ignored if filtered by any of the filters.. [optional]  # noqa: E501
             log_backup_num_streams (int, none_type): Specifies the number of streams to be used for log backups.. [optional]  # noqa: E501
             log_backup_with_clause (str, none_type): Specifies the WithClause to be used for log backups.. [optional]  # noqa: E501
+            advanced_settings (AdvancedSettings): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

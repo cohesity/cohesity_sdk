@@ -84,6 +84,7 @@ class CassandraParams(ModelNormal):
         return {
             'recovery_action': (str,),  # noqa: E501
             'recover_cassandra_params': (RecoverCassandraParams,),  # noqa: E501
+            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +96,7 @@ class CassandraParams(ModelNormal):
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
         'recover_cassandra_params': 'recoverCassandraParams',  # noqa: E501
+        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +150,7 @@ class CassandraParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_multi_stage_restore (bool, none_type): Specifies whether the current recovery operation is a multi-stage restore operation.. [optional]  # noqa: E501
         """
 
         recovery_action = kwargs.get('recovery_action', "RecoverObjects")

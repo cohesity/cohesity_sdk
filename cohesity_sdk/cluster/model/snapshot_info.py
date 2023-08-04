@@ -104,6 +104,8 @@ class SnapshotInfo(ModelNormal):
             'snapshot_creation_time_usecs': (int, none_type,),  # noqa: E501
             'stats': (BackupDataStats,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
+            'indexing_task_id': (str, none_type,),  # noqa: E501
+            'stats_task_id': (str, none_type,),  # noqa: E501
             'warnings': ([str], none_type,),  # noqa: E501
             'is_manually_deleted': (bool, none_type,),  # noqa: E501
             'expiry_time_usecs': (int, none_type,),  # noqa: E501
@@ -130,6 +132,8 @@ class SnapshotInfo(ModelNormal):
         'snapshot_creation_time_usecs': 'snapshotCreationTimeUsecs',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
+        'indexing_task_id': 'indexingTaskId',  # noqa: E501
+        'stats_task_id': 'statsTaskId',  # noqa: E501
         'warnings': 'warnings',  # noqa: E501
         'is_manually_deleted': 'isManuallyDeleted',  # noqa: E501
         'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
@@ -195,7 +199,9 @@ class SnapshotInfo(ModelNormal):
             queue_duration_usecs (int, none_type): Specifies the duration between the startTime and when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated considering the time when permit is granted again. Queue duration = PermitGrantTimeUsecs - StartTimeUsecs. [optional]  # noqa: E501
             snapshot_creation_time_usecs (int, none_type): Specifies the time at which the source snapshot was taken in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             stats (BackupDataStats): [optional]  # noqa: E501
-            progress_task_id (str, none_type): Progress monitor task for an object.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task for backup of the object.. [optional]  # noqa: E501
+            indexing_task_id (str, none_type): Progress monitor task for the indexing of documents in an object.. [optional]  # noqa: E501
+            stats_task_id (str, none_type): Stats task for an object.. [optional]  # noqa: E501
             warnings ([str], none_type): Specifies a list of warning messages.. [optional]  # noqa: E501
             is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501
             expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
