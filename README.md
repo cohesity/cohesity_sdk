@@ -11,7 +11,6 @@ harness the power of *Cohesity REST APIs* in your python applications.
 
  - [Getting Started](#get-started)
  - [Version Matrix](#matrix)
- - [Documentation](#documentation)
  - [How to use](#howto)
  - [More samples](#sample)
  - [How can you contribute](#contribute)
@@ -40,10 +39,6 @@ Cluster-SDK support Matrix
 |Cluster Version	| SDK version|
 |----------------|------------|
 |6.6.0d_ent(V2) | 1.1.0|
-
-## <a name="documentation"></a> Documentation :books:
-
-<a href="https://developer.cohesity.com/versions.html">Refer Python docs for your cluster version. </a>
 
 ## <a name="howto"></a> How to Use: :mag_right:
 
