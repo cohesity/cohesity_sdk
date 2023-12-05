@@ -87,9 +87,9 @@ class UdaHostOsSpecificParams(ModelNormal):
         return {
             'host_os_type': (str, none_type,),  # noqa: E501
             'index': (UdaOSIndexConfigParams,),  # noqa: E501
-            'registration': (UdaRegistrationParams,),  # noqa: E501
             'protection': (UdaProtectionParams,),  # noqa: E501
             'recovery': (UdaRecoveryParams,),  # noqa: E501
+            'registration': (UdaRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -101,9 +101,9 @@ class UdaHostOsSpecificParams(ModelNormal):
     attribute_map = {
         'host_os_type': 'hostOsType',  # noqa: E501
         'index': 'index',  # noqa: E501
-        'registration': 'registration',  # noqa: E501
         'protection': 'protection',  # noqa: E501
         'recovery': 'recovery',  # noqa: E501
+        'registration': 'registration',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,9 +155,9 @@ class UdaHostOsSpecificParams(ModelNormal):
 
             host_os_type (str, none_type): Type of the host operating system.. [optional]  # noqa: E501
             index (UdaOSIndexConfigParams): [optional]  # noqa: E501
-            registration (UdaRegistrationParams): [optional]  # noqa: E501
             protection (UdaProtectionParams): [optional]  # noqa: E501
             recovery (UdaRecoveryParams): [optional]  # noqa: E501
+            registration (UdaRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -80,10 +80,10 @@ class KerberosProvider(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'realm_name': (str, none_type,),  # noqa: E501
-            'kdc_servers': ([str],),  # noqa: E501
             'admin_server': (str, none_type,),  # noqa: E501
             'host_alias': ([str],),  # noqa: E501
+            'kdc_servers': ([str],),  # noqa: E501
+            'realm_name': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
             'overwritehost_alias': (bool, none_type,),  # noqa: E501
@@ -96,10 +96,10 @@ class KerberosProvider(ModelNormal):
 
 
     attribute_map = {
-        'realm_name': 'realmName',  # noqa: E501
-        'kdc_servers': 'kdcServers',  # noqa: E501
         'admin_server': 'adminServer',  # noqa: E501
         'host_alias': 'hostAlias',  # noqa: E501
+        'kdc_servers': 'kdcServers',  # noqa: E501
+        'realm_name': 'realmName',  # noqa: E501
         'id': 'id',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
         'overwritehost_alias': 'overwritehostAlias',  # noqa: E501
@@ -117,14 +117,14 @@ class KerberosProvider(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, realm_name, kdc_servers, admin_server, host_alias, *args, **kwargs):  # noqa: E501
+    def __init__(self, admin_server, host_alias, kdc_servers, realm_name, *args, **kwargs):  # noqa: E501
         """KerberosProvider - a model defined in OpenAPI
 
         Args:
-            realm_name (str, none_type): Specifies the realm name.
-            kdc_servers ([str]): Specifies a list of Key distribution Centre(KDC) Severs.
             admin_server (str, none_type): Specifies the admin server used for registration from the list of KDC servers.
             host_alias ([str]): Specifies the DNS routable host alias names.
+            kdc_servers ([str]): Specifies a list of Key distribution Centre(KDC) Severs.
+            realm_name (str, none_type): Specifies the realm name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -187,10 +187,10 @@ class KerberosProvider(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.realm_name = realm_name
-        self.kdc_servers = kdc_servers
         self.admin_server = admin_server
         self.host_alias = host_alias
+        self.kdc_servers = kdc_servers
+        self.realm_name = realm_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

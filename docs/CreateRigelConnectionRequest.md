@@ -5,8 +5,8 @@ Specify the params to create a connection of Rigel.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tenant_id** | **str, none_type** | Specifies the id of the tenant which the connection belongs to. | 
 **name** | **str, none_type** | Specifies the name of the connection. | 
+**tenant_id** | **str, none_type** | Specifies the id of the tenant which the connection belongs to. | 
 **connection_id** | **int, none_type** | Specifies the id of the connection. | 
 **scalable** | **bool, none_type** | Flag to specify if the connection is scalable. | [optional] 
 

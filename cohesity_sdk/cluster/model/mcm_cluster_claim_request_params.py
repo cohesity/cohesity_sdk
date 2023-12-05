@@ -74,10 +74,10 @@ class McmClusterClaimRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'claim_token': (str,),  # noqa: E501
             'cluster_id': (int,),  # noqa: E501
             'cluster_incarnation_id': (int,),  # noqa: E501
             'cluster_name': (str,),  # noqa: E501
-            'claim_token': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class McmClusterClaimRequestParams(ModelNormal):
 
 
     attribute_map = {
+        'claim_token': 'claimToken',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'cluster_name': 'clusterName',  # noqa: E501
-        'claim_token': 'claimToken',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,14 +105,14 @@ class McmClusterClaimRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, cluster_id, cluster_incarnation_id, cluster_name, claim_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, claim_token, cluster_id, cluster_incarnation_id, cluster_name, *args, **kwargs):  # noqa: E501
         """McmClusterClaimRequestParams - a model defined in OpenAPI
 
         Args:
+            claim_token (str): Claim token used for authentication.
             cluster_id (int): Specifies the cluster id.
             cluster_incarnation_id (int): Specifies the cluster incarnation id.
             cluster_name (str): Specifies the cluster name.
-            claim_token (str): Claim token used for authentication.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,10 +172,10 @@ class McmClusterClaimRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.claim_token = claim_token
         self.cluster_id = cluster_id
         self.cluster_incarnation_id = cluster_incarnation_id
         self.cluster_name = cluster_name
-        self.claim_token = claim_token
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

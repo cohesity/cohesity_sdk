@@ -78,8 +78,8 @@ class HbaseSearchParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'search_string': (str, none_type,),  # noqa: E501
             'hbase_object_types': ([str],),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class HbaseSearchParams(ModelNormal):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
         'hbase_object_types': 'hbaseObjectTypes',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,12 +105,12 @@ class HbaseSearchParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, search_string, hbase_object_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, hbase_object_types, search_string, *args, **kwargs):  # noqa: E501
         """HbaseSearchParams - a model defined in OpenAPI
 
         Args:
-            search_string (str, none_type): Specifies the search string to search the Hbase Objects
             hbase_object_types ([str]): Specifies one or more Hbase object types be searched.
+            search_string (str, none_type): Specifies the search string to search the Hbase Objects
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class HbaseSearchParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.search_string = search_string
         self.hbase_object_types = hbase_object_types
+        self.search_string = search_string
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

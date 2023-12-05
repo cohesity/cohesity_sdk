@@ -109,7 +109,7 @@ class RemoteStorageApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-storage/{id}',
@@ -225,7 +225,7 @@ class RemoteStorageApi(object):
                 'response_type': (RegisteredRemoteStorageList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-storage',
@@ -342,7 +342,7 @@ class RemoteStorageApi(object):
                 'response_type': (RemoteStorageInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-storage/{id}',
@@ -478,7 +478,7 @@ class RemoteStorageApi(object):
                 'response_type': (RemoteStorageInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-storage',
@@ -604,7 +604,7 @@ class RemoteStorageApi(object):
                 'response_type': (RemoteStorageInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-storage/{id}',

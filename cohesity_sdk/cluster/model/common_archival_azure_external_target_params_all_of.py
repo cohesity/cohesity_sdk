@@ -86,10 +86,10 @@ class CommonArchivalAzureExternalTargetParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'storage_class': (str, none_type,),  # noqa: E501
-            'source_side_deduplication': (bool, none_type,),  # noqa: E501
-            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_worm_enabled': (bool, none_type,),  # noqa: E501
+            'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'worm_specific_target_params': (WormSpecificTargetParams,),  # noqa: E501
         }
 
@@ -101,10 +101,10 @@ class CommonArchivalAzureExternalTargetParamsAllOf(ModelNormal):
 
     attribute_map = {
         'storage_class': 'storageClass',  # noqa: E501
-        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
-        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_worm_enabled': 'isWormEnabled',  # noqa: E501
+        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'worm_specific_target_params': 'wormSpecificTargetParams',  # noqa: E501
     }
 
@@ -158,10 +158,10 @@ class CommonArchivalAzureExternalTargetParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
-            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_worm_enabled (bool, none_type): Specifies whether write once read many (WORM) protection is enabled for the Azure container or not.. [optional]  # noqa: E501
+            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
             worm_specific_target_params (WormSpecificTargetParams): [optional]  # noqa: E501
         """
 

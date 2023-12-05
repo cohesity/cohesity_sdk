@@ -74,14 +74,14 @@ class SmbConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enable_smb_view_discovery': (bool, none_type,),  # noqa: E501
+            'enable_fast_durable_handle': (bool, none_type,),  # noqa: E501
             'enable_smb_access_based_enumeration': (bool, none_type,),  # noqa: E501
             'enable_smb_encryption': (bool, none_type,),  # noqa: E501
-            'enforce_smb_encryption': (bool, none_type,),  # noqa: E501
-            'enable_fast_durable_handle': (bool, none_type,),  # noqa: E501
             'enable_smb_oplock': (bool, none_type,),  # noqa: E501
-            'smb_permissions_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'enable_smb_view_discovery': (bool, none_type,),  # noqa: E501
+            'enforce_smb_encryption': (bool, none_type,),  # noqa: E501
             'share_permissions': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'smb_permissions_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +91,14 @@ class SmbConfig(ModelNormal):
 
 
     attribute_map = {
-        'enable_smb_view_discovery': 'enableSmbViewDiscovery',  # noqa: E501
+        'enable_fast_durable_handle': 'enableFastDurableHandle',  # noqa: E501
         'enable_smb_access_based_enumeration': 'enableSmbAccessBasedEnumeration',  # noqa: E501
         'enable_smb_encryption': 'enableSmbEncryption',  # noqa: E501
-        'enforce_smb_encryption': 'enforceSmbEncryption',  # noqa: E501
-        'enable_fast_durable_handle': 'enableFastDurableHandle',  # noqa: E501
         'enable_smb_oplock': 'enableSmbOplock',  # noqa: E501
-        'smb_permissions_info': 'smbPermissionsInfo',  # noqa: E501
+        'enable_smb_view_discovery': 'enableSmbViewDiscovery',  # noqa: E501
+        'enforce_smb_encryption': 'enforceSmbEncryption',  # noqa: E501
         'share_permissions': 'sharePermissions',  # noqa: E501
+        'smb_permissions_info': 'smbPermissionsInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,14 +148,14 @@ class SmbConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_smb_view_discovery (bool, none_type): If set, it enables discovery of view for SMB.. [optional]  # noqa: E501
+            enable_fast_durable_handle (bool, none_type): Specifies whether fast durable handle is enabled. If enabled, view open handle will be kept in memory, which results in a higher performance. But the handles cannot be recovered if node or service crashes.. [optional]  # noqa: E501
             enable_smb_access_based_enumeration (bool, none_type): Specifies if access-based enumeration should be enabled. If 'true', only files and folders that the user has permissions to access are visible on the SMB share for that user.. [optional]  # noqa: E501
             enable_smb_encryption (bool, none_type): Specifies the SMB encryption for the View. If set, it enables the SMB encryption for the View. Encryption is supported only by SMB 3.x dialects. Dialects that do not support would still access data in unencrypted format.. [optional]  # noqa: E501
-            enforce_smb_encryption (bool, none_type): Specifies the SMB encryption for all the sessions for the View. If set, encryption is enforced for all the sessions for the View. When enabled all future and existing unencrypted sessions are disallowed.. [optional]  # noqa: E501
-            enable_fast_durable_handle (bool, none_type): Specifies whether fast durable handle is enabled. If enabled, view open handle will be kept in memory, which results in a higher performance. But the handles cannot be recovered if node or service crashes.. [optional]  # noqa: E501
             enable_smb_oplock (bool, none_type): Specifies whether SMB opportunistic lock is enabled.. [optional]  # noqa: E501
-            smb_permissions_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the SMB permissions for the View.. [optional]  # noqa: E501
+            enable_smb_view_discovery (bool, none_type): If set, it enables discovery of view for SMB.. [optional]  # noqa: E501
+            enforce_smb_encryption (bool, none_type): Specifies the SMB encryption for all the sessions for the View. If set, encryption is enforced for all the sessions for the View. When enabled all future and existing unencrypted sessions are disallowed.. [optional]  # noqa: E501
             share_permissions ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies share level permissions of the view.. [optional]  # noqa: E501
+            smb_permissions_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the SMB permissions for the View.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

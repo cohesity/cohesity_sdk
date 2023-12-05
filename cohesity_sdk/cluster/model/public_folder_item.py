@@ -87,22 +87,22 @@ class PublicFolderItem(ModelComposed):
         return {
             'name': (str, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
-            'protection_group_id': (str, none_type,),  # noqa: E501
-            'protection_group_name': (str, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'policy_name': (str, none_type,),  # noqa: E501
-            'storage_domain_id': (int, none_type,),  # noqa: E501
+            'protection_group_id': (str, none_type,),  # noqa: E501
+            'protection_group_name': (str, none_type,),  # noqa: E501
             'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'tags': ([TagInfo], none_type,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
-            'subject': (str, none_type,),  # noqa: E501
+            'tags': ([TagInfo], none_type,),  # noqa: E501
             'has_attachments': (bool, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'item_class': (str, none_type,),  # noqa: E501
-            'received_time_secs': (int, none_type,),  # noqa: E501
             'item_size': (int, none_type,),  # noqa: E501
             'parent_folder_id': (str, none_type,),  # noqa: E501
+            'received_time_secs': (int, none_type,),  # noqa: E501
+            'subject': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,22 +114,22 @@ class PublicFolderItem(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'path': 'path',  # noqa: E501
-        'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'protection_group_name': 'protectionGroupName',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'policy_name': 'policyName',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
+        'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'protection_group_name': 'protectionGroupName',  # noqa: E501
         'source_info': 'sourceInfo',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
         'snapshot_tags': 'snapshotTags',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'subject': 'subject',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'has_attachments': 'hasAttachments',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'item_class': 'itemClass',  # noqa: E501
-        'received_time_secs': 'receivedTimeSecs',  # noqa: E501
         'item_size': 'itemSize',  # noqa: E501
         'parent_folder_id': 'parentFolderId',  # noqa: E501
+        'received_time_secs': 'receivedTimeSecs',  # noqa: E501
+        'subject': 'subject',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     required_properties = set([
@@ -182,22 +182,22 @@ class PublicFolderItem(ModelComposed):
 
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             path (str, none_type): Specifies the path of the object.. [optional]  # noqa: E501
-            protection_group_id (str, none_type): \"Specifies the protection group id which contains this object.\". [optional]  # noqa: E501
-            protection_group_name (str, none_type): \"Specifies the protection group name which contains this object.\". [optional]  # noqa: E501
             policy_id (str, none_type): Specifies the protection policy id for this file.. [optional]  # noqa: E501
             policy_name (str, none_type): Specifies the protection policy name for this file.. [optional]  # noqa: E501
-            storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
+            protection_group_id (str, none_type): \"Specifies the protection group id which contains this object.\". [optional]  # noqa: E501
+            protection_group_name (str, none_type): \"Specifies the protection group name which contains this object.\". [optional]  # noqa: E501
             source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
-            tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501
-            type (str, none_type): Specifies the Public folder item type.. [optional]  # noqa: E501
-            id (str, none_type): Specifies the id of the indexed item.. [optional]  # noqa: E501
-            subject (str, none_type): Specifies the subject of the indexed item.. [optional]  # noqa: E501
+            tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
             has_attachments (bool, none_type): Specifies whether the item has any attachments. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the indexed item.. [optional]  # noqa: E501
             item_class (str, none_type): Specifies the item class of the indexed item.. [optional]  # noqa: E501
-            received_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this item is received.. [optional]  # noqa: E501
             item_size (int, none_type): Specifies the size in bytes for the indexed item.. [optional]  # noqa: E501
             parent_folder_id (str, none_type): Specifies the id of parent folder the indexed item.. [optional]  # noqa: E501
+            received_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this item is received.. [optional]  # noqa: E501
+            subject (str, none_type): Specifies the subject of the indexed item.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the Public folder item type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -79,9 +79,9 @@ class ObjectsSearchResponseBody(ModelNormal):
         """
         lazy_import()
         return {
+            'count': (int, none_type,),  # noqa: E501
             'objects': ([SearchObject], none_type,),  # noqa: E501
             'pagination_cookie': (str, none_type,),  # noqa: E501
-            'count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class ObjectsSearchResponseBody(ModelNormal):
 
 
     attribute_map = {
+        'count': 'count',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'pagination_cookie': 'paginationCookie',  # noqa: E501
-        'count': 'count',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class ObjectsSearchResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            count (int, none_type): Specifies the number of objects to be fetched for the specified pagination cookie.. [optional]  # noqa: E501
             objects ([SearchObject], none_type): Specifies the list of Objects.. [optional]  # noqa: E501
             pagination_cookie (str, none_type): Specifies the pagination cookie with which subsequent parts of the response can be fetched.. [optional]  # noqa: E501
-            count (int, none_type): Specifies the number of objects to be fetched for the specified pagination cookie.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

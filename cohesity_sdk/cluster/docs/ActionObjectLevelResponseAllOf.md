@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**resume_status** | [**ResumeActionObjectLevelResponse**](ResumeActionObjectLevelResponse.md) |  | [optional] 
 **pause_status** | [**PauseActionObjectLevelResponse**](PauseActionObjectLevelResponse.md) |  | [optional] 
+**resume_status** | [**ResumeActionObjectLevelResponse**](ResumeActionObjectLevelResponse.md) |  | [optional] 
 **run_now_status** | [**RunNowActionObjectLevelResponse**](RunNowActionObjectLevelResponse.md) |  | [optional] 
 **un_protect_status** | [**UnprotectActionObjectLevelResponse**](UnprotectActionObjectLevelResponse.md) |  | [optional] 
 

@@ -90,8 +90,8 @@ class Retention(ModelNormal):
         """
         lazy_import()
         return {
-            'unit': (str, none_type,),  # noqa: E501
             'duration': (int, none_type,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
             'data_lock_config': (DataLockConfig,),  # noqa: E501
         }
 
@@ -102,8 +102,8 @@ class Retention(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
         'duration': 'duration',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
         'data_lock_config': 'dataLockConfig',  # noqa: E501
     }
 
@@ -119,12 +119,12 @@ class Retention(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, unit, duration, *args, **kwargs):  # noqa: E501
+    def __init__(self, duration, unit, *args, **kwargs):  # noqa: E501
         """Retention - a model defined in OpenAPI
 
         Args:
-            unit (str, none_type): Specificies the Retention Unit of a backup measured in days, months or years. <br> If unit is 'Months', then number specified in duration is multiplied to 30. <br> Example: If duration is 4 and unit is 'Months' then number of retention days will be 30 * 4 = 120 days. <br> If unit is 'Years', then number specified in duration is multiplied to 365. <br> If duration is 2 and unit is 'Months' then number of retention days will be 365 * 2 = 730 days.
             duration (int, none_type): Specifies the duration for a backup retention. <br> Example. If duration is 7 and unit is Months, the retention of a backup is 7 * 30 = 210 days.
+            unit (str, none_type): Specificies the Retention Unit of a backup measured in days, months or years. <br> If unit is 'Months', then number specified in duration is multiplied to 30. <br> Example: If duration is 4 and unit is 'Months' then number of retention days will be 30 * 4 = 120 days. <br> If unit is 'Years', then number specified in duration is multiplied to 365. <br> If duration is 2 and unit is 'Months' then number of retention days will be 365 * 2 = 730 days.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -185,8 +185,8 @@ class Retention(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.unit = unit
         self.duration = duration
+        self.unit = unit
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

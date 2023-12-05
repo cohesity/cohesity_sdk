@@ -74,15 +74,15 @@ class UserAPIKey(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'is_active': (bool, none_type,),  # noqa: E501
-            'is_expired': (bool, none_type,),  # noqa: E501
-            'user_sid': (str, none_type,),  # noqa: E501
             'created_by_user_sid': (str, none_type,),  # noqa: E501
             'created_time_msecs': (int, none_type,),  # noqa: E501
-            'last_rotated_time_msecs': (int, none_type,),  # noqa: E501
             'expiry_time_msecs': (int, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'is_active': (bool, none_type,),  # noqa: E501
+            'is_expired': (bool, none_type,),  # noqa: E501
+            'last_rotated_time_msecs': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'user_sid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,15 +92,15 @@ class UserAPIKey(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'is_active': 'isActive',  # noqa: E501
-        'is_expired': 'isExpired',  # noqa: E501
-        'user_sid': 'userSid',  # noqa: E501
         'created_by_user_sid': 'createdByUserSid',  # noqa: E501
         'created_time_msecs': 'createdTimeMsecs',  # noqa: E501
-        'last_rotated_time_msecs': 'lastRotatedTimeMsecs',  # noqa: E501
         'expiry_time_msecs': 'expiryTimeMsecs',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'is_active': 'isActive',  # noqa: E501
+        'is_expired': 'isExpired',  # noqa: E501
+        'last_rotated_time_msecs': 'lastRotatedTimeMsecs',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'user_sid': 'userSid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,15 +150,15 @@ class UserAPIKey(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the unique id of the API key.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the API key name.. [optional]  # noqa: E501
-            is_active (bool, none_type): Specifies if the API key is active.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            is_expired (bool, none_type): Specifies if the API key has expired.. [optional]  # noqa: E501
-            user_sid (str, none_type): Specifies the user who owns the API key.. [optional]  # noqa: E501
             created_by_user_sid (str, none_type): Specifies the user SID who created the API key.. [optional]  # noqa: E501
             created_time_msecs (int, none_type): Specifies the time in milliseconds when the API key was created.. [optional]  # noqa: E501
-            last_rotated_time_msecs (int, none_type): Specifies the time in milliseconds when the API key was last rotated.. [optional]  # noqa: E501
             expiry_time_msecs (int, none_type): Specifies the time in milliseconds when the API key will expire. null signifies no-expiry.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the unique id of the API key.. [optional]  # noqa: E501
+            is_active (bool, none_type): Specifies if the API key is active.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            is_expired (bool, none_type): Specifies if the API key has expired.. [optional]  # noqa: E501
+            last_rotated_time_msecs (int, none_type): Specifies the time in milliseconds when the API key was last rotated.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the API key name.. [optional]  # noqa: E501
+            user_sid (str, none_type): Specifies the user who owns the API key.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class ProjectScopeParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'project_name': (str, none_type,),  # noqa: E501
             'domain_name': (str, none_type,),  # noqa: E501
+            'project_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ProjectScopeParams(ModelNormal):
 
 
     attribute_map = {
-        'project_name': 'projectName',  # noqa: E501
         'domain_name': 'domainName',  # noqa: E501
+        'project_name': 'projectName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class ProjectScopeParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, project_name, domain_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, domain_name, project_name, *args, **kwargs):  # noqa: E501
         """ProjectScopeParams - a model defined in OpenAPI
 
         Args:
-            project_name (str, none_type): Specifies the project name.
             domain_name (str, none_type): Specifies the domain name of the project.
+            project_name (str, none_type): Specifies the project name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class ProjectScopeParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.project_name = project_name
         self.domain_name = domain_name
+        self.project_name = project_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

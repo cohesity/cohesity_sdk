@@ -101,14 +101,14 @@ class TdmObjectTimelineEvent(ModelComposed):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
             'action': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'created_at': (int, none_type,),  # noqa: E501
             'created_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'error_message': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'error_message': (str, none_type,),  # noqa: E501
             'event_group_id': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'clone_params': (TdmCloneTaskResponseParams,),  # noqa: E501
             'snapshot_params': (TdmSnapshot,),  # noqa: E501
         }
@@ -120,14 +120,14 @@ class TdmObjectTimelineEvent(ModelComposed):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'action': 'action',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'created_at': 'createdAt',  # noqa: E501
         'created_by_user': 'createdByUser',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'error_message': 'errorMessage',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'error_message': 'errorMessage',  # noqa: E501
         'event_group_id': 'eventGroupId',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'clone_params': 'cloneParams',  # noqa: E501
         'snapshot_params': 'snapshotParams',  # noqa: E501
     }
@@ -145,12 +145,12 @@ class TdmObjectTimelineEvent(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, action, *args, **kwargs):  # noqa: E501
+    def __init__(self, action, id, *args, **kwargs):  # noqa: E501
         """TdmObjectTimelineEvent - a model defined in OpenAPI
 
         Args:
-            id (str, none_type): Specifies the unique ID of the event.
             action (str, none_type): Specifies the action for the event.
+            id (str, none_type): Specifies the unique ID of the event.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -186,10 +186,10 @@ class TdmObjectTimelineEvent(ModelComposed):
 
             created_at (int, none_type): Specifies the time (in usecs from epoch) at which the event was created.. [optional]  # noqa: E501
             created_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the user, who triggered the event.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the event.. [optional]  # noqa: E501
-            error_message (str, none_type): Specifies the error message if the event is in failed state.. [optional]  # noqa: E501
             description (str, none_type): Specifies the description of the event, as provided by the user.. [optional]  # noqa: E501
+            error_message (str, none_type): Specifies the error message if the event is in failed state.. [optional]  # noqa: E501
             event_group_id (str, none_type): Specifies the ID of the group this event belongs to. Events with same group ID are considered to be a single timeline for the TDM object. Different group IDs mean different timelines for the TDM object.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the event.. [optional]  # noqa: E501
             clone_params (TdmCloneTaskResponseParams): [optional]  # noqa: E501
             snapshot_params (TdmSnapshot): [optional]  # noqa: E501
         """
@@ -226,8 +226,8 @@ class TdmObjectTimelineEvent(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'id': id,
             'action': action,
+            'id': id,
         }
         model_args = {}
         model_args.update(required_args)

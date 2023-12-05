@@ -56,7 +56,6 @@ class RpaasKmsKeyType(ModelNormal):
     allowed_values = {
         ('rpaas_kms_key_type',): {
             'COHESITY': "Cohesity",
-            'CUSTOMERMANAGED': "CustomerManaged",
         },
     }
 
@@ -138,7 +137,7 @@ class RpaasKmsKeyType(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rpaas_kms_key_type (str): Specifies the kms key type.. [optional]  # noqa: E501
+            rpaas_kms_key_type (str): Specifies the kms key type.. [optional] if omitted the server will use the default value of "Cohesity"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

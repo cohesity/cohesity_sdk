@@ -79,11 +79,11 @@ class SQLServerInstance(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'is_online': (str, none_type,),  # noqa: E501
             'endpoints': ([ResourceEndpoint], none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'is_online': (str, none_type,),  # noqa: E501
             'is_partof_fci': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class SQLServerInstance(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'is_online': 'isOnline',  # noqa: E501
         'endpoints': 'endpoints',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'is_online': 'isOnline',  # noqa: E501
         'is_partof_fci': 'isPartofFCI',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class SQLServerInstance(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the unique id of the SQL server instance.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the SQL server instance.. [optional]  # noqa: E501
-            is_online (str, none_type): Specifies the wehther the SQL server instance is online or not.. [optional]  # noqa: E501
             endpoints ([ResourceEndpoint], none_type): Specifies the information about endpoint associated with this SQL server instance.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the unique id of the SQL server instance.. [optional]  # noqa: E501
+            is_online (str, none_type): Specifies the wehther the SQL server instance is online or not.. [optional]  # noqa: E501
             is_partof_fci (bool, none_type): Specifies whether this SQL server instance is a part of Failover cluster or not.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the SQL server instance.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -80,8 +80,8 @@ class PauseProtectionRunActionResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'run_id': (str, none_type,),  # noqa: E501
             'error': (str, none_type,),  # noqa: E501
+            'run_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +91,8 @@ class PauseProtectionRunActionResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'run_id': 'runId',  # noqa: E501
         'error': 'error',  # noqa: E501
+        'run_id': 'runId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,8 +142,8 @@ class PauseProtectionRunActionResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            run_id (str, none_type): Specifies a unique run id of the Protection Group run.. [optional]  # noqa: E501
             error (str, none_type): Specifies an error occured when perfroming pause of a protection run.. [optional]  # noqa: E501
+            run_id (str, none_type): Specifies a unique run id of the Protection Group run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

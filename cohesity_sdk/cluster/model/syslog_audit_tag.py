@@ -74,10 +74,10 @@ class SyslogAuditTag(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'cluster_audit': (str, none_type,),  # noqa: E501
-            'filer_audit': (str, none_type,),  # noqa: E501
-            'data_protection_events_audit': (str, none_type,),  # noqa: E501
             'alert_audit': (str, none_type,),  # noqa: E501
+            'cluster_audit': (str, none_type,),  # noqa: E501
+            'data_protection_events_audit': (str, none_type,),  # noqa: E501
+            'filer_audit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class SyslogAuditTag(ModelNormal):
 
 
     attribute_map = {
-        'cluster_audit': 'clusterAudit',  # noqa: E501
-        'filer_audit': 'filerAudit',  # noqa: E501
-        'data_protection_events_audit': 'dataProtectionEventsAudit',  # noqa: E501
         'alert_audit': 'alertAudit',  # noqa: E501
+        'cluster_audit': 'clusterAudit',  # noqa: E501
+        'data_protection_events_audit': 'dataProtectionEventsAudit',  # noqa: E501
+        'filer_audit': 'filerAudit',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,10 +140,10 @@ class SyslogAuditTag(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_audit (str, none_type): Cluster audit tagging name.. [optional]  # noqa: E501
-            filer_audit (str, none_type): Filer audit tagging name.. [optional]  # noqa: E501
-            data_protection_events_audit (str, none_type): Data protection events audit tagging name.. [optional]  # noqa: E501
             alert_audit (str, none_type): Alert audit tagging name.. [optional]  # noqa: E501
+            cluster_audit (str, none_type): Cluster audit tagging name.. [optional]  # noqa: E501
+            data_protection_events_audit (str, none_type): Data protection events audit tagging name.. [optional]  # noqa: E501
+            filer_audit (str, none_type): Filer audit tagging name.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

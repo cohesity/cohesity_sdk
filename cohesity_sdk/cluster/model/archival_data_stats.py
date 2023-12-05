@@ -74,14 +74,14 @@ class ArchivalDataStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'bytes_read': (int, none_type,),  # noqa: E501
-            'logical_bytes_transferred': (int, none_type,),  # noqa: E501
-            'physical_bytes_transferred': (int, none_type,),  # noqa: E501
             'avg_logical_transfer_rate_bps': (int, none_type,),  # noqa: E501
-            'file_walk_done': (bool, none_type,),  # noqa: E501
-            'total_file_count': (int, none_type,),  # noqa: E501
             'backup_file_count': (int, none_type,),  # noqa: E501
+            'bytes_read': (int, none_type,),  # noqa: E501
+            'file_walk_done': (bool, none_type,),  # noqa: E501
+            'logical_bytes_transferred': (int, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'physical_bytes_transferred': (int, none_type,),  # noqa: E501
+            'total_file_count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +91,14 @@ class ArchivalDataStats(ModelNormal):
 
 
     attribute_map = {
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'bytes_read': 'bytesRead',  # noqa: E501
-        'logical_bytes_transferred': 'logicalBytesTransferred',  # noqa: E501
-        'physical_bytes_transferred': 'physicalBytesTransferred',  # noqa: E501
         'avg_logical_transfer_rate_bps': 'avgLogicalTransferRateBps',  # noqa: E501
-        'file_walk_done': 'fileWalkDone',  # noqa: E501
-        'total_file_count': 'totalFileCount',  # noqa: E501
         'backup_file_count': 'backupFileCount',  # noqa: E501
+        'bytes_read': 'bytesRead',  # noqa: E501
+        'file_walk_done': 'fileWalkDone',  # noqa: E501
+        'logical_bytes_transferred': 'logicalBytesTransferred',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'physical_bytes_transferred': 'physicalBytesTransferred',  # noqa: E501
+        'total_file_count': 'totalFileCount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,14 +148,14 @@ class ArchivalDataStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            logical_size_bytes (int, none_type): Specifies the logicalSizeBytes.. [optional]  # noqa: E501
-            bytes_read (int, none_type): Specifies total logical bytes read for creating the snapshot.. [optional]  # noqa: E501
-            logical_bytes_transferred (int, none_type): Specifies the logical bytes transferred.. [optional]  # noqa: E501
-            physical_bytes_transferred (int, none_type): Specifies the physical bytes transferred.. [optional]  # noqa: E501
             avg_logical_transfer_rate_bps (int, none_type): Specifies the average rate of transfer in bytes per second.. [optional]  # noqa: E501
-            file_walk_done (bool, none_type): Specifies whether the file system walk is done. Only applicable to file based backups.. [optional]  # noqa: E501
-            total_file_count (int, none_type): Specifies the total number of file and directory entities visited in this backup. Only applicable to file based backups.. [optional]  # noqa: E501
             backup_file_count (int, none_type): Specifies the total number of file and directory entities that are backed up in this run. Only applicable to file based backups.. [optional]  # noqa: E501
+            bytes_read (int, none_type): Specifies total logical bytes read for creating the snapshot.. [optional]  # noqa: E501
+            file_walk_done (bool, none_type): Specifies whether the file system walk is done. Only applicable to file based backups.. [optional]  # noqa: E501
+            logical_bytes_transferred (int, none_type): Specifies the logical bytes transferred.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logicalSizeBytes.. [optional]  # noqa: E501
+            physical_bytes_transferred (int, none_type): Specifies the physical bytes transferred.. [optional]  # noqa: E501
+            total_file_count (int, none_type): Specifies the total number of file and directory entities visited in this backup. Only applicable to file based backups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

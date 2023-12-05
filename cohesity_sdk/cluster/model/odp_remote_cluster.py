@@ -84,16 +84,16 @@ class OdpRemoteCluster(ModelComposed):
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'cluster_name': (str, none_type,),  # noqa: E501
-            'cluster_id_stale': (bool, none_type,),  # noqa: E501
             'all_endpoints_reachable': (bool, none_type,),  # noqa: E501
-            'storage_domain_pairs': ([StorageDomainPair], none_type,),  # noqa: E501
+            'cluster_id_stale': (bool, none_type,),  # noqa: E501
             'compression_enabled': (bool, none_type,),  # noqa: E501
-            'key_encryption_key': (str, none_type,),  # noqa: E501
-            'used_for_replication': (bool, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'remote_tenant_id': (str, none_type,),  # noqa: E501
             'interface_group_name': (str, none_type,),  # noqa: E501
+            'key_encryption_key': (str, none_type,),  # noqa: E501
+            'remote_tenant_id': (str, none_type,),  # noqa: E501
+            'storage_domain_pairs': ([StorageDomainPair], none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'use_bifrost_broker_channel': (bool, none_type,),  # noqa: E501
+            'used_for_replication': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,16 +106,16 @@ class OdpRemoteCluster(ModelComposed):
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'cluster_name': 'clusterName',  # noqa: E501
-        'cluster_id_stale': 'clusterIdStale',  # noqa: E501
         'all_endpoints_reachable': 'allEndpointsReachable',  # noqa: E501
-        'storage_domain_pairs': 'storageDomainPairs',  # noqa: E501
+        'cluster_id_stale': 'clusterIdStale',  # noqa: E501
         'compression_enabled': 'compressionEnabled',  # noqa: E501
-        'key_encryption_key': 'keyEncryptionKey',  # noqa: E501
-        'used_for_replication': 'usedForReplication',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'remote_tenant_id': 'remoteTenantId',  # noqa: E501
         'interface_group_name': 'interfaceGroupName',  # noqa: E501
+        'key_encryption_key': 'keyEncryptionKey',  # noqa: E501
+        'remote_tenant_id': 'remoteTenantId',  # noqa: E501
+        'storage_domain_pairs': 'storageDomainPairs',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'use_bifrost_broker_channel': 'useBifrostBrokerChannel',  # noqa: E501
+        'used_for_replication': 'usedForReplication',  # noqa: E501
     }
 
     required_properties = set([
@@ -171,16 +171,16 @@ class OdpRemoteCluster(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_id_stale (bool, none_type): Specifies if the cluster id is stale and needs to be refreshed.. [optional]  # noqa: E501
             all_endpoints_reachable (bool, none_type): Specifies if all endpoints on ODP Remote Cluster are reachable.. [optional]  # noqa: E501
-            storage_domain_pairs ([StorageDomainPair], none_type): Specifies a list of Storage Domain pairs.. [optional]  # noqa: E501
+            cluster_id_stale (bool, none_type): Specifies if the cluster id is stale and needs to be refreshed.. [optional]  # noqa: E501
             compression_enabled (bool, none_type): Specifies whether to compress the data transferred to ODP Remote Cluster.. [optional]  # noqa: E501
-            key_encryption_key (str, none_type): Specifies the key used for encrypting the data transferred to ODP Remote Cluster.. [optional]  # noqa: E501
-            used_for_replication (bool, none_type): Specifies if the ODP Remote Cluster is used for replication.. [optional]  # noqa: E501
-            tenant_id (str, none_type): Specifies the tenant id.. [optional]  # noqa: E501
-            remote_tenant_id (str, none_type): Specifies the tenant id for ODP Remote Cluster.. [optional]  # noqa: E501
             interface_group_name (str, none_type): Specifies the interface group name of the ODP Remote Cluster.. [optional]  # noqa: E501
+            key_encryption_key (str, none_type): Specifies the key used for encrypting the data transferred to ODP Remote Cluster.. [optional]  # noqa: E501
+            remote_tenant_id (str, none_type): Specifies the tenant id for ODP Remote Cluster.. [optional]  # noqa: E501
+            storage_domain_pairs ([StorageDomainPair], none_type): Specifies a list of Storage Domain pairs.. [optional]  # noqa: E501
+            tenant_id (str, none_type): Specifies the tenant id.. [optional]  # noqa: E501
             use_bifrost_broker_channel (bool, none_type): Specifies whether to use Bifrost Broker channel for remote connection.. [optional]  # noqa: E501
+            used_for_replication (bool, none_type): Specifies if the ODP Remote Cluster is used for replication.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

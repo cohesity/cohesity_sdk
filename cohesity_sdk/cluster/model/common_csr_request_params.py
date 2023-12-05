@@ -83,17 +83,17 @@ class CommonCsrRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'city': (str, none_type,),  # noqa: E501
+            'country_code': (str, none_type,),  # noqa: E501
             'organization': (str, none_type,),  # noqa: E501
             'organization_unit': (str, none_type,),  # noqa: E501
-            'country_code': (str, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
-            'city': (str, none_type,),  # noqa: E501
-            'key_type': (str, none_type,),  # noqa: E501
-            'key_size_bits': (int, none_type,),  # noqa: E501
             'common_name': (str, none_type,),  # noqa: E501
             'dns_names': ([str], none_type,),  # noqa: E501
-            'host_ips': ([str], none_type,),  # noqa: E501
             'email_address': (str, none_type,),  # noqa: E501
+            'host_ips': ([str], none_type,),  # noqa: E501
+            'key_size_bits': (int, none_type,),  # noqa: E501
+            'key_type': (str, none_type,),  # noqa: E501
             'service_name': (str, none_type,),  # noqa: E501
         }
 
@@ -104,17 +104,17 @@ class CommonCsrRequestParams(ModelNormal):
 
 
     attribute_map = {
+        'city': 'city',  # noqa: E501
+        'country_code': 'countryCode',  # noqa: E501
         'organization': 'organization',  # noqa: E501
         'organization_unit': 'organizationUnit',  # noqa: E501
-        'country_code': 'countryCode',  # noqa: E501
         'state': 'state',  # noqa: E501
-        'city': 'city',  # noqa: E501
-        'key_type': 'keyType',  # noqa: E501
-        'key_size_bits': 'keySizeBits',  # noqa: E501
         'common_name': 'commonName',  # noqa: E501
         'dns_names': 'dnsNames',  # noqa: E501
-        'host_ips': 'hostIps',  # noqa: E501
         'email_address': 'emailAddress',  # noqa: E501
+        'host_ips': 'hostIps',  # noqa: E501
+        'key_size_bits': 'keySizeBits',  # noqa: E501
+        'key_type': 'keyType',  # noqa: E501
         'service_name': 'serviceName',  # noqa: E501
     }
 
@@ -130,15 +130,15 @@ class CommonCsrRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, organization, organization_unit, country_code, state, city, *args, **kwargs):  # noqa: E501
+    def __init__(self, city, country_code, organization, organization_unit, state, *args, **kwargs):  # noqa: E501
         """CommonCsrRequestParams - a model defined in OpenAPI
 
         Args:
+            city (str, none_type): Specifies the locality attribute, which is part of the distinguished name definition. It is used to identify the city where the company is located or the Cluster is installed.
+            country_code (str, none_type): Specifies the country attribute, which is part of the distinguished name definition. It is used to identify the country where the state is located. It is specified as two letter code defined by the ISO standard.
             organization (str, none_type): Specifies the organization attribute, which is part of the distinguished name definition. It is used to specify the name of the company.
             organization_unit (str, none_type): Specifies the organization unit attribute, which is part of the distinguished name definition. It is used to identify the specific department or business unit in the company that is owning the Cluster.
-            country_code (str, none_type): Specifies the country attribute, which is part of the distinguished name definition. It is used to identify the country where the state is located. It is specified as two letter code defined by the ISO standard.
             state (str, none_type): Specifies the state attribute, which is part of the distinguished name definition. It is used to identify the state where the city is located.
-            city (str, none_type): Specifies the locality attribute, which is part of the distinguished name definition. It is used to identify the city where the company is located or the Cluster is installed.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,12 +172,12 @@ class CommonCsrRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            key_type (str, none_type): Specifies the algorithm to be used to generate the key pair. RSA is the default value.. [optional] if omitted the server will use the default value of "rsa"  # noqa: E501
-            key_size_bits (int, none_type): Specifies the size of the keys in bits. The default is 2048 bits for the RSA keys and 256 bits for ECDSA.. [optional]  # noqa: E501
             common_name (str, none_type): Specifies the common name attribute, which is part of the distinguished name definition. Common name is used to specify a context for the certificate, for example, the name of the Cluster to which the certificate is to be assigned. Default value is the name of the Cluster.. [optional]  # noqa: E501
             dns_names ([str], none_type): Specifies an alternative subject name component to be included in the certificate. It is used to identify the ways the Cluster will be accessed. It is given as a comma separated list of FQDNs. The default value is the Cluster's VIP hostname.. [optional]  # noqa: E501
-            host_ips ([str], none_type): Specifies an alternative subject name component to be included in the certificate. It is used to identify the ways the Cluster will be accessed. It is given as a comma separated list of IP addresses. The default value is the Cluster's VIP addresses.. [optional]  # noqa: E501
             email_address (str, none_type): Specifies an alternative subject name component to be included in the certificate. Format is a standard e-mail address, for example joe@company.com.. [optional]  # noqa: E501
+            host_ips ([str], none_type): Specifies an alternative subject name component to be included in the certificate. It is used to identify the ways the Cluster will be accessed. It is given as a comma separated list of IP addresses. The default value is the Cluster's VIP addresses.. [optional]  # noqa: E501
+            key_size_bits (int, none_type): Specifies the size of the keys in bits. The default is 2048 bits for the RSA keys and 256 bits for ECDSA.. [optional]  # noqa: E501
+            key_type (str, none_type): Specifies the algorithm to be used to generate the key pair. RSA is the default value.. [optional] if omitted the server will use the default value of "rsa"  # noqa: E501
             service_name (str, none_type): Specifies the Cohesity service name for which the CSR is generated. Default service name is iris.. [optional] if omitted the server will use the default value of "iris"  # noqa: E501
         """
 
@@ -205,11 +205,11 @@ class CommonCsrRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.city = city
+        self.country_code = country_code
         self.organization = organization
         self.organization_unit = organization_unit
-        self.country_code = country_code
         self.state = state
-        self.city = city
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

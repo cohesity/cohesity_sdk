@@ -27,11 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.create_tenant_parameters_all_of import CreateTenantParametersAllOf
     from cohesity_sdk.cluster.model.tenant_network import TenantNetwork
-    from cohesity_sdk.cluster.model.update_tenant_body_all_of import UpdateTenantBodyAllOf
     from cohesity_sdk.cluster.model.update_tenant_params import UpdateTenantParams
+    globals()['CreateTenantParametersAllOf'] = CreateTenantParametersAllOf
     globals()['TenantNetwork'] = TenantNetwork
-    globals()['UpdateTenantBodyAllOf'] = UpdateTenantBodyAllOf
     globals()['UpdateTenantParams'] = UpdateTenantParams
 
 
@@ -83,8 +83,8 @@ class UpdateTenantBody(ModelComposed):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'network': (TenantNetwork,),  # noqa: E501
         }
 
@@ -95,8 +95,8 @@ class UpdateTenantBody(ModelComposed):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'network': 'network',  # noqa: E501
     }
 
@@ -148,8 +148,8 @@ class UpdateTenantBody(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Name of the Tenant.. [optional]  # noqa: E501
             description (str, none_type): Description about the tenant. [optional]  # noqa: E501
+            name (str, none_type): Name of the Tenant.. [optional]  # noqa: E501
             network (TenantNetwork): [optional]  # noqa: E501
         """
 
@@ -222,7 +222,7 @@ class UpdateTenantBody(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              UpdateTenantBodyAllOf,
+              CreateTenantParametersAllOf,
               UpdateTenantParams,
           ],
           'oneOf': [

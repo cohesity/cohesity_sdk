@@ -86,8 +86,8 @@ class InterfaceGroupParams(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'node_interface_params': ([NodeInterfaceParams],),  # noqa: E501
+            'type': (str,),  # noqa: E501
             'network_params': (InterfaceGroupNetworkParams,),  # noqa: E501
         }
 
@@ -99,8 +99,8 @@ class InterfaceGroupParams(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'node_interface_params': 'nodeInterfaceParams',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'network_params': 'networkParams',  # noqa: E501
     }
 
@@ -116,13 +116,13 @@ class InterfaceGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, type, node_interface_params, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, node_interface_params, type, *args, **kwargs):  # noqa: E501
         """InterfaceGroupParams - a model defined in OpenAPI
 
         Args:
             name (str): Name of the interface group.
-            type (str): Type of the interface group.
             node_interface_params ([NodeInterfaceParams]): Node and interface parameters.
+            type (str): Type of the interface group.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,8 +184,8 @@ class InterfaceGroupParams(ModelNormal):
 
 
         self.name = name
-        self.type = type
         self.node_interface_params = node_interface_params
+        self.type = type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

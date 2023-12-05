@@ -88,9 +88,9 @@ class BackupPolicy(ModelNormal):
         lazy_import()
         return {
             'regular': (RegularBackupPolicy,),  # noqa: E501
-            'log': (LogBackupPolicy,),  # noqa: E501
             'bmr': (BmrBackupPolicy,),  # noqa: E501
             'cdp': (CdpBackupPolicy,),  # noqa: E501
+            'log': (LogBackupPolicy,),  # noqa: E501
             'storage_array_snapshot': (StorageArraySnapshotBackupPolicy,),  # noqa: E501
         }
 
@@ -102,9 +102,9 @@ class BackupPolicy(ModelNormal):
 
     attribute_map = {
         'regular': 'regular',  # noqa: E501
-        'log': 'log',  # noqa: E501
         'bmr': 'bmr',  # noqa: E501
         'cdp': 'cdp',  # noqa: E501
+        'log': 'log',  # noqa: E501
         'storage_array_snapshot': 'storageArraySnapshot',  # noqa: E501
     }
 
@@ -158,9 +158,9 @@ class BackupPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            log (LogBackupPolicy): [optional]  # noqa: E501
             bmr (BmrBackupPolicy): [optional]  # noqa: E501
             cdp (CdpBackupPolicy): [optional]  # noqa: E501
+            log (LogBackupPolicy): [optional]  # noqa: E501
             storage_array_snapshot (StorageArraySnapshotBackupPolicy): [optional]  # noqa: E501
         """
 

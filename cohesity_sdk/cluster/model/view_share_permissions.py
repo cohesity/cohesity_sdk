@@ -79,8 +79,8 @@ class ViewSharePermissions(ModelNormal):
         """
         lazy_import()
         return {
-            'super_user_sids': ([str], none_type,),  # noqa: E501
             'permissions': ([SmbPermission], none_type,),  # noqa: E501
+            'super_user_sids': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class ViewSharePermissions(ModelNormal):
 
 
     attribute_map = {
-        'super_user_sids': 'superUserSids',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
+        'super_user_sids': 'superUserSids',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class ViewSharePermissions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            super_user_sids ([str], none_type): Specifies a list of super user sids.. [optional]  # noqa: E501
             permissions ([SmbPermission], none_type): Specifies a list of share permissions.. [optional]  # noqa: E501
+            super_user_sids ([str], none_type): Specifies a list of super user sids.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

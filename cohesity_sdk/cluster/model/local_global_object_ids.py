@@ -74,8 +74,8 @@ class LocalGlobalObjectIds(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'local_id': (int,),  # noqa: E501
             'global_id': (str,),  # noqa: E501
+            'local_id': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class LocalGlobalObjectIds(ModelNormal):
 
 
     attribute_map = {
-        'local_id': 'localId',  # noqa: E501
         'global_id': 'globalId',  # noqa: E501
+        'local_id': 'localId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class LocalGlobalObjectIds(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            local_id (int): Specifies the local ID of the object.. [optional]  # noqa: E501
             global_id (str): Specifies the global ID of the object.. [optional]  # noqa: E501
+            local_id (int): Specifies the local ID of the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

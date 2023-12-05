@@ -74,8 +74,8 @@ class CdpLocalBackupInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_time_in_usecs': (int, none_type,),  # noqa: E501
             'end_time_in_usecs': (int, none_type,),  # noqa: E501
+            'start_time_in_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class CdpLocalBackupInfo(ModelNormal):
 
 
     attribute_map = {
-        'start_time_in_usecs': 'startTimeInUsecs',  # noqa: E501
         'end_time_in_usecs': 'endTimeInUsecs',  # noqa: E501
+        'start_time_in_usecs': 'startTimeInUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class CdpLocalBackupInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_time_in_usecs (int, none_type): Specifies the start time of the last local backup taken.. [optional]  # noqa: E501
             end_time_in_usecs (int, none_type): Specifies the end time of the last local backup taken.. [optional]  # noqa: E501
+            start_time_in_usecs (int, none_type): Specifies the start time of the last local backup taken.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

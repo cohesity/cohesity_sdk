@@ -58,16 +58,16 @@ class Failover(ModelNormal):
     """
 
     allowed_values = {
-        ('type',): {
-            'None': None,
-            'PLANNED': "Planned",
-            'UNPLANNED': "Unplanned",
-        },
         ('status',): {
             'None': None,
             'RUNNING': "Running",
             'SUCCEEDED': "Succeeded",
             'FAILED': "Failed",
+        },
+        ('type',): {
+            'None': None,
+            'PLANNED': "Planned",
+            'UNPLANNED': "Unplanned",
         },
     }
 
@@ -90,13 +90,13 @@ class Failover(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'error_message': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
+            'error_message': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'replications': ([FailoverReplication], none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,13 +106,13 @@ class Failover(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'error_message': 'errorMessage',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'error_message': 'errorMessage',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'replications': 'replications',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,13 +162,13 @@ class Failover(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the failover id.. [optional]  # noqa: E501
-            type (str, none_type): Specifies the failover type.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the failover status.. [optional]  # noqa: E501
-            error_message (str, none_type): Specifies the error details if failover status is 'Failed'.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the failover start time in micro seconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the failover complete time in micro seconds.. [optional]  # noqa: E501
+            error_message (str, none_type): Specifies the error details if failover status is 'Failed'.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the failover id.. [optional]  # noqa: E501
             replications ([FailoverReplication], none_type): Specifies a list of replications in this failover.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the failover start time in micro seconds.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the failover status.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the failover type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

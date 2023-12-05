@@ -91,11 +91,11 @@ class DownloadFilesAndFoldersResponseParams(ModelNormal):
         """
         lazy_import()
         return {
+            'files_and_folders': ([FilesAndFoldersObject], none_type,),  # noqa: E501
+            'glacier_retrieval_type': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'object': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
-            'files_and_folders': ([FilesAndFoldersObject], none_type,),  # noqa: E501
-            'glacier_retrieval_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,11 +105,11 @@ class DownloadFilesAndFoldersResponseParams(ModelNormal):
 
 
     attribute_map = {
+        'files_and_folders': 'filesAndFolders',  # noqa: E501
+        'glacier_retrieval_type': 'glacierRetrievalType',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'object': 'object',  # noqa: E501
-        'files_and_folders': 'filesAndFolders',  # noqa: E501
-        'glacier_retrieval_type': 'glacierRetrievalType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,11 +159,11 @@ class DownloadFilesAndFoldersResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            files_and_folders ([FilesAndFoldersObject], none_type): Specifies the list of files and folders to download.. [optional]  # noqa: E501
+            glacier_retrieval_type (str, none_type): Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot.. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the Recovery.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the recovery task. This field must be set and must be a unique name.. [optional]  # noqa: E501
             object (CommonRecoverObjectSnapshotParams): [optional]  # noqa: E501
-            files_and_folders ([FilesAndFoldersObject], none_type): Specifies the list of files and folders to download.. [optional]  # noqa: E501
-            glacier_retrieval_type (str, none_type): Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

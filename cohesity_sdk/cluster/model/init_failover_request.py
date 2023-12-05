@@ -127,9 +127,9 @@ class InitFailoverRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'source_cluster': (FailoverSourceCluster,),  # noqa: E501
-            'replication_cluster': (FailoverReplicaCluster,),  # noqa: E501
             'protection_group_environment': (str, none_type,),  # noqa: E501
+            'replication_cluster': (FailoverReplicaCluster,),  # noqa: E501
+            'source_cluster': (FailoverSourceCluster,),  # noqa: E501
         }
 
     @cached_property
@@ -139,9 +139,9 @@ class InitFailoverRequest(ModelNormal):
 
 
     attribute_map = {
-        'source_cluster': 'sourceCluster',  # noqa: E501
-        'replication_cluster': 'replicationCluster',  # noqa: E501
         'protection_group_environment': 'protectionGroupEnvironment',  # noqa: E501
+        'replication_cluster': 'replicationCluster',  # noqa: E501
+        'source_cluster': 'sourceCluster',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -191,9 +191,9 @@ class InitFailoverRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_cluster (FailoverSourceCluster): [optional]  # noqa: E501
-            replication_cluster (FailoverReplicaCluster): [optional]  # noqa: E501
             protection_group_environment (str, none_type): If this field is specified then protection groups will be looked up only for this specific environment. [optional]  # noqa: E501
+            replication_cluster (FailoverReplicaCluster): [optional]  # noqa: E501
+            source_cluster (FailoverSourceCluster): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -80,9 +80,9 @@ class ActiveDirectoryProtectionGroupObjectParams(ModelNormal):
         lazy_import()
         return {
             'source_id': (int, none_type,),  # noqa: E501
-            'source_name': (str, none_type,),  # noqa: E501
             'app_params': ([ActiveDirectoryAppParams], none_type,),  # noqa: E501
             'enable_system_backup': (bool, none_type,),  # noqa: E501
+            'source_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class ActiveDirectoryProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'source_id': 'sourceId',  # noqa: E501
-        'source_name': 'sourceName',  # noqa: E501
         'app_params': 'appParams',  # noqa: E501
         'enable_system_backup': 'enableSystemBackup',  # noqa: E501
+        'source_name': 'sourceName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class ActiveDirectoryProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_name (str, none_type): Specifies the name of the registered active directory source.. [optional]  # noqa: E501
             app_params ([ActiveDirectoryAppParams], none_type): Specifies the specific parameters required for active directory app configuration.. [optional]  # noqa: E501
             enable_system_backup (bool, none_type): Specifies whether to take bmr backup. If this is not specified, the bmr backup won't be enabled.. [optional]  # noqa: E501
+            source_name (str, none_type): Specifies the name of the registered active directory source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

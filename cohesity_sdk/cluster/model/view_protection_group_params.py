@@ -90,9 +90,9 @@ class ViewProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([ViewProtectionGroupObjectParams],),  # noqa: E501
-            'replication_params': (ViewProtectionGroupReplicationParams,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'externally_triggered_job_params': (ExternallyTriggeredJobParams,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'replication_params': (ViewProtectionGroupReplicationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -103,9 +103,9 @@ class ViewProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'replication_params': 'replicationParams',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'externally_triggered_job_params': 'externallyTriggeredJobParams',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'replication_params': 'replicationParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,9 +158,9 @@ class ViewProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            replication_params (ViewProtectionGroupReplicationParams): [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             externally_triggered_job_params (ExternallyTriggeredJobParams): [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            replication_params (ViewProtectionGroupReplicationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

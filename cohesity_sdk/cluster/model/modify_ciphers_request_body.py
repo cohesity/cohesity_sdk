@@ -88,8 +88,8 @@ class ModifyCiphersRequestBody(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enable': (bool,),  # noqa: E501
             'ciphers': ([str],),  # noqa: E501
+            'enable': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -99,8 +99,8 @@ class ModifyCiphersRequestBody(ModelNormal):
 
 
     attribute_map = {
-        'enable': 'enable',  # noqa: E501
         'ciphers': 'ciphers',  # noqa: E501
+        'enable': 'enable',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -115,12 +115,12 @@ class ModifyCiphersRequestBody(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, enable, ciphers, *args, **kwargs):  # noqa: E501
+    def __init__(self, ciphers, enable, *args, **kwargs):  # noqa: E501
         """ModifyCiphersRequestBody - a model defined in OpenAPI
 
         Args:
-            enable (bool): If true, the ciphers passed in will be enabled on the cluster and all other ciphers will be disabled. If false, the ciphers specified will be disabled and all other ciphers on the cluster will be enabled.
             ciphers ([str]): Specifies a list of ciphers to enable/disable on the cluster.
+            enable (bool): If true, the ciphers passed in will be enabled on the cluster and all other ciphers will be disabled. If false, the ciphers specified will be disabled and all other ciphers on the cluster will be enabled.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,8 +180,8 @@ class ModifyCiphersRequestBody(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.enable = enable
         self.ciphers = ciphers
+        self.enable = enable
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

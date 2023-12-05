@@ -89,11 +89,11 @@ class TdmCloneTaskResponseParams(ModelComposed):
         lazy_import()
         return {
             'environment': (str, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
-            'snapshot': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'parent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'snapshot': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'view': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'oracle_params': (OracleCloneTask,),  # noqa: E501
@@ -107,11 +107,11 @@ class TdmCloneTaskResponseParams(ModelComposed):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
-        'snapshot': 'snapshot',  # noqa: E501
         'parent': 'parent',  # noqa: E501
+        'snapshot': 'snapshot',  # noqa: E501
         'target': 'target',  # noqa: E501
         'view': 'view',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
@@ -168,11 +168,11 @@ class TdmCloneTaskResponseParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            policy_id (str, none_type): Specifies the ID of the policy, which should be used to protect this clone. This is useful for automatic snapshots. This must be specified if either of protectionGroupId and protectionGroupName is specified.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the ID of an existing protection group, which should start protecting this clone. Specifying this implies that the clone is eligible for automated snapshots based on the policy configuration. If this is specified, policyId should also be specified and protectionGroupName should not be specified.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies the name of a new protection group, which should be created to protect this clone. Specifying this implies that the clone is eligible for automated snapshots based on the policy configuration. If this is specified, policyId should also be specified and protectionGroupId should not be specified.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the ID of the policy, which should be used to protect this clone. This is useful for automatic snapshots. This must be specified if either of protectionGroupId and protectionGroupName is specified.. [optional]  # noqa: E501
-            snapshot ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the snapshot used for cloning.. [optional]  # noqa: E501
             parent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the parent object of the clone.. [optional]  # noqa: E501
+            snapshot ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the snapshot used for cloning.. [optional]  # noqa: E501
             target ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the target, where the clone is created.. [optional]  # noqa: E501
             view ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the view, which is used for the clone.. [optional]  # noqa: E501
             oracle_params (OracleCloneTask): [optional]  # noqa: E501

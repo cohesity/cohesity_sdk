@@ -74,8 +74,8 @@ class SnapshotLabel(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'incremental_label': (str, none_type,),  # noqa: E501
             'full_label': (str, none_type,),  # noqa: E501
+            'incremental_label': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class SnapshotLabel(ModelNormal):
 
 
     attribute_map = {
-        'incremental_label': 'incrementalLabel',  # noqa: E501
         'full_label': 'fullLabel',  # noqa: E501
+        'incremental_label': 'incrementalLabel',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class SnapshotLabel(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            incremental_label (str, none_type): Specifies the incremental snapshot label value. [optional]  # noqa: E501
             full_label (str, none_type): Specifies the full snapshot label value. [optional]  # noqa: E501
+            incremental_label (str, none_type): Specifies the incremental snapshot label value. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

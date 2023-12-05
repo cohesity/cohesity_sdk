@@ -80,8 +80,8 @@ class CompressionParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
             'inline_enabled': (bool, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +91,8 @@ class CompressionParams(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'inline_enabled': 'inlineEnabled',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,8 +142,8 @@ class CompressionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies copmpression type for a Storage Domain.. [optional]  # noqa: E501
             inline_enabled (bool, none_type): Specifies whether inline compression is enabled. This field is appliciable only if inlineDeduplicationEnabled is set to true and compression is enabled.. [optional]  # noqa: E501
+            type (str, none_type): Specifies copmpression type for a Storage Domain.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

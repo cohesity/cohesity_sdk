@@ -81,8 +81,8 @@ class VmwareObjectProtectionResponseAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'cdp_info': (VmwareCdpObject,),  # noqa: E501
+            'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'standby_info': (VmwareStandbyObject,),  # noqa: E501
         }
 
@@ -93,8 +93,8 @@ class VmwareObjectProtectionResponseAllOf(ModelNormal):
 
 
     attribute_map = {
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'standby_info': 'standbyInfo',  # noqa: E501
     }
 
@@ -145,8 +145,8 @@ class VmwareObjectProtectionResponseAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
             cdp_info (VmwareCdpObject): [optional]  # noqa: E501
+            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
             standby_info (VmwareStandbyObject): [optional]  # noqa: E501
         """
 

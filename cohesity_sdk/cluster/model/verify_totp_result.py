@@ -74,8 +74,8 @@ class VerifyTotpResult(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'success': (bool,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
+            'success': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class VerifyTotpResult(ModelNormal):
 
 
     attribute_map = {
-        'success': 'success',  # noqa: E501
         'message': 'message',  # noqa: E501
+        'success': 'success',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class VerifyTotpResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            success (bool): Specifies whether or not verification of totp code is success.. [optional] if omitted the server will use the default value of False  # noqa: E501
             message (str, none_type): Specifies message of otp verification result.. [optional]  # noqa: E501
+            success (bool): Specifies whether or not verification of totp code is success.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

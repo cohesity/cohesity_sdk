@@ -74,8 +74,8 @@ class ObjectLocalSnapshotInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'snapshot_id': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'snapshot_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ObjectLocalSnapshotInfo(ModelNormal):
 
 
     attribute_map = {
-        'snapshot_id': 'snapshotId',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'snapshot_id': 'snapshotId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ObjectLocalSnapshotInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            snapshot_id (str, none_type): Specifies the id of the local snapshot for the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of this snapshot in bytes.. [optional]  # noqa: E501
+            snapshot_id (str, none_type): Specifies the id of the local snapshot for the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

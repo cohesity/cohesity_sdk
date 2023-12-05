@@ -81,9 +81,9 @@ class RigelRegConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'reg_info': (RigelClaimInfo,),  # noqa: E501
             'control_plane_connection_info': (RigelConnectionInfo,),  # noqa: E501
             'data_plane_connection_info': (RigelConnectionInfo,),  # noqa: E501
+            'reg_info': (RigelClaimInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class RigelRegConfig(ModelNormal):
 
 
     attribute_map = {
-        'reg_info': 'regInfo',  # noqa: E501
         'control_plane_connection_info': 'controlPlaneConnectionInfo',  # noqa: E501
         'data_plane_connection_info': 'dataPlaneConnectionInfo',  # noqa: E501
+        'reg_info': 'regInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,9 +145,9 @@ class RigelRegConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            reg_info (RigelClaimInfo): [optional]  # noqa: E501
             control_plane_connection_info (RigelConnectionInfo): [optional]  # noqa: E501
             data_plane_connection_info (RigelConnectionInfo): [optional]  # noqa: E501
+            reg_info (RigelClaimInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

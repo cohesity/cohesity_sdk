@@ -24,6 +24,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 from cohesity_sdk.cluster.model.bifrost_connector import BifrostConnector
 from cohesity_sdk.cluster.model.bifrost_connectors import BifrostConnectors
 from cohesity_sdk.cluster.model.connectivity_check_response_body import ConnectivityCheckResponseBody
+from cohesity_sdk.cluster.model.create_bifrost_connector_request import CreateBifrostConnectorRequest
 from cohesity_sdk.cluster.model.create_rigel_connector_request import CreateRigelConnectorRequest
 from cohesity_sdk.cluster.model.delete_rigel_connector_request import DeleteRigelConnectorRequest
 from cohesity_sdk.cluster.model.error import Error
@@ -44,6 +45,128 @@ class ConnectorsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __create_bifrost_connector(
+            self,
+            body,
+            **kwargs
+        ):
+            """Create a Bifrost connector on the cluster.  # noqa: E501
+
+            Create a Bifrost connector on the cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_bifrost_connector(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (CreateBifrostConnectorRequest): Specifies the parameters to create a connector.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                BifrostConnector
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.create_bifrost_connector = _Endpoint(
+            settings={
+                'response_type': (BifrostConnector,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/connector-hybrid-extender',
+                'operation_id': 'create_bifrost_connector',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (CreateBifrostConnectorRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_bifrost_connector
+        )
 
         def __create_rigel_connector(
             self,
@@ -116,7 +239,7 @@ class ConnectorsApi(object):
                 'response_type': (RigelConnector,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-rigel',
@@ -238,7 +361,7 @@ class ConnectorsApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-hybrid-extender/{id}',
@@ -364,7 +487,7 @@ class ConnectorsApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-rigel/{id}',
@@ -492,7 +615,7 @@ class ConnectorsApi(object):
                 'response_type': (BifrostConnectors,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-hybrid-extender',
@@ -633,7 +756,7 @@ class ConnectorsApi(object):
                 'response_type': (BifrostConnector,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-hybrid-extender/{id}',
@@ -756,7 +879,7 @@ class ConnectorsApi(object):
                 'response_type': (ConnectivityCheckResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connectivity-endpoints',
@@ -869,7 +992,7 @@ class ConnectorsApi(object):
                 'response_type': (RigelConnectors,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-rigel',
@@ -1010,7 +1133,7 @@ class ConnectorsApi(object):
                 'response_type': (RigelConnector,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-rigel/{id}',
@@ -1133,7 +1256,7 @@ class ConnectorsApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connectivity-endpoints',
@@ -1251,7 +1374,7 @@ class ConnectorsApi(object):
                 'response_type': (BifrostConnector,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-hybrid-extender/{id}',
@@ -1384,7 +1507,7 @@ class ConnectorsApi(object):
                 'response_type': (RigelConnector,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connector-rigel/{id}',

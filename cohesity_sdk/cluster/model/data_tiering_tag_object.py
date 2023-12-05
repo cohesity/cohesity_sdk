@@ -58,13 +58,6 @@ class DataTieringTagObject(ModelNormal):
     """
 
     allowed_values = {
-        ('type',): {
-            'None': None,
-            'FILETYPETAG': "fileTypeTag",
-            'FILESIZETAG': "fileSizeTag",
-            'ACCESSTIMETAG': "accessTimeTag",
-            'MODTIMETAG': "modTimeTag",
-        },
     }
 
     validations = {
@@ -86,8 +79,8 @@ class DataTieringTagObject(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str, none_type,),  # noqa: E501
             'tags': ([DataTieringTag], none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,8 +90,8 @@ class DataTieringTagObject(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,8 +141,8 @@ class DataTieringTagObject(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies type of tag.. [optional]  # noqa: E501
             tags ([DataTieringTag], none_type): Array of tag label and value.. [optional]  # noqa: E501
+            type (str, none_type): Specifies type of tag.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

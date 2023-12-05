@@ -75,8 +75,8 @@ class CreateOrUpdateAPIKeyRequest(ModelNormal):
         """
         return {
             'name': (str, none_type,),  # noqa: E501
-            'is_active': (bool, none_type,),  # noqa: E501
             'expiry_time_msecs': (int, none_type,),  # noqa: E501
+            'is_active': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class CreateOrUpdateAPIKeyRequest(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'is_active': 'isActive',  # noqa: E501
         'expiry_time_msecs': 'expiryTimeMsecs',  # noqa: E501
+        'is_active': 'isActive',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class CreateOrUpdateAPIKeyRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_active (bool, none_type): Specifies if the API key is active.. [optional] if omitted the server will use the default value of True  # noqa: E501
             expiry_time_msecs (int, none_type): Specifies the time in milliseconds when the API key will expire. Set null for no expiry.. [optional]  # noqa: E501
+            is_active (bool, none_type): Specifies if the API key is active.. [optional] if omitted the server will use the default value of True  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

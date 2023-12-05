@@ -90,12 +90,12 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
         lazy_import()
         return {
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
-            'fallback_to_crash_consistent_snapshot': (bool, none_type,),  # noqa: E501
-            'skip_physical_rdm_disks': (bool, none_type,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
-            'leverage_san_transport': (bool, none_type,),  # noqa: E501
             'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
+            'fallback_to_crash_consistent_snapshot': (bool, none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'leverage_san_transport': (bool, none_type,),  # noqa: E501
+            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
+            'skip_physical_rdm_disks': (bool, none_type,),  # noqa: E501
             'exclude_disks': ([DiskInfo],),  # noqa: E501
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
@@ -109,12 +109,12 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
 
     attribute_map = {
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
-        'fallback_to_crash_consistent_snapshot': 'fallbackToCrashConsistentSnapshot',  # noqa: E501
-        'skip_physical_rdm_disks': 'skipPhysicalRDMDisks',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
-        'leverage_san_transport': 'leverageSanTransport',  # noqa: E501
         'enable_nbdssl_fallback': 'enableNBDSSLFallback',  # noqa: E501
+        'fallback_to_crash_consistent_snapshot': 'fallbackToCrashConsistentSnapshot',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'leverage_san_transport': 'leverageSanTransport',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
+        'skip_physical_rdm_disks': 'skipPhysicalRDMDisks',  # noqa: E501
         'exclude_disks': 'excludeDisks',  # noqa: E501
         'truncate_exchange_logs': 'truncateExchangeLogs',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
@@ -169,12 +169,12 @@ class VmwareObjectProtectionUpdateRequestParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501
-            fallback_to_crash_consistent_snapshot (bool, none_type): Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if 'appConsistentSnapshot' is set to 'true'.. [optional]  # noqa: E501
-            skip_physical_rdm_disks (bool, none_type): Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to 'false', then those VM backups will fail.. [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
-            leverage_san_transport (bool, none_type): If this field is set to true, then the backup for the objects will be performed using dedicated storage area network (SAN) instead of LAN or managment network.. [optional]  # noqa: E501
             enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport backup fails, then backup will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
+            fallback_to_crash_consistent_snapshot (bool, none_type): Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if 'appConsistentSnapshot' is set to 'true'.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            leverage_san_transport (bool, none_type): If this field is set to true, then the backup for the objects will be performed using dedicated storage area network (SAN) instead of LAN or managment network.. [optional]  # noqa: E501
+            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
+            skip_physical_rdm_disks (bool, none_type): Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to 'false', then those VM backups will fail.. [optional]  # noqa: E501
             exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501

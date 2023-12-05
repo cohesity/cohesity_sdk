@@ -20,7 +20,6 @@ Create CAD Storage Domains. Instead of returning error, This API will return the
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -36,7 +35,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateCadStorageDomainParam(
         external_target_id=1,
@@ -64,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -89,7 +87,6 @@ Create a Storage Domain.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -105,7 +102,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateStorageDomainParam() # CreateStorageDomainParam | Specified the request to create a Storage Domain.
 
@@ -131,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -156,7 +152,6 @@ Delete a Storage Domain.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -170,7 +165,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specified the Storage Domain id to delete.
 
@@ -195,7 +189,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -220,7 +214,6 @@ Get a Storage Domain by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -235,7 +228,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specified the Storage Domain id to fetch.
 include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
@@ -278,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -303,7 +295,6 @@ Get Storage Domains.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -318,7 +309,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         1,
@@ -371,7 +361,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -396,7 +386,6 @@ Update a Storage Domain.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -412,7 +401,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specified the Storage Domain id to update.
 body = UpdateStorageDomainParam() # UpdateStorageDomainParam | Specified the request to update a Storage Domain.
@@ -440,7 +428,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

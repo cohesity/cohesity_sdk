@@ -82,8 +82,8 @@ class RegistrationInfo(ModelNormal):
         """
         return {
             'authentication_status': (str, none_type,),  # noqa: E501
-            'registration_time_msecs': (int, none_type,),  # noqa: E501
             'last_refreshed_time_msecs': (int, none_type,),  # noqa: E501
+            'registration_time_msecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class RegistrationInfo(ModelNormal):
 
     attribute_map = {
         'authentication_status': 'authenticationStatus',  # noqa: E501
-        'registration_time_msecs': 'registrationTimeMsecs',  # noqa: E501
         'last_refreshed_time_msecs': 'lastRefreshedTimeMsecs',  # noqa: E501
+        'registration_time_msecs': 'registrationTimeMsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class RegistrationInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             authentication_status (str, none_type): Specifies the status of the authentication during the registration of a Protection Source. 'Pending' indicates the authentication is in progress. 'Scheduled' indicates the authentication is scheduled. 'Finished' indicates the authentication is completed. 'RefreshInProgress' indicates the refresh is in progress.. [optional]  # noqa: E501
-            registration_time_msecs (int, none_type): Specifies the time when the source was registered in milliseconds. [optional]  # noqa: E501
             last_refreshed_time_msecs (int, none_type): Specifies the time when the source was last refreshed in milliseconds.. [optional]  # noqa: E501
+            registration_time_msecs (int, none_type): Specifies the time when the source was registered in milliseconds. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

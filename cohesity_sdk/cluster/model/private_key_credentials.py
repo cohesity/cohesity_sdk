@@ -74,8 +74,8 @@ class PrivateKeyCredentials(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'user_id': (str,),  # noqa: E501
             'private_key': (str,),  # noqa: E501
+            'user_id': (str,),  # noqa: E501
             'passphrase': (str,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class PrivateKeyCredentials(ModelNormal):
 
 
     attribute_map = {
-        'user_id': 'userId',  # noqa: E501
         'private_key': 'privateKey',  # noqa: E501
+        'user_id': 'userId',  # noqa: E501
         'passphrase': 'passphrase',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class PrivateKeyCredentials(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, user_id, private_key, *args, **kwargs):  # noqa: E501
+    def __init__(self, private_key, user_id, *args, **kwargs):  # noqa: E501
         """PrivateKeyCredentials - a model defined in OpenAPI
 
         Args:
-            user_id (str): Specifies the userId to access target entity.
             private_key (str): Specifies the private key to access target entity.
+            user_id (str): Specifies the userId to access target entity.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class PrivateKeyCredentials(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.user_id = user_id
         self.private_key = private_key
+        self.user_id = user_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

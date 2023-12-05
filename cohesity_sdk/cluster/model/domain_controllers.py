@@ -79,8 +79,8 @@ class DomainControllers(ModelNormal):
         """
         lazy_import()
         return {
-            'domain_name': (str, none_type,),  # noqa: E501
             'controllers': ([DomainController], none_type,),  # noqa: E501
+            'domain_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class DomainControllers(ModelNormal):
 
 
     attribute_map = {
-        'domain_name': 'domainName',  # noqa: E501
         'controllers': 'controllers',  # noqa: E501
+        'domain_name': 'domainName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class DomainControllers(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            domain_name (str, none_type): Specifies the domain name.. [optional]  # noqa: E501
             controllers ([DomainController], none_type): Specifies a list of domain controllers of the domain.. [optional]  # noqa: E501
+            domain_name (str, none_type): Specifies the domain name.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

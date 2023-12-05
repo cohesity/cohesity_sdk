@@ -310,6 +310,10 @@ class ModelSimple(OpenApiModel):
         if name in self:
             return self.get(name)
 
+        if isinstance(name, int):
+            return self._data_store['value'][name]
+
+
         raise ApiAttributeError(
             "{0} has no attribute '{1}'".format(
                 type(self).__name__, name),
@@ -366,6 +370,10 @@ class ModelNormal(OpenApiModel):
         """get the value of an attribute using square-bracket notation: `instance[attr]`"""
         if name in self:
             return self.get(name)
+
+        if isinstance(name, int):
+            return self._data_store['value'][name]
+
 
         raise ApiAttributeError(
             "{0} has no attribute '{1}'".format(

@@ -80,11 +80,11 @@ class OracleRangeMetaInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_of_range': (int, none_type,),  # noqa: E501
             'end_of_range': (int, none_type,),  # noqa: E501
+            'incarnation_id': (int, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'reset_log_id': (int, none_type,),  # noqa: E501
-            'incarnation_id': (int, none_type,),  # noqa: E501
+            'start_of_range': (int, none_type,),  # noqa: E501
             'thread_id': (int, none_type,),  # noqa: E501
         }
 
@@ -95,11 +95,11 @@ class OracleRangeMetaInfo(ModelNormal):
 
 
     attribute_map = {
-        'start_of_range': 'startOfRange',  # noqa: E501
         'end_of_range': 'endOfRange',  # noqa: E501
+        'incarnation_id': 'incarnationId',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'reset_log_id': 'resetLogId',  # noqa: E501
-        'incarnation_id': 'incarnationId',  # noqa: E501
+        'start_of_range': 'startOfRange',  # noqa: E501
         'thread_id': 'threadId',  # noqa: E501
     }
 
@@ -150,11 +150,11 @@ class OracleRangeMetaInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_of_range (int, none_type): Specifies starting value of the range in time (usecs), SCN or sequence no.. [optional]  # noqa: E501
             end_of_range (int, none_type): Specifies ending value of the range in time (usecs), SCN or sequence no.. [optional]  # noqa: E501
+            incarnation_id (int, none_type): Specifies incarnation id associated with the oracle db for which the restore range belongs. Only applicable for ranges of type SCN and sequence no.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies id of the Protection Group corresponding to this oracle range. [optional]  # noqa: E501
             reset_log_id (int, none_type): Specifies resetlogs identifier associated with the oracle range. Only applicable for ranges of type SCN and sequence no.. [optional]  # noqa: E501
-            incarnation_id (int, none_type): Specifies incarnation id associated with the oracle db for which the restore range belongs. Only applicable for ranges of type SCN and sequence no.. [optional]  # noqa: E501
+            start_of_range (int, none_type): Specifies starting value of the range in time (usecs), SCN or sequence no.. [optional]  # noqa: E501
             thread_id (int, none_type): Specifies thread id associated with the oracle db for which the restore range belongs. Only applicable for ranges of type sequence no.. [optional]  # noqa: E501
         """
 

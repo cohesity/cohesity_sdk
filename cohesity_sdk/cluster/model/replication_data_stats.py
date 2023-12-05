@@ -74,8 +74,8 @@ class ReplicationDataStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'logical_bytes_transferred': (int, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'physical_bytes_transferred': (int, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class ReplicationDataStats(ModelNormal):
 
 
     attribute_map = {
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'logical_bytes_transferred': 'logicalBytesTransferred',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'physical_bytes_transferred': 'physicalBytesTransferred',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class ReplicationDataStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            logical_size_bytes (int, none_type): Specifies the total logical size in bytes.. [optional]  # noqa: E501
             logical_bytes_transferred (int, none_type): Specifies the total logical bytes transferred.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the total logical size in bytes.. [optional]  # noqa: E501
             physical_bytes_transferred (int, none_type): Specifies the total physical bytes transferred.. [optional]  # noqa: E501
         """
 

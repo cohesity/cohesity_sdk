@@ -21,8 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_tdm_task_request_params4071d258680f43b48c83_dfafe35b3a8d import CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d
-from cohesity_sdk.cluster.model.common_tdm_task_response_params0fe3e0d07da54d73_ba98_fa33dd3fb83b import CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b
+from cohesity_sdk.cluster.model.create_tdm_task_request import CreateTdmTaskRequest
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.perform_action_on_clones_request import PerformActionOnClonesRequest
 from cohesity_sdk.cluster.model.tdm_object import TdmObject
@@ -61,7 +60,7 @@ class TestDataManagementApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d): Specifies the parameters to create a TDM task.
+                body (CreateTdmTaskRequest): Specifies the parameters to create a TDM task.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -85,7 +84,7 @@ class TestDataManagementApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b
+                TdmTask
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -114,10 +113,10 @@ class TestDataManagementApi(object):
 
         self.create_tdm_task = _Endpoint(
             settings={
-                'response_type': (CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b,),
+                'response_type': (TdmTask,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/tasks',
@@ -146,7 +145,7 @@ class TestDataManagementApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d,),
+                        (CreateTdmTaskRequest,),
                 },
                 'attribute_map': {
                 },
@@ -239,7 +238,7 @@ class TestDataManagementApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/snapshots/{id}',
@@ -360,7 +359,7 @@ class TestDataManagementApi(object):
                 'response_type': (TdmObject,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/objects/{id}',
@@ -482,7 +481,7 @@ class TestDataManagementApi(object):
                 'response_type': (TdmObjects,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/objects',
@@ -645,7 +644,7 @@ class TestDataManagementApi(object):
                 'response_type': (TdmTask,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/tasks/{id}',
@@ -769,7 +768,7 @@ class TestDataManagementApi(object):
                 'response_type': (TdmTasks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/tasks',
@@ -954,7 +953,7 @@ class TestDataManagementApi(object):
                 'response_type': (TdmObjectTimelineEvents,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/objects/{id}/timeline-events',
@@ -1085,7 +1084,7 @@ class TestDataManagementApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/clones/actions',
@@ -1211,7 +1210,7 @@ class TestDataManagementApi(object):
                 'response_type': (TdmSnapshot,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tdm/snapshots/{id}',

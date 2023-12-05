@@ -111,7 +111,7 @@ class IdentityProviderApi(object):
                 'response_type': (IdentityProviderConfiguration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps',
@@ -233,7 +233,7 @@ class IdentityProviderApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps/{id}',
@@ -354,7 +354,7 @@ class IdentityProviderApi(object):
                 'response_type': (IdentityProviderConfigurations,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps',
@@ -493,7 +493,7 @@ class IdentityProviderApi(object):
                 'response_type': (Error,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps/login',
@@ -616,7 +616,7 @@ class IdentityProviderApi(object):
                 'response_type': (IdentityProviderConfiguration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps/{id}',

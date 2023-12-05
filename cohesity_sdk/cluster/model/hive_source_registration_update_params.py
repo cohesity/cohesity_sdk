@@ -81,11 +81,11 @@ class HiveSourceRegistrationUpdateParams(ModelNormal):
         """
         lazy_import()
         return {
-            'host': (str, none_type,),  # noqa: E501
             'configuration_directory': (str, none_type,),  # noqa: E501
+            'host': (str, none_type,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,11 +95,11 @@ class HiveSourceRegistrationUpdateParams(ModelNormal):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
+        'host': 'host',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,11 +149,11 @@ class HiveSourceRegistrationUpdateParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            host (str, none_type): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.. [optional]  # noqa: E501
             configuration_directory (str, none_type): The directory containing the hive-site.xml.. [optional]  # noqa: E501
+            host (str, none_type): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.. [optional]  # noqa: E501
+            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
             ssh_password_credentials (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
-            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

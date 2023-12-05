@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.common_object_summarye035501c5a4049c4_a0311f36040dc4fe import CommonObjectSummarye035501c5a4049c4A0311f36040dc4fe
-    globals()['CommonObjectSummarye035501c5a4049c4A0311f36040dc4fe'] = CommonObjectSummarye035501c5a4049c4A0311f36040dc4fe
+    from cohesity_sdk.cluster.model.object import Object
+    globals()['Object'] = Object
 
 
 class Objects(ModelNormal):
@@ -79,7 +79,7 @@ class Objects(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([CommonObjectSummarye035501c5a4049c4A0311f36040dc4fe], none_type,),  # noqa: E501
+            'objects': ([Object], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class Objects(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([CommonObjectSummarye035501c5a4049c4A0311f36040dc4fe], none_type): Specifies the list of objects.. [optional]  # noqa: E501
+            objects ([Object], none_type): Specifies the list of objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

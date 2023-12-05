@@ -59,7 +59,7 @@ class CreateActiveDirectoryRequestAllOf(ModelNormal):
     validations = {
         ('domain_name',): {
             'regex': {
-                'pattern': r'^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9]))*$',  # noqa: E501
+                'pattern': r'^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))*$',  # noqa: E501
             },
         },
 
@@ -80,8 +80,8 @@ class CreateActiveDirectoryRequestAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'domain_name': (str, none_type,),  # noqa: E501
             'active_directory_admin_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'domain_name': (str, none_type,),  # noqa: E501
             'overwrite_machine_accounts': (bool, none_type,),  # noqa: E501
         }
 
@@ -92,8 +92,8 @@ class CreateActiveDirectoryRequestAllOf(ModelNormal):
 
 
     attribute_map = {
-        'domain_name': 'domainName',  # noqa: E501
         'active_directory_admin_params': 'activeDirectoryAdminParams',  # noqa: E501
+        'domain_name': 'domainName',  # noqa: E501
         'overwrite_machine_accounts': 'overwriteMachineAccounts',  # noqa: E501
     }
 
@@ -109,12 +109,12 @@ class CreateActiveDirectoryRequestAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, domain_name, active_directory_admin_params, *args, **kwargs):  # noqa: E501
+    def __init__(self, active_directory_admin_params, domain_name, *args, **kwargs):  # noqa: E501
         """CreateActiveDirectoryRequestAllOf - a model defined in OpenAPI
 
         Args:
-            domain_name (str, none_type): Specifies the domain name of the Active Directory.
             active_directory_admin_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of a user with administrative privilege of this Active Directory.
+            domain_name (str, none_type): Specifies the domain name of the Active Directory.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,8 +175,8 @@ class CreateActiveDirectoryRequestAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.domain_name = domain_name
         self.active_directory_admin_params = active_directory_admin_params
+        self.domain_name = domain_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

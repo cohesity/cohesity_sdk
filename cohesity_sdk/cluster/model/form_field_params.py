@@ -87,15 +87,15 @@ class FormFieldParams(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'label': (str, none_type,),  # noqa: E501
-            'key': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'string_config': (StringFormFieldParams,),  # noqa: E501
-            'password_config': (PasswordFormFieldParams,),  # noqa: E501
-            'number_config': (NumberFormFieldParams,),  # noqa: E501
             'boolean_config': (BooleanFormFieldParams,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'key': (str, none_type,),  # noqa: E501
+            'label': (str, none_type,),  # noqa: E501
+            'number_config': (NumberFormFieldParams,),  # noqa: E501
+            'password_config': (PasswordFormFieldParams,),  # noqa: E501
             'radio_group_config': (RadioGroupFormFieldParams,),  # noqa: E501
+            'string_config': (StringFormFieldParams,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,15 +105,15 @@ class FormFieldParams(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'label': 'label',  # noqa: E501
-        'key': 'key',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'string_config': 'stringConfig',  # noqa: E501
-        'password_config': 'passwordConfig',  # noqa: E501
-        'number_config': 'numberConfig',  # noqa: E501
         'boolean_config': 'booleanConfig',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'key': 'key',  # noqa: E501
+        'label': 'label',  # noqa: E501
+        'number_config': 'numberConfig',  # noqa: E501
+        'password_config': 'passwordConfig',  # noqa: E501
         'radio_group_config': 'radioGroupConfig',  # noqa: E501
+        'string_config': 'stringConfig',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -163,15 +163,15 @@ class FormFieldParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Id to identify the form field. This is also be used for assigning component html ids which can be leveraged for writing automation against the form field.. [optional]  # noqa: E501
-            label (str, none_type): Label to be shown on the UI screen. [optional]  # noqa: E501
-            key (str, none_type): Key against which the form field value will be returned. [optional]  # noqa: E501
-            type (str, none_type): Type of the form field. Available types are 'string', 'password', 'number', 'boolean', 'radioGroup'. [optional]  # noqa: E501
-            string_config (StringFormFieldParams): [optional]  # noqa: E501
-            password_config (PasswordFormFieldParams): [optional]  # noqa: E501
-            number_config (NumberFormFieldParams): [optional]  # noqa: E501
             boolean_config (BooleanFormFieldParams): [optional]  # noqa: E501
+            id (str, none_type): Id to identify the form field. This is also be used for assigning component html ids which can be leveraged for writing automation against the form field.. [optional]  # noqa: E501
+            key (str, none_type): Key against which the form field value will be returned. [optional]  # noqa: E501
+            label (str, none_type): Label to be shown on the UI screen. [optional]  # noqa: E501
+            number_config (NumberFormFieldParams): [optional]  # noqa: E501
+            password_config (PasswordFormFieldParams): [optional]  # noqa: E501
             radio_group_config (RadioGroupFormFieldParams): [optional]  # noqa: E501
+            string_config (StringFormFieldParams): [optional]  # noqa: E501
+            type (str, none_type): Type of the form field. Available types are 'string', 'password', 'number', 'boolean', 'radioGroup'. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class ClusterPackageParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'version_name': (str, none_type,),  # noqa: E501
             'release_date': (str, none_type,),  # noqa: E501
+            'version_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ClusterPackageParams(ModelNormal):
 
 
     attribute_map = {
-        'version_name': 'versionName',  # noqa: E501
         'release_date': 'releaseDate',  # noqa: E501
+        'version_name': 'versionName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ClusterPackageParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            version_name (str, none_type): Name of the package version. Example: 6.3.1h_release-20210714_0fad884e. [optional]  # noqa: E501
             release_date (str, none_type): Release date of the package.. [optional]  # noqa: E501
+            version_name (str, none_type): Name of the package version. Example: 6.3.1h_release-20210714_0fad884e. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

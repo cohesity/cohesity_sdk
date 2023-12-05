@@ -97,27 +97,27 @@ class VmwareProtectionGroupParams(ModelComposed):
         """
         lazy_import()
         return {
-            'objects': ([VmwareProtectionGroupObjectParams],),  # noqa: E501
             'global_exclude_disks': ([DiskInfo], none_type,),  # noqa: E501
+            'objects': ([VmwareProtectionGroupObjectParams],),  # noqa: E501
             'standby_resource_objects': ([VmwareProtectionGroupStandbyResourceParams], none_type,),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
-            'fallback_to_crash_consistent_snapshot': (bool, none_type,),  # noqa: E501
-            'skip_physical_rdm_disks': (bool, none_type,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
-            'leverage_san_transport': (bool, none_type,),  # noqa: E501
             'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
-            'source_id': (int, none_type,),  # noqa: E501
-            'source_name': (str, none_type,),  # noqa: E501
-            'exclude_object_ids': ([int, none_type],),  # noqa: E501
-            'vm_tag_ids': ([[int]], none_type,),  # noqa: E501
-            'exclude_vm_tag_ids': ([[int]],),  # noqa: E501
+            'fallback_to_crash_consistent_snapshot': (bool, none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'leverage_san_transport': (bool, none_type,),  # noqa: E501
+            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
+            'skip_physical_rdm_disks': (bool, none_type,),  # noqa: E501
+            'allow_parallel_runs': (bool, none_type,),  # noqa: E501
+            'cloud_migration': (bool, none_type,),  # noqa: E501
             'exclude_filters': ([VMFilter], none_type,),  # noqa: E501
-            'leverage_storage_snapshots': (bool, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int, none_type],),  # noqa: E501
+            'exclude_vm_tag_ids': ([[int]],),  # noqa: E501
             'leverage_hyperflex_snapshots': (bool, none_type,),  # noqa: E501
             'leverage_nutanix_snapshots': (bool, none_type,),  # noqa: E501
-            'cloud_migration': (bool, none_type,),  # noqa: E501
-            'allow_parallel_runs': (bool, none_type,),  # noqa: E501
+            'leverage_storage_snapshots': (bool, none_type,),  # noqa: E501
+            'source_id': (int, none_type,),  # noqa: E501
+            'source_name': (str, none_type,),  # noqa: E501
+            'vm_tag_ids': ([[int]], none_type,),  # noqa: E501
             'enable_cdp_sync_replication': (bool, none_type,),  # noqa: E501
         }
 
@@ -128,27 +128,27 @@ class VmwareProtectionGroupParams(ModelComposed):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
         'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'standby_resource_objects': 'standbyResourceObjects',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
-        'fallback_to_crash_consistent_snapshot': 'fallbackToCrashConsistentSnapshot',  # noqa: E501
-        'skip_physical_rdm_disks': 'skipPhysicalRDMDisks',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
-        'leverage_san_transport': 'leverageSanTransport',  # noqa: E501
         'enable_nbdssl_fallback': 'enableNBDSSLFallback',  # noqa: E501
-        'source_id': 'sourceId',  # noqa: E501
-        'source_name': 'sourceName',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
-        'vm_tag_ids': 'vmTagIds',  # noqa: E501
-        'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
+        'fallback_to_crash_consistent_snapshot': 'fallbackToCrashConsistentSnapshot',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'leverage_san_transport': 'leverageSanTransport',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
+        'skip_physical_rdm_disks': 'skipPhysicalRDMDisks',  # noqa: E501
+        'allow_parallel_runs': 'allowParallelRuns',  # noqa: E501
+        'cloud_migration': 'cloudMigration',  # noqa: E501
         'exclude_filters': 'excludeFilters',  # noqa: E501
-        'leverage_storage_snapshots': 'leverageStorageSnapshots',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
         'leverage_hyperflex_snapshots': 'leverageHyperflexSnapshots',  # noqa: E501
         'leverage_nutanix_snapshots': 'leverageNutanixSnapshots',  # noqa: E501
-        'cloud_migration': 'cloudMigration',  # noqa: E501
-        'allow_parallel_runs': 'allowParallelRuns',  # noqa: E501
+        'leverage_storage_snapshots': 'leverageStorageSnapshots',  # noqa: E501
+        'source_id': 'sourceId',  # noqa: E501
+        'source_name': 'sourceName',  # noqa: E501
+        'vm_tag_ids': 'vmTagIds',  # noqa: E501
         'enable_cdp_sync_replication': 'enableCdpSyncReplication',  # noqa: E501
     }
 
@@ -200,27 +200,27 @@ class VmwareProtectionGroupParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([VmwareProtectionGroupObjectParams]): Specifies the objects to include in the backup.. [optional]  # noqa: E501
             global_exclude_disks ([DiskInfo], none_type): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
+            objects ([VmwareProtectionGroupObjectParams]): Specifies the objects to include in the backup.. [optional]  # noqa: E501
             standby_resource_objects ([VmwareProtectionGroupStandbyResourceParams], none_type): Specifies the standby resource objects for this backup.. [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501
-            fallback_to_crash_consistent_snapshot (bool, none_type): Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if 'appConsistentSnapshot' is set to 'true'.. [optional]  # noqa: E501
-            skip_physical_rdm_disks (bool, none_type): Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to 'false', then those VM backups will fail.. [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
-            leverage_san_transport (bool, none_type): If this field is set to true, then the backup for the objects will be performed using dedicated storage area network (SAN) instead of LAN or managment network.. [optional]  # noqa: E501
             enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport backup fails, then backup will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
-            source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
-            source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
-            vm_tag_ids ([[int]], none_type): Array of Array of VM Tag Ids that Specify VMs to Protect. Optionally specify a list of VMs to protect by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to protect which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. To protect only 'Eng' VMs in the East and all the VMs in the West, specify the following tag id array: [ [1101, 2221], [3031] ], where 1101 is the 'Eng' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The inner array [1101, 2221] produces a list of VMs that are both tagged with 'Eng' and 'East' (an intersection). The outer array combines the list from the inner array with list of VMs tagged with 'West' (a union). The list of resulting VMs are protected by this Protection Group.. [optional]  # noqa: E501
-            exclude_vm_tag_ids ([[int]]): Array of Arrays of VM Tag Ids that Specify VMs to Exclude. Optionally specify a list of VMs to exclude from protecting by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Datacenter is selected to be protected but you want to exclude all the 'Former Employees' VMs in the East and West but keep all the VMs for 'Former Employees' in the South which are also stored in this Datacenter, by specifying the following tag id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Former Employee' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The first inner array [1000, 2221] produces a list of VMs that are both tagged with 'Former Employees' and 'East' (an intersection). The second inner array [1000, 3031] produces a list of VMs that are both tagged with 'Former Employees' and 'West' (an intersection). The outer array combines the list of VMs from the two inner arrays. The list of resulting VMs are excluded from being protected this Job.. [optional]  # noqa: E501
+            fallback_to_crash_consistent_snapshot (bool, none_type): Specifies whether or not to fallback to a crash consistent snapshot in the event that an app consistent snapshot fails. This parameter defaults to true and only changes the behavior of the operation if 'appConsistentSnapshot' is set to 'true'.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            leverage_san_transport (bool, none_type): If this field is set to true, then the backup for the objects will be performed using dedicated storage area network (SAN) instead of LAN or managment network.. [optional]  # noqa: E501
+            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
+            skip_physical_rdm_disks (bool, none_type): Specifies whether or not to skip backing up physical RDM disks. Physical RDM disks cannot be backed up, so if you attempt to backup a VM with physical RDM disks and this value is set to 'false', then those VM backups will fail.. [optional]  # noqa: E501
+            allow_parallel_runs (bool, none_type): Specifies whether or not this job can have parallel runs.. [optional]  # noqa: E501
+            cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
             exclude_filters ([VMFilter], none_type): Specifies the list of exclusion filters applied during the group creation or edit. These exclusion filters can be wildcard supported strings or regular expressions. Objects satisfying these filters will be excluded during backup and also auto protected objects will be ignored if filtered by any of the filters.. [optional]  # noqa: E501
-            leverage_storage_snapshots (bool, none_type): Whether to leverage the storage array based snapshots for this backup. To leverage storage snapshots, the storage array has to be registered as a source. If storage based snapshots can not be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
+            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
+            exclude_vm_tag_ids ([[int]]): Array of Arrays of VM Tag Ids that Specify VMs to Exclude. Optionally specify a list of VMs to exclude from protecting by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Datacenter is selected to be protected but you want to exclude all the 'Former Employees' VMs in the East and West but keep all the VMs for 'Former Employees' in the South which are also stored in this Datacenter, by specifying the following tag id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Former Employee' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The first inner array [1000, 2221] produces a list of VMs that are both tagged with 'Former Employees' and 'East' (an intersection). The second inner array [1000, 3031] produces a list of VMs that are both tagged with 'Former Employees' and 'West' (an intersection). The outer array combines the list of VMs from the two inner arrays. The list of resulting VMs are excluded from being protected this Job.. [optional]  # noqa: E501
             leverage_hyperflex_snapshots (bool, none_type): Whether to leverage the hyperflex based snapshots for this backup. To leverage hyperflex snapshots, it has to first be registered. If hyperflex based snapshots cannot be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
             leverage_nutanix_snapshots (bool, none_type): Whether to leverage the nutanix based snapshots for this backup. To leverage nutanix snapshots, it has to first be registered. If nutanix based snapshots cannot be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
-            cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
-            allow_parallel_runs (bool, none_type): Specifies whether or not this job can have parallel runs.. [optional]  # noqa: E501
+            leverage_storage_snapshots (bool, none_type): Whether to leverage the storage array based snapshots for this backup. To leverage storage snapshots, the storage array has to be registered as a source. If storage based snapshots can not be taken, backup will fallback to the default backup method.. [optional]  # noqa: E501
+            source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
+            source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
+            vm_tag_ids ([[int]], none_type): Array of Array of VM Tag Ids that Specify VMs to Protect. Optionally specify a list of VMs to protect by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to protect which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. To protect only 'Eng' VMs in the East and all the VMs in the West, specify the following tag id array: [ [1101, 2221], [3031] ], where 1101 is the 'Eng' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The inner array [1101, 2221] produces a list of VMs that are both tagged with 'Eng' and 'East' (an intersection). The outer array combines the list from the inner array with list of VMs tagged with 'West' (a union). The list of resulting VMs are protected by this Protection Group.. [optional]  # noqa: E501
             enable_cdp_sync_replication (bool, none_type): Specifies whether synchronous replication is enabled for CDP Protection Group when replication target is specified in attached policy.. [optional]  # noqa: E501
         """
 

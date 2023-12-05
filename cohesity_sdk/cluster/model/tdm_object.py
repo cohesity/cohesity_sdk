@@ -96,14 +96,14 @@ class TdmObject(ModelComposed):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'created_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'last_action': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'size_bytes': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'parent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'size_bytes': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'oracle_params': (OracleCloneObject,),  # noqa: E501
         }
 
@@ -114,14 +114,14 @@ class TdmObject(ModelComposed):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'environment': 'environment',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'created_by_user': 'createdByUser',  # noqa: E501
         'last_action': 'lastAction',  # noqa: E501
-        'size_bytes': 'sizeBytes',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'parent': 'parent',  # noqa: E501
+        'size_bytes': 'sizeBytes',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
     }
 
@@ -138,12 +138,12 @@ class TdmObject(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, environment, *args, **kwargs):  # noqa: E501
+    def __init__(self, environment, id, *args, **kwargs):  # noqa: E501
         """TdmObject - a model defined in OpenAPI
 
         Args:
-            id (str, none_type): Specifies the unique ID of the object.
             environment (str, none_type): Specifies the environment of the object.
+            id (str, none_type): Specifies the unique ID of the object.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -177,12 +177,12 @@ class TdmObject(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the object.. [optional]  # noqa: E501
             created_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the user, who created the object.. [optional]  # noqa: E501
             last_action ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the details of the last action performed on this object.. [optional]  # noqa: E501
-            size_bytes (int, none_type): Specifies the size (in bytes) of the object.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             parent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parent of the object.. [optional]  # noqa: E501
+            size_bytes (int, none_type): Specifies the size (in bytes) of the object.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the object.. [optional]  # noqa: E501
             oracle_params (OracleCloneObject): [optional]  # noqa: E501
         """
 
@@ -218,8 +218,8 @@ class TdmObject(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'id': id,
             'environment': environment,
+            'id': id,
         }
         model_args = {}
         model_args.update(required_args)

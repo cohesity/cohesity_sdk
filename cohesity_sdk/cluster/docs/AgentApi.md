@@ -18,7 +18,6 @@ Create a schedule based agent upgrade task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.agent_upgrade_task_state import AgentUpgradeTaskState
@@ -35,16 +34,15 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateUpgradeTaskRequest(
-        name="name_example",
-        description="description_example",
         agent_ids=[
             1,
         ],
-        schedule_time_usecs=1,
-        schedule_end_time_usecs=1,
+        description="description_example",
+        name="name_example",
         retry_task_id=1,
+        schedule_end_time_usecs=1,
+        schedule_time_usecs=1,
     ) # CreateUpgradeTaskRequest | Specifies parameters to create a schedule based agent upgrade task.
 
 # example passing only required values which don't have defaults set
@@ -69,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -94,7 +92,6 @@ Download agent for different hosts.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -110,27 +107,23 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = DownloadAgentRequestParams(
-        platform="kLinux",
-        linux_params=LinuxAgentParams(
-            package_type="kScript",
-        ),
         aix_params=AixAgentParams(
             agent_type="kGo",
         ),
-        sap_hana_params=SapHanaAgentParams(
-            package_type="kScript",
-            agent_type="kJava",
-        ),
-        sap_oracle_params=SapOracleAgentParams(
+        linux_params=LinuxAgentParams(
             package_type="kScript",
         ),
         my_sql_params=MySqlAgentParams(
             package_type="kScript",
         ),
-        vmware_cdp_filter_params=VMWareCDPFilterParams(
-            esxi_version="esxi_version_example",
+        platform="kLinux",
+        sap_hana_params=SapHanaAgentParams(
+            agent_type="kJava",
+            package_type="kScript",
+        ),
+        sap_oracle_params=SapOracleAgentParams(
+            package_type="kScript",
         ),
     ) # DownloadAgentRequestParams | Specifies agent details.
 
@@ -156,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -181,7 +174,6 @@ Get the list of agent upgrade tasks.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -196,7 +188,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         1,
@@ -231,7 +222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -256,7 +247,6 @@ Perform actions on an agent upgrade task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
@@ -272,7 +262,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = AgentUpgradeTaskActionRequest(
         action="Retry",
@@ -301,7 +290,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

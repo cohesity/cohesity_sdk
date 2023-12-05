@@ -79,11 +79,11 @@ class HdfsFileFolderParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'last_modified_time_usecs': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
-            'type': (str,),  # noqa: E501
-            'last_modified_time_usecs': (int, none_type,),  # noqa: E501
             'size_bytes': (int, none_type,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class HdfsFileFolderParams(ModelNormal):
 
 
     attribute_map = {
+        'last_modified_time_usecs': 'lastModifiedTimeUsecs',  # noqa: E501
         'name': 'name',  # noqa: E501
         'path': 'path',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'last_modified_time_usecs': 'lastModifiedTimeUsecs',  # noqa: E501
         'size_bytes': 'sizeBytes',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class HdfsFileFolderParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            last_modified_time_usecs (int, none_type): Specifies the last time file was modified in unix timestamp.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name.. [optional]  # noqa: E501
             path (str, none_type): Specifies the path.. [optional]  # noqa: E501
-            type (str): Specifies the type of the contents.. [optional]  # noqa: E501
-            last_modified_time_usecs (int, none_type): Specifies the last time file was modified in unix timestamp.. [optional]  # noqa: E501
             size_bytes (int, none_type): Specifies the file size in bytes.. [optional]  # noqa: E501
+            type (str): Specifies the type of the contents.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

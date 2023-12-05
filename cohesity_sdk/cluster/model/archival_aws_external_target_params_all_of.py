@@ -29,7 +29,6 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_glacier_params import AwsGlacierParams
     from cohesity_sdk.cluster.model.aws_s3_glacier_deep_archive_params import AwsS3GlacierDeepArchiveParams
-    from cohesity_sdk.cluster.model.aws_s3_glacier_ir_params import AwsS3GlacierIRParams
     from cohesity_sdk.cluster.model.aws_s3_glacier_params import AwsS3GlacierParams
     from cohesity_sdk.cluster.model.aws_s3_intelligent_params import AwsS3IntelligentParams
     from cohesity_sdk.cluster.model.aws_s3_one_zone_ia_params import AwsS3OneZoneIAParams
@@ -37,7 +36,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.aws_s3_standard_params import AwsS3StandardParams
     globals()['AwsGlacierParams'] = AwsGlacierParams
     globals()['AwsS3GlacierDeepArchiveParams'] = AwsS3GlacierDeepArchiveParams
-    globals()['AwsS3GlacierIRParams'] = AwsS3GlacierIRParams
     globals()['AwsS3GlacierParams'] = AwsS3GlacierParams
     globals()['AwsS3IntelligentParams'] = AwsS3IntelligentParams
     globals()['AwsS3OneZoneIAParams'] = AwsS3OneZoneIAParams
@@ -93,14 +91,13 @@ class ArchivalAwsExternalTargetParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'aws_s3_standard_params': (AwsS3StandardParams,),  # noqa: E501
-            'aws_s3_standard_ia_params': (AwsS3StandardIAParams,),  # noqa: E501
-            'aws_s3_one_zone_ia_params': (AwsS3OneZoneIAParams,),  # noqa: E501
-            'aws_s3_intelligent_params': (AwsS3IntelligentParams,),  # noqa: E501
-            'aws_s3_glacier_params': (AwsS3GlacierParams,),  # noqa: E501
-            'aws_s3_glacier_deep_archive_params': (AwsS3GlacierDeepArchiveParams,),  # noqa: E501
             'aws_glacier_params': (AwsGlacierParams,),  # noqa: E501
-            'aws_s3_glacier_ir_params': (AwsS3GlacierIRParams,),  # noqa: E501
+            'aws_s3_glacier_deep_archive_params': (AwsS3GlacierDeepArchiveParams,),  # noqa: E501
+            'aws_s3_glacier_params': (AwsS3GlacierParams,),  # noqa: E501
+            'aws_s3_intelligent_params': (AwsS3IntelligentParams,),  # noqa: E501
+            'aws_s3_one_zone_ia_params': (AwsS3OneZoneIAParams,),  # noqa: E501
+            'aws_s3_standard_ia_params': (AwsS3StandardIAParams,),  # noqa: E501
+            'aws_s3_standard_params': (AwsS3StandardParams,),  # noqa: E501
         }
 
     @cached_property
@@ -110,14 +107,13 @@ class ArchivalAwsExternalTargetParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'aws_s3_standard_params': 'awsS3StandardParams',  # noqa: E501
-        'aws_s3_standard_ia_params': 'awsS3StandardIAParams',  # noqa: E501
-        'aws_s3_one_zone_ia_params': 'awsS3OneZoneIAParams',  # noqa: E501
-        'aws_s3_intelligent_params': 'awsS3IntelligentParams',  # noqa: E501
-        'aws_s3_glacier_params': 'awsS3GlacierParams',  # noqa: E501
-        'aws_s3_glacier_deep_archive_params': 'awsS3GlacierDeepArchiveParams',  # noqa: E501
         'aws_glacier_params': 'awsGlacierParams',  # noqa: E501
-        'aws_s3_glacier_ir_params': 'awsS3GlacierIRParams',  # noqa: E501
+        'aws_s3_glacier_deep_archive_params': 'awsS3GlacierDeepArchiveParams',  # noqa: E501
+        'aws_s3_glacier_params': 'awsS3GlacierParams',  # noqa: E501
+        'aws_s3_intelligent_params': 'awsS3IntelligentParams',  # noqa: E501
+        'aws_s3_one_zone_ia_params': 'awsS3OneZoneIAParams',  # noqa: E501
+        'aws_s3_standard_ia_params': 'awsS3StandardIAParams',  # noqa: E501
+        'aws_s3_standard_params': 'awsS3StandardParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,14 +163,13 @@ class ArchivalAwsExternalTargetParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            aws_s3_standard_params (AwsS3StandardParams): [optional]  # noqa: E501
-            aws_s3_standard_ia_params (AwsS3StandardIAParams): [optional]  # noqa: E501
-            aws_s3_one_zone_ia_params (AwsS3OneZoneIAParams): [optional]  # noqa: E501
-            aws_s3_intelligent_params (AwsS3IntelligentParams): [optional]  # noqa: E501
-            aws_s3_glacier_params (AwsS3GlacierParams): [optional]  # noqa: E501
-            aws_s3_glacier_deep_archive_params (AwsS3GlacierDeepArchiveParams): [optional]  # noqa: E501
             aws_glacier_params (AwsGlacierParams): [optional]  # noqa: E501
-            aws_s3_glacier_ir_params (AwsS3GlacierIRParams): [optional]  # noqa: E501
+            aws_s3_glacier_deep_archive_params (AwsS3GlacierDeepArchiveParams): [optional]  # noqa: E501
+            aws_s3_glacier_params (AwsS3GlacierParams): [optional]  # noqa: E501
+            aws_s3_intelligent_params (AwsS3IntelligentParams): [optional]  # noqa: E501
+            aws_s3_one_zone_ia_params (AwsS3OneZoneIAParams): [optional]  # noqa: E501
+            aws_s3_standard_ia_params (AwsS3StandardIAParams): [optional]  # noqa: E501
+            aws_s3_standard_params (AwsS3StandardParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

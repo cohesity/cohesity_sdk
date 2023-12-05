@@ -75,8 +75,8 @@ class WormProperties(ModelNormal):
         """
         return {
             'is_archive_worm_compliant': (bool, none_type,),  # noqa: E501
-            'worm_non_compliance_reason': (str, none_type,),  # noqa: E501
             'worm_expiry_time_usecs': (int, none_type,),  # noqa: E501
+            'worm_non_compliance_reason': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class WormProperties(ModelNormal):
 
     attribute_map = {
         'is_archive_worm_compliant': 'isArchiveWormCompliant',  # noqa: E501
-        'worm_non_compliance_reason': 'wormNonComplianceReason',  # noqa: E501
         'worm_expiry_time_usecs': 'wormExpiryTimeUsecs',  # noqa: E501
+        'worm_non_compliance_reason': 'wormNonComplianceReason',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class WormProperties(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             is_archive_worm_compliant (bool, none_type): Specifies whether this archive run is WORM compliant. [optional]  # noqa: E501
-            worm_non_compliance_reason (str, none_type): Specifies reason of archive not being worm compliant.. [optional]  # noqa: E501
             worm_expiry_time_usecs (int, none_type): Specifies the time at which the WORM protection expires.. [optional]  # noqa: E501
+            worm_non_compliance_reason (str, none_type): Specifies reason of archive not being worm compliant.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

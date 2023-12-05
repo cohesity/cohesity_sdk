@@ -74,15 +74,15 @@ class Privilege(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'label': (str, none_type,),  # noqa: E501
             'category': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
             'is_available_on_helios': (bool, none_type,),  # noqa: E501
             'is_custom_role_default': (bool, none_type,),  # noqa: E501
             'is_special': (bool, none_type,),  # noqa: E501
             'is_view_only': (bool, none_type,),  # noqa: E501
+            'label': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,15 +92,15 @@ class Privilege(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'label': 'label',  # noqa: E501
         'category': 'category',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'is_available_on_helios': 'isAvailableOnHelios',  # noqa: E501
         'is_custom_role_default': 'isCustomRoleDefault',  # noqa: E501
         'is_special': 'isSpecial',  # noqa: E501
         'is_view_only': 'isViewOnly',  # noqa: E501
+        'label': 'label',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,15 +150,15 @@ class Privilege(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the Privilege id.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the Privilege name.. [optional]  # noqa: E501
-            label (str, none_type): Specifies the Privilege label.. [optional]  # noqa: E501
             category (str, none_type): Specifies the Privilege category.. [optional]  # noqa: E501
             description (str, none_type): Specifies the description message for the Privilege.. [optional]  # noqa: E501
+            id (int, none_type): Specifies the Privilege id.. [optional]  # noqa: E501
             is_available_on_helios (bool, none_type): Specifies whether the Privilege is available for Helios operations.. [optional]  # noqa: E501
             is_custom_role_default (bool, none_type): Specifies whether the Privilege is auto assigned to custom Roles.. [optional]  # noqa: E501
             is_special (bool, none_type): Specifies whether the Privilege is a special privilege. Special Privileges are not assigned to builtin 'Admin' Role.. [optional]  # noqa: E501
             is_view_only (bool, none_type): Specifies whether the Privilege is a read-only privilege. Read-only Previlege only grants read access to a Role.. [optional]  # noqa: E501
+            label (str, none_type): Specifies the Privilege label.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the Privilege name.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

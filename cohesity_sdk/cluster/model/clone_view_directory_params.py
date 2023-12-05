@@ -75,8 +75,8 @@ class CloneViewDirectoryParams(ModelNormal):
         """
         return {
             'source_directory_path': (str, none_type,),  # noqa: E501
-            'target_parent_directory_path': (str, none_type,),  # noqa: E501
             'target_directory_name': (str, none_type,),  # noqa: E501
+            'target_parent_directory_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class CloneViewDirectoryParams(ModelNormal):
 
     attribute_map = {
         'source_directory_path': 'sourceDirectoryPath',  # noqa: E501
-        'target_parent_directory_path': 'targetParentDirectoryPath',  # noqa: E501
         'target_directory_name': 'targetDirectoryName',  # noqa: E501
+        'target_parent_directory_path': 'targetParentDirectoryPath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class CloneViewDirectoryParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_directory_path, target_parent_directory_path, target_directory_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, source_directory_path, target_directory_name, target_parent_directory_path, *args, **kwargs):  # noqa: E501
         """CloneViewDirectoryParams - a model defined in OpenAPI
 
         Args:
             source_directory_path (str, none_type): Specifies the path of source directory. This is the full path including the Storage Domain name and View name.
-            target_parent_directory_path (str, none_type): Specifies the path of parent directory of the target directory. This is the full path including the Storage Domain name and View Name.
             target_directory_name (str, none_type): Specifies the name of the target directory.
+            target_parent_directory_path (str, none_type): Specifies the path of parent directory of the target directory. This is the full path including the Storage Domain name and View Name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class CloneViewDirectoryParams(ModelNormal):
 
 
         self.source_directory_path = source_directory_path
-        self.target_parent_directory_path = target_parent_directory_path
         self.target_directory_name = target_directory_name
+        self.target_parent_directory_path = target_parent_directory_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

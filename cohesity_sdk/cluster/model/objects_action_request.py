@@ -65,12 +65,6 @@ class ObjectsActionRequest(ModelNormal):
             'LINK': "Link",
             'UNLINK': "UnLink",
         },
-        ('link_type',): {
-            'None': None,
-            'REPLICATION': "Replication",
-            'FAILOVERRESTORE': "FailoverRestore",
-            'VMMIGRATION': "VmMigration",
-        },
     }
 
     validations = {
@@ -93,7 +87,6 @@ class ObjectsActionRequest(ModelNormal):
         lazy_import()
         return {
             'action': (str, none_type,),  # noqa: E501
-            'link_type': (str, none_type,),  # noqa: E501
             'link_params': (ObjectLinkingParams,),  # noqa: E501
             'un_link_params': (ObjectUnLinkingParams,),  # noqa: E501
         }
@@ -106,7 +99,6 @@ class ObjectsActionRequest(ModelNormal):
 
     attribute_map = {
         'action': 'action',  # noqa: E501
-        'link_type': 'linkType',  # noqa: E501
         'link_params': 'linkParams',  # noqa: E501
         'un_link_params': 'unLinkParams',  # noqa: E501
     }
@@ -159,7 +151,6 @@ class ObjectsActionRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             action (str, none_type): Specifies the action type that need to be performed.. [optional]  # noqa: E501
-            link_type (str, none_type): Specifies the link type for the link/unlink action.. [optional]  # noqa: E501
             link_params (ObjectLinkingParams): [optional]  # noqa: E501
             un_link_params (ObjectUnLinkingParams): [optional]  # noqa: E501
         """

@@ -74,8 +74,8 @@ class VcdVcenterInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'endpoint': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class VcdVcenterInfo(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class VcdVcenterInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the vCenter.. [optional]  # noqa: E501
             endpoint (str, none_type): Specifies the endpoint of the vCenter.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the vCenter.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

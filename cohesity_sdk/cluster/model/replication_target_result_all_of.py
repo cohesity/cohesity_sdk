@@ -72,7 +72,6 @@ class ReplicationTargetResultAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -96,21 +95,21 @@ class ReplicationTargetResultAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'queued_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
-            'percentage_completed': (int, none_type,),  # noqa: E501
-            'stats': (ReplicationDataStats,),  # noqa: E501
-            'is_manually_deleted': (bool, none_type,),  # noqa: E501
-            'expiry_time_usecs': (int, none_type,),  # noqa: E501
-            'replication_task_id': (str, none_type,),  # noqa: E501
-            'entries_changed': (int, none_type,),  # noqa: E501
-            'is_in_bound': (bool, none_type,),  # noqa: E501
             'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
-            'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'entries_changed': (int, none_type,),  # noqa: E501
+            'expiry_time_usecs': (int, none_type,),  # noqa: E501
+            'is_in_bound': (bool, none_type,),  # noqa: E501
+            'is_manually_deleted': (bool, none_type,),  # noqa: E501
+            'message': (str, none_type,),  # noqa: E501
             'multi_object_replication': (bool, none_type,),  # noqa: E501
+            'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'percentage_completed': (int, none_type,),  # noqa: E501
+            'queued_time_usecs': (int, none_type,),  # noqa: E501
+            'replication_task_id': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'stats': (ReplicationDataStats,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -120,21 +119,21 @@ class ReplicationTargetResultAllOf(ModelNormal):
 
 
     attribute_map = {
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'queued_time_usecs': 'queuedTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'message': 'message',  # noqa: E501
-        'percentage_completed': 'percentageCompleted',  # noqa: E501
-        'stats': 'stats',  # noqa: E501
-        'is_manually_deleted': 'isManuallyDeleted',  # noqa: E501
-        'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
-        'replication_task_id': 'replicationTaskId',  # noqa: E501
-        'entries_changed': 'entriesChanged',  # noqa: E501
-        'is_in_bound': 'isInBound',  # noqa: E501
         'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
-        'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'entries_changed': 'entriesChanged',  # noqa: E501
+        'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
+        'is_in_bound': 'isInBound',  # noqa: E501
+        'is_manually_deleted': 'isManuallyDeleted',  # noqa: E501
+        'message': 'message',  # noqa: E501
         'multi_object_replication': 'multiObjectReplication',  # noqa: E501
+        'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'percentage_completed': 'percentageCompleted',  # noqa: E501
+        'queued_time_usecs': 'queuedTimeUsecs',  # noqa: E501
+        'replication_task_id': 'replicationTaskId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'stats': 'stats',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -184,21 +183,21 @@ class ReplicationTargetResultAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_time_usecs (int, none_type): Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            queued_time_usecs (int, none_type): Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            status (str, none_type): Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
-            message (str, none_type): Message about the replication run.. [optional]  # noqa: E501
-            percentage_completed (int, none_type): Specifies the progress in percentage.. [optional]  # noqa: E501
-            stats (ReplicationDataStats): [optional]  # noqa: E501
-            is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501
-            expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
-            replication_task_id (str, none_type): Task UID for a replication protection run. This is for tasks that are replicated from another cluster.. [optional]  # noqa: E501
-            entries_changed (int, none_type): Specifies the number of metadata actions completed during the protection run.. [optional]  # noqa: E501
-            is_in_bound (bool, none_type): Specifies the direction of the replication. If the snapshot is replicated to this cluster, then isInBound is true. If the snapshot is replicated from this cluster to another cluster, then isInBound is false.. [optional]  # noqa: E501
             data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501
-            on_legal_hold (bool, none_type): Specifies the legal hold status for a replication target.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
+            entries_changed (int, none_type): Specifies the number of metadata actions completed during the protection run.. [optional]  # noqa: E501
+            expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
+            is_in_bound (bool, none_type): Specifies the direction of the replication. If the snapshot is replicated to this cluster, then isInBound is true. If the snapshot is replicated from this cluster to another cluster, then isInBound is false.. [optional]  # noqa: E501
+            is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501
+            message (str, none_type): Message about the replication run.. [optional]  # noqa: E501
             multi_object_replication (bool, none_type): Specifies whether view based replication was used. In this case, the view containing all objects is replicated as a whole instead of replicating on a per object basis.. [optional]  # noqa: E501
+            on_legal_hold (bool, none_type): Specifies the legal hold status for a replication target.. [optional]  # noqa: E501
+            percentage_completed (int, none_type): Specifies the progress in percentage.. [optional]  # noqa: E501
+            queued_time_usecs (int, none_type): Specifies the time when the replication is queued for schedule in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
+            replication_task_id (str, none_type): Task UID for a replication protection run. This is for tasks that are replicated from another cluster.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
+            stats (ReplicationDataStats): [optional]  # noqa: E501
+            status (str, none_type): Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -5,8 +5,8 @@ Specifies the file's selection rule by file age for down tiering data tiering ta
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**condition** | **str, none_type** | Specifies the condition for the file age. | [optional] 
 **age_msecs** | **int, none_type** | Specifies the number of msecs used for file selection. | [optional] 
+**condition** | **str, none_type** | Specifies the condition for the file age. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

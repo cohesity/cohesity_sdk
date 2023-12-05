@@ -74,8 +74,8 @@ class ProgressSummary(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'success': (int, none_type,),  # noqa: E501
             'failed': (int, none_type,),  # noqa: E501
+            'success': (int, none_type,),  # noqa: E501
             'total': (int, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class ProgressSummary(ModelNormal):
 
 
     attribute_map = {
-        'success': 'success',  # noqa: E501
         'failed': 'failed',  # noqa: E501
+        'success': 'success',  # noqa: E501
         'total': 'total',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class ProgressSummary(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            success (int, none_type): Specifies the successful count.. [optional]  # noqa: E501
             failed (int, none_type): Specifies the failed count.. [optional]  # noqa: E501
+            success (int, none_type): Specifies the successful count.. [optional]  # noqa: E501
             total (int, none_type): Specifies the total count.. [optional]  # noqa: E501
         """
 

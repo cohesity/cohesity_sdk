@@ -27,10 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.ssh_password_credentials import SshPasswordCredentials
-    from cohesity_sdk.cluster.model.ssh_private_key_credentials import SshPrivateKeyCredentials
-    globals()['SshPasswordCredentials'] = SshPasswordCredentials
-    globals()['SshPrivateKeyCredentials'] = SshPrivateKeyCredentials
+    from cohesity_sdk.cluster.model.cassandra_connection_params_ssh_password_credentials import CassandraConnectionParamsSshPasswordCredentials
+    from cohesity_sdk.cluster.model.cassandra_connection_params_ssh_private_key_credentials import CassandraConnectionParamsSshPrivateKeyCredentials
+    globals()['CassandraConnectionParamsSshPasswordCredentials'] = CassandraConnectionParamsSshPasswordCredentials
+    globals()['CassandraConnectionParamsSshPrivateKeyCredentials'] = CassandraConnectionParamsSshPrivateKeyCredentials
 
 
 class CassandraConnectionParams(ModelNormal):
@@ -81,13 +81,13 @@ class CassandraConnectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'seed_node': (str,),  # noqa: E501
             'config_directory': (str,),  # noqa: E501
-            'is_dse_tiered_storage': (bool,),  # noqa: E501
             'is_dse_authenticator': (bool,),  # noqa: E501
+            'is_dse_tiered_storage': (bool,),  # noqa: E501
+            'seed_node': (str,),  # noqa: E501
             'dse_configuration_directory': (str, none_type,),  # noqa: E501
-            'ssh_password_credentials': (SshPasswordCredentials,),  # noqa: E501
-            'ssh_private_key_credentials': (SshPrivateKeyCredentials,),  # noqa: E501
+            'ssh_password_credentials': (CassandraConnectionParamsSshPasswordCredentials,),  # noqa: E501
+            'ssh_private_key_credentials': (CassandraConnectionParamsSshPrivateKeyCredentials,),  # noqa: E501
         }
 
     @cached_property
@@ -97,10 +97,10 @@ class CassandraConnectionParams(ModelNormal):
 
 
     attribute_map = {
-        'seed_node': 'seedNode',  # noqa: E501
         'config_directory': 'configDirectory',  # noqa: E501
-        'is_dse_tiered_storage': 'isDseTieredStorage',  # noqa: E501
         'is_dse_authenticator': 'isDseAuthenticator',  # noqa: E501
+        'is_dse_tiered_storage': 'isDseTieredStorage',  # noqa: E501
+        'seed_node': 'seedNode',  # noqa: E501
         'dse_configuration_directory': 'dseConfigurationDirectory',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
@@ -118,14 +118,14 @@ class CassandraConnectionParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, seed_node, config_directory, is_dse_tiered_storage, is_dse_authenticator, *args, **kwargs):  # noqa: E501
+    def __init__(self, config_directory, is_dse_authenticator, is_dse_tiered_storage, seed_node, *args, **kwargs):  # noqa: E501
         """CassandraConnectionParams - a model defined in OpenAPI
 
         Args:
-            seed_node (str): Any one seed node of the Cassandra cluster.
             config_directory (str): Directory path containing Cassandra configuration YAML file.
-            is_dse_tiered_storage (bool): Set to true if this cluster has DSE tiered storage.
             is_dse_authenticator (bool): Set to true if this cluster has DSE Authenticator.
+            is_dse_tiered_storage (bool): Set to true if this cluster has DSE tiered storage.
+            seed_node (str): Any one seed node of the Cassandra cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,8 +160,8 @@ class CassandraConnectionParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             dse_configuration_directory (str, none_type): Directory from where DSE specific configuration can be read. This should be set only when you are using the DSE distribution of Cassandra.. [optional]  # noqa: E501
-            ssh_password_credentials (SshPasswordCredentials): [optional]  # noqa: E501
-            ssh_private_key_credentials (SshPrivateKeyCredentials): [optional]  # noqa: E501
+            ssh_password_credentials (CassandraConnectionParamsSshPasswordCredentials): [optional]  # noqa: E501
+            ssh_private_key_credentials (CassandraConnectionParamsSshPrivateKeyCredentials): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -188,10 +188,10 @@ class CassandraConnectionParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.seed_node = seed_node
         self.config_directory = config_directory
-        self.is_dse_tiered_storage = is_dse_tiered_storage
         self.is_dse_authenticator = is_dse_authenticator
+        self.is_dse_tiered_storage = is_dse_tiered_storage
+        self.seed_node = seed_node
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

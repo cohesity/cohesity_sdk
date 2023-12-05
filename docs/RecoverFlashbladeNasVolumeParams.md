@@ -6,8 +6,8 @@ Specifies the parameters to recover Flashblade NAS volumes.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **target_environment** | **str** | Specifies the environment of the recovery target. The corresponding params below must be filled out. | 
-**flashblade_target_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params for a Flashblade recovery target. | [optional] 
 **elastifile_target_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params for a Elastifile recovery target. | [optional] 
+**flashblade_target_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params for a Flashblade recovery target. | [optional] 
 **generic_nas_target_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params for a Generic NAS recovery target. | [optional] 
 **gpfs_target_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params for a GPFS recovery target. | [optional] 
 **isilon_target_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params for an Isilon recovery target. | [optional] 

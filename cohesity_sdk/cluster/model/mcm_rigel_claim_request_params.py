@@ -79,13 +79,13 @@ class McmRigelClaimRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'rigel_guid': (int,),  # noqa: E501
             'claim_token': (str,),  # noqa: E501
-            'rigel_type': (str, none_type,),  # noqa: E501
+            'rigel_guid': (int,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
-            'rigel_name': (str, none_type,),  # noqa: E501
             'rigel_ip': (str, none_type,),  # noqa: E501
+            'rigel_name': (str, none_type,),  # noqa: E501
+            'rigel_type': (str, none_type,),  # noqa: E501
             'software_version': (str, none_type,),  # noqa: E501
         }
 
@@ -96,13 +96,13 @@ class McmRigelClaimRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'rigel_guid': 'rigelGuid',  # noqa: E501
         'claim_token': 'claimToken',  # noqa: E501
-        'rigel_type': 'rigelType',  # noqa: E501
+        'rigel_guid': 'rigelGuid',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
-        'rigel_name': 'rigelName',  # noqa: E501
         'rigel_ip': 'rigelIp',  # noqa: E501
+        'rigel_name': 'rigelName',  # noqa: E501
+        'rigel_type': 'rigelType',  # noqa: E501
         'software_version': 'softwareVersion',  # noqa: E501
     }
 
@@ -118,12 +118,12 @@ class McmRigelClaimRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, rigel_guid, claim_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, claim_token, rigel_guid, *args, **kwargs):  # noqa: E501
         """McmRigelClaimRequestParams - a model defined in OpenAPI
 
         Args:
-            rigel_guid (int): Unique id for rigel instance.
             claim_token (str): Claim token used for authentication.
+            rigel_guid (int): Unique id for rigel instance.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,11 +157,11 @@ class McmRigelClaimRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rigel_type (str, none_type): Specifies the Rigel type that is being claimed.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the cluster id.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the cluster incarnation id.. [optional]  # noqa: E501
-            rigel_name (str, none_type): Specifies the Rigel name.. [optional]  # noqa: E501
             rigel_ip (str, none_type): Specifies the Rigel IP.. [optional]  # noqa: E501
+            rigel_name (str, none_type): Specifies the Rigel name.. [optional]  # noqa: E501
+            rigel_type (str, none_type): Specifies the Rigel type that is being claimed.. [optional]  # noqa: E501
             software_version (str, none_type): Specifies the Rigel Software version.. [optional]  # noqa: E501
         """
 
@@ -189,8 +189,8 @@ class McmRigelClaimRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.rigel_guid = rigel_guid
         self.claim_token = claim_token
+        self.rigel_guid = rigel_guid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

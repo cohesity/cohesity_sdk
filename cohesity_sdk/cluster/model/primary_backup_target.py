@@ -84,8 +84,8 @@ class PrimaryBackupTarget(ModelNormal):
         """
         lazy_import()
         return {
-            'target_type': (str, none_type,),  # noqa: E501
             'archival_target_settings': (PrimaryArchivalTarget,),  # noqa: E501
+            'target_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,8 +95,8 @@ class PrimaryBackupTarget(ModelNormal):
 
 
     attribute_map = {
-        'target_type': 'targetType',  # noqa: E501
         'archival_target_settings': 'archivalTargetSettings',  # noqa: E501
+        'target_type': 'targetType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class PrimaryBackupTarget(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_type (str, none_type): Specifies the primary backup location where backups will be stored. If not specified, then default is assumed as local backup on Cohesity cluster.. [optional] if omitted the server will use the default value of "Local"  # noqa: E501
             archival_target_settings (PrimaryArchivalTarget): [optional]  # noqa: E501
+            target_type (str, none_type): Specifies the primary backup location where backups will be stored. If not specified, then default is assumed as local backup on Cohesity cluster.. [optional] if omitted the server will use the default value of "Local"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -79,8 +79,8 @@ class ViewDirectoryQuotas(ModelNormal):
         """
         lazy_import()
         return {
-            'directory_quotas': ([ViewDirectoryQuota], none_type,),  # noqa: E501
             'cookie': (int, none_type,),  # noqa: E501
+            'directory_quotas': ([ViewDirectoryQuota], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class ViewDirectoryQuotas(ModelNormal):
 
 
     attribute_map = {
-        'directory_quotas': 'directoryQuotas',  # noqa: E501
         'cookie': 'cookie',  # noqa: E501
+        'directory_quotas': 'directoryQuotas',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class ViewDirectoryQuotas(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            directory_quotas ([ViewDirectoryQuota], none_type): Specifies the list of View directory quotas.. [optional]  # noqa: E501
             cookie (int, none_type): Specifies the pagination cookie.. [optional]  # noqa: E501
+            directory_quotas ([ViewDirectoryQuota], none_type): Specifies the list of View directory quotas.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

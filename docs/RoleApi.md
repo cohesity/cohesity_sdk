@@ -18,12 +18,11 @@ Create a Role.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.role import Role
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_role_parameters import CreateRoleParameters
+from cohesity_sdk.cluster.model.create_role_params import CreateRoleParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -35,8 +34,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CreateRoleParameters() # CreateRoleParameters | Specifies the request body to create a Role.
+body = CreateRoleParams() # CreateRoleParams | Specifies the request body to create a Role.
 
 # example passing only required values which don't have defaults set
 try:
@@ -52,7 +50,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateRoleParameters**](CreateRoleParameters.md)| Specifies the request body to create a Role. |
+ **body** | [**CreateRoleParams**](CreateRoleParams.md)| Specifies the request body to create a Role. |
 
 ### Return type
 
@@ -60,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -85,7 +83,6 @@ Delete a Role.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -99,7 +96,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 name = "name_example" # str | Specifies the name of Role to delete.
 
@@ -124,7 +120,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -149,7 +145,6 @@ Get Roles.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.roles import Roles
@@ -164,7 +159,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 names = [
         "names_example",
@@ -199,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -224,12 +218,11 @@ Update a Role.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.update_role_params import UpdateRoleParams
 from cohesity_sdk.cluster.model.role import Role
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.update_role_parameters import UpdateRoleParameters
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -241,14 +234,13 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 name = "name_example" # str | Specifies the name of Role to update.
-body = UpdateRoleParameters(
+body = UpdateRoleParams(
         description="description_example",
         privileges=[
             "privileges_example",
         ],
-    ) # UpdateRoleParameters | Specifies the request body to update a Role.
+    ) # UpdateRoleParams | Specifies the request body to update a Role.
 
 # example passing only required values which don't have defaults set
 try:
@@ -265,7 +257,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Specifies the name of Role to update. |
- **body** | [**UpdateRoleParameters**](UpdateRoleParameters.md)| Specifies the request body to update a Role. |
+ **body** | [**UpdateRoleParams**](UpdateRoleParams.md)| Specifies the request body to update a Role. |
 
 ### Return type
 
@@ -273,7 +265,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

@@ -79,9 +79,9 @@ class OracleRestoreMetaInfoResult(ModelNormal):
         """
         lazy_import()
         return {
-            'restricted_pfile_param_map': ([KeyValuePair], none_type,),  # noqa: E501
-            'inherited_pfile_param_map': ([KeyValuePair], none_type,),  # noqa: E501
             'cohesity_pfile_param_map': ([KeyValuePair], none_type,),  # noqa: E501
+            'inherited_pfile_param_map': ([KeyValuePair], none_type,),  # noqa: E501
+            'restricted_pfile_param_map': ([KeyValuePair], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class OracleRestoreMetaInfoResult(ModelNormal):
 
 
     attribute_map = {
-        'restricted_pfile_param_map': 'restrictedPfileParamMap',  # noqa: E501
-        'inherited_pfile_param_map': 'inheritedPfileParamMap',  # noqa: E501
         'cohesity_pfile_param_map': 'cohesityPfileParamMap',  # noqa: E501
+        'inherited_pfile_param_map': 'inheritedPfileParamMap',  # noqa: E501
+        'restricted_pfile_param_map': 'restrictedPfileParamMap',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class OracleRestoreMetaInfoResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            restricted_pfile_param_map ([KeyValuePair], none_type): Specifies map for restricted pfile params.. [optional]  # noqa: E501
-            inherited_pfile_param_map ([KeyValuePair], none_type): Specifies map for inherited pfile params.. [optional]  # noqa: E501
             cohesity_pfile_param_map ([KeyValuePair], none_type): Specifies map for cohesity controlled pfile params.. [optional]  # noqa: E501
+            inherited_pfile_param_map ([KeyValuePair], none_type): Specifies map for inherited pfile params.. [optional]  # noqa: E501
+            restricted_pfile_param_map ([KeyValuePair], none_type): Specifies map for restricted pfile params.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

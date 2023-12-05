@@ -83,8 +83,8 @@ class ProtectedObjectRunNowActionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'run_label': (str, none_type,),  # noqa: E501
             'objects': ([RunNowActionObjectLevelParams],),  # noqa: E501
+            'run_label': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class ProtectedObjectRunNowActionParams(ModelNormal):
 
 
     attribute_map = {
-        'run_label': 'runLabel',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'run_label': 'runLabel',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,8 +145,8 @@ class ProtectedObjectRunNowActionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            run_label (str, none_type): Specifies a label with which this run is created. Only applicable for user triggered protect now action.. [optional]  # noqa: E501
             objects ([RunNowActionObjectLevelParams]): Specifies the list of objects to perform an action. If provided object id is not explicitly protected by object protection, then given action will not be performed on that.. [optional]  # noqa: E501
+            run_label (str, none_type): Specifies a label with which this run is created. Only applicable for user triggered protect now action.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

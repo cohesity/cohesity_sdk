@@ -74,8 +74,8 @@ class ActionObjectMapping(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source_object_id': (int, none_type,),  # noqa: E501
             'destination_object_id': (int, none_type,),  # noqa: E501
+            'source_object_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ActionObjectMapping(ModelNormal):
 
 
     attribute_map = {
-        'source_object_id': 'sourceObjectId',  # noqa: E501
         'destination_object_id': 'destinationObjectId',  # noqa: E501
+        'source_object_id': 'sourceObjectId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ActionObjectMapping(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_object_id (int, none_type): Specifies the source object id.. [optional]  # noqa: E501
             destination_object_id (int, none_type): Specifies the destination object id.. [optional]  # noqa: E501
+            source_object_id (int, none_type): Specifies the source object id.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

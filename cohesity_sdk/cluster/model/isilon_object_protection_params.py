@@ -88,8 +88,8 @@ class IsilonObjectProtectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'protocol': (str, none_type,),  # noqa: E501
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
             'use_changelist': (bool, none_type,),  # noqa: E501
         }
 
@@ -100,8 +100,8 @@ class IsilonObjectProtectionParams(ModelNormal):
 
 
     attribute_map = {
-        'protocol': 'protocol',  # noqa: E501
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
         'use_changelist': 'useChangelist',  # noqa: E501
     }
 
@@ -152,8 +152,8 @@ class IsilonObjectProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
             use_changelist (bool, none_type): Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.. [optional]  # noqa: E501
         """
 

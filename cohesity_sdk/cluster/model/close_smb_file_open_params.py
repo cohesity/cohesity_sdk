@@ -75,8 +75,8 @@ class CloseSmbFileOpenParams(ModelNormal):
         """
         return {
             'file_path': (str, none_type,),  # noqa: E501
-            'view_name': (str, none_type,),  # noqa: E501
             'open_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class CloseSmbFileOpenParams(ModelNormal):
 
     attribute_map = {
         'file_path': 'filePath',  # noqa: E501
-        'view_name': 'viewName',  # noqa: E501
         'open_id': 'openId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class CloseSmbFileOpenParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, file_path, view_name, open_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, file_path, open_id, view_name, *args, **kwargs):  # noqa: E501
         """CloseSmbFileOpenParams - a model defined in OpenAPI
 
         Args:
             file_path (str, none_type): Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified.
-            view_name (str, none_type): Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.
             open_id (int, none_type): Specifies the id of the active open.
+            view_name (str, none_type): Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class CloseSmbFileOpenParams(ModelNormal):
 
 
         self.file_path = file_path
-        self.view_name = view_name
         self.open_id = open_id
+        self.view_name = view_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

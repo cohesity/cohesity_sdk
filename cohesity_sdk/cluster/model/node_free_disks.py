@@ -79,11 +79,11 @@ class NodeFreeDisks(ModelNormal):
         """
         lazy_import()
         return {
-            'node_id': (int, none_type,),  # noqa: E501
             'free_disks': ([FreeDisk], none_type,),  # noqa: E501
+            'node_id': (int, none_type,),  # noqa: E501
             'chassis_serial': (str, none_type,),  # noqa: E501
-            'slot': (int, none_type,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
+            'slot': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class NodeFreeDisks(ModelNormal):
 
 
     attribute_map = {
-        'node_id': 'nodeId',  # noqa: E501
         'free_disks': 'freeDisks',  # noqa: E501
+        'node_id': 'nodeId',  # noqa: E501
         'chassis_serial': 'chassisSerial',  # noqa: E501
-        'slot': 'slot',  # noqa: E501
         'error_message': 'errorMessage',  # noqa: E501
+        'slot': 'slot',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,12 +112,12 @@ class NodeFreeDisks(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, node_id, free_disks, *args, **kwargs):  # noqa: E501
+    def __init__(self, free_disks, node_id, *args, **kwargs):  # noqa: E501
         """NodeFreeDisks - a model defined in OpenAPI
 
         Args:
-            node_id (int, none_type): Specifies the id of a node.
             free_disks ([FreeDisk], none_type): Specifies list of free disks of node.
+            node_id (int, none_type): Specifies the id of a node.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,8 +152,8 @@ class NodeFreeDisks(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             chassis_serial (str, none_type): Chassis serial number.. [optional]  # noqa: E501
-            slot (int, none_type): Slot number of node. [optional]  # noqa: E501
             error_message (str, none_type): Error message of disks assimilation request.. [optional]  # noqa: E501
+            slot (int, none_type): Slot number of node. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -180,8 +180,8 @@ class NodeFreeDisks(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.node_id = node_id
         self.free_disks = free_disks
+        self.node_id = node_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

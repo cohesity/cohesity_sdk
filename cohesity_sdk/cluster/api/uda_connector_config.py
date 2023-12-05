@@ -110,7 +110,7 @@ class UdaConnectorConfigApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/uda/connector-configs',
@@ -232,7 +232,7 @@ class UdaConnectorConfigApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/uda/connector-configs/{id}',
@@ -348,7 +348,7 @@ class UdaConnectorConfigApi(object):
                 'response_type': ([UdaConfigParams],),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/uda/connector-configs',
@@ -462,7 +462,7 @@ class UdaConnectorConfigApi(object):
                 'response_type': (UdaConfigParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/uda/connector-configs/{id}',
@@ -580,7 +580,7 @@ class UdaConnectorConfigApi(object):
                 'response_type': (UdaConfigsList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/uda/connector-configs/raw',
@@ -704,7 +704,7 @@ class UdaConnectorConfigApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/uda/connector-configs',

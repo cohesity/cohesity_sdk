@@ -83,8 +83,8 @@ class VmwareRecoverDisksTargetSourceConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'source_id': (int, none_type,),  # noqa: E501
             'disks': ([VmwareRecoverTargetSourceDiskParams],),  # noqa: E501
+            'source_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class VmwareRecoverDisksTargetSourceConfig(ModelNormal):
 
 
     attribute_map = {
-        'source_id': 'sourceId',  # noqa: E501
         'disks': 'disks',  # noqa: E501
+        'source_id': 'sourceId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,12 +110,12 @@ class VmwareRecoverDisksTargetSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_id, disks, *args, **kwargs):  # noqa: E501
+    def __init__(self, disks, source_id, *args, **kwargs):  # noqa: E501
         """VmwareRecoverDisksTargetSourceConfig - a model defined in OpenAPI
 
         Args:
-            source_id (int, none_type): Specifies the source ID of the VM to which the disks will be restored.
             disks ([VmwareRecoverTargetSourceDiskParams]): Specifies the disks to be recovered and the location to which they will be recovered.
+            source_id (int, none_type): Specifies the source ID of the VM to which the disks will be restored.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,8 +175,8 @@ class VmwareRecoverDisksTargetSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_id = source_id
         self.disks = disks
+        self.source_id = source_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

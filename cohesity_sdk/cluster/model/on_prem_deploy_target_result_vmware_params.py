@@ -79,8 +79,8 @@ class OnPremDeployTargetResultVmwareParams(ModelNormal):
         """
         lazy_import()
         return {
-            'uuid': (str, none_type,),  # noqa: E501
             'moref': (MOref,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class OnPremDeployTargetResultVmwareParams(ModelNormal):
 
 
     attribute_map = {
-        'uuid': 'uuid',  # noqa: E501
         'moref': 'moref',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class OnPremDeployTargetResultVmwareParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            uuid (str, none_type): UUID of the recovered VMware VM. [optional]  # noqa: E501
             moref (MOref): [optional]  # noqa: E501
+            uuid (str, none_type): UUID of the recovered VMware VM. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -79,8 +79,8 @@ class UptieringFileAgePolicy(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'condition': (str, none_type,),  # noqa: E501
             'age_msecs': (int, none_type,),  # noqa: E501
+            'condition': (str, none_type,),  # noqa: E501
             'num_file_access': (int, none_type,),  # noqa: E501
         }
 
@@ -91,8 +91,8 @@ class UptieringFileAgePolicy(ModelNormal):
 
 
     attribute_map = {
-        'condition': 'condition',  # noqa: E501
         'age_msecs': 'ageMsecs',  # noqa: E501
+        'condition': 'condition',  # noqa: E501
         'num_file_access': 'numFileAccess',  # noqa: E501
     }
 
@@ -143,8 +143,8 @@ class UptieringFileAgePolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            condition (str, none_type): Specifies the condition for the file age.. [optional]  # noqa: E501
             age_msecs (int, none_type): Specifies the number of msecs used for file selection.. [optional]  # noqa: E501
+            condition (str, none_type): Specifies the condition for the file age.. [optional]  # noqa: E501
             num_file_access (int, none_type): Specifies number of file access in last ageMsecs.. [optional]  # noqa: E501
         """
 

@@ -87,13 +87,13 @@ class UpdateMFAResult(ModelComposed):
         """
         lazy_import()
         return {
+            'account_name': (str,),  # noqa: E501
             'totp_secret_key': (str,),  # noqa: E501
             'totp_uri': (str,),  # noqa: E501
-            'account_name': (str,),  # noqa: E501
-            'enabled': (bool,),  # noqa: E501
-            'mfa_type': (str, none_type,),  # noqa: E501
             'email': (str, none_type,),  # noqa: E501
+            'enabled': (bool,),  # noqa: E501
             'mfa_code': (str, none_type,),  # noqa: E501
+            'mfa_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,13 +103,13 @@ class UpdateMFAResult(ModelComposed):
 
 
     attribute_map = {
+        'account_name': 'accountName',  # noqa: E501
         'totp_secret_key': 'totpSecretKey',  # noqa: E501
         'totp_uri': 'totpUri',  # noqa: E501
-        'account_name': 'accountName',  # noqa: E501
-        'enabled': 'enabled',  # noqa: E501
-        'mfa_type': 'mfaType',  # noqa: E501
         'email': 'email',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
         'mfa_code': 'mfaCode',  # noqa: E501
+        'mfa_type': 'mfaType',  # noqa: E501
     }
 
     required_properties = set([
@@ -160,13 +160,13 @@ class UpdateMFAResult(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            account_name (str): Specifies the TOTP account name to be configured for support user.. [optional]  # noqa: E501
             totp_secret_key (str): Specifies the TOTP secret key.. [optional]  # noqa: E501
             totp_uri (str): Specifies the TOTP key URI for generating MFA QR code.. [optional]  # noqa: E501
-            account_name (str): Specifies the TOTP account name to be configured for support user.. [optional]  # noqa: E501
-            enabled (bool): Specifies whether MFA is enabled for support user.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            mfa_type (str, none_type): Specifies the mechanism to receive the OTP code.. [optional]  # noqa: E501
             email (str, none_type): Specifies email address of the support user. Used when MFA mode is email.. [optional]  # noqa: E501
+            enabled (bool): Specifies whether MFA is enabled for support user.. [optional] if omitted the server will use the default value of False  # noqa: E501
             mfa_code (str, none_type): MFA code that needs to be passed when disabling MFA or changing email address when email based MFA is configured.. [optional]  # noqa: E501
+            mfa_type (str, none_type): Specifies the mechanism to receive the OTP code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

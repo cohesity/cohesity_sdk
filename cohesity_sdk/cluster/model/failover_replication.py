@@ -80,15 +80,15 @@ class FailoverReplication(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'error_message': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
-            'percentage_completed': (int, none_type,),  # noqa: E501
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'error_message': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'logical_bytes_transferred': (int, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
+            'percentage_completed': (int, none_type,),  # noqa: E501
             'physical_bytes_transferred': (int, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'target_cluster_id': (int, none_type,),  # noqa: E501
             'target_cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'target_cluster_name': (str, none_type,),  # noqa: E501
@@ -101,15 +101,15 @@ class FailoverReplication(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'error_message': 'errorMessage',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'percentage_completed': 'percentageCompleted',  # noqa: E501
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'error_message': 'errorMessage',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'logical_bytes_transferred': 'logicalBytesTransferred',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
+        'percentage_completed': 'percentageCompleted',  # noqa: E501
         'physical_bytes_transferred': 'physicalBytesTransferred',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'target_cluster_id': 'targetClusterId',  # noqa: E501
         'target_cluster_incarnation_id': 'targetClusterIncarnationId',  # noqa: E501
         'target_cluster_name': 'targetClusterName',  # noqa: E501
@@ -162,15 +162,15 @@ class FailoverReplication(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the replication id.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the replication status.. [optional]  # noqa: E501
-            error_message (str, none_type): Specifies the error details if replication status is 'Failed'.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the replication start time in micro seconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the replication complete time in micro seconds.. [optional]  # noqa: E501
-            percentage_completed (int, none_type): Specifies the percentage completed in the replication.. [optional]  # noqa: E501
-            logical_size_bytes (int, none_type): Specifies the total amount of logical data to be transferred for this replication.. [optional]  # noqa: E501
+            error_message (str, none_type): Specifies the error details if replication status is 'Failed'.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the replication id.. [optional]  # noqa: E501
             logical_bytes_transferred (int, none_type): Specifies the number of logical bytes transferred for this replication so far. This value can never exceed the total logical size of the replicated view.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the total amount of logical data to be transferred for this replication.. [optional]  # noqa: E501
+            percentage_completed (int, none_type): Specifies the percentage completed in the replication.. [optional]  # noqa: E501
             physical_bytes_transferred (int, none_type): Specifies the number of bytes sent over the wire for this replication so far.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the replication start time in micro seconds.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the replication status.. [optional]  # noqa: E501
             target_cluster_id (int, none_type): Specifies the failover target cluster id.. [optional]  # noqa: E501
             target_cluster_incarnation_id (int, none_type): Specifies the failover target cluster incarnation id.. [optional]  # noqa: E501
             target_cluster_name (str, none_type): Specifies the failover target cluster name.. [optional]  # noqa: E501

@@ -74,8 +74,8 @@ class VmwareSQLCredentialParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'username': (str, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class VmwareSQLCredentialParams(ModelNormal):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class VmwareSQLCredentialParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            username (str, none_type):  username for when agent is not installed. [optional]  # noqa: E501
             password (str, none_type):  password for when agent is not installed. [optional]  # noqa: E501
+            username (str, none_type):  username for when agent is not installed. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

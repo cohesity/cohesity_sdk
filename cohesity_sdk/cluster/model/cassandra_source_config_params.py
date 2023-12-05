@@ -81,17 +81,17 @@ class CassandraSourceConfigParams(ModelNormal):
         """
         lazy_import()
         return {
-            'seeds': ([str],),  # noqa: E501
-            'is_jmx_auth_enable': (bool, none_type,),  # noqa: E501
+            'cassandra_partitioner': (str, none_type,),  # noqa: E501
             'cassandra_port_info': (CassandraPortInfo,),  # noqa: E501
             'cassandra_security_info': (CassandraSecurityInfo,),  # noqa: E501
-            'data_center_names': ([str],),  # noqa: E501
-            'commit_log_backup_location': (str, none_type,),  # noqa: E501
-            'endpoint_snitch': (str, none_type,),  # noqa: E501
-            'cassandra_partitioner': (str, none_type,),  # noqa: E501
-            'kerberos_sasl_protocol': (str, none_type,),  # noqa: E501
             'cassandra_version': (str, none_type,),  # noqa: E501
+            'commit_log_backup_location': (str, none_type,),  # noqa: E501
+            'data_center_names': ([str],),  # noqa: E501
             'dse_version': (str, none_type,),  # noqa: E501
+            'endpoint_snitch': (str, none_type,),  # noqa: E501
+            'is_jmx_auth_enable': (bool, none_type,),  # noqa: E501
+            'kerberos_sasl_protocol': (str, none_type,),  # noqa: E501
+            'seeds': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -101,17 +101,17 @@ class CassandraSourceConfigParams(ModelNormal):
 
 
     attribute_map = {
-        'seeds': 'seeds',  # noqa: E501
-        'is_jmx_auth_enable': 'isJmxAuthEnable',  # noqa: E501
+        'cassandra_partitioner': 'cassandraPartitioner',  # noqa: E501
         'cassandra_port_info': 'cassandraPortInfo',  # noqa: E501
         'cassandra_security_info': 'cassandraSecurityInfo',  # noqa: E501
-        'data_center_names': 'dataCenterNames',  # noqa: E501
-        'commit_log_backup_location': 'commitLogBackupLocation',  # noqa: E501
-        'endpoint_snitch': 'endpointSnitch',  # noqa: E501
-        'cassandra_partitioner': 'cassandraPartitioner',  # noqa: E501
-        'kerberos_sasl_protocol': 'kerberosSaslProtocol',  # noqa: E501
         'cassandra_version': 'cassandraVersion',  # noqa: E501
+        'commit_log_backup_location': 'commitLogBackupLocation',  # noqa: E501
+        'data_center_names': 'dataCenterNames',  # noqa: E501
         'dse_version': 'dseVersion',  # noqa: E501
+        'endpoint_snitch': 'endpointSnitch',  # noqa: E501
+        'is_jmx_auth_enable': 'isJmxAuthEnable',  # noqa: E501
+        'kerberos_sasl_protocol': 'kerberosSaslProtocol',  # noqa: E501
+        'seeds': 'seeds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,17 +161,17 @@ class CassandraSourceConfigParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            seeds ([str]): Seed nodes of this cluster.. [optional]  # noqa: E501
-            is_jmx_auth_enable (bool, none_type): Is JMX Authentication enabled in this cluster ?. [optional]  # noqa: E501
+            cassandra_partitioner (str, none_type): Cassandra partitioner required in compaction.. [optional]  # noqa: E501
             cassandra_port_info (CassandraPortInfo): [optional]  # noqa: E501
             cassandra_security_info (CassandraSecurityInfo): [optional]  # noqa: E501
-            data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501
-            commit_log_backup_location (str, none_type): Commit Logs backup location on cassandra nodes. [optional]  # noqa: E501
-            endpoint_snitch (str, none_type): Endpoint snitch used for this cluster.. [optional]  # noqa: E501
-            cassandra_partitioner (str, none_type): Cassandra partitioner required in compaction.. [optional]  # noqa: E501
-            kerberos_sasl_protocol (str, none_type): Populated if cassandraAuthType is Kerberos.. [optional]  # noqa: E501
             cassandra_version (str, none_type): Cassandra Version.. [optional]  # noqa: E501
+            commit_log_backup_location (str, none_type): Commit Logs backup location on cassandra nodes. [optional]  # noqa: E501
+            data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501
             dse_version (str, none_type): DSE Version. [optional]  # noqa: E501
+            endpoint_snitch (str, none_type): Endpoint snitch used for this cluster.. [optional]  # noqa: E501
+            is_jmx_auth_enable (bool, none_type): Is JMX Authentication enabled in this cluster ?. [optional]  # noqa: E501
+            kerberos_sasl_protocol (str, none_type): Populated if cassandraAuthType is Kerberos.. [optional]  # noqa: E501
+            seeds ([str]): Seed nodes of this cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

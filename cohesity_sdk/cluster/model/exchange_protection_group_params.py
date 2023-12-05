@@ -86,9 +86,9 @@ class ExchangeProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([ExchangeProtectionGroupObjectParams],),  # noqa: E501
+            'backups_copy_only': (bool, none_type,),  # noqa: E501
             'exclude_database_ids': ([int, none_type],),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'backups_copy_only': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,9 +99,9 @@ class ExchangeProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
+        'backups_copy_only': 'backupsCopyOnly',  # noqa: E501
         'exclude_database_ids': 'excludeDatabaseIds',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'backups_copy_only': 'backupsCopyOnly',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,9 +154,9 @@ class ExchangeProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            backups_copy_only (bool, none_type): Specifies whether the backups should be copy-only.. [optional]  # noqa: E501
             exclude_database_ids ([int, none_type]): Specifies the list of IDs of the databases to not be protected by this Protection Group. This can be used to ignore specific databases under Exchange Server/DAG which has been included for protection.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            backups_copy_only (bool, none_type): Specifies whether the backups should be copy-only.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

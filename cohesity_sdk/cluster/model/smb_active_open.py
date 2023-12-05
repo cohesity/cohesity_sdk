@@ -103,9 +103,9 @@ class SmbActiveOpen(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'open_id': (int, none_type,),  # noqa: E501
             'access_info_list': ([str], none_type,),  # noqa: E501
             'access_privilege': ([str], none_type,),  # noqa: E501
+            'open_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -115,9 +115,9 @@ class SmbActiveOpen(ModelNormal):
 
 
     attribute_map = {
-        'open_id': 'openId',  # noqa: E501
         'access_info_list': 'accessInfoList',  # noqa: E501
         'access_privilege': 'accessPrivilege',  # noqa: E501
+        'open_id': 'openId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,9 +167,9 @@ class SmbActiveOpen(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            open_id (int, none_type): Specifies the id of the active open.. [optional]  # noqa: E501
             access_info_list ([str], none_type): Specifies the File Access Type. Following documentation was taken from MSDN. https://msdn.microsoft.com/en-us/library/Cc246802.aspx  'FileReadData' indicates the right to read data from the file or named   pipe. 'FileWriteData' indicates the right to write data into the file or named   pipe beyond the end of the file. 'FileAppendData' indicates the right to append data into the file or named   pipe. 'FileReadEa' indicates the right to read the extended attributes of the   file or named pipe. 'FileWriteEa' indicates the right to write or change the extended   attributes to the file or named pipe. 'FileExecute' indicates the right to delete entries within a directory. 'FileDeleteChild' indicates the right to execute the file. 'FileReadAttributes' indicates the right to read the attributes of the   file. 'FileWriteAttributes' indicates the right to change the attributes of the   file. 'Delete' indicates the right to delete the file. 'ReadControl' indicates the right to read the security descriptor for the   file or named pipe. 'WriteDac' indicates the right to change the discretionary access control   list (DACL) in the security descriptor for the file or named pipe. For   the DACL data structure, see ACL in [MS-DTYP]. 'WriteOwner' indicates the right to change the owner in the security   descriptor for the file or named pipe. 'Synchronize' is used only by SMB2 clients. 'AccessSystemSecurity' indicates the right to read or change the system   access control list (SACL) in the security descriptor for the file or   named pipe. For the SACL data structure, see ACL in [MS-DTYP].<42> 'MaximumAllowed' indicates that the client is requesting an open to the   file with the highest level of access the client has on this file.   If no access is granted for the client on this file, the server MUST   fail the open with STATUS_ACCESS_DENIED. 'GenericAll' indicates a request for all the access flags that are   previously listed except MaximumAllowed and AccessSystemSecurity. 'GenericExecute' indicates a request for the following combination of   access flags listed above:   FileReadAttributes| FileExecute| Synchronize| ReadControl. 'GenericWrite' indicates a request for the following combination of   access flags listed above:   FileWriteData| FileAppendData| FileWriteAttributes| FileWriteEa|   Synchronize| ReadControl. 'GenericRead' indicates a request for the following combination of   access flags listed above:   FileReadData| FileReadAttributes| FileReadEa| Synchronize|   ReadControl.. [optional]  # noqa: E501
             access_privilege ([str], none_type): Specifies whether access privilege of others if they're allowed to read/write/delete.. [optional]  # noqa: E501
+            open_id (int, none_type): Specifies the id of the active open.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -54,16 +54,16 @@ class ViewProtocol(ModelNormal):
     """
 
     allowed_values = {
+        ('mode',): {
+            'READONLY': "ReadOnly",
+            'READWRITE': "ReadWrite",
+        },
         ('type',): {
             'NFS': "NFS",
             'NFS4': "NFS4",
             'SMB': "SMB",
             'S3': "S3",
             'SWIFT': "Swift",
-        },
-        ('mode',): {
-            'READONLY': "ReadOnly",
-            'READWRITE': "ReadWrite",
         },
     }
 
@@ -85,8 +85,8 @@ class ViewProtocol(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str,),  # noqa: E501
             'mode': (str,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -96,8 +96,8 @@ class ViewProtocol(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'mode': 'mode',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,8 +147,8 @@ class ViewProtocol(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str): Type of protocol. Specifies the supported Protocols for the View.   'NFS' enables protocol access to NFS v3.   'NFS4' enables protocol access to NFS v4.1.   'SMB' enables protocol access to SMB.   'S3' enables protocol access to S3.   'Swift' enables protocol access to Swift.. [optional]  # noqa: E501
             mode (str): Mode of protocol access.   'ReadOnly'   'ReadWrite'. [optional]  # noqa: E501
+            type (str): Type of protocol. Specifies the supported Protocols for the View.   'NFS' enables protocol access to NFS v3.   'NFS4' enables protocol access to NFS v4.1.   'SMB' enables protocol access to SMB.   'S3' enables protocol access to S3.   'Swift' enables protocol access to Swift.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

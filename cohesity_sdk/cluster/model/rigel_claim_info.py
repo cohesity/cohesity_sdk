@@ -81,8 +81,8 @@ class RigelClaimInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'status': (str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class RigelClaimInfo(ModelNormal):
 
 
     attribute_map = {
-        'status': 'status',  # noqa: E501
         'message': 'message',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class RigelClaimInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            status (str, none_type): Specifies the registration status.. [optional]  # noqa: E501
             message (str, none_type): Specifies possible error message during registration.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the registration status.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

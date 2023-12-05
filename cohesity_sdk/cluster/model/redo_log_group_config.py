@@ -74,10 +74,10 @@ class RedoLogGroupConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'num_groups': (int, none_type,),  # noqa: E501
-            'member_prefix': (str, none_type,),  # noqa: E501
-            'size_m_bytes': (int, none_type,),  # noqa: E501
             'group_members': ([str], none_type,),  # noqa: E501
+            'member_prefix': (str, none_type,),  # noqa: E501
+            'num_groups': (int, none_type,),  # noqa: E501
+            'size_m_bytes': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class RedoLogGroupConfig(ModelNormal):
 
 
     attribute_map = {
-        'num_groups': 'numGroups',  # noqa: E501
-        'member_prefix': 'memberPrefix',  # noqa: E501
-        'size_m_bytes': 'sizeMBytes',  # noqa: E501
         'group_members': 'groupMembers',  # noqa: E501
+        'member_prefix': 'memberPrefix',  # noqa: E501
+        'num_groups': 'numGroups',  # noqa: E501
+        'size_m_bytes': 'sizeMBytes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,10 +140,10 @@ class RedoLogGroupConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            num_groups (int, none_type): Specifies no. of redo log groups.. [optional]  # noqa: E501
-            member_prefix (str, none_type): Specifies Log member name prefix.. [optional]  # noqa: E501
-            size_m_bytes (int, none_type): Specifies Size of the member in MB.. [optional]  # noqa: E501
             group_members ([str], none_type): Specifies list of members of this redo log group.. [optional]  # noqa: E501
+            member_prefix (str, none_type): Specifies Log member name prefix.. [optional]  # noqa: E501
+            num_groups (int, none_type): Specifies no. of redo log groups.. [optional]  # noqa: E501
+            size_m_bytes (int, none_type): Specifies Size of the member in MB.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

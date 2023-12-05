@@ -80,16 +80,16 @@ class RecoverMsTeamParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([ObjectMsTeamParam], none_type,),  # noqa: E501
-            'target_ms_team': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'target_team_nick_name': (str, none_type,),  # noqa: E501
-            'target_team_full_name': (str, none_type,),  # noqa: E501
-            'restore_to_original': (bool, none_type,),  # noqa: E501
-            'create_new_team': (bool, none_type,),  # noqa: E501
-            'target_team_name': (str, none_type,),  # noqa: E501
-            'target_ms_team_param': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'target_team_owner': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'restore_original_owners': (bool, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'create_new_team': (bool, none_type,),  # noqa: E501
+            'restore_original_owners': (bool, none_type,),  # noqa: E501
+            'restore_to_original': (bool, none_type,),  # noqa: E501
+            'target_ms_team': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'target_ms_team_param': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'target_team_full_name': (str, none_type,),  # noqa: E501
+            'target_team_name': (str, none_type,),  # noqa: E501
+            'target_team_nick_name': (str, none_type,),  # noqa: E501
+            'target_team_owner': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,16 +100,16 @@ class RecoverMsTeamParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'target_ms_team': 'targetMsTeam',  # noqa: E501
-        'target_team_nick_name': 'targetTeamNickName',  # noqa: E501
-        'target_team_full_name': 'targetTeamFullName',  # noqa: E501
-        'restore_to_original': 'restoreToOriginal',  # noqa: E501
-        'create_new_team': 'createNewTeam',  # noqa: E501
-        'target_team_name': 'targetTeamName',  # noqa: E501
-        'target_ms_team_param': 'targetMsTeamParam',  # noqa: E501
-        'target_team_owner': 'targetTeamOwner',  # noqa: E501
-        'restore_original_owners': 'restoreOriginalOwners',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'create_new_team': 'createNewTeam',  # noqa: E501
+        'restore_original_owners': 'restoreOriginalOwners',  # noqa: E501
+        'restore_to_original': 'restoreToOriginal',  # noqa: E501
+        'target_ms_team': 'targetMsTeam',  # noqa: E501
+        'target_ms_team_param': 'targetMsTeamParam',  # noqa: E501
+        'target_team_full_name': 'targetTeamFullName',  # noqa: E501
+        'target_team_name': 'targetTeamName',  # noqa: E501
+        'target_team_nick_name': 'targetTeamNickName',  # noqa: E501
+        'target_team_owner': 'targetTeamOwner',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,16 +162,16 @@ class RecoverMsTeamParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_ms_team ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): This field is deprecated. Use targetTeamNickName and targetTeamFullName instead.. [optional]  # noqa: E501
-            target_team_nick_name (str, none_type): This field is deprecated. Specifies target team nickname in case restoreToOriginal is false.. [optional]  # noqa: E501
-            target_team_full_name (str, none_type): This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user).. [optional]  # noqa: E501
-            restore_to_original (bool, none_type): Specifies whether or not all Microsoft 365 Teams are restored to original location.. [optional]  # noqa: E501
-            create_new_team (bool, none_type): Specifies to create new team in case the target team doesn't exists in case restoreToOriginal is false.. [optional]  # noqa: E501
-            target_team_name (str, none_type): Specifies the target team name in case restoreToOriginal is false.. [optional]  # noqa: E501
-            target_ms_team_param ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ms team target parameters in case of restoreToOriginal is false.. [optional]  # noqa: E501
-            target_team_owner ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the additional owner entity info for the selected target team.. [optional]  # noqa: E501
-            restore_original_owners (bool, none_type): Specifies if the original members/owners should be part of the newly created target team or not.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other teams, if some of the teams fail to recover. Default value is false.. [optional]  # noqa: E501
+            create_new_team (bool, none_type): Specifies to create new team in case the target team doesn't exists in case restoreToOriginal is false.. [optional]  # noqa: E501
+            restore_original_owners (bool, none_type): Specifies if the original members/owners should be part of the newly created target team or not.. [optional]  # noqa: E501
+            restore_to_original (bool, none_type): Specifies whether or not all Microsoft 365 Teams are restored to original location.. [optional]  # noqa: E501
+            target_ms_team ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): This field is deprecated. Use targetTeamNickName and targetTeamFullName instead.. [optional]  # noqa: E501
+            target_ms_team_param ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ms team target parameters in case of restoreToOriginal is false.. [optional]  # noqa: E501
+            target_team_full_name (str, none_type): This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user).. [optional]  # noqa: E501
+            target_team_name (str, none_type): Specifies the target team name in case restoreToOriginal is false.. [optional]  # noqa: E501
+            target_team_nick_name (str, none_type): This field is deprecated. Specifies target team nickname in case restoreToOriginal is false.. [optional]  # noqa: E501
+            target_team_owner ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the additional owner entity info for the selected target team.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

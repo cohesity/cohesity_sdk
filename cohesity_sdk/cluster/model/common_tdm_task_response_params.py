@@ -90,14 +90,14 @@ class CommonTdmTaskResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str, none_type,),  # noqa: E501
             'action': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'created_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -107,14 +107,14 @@ class CommonTdmTaskResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'action': 'action',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'created_by_user': 'createdByUser',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -129,12 +129,12 @@ class CommonTdmTaskResponseParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, action, *args, **kwargs):  # noqa: E501
+    def __init__(self, action, id, *args, **kwargs):  # noqa: E501
         """CommonTdmTaskResponseParams - a model defined in OpenAPI
 
         Args:
-            id (str, none_type): Specifies the unique ID of the task.
             action (str, none_type): Specifies the TDM Task action.
+            id (str, none_type): Specifies the unique ID of the task.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -168,12 +168,12 @@ class CommonTdmTaskResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was started.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was completed.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the task.. [optional]  # noqa: E501
             created_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the user, who created this task.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was completed.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Specifies the ID for tracking progress of this task.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was started.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the task.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -200,8 +200,8 @@ class CommonTdmTaskResponseParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.id = id
         self.action = action
+        self.id = id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

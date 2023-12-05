@@ -65,11 +65,11 @@ class CassandraProtectionGroupParams(ModelComposed):
     }
 
     validations = {
-        ('objects',): {
-            'min_items': 1,
+        ('exclude_object_ids',): {
         },
 
-        ('exclude_object_ids',): {
+        ('objects',): {
+            'min_items': 1,
         },
 
     }
@@ -90,13 +90,13 @@ class CassandraProtectionGroupParams(ModelComposed):
         """
         lazy_import()
         return {
-            'objects': ([NoSqlProtectionGroupObjectParams],),  # noqa: E501
-            'concurrency': (int, none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
+            'concurrency': (int, none_type,),  # noqa: E501
+            'custom_source_name': (str, none_type,),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'objects': ([NoSqlProtectionGroupObjectParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'custom_source_name': (str, none_type,),  # noqa: E501
             'data_centers': ([str],),  # noqa: E501
             'is_log_backup': (bool, none_type,),  # noqa: E501
         }
@@ -108,13 +108,13 @@ class CassandraProtectionGroupParams(ModelComposed):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
-        'concurrency': 'concurrency',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
+        'concurrency': 'concurrency',  # noqa: E501
+        'custom_source_name': 'customSourceName',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'custom_source_name': 'customSourceName',  # noqa: E501
         'data_centers': 'dataCenters',  # noqa: E501
         'is_log_backup': 'isLogBackup',  # noqa: E501
     }
@@ -167,13 +167,13 @@ class CassandraProtectionGroupParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([NoSqlProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
-            concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
+            concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
+            custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            objects ([NoSqlProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
-            custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
             data_centers ([str]): Only the specified data centers will be considered while taking backup. The keyspaces having replication strategy 'Simple' can be backed up only if all the datacenters for the cassandra cluster are specified. For any keyspace having replication strategy as 'Network', all the associated data centers should be specified.. [optional]  # noqa: E501
             is_log_backup (bool, none_type): Specifies the type of job for Cassandra. If true, only log backup job will be scheduled for the source. This requires a policy with log Backup option enabled.. [optional]  # noqa: E501
         """

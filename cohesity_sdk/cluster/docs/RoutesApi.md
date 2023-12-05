@@ -18,7 +18,6 @@ Configure a static route on an interface.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -34,14 +33,13 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = StaticRouteParams(
+        description="description_example",
+        destination_network="destination_network_example",
         interface="interface_example",
         interface_group="interface_group_example",
-        destination_network="destination_network_example",
-        next_hop="next_hop_example",
-        description="description_example",
         mtu=1,
+        next_hop="next_hop_example",
         node_group_name="node_group_name_example",
     ) # StaticRouteParams | Specifies the parameters to configure a static route on an interface.
 
@@ -67,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -92,7 +90,6 @@ Delete a static route on a network interface.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -106,7 +103,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 route_id = "routeId_example" # str | Specify the unique identifier for the route.
 
@@ -131,7 +127,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -156,7 +152,6 @@ List the static routes for the Cohesity Cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.static_routes import StaticRoutes
@@ -171,7 +166,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 interface_groups = [
         "interfaceGroups_example",
@@ -200,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -225,7 +219,6 @@ Update static route details.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -241,15 +234,14 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 route_id = "routeId_example" # str | Specify the unique identifier for the route.
 body = StaticRouteParams(
+        description="description_example",
+        destination_network="destination_network_example",
         interface="interface_example",
         interface_group="interface_group_example",
-        destination_network="destination_network_example",
-        next_hop="next_hop_example",
-        description="description_example",
         mtu=1,
+        next_hop="next_hop_example",
         node_group_name="node_group_name_example",
     ) # StaticRouteParams | Specifies the update request parameters.
 
@@ -276,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

@@ -87,9 +87,9 @@ class AntivirusServiceGroup(ModelComposed):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'antivirus_services': ([AntivirusService], none_type,),  # noqa: E501
             'enabled': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
         }
@@ -101,9 +101,9 @@ class AntivirusServiceGroup(ModelComposed):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'antivirus_services': 'antivirusServices',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'id': 'id',  # noqa: E501
     }
@@ -121,13 +121,13 @@ class AntivirusServiceGroup(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, antivirus_services, enabled, *args, **kwargs):  # noqa: E501
+    def __init__(self, antivirus_services, enabled, name, *args, **kwargs):  # noqa: E501
         """AntivirusServiceGroup - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the Antivirus Service group name.
             antivirus_services ([AntivirusService], none_type): Specifies a list of Antivirus Services for this group.
             enabled (bool, none_type): Specifies whether the Antivirus Group is enabled.
+            name (str, none_type): Specifies the Antivirus Service group name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -197,9 +197,9 @@ class AntivirusServiceGroup(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'name': name,
             'antivirus_services': antivirus_services,
             'enabled': enabled,
+            'name': name,
         }
         model_args = {}
         model_args.update(required_args)

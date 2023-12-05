@@ -57,16 +57,15 @@ class SecurityConfigAccountLockout(ModelNormal):
     }
 
     validations = {
-        ('max_failed_login_attempts',): {
-            'inclusive_minimum': 1,
-        },
-
         ('failed_login_lock_time_duration_mins',): {
             'inclusive_minimum': 1,
         },
 
         ('inactivity_time_days',): {
-            'inclusive_maximum': 365,
+            'inclusive_minimum': 1,
+        },
+
+        ('max_failed_login_attempts',): {
             'inclusive_minimum': 1,
         },
 
@@ -87,9 +86,9 @@ class SecurityConfigAccountLockout(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'max_failed_login_attempts': (int, none_type,),  # noqa: E501
             'failed_login_lock_time_duration_mins': (int, none_type,),  # noqa: E501
             'inactivity_time_days': (int, none_type,),  # noqa: E501
+            'max_failed_login_attempts': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,9 +98,9 @@ class SecurityConfigAccountLockout(ModelNormal):
 
 
     attribute_map = {
-        'max_failed_login_attempts': 'maxFailedLoginAttempts',  # noqa: E501
         'failed_login_lock_time_duration_mins': 'failedLoginLockTimeDurationMins',  # noqa: E501
         'inactivity_time_days': 'inactivityTimeDays',  # noqa: E501
+        'max_failed_login_attempts': 'maxFailedLoginAttempts',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,9 +150,9 @@ class SecurityConfigAccountLockout(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            max_failed_login_attempts (int, none_type): Specifies the maximum number of consecutive fail login attempts.. [optional]  # noqa: E501
             failed_login_lock_time_duration_mins (int, none_type): Specifies the time duration within which the consecutive failed login attempts causes a local user account to be locked and the lockout duration time due to that.. [optional]  # noqa: E501
             inactivity_time_days (int, none_type): Specifies the lockout inactivity time range in days.. [optional]  # noqa: E501
+            max_failed_login_attempts (int, none_type): Specifies the maximum number of consecutive fail login attempts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

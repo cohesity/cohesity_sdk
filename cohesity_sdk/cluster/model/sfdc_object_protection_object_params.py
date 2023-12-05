@@ -27,9 +27,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.sfdc_aurora_cluster_info import SfdcAuroraClusterInfo
     from cohesity_sdk.cluster.model.sfdc_object_protection_object_params_field_exclusion_list import SfdcObjectProtectionObjectParamsFieldExclusionList
-    globals()['SfdcAuroraClusterInfo'] = SfdcAuroraClusterInfo
     globals()['SfdcObjectProtectionObjectParamsFieldExclusionList'] = SfdcObjectProtectionObjectParamsFieldExclusionList
 
 
@@ -85,9 +83,9 @@ class SfdcObjectProtectionObjectParams(ModelNormal):
         lazy_import()
         return {
             'id': (int,),  # noqa: E501
+            'aurora_cluster_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'field_exclusion_list': ([SfdcObjectProtectionObjectParamsFieldExclusionList], none_type,),  # noqa: E501
-            'aurora_cluster_info': (SfdcAuroraClusterInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +96,9 @@ class SfdcObjectProtectionObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'aurora_cluster_info': 'auroraClusterInfo',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'field_exclusion_list': 'fieldExclusionList',  # noqa: E501
-        'aurora_cluster_info': 'auroraClusterInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,9 +151,9 @@ class SfdcObjectProtectionObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            aurora_cluster_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the ids of the objects to be excluded in the Object Protection.. [optional]  # noqa: E501
             field_exclusion_list ([SfdcObjectProtectionObjectParamsFieldExclusionList], none_type): Specifies the list of field names to be excluded in an Sfdc object. A user can specify multiple such entries in this list.. [optional]  # noqa: E501
-            aurora_cluster_info (SfdcAuroraClusterInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -86,9 +86,9 @@ class CommonPreBackupScriptParams(ModelComposed):
         lazy_import()
         return {
             'path': (str,),  # noqa: E501
+            'is_active': (bool, none_type,),  # noqa: E501
             'params': (str, none_type,),  # noqa: E501
             'timeout_secs': (int, none_type,),  # noqa: E501
-            'is_active': (bool, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
         }
 
@@ -100,9 +100,9 @@ class CommonPreBackupScriptParams(ModelComposed):
 
     attribute_map = {
         'path': 'path',  # noqa: E501
+        'is_active': 'isActive',  # noqa: E501
         'params': 'params',  # noqa: E501
         'timeout_secs': 'timeoutSecs',  # noqa: E501
-        'is_active': 'isActive',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
     }
 
@@ -157,9 +157,9 @@ class CommonPreBackupScriptParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_active (bool, none_type): Specifies whether the script should be enabled, default value set to true.. [optional]  # noqa: E501
             params (str, none_type): Specifies the arguments or parameters and values to pass into the remote script. For example if the script expects values for the 'database' and 'user' parameters, specify the parameters and values using the following string: \"database=myDatabase user=me\".. [optional]  # noqa: E501
             timeout_secs (int, none_type): Specifies the timeout of the script in seconds. The script will be killed if it exceeds this value. By default, no timeout will occur if left empty.. [optional]  # noqa: E501
-            is_active (bool, none_type): Specifies whether the script should be enabled, default value set to true.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies if the script needs to continue even if there is an occurence of an error. If this flag is set to true, then Backup Run will start even if the pre backup script fails. If not specified or false, then backup run will not start when script fails.. [optional]  # noqa: E501
         """
 

@@ -75,8 +75,8 @@ class IamUserAwsCredentials(ModelNormal):
         """
         return {
             'access_key': (str, none_type,),  # noqa: E501
-            'secret_access_key': (str, none_type,),  # noqa: E501
             'arn': (str, none_type,),  # noqa: E501
+            'secret_access_key': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class IamUserAwsCredentials(ModelNormal):
 
     attribute_map = {
         'access_key': 'accessKey',  # noqa: E501
-        'secret_access_key': 'secretAccessKey',  # noqa: E501
         'arn': 'arn',  # noqa: E501
+        'secret_access_key': 'secretAccessKey',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class IamUserAwsCredentials(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_key, secret_access_key, arn, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_key, arn, secret_access_key, *args, **kwargs):  # noqa: E501
         """IamUserAwsCredentials - a model defined in OpenAPI
 
         Args:
             access_key (str, none_type): Specifies Access key of the AWS account.
-            secret_access_key (str, none_type): Specifies Secret Access key of the AWS account.
             arn (str, none_type): Specifies Amazon Resource Name (owner ID) of the IAM user, acts as an unique identifier of as AWS entity.
+            secret_access_key (str, none_type): Specifies Secret Access key of the AWS account.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class IamUserAwsCredentials(ModelNormal):
 
 
         self.access_key = access_key
-        self.secret_access_key = secret_access_key
         self.arn = arn
+        self.secret_access_key = secret_access_key
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

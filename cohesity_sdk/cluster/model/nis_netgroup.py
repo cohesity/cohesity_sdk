@@ -86,8 +86,8 @@ class NisNetgroup(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'nfs_access': (str, none_type,),  # noqa: E501
             'nfs_squash': (str, none_type,),  # noqa: E501
         }
@@ -99,8 +99,8 @@ class NisNetgroup(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'domain': 'domain',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'nfs_access': 'nfsAccess',  # noqa: E501
         'nfs_squash': 'nfsSquash',  # noqa: E501
     }
@@ -117,12 +117,12 @@ class NisNetgroup(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, domain, *args, **kwargs):  # noqa: E501
+    def __init__(self, domain, name, *args, **kwargs):  # noqa: E501
         """NisNetgroup - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the netgroup name.
             domain (str, none_type): Specifies the domain name for the netgroup.
+            name (str, none_type): Specifies the netgroup name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,8 +184,8 @@ class NisNetgroup(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.domain = domain
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -74,11 +74,11 @@ class LogicalVolumeInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'volume_group_uuid': (str, none_type,),  # noqa: E501
-            'volume_group_name': (str, none_type,),  # noqa: E501
-            'logical_volume_uuid': (str, none_type,),  # noqa: E501
-            'logical_volume_name': (str, none_type,),  # noqa: E501
             'device_tree': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'logical_volume_name': (str, none_type,),  # noqa: E501
+            'logical_volume_uuid': (str, none_type,),  # noqa: E501
+            'volume_group_name': (str, none_type,),  # noqa: E501
+            'volume_group_uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class LogicalVolumeInfo(ModelNormal):
 
 
     attribute_map = {
-        'volume_group_uuid': 'volumeGroupUuid',  # noqa: E501
-        'volume_group_name': 'volumeGroupName',  # noqa: E501
-        'logical_volume_uuid': 'logicalVolumeUuid',  # noqa: E501
-        'logical_volume_name': 'logicalVolumeName',  # noqa: E501
         'device_tree': 'deviceTree',  # noqa: E501
+        'logical_volume_name': 'logicalVolumeName',  # noqa: E501
+        'logical_volume_uuid': 'logicalVolumeUuid',  # noqa: E501
+        'volume_group_name': 'volumeGroupName',  # noqa: E501
+        'volume_group_uuid': 'volumeGroupUuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class LogicalVolumeInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            volume_group_uuid (str, none_type): Specifies the volume group uuid.. [optional]  # noqa: E501
-            volume_group_name (str, none_type): Specifies the volume group name.. [optional]  # noqa: E501
-            logical_volume_uuid (str, none_type): Specifies the logical volume uuid.. [optional]  # noqa: E501
-            logical_volume_name (str, none_type): Specifies the logical volume name.. [optional]  # noqa: E501
             device_tree ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the tree structure of the logical volume.. [optional]  # noqa: E501
+            logical_volume_name (str, none_type): Specifies the logical volume name.. [optional]  # noqa: E501
+            logical_volume_uuid (str, none_type): Specifies the logical volume uuid.. [optional]  # noqa: E501
+            volume_group_name (str, none_type): Specifies the volume group name.. [optional]  # noqa: E501
+            volume_group_uuid (str, none_type): Specifies the volume group uuid.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

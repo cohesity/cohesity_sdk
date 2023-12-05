@@ -82,11 +82,10 @@ class KmipKmsConfigurationResponse(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'certificate_expiry_date': (int, none_type,),  # noqa: E501
+            'port': (int, none_type,),  # noqa: E501
             'protocol_version': (str, none_type,),  # noqa: E501
             'server': (str, none_type,),  # noqa: E501
-            'port': (int, none_type,),  # noqa: E501
-            'certificate_expiry_date': (int, none_type,),  # noqa: E501
-            'additional_server_address': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -96,11 +95,10 @@ class KmipKmsConfigurationResponse(ModelNormal):
 
 
     attribute_map = {
+        'certificate_expiry_date': 'certificateExpiryDate',  # noqa: E501
+        'port': 'port',  # noqa: E501
         'protocol_version': 'protocolVersion',  # noqa: E501
         'server': 'server',  # noqa: E501
-        'port': 'port',  # noqa: E501
-        'certificate_expiry_date': 'certificateExpiryDate',  # noqa: E501
-        'additional_server_address': 'AdditionalServerAddress',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,11 +148,10 @@ class KmipKmsConfigurationResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            certificate_expiry_date (int, none_type): Specifies expiry date of client certificate in msecs.. [optional]  # noqa: E501
+            port (int, none_type): Port on which the KMS server is listening.. [optional] if omitted the server will use the default value of 5696  # noqa: E501
             protocol_version (str, none_type): KMIP protocol version used to communicate with the KMS.. [optional]  # noqa: E501
             server (str, none_type): KMS server IP address or FQDN.. [optional]  # noqa: E501
-            port (int, none_type): Port on which the KMS server is listening.. [optional] if omitted the server will use the default value of 5696  # noqa: E501
-            certificate_expiry_date (int, none_type): Specifies expiry date of client certificate in msecs.. [optional]  # noqa: E501
-            additional_server_address ([str]): Additional KMS server IP address or FQDNs for fail over.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

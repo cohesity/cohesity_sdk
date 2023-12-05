@@ -5,10 +5,10 @@ Specifies the target data tiering details for downtier job. This is in beta phas
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**view_name_prefix** | **str, none_type** | Specifies the view name prefix. | 
 **storage_domain_id** | **int, none_type** | Specifies the Storage Domain ID where the view will be kept. | 
-**mount_path_prefix** | **str, none_type** | Specifies the mount path prefix inside the view. | [optional] 
+**view_name_prefix** | **str, none_type** | Specifies the view name prefix. | 
 **downtiered_data_locations** | [**[DowntieredDataLocation], none_type**](DowntieredDataLocation.md) | Specifies a list of mapping between sources and its corresponding viewNames and mountPaths, where the sources were downtiered. | [optional] [readonly] 
+**mount_path_prefix** | **str, none_type** | Specifies the mount path prefix inside the view. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

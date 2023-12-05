@@ -131,18 +131,18 @@ class ObjectProgressInfo(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'events': ([ProgressTaskEvent],),  # noqa: E501
+            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
             'percentage_completed': (float, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
-            'events': ([ProgressTaskEvent],),  # noqa: E501
             'stats': (ProgressStats,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'failed_attempts': ([ProgressTaskInfo], none_type,),  # noqa: E501
         }
 
@@ -153,18 +153,18 @@ class ObjectProgressInfo(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'events': 'events',  # noqa: E501
+        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
-        'events': 'events',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'failed_attempts': 'failedAttempts',  # noqa: E501
     }
 
@@ -216,18 +216,18 @@ class ObjectProgressInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
+            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
+            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             percentage_completed (float, none_type): Specifies the current completed percentage of the progress task.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
             stats (ProgressStats): [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
             failed_attempts ([ProgressTaskInfo], none_type): Specifies progress for failed attempts of this object.. [optional]  # noqa: E501
         """
 

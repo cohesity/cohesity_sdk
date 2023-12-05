@@ -82,12 +82,12 @@ class CreateViewAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'storage_domain_id': (int, none_type,),  # noqa: E501
             'case_insensitive_names_enabled': (bool, none_type,),  # noqa: E501
-            'object_services_mapping_config': (str, none_type,),  # noqa: E501
-            'view_protection_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'intent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'object_services_mapping_config': (str, none_type,),  # noqa: E501
             's3_folder_support_enabled': (bool, none_type,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
+            'view_protection_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -97,12 +97,12 @@ class CreateViewAllOf(ModelNormal):
 
 
     attribute_map = {
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
         'case_insensitive_names_enabled': 'caseInsensitiveNamesEnabled',  # noqa: E501
-        'object_services_mapping_config': 'objectServicesMappingConfig',  # noqa: E501
-        'view_protection_config': 'viewProtectionConfig',  # noqa: E501
         'intent': 'intent',  # noqa: E501
+        'object_services_mapping_config': 'objectServicesMappingConfig',  # noqa: E501
         's3_folder_support_enabled': 's3FolderSupportEnabled',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
+        'view_protection_config': 'viewProtectionConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,12 +152,12 @@ class CreateViewAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            storage_domain_id (int, none_type): Specifies the id of the Storage Domain (View Box) where the View will be created.. [optional]  # noqa: E501
             case_insensitive_names_enabled (bool, none_type): Specifies whether to support case insensitive file/folder names. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
-            object_services_mapping_config (str, none_type): Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.. [optional]  # noqa: E501
-            view_protection_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the protection config of the View.. [optional]  # noqa: E501
             intent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the intent of the View.. [optional]  # noqa: E501
+            object_services_mapping_config (str, none_type): Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.. [optional]  # noqa: E501
             s3_folder_support_enabled (bool, none_type): Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the id of the Storage Domain (View Box) where the View will be created.. [optional]  # noqa: E501
+            view_protection_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the protection config of the View.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

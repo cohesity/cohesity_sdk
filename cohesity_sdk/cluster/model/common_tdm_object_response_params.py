@@ -87,14 +87,14 @@ class CommonTdmObjectResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'created_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'last_action': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'size_bytes': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'parent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'size_bytes': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,14 +104,14 @@ class CommonTdmObjectResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'environment': 'environment',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'created_by_user': 'createdByUser',  # noqa: E501
         'last_action': 'lastAction',  # noqa: E501
-        'size_bytes': 'sizeBytes',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'parent': 'parent',  # noqa: E501
+        'size_bytes': 'sizeBytes',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -126,12 +126,12 @@ class CommonTdmObjectResponseParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, environment, *args, **kwargs):  # noqa: E501
+    def __init__(self, environment, id, *args, **kwargs):  # noqa: E501
         """CommonTdmObjectResponseParams - a model defined in OpenAPI
 
         Args:
-            id (str, none_type): Specifies the unique ID of the object.
             environment (str, none_type): Specifies the environment of the object.
+            id (str, none_type): Specifies the unique ID of the object.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,12 +165,12 @@ class CommonTdmObjectResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the object.. [optional]  # noqa: E501
             created_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the user, who created the object.. [optional]  # noqa: E501
             last_action ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the details of the last action performed on this object.. [optional]  # noqa: E501
-            size_bytes (int, none_type): Specifies the size (in bytes) of the object.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             parent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parent of the object.. [optional]  # noqa: E501
+            size_bytes (int, none_type): Specifies the size (in bytes) of the object.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -197,8 +197,8 @@ class CommonTdmObjectResponseParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.id = id
         self.environment = environment
+        self.id = id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

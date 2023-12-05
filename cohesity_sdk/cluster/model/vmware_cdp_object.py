@@ -99,13 +99,10 @@ class VmwareCdpObject(ModelComposed):
         lazy_import()
         return {
             'cdp_enabled': (bool, none_type,),  # noqa: E501
-            'allow_re_enable_cdp': (bool, none_type,),  # noqa: E501
             'last_run_info': (CdpObjectLastRunInfo,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
-            'io_filter_status': (str, none_type,),  # noqa: E501
             'io_filter_error_message': (str, none_type,),  # noqa: E501
-            'pre_processing_error_message': (str, none_type,),  # noqa: E501
-            'guardrails_error_message': (str, none_type,),  # noqa: E501
+            'io_filter_status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -116,13 +113,10 @@ class VmwareCdpObject(ModelComposed):
 
     attribute_map = {
         'cdp_enabled': 'cdpEnabled',  # noqa: E501
-        'allow_re_enable_cdp': 'allowReEnableCdp',  # noqa: E501
         'last_run_info': 'lastRunInfo',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'io_filter_status': 'ioFilterStatus',  # noqa: E501
         'io_filter_error_message': 'ioFilterErrorMessage',  # noqa: E501
-        'pre_processing_error_message': 'preProcessingErrorMessage',  # noqa: E501
-        'guardrails_error_message': 'guardrailsErrorMessage',  # noqa: E501
+        'io_filter_status': 'ioFilterStatus',  # noqa: E501
     }
 
     required_properties = set([
@@ -174,13 +168,10 @@ class VmwareCdpObject(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             cdp_enabled (bool, none_type): Specifies whether CDP is currently active or not. CDP might have been active on this object before, but it might not be anymore.. [optional]  # noqa: E501
-            allow_re_enable_cdp (bool, none_type): Specifies if re-enabling CDP is allowed or not through UI without any job or policy update through API.. [optional]  # noqa: E501
             last_run_info (CdpObjectLastRunInfo): [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id to which this CDP object belongs.. [optional]  # noqa: E501
-            io_filter_status (str, none_type): Specifies the state of CDP IO filter. CDP IO filter is an agent which will be installed on the object for performing continuous backup. <br> 1. 'kNotInstalled' specifies that CDP is enabled on this object but filter is not installed. <br> 2. 'kInstallFilterInProgress' specifies that IO filter installation is triggered and in progress. <br> 3. 'kFilterInstalledIOInactive' specifies that IO filter is installed but IO streaming is disabled due to missing backup or explicitly disabled by the user. <br> 4. 'kIOActivationInProgress' specifies that IO filter is activated to start streaming. <br> 5. 'kIOActive' specifies that filter is attached to the object and started streaming. <br> 6. 'kIODeactivationInProgress' specifies that deactivation has been initiated to stop the IO streaming. <br> 7. 'kUninstallFilterInProgress' specifies that uninstallation of IO filter is in progress.. [optional]  # noqa: E501
             io_filter_error_message (str, none_type): Specifies the error message related to IO filter if there is any.. [optional]  # noqa: E501
-            pre_processing_error_message (str, none_type): Specifies the error message from the cdp pre-processing stage if any.. [optional]  # noqa: E501
-            guardrails_error_message (str, none_type): Specifies the error message from the guardrails info from cdp state if any.. [optional]  # noqa: E501
+            io_filter_status (str, none_type): Specifies the state of CDP IO filter. CDP IO filter is an agent which will be installed on the object for performing continuous backup. <br> 1. 'kNotInstalled' specifies that CDP is enabled on this object but filter is not installed. <br> 2. 'kInstallFilterInProgress' specifies that IO filter installation is triggered and in progress. <br> 3. 'kFilterInstalledIOInactive' specifies that IO filter is installed but IO streaming is disabled due to missing backup or explicitly disabled by the user. <br> 4. 'kIOActivationInProgress' specifies that IO filter is activated to start streaming. <br> 5. 'kIOActive' specifies that filter is attached to the object and started streaming. <br> 6. 'kIODeactivationInProgress' specifies that deactivation has been initiated to stop the IO streaming. <br> 7. 'kUninstallFilterInProgress' specifies that uninstallation of IO filter is in progress.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -79,11 +79,11 @@ class SourceBackupDeactivation(ModelNormal):
         """
         lazy_import()
         return {
-            'replication_cluster_id': (int, none_type,),  # noqa: E501
-            'view_id': (str, none_type,),  # noqa: E501
+            'keep_failover_objects': (bool, none_type,),  # noqa: E501
             'objects': ([FailoverObject], none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
-            'keep_failover_objects': (bool, none_type,),  # noqa: E501
+            'replication_cluster_id': (int, none_type,),  # noqa: E501
+            'view_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class SourceBackupDeactivation(ModelNormal):
 
 
     attribute_map = {
-        'replication_cluster_id': 'replicationClusterId',  # noqa: E501
-        'view_id': 'viewId',  # noqa: E501
+        'keep_failover_objects': 'keepFailoverObjects',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'keep_failover_objects': 'keepFailoverObjects',  # noqa: E501
+        'replication_cluster_id': 'replicationClusterId',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class SourceBackupDeactivation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            replication_cluster_id (int, none_type): Specifies the replication cluster Id involved in failover operation.. [optional]  # noqa: E501
-            view_id (str, none_type): If failover is initiated by view based orchastrator, then this field specifies the local view id of source cluster which is being failed over. Backup will be deactivated for view object.. [optional]  # noqa: E501
+            keep_failover_objects (bool, none_type): If this is set to true then objects will not be removed from protection group. If this is set to false, then all objects which are being failed over will be removed from the protection group. If protection group left with zero entities then it will be paused automatically.. [optional]  # noqa: E501
             objects ([FailoverObject], none_type): Specifies the list of all local entity ids of all the objects being failed from the source cluster. Backup will be deactiaved for all given objects.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id of the source cluster from where the objects being failed over. If this is not specified then it will be infer from the list of objects being failed over.. [optional]  # noqa: E501
-            keep_failover_objects (bool, none_type): If this is set to true then objects will not be removed from protection group. If this is set to false, then all objects which are being failed over will be removed from the protection group. If protection group left with zero entities then it will be paused automatically.. [optional]  # noqa: E501
+            replication_cluster_id (int, none_type): Specifies the replication cluster Id involved in failover operation.. [optional]  # noqa: E501
+            view_id (str, none_type): If failover is initiated by view based orchastrator, then this field specifies the local view id of source cluster which is being failed over. Backup will be deactivated for view object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

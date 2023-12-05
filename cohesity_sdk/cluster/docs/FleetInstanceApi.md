@@ -15,7 +15,6 @@ Add fleet environment info to cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_fleet_env_info_request import UpdateFleetEnvInfoRequest
@@ -31,30 +30,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = UpdateFleetEnvInfoRequest(
         iam_role="iam_role_example",
         region="region_example",
-        vpc_id="vpc_id_example",
-        subnet_id="subnet_id_example",
         security_group_id="security_group_id_example",
-        aws_fleet_info=AwsFleetInfo(
-            iam_role="iam_role_example",
-            region="region_example",
-            vpc_id="vpc_id_example",
-            subnet_id="subnet_id_example",
-            security_group_id="security_group_id_example",
-        ),
-        azure_fleet_info=AzureFleetInfo(
-            client_id="client_id_example",
-            region="region_example",
-            vnet_name="vnet_name_example",
-            subnet_name="subnet_name_example",
-            app_security_group_name="app_security_group_name_example",
-            proximity_placement_group_name="proximity_placement_group_name_example",
-            availability_set_name="availability_set_name_example",
-            resource_group_name="resource_group_name_example",
-        ),
+        subnet_id="subnet_id_example",
+        vpc_id="vpc_id_example",
     ) # UpdateFleetEnvInfoRequest | Specifies the parameters to add fleet env info.
 
 # example passing only required values which don't have defaults set
@@ -79,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

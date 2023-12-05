@@ -90,8 +90,8 @@ class BlackoutWindow(ModelNormal):
         lazy_import()
         return {
             'day': (str, none_type,),  # noqa: E501
-            'start_time': (TimeOfDay,),  # noqa: E501
             'end_time': (TimeOfDay,),  # noqa: E501
+            'start_time': (TimeOfDay,),  # noqa: E501
             'config_id': (str, none_type,),  # noqa: E501
         }
 
@@ -103,8 +103,8 @@ class BlackoutWindow(ModelNormal):
 
     attribute_map = {
         'day': 'day',  # noqa: E501
-        'start_time': 'startTime',  # noqa: E501
         'end_time': 'endTime',  # noqa: E501
+        'start_time': 'startTime',  # noqa: E501
         'config_id': 'configId',  # noqa: E501
     }
 
@@ -120,13 +120,13 @@ class BlackoutWindow(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, day, start_time, end_time, *args, **kwargs):  # noqa: E501
+    def __init__(self, day, end_time, start_time, *args, **kwargs):  # noqa: E501
         """BlackoutWindow - a model defined in OpenAPI
 
         Args:
             day (str, none_type): Specifies a day in the week when no new Protection Group Runs should be started such as 'Sunday'. Specifies a day in a week such as 'Sunday', 'Monday', etc.
-            start_time (TimeOfDay):
             end_time (TimeOfDay):
+            start_time (TimeOfDay):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -188,8 +188,8 @@ class BlackoutWindow(ModelNormal):
 
 
         self.day = day
-        self.start_time = start_time
         self.end_time = end_time
+        self.start_time = start_time
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

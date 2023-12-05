@@ -74,8 +74,8 @@ class LockFileParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'file_path': (str, none_type,),  # noqa: E501
             'expiry_timestamp_msecs': (int, none_type,),  # noqa: E501
+            'file_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class LockFileParams(ModelNormal):
 
 
     attribute_map = {
-        'file_path': 'filePath',  # noqa: E501
         'expiry_timestamp_msecs': 'expiryTimestampMsecs',  # noqa: E501
+        'file_path': 'filePath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class LockFileParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, file_path, expiry_timestamp_msecs, *args, **kwargs):  # noqa: E501
+    def __init__(self, expiry_timestamp_msecs, file_path, *args, **kwargs):  # noqa: E501
         """LockFileParams - a model defined in OpenAPI
 
         Args:
-            file_path (str, none_type): Specifies the file path that needs to be locked.
             expiry_timestamp_msecs (int, none_type): Specifies a definite timestamp in milliseconds for retaining the file or to extend it's expiry timestamp.
+            file_path (str, none_type): Specifies the file path that needs to be locked.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class LockFileParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.file_path = file_path
         self.expiry_timestamp_msecs = expiry_timestamp_msecs
+        self.file_path = file_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

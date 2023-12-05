@@ -79,8 +79,8 @@ class FileNlmLocks(ModelNormal):
         """
         lazy_import()
         return {
-            'nlm_locks': ([NlmLock], none_type,),  # noqa: E501
             'file_id': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'nlm_locks': ([NlmLock], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class FileNlmLocks(ModelNormal):
 
 
     attribute_map = {
-        'nlm_locks': 'nlmLocks',  # noqa: E501
         'file_id': 'fileId',  # noqa: E501
+        'nlm_locks': 'nlmLocks',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class FileNlmLocks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            nlm_locks ([NlmLock], none_type): Specifies the list of NLM locks.. [optional]  # noqa: E501
             file_id ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): File identitfiers.. [optional]  # noqa: E501
+            nlm_locks ([NlmLock], none_type): Specifies the list of NLM locks.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

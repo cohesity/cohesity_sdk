@@ -66,7 +66,6 @@ class RecoveryTaskInfo(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
         },
     }
 
@@ -88,10 +87,10 @@ class RecoveryTaskInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'progress_task_id': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,10 +100,10 @@ class RecoveryTaskInfo(ModelNormal):
 
 
     attribute_map = {
-        'progress_task_id': 'progressTaskId',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,10 +153,10 @@ class RecoveryTaskInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            progress_task_id (str, none_type): Specifies the progress monitor path.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the status of the recovery.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the start time in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Specifies the progress monitor path.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the status of the recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

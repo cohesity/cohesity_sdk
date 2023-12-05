@@ -81,8 +81,8 @@ class RecoverNasVolumeToViewParams(ModelNormal):
         """
         lazy_import()
         return {
-            'view_name': (str, none_type,),  # noqa: E501
             'qos_policy': (NasQosPolicy,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
             'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
@@ -93,8 +93,8 @@ class RecoverNasVolumeToViewParams(ModelNormal):
 
 
     attribute_map = {
-        'view_name': 'viewName',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
         'vlan_config': 'vlanConfig',  # noqa: E501
     }
 
@@ -145,8 +145,8 @@ class RecoverNasVolumeToViewParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            view_name (str, none_type): Specifies the name of the view.. [optional]  # noqa: E501
             qos_policy (NasQosPolicy): [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the name of the view.. [optional]  # noqa: E501
             vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 

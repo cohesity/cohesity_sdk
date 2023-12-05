@@ -90,15 +90,15 @@ class HiveSourceRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'host': (str,),  # noqa: E501
             'configuration_directory': (str,),  # noqa: E501
             'hdfs_source_registration_id': (int,),  # noqa: E501
+            'host': (str,),  # noqa: E501
+            'auth_type': (str, none_type,),  # noqa: E501
             'metastore_address': (str,),  # noqa: E501
             'metastore_port': (int,),  # noqa: E501
-            'auth_type': (str, none_type,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HiveSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -108,15 +108,15 @@ class HiveSourceRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
         'hdfs_source_registration_id': 'hdfsSourceRegistrationID',  # noqa: E501
+        'host': 'host',  # noqa: E501
+        'auth_type': 'authType',  # noqa: E501
         'metastore_address': 'metastoreAddress',  # noqa: E501
         'metastore_port': 'metastorePort',  # noqa: E501
-        'auth_type': 'authType',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     required_properties = set([
@@ -132,13 +132,13 @@ class HiveSourceRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, configuration_directory, hdfs_source_registration_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, configuration_directory, hdfs_source_registration_id, host, *args, **kwargs):  # noqa: E501
         """HiveSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            host (str): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.
             configuration_directory (str): The directory containing the hive-site.xml.
             hdfs_source_registration_id (int): Protection Source registration id of the HDFS on which this Hive is running.
+            host (str): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,12 +172,12 @@ class HiveSourceRegistrationParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
             metastore_address (str): The MetastoreAddress for this Hive.. [optional]  # noqa: E501
             metastore_port (int): The MetastorePort for this Hive.. [optional]  # noqa: E501
-            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
+            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
             ssh_password_credentials (HiveSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
-            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -212,9 +212,9 @@ class HiveSourceRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'host': host,
             'configuration_directory': configuration_directory,
             'hdfs_source_registration_id': hdfs_source_registration_id,
+            'host': host,
         }
         model_args = {}
         model_args.update(required_args)

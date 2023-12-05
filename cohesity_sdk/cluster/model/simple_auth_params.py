@@ -75,8 +75,8 @@ class SimpleAuthParams(ModelNormal):
         """
         return {
             'user_distinguished_name': (str, none_type,),  # noqa: E501
-            'user_password': (str, none_type,),  # noqa: E501
             'use_ssl': (bool, none_type,),  # noqa: E501
+            'user_password': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class SimpleAuthParams(ModelNormal):
 
     attribute_map = {
         'user_distinguished_name': 'userDistinguishedName',  # noqa: E501
-        'user_password': 'userPassword',  # noqa: E501
         'use_ssl': 'useSsl',  # noqa: E501
+        'user_password': 'userPassword',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class SimpleAuthParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            user_password (str, none_type): Specifies the user password that is used for LDAP authentication.. [optional]  # noqa: E501
             use_ssl (bool, none_type): Specifies whether to use SSL for LDAP connections.. [optional]  # noqa: E501
+            user_password (str, none_type): Specifies the user password that is used for LDAP authentication.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

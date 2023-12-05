@@ -94,13 +94,13 @@ class ProgressTask(ModelComposed):
         lazy_import()
         return {
             'id': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'events': ([ProgressTaskEvent],),  # noqa: E501
+            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
             'percentage_completed': (float, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
-            'events': ([ProgressTaskEvent],),  # noqa: E501
             'stats': (ProgressStats,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -111,13 +111,13 @@ class ProgressTask(ModelComposed):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'events': 'events',  # noqa: E501
+        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
-        'events': 'events',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     required_properties = set([
@@ -169,13 +169,13 @@ class ProgressTask(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies the task id of the Progress task.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
+            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
+            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             percentage_completed (float, none_type): Specifies the current completed percentage of the progress task.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
             stats (ProgressStats): [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

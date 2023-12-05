@@ -79,9 +79,9 @@ class RecoverAwsVmNewSourceNetworkConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'vpc': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'subnet': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'security_groups': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
+            'subnet': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vpc': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class RecoverAwsVmNewSourceNetworkConfig(ModelNormal):
 
 
     attribute_map = {
-        'vpc': 'vpc',  # noqa: E501
-        'subnet': 'subnet',  # noqa: E501
         'security_groups': 'securityGroups',  # noqa: E501
+        'subnet': 'subnet',  # noqa: E501
+        'vpc': 'vpc',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,13 +108,13 @@ class RecoverAwsVmNewSourceNetworkConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, vpc, subnet, security_groups, *args, **kwargs):  # noqa: E501
+    def __init__(self, security_groups, subnet, vpc, *args, **kwargs):  # noqa: E501
         """RecoverAwsVmNewSourceNetworkConfig - a model defined in OpenAPI
 
         Args:
-            vpc ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Virtual Private Cloud to choose for the instance type.
-            subnet ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the subnet within above VPC.
             security_groups ([RecoveryObjectIdentifier], none_type): Specifies the network security groups within above VPC.
+            subnet ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the subnet within above VPC.
+            vpc ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Virtual Private Cloud to choose for the instance type.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,9 +174,9 @@ class RecoverAwsVmNewSourceNetworkConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.vpc = vpc
-        self.subnet = subnet
         self.security_groups = security_groups
+        self.subnet = subnet
+        self.vpc = vpc
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

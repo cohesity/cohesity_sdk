@@ -74,8 +74,8 @@ class AwsRecoverFilesNewTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'absolute_path': (str, none_type,),  # noqa: E501
+            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class AwsRecoverFilesNewTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'target_vm': 'targetVm',  # noqa: E501
         'absolute_path': 'absolutePath',  # noqa: E501
+        'target_vm': 'targetVm',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class AwsRecoverFilesNewTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target_vm, absolute_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, absolute_path, target_vm, *args, **kwargs):  # noqa: E501
         """AwsRecoverFilesNewTargetConfig - a model defined in OpenAPI
 
         Args:
-            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
             absolute_path (str, none_type): Specifies the path location to recover files to.
+            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class AwsRecoverFilesNewTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.target_vm = target_vm
         self.absolute_path = absolute_path
+        self.target_vm = target_vm
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

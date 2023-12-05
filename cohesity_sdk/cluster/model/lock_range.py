@@ -74,9 +74,9 @@ class LockRange(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'offset': (int, none_type,),  # noqa: E501
-            'length': (int, none_type,),  # noqa: E501
             'is_exclusive': (bool, none_type,),  # noqa: E501
+            'length': (int, none_type,),  # noqa: E501
+            'offset': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class LockRange(ModelNormal):
 
 
     attribute_map = {
-        'offset': 'offset',  # noqa: E501
-        'length': 'length',  # noqa: E501
         'is_exclusive': 'isExclusive',  # noqa: E501
+        'length': 'length',  # noqa: E501
+        'offset': 'offset',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class LockRange(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            offset (int, none_type): Specifies the offset of an entity lock.. [optional]  # noqa: E501
-            length (int, none_type): Specifies the length of an entity lock.. [optional]  # noqa: E501
             is_exclusive (bool, none_type): Specifies if entity lock is exclusive.. [optional]  # noqa: E501
+            length (int, none_type): Specifies the length of an entity lock.. [optional]  # noqa: E501
+            offset (int, none_type): Specifies the offset of an entity lock.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

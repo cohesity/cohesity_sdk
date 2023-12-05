@@ -88,13 +88,13 @@ class FailoverRunConfiguration(ModelNormal):
         """
         lazy_import()
         return {
-            'replication_cluster_id': (int, none_type,),  # noqa: E501
             'objects': ([FailoverObject], none_type,),  # noqa: E501
+            'replication_cluster_id': (int, none_type,),  # noqa: E501
+            'cancel_non_failover_runs': (bool, none_type,),  # noqa: E501
+            'pause_next_runs': (bool, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'run_type': (str,),  # noqa: E501
             'view_id': (int, none_type,),  # noqa: E501
-            'cancel_non_failover_runs': (bool, none_type,),  # noqa: E501
-            'pause_next_runs': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,13 +104,13 @@ class FailoverRunConfiguration(ModelNormal):
 
 
     attribute_map = {
-        'replication_cluster_id': 'replicationClusterId',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'replication_cluster_id': 'replicationClusterId',  # noqa: E501
+        'cancel_non_failover_runs': 'cancelNonFailoverRuns',  # noqa: E501
+        'pause_next_runs': 'pauseNextRuns',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'run_type': 'runType',  # noqa: E501
         'view_id': 'viewId',  # noqa: E501
-        'cancel_non_failover_runs': 'cancelNonFailoverRuns',  # noqa: E501
-        'pause_next_runs': 'pauseNextRuns',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -125,12 +125,12 @@ class FailoverRunConfiguration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, replication_cluster_id, objects, *args, **kwargs):  # noqa: E501
+    def __init__(self, objects, replication_cluster_id, *args, **kwargs):  # noqa: E501
         """FailoverRunConfiguration - a model defined in OpenAPI
 
         Args:
-            replication_cluster_id (int, none_type): Specifies the replication cluster Id where planned run will replicate objects.
             objects ([FailoverObject], none_type): Specifies the list of all local entity ids of all the objects being failed from the source cluster.
+            replication_cluster_id (int, none_type): Specifies the replication cluster Id where planned run will replicate objects.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -164,11 +164,11 @@ class FailoverRunConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cancel_non_failover_runs (bool, none_type): If set to true, other ongoing runs backing up the same set of entities being failed over will be initiated for cancellation. Non conflicting run operations such as replications to other clusters, archivals will not be cancelled. If set to false, then new run will wait for all the pending operations to finish normally before scheduling a new backup/replication.. [optional]  # noqa: E501
+            pause_next_runs (bool, none_type): If this is set to true then unless failover operation is completed, all the next runs will be pasued.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the active protection group id on the source cluster from where the objects are being failed over.. [optional]  # noqa: E501
             run_type (str): Specifies the type of the backup run to be triggered by this request. If this is not set defaults to incremental backup.. [optional]  # noqa: E501
             view_id (int, none_type): If failover is initiated by view based orchastrator, then this field specifies the local view id of source cluster which is being failed over.. [optional]  # noqa: E501
-            cancel_non_failover_runs (bool, none_type): If set to true, other ongoing runs backing up the same set of entities being failed over will be initiated for cancellation. Non conflicting run operations such as replications to other clusters, archivals will not be cancelled. If set to false, then new run will wait for all the pending operations to finish normally before scheduling a new backup/replication.. [optional]  # noqa: E501
-            pause_next_runs (bool, none_type): If this is set to true then unless failover operation is completed, all the next runs will be pasued.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -195,8 +195,8 @@ class FailoverRunConfiguration(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.replication_cluster_id = replication_cluster_id
         self.objects = objects
+        self.replication_cluster_id = replication_cluster_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

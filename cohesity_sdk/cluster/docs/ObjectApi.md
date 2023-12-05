@@ -41,10 +41,9 @@ Fetch the contents (files & folders) of the specified path inside the specified 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_object_action_request6fcd8fa0_a0964b078c843bdc27610432 import CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432
+from cohesity_sdk.cluster.model.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.file_folder_info import FileFolderInfo
 from cohesity_sdk.cluster.exceptions import ApiException
@@ -58,11 +57,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies the id of the Object.
-body = CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432(
-        environment="kVMware",
-    ) # CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432 | Specifies the parameters to fetch contents of an object.
+body = ObjectBrowseRequest() # ObjectBrowseRequest | Specifies the parameters to fetch contents of an object.
 
 # example passing only required values which don't have defaults set
 try:
@@ -79,7 +75,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Object. |
- **body** | [**CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432**](CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432.md)| Specifies the parameters to fetch contents of an object. |
+ **body** | [**ObjectBrowseRequest**](ObjectBrowseRequest.md)| Specifies the parameters to fetch contents of an object. |
 
 ### Return type
 
@@ -87,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -112,7 +108,6 @@ Cancel object runs for object based protection. This does not apply to Group bas
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.cancel_object_runs_results import CancelObjectRunsResults
@@ -129,16 +124,17 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CancelObjectRunsRequest(
         object_runs=[
             CancelObjectRunsParams(
                 object_id=1,
                 runs_config=[
                     CancelObjectRunParams(
-                        run_id="run_id_example",
-                        cancel_local_run=True,
                         archival_target_ids=[
+                            1,
+                        ],
+                        cancel_local_run=True,
+                        cloud_spin_target_ids=[
                             1,
                         ],
                         replication_targets=[
@@ -147,9 +143,7 @@ body = CancelObjectRunsRequest(
                                 cluster_incarnation_id=1,
                             ),
                         ],
-                        cloud_spin_target_ids=[
-                            1,
-                        ],
+                        run_id="run_id_example",
                     ),
                 ],
                 snapshot_backend_types=[
@@ -181,7 +175,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -206,11 +200,10 @@ Construct meta info from object snapshot and some additional params.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.construct_meta_info_request import ConstructMetaInfoRequest
+from cohesity_sdk.cluster.model.construct_meta_info_params import ConstructMetaInfoParams
 from cohesity_sdk.cluster.model.construct_meta_info_result import ConstructMetaInfoResult
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
@@ -223,13 +216,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 snapshot_id = "snapshotId_example" # str | Specifies the snapshot id.
-body = ConstructMetaInfoRequest(
-        environment="environment_example",
+body = ConstructMetaInfoParams(
+        environment="kOracle",
         oracle_params={},
-        sfdc_params={},
-    ) # ConstructMetaInfoRequest | Specifies the parameters to construct meta info for desired workflow.
+    ) # ConstructMetaInfoParams | Specifies the parameters to construct meta info for desired workflow.
 
 # example passing only required values which don't have defaults set
 try:
@@ -246,7 +237,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **snapshot_id** | **str**| Specifies the snapshot id. |
- **body** | [**ConstructMetaInfoRequest**](ConstructMetaInfoRequest.md)| Specifies the parameters to construct meta info for desired workflow. |
+ **body** | [**ConstructMetaInfoParams**](ConstructMetaInfoParams.md)| Specifies the parameters to construct meta info for desired workflow. |
 
 ### Return type
 
@@ -254,7 +245,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -279,7 +270,6 @@ List all the filtered objects using given regular expressions and wildcard suppo
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -296,8 +286,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = FilterObjectsRequest(
+        application_environment="kSQL",
         filter_type="exclude",
         filters=[
             Filter(
@@ -305,14 +295,13 @@ body = FilterObjectsRequest(
                 is_regular_expression=False,
             ),
         ],
+        include_tenants=False,
         object_ids=[
             1,
         ],
-        application_environment="kSQL",
         tenant_ids=[
             "tenant_ids_example",
         ],
-        include_tenants=False,
     ) # FilterObjectsRequest | Specifies the parameters to filter objects.
 
 # example passing only required values which don't have defaults set
@@ -337,7 +326,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -362,7 +351,6 @@ Get snapshots of indexed object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -378,7 +366,6 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 object_id = 1 # int | Specifies the object id.
 indexed_object_name = "indexedObjectName_example" # str | Specifies the indexed object name.
 protection_group_id = "protectionGroupId_example" # str | Specifies the protection group id. (optional)
@@ -389,7 +376,6 @@ run_types = [
         "kRegular",
     ] # [str] | Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
-object_action_key = "kVMware" # str | Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -403,7 +389,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get snapshots of indexed object.
-	api_response = client.object.get_all_indexed_object_snapshots(object_id, indexed_object_name, protection_group_id=protection_group_id, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data, object_action_key=object_action_key)
+	api_response = client.object.get_all_indexed_object_snapshots(object_id, indexed_object_name, protection_group_id=protection_group_id, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_all_indexed_object_snapshots: %s\n" % e)
@@ -422,7 +408,6 @@ Name | Type | Description  | Notes
  **to_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter indexed object&#39;s snapshots which are taken before this value. | [optional]
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
- **object_action_key** | **str**| Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. | [optional]
 
 ### Return type
 
@@ -430,7 +415,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -455,7 +440,6 @@ List of objects which are deleted but protected by object protection.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.deleted_protected_objects_response_body import DeletedProtectedObjectsResponseBody
@@ -470,7 +454,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 source_id = 1 # int | Specifies the source ID for which objects should be returned.
 tenant_ids = [
@@ -515,7 +498,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -540,7 +523,6 @@ Get snapshots of indexed object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -556,18 +538,16 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 protection_group_id = "protectionGroupId_example" # str | Specifies the protection group id.
 object_id = 1 # int | Specifies the object id.
 indexed_object_name = "indexedObjectName_example" # str | Specifies the indexed object name.
-include_indexed_snapshots_only = False # bool | Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist. (optional) if omitted the server will use the default value of False
+include_indexed_snapshots_only = False # bool | Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteened to exist, while in a non-indexed snapshots file may not exist. (optional) if omitted the server will use the default value of False
 from_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value. (optional)
 to_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value. (optional)
 run_types = [
         "kRegular",
     ] # [str] | Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
-object_action_key = "kVMware" # str | Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -581,7 +561,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get snapshots of indexed object.
-	api_response = client.object.get_indexed_object_snapshots(protection_group_id, object_id, indexed_object_name, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data, object_action_key=object_action_key)
+	api_response = client.object.get_indexed_object_snapshots(protection_group_id, object_id, indexed_object_name, include_indexed_snapshots_only=include_indexed_snapshots_only, from_time_usecs=from_time_usecs, to_time_usecs=to_time_usecs, run_types=run_types, use_cached_data=use_cached_data)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_indexed_object_snapshots: %s\n" % e)
@@ -595,12 +575,11 @@ Name | Type | Description  | Notes
  **protection_group_id** | **str**| Specifies the protection group id. |
  **object_id** | **int**| Specifies the object id. |
  **indexed_object_name** | **str**| Specifies the indexed object name. |
- **include_indexed_snapshots_only** | **bool**| Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist. | [optional] if omitted the server will use the default value of False
+ **include_indexed_snapshots_only** | **bool**| Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteened to exist, while in a non-indexed snapshots file may not exist. | [optional] if omitted the server will use the default value of False
  **from_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter indexed object&#39;s snapshots which are taken after this value. | [optional]
  **to_time_usecs** | **int**| Specifies the timestamp in Unix time epoch in microseconds to filter indexed object&#39;s snapshots which are taken before this value. | [optional]
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
- **object_action_key** | **str**| Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id. | [optional]
 
 ### Return type
 
@@ -608,7 +587,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -633,12 +612,10 @@ Get Object Identifiers.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.local_global_object_id_list import LocalGlobalObjectIdList
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.object_identifiers_params import ObjectIdentifiersParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -650,28 +627,18 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 global_ids = [
         "globalIds_example",
     ] # [str] | Get the object identifier matching specified global IDs. (optional)
 local_ids = [
         1,
     ] # [int] | Get the object identifier matching specified local IDs. (optional)
-body = ObjectIdentifiersParams(
-        object_unique_identifiers_list=[
-            ObjectUniqueIdentifier(
-                parent_identifier="parent_identifier_example",
-                object_identifier="object_identifier_example",
-                environment="kVMware",
-            ),
-        ],
-    ) # ObjectIdentifiersParams | Extra parameters that can be specified to get object identifiers. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get Object Identifiers
-	api_response = client.object.get_object_identifiers(global_ids=global_ids, local_ids=local_ids, body=body)
+	api_response = client.object.get_object_identifiers(global_ids=global_ids, local_ids=local_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ObjectApi->get_object_identifiers: %s\n" % e)
@@ -684,7 +651,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **global_ids** | **[str]**| Get the object identifier matching specified global IDs. | [optional]
  **local_ids** | **[int]**| Get the object identifier matching specified local IDs. | [optional]
- **body** | [**ObjectIdentifiersParams**](ObjectIdentifiersParams.md)| Extra parameters that can be specified to get object identifiers. | [optional]
 
 ### Return type
 
@@ -692,11 +658,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -717,7 +683,6 @@ Get a run for an object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
@@ -732,7 +697,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a unique id of the object.
 run_id = "runId_example" # str | Specifies the id of the run.
@@ -760,7 +724,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -785,7 +749,6 @@ Get the runs for a particular object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_object_runs_response_body import GetObjectRunsResponseBody
@@ -800,7 +763,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a unique id of the object.
 run_id = "runId_example" # str | Specifies a unique id of the run. (optional)
@@ -827,7 +789,7 @@ cloud_spin_run_status = [
     ] # [str] | Specifies a list of status for the object in the cloud spin run. (optional)
 num_runs = 1 # int | Specifies the max number of runs. If not specified, at most 100 runs will be returned. (optional)
 pagination_cookie = "paginationCookie_example" # str | Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs (optional)
-exclude_non_restorable_runs = False # bool | Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. (optional) if omitted the server will use the default value of False
+exclude_non_restorable_runs = False # bool | Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. (optional) if omitted the server will use the default value of False
 
 # example passing only required values which don't have defaults set
 try:
@@ -865,7 +827,7 @@ Name | Type | Description  | Notes
  **cloud_spin_run_status** | **[str]**| Specifies a list of status for the object in the cloud spin run. | [optional]
  **num_runs** | **int**| Specifies the max number of runs. If not specified, at most 100 runs will be returned. | [optional]
  **pagination_cookie** | **str**| Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs | [optional]
- **exclude_non_restorable_runs** | **bool**| Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. | [optional] if omitted the server will use the default value of False
+ **exclude_non_restorable_runs** | **bool**| Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. | [optional] if omitted the server will use the default value of False
 
 ### Return type
 
@@ -873,7 +835,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -898,7 +860,6 @@ Get snapshot id for object for given params.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_snapshot_id_params import ObjectSnapshotIdParams
@@ -915,12 +876,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 object_id = 1 # int | Specifies the object id.
 body = ObjectSnapshotIdParams(
         protection_group_id="protection_group_id_example",
-        snapshot_job_instance_id=1,
         run_start_time_usecs=1,
+        snapshot_job_instance_id=1,
         source_group_id="source_group_id_example",
         vault_id=1,
     ) # ObjectSnapshotIdParams | Specifies the parameters to fetch snapshot id for object.
@@ -948,7 +908,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -973,7 +933,6 @@ Get details of object snapshot.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -988,7 +947,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 snapshot_id = "snapshotId_example" # str | Specifies the snapshot id.
 
@@ -1014,7 +972,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1039,7 +997,6 @@ Get volume info of object snapshot.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1054,7 +1011,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 snapshot_id = "snapshotId_example" # str | Specifies the snapshot id.
 include_supported_only = True # bool | Specifies whether to only return supported volumes. (optional)
@@ -1095,7 +1051,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1120,7 +1076,6 @@ List the snapshots for a given object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1135,7 +1090,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Object.
 from_time_usecs = 1 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value. (optional)
@@ -1202,7 +1156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1227,7 +1181,6 @@ Get stats for a given object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_stats import ObjectStats
@@ -1242,7 +1195,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Object.
 region_ids = [
@@ -1281,7 +1233,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1306,7 +1258,6 @@ Get the objects tree hierarchy for for an Object. If the object does not have a 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1321,7 +1272,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Object.
 
@@ -1347,7 +1297,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1372,7 +1322,6 @@ Get last protection run of objects.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1387,7 +1336,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         1,
@@ -1426,7 +1374,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1443,7 +1391,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pit_ranges_for_protected_object**
-> CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8 get_pit_ranges_for_protected_object(id)
+> GetPITRangesProtectedObjectResponseBody get_pit_ranges_for_protected_object(id)
 
 Get PIT ranges for an object
 
@@ -1451,11 +1399,10 @@ Returns the ranges in various types like time, SCN etc. within which the specifi
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_pit_ranges_protected_object_response7ae55a6e057647998da8_f9162371b2e8 import CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8
+from cohesity_sdk.cluster.model.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1466,7 +1413,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the ID of the protected object.
 from_time_usecs = 1 # int | If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
@@ -1505,11 +1451,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8**](CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8.md)
+[**GetPITRangesProtectedObjectResponseBody**](GetPITRangesProtectedObjectResponseBody.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1530,11 +1476,10 @@ Name | Type | Description  | Notes
 
 Get an Object.
 
-Get Object configurations for given object id.
+Get Object configrations for given object id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1549,7 +1494,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Object.
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
@@ -1610,7 +1554,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1635,7 +1579,6 @@ Get Objects Configurations.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1650,7 +1593,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 ids = [
@@ -1719,7 +1661,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1744,7 +1686,6 @@ Get diff (files added/deleted) between two snapshots of a given object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1761,20 +1702,19 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | 
 body = SnapshotDiffParams(
-        cluster_id=1,
-        incarnation_id=1,
-        partition_id=1,
-        job_id=1,
-        entity_type="kVMware",
         base_snapshot_job_instance_id=1,
         base_snapshot_time_usecs=1,
-        snapshot_job_instance_id=1,
-        snapshot_time_usecs=1,
+        cluster_id=1,
+        entity_type="kVMware",
+        incarnation_id=1,
+        job_id=1,
         page_number=1,
         page_size=1,
+        partition_id=1,
+        snapshot_job_instance_id=1,
+        snapshot_time_usecs=1,
     ) # SnapshotDiffParams | 
 
 # example passing only required values which don't have defaults set
@@ -1800,7 +1740,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1825,7 +1765,6 @@ List objects which can be used for data protection.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1840,7 +1779,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 source_id = 1 # int | Specifies the source ID for which objects should be returned.
 parent_id = 1 # int, none_type | Specifies the parent ID under which objects should be returned. (optional)
@@ -1997,7 +1935,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -2022,7 +1960,6 @@ Construct meta info from object snapshot and some additional params.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -2039,12 +1976,10 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 snapshot_id = "snapshotId_example" # str | Specifies the snapshot id.
 body = ConstructMetaInfoParams(
-        environment="environment_example",
+        environment="kOracle",
         oracle_params={},
-        sfdc_params={},
     ) # ConstructMetaInfoParams | Specifies the parameters to construct meta info for desired workflow.
 
 # example passing only required values which don't have defaults set
@@ -2070,7 +2005,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -2095,7 +2030,6 @@ Get diff (files added/deleted) between two snapshots of a given object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -2112,20 +2046,19 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | 
 body = SnapshotDiffParams(
-        cluster_id=1,
-        incarnation_id=1,
-        partition_id=1,
-        job_id=1,
-        entity_type="kVMware",
         base_snapshot_job_instance_id=1,
         base_snapshot_time_usecs=1,
-        snapshot_job_instance_id=1,
-        snapshot_time_usecs=1,
+        cluster_id=1,
+        entity_type="kVMware",
+        incarnation_id=1,
+        job_id=1,
         page_number=1,
         page_size=1,
+        partition_id=1,
+        snapshot_job_instance_id=1,
+        snapshot_time_usecs=1,
     ) # SnapshotDiffParams | 
 
 # example passing only required values which don't have defaults set
@@ -2151,7 +2084,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -2176,7 +2109,6 @@ Specifies the request to perform various actions on multiple objects.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -2192,13 +2124,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = ObjectsActionRequest(
         action="Link",
-        link_type="Replication",
         link_params=ObjectLinkingParams(),
         un_link_params=ObjectUnLinkingParams(),
-    ) # ObjectsActionRequest | Specifies the parameters to execute actions on given list of objects.
+    ) # ObjectsActionRequest | Specifies the paramteres to execute actions on given list of objects.
 
 # example passing only required values which don't have defaults set
 try:
@@ -2213,7 +2143,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ObjectsActionRequest**](ObjectsActionRequest.md)| Specifies the parameters to execute actions on given list of objects. |
+ **body** | [**ObjectsActionRequest**](ObjectsActionRequest.md)| Specifies the paramteres to execute actions on given list of objects. |
 
 ### Return type
 
@@ -2221,7 +2151,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -2246,10 +2176,9 @@ Perform an action on an object. Depending on the object environment type, differ
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_object_action_request6fcd8fa0_a0964b078c843bdc27610432 import CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432
+from cohesity_sdk.cluster.model.object_action_request import ObjectActionRequest
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
@@ -2262,11 +2191,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies the id of the Object.
-body = CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432(
-        environment="kVMware",
-    ) # CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432 | Specifies the parameters to perform an action on an object.
+body = ObjectActionRequest() # ObjectActionRequest | Specifies the parameters to perform an action on an object.
 
 # example passing only required values which don't have defaults set
 try:
@@ -2282,7 +2208,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Object. |
- **body** | [**CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432**](CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432.md)| Specifies the parameters to perform an action on an object. |
+ **body** | [**ObjectActionRequest**](ObjectActionRequest.md)| Specifies the parameters to perform an action on an object. |
 
 ### Return type
 
@@ -2290,7 +2216,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -2315,7 +2241,6 @@ Update an object snapshot.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -2332,13 +2257,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies the id of the Object.
 snapshot_id = "snapshotId_example" # str | Specifies the id of the snapshot.<br> Note: 1. If the snapshotid of one of the apps is specified, it applies for all the databases in the Protection Run.<br> 2. In case of volume based jobs, please specify the snapshotid of the source not the database. if source snapshot is specified, applied to source snapshot. if database snapshotid is specified in case of volume based jobs, then it is applicable for host's snapshot.
 body = UpdateObjectSnapshotRequest(
-        set_legal_hold=True,
         data_lock_type="Compliance",
         expiry_time_secs=1,
+        set_legal_hold=True,
     ) # UpdateObjectSnapshotRequest | Specifies the parameters update an object snapshot.
 
 # example passing only required values which don't have defaults set
@@ -2365,7 +2289,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

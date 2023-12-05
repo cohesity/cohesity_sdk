@@ -86,15 +86,15 @@ class AzureNativeProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([AzureNativeProtectionGroupObjectParams],),  # noqa: E501
+            'cloud_migration': (bool, none_type,),  # noqa: E501
+            'data_transfer_info': (DataTransferInfo,),  # noqa: E501
             'exclude_object_ids': ([int],),  # noqa: E501
-            'vm_tag_ids': ([[int]], none_type,),  # noqa: E501
             'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'cloud_migration': (bool, none_type,),  # noqa: E501
+            'objects': ([AzureNativeProtectionGroupObjectParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'data_transfer_info': (DataTransferInfo,),  # noqa: E501
+            'vm_tag_ids': ([[int]], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,15 +104,15 @@ class AzureNativeProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
+        'cloud_migration': 'cloudMigration',  # noqa: E501
+        'data_transfer_info': 'dataTransferInfo',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
-        'vm_tag_ids': 'vmTagIds',  # noqa: E501
         'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'cloud_migration': 'cloudMigration',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'data_transfer_info': 'dataTransferInfo',  # noqa: E501
+        'vm_tag_ids': 'vmTagIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,15 +162,15 @@ class AzureNativeProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([AzureNativeProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
+            cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            data_transfer_info (DataTransferInfo): [optional]  # noqa: E501
             exclude_object_ids ([int]): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
-            vm_tag_ids ([[int]], none_type): Array of arrays of VM Tag Ids that Specify VMs to Protect.. [optional]  # noqa: E501
             exclude_vm_tag_ids ([[int]], none_type): Array of arrays of VM Tag Ids that Specify VMs to Exclude.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            objects ([AzureNativeProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            data_transfer_info (DataTransferInfo): [optional]  # noqa: E501
+            vm_tag_ids ([[int]], none_type): Array of arrays of VM Tag Ids that Specify VMs to Protect.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

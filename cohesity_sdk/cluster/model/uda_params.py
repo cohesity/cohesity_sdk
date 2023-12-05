@@ -82,8 +82,8 @@ class UdaParams(ModelNormal):
         """
         lazy_import()
         return {
-            'recovery_action': (str,),  # noqa: E501
             'recover_uda_params': (RecoverUdaParams,),  # noqa: E501
+            'recovery_action': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class UdaParams(ModelNormal):
 
 
     attribute_map = {
-        'recovery_action': 'recoveryAction',  # noqa: E501
         'recover_uda_params': 'recoverUdaParams',  # noqa: E501
+        'recovery_action': 'recoveryAction',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -175,8 +175,8 @@ class UdaParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.recovery_action = recovery_action
         self.recover_uda_params = recover_uda_params
+        self.recovery_action = recovery_action
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

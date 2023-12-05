@@ -25,7 +25,6 @@ Add a new syslog server
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -41,28 +40,27 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = SyslogServer(
-        id=1,
-        ip="ip_example",
-        port=1,
-        protocol="protocol_example",
-        name="name_example",
+        ca_certificate="ca_certificate_example",
         enabled=True,
         facility_list=[
             "facility_list_example",
         ],
-        program_name_list=[
-            "program_name_list_example",
-        ],
+        id=1,
+        ip="ip_example",
+        is_tls_enabled=True,
         msg_pattern_list=[
             "msg_pattern_list_example",
         ],
+        name="name_example",
+        port=1,
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        protocol="protocol_example",
         raw_msg_pattern_list=[
             "raw_msg_pattern_list_example",
         ],
-        is_tls_enabled=True,
-        ca_certificate="ca_certificate_example",
     ) # SyslogServer | Specifies parameters to add syslog server.
 
 # example passing only required values which don't have defaults set
@@ -87,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -112,7 +110,6 @@ Get supported program names to configure for a syslog server.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -126,7 +123,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -148,7 +144,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -173,7 +169,6 @@ Get cluster audit tags.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -188,7 +183,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -210,7 +204,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -235,7 +229,6 @@ Get a syslog server by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -250,7 +243,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of syslog server.
 
@@ -276,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -301,7 +293,6 @@ Check syslog server reachability by given Id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.syslog_server_status import SyslogServerStatus
@@ -316,7 +307,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of syslog server.
 
@@ -342,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -367,7 +357,6 @@ Get list of syslog servers.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -382,7 +371,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -404,7 +392,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -429,7 +417,6 @@ Patch syslog server by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -445,29 +432,28 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies the id of syslog server.
 body = SyslogServer(
-        id=1,
-        ip="ip_example",
-        port=1,
-        protocol="protocol_example",
-        name="name_example",
+        ca_certificate="ca_certificate_example",
         enabled=True,
         facility_list=[
             "facility_list_example",
         ],
-        program_name_list=[
-            "program_name_list_example",
-        ],
+        id=1,
+        ip="ip_example",
+        is_tls_enabled=True,
         msg_pattern_list=[
             "msg_pattern_list_example",
         ],
+        name="name_example",
+        port=1,
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        protocol="protocol_example",
         raw_msg_pattern_list=[
             "raw_msg_pattern_list_example",
         ],
-        is_tls_enabled=True,
-        ca_certificate="ca_certificate_example",
     ) # SyslogServer | Specifies the body of syslog server fields to patch. (optional)
 
 # example passing only required values which don't have defaults set
@@ -502,7 +488,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -527,7 +513,6 @@ Delete syslog server by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -541,7 +526,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a unique id of the syslog server.
 
@@ -566,7 +550,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -591,7 +575,6 @@ Delete all syslog servers.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -605,7 +588,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -626,7 +608,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -651,7 +633,6 @@ Update cluster audit tags.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -667,12 +648,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = SyslogAuditTag(
-        cluster_audit="cluster_audit_example",
-        filer_audit="filer_audit_example",
-        data_protection_events_audit="data_protection_events_audit_example",
         alert_audit="alert_audit_example",
+        cluster_audit="cluster_audit_example",
+        data_protection_events_audit="data_protection_events_audit_example",
+        filer_audit="filer_audit_example",
     ) # SyslogAuditTag | Specifies syslog audit tag to update. (optional)
 
 # example passing only required values which don't have defaults set
@@ -698,7 +678,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -723,7 +703,6 @@ Update syslog server by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -739,29 +718,28 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies the id of syslog server.
 body = SyslogServer(
-        id=1,
-        ip="ip_example",
-        port=1,
-        protocol="protocol_example",
-        name="name_example",
+        ca_certificate="ca_certificate_example",
         enabled=True,
         facility_list=[
             "facility_list_example",
         ],
-        program_name_list=[
-            "program_name_list_example",
-        ],
+        id=1,
+        ip="ip_example",
+        is_tls_enabled=True,
         msg_pattern_list=[
             "msg_pattern_list_example",
         ],
+        name="name_example",
+        port=1,
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        protocol="protocol_example",
         raw_msg_pattern_list=[
             "raw_msg_pattern_list_example",
         ],
-        is_tls_enabled=True,
-        ca_certificate="ca_certificate_example",
     ) # SyslogServer | Specifies the body of syslog server body to update. (optional)
 
 # example passing only required values which don't have defaults set
@@ -796,7 +774,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

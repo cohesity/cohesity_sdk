@@ -54,15 +54,15 @@ class BondInterfaceNetworkParams(ModelNormal):
     """
 
     allowed_values = {
-        ('lacp_rate',): {
-            'None': None,
-            'SLOW': "Slow",
-            'FAST': "Fast",
-        },
         ('bonding_mode',): {
             'None': None,
             'ACTIVEBACKUP': "ActiveBackup",
             '802_3AD': "802_3ad",
+        },
+        ('lacp_rate',): {
+            'None': None,
+            'SLOW': "Slow",
+            'FAST': "Fast",
         },
         ('xmit_hash_policy',): {
             'None': None,
@@ -90,8 +90,8 @@ class BondInterfaceNetworkParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'lacp_rate': (str, none_type,),  # noqa: E501
             'bonding_mode': (str, none_type,),  # noqa: E501
+            'lacp_rate': (str, none_type,),  # noqa: E501
             'xmit_hash_policy': (str, none_type,),  # noqa: E501
         }
 
@@ -102,8 +102,8 @@ class BondInterfaceNetworkParams(ModelNormal):
 
 
     attribute_map = {
-        'lacp_rate': 'lacpRate',  # noqa: E501
         'bonding_mode': 'bondingMode',  # noqa: E501
+        'lacp_rate': 'lacpRate',  # noqa: E501
         'xmit_hash_policy': 'xmitHashPolicy',  # noqa: E501
     }
 
@@ -154,8 +154,8 @@ class BondInterfaceNetworkParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            lacp_rate (str, none_type): Rate option to use for link partner to transmit LACPDU packets in 802.3ad mode.. [optional]  # noqa: E501
             bonding_mode (str, none_type): Bonding mode of the interface.. [optional]  # noqa: E501
+            lacp_rate (str, none_type): Rate option to use for link partner to transmit LACPDU packets in 802.3ad mode.. [optional]  # noqa: E501
             xmit_hash_policy (str, none_type): Transmit hash policy to use for selection in 802.3ad mode.. [optional]  # noqa: E501
         """
 

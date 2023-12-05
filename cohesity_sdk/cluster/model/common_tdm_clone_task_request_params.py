@@ -89,9 +89,9 @@ class CommonTdmCloneTaskRequestParams(ModelComposed):
             'environment': (str, none_type,),  # noqa: E501
             'snapshot_id': (str, none_type,),  # noqa: E501
             'target_host_id': (int, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
             'point_in_time_usecs': (int, none_type,),  # noqa: E501
         }
 
@@ -105,9 +105,9 @@ class CommonTdmCloneTaskRequestParams(ModelComposed):
         'environment': 'environment',  # noqa: E501
         'snapshot_id': 'snapshotId',  # noqa: E501
         'target_host_id': 'targetHostId',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
         'point_in_time_usecs': 'pointInTimeUsecs',  # noqa: E501
     }
 
@@ -164,9 +164,9 @@ class CommonTdmCloneTaskRequestParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            policy_id (str, none_type): Specifies the ID of the policy, which should be used to protect this clone. This is useful for automatic snapshots. This must be specified if either of protectionGroupId and protectionGroupName is specified.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the ID of an existing protection group, which should start protecting this clone. Specifying this implies that the clone is eligible for automated snapshots based on the policy configuration. If this is specified, policyId should also be specified and protectionGroupName should not be specified.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies the name of a new protection group, which should be created to protect this clone. Specifying this implies that the clone is eligible for automated snapshots based on the policy configuration. If this is specified, policyId should also be specified and protectionGroupId should not be specified.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the ID of the policy, which should be used to protect this clone. This is useful for automatic snapshots. This must be specified if either of protectionGroupId and protectionGroupName is specified.. [optional]  # noqa: E501
             point_in_time_usecs (int, none_type): Specifies the timestamp (in usecs from epoch) for creating the clone at a point in time in the past.. [optional]  # noqa: E501
         """
 

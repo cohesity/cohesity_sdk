@@ -81,8 +81,8 @@ class BackupRun(ModelNormal):
         """
         lazy_import()
         return {
-            'snapshot_info': (SnapshotInfo,),  # noqa: E501
             'failed_attempts': ([BackupAttempt],),  # noqa: E501
+            'snapshot_info': (SnapshotInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class BackupRun(ModelNormal):
 
 
     attribute_map = {
-        'snapshot_info': 'snapshotInfo',  # noqa: E501
         'failed_attempts': 'failedAttempts',  # noqa: E501
+        'snapshot_info': 'snapshotInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class BackupRun(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            snapshot_info (SnapshotInfo): [optional]  # noqa: E501
             failed_attempts ([BackupAttempt]): Failed backup attempts for an object.. [optional]  # noqa: E501
+            snapshot_info (SnapshotInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

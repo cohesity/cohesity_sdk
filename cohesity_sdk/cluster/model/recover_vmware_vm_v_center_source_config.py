@@ -79,11 +79,11 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'resource_pool': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'datastores': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
-            'vm_folder': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'resource_pool': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vm_folder': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
-        'resource_pool': 'resourcePool',  # noqa: E501
         'datastores': 'datastores',  # noqa: E501
-        'vm_folder': 'vmFolder',  # noqa: E501
+        'resource_pool': 'resourcePool',  # noqa: E501
+        'source': 'source',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
+        'vm_folder': 'vmFolder',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,13 +112,13 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, resource_pool, datastores, *args, **kwargs):  # noqa: E501
+    def __init__(self, datastores, resource_pool, source, *args, **kwargs):  # noqa: E501
         """RecoverVmwareVmVCenterSourceConfig - a model defined in OpenAPI
 
         Args:
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
-            resource_pool ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the resource pool object where the recovered objects will be attached.
             datastores ([RecoveryObjectIdentifier], none_type): Specifies the datastore objects where the object's files should be recovered to.
+            resource_pool ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the resource pool object where the recovered objects will be attached.
+            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,8 +152,8 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vm_folder ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Folder where the VMs should be created.. [optional]  # noqa: E501
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.. [optional]  # noqa: E501
+            vm_folder ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Folder where the VMs should be created.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -180,9 +180,9 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source = source
-        self.resource_pool = resource_pool
         self.datastores = datastores
+        self.resource_pool = resource_pool
+        self.source = source
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -96,16 +96,16 @@ class RemoteDisk(ModelNormal):
         return {
             'mount_path': (str, none_type,),  # noqa: E501
             'tier': (str, none_type,),  # noqa: E501
+            'capacity_bytes': (int, none_type,),  # noqa: E501
+            'capacity_bytes_physical': (int, none_type,),  # noqa: E501
+            'data_vip': (str, none_type,),  # noqa: E501
+            'file_system_name': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
-            'capacity_bytes': (int, none_type,),  # noqa: E501
-            'used_capacity_bytes': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'file_system_name': (str, none_type,),  # noqa: E501
-            'data_vip': (str, none_type,),  # noqa: E501
             'node_ip': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'used_capacity_bytes': (int, none_type,),  # noqa: E501
             'used_capacity_bytes_physical': (int, none_type,),  # noqa: E501
-            'capacity_bytes_physical': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -117,16 +117,16 @@ class RemoteDisk(ModelNormal):
     attribute_map = {
         'mount_path': 'mountPath',  # noqa: E501
         'tier': 'tier',  # noqa: E501
+        'capacity_bytes': 'capacityBytes',  # noqa: E501
+        'capacity_bytes_physical': 'capacityBytesPhysical',  # noqa: E501
+        'data_vip': 'dataVip',  # noqa: E501
+        'file_system_name': 'fileSystemName',  # noqa: E501
         'id': 'id',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
-        'capacity_bytes': 'capacityBytes',  # noqa: E501
-        'used_capacity_bytes': 'usedCapacityBytes',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'file_system_name': 'fileSystemName',  # noqa: E501
-        'data_vip': 'dataVip',  # noqa: E501
         'node_ip': 'nodeIp',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'used_capacity_bytes': 'usedCapacityBytes',  # noqa: E501
         'used_capacity_bytes_physical': 'usedCapacityBytesPhysical',  # noqa: E501
-        'capacity_bytes_physical': 'capacityBytesPhysical',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -180,16 +180,16 @@ class RemoteDisk(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            capacity_bytes (int, none_type): Specifies the logical capacity of the disk in bytes.. [optional]  # noqa: E501
+            capacity_bytes_physical (int, none_type): Specifies the physical capacity of the disk in bytes.. [optional]  # noqa: E501
+            data_vip (str, none_type): Specifies the data vip used to mount the filesystem.. [optional]  # noqa: E501
+            file_system_name (str, none_type): Specifies the name of filesystem on remote storage.. [optional]  # noqa: E501
             id (int, none_type): Specifies the disk id.. [optional]  # noqa: E501
             node_id (int, none_type): Specifies the node id of the disk. If not specified, the disk will be evenly distributed across all the nodes.. [optional]  # noqa: E501
-            capacity_bytes (int, none_type): Specifies the logical capacity of the disk in bytes.. [optional]  # noqa: E501
-            used_capacity_bytes (int, none_type): Specifies the logical used capacity of remote disk in bytes.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the status of a remote disk.. [optional]  # noqa: E501
-            file_system_name (str, none_type): Specifies the name of filesystem on remote storage.. [optional]  # noqa: E501
-            data_vip (str, none_type): Specifies the data vip used to mount the filesystem.. [optional]  # noqa: E501
             node_ip (str, none_type): Specifies ip address of the node that this remote disk is mounted on.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the status of a remote disk.. [optional]  # noqa: E501
+            used_capacity_bytes (int, none_type): Specifies the logical used capacity of remote disk in bytes.. [optional]  # noqa: E501
             used_capacity_bytes_physical (int, none_type): Specifies the physical used capacity of remote disk in bytes.. [optional]  # noqa: E501
-            capacity_bytes_physical (int, none_type): Specifies the physical capacity of the disk in bytes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

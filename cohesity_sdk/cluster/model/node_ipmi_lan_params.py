@@ -81,10 +81,10 @@ class NodeIpmiLanParams(ModelComposed):
         """
         lazy_import()
         return {
-            'ipmi_subnet_mask': (str,),  # noqa: E501
             'ipmi_gateway': (str,),  # noqa: E501
-            'node_id': (int,),  # noqa: E501
+            'ipmi_subnet_mask': (str,),  # noqa: E501
             'ipmi_ip': (str,),  # noqa: E501
+            'node_id': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +94,10 @@ class NodeIpmiLanParams(ModelComposed):
 
 
     attribute_map = {
-        'ipmi_subnet_mask': 'ipmiSubnetMask',  # noqa: E501
         'ipmi_gateway': 'ipmiGateway',  # noqa: E501
-        'node_id': 'nodeId',  # noqa: E501
+        'ipmi_subnet_mask': 'ipmiSubnetMask',  # noqa: E501
         'ipmi_ip': 'ipmiIp',  # noqa: E501
+        'node_id': 'nodeId',  # noqa: E501
     }
 
     required_properties = set([
@@ -113,14 +113,14 @@ class NodeIpmiLanParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, ipmi_subnet_mask, ipmi_gateway, node_id, ipmi_ip, *args, **kwargs):  # noqa: E501
+    def __init__(self, ipmi_gateway, ipmi_subnet_mask, ipmi_ip, node_id, *args, **kwargs):  # noqa: E501
         """NodeIpmiLanParams - a model defined in OpenAPI
 
         Args:
-            ipmi_subnet_mask (str): IPMI subnet mask. This should be either in CIDR prefix or in dotted decimal for IPv4.
             ipmi_gateway (str): IPMI subnet gateway.
-            node_id (int): Node id.
+            ipmi_subnet_mask (str): IPMI subnet mask. This should be either in CIDR prefix or in dotted decimal for IPv4.
             ipmi_ip (str): IPMI ip address.
+            node_id (int): Node id.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -188,10 +188,10 @@ class NodeIpmiLanParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'ipmi_subnet_mask': ipmi_subnet_mask,
             'ipmi_gateway': ipmi_gateway,
-            'node_id': node_id,
+            'ipmi_subnet_mask': ipmi_subnet_mask,
             'ipmi_ip': ipmi_ip,
+            'node_id': node_id,
         }
         model_args = {}
         model_args.update(required_args)

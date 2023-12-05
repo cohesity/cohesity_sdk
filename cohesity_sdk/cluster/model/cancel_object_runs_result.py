@@ -74,8 +74,8 @@ class CancelObjectRunsResult(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'object_id': (int, none_type,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
+            'object_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class CancelObjectRunsResult(ModelNormal):
 
 
     attribute_map = {
-        'object_id': 'objectId',  # noqa: E501
         'error_message': 'errorMessage',  # noqa: E501
+        'object_id': 'objectId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class CancelObjectRunsResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_id (int, none_type): Specifies the id of the object.. [optional]  # noqa: E501
             error_message (str, none_type): Specifies the error message if any error happens.. [optional]  # noqa: E501
+            object_id (int, none_type): Specifies the id of the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

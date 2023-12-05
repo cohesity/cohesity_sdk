@@ -98,15 +98,15 @@ class CreateClusterParams(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
             'enable_encryption': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
-            'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
-            'physical_cluster_params': (ClusterCreatePhysicalParams,),  # noqa: E501
-            'virtual_cluster_params': (ClusterCreateVirtualParams,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
             'cloud_cluster_params': (ClusterCreateCloudParams,),  # noqa: E501
+            'physical_cluster_params': (ClusterCreatePhysicalParams,),  # noqa: E501
+            'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
             'rigel_cluster_params': (ClusterCreateRigelParams,),  # noqa: E501
+            'virtual_cluster_params': (ClusterCreateVirtualParams,),  # noqa: E501
         }
 
     @cached_property
@@ -116,15 +116,15 @@ class CreateClusterParams(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'enable_encryption': 'enableEncryption',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
-        'proxy_server_config': 'proxyServerConfig',  # noqa: E501
-        'physical_cluster_params': 'physicalClusterParams',  # noqa: E501
-        'virtual_cluster_params': 'virtualClusterParams',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'cloud_cluster_params': 'cloudClusterParams',  # noqa: E501
+        'physical_cluster_params': 'physicalClusterParams',  # noqa: E501
+        'proxy_server_config': 'proxyServerConfig',  # noqa: E501
         'rigel_cluster_params': 'rigelClusterParams',  # noqa: E501
+        'virtual_cluster_params': 'virtualClusterParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,14 +139,14 @@ class CreateClusterParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, type, enable_encryption, network_config, *args, **kwargs):  # noqa: E501
+    def __init__(self, enable_encryption, name, network_config, type, *args, **kwargs):  # noqa: E501
         """CreateClusterParams - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the name of the new cluster.
-            type (str, none_type): Specifies the type of the new cluster.
             enable_encryption (bool, none_type): Specifies whether or not to enable encryption. If encryption is enabled, all data on the Cluster will be encrypted. This can only be enabled at Cluster creation time and cannot be disabled later.
+            name (str, none_type): Specifies the name of the new cluster.
             network_config (ClusterCreateNetworkConfig):
+            type (str, none_type): Specifies the type of the new cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,11 +180,11 @@ class CreateClusterParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
-            physical_cluster_params (ClusterCreatePhysicalParams): [optional]  # noqa: E501
-            virtual_cluster_params (ClusterCreateVirtualParams): [optional]  # noqa: E501
             cloud_cluster_params (ClusterCreateCloudParams): [optional]  # noqa: E501
+            physical_cluster_params (ClusterCreatePhysicalParams): [optional]  # noqa: E501
+            proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
             rigel_cluster_params (ClusterCreateRigelParams): [optional]  # noqa: E501
+            virtual_cluster_params (ClusterCreateVirtualParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,10 +211,10 @@ class CreateClusterParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
-        self.type = type
         self.enable_encryption = enable_encryption
+        self.name = name
         self.network_config = network_config
+        self.type = type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

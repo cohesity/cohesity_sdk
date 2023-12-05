@@ -96,10 +96,10 @@ class AwsProtectionGroupParams(ModelNormal):
         return {
             'protection_type': (str,),  # noqa: E501
             'agent_protection_type_params': (AwsAgentProtectionGroupParams,),  # noqa: E501
-            'native_protection_type_params': (AwsNativeProtectionGroupParams,),  # noqa: E501
-            'snapshot_manager_protection_type_params': (AwsSnapshotManagerProtectionGroupParams,),  # noqa: E501
-            'rds_protection_type_params': (AwsRdsProtectionGroupParams,),  # noqa: E501
             'aurora_protection_type_params': (AwsAuroraProtectionGroupParams,),  # noqa: E501
+            'native_protection_type_params': (AwsNativeProtectionGroupParams,),  # noqa: E501
+            'rds_protection_type_params': (AwsRdsProtectionGroupParams,),  # noqa: E501
+            'snapshot_manager_protection_type_params': (AwsSnapshotManagerProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -111,10 +111,10 @@ class AwsProtectionGroupParams(ModelNormal):
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
         'agent_protection_type_params': 'agentProtectionTypeParams',  # noqa: E501
-        'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
-        'snapshot_manager_protection_type_params': 'snapshotManagerProtectionTypeParams',  # noqa: E501
-        'rds_protection_type_params': 'rdsProtectionTypeParams',  # noqa: E501
         'aurora_protection_type_params': 'auroraProtectionTypeParams',  # noqa: E501
+        'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'rds_protection_type_params': 'rdsProtectionTypeParams',  # noqa: E501
+        'snapshot_manager_protection_type_params': 'snapshotManagerProtectionTypeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,10 +168,10 @@ class AwsProtectionGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             agent_protection_type_params (AwsAgentProtectionGroupParams): [optional]  # noqa: E501
-            native_protection_type_params (AwsNativeProtectionGroupParams): [optional]  # noqa: E501
-            snapshot_manager_protection_type_params (AwsSnapshotManagerProtectionGroupParams): [optional]  # noqa: E501
-            rds_protection_type_params (AwsRdsProtectionGroupParams): [optional]  # noqa: E501
             aurora_protection_type_params (AwsAuroraProtectionGroupParams): [optional]  # noqa: E501
+            native_protection_type_params (AwsNativeProtectionGroupParams): [optional]  # noqa: E501
+            rds_protection_type_params (AwsRdsProtectionGroupParams): [optional]  # noqa: E501
+            snapshot_manager_protection_type_params (AwsSnapshotManagerProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

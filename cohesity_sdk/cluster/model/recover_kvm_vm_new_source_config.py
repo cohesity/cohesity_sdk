@@ -74,9 +74,9 @@ class RecoverKvmVmNewSourceConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'cluster': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'data_center': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'storage_domain': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
@@ -88,9 +88,9 @@ class RecoverKvmVmNewSourceConfig(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
         'cluster': 'cluster',  # noqa: E501
         'data_center': 'dataCenter',  # noqa: E501
+        'source': 'source',  # noqa: E501
         'storage_domain': 'storageDomain',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
     }
@@ -107,13 +107,13 @@ class RecoverKvmVmNewSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, cluster, data_center, storage_domain, *args, **kwargs):  # noqa: E501
+    def __init__(self, cluster, data_center, source, storage_domain, *args, **kwargs):  # noqa: E501
         """RecoverKvmVmNewSourceConfig - a model defined in OpenAPI
 
         Args:
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id of the parent source to recover the VMs.
             cluster ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the resource (KVMH host) to which the restored VM will be attached
             data_center ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the datacenter where the VM's files should be restored to.
+            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id of the parent source to recover the VMs.
             storage_domain ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Storage Domain where the VM's disk should be restored to.
 
         Keyword Args:
@@ -175,9 +175,9 @@ class RecoverKvmVmNewSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source = source
         self.cluster = cluster
         self.data_center = data_center
+        self.source = source
         self.storage_domain = storage_domain
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

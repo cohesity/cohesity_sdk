@@ -236,16 +236,6 @@ class ObjectLastRun(ModelComposed):
             'KORG': "kOrg",
             'KAPPINSTANCE': "kAppInstance",
         },
-        ('protection_type',): {
-            'None': None,
-            'KAGENT': "kAgent",
-            'KNATIVE': "kNative",
-            'KSNAPSHOTMANAGER': "kSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
-            'KFILE': "kFile",
-            'KVOLUME': "kVolume",
-        },
         ('os_type',): {
             'None': None,
             'KLINUX': "kLinux",
@@ -256,20 +246,15 @@ class ObjectLastRun(ModelComposed):
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
         },
-        ('backup_run_status',): {
+        ('protection_type',): {
             'None': None,
-            'ACCEPTED': "Accepted",
-            'RUNNING': "Running",
-            'CANCELED': "Canceled",
-            'CANCELING': "Canceling",
-            'FAILED': "Failed",
-            'MISSED': "Missed",
-            'SUCCEEDED': "Succeeded",
-            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
-            'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
-            'PAUSED': "Paused",
+            'KAGENT': "kAgent",
+            'KNATIVE': "kNative",
+            'KSNAPSHOTMANAGER': "kSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KFILE': "kFile",
+            'KVOLUME': "kVolume",
         },
         ('archival_run_status',): {
             'None': None,
@@ -283,7 +268,20 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
+            'PAUSED': "Paused",
+        },
+        ('backup_run_status',): {
+            'None': None,
+            'ACCEPTED': "Accepted",
+            'RUNNING': "Running",
+            'CANCELED': "Canceled",
+            'CANCELING': "Canceling",
+            'FAILED': "Failed",
+            'MISSED': "Missed",
+            'SUCCEEDED': "Succeeded",
+            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
+            'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('replication_run_status',): {
@@ -298,7 +296,6 @@ class ObjectLastRun(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -322,30 +319,30 @@ class ObjectLastRun(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
+            'global_id': (str, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
             'object_type': (str, none_type,),  # noqa: E501
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'uuid': (str, none_type,),  # noqa: E501
-            'global_id': (str, none_type,),  # noqa: E501
-            'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
-            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
+            'protection_type': (str, none_type,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
+            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
-            'run_id': (str,),  # noqa: E501
-            'protection_group_name': (str, none_type,),  # noqa: E501
-            'protection_group_id': (str, none_type,),  # noqa: E501
-            'policy_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
-            'backup_run_status': (str, none_type,),  # noqa: E501
             'archival_run_status': (str, none_type,),  # noqa: E501
-            'replication_run_status': (str, none_type,),  # noqa: E501
+            'backup_run_status': (str, none_type,),  # noqa: E501
             'is_sla_violated': (bool, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
+            'protection_group_id': (str, none_type,),  # noqa: E501
+            'protection_group_name': (str, none_type,),  # noqa: E501
+            'replication_run_status': (str, none_type,),  # noqa: E501
+            'run_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -355,30 +352,30 @@ class ObjectLastRun(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
+        'global_id': 'globalId',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
         'object_type': 'objectType',  # noqa: E501
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'uuid': 'uuid',  # noqa: E501
-        'global_id': 'globalId',  # noqa: E501
-        'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
-        'v_center_summary': 'vCenterSummary',  # noqa: E501
+        'protection_type': 'protectionType',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
+        'v_center_summary': 'vCenterSummary',  # noqa: E501
         'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
-        'run_id': 'runId',  # noqa: E501
-        'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'policy_name': 'policyName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
-        'backup_run_status': 'backupRunStatus',  # noqa: E501
         'archival_run_status': 'archivalRunStatus',  # noqa: E501
-        'replication_run_status': 'replicationRunStatus',  # noqa: E501
+        'backup_run_status': 'backupRunStatus',  # noqa: E501
         'is_sla_violated': 'isSlaViolated',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
+        'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'replication_run_status': 'replicationRunStatus',  # noqa: E501
+        'run_id': 'runId',  # noqa: E501
     }
 
     required_properties = set([
@@ -429,30 +426,30 @@ class ObjectLastRun(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
+            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
-            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
-            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
-            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
-            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
-            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
+            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
+            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
-            run_id (str): Specifies the last run id.. [optional]  # noqa: E501
-            protection_group_name (str, none_type): Specifies the protection group name of last run.. [optional]  # noqa: E501
-            protection_group_id (str, none_type): Specifies the protection group id of last run.. [optional]  # noqa: E501
-            policy_name (str, none_type): Specifies the policy name of last run.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the policy id of last run.. [optional]  # noqa: E501
-            backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             archival_run_status (str, none_type): Specifies the status of last archival run.. [optional]  # noqa: E501
-            replication_run_status (str, none_type): Specifies the status of last replication run.. [optional]  # noqa: E501
+            backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             is_sla_violated (bool, none_type): Specifies if the sla is violated in last run.. [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the policy id of last run.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies the policy name of last run.. [optional]  # noqa: E501
+            protection_group_id (str, none_type): Specifies the protection group id of last run.. [optional]  # noqa: E501
+            protection_group_name (str, none_type): Specifies the protection group name of last run.. [optional]  # noqa: E501
+            replication_run_status (str, none_type): Specifies the status of last replication run.. [optional]  # noqa: E501
+            run_id (str): Specifies the last run id.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

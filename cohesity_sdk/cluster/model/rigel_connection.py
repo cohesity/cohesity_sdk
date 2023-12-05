@@ -79,11 +79,11 @@ class RigelConnection(ModelNormal):
         """
         lazy_import()
         return {
+            'connector_groups': ([ConnectorGroup],),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'scalable': (bool, none_type,),  # noqa: E501
             'ungrouped_connectors': ([int],),  # noqa: E501
-            'connector_groups': ([ConnectorGroup],),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class RigelConnection(ModelNormal):
 
 
     attribute_map = {
+        'connector_groups': 'connectorGroups',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'scalable': 'scalable',  # noqa: E501
         'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
-        'connector_groups': 'connectorGroups',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class RigelConnection(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            connector_groups ([ConnectorGroup]): Specifies the connector groups in the connection.. [optional]  # noqa: E501
             id (int, none_type): Specifies the id of the connection.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the connection.. [optional]  # noqa: E501
             scalable (bool, none_type): Flag to specify if the connection is scalable.. [optional]  # noqa: E501
             ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
-            connector_groups ([ConnectorGroup]): Specifies the connector groups in the connection.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

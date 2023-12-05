@@ -79,8 +79,8 @@ class OracleDatabaseHost(ModelNormal):
         """
         lazy_import()
         return {
-            'host_id': (str, none_type,),  # noqa: E501
             'channel_count': (int,),  # noqa: E501
+            'host_id': (str, none_type,),  # noqa: E501
             'port': (int,),  # noqa: E501
             'sbt_host_params': (OracleSbtHostParams,),  # noqa: E501
         }
@@ -92,8 +92,8 @@ class OracleDatabaseHost(ModelNormal):
 
 
     attribute_map = {
-        'host_id': 'hostId',  # noqa: E501
         'channel_count': 'channelCount',  # noqa: E501
+        'host_id': 'hostId',  # noqa: E501
         'port': 'port',  # noqa: E501
         'sbt_host_params': 'sbtHostParams',  # noqa: E501
     }
@@ -145,8 +145,8 @@ class OracleDatabaseHost(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            host_id (str, none_type): Specifies the id of the database host from which backup is allowed.. [optional]  # noqa: E501
             channel_count (int): Specifies the number of channels to be created for this host. Default value for the number of channels will be calculated as the minimum of number of nodes in Cohesity cluster and 2 * number of CPU on the host.. [optional]  # noqa: E501
+            host_id (str, none_type): Specifies the id of the database host from which backup is allowed.. [optional]  # noqa: E501
             port (int): Specifies the port where the Database is listening.. [optional]  # noqa: E501
             sbt_host_params (OracleSbtHostParams): [optional]  # noqa: E501
         """

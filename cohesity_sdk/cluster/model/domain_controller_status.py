@@ -56,7 +56,7 @@ class DomainControllerStatus(ModelNormal):
     allowed_values = {
         ('domain_controller_status',): {
             'REACHABLE': "Reachable",
-            'FLAPPING': "Flapping",
+            'UNREACHABLE': "Unreachable",
             'INCOMPATIBLE': "Incompatible",
         },
     }

@@ -79,8 +79,8 @@ class ClusterUpradeParams(ModelNormal):
         """
         return {
             'type': (str,),  # noqa: E501
-            'version_name': (str,),  # noqa: E501
             'url': (str,),  # noqa: E501
+            'version_name': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +91,8 @@ class ClusterUpradeParams(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'version_name': 'versionName',  # noqa: E501
         'url': 'url',  # noqa: E501
+        'version_name': 'versionName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,8 +145,8 @@ class ClusterUpradeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            version_name (str): Version name of the package. Example: 6.3.1h_release-20210714_0fad884e. This is required when the operation type is 'Upgrade'. [optional]  # noqa: E501
             url (str): The URL where the package is hosted. This is required when the operation type is 'UploadPackageAndUpgrade'. [optional]  # noqa: E501
+            version_name (str): Version name of the package. Example: 6.3.1h_release-20210714_0fad884e. This is required when the operation type is 'Upgrade'. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

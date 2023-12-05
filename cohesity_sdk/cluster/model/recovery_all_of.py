@@ -135,35 +135,35 @@ class RecoveryAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'vmware_params': (RecoverVmwareParams,),  # noqa: E501
-            'aws_params': (RecoverAwsParams,),  # noqa: E501
-            'gcp_params': (RecoverGcpParams,),  # noqa: E501
-            'azure_params': (RecoverAzureParams,),  # noqa: E501
-            'kvm_params': (RecoverKvmParams,),  # noqa: E501
             'acropolis_params': (RecoverAcropolisParams,),  # noqa: E501
-            'mssql_params': (RecoverSqlParams,),  # noqa: E501
-            'netapp_params': (RecoverNetappParams,),  # noqa: E501
-            'generic_nas_params': (RecoverGenericNasParams,),  # noqa: E501
-            'isilon_params': (RecoverIsilonParams,),  # noqa: E501
-            'flashblade_params': (RecoverFlashbladeParams,),  # noqa: E501
-            'elastifile_params': (RecoverElastifileParams,),  # noqa: E501
-            'gpfs_params': (RecoverGpfsParams,),  # noqa: E501
-            'physical_params': (RecoverPhysicalParams,),  # noqa: E501
-            'hyperv_params': (RecoverHyperVParams,),  # noqa: E501
-            'exchange_params': (RecoverExchangeParams,),  # noqa: E501
+            'aws_params': (RecoverAwsParams,),  # noqa: E501
+            'azure_params': (RecoverAzureParams,),  # noqa: E501
             'cassandra_params': (CassandraParams,),  # noqa: E501
-            'uda_params': (UdaParams,),  # noqa: E501
             'couchbase_params': (CouchbaseParams,),  # noqa: E501
+            'elastifile_params': (RecoverElastifileParams,),  # noqa: E501
+            'exchange_params': (RecoverExchangeParams,),  # noqa: E501
+            'flashblade_params': (RecoverFlashbladeParams,),  # noqa: E501
+            'gcp_params': (RecoverGcpParams,),  # noqa: E501
+            'generic_nas_params': (RecoverGenericNasParams,),  # noqa: E501
+            'gpfs_params': (RecoverGpfsParams,),  # noqa: E501
             'hbase_params': (HbaseParams,),  # noqa: E501
             'hdfs_params': (HdfsParams,),  # noqa: E501
             'hive_params': (HiveParams,),  # noqa: E501
-            'mongodb_params': (MongodbParams,),  # noqa: E501
-            'pure_params': (RecoverPureParams,),  # noqa: E501
-            'office365_params': (RecoverO365Params,),  # noqa: E501
+            'hyperv_params': (RecoverHyperVParams,),  # noqa: E501
+            'isilon_params': (RecoverIsilonParams,),  # noqa: E501
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
+            'kvm_params': (RecoverKvmParams,),  # noqa: E501
+            'mongodb_params': (MongodbParams,),  # noqa: E501
+            'mssql_params': (RecoverSqlParams,),  # noqa: E501
+            'netapp_params': (RecoverNetappParams,),  # noqa: E501
+            'office365_params': (RecoverO365Params,),  # noqa: E501
             'oracle_params': (RecoverOracleParams,),  # noqa: E501
-            'view_params': (RecoverViewParams,),  # noqa: E501
+            'physical_params': (RecoverPhysicalParams,),  # noqa: E501
+            'pure_params': (RecoverPureParams,),  # noqa: E501
             'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
+            'uda_params': (UdaParams,),  # noqa: E501
+            'view_params': (RecoverViewParams,),  # noqa: E501
+            'vmware_params': (RecoverVmwareParams,),  # noqa: E501
         }
 
     @cached_property
@@ -173,35 +173,35 @@ class RecoveryAllOf(ModelNormal):
 
 
     attribute_map = {
-        'vmware_params': 'vmwareParams',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
-        'gcp_params': 'gcpParams',  # noqa: E501
-        'azure_params': 'azureParams',  # noqa: E501
-        'kvm_params': 'kvmParams',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
-        'mssql_params': 'mssqlParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
-        'elastifile_params': 'elastifileParams',  # noqa: E501
-        'gpfs_params': 'gpfsParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'hyperv_params': 'hypervParams',  # noqa: E501
-        'exchange_params': 'exchangeParams',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
+        'elastifile_params': 'elastifileParams',  # noqa: E501
+        'exchange_params': 'exchangeParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'gcp_params': 'gcpParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'gpfs_params': 'gpfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
-        'mongodb_params': 'mongodbParams',  # noqa: E501
-        'pure_params': 'pureParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
+        'kvm_params': 'kvmParams',  # noqa: E501
+        'mongodb_params': 'mongodbParams',  # noqa: E501
+        'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
-        'view_params': 'viewParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
+        'pure_params': 'pureParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -251,35 +251,35 @@ class RecoveryAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
-            aws_params (RecoverAwsParams): [optional]  # noqa: E501
-            gcp_params (RecoverGcpParams): [optional]  # noqa: E501
-            azure_params (RecoverAzureParams): [optional]  # noqa: E501
-            kvm_params (RecoverKvmParams): [optional]  # noqa: E501
             acropolis_params (RecoverAcropolisParams): [optional]  # noqa: E501
-            mssql_params (RecoverSqlParams): [optional]  # noqa: E501
-            netapp_params (RecoverNetappParams): [optional]  # noqa: E501
-            generic_nas_params (RecoverGenericNasParams): [optional]  # noqa: E501
-            isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
-            flashblade_params (RecoverFlashbladeParams): [optional]  # noqa: E501
-            elastifile_params (RecoverElastifileParams): [optional]  # noqa: E501
-            gpfs_params (RecoverGpfsParams): [optional]  # noqa: E501
-            physical_params (RecoverPhysicalParams): [optional]  # noqa: E501
-            hyperv_params (RecoverHyperVParams): [optional]  # noqa: E501
-            exchange_params (RecoverExchangeParams): [optional]  # noqa: E501
+            aws_params (RecoverAwsParams): [optional]  # noqa: E501
+            azure_params (RecoverAzureParams): [optional]  # noqa: E501
             cassandra_params (CassandraParams): [optional]  # noqa: E501
-            uda_params (UdaParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseParams): [optional]  # noqa: E501
+            elastifile_params (RecoverElastifileParams): [optional]  # noqa: E501
+            exchange_params (RecoverExchangeParams): [optional]  # noqa: E501
+            flashblade_params (RecoverFlashbladeParams): [optional]  # noqa: E501
+            gcp_params (RecoverGcpParams): [optional]  # noqa: E501
+            generic_nas_params (RecoverGenericNasParams): [optional]  # noqa: E501
+            gpfs_params (RecoverGpfsParams): [optional]  # noqa: E501
             hbase_params (HbaseParams): [optional]  # noqa: E501
             hdfs_params (HdfsParams): [optional]  # noqa: E501
             hive_params (HiveParams): [optional]  # noqa: E501
-            mongodb_params (MongodbParams): [optional]  # noqa: E501
-            pure_params (RecoverPureParams): [optional]  # noqa: E501
-            office365_params (RecoverO365Params): [optional]  # noqa: E501
+            hyperv_params (RecoverHyperVParams): [optional]  # noqa: E501
+            isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
+            kvm_params (RecoverKvmParams): [optional]  # noqa: E501
+            mongodb_params (MongodbParams): [optional]  # noqa: E501
+            mssql_params (RecoverSqlParams): [optional]  # noqa: E501
+            netapp_params (RecoverNetappParams): [optional]  # noqa: E501
+            office365_params (RecoverO365Params): [optional]  # noqa: E501
             oracle_params (RecoverOracleParams): [optional]  # noqa: E501
-            view_params (RecoverViewParams): [optional]  # noqa: E501
+            physical_params (RecoverPhysicalParams): [optional]  # noqa: E501
+            pure_params (RecoverPureParams): [optional]  # noqa: E501
             sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
+            uda_params (UdaParams): [optional]  # noqa: E501
+            view_params (RecoverViewParams): [optional]  # noqa: E501
+            vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

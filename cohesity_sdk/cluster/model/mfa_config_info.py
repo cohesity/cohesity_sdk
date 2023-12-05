@@ -80,8 +80,8 @@ class MfaConfigInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enabled': (bool,),  # noqa: E501
             'authentication_types': ([str], none_type,),  # noqa: E501
+            'enabled': (bool,),  # noqa: E501
             'retain_user_mfa_settings': (bool, none_type,),  # noqa: E501
         }
 
@@ -92,8 +92,8 @@ class MfaConfigInfo(ModelNormal):
 
 
     attribute_map = {
-        'enabled': 'enabled',  # noqa: E501
         'authentication_types': 'authenticationTypes',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
         'retain_user_mfa_settings': 'retainUserMfaSettings',  # noqa: E501
     }
 
@@ -144,8 +144,8 @@ class MfaConfigInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enabled (bool): Specifies whether MFA is enabled on a cluster level.. [optional] if omitted the server will use the default value of False  # noqa: E501
             authentication_types ([str], none_type): Specifies the list of mechanism to receive the OTP code.. [optional]  # noqa: E501
+            enabled (bool): Specifies whether MFA is enabled on a cluster level.. [optional] if omitted the server will use the default value of False  # noqa: E501
             retain_user_mfa_settings (bool, none_type): Specifies whether user MFA setting needs to be retained.. [optional]  # noqa: E501
         """
 

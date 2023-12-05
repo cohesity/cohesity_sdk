@@ -74,8 +74,8 @@ class FailedProtectionGroupDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'protection_group_id': (str, none_type,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
+            'protection_group_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class FailedProtectionGroupDetails(ModelNormal):
 
 
     attribute_map = {
-        'protection_group_id': 'protectionGroupId',  # noqa: E501
         'error_message': 'errorMessage',  # noqa: E501
+        'protection_group_id': 'protectionGroupId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class FailedProtectionGroupDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_group_id (str, none_type): Specifies the id of the failed protection group.. [optional]  # noqa: E501
             error_message (str, none_type): Specifies the error mesage for failed protection group.. [optional]  # noqa: E501
+            protection_group_id (str, none_type): Specifies the id of the failed protection group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

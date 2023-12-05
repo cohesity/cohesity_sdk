@@ -74,12 +74,12 @@ class NodeUnitProgress(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'node_ip': (str, none_type,),  # noqa: E501
             'in_progress': (bool, none_type,),  # noqa: E501
+            'node_ip': (str, none_type,),  # noqa: E501
+            'node_message': (str, none_type,),  # noqa: E501
             'patch_level_transition': (str, none_type,),  # noqa: E501
             'percentage': (int, none_type,),  # noqa: E501
             'time_taken_seconds': (int, none_type,),  # noqa: E501
-            'node_message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class NodeUnitProgress(ModelNormal):
 
 
     attribute_map = {
-        'node_ip': 'nodeIp',  # noqa: E501
         'in_progress': 'inProgress',  # noqa: E501
+        'node_ip': 'nodeIp',  # noqa: E501
+        'node_message': 'nodeMessage',  # noqa: E501
         'patch_level_transition': 'patchLevelTransition',  # noqa: E501
         'percentage': 'percentage',  # noqa: E501
         'time_taken_seconds': 'timeTakenSeconds',  # noqa: E501
-        'node_message': 'nodeMessage',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class NodeUnitProgress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            node_ip (str, none_type): Specifies the IP address of the node.. [optional]  # noqa: E501
             in_progress (bool, none_type): Specifies whether a operation is in progress on the node.. [optional]  # noqa: E501
+            node_ip (str, none_type): Specifies the IP address of the node.. [optional]  # noqa: E501
+            node_message (str, none_type): Specifies a message about the patch operation on the node.. [optional]  # noqa: E501
             patch_level_transition (str, none_type): Specifies the patch level transition of the patch operation. For Apply operation, patch level goes up for each operation. For Revert operation, patch level goes down. Patch level zero is the base level where no patch was applied.. [optional]  # noqa: E501
             percentage (int, none_type): Specifies the percentage of completion of the patch operation on the node.. [optional]  # noqa: E501
             time_taken_seconds (int, none_type): Specifies the time taken so far in this patch unit operation on the node.. [optional]  # noqa: E501
-            node_message (str, none_type): Specifies a message about the patch operation on the node.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

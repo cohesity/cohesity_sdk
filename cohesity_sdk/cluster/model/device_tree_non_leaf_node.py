@@ -93,10 +93,10 @@ class DeviceTreeNonLeafNode(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str, none_type,),  # noqa: E501
-            'device_length': (int, none_type,),  # noqa: E501
-            'device_id': (int, none_type,),  # noqa: E501
             'children_nodes': ([DeviceTreeNode], none_type,),  # noqa: E501
+            'device_id': (int, none_type,),  # noqa: E501
+            'device_length': (int, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,10 +106,10 @@ class DeviceTreeNonLeafNode(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
-        'device_length': 'deviceLength',  # noqa: E501
-        'device_id': 'deviceId',  # noqa: E501
         'children_nodes': 'childrenNodes',  # noqa: E501
+        'device_id': 'deviceId',  # noqa: E501
+        'device_length': 'deviceLength',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,10 +159,10 @@ class DeviceTreeNonLeafNode(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the children nodes combine type.. [optional]  # noqa: E501
-            device_length (int, none_type): Specifies the length of device.. [optional]  # noqa: E501
-            device_id (int, none_type): Specifies the id of device.. [optional]  # noqa: E501
             children_nodes ([DeviceTreeNode], none_type): Specifies a list of children nodes.. [optional]  # noqa: E501
+            device_id (int, none_type): Specifies the id of device.. [optional]  # noqa: E501
+            device_length (int, none_type): Specifies the length of device.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the children nodes combine type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

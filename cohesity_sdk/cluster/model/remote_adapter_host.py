@@ -93,11 +93,11 @@ class RemoteAdapterHost(ModelComposed):
         """
         lazy_import()
         return {
+            'host_type': (str, none_type,),  # noqa: E501
             'hostname': (str, none_type,),  # noqa: E501
             'username': (str, none_type,),  # noqa: E501
-            'host_type': (str, none_type,),  # noqa: E501
-            'incremental_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'full_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
+            'incremental_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'log_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
         }
 
@@ -108,11 +108,11 @@ class RemoteAdapterHost(ModelComposed):
 
 
     attribute_map = {
+        'host_type': 'hostType',  # noqa: E501
         'hostname': 'hostname',  # noqa: E501
         'username': 'username',  # noqa: E501
-        'host_type': 'hostType',  # noqa: E501
-        'incremental_backup_script': 'incrementalBackupScript',  # noqa: E501
         'full_backup_script': 'fullBackupScript',  # noqa: E501
+        'incremental_backup_script': 'incrementalBackupScript',  # noqa: E501
         'log_backup_script': 'logBackupScript',  # noqa: E501
     }
 
@@ -164,11 +164,11 @@ class RemoteAdapterHost(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            host_type (str, none_type): Specifies the Operating system type of the host.. [optional]  # noqa: E501
             hostname (str, none_type): Specifies the Hostname or IP address of the host where the pre and post script will be run.. [optional]  # noqa: E501
             username (str, none_type): Specifies the username for the host.. [optional]  # noqa: E501
-            host_type (str, none_type): Specifies the Operating system type of the host.. [optional]  # noqa: E501
-            incremental_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             full_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
+            incremental_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             log_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
         """
 

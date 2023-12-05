@@ -54,7 +54,7 @@ class CiphersResp(ModelNormal):
     """
 
     allowed_values = {
-        ('enabled_ciphers',): {
+        ('disabled_ciphers',): {
             'ECDHE_ECDSA_WITH_AES_256_GCM_SHA384': "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
             'ECDHE_ECDSA_WITH_AES_128_GCM_SHA256': "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
             'ECDHE_RSA_WITH_AES_256_GCM_SHA384': "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
@@ -68,7 +68,7 @@ class CiphersResp(ModelNormal):
             'RSA_WITH_AES_256_CBC_SHA': "TLS_RSA_WITH_AES_256_CBC_SHA",
             'RSA_WITH_AES_128_CBC_SHA': "TLS_RSA_WITH_AES_128_CBC_SHA",
         },
-        ('disabled_ciphers',): {
+        ('enabled_ciphers',): {
             'ECDHE_ECDSA_WITH_AES_256_GCM_SHA384': "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
             'ECDHE_ECDSA_WITH_AES_128_GCM_SHA256': "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
             'ECDHE_RSA_WITH_AES_256_GCM_SHA384': "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
@@ -102,8 +102,8 @@ class CiphersResp(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enabled_ciphers': ([str],),  # noqa: E501
             'disabled_ciphers': ([str],),  # noqa: E501
+            'enabled_ciphers': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -113,8 +113,8 @@ class CiphersResp(ModelNormal):
 
 
     attribute_map = {
-        'enabled_ciphers': 'enabledCiphers',  # noqa: E501
         'disabled_ciphers': 'disabledCiphers',  # noqa: E501
+        'enabled_ciphers': 'enabledCiphers',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -164,8 +164,8 @@ class CiphersResp(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enabled_ciphers ([str]): Enabled ciphers.. [optional]  # noqa: E501
             disabled_ciphers ([str]): Disabled ciphers.. [optional]  # noqa: E501
+            enabled_ciphers ([str]): Enabled ciphers.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

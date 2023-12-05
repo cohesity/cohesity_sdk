@@ -22,7 +22,6 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.add_remote_disk_response_body import AddRemoteDiskResponseBody
-from cohesity_sdk.cluster.model.airgap_config import AirgapConfig
 from cohesity_sdk.cluster.model.api_based_fetch_info import ApiBasedFetchInfo
 from cohesity_sdk.cluster.model.chassis import Chassis
 from cohesity_sdk.cluster.model.chassis_list import ChassisList
@@ -49,7 +48,6 @@ from cohesity_sdk.cluster.model.disk_removal_params import DiskRemovalParams
 from cohesity_sdk.cluster.model.disks_list import DisksList
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.feature_flag_list import FeatureFlagList
-from cohesity_sdk.cluster.model.free_nodes import FreeNodes
 from cohesity_sdk.cluster.model.host_mappings import HostMappings
 from cohesity_sdk.cluster.model.host_mappings_parameters import HostMappingsParameters
 from cohesity_sdk.cluster.model.interface_group import InterfaceGroup
@@ -165,7 +163,7 @@ class PlatformApi(object):
                 'response_type': (HostMappings,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings',
@@ -287,7 +285,7 @@ class PlatformApi(object):
                 'response_type': (AddRemoteDiskResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/remote',
@@ -404,7 +402,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/cleanup-tenant-migration',
@@ -513,7 +511,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp',
@@ -627,7 +625,7 @@ class PlatformApi(object):
                 'response_type': (Cluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -749,7 +747,7 @@ class PlatformApi(object):
                 'response_type': (ClusterVlanParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans',
@@ -871,7 +869,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceGroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups',
@@ -993,7 +991,7 @@ class PlatformApi(object):
                 'response_type': (NodeBondInterfaceParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/nodes/bonds',
@@ -1115,7 +1113,7 @@ class PlatformApi(object):
                 'response_type': (Racks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -1232,7 +1230,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/amqp-target-config',
@@ -1346,7 +1344,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages/{versionName}',
@@ -1467,7 +1465,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans/{interfaceName}',
@@ -1588,7 +1586,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings/delete',
@@ -1710,7 +1708,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups/{id}',
@@ -1832,7 +1830,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/nodes/bonds/{name}',
@@ -1958,7 +1956,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks/{id}',
@@ -2074,7 +2072,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -2183,7 +2181,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -2292,7 +2290,7 @@ class PlatformApi(object):
                 'response_type': (ClusterFreeDisks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/discover',
@@ -2406,7 +2404,7 @@ class PlatformApi(object):
                 'response_type': (DiskIdentify,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/identify',
@@ -2528,7 +2526,7 @@ class PlatformApi(object):
                 'response_type': (ClusterFreeDisks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/assimilate',
@@ -2650,7 +2648,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/nodes',
@@ -2767,7 +2765,7 @@ class PlatformApi(object):
                 'response_type': (ClusterAMQPTargetConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/amqp-target-config',
@@ -2877,7 +2875,7 @@ class PlatformApi(object):
                 'response_type': (ChassisList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/chassis',
@@ -2996,7 +2994,7 @@ class PlatformApi(object):
                 'response_type': (Chassis,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/chassis/{id}',
@@ -3112,7 +3110,7 @@ class PlatformApi(object):
                 'response_type': (Cluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -3221,7 +3219,7 @@ class PlatformApi(object):
                 'response_type': (ApiBasedFetchInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/api-based-fetch-info',
@@ -3330,7 +3328,7 @@ class PlatformApi(object):
                 'response_type': (ClusterLocalDomainSID,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/local-domain-sid',
@@ -3444,7 +3442,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationStatus,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/operation-status/{operationId}',
@@ -3560,7 +3558,7 @@ class PlatformApi(object):
                 'response_type': (ClusterPackages,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages',
@@ -3670,7 +3668,7 @@ class PlatformApi(object):
                 'response_type': (ClusterStateParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/state',
@@ -3784,7 +3782,7 @@ class PlatformApi(object):
                 'response_type': (ClusterUiConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/ui-config',
@@ -3898,7 +3896,7 @@ class PlatformApi(object):
                 'response_type': (ClusterVlans,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans',
@@ -4035,7 +4033,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceGroups,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups',
@@ -4159,7 +4157,7 @@ class PlatformApi(object):
                 'response_type': (NetworkInterfaceParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interfaces',
@@ -4314,7 +4312,7 @@ class PlatformApi(object):
                 'response_type': (IpmiLanParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/lan',
@@ -4430,7 +4428,7 @@ class PlatformApi(object):
                 'response_type': (IpmiUsers,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/users',
@@ -4545,7 +4543,7 @@ class PlatformApi(object):
                 'response_type': (DMaaSInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/is-dmaas',
@@ -4654,7 +4652,7 @@ class PlatformApi(object):
                 'response_type': (ClusterInterfaces,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network-interfaces',
@@ -4769,7 +4767,7 @@ class PlatformApi(object):
                 'response_type': ([Node],),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/nodes',
@@ -4915,7 +4913,7 @@ class PlatformApi(object):
                 'response_type': (Rack,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks/{id}',
@@ -5031,7 +5029,7 @@ class PlatformApi(object):
                 'response_type': (Racks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -5145,7 +5143,7 @@ class PlatformApi(object):
                 'response_type': (RemoteDisks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/remote',
@@ -5290,7 +5288,7 @@ class PlatformApi(object):
                 'response_type': (SMTPConfiguration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp',
@@ -5399,7 +5397,7 @@ class PlatformApi(object):
                 'response_type': (SupportChannelConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-channel-config',
@@ -5517,7 +5515,7 @@ class PlatformApi(object):
                 'response_type': (NodeIdentifyParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nodes/{id}/identify',
@@ -5641,7 +5639,7 @@ class PlatformApi(object):
                 'response_type': (DisksList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/local',
@@ -5755,7 +5753,7 @@ class PlatformApi(object):
                 'response_type': (FeatureFlagList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/feature-flag',
@@ -5796,115 +5794,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__list_feature_flag
-        )
-
-        def __list_free_nodes(
-            self,
-            **kwargs
-        ):
-            """List the free Cohesity Nodes present on a network.  # noqa: E501
-
-            Sends a request to any Node to list all of the free Nodes that are present on the network.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.list_free_nodes(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                FreeNodes
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.list_free_nodes = _Endpoint(
-            settings={
-                'response_type': (FreeNodes,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/nodes/free',
-                'operation_id': 'list_free_nodes',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__list_free_nodes
         )
 
         def __list_hosts(
@@ -5973,7 +5862,7 @@ class PlatformApi(object):
                 'response_type': (HostMappings,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings',
@@ -6087,7 +5976,7 @@ class PlatformApi(object):
                 'response_type': (MarkBaseosUpgradeInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/baseos-upgrade',
@@ -6213,7 +6102,7 @@ class PlatformApi(object):
                 'response_type': (RemoveDisk,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/{id}/remove',
@@ -6345,7 +6234,7 @@ class PlatformApi(object):
                 'response_type': (RemoveNode,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nodes/{id}/remove',
@@ -6473,7 +6362,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/nodes/{id}',
@@ -6594,7 +6483,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/remote/{id}',
@@ -6715,7 +6604,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-power',
@@ -6764,128 +6653,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__set_node_power
-        )
-
-        def __update_airgap_config(
-            self,
-            body,
-            **kwargs
-        ):
-            """Update Airgap config  # noqa: E501
-
-            Enable or Disable Airgap on the cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_airgap_config(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (AirgapConfig): Specifies the parameters to update airgap config.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                AirgapConfig
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.update_airgap_config = _Endpoint(
-            settings={
-                'response_type': (AirgapConfig,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/airgap',
-                'operation_id': 'update_airgap_config',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (AirgapConfig,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__update_airgap_config
         )
 
         def __update_amqp_target_config(
@@ -6959,7 +6726,7 @@ class PlatformApi(object):
                 'response_type': (ClusterAMQPTargetConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/amqp-target-config',
@@ -7082,7 +6849,7 @@ class PlatformApi(object):
                 'response_type': (Chassis,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/chassis/{id}',
@@ -7209,7 +6976,7 @@ class PlatformApi(object):
                 'response_type': (Cluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -7331,7 +7098,7 @@ class PlatformApi(object):
                 'response_type': (McmRigelClaimResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/bifrost-config',
@@ -7453,7 +7220,7 @@ class PlatformApi(object):
                 'response_type': (ClusterUiConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/ui-config',
@@ -7579,7 +7346,7 @@ class PlatformApi(object):
                 'response_type': (ClusterVlanParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans/{interfaceName}',
@@ -7707,7 +7474,7 @@ class PlatformApi(object):
                 'response_type': (FeatureFlagList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/feature-flag',
@@ -7829,7 +7596,7 @@ class PlatformApi(object):
                 'response_type': (HostMappings,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings',
@@ -7955,7 +7722,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interfaces/{id}',
@@ -8087,7 +7854,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceGroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups/{id}',
@@ -8215,7 +7982,7 @@ class PlatformApi(object):
                 'response_type': (IpmiLanParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/lan',
@@ -8337,7 +8104,7 @@ class PlatformApi(object):
                 'response_type': (IpmiUsers,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/users',
@@ -8459,7 +8226,7 @@ class PlatformApi(object):
                 'response_type': (DMaaSInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/is-dmaas',
@@ -8585,7 +8352,7 @@ class PlatformApi(object):
                 'response_type': (NodeBondInterfaceParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/nodes/bonds/{name}',
@@ -8714,7 +8481,7 @@ class PlatformApi(object):
                 'response_type': (Rack,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks/{id}',
@@ -8841,7 +8608,7 @@ class PlatformApi(object):
                 'response_type': (Racks,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -8963,7 +8730,7 @@ class PlatformApi(object):
                 'response_type': (SMTPConfiguration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp',
@@ -9085,7 +8852,7 @@ class PlatformApi(object):
                 'response_type': (SupportChannelConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-channel-config',
@@ -9207,7 +8974,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/upgrade',
@@ -9329,7 +9096,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages/file',
@@ -9452,7 +9219,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages/url',
@@ -9574,7 +9341,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp/validate',

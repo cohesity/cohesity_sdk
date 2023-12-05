@@ -57,13 +57,12 @@ class SecurityConfigPasswordLifetime(ModelNormal):
     }
 
     validations = {
-        ('min_lifetime_days',): {
-            'inclusive_minimum': 0,
+        ('max_lifetime_days',): {
+            'inclusive_minimum': 1,
         },
 
-        ('max_lifetime_days',): {
-            'inclusive_maximum': 365,
-            'inclusive_minimum': 1,
+        ('min_lifetime_days',): {
+            'inclusive_minimum': 0,
         },
 
     }
@@ -83,8 +82,8 @@ class SecurityConfigPasswordLifetime(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'min_lifetime_days': (int, none_type,),  # noqa: E501
             'max_lifetime_days': (int, none_type,),  # noqa: E501
+            'min_lifetime_days': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +93,8 @@ class SecurityConfigPasswordLifetime(ModelNormal):
 
 
     attribute_map = {
-        'min_lifetime_days': 'minLifetimeDays',  # noqa: E501
         'max_lifetime_days': 'maxLifetimeDays',  # noqa: E501
+        'min_lifetime_days': 'minLifetimeDays',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,8 +144,8 @@ class SecurityConfigPasswordLifetime(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            min_lifetime_days (int, none_type): Specifies the minimum password lifetime in days.. [optional]  # noqa: E501
             max_lifetime_days (int, none_type): Specifies the maximum password lifetime in days.. [optional]  # noqa: E501
+            min_lifetime_days (int, none_type): Specifies the minimum password lifetime in days.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

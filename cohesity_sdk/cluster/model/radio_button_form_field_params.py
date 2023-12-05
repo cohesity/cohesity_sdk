@@ -81,8 +81,8 @@ class RadioButtonFormFieldParams(ModelNormal):
         return {
             'id': (str, none_type,),  # noqa: E501
             'label': (str, none_type,),  # noqa: E501
-            'value': (str, none_type,),  # noqa: E501
             'panel': (FormPanelParams,),  # noqa: E501
+            'value': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class RadioButtonFormFieldParams(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'label': 'label',  # noqa: E501
-        'value': 'value',  # noqa: E501
         'panel': 'panel',  # noqa: E501
+        'value': 'value',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,8 +147,8 @@ class RadioButtonFormFieldParams(ModelNormal):
 
             id (str, none_type): Id to identify the radio button. This is also be used for assigning component html ids which can be leveraged for writing automation against the button.. [optional]  # noqa: E501
             label (str, none_type): Label to be shown for the radio button on the UI.. [optional]  # noqa: E501
-            value (str, none_type): Value associated with the radio button.. [optional]  # noqa: E501
             panel (FormPanelParams): [optional]  # noqa: E501
+            value (str, none_type): Value associated with the radio button.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

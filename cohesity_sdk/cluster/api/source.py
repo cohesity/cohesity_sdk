@@ -21,9 +21,6 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_source_connection_request_params208ba18711b94c2f_a7c12414ed0a71c0 import CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0
-from cohesity_sdk.cluster.model.common_source_registration_reponse_params0a86bd5c_f7de4a5085d3_aa7003ecba89 import CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
-from cohesity_sdk.cluster.model.common_source_registration_request_params55735f4993544f9e_a2ac_fca18c1c1a95 import CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95
 from cohesity_sdk.cluster.model.create_azure_application_request_params import CreateAzureApplicationRequestParams
 from cohesity_sdk.cluster.model.create_azure_application_response_params import CreateAzureApplicationResponseParams
 from cohesity_sdk.cluster.model.error import Error
@@ -34,8 +31,11 @@ from cohesity_sdk.cluster.model.generate_m365_device_code_response_params import
 from cohesity_sdk.cluster.model.get_m365_source_region_endpoint_response_params import GetM365SourceRegionEndpointResponseParams
 from cohesity_sdk.cluster.model.source import Source
 from cohesity_sdk.cluster.model.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
+from cohesity_sdk.cluster.model.source_connection_request_params import SourceConnectionRequestParams
 from cohesity_sdk.cluster.model.source_connection_response_params import SourceConnectionResponseParams
-from cohesity_sdk.cluster.model.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
+from cohesity_sdk.cluster.model.source_registration import SourceRegistration
+from cohesity_sdk.cluster.model.source_registration_request_params import SourceRegistrationRequestParams
+from cohesity_sdk.cluster.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cluster.model.source_registrations import SourceRegistrations
 from cohesity_sdk.cluster.model.sources import Sources
 from cohesity_sdk.cluster.model.vdc_object import VdcObject
@@ -124,7 +124,7 @@ class SourceApi(object):
                 'response_type': (CreateAzureApplicationResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/azure-applications',
@@ -246,7 +246,7 @@ class SourceApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
@@ -367,7 +367,7 @@ class SourceApi(object):
                 'response_type': (GenerateM365DeviceAccessTokenResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/auth/token',
@@ -489,7 +489,7 @@ class SourceApi(object):
                 'response_type': (GenerateM365DeviceCodeResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/auth/device-code',
@@ -611,7 +611,7 @@ class SourceApi(object):
                 'response_type': (GetM365SourceRegionEndpointResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/microsoft365/region-info',
@@ -700,7 +700,7 @@ class SourceApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -729,10 +729,10 @@ class SourceApi(object):
 
         self.get_protection_source_registration = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
@@ -852,7 +852,7 @@ class SourceApi(object):
                 'response_type': (Sources,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources',
@@ -988,7 +988,7 @@ class SourceApi(object):
                 'response_type': (SourceAttributeFiltersResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/filters',
@@ -1149,7 +1149,7 @@ class SourceApi(object):
                 'response_type': (SourceRegistrations,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations',
@@ -1295,7 +1295,7 @@ class SourceApi(object):
                 'response_type': (VdcObject,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/virtual-datacenter/{id}',
@@ -1343,138 +1343,6 @@ class SourceApi(object):
             },
             api_client=api_client,
             callable=__get_vdc_details
-        )
-
-        def __patch_protection_source_registration(
-            self,
-            id,
-            body,
-            **kwargs
-        ):
-            """Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra  # noqa: E501
-
-            Patches a Protection Source.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.patch_protection_source_registration(id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (int): Specifies the id of the Protection Source registration.
-                body (SourceRegistrationPatchRequestParams): Specifies the parameters to partially update the registration.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.patch_protection_source_registration = _Endpoint(
-            settings={
-                'response_type': (CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/sources/registrations/{id}',
-                'operation_id': 'patch_protection_source_registration',
-                'http_method': 'PATCH',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'body',
-                ],
-                'required': [
-                    'id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (int,),
-                    'body':
-                        (SourceRegistrationPatchRequestParams,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__patch_protection_source_registration
         )
 
         def __protection_source_by_id(
@@ -1548,7 +1416,7 @@ class SourceApi(object):
                 'response_type': (Source,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{id}',
@@ -1669,7 +1537,7 @@ class SourceApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{id}/refresh',
@@ -1734,7 +1602,7 @@ class SourceApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95): Specifies the parameters to register a Protection Source.
+                body (SourceRegistrationRequestParams): Specifies the parameters to register a Protection Source.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -1758,7 +1626,7 @@ class SourceApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1787,10 +1655,10 @@ class SourceApi(object):
 
         self.register_protection_source = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations',
@@ -1819,7 +1687,7 @@ class SourceApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95,),
+                        (SourceRegistrationRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -1856,7 +1724,7 @@ class SourceApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0): Specifies the parameters to test connectivity with a source.
+                body (SourceConnectionRequestParams): Specifies the parameters to test connectivity with a source.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -1912,7 +1780,7 @@ class SourceApi(object):
                 'response_type': (SourceConnectionResponseParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/test-connection',
@@ -1941,7 +1809,7 @@ class SourceApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0,),
+                        (SourceConnectionRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -1980,7 +1848,7 @@ class SourceApi(object):
 
             Args:
                 id (int): Specifies the id of the Protection Source registration.
-                body (CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95): Specifies the parameters to update the registration.
+                body (SourceRegistrationUpdateRequestParams): Specifies the parameters to update the registration.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2004,7 +1872,7 @@ class SourceApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
+                SourceRegistration
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2035,10 +1903,10 @@ class SourceApi(object):
 
         self.update_protection_source_registration = _Endpoint(
             settings={
-                'response_type': (CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89,),
+                'response_type': (SourceRegistration,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/registrations/{id}',
@@ -2071,7 +1939,7 @@ class SourceApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95,),
+                        (SourceRegistrationUpdateRequestParams,),
                 },
                 'attribute_map': {
                     'id': 'id',

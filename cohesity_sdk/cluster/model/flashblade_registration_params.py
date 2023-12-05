@@ -81,8 +81,8 @@ class FlashbladeRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'endpoint': (str, none_type,),  # noqa: E501
             'api_token': (str, none_type,),  # noqa: E501
+            'endpoint': (str, none_type,),  # noqa: E501
             'back_up_smb_volumes': (bool, none_type,),  # noqa: E501
             'smb_credentials': (SmbMountCredentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
@@ -95,8 +95,8 @@ class FlashbladeRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'endpoint': 'endpoint',  # noqa: E501
         'api_token': 'apiToken',  # noqa: E501
+        'endpoint': 'endpoint',  # noqa: E501
         'back_up_smb_volumes': 'backUpSMBVolumes',  # noqa: E501
         'smb_credentials': 'smbCredentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
@@ -114,12 +114,12 @@ class FlashbladeRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, endpoint, api_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, api_token, endpoint, *args, **kwargs):  # noqa: E501
         """FlashbladeRegistrationParams - a model defined in OpenAPI
 
         Args:
-            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Flashblade Source.
             api_token (str, none_type): Specifies the API Token of the Flashblade Source
+            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Flashblade Source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -182,8 +182,8 @@ class FlashbladeRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.endpoint = endpoint
         self.api_token = api_token
+        self.endpoint = endpoint
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

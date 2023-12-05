@@ -81,8 +81,8 @@ class CommonObjectSummaryAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
+            'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class CommonObjectSummaryAllOf(ModelNormal):
 
 
     attribute_map = {
-        'protection_stats': 'protectionStats',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
+        'protection_stats': 'protectionStats',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class CommonObjectSummaryAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
+            protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

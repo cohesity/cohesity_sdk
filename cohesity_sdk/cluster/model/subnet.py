@@ -66,13 +66,13 @@ class Subnet(ModelNormal):
             'KROOTSQUASH': "kRootSquash",
             'KALLSQUASH': "kAllSquash",
         },
-        ('smb_access',): {
+        ('s3_access',): {
             'None': None,
             'KDISABLED': "kDisabled",
             'KREADONLY': "kReadOnly",
             'KREADWRITE': "kReadWrite",
         },
-        ('s3_access',): {
+        ('smb_access',): {
             'None': None,
             'KDISABLED': "kDisabled",
             'KREADONLY': "kReadOnly",
@@ -107,8 +107,8 @@ class Subnet(ModelNormal):
             'netmask_ip4': (str, none_type,),  # noqa: E501
             'nfs_access': (str, none_type,),  # noqa: E501
             'nfs_squash': (str, none_type,),  # noqa: E501
-            'smb_access': (str, none_type,),  # noqa: E501
             's3_access': (str, none_type,),  # noqa: E501
+            'smb_access': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -127,8 +127,8 @@ class Subnet(ModelNormal):
         'netmask_ip4': 'netmaskIp4',  # noqa: E501
         'nfs_access': 'nfsAccess',  # noqa: E501
         'nfs_squash': 'nfsSquash',  # noqa: E501
-        'smb_access': 'smbAccess',  # noqa: E501
         's3_access': 's3Access',  # noqa: E501
+        'smb_access': 'smbAccess',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -187,8 +187,8 @@ class Subnet(ModelNormal):
             netmask_ip4 (str, none_type): Specifies the netmask using an IP4 address. The netmask can only be set using netmaskIp4 if the IP address is an IPv4 address.. [optional]  # noqa: E501
             nfs_access (str, none_type): Specifies whether clients from this subnet can mount using NFS protocol. Protocol access level. 'kDisabled' indicates Protocol access level 'Disabled' 'kReadOnly' indicates Protocol access level 'ReadOnly' 'kReadWrite' indicates Protocol access level 'ReadWrite'. [optional]  # noqa: E501
             nfs_squash (str, none_type): Specifies which nfsSquash Mounted. 'kNone' mounts none. 'kRootSquash' mounts nfsRootSquash. Whether clients from this subnet can mount as root on NFS. 'kAllSquash' mounts nfsAllSquash. Whether all clients from this subnet can map view with view_all_squash_uid/view_all_squash_gid configured in the view.. [optional]  # noqa: E501
-            smb_access (str, none_type): Specifies whether clients from this subnet can mount using SMB protocol. Protocol access level. 'kDisabled' indicates Protocol access level 'Disabled' 'kReadOnly' indicates Protocol access level 'ReadOnly' 'kReadWrite' indicates Protocol access level 'ReadWrite'. [optional]  # noqa: E501
             s3_access (str, none_type): Specifies whether clients from this subnet can access using S3 protocol. Protocol access level. 'kDisabled' indicates Protocol access level 'Disabled' 'kReadOnly' indicates Protocol access level 'ReadOnly' 'kReadWrite' indicates Protocol access level 'ReadWrite'. [optional]  # noqa: E501
+            smb_access (str, none_type): Specifies whether clients from this subnet can mount using SMB protocol. Protocol access level. 'kDisabled' indicates Protocol access level 'Disabled' 'kReadOnly' indicates Protocol access level 'ReadOnly' 'kReadWrite' indicates Protocol access level 'ReadWrite'. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

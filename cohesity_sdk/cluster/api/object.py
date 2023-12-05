@@ -23,10 +23,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.cluster.model.cancel_object_runs_request import CancelObjectRunsRequest
 from cohesity_sdk.cluster.model.cancel_object_runs_results import CancelObjectRunsResults
-from cohesity_sdk.cluster.model.common_object_action_request6fcd8fa0_a0964b078c843bdc27610432 import CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432
-from cohesity_sdk.cluster.model.common_pit_ranges_protected_object_response7ae55a6e057647998da8_f9162371b2e8 import CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8
 from cohesity_sdk.cluster.model.construct_meta_info_params import ConstructMetaInfoParams
-from cohesity_sdk.cluster.model.construct_meta_info_request import ConstructMetaInfoRequest
 from cohesity_sdk.cluster.model.construct_meta_info_result import ConstructMetaInfoResult
 from cohesity_sdk.cluster.model.deleted_protected_objects_response_body import DeletedProtectedObjectsResponseBody
 from cohesity_sdk.cluster.model.error import Error
@@ -36,9 +33,11 @@ from cohesity_sdk.cluster.model.filtered_objects_response_body import FilteredOb
 from cohesity_sdk.cluster.model.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
 from cohesity_sdk.cluster.model.get_object_runs_response_body import GetObjectRunsResponseBody
 from cohesity_sdk.cluster.model.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
+from cohesity_sdk.cluster.model.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.cluster.model.get_protected_objects_response import GetProtectedObjectsResponse
 from cohesity_sdk.cluster.model.local_global_object_id_list import LocalGlobalObjectIdList
-from cohesity_sdk.cluster.model.object_identifiers_params import ObjectIdentifiersParams
+from cohesity_sdk.cluster.model.object_action_request import ObjectActionRequest
+from cohesity_sdk.cluster.model.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.cluster.model.object_snapshot import ObjectSnapshot
 from cohesity_sdk.cluster.model.object_snapshot_id_params import ObjectSnapshotIdParams
@@ -84,7 +83,7 @@ class ObjectApi(object):
 
             Args:
                 id (int): Specifies the id of the Object.
-                body (CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432): Specifies the parameters to fetch contents of an object.
+                body (ObjectBrowseRequest): Specifies the parameters to fetch contents of an object.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -142,7 +141,7 @@ class ObjectApi(object):
                 'response_type': (FileFolderInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/browse',
@@ -175,7 +174,7 @@ class ObjectApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432,),
+                        (ObjectBrowseRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -270,7 +269,7 @@ class ObjectApi(object):
                 'response_type': (CancelObjectRunsResults,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/runs/cancel',
@@ -338,7 +337,7 @@ class ObjectApi(object):
 
             Args:
                 snapshot_id (str): Specifies the snapshot id.
-                body (ConstructMetaInfoRequest): Specifies the parameters to construct meta info for desired workflow.
+                body (ConstructMetaInfoParams): Specifies the parameters to construct meta info for desired workflow.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -396,7 +395,7 @@ class ObjectApi(object):
                 'response_type': (ConstructMetaInfoResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/meta-info',
@@ -429,7 +428,7 @@ class ObjectApi(object):
                     'snapshot_id':
                         (str,),
                     'body':
-                        (ConstructMetaInfoRequest,),
+                        (ConstructMetaInfoParams,),
                 },
                 'attribute_map': {
                     'snapshot_id': 'snapshotId',
@@ -524,7 +523,7 @@ class ObjectApi(object):
                 'response_type': (FilteredObjectsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/filter/objects',
@@ -601,7 +600,6 @@ class ObjectApi(object):
                 to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
-                object_action_key (str): Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -657,7 +655,7 @@ class ObjectApi(object):
                 'response_type': (GetIndexedObjectSnapshotsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/indexed-objects/snapshots',
@@ -675,7 +673,6 @@ class ObjectApi(object):
                     'to_time_usecs',
                     'run_types',
                     'use_cached_data',
-                    'object_action_key',
                 ],
                 'required': [
                     'object_id',
@@ -685,7 +682,6 @@ class ObjectApi(object):
                 ],
                 'enum': [
                     'run_types',
-                    'object_action_key',
                 ],
                 'validation': [
                     'run_types',
@@ -707,52 +703,6 @@ class ObjectApi(object):
                         "KHYDRATECDP": "kHydrateCDP",
                         "KSTORAGEARRAYSNAPSHOT": "kStorageArraySnapshot"
                     },
-                    ('object_action_key',): {
-
-                        "KVMWARE": "kVMware",
-                        "KHYPERV": "kHyperV",
-                        "KVCD": "kVCD",
-                        "KAZURE": "kAzure",
-                        "KGCP": "kGCP",
-                        "KKVM": "kKVM",
-                        "KACROPOLIS": "kAcropolis",
-                        "KAWS": "kAWS",
-                        "KAWSNATIVE": "kAWSNative",
-                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
-                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
-                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
-                        "KPHYSICAL": "kPhysical",
-                        "KPHYSICALFILES": "kPhysicalFiles",
-                        "KGPFS": "kGPFS",
-                        "KELASTIFILE": "kElastifile",
-                        "KNETAPP": "kNetapp",
-                        "KGENERICNAS": "kGenericNas",
-                        "KISILON": "kIsilon",
-                        "KFLASHBLADE": "kFlashBlade",
-                        "KPURE": "kPure",
-                        "KSQL": "kSQL",
-                        "KEXCHANGE": "kExchange",
-                        "KAD": "kAD",
-                        "KORACLE": "kOracle",
-                        "KVIEW": "kView",
-                        "KREMOTEADAPTER": "kRemoteAdapter",
-                        "KO365": "kO365",
-                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
-                        "KO365TEAMS": "kO365Teams",
-                        "KO365GROUP": "kO365Group",
-                        "KO365EXCHANGE": "kO365Exchange",
-                        "KO365ONEDRIVE": "kO365OneDrive",
-                        "KO365SHAREPOINT": "kO365Sharepoint",
-                        "KKUBERNETES": "kKubernetes",
-                        "KCASSANDRA": "kCassandra",
-                        "KMONGODB": "kMongoDB",
-                        "KCOUCHBASE": "kCouchbase",
-                        "KHDFS": "kHdfs",
-                        "KHIVE": "kHive",
-                        "KHBASE": "kHBase",
-                        "KUDA": "kUDA",
-                        "KSFDC": "kSfdc"
-                    },
                 },
                 'openapi_types': {
                     'object_id':
@@ -771,8 +721,6 @@ class ObjectApi(object):
                         ([str],),
                     'use_cached_data':
                         (bool,),
-                    'object_action_key':
-                        (str,),
                 },
                 'attribute_map': {
                     'object_id': 'objectId',
@@ -783,7 +731,6 @@ class ObjectApi(object):
                     'to_time_usecs': 'toTimeUsecs',
                     'run_types': 'runTypes',
                     'use_cached_data': 'useCachedData',
-                    'object_action_key': 'objectActionKey',
                 },
                 'location_map': {
                     'object_id': 'path',
@@ -794,7 +741,6 @@ class ObjectApi(object):
                     'to_time_usecs': 'query',
                     'run_types': 'query',
                     'use_cached_data': 'query',
-                    'object_action_key': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
@@ -885,7 +831,7 @@ class ObjectApi(object):
                 'response_type': (DeletedProtectedObjectsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{sourceId}/deleted-protected-objects',
@@ -978,12 +924,11 @@ class ObjectApi(object):
                 indexed_object_name (str): Specifies the indexed object name.
 
             Keyword Args:
-                include_indexed_snapshots_only (bool): Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.. [optional] if omitted the server will use the default value of False
+                include_indexed_snapshots_only (bool): Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteened to exist, while in a non-indexed snapshots file may not exist.. [optional] if omitted the server will use the default value of False
                 from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.. [optional]
                 to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
-                object_action_key (str): Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1041,7 +986,7 @@ class ObjectApi(object):
                 'response_type': (GetIndexedObjectSnapshotsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots',
@@ -1059,7 +1004,6 @@ class ObjectApi(object):
                     'to_time_usecs',
                     'run_types',
                     'use_cached_data',
-                    'object_action_key',
                 ],
                 'required': [
                     'protection_group_id',
@@ -1070,7 +1014,6 @@ class ObjectApi(object):
                 ],
                 'enum': [
                     'run_types',
-                    'object_action_key',
                 ],
                 'validation': [
                     'run_types',
@@ -1092,52 +1035,6 @@ class ObjectApi(object):
                         "KHYDRATECDP": "kHydrateCDP",
                         "KSTORAGEARRAYSNAPSHOT": "kStorageArraySnapshot"
                     },
-                    ('object_action_key',): {
-
-                        "KVMWARE": "kVMware",
-                        "KHYPERV": "kHyperV",
-                        "KVCD": "kVCD",
-                        "KAZURE": "kAzure",
-                        "KGCP": "kGCP",
-                        "KKVM": "kKVM",
-                        "KACROPOLIS": "kAcropolis",
-                        "KAWS": "kAWS",
-                        "KAWSNATIVE": "kAWSNative",
-                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
-                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
-                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
-                        "KPHYSICAL": "kPhysical",
-                        "KPHYSICALFILES": "kPhysicalFiles",
-                        "KGPFS": "kGPFS",
-                        "KELASTIFILE": "kElastifile",
-                        "KNETAPP": "kNetapp",
-                        "KGENERICNAS": "kGenericNas",
-                        "KISILON": "kIsilon",
-                        "KFLASHBLADE": "kFlashBlade",
-                        "KPURE": "kPure",
-                        "KSQL": "kSQL",
-                        "KEXCHANGE": "kExchange",
-                        "KAD": "kAD",
-                        "KORACLE": "kOracle",
-                        "KVIEW": "kView",
-                        "KREMOTEADAPTER": "kRemoteAdapter",
-                        "KO365": "kO365",
-                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
-                        "KO365TEAMS": "kO365Teams",
-                        "KO365GROUP": "kO365Group",
-                        "KO365EXCHANGE": "kO365Exchange",
-                        "KO365ONEDRIVE": "kO365OneDrive",
-                        "KO365SHAREPOINT": "kO365Sharepoint",
-                        "KKUBERNETES": "kKubernetes",
-                        "KCASSANDRA": "kCassandra",
-                        "KMONGODB": "kMongoDB",
-                        "KCOUCHBASE": "kCouchbase",
-                        "KHDFS": "kHdfs",
-                        "KHIVE": "kHive",
-                        "KHBASE": "kHBase",
-                        "KUDA": "kUDA",
-                        "KSFDC": "kSfdc"
-                    },
                 },
                 'openapi_types': {
                     'protection_group_id':
@@ -1156,8 +1053,6 @@ class ObjectApi(object):
                         ([str],),
                     'use_cached_data':
                         (bool,),
-                    'object_action_key':
-                        (str,),
                 },
                 'attribute_map': {
                     'protection_group_id': 'protectionGroupId',
@@ -1168,7 +1063,6 @@ class ObjectApi(object):
                     'to_time_usecs': 'toTimeUsecs',
                     'run_types': 'runTypes',
                     'use_cached_data': 'useCachedData',
-                    'object_action_key': 'objectActionKey',
                 },
                 'location_map': {
                     'protection_group_id': 'path',
@@ -1179,7 +1073,6 @@ class ObjectApi(object):
                     'to_time_usecs': 'query',
                     'run_types': 'query',
                     'use_cached_data': 'query',
-                    'object_action_key': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
@@ -1212,7 +1105,6 @@ class ObjectApi(object):
             Keyword Args:
                 global_ids ([str]): Get the object identifier matching specified global IDs.. [optional]
                 local_ids ([int]): Get the object identifier matching specified local IDs.. [optional]
-                body (ObjectIdentifiersParams): Extra parameters that can be specified to get object identifiers.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1264,7 +1156,7 @@ class ObjectApi(object):
                 'response_type': (LocalGlobalObjectIdList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/object-identifiers',
@@ -1276,7 +1168,6 @@ class ObjectApi(object):
                 'all': [
                     'global_ids',
                     'local_ids',
-                    'body',
                 ],
                 'required': [],
                 'nullable': [
@@ -1296,8 +1187,6 @@ class ObjectApi(object):
                         ([str],),
                     'local_ids':
                         ([int],),
-                    'body':
-                        (ObjectIdentifiersParams,),
                 },
                 'attribute_map': {
                     'global_ids': 'globalIds',
@@ -1306,7 +1195,6 @@ class ObjectApi(object):
                 'location_map': {
                     'global_ids': 'query',
                     'local_ids': 'query',
-                    'body': 'body',
                 },
                 'collection_format_map': {
                     'global_ids': 'ssv',
@@ -1317,9 +1205,7 @@ class ObjectApi(object):
                 'accept': [
                     'application/json'
                 ],
-                'content_type': [
-                    'application/json'
-                ]
+                'content_type': [],
             },
             api_client=api_client,
             callable=__get_object_identifiers
@@ -1400,7 +1286,7 @@ class ObjectApi(object):
                 'response_type': (ObjectProtectionRunSummary,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/runs/{runId}',
@@ -1486,7 +1372,7 @@ class ObjectApi(object):
                 cloud_spin_run_status ([str]): Specifies a list of status for the object in the cloud spin run.. [optional]
                 num_runs (int): Specifies the max number of runs. If not specified, at most 100 runs will be returned.. [optional]
                 pagination_cookie (str): Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs. [optional]
-                exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
+                exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1540,7 +1426,7 @@ class ObjectApi(object):
                 'response_type': (GetObjectRunsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/runs',
@@ -1803,7 +1689,7 @@ class ObjectApi(object):
                 'response_type': (ObjectSnapshotIdResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/snapshotId',
@@ -1931,7 +1817,7 @@ class ObjectApi(object):
                 'response_type': (ObjectSnapshot,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}',
@@ -2055,7 +1941,7 @@ class ObjectApi(object):
                 'response_type': (ObjectSnapshotVolumeInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/volume',
@@ -2201,7 +2087,7 @@ class ObjectApi(object):
                 'response_type': (GetObjectSnapshotsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshots',
@@ -2473,7 +2359,7 @@ class ObjectApi(object):
                 'response_type': (ObjectStats,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/stats',
@@ -2600,7 +2486,7 @@ class ObjectApi(object):
                 'response_type': (ObjectWithChildren,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/tree',
@@ -2721,7 +2607,7 @@ class ObjectApi(object):
                 'response_type': (ObjectsLastRun,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/last-run',
@@ -2833,7 +2719,7 @@ class ObjectApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8
+                GetPITRangesProtectedObjectResponseBody
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2862,10 +2748,10 @@ class ObjectApi(object):
 
         self.get_pit_ranges_for_protected_object = _Endpoint(
             settings={
-                'response_type': (CommonPITRangesProtectedObjectResponse7ae55a6e057647998da8F9162371b2e8,),
+                'response_type': (GetPITRangesProtectedObjectResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/pit-ranges',
@@ -2938,7 +2824,7 @@ class ObjectApi(object):
         ):
             """Get an Object.  # noqa: E501
 
-            Get Object configurations for given object id.  # noqa: E501
+            Get Object configrations for given object id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -3012,7 +2898,7 @@ class ObjectApi(object):
                 'response_type': (ProtectedObjectInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}',
@@ -3054,8 +2940,7 @@ class ObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                     ('object_action_key',): {
 
@@ -3298,7 +3183,7 @@ class ObjectApi(object):
                 'response_type': (GetProtectedObjectsResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects',
@@ -3343,8 +3228,7 @@ class ObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                     ('object_action_keys',): {
 
@@ -3603,7 +3487,7 @@ class ObjectApi(object):
                 'response_type': (SnapshotDiffResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshot-diff',
@@ -3763,7 +3647,7 @@ class ObjectApi(object):
                 'response_type': (SourceHierarchyObjectSummaries,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{sourceId}/objects',
@@ -4376,7 +4260,7 @@ class ObjectApi(object):
                 'response_type': (ConstructMetaInfoResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/metaInfo',
@@ -4508,7 +4392,7 @@ class ObjectApi(object):
                 'response_type': (SnapshotDiffResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshotDiff',
@@ -4580,7 +4464,7 @@ class ObjectApi(object):
             >>> result = thread.get()
 
             Args:
-                body (ObjectsActionRequest): Specifies the parameters to execute actions on given list of objects.
+                body (ObjectsActionRequest): Specifies the paramteres to execute actions on given list of objects.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -4636,7 +4520,7 @@ class ObjectApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/actions',
@@ -4704,7 +4588,7 @@ class ObjectApi(object):
 
             Args:
                 id (int): Specifies the id of the Object.
-                body (CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432): Specifies the parameters to perform an action on an object.
+                body (ObjectActionRequest): Specifies the parameters to perform an action on an object.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -4762,7 +4646,7 @@ class ObjectApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/actions',
@@ -4795,7 +4679,7 @@ class ObjectApi(object):
                     'id':
                         (int,),
                     'body':
-                        (CommonObjectActionRequest6fcd8fa0A0964b078c843bdc27610432,),
+                        (ObjectActionRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -4898,7 +4782,7 @@ class ObjectApi(object):
                 'response_type': (ObjectSnapshot,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshots/{snapshotId}',

@@ -54,15 +54,18 @@ class ObjectProtectionGroupSummary(ModelNormal):
     """
 
     allowed_values = {
-        ('protection_env_type',): {
+        ('last_archival_run_status',): {
             'None': None,
-            'KAGENT': "kAgent",
-            'KNATIVE': "kNative",
-            'KSNAPSHOTMANAGER': "kSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
-            'KFILE': "kFile",
-            'KVOLUME': "kVolume",
+            'ACCEPTED': "Accepted",
+            'RUNNING': "Running",
+            'CANCELED': "Canceled",
+            'CANCELING': "Canceling",
+            'FAILED': "Failed",
+            'MISSED': "Missed",
+            'SUCCEEDED': "Succeeded",
+            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
+            'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('last_backup_run_status',): {
             'None': None,
@@ -76,21 +79,6 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
-        },
-        ('last_archival_run_status',): {
-            'None': None,
-            'ACCEPTED': "Accepted",
-            'RUNNING': "Running",
-            'CANCELED': "Canceled",
-            'CANCELING': "Canceling",
-            'FAILED': "Failed",
-            'MISSED': "Missed",
-            'SUCCEEDED': "Succeeded",
-            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
-            'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
         },
         ('last_replication_run_status',): {
             'None': None,
@@ -104,7 +92,6 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
         },
     }
 
@@ -126,16 +113,15 @@ class ObjectProtectionGroupSummary(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
-            'protection_env_type': (str, none_type,),  # noqa: E501
-            'policy_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
-            'storage_domain_id': (str, none_type,),  # noqa: E501
-            'last_backup_run_status': (str, none_type,),  # noqa: E501
             'last_archival_run_status': (str, none_type,),  # noqa: E501
+            'last_backup_run_status': (str, none_type,),  # noqa: E501
             'last_replication_run_status': (str, none_type,),  # noqa: E501
             'last_run_sla_violated': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
+            'storage_domain_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -145,16 +131,15 @@ class ObjectProtectionGroupSummary(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'protection_env_type': 'protectionEnvType',  # noqa: E501
-        'policy_name': 'policyName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'last_backup_run_status': 'lastBackupRunStatus',  # noqa: E501
         'last_archival_run_status': 'lastArchivalRunStatus',  # noqa: E501
+        'last_backup_run_status': 'lastBackupRunStatus',  # noqa: E501
         'last_replication_run_status': 'lastReplicationRunStatus',  # noqa: E501
         'last_run_sla_violated': 'lastRunSlaViolated',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -204,16 +189,15 @@ class ObjectProtectionGroupSummary(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the protection group name.. [optional]  # noqa: E501
             id (str, none_type): Specifies the protection group id.. [optional]  # noqa: E501
-            protection_env_type (str, none_type): Specifies the protection type of the job if any.. [optional]  # noqa: E501
-            policy_name (str, none_type): Specifies the policy name for this group.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the policy id for this group.. [optional]  # noqa: E501
-            storage_domain_id (str, none_type): Specifies the storage domain id of this group. Format is clusterId:clusterIncarnationId:storageDomainId.. [optional]  # noqa: E501
-            last_backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             last_archival_run_status (str, none_type): Specifies the status of last archival run.. [optional]  # noqa: E501
+            last_backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             last_replication_run_status (str, none_type): Specifies the status of last replication run.. [optional]  # noqa: E501
             last_run_sla_violated (bool, none_type): Specifies if the sla is violated in last run.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the protection group name.. [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the policy id for this group.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies the policy name for this group.. [optional]  # noqa: E501
+            storage_domain_id (str, none_type): Specifies the storage domain id of this group. Format is clusterId:clusterIncarnationId:storageDomainId.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

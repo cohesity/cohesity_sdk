@@ -97,11 +97,11 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
         """
         lazy_import()
         return {
+            'files_and_folders': ([FilesAndFoldersObject], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'object': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
-            'files_and_folders': ([FilesAndFoldersObject], none_type,),  # noqa: E501
-            'parent_recovery_id': (str, none_type,),  # noqa: E501
             'glacier_retrieval_type': (str, none_type,),  # noqa: E501
+            'parent_recovery_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -111,11 +111,11 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
 
 
     attribute_map = {
+        'files_and_folders': 'filesAndFolders',  # noqa: E501
         'name': 'name',  # noqa: E501
         'object': 'object',  # noqa: E501
-        'files_and_folders': 'filesAndFolders',  # noqa: E501
-        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
         'glacier_retrieval_type': 'glacierRetrievalType',  # noqa: E501
+        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -130,13 +130,13 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, object, files_and_folders, *args, **kwargs):  # noqa: E501
+    def __init__(self, files_and_folders, name, object, *args, **kwargs):  # noqa: E501
         """DownloadFilesAndFoldersRequestParams - a model defined in OpenAPI
 
         Args:
+            files_and_folders ([FilesAndFoldersObject], none_type): Specifies the list of files and folders to download.
             name (str, none_type): Specifies the name of the recovery task. This field must be set and must be a unique name.
             object (CommonRecoverObjectSnapshotParams):
-            files_and_folders ([FilesAndFoldersObject], none_type): Specifies the list of files and folders to download.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            parent_recovery_id (str, none_type): If current recovery is child task triggered through another parent recovery operation, then this field will specify the id of the parent recovery.. [optional]  # noqa: E501
             glacier_retrieval_type (str, none_type): Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot.. [optional]  # noqa: E501
+            parent_recovery_id (str, none_type): If current recovery is child task triggered through another parent recovery operation, then this field will specify the id of the parent recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,9 +198,9 @@ class DownloadFilesAndFoldersRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.files_and_folders = files_and_folders
         self.name = name
         self.object = object
-        self.files_and_folders = files_and_folders
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -82,13 +82,13 @@ class VmwareProtectionGroupStandbyResourceParams(ModelComposed):
         lazy_import()
         return {
             'recovery_point_objective_secs': (int, none_type,),  # noqa: E501
-            'rename_restored_object_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'parent_object_id': (int, none_type,),  # noqa: E501
-            'target_folder_object_id': (int, none_type,),  # noqa: E501
-            'target_datastore_folder_object_id': (int, none_type,),  # noqa: E501
-            'resource_pool_object_id': (int, none_type,),  # noqa: E501
             'datastore_object_ids': ([int, none_type],),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'parent_object_id': (int, none_type,),  # noqa: E501
+            'rename_restored_object_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'resource_pool_object_id': (int, none_type,),  # noqa: E501
+            'target_datastore_folder_object_id': (int, none_type,),  # noqa: E501
+            'target_folder_object_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,13 +99,13 @@ class VmwareProtectionGroupStandbyResourceParams(ModelComposed):
 
     attribute_map = {
         'recovery_point_objective_secs': 'recoveryPointObjectiveSecs',  # noqa: E501
-        'rename_restored_object_params': 'renameRestoredObjectParams',  # noqa: E501
-        'parent_object_id': 'parentObjectId',  # noqa: E501
-        'target_folder_object_id': 'targetFolderObjectId',  # noqa: E501
-        'target_datastore_folder_object_id': 'targetDatastoreFolderObjectId',  # noqa: E501
-        'resource_pool_object_id': 'resourcePoolObjectId',  # noqa: E501
         'datastore_object_ids': 'datastoreObjectIds',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
+        'parent_object_id': 'parentObjectId',  # noqa: E501
+        'rename_restored_object_params': 'renameRestoredObjectParams',  # noqa: E501
+        'resource_pool_object_id': 'resourcePoolObjectId',  # noqa: E501
+        'target_datastore_folder_object_id': 'targetDatastoreFolderObjectId',  # noqa: E501
+        'target_folder_object_id': 'targetFolderObjectId',  # noqa: E501
     }
 
     required_properties = set([
@@ -157,13 +157,13 @@ class VmwareProtectionGroupStandbyResourceParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             recovery_point_objective_secs (int, none_type): Specifies the recovery point objective time user expects for this standby resource.. [optional]  # noqa: E501
-            rename_restored_object_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the standby resource.. [optional]  # noqa: E501
-            parent_object_id (int, none_type): Specifies the object id for parent vCenter source where this standby resource should be created.. [optional]  # noqa: E501
-            target_folder_object_id (int, none_type): Specifies the object id for target vm folder where this standby resource should be created.. [optional]  # noqa: E501
-            target_datastore_folder_object_id (int, none_type): Specifies the object id for target datastore folder where disks for this standby resource should be placed.. [optional]  # noqa: E501
-            resource_pool_object_id (int, none_type): Specifies the object id for resource pool where this standby resource should be created.. [optional]  # noqa: E501
             datastore_object_ids ([int, none_type]): Specifies the list of IDs of the datastore objects where this standby resource should be created.. [optional]  # noqa: E501
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to this standby resource.. [optional]  # noqa: E501
+            parent_object_id (int, none_type): Specifies the object id for parent vCenter source where this standby resource should be created.. [optional]  # noqa: E501
+            rename_restored_object_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the standby resource.. [optional]  # noqa: E501
+            resource_pool_object_id (int, none_type): Specifies the object id for resource pool where this standby resource should be created.. [optional]  # noqa: E501
+            target_datastore_folder_object_id (int, none_type): Specifies the object id for target datastore folder where disks for this standby resource should be placed.. [optional]  # noqa: E501
+            target_folder_object_id (int, none_type): Specifies the object id for target vm folder where this standby resource should be created.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

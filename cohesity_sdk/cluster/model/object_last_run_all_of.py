@@ -54,21 +54,6 @@ class ObjectLastRunAllOf(ModelNormal):
     """
 
     allowed_values = {
-        ('backup_run_status',): {
-            'None': None,
-            'ACCEPTED': "Accepted",
-            'RUNNING': "Running",
-            'CANCELED': "Canceled",
-            'CANCELING': "Canceling",
-            'FAILED': "Failed",
-            'MISSED': "Missed",
-            'SUCCEEDED': "Succeeded",
-            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
-            'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
-            'PAUSED': "Paused",
-        },
         ('archival_run_status',): {
             'None': None,
             'ACCEPTED': "Accepted",
@@ -81,7 +66,20 @@ class ObjectLastRunAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
+            'PAUSED': "Paused",
+        },
+        ('backup_run_status',): {
+            'None': None,
+            'ACCEPTED': "Accepted",
+            'RUNNING': "Running",
+            'CANCELED': "Canceled",
+            'CANCELING': "Canceling",
+            'FAILED': "Failed",
+            'MISSED': "Missed",
+            'SUCCEEDED': "Succeeded",
+            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
+            'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('replication_run_status',): {
@@ -96,7 +94,6 @@ class ObjectLastRunAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -119,15 +116,15 @@ class ObjectLastRunAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'run_id': (str,),  # noqa: E501
-            'protection_group_name': (str, none_type,),  # noqa: E501
-            'protection_group_id': (str, none_type,),  # noqa: E501
-            'policy_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
-            'backup_run_status': (str, none_type,),  # noqa: E501
             'archival_run_status': (str, none_type,),  # noqa: E501
-            'replication_run_status': (str, none_type,),  # noqa: E501
+            'backup_run_status': (str, none_type,),  # noqa: E501
             'is_sla_violated': (bool, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
+            'protection_group_id': (str, none_type,),  # noqa: E501
+            'protection_group_name': (str, none_type,),  # noqa: E501
+            'replication_run_status': (str, none_type,),  # noqa: E501
+            'run_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -137,15 +134,15 @@ class ObjectLastRunAllOf(ModelNormal):
 
 
     attribute_map = {
-        'run_id': 'runId',  # noqa: E501
-        'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'policy_name': 'policyName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
-        'backup_run_status': 'backupRunStatus',  # noqa: E501
         'archival_run_status': 'archivalRunStatus',  # noqa: E501
-        'replication_run_status': 'replicationRunStatus',  # noqa: E501
+        'backup_run_status': 'backupRunStatus',  # noqa: E501
         'is_sla_violated': 'isSlaViolated',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
+        'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'replication_run_status': 'replicationRunStatus',  # noqa: E501
+        'run_id': 'runId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -195,15 +192,15 @@ class ObjectLastRunAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            run_id (str): Specifies the last run id.. [optional]  # noqa: E501
-            protection_group_name (str, none_type): Specifies the protection group name of last run.. [optional]  # noqa: E501
-            protection_group_id (str, none_type): Specifies the protection group id of last run.. [optional]  # noqa: E501
-            policy_name (str, none_type): Specifies the policy name of last run.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the policy id of last run.. [optional]  # noqa: E501
-            backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             archival_run_status (str, none_type): Specifies the status of last archival run.. [optional]  # noqa: E501
-            replication_run_status (str, none_type): Specifies the status of last replication run.. [optional]  # noqa: E501
+            backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             is_sla_violated (bool, none_type): Specifies if the sla is violated in last run.. [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the policy id of last run.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies the policy name of last run.. [optional]  # noqa: E501
+            protection_group_id (str, none_type): Specifies the protection group id of last run.. [optional]  # noqa: E501
+            protection_group_name (str, none_type): Specifies the protection group name of last run.. [optional]  # noqa: E501
+            replication_run_status (str, none_type): Specifies the status of last replication run.. [optional]  # noqa: E501
+            run_id (str): Specifies the last run id.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

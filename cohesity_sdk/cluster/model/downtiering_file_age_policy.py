@@ -80,8 +80,8 @@ class DowntieringFileAgePolicy(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'condition': (str, none_type,),  # noqa: E501
             'age_msecs': (int, none_type,),  # noqa: E501
+            'condition': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +91,8 @@ class DowntieringFileAgePolicy(ModelNormal):
 
 
     attribute_map = {
-        'condition': 'condition',  # noqa: E501
         'age_msecs': 'ageMsecs',  # noqa: E501
+        'condition': 'condition',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,8 +142,8 @@ class DowntieringFileAgePolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            condition (str, none_type): Specifies the condition for the file age.. [optional]  # noqa: E501
             age_msecs (int, none_type): Specifies the number of msecs used for file selection.. [optional]  # noqa: E501
+            condition (str, none_type): Specifies the condition for the file age.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

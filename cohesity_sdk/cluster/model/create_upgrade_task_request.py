@@ -74,12 +74,12 @@ class CreateUpgradeTaskRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'agent_ids': ([int], none_type,),  # noqa: E501
-            'schedule_time_usecs': (int, none_type,),  # noqa: E501
-            'schedule_end_time_usecs': (int, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'retry_task_id': (int, none_type,),  # noqa: E501
+            'schedule_end_time_usecs': (int, none_type,),  # noqa: E501
+            'schedule_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class CreateUpgradeTaskRequest(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'agent_ids': 'agentIDs',  # noqa: E501
-        'schedule_time_usecs': 'scheduleTimeUsecs',  # noqa: E501
-        'schedule_end_time_usecs': 'scheduleEndTimeUsecs',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'retry_task_id': 'retryTaskId',  # noqa: E501
+        'schedule_end_time_usecs': 'scheduleEndTimeUsecs',  # noqa: E501
+        'schedule_time_usecs': 'scheduleTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class CreateUpgradeTaskRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
-            description (str, none_type): Specifies the description of the task.. [optional]  # noqa: E501
             agent_ids ([int], none_type): Specifies agent IDs to be upgraded in the task.. [optional]  # noqa: E501
-            schedule_time_usecs (int, none_type): Specifies the start time of the task specified by the user as a Unix epoch Timestamp (in microseconds). If no schedule is specified, the agents will be upgraded immediately.. [optional]  # noqa: E501
-            schedule_end_time_usecs (int, none_type): Specifies the time before which the upgrade task should start execution as a Unix epoch Timestamp (in microseconds). If this is not specified the task will start anytime after scheduleTimeUsecs.. [optional]  # noqa: E501
+            description (str, none_type): Specifies the description of the task.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
             retry_task_id (int, none_type): Specifies the task that needs to be retried.. [optional]  # noqa: E501
+            schedule_end_time_usecs (int, none_type): Specifies the time before which the upgrade task should start execution as a Unix epoch Timestamp (in microseconds). If this is not specified the task will start anytime after scheduleTimeUsecs.. [optional]  # noqa: E501
+            schedule_time_usecs (int, none_type): Specifies the start time of the task specified by the user as a Unix epoch Timestamp (in microseconds). If no schedule is specified, the agents will be upgraded immediately.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

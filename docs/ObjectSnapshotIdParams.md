@@ -6,8 +6,8 @@ Params to fetch snapshot id for an object.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **protection_group_id** | **str, none_type** | Specifies the protection group id. | 
-**snapshot_job_instance_id** | **int, none_type** | Specifies the instance id of the snapshot. | [optional] 
 **run_start_time_usecs** | **int, none_type** | Specifies the start time of the snapshot in micro seconds. | [optional] 
+**snapshot_job_instance_id** | **int, none_type** | Specifies the instance id of the snapshot. | [optional] 
 **source_group_id** | **str, none_type** | Specifies the source protection group id. | [optional] 
 **vault_id** | **int, none_type** | Specifies the vault id. | [optional] 
 

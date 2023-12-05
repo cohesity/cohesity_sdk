@@ -54,6 +54,12 @@ class HostSettingCheck(ModelNormal):
     """
 
     allowed_values = {
+        ('result',): {
+            'None': None,
+            'PASS': "Pass",
+            'FAIL': "Fail",
+            'WARNING': "Warning",
+        },
         ('type',): {
             'None': None,
             'ISAGENTPORTACCESSIBLE': "IsAgentPortAccessible",
@@ -63,12 +69,6 @@ class HostSettingCheck(ModelNormal):
             'CHECKSERVICELOGINSCONFIG': "CheckServiceLoginsConfig",
             'CHECKSQLFCIVIP': "CheckSQLFCIVIP",
             'CHECKSQLDISKSPACE': "CheckSQLDiskSpace",
-        },
-        ('result',): {
-            'None': None,
-            'PASS': "Pass",
-            'FAIL': "Fail",
-            'WARNING': "Warning",
         },
     }
 
@@ -90,8 +90,8 @@ class HostSettingCheck(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
             'result': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,8 +101,8 @@ class HostSettingCheck(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'result': 'result',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,8 +152,8 @@ class HostSettingCheck(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the type of host checking that was performed.. [optional]  # noqa: E501
             result (str, none_type): Specifies the result of host checking performed by agent.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the type of host checking that was performed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

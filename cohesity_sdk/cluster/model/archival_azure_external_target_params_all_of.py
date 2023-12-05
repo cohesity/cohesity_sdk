@@ -83,9 +83,9 @@ class ArchivalAzureExternalTargetParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'archive_blob_params': (AzureArchiveBlobParams,),  # noqa: E501
             'cool_blob_params': (AzureCoolBlobParams,),  # noqa: E501
             'hot_blob_params': (AzureHotBlobParams,),  # noqa: E501
-            'archive_blob_params': (AzureArchiveBlobParams,),  # noqa: E501
         }
 
     @cached_property
@@ -95,9 +95,9 @@ class ArchivalAzureExternalTargetParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'archive_blob_params': 'archiveBlobParams',  # noqa: E501
         'cool_blob_params': 'coolBlobParams',  # noqa: E501
         'hot_blob_params': 'hotBlobParams',  # noqa: E501
-        'archive_blob_params': 'archiveBlobParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,9 +147,9 @@ class ArchivalAzureExternalTargetParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            archive_blob_params (AzureArchiveBlobParams): [optional]  # noqa: E501
             cool_blob_params (AzureCoolBlobParams): [optional]  # noqa: E501
             hot_blob_params (AzureHotBlobParams): [optional]  # noqa: E501
-            archive_blob_params (AzureArchiveBlobParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

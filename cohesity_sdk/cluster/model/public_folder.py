@@ -75,8 +75,8 @@ class PublicFolder(ModelNormal):
         """
         return {
             'folder_id': (str, none_type,),  # noqa: E501
-            'recover_entire_folder': (bool, none_type,),  # noqa: E501
             'item_ids': ([str], none_type,),  # noqa: E501
+            'recover_entire_folder': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class PublicFolder(ModelNormal):
 
     attribute_map = {
         'folder_id': 'folderId',  # noqa: E501
-        'recover_entire_folder': 'recoverEntireFolder',  # noqa: E501
         'item_ids': 'itemIds',  # noqa: E501
+        'recover_entire_folder': 'recoverEntireFolder',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class PublicFolder(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_entire_folder (bool, none_type): Specifies whether to recover the whole PublicFolder.. [optional]  # noqa: E501
             item_ids ([str], none_type): Specifies a list of item ids to recover. This field is applicable only if 'recoverEntireFolder' is false.. [optional]  # noqa: E501
+            recover_entire_folder (bool, none_type): Specifies whether to recover the whole PublicFolder.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -13,7 +13,6 @@ Method | HTTP request | Description
 [**get_source_attribute_filters**](SourceApi.md#get_source_attribute_filters) | **GET** /data-protect/sources/filters | List attribute filters for a source.
 [**get_source_registrations**](SourceApi.md#get_source_registrations) | **GET** /data-protect/sources/registrations | Get the list of Protection Source registrations.
 [**get_vdc_details**](SourceApi.md#get_vdc_details) | **GET** /data-protect/sources/virtual-datacenter/{id} | Get VDC Details.
-[**patch_protection_source_registration**](SourceApi.md#patch_protection_source_registration) | **PATCH** /data-protect/sources/registrations/{id} | Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
 [**protection_source_by_id**](SourceApi.md#protection_source_by_id) | **GET** /data-protect/sources/{id} | Get a Protection Sources.
 [**refresh_protection_source_by_id**](SourceApi.md#refresh_protection_source_by_id) | **POST** /data-protect/sources/{id}/refresh | Refresh a Protection Source.
 [**register_protection_source**](SourceApi.md#register_protection_source) | **POST** /data-protect/sources/registrations | Register a Protection Source.
@@ -30,7 +29,6 @@ Creates Microsoft 365 Azure Applications
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_azure_application_request_params import CreateAzureApplicationRequestParams
@@ -47,11 +45,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateAzureApplicationRequestParams(
         access_token="access_token_example",
-        username="username_example",
-        microsoft365_region="Default",
         app_count=1,
         existing_microsoft365_app_credentials_list=[
             Office365AppCredentials(
@@ -59,6 +54,8 @@ body = CreateAzureApplicationRequestParams(
                 client_secret="client_secret_example",
             ),
         ],
+        microsoft365_region="Default",
+        username="username_example",
     ) # CreateAzureApplicationRequestParams | Specifies the parameters to create Azure applications within a given Microsoft365 source.
 
 # example passing only required values which don't have defaults set
@@ -83,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -108,7 +105,6 @@ Delete Protection Source Registration.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -122,7 +118,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the ID of the Protection Source Registration.
 
@@ -147,7 +142,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -172,7 +167,6 @@ Generates the access token if the device code has been granted authorization as 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
@@ -189,10 +183,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = GenerateM365DeviceAccessTokenRequestParams(
-        domain="domain_example",
         device_code="device_code_example",
+        domain="domain_example",
     ) # GenerateM365DeviceAccessTokenRequestParams | Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.
 
 # example passing only required values which don't have defaults set
@@ -217,7 +210,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -242,7 +235,6 @@ Generates User and Device code for Microsoft365 Device Authorization Grant for a
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -258,7 +250,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = GenerateM365DeviceCodeRequestParams(
         domain="domain_example",
@@ -286,7 +277,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -311,7 +302,6 @@ Fetches the region and endpoint for the Microsoft365 source.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_m365_source_region_endpoint_response_params import GetM365SourceRegionEndpointResponseParams
@@ -326,7 +316,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 domain = "domain_example" # str | Specifies the domain name of the source.
 
@@ -352,7 +341,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -369,7 +358,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_source_registration**
-> CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89 get_protection_source_registration(id)
+> SourceRegistration get_protection_source_registration(id)
 
 Get a Protection Source registration.
 
@@ -377,11 +366,10 @@ Get a Protection Source registration.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_source_registration_reponse_params0a86bd5c_f7de4a5085d3_aa7003ecba89 import CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
+from cohesity_sdk.cluster.model.source_registration import SourceRegistration
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -392,7 +380,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Protection Source registration.
 
@@ -414,11 +401,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89**](CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89.md)
+[**SourceRegistration**](SourceRegistration.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -443,7 +430,6 @@ Get a List of Protection Sources.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -458,7 +444,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 tenant_ids = [
         "tenantIds_example",
@@ -493,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -518,7 +503,6 @@ Get a List of attribute filters for leaf entities within a a source
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -533,7 +517,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 source_uuid = "sourceUuid_example" # str | Specifies the source UUID of the parent entity.
 environment = "kVMware" # str, none_type | Specifies the environment type of the Protection Source. (optional)
@@ -570,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -595,7 +578,6 @@ Get the list of Protection Source registrations.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.source_registrations import SourceRegistrations
@@ -610,7 +592,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         1,
@@ -651,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -676,7 +657,6 @@ Get the details such as catelogs, Org networks associated with a VMware virtual 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -691,7 +671,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the ID of the VMware virtual datacenter.
 
@@ -717,117 +696,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **patch_protection_source_registration**
-> CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89 patch_protection_source_registration(id, body)
-
-Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
-
-Patches a Protection Source.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_source_registration_reponse_params0a86bd5c_f7de4a5085d3_aa7003ecba89 import CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-id = 1 # int | Specifies the id of the Protection Source registration.
-body = SourceRegistrationPatchRequestParams(
-        environment="kVMware",
-        cassandra_params=CassandraSourceRegistrationPatchParams(
-            seed_node="seed_node_example",
-            config_directory="config_directory_example",
-            dse_configuration_directory="dse_configuration_directory_example",
-            is_dse_tiered_storage=True,
-            is_dse_authenticator=True,
-            ssh_password_credentials=SshPasswordCredentials(
-                username="username_example",
-                password="password_example",
-            ),
-            ssh_private_key_credentials=SshPrivateKeyCredentials(
-                user_id="user_id_example",
-                private_key="private_key_example",
-                passphrase="passphrase_example",
-            ),
-            jmx_credentials=CassandraSourceRegistrationPatchParamsJmxCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            cassandra_credentials=CassandraSourceRegistrationPatchParamsCassandraCredentials(
-                password="password_example",
-                username="username_example",
-            ),
-            data_center_names=[
-                "data_center_names_example",
-            ],
-            commit_log_backup_location="commit_log_backup_location_example",
-            kerberos_principal="kerberos_principal_example",
-            dse_solr_info=DSESolrInfo(
-                solr_nodes=[
-                    "solr_nodes_example",
-                ],
-                solr_port=1,
-            ),
-        ),
-    ) # SourceRegistrationPatchRequestParams | Specifies the parameters to partially update the registration.
-
-# example passing only required values which don't have defaults set
-try:
-	# Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
-	api_response = client.source.patch_protection_source_registration(id, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling SourceApi->patch_protection_source_registration: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the id of the Protection Source registration. |
- **body** | [**SourceRegistrationPatchRequestParams**](SourceRegistrationPatchRequestParams.md)| Specifies the parameters to partially update the registration. |
-
-### Return type
-
-[**CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89**](CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -848,7 +721,6 @@ Get a Protection Source.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -863,7 +735,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Protection Source.
 
@@ -889,7 +760,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -914,7 +785,6 @@ Refresh a Protection Source.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -928,7 +798,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Protection Source.
 
@@ -953,7 +822,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -970,7 +839,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **register_protection_source**
-> CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89 register_protection_source(body)
+> SourceRegistration register_protection_source(body)
 
 Register a Protection Source.
 
@@ -978,12 +847,11 @@ Register a Protection Source.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_source_registration_request_params55735f4993544f9e_a2ac_fca18c1c1a95 import CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95
-from cohesity_sdk.cluster.model.common_source_registration_reponse_params0a86bd5c_f7de4a5085d3_aa7003ecba89 import CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
+from cohesity_sdk.cluster.model.source_registration_request_params import SourceRegistrationRequestParams
+from cohesity_sdk.cluster.model.source_registration import SourceRegistration
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -995,22 +863,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95(
-        environment="kVMware",
-        name="name_example",
-        is_internal_encrypted=True,
-        encryption_key="encryption_key_example",
-        connection_id=1,
-        connections=[
-            ConnectionConfig(
-                connection_id=1,
-                entity_id=1,
-                connector_group_id=1,
-            ),
-        ],
-        connector_group_id=1,
-    ) # CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95 | Specifies the parameters to register a Protection Source.
+body = SourceRegistrationRequestParams() # SourceRegistrationRequestParams | Specifies the parameters to register a Protection Source.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1026,15 +879,15 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95**](CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95.md)| Specifies the parameters to register a Protection Source. |
+ **body** | [**SourceRegistrationRequestParams**](SourceRegistrationRequestParams.md)| Specifies the parameters to register a Protection Source. |
 
 ### Return type
 
-[**CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89**](CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89.md)
+[**SourceRegistration**](SourceRegistration.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1059,12 +912,11 @@ Test connection to a source.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.source_connection_response_params import SourceConnectionResponseParams
+from cohesity_sdk.cluster.model.source_connection_request_params import SourceConnectionRequestParams
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_source_connection_request_params208ba18711b94c2f_a7c12414ed0a71c0 import CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1076,11 +928,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0(
-        environment="kCassandra",
-        connection_id=1,
-    ) # CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0 | Specifies the parameters to test connectivity with a source.
+body = SourceConnectionRequestParams() # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1096,7 +944,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0**](CommonSourceConnectionRequestParams208ba18711b94c2fA7c12414ed0a71c0.md)| Specifies the parameters to test connectivity with a source. |
+ **body** | [**SourceConnectionRequestParams**](SourceConnectionRequestParams.md)| Specifies the parameters to test connectivity with a source. |
 
 ### Return type
 
@@ -1104,7 +952,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1121,7 +969,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_protection_source_registration**
-> CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89 update_protection_source_registration(id, body)
+> SourceRegistration update_protection_source_registration(id, body)
 
 Update Protection Source registration.
 
@@ -1129,12 +977,11 @@ Update Protection Source registration.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_source_registration_request_params55735f4993544f9e_a2ac_fca18c1c1a95 import CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95
-from cohesity_sdk.cluster.model.common_source_registration_reponse_params0a86bd5c_f7de4a5085d3_aa7003ecba89 import CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89
+from cohesity_sdk.cluster.model.source_registration import SourceRegistration
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1146,23 +993,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies the id of the Protection Source registration.
-body = CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95(
-        environment="kVMware",
-        name="name_example",
-        is_internal_encrypted=True,
-        encryption_key="encryption_key_example",
-        connection_id=1,
-        connections=[
-            ConnectionConfig(
-                connection_id=1,
-                entity_id=1,
-                connector_group_id=1,
-            ),
-        ],
-        connector_group_id=1,
-    ) # CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95 | Specifies the parameters to update the registration.
+body = SourceRegistrationUpdateRequestParams() # SourceRegistrationUpdateRequestParams | Specifies the parameters to update the registration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1179,15 +1011,15 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the id of the Protection Source registration. |
- **body** | [**CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95**](CommonSourceRegistrationRequestParams55735f4993544f9eA2acFca18c1c1a95.md)| Specifies the parameters to update the registration. |
+ **body** | [**SourceRegistrationUpdateRequestParams**](SourceRegistrationUpdateRequestParams.md)| Specifies the parameters to update the registration. |
 
 ### Return type
 
-[**CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89**](CommonSourceRegistrationReponseParams0a86bd5cF7de4a5085d3Aa7003ecba89.md)
+[**SourceRegistration**](SourceRegistration.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

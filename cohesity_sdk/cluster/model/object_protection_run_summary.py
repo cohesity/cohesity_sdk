@@ -110,6 +110,11 @@ class ObjectProtectionRunSummary(ModelComposed):
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
         },
+        ('data_lock',): {
+            'None': None,
+            'COMPLIANCE': "Compliance",
+            'ADMINISTRATIVE': "Administrative",
+        },
         ('run_type',): {
             'None': None,
             'KREGULAR': "kRegular",
@@ -118,11 +123,6 @@ class ObjectProtectionRunSummary(ModelComposed):
             'KSYSTEM': "kSystem",
             'KHYDRATECDP': "kHydrateCDP",
             'KSTORAGEARRAYSNAPSHOT': "kStorageArraySnapshot",
-        },
-        ('data_lock',): {
-            'None': None,
-            'COMPLIANCE': "Compliance",
-            'ADMINISTRATIVE': "Administrative",
         },
     }
 
@@ -145,34 +145,34 @@ class ObjectProtectionRunSummary(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
-            'run_id': (str, none_type,),  # noqa: E501
-            'run_type': (str, none_type,),  # noqa: E501
-            'is_sla_violated': (bool, none_type,),  # noqa: E501
-            'protection_group_id': (str, none_type,),  # noqa: E501
-            'protection_group_name': (str, none_type,),  # noqa: E501
-            'is_local_snapshots_deleted': (bool, none_type,),  # noqa: E501
-            'is_replication_run': (bool, none_type,),  # noqa: E501
-            'is_cloud_archival_direct': (bool, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
-            'policy_name': (str, none_type,),  # noqa: E501
-            'storage_domain_id': (int, none_type,),  # noqa: E501
-            'permissions': ([Tenant], none_type,),  # noqa: E501
-            'origin_cluster_identifier': (ClusterIdentifier,),  # noqa: E501
-            'origin_protection_group_id': (str, none_type,),  # noqa: E501
-            'local_snapshot_info': (BackupRun,),  # noqa: E501
-            'original_backup_info': (BackupRun,),  # noqa: E501
-            'replication_info': (ReplicationRun,),  # noqa: E501
             'archival_info': (ArchivalRun,),  # noqa: E501
             'cloud_spin_info': (CloudSpinRun,),  # noqa: E501
-            'on_prem_deploy_info': (OnPremDeployRun,),  # noqa: E501
-            'on_legal_hold': (bool, none_type,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
+            'is_cloud_archival_direct': (bool, none_type,),  # noqa: E501
+            'is_local_snapshots_deleted': (bool, none_type,),  # noqa: E501
+            'is_replication_run': (bool, none_type,),  # noqa: E501
+            'is_sla_violated': (bool, none_type,),  # noqa: E501
+            'local_snapshot_info': (BackupRun,),  # noqa: E501
+            'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'on_prem_deploy_info': (OnPremDeployRun,),  # noqa: E501
+            'origin_cluster_identifier': (ClusterIdentifier,),  # noqa: E501
+            'origin_protection_group_id': (str, none_type,),  # noqa: E501
+            'original_backup_info': (BackupRun,),  # noqa: E501
+            'permissions': ([Tenant], none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
+            'protection_group_id': (str, none_type,),  # noqa: E501
+            'protection_group_name': (str, none_type,),  # noqa: E501
+            'replication_info': (ReplicationRun,),  # noqa: E501
+            'run_id': (str, none_type,),  # noqa: E501
             'run_label': (str, none_type,),  # noqa: E501
+            'run_type': (str, none_type,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -182,34 +182,34 @@ class ObjectProtectionRunSummary(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
-        'run_id': 'runId',  # noqa: E501
-        'run_type': 'runType',  # noqa: E501
-        'is_sla_violated': 'isSlaViolated',  # noqa: E501
-        'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'is_local_snapshots_deleted': 'isLocalSnapshotsDeleted',  # noqa: E501
-        'is_replication_run': 'isReplicationRun',  # noqa: E501
-        'is_cloud_archival_direct': 'isCloudArchivalDirect',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
-        'policy_name': 'policyName',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'permissions': 'permissions',  # noqa: E501
-        'origin_cluster_identifier': 'originClusterIdentifier',  # noqa: E501
-        'origin_protection_group_id': 'originProtectionGroupId',  # noqa: E501
-        'local_snapshot_info': 'localSnapshotInfo',  # noqa: E501
-        'original_backup_info': 'originalBackupInfo',  # noqa: E501
-        'replication_info': 'replicationInfo',  # noqa: E501
         'archival_info': 'archivalInfo',  # noqa: E501
         'cloud_spin_info': 'cloudSpinInfo',  # noqa: E501
-        'on_prem_deploy_info': 'onPremDeployInfo',  # noqa: E501
-        'on_legal_hold': 'onLegalHold',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
+        'is_cloud_archival_direct': 'isCloudArchivalDirect',  # noqa: E501
+        'is_local_snapshots_deleted': 'isLocalSnapshotsDeleted',  # noqa: E501
+        'is_replication_run': 'isReplicationRun',  # noqa: E501
+        'is_sla_violated': 'isSlaViolated',  # noqa: E501
+        'local_snapshot_info': 'localSnapshotInfo',  # noqa: E501
+        'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'on_prem_deploy_info': 'onPremDeployInfo',  # noqa: E501
+        'origin_cluster_identifier': 'originClusterIdentifier',  # noqa: E501
+        'origin_protection_group_id': 'originProtectionGroupId',  # noqa: E501
+        'original_backup_info': 'originalBackupInfo',  # noqa: E501
+        'permissions': 'permissions',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
+        'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'replication_info': 'replicationInfo',  # noqa: E501
+        'run_id': 'runId',  # noqa: E501
         'run_label': 'runLabel',  # noqa: E501
+        'run_type': 'runType',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
     }
 
     required_properties = set([
@@ -260,34 +260,34 @@ class ObjectProtectionRunSummary(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
-            run_id (str, none_type): Specifies the ID of the protection run.. [optional]  # noqa: E501
-            run_type (str, none_type): Type of Protection run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery.. [optional]  # noqa: E501
-            is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
-            protection_group_id (str, none_type): ProtectionGroupId to which this run belongs. This will only be populated if the object is protected by a protection group.. [optional]  # noqa: E501
-            protection_group_name (str, none_type): Name of the Protection Group to which this run belongs. This will only be populated if the object is protected by a protection group.. [optional]  # noqa: E501
-            is_local_snapshots_deleted (bool, none_type): Specifies if snapshots for this run has been deleted.. [optional]  # noqa: E501
-            is_replication_run (bool, none_type): Specifies if this protection run is a replication run.. [optional]  # noqa: E501
-            is_cloud_archival_direct (bool, none_type): Specifies whether the run is a CAD run if cloud archive direct feature is enabled. If this field is true, the primary backup copy will only be available at the given archived location.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the unique id of the Protection Policy associated with the Protection Run. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.. [optional]  # noqa: E501
-            policy_name (str, none_type): Specifies Specifies the name of the Protection Policy.. [optional]  # noqa: E501
-            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where this Protection Run writes data.. [optional]  # noqa: E501
-            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this protection group run.. [optional]  # noqa: E501
-            origin_cluster_identifier (ClusterIdentifier): [optional]  # noqa: E501
-            origin_protection_group_id (str, none_type): ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run.. [optional]  # noqa: E501
-            local_snapshot_info (BackupRun): [optional]  # noqa: E501
-            original_backup_info (BackupRun): [optional]  # noqa: E501
-            replication_info (ReplicationRun): [optional]  # noqa: E501
             archival_info (ArchivalRun): [optional]  # noqa: E501
             cloud_spin_info (CloudSpinRun): [optional]  # noqa: E501
-            on_prem_deploy_info (OnPremDeployRun): [optional]  # noqa: E501
-            on_legal_hold (bool, none_type): Specifies if object's snapshot is on legal hold.. [optional]  # noqa: E501
             data_lock (str, none_type): Specifies WORM retention type for the local backeup. When a WORM retention type is specified, the snapshots of the Protection Groups using this policy will be kept until the maximum of the snapshot retention time. During that time, the snapshots cannot be deleted. <br>'Compliance' implies WORM retention is set for compliance reason. <br>'Administrative' implies WORM retention is set for administrative purposes.. [optional]  # noqa: E501
+            is_cloud_archival_direct (bool, none_type): Specifies whether the run is a CAD run if cloud archive direct feature is enabled. If this field is true, the primary backup copy will only be available at the given archived location.. [optional]  # noqa: E501
+            is_local_snapshots_deleted (bool, none_type): Specifies if snapshots for this run has been deleted.. [optional]  # noqa: E501
+            is_replication_run (bool, none_type): Specifies if this protection run is a replication run.. [optional]  # noqa: E501
+            is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
+            local_snapshot_info (BackupRun): [optional]  # noqa: E501
+            on_legal_hold (bool, none_type): Specifies if object's snapshot is on legal hold.. [optional]  # noqa: E501
+            on_prem_deploy_info (OnPremDeployRun): [optional]  # noqa: E501
+            origin_cluster_identifier (ClusterIdentifier): [optional]  # noqa: E501
+            origin_protection_group_id (str, none_type): ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run.. [optional]  # noqa: E501
+            original_backup_info (BackupRun): [optional]  # noqa: E501
+            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this protection group run.. [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the unique id of the Protection Policy associated with the Protection Run. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies Specifies the name of the Protection Policy.. [optional]  # noqa: E501
+            protection_group_id (str, none_type): ProtectionGroupId to which this run belongs. This will only be populated if the object is protected by a protection group.. [optional]  # noqa: E501
+            protection_group_name (str, none_type): Name of the Protection Group to which this run belongs. This will only be populated if the object is protected by a protection group.. [optional]  # noqa: E501
+            replication_info (ReplicationRun): [optional]  # noqa: E501
+            run_id (str, none_type): Specifies the ID of the protection run.. [optional]  # noqa: E501
             run_label (str, none_type): Specifies a label with which this run is created. Only applicable for user triggered protect now action.. [optional]  # noqa: E501
+            run_type (str, none_type): Type of Protection run. 'kRegular' indicates an incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a kRegular schedule captures all the blocks. 'kFull' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'kLog' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'kSystem' indicates system volume backup. It produces an image for bare metal recovery.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where this Protection Run writes data.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -87,10 +87,10 @@ class TargetsConfiguration(ModelNormal):
         """
         lazy_import()
         return {
-            'replication_targets': ([ReplicationConfig],),  # noqa: E501
             'archival_targets': ([ArchivalConfig],),  # noqa: E501
             'cloud_spin_targets': ([CloudSpinConfig],),  # noqa: E501
             'onprem_deploy_targets': ([OnpremDeployConfig],),  # noqa: E501
+            'replication_targets': ([ReplicationConfig],),  # noqa: E501
             'rpaas_targets': ([RpaasConfig],),  # noqa: E501
         }
 
@@ -101,10 +101,10 @@ class TargetsConfiguration(ModelNormal):
 
 
     attribute_map = {
-        'replication_targets': 'replicationTargets',  # noqa: E501
         'archival_targets': 'archivalTargets',  # noqa: E501
         'cloud_spin_targets': 'cloudSpinTargets',  # noqa: E501
         'onprem_deploy_targets': 'onpremDeployTargets',  # noqa: E501
+        'replication_targets': 'replicationTargets',  # noqa: E501
         'rpaas_targets': 'rpaasTargets',  # noqa: E501
     }
 
@@ -155,10 +155,10 @@ class TargetsConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            replication_targets ([ReplicationConfig]): [optional]  # noqa: E501
             archival_targets ([ArchivalConfig]): [optional]  # noqa: E501
             cloud_spin_targets ([CloudSpinConfig]): [optional]  # noqa: E501
             onprem_deploy_targets ([OnpremDeployConfig]): [optional]  # noqa: E501
+            replication_targets ([ReplicationConfig]): [optional]  # noqa: E501
             rpaas_targets ([RpaasConfig]): [optional]  # noqa: E501
         """
 

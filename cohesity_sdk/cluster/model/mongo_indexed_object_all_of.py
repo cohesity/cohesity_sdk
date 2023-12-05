@@ -84,9 +84,9 @@ class MongoIndexedObjectAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
             'cdp_info': (CdpObjectInfo,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,9 +96,9 @@ class MongoIndexedObjectAllOf(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
-        'id': 'id',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class MongoIndexedObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the Mongo Object Type.. [optional]  # noqa: E501
-            id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
             cdp_info (CdpObjectInfo): [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the Mongo Object Type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

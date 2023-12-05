@@ -57,11 +57,11 @@ class SecurityConfigPasswordReuse(ModelNormal):
     }
 
     validations = {
-        ('num_disallowed_old_passwords',): {
+        ('num_different_chars',): {
             'inclusive_minimum': 0,
         },
 
-        ('num_different_chars',): {
+        ('num_disallowed_old_passwords',): {
             'inclusive_minimum': 0,
         },
 
@@ -82,8 +82,8 @@ class SecurityConfigPasswordReuse(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'num_disallowed_old_passwords': (int, none_type,),  # noqa: E501
             'num_different_chars': (int, none_type,),  # noqa: E501
+            'num_disallowed_old_passwords': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class SecurityConfigPasswordReuse(ModelNormal):
 
 
     attribute_map = {
-        'num_disallowed_old_passwords': 'numDisallowedOldPasswords',  # noqa: E501
         'num_different_chars': 'numDifferentChars',  # noqa: E501
+        'num_disallowed_old_passwords': 'numDisallowedOldPasswords',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class SecurityConfigPasswordReuse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            num_disallowed_old_passwords (int, none_type): Specifies the minimum number of old passwords that are not allowed for changing the password.. [optional]  # noqa: E501
             num_different_chars (int, none_type): Specifies the number of characters in the new password that needs to be different from the old password (only applicable when changing the user's own password).. [optional]  # noqa: E501
+            num_disallowed_old_passwords (int, none_type): Specifies the minimum number of old passwords that are not allowed for changing the password.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

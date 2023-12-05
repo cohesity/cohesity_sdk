@@ -5,9 +5,9 @@ Specifies an Antivirus Service group.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str, none_type** | Specifies the Antivirus Service group name. | 
 **antivirus_services** | [**[AntivirusService], none_type**](AntivirusService.md) | Specifies a list of Antivirus Services for this group. | 
 **enabled** | **bool, none_type** | Specifies whether the Antivirus Group is enabled. | 
+**name** | **str, none_type** | Specifies the Antivirus Service group name. | 
 **description** | **str, none_type** | Specifies the description for the Antivirus Service group. | [optional] 
 **id** | **int, none_type** | Specifies the Antivirus Service group id. | [optional] 
 

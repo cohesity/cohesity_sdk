@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **create_tdm_task**
-> CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b create_tdm_task(body)
+> TdmTask create_tdm_task(body)
 
 Create a TDM task
 
@@ -23,12 +23,11 @@ Create a task for the Test Data Management (TDM) workflow.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_tdm_task_request_params4071d258680f43b48c83_dfafe35b3a8d import CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_tdm_task_response_params0fe3e0d07da54d73_ba98_fa33dd3fb83b import CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b
+from cohesity_sdk.cluster.model.tdm_task import TdmTask
+from cohesity_sdk.cluster.model.create_tdm_task_request import CreateTdmTaskRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -40,11 +39,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d(
-        name="name_example",
-        action="clone",
-    ) # CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d | Specifies the parameters to create a TDM task.
+body = CreateTdmTaskRequest() # CreateTdmTaskRequest | Specifies the parameters to create a TDM task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -60,15 +55,15 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d**](CommonTdmTaskRequestParams4071d258680f43b48c83Dfafe35b3a8d.md)| Specifies the parameters to create a TDM task. |
+ **body** | [**CreateTdmTaskRequest**](CreateTdmTaskRequest.md)| Specifies the parameters to create a TDM task. |
 
 ### Return type
 
-[**CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b**](CommonTdmTaskResponseParams0fe3e0d07da54d73Ba98Fa33dd3fb83b.md)
+[**TdmTask**](TdmTask.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -93,7 +88,6 @@ Delete a snapshot by specifying its ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -107,7 +101,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the ID of the snapshot.
 
@@ -132,7 +125,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -157,7 +150,6 @@ Get a TDM object by specifying its ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tdm_object import TdmObject
@@ -172,7 +164,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the ID of the TDM object.
 
@@ -198,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -223,7 +214,6 @@ Get all TDM objects matching specified optional filter criteria.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tdm_objects import TdmObjects
@@ -238,7 +228,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -283,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -308,7 +297,6 @@ Get a TDM task by ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -323,7 +311,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the ID of the TDM task.
 
@@ -349,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -374,7 +361,6 @@ Get all the TDM tasks matching specified optional filter criteria.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -389,7 +375,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -440,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -465,7 +450,6 @@ Get the collection of timeline events of a TDM object by specifying its ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tdm_object_timeline_events import TdmObjectTimelineEvents
@@ -480,7 +464,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the ID of the TDM object.
 created_after = 1 # int | Get the events created after the specified time (in usecs from epoch). (optional)
@@ -519,7 +502,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -544,7 +527,6 @@ Performs various actions on clones. Supports actions on multiple clones.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.perform_action_on_clones_request import PerformActionOnClonesRequest
@@ -560,27 +542,26 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = PerformActionOnClonesRequest(
         action="Cleanup",
         cleanup_params=CloneActionCleanupParams(
             cleanup_type="PowerOffVM",
-            power_off_vm_params=CloneActionCleanupPowerOffVmParams(
-                vm_ids=[
-                    3.14,
-                ],
-            ),
             cloud_resources_cleanup_params=CloneActionCleanupCloudResourcesCleanupParams(
                 restore_tasks=[
                     CloudResourcesCleanupRestoreTaskDetails(
-                        task_id=3.14,
                         ami_instance_ids=[
                             CloudResourcesCleanupAmiInstanceId(
                                 ami_id="ami_id_example",
                                 instance_id="instance_id_example",
                             ),
                         ],
+                        task_id=3.14,
                     ),
+                ],
+            ),
+            power_off_vm_params=CloneActionCleanupPowerOffVmParams(
+                vm_ids=[
+                    3.14,
                 ],
             ),
         ),
@@ -607,7 +588,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -632,7 +613,6 @@ Update the details of a snapshot by specifying its ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_tdm_snapshot_request import UpdateTdmSnapshotRequest
@@ -648,7 +628,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the ID of the snapshot.
 body = UpdateTdmSnapshotRequest() # UpdateTdmSnapshotRequest | Specifies the parameters to update the snapshot.
@@ -676,7 +655,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

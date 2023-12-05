@@ -79,8 +79,8 @@ class RemoteAdapterHostAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'incremental_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'full_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
+            'incremental_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'log_backup_script': (CommonPreBackupScriptParams,),  # noqa: E501
         }
 
@@ -91,8 +91,8 @@ class RemoteAdapterHostAllOf(ModelNormal):
 
 
     attribute_map = {
-        'incremental_backup_script': 'incrementalBackupScript',  # noqa: E501
         'full_backup_script': 'fullBackupScript',  # noqa: E501
+        'incremental_backup_script': 'incrementalBackupScript',  # noqa: E501
         'log_backup_script': 'logBackupScript',  # noqa: E501
     }
 
@@ -143,8 +143,8 @@ class RemoteAdapterHostAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            incremental_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             full_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
+            incremental_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             log_backup_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
         """
 

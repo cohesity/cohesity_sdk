@@ -54,15 +54,15 @@ class SecurityConfigCertificateBasedAuth(ModelNormal):
     """
 
     allowed_values = {
+        ('ad_mapping',): {
+            'None': None,
+            'SAMACCOUNTNAME': "SamAccountName",
+            'USERPRINCIPALNAME': "UserPrincipalName",
+        },
         ('certificate_mapping',): {
             'None': None,
             'COMMONNAME': "CommonName",
             'EMAILADDRESS': "EmailAddress",
-            'USERPRINCIPALNAME': "UserPrincipalName",
-        },
-        ('ad_mapping',): {
-            'None': None,
-            'SAMACCOUNTNAME': "SamAccountName",
             'USERPRINCIPALNAME': "UserPrincipalName",
         },
     }
@@ -85,9 +85,9 @@ class SecurityConfigCertificateBasedAuth(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enable_mapping_based_authentication': (bool, none_type,),  # noqa: E501
-            'certificate_mapping': (str, none_type,),  # noqa: E501
             'ad_mapping': (str, none_type,),  # noqa: E501
+            'certificate_mapping': (str, none_type,),  # noqa: E501
+            'enable_mapping_based_authentication': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +97,9 @@ class SecurityConfigCertificateBasedAuth(ModelNormal):
 
 
     attribute_map = {
-        'enable_mapping_based_authentication': 'enableMappingBasedAuthentication',  # noqa: E501
-        'certificate_mapping': 'certificateMapping',  # noqa: E501
         'ad_mapping': 'adMapping',  # noqa: E501
+        'certificate_mapping': 'certificateMapping',  # noqa: E501
+        'enable_mapping_based_authentication': 'enableMappingBasedAuthentication',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,9 +149,9 @@ class SecurityConfigCertificateBasedAuth(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_mapping_based_authentication (bool, none_type): If true, certfication based authentication is done via configured mapping. Else it will proceed based on legacy serial number match.. [optional]  # noqa: E501
-            certificate_mapping (str, none_type): Specifies the field to be used in certificate for authentication.. [optional]  # noqa: E501
             ad_mapping (str, none_type): Specifies the field to be used in AD user for authentication.. [optional]  # noqa: E501
+            certificate_mapping (str, none_type): Specifies the field to be used in certificate for authentication.. [optional]  # noqa: E501
+            enable_mapping_based_authentication (bool, none_type): If true, certfication based authentication is done via configured mapping. Else it will proceed based on legacy serial number match.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

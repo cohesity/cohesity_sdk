@@ -111,15 +111,15 @@ class IsilonObjectProtectionRequestParams(ModelComposed):
         lazy_import()
         return {
             'objects': ([ProtectionObjectInput],),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'encryption_enabled': (bool, none_type,),  # noqa: E501
-            'file_lock_config': (FileLevelDataLockConfig,),  # noqa: E501
             'file_filters': (FileFilteringPolicy,),  # noqa: E501
+            'file_lock_config': (FileLevelDataLockConfig,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
-            'protocol': (str, none_type,),  # noqa: E501
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
             'use_changelist': (bool, none_type,),  # noqa: E501
         }
 
@@ -131,15 +131,15 @@ class IsilonObjectProtectionRequestParams(ModelComposed):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
         'encryption_enabled': 'encryptionEnabled',  # noqa: E501
-        'file_lock_config': 'fileLockConfig',  # noqa: E501
         'file_filters': 'fileFilters',  # noqa: E501
+        'file_lock_config': 'fileLockConfig',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'pre_post_script': 'prePostScript',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
-        'protocol': 'protocol',  # noqa: E501
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
         'use_changelist': 'useChangelist',  # noqa: E501
     }
 
@@ -194,15 +194,15 @@ class IsilonObjectProtectionRequestParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether or not the backup should continue regardless of whether or not an error was encountered.. [optional]  # noqa: E501
             encryption_enabled (bool, none_type): Specifies whether the encryption should be used while backup or not.. [optional]  # noqa: E501
-            file_lock_config (FileLevelDataLockConfig): [optional]  # noqa: E501
             file_filters (FileFilteringPolicy): [optional]  # noqa: E501
+            file_lock_config (FileLevelDataLockConfig): [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
-            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
             use_changelist (bool, none_type): Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.. [optional]  # noqa: E501
         """
 

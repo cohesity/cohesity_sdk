@@ -74,11 +74,11 @@ class TenantDmaasCert(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'tenant_id': (str, none_type,),  # noqa: E501
             'certificate': (str, none_type,),  # noqa: E501
-            'private_key': (str, none_type,),  # noqa: E501
             'connector_ca_chain': (str, none_type,),  # noqa: E501
             'passphrase': (str, none_type,),  # noqa: E501
+            'private_key': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class TenantDmaasCert(ModelNormal):
 
 
     attribute_map = {
-        'tenant_id': 'tenantId',  # noqa: E501
         'certificate': 'certificate',  # noqa: E501
-        'private_key': 'privateKey',  # noqa: E501
         'connector_ca_chain': 'connectorCaChain',  # noqa: E501
         'passphrase': 'passphrase',  # noqa: E501
+        'private_key': 'privateKey',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class TenantDmaasCert(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            tenant_id (str, none_type): The id of the tenant.. [optional]  # noqa: E501
             certificate (str, none_type): Specifies the tenant certificate.. [optional]  # noqa: E501
-            private_key (str, none_type): Specifies the tenant private key.. [optional]  # noqa: E501
             connector_ca_chain (str, none_type): Specifies the CA chain that is used to sign the connector certificate.. [optional]  # noqa: E501
             passphrase (str, none_type): Specifies the passphrase used to encode the private key.. [optional]  # noqa: E501
+            private_key (str, none_type): Specifies the tenant private key.. [optional]  # noqa: E501
+            tenant_id (str, none_type): The id of the tenant.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

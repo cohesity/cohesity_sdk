@@ -22,7 +22,6 @@ Create a External Target.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -37,7 +36,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = ExternalTarget() # ExternalTarget | Specifies the parameters to create a External Target.
 
@@ -63,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -88,7 +86,6 @@ Returns Success if the External Target is deleted.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -102,7 +99,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a unique id of the External Target.
 force_delete = True # bool | Specifies whether to force delete the External target. (optional)
@@ -137,7 +133,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -162,7 +158,6 @@ Returns the External Target corresponding to the specified Group id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -177,7 +172,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a unique id of the External Target.
 
@@ -203,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -228,7 +222,6 @@ Get the encryption key info for an external target
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -242,7 +235,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the External Target.
 
@@ -268,7 +260,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -293,7 +285,6 @@ Get the list of External Target Settings
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -308,7 +299,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -330,7 +320,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -355,7 +345,6 @@ Get the list of External Targets.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -371,7 +360,6 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 ids = [
         1,
     ] # [int] | Filter by a list of External Target ids. (optional)
@@ -386,7 +374,7 @@ purpose_types = [
     ] # [str] | Filter by a list of External Target purpose types. (optional)
 storage_types = [
         "Azure",
-    ] # [str] | Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. (optional)
+    ] # [str] | Filter by a list of External Target storage types. (optional)
 storage_classes = [
         "AmazonS3Standard",
     ] # [str] | Filter by a list of External Target storage classes. (optional)
@@ -413,7 +401,7 @@ Name | Type | Description  | Notes
  **global_ids** | **[str]**| Filter by a list of External Target global ids. | [optional]
  **names** | **[str]**| Filter by a list of External Target names. | [optional]
  **purpose_types** | **[str]**| Filter by a list of External Target purpose types. | [optional]
- **storage_types** | **[str]**| Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | [optional]
+ **storage_types** | **[str]**| Filter by a list of External Target storage types. | [optional]
  **storage_classes** | **[str]**| Filter by a list of External Target storage classes. | [optional]
  **ownership_contexts** | **[str]**| Specifies whether how this external target is being consumed either Local or FortKnox. | [optional]
 
@@ -423,7 +411,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -448,7 +436,6 @@ Update the specified External Target.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -463,7 +450,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the External Target.
 body = ExternalTarget() # ExternalTarget | Specifies the parameters to update a External Target.
@@ -491,7 +477,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -516,7 +502,6 @@ Update External Target Settings
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.global_bandwidth_settings import GlobalBandwidthSettings
@@ -531,7 +516,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = GlobalBandwidthSettings(
         archival_params=ArchivalBandwidthSettings(),
@@ -560,7 +544,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

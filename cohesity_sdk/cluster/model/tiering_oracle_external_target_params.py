@@ -85,9 +85,9 @@ class TieringOracleExternalTargetParams(ModelComposed):
         """
         lazy_import()
         return {
+            'access_key_id': (str, none_type,),  # noqa: E501
             'bucket_name': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
-            'access_key_id': (str, none_type,),  # noqa: E501
             'tenancy': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
             'storage_access_key': (str, none_type,),  # noqa: E501
@@ -100,9 +100,9 @@ class TieringOracleExternalTargetParams(ModelComposed):
 
 
     attribute_map = {
+        'access_key_id': 'accessKeyId',  # noqa: E501
         'bucket_name': 'bucketName',  # noqa: E501
         'region': 'region',  # noqa: E501
-        'access_key_id': 'accessKeyId',  # noqa: E501
         'tenancy': 'tenancy',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
         'storage_access_key': 'storageAccessKey',  # noqa: E501
@@ -121,13 +121,13 @@ class TieringOracleExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket_name, region, access_key_id, tenancy, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_key_id, bucket_name, region, tenancy, *args, **kwargs):  # noqa: E501
         """TieringOracleExternalTargetParams - a model defined in OpenAPI
 
         Args:
+            access_key_id (str, none_type): Specifies the access key id of the external target.
             bucket_name (str, none_type): Specifies the bucket name of the external target.
             region (str, none_type): Specifies the region of the external target.
-            access_key_id (str, none_type): Specifies the access key id of the external target.
             tenancy (str, none_type): Specifies the tenancy of the external target.
 
         Keyword Args:
@@ -199,9 +199,9 @@ class TieringOracleExternalTargetParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
+            'access_key_id': access_key_id,
             'bucket_name': bucket_name,
             'region': region,
-            'access_key_id': access_key_id,
             'tenancy': tenancy,
             'storage_class': storage_class,
         }

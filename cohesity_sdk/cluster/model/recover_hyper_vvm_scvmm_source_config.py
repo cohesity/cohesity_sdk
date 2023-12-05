@@ -74,8 +74,8 @@ class RecoverHyperVVmSCVMMSourceConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'host': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'volume': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
@@ -87,8 +87,8 @@ class RecoverHyperVVmSCVMMSourceConfig(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
         'host': 'host',  # noqa: E501
+        'source': 'source',  # noqa: E501
         'volume': 'volume',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
     }
@@ -105,12 +105,12 @@ class RecoverHyperVVmSCVMMSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, host, volume, *args, **kwargs):  # noqa: E501
+    def __init__(self, host, source, volume, *args, **kwargs):  # noqa: E501
         """RecoverHyperVVmSCVMMSourceConfig - a model defined in OpenAPI
 
         Args:
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
             host ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the HyperV host where the recovered VMs will be attached. For standalone host targets, the host must be the same as the source.
+            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
             volume ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the datastore object where the VMs' files should be recovered to.
 
         Keyword Args:
@@ -172,8 +172,8 @@ class RecoverHyperVVmSCVMMSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source = source
         self.host = host
+        self.source = source
         self.volume = volume
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -75,8 +75,8 @@ class ViewPinningConfig(ModelNormal):
         """
         return {
             'enabled': (bool, none_type,),  # noqa: E501
-            'pinned_time_secs': (int, none_type,),  # noqa: E501
             'last_updated_timestamp_secs': (int, none_type,),  # noqa: E501
+            'pinned_time_secs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class ViewPinningConfig(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'pinned_time_secs': 'pinnedTimeSecs',  # noqa: E501
         'last_updated_timestamp_secs': 'lastUpdatedTimestampSecs',  # noqa: E501
+        'pinned_time_secs': 'pinnedTimeSecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class ViewPinningConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            pinned_time_secs (int, none_type): Specifies the time to pin files after last access.. [optional]  # noqa: E501
             last_updated_timestamp_secs (int, none_type): Specifies the timestamp when view pinning config is last updated.. [optional]  # noqa: E501
+            pinned_time_secs (int, none_type): Specifies the time to pin files after last access.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

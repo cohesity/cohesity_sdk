@@ -74,18 +74,18 @@ class SyslogServer(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'ip': (str, none_type,),  # noqa: E501
-            'port': (int, none_type,),  # noqa: E501
-            'protocol': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
+            'ca_certificate': (str, none_type,),  # noqa: E501
             'enabled': (bool, none_type,),  # noqa: E501
             'facility_list': ([str],),  # noqa: E501
-            'program_name_list': ([str],),  # noqa: E501
-            'msg_pattern_list': ([str],),  # noqa: E501
-            'raw_msg_pattern_list': ([str],),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'ip': (str, none_type,),  # noqa: E501
             'is_tls_enabled': (bool, none_type,),  # noqa: E501
-            'ca_certificate': (str, none_type,),  # noqa: E501
+            'msg_pattern_list': ([str],),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'port': (int, none_type,),  # noqa: E501
+            'program_name_list': ([str],),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
+            'raw_msg_pattern_list': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -95,18 +95,18 @@ class SyslogServer(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'ip': 'ip',  # noqa: E501
-        'port': 'port',  # noqa: E501
-        'protocol': 'protocol',  # noqa: E501
-        'name': 'name',  # noqa: E501
+        'ca_certificate': 'caCertificate',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
         'facility_list': 'facilityList',  # noqa: E501
-        'program_name_list': 'programNameList',  # noqa: E501
-        'msg_pattern_list': 'msgPatternList',  # noqa: E501
-        'raw_msg_pattern_list': 'rawMsgPatternList',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'ip': 'ip',  # noqa: E501
         'is_tls_enabled': 'isTlsEnabled',  # noqa: E501
-        'ca_certificate': 'caCertificate',  # noqa: E501
+        'msg_pattern_list': 'msgPatternList',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'port': 'port',  # noqa: E501
+        'program_name_list': 'programNameList',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
+        'raw_msg_pattern_list': 'rawMsgPatternList',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,18 +156,18 @@ class SyslogServer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): The id of the syslog server.. [optional]  # noqa: E501
-            ip (str, none_type): Specifies the IP address or hostname of the syslog server.. [optional]  # noqa: E501
-            port (int, none_type): Specifies the port where the syslog server listens.. [optional]  # noqa: E501
-            protocol (str, none_type): Specifies the protocol used to send the logs.. [optional]  # noqa: E501
-            name (str, none_type): Specifies a unique name for the syslog server on the Cluster.. [optional]  # noqa: E501
+            ca_certificate (str, none_type): Syslog server CA certificate.. [optional]  # noqa: E501
             enabled (bool, none_type): Specifies whether to enable the syslog server on the Cluster.. [optional]  # noqa: E501
             facility_list ([str]): Send enabled syslog facilities related logs to logging server.. [optional]  # noqa: E501
-            program_name_list ([str]): Send programes related logs to logging server.. [optional]  # noqa: E501
-            msg_pattern_list ([str]): Send logs including the msg patterns to logging server.. [optional]  # noqa: E501
-            raw_msg_pattern_list ([str]): Send logs including the msg patterns to logging server.. [optional]  # noqa: E501
+            id (int, none_type): The id of the syslog server.. [optional]  # noqa: E501
+            ip (str, none_type): Specifies the IP address or hostname of the syslog server.. [optional]  # noqa: E501
             is_tls_enabled (bool, none_type): Specify whether to enable tls support.. [optional]  # noqa: E501
-            ca_certificate (str, none_type): Syslog server CA certificate.. [optional]  # noqa: E501
+            msg_pattern_list ([str]): Send logs including the msg patterns to logging server.. [optional]  # noqa: E501
+            name (str, none_type): Specifies a unique name for the syslog server on the Cluster.. [optional]  # noqa: E501
+            port (int, none_type): Specifies the port where the syslog server listens.. [optional]  # noqa: E501
+            program_name_list ([str]): Send programes related logs to logging server.. [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the protocol used to send the logs.. [optional]  # noqa: E501
+            raw_msg_pattern_list ([str]): Send logs including the msg patterns to logging server.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

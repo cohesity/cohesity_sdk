@@ -74,8 +74,8 @@ class SecurityConfigDataClassification(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'is_data_classified': (bool, none_type,),  # noqa: E501
             'classified_data_message': (str, none_type,),  # noqa: E501
+            'is_data_classified': (bool, none_type,),  # noqa: E501
             'unclassified_data_message': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class SecurityConfigDataClassification(ModelNormal):
 
 
     attribute_map = {
-        'is_data_classified': 'isDataClassified',  # noqa: E501
         'classified_data_message': 'classifiedDataMessage',  # noqa: E501
+        'is_data_classified': 'isDataClassified',  # noqa: E501
         'unclassified_data_message': 'unclassifiedDataMessage',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class SecurityConfigDataClassification(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_data_classified (bool, none_type): Specifies whether to mark the web page data classified/unclassified.. [optional]  # noqa: E501
             classified_data_message (str, none_type): Specifies the classified data message.. [optional]  # noqa: E501
+            is_data_classified (bool, none_type): Specifies whether to mark the web page data classified/unclassified.. [optional]  # noqa: E501
             unclassified_data_message (str, none_type): Specifies the unclassified data message.. [optional]  # noqa: E501
         """
 

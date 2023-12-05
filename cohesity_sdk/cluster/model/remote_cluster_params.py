@@ -79,16 +79,16 @@ class RemoteClusterParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'purpose': ([str], none_type,),  # noqa: E501
-            'replication_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'network_interface': (str, none_type,),  # noqa: E501
-            'local_addresses': ([str],),  # noqa: E501
             'auto_register_target': (bool, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'cluster_name': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'is_auto_registered': (bool, none_type,),  # noqa: E501
+            'local_addresses': ([str],),  # noqa: E501
+            'network_interface': (str, none_type,),  # noqa: E501
+            'purpose': ([str], none_type,),  # noqa: E501
+            'replication_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -98,16 +98,16 @@ class RemoteClusterParams(ModelNormal):
 
 
     attribute_map = {
-        'purpose': 'purpose',  # noqa: E501
-        'replication_params': 'replicationParams',  # noqa: E501
-        'network_interface': 'networkInterface',  # noqa: E501
-        'local_addresses': 'localAddresses',  # noqa: E501
         'auto_register_target': 'autoRegisterTarget',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'cluster_name': 'clusterName',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'is_auto_registered': 'isAutoRegistered',  # noqa: E501
+        'local_addresses': 'localAddresses',  # noqa: E501
+        'network_interface': 'networkInterface',  # noqa: E501
+        'purpose': 'purpose',  # noqa: E501
+        'replication_params': 'replicationParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,16 +157,16 @@ class RemoteClusterParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            purpose ([str], none_type): Specifies the purpose for which the remote cluster is being registered.. [optional]  # noqa: E501
-            replication_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the replication config for a Remote Cluster. Required when usedForReplication is set to true.. [optional]  # noqa: E501
-            network_interface (str, none_type): Specifies the name of the network interfaces to use for communicating with the Remote Cluster.. [optional]  # noqa: E501
-            local_addresses ([str]): Specifies the IP addresses of the interfaces in the local Cluster which will be used for communicating with the remote Cluster.. [optional]  # noqa: E501
             auto_register_target (bool, none_type): Specifies if the Tx clusters should be automatically registered at the Rx site.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            description (str, none_type): Specifies any additional information if needed.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the Remote Cluster id.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the Remote Cluster incarnation id.. [optional]  # noqa: E501
             cluster_name (str, none_type): Specifies the Remote Cluster name.. [optional]  # noqa: E501
+            description (str, none_type): Specifies any additional information if needed.. [optional]  # noqa: E501
             is_auto_registered (bool, none_type): Specifies if the Remote Cluster was registered automatically or manually.. [optional]  # noqa: E501
+            local_addresses ([str]): Specifies the IP addresses of the interfaces in the local Cluster which will be used for communicating with the remote Cluster.. [optional]  # noqa: E501
+            network_interface (str, none_type): Specifies the name of the network interfaces to use for communicating with the Remote Cluster.. [optional]  # noqa: E501
+            purpose ([str], none_type): Specifies the purpose for which the remote cluster is being registered.. [optional]  # noqa: E501
+            replication_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the replication config for a Remote Cluster. Required when usedForReplication is set to true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

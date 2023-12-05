@@ -62,16 +62,17 @@ class KmsConfigurationCreateParamsAllOf(ModelNormal):
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
-        },
-        ('usage_type',): {
-            'None': None,
-            'KARCHIVAL': "kArchival",
-            'KRPAASARCHIVAL': "kRpaasArchival",
+            'NONE': "None",
         },
         ('ownership_context',): {
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+        },
+        ('usage_type',): {
+            'None': None,
+            'KARCHIVAL': "kArchival",
+            'KRPAASARCHIVAL': "kRpaasArchival",
         },
     }
 
@@ -95,9 +96,9 @@ class KmsConfigurationCreateParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'type': (str,),  # noqa: E501
-            'usage_type': (str, none_type,),  # noqa: E501
-            'ownership_context': (str, none_type,),  # noqa: E501
             'aws_kms_params': (AwsKmsConfiguration,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
+            'usage_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -108,9 +109,9 @@ class KmsConfigurationCreateParamsAllOf(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'usage_type': 'usageType',  # noqa: E501
-        'ownership_context': 'ownershipContext',  # noqa: E501
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
+        'usage_type': 'usageType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -163,9 +164,9 @@ class KmsConfigurationCreateParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            usage_type (str, none_type): Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.. [optional]  # noqa: E501
-            ownership_context (str, none_type): Specifies the ownership context of the kms config. 'Local' indicates this is used for regular archival. 'FortKnox' indicates this is used for FortKnox only.. [optional]  # noqa: E501
             aws_kms_params (AwsKmsConfiguration): [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context of the kms config. 'Local' indicates this is used for regular archival. 'FortKnox' indicates this is used for FortKnox only.. [optional]  # noqa: E501
+            usage_type (str, none_type): Specifies the usage type of the kms config. 'kArchival' indicates this is used for regular archival. 'kRpaasArchival' indicates this is used for RPaaS only.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

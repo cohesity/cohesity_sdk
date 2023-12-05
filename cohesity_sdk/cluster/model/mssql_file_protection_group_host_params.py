@@ -75,8 +75,8 @@ class MSSQLFileProtectionGroupHostParams(ModelNormal):
         """
         return {
             'host_id': (int, none_type,),  # noqa: E501
-            'host_name': (str, none_type,),  # noqa: E501
             'disable_source_side_deduplication': (bool, none_type,),  # noqa: E501
+            'host_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class MSSQLFileProtectionGroupHostParams(ModelNormal):
 
     attribute_map = {
         'host_id': 'hostId',  # noqa: E501
-        'host_name': 'hostName',  # noqa: E501
         'disable_source_side_deduplication': 'disableSourceSideDeduplication',  # noqa: E501
+        'host_name': 'hostName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class MSSQLFileProtectionGroupHostParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            host_name (str, none_type): Specifies the name of the host container on which databases are hosted.. [optional]  # noqa: E501
             disable_source_side_deduplication (bool, none_type): Specifies whether or not to disable source side deduplication on this source. The default behavior is false unless the user has set 'performSourceSideDeduplication' to true.. [optional]  # noqa: E501
+            host_name (str, none_type): Specifies the name of the host container on which databases are hosted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
-    globals()['CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b'] = CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+    from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
+    globals()['ProtectionGroup'] = ProtectionGroup
 
 
 class ProtectionGroups(ModelNormal):
@@ -79,7 +79,7 @@ class ProtectionGroups(ModelNormal):
         """
         lazy_import()
         return {
-            'protection_groups': ([CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b], none_type,),  # noqa: E501
+            'protection_groups': ([ProtectionGroup], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +139,7 @@ class ProtectionGroups(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_groups ([CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b], none_type): Specifies the list of Protection Groups which were returned by the request.. [optional]  # noqa: E501
+            protection_groups ([ProtectionGroup], none_type): Specifies the list of Protection Groups which were returned by the request.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

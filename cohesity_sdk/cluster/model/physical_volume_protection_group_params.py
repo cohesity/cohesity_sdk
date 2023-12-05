@@ -88,14 +88,14 @@ class PhysicalVolumeProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([PhysicalVolumeProtectionGroupObjectParams],),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
-            'quiesce': (bool, none_type,),  # noqa: E501
             'continue_on_quiesce_failure': (bool, none_type,),  # noqa: E501
-            'incremental_backup_after_restart': (bool, none_type,),  # noqa: E501
-            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
             'dedup_exclusion_source_ids': ([int],),  # noqa: E501
             'excluded_vss_writers': ([str], none_type,),  # noqa: E501
+            'incremental_backup_after_restart': (bool, none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
+            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
+            'quiesce': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,14 +106,14 @@ class PhysicalVolumeProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
-        'quiesce': 'quiesce',  # noqa: E501
         'continue_on_quiesce_failure': 'continueOnQuiesceFailure',  # noqa: E501
-        'incremental_backup_after_restart': 'incrementalBackupAfterRestart',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
         'dedup_exclusion_source_ids': 'dedupExclusionSourceIds',  # noqa: E501
         'excluded_vss_writers': 'excludedVssWriters',  # noqa: E501
+        'incremental_backup_after_restart': 'incrementalBackupAfterRestart',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
+        'quiesce': 'quiesce',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -166,14 +166,14 @@ class PhysicalVolumeProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
-            quiesce (bool, none_type): Specifies Whether to take app-consistent snapshots by quiescing apps and the filesystem before taking a backup. [optional]  # noqa: E501
             continue_on_quiesce_failure (bool, none_type): Specifies whether to continue backing up on quiesce failure. [optional]  # noqa: E501
-            incremental_backup_after_restart (bool, none_type): Specifies whether or not to perform an incremental backup after the server restarts. This is applicable to windows environments.. [optional]  # noqa: E501
-            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
             dedup_exclusion_source_ids ([int]): Specifies ids of sources for which deduplication has to be disabled.. [optional]  # noqa: E501
             excluded_vss_writers ([str], none_type): Specifies writer names which should be excluded from physical volume based backups.. [optional]  # noqa: E501
+            incremental_backup_after_restart (bool, none_type): Specifies whether or not to perform an incremental backup after the server restarts. This is applicable to windows environments.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
+            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
+            quiesce (bool, none_type): Specifies Whether to take app-consistent snapshots by quiescing apps and the filesystem before taking a backup. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

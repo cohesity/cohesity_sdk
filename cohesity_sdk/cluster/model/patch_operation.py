@@ -74,14 +74,14 @@ class PatchOperation(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'service': (str,),  # noqa: E501
             'component': (str,),  # noqa: E501
-            'version': (str,),  # noqa: E501
-            'version_replaced': (str,),  # noqa: E501
+            'domain': (str,),  # noqa: E501
             'operation': (str,),  # noqa: E501
             'operation_time_msecs': (int,),  # noqa: E501
+            'service': (str,),  # noqa: E501
             'user': (str,),  # noqa: E501
-            'domain': (str,),  # noqa: E501
+            'version': (str,),  # noqa: E501
+            'version_replaced': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +91,14 @@ class PatchOperation(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
         'component': 'component',  # noqa: E501
-        'version': 'version',  # noqa: E501
-        'version_replaced': 'versionReplaced',  # noqa: E501
+        'domain': 'domain',  # noqa: E501
         'operation': 'operation',  # noqa: E501
         'operation_time_msecs': 'operationTimeMsecs',  # noqa: E501
+        'service': 'service',  # noqa: E501
         'user': 'user',  # noqa: E501
-        'domain': 'domain',  # noqa: E501
+        'version': 'version',  # noqa: E501
+        'version_replaced': 'versionReplaced',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,14 +148,14 @@ class PatchOperation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str): Specifies the name of the service.. [optional]  # noqa: E501
             component (str): Specifies the description of the service.. [optional]  # noqa: E501
-            version (str): Specifies the version of the patch.. [optional]  # noqa: E501
-            version_replaced (str): Specifies the version it replaced.. [optional]  # noqa: E501
+            domain (str): Specifies the domain of the user.. [optional]  # noqa: E501
             operation (str): Specifies what patch management operation was performed. [optional]  # noqa: E501
             operation_time_msecs (int): Specifies the time when the patch operation was done in Unix epoch in milliseconds.. [optional]  # noqa: E501
+            service (str): Specifies the name of the service.. [optional]  # noqa: E501
             user (str): Specifies the user who performed the operation.. [optional]  # noqa: E501
-            domain (str): Specifies the domain of the user.. [optional]  # noqa: E501
+            version (str): Specifies the version of the patch.. [optional]  # noqa: E501
+            version_replaced (str): Specifies the version it replaced.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

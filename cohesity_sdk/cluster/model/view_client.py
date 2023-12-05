@@ -79,19 +79,19 @@ class ViewClient(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'ip': (str, none_type,),  # noqa: E501
-            'protocol': (str, none_type,),  # noqa: E501
-            'node_ip': (str, none_type,),  # noqa: E501
-            'server_ip': (str, none_type,),  # noqa: E501
-            'view_name': (str, none_type,),  # noqa: E501
-            'view_id': (int, none_type,),  # noqa: E501
-            'view_path': (str, none_type,),  # noqa: E501
-            'uid': (int, none_type,),  # noqa: E501
-            'gid': (int, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
-            'user_domain': (str, none_type,),  # noqa: E501
             'connected_time_usecs': (int, none_type,),  # noqa: E501
+            'gid': (int, none_type,),  # noqa: E501
+            'ip': (str, none_type,),  # noqa: E501
+            'node_ip': (str, none_type,),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
+            'server_ip': (str, none_type,),  # noqa: E501
             'smb_dialect_version': (int, none_type,),  # noqa: E501
+            'uid': (int, none_type,),  # noqa: E501
+            'user_domain': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
+            'view_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
+            'view_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,19 +101,19 @@ class ViewClient(ModelNormal):
 
 
     attribute_map = {
-        'ip': 'ip',  # noqa: E501
-        'protocol': 'protocol',  # noqa: E501
-        'node_ip': 'nodeIp',  # noqa: E501
-        'server_ip': 'serverIp',  # noqa: E501
-        'view_name': 'viewName',  # noqa: E501
-        'view_id': 'viewId',  # noqa: E501
-        'view_path': 'viewPath',  # noqa: E501
-        'uid': 'uid',  # noqa: E501
-        'gid': 'gid',  # noqa: E501
-        'username': 'username',  # noqa: E501
-        'user_domain': 'userDomain',  # noqa: E501
         'connected_time_usecs': 'connectedTimeUsecs',  # noqa: E501
+        'gid': 'gid',  # noqa: E501
+        'ip': 'ip',  # noqa: E501
+        'node_ip': 'nodeIp',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
+        'server_ip': 'serverIp',  # noqa: E501
         'smb_dialect_version': 'smbDialectVersion',  # noqa: E501
+        'uid': 'uid',  # noqa: E501
+        'user_domain': 'userDomain',  # noqa: E501
+        'username': 'username',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
+        'view_path': 'viewPath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -163,19 +163,19 @@ class ViewClient(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            ip (str, none_type): Specifies the client ip.. [optional]  # noqa: E501
-            protocol (str, none_type): Specifies the protocol the client uses.. [optional]  # noqa: E501
-            node_ip (str, none_type): Specifies the node ip which the client is connected to.. [optional]  # noqa: E501
-            server_ip (str, none_type): Specifies the server ip which the client is connected to.. [optional]  # noqa: E501
-            view_name (str, none_type): Specifies the name of the View which the client is connected to.. [optional]  # noqa: E501
-            view_id (int, none_type): Specifies the id of the View which the client is connected to.. [optional]  # noqa: E501
-            view_path (str, none_type): Specifies the path of the View which the client is connected to.. [optional]  # noqa: E501
-            uid (int, none_type): Specifies the UID of the client user.. [optional]  # noqa: E501
-            gid (int, none_type): Specifies the GID of the client user.. [optional]  # noqa: E501
-            username (str, none_type): Specifies the username of the client.. [optional]  # noqa: E501
-            user_domain (str, none_type): Specifies the user domain of the client.. [optional]  # noqa: E501
             connected_time_usecs (int, none_type): Specifies the time how long the client has connected to the server.. [optional]  # noqa: E501
+            gid (int, none_type): Specifies the GID of the client user.. [optional]  # noqa: E501
+            ip (str, none_type): Specifies the client ip.. [optional]  # noqa: E501
+            node_ip (str, none_type): Specifies the node ip which the client is connected to.. [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the protocol the client uses.. [optional]  # noqa: E501
+            server_ip (str, none_type): Specifies the server ip which the client is connected to.. [optional]  # noqa: E501
             smb_dialect_version (int, none_type): Specifies the dialect version for SMB client.. [optional]  # noqa: E501
+            uid (int, none_type): Specifies the UID of the client user.. [optional]  # noqa: E501
+            user_domain (str, none_type): Specifies the user domain of the client.. [optional]  # noqa: E501
+            username (str, none_type): Specifies the username of the client.. [optional]  # noqa: E501
+            view_id (int, none_type): Specifies the id of the View which the client is connected to.. [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the name of the View which the client is connected to.. [optional]  # noqa: E501
+            view_path (str, none_type): Specifies the path of the View which the client is connected to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

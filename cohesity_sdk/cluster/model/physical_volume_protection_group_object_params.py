@@ -75,9 +75,9 @@ class PhysicalVolumeProtectionGroupObjectParams(ModelNormal):
         """
         return {
             'id': (int,),  # noqa: E501
+            'enable_system_backup': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'volume_guids': ([str],),  # noqa: E501
-            'enable_system_backup': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,9 +88,9 @@ class PhysicalVolumeProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'enable_system_backup': 'enableSystemBackup',  # noqa: E501
         'name': 'name',  # noqa: E501
         'volume_guids': 'volumeGuids',  # noqa: E501
-        'enable_system_backup': 'enableSystemBackup',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class PhysicalVolumeProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            enable_system_backup (bool, none_type): Specifies whether or not to take a system backup. Applicable only for windows sources.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object protected.. [optional]  # noqa: E501
             volume_guids ([str]): Specifies the list of GUIDs of volumes protected. If empty, then all volumes will be protected by default.. [optional]  # noqa: E501
-            enable_system_backup (bool, none_type): Specifies whether or not to take a system backup. Applicable only for windows sources.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

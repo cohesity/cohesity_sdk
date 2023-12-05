@@ -75,9 +75,9 @@ class DeviceTreeLeafNode(ModelNormal):
         """
         return {
             'disk_name': (str, none_type,),  # noqa: E501
-            'partition_number': (int, none_type,),  # noqa: E501
-            'offset_bytes': (int, none_type,),  # noqa: E501
             'length_bytes': (int, none_type,),  # noqa: E501
+            'offset_bytes': (int, none_type,),  # noqa: E501
+            'partition_number': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,9 +88,9 @@ class DeviceTreeLeafNode(ModelNormal):
 
     attribute_map = {
         'disk_name': 'diskName',  # noqa: E501
-        'partition_number': 'partitionNumber',  # noqa: E501
-        'offset_bytes': 'offsetBytes',  # noqa: E501
         'length_bytes': 'lengthBytes',  # noqa: E501
+        'offset_bytes': 'offsetBytes',  # noqa: E501
+        'partition_number': 'partitionNumber',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,9 +141,9 @@ class DeviceTreeLeafNode(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             disk_name (str, none_type): Specifies the disk name.. [optional]  # noqa: E501
-            partition_number (int, none_type): Specifies the paritition number.. [optional]  # noqa: E501
-            offset_bytes (int, none_type): Specifies the offset in bytes where data for the LVM volume (for which this device tree is being build) starts relative to the start of the partition.. [optional]  # noqa: E501
             length_bytes (int, none_type): Specifies The length of data in bytes for the LVM volume (for which this device tree is being built). It does not include size of the LVM meta data.. [optional]  # noqa: E501
+            offset_bytes (int, none_type): Specifies the offset in bytes where data for the LVM volume (for which this device tree is being build) starts relative to the start of the partition.. [optional]  # noqa: E501
+            partition_number (int, none_type): Specifies the paritition number.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

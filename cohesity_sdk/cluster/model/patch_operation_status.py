@@ -81,11 +81,11 @@ class PatchOperationStatus(ModelNormal):
         return {
             'in_progress': (bool, none_type,),  # noqa: E501
             'operation': (str, none_type,),  # noqa: E501
+            'operation_message': (str, none_type,),  # noqa: E501
             'percentage': (int, none_type,),  # noqa: E501
+            'services_progress': ([ServiceUnitProgress], none_type,),  # noqa: E501
             'time_remaining_seconds': (int, none_type,),  # noqa: E501
             'time_taken_seconds': (int, none_type,),  # noqa: E501
-            'services_progress': ([ServiceUnitProgress], none_type,),  # noqa: E501
-            'operation_message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,11 +97,11 @@ class PatchOperationStatus(ModelNormal):
     attribute_map = {
         'in_progress': 'inProgress',  # noqa: E501
         'operation': 'operation',  # noqa: E501
+        'operation_message': 'operationMessage',  # noqa: E501
         'percentage': 'percentage',  # noqa: E501
+        'services_progress': 'servicesProgress',  # noqa: E501
         'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
         'time_taken_seconds': 'timeTakenSeconds',  # noqa: E501
-        'services_progress': 'servicesProgress',  # noqa: E501
-        'operation_message': 'operationMessage',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,11 +153,11 @@ class PatchOperationStatus(ModelNormal):
 
             in_progress (bool, none_type): Specifies whether a operation is in progress now.. [optional]  # noqa: E501
             operation (str, none_type): Specifies the patch operation. It is either apply or revert patch operation.. [optional]  # noqa: E501
+            operation_message (str, none_type): Specifies a message about the patch operation.. [optional]  # noqa: E501
             percentage (int, none_type): Specifies the percentage of completion of the current patch operation in progress or the last patch operation completed.. [optional]  # noqa: E501
+            services_progress ([ServiceUnitProgress], none_type): Specifies the details of patch operation services at each patch level.. [optional]  # noqa: E501
             time_remaining_seconds (int, none_type): Specifies the time remaining to complete the patch operation.. [optional]  # noqa: E501
             time_taken_seconds (int, none_type): Specifies the time taken so far to complete the patch operation.. [optional]  # noqa: E501
-            services_progress ([ServiceUnitProgress], none_type): Specifies the details of patch operation services at each patch level.. [optional]  # noqa: E501
-            operation_message (str, none_type): Specifies a message about the patch operation.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

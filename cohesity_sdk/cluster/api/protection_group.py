@@ -21,15 +21,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_protection_group_request_paramsdc3738211b78497f_a31b107b557906d5 import CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cluster.model.create_protection_group_run_request import CreateProtectionGroupRunRequest
 from cohesity_sdk.cluster.model.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.get_protection_run_progress_body import GetProtectionRunProgressBody
-from cohesity_sdk.cluster.model.get_protection_run_stats_body import GetProtectionRunStatsBody
 from cohesity_sdk.cluster.model.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
 from cohesity_sdk.cluster.model.perform_run_action_response import PerformRunActionResponse
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
 from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.cluster.model.protection_group_runs import ProtectionGroupRuns
 from cohesity_sdk.cluster.model.protection_groups import ProtectionGroups
@@ -67,7 +66,7 @@ class ProtectionGroupApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5): Specifies the parameters to create a Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to create a Protection Group.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -91,7 +90,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -120,10 +119,10 @@ class ProtectionGroupApi(object):
 
         self.create_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups',
@@ -152,7 +151,7 @@ class ProtectionGroupApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5,),
+                        (CreateOrUpdateProtectionGroupRequest,),
                 },
                 'attribute_map': {
                 },
@@ -249,7 +248,7 @@ class ProtectionGroupApi(object):
                 'response_type': (CreateProtectionGroupRunResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs',
@@ -378,7 +377,7 @@ class ProtectionGroupApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}',
@@ -476,7 +475,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -505,10 +504,10 @@ class ProtectionGroupApi(object):
 
         self.get_protection_group_by_id = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}',
@@ -543,8 +542,7 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                 },
                 'openapi_types': {
@@ -666,7 +664,7 @@ class ProtectionGroupApi(object):
                 'response_type': (ProtectionGroupRun,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}',
@@ -710,8 +708,7 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                 },
                 'openapi_types': {
@@ -788,10 +785,10 @@ class ProtectionGroupApi(object):
                 include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Group Runs created by the current user will be returned.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned.. [optional]
                 include_object_details (bool): Specifies if the result includes the object details for each protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.. [optional]
-                local_backup_run_status ([str]): Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                replication_run_status ([str]): Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                archival_run_status ([str]): Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                cloud_spin_run_status ([str]): Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                local_backup_run_status ([str]): Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                replication_run_status ([str]): Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                archival_run_status ([str]): Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                cloud_spin_run_status ([str]): Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
                 num_runs (int): Specifies the max number of runs. If not specified, at most 100 runs will be returned.. [optional]
                 exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
                 run_tags ([str]): Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned.. [optional]
@@ -849,7 +846,7 @@ class ProtectionGroupApi(object):
                 'response_type': (ProtectionGroupRuns,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs',
@@ -911,8 +908,7 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                     ('run_types',): {
 
@@ -936,7 +932,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('replication_run_status',): {
@@ -951,7 +946,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('archival_run_status',): {
@@ -966,7 +960,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('cloud_spin_run_status',): {
@@ -981,7 +974,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                 },
@@ -1105,11 +1097,11 @@ class ProtectionGroupApi(object):
                 is_active (bool): Filter by Inactive or Active Protection Groups. If not set, all Inactive and Active Protection Groups are returned. If true, only Active Protection Groups are returned. If false, only Inactive Protection Groups are returned. When you create a Protection Group on a Primary Cluster with a replication schedule, the Cluster creates an Inactive copy of the Protection Group on the Remote Cluster. In addition, when an Active and running Protection Group is deactivated, the Protection Group becomes Inactive.. [optional]
                 is_deleted (bool): If true, return only Protection Groups that have been deleted but still have Snapshots associated with them. If false, return all Protection Groups except those Protection Groups that have been deleted and still have Snapshots associated with them. A Protection Group that is deleted with all its Snapshots is not returned for either of these cases.. [optional]
                 is_paused (bool): Filter by paused or non paused Protection Groups, If not set, all paused and non paused Protection Groups are returned. If true, only paused Protection Groups are returned. If false, only non paused Protection Groups are returned.. [optional]
-                last_run_local_backup_status ([str]): Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_replication_status ([str]): Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_archival_status ([str]): Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_cloud_spin_status ([str]): Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_local_backup_status ([str]): Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_replication_status ([str]): Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_archival_status ([str]): Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_cloud_spin_status ([str]): Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
                 is_last_run_sla_violated (bool): If true, return Protection Groups for which last run SLA was violated.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
@@ -1168,7 +1160,7 @@ class ProtectionGroupApi(object):
                 'response_type': (ProtectionGroups,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups',
@@ -1226,8 +1218,7 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                     ('environments',): {
 
@@ -1296,7 +1287,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_replication_status',): {
@@ -1311,7 +1301,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_archival_status',): {
@@ -1326,7 +1315,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_cloud_spin_status',): {
@@ -1341,7 +1329,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_any_status',): {
@@ -1356,7 +1343,6 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                 },
@@ -1565,7 +1551,7 @@ class ProtectionGroupApi(object):
                 'response_type': (GetProtectionRunProgressBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/runs/{runId}/progress',
@@ -1678,190 +1664,6 @@ class ProtectionGroupApi(object):
             callable=__get_protection_run_progress
         )
 
-        def __get_protection_run_stats(
-            self,
-            run_id,
-            **kwargs
-        ):
-            """Get the stats for a run.  # noqa: E501
-
-            Get the stats for a run.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_protection_run_stats(run_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                run_id (str): Specifies a unique run id of the Protection Run.
-
-            Keyword Args:
-                objects ([int]): Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.. [optional]
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which the run is to be returned.. [optional]
-                include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.. [optional]
-                include_finished_tasks (bool): Specifies whether to return finished tasks. By default only active tasks are returned.. [optional]
-                start_time_usecs (int): Specifies the time after which the stats task starts in Unix epoch Timestamp(in microseconds).. [optional]
-                end_time_usecs (int): Specifies the time before which the stats task ends in Unix epoch Timestamp(in microseconds).. [optional]
-                max_tasks_num (int): Specifies the maximum number of tasks to return.. [optional]
-                exclude_object_details (bool): Specifies whether to return objects. By default all the task tree are returned.. [optional]
-                run_task_path (str): Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.. [optional]
-                object_task_paths ([str]): Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GetProtectionRunStatsBody
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['run_id'] = \
-                run_id
-            return self.call_with_http_info(**kwargs)
-
-        self.get_protection_run_stats = _Endpoint(
-            settings={
-                'response_type': (GetProtectionRunStatsBody,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/runs/{runId}/stats',
-                'operation_id': 'get_protection_run_stats',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'run_id',
-                    'objects',
-                    'tenant_ids',
-                    'include_tenants',
-                    'include_finished_tasks',
-                    'start_time_usecs',
-                    'end_time_usecs',
-                    'max_tasks_num',
-                    'exclude_object_details',
-                    'run_task_path',
-                    'object_task_paths',
-                ],
-                'required': [
-                    'run_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'run_id':
-                        (str,),
-                    'objects':
-                        ([int],),
-                    'tenant_ids':
-                        ([str],),
-                    'include_tenants':
-                        (bool,),
-                    'include_finished_tasks':
-                        (bool,),
-                    'start_time_usecs':
-                        (int,),
-                    'end_time_usecs':
-                        (int,),
-                    'max_tasks_num':
-                        (int,),
-                    'exclude_object_details':
-                        (bool,),
-                    'run_task_path':
-                        (str,),
-                    'object_task_paths':
-                        ([str],),
-                },
-                'attribute_map': {
-                    'run_id': 'runId',
-                    'objects': 'objects',
-                    'tenant_ids': 'tenantIds',
-                    'include_tenants': 'includeTenants',
-                    'include_finished_tasks': 'includeFinishedTasks',
-                    'start_time_usecs': 'startTimeUsecs',
-                    'end_time_usecs': 'endTimeUsecs',
-                    'max_tasks_num': 'maxTasksNum',
-                    'exclude_object_details': 'excludeObjectDetails',
-                    'run_task_path': 'runTaskPath',
-                    'object_task_paths': 'objectTaskPaths',
-                },
-                'location_map': {
-                    'run_id': 'path',
-                    'objects': 'query',
-                    'tenant_ids': 'query',
-                    'include_tenants': 'query',
-                    'include_finished_tasks': 'query',
-                    'start_time_usecs': 'query',
-                    'end_time_usecs': 'query',
-                    'max_tasks_num': 'query',
-                    'exclude_object_details': 'query',
-                    'run_task_path': 'query',
-                    'object_task_paths': 'query',
-                },
-                'collection_format_map': {
-                    'objects': 'csv',
-                    'tenant_ids': 'csv',
-                    'object_task_paths': 'csv',
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_protection_run_stats
-        )
-
         def __get_protection_runs(
             self,
             **kwargs
@@ -1879,7 +1681,7 @@ class ProtectionGroupApi(object):
             Keyword Args:
                 start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
                 end_time_usecs (int): Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
-                run_status ([str]): Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                run_status ([str]): Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1931,7 +1733,7 @@ class ProtectionGroupApi(object):
                 'response_type': (ProtectionRunsSummary,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/runs/summary',
@@ -1969,8 +1771,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                 },
                 'openapi_types': {
@@ -2081,7 +1882,7 @@ class ProtectionGroupApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/debug-logs',
@@ -2235,7 +2036,7 @@ class ProtectionGroupApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/debug-logs',
@@ -2390,7 +2191,7 @@ class ProtectionGroupApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/download-messages',
@@ -2539,7 +2340,7 @@ class ProtectionGroupApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/downloadFiles',
@@ -2695,7 +2496,7 @@ class ProtectionGroupApi(object):
                 'response_type': (PerformRunActionResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/actions',
@@ -2769,7 +2570,7 @@ class ProtectionGroupApi(object):
 
             Args:
                 id (str): Specifies the id of the Protection Group.
-                body (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5): Specifies the parameters to update a Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to update a Protection Group.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2793,7 +2594,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2824,10 +2625,10 @@ class ProtectionGroupApi(object):
 
         self.update_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}',
@@ -2860,7 +2661,7 @@ class ProtectionGroupApi(object):
                     'id':
                         (str,),
                     'body':
-                        (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5,),
+                        (CreateOrUpdateProtectionGroupRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -2959,7 +2760,7 @@ class ProtectionGroupApi(object):
                 'response_type': (UpdateProtectionGroupRunResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs',
@@ -3087,7 +2888,7 @@ class ProtectionGroupApi(object):
                 'response_type': (UpdateProtectionGroupsState,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/states',

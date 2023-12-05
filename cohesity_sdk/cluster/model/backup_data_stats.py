@@ -74,9 +74,9 @@ class BackupDataStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'bytes_written': (int, none_type,),  # noqa: E501
             'bytes_read': (int, none_type,),  # noqa: E501
+            'bytes_written': (int, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class BackupDataStats(ModelNormal):
 
 
     attribute_map = {
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'bytes_written': 'bytesWritten',  # noqa: E501
         'bytes_read': 'bytesRead',  # noqa: E501
+        'bytes_written': 'bytesWritten',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class BackupDataStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            logical_size_bytes (int, none_type): Specifies total logical size of object(s) in bytes.. [optional]  # noqa: E501
-            bytes_written (int, none_type): Specifies total size of data in bytes written after taking backup.. [optional]  # noqa: E501
             bytes_read (int, none_type): Specifies total logical bytes read for creating the snapshot.. [optional]  # noqa: E501
+            bytes_written (int, none_type): Specifies total size of data in bytes written after taking backup.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies total logical size of object(s) in bytes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

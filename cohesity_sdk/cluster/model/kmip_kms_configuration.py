@@ -82,13 +82,12 @@ class KmipKmsConfiguration(ModelNormal):
         """
         return {
             'ca_certificate': (str,),  # noqa: E501
-            'client_key': (str,),  # noqa: E501
             'client_certificate': (str,),  # noqa: E501
+            'client_key': (str,),  # noqa: E501
             'protocol_version': (str,),  # noqa: E501
             'server': (str,),  # noqa: E501
-            'port': (int, none_type,),  # noqa: E501
             'certificate_expiry_date': (int, none_type,),  # noqa: E501
-            'additional_server_address': ([str],),  # noqa: E501
+            'port': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,13 +98,12 @@ class KmipKmsConfiguration(ModelNormal):
 
     attribute_map = {
         'ca_certificate': 'caCertificate',  # noqa: E501
-        'client_key': 'clientKey',  # noqa: E501
         'client_certificate': 'clientCertificate',  # noqa: E501
+        'client_key': 'clientKey',  # noqa: E501
         'protocol_version': 'protocolVersion',  # noqa: E501
         'server': 'server',  # noqa: E501
-        'port': 'port',  # noqa: E501
         'certificate_expiry_date': 'certificateExpiryDate',  # noqa: E501
-        'additional_server_address': 'AdditionalServerAddress',  # noqa: E501
+        'port': 'port',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,13 +118,13 @@ class KmipKmsConfiguration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, ca_certificate, client_key, client_certificate, protocol_version, server, *args, **kwargs):  # noqa: E501
+    def __init__(self, ca_certificate, client_certificate, client_key, protocol_version, server, *args, **kwargs):  # noqa: E501
         """KmipKmsConfiguration - a model defined in OpenAPI
 
         Args:
             ca_certificate (str): CA certificate.
-            client_key (str): Client key.
             client_certificate (str): Client certificate.
+            client_key (str): Client key.
             protocol_version (str): KMIP protocol version used to communicate with the KMS.
             server (str): KMS server IP address or FQDN.
 
@@ -162,9 +160,8 @@ class KmipKmsConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            port (int, none_type): Port on which the KMS server is listening.. [optional] if omitted the server will use the default value of 5696  # noqa: E501
             certificate_expiry_date (int, none_type): Specifies expiry date of client certificate in msecs.. [optional]  # noqa: E501
-            additional_server_address ([str]): Additional KMS server IP address or FQDNs for fail over.. [optional]  # noqa: E501
+            port (int, none_type): Port on which the KMS server is listening.. [optional] if omitted the server will use the default value of 5696  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,8 +189,8 @@ class KmipKmsConfiguration(ModelNormal):
 
 
         self.ca_certificate = ca_certificate
-        self.client_key = client_key
         self.client_certificate = client_certificate
+        self.client_key = client_key
         self.protocol_version = protocol_version
         self.server = server
         for var_name, var_value in kwargs.items():

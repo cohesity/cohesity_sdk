@@ -27,9 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.create_role_parameters import CreateRoleParameters
+    from cohesity_sdk.cluster.model.create_role_params import CreateRoleParams
     from cohesity_sdk.cluster.model.role_all_of import RoleAllOf
-    globals()['CreateRoleParameters'] = CreateRoleParameters
+    globals()['CreateRoleParams'] = CreateRoleParams
     globals()['RoleAllOf'] = RoleAllOf
 
 
@@ -88,10 +88,10 @@ class Role(ModelComposed):
             'name': (str, none_type,),  # noqa: E501
             'privileges': ([str], none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'label': (str, none_type,),  # noqa: E501
             'created_timestamp_msecs': (int, none_type,),  # noqa: E501
-            'last_updated_timestamp_msecs': (int, none_type,),  # noqa: E501
             'is_user_created_role': (bool, none_type,),  # noqa: E501
+            'label': (str, none_type,),  # noqa: E501
+            'last_updated_timestamp_msecs': (int, none_type,),  # noqa: E501
             'tenant_ids': ([str], none_type,),  # noqa: E501
         }
 
@@ -105,10 +105,10 @@ class Role(ModelComposed):
         'name': 'name',  # noqa: E501
         'privileges': 'privileges',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'label': 'label',  # noqa: E501
         'created_timestamp_msecs': 'createdTimestampMsecs',  # noqa: E501
-        'last_updated_timestamp_msecs': 'lastUpdatedTimestampMsecs',  # noqa: E501
         'is_user_created_role': 'isUserCreatedRole',  # noqa: E501
+        'label': 'label',  # noqa: E501
+        'last_updated_timestamp_msecs': 'lastUpdatedTimestampMsecs',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
     }
 
@@ -165,10 +165,10 @@ class Role(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description message for the Role.. [optional]  # noqa: E501
-            label (str, none_type): Specifies the Role label.. [optional]  # noqa: E501
             created_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is created in milliseconds.. [optional]  # noqa: E501
-            last_updated_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is last updated in milliseconds.. [optional]  # noqa: E501
             is_user_created_role (bool, none_type): Specifies if the Role is created by user.. [optional]  # noqa: E501
+            label (str, none_type): Specifies the Role label.. [optional]  # noqa: E501
+            last_updated_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is last updated in milliseconds.. [optional]  # noqa: E501
             tenant_ids ([str], none_type): Specifies the list of tenant ids who have access to this Role.. [optional]  # noqa: E501
         """
 
@@ -243,7 +243,7 @@ class Role(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              CreateRoleParameters,
+              CreateRoleParams,
               RoleAllOf,
           ],
           'oneOf': [

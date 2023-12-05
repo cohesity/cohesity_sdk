@@ -78,10 +78,10 @@ class CouchbaseSourceRegistrationParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'seeds': ([str],),  # noqa: E501
-            'is_ssl_required': (bool, none_type,),  # noqa: E501
-            'http_port': (int, none_type,),  # noqa: E501
             'carrier_port': (int, none_type,),  # noqa: E501
+            'http_port': (int, none_type,),  # noqa: E501
+            'is_ssl_required': (bool, none_type,),  # noqa: E501
+            'seeds': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -91,10 +91,10 @@ class CouchbaseSourceRegistrationParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'seeds': 'seeds',  # noqa: E501
-        'is_ssl_required': 'isSslRequired',  # noqa: E501
-        'http_port': 'httpPort',  # noqa: E501
         'carrier_port': 'carrierPort',  # noqa: E501
+        'http_port': 'httpPort',  # noqa: E501
+        'is_ssl_required': 'isSslRequired',  # noqa: E501
+        'seeds': 'seeds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -109,14 +109,14 @@ class CouchbaseSourceRegistrationParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, seeds, is_ssl_required, http_port, carrier_port, *args, **kwargs):  # noqa: E501
+    def __init__(self, carrier_port, http_port, is_ssl_required, seeds, *args, **kwargs):  # noqa: E501
         """CouchbaseSourceRegistrationParamsAllOf - a model defined in OpenAPI
 
         Args:
-            seeds ([str]): Specifies the IP Addresses or hostnames of the Couchbase cluster seed nodes.
-            is_ssl_required (bool, none_type): Set to true if connection to couchbase has to be using SSL.
-            http_port (int, none_type): HTTP direct or HTTP SSL port.
             carrier_port (int, none_type): Carrier direct or Carrier SSL port.
+            http_port (int, none_type): HTTP direct or HTTP SSL port.
+            is_ssl_required (bool, none_type): Set to true if connection to couchbase has to be using SSL.
+            seeds ([str]): Specifies the IP Addresses or hostnames of the Couchbase cluster seed nodes.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -176,10 +176,10 @@ class CouchbaseSourceRegistrationParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.seeds = seeds
-        self.is_ssl_required = is_ssl_required
-        self.http_port = http_port
         self.carrier_port = carrier_port
+        self.http_port = http_port
+        self.is_ssl_required = is_ssl_required
+        self.seeds = seeds
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

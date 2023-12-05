@@ -74,8 +74,8 @@ class VmwareRecoverTargetSourceDiskParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'disk_uuid': (str, none_type,),  # noqa: E501
             'datastore_id': (int, none_type,),  # noqa: E501
+            'disk_uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class VmwareRecoverTargetSourceDiskParams(ModelNormal):
 
 
     attribute_map = {
-        'disk_uuid': 'diskUuid',  # noqa: E501
         'datastore_id': 'datastoreId',  # noqa: E501
+        'disk_uuid': 'diskUuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class VmwareRecoverTargetSourceDiskParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, disk_uuid, datastore_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, datastore_id, disk_uuid, *args, **kwargs):  # noqa: E501
         """VmwareRecoverTargetSourceDiskParams - a model defined in OpenAPI
 
         Args:
-            disk_uuid (str, none_type): Specifies the UUID of the source disk being recovered.
             datastore_id (int, none_type): Specifies the ID of the datastore on which the specified disk will be spun up.
+            disk_uuid (str, none_type): Specifies the UUID of the source disk being recovered.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class VmwareRecoverTargetSourceDiskParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.disk_uuid = disk_uuid
         self.datastore_id = datastore_id
+        self.disk_uuid = disk_uuid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

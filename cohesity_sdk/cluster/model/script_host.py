@@ -84,9 +84,9 @@ class ScriptHost(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'host_type': (str, none_type,),  # noqa: E501
             'hostname': (str, none_type,),  # noqa: E501
             'username': (str, none_type,),  # noqa: E501
-            'host_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,9 +96,9 @@ class ScriptHost(ModelNormal):
 
 
     attribute_map = {
+        'host_type': 'hostType',  # noqa: E501
         'hostname': 'hostname',  # noqa: E501
         'username': 'username',  # noqa: E501
-        'host_type': 'hostType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class ScriptHost(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            host_type (str, none_type): Specifies the Operating system type of the host.. [optional]  # noqa: E501
             hostname (str, none_type): Specifies the Hostname or IP address of the host where the pre and post script will be run.. [optional]  # noqa: E501
             username (str, none_type): Specifies the username for the host.. [optional]  # noqa: E501
-            host_type (str, none_type): Specifies the Operating system type of the host.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

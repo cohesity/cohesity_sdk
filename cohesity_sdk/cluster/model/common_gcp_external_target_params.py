@@ -75,8 +75,8 @@ class CommonGcpExternalTargetParams(ModelNormal):
         """
         return {
             'bucket_name': (str, none_type,),  # noqa: E501
-            'project_id': (str, none_type,),  # noqa: E501
             'client_email_address': (str, none_type,),  # noqa: E501
+            'project_id': (str, none_type,),  # noqa: E501
             'client_private_key': (str, none_type,),  # noqa: E501
         }
 
@@ -88,8 +88,8 @@ class CommonGcpExternalTargetParams(ModelNormal):
 
     attribute_map = {
         'bucket_name': 'bucketName',  # noqa: E501
-        'project_id': 'projectId',  # noqa: E501
         'client_email_address': 'clientEmailAddress',  # noqa: E501
+        'project_id': 'projectId',  # noqa: E501
         'client_private_key': 'clientPrivateKey',  # noqa: E501
     }
 
@@ -105,13 +105,13 @@ class CommonGcpExternalTargetParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket_name, project_id, client_email_address, *args, **kwargs):  # noqa: E501
+    def __init__(self, bucket_name, client_email_address, project_id, *args, **kwargs):  # noqa: E501
         """CommonGcpExternalTargetParams - a model defined in OpenAPI
 
         Args:
             bucket_name (str, none_type): Specifies the bucket name of the external target.
-            project_id (str, none_type): Specifies the project Id of the external target.
             client_email_address (str, none_type): Specifies the client email address of the external target.
+            project_id (str, none_type): Specifies the project Id of the external target.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,8 +173,8 @@ class CommonGcpExternalTargetParams(ModelNormal):
 
 
         self.bucket_name = bucket_name
-        self.project_id = project_id
         self.client_email_address = client_email_address
+        self.project_id = project_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

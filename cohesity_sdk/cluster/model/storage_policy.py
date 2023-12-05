@@ -80,15 +80,15 @@ class StoragePolicy(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'deduplication_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'app_marker_detection_enabled': (bool, none_type,),  # noqa: E501
+            'cloud_spill_vault_id': (int, none_type,),  # noqa: E501
             'compression_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'deduplication_compression_delay_secs': (int, none_type,),  # noqa: E501
-            'erasure_coding_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'deduplication_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'encryption_type': (str, none_type,),  # noqa: E501
-            'cloud_spill_vault_id': (int, none_type,),  # noqa: E501
+            'erasure_coding_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'num_disk_failures_tolerated': (int, none_type,),  # noqa: E501
             'num_node_failures_tolerated': (int, none_type,),  # noqa: E501
-            'app_marker_detection_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,15 +98,15 @@ class StoragePolicy(ModelNormal):
 
 
     attribute_map = {
-        'deduplication_params': 'deduplicationParams',  # noqa: E501
+        'app_marker_detection_enabled': 'appMarkerDetectionEnabled',  # noqa: E501
+        'cloud_spill_vault_id': 'cloudSpillVaultId',  # noqa: E501
         'compression_params': 'compressionParams',  # noqa: E501
         'deduplication_compression_delay_secs': 'deduplicationCompressionDelaySecs',  # noqa: E501
-        'erasure_coding_params': 'erasureCodingParams',  # noqa: E501
+        'deduplication_params': 'deduplicationParams',  # noqa: E501
         'encryption_type': 'encryptionType',  # noqa: E501
-        'cloud_spill_vault_id': 'cloudSpillVaultId',  # noqa: E501
+        'erasure_coding_params': 'erasureCodingParams',  # noqa: E501
         'num_disk_failures_tolerated': 'numDiskFailuresTolerated',  # noqa: E501
         'num_node_failures_tolerated': 'numNodeFailuresTolerated',  # noqa: E501
-        'app_marker_detection_enabled': 'appMarkerDetectionEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,15 +156,15 @@ class StoragePolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            deduplication_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies deduplication settings for a Storage Domain.. [optional]  # noqa: E501
+            app_marker_detection_enabled (bool, none_type): Specifies whether app marker detection is enabled. When enabled, app markers will be removed from data and put in separate chunks.. [optional]  # noqa: E501
+            cloud_spill_vault_id (int, none_type): Specifies the vault id assigned for cloud spill for a Storage Domain.. [optional]  # noqa: E501
             compression_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies compression settings for a Storage Domain.. [optional]  # noqa: E501
             deduplication_compression_delay_secs (int, none_type): Specifies the time in seconds when deduplication and compression of the Storage Domain starts.. [optional]  # noqa: E501
-            erasure_coding_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the erasure coding parameters for a Storage Domain.. [optional]  # noqa: E501
+            deduplication_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies deduplication settings for a Storage Domain.. [optional]  # noqa: E501
             encryption_type (str, none_type): Specifies the encryption type for a Storage Domain.. [optional]  # noqa: E501
-            cloud_spill_vault_id (int, none_type): Specifies the vault id assigned for cloud spill for a Storage Domain.. [optional]  # noqa: E501
+            erasure_coding_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the erasure coding parameters for a Storage Domain.. [optional]  # noqa: E501
             num_disk_failures_tolerated (int, none_type): Specifies the number of disk failures to tolerate for a Storage Domain. By default, this field is 1 for cluster with three or more nodes. If erasure coding is enabled, this field will be the same as numCodedStripes.. [optional]  # noqa: E501
             num_node_failures_tolerated (int, none_type): Specifies the number of node failures to tolerate for a Storage Domain. By default this field is replication factor minus 1 for replication chunk files and is the same as numCodedStripes for erasure coding chunk files.. [optional]  # noqa: E501
-            app_marker_detection_enabled (bool, none_type): Specifies whether app marker detection is enabled. When enabled, app markers will be removed from data and put in separate chunks.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

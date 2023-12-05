@@ -79,8 +79,8 @@ class SmbMountCredentials(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class SmbMountCredentials(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     required_properties = set([
@@ -107,12 +107,12 @@ class SmbMountCredentials(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, *args, **kwargs):  # noqa: E501
         """SmbMountCredentials - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,8 +180,8 @@ class SmbMountCredentials(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
+            'username': username,
         }
         model_args = {}
         model_args.update(required_args)

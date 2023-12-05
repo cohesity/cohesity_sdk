@@ -79,10 +79,10 @@ class NodeNetworkInterfaces(ModelNormal):
         """
         lazy_import()
         return {
-            'node_id': (int, none_type,),  # noqa: E501
             'chassis_serial_number': (str, none_type,),  # noqa: E501
-            'slot': (int, none_type,),  # noqa: E501
             'interfaces': ([Interface], none_type,),  # noqa: E501
+            'node_id': (int, none_type,),  # noqa: E501
+            'slot': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class NodeNetworkInterfaces(ModelNormal):
 
 
     attribute_map = {
-        'node_id': 'nodeId',  # noqa: E501
         'chassis_serial_number': 'chassisSerialNumber',  # noqa: E501
-        'slot': 'slot',  # noqa: E501
         'interfaces': 'interfaces',  # noqa: E501
+        'node_id': 'nodeId',  # noqa: E501
+        'slot': 'slot',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,10 +145,10 @@ class NodeNetworkInterfaces(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            node_id (int, none_type): Id of the node.. [optional]  # noqa: E501
             chassis_serial_number (str, none_type): Chassis serial number.. [optional]  # noqa: E501
-            slot (int, none_type): Slot number of the node.. [optional]  # noqa: E501
             interfaces ([Interface], none_type): List of interfaces on the node.. [optional]  # noqa: E501
+            node_id (int, none_type): Id of the node.. [optional]  # noqa: E501
+            slot (int, none_type): Slot number of the node.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

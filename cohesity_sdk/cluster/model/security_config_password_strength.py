@@ -78,11 +78,11 @@ class SecurityConfigPasswordStrength(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'min_length': (int, none_type,),  # noqa: E501
-            'include_upper_letter': (bool, none_type,),  # noqa: E501
             'include_lower_letter': (bool, none_type,),  # noqa: E501
             'include_number': (bool, none_type,),  # noqa: E501
             'include_special_char': (bool, none_type,),  # noqa: E501
+            'include_upper_letter': (bool, none_type,),  # noqa: E501
+            'min_length': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,11 +92,11 @@ class SecurityConfigPasswordStrength(ModelNormal):
 
 
     attribute_map = {
-        'min_length': 'minLength',  # noqa: E501
-        'include_upper_letter': 'includeUpperLetter',  # noqa: E501
         'include_lower_letter': 'includeLowerLetter',  # noqa: E501
         'include_number': 'includeNumber',  # noqa: E501
         'include_special_char': 'includeSpecialChar',  # noqa: E501
+        'include_upper_letter': 'includeUpperLetter',  # noqa: E501
+        'min_length': 'minLength',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,11 +146,11 @@ class SecurityConfigPasswordStrength(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            min_length (int, none_type): Specifies the password minimum length.. [optional]  # noqa: E501
-            include_upper_letter (bool, none_type): Specifies if the password needs to have at least one uppercase letter.. [optional]  # noqa: E501
             include_lower_letter (bool, none_type): Specifies if the password needs to have at least one lowercase letter.. [optional]  # noqa: E501
             include_number (bool, none_type): Specifies if the password needs to have at least one number.. [optional]  # noqa: E501
             include_special_char (bool, none_type): Specifies if the password needs to have at least one special character.. [optional]  # noqa: E501
+            include_upper_letter (bool, none_type): Specifies if the password needs to have at least one uppercase letter.. [optional]  # noqa: E501
+            min_length (int, none_type): Specifies the password minimum length.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

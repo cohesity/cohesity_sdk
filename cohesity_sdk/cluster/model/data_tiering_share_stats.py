@@ -74,13 +74,13 @@ class DataTieringShareStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'file_type_tag': (str, none_type,),  # noqa: E501
-            'file_size_tag': (str, none_type,),  # noqa: E501
             'access_time_tag': (str, none_type,),  # noqa: E501
-            'mod_time_tag': (str, none_type,),  # noqa: E501
             'file_count': (int, none_type,),  # noqa: E501
-            'total_size': (int, none_type,),  # noqa: E501
+            'file_size_tag': (str, none_type,),  # noqa: E501
+            'file_type_tag': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
+            'mod_time_tag': (str, none_type,),  # noqa: E501
+            'total_size': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,13 +90,13 @@ class DataTieringShareStats(ModelNormal):
 
 
     attribute_map = {
-        'file_type_tag': 'fileTypeTag',  # noqa: E501
-        'file_size_tag': 'fileSizeTag',  # noqa: E501
         'access_time_tag': 'accessTimeTag',  # noqa: E501
-        'mod_time_tag': 'modTimeTag',  # noqa: E501
         'file_count': 'fileCount',  # noqa: E501
-        'total_size': 'totalSize',  # noqa: E501
+        'file_size_tag': 'fileSizeTag',  # noqa: E501
+        'file_type_tag': 'fileTypeTag',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'mod_time_tag': 'modTimeTag',  # noqa: E501
+        'total_size': 'totalSize',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,13 +146,13 @@ class DataTieringShareStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            file_type_tag (str, none_type): Specifies the file type bucket.. [optional]  # noqa: E501
-            file_size_tag (str, none_type): Specifies the file size bucket.. [optional]  # noqa: E501
             access_time_tag (str, none_type): Specifies the access time bucket.. [optional]  # noqa: E501
-            mod_time_tag (str, none_type): Specifies the modification time bucket.. [optional]  # noqa: E501
             file_count (int, none_type): Specifies the file count.. [optional]  # noqa: E501
-            total_size (int, none_type): Specifies the total count.. [optional]  # noqa: E501
+            file_size_tag (str, none_type): Specifies the file size bucket.. [optional]  # noqa: E501
+            file_type_tag (str, none_type): Specifies the file type bucket.. [optional]  # noqa: E501
             id (int, none_type): Specifies the unique identifer for stat.. [optional]  # noqa: E501
+            mod_time_tag (str, none_type): Specifies the modification time bucket.. [optional]  # noqa: E501
+            total_size (int, none_type): Specifies the total count.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

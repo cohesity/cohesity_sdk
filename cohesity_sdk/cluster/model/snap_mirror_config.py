@@ -74,8 +74,8 @@ class SnapMirrorConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'view_id': (int, none_type,),  # noqa: E501
             'incremental_prefix': (str, none_type,),  # noqa: E501
+            'view_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class SnapMirrorConfig(ModelNormal):
 
 
     attribute_map = {
-        'view_id': 'viewId',  # noqa: E501
         'incremental_prefix': 'incrementalPrefix',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class SnapMirrorConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            view_id (int, none_type): Specifies the Id of the S3 view where data need to be written.. [optional]  # noqa: E501
             incremental_prefix (str, none_type): Specifies the incremental snapshot prefix value.. [optional]  # noqa: E501
+            view_id (int, none_type): Specifies the Id of the S3 view where data need to be written.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

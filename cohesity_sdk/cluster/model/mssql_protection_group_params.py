@@ -90,8 +90,8 @@ class MSSQLProtectionGroupParams(ModelNormal):
         return {
             'protection_type': (str,),  # noqa: E501
             'file_protection_type_params': (MSSQLFileProtectionGroupParams,),  # noqa: E501
-            'volume_protection_type_params': (MSSQLVolumeProtectionGroupParams,),  # noqa: E501
             'native_protection_type_params': (MSSQLNativeProtectionGroupParams,),  # noqa: E501
+            'volume_protection_type_params': (MSSQLVolumeProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -103,8 +103,8 @@ class MSSQLProtectionGroupParams(ModelNormal):
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
         'file_protection_type_params': 'fileProtectionTypeParams',  # noqa: E501
-        'volume_protection_type_params': 'volumeProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'volume_protection_type_params': 'volumeProtectionTypeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,8 +158,8 @@ class MSSQLProtectionGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             file_protection_type_params (MSSQLFileProtectionGroupParams): [optional]  # noqa: E501
-            volume_protection_type_params (MSSQLVolumeProtectionGroupParams): [optional]  # noqa: E501
             native_protection_type_params (MSSQLNativeProtectionGroupParams): [optional]  # noqa: E501
+            volume_protection_type_params (MSSQLVolumeProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

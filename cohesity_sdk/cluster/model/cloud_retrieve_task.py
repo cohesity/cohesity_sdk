@@ -66,7 +66,6 @@ class CloudRetrieveTask(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
         },
     }
 
@@ -88,13 +87,13 @@ class CloudRetrieveTask(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
             'percentage_finished': (int, none_type,),  # noqa: E501
-            'time_remaining_seconds': (int, none_type,),  # noqa: E501
             'pulse_task_id': (int, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'time_remaining_seconds': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,13 +103,13 @@ class CloudRetrieveTask(ModelNormal):
 
 
     attribute_map = {
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'message': 'message',  # noqa: E501
         'percentage_finished': 'percentageFinished',  # noqa: E501
-        'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
         'pulse_task_id': 'pulseTaskId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -160,13 +159,13 @@ class CloudRetrieveTask(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_time_usecs (int, none_type): Specifies the task start time in microseconds.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the task end time in microseconds.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the status of the retrieve task.. [optional]  # noqa: E501
             message (str, none_type): Message about the cloud retrieve task.. [optional]  # noqa: E501
             percentage_finished (int, none_type): Specifies the percentage of the task.. [optional]  # noqa: E501
-            time_remaining_seconds (int, none_type): Specifies the time remaining to complete the retrieve task.. [optional]  # noqa: E501
             pulse_task_id (int, none_type): Specifies the pulse task id.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the task start time in microseconds.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the status of the retrieve task.. [optional]  # noqa: E501
+            time_remaining_seconds (int, none_type): Specifies the time remaining to complete the retrieve task.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

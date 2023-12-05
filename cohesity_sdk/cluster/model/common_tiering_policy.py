@@ -82,8 +82,8 @@ class CommonTieringPolicy(ModelNormal):
         lazy_import()
         return {
             'enable_audit_logging': (bool, none_type,),  # noqa: E501
-            'file_size': (FileSizePolicy,),  # noqa: E501
             'file_path': (FileFilteringPolicy,),  # noqa: E501
+            'file_size': (FileSizePolicy,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class CommonTieringPolicy(ModelNormal):
 
     attribute_map = {
         'enable_audit_logging': 'enableAuditLogging',  # noqa: E501
-        'file_size': 'fileSize',  # noqa: E501
         'file_path': 'filePath',  # noqa: E501
+        'file_size': 'fileSize',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class CommonTieringPolicy(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             enable_audit_logging (bool, none_type): Specifies whether to audit log the file tiering activity.. [optional] if omitted the server will use the default value of False  # noqa: E501
-            file_size (FileSizePolicy): [optional]  # noqa: E501
             file_path (FileFilteringPolicy): [optional]  # noqa: E501
+            file_size (FileSizePolicy): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

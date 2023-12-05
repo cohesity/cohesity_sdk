@@ -74,9 +74,9 @@ class CreateEmailOtpRequestBody(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'username': (str, none_type,),  # noqa: E501
-            'password': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
+            'password': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class CreateEmailOtpRequestBody(ModelNormal):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
-        'password': 'password',  # noqa: E501
         'domain': 'domain',  # noqa: E501
+        'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class CreateEmailOtpRequestBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            username (str, none_type): Specifies the login name of the Cohesity user. [optional]  # noqa: E501
-            password (str, none_type): Specifies the password of the Cohesity user. [optional]  # noqa: E501
             domain (str, none_type): Specifies the domain the user is logging in to. For a local user the domain is LOCAL. For LDAP/AD user, the domain will map to a LDAP connection string. A user is uniquely identified by a combination of username and domain. LOCAL is the default domain. . [optional]  # noqa: E501
+            password (str, none_type): Specifies the password of the Cohesity user. [optional]  # noqa: E501
+            username (str, none_type): Specifies the login name of the Cohesity user. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

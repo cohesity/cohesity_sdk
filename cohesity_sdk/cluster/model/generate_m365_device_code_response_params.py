@@ -75,10 +75,10 @@ class GenerateM365DeviceCodeResponseParams(ModelNormal):
         """
         return {
             'device_code': (str, none_type,),  # noqa: E501
-            'user_code': (str, none_type,),  # noqa: E501
-            'verification_uri': (str, none_type,),  # noqa: E501
             'expires_in_secs': (int, none_type,),  # noqa: E501
             'interval_secs': (int, none_type,),  # noqa: E501
+            'user_code': (str, none_type,),  # noqa: E501
+            'verification_uri': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,10 +89,10 @@ class GenerateM365DeviceCodeResponseParams(ModelNormal):
 
     attribute_map = {
         'device_code': 'deviceCode',  # noqa: E501
-        'user_code': 'userCode',  # noqa: E501
-        'verification_uri': 'verificationUri',  # noqa: E501
         'expires_in_secs': 'expiresInSecs',  # noqa: E501
         'interval_secs': 'intervalSecs',  # noqa: E501
+        'user_code': 'userCode',  # noqa: E501
+        'verification_uri': 'verificationUri',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,10 +143,10 @@ class GenerateM365DeviceCodeResponseParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             device_code (str, none_type): Specifies the string used to verify the session between the client and the authorization server. The client uses this parameter to request the access token from the authorization server.. [optional]  # noqa: E501
-            user_code (str, none_type): A short string shown to the user that's used to identify the session on a secondary device.. [optional]  # noqa: E501
-            verification_uri (str, none_type): The URI the user should go to with the userCode in order to sign in.. [optional]  # noqa: E501
             expires_in_secs (int, none_type): The number of seconds before the deviceCode and userCode expire.. [optional]  # noqa: E501
             interval_secs (int, none_type): The number of seconds the client should wait between polling requests to check for token.. [optional]  # noqa: E501
+            user_code (str, none_type): A short string shown to the user that's used to identify the session on a secondary device.. [optional]  # noqa: E501
+            verification_uri (str, none_type): The URI the user should go to with the userCode in order to sign in.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -28,7 +28,6 @@ from cohesity_sdk.cluster.model.get_protection_runs_status_response_body import 
 from cohesity_sdk.cluster.model.time_series_stats import TimeSeriesStats
 from cohesity_sdk.cluster.model.view_clients_stats import ViewClientsStats
 from cohesity_sdk.cluster.model.views_stats import ViewsStats
-from cohesity_sdk.cluster.model.workload_stats_summary import WorkloadStatsSummary
 
 
 class StatsApi(object):
@@ -109,7 +108,7 @@ class StatsApi(object):
                 'response_type': (ClusterStorageStats,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/stats/cluster-storage',
@@ -219,7 +218,7 @@ class StatsApi(object):
                 'response_type': (FilesStats,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/stats/files',
@@ -342,7 +341,7 @@ class StatsApi(object):
                 'response_type': (GetProtectionRunsStatusResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/stats/protection-runs',
@@ -496,7 +495,7 @@ class StatsApi(object):
                 'response_type': (TimeSeriesStats,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/stats/time-series-stats',
@@ -667,7 +666,7 @@ class StatsApi(object):
                 'response_type': (ViewClientsStats,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/stats/view-clients',
@@ -890,7 +889,7 @@ class StatsApi(object):
                 'response_type': (ViewsStats,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/stats/views',
@@ -1071,113 +1070,4 @@ class StatsApi(object):
             },
             api_client=api_client,
             callable=__get_views_stats
-        )
-
-        def __get_workload_stats(
-            self,
-            **kwargs
-        ):
-            """Get Workload Stats Schema.  # noqa: E501
-
-            Get Workload Stats Schema. API will provide the high level information about different Workloads on Cohesity cluster along with their Entity Ids.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_workload_stats(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                WorkloadStatsSummary
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_workload_stats = _Endpoint(
-            settings={
-                'response_type': (WorkloadStatsSummary,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/stats/workload-stats',
-                'operation_id': 'get_workload_stats',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_workload_stats
         )

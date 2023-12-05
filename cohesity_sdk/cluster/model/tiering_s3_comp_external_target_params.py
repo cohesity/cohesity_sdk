@@ -79,13 +79,13 @@ class TieringS3CompExternalTargetParams(ModelComposed):
         """
         lazy_import()
         return {
-            'bucket_name': (str, none_type,),  # noqa: E501
             'access_key_id': (str, none_type,),  # noqa: E501
+            'bucket_name': (str, none_type,),  # noqa: E501
             'end_point': (str, none_type,),  # noqa: E501
+            'is_aws_snowball': (bool, none_type,),  # noqa: E501
             'secret_access_key': (str, none_type,),  # noqa: E501
             'secure_connection': (bool, none_type,),  # noqa: E501
             'signature_version': (int, none_type,),  # noqa: E501
-            'is_aws_snowball': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,13 +95,13 @@ class TieringS3CompExternalTargetParams(ModelComposed):
 
 
     attribute_map = {
-        'bucket_name': 'bucketName',  # noqa: E501
         'access_key_id': 'accessKeyId',  # noqa: E501
+        'bucket_name': 'bucketName',  # noqa: E501
         'end_point': 'endPoint',  # noqa: E501
+        'is_aws_snowball': 'isAwsSnowball',  # noqa: E501
         'secret_access_key': 'secretAccessKey',  # noqa: E501
         'secure_connection': 'secureConnection',  # noqa: E501
         'signature_version': 'signatureVersion',  # noqa: E501
-        'is_aws_snowball': 'isAwsSnowball',  # noqa: E501
     }
 
     required_properties = set([
@@ -117,12 +117,12 @@ class TieringS3CompExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket_name, access_key_id, end_point, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_key_id, bucket_name, end_point, *args, **kwargs):  # noqa: E501
         """TieringS3CompExternalTargetParams - a model defined in OpenAPI
 
         Args:
-            bucket_name (str, none_type): Specifies the bucket name of the external target.
             access_key_id (str, none_type): Specifies the access key id of the external target.
+            bucket_name (str, none_type): Specifies the bucket name of the external target.
             end_point (str, none_type): Specifies the endpoint of the external target.
 
         Keyword Args:
@@ -157,10 +157,10 @@ class TieringS3CompExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_aws_snowball (bool, none_type): Specifies whether the external target is AWS Snowball.. [optional]  # noqa: E501
             secret_access_key (str, none_type): Specifies the secret access key of the external target.. [optional]  # noqa: E501
             secure_connection (bool, none_type): Specifies the secure connection(https) is enabled or not.. [optional]  # noqa: E501
             signature_version (int, none_type): Specifies the aws signature version of the external target.. [optional]  # noqa: E501
-            is_aws_snowball (bool, none_type): Specifies whether the external target is AWS Snowball.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -195,8 +195,8 @@ class TieringS3CompExternalTargetParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'bucket_name': bucket_name,
             'access_key_id': access_key_id,
+            'bucket_name': bucket_name,
             'end_point': end_point,
         }
         model_args = {}

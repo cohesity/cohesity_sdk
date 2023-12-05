@@ -81,7 +81,6 @@ class DataTieringAnalysisGroupAllOf(ModelNormal):
         return {
             'id': (str, none_type,),  # noqa: E501
             'last_run': (DataTieringAnalysisGroupRun,),  # noqa: E501
-            'last_successful_run': (DataTieringAnalysisGroupRun,),  # noqa: E501
         }
 
     @cached_property
@@ -93,7 +92,6 @@ class DataTieringAnalysisGroupAllOf(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
-        'last_successful_run': 'lastSuccessfulRun',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,7 +143,6 @@ class DataTieringAnalysisGroupAllOf(ModelNormal):
 
             id (str, none_type): Specifies the ID of the data tiering analysis group.. [optional]  # noqa: E501
             last_run (DataTieringAnalysisGroupRun): [optional]  # noqa: E501
-            last_successful_run (DataTieringAnalysisGroupRun): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

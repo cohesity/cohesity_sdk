@@ -70,6 +70,11 @@ class ArchivalTargetProgressInfo(ModelComposed):
     """
 
     allowed_values = {
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
+        },
         ('target_type',): {
             'None': None,
             'TAPE': "Tape",
@@ -81,11 +86,6 @@ class ArchivalTargetProgressInfo(ModelComposed):
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
-        },
-        ('ownership_context',): {
-            'None': None,
-            'LOCAL': "Local",
-            'FORTKNOX': "FortKnox",
         },
         ('status',): {
             'None': None,
@@ -116,20 +116,20 @@ class ArchivalTargetProgressInfo(ModelComposed):
         """
         lazy_import()
         return {
-            'target_id': (int, none_type,),  # noqa: E501
             'archival_task_id': (str, none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
+            'target_id': (int, none_type,),  # noqa: E501
             'target_name': (str, none_type,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
-            'usage_type': (str, none_type,),  # noqa: E501
-            'ownership_context': (str, none_type,),  # noqa: E501
             'tier_settings': (ArchivalTargetTierInfo,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'usage_type': (str, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'events': ([ProgressTaskEvent],),  # noqa: E501
+            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
             'percentage_completed': (float, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
-            'events': ([ProgressTaskEvent],),  # noqa: E501
             'stats': (ProgressStats,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'objects': ([ObjectProgressInfo], none_type,),  # noqa: E501
         }
 
@@ -140,20 +140,20 @@ class ArchivalTargetProgressInfo(ModelComposed):
 
 
     attribute_map = {
-        'target_id': 'targetId',  # noqa: E501
         'archival_task_id': 'archivalTaskId',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
+        'target_id': 'targetId',  # noqa: E501
         'target_name': 'targetName',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
-        'usage_type': 'usageType',  # noqa: E501
-        'ownership_context': 'ownershipContext',  # noqa: E501
         'tier_settings': 'tierSettings',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'usage_type': 'usageType',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'events': 'events',  # noqa: E501
+        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
-        'events': 'events',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'objects': 'objects',  # noqa: E501
     }
 
@@ -205,20 +205,20 @@ class ArchivalTargetProgressInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_id (int, none_type): Specifies the archival target ID.. [optional]  # noqa: E501
             archival_task_id (str, none_type): Specifies the archival task id. This is a protection group UID which only applies when archival type is 'Tape'.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context for the target.. [optional]  # noqa: E501
+            target_id (int, none_type): Specifies the archival target ID.. [optional]  # noqa: E501
             target_name (str, none_type): Specifies the archival target name.. [optional]  # noqa: E501
             target_type (str, none_type): Specifies the archival target type.. [optional]  # noqa: E501
-            usage_type (str, none_type): Specifies the usage type for the target.. [optional]  # noqa: E501
-            ownership_context (str, none_type): Specifies the ownership context for the target.. [optional]  # noqa: E501
             tier_settings (ArchivalTargetTierInfo): [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
+            usage_type (str, none_type): Specifies the usage type for the target.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
+            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
+            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             percentage_completed (float, none_type): Specifies the current completed percentage of the progress task.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
             stats (ProgressStats): [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
             objects ([ObjectProgressInfo], none_type): Specifies progress for objects.. [optional]  # noqa: E501
         """
 

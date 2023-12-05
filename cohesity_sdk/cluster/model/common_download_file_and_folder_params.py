@@ -79,8 +79,8 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
         """
         lazy_import()
         return {
-            'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'download_file_path': (str, none_type,),  # noqa: E501
+            'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
 
 
     attribute_map = {
-        'files_and_folders': 'filesAndFolders',  # noqa: E501
         'download_file_path': 'downloadFilePath',  # noqa: E501
+        'files_and_folders': 'filesAndFolders',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            files_and_folders ([CommonRecoverFileAndFolderInfo], none_type): Specifies the info about the files and folders to be recovered.. [optional]  # noqa: E501
             download_file_path (str, none_type): Specifies the path location to download the files and folders.. [optional]  # noqa: E501
+            files_and_folders ([CommonRecoverFileAndFolderInfo], none_type): Specifies the info about the files and folders to be recovered.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

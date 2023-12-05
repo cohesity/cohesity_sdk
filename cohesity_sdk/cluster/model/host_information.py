@@ -110,9 +110,9 @@ class HostInformation(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -122,9 +122,9 @@ class HostInformation(ModelNormal):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,9 +174,9 @@ class HostInformation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the host object.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the host object.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

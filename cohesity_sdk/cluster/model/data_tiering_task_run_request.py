@@ -79,8 +79,8 @@ class DataTieringTaskRunRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'uptier_path': (str, none_type,),  # noqa: E501
             'shares': ([DataTieringShareInfo], none_type,),  # noqa: E501
+            'uptier_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class DataTieringTaskRunRequest(ModelNormal):
 
 
     attribute_map = {
-        'uptier_path': 'uptierPath',  # noqa: E501
         'shares': 'shares',  # noqa: E501
+        'uptier_path': 'uptierPath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class DataTieringTaskRunRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            uptier_path (str, none_type): Only applicable for uptiering tasks. Ignore the uptiering policy and uptier the directory pointed by the 'uptierPath'. If path is '/', then uptier everything.  This is a global property which will be applied to all shares by default. This can be overriden by specifying uptierPath for each share.. [optional]  # noqa: E501
             shares ([DataTieringShareInfo], none_type): Specifies the list of shares to tier.. [optional]  # noqa: E501
+            uptier_path (str, none_type): Only applicable for uptiering tasks. Ignore the uptiering policy and uptier the directory pointed by the 'uptierPath'. If path is '/', then uptier everything.  This is a global property which will be applied to all shares by default. This can be overriden by specifying uptierPath for each share.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -77,9 +77,9 @@ class ResourceEndpoint(ModelNormal):
             'fqdn': (str, none_type,),  # noqa: E501
             'ipv4addr': (str, none_type,),  # noqa: E501
             'ipv6addr': (str, none_type,),  # noqa: E501
-            'subnet_ip4addr': (str, none_type,),  # noqa: E501
-            'preferred_address': (str, none_type,),  # noqa: E501
             'is_preferred_endpoint': (bool, none_type,),  # noqa: E501
+            'preferred_address': (str, none_type,),  # noqa: E501
+            'subnet_ip4addr': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,9 +92,9 @@ class ResourceEndpoint(ModelNormal):
         'fqdn': 'fqdn',  # noqa: E501
         'ipv4addr': 'ipv4addr',  # noqa: E501
         'ipv6addr': 'ipv6addr',  # noqa: E501
-        'subnet_ip4addr': 'subnetIp4addr',  # noqa: E501
-        'preferred_address': 'preferredAddress',  # noqa: E501
         'is_preferred_endpoint': 'isPreferredEndpoint',  # noqa: E501
+        'preferred_address': 'preferredAddress',  # noqa: E501
+        'subnet_ip4addr': 'subnetIp4addr',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,9 +147,9 @@ class ResourceEndpoint(ModelNormal):
             fqdn (str, none_type): Specifies the fqdn of this endpoint.. [optional]  # noqa: E501
             ipv4addr (str, none_type): Specifies the ipv4 address of this endpoint.. [optional]  # noqa: E501
             ipv6addr (str, none_type): Specifies the ipv6 address of this endpoint.. [optional]  # noqa: E501
-            subnet_ip4addr (str, none_type): Specifies the subnet Ip4 address of this endpoint.. [optional]  # noqa: E501
-            preferred_address (str, none_type): Specifies the preferred address to use for connecting.. [optional]  # noqa: E501
             is_preferred_endpoint (bool, none_type): Whether to use this endpoint to connect.. [optional]  # noqa: E501
+            preferred_address (str, none_type): Specifies the preferred address to use for connecting.. [optional]  # noqa: E501
+            subnet_ip4addr (str, none_type): Specifies the subnet Ip4 address of this endpoint.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,11 +74,11 @@ class UdaOSSpecificConfigParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'os_type': (str,),  # noqa: E501
             'index_config': (str, none_type,),  # noqa: E501
-            'registration_config': (str, none_type,),  # noqa: E501
+            'os_type': (str,),  # noqa: E501
             'protection_config': (str, none_type,),  # noqa: E501
             'recovery_config': (str, none_type,),  # noqa: E501
+            'registration_config': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class UdaOSSpecificConfigParams(ModelNormal):
 
 
     attribute_map = {
-        'os_type': 'osType',  # noqa: E501
         'index_config': 'indexConfig',  # noqa: E501
-        'registration_config': 'registrationConfig',  # noqa: E501
+        'os_type': 'osType',  # noqa: E501
         'protection_config': 'protectionConfig',  # noqa: E501
         'recovery_config': 'recoveryConfig',  # noqa: E501
+        'registration_config': 'registrationConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class UdaOSSpecificConfigParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            os_type (str): Name of the operating system.. [optional]  # noqa: E501
             index_config (str, none_type): Specifies the basic configuration for the operating system type as a json string.. [optional]  # noqa: E501
-            registration_config (str, none_type): Specifies the registration config as json string.. [optional]  # noqa: E501
+            os_type (str): Name of the operating system.. [optional]  # noqa: E501
             protection_config (str, none_type): Specifies the protection config as json string.. [optional]  # noqa: E501
             recovery_config (str, none_type): Specifies the recovery config as json string.. [optional]  # noqa: E501
+            registration_config (str, none_type): Specifies the registration config as json string.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

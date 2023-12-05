@@ -76,8 +76,8 @@ class ViewStatsInLastHours(ModelNormal):
         return {
             'last_hours': (int, none_type,),  # noqa: E501
             'nfs_protocol_value': (int, none_type,),  # noqa: E501
-            'smb_protocol_value': (int, none_type,),  # noqa: E501
             's3_protocol_value': (int, none_type,),  # noqa: E501
+            'smb_protocol_value': (int, none_type,),  # noqa: E501
             'value': (int, none_type,),  # noqa: E501
         }
 
@@ -90,8 +90,8 @@ class ViewStatsInLastHours(ModelNormal):
     attribute_map = {
         'last_hours': 'lastHours',  # noqa: E501
         'nfs_protocol_value': 'nfsProtocolValue',  # noqa: E501
-        'smb_protocol_value': 'smbProtocolValue',  # noqa: E501
         's3_protocol_value': 's3ProtocolValue',  # noqa: E501
+        'smb_protocol_value': 'smbProtocolValue',  # noqa: E501
         'value': 'value',  # noqa: E501
     }
 
@@ -144,8 +144,8 @@ class ViewStatsInLastHours(ModelNormal):
 
             last_hours (int, none_type): Specifies the time range.. [optional]  # noqa: E501
             nfs_protocol_value (int, none_type): Specifies the stats value for NFS protocol.. [optional]  # noqa: E501
-            smb_protocol_value (int, none_type): Specifies the stats value for SMB protocol.. [optional]  # noqa: E501
             s3_protocol_value (int, none_type): Specifies the stats value for S3 protocol.. [optional]  # noqa: E501
+            smb_protocol_value (int, none_type): Specifies the stats value for SMB protocol.. [optional]  # noqa: E501
             value (int, none_type): Specifies the stats value for any protocols.. [optional]  # noqa: E501
         """
 

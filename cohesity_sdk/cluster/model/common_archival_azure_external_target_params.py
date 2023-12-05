@@ -93,11 +93,10 @@ class CommonArchivalAzureExternalTargetParams(ModelComposed):
             'storage_account_name': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
             'storage_access_key': (str, none_type,),  # noqa: E501
-            'client_id': (str, none_type,),  # noqa: E501
-            'source_side_deduplication': (bool, none_type,),  # noqa: E501
-            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_worm_enabled': (bool, none_type,),  # noqa: E501
+            'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'worm_specific_target_params': (WormSpecificTargetParams,),  # noqa: E501
         }
 
@@ -112,11 +111,10 @@ class CommonArchivalAzureExternalTargetParams(ModelComposed):
         'storage_account_name': 'storageAccountName',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
         'storage_access_key': 'storageAccessKey',  # noqa: E501
-        'client_id': 'clientId',  # noqa: E501
-        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
-        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_worm_enabled': 'isWormEnabled',  # noqa: E501
+        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'worm_specific_target_params': 'wormSpecificTargetParams',  # noqa: E501
     }
 
@@ -174,11 +172,10 @@ class CommonArchivalAzureExternalTargetParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             storage_access_key (str, none_type): Specifies the storage access key of the external target.. [optional]  # noqa: E501
-            client_id (str, none_type): Specifies the client id of the managed identity assigned to the cluster This is used only for clusters running as Azure VMs where authentication is done using AD.. [optional]  # noqa: E501
-            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
-            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_worm_enabled (bool, none_type): Specifies whether write once read many (WORM) protection is enabled for the Azure container or not.. [optional]  # noqa: E501
+            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Azure external target. [optional]  # noqa: E501
             worm_specific_target_params (WormSpecificTargetParams): [optional]  # noqa: E501
         """
 

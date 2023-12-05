@@ -86,9 +86,9 @@ class TimeSeriesStatsForMetric(ModelNormal):
         """
         lazy_import()
         return {
+            'data_points': ([DataPoint], none_type,),  # noqa: E501
             'metric_name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'data_points': ([DataPoint], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +98,9 @@ class TimeSeriesStatsForMetric(ModelNormal):
 
 
     attribute_map = {
+        'data_points': 'dataPoints',  # noqa: E501
         'metric_name': 'metricName',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'data_points': 'dataPoints',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,9 +150,9 @@ class TimeSeriesStatsForMetric(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            data_points ([DataPoint], none_type): Specifies a list of data points.. [optional]  # noqa: E501
             metric_name (str, none_type): Specifies the metric name.. [optional]  # noqa: E501
             type (str, none_type): Specifies the type of the data points.. [optional]  # noqa: E501
-            data_points ([DataPoint], none_type): Specifies a list of data points.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -83,12 +83,12 @@ class CassandraSourceRegistrationParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'jmx_credentials': (CassandraSourceRegistrationParamsAllOfJmxCredentials,),  # noqa: E501
             'cassandra_credentials': (CassandraSourceRegistrationParamsAllOfCassandraCredentials,),  # noqa: E501
-            'data_center_names': ([str],),  # noqa: E501
             'commit_log_backup_location': (str, none_type,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
+            'data_center_names': ([str],),  # noqa: E501
             'dse_solr_info': (DSESolrInfo,),  # noqa: E501
+            'jmx_credentials': (CassandraSourceRegistrationParamsAllOfJmxCredentials,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,12 +98,12 @@ class CassandraSourceRegistrationParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'jmx_credentials': 'jmxCredentials',  # noqa: E501
         'cassandra_credentials': 'cassandraCredentials',  # noqa: E501
-        'data_center_names': 'dataCenterNames',  # noqa: E501
         'commit_log_backup_location': 'commitLogBackupLocation',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
+        'data_center_names': 'dataCenterNames',  # noqa: E501
         'dse_solr_info': 'dseSolrInfo',  # noqa: E501
+        'jmx_credentials': 'jmxCredentials',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,12 +153,12 @@ class CassandraSourceRegistrationParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            jmx_credentials (CassandraSourceRegistrationParamsAllOfJmxCredentials): [optional]  # noqa: E501
             cassandra_credentials (CassandraSourceRegistrationParamsAllOfCassandraCredentials): [optional]  # noqa: E501
-            data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501
             commit_log_backup_location (str, none_type): Commit Logs backup location on cassandra nodes. [optional]  # noqa: E501
-            kerberos_principal (str, none_type): Principal for the kerberos connection. (This is required only if your Cassandra has Kerberos authentication. Please refer to the user guide.). [optional]  # noqa: E501
+            data_center_names ([str]): Data centers for this cluster.. [optional]  # noqa: E501
             dse_solr_info (DSESolrInfo): [optional]  # noqa: E501
+            jmx_credentials (CassandraSourceRegistrationParamsAllOfJmxCredentials): [optional]  # noqa: E501
+            kerberos_principal (str, none_type): Principal for the kerberos connection. (This is required only if your Cassandra has Kerberos authentication. Please refer to the user guide.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

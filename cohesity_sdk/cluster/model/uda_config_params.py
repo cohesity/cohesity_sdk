@@ -81,8 +81,8 @@ class UdaConfigParams(ModelNormal):
         """
         lazy_import()
         return {
-            'index': (UdaIndexParams,),  # noqa: E501
             'host_os_specific_configurations': ([UdaHostOsSpecificParams],),  # noqa: E501
+            'index': (UdaIndexParams,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class UdaConfigParams(ModelNormal):
 
 
     attribute_map = {
-        'index': 'index',  # noqa: E501
         'host_os_specific_configurations': 'hostOsSpecificConfigurations',  # noqa: E501
+        'index': 'index',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class UdaConfigParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            index (UdaIndexParams): [optional]  # noqa: E501
             host_os_specific_configurations ([UdaHostOsSpecificParams]): Array of parameters for different host operating systems.. [optional]  # noqa: E501
+            index (UdaIndexParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

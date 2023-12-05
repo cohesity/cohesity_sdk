@@ -79,8 +79,8 @@ class PhysicalSnapshotParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'protection_type': (str, none_type,),  # noqa: E501
             'enable_system_backup': (bool, none_type,),  # noqa: E501
+            'protection_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class PhysicalSnapshotParams(ModelNormal):
 
 
     attribute_map = {
-        'protection_type': 'protectionType',  # noqa: E501
         'enable_system_backup': 'enableSystemBackup',  # noqa: E501
+        'protection_type': 'protectionType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class PhysicalSnapshotParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_type (str, none_type): Specifies the protection type of Physical snapshots.. [optional]  # noqa: E501
             enable_system_backup (bool, none_type): Specifies if system backup was enabled for the source in that particular run.. [optional]  # noqa: E501
+            protection_type (str, none_type): Specifies the protection type of Physical snapshots.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -80,8 +80,8 @@ class DataTransferInfo(ModelNormal):
         lazy_import()
         return {
             'is_private_network': (bool, none_type,),  # noqa: E501
-            'use_protection_job_info': (bool, none_type,),  # noqa: E501
             'private_network_info_list': ([PrivateNetworkInfo],),  # noqa: E501
+            'use_protection_job_info': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class DataTransferInfo(ModelNormal):
 
     attribute_map = {
         'is_private_network': 'isPrivateNetwork',  # noqa: E501
-        'use_protection_job_info': 'useProtectionJobInfo',  # noqa: E501
         'private_network_info_list': 'privateNetworkInfoList',  # noqa: E501
+        'use_protection_job_info': 'useProtectionJobInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class DataTransferInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             is_private_network (bool, none_type): Specifies whether to use private network or public network.. [optional]  # noqa: E501
-            use_protection_job_info (bool, none_type): Specifies Whether to use private network info which was used in backup of VMs.This should be populated only for restore job.. [optional]  # noqa: E501
             private_network_info_list ([PrivateNetworkInfo]): Specifies Information required to create endpoints in private networks for all regions whose VMs are getting protected.. [optional]  # noqa: E501
+            use_protection_job_info (bool, none_type): Specifies Whether to use private network info which was used in backup of VMs.This should be populated only for restore job.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

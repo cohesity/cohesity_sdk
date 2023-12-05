@@ -83,11 +83,11 @@ class AAGGroup(ModelNormal):
         """
         lazy_import()
         return {
+            'fci_clusters': ([FCICluster], none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'resource_info': (AppResource,),  # noqa: E501
             'servers': ([SQLServer], none_type,),  # noqa: E501
-            'fci_clusters': ([FCICluster], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,11 +97,11 @@ class AAGGroup(ModelNormal):
 
 
     attribute_map = {
+        'fci_clusters': 'fciClusters',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'resource_info': 'resourceInfo',  # noqa: E501
         'servers': 'servers',  # noqa: E501
-        'fci_clusters': 'fciClusters',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,11 +151,11 @@ class AAGGroup(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            fci_clusters ([FCICluster], none_type): Specifies the list of FCI clusters which belongs to the given AAG Group.. [optional]  # noqa: E501
             id (str, none_type): Specifies the unique identifier of the AGGGroup.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the AAG Group.. [optional]  # noqa: E501
             resource_info (AppResource): [optional]  # noqa: E501
             servers ([SQLServer], none_type): Specifies the list of SQL servers which belongs to the given AAG Group.. [optional]  # noqa: E501
-            fci_clusters ([FCICluster], none_type): Specifies the list of FCI clusters which belongs to the given AAG Group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

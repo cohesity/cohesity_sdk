@@ -93,11 +93,11 @@ class NetappObjectProtectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'protocol': (str, none_type,),  # noqa: E501
-            'exclude_object_ids': ([int], none_type,),  # noqa: E501
-            'snapshot_label': (SnapshotLabel,),  # noqa: E501
             'backup_existing_snapshot': (bool, none_type,),  # noqa: E501
             'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
+            'snapshot_label': (SnapshotLabel,),  # noqa: E501
         }
 
     @cached_property
@@ -107,11 +107,11 @@ class NetappObjectProtectionParams(ModelNormal):
 
 
     attribute_map = {
-        'protocol': 'protocol',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
-        'snapshot_label': 'snapshotLabel',  # noqa: E501
         'backup_existing_snapshot': 'backupExistingSnapshot',  # noqa: E501
         'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
+        'snapshot_label': 'snapshotLabel',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,11 +161,11 @@ class NetappObjectProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
-            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection.. [optional]  # noqa: E501
-            snapshot_label (SnapshotLabel): [optional]  # noqa: E501
             backup_existing_snapshot (bool, none_type): Specifies that snapshot label is not set for Data-Protect Netapp Volumes backup. If field is set to true, existing oldest snapshot is used for backup and subsequent incremental will be selected in ascending order of snapshot create time on the source. If snapshot label is set, this field is set to false.. [optional]  # noqa: E501
             continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection.. [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the protocol of the NAS device being backed up.. [optional]  # noqa: E501
+            snapshot_label (SnapshotLabel): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

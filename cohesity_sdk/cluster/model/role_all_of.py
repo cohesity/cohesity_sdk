@@ -74,10 +74,10 @@ class RoleAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'label': (str, none_type,),  # noqa: E501
             'created_timestamp_msecs': (int, none_type,),  # noqa: E501
-            'last_updated_timestamp_msecs': (int, none_type,),  # noqa: E501
             'is_user_created_role': (bool, none_type,),  # noqa: E501
+            'label': (str, none_type,),  # noqa: E501
+            'last_updated_timestamp_msecs': (int, none_type,),  # noqa: E501
             'tenant_ids': ([str], none_type,),  # noqa: E501
         }
 
@@ -88,10 +88,10 @@ class RoleAllOf(ModelNormal):
 
 
     attribute_map = {
-        'label': 'label',  # noqa: E501
         'created_timestamp_msecs': 'createdTimestampMsecs',  # noqa: E501
-        'last_updated_timestamp_msecs': 'lastUpdatedTimestampMsecs',  # noqa: E501
         'is_user_created_role': 'isUserCreatedRole',  # noqa: E501
+        'label': 'label',  # noqa: E501
+        'last_updated_timestamp_msecs': 'lastUpdatedTimestampMsecs',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
     }
 
@@ -142,10 +142,10 @@ class RoleAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            label (str, none_type): Specifies the Role label.. [optional]  # noqa: E501
             created_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is created in milliseconds.. [optional]  # noqa: E501
-            last_updated_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is last updated in milliseconds.. [optional]  # noqa: E501
             is_user_created_role (bool, none_type): Specifies if the Role is created by user.. [optional]  # noqa: E501
+            label (str, none_type): Specifies the Role label.. [optional]  # noqa: E501
+            last_updated_timestamp_msecs (int, none_type): Specifies the timestamp when the Role is last updated in milliseconds.. [optional]  # noqa: E501
             tenant_ids ([str], none_type): Specifies the list of tenant ids who have access to this Role.. [optional]  # noqa: E501
         """
 

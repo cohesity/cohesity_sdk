@@ -79,8 +79,8 @@ class ActiveSessionsCountParams(ModelNormal):
         """
         lazy_import()
         return {
-            'total_sessions_count': (int,),  # noqa: E501
             'sessions_per_user': ([UserSessionsCount],),  # noqa: E501
+            'total_sessions_count': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class ActiveSessionsCountParams(ModelNormal):
 
 
     attribute_map = {
-        'total_sessions_count': 'totalSessionsCount',  # noqa: E501
         'sessions_per_user': 'sessionsPerUser',  # noqa: E501
+        'total_sessions_count': 'totalSessionsCount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class ActiveSessionsCountParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            total_sessions_count (int): Specifies the aggregated sessions count for the user sessions returned. If sids are not given this returns the total system wide sessions count and if the sids are given, this returns the total sessions count for the given sids.. [optional]  # noqa: E501
             sessions_per_user ([UserSessionsCount]): Specifies the sessions count per user.. [optional]  # noqa: E501
+            total_sessions_count (int): Specifies the aggregated sessions count for the user sessions returned. If sids are not given this returns the total system wide sessions count and if the sids are given, this returns the total sessions count for the given sids.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

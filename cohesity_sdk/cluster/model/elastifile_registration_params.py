@@ -81,8 +81,8 @@ class ElastifileRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'endpoint': (str, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
+            'endpoint': (str, none_type,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
 
@@ -93,8 +93,8 @@ class ElastifileRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'endpoint': 'endpoint',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
+        'endpoint': 'endpoint',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
     }
 
@@ -110,12 +110,12 @@ class ElastifileRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, endpoint, credentials, *args, **kwargs):  # noqa: E501
+    def __init__(self, credentials, endpoint, *args, **kwargs):  # noqa: E501
         """ElastifileRegistrationParams - a model defined in OpenAPI
 
         Args:
-            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Elastifile Source.
             credentials (Credentials):
+            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Elastifile Source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -176,8 +176,8 @@ class ElastifileRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.endpoint = endpoint
         self.credentials = credentials
+        self.endpoint = endpoint
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

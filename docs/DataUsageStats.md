@@ -29,6 +29,8 @@ Name | Type | Description | Notes
 **local_tier_resiliency_impact_bytes_timestamp_usec** | **int, none_type** | Specifies Timestamp of LocalTierResiliencyImpactBytes. | [optional] 
 **local_total_physical_usage_bytes** | **int, none_type** | Specifies the total local capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication. | [optional] 
 **local_total_physical_usage_bytes_timestamp_usec** | **int, none_type** | Specifies Timestamp of LocalTotalPhysicalUsageBytes. | [optional] 
+**num_directories** | **int, none_type** | Specifies the number of directories. | [optional] 
+**num_files** | **int, none_type** | Specifies the number of files. | [optional] 
 **outdated_logical_usage_bytes** | **int, none_type** | Specifies the logical usage as computed by the Cohesity Cluster. This field is computed on a same frequency as &#39;StorageConsumedBytes&#39;, and it may not be the latest value. It is used to compute reduction ratio. | [optional] 
 **outdated_logical_usage_bytes_timestamp_usec** | **int, none_type** | Specifies Timestamp of OutdatedLogicalUsageBytes. | [optional] 
 **storage_consumed_bytes** | **int, none_type** | Specifies the total capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication. This includes resiliency impact. | [optional] 
@@ -36,8 +38,6 @@ Name | Type | Description | Notes
 **total_logical_usage_bytes** | **int, none_type** | Provides the combined data residing on protected objects. The size of data before reduction by deduplication and compression. | [optional] 
 **total_logical_usage_bytes_timestamp_usec** | **int, none_type** | Specifies Timestamp of TotalLogicalUsageBytes. | [optional] 
 **unique_physical_data_bytes** | **int, none_type** | Specifies the unique physical data usage in bytes. | [optional] 
-**num_files** | **int, none_type** | Specifies the number of files. | [optional] 
-**num_directories** | **int, none_type** | Specifies the number of directories. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

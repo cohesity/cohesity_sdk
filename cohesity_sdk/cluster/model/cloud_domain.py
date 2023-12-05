@@ -75,8 +75,8 @@ class CloudDomain(ModelNormal):
         """
         return {
             'domain_id': (int, none_type,),  # noqa: E501
-            'view_box_id': (int, none_type,),  # noqa: E501
             'storage_domain_name': (str, none_type,),  # noqa: E501
+            'view_box_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class CloudDomain(ModelNormal):
 
     attribute_map = {
         'domain_id': 'domainId',  # noqa: E501
-        'view_box_id': 'viewBoxId',  # noqa: E501
         'storage_domain_name': 'storageDomainName',  # noqa: E501
+        'view_box_id': 'viewBoxId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class CloudDomain(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             domain_id (int, none_type): Specifies the Id of the cloud domain... [optional]  # noqa: E501
-            view_box_id (int, none_type): Specifies the Id of ViewBox related to the cloud domain.. [optional]  # noqa: E501
             storage_domain_name (str, none_type): Specifies the Name of StorageDomain related to the cloud domain.. [optional]  # noqa: E501
+            view_box_id (int, none_type): Specifies the Id of ViewBox related to the cloud domain.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

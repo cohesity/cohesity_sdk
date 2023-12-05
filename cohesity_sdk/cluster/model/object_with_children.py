@@ -242,16 +242,6 @@ class ObjectWithChildren(ModelComposed):
             'KORG': "kOrg",
             'KAPPINSTANCE': "kAppInstance",
         },
-        ('protection_type',): {
-            'None': None,
-            'KAGENT': "kAgent",
-            'KNATIVE': "kNative",
-            'KSNAPSHOTMANAGER': "kSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
-            'KFILE': "kFile",
-            'KVOLUME': "kVolume",
-        },
         ('os_type',): {
             'None': None,
             'KLINUX': "kLinux",
@@ -261,6 +251,16 @@ class ObjectWithChildren(ModelComposed):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+        },
+        ('protection_type',): {
+            'None': None,
+            'KAGENT': "kAgent",
+            'KNATIVE': "kNative",
+            'KSNAPSHOTMANAGER': "kSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KFILE': "kFile",
+            'KVOLUME': "kVolume",
         },
     }
 
@@ -283,37 +283,35 @@ class ObjectWithChildren(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
+            'global_id': (str, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
             'object_type': (str, none_type,),  # noqa: E501
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'uuid': (str, none_type,),  # noqa: E501
-            'global_id': (str, none_type,),  # noqa: E501
-            'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
-            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
+            'protection_type': (str, none_type,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
+            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
-            'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'permissions': (PermissionInfo,),  # noqa: E501
-            'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
-            'isilon_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'netapp_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'protection_stats': ([ObjectProtectionStatsSummary], none_type,),  # noqa: E501
             'elastifile_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'isilon_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'netapp_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
             'objects': ([ObjectWithChildren],),  # noqa: E501
         }
 
@@ -324,37 +322,35 @@ class ObjectWithChildren(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
+        'global_id': 'globalId',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
         'object_type': 'objectType',  # noqa: E501
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'uuid': 'uuid',  # noqa: E501
-        'global_id': 'globalId',  # noqa: E501
-        'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
-        'v_center_summary': 'vCenterSummary',  # noqa: E501
+        'protection_type': 'protectionType',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
+        'v_center_summary': 'vCenterSummary',  # noqa: E501
         'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
-        'protection_stats': 'protectionStats',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'protection_stats': 'protectionStats',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
-        'group_params': 'groupParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
-        'view_params': 'viewParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
     }
 
@@ -406,37 +402,35 @@ class ObjectWithChildren(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
+            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
-            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
-            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
-            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
-            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
-            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
+            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
+            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
-            protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             permissions (PermissionInfo): [optional]  # noqa: E501
-            vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
-            isilon_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Isilon object.. [optional]  # noqa: E501
-            netapp_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for NetApp object.. [optional]  # noqa: E501
-            generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GenericNas object.. [optional]  # noqa: E501
-            flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Flashblade object.. [optional]  # noqa: E501
+            protection_stats ([ObjectProtectionStatsSummary], none_type): Specifies the count and size of protected and unprotected objects for the size.. [optional]  # noqa: E501
             elastifile_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Elastifile object.. [optional]  # noqa: E501
+            flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Flashblade object.. [optional]  # noqa: E501
+            generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GenericNas object.. [optional]  # noqa: E501
             gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
+            isilon_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Isilon object.. [optional]  # noqa: E501
             mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
+            netapp_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for NetApp object.. [optional]  # noqa: E501
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
             sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
-            group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for M365 Group object.. [optional]  # noqa: E501
             uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
-            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for a View.. [optional]  # noqa: E501
+            vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
             objects ([ObjectWithChildren]): Specifies a list of child nodes for this specific node.. [optional]  # noqa: E501
         """
 

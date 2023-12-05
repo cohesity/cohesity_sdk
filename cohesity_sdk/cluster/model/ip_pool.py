@@ -74,8 +74,8 @@ class IpPool(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str,),  # noqa: E501
             'ips': ([str],),  # noqa: E501
+            'name': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class IpPool(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'ips': 'ips',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class IpPool(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, ips, *args, **kwargs):  # noqa: E501
+    def __init__(self, ips, name, *args, **kwargs):  # noqa: E501
         """IpPool - a model defined in OpenAPI
 
         Args:
-            name (str): Name of the IP pool.
             ips ([str]): IP addresses.
+            name (str): Name of the IP pool.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class IpPool(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.ips = ips
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

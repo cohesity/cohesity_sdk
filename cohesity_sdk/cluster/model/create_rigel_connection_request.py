@@ -81,8 +81,8 @@ class CreateRigelConnectionRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'scalable': (bool, none_type,),  # noqa: E501
         }
@@ -94,8 +94,8 @@ class CreateRigelConnectionRequest(ModelComposed):
 
 
     attribute_map = {
-        'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'scalable': 'scalable',  # noqa: E501
     }
@@ -113,12 +113,12 @@ class CreateRigelConnectionRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, tenant_id, name, connection_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, tenant_id, connection_id, *args, **kwargs):  # noqa: E501
         """CreateRigelConnectionRequest - a model defined in OpenAPI
 
         Args:
-            tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.
             name (str, none_type): Specifies the name of the connection.
+            tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.
             connection_id (int, none_type): Specifies the id of the connection.
 
         Keyword Args:
@@ -188,8 +188,8 @@ class CreateRigelConnectionRequest(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'tenant_id': tenant_id,
             'name': name,
+            'tenant_id': tenant_id,
             'connection_id': connection_id,
         }
         model_args = {}

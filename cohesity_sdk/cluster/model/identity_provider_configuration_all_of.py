@@ -74,10 +74,10 @@ class IdentityProviderConfigurationAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class IdentityProviderConfigurationAllOf(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'domain': 'domain',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,10 +140,10 @@ class IdentityProviderConfigurationAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies id of idp configuration. [optional]  # noqa: E501
-            tenant_id (str, none_type): Specifies the tenant id if the idp is configured for a tenant. If this is not set, this idp configuration is used for the cluster level users and for all users of tenants not having an idp configuration.. [optional]  # noqa: E501
-            name (str, none_type): Specifies name of the vendor providing idp service. [optional]  # noqa: E501
             domain (str, none_type): Specifies domain of idp configuration. [optional]  # noqa: E501
+            id (int, none_type): Specifies id of idp configuration. [optional]  # noqa: E501
+            name (str, none_type): Specifies name of the vendor providing idp service. [optional]  # noqa: E501
+            tenant_id (str, none_type): Specifies the tenant id if the idp is configured for a tenant. If this is not set, this idp configuration is used for the cluster level users and for all users of tenants not having an idp configuration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

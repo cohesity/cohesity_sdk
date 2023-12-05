@@ -74,9 +74,9 @@ class NetworkConnectionInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'dns': (str, none_type,),  # noqa: E501
             'domain_name': (str, none_type,),  # noqa: E501
             'network_gateway': (str, none_type,),  # noqa: E501
-            'dns': (str, none_type,),  # noqa: E501
             'ntp': (str, none_type,),  # noqa: E501
         }
 
@@ -87,9 +87,9 @@ class NetworkConnectionInfo(ModelNormal):
 
 
     attribute_map = {
+        'dns': 'dns',  # noqa: E501
         'domain_name': 'domainName',  # noqa: E501
         'network_gateway': 'networkGateway',  # noqa: E501
-        'dns': 'dns',  # noqa: E501
         'ntp': 'ntp',  # noqa: E501
     }
 
@@ -140,9 +140,9 @@ class NetworkConnectionInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            dns (str, none_type): Specifies the DNS Server of the network connection.. [optional]  # noqa: E501
             domain_name (str, none_type): Specifies the domain name of the network connection.. [optional]  # noqa: E501
             network_gateway (str, none_type): Specifies the network Gateway of the network connection.. [optional]  # noqa: E501
-            dns (str, none_type): Specifies the DNS Server of the network connection.. [optional]  # noqa: E501
             ntp (str, none_type): Specifies the NTP Server of the network connection.. [optional]  # noqa: E501
         """
 

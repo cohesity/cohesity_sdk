@@ -103,9 +103,9 @@ class SourceConnectionRequestParams(ModelComposed):
             'environment': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'cassandra_connection_params': (CassandraConnectionParams,),  # noqa: E501
-            'hive_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'hbase_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'hdfs_connection_params': (HadoopConnectionParams,),  # noqa: E501
+            'hive_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'mssql_connection_params': (MssqlConnectionParams,),  # noqa: E501
             'oracle_connection_params': (OracleConnectionParams,),  # noqa: E501
             'vmware_connection_params': (VmwareConnectionParams,),  # noqa: E501
@@ -121,9 +121,9 @@ class SourceConnectionRequestParams(ModelComposed):
         'environment': 'environment',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'cassandra_connection_params': 'cassandraConnectionParams',  # noqa: E501
-        'hive_connection_params': 'hiveConnectionParams',  # noqa: E501
         'hbase_connection_params': 'hbaseConnectionParams',  # noqa: E501
         'hdfs_connection_params': 'hdfsConnectionParams',  # noqa: E501
+        'hive_connection_params': 'hiveConnectionParams',  # noqa: E501
         'mssql_connection_params': 'mssqlConnectionParams',  # noqa: E501
         'oracle_connection_params': 'oracleConnectionParams',  # noqa: E501
         'vmware_connection_params': 'vmwareConnectionParams',  # noqa: E501
@@ -182,9 +182,9 @@ class SourceConnectionRequestParams(ModelComposed):
 
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             cassandra_connection_params (CassandraConnectionParams): [optional]  # noqa: E501
-            hive_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             hbase_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             hdfs_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
+            hive_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             mssql_connection_params (MssqlConnectionParams): [optional]  # noqa: E501
             oracle_connection_params (OracleConnectionParams): [optional]  # noqa: E501
             vmware_connection_params (VmwareConnectionParams): [optional]  # noqa: E501

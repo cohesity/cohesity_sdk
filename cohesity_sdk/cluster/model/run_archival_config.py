@@ -85,10 +85,10 @@ class RunArchivalConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int, none_type,),  # noqa: E501
             'archival_target_type': (str, none_type,),  # noqa: E501
-            'retention': (Retention,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
             'copy_only_fully_successful': (bool, none_type,),  # noqa: E501
+            'retention': (Retention,),  # noqa: E501
         }
 
     @cached_property
@@ -98,10 +98,10 @@ class RunArchivalConfig(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'archival_target_type': 'archivalTargetType',  # noqa: E501
-        'retention': 'retention',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'copy_only_fully_successful': 'copyOnlyFullySuccessful',  # noqa: E501
+        'retention': 'retention',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -116,12 +116,12 @@ class RunArchivalConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, archival_target_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, archival_target_type, id, *args, **kwargs):  # noqa: E501
         """RunArchivalConfig - a model defined in OpenAPI
 
         Args:
-            id (int, none_type): Specifies the Archival target to copy the Snapshots to.
             archival_target_type (str, none_type): Specifies the snapshot's archival target type from which recovery has been performed.
+            id (int, none_type): Specifies the Archival target to copy the Snapshots to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -155,8 +155,8 @@ class RunArchivalConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            retention (Retention): [optional]  # noqa: E501
             copy_only_fully_successful (bool, none_type): Specifies if Snapshots are copied from a fully successful Protection Group Run or a partially successful Protection Group Run. If false, Snapshots are copied the Protection Group Run, even if the Run was not fully successful i.e. Snapshots were not captured for all Objects in the Protection Group. If true, Snapshots are copied only when the run is fully successful.. [optional]  # noqa: E501
+            retention (Retention): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -183,8 +183,8 @@ class RunArchivalConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.id = id
         self.archival_target_type = archival_target_type
+        self.id = id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

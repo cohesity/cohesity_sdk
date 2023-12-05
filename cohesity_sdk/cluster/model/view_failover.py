@@ -75,9 +75,9 @@ class ViewFailover(ModelNormal):
         """
         return {
             'is_failover_ready': (bool, none_type,),  # noqa: E501
-            'remote_view_id': (int, none_type,),  # noqa: E501
             'remote_cluster_id': (int, none_type,),  # noqa: E501
             'remote_cluster_incarnation_id': (int, none_type,),  # noqa: E501
+            'remote_view_id': (int, none_type,),  # noqa: E501
             'view_uid': (str, none_type,),  # noqa: E501
         }
 
@@ -89,9 +89,9 @@ class ViewFailover(ModelNormal):
 
     attribute_map = {
         'is_failover_ready': 'isFailoverReady',  # noqa: E501
-        'remote_view_id': 'remoteViewId',  # noqa: E501
         'remote_cluster_id': 'remoteClusterId',  # noqa: E501
         'remote_cluster_incarnation_id': 'remoteClusterIncarnationId',  # noqa: E501
+        'remote_view_id': 'remoteViewId',  # noqa: E501
         'view_uid': 'viewUid',  # noqa: E501
     }
 
@@ -143,9 +143,9 @@ class ViewFailover(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             is_failover_ready (bool, none_type): Specifies if the view is ready for failover.. [optional]  # noqa: E501
-            remote_view_id (int, none_type): Specifies the remote view id.. [optional]  # noqa: E501
             remote_cluster_id (int, none_type): Specifies the remote cluster id.. [optional]  # noqa: E501
             remote_cluster_incarnation_id (int, none_type): Specifies the remote cluster incarnation id.. [optional]  # noqa: E501
+            remote_view_id (int, none_type): Specifies the remote view id.. [optional]  # noqa: E501
             view_uid (str, none_type): View uid.. [optional]  # noqa: E501
         """
 

@@ -67,13 +67,13 @@ class SearchPublicFolderRequestParams(ModelNormal):
     }
 
     validations = {
-        ('types',): {
-        },
-
         ('sender_address',): {
             'regex': {
                 'pattern': r'^\S+@\S+.\S+$',  # noqa: E501
             },
+        },
+
+        ('types',): {
         },
 
     }
@@ -93,15 +93,15 @@ class SearchPublicFolderRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'search_string': (str, none_type,),  # noqa: E501
-            'types': ([str], none_type,),  # noqa: E501
-            'has_attachment': (bool, none_type,),  # noqa: E501
-            'sender_address': (str, none_type,),  # noqa: E501
-            'recipient_addresses': ([str], none_type,),  # noqa: E501
-            'cc_recipient_addresses': ([str], none_type,),  # noqa: E501
             'bcc_recipient_addresses': ([str], none_type,),  # noqa: E501
-            'received_start_time_secs': (int, none_type,),  # noqa: E501
+            'cc_recipient_addresses': ([str], none_type,),  # noqa: E501
+            'has_attachment': (bool, none_type,),  # noqa: E501
             'received_end_time_secs': (int, none_type,),  # noqa: E501
+            'received_start_time_secs': (int, none_type,),  # noqa: E501
+            'recipient_addresses': ([str], none_type,),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
+            'sender_address': (str, none_type,),  # noqa: E501
+            'types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -111,15 +111,15 @@ class SearchPublicFolderRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
-        'types': 'types',  # noqa: E501
-        'has_attachment': 'hasAttachment',  # noqa: E501
-        'sender_address': 'senderAddress',  # noqa: E501
-        'recipient_addresses': 'recipientAddresses',  # noqa: E501
-        'cc_recipient_addresses': 'ccRecipientAddresses',  # noqa: E501
         'bcc_recipient_addresses': 'bccRecipientAddresses',  # noqa: E501
-        'received_start_time_secs': 'receivedStartTimeSecs',  # noqa: E501
+        'cc_recipient_addresses': 'ccRecipientAddresses',  # noqa: E501
+        'has_attachment': 'hasAttachment',  # noqa: E501
         'received_end_time_secs': 'receivedEndTimeSecs',  # noqa: E501
+        'received_start_time_secs': 'receivedStartTimeSecs',  # noqa: E501
+        'recipient_addresses': 'recipientAddresses',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
+        'sender_address': 'senderAddress',  # noqa: E501
+        'types': 'types',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -169,15 +169,15 @@ class SearchPublicFolderRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            search_string (str, none_type): Specifies the search string to filter the items. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string.. [optional]  # noqa: E501
-            types ([str], none_type): Specifies a list of public folder item types. Only items within the given types will be returned.. [optional]  # noqa: E501
-            has_attachment (bool, none_type): Filters the public folder items which have attachment.. [optional]  # noqa: E501
-            sender_address (str, none_type): Filters the public folder items which are received from specified user's email address.. [optional]  # noqa: E501
-            recipient_addresses ([str], none_type): Filters the public folder items which are sent to specified email addresses.. [optional]  # noqa: E501
-            cc_recipient_addresses ([str], none_type): Filters the public folder items which are sent to specified email addresses in CC.. [optional]  # noqa: E501
             bcc_recipient_addresses ([str], none_type): Filters the public folder items which are sent to specified email addresses in BCC.. [optional]  # noqa: E501
-            received_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds where the received time of the public folder item is more than specified value.. [optional]  # noqa: E501
+            cc_recipient_addresses ([str], none_type): Filters the public folder items which are sent to specified email addresses in CC.. [optional]  # noqa: E501
+            has_attachment (bool, none_type): Filters the public folder items which have attachment.. [optional]  # noqa: E501
             received_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds where the received time of the public folder items is less than specified value.. [optional]  # noqa: E501
+            received_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds where the received time of the public folder item is more than specified value.. [optional]  # noqa: E501
+            recipient_addresses ([str], none_type): Filters the public folder items which are sent to specified email addresses.. [optional]  # noqa: E501
+            search_string (str, none_type): Specifies the search string to filter the items. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string.. [optional]  # noqa: E501
+            sender_address (str, none_type): Filters the public folder items which are received from specified user's email address.. [optional]  # noqa: E501
+            types ([str], none_type): Specifies a list of public folder item types. Only items within the given types will be returned.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

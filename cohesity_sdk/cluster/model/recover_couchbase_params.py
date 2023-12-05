@@ -85,17 +85,17 @@ class RecoverCouchbaseParams(ModelComposed):
         """
         lazy_import()
         return {
-            'snapshots': ([RecoverCouchbaseSnapshotParams], none_type,),  # noqa: E501
             'filter_documents_params': (FilterDocumentsParams,),  # noqa: E501
-            'recover_to': (int, none_type,),  # noqa: E501
-            'overwrite': (bool, none_type,),  # noqa: E501
-            'concurrency': (int, none_type,),  # noqa: E501
+            'snapshots': ([RecoverCouchbaseSnapshotParams], none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
+            'concurrency': (int, none_type,),  # noqa: E501
+            'overwrite': (bool, none_type,),  # noqa: E501
+            'recover_to': (int, none_type,),  # noqa: E501
             'warnings': ([str], none_type,),  # noqa: E501
-            'suffix': (str, none_type,),  # noqa: E501
             'append_documents': (bool, none_type,),  # noqa: E501
             'ddl_only_recovery': (bool, none_type,),  # noqa: E501
             'overwrite_users': (bool, none_type,),  # noqa: E501
+            'suffix': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,17 +105,17 @@ class RecoverCouchbaseParams(ModelComposed):
 
 
     attribute_map = {
-        'snapshots': 'snapshots',  # noqa: E501
         'filter_documents_params': 'filterDocumentsParams',  # noqa: E501
-        'recover_to': 'recoverTo',  # noqa: E501
-        'overwrite': 'overwrite',  # noqa: E501
-        'concurrency': 'concurrency',  # noqa: E501
+        'snapshots': 'snapshots',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
+        'concurrency': 'concurrency',  # noqa: E501
+        'overwrite': 'overwrite',  # noqa: E501
+        'recover_to': 'recoverTo',  # noqa: E501
         'warnings': 'warnings',  # noqa: E501
-        'suffix': 'suffix',  # noqa: E501
         'append_documents': 'appendDocuments',  # noqa: E501
         'ddl_only_recovery': 'ddlOnlyRecovery',  # noqa: E501
         'overwrite_users': 'overwriteUsers',  # noqa: E501
+        'suffix': 'suffix',  # noqa: E501
     }
 
     required_properties = set([
@@ -131,12 +131,12 @@ class RecoverCouchbaseParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, snapshots, filter_documents_params, *args, **kwargs):  # noqa: E501
+    def __init__(self, filter_documents_params, snapshots, *args, **kwargs):  # noqa: E501
         """RecoverCouchbaseParams - a model defined in OpenAPI
 
         Args:
-            snapshots ([RecoverCouchbaseSnapshotParams], none_type): Specifies the local snapshot ids of the Objects to be recovered.
             filter_documents_params (FilterDocumentsParams):
+            snapshots ([RecoverCouchbaseSnapshotParams], none_type): Specifies the local snapshot ids of the Objects to be recovered.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,15 +170,15 @@ class RecoverCouchbaseParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_to (int, none_type): Specifies the 'Source Registration ID' of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
-            overwrite (bool, none_type): Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.. [optional]  # noqa: E501
-            concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
+            concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
+            overwrite (bool, none_type): Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.. [optional]  # noqa: E501
+            recover_to (int, none_type): Specifies the 'Source Registration ID' of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
             warnings ([str], none_type): This field will hold the warnings in cases where the job status is SucceededWithWarnings.. [optional]  # noqa: E501
-            suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501
             append_documents (bool, none_type): If set to true, docuements from the bucket being recovered will be appended into the bucket at the destination.. [optional]  # noqa: E501
             ddl_only_recovery (bool, none_type): Set to true to recover only the bucket configurations. No documents will be recovered.. [optional]  # noqa: E501
             overwrite_users (bool, none_type): If set to true existing users will be replaced with users from the bucket being recovered.. [optional]  # noqa: E501
+            suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -213,8 +213,8 @@ class RecoverCouchbaseParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'snapshots': snapshots,
             'filter_documents_params': filter_documents_params,
+            'snapshots': snapshots,
         }
         model_args = {}
         model_args.update(required_args)

@@ -66,6 +66,14 @@ class Email(ModelComposed):
     """
 
     allowed_values = {
+        ('task_status',): {
+            'None': None,
+            'NOTSTARTED': "NotStarted",
+            'INPROGRESS': "InProgress",
+            'COMPLETED': "Completed",
+            'WAITINGONOTHERS': "WaitingOnOthers",
+            'DEFERRED': "Deferred",
+        },
         ('type',): {
             'None': None,
             'EMAIL': "Email",
@@ -74,14 +82,6 @@ class Email(ModelComposed):
             'CONTACT': "Contact",
             'TASK': "Task",
             'NOTE': "Note",
-        },
-        ('task_status',): {
-            'None': None,
-            'NOTSTARTED': "NotStarted",
-            'INPROGRESS': "InProgress",
-            'COMPLETED': "Completed",
-            'WAITINGONOTHERS': "WaitingOnOthers",
-            'DEFERRED': "Deferred",
         },
     }
 
@@ -104,39 +104,39 @@ class Email(ModelComposed):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'user_object_info': (ObjectSummary,),  # noqa: E501
+            'bcc_recipient_addresses': ([str], none_type,),  # noqa: E501
+            'cc_recipient_addresses': ([str], none_type,),  # noqa: E501
+            'created_time_secs': (int, none_type,),  # noqa: E501
+            'directory_path': (str, none_type,),  # noqa: E501
+            'email_addresses': ([str], none_type,),  # noqa: E501
+            'email_subject': (str, none_type,),  # noqa: E501
+            'first_name': (str, none_type,),  # noqa: E501
             'folder_name': (str, none_type,),  # noqa: E501
+            'has_attachment': (bool, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'last_modification_name': (str, none_type,),  # noqa: E501
+            'last_modification_time_secs': (int, none_type,),  # noqa: E501
+            'last_name': (str, none_type,),  # noqa: E501
+            'optional_attendees_addresses': ([str], none_type,),  # noqa: E501
+            'organizer_address': (str, none_type,),  # noqa: E501
             'parent_folder_id': (int, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
-            'directory_path': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'email_subject': (str, none_type,),  # noqa: E501
-            'has_attachment': (bool, none_type,),  # noqa: E501
-            'sender_address': (str, none_type,),  # noqa: E501
-            'recipient_addresses': ([str], none_type,),  # noqa: E501
-            'cc_recipient_addresses': ([str], none_type,),  # noqa: E501
-            'bcc_recipient_addresses': ([str], none_type,),  # noqa: E501
-            'sent_time_secs': (int, none_type,),  # noqa: E501
-            'received_time_secs': (int, none_type,),  # noqa: E501
-            'created_time_secs': (int, none_type,),  # noqa: E501
-            'organizer_address': (str, none_type,),  # noqa: E501
-            'required_attendees_addresses': ([str], none_type,),  # noqa: E501
-            'optional_attendees_addresses': ([str], none_type,),  # noqa: E501
-            'first_name': (str, none_type,),  # noqa: E501
-            'last_name': (str, none_type,),  # noqa: E501
-            'email_addresses': ([str], none_type,),  # noqa: E501
-            'last_modification_time_secs': (int, none_type,),  # noqa: E501
-            'last_modification_name': (str, none_type,),  # noqa: E501
-            'task_due_date_time_secs': (int, none_type,),  # noqa: E501
-            'task_completion_date_time_secs': (int, none_type,),  # noqa: E501
-            'task_status': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
+            'received_time_secs': (int, none_type,),  # noqa: E501
+            'recipient_addresses': ([str], none_type,),  # noqa: E501
+            'required_attendees_addresses': ([str], none_type,),  # noqa: E501
+            'sender_address': (str, none_type,),  # noqa: E501
+            'sent_time_secs': (int, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
+            'task_completion_date_time_secs': (int, none_type,),  # noqa: E501
+            'task_due_date_time_secs': (int, none_type,),  # noqa: E501
+            'task_status': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
-            'tags': ([TagInfo], none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
+            'user_object_info': (ObjectSummary,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
+            'tags': ([TagInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -146,39 +146,39 @@ class Email(ModelComposed):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'user_object_info': 'userObjectInfo',  # noqa: E501
+        'bcc_recipient_addresses': 'bccRecipientAddresses',  # noqa: E501
+        'cc_recipient_addresses': 'ccRecipientAddresses',  # noqa: E501
+        'created_time_secs': 'createdTimeSecs',  # noqa: E501
+        'directory_path': 'directoryPath',  # noqa: E501
+        'email_addresses': 'emailAddresses',  # noqa: E501
+        'email_subject': 'emailSubject',  # noqa: E501
+        'first_name': 'firstName',  # noqa: E501
         'folder_name': 'folderName',  # noqa: E501
+        'has_attachment': 'hasAttachment',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'last_modification_name': 'lastModificationName',  # noqa: E501
+        'last_modification_time_secs': 'lastModificationTimeSecs',  # noqa: E501
+        'last_name': 'lastName',  # noqa: E501
+        'optional_attendees_addresses': 'optionalAttendeesAddresses',  # noqa: E501
+        'organizer_address': 'organizerAddress',  # noqa: E501
         'parent_folder_id': 'parentFolderId',  # noqa: E501
         'path': 'path',  # noqa: E501
-        'directory_path': 'directoryPath',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'email_subject': 'emailSubject',  # noqa: E501
-        'has_attachment': 'hasAttachment',  # noqa: E501
-        'sender_address': 'senderAddress',  # noqa: E501
-        'recipient_addresses': 'recipientAddresses',  # noqa: E501
-        'cc_recipient_addresses': 'ccRecipientAddresses',  # noqa: E501
-        'bcc_recipient_addresses': 'bccRecipientAddresses',  # noqa: E501
-        'sent_time_secs': 'sentTimeSecs',  # noqa: E501
-        'received_time_secs': 'receivedTimeSecs',  # noqa: E501
-        'created_time_secs': 'createdTimeSecs',  # noqa: E501
-        'organizer_address': 'organizerAddress',  # noqa: E501
-        'required_attendees_addresses': 'requiredAttendeesAddresses',  # noqa: E501
-        'optional_attendees_addresses': 'optionalAttendeesAddresses',  # noqa: E501
-        'first_name': 'firstName',  # noqa: E501
-        'last_name': 'lastName',  # noqa: E501
-        'email_addresses': 'emailAddresses',  # noqa: E501
-        'last_modification_time_secs': 'lastModificationTimeSecs',  # noqa: E501
-        'last_modification_name': 'lastModificationName',  # noqa: E501
-        'task_due_date_time_secs': 'taskDueDateTimeSecs',  # noqa: E501
-        'task_completion_date_time_secs': 'taskCompletionDateTimeSecs',  # noqa: E501
-        'task_status': 'taskStatus',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'received_time_secs': 'receivedTimeSecs',  # noqa: E501
+        'recipient_addresses': 'recipientAddresses',  # noqa: E501
+        'required_attendees_addresses': 'requiredAttendeesAddresses',  # noqa: E501
+        'sender_address': 'senderAddress',  # noqa: E501
+        'sent_time_secs': 'sentTimeSecs',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
+        'task_completion_date_time_secs': 'taskCompletionDateTimeSecs',  # noqa: E501
+        'task_due_date_time_secs': 'taskDueDateTimeSecs',  # noqa: E501
+        'task_status': 'taskStatus',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'user_object_info': 'userObjectInfo',  # noqa: E501
         'snapshot_tags': 'snapshotTags',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     required_properties = set([
@@ -229,39 +229,39 @@ class Email(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the id of the email object.. [optional]  # noqa: E501
-            user_object_info (ObjectSummary): [optional]  # noqa: E501
+            bcc_recipient_addresses ([str], none_type): \"Specifies the email addresses of all the BCC receipients of this email.\". [optional]  # noqa: E501
+            cc_recipient_addresses ([str], none_type): \"Specifies the email addresses of all the CC receipients of this email.\". [optional]  # noqa: E501
+            created_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this item is created.\". [optional]  # noqa: E501
+            directory_path (str, none_type): Specifies the directory path to this mailbox item.. [optional]  # noqa: E501
+            email_addresses ([str], none_type): Specifies the email addresses of a contact.. [optional]  # noqa: E501
+            email_subject (str, none_type): Specifies the subject of this email.. [optional]  # noqa: E501
+            first_name (str, none_type): Specifies the contact's first name.. [optional]  # noqa: E501
             folder_name (str, none_type): Specify the name of the email folder.. [optional]  # noqa: E501
+            has_attachment (bool, none_type): Specifies whether email has an attachment.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the email object.. [optional]  # noqa: E501
+            last_modification_name (str, none_type): \"Specifies the name of the person who modified this item.\". [optional]  # noqa: E501
+            last_modification_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this item was modified.\". [optional]  # noqa: E501
+            last_name (str, none_type): Specifies the contact's last name.. [optional]  # noqa: E501
+            optional_attendees_addresses ([str], none_type): \"Specifies the email addresses of all the optional attendees of this calendar item.\". [optional]  # noqa: E501
+            organizer_address (str, none_type): \"Specifies the calendar item organizer's email address.\". [optional]  # noqa: E501
             parent_folder_id (int, none_type): Specifies the id of parent folder the mailbox item.. [optional]  # noqa: E501
             path (str, none_type): Specifies the path to this mailbox item.. [optional]  # noqa: E501
-            directory_path (str, none_type): Specifies the directory path to this mailbox item.. [optional]  # noqa: E501
-            type (str, none_type): Specifies the Mailbox item type.. [optional]  # noqa: E501
-            email_subject (str, none_type): Specifies the subject of this email.. [optional]  # noqa: E501
-            has_attachment (bool, none_type): Specifies whether email has an attachment.. [optional]  # noqa: E501
-            sender_address (str, none_type): Specifies the sender's email address.. [optional]  # noqa: E501
-            recipient_addresses ([str], none_type): \"Specifies the email addresses of all receipients of this email.\". [optional]  # noqa: E501
-            cc_recipient_addresses ([str], none_type): \"Specifies the email addresses of all the CC receipients of this email.\". [optional]  # noqa: E501
-            bcc_recipient_addresses ([str], none_type): \"Specifies the email addresses of all the BCC receipients of this email.\". [optional]  # noqa: E501
-            sent_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this email is sent.\". [optional]  # noqa: E501
-            received_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this email is received.\". [optional]  # noqa: E501
-            created_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this item is created.\". [optional]  # noqa: E501
-            organizer_address (str, none_type): \"Specifies the calendar item organizer's email address.\". [optional]  # noqa: E501
-            required_attendees_addresses ([str], none_type): \"Specifies the email addresses of all required attendees of this calendar item.\". [optional]  # noqa: E501
-            optional_attendees_addresses ([str], none_type): \"Specifies the email addresses of all the optional attendees of this calendar item.\". [optional]  # noqa: E501
-            first_name (str, none_type): Specifies the contact's first name.. [optional]  # noqa: E501
-            last_name (str, none_type): Specifies the contact's last name.. [optional]  # noqa: E501
-            email_addresses ([str], none_type): Specifies the email addresses of a contact.. [optional]  # noqa: E501
-            last_modification_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this item was modified.\". [optional]  # noqa: E501
-            last_modification_name (str, none_type): \"Specifies the name of the person who modified this item.\". [optional]  # noqa: E501
-            task_due_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item is due.\". [optional]  # noqa: E501
-            task_completion_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item was completed.\". [optional]  # noqa: E501
-            task_status (str, none_type): Specifies the task item status type.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the Protection Group id protecting the mailbox.\". [optional]  # noqa: E501
             protection_group_name (str, none_type): \"Specifies the Protection Group name protecting the mailbox item.\". [optional]  # noqa: E501
+            received_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this email is received.\". [optional]  # noqa: E501
+            recipient_addresses ([str], none_type): \"Specifies the email addresses of all receipients of this email.\". [optional]  # noqa: E501
+            required_attendees_addresses ([str], none_type): \"Specifies the email addresses of all required attendees of this calendar item.\". [optional]  # noqa: E501
+            sender_address (str, none_type): Specifies the sender's email address.. [optional]  # noqa: E501
+            sent_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this email is sent.\". [optional]  # noqa: E501
             storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
+            task_completion_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item was completed.\". [optional]  # noqa: E501
+            task_due_date_time_secs (int, none_type): \"Specifies the Unix timestamp epoch in seconds at which this task item is due.\". [optional]  # noqa: E501
+            task_status (str, none_type): Specifies the task item status type.. [optional]  # noqa: E501
             tenant_id (str, none_type): \"Specify the tenant id to which this email belongs to.\". [optional]  # noqa: E501
-            tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the Mailbox item type.. [optional]  # noqa: E501
+            user_object_info (ObjectSummary): [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501
+            tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

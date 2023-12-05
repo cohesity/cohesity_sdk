@@ -86,9 +86,9 @@ class HeliosBmrSchedule(ModelNormal):
         """
         lazy_import()
         return {
+            'month_schedule': (HeliosMonthSchedule,),  # noqa: E501
             'unit': (str, none_type,),  # noqa: E501
             'week_schedule': (HeliosWeekSchedule,),  # noqa: E501
-            'month_schedule': (HeliosMonthSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +98,9 @@ class HeliosBmrSchedule(ModelNormal):
 
 
     attribute_map = {
+        'month_schedule': 'monthSchedule',  # noqa: E501
         'unit': 'unit',  # noqa: E501
         'week_schedule': 'weekSchedule',  # noqa: E501
-        'month_schedule': 'monthSchedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,9 +150,9 @@ class HeliosBmrSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            month_schedule (HeliosMonthSchedule): [optional]  # noqa: E501
             unit (str, none_type): Specifies how often to start new runs of a Protection Group. <br>'Weeks' specifies that new Protection Group runs start weekly on certain days specified using 'dayOfWeek' field. <br>'Months' specifies that new Protection Group runs start monthly on certain day of specific week.. [optional]  # noqa: E501
             week_schedule (HeliosWeekSchedule): [optional]  # noqa: E501
-            month_schedule (HeliosMonthSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class RestoreSpfileOrPfileInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'should_restore_spfile_or_pfile': (bool, none_type,),  # noqa: E501
             'file_location': (str, none_type,),  # noqa: E501
+            'should_restore_spfile_or_pfile': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class RestoreSpfileOrPfileInfo(ModelNormal):
 
 
     attribute_map = {
-        'should_restore_spfile_or_pfile': 'shouldRestoreSpfileOrPfile',  # noqa: E501
         'file_location': 'fileLocation',  # noqa: E501
+        'should_restore_spfile_or_pfile': 'shouldRestoreSpfileOrPfile',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class RestoreSpfileOrPfileInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            should_restore_spfile_or_pfile (bool, none_type): Specifies whether to restore spfile/pfile or skip it.. [optional]  # noqa: E501
             file_location (str, none_type): Specifies the location where spfile/file will be restored. If this is empty and shouldRestoreSpfileOrPfile is true we restore at default location: $ORACLE_HOME/dbs. [optional]  # noqa: E501
+            should_restore_spfile_or_pfile (bool, none_type): Specifies whether to restore spfile/pfile or skip it.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

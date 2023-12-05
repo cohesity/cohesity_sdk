@@ -79,9 +79,9 @@ class HBaseAdditionalParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'zookeeper_quorum': ([str], none_type,),  # noqa: E501
-            'data_root_directory': (str, none_type,),  # noqa: E501
             'auth_type': (str, none_type,),  # noqa: E501
+            'data_root_directory': (str, none_type,),  # noqa: E501
+            'zookeeper_quorum': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class HBaseAdditionalParams(ModelNormal):
 
 
     attribute_map = {
-        'zookeeper_quorum': 'zookeeperQuorum',  # noqa: E501
-        'data_root_directory': 'dataRootDirectory',  # noqa: E501
         'auth_type': 'authType',  # noqa: E501
+        'data_root_directory': 'dataRootDirectory',  # noqa: E501
+        'zookeeper_quorum': 'zookeeperQuorum',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class HBaseAdditionalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            zookeeper_quorum ([str], none_type): The 'Zookeeper Quorum' for this HBase.. [optional]  # noqa: E501
-            data_root_directory (str, none_type): The 'Data root directory' for this HBase.. [optional]  # noqa: E501
             auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
+            data_root_directory (str, none_type): The 'Data root directory' for this HBase.. [optional]  # noqa: E501
+            zookeeper_quorum ([str], none_type): The 'Zookeeper Quorum' for this HBase.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

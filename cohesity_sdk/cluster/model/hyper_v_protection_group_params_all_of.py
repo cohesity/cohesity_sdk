@@ -88,14 +88,14 @@ class HyperVProtectionGroupParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'protection_type': (str, none_type,),  # noqa: E501
-            'objects': ([HyperVProtectionGroupObjectParams],),  # noqa: E501
-            'exclude_object_ids': ([int, none_type],),  # noqa: E501
-            'vm_tag_ids': ([[int]], none_type,),  # noqa: E501
-            'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
             'cloud_migration': (bool, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int, none_type],),  # noqa: E501
+            'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
+            'objects': ([HyperVProtectionGroupObjectParams],),  # noqa: E501
+            'protection_type': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
+            'vm_tag_ids': ([[int]], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,14 +105,14 @@ class HyperVProtectionGroupParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'protection_type': 'protectionType',  # noqa: E501
-        'objects': 'objects',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
-        'vm_tag_ids': 'vmTagIds',  # noqa: E501
-        'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
         'cloud_migration': 'cloudMigration',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
+        'protection_type': 'protectionType',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
+        'vm_tag_ids': 'vmTagIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,14 +162,14 @@ class HyperVProtectionGroupParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_type (str, none_type): Specifies the Protection Group type. If not specified, then backup method is auto determined. Specifying RCT will forcibly use RCT backup for all VMs in this Protection Group. Available only for VMs with hardware version 8.0 and above, but is more efficient. Specifying VSS will forcibly use VSS backup for all VMs in this Protection Group. Available for VMs with hardware version 5.0 and above, but is slower than RCT backup.. [optional]  # noqa: E501
-            objects ([HyperVProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
-            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected by this Protection Group. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
-            vm_tag_ids ([[int]], none_type): Array of Array of VM Tag Ids that Specify VMs to Protect. Optionally specify a list of VMs to protect by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to protect which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. To protect only 'Eng' VMs in the East and all the VMs in the West, specify the following tag id array: [ [1101, 2221], [3031] ], where 1101 is the 'Eng' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The inner array [1101, 2221] produces a list of VMs that are both tagged with 'Eng' and 'East' (an intersection). The outer array combines the list from the inner array with list of VMs tagged with 'West' (a union). The list of resulting VMs are protected by this Protection Group.. [optional]  # noqa: E501
-            exclude_vm_tag_ids ([[int]], none_type): Array of Arrays of VM Tag Ids that Specify VMs to Exclude. Optionally specify a list of VMs to exclude from protecting by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Datacenter is selected to be protected but you want to exclude all the 'Former Employees' VMs in the East and West but keep all the VMs for 'Former Employees' in the South which are also stored in this Datacenter, by specifying the following tag id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Former Employee' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The first inner array [1000, 2221] produces a list of VMs that are both tagged with 'Former Employees' and 'East' (an intersection). The second inner array [1000, 3031] produces a list of VMs that are both tagged with 'Former Employees' and 'West' (an intersection). The outer array combines the list of VMs from the two inner arrays. The list of resulting VMs are excluded from being protected this Job.. [optional]  # noqa: E501
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected by this Protection Group. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
+            exclude_vm_tag_ids ([[int]], none_type): Array of Arrays of VM Tag Ids that Specify VMs to Exclude. Optionally specify a list of VMs to exclude from protecting by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Datacenter is selected to be protected but you want to exclude all the 'Former Employees' VMs in the East and West but keep all the VMs for 'Former Employees' in the South which are also stored in this Datacenter, by specifying the following tag id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Former Employee' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The first inner array [1000, 2221] produces a list of VMs that are both tagged with 'Former Employees' and 'East' (an intersection). The second inner array [1000, 3031] produces a list of VMs that are both tagged with 'Former Employees' and 'West' (an intersection). The outer array combines the list of VMs from the two inner arrays. The list of resulting VMs are excluded from being protected this Job.. [optional]  # noqa: E501
+            objects ([HyperVProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
+            protection_type (str, none_type): Specifies the Protection Group type. If not specified, then backup method is auto determined. Specifying RCT will forcibly use RCT backup for all VMs in this Protection Group. Available only for VMs with hardware version 8.0 and above, but is more efficient. Specifying VSS will forcibly use VSS backup for all VMs in this Protection Group. Available for VMs with hardware version 5.0 and above, but is slower than RCT backup.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
+            vm_tag_ids ([[int]], none_type): Array of Array of VM Tag Ids that Specify VMs to Protect. Optionally specify a list of VMs to protect by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to protect which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. To protect only 'Eng' VMs in the East and all the VMs in the West, specify the following tag id array: [ [1101, 2221], [3031] ], where 1101 is the 'Eng' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The inner array [1101, 2221] produces a list of VMs that are both tagged with 'Eng' and 'East' (an intersection). The outer array combines the list from the inner array with list of VMs tagged with 'West' (a union). The list of resulting VMs are protected by this Protection Group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -88,8 +88,8 @@ class HDFSOnPremSearchParams(ModelComposed):
         """
         lazy_import()
         return {
-            'search_string': (str, none_type,),  # noqa: E501
             'hdfs_types': ([str],),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
             'source_ids': ([int], none_type,),  # noqa: E501
         }
 
@@ -100,8 +100,8 @@ class HDFSOnPremSearchParams(ModelComposed):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
         'hdfs_types': 'hdfsTypes',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
         'source_ids': 'sourceIds',  # noqa: E501
     }
 
@@ -118,12 +118,12 @@ class HDFSOnPremSearchParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, search_string, hdfs_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, hdfs_types, search_string, *args, **kwargs):  # noqa: E501
         """HDFSOnPremSearchParams - a model defined in OpenAPI
 
         Args:
-            search_string (str, none_type): Specifies the search string to search the HDFS Folders and Files.
             hdfs_types ([str]): Specifies types as Folders or Files or both to be searched.
+            search_string (str, none_type): Specifies the search string to search the HDFS Folders and Files.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -192,8 +192,8 @@ class HDFSOnPremSearchParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'search_string': search_string,
             'hdfs_types': hdfs_types,
+            'search_string': search_string,
         }
         model_args = {}
         model_args.update(required_args)

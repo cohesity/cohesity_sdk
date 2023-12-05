@@ -109,7 +109,7 @@ class RoutesApi(object):
                 'response_type': (StaticRouteParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/routes',
@@ -231,7 +231,7 @@ class RoutesApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/routes/{routeId}',
@@ -348,7 +348,7 @@ class RoutesApi(object):
                 'response_type': (StaticRoutes,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/routes',
@@ -476,7 +476,7 @@ class RoutesApi(object):
                 'response_type': (StaticRouteParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/routes/{routeId}',

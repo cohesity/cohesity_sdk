@@ -75,10 +75,10 @@ class ErasureCodingParams(ModelNormal):
         """
         return {
             'enabled': (bool, none_type,),  # noqa: E501
-            'num_data_stripes': (int, none_type,),  # noqa: E501
             'num_coded_stripes': (int, none_type,),  # noqa: E501
-            'inline_enabled': (bool, none_type,),  # noqa: E501
+            'num_data_stripes': (int, none_type,),  # noqa: E501
             'delay_secs': (int, none_type,),  # noqa: E501
+            'inline_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,10 +89,10 @@ class ErasureCodingParams(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
-        'num_data_stripes': 'numDataStripes',  # noqa: E501
         'num_coded_stripes': 'numCodedStripes',  # noqa: E501
-        'inline_enabled': 'inlineEnabled',  # noqa: E501
+        'num_data_stripes': 'numDataStripes',  # noqa: E501
         'delay_secs': 'delaySecs',  # noqa: E501
+        'inline_enabled': 'inlineEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -107,13 +107,13 @@ class ErasureCodingParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, enabled, num_data_stripes, num_coded_stripes, *args, **kwargs):  # noqa: E501
+    def __init__(self, enabled, num_coded_stripes, num_data_stripes, *args, **kwargs):  # noqa: E501
         """ErasureCodingParams - a model defined in OpenAPI
 
         Args:
             enabled (bool, none_type): Specifies whether to enable erasure coding on a Storage Domain.
-            num_data_stripes (int, none_type): Specifies the number of data stripes.
             num_coded_stripes (int, none_type): Specifies the number of coded stripes.
+            num_data_stripes (int, none_type): Specifies the number of data stripes.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,8 +147,8 @@ class ErasureCodingParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            inline_enabled (bool, none_type): Specifies whether inline erasure coding is enabled. This field is appliciable only if enabled is set to true.. [optional]  # noqa: E501
             delay_secs (int, none_type): Specifies the time in seconds when erasure coding starts.. [optional]  # noqa: E501
+            inline_enabled (bool, none_type): Specifies whether inline erasure coding is enabled. This field is appliciable only if enabled is set to true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -176,8 +176,8 @@ class ErasureCodingParams(ModelNormal):
 
 
         self.enabled = enabled
-        self.num_data_stripes = num_data_stripes
         self.num_coded_stripes = num_coded_stripes
+        self.num_data_stripes = num_data_stripes
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

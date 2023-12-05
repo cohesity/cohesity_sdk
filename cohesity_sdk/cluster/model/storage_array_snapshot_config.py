@@ -83,10 +83,10 @@ class StorageArraySnapshotConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'max_snapshots_config_enabled': (bool, none_type,),  # noqa: E501
-            'max_space_config_enabled': (bool, none_type,),  # noqa: E501
-            'max_space_config': (StorageArraySnapshotMaxSpaceConfig,),  # noqa: E501
             'max_snapshot_config': (StorageArraySnapshotMaxSnapshotConfig,),  # noqa: E501
+            'max_snapshots_config_enabled': (bool, none_type,),  # noqa: E501
+            'max_space_config': (StorageArraySnapshotMaxSpaceConfig,),  # noqa: E501
+            'max_space_config_enabled': (bool, none_type,),  # noqa: E501
             'storage_array_snapshot_throttling_policies': ([StorageArraySnapshotThrottlingPolicy], none_type,),  # noqa: E501
         }
 
@@ -97,10 +97,10 @@ class StorageArraySnapshotConfig(ModelNormal):
 
 
     attribute_map = {
-        'max_snapshots_config_enabled': 'maxSnapshotsConfigEnabled',  # noqa: E501
-        'max_space_config_enabled': 'maxSpaceConfigEnabled',  # noqa: E501
-        'max_space_config': 'maxSpaceConfig',  # noqa: E501
         'max_snapshot_config': 'maxSnapshotConfig',  # noqa: E501
+        'max_snapshots_config_enabled': 'maxSnapshotsConfigEnabled',  # noqa: E501
+        'max_space_config': 'maxSpaceConfig',  # noqa: E501
+        'max_space_config_enabled': 'maxSpaceConfigEnabled',  # noqa: E501
         'storage_array_snapshot_throttling_policies': 'storageArraySnapshotThrottlingPolicies',  # noqa: E501
     }
 
@@ -151,10 +151,10 @@ class StorageArraySnapshotConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            max_snapshots_config_enabled (bool, none_type): Specifies whether we will use storage snapshot managmement max snapshots config to all volumes/luns that are part of the registered entity.. [optional]  # noqa: E501
-            max_space_config_enabled (bool, none_type): Specifies whether we will use storage snapshot managmement max space config to all volumes/luns that are part of the registered entity.. [optional]  # noqa: E501
-            max_space_config (StorageArraySnapshotMaxSpaceConfig): [optional]  # noqa: E501
             max_snapshot_config (StorageArraySnapshotMaxSnapshotConfig): [optional]  # noqa: E501
+            max_snapshots_config_enabled (bool, none_type): Specifies whether we will use storage snapshot managmement max snapshots config to all volumes/luns that are part of the registered entity.. [optional]  # noqa: E501
+            max_space_config (StorageArraySnapshotMaxSpaceConfig): [optional]  # noqa: E501
+            max_space_config_enabled (bool, none_type): Specifies whether we will use storage snapshot managmement max space config to all volumes/luns that are part of the registered entity.. [optional]  # noqa: E501
             storage_array_snapshot_throttling_policies ([StorageArraySnapshotThrottlingPolicy], none_type): Specifies the list of storage array snapshot management throttling policies for individual volume/lun.. [optional]  # noqa: E501
         """
 

@@ -80,14 +80,14 @@ class ArchivalQstarTapeExternalTargetParams(ModelNormal):
         """
         return {
             'host': (str, none_type,),  # noqa: E501
-            'web_services_port': (int, none_type,),  # noqa: E501
             'username': (str, none_type,),  # noqa: E501
+            'web_services_port': (int, none_type,),  # noqa: E501
+            'integral_volume_names': ([str], none_type,),  # noqa: E501
+            'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
             'share_type': (str, none_type,),  # noqa: E501
             'use_https': (bool, none_type,),  # noqa: E501
-            'integral_volume_names': ([str], none_type,),  # noqa: E501
-            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
-            'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,14 +98,14 @@ class ArchivalQstarTapeExternalTargetParams(ModelNormal):
 
     attribute_map = {
         'host': 'host',  # noqa: E501
-        'web_services_port': 'webServicesPort',  # noqa: E501
         'username': 'username',  # noqa: E501
+        'web_services_port': 'webServicesPort',  # noqa: E501
+        'integral_volume_names': 'integralVolumeNames',  # noqa: E501
+        'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'password': 'password',  # noqa: E501
         'share_type': 'shareType',  # noqa: E501
         'use_https': 'useHttps',  # noqa: E501
-        'integral_volume_names': 'integralVolumeNames',  # noqa: E501
-        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
-        'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,13 +120,13 @@ class ArchivalQstarTapeExternalTargetParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, web_services_port, username, *args, **kwargs):  # noqa: E501
+    def __init__(self, host, username, web_services_port, *args, **kwargs):  # noqa: E501
         """ArchivalQstarTapeExternalTargetParams - a model defined in OpenAPI
 
         Args:
             host (str, none_type): Specifies the host of the QStar Tape external target.
-            web_services_port (int, none_type): Specifies the Web Services Port of the QStar Tape external target.
             username (str, none_type): Specifies the Username of the QStar Tape external target.
+            web_services_port (int, none_type): Specifies the Web Services Port of the QStar Tape external target.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,12 +160,12 @@ class ArchivalQstarTapeExternalTargetParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            integral_volume_names ([str], none_type): Specifies the Integral Volume Names of the QStar Tape external target.. [optional]  # noqa: E501
+            is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             password (str, none_type): Specifies the Password of the QStar Tape external target.. [optional]  # noqa: E501
             share_type (str, none_type): Specifies the share type of QStar Tape external target.. [optional]  # noqa: E501
             use_https (bool, none_type): Specifies whether HTTPS is used or not.. [optional]  # noqa: E501
-            integral_volume_names ([str], none_type): Specifies the Integral Volume Names of the QStar Tape external target.. [optional]  # noqa: E501
-            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
-            is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,8 +193,8 @@ class ArchivalQstarTapeExternalTargetParams(ModelNormal):
 
 
         self.host = host
-        self.web_services_port = web_services_port
         self.username = username
+        self.web_services_port = web_services_port
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

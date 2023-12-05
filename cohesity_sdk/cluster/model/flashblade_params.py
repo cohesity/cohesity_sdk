@@ -83,18 +83,18 @@ class FlashbladeParams(ModelNormal):
         """
         lazy_import()
         return {
-            'registration_params': (FlashBladeRegistrationInfo,),  # noqa: E501
-            'uuid': (str, none_type,),  # noqa: E501
-            'assigned_data_vips': ([str], none_type,),  # noqa: E501
             'assigned_capacity_bytes': (int, none_type,),  # noqa: E501
-            'is_dedicated_storage': (bool, none_type,),  # noqa: E501
-            'available_data_vips': ([str, none_type],),  # noqa: E501
+            'assigned_data_vips': ([str], none_type,),  # noqa: E501
             'available_capacity': (int, none_type,),  # noqa: E501
+            'available_data_vips': ([str, none_type],),  # noqa: E501
             'created_file_system_count': (int, none_type,),  # noqa: E501
-            'updated_file_system_count': (int, none_type,),  # noqa: E501
-            'software_os_version': (str, none_type,),  # noqa: E501
+            'is_dedicated_storage': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'registration_params': (FlashBladeRegistrationInfo,),  # noqa: E501
+            'software_os_version': (str, none_type,),  # noqa: E501
             'total_capacity': (int, none_type,),  # noqa: E501
+            'updated_file_system_count': (int, none_type,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,18 +104,18 @@ class FlashbladeParams(ModelNormal):
 
 
     attribute_map = {
-        'registration_params': 'registrationParams',  # noqa: E501
-        'uuid': 'uuid',  # noqa: E501
-        'assigned_data_vips': 'assignedDataVips',  # noqa: E501
         'assigned_capacity_bytes': 'assignedCapacityBytes',  # noqa: E501
-        'is_dedicated_storage': 'isDedicatedStorage',  # noqa: E501
-        'available_data_vips': 'availableDataVips',  # noqa: E501
+        'assigned_data_vips': 'assignedDataVips',  # noqa: E501
         'available_capacity': 'availableCapacity',  # noqa: E501
+        'available_data_vips': 'availableDataVips',  # noqa: E501
         'created_file_system_count': 'createdFileSystemCount',  # noqa: E501
-        'updated_file_system_count': 'updatedFileSystemCount',  # noqa: E501
-        'software_os_version': 'softwareOsVersion',  # noqa: E501
+        'is_dedicated_storage': 'isDedicatedStorage',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'registration_params': 'registrationParams',  # noqa: E501
+        'software_os_version': 'softwareOsVersion',  # noqa: E501
         'total_capacity': 'totalCapacity',  # noqa: E501
+        'updated_file_system_count': 'updatedFileSystemCount',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -165,18 +165,18 @@ class FlashbladeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            registration_params (FlashBladeRegistrationInfo): [optional]  # noqa: E501
-            uuid (str, none_type): Specifies uuid of the pure flashblade server.. [optional]  # noqa: E501
-            assigned_data_vips ([str], none_type): Specifies list of data vips that are assigned to cohesity cluster to create nfs share mountpoints.. [optional]  # noqa: E501
             assigned_capacity_bytes (int, none_type): Specifies the capacity in bytes assigned on pure flashblade for remote storage usage on cohesity cluster.. [optional]  # noqa: E501
-            is_dedicated_storage (bool, none_type): If true, cohesity cluster uses all available capacity on pure flashblade for remote storage.. [optional]  # noqa: E501
-            available_data_vips ([str, none_type]): Available data vips configured on pure flashblade.. [optional]  # noqa: E501
+            assigned_data_vips ([str], none_type): Specifies list of data vips that are assigned to cohesity cluster to create nfs share mountpoints.. [optional]  # noqa: E501
             available_capacity (int, none_type): Available capacity on pure flashblade.. [optional]  # noqa: E501
+            available_data_vips ([str, none_type]): Available data vips configured on pure flashblade.. [optional]  # noqa: E501
             created_file_system_count (int, none_type): Number of new file systems created on pure flashblade when assignedCapacityBytes is updated.. [optional]  # noqa: E501
-            updated_file_system_count (int, none_type): Number of file systems that are updated on pure flashblade when assignedCapacityBytes is updated.. [optional]  # noqa: E501
-            software_os_version (str, none_type): Software OS and version running on pure flashblade. [optional]  # noqa: E501
+            is_dedicated_storage (bool, none_type): If true, cohesity cluster uses all available capacity on pure flashblade for remote storage.. [optional]  # noqa: E501
             name (str, none_type): Name of the pure flashblade specified on pure storage.. [optional]  # noqa: E501
+            registration_params (FlashBladeRegistrationInfo): [optional]  # noqa: E501
+            software_os_version (str, none_type): Software OS and version running on pure flashblade. [optional]  # noqa: E501
             total_capacity (int, none_type): Total capacity of pure flashblade.. [optional]  # noqa: E501
+            updated_file_system_count (int, none_type): Number of file systems that are updated on pure flashblade when assignedCapacityBytes is updated.. [optional]  # noqa: E501
+            uuid (str, none_type): Specifies uuid of the pure flashblade server.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

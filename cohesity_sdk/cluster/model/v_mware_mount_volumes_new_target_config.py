@@ -79,10 +79,10 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'mount_target': (RecoverTarget,),  # noqa: E501
             'bring_disks_online': (bool, none_type,),  # noqa: E501
-            'use_existing_agent': (bool, none_type,),  # noqa: E501
+            'mount_target': (RecoverTarget,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'use_existing_agent': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'mount_target': 'mountTarget',  # noqa: E501
         'bring_disks_online': 'bringDisksOnline',  # noqa: E501
-        'use_existing_agent': 'useExistingAgent',  # noqa: E501
+        'mount_target': 'mountTarget',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
+        'use_existing_agent': 'useExistingAgent',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,12 +110,12 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, mount_target, bring_disks_online, *args, **kwargs):  # noqa: E501
+    def __init__(self, bring_disks_online, mount_target, *args, **kwargs):  # noqa: E501
         """VMwareMountVolumesNewTargetConfig - a model defined in OpenAPI
 
         Args:
-            mount_target (RecoverTarget):
             bring_disks_online (bool, none_type): Specifies whether the volumes need to be online within the target environment after attaching the disks. For linux VMs, this should always be set to true. For Windows, this is optional. If this is set to true, VMware tools must be installed on the VM. If this is set to false, useExistingAgent and targetCredentials are not needed.
+            mount_target (RecoverTarget):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,8 +149,8 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            use_existing_agent (bool, none_type): Specifies whether this will use an existing agent on the target vm or will deploy a new agent. This is required if bringDisksOnline is set to true.. [optional]  # noqa: E501
             target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies credentials to access the target VM. This is required if bringDisksOnline is set to true and useExistingAgent set to false.. [optional]  # noqa: E501
+            use_existing_agent (bool, none_type): Specifies whether this will use an existing agent on the target vm or will deploy a new agent. This is required if bringDisksOnline is set to true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -177,8 +177,8 @@ class VMwareMountVolumesNewTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.mount_target = mount_target
         self.bring_disks_online = bring_disks_online
+        self.mount_target = mount_target
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

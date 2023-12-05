@@ -79,12 +79,12 @@ class AvailablePatch(ModelNormal):
         """
         lazy_import()
         return {
-            'service': (str,),  # noqa: E501
             'component': (str,),  # noqa: E501
-            'version': (str,),  # noqa: E501
             'count': (int,),  # noqa: E501
             'dependencies': ([str], none_type,),  # noqa: E501
             'fixed_issues': ([FixedIssue],),  # noqa: E501
+            'service': (str,),  # noqa: E501
+            'version': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -94,12 +94,12 @@ class AvailablePatch(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
         'component': 'component',  # noqa: E501
-        'version': 'version',  # noqa: E501
         'count': 'count',  # noqa: E501
         'dependencies': 'dependencies',  # noqa: E501
         'fixed_issues': 'fixedIssues',  # noqa: E501
+        'service': 'service',  # noqa: E501
+        'version': 'version',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,12 +149,12 @@ class AvailablePatch(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str): Specifies the name of the service.. [optional]  # noqa: E501
             component (str): Specifies the description of the service.. [optional]  # noqa: E501
-            version (str): Specifies the version of the patch.. [optional]  # noqa: E501
             count (int): Specifies the number of fixed issues.. [optional]  # noqa: E501
             dependencies ([str], none_type): Specifies the services for which their patches must be applied together.. [optional]  # noqa: E501
             fixed_issues ([FixedIssue]): Specifies the details of the issues fixed in the patch.. [optional]  # noqa: E501
+            service (str): Specifies the name of the service.. [optional]  # noqa: E501
+            version (str): Specifies the version of the patch.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

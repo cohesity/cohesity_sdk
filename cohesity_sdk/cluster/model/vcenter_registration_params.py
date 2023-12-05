@@ -85,17 +85,16 @@ class VcenterRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'endpoint': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'ca_cert': (str, none_type,),  # noqa: E501
-            'use_vm_bios_uuid': (bool, none_type,),  # noqa: E501
+            'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_gb': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_percentage': (int, none_type,),  # noqa: E501
-            'link_vms_across_vcenter': (bool, none_type,),  # noqa: E501
             'throttling_params': (VmwareThrottlingParams,),  # noqa: E501
-            'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
+            'use_vm_bios_uuid': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,17 +104,16 @@ class VcenterRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
         'description': 'description',  # noqa: E501
         'ca_cert': 'caCert',  # noqa: E501
-        'use_vm_bios_uuid': 'useVmBiosUuid',  # noqa: E501
+        'data_store_params': 'dataStoreParams',  # noqa: E501
         'min_free_datastore_space_for_backup_gb': 'minFreeDatastoreSpaceForBackupGb',  # noqa: E501
         'min_free_datastore_space_for_backup_percentage': 'minFreeDatastoreSpaceForBackupPercentage',  # noqa: E501
-        'link_vms_across_vcenter': 'linkVmsAcrossVcenter',  # noqa: E501
         'throttling_params': 'throttlingParams',  # noqa: E501
-        'data_store_params': 'dataStoreParams',  # noqa: E501
+        'use_vm_bios_uuid': 'useVmBiosUuid',  # noqa: E501
     }
 
     required_properties = set([
@@ -131,12 +129,12 @@ class VcenterRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, endpoint, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, endpoint, *args, **kwargs):  # noqa: E501
         """VcenterRegistrationParams - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
             endpoint (str): Specifies the endpoint IPaddress, URL or hostname of the host.
 
         Keyword Args:
@@ -173,12 +171,11 @@ class VcenterRegistrationParams(ModelComposed):
 
             description (str, none_type): Specifies the description of the source being registered.. [optional]  # noqa: E501
             ca_cert (str, none_type): Specifies the CA certificate to enable SSL communication between host and cluster.. [optional]  # noqa: E501
-            use_vm_bios_uuid (bool, none_type): Specifies to use VM BIOS UUID to track virtual machines in the host.. [optional]  # noqa: E501
+            data_store_params ([DatastoreParams], none_type): Specifies datastore specific parameters.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_gb (int, none_type): Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_percentage (int, none_type): Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
-            link_vms_across_vcenter (bool, none_type): Specifies if the VM linking feature is enabled for the VCenter. If enabled, migrated VMs present in the VCenter which earlier belonged to some other VCenter will be linked during EH refresh.. [optional]  # noqa: E501
             throttling_params (VmwareThrottlingParams): [optional]  # noqa: E501
-            data_store_params ([DatastoreParams], none_type): Specifies datastore specific parameters.. [optional]  # noqa: E501
+            use_vm_bios_uuid (bool, none_type): Specifies to use VM BIOS UUID to track virtual machines in the host.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -213,8 +210,8 @@ class VcenterRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
+            'username': username,
             'endpoint': endpoint,
         }
         model_args = {}

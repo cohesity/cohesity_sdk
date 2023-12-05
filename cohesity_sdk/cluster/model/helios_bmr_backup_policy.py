@@ -81,8 +81,8 @@ class HeliosBmrBackupPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'schedule': (HeliosBmrSchedule,),  # noqa: E501
             'retention': (HeliosRetention,),  # noqa: E501
+            'schedule': (HeliosBmrSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class HeliosBmrBackupPolicy(ModelNormal):
 
 
     attribute_map = {
-        'schedule': 'schedule',  # noqa: E501
         'retention': 'retention',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class HeliosBmrBackupPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            schedule (HeliosBmrSchedule): [optional]  # noqa: E501
             retention (HeliosRetention): [optional]  # noqa: E501
+            schedule (HeliosBmrSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

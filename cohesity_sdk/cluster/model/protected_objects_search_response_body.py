@@ -79,9 +79,9 @@ class ProtectedObjectsSearchResponseBody(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([ProtectedObject], none_type,),  # noqa: E501
             'metadata': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'num_results': (int, none_type,),  # noqa: E501
+            'objects': ([ProtectedObject], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class ProtectedObjectsSearchResponseBody(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
         'metadata': 'metadata',  # noqa: E501
         'num_results': 'numResults',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class ProtectedObjectsSearchResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([ProtectedObject], none_type): Specifies the list of Protected Objects.. [optional]  # noqa: E501
             metadata ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the metadata information about the Protection Groups, Protection Policy etc., for search result.. [optional]  # noqa: E501
             num_results (int, none_type): Specifies the total number of search results which matches the search criteria.. [optional]  # noqa: E501
+            objects ([ProtectedObject], none_type): Specifies the list of Protected Objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

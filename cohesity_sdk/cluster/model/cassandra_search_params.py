@@ -78,8 +78,8 @@ class CassandraSearchParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'search_string': (str, none_type,),  # noqa: E501
             'cassandra_object_types': ([str],),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class CassandraSearchParams(ModelNormal):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
         'cassandra_object_types': 'cassandraObjectTypes',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,12 +105,12 @@ class CassandraSearchParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, search_string, cassandra_object_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, cassandra_object_types, search_string, *args, **kwargs):  # noqa: E501
         """CassandraSearchParams - a model defined in OpenAPI
 
         Args:
-            search_string (str, none_type): Specifies the search string to search the Cassandra Objects
             cassandra_object_types ([str]): Specifies one or more Cassandra object types to be searched.
+            search_string (str, none_type): Specifies the search string to search the Cassandra Objects
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class CassandraSearchParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.search_string = search_string
         self.cassandra_object_types = cassandra_object_types
+        self.search_string = search_string
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

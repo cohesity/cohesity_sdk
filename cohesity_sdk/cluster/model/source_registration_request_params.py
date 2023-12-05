@@ -154,31 +154,31 @@ class SourceRegistrationRequestParams(ModelComposed):
         lazy_import()
         return {
             'environment': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'is_internal_encrypted': (bool, none_type,),  # noqa: E501
-            'encryption_key': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
-            'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
-            'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
-            'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
-            'isilon_params': (IsilonRegistrationParams,),  # noqa: E501
-            'netapp_params': (NetappRegistrationParams,),  # noqa: E501
+            'encryption_key': (str, none_type,),  # noqa: E501
+            'is_internal_encrypted': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
+            'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
+            'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
             'elastifile_params': (ElastifileRegistrationParams,),  # noqa: E501
             'flashblade_params': (FlashbladeRegistrationParams,),  # noqa: E501
+            'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
             'gpfs_params': (GpfsRegistrationParams,),  # noqa: E501
-            'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
-            'mongodb_params': (MongoDBSourceRegistrationParams,),  # noqa: E501
-            'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
-            'hdfs_params': (HdfsSourceRegistrationParams,),  # noqa: E501
             'hbase_params': (HbaseSourceRegistrationParams,),  # noqa: E501
+            'hdfs_params': (HdfsSourceRegistrationParams,),  # noqa: E501
             'hive_params': (HiveSourceRegistrationParams,),  # noqa: E501
-            'uda_params': (UdaSourceRegistrationParams,),  # noqa: E501
-            'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
-            'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
             'hyperv_params': (HyperVSourceRegistrationParams,),  # noqa: E501
+            'isilon_params': (IsilonRegistrationParams,),  # noqa: E501
+            'mongodb_params': (MongoDBSourceRegistrationParams,),  # noqa: E501
+            'netapp_params': (NetappRegistrationParams,),  # noqa: E501
+            'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
+            'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
             'sfdc_params': (SfdcSourceRegistrationParams,),  # noqa: E501
+            'uda_params': (UdaSourceRegistrationParams,),  # noqa: E501
+            'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -189,31 +189,31 @@ class SourceRegistrationRequestParams(ModelComposed):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'is_internal_encrypted': 'isInternalEncrypted',  # noqa: E501
-        'encryption_key': 'encryptionKey',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
+        'encryption_key': 'encryptionKey',  # noqa: E501
+        'is_internal_encrypted': 'isInternalEncrypted',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'cassandra_params': 'cassandraParams',  # noqa: E501
+        'couchbase_params': 'couchbaseParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
-        'cassandra_params': 'cassandraParams',  # noqa: E501
-        'mongodb_params': 'mongodbParams',  # noqa: E501
-        'couchbase_params': 'couchbaseParams',  # noqa: E501
-        'hdfs_params': 'hdfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
+        'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
+        'mongodb_params': 'mongodbParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -267,31 +267,31 @@ class SourceRegistrationRequestParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): A user specified name for this source.. [optional]  # noqa: E501
-            is_internal_encrypted (bool, none_type): Specifies if credentials are encrypted by internal key.. [optional]  # noqa: E501
-            encryption_key (str, none_type): Specifies the key that user has encrypted the credential with.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
-            vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
-            physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
-            generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
-            isilon_params (IsilonRegistrationParams): [optional]  # noqa: E501
-            netapp_params (NetappRegistrationParams): [optional]  # noqa: E501
+            encryption_key (str, none_type): Specifies the key that user has encrypted the credential with.. [optional]  # noqa: E501
+            is_internal_encrypted (bool, none_type): Specifies if credentials are encrypted by internal key.. [optional]  # noqa: E501
+            name (str, none_type): A user specified name for this source.. [optional]  # noqa: E501
+            aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
+            cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
+            couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
             elastifile_params (ElastifileRegistrationParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeRegistrationParams): [optional]  # noqa: E501
+            generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
             gpfs_params (GpfsRegistrationParams): [optional]  # noqa: E501
-            cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
-            mongodb_params (MongoDBSourceRegistrationParams): [optional]  # noqa: E501
-            couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
-            hdfs_params (HdfsSourceRegistrationParams): [optional]  # noqa: E501
             hbase_params (HbaseSourceRegistrationParams): [optional]  # noqa: E501
+            hdfs_params (HdfsSourceRegistrationParams): [optional]  # noqa: E501
             hive_params (HiveSourceRegistrationParams): [optional]  # noqa: E501
-            uda_params (UdaSourceRegistrationParams): [optional]  # noqa: E501
-            office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
-            aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
             hyperv_params (HyperVSourceRegistrationParams): [optional]  # noqa: E501
+            isilon_params (IsilonRegistrationParams): [optional]  # noqa: E501
+            mongodb_params (MongoDBSourceRegistrationParams): [optional]  # noqa: E501
+            netapp_params (NetappRegistrationParams): [optional]  # noqa: E501
+            office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
+            physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
             sfdc_params (SfdcSourceRegistrationParams): [optional]  # noqa: E501
+            uda_params (UdaSourceRegistrationParams): [optional]  # noqa: E501
+            vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

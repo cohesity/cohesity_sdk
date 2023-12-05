@@ -92,15 +92,15 @@ class NetappRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'source_type': (str, none_type,),  # noqa: E501
-            'endpoint': (str, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
+            'endpoint': (str, none_type,),  # noqa: E501
+            'source_type': (str, none_type,),  # noqa: E501
             'back_up_smb_volumes': (bool, none_type,),  # noqa: E501
-            'smb_credentials': (SmbMountCredentials,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
-            'throttling_config': (NasThrottlingConfig,),  # noqa: E501
-            'storage_array_snapshot_enabled': (bool, none_type,),  # noqa: E501
+            'smb_credentials': (SmbMountCredentials,),  # noqa: E501
             'storage_array_snapshot_config': (StorageArraySnapshotConfig,),  # noqa: E501
+            'storage_array_snapshot_enabled': (bool, none_type,),  # noqa: E501
+            'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -110,15 +110,15 @@ class NetappRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'source_type': 'sourceType',  # noqa: E501
-        'endpoint': 'endpoint',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
+        'endpoint': 'endpoint',  # noqa: E501
+        'source_type': 'sourceType',  # noqa: E501
         'back_up_smb_volumes': 'backUpSMBVolumes',  # noqa: E501
-        'smb_credentials': 'smbCredentials',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
-        'throttling_config': 'throttlingConfig',  # noqa: E501
-        'storage_array_snapshot_enabled': 'storageArraySnapshotEnabled',  # noqa: E501
+        'smb_credentials': 'smbCredentials',  # noqa: E501
         'storage_array_snapshot_config': 'storageArraySnapshotConfig',  # noqa: E501
+        'storage_array_snapshot_enabled': 'storageArraySnapshotEnabled',  # noqa: E501
+        'throttling_config': 'throttlingConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -133,13 +133,13 @@ class NetappRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_type, endpoint, credentials, *args, **kwargs):  # noqa: E501
+    def __init__(self, credentials, endpoint, source_type, *args, **kwargs):  # noqa: E501
         """NetappRegistrationParams - a model defined in OpenAPI
 
         Args:
-            source_type (str, none_type): Specifies the Netapp source type. Can be either kCluster or kVServer (SVM).
-            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Netapp Source.
             credentials (Credentials):
+            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the Netapp Source.
+            source_type (str, none_type): Specifies the Netapp source type. Can be either kCluster or kVServer (SVM).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,11 +174,11 @@ class NetappRegistrationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             back_up_smb_volumes (bool, none_type): Specifies whether or not to back up SMB Volumes.. [optional]  # noqa: E501
-            smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
-            throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
-            storage_array_snapshot_enabled (bool, none_type): Specifies if storage array snapshot is enabled or not in the Source.. [optional]  # noqa: E501
+            smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
             storage_array_snapshot_config (StorageArraySnapshotConfig): [optional]  # noqa: E501
+            storage_array_snapshot_enabled (bool, none_type): Specifies if storage array snapshot is enabled or not in the Source.. [optional]  # noqa: E501
+            throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -205,9 +205,9 @@ class NetappRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_type = source_type
-        self.endpoint = endpoint
         self.credentials = credentials
+        self.endpoint = endpoint
+        self.source_type = source_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

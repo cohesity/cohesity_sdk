@@ -74,8 +74,8 @@ class ReverseReplicationResult(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'is_reverse_replication_enabled': (bool, none_type,),  # noqa: E501
             'error_reason': (str, none_type,),  # noqa: E501
+            'is_reverse_replication_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ReverseReplicationResult(ModelNormal):
 
 
     attribute_map = {
-        'is_reverse_replication_enabled': 'isReverseReplicationEnabled',  # noqa: E501
         'error_reason': 'errorReason',  # noqa: E501
+        'is_reverse_replication_enabled': 'isReverseReplicationEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ReverseReplicationResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_reverse_replication_enabled (bool, none_type): Specifies whether the reverse replication was enabled or not during group creation. It can be false, if source cluster is not reachable for reverse replication.. [optional]  # noqa: E501
             error_reason (str, none_type): Specifies the reason of not enabling reverse replication.. [optional]  # noqa: E501
+            is_reverse_replication_enabled (bool, none_type): Specifies whether the reverse replication was enabled or not during group creation. It can be false, if source cluster is not reachable for reverse replication.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **search_indexed_objects**
-> CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8 search_indexed_objects(body)
+> SearchIndexedObjectsResponseBody search_indexed_objects(body)
 
 List indexed objects.
 
@@ -17,12 +17,11 @@ List all the indexed objects like files and folders, emails, mailboxes etc., tha
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_search_indexed_objects_response_params53dc35a6_c64f4952_a4482b9a1911cfe8 import CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8
+from cohesity_sdk.cluster.model.search_indexed_objects_request import SearchIndexedObjectsRequest
+from cohesity_sdk.cluster.model.search_indexed_objects_response_body import SearchIndexedObjectsResponseBody
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_search_indexed_objects_request_params10ad3b2c_e8864d87_b3c05ce6605593f0 import CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -34,39 +33,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0(
-        protection_group_ids=[
-            "protection_group_ids_example",
-        ],
-        storage_domain_ids=[
-            1,
-        ],
-        tenant_id="tenant_id_example",
-        include_tenants=False,
-        tags=[
-            "tags_example",
-        ],
-        snapshot_tags=[
-            "snapshot_tags_example",
-        ],
-        must_have_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        might_have_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        must_have_snapshot_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        might_have_snapshot_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        pagination_cookie="pagination_cookie_example",
-        count=1,
-        object_type="Emails",
-        use_cached_data=True,
-    ) # CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0 | Specifies the parameters to search for indexed objects.
+body = SearchIndexedObjectsRequest() # SearchIndexedObjectsRequest | Specifies the parameters to search for indexed objects.
 
 # example passing only required values which don't have defaults set
 try:
@@ -82,15 +49,15 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0**](CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0.md)| Specifies the parameters to search for indexed objects. |
+ **body** | [**SearchIndexedObjectsRequest**](SearchIndexedObjectsRequest.md)| Specifies the parameters to search for indexed objects. |
 
 ### Return type
 
-[**CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8**](CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8.md)
+[**SearchIndexedObjectsResponseBody**](SearchIndexedObjectsResponseBody.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -115,7 +82,6 @@ List objects.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.objects_search_response_body import ObjectsSearchResponseBody
@@ -130,7 +96,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 search_string = "searchString_example" # str | Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria. (optional)
@@ -239,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -264,7 +229,6 @@ List protected objects and corresponding detail information from registered sour
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -279,7 +243,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 search_string = "searchString_example" # str | Specifies the search string to filter the objects. This search string will be applicable for objectnames and Protection Group names. User can specify a wildcard character '*' as a suffix to a string where all object and their Protection Group names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects with Protection Groups will be returned which will match other filtering criteria. (optional)
@@ -362,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

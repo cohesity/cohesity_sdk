@@ -74,8 +74,8 @@ class UserSessionsCount(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'sid': (str,),  # noqa: E501
             'sessions_count': (int,),  # noqa: E501
+            'sid': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class UserSessionsCount(ModelNormal):
 
 
     attribute_map = {
-        'sid': 'sid',  # noqa: E501
         'sessions_count': 'sessionsCount',  # noqa: E501
+        'sid': 'sid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class UserSessionsCount(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            sid (str): Specifies the user sid.. [optional]  # noqa: E501
             sessions_count (int): Specifies the number of sessions for the user.. [optional]  # noqa: E501
+            sid (str): Specifies the user sid.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

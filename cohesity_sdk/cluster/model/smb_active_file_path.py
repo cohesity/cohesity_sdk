@@ -79,10 +79,10 @@ class SmbActiveFilePath(ModelNormal):
         """
         lazy_import()
         return {
-            'view_name': (str, none_type,),  # noqa: E501
-            'view_id': (int, none_type,),  # noqa: E501
-            'file_path': (str, none_type,),  # noqa: E501
             'active_sessions': ([SmbActiveSession], none_type,),  # noqa: E501
+            'file_path': (str, none_type,),  # noqa: E501
+            'view_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class SmbActiveFilePath(ModelNormal):
 
 
     attribute_map = {
-        'view_name': 'viewName',  # noqa: E501
-        'view_id': 'viewId',  # noqa: E501
-        'file_path': 'filePath',  # noqa: E501
         'active_sessions': 'activeSessions',  # noqa: E501
+        'file_path': 'filePath',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,10 +145,10 @@ class SmbActiveFilePath(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            view_name (str, none_type): Specifies the name of the View.. [optional]  # noqa: E501
-            view_id (int, none_type): Specifies the id of the View.. [optional]  # noqa: E501
-            file_path (str, none_type): Specifies the filepath in the view.. [optional]  # noqa: E501
             active_sessions ([SmbActiveSession], none_type): Specifies an active session where the file is open.. [optional]  # noqa: E501
+            file_path (str, none_type): Specifies the filepath in the view.. [optional]  # noqa: E501
+            view_id (int, none_type): Specifies the id of the View.. [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the name of the View.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

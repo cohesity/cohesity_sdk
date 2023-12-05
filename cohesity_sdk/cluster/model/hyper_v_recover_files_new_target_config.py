@@ -74,9 +74,9 @@ class HyperVRecoverFilesNewTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'absolute_path': (str, none_type,),  # noqa: E501
             'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'absolute_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class HyperVRecoverFilesNewTargetConfig(ModelNormal):
 
 
     attribute_map = {
+        'absolute_path': 'absolutePath',  # noqa: E501
         'target_vm': 'targetVm',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
-        'absolute_path': 'absolutePath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class HyperVRecoverFilesNewTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target_vm, target_vm_credentials, absolute_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, absolute_path, target_vm, target_vm_credentials, *args, **kwargs):  # noqa: E501
         """HyperVRecoverFilesNewTargetConfig - a model defined in OpenAPI
 
         Args:
+            absolute_path (str, none_type): Specifies the path location to recover files to.
             target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
             target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.
-            absolute_path (str, none_type): Specifies the path location to recover files to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,9 +169,9 @@ class HyperVRecoverFilesNewTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.absolute_path = absolute_path
         self.target_vm = target_vm
         self.target_vm_credentials = target_vm_credentials
-        self.absolute_path = absolute_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

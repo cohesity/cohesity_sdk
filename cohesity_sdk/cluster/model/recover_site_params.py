@@ -80,9 +80,9 @@ class RecoverSiteParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([ObjectSiteParam], none_type,),  # noqa: E501
-            'target_site': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'target_domain_object_id': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'target_domain_object_id': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'target_site': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class RecoverSiteParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'target_site': 'targetSite',  # noqa: E501
-        'target_domain_object_id': 'targetDomainObjectId',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'target_domain_object_id': 'targetDomainObjectId',  # noqa: E501
+        'target_site': 'targetSite',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class RecoverSiteParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_site ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target Site to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
-            target_domain_object_id ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the object id of the target domain in case of full recovery of a site to a target domain.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering the doc libs of a site, if one or more of doc libs failed to recover. Default value is false.. [optional]  # noqa: E501
+            target_domain_object_id ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the object id of the target domain in case of full recovery of a site to a target domain.. [optional]  # noqa: E501
+            target_site ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target Site to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

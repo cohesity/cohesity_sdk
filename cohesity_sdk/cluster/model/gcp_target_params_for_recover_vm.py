@@ -74,10 +74,10 @@ class GcpTargetParamsForRecoverVm(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'rename_recovered_vms_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'power_on_vms': (bool, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'power_on_vms': (bool, none_type,),  # noqa: E501
+            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'rename_recovered_vms_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class GcpTargetParamsForRecoverVm(ModelNormal):
 
 
     attribute_map = {
-        'rename_recovered_vms_params': 'renameRecoveredVmsParams',  # noqa: E501
-        'recovery_target_config': 'recoveryTargetConfig',  # noqa: E501
-        'power_on_vms': 'powerOnVms',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'power_on_vms': 'powerOnVms',  # noqa: E501
+        'recovery_target_config': 'recoveryTargetConfig',  # noqa: E501
+        'rename_recovered_vms_params': 'renameRecoveredVmsParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,10 +140,10 @@ class GcpTargetParamsForRecoverVm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rename_recovered_vms_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the VMs that are recovered. If not specified, the original names of the VMs are preserved.. [optional]  # noqa: E501
-            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.. [optional]  # noqa: E501
-            power_on_vms (bool, none_type): Specifies whether to power on vms after recovery. If not specified, or false, recovered vms will be in powered off state.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other vms if one of vms failed to recover. Default value is false.. [optional]  # noqa: E501
+            power_on_vms (bool, none_type): Specifies whether to power on vms after recovery. If not specified, or false, recovered vms will be in powered off state.. [optional]  # noqa: E501
+            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.. [optional]  # noqa: E501
+            rename_recovered_vms_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the VMs that are recovered. If not specified, the original names of the VMs are preserved.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

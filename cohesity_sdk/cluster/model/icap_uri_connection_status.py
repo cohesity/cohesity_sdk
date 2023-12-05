@@ -79,8 +79,8 @@ class IcapUriConnectionStatus(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'icap_uri': (str, none_type,),  # noqa: E501
             'connection_status': (str, none_type,),  # noqa: E501
+            'icap_uri': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class IcapUriConnectionStatus(ModelNormal):
 
 
     attribute_map = {
-        'icap_uri': 'icapUri',  # noqa: E501
         'connection_status': 'connectionStatus',  # noqa: E501
+        'icap_uri': 'icapUri',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class IcapUriConnectionStatus(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            icap_uri (str, none_type): Specifies the ICAP Uri.. [optional]  # noqa: E501
             connection_status (str, none_type): Specifies the connection status.. [optional]  # noqa: E501
+            icap_uri (str, none_type): Specifies the ICAP Uri.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

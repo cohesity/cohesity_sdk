@@ -83,8 +83,8 @@ class ScvmmRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'endpoint': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'agent_endpoint': (str, none_type,),  # noqa: E501
@@ -98,8 +98,8 @@ class ScvmmRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
         'description': 'description',  # noqa: E501
         'agent_endpoint': 'agentEndpoint',  # noqa: E501
@@ -119,12 +119,12 @@ class ScvmmRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, endpoint, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, endpoint, *args, **kwargs):  # noqa: E501
         """ScvmmRegistrationParams - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
             endpoint (str): Specifies the endpoint IPaddress, URL or hostname of the host.
 
         Keyword Args:
@@ -196,8 +196,8 @@ class ScvmmRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
+            'username': username,
             'endpoint': endpoint,
         }
         model_args = {}

@@ -58,6 +58,10 @@ class OnPremDeployTargetResult(ModelNormal):
     """
 
     allowed_values = {
+        ('environment',): {
+            'None': None,
+            'KVMWARE': "kVMware",
+        },
         ('status',): {
             'None': None,
             'ACCEPTED': "Accepted",
@@ -70,12 +74,7 @@ class OnPremDeployTargetResult(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
-        },
-        ('environment',): {
-            'None': None,
-            'KVMWARE': "kVMware",
         },
     }
 
@@ -98,11 +97,11 @@ class OnPremDeployTargetResult(ModelNormal):
         """
         lazy_import()
         return {
-            'status': (str, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
-            'vmware_params': (OnPremDeployTargetResultVmwareParams,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
+            'message': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'vmware_params': (OnPremDeployTargetResultVmwareParams,),  # noqa: E501
         }
 
     @cached_property
@@ -112,11 +111,11 @@ class OnPremDeployTargetResult(ModelNormal):
 
 
     attribute_map = {
-        'status': 'status',  # noqa: E501
-        'message': 'message',  # noqa: E501
         'environment': 'environment',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
         'error_message': 'errorMessage',  # noqa: E501
+        'message': 'message',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -166,11 +165,11 @@ class OnPremDeployTargetResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            status (str, none_type): Status of the OnPrem deploy for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
-            message (str, none_type): Message about the onprem deploy run.. [optional]  # noqa: E501
             environment (str, none_type): Target environment of the onprem deploy task.. [optional] if omitted the server will use the default value of "kVMware"  # noqa: E501
-            vmware_params (OnPremDeployTargetResultVmwareParams): [optional]  # noqa: E501
             error_message (str, none_type): Specifies the error message for onprem task failure.. [optional]  # noqa: E501
+            message (str, none_type): Message about the onprem deploy run.. [optional]  # noqa: E501
+            status (str, none_type): Status of the OnPrem deploy for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            vmware_params (OnPremDeployTargetResultVmwareParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

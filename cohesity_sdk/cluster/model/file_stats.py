@@ -86,9 +86,9 @@ class FileStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
             'files_count': (int, none_type,),  # noqa: E501
             'files_size_bytes': (int, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +98,9 @@ class FileStats(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'files_count': 'filesCount',  # noqa: E501
         'files_size_bytes': 'filesSizeBytes',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,9 +150,9 @@ class FileStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the file type.. [optional]  # noqa: E501
             files_count (int, none_type): Specifies the number of files.. [optional]  # noqa: E501
             files_size_bytes (int, none_type): Specifies the size of all the files in bytes.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the file type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

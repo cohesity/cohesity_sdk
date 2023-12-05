@@ -85,12 +85,12 @@ class CouchbaseSourceRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
-            'seeds': ([str],),  # noqa: E501
-            'is_ssl_required': (bool, none_type,),  # noqa: E501
-            'http_port': (int, none_type,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'carrier_port': (int, none_type,),  # noqa: E501
+            'http_port': (int, none_type,),  # noqa: E501
+            'is_ssl_required': (bool, none_type,),  # noqa: E501
+            'seeds': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -100,12 +100,12 @@ class CouchbaseSourceRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
-        'seeds': 'seeds',  # noqa: E501
-        'is_ssl_required': 'isSslRequired',  # noqa: E501
-        'http_port': 'httpPort',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'carrier_port': 'carrierPort',  # noqa: E501
+        'http_port': 'httpPort',  # noqa: E501
+        'is_ssl_required': 'isSslRequired',  # noqa: E501
+        'seeds': 'seeds',  # noqa: E501
     }
 
     required_properties = set([
@@ -121,16 +121,16 @@ class CouchbaseSourceRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, seeds, is_ssl_required, http_port, carrier_port, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, carrier_port, http_port, is_ssl_required, seeds, *args, **kwargs):  # noqa: E501
         """CouchbaseSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
-            seeds ([str]): Specifies the IP Addresses or hostnames of the Couchbase cluster seed nodes.
-            is_ssl_required (bool, none_type): Set to true if connection to couchbase has to be using SSL.
-            http_port (int, none_type): HTTP direct or HTTP SSL port.
+            username (str): Specifies the username to access target entity.
             carrier_port (int, none_type): Carrier direct or Carrier SSL port.
+            http_port (int, none_type): HTTP direct or HTTP SSL port.
+            is_ssl_required (bool, none_type): Set to true if connection to couchbase has to be using SSL.
+            seeds ([str]): Specifies the IP Addresses or hostnames of the Couchbase cluster seed nodes.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -198,12 +198,12 @@ class CouchbaseSourceRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
-            'seeds': seeds,
-            'is_ssl_required': is_ssl_required,
-            'http_port': http_port,
+            'username': username,
             'carrier_port': carrier_port,
+            'http_port': http_port,
+            'is_ssl_required': is_ssl_required,
+            'seeds': seeds,
         }
         model_args = {}
         model_args.update(required_args)

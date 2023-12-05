@@ -74,8 +74,8 @@ class ObjectMailboxParam(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mailbox_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ObjectMailboxParam(ModelNormal):
 
 
     attribute_map = {
-        'owner_info': 'ownerInfo',  # noqa: E501
         'mailbox_params': 'mailboxParams',  # noqa: E501
+        'owner_info': 'ownerInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class ObjectMailboxParam(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, owner_info, mailbox_params, *args, **kwargs):  # noqa: E501
+    def __init__(self, mailbox_params, owner_info, *args, **kwargs):  # noqa: E501
         """ObjectMailboxParam - a model defined in OpenAPI
 
         Args:
-            owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Mailbox owner info.
             mailbox_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters to recover a Mailbox.
+            owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Mailbox owner info.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class ObjectMailboxParam(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.owner_info = owner_info
         self.mailbox_params = mailbox_params
+        self.owner_info = owner_info
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

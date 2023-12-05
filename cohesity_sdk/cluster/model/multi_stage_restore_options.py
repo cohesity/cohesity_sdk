@@ -74,8 +74,8 @@ class MultiStageRestoreOptions(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enable_multi_stage_restore': (bool, none_type,),  # noqa: E501
             'enable_auto_sync': (bool, none_type,),  # noqa: E501
+            'enable_multi_stage_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class MultiStageRestoreOptions(ModelNormal):
 
 
     attribute_map = {
-        'enable_multi_stage_restore': 'enableMultiStageRestore',  # noqa: E501
         'enable_auto_sync': 'enableAutoSync',  # noqa: E501
+        'enable_multi_stage_restore': 'enableMultiStageRestore',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class MultiStageRestoreOptions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_multi_stage_restore (bool, none_type): Set this to true if you are creating a multi-stage Sql restore task needed for features such as Hot-Standby.. [optional]  # noqa: E501
             enable_auto_sync (bool, none_type): Set this to true if you want to enable auto sync for multi stage restore.. [optional]  # noqa: E501
+            enable_multi_stage_restore (bool, none_type): Set this to true if you are creating a multi-stage Sql restore task needed for features such as Hot-Standby.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -85,10 +85,10 @@ class HeliosBackupPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'regular': (HeliosRegularBackupPolicy,),  # noqa: E501
-            'log': (HeliosLogBackupPolicy,),  # noqa: E501
             'bmr': (HeliosBmrBackupPolicy,),  # noqa: E501
             'cdp': (HeliosCdpBackupPolicy,),  # noqa: E501
+            'log': (HeliosLogBackupPolicy,),  # noqa: E501
+            'regular': (HeliosRegularBackupPolicy,),  # noqa: E501
         }
 
     @cached_property
@@ -98,10 +98,10 @@ class HeliosBackupPolicy(ModelNormal):
 
 
     attribute_map = {
-        'regular': 'regular',  # noqa: E501
-        'log': 'log',  # noqa: E501
         'bmr': 'bmr',  # noqa: E501
         'cdp': 'cdp',  # noqa: E501
+        'log': 'log',  # noqa: E501
+        'regular': 'regular',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,10 +151,10 @@ class HeliosBackupPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            regular (HeliosRegularBackupPolicy): [optional]  # noqa: E501
-            log (HeliosLogBackupPolicy): [optional]  # noqa: E501
             bmr (HeliosBmrBackupPolicy): [optional]  # noqa: E501
             cdp (HeliosCdpBackupPolicy): [optional]  # noqa: E501
+            log (HeliosLogBackupPolicy): [optional]  # noqa: E501
+            regular (HeliosRegularBackupPolicy): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

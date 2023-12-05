@@ -81,8 +81,8 @@ class PrePostScriptParams(ModelNormal):
         """
         lazy_import()
         return {
-            'pre_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'post_script': (CommonPostBackupScriptParams,),  # noqa: E501
+            'pre_script': (CommonPreBackupScriptParams,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class PrePostScriptParams(ModelNormal):
 
 
     attribute_map = {
-        'pre_script': 'preScript',  # noqa: E501
         'post_script': 'postScript',  # noqa: E501
+        'pre_script': 'preScript',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class PrePostScriptParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            pre_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             post_script (CommonPostBackupScriptParams): [optional]  # noqa: E501
+            pre_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

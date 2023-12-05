@@ -81,9 +81,9 @@ class CloudSpinTarget(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int, none_type,),  # noqa: E501
             'aws_params': (AwsCloudSpinParams,),  # noqa: E501
             'azure_params': (AzureCloudSpinParams,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
         }
 
@@ -94,9 +94,9 @@ class CloudSpinTarget(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
     }
 
@@ -147,9 +147,9 @@ class CloudSpinTarget(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the unique id of the cloud spin entity.. [optional]  # noqa: E501
             aws_params (AwsCloudSpinParams): [optional]  # noqa: E501
             azure_params (AzureCloudSpinParams): [optional]  # noqa: E501
+            id (int, none_type): Specifies the unique id of the cloud spin entity.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the already added cloud spin target.. [optional]  # noqa: E501
         """
 

@@ -60,6 +60,32 @@ class Interface(ModelNormal):
     """
 
     allowed_values = {
+        ('bonding_mode',): {
+            'None': None,
+            'ACTIVEBACKUP': "ActiveBackup",
+            '802_3AD': "802_3ad",
+        },
+        ('role',): {
+            'None': None,
+            'PRIMARY': "Primary",
+            'SECONDARY': "Secondary",
+        },
+        ('services',): {
+            'None': None,
+            'REPLICATIONSERVICE': "ReplicationService",
+            'REMOTETUNNELSERVICE': "RemoteTunnelService",
+            'CLUSTERDATASERVICE': "ClusterDataService",
+            'AVAHIDISCOVERSERVICE': "AvahiDiscoverService",
+        },
+        ('speed',): {
+            'None': None,
+            '1GBIT/S': "1Gbit/s",
+            '10GBIT/S': "10Gbit/s",
+            '25GBIT/S': "25Gbit/s",
+            '40GBIT/S': "40Gbit/s",
+            '100GBIT/S': "100Gbit/s",
+            'UNKNOWN': "Unknown",
+        },
         ('type',): {
             'None': None,
             'PHYSICAL': "Physical",
@@ -72,32 +98,6 @@ class Interface(ModelNormal):
             'VLANGROUP': "VlanGroup",
             'VLANBRIDGE': "VlanBridge",
             'INVALID': "Invalid",
-        },
-        ('role',): {
-            'None': None,
-            'PRIMARY': "Primary",
-            'SECONDARY': "Secondary",
-        },
-        ('speed',): {
-            'None': None,
-            '1GBIT/S': "1Gbit/s",
-            '10GBIT/S': "10Gbit/s",
-            '25GBIT/S': "25Gbit/s",
-            '40GBIT/S': "40Gbit/s",
-            '100GBIT/S': "100Gbit/s",
-            'UNKNOWN': "Unknown",
-        },
-        ('services',): {
-            'None': None,
-            'REPLICATIONSERVICE': "ReplicationService",
-            'REMOTETUNNELSERVICE': "RemoteTunnelService",
-            'CLUSTERDATASERVICE': "ClusterDataService",
-            'AVAHIDISCOVERSERVICE': "AvahiDiscoverService",
-        },
-        ('bonding_mode',): {
-            'None': None,
-            'ACTIVEBACKUP': "ActiveBackup",
-            '802_3AD': "802_3ad",
         },
     }
 
@@ -120,28 +120,28 @@ class Interface(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'role': (str, none_type,),  # noqa: E501
+            'bond_members': ([BondMember], none_type,),  # noqa: E501
+            'bonding_mode': (str, none_type,),  # noqa: E501
+            'default_route': (bool, none_type,),  # noqa: E501
+            'gateway': (str, none_type,),  # noqa: E501
             'group': (str, none_type,),  # noqa: E501
-            'mac_address': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'ipv6_gateway': (str, none_type,),  # noqa: E501
+            'ipv6_static': (str, none_type,),  # noqa: E501
+            'ipv6_subnet': (str, none_type,),  # noqa: E501
             'is_connected': (bool, none_type,),  # noqa: E501
             'is_up': (bool, none_type,),  # noqa: E501
-            'default_route': (bool, none_type,),  # noqa: E501
-            'static_ip': (str, none_type,),  # noqa: E501
-            'virtual_ip': (str, none_type,),  # noqa: E501
-            'gateway': (str, none_type,),  # noqa: E501
-            'subnet': (str, none_type,),  # noqa: E501
-            'ipv6_static': (str, none_type,),  # noqa: E501
-            'ipv6_gateway': (str, none_type,),  # noqa: E501
-            'ipv6_subnet': (str, none_type,),  # noqa: E501
+            'mac_address': (str, none_type,),  # noqa: E501
             'mtu': (int, none_type,),  # noqa: E501
-            'speed': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'role': (str, none_type,),  # noqa: E501
             'services': ([str], none_type,),  # noqa: E501
+            'speed': (str, none_type,),  # noqa: E501
+            'static_ip': (str, none_type,),  # noqa: E501
             'stats': (InterfaceStats,),  # noqa: E501
-            'bonding_mode': (str, none_type,),  # noqa: E501
-            'bond_members': ([BondMember], none_type,),  # noqa: E501
+            'subnet': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
+            'virtual_ip': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,28 +151,28 @@ class Interface(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'role': 'role',  # noqa: E501
+        'bond_members': 'bondMembers',  # noqa: E501
+        'bonding_mode': 'bondingMode',  # noqa: E501
+        'default_route': 'defaultRoute',  # noqa: E501
+        'gateway': 'gateway',  # noqa: E501
         'group': 'group',  # noqa: E501
-        'mac_address': 'macAddress',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'ipv6_gateway': 'ipv6Gateway',  # noqa: E501
+        'ipv6_static': 'ipv6Static',  # noqa: E501
+        'ipv6_subnet': 'ipv6Subnet',  # noqa: E501
         'is_connected': 'isConnected',  # noqa: E501
         'is_up': 'isUp',  # noqa: E501
-        'default_route': 'defaultRoute',  # noqa: E501
-        'static_ip': 'staticIp',  # noqa: E501
-        'virtual_ip': 'virtualIp',  # noqa: E501
-        'gateway': 'gateway',  # noqa: E501
-        'subnet': 'subnet',  # noqa: E501
-        'ipv6_static': 'ipv6Static',  # noqa: E501
-        'ipv6_gateway': 'ipv6Gateway',  # noqa: E501
-        'ipv6_subnet': 'ipv6Subnet',  # noqa: E501
+        'mac_address': 'macAddress',  # noqa: E501
         'mtu': 'mtu',  # noqa: E501
-        'speed': 'speed',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'role': 'role',  # noqa: E501
         'services': 'services',  # noqa: E501
+        'speed': 'speed',  # noqa: E501
+        'static_ip': 'staticIp',  # noqa: E501
         'stats': 'stats',  # noqa: E501
-        'bonding_mode': 'bondingMode',  # noqa: E501
-        'bond_members': 'bondMembers',  # noqa: E501
+        'subnet': 'subnet',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'virtual_ip': 'virtualIp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -222,28 +222,28 @@ class Interface(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Id of the interface.. [optional]  # noqa: E501
-            name (str, none_type): The name of the interface.. [optional]  # noqa: E501
-            type (str, none_type): The type of the interface.. [optional]  # noqa: E501
-            role (str, none_type): Role of the interface.. [optional]  # noqa: E501
+            bond_members ([BondMember], none_type): Bond member details for bond interface.. [optional]  # noqa: E501
+            bonding_mode (str, none_type): Bonding mode if this interface is a bond.. [optional]  # noqa: E501
+            default_route (bool, none_type): Specifies whether or not this interface is the default route.. [optional]  # noqa: E501
+            gateway (str, none_type): Gateway of the interface.. [optional]  # noqa: E501
             group (str, none_type): Group to which this interface belongs.. [optional]  # noqa: E501
-            mac_address (str, none_type): MAC address of the interface.. [optional]  # noqa: E501
+            id (int, none_type): Id of the interface.. [optional]  # noqa: E501
+            ipv6_gateway (str, none_type): The IPv6 gateway of the interface.. [optional]  # noqa: E501
+            ipv6_static (str, none_type): Static IPv6 of the interface.. [optional]  # noqa: E501
+            ipv6_subnet (str, none_type): The IPv6 subnet of the interface.. [optional]  # noqa: E501
             is_connected (bool, none_type): Specifies whether or not this interface is connected.. [optional]  # noqa: E501
             is_up (bool, none_type): Specifies whether or not the interface is up.. [optional]  # noqa: E501
-            default_route (bool, none_type): Specifies whether or not this interface is the default route.. [optional]  # noqa: E501
-            static_ip (str, none_type): Static IP of the interface.. [optional]  # noqa: E501
-            virtual_ip (str, none_type): Virtual IP of the interface.. [optional]  # noqa: E501
-            gateway (str, none_type): Gateway of the interface.. [optional]  # noqa: E501
-            subnet (str, none_type): Subnet of the interface.. [optional]  # noqa: E501
-            ipv6_static (str, none_type): Static IPv6 of the interface.. [optional]  # noqa: E501
-            ipv6_gateway (str, none_type): The IPv6 gateway of the interface.. [optional]  # noqa: E501
-            ipv6_subnet (str, none_type): The IPv6 subnet of the interface.. [optional]  # noqa: E501
+            mac_address (str, none_type): MAC address of the interface.. [optional]  # noqa: E501
             mtu (int, none_type): MTU of the interface.. [optional]  # noqa: E501
-            speed (str, none_type): Speed of the interface.. [optional]  # noqa: E501
+            name (str, none_type): The name of the interface.. [optional]  # noqa: E501
+            role (str, none_type): Role of the interface.. [optional]  # noqa: E501
             services ([str], none_type): Types of services this interface is used for.. [optional]  # noqa: E501
+            speed (str, none_type): Speed of the interface.. [optional]  # noqa: E501
+            static_ip (str, none_type): Static IP of the interface.. [optional]  # noqa: E501
             stats (InterfaceStats): [optional]  # noqa: E501
-            bonding_mode (str, none_type): Bonding mode if this interface is a bond.. [optional]  # noqa: E501
-            bond_members ([BondMember], none_type): Bond member details for bond interface.. [optional]  # noqa: E501
+            subnet (str, none_type): Subnet of the interface.. [optional]  # noqa: E501
+            type (str, none_type): The type of the interface.. [optional]  # noqa: E501
+            virtual_ip (str, none_type): Virtual IP of the interface.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

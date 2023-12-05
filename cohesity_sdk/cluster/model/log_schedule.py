@@ -87,8 +87,8 @@ class LogSchedule(ModelNormal):
         lazy_import()
         return {
             'unit': (str, none_type,),  # noqa: E501
-            'minute_schedule': (MinuteSchedule,),  # noqa: E501
             'hour_schedule': (HourSchedule,),  # noqa: E501
+            'minute_schedule': (MinuteSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -99,8 +99,8 @@ class LogSchedule(ModelNormal):
 
     attribute_map = {
         'unit': 'unit',  # noqa: E501
-        'minute_schedule': 'minuteSchedule',  # noqa: E501
         'hour_schedule': 'hourSchedule',  # noqa: E501
+        'minute_schedule': 'minuteSchedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,8 +153,8 @@ class LogSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            minute_schedule (MinuteSchedule): [optional]  # noqa: E501
             hour_schedule (HourSchedule): [optional]  # noqa: E501
+            minute_schedule (MinuteSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

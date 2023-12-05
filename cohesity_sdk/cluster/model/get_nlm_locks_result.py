@@ -79,8 +79,8 @@ class GetNlmLocksResult(ModelNormal):
         """
         lazy_import()
         return {
-            'file_nlm_locks': ([FileNlmLocks], none_type,),  # noqa: E501
             'cookie': (str, none_type,),  # noqa: E501
+            'file_nlm_locks': ([FileNlmLocks], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class GetNlmLocksResult(ModelNormal):
 
 
     attribute_map = {
-        'file_nlm_locks': 'fileNlmLocks',  # noqa: E501
         'cookie': 'cookie',  # noqa: E501
+        'file_nlm_locks': 'fileNlmLocks',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class GetNlmLocksResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            file_nlm_locks ([FileNlmLocks], none_type): Specifies the list of NLM locks.. [optional]  # noqa: E501
             cookie (str, none_type): Specifies the pagination cookie.. [optional]  # noqa: E501
+            file_nlm_locks ([FileNlmLocks], none_type): Specifies the list of NLM locks.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

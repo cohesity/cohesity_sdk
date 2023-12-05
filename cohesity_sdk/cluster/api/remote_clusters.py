@@ -117,7 +117,7 @@ class RemoteClustersApi(object):
                 'response_type': (OdpRemoteCluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/odp-remote-clusters',
@@ -239,7 +239,7 @@ class RemoteClustersApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
@@ -360,7 +360,7 @@ class RemoteClustersApi(object):
                 'response_type': (OdpRemoteCluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/odp-remote-clusters/{clusterId}',
@@ -480,7 +480,7 @@ class RemoteClustersApi(object):
                 'response_type': (OdpRemoteClusters,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/odp-remote-clusters',
@@ -617,7 +617,7 @@ class RemoteClustersApi(object):
                 'response_type': (RemoteCluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
@@ -737,7 +737,7 @@ class RemoteClustersApi(object):
                 'response_type': (RemoteClusters,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters',
@@ -876,7 +876,7 @@ class RemoteClustersApi(object):
                 'response_type': (ReplicationEncryptionKey,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/replicationEncryptionKey',
@@ -990,7 +990,7 @@ class RemoteClustersApi(object):
                 'response_type': (RemoteCluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters',
@@ -1116,7 +1116,7 @@ class RemoteClustersApi(object):
                 'response_type': (OdpRemoteCluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/odp-remote-clusters/{clusterId}',
@@ -1248,7 +1248,7 @@ class RemoteClustersApi(object):
                 'response_type': (RemoteCluster,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
@@ -1376,7 +1376,7 @@ class RemoteClustersApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/validate',

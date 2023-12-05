@@ -78,8 +78,8 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
         """
         return {
             'id': (int,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'should_auto_protect_object': (bool, none_type,),  # noqa: E501
         }
 
@@ -91,8 +91,8 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'should_auto_protect_object': 'shouldAutoProtectObject',  # noqa: E501
     }
 
@@ -146,8 +146,8 @@ class Office365ObjectProtectionObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the ID of the objects to be excluded in the Object Protection.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             should_auto_protect_object (bool, none_type): Specifies if the object has to be autoprotected. This is applicable only for sharepoint sites.. [optional]  # noqa: E501
         """
 

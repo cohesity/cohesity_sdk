@@ -34,9 +34,9 @@ client = ClusterClient(
 
 
 body = CreateAccessTokenRequestParams(
-        username="username_example",
-        password="password_example",
         domain="domain_example",
+        password="password_example",
+        username="username_example",
     ) # CreateAccessTokenRequestParams | Specifies the parameters to generate an access token
 
 # example passing only required values which don't have defaults set

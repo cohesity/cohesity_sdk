@@ -90,9 +90,9 @@ class DataLockConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'duration': (int, none_type,),  # noqa: E501
             'mode': (str, none_type,),  # noqa: E501
             'unit': (str, none_type,),  # noqa: E501
-            'duration': (int, none_type,),  # noqa: E501
             'enable_worm_on_external_target': (bool, none_type,),  # noqa: E501
         }
 
@@ -103,9 +103,9 @@ class DataLockConfig(ModelNormal):
 
 
     attribute_map = {
+        'duration': 'duration',  # noqa: E501
         'mode': 'mode',  # noqa: E501
         'unit': 'unit',  # noqa: E501
-        'duration': 'duration',  # noqa: E501
         'enable_worm_on_external_target': 'enableWormOnExternalTarget',  # noqa: E501
     }
 
@@ -121,13 +121,13 @@ class DataLockConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, mode, unit, duration, *args, **kwargs):  # noqa: E501
+    def __init__(self, duration, mode, unit, *args, **kwargs):  # noqa: E501
         """DataLockConfig - a model defined in OpenAPI
 
         Args:
+            duration (int, none_type): Specifies the duration for a dataLock. <br> Example. If duration is 7 and unit is Months, the dataLock is enabled for last 7 * 30 = 210 days of the backup.
             mode (str, none_type): Specifies the type of WORM retention type.  'Compliance' implies WORM retention is set for compliance reason.  'Administrative' implies WORM retention is set for administrative purposes.
             unit (str, none_type): Specificies the Retention Unit of a dataLock measured in days, months or years. <br> If unit is 'Months', then number specified in duration is multiplied to 30. <br> Example: If duration is 4 and unit is 'Months' then number of retention days will be 30 * 4 = 120 days. <br> If unit is 'Years', then number specified in duration is multiplied to 365. <br> If duration is 2 and unit is 'Months' then number of retention days will be 365 * 2 = 730 days.
-            duration (int, none_type): Specifies the duration for a dataLock. <br> Example. If duration is 7 and unit is Months, the dataLock is enabled for last 7 * 30 = 210 days of the backup.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -188,9 +188,9 @@ class DataLockConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.duration = duration
         self.mode = mode
         self.unit = unit
-        self.duration = duration
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

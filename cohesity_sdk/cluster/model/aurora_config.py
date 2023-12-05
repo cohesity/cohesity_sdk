@@ -74,15 +74,15 @@ class AuroraConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'db_port': (int, none_type,),  # noqa: E501
             'db_instance_id': (str, none_type,),  # noqa: E501
-            'is_multi_az_deployment': (bool, none_type,),  # noqa: E501
-            'enable_iam_db_authentication': (bool, none_type,),  # noqa: E501
-            'enable_copy_tags_to_snapshots': (bool, none_type,),  # noqa: E501
+            'db_port': (int, none_type,),  # noqa: E501
             'enable_auto_minor_version_upgrade': (bool, none_type,),  # noqa: E501
-            'enable_public_accessibility': (bool, none_type,),  # noqa: E501
+            'enable_copy_tags_to_snapshots': (bool, none_type,),  # noqa: E501
+            'enable_iam_db_authentication': (bool, none_type,),  # noqa: E501
+            'is_multi_az_deployment': (bool, none_type,),  # noqa: E501
             'db_option_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'db_parameter_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'enable_public_accessibility': (bool, none_type,),  # noqa: E501
             'point_in_time_usecs': (int, none_type,),  # noqa: E501
         }
 
@@ -93,15 +93,15 @@ class AuroraConfig(ModelNormal):
 
 
     attribute_map = {
-        'db_port': 'dbPort',  # noqa: E501
         'db_instance_id': 'dbInstanceId',  # noqa: E501
-        'is_multi_az_deployment': 'isMultiAzDeployment',  # noqa: E501
-        'enable_iam_db_authentication': 'enableIamDbAuthentication',  # noqa: E501
-        'enable_copy_tags_to_snapshots': 'enableCopyTagsToSnapshots',  # noqa: E501
+        'db_port': 'dbPort',  # noqa: E501
         'enable_auto_minor_version_upgrade': 'enableAutoMinorVersionUpgrade',  # noqa: E501
-        'enable_public_accessibility': 'enablePublicAccessibility',  # noqa: E501
+        'enable_copy_tags_to_snapshots': 'enableCopyTagsToSnapshots',  # noqa: E501
+        'enable_iam_db_authentication': 'enableIamDbAuthentication',  # noqa: E501
+        'is_multi_az_deployment': 'isMultiAzDeployment',  # noqa: E501
         'db_option_group': 'dbOptionGroup',  # noqa: E501
         'db_parameter_group': 'dbParameterGroup',  # noqa: E501
+        'enable_public_accessibility': 'enablePublicAccessibility',  # noqa: E501
         'point_in_time_usecs': 'pointInTimeUsecs',  # noqa: E501
     }
 
@@ -117,16 +117,16 @@ class AuroraConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, db_port, db_instance_id, is_multi_az_deployment, enable_iam_db_authentication, enable_copy_tags_to_snapshots, enable_auto_minor_version_upgrade, *args, **kwargs):  # noqa: E501
+    def __init__(self, db_instance_id, db_port, enable_auto_minor_version_upgrade, enable_copy_tags_to_snapshots, enable_iam_db_authentication, is_multi_az_deployment, *args, **kwargs):  # noqa: E501
         """AuroraConfig - a model defined in OpenAPI
 
         Args:
-            db_port (int, none_type): Specifies the port to use for the DB in the restored Aurora instance.
             db_instance_id (str, none_type): Specifies the DB instance identifier to use for the restored DB.
-            is_multi_az_deployment (bool, none_type): Specifies whether this is a multi-az deployment or not.
-            enable_iam_db_authentication (bool, none_type): Specifies whether to enable IAM authentication for the DB.
-            enable_copy_tags_to_snapshots (bool, none_type): Specifies whether to enable copying of tags to snapshots of the DB.
+            db_port (int, none_type): Specifies the port to use for the DB in the restored Aurora instance.
             enable_auto_minor_version_upgrade (bool, none_type): Specifies whether to enable auto minor version upgrade in the restored DB.
+            enable_copy_tags_to_snapshots (bool, none_type): Specifies whether to enable copying of tags to snapshots of the DB.
+            enable_iam_db_authentication (bool, none_type): Specifies whether to enable IAM authentication for the DB.
+            is_multi_az_deployment (bool, none_type): Specifies whether this is a multi-az deployment or not.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,9 +160,9 @@ class AuroraConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_public_accessibility (bool, none_type): Specifies whether this DB will be publicly accessible or not.. [optional]  # noqa: E501
             db_option_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies entity representing the Aurora option group to use while restoring the DB.. [optional]  # noqa: E501
             db_parameter_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the entity representing the Aurora parameter group to use while restoring the DB.. [optional]  # noqa: E501
+            enable_public_accessibility (bool, none_type): Specifies whether this DB will be publicly accessible or not.. [optional]  # noqa: E501
             point_in_time_usecs (int, none_type): Specifies a point in time for recovery in microseconds.. [optional]  # noqa: E501
         """
 
@@ -190,12 +190,12 @@ class AuroraConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.db_port = db_port
         self.db_instance_id = db_instance_id
-        self.is_multi_az_deployment = is_multi_az_deployment
-        self.enable_iam_db_authentication = enable_iam_db_authentication
-        self.enable_copy_tags_to_snapshots = enable_copy_tags_to_snapshots
+        self.db_port = db_port
         self.enable_auto_minor_version_upgrade = enable_auto_minor_version_upgrade
+        self.enable_copy_tags_to_snapshots = enable_copy_tags_to_snapshots
+        self.enable_iam_db_authentication = enable_iam_db_authentication
+        self.is_multi_az_deployment = is_multi_az_deployment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

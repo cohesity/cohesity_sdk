@@ -81,8 +81,8 @@ class VmwareRecoverFilesOriginalTargetConfig(ModelNormal):
         return {
             'recover_method': (str,),  # noqa: E501
             'recover_to_original_path': (bool, none_type,),  # noqa: E501
-            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'alternate_path': (str, none_type,),  # noqa: E501
+            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class VmwareRecoverFilesOriginalTargetConfig(ModelNormal):
     attribute_map = {
         'recover_method': 'recoverMethod',  # noqa: E501
         'recover_to_original_path': 'recoverToOriginalPath',  # noqa: E501
-        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
         'alternate_path': 'alternatePath',  # noqa: E501
+        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,8 +149,8 @@ class VmwareRecoverFilesOriginalTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM. This is mandatory if the recoverMethod is AutoDeploy or UseHypervisorApis.. [optional]  # noqa: E501
             alternate_path (str, none_type): Specifies the alternate path location to recover files to.. [optional]  # noqa: E501
+            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM. This is mandatory if the recoverMethod is AutoDeploy or UseHypervisorApis.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class RecoverVmwareVmNewNetworkConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'network_port_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'disable_network': (bool, none_type,),  # noqa: E501
+            'network_port_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'preserve_mac_address': (bool, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class RecoverVmwareVmNewNetworkConfig(ModelNormal):
 
 
     attribute_map = {
-        'network_port_group': 'networkPortGroup',  # noqa: E501
         'disable_network': 'disableNetwork',  # noqa: E501
+        'network_port_group': 'networkPortGroup',  # noqa: E501
         'preserve_mac_address': 'preserveMacAddress',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class RecoverVmwareVmNewNetworkConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            network_port_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the network port group (i.e, either a standard switch port group or a distributed port group) that will attached to the recovered Object. This parameter is mandatory if detach network is specified as false.. [optional]  # noqa: E501
             disable_network (bool, none_type): Specifies whether the attached network should be left in disabled state. Default is false. [optional]  # noqa: E501
+            network_port_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the network port group (i.e, either a standard switch port group or a distributed port group) that will attached to the recovered Object. This parameter is mandatory if detach network is specified as false.. [optional]  # noqa: E501
             preserve_mac_address (bool, none_type): If this is true and we are attaching to a new network entity, then the VM's MAC address will be preserved on the new network. Default value is false.. [optional]  # noqa: E501
         """
 

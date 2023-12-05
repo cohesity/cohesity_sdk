@@ -108,7 +108,7 @@ class FleetInstanceApi(object):
                 'response_type': (UpdateFleetEnvInfoRequest,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/fleet-env-info',

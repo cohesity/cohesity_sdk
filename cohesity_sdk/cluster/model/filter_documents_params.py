@@ -81,8 +81,8 @@ class FilterDocumentsParams(ModelNormal):
         """
         return {
             'document_filter_type': (str, none_type,),  # noqa: E501
-            'id_regex': (str, none_type,),  # noqa: E501
             'filter_expression': (str, none_type,),  # noqa: E501
+            'id_regex': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class FilterDocumentsParams(ModelNormal):
 
     attribute_map = {
         'document_filter_type': 'documentFilterType',  # noqa: E501
-        'id_regex': 'idRegex',  # noqa: E501
         'filter_expression': 'filterExpression',  # noqa: E501
+        'id_regex': 'idRegex',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,8 +147,8 @@ class FilterDocumentsParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id_regex (str, none_type): A regular expression to match Documents ID's to be restored.. [optional]  # noqa: E501
             filter_expression (str, none_type): A filter expression to match Documents content to be restored.. [optional]  # noqa: E501
+            id_regex (str, none_type): A regular expression to match Documents ID's to be restored.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

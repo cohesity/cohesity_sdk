@@ -88,10 +88,10 @@ class CreateAzureApplicationRequestParams(ModelNormal):
         lazy_import()
         return {
             'access_token': (str, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
             'app_count': (int,),  # noqa: E501
-            'microsoft365_region': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
             'existing_microsoft365_app_credentials_list': ([Office365AppCredentials],),  # noqa: E501
+            'microsoft365_region': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,10 +102,10 @@ class CreateAzureApplicationRequestParams(ModelNormal):
 
     attribute_map = {
         'access_token': 'accessToken',  # noqa: E501
-        'username': 'username',  # noqa: E501
         'app_count': 'appCount',  # noqa: E501
-        'microsoft365_region': 'microsoft365Region',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'existing_microsoft365_app_credentials_list': 'existingMicrosoft365AppCredentialsList',  # noqa: E501
+        'microsoft365_region': 'microsoft365Region',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,13 +120,13 @@ class CreateAzureApplicationRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, access_token, username, app_count, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, app_count, username, *args, **kwargs):  # noqa: E501
         """CreateAzureApplicationRequestParams - a model defined in OpenAPI
 
         Args:
             access_token (str, none_type): Specifies the access token for Azure PowerShell Application access.
-            username (str, none_type): Specifies the username to access Microsoft365 source.
             app_count (int): Specifies the count of Azure application to be created.
+            username (str, none_type): Specifies the username to access Microsoft365 source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,8 +160,8 @@ class CreateAzureApplicationRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            microsoft365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501
             existing_microsoft365_app_credentials_list ([Office365AppCredentials]): Specifies a list of Microsoft365 azure application credentials already added within the Microsoft365 source.. [optional]  # noqa: E501
+            microsoft365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,8 +189,8 @@ class CreateAzureApplicationRequestParams(ModelNormal):
 
 
         self.access_token = access_token
-        self.username = username
         self.app_count = app_count
+        self.username = username
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

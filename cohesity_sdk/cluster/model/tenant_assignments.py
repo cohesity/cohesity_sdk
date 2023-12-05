@@ -79,8 +79,8 @@ class TenantAssignments(ModelNormal):
         """
         lazy_import()
         return {
-            'tenant_id': (str, none_type,),  # noqa: E501
             'assignments': (TenantAssignmentsResult,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class TenantAssignments(ModelNormal):
 
 
     attribute_map = {
-        'tenant_id': 'tenantId',  # noqa: E501
         'assignments': 'assignments',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class TenantAssignments(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            tenant_id (str, none_type): The tenant id.. [optional]  # noqa: E501
             assignments (TenantAssignmentsResult): [optional]  # noqa: E501
+            tenant_id (str, none_type): The tenant id.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

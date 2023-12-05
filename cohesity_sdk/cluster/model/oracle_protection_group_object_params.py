@@ -80,8 +80,8 @@ class OracleProtectionGroupObjectParams(ModelNormal):
         lazy_import()
         return {
             'source_id': (int, none_type,),  # noqa: E501
-            'source_name': (str, none_type,),  # noqa: E501
             'db_params': ([OracleProtectionGroupDbParams], none_type,),  # noqa: E501
+            'source_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class OracleProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'source_id': 'sourceId',  # noqa: E501
-        'source_name': 'sourceName',  # noqa: E501
         'db_params': 'dbParams',  # noqa: E501
+        'source_name': 'sourceName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class OracleProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_name (str, none_type): Specifies the name of the host on which databases are hosted.. [optional]  # noqa: E501
             db_params ([OracleProtectionGroupDbParams], none_type): Specifies the properties of the Oracle databases.. [optional]  # noqa: E501
+            source_name (str, none_type): Specifies the name of the host on which databases are hosted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

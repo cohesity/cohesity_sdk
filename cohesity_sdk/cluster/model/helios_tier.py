@@ -86,10 +86,10 @@ class HeliosTier(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
             'is_default_tier': (bool, none_type,),  # noqa: E501
-            'unit': (str, none_type,),  # noqa: E501
             'move_after': (int, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,10 +99,10 @@ class HeliosTier(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'is_default_tier': 'isDefaultTier',  # noqa: E501
-        'unit': 'unit',  # noqa: E501
         'move_after': 'moveAfter',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,10 +152,10 @@ class HeliosTier(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the tier type.. [optional]  # noqa: E501
             is_default_tier (bool, none_type): Specifies whether the current tier will be the default tier for primary retention.. [optional]  # noqa: E501
-            unit (str, none_type): Specificies the time unit after which backup will be moved to next tier.. [optional]  # noqa: E501
             move_after (int, none_type): Specifies the duration after which the backup will be moved to next tier.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the tier type.. [optional]  # noqa: E501
+            unit (str, none_type): Specificies the time unit after which backup will be moved to next tier.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

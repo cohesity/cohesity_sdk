@@ -87,8 +87,8 @@ class StandardParams(ModelNormal):
         lazy_import()
         return {
             'auth_method_type': (str, none_type,),  # noqa: E501
-            'iam_user_aws_credentials': (IamUserAwsCredentials,),  # noqa: E501
             'iam_role_aws_credentials': (IamRoleAwsCredentials,),  # noqa: E501
+            'iam_user_aws_credentials': (IamUserAwsCredentials,),  # noqa: E501
         }
 
     @cached_property
@@ -99,8 +99,8 @@ class StandardParams(ModelNormal):
 
     attribute_map = {
         'auth_method_type': 'authMethodType',  # noqa: E501
-        'iam_user_aws_credentials': 'iamUserAwsCredentials',  # noqa: E501
         'iam_role_aws_credentials': 'iamRoleAwsCredentials',  # noqa: E501
+        'iam_user_aws_credentials': 'iamUserAwsCredentials',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,8 +153,8 @@ class StandardParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            iam_user_aws_credentials (IamUserAwsCredentials): [optional]  # noqa: E501
             iam_role_aws_credentials (IamRoleAwsCredentials): [optional]  # noqa: E501
+            iam_user_aws_credentials (IamUserAwsCredentials): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

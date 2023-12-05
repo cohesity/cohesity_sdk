@@ -105,7 +105,7 @@ class RegistrationApi(object):
                 'response_type': (HeliosRegConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/helios-registration-config',
@@ -214,7 +214,7 @@ class RegistrationApi(object):
                 'response_type': (RigelClaimLogs,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/rigel-claim-logs',
@@ -328,7 +328,7 @@ class RegistrationApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/helios-registration',

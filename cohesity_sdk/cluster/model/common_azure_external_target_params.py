@@ -77,7 +77,6 @@ class CommonAzureExternalTargetParams(ModelNormal):
             'container_name': (str, none_type,),  # noqa: E501
             'storage_account_name': (str, none_type,),  # noqa: E501
             'storage_access_key': (str, none_type,),  # noqa: E501
-            'client_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,7 +89,6 @@ class CommonAzureExternalTargetParams(ModelNormal):
         'container_name': 'containerName',  # noqa: E501
         'storage_account_name': 'storageAccountName',  # noqa: E501
         'storage_access_key': 'storageAccessKey',  # noqa: E501
-        'client_id': 'clientId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,7 +143,6 @@ class CommonAzureExternalTargetParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             storage_access_key (str, none_type): Specifies the storage access key of the external target.. [optional]  # noqa: E501
-            client_id (str, none_type): Specifies the client id of the managed identity assigned to the cluster This is used only for clusters running as Azure VMs where authentication is done using AD.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

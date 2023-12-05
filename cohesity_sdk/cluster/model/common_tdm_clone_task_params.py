@@ -80,9 +80,9 @@ class CommonTdmCloneTaskParams(ModelNormal):
         """
         return {
             'environment': (str, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class CommonTdmCloneTaskParams(ModelNormal):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class CommonTdmCloneTaskParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            policy_id (str, none_type): Specifies the ID of the policy, which should be used to protect this clone. This is useful for automatic snapshots. This must be specified if either of protectionGroupId and protectionGroupName is specified.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the ID of an existing protection group, which should start protecting this clone. Specifying this implies that the clone is eligible for automated snapshots based on the policy configuration. If this is specified, policyId should also be specified and protectionGroupName should not be specified.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies the name of a new protection group, which should be created to protect this clone. Specifying this implies that the clone is eligible for automated snapshots based on the policy configuration. If this is specified, policyId should also be specified and protectionGroupId should not be specified.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the ID of the policy, which should be used to protect this clone. This is useful for automatic snapshots. This must be specified if either of protectionGroupId and protectionGroupName is specified.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -75,12 +75,12 @@ class IPConfigParams(ModelNormal):
         """
         return {
             'interface': (str, none_type,),  # noqa: E501
+            'ip_family': (int, none_type,),  # noqa: E501
             'ips': ([str],),  # noqa: E501
             'node_ids': ([str],),  # noqa: E501
             'role': (str, none_type,),  # noqa: E501
             'subnet_gateway': (str, none_type,),  # noqa: E501
             'subnet_mask_bits': (int, none_type,),  # noqa: E501
-            'ip_family': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,12 +91,12 @@ class IPConfigParams(ModelNormal):
 
     attribute_map = {
         'interface': 'interface',  # noqa: E501
+        'ip_family': 'ipFamily',  # noqa: E501
         'ips': 'ips',  # noqa: E501
         'node_ids': 'nodeIds',  # noqa: E501
         'role': 'role',  # noqa: E501
         'subnet_gateway': 'subnetGateway',  # noqa: E501
         'subnet_mask_bits': 'subnetMaskBits',  # noqa: E501
-        'ip_family': 'ipFamily',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,12 +147,12 @@ class IPConfigParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             interface (str, none_type): Specifies the network interface name. IPs would be assigned to the specified interface.. [optional]  # noqa: E501
+            ip_family (int, none_type): Specifies the IP family of the config.. [optional]  # noqa: E501
             ips ([str]): Specifies a list of IP addresses to be assigned.. [optional]  # noqa: E501
             node_ids ([str]): Specifies the cluster node ids.. [optional]  # noqa: E501
             role (str, none_type): Specifies the interface role.. [optional]  # noqa: E501
             subnet_gateway (str, none_type): Specifies the interface gateway.. [optional]  # noqa: E501
             subnet_mask_bits (int, none_type): Specifies the interface subnet mask bits.. [optional]  # noqa: E501
-            ip_family (int, none_type): Specifies the IP family of the config.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

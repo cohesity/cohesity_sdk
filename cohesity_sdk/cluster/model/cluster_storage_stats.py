@@ -78,8 +78,8 @@ class ClusterStorageStats(ModelNormal):
             'data_protection_physical_usage_bytes': (int, none_type,),  # noqa: E501
             'file_services_logical_usage_bytes': (int, none_type,),  # noqa: E501
             'file_services_physical_usage_bytes': (int, none_type,),  # noqa: E501
-            'local_usage_bytes': (int, none_type,),  # noqa: E501
             'local_available_bytes': (int, none_type,),  # noqa: E501
+            'local_usage_bytes': (int, none_type,),  # noqa: E501
             'total_capacity_bytes': (int, none_type,),  # noqa: E501
         }
 
@@ -94,8 +94,8 @@ class ClusterStorageStats(ModelNormal):
         'data_protection_physical_usage_bytes': 'dataProtectionPhysicalUsageBytes',  # noqa: E501
         'file_services_logical_usage_bytes': 'fileServicesLogicalUsageBytes',  # noqa: E501
         'file_services_physical_usage_bytes': 'fileServicesPhysicalUsageBytes',  # noqa: E501
-        'local_usage_bytes': 'localUsageBytes',  # noqa: E501
         'local_available_bytes': 'localAvailableBytes',  # noqa: E501
+        'local_usage_bytes': 'localUsageBytes',  # noqa: E501
         'total_capacity_bytes': 'totalCapacityBytes',  # noqa: E501
     }
 
@@ -150,8 +150,8 @@ class ClusterStorageStats(ModelNormal):
             data_protection_physical_usage_bytes (int, none_type): Specifies the physical size of protected objects in bytes.. [optional]  # noqa: E501
             file_services_logical_usage_bytes (int, none_type): Specifies the logical size consumed by file services in bytes.. [optional]  # noqa: E501
             file_services_physical_usage_bytes (int, none_type): Specifies the physical size consumed by file services in bytes.. [optional]  # noqa: E501
-            local_usage_bytes (int, none_type): Specifies the local storage currently in use on the cluster in bytes.. [optional]  # noqa: E501
             local_available_bytes (int, none_type): Specifies the local storage currently available on the cluster in bytes.. [optional]  # noqa: E501
+            local_usage_bytes (int, none_type): Specifies the local storage currently in use on the cluster in bytes.. [optional]  # noqa: E501
             total_capacity_bytes (int, none_type): Specifies the total capacity of the cluster in bytes.. [optional]  # noqa: E501
         """
 

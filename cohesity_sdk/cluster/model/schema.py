@@ -74,9 +74,9 @@ class Schema(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'entity_id': (str, none_type,),  # noqa: E501
             'metric_name': (str, none_type,),  # noqa: E501
             'schema_name': (str, none_type,),  # noqa: E501
-            'entity_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class Schema(ModelNormal):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'metric_name': 'metricName',  # noqa: E501
         'schema_name': 'schemaName',  # noqa: E501
-        'entity_id': 'entityId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class Schema(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            entity_id (str, none_type): Specifies the id of the entity.. [optional]  # noqa: E501
             metric_name (str, none_type): Specifies the name of schema metric.. [optional]  # noqa: E501
             schema_name (str, none_type): Specifies the name of the schema.. [optional]  # noqa: E501
-            entity_id (str, none_type): Specifies the id of the entity.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

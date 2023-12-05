@@ -74,9 +74,9 @@ class CommonCsrResponseParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'csr': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'public_key': (str, none_type,),  # noqa: E501
-            'csr': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class CommonCsrResponseParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'csr': 'csr',  # noqa: E501
         'id': 'id',  # noqa: E501
         'public_key': 'publicKey',  # noqa: E501
-        'csr': 'csr',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class CommonCsrResponseParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            csr (str, none_type): Specifies the CSR generated for the service.. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the CSR.. [optional]  # noqa: E501
             public_key (str, none_type): Specifies the public key generated for this CSR.. [optional]  # noqa: E501
-            csr (str, none_type): Specifies the CSR generated for the service.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

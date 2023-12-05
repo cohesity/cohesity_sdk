@@ -21,7 +21,6 @@ Create the Protection Policy and returns the newly created policy object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response import ProtectionPolicyResponse
@@ -37,7 +36,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to create a Protection Policy.
 
@@ -63,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -88,7 +86,6 @@ Deletes a Protection Policy based on given policy id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -102,7 +99,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to delete.
 
@@ -127,7 +123,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -152,7 +148,6 @@ Returns the Policy Template corresponding to the specified Policy Id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -167,7 +162,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Policy Template to return.
 
@@ -193,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -218,7 +212,6 @@ Returns the policy templates based on the filtering parameters. If no parameters
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
@@ -233,7 +226,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -272,7 +264,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -297,7 +289,6 @@ Lists protection policies based on filtering query parameters.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response_with_pagination import ProtectionPolicyResponseWithPagination
@@ -312,7 +303,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -361,7 +351,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -386,7 +376,6 @@ Returns the Protection Policy details based on provided Policy Id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response import ProtectionPolicyResponse
@@ -401,7 +390,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to return.
 
@@ -427,7 +415,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -452,7 +440,6 @@ Specifies the request to update the existing Protection Policy. On successful up
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_policy_response import ProtectionPolicyResponse
@@ -468,7 +455,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to update.
 body = ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to update a Protection Policy.
@@ -496,7 +482,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

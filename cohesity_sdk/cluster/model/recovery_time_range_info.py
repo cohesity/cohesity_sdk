@@ -80,9 +80,9 @@ class RecoveryTimeRangeInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,9 +92,9 @@ class RecoveryTimeRangeInfo(ModelNormal):
 
 
     attribute_map = {
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,9 +144,9 @@ class RecoveryTimeRangeInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_time_usecs (int, none_type): Specifies the start time of this time range.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of this time range.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies id of the Protection Group corresponding to this time range.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time of this time range.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

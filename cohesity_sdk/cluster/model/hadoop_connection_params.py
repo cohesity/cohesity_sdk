@@ -81,8 +81,8 @@ class HadoopConnectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'host': (str,),  # noqa: E501
             'configuration_directory': (str,),  # noqa: E501
+            'host': (str,),  # noqa: E501
             'ssh_password_credentials': (HadoopConnectionParamsSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HadoopConnectionParamsSshPrivateKeyCredentials,),  # noqa: E501
         }
@@ -94,8 +94,8 @@ class HadoopConnectionParams(ModelNormal):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
+        'host': 'host',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
     }
@@ -112,12 +112,12 @@ class HadoopConnectionParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, configuration_directory, *args, **kwargs):  # noqa: E501
+    def __init__(self, configuration_directory, host, *args, **kwargs):  # noqa: E501
         """HadoopConnectionParams - a model defined in OpenAPI
 
         Args:
-            host (str): IP or hostname of any host from which the  configuration file can be read.
             configuration_directory (str): The directory containing the application specific config file. .
+            host (str): IP or hostname of any host from which the  configuration file can be read.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,8 +179,8 @@ class HadoopConnectionParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.host = host
         self.configuration_directory = configuration_directory
+        self.host = host
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

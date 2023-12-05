@@ -27,9 +27,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.data_tiering_schedule import DataTieringSchedule
     from cohesity_sdk.cluster.model.data_tiering_source import DataTieringSource
-    globals()['DataTieringSchedule'] = DataTieringSchedule
     globals()['DataTieringSource'] = DataTieringSource
 
 
@@ -83,7 +81,6 @@ class CommonDataTieringAnalysisGroupParams(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'source': (DataTieringSource,),  # noqa: E501
-            'schedule': (DataTieringSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -95,7 +92,6 @@ class CommonDataTieringAnalysisGroupParams(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'source': 'source',  # noqa: E501
-        'schedule': 'schedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,11 +106,12 @@ class CommonDataTieringAnalysisGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, source, *args, **kwargs):  # noqa: E501
         """CommonDataTieringAnalysisGroupParams - a model defined in OpenAPI
 
         Args:
             name (str, none_type): Specifies the name of the data tiering analysis group.
+            source (DataTieringSource):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,8 +145,6 @@ class CommonDataTieringAnalysisGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source (DataTieringSource): [optional]  # noqa: E501
-            schedule (DataTieringSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -177,6 +172,7 @@ class CommonDataTieringAnalysisGroupParams(ModelNormal):
 
 
         self.name = name
+        self.source = source
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

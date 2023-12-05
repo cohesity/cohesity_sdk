@@ -80,13 +80,13 @@ class CassandraSecurityInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'cassandra_authorizer': (str, none_type,),  # noqa: E501
             'cassandra_auth_required': (bool, none_type,),  # noqa: E501
             'cassandra_auth_type': (str, none_type,),  # noqa: E501
-            'dse_authorization': (bool, none_type,),  # noqa: E501
+            'cassandra_authorizer': (str, none_type,),  # noqa: E501
             'client_encryption': (bool, none_type,),  # noqa: E501
-            'server_internode_encryption_type': (str, none_type,),  # noqa: E501
+            'dse_authorization': (bool, none_type,),  # noqa: E501
             'server_encryption_req_client_auth': (bool, none_type,),  # noqa: E501
+            'server_internode_encryption_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,13 +96,13 @@ class CassandraSecurityInfo(ModelNormal):
 
 
     attribute_map = {
-        'cassandra_authorizer': 'cassandraAuthorizer',  # noqa: E501
         'cassandra_auth_required': 'cassandraAuthRequired',  # noqa: E501
         'cassandra_auth_type': 'cassandraAuthType',  # noqa: E501
-        'dse_authorization': 'dseAuthorization',  # noqa: E501
+        'cassandra_authorizer': 'cassandraAuthorizer',  # noqa: E501
         'client_encryption': 'clientEncryption',  # noqa: E501
-        'server_internode_encryption_type': 'serverInternodeEncryptionType',  # noqa: E501
+        'dse_authorization': 'dseAuthorization',  # noqa: E501
         'server_encryption_req_client_auth': 'serverEncryptionReqClientAuth',  # noqa: E501
+        'server_internode_encryption_type': 'serverInternodeEncryptionType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,13 +152,13 @@ class CassandraSecurityInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cassandra_authorizer (str, none_type): Cassandra Authenticator/Authorizer.. [optional]  # noqa: E501
             cassandra_auth_required (bool, none_type): Is Cassandra authentication required ?. [optional]  # noqa: E501
             cassandra_auth_type (str, none_type): Cassandra Authentication type.. [optional]  # noqa: E501
-            dse_authorization (bool, none_type): Is DSE Authorization enabled for this cluster ?. [optional]  # noqa: E501
+            cassandra_authorizer (str, none_type): Cassandra Authenticator/Authorizer.. [optional]  # noqa: E501
             client_encryption (bool, none_type): Is Client Encryption enabled for this cluster ?. [optional]  # noqa: E501
-            server_internode_encryption_type (str, none_type): 'Server internal node Encryption' type.. [optional]  # noqa: E501
+            dse_authorization (bool, none_type): Is DSE Authorization enabled for this cluster ?. [optional]  # noqa: E501
             server_encryption_req_client_auth (bool, none_type): Is 'Server encryption request client authentication' enabled for this cluster ?. [optional]  # noqa: E501
+            server_internode_encryption_type (str, none_type): 'Server internal node Encryption' type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

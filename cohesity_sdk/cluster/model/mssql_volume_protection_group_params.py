@@ -27,7 +27,6 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.advanced_settings import AdvancedSettings
     from cohesity_sdk.cluster.model.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
     from cohesity_sdk.cluster.model.filter import Filter
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
@@ -35,7 +34,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.mssql_volume_protection_group_object_params import MSSQLVolumeProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.mssql_volume_protection_group_params_all_of import MSSQLVolumeProtectionGroupParamsAllOf
     from cohesity_sdk.cluster.model.pre_post_script_params import PrePostScriptParams
-    globals()['AdvancedSettings'] = AdvancedSettings
     globals()['CommonMSSQLProtectionGroupParams'] = CommonMSSQLProtectionGroupParams
     globals()['Filter'] = Filter
     globals()['IndexingPolicy'] = IndexingPolicy
@@ -72,18 +70,18 @@ class MSSQLVolumeProtectionGroupParams(ModelComposed):
     """
 
     allowed_values = {
-        ('user_db_backup_preference_type',): {
-            'None': None,
-            'KBACKUPALLDATABASES': "kBackupAllDatabases",
-            'KBACKUPALLEXCEPTAAGDATABASES': "kBackupAllExceptAAGDatabases",
-            'KBACKUPONLYAAGDATABASES': "kBackupOnlyAAGDatabases",
-        },
         ('aag_backup_preference_type',): {
             'None': None,
             'KPRIMARYREPLICAONLY': "kPrimaryReplicaOnly",
             'KSECONDARYREPLICAONLY': "kSecondaryReplicaOnly",
             'KPREFERSECONDARYREPLICA': "kPreferSecondaryReplica",
             'KANYREPLICA': "kAnyReplica",
+        },
+        ('user_db_backup_preference_type',): {
+            'None': None,
+            'KBACKUPALLDATABASES': "kBackupAllDatabases",
+            'KBACKUPALLEXCEPTAAGDATABASES': "kBackupAllExceptAAGDatabases",
+            'KBACKUPONLYAAGDATABASES': "kBackupOnlyAAGDatabases",
         },
     }
 
@@ -111,20 +109,19 @@ class MSSQLVolumeProtectionGroupParams(ModelComposed):
         lazy_import()
         return {
             'objects': ([MSSQLVolumeProtectionGroupObjectParams], none_type,),  # noqa: E501
+            'additional_host_params': ([MSSQLVolumeProtectionGroupHostParams],),  # noqa: E501
+            'backup_db_volumes_only': (bool, none_type,),  # noqa: E501
             'incremental_backup_after_restart': (bool, none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'backup_db_volumes_only': (bool, none_type,),  # noqa: E501
-            'additional_host_params': ([MSSQLVolumeProtectionGroupHostParams],),  # noqa: E501
-            'user_db_backup_preference_type': (str, none_type,),  # noqa: E501
-            'backup_system_dbs': (bool, none_type,),  # noqa: E501
-            'use_aag_preferences_from_server': (bool, none_type,),  # noqa: E501
             'aag_backup_preference_type': (str, none_type,),  # noqa: E501
-            'full_backups_copy_only': (bool, none_type,),  # noqa: E501
-            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
+            'backup_system_dbs': (bool, none_type,),  # noqa: E501
             'exclude_filters': ([Filter], none_type,),  # noqa: E501
+            'full_backups_copy_only': (bool, none_type,),  # noqa: E501
             'log_backup_num_streams': (int, none_type,),  # noqa: E501
             'log_backup_with_clause': (str, none_type,),  # noqa: E501
-            'advanced_settings': (AdvancedSettings,),  # noqa: E501
+            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
+            'use_aag_preferences_from_server': (bool, none_type,),  # noqa: E501
+            'user_db_backup_preference_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -135,20 +132,19 @@ class MSSQLVolumeProtectionGroupParams(ModelComposed):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
+        'additional_host_params': 'additionalHostParams',  # noqa: E501
+        'backup_db_volumes_only': 'backupDbVolumesOnly',  # noqa: E501
         'incremental_backup_after_restart': 'incrementalBackupAfterRestart',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'backup_db_volumes_only': 'backupDbVolumesOnly',  # noqa: E501
-        'additional_host_params': 'additionalHostParams',  # noqa: E501
-        'user_db_backup_preference_type': 'userDbBackupPreferenceType',  # noqa: E501
-        'backup_system_dbs': 'backupSystemDbs',  # noqa: E501
-        'use_aag_preferences_from_server': 'useAagPreferencesFromServer',  # noqa: E501
         'aag_backup_preference_type': 'aagBackupPreferenceType',  # noqa: E501
-        'full_backups_copy_only': 'fullBackupsCopyOnly',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
+        'backup_system_dbs': 'backupSystemDbs',  # noqa: E501
         'exclude_filters': 'excludeFilters',  # noqa: E501
+        'full_backups_copy_only': 'fullBackupsCopyOnly',  # noqa: E501
         'log_backup_num_streams': 'logBackupNumStreams',  # noqa: E501
         'log_backup_with_clause': 'logBackupWithClause',  # noqa: E501
-        'advanced_settings': 'advancedSettings',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
+        'use_aag_preferences_from_server': 'useAagPreferencesFromServer',  # noqa: E501
+        'user_db_backup_preference_type': 'userDbBackupPreferenceType',  # noqa: E501
     }
 
     required_properties = set([
@@ -202,20 +198,19 @@ class MSSQLVolumeProtectionGroupParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            additional_host_params ([MSSQLVolumeProtectionGroupHostParams]): Specifies settings which are to be applied to specific host containers in this protection group.. [optional]  # noqa: E501
+            backup_db_volumes_only (bool, none_type): Specifies whether to only backup volumes on which the specified databases reside. If not specified (default), all the volumes of the host will be protected.. [optional]  # noqa: E501
             incremental_backup_after_restart (bool, none_type): Specifies whether or to perform incremental backups the first time after a server restarts. By default, a full backup will be performed.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            backup_db_volumes_only (bool, none_type): Specifies whether to only backup volumes on which the specified databases reside. If not specified (default), all the volumes of the host will be protected.. [optional]  # noqa: E501
-            additional_host_params ([MSSQLVolumeProtectionGroupHostParams]): Specifies settings which are to be applied to specific host containers in this protection group.. [optional]  # noqa: E501
-            user_db_backup_preference_type (str, none_type): Specifies the preference type for backing up user databases on the host.. [optional]  # noqa: E501
-            backup_system_dbs (bool, none_type): Specifies whether to backup system databases. If not specified then parameter is set to true.. [optional]  # noqa: E501
-            use_aag_preferences_from_server (bool, none_type): Specifies whether or not the AAG backup preferences specified on the SQL Server host should be used.. [optional]  # noqa: E501
             aag_backup_preference_type (str, none_type): Specifies the preference type for backing up databases that are part of an AAG. If not specified, then default preferences of the AAG server are applied. This field wont be applicable if user DB preference is set to skip AAG databases.. [optional]  # noqa: E501
-            full_backups_copy_only (bool, none_type): Specifies whether full backups should be copy-only.. [optional]  # noqa: E501
-            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
+            backup_system_dbs (bool, none_type): Specifies whether to backup system databases. If not specified then parameter is set to true.. [optional]  # noqa: E501
             exclude_filters ([Filter], none_type): Specifies the list of exclusion filters applied during the group creation or edit. These exclusion filters can be wildcard supported strings or regular expressions. Objects satisfying the will filters will be excluded during backup and also auto protected objects will be ignored if filtered by any of the filters.. [optional]  # noqa: E501
+            full_backups_copy_only (bool, none_type): Specifies whether full backups should be copy-only.. [optional]  # noqa: E501
             log_backup_num_streams (int, none_type): Specifies the number of streams to be used for log backups.. [optional]  # noqa: E501
             log_backup_with_clause (str, none_type): Specifies the WithClause to be used for log backups.. [optional]  # noqa: E501
-            advanced_settings (AdvancedSettings): [optional]  # noqa: E501
+            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
+            use_aag_preferences_from_server (bool, none_type): Specifies whether or not the AAG backup preferences specified on the SQL Server host should be used.. [optional]  # noqa: E501
+            user_db_backup_preference_type (str, none_type): Specifies the preference type for backing up user databases on the host.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

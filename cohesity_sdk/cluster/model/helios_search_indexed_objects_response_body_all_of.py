@@ -37,7 +37,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.helios_hive_objects import HeliosHiveObjects
     from cohesity_sdk.cluster.model.helios_mongo_objects import HeliosMongoObjects
     from cohesity_sdk.cluster.model.helios_public_folder_items import HeliosPublicFolderItems
-    from cohesity_sdk.cluster.model.sfdc_records import SfdcRecords
     globals()['HeliosCassandraObjects'] = HeliosCassandraObjects
     globals()['HeliosCouchbaseObjects'] = HeliosCouchbaseObjects
     globals()['HeliosEmails'] = HeliosEmails
@@ -48,7 +47,6 @@ def lazy_import():
     globals()['HeliosHiveObjects'] = HeliosHiveObjects
     globals()['HeliosMongoObjects'] = HeliosMongoObjects
     globals()['HeliosPublicFolderItems'] = HeliosPublicFolderItems
-    globals()['SfdcRecords'] = SfdcRecords
 
 
 class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
@@ -99,17 +97,16 @@ class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'emails': (HeliosEmails,),  # noqa: E501
-            'files': (HeliosFiles,),  # noqa: E501
             'cassandra_objects': (HeliosCassandraObjects,),  # noqa: E501
             'couchbase_objects': (HeliosCouchbaseObjects,),  # noqa: E501
+            'emails': (HeliosEmails,),  # noqa: E501
+            'exchange_objects': (HeliosExchangeObjects,),  # noqa: E501
+            'files': (HeliosFiles,),  # noqa: E501
             'hbase_objects': (HeliosHbaseObjects,),  # noqa: E501
+            'hdfs_objects': (HeliosHdfsObjects,),  # noqa: E501
             'hive_objects': (HeliosHiveObjects,),  # noqa: E501
             'mongo_objects': (HeliosMongoObjects,),  # noqa: E501
-            'hdfs_objects': (HeliosHdfsObjects,),  # noqa: E501
-            'exchange_objects': (HeliosExchangeObjects,),  # noqa: E501
             'public_folder_items': (HeliosPublicFolderItems,),  # noqa: E501
-            'sfdc_records': (SfdcRecords,),  # noqa: E501
         }
 
     @cached_property
@@ -119,17 +116,16 @@ class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
 
 
     attribute_map = {
-        'emails': 'emails',  # noqa: E501
-        'files': 'files',  # noqa: E501
         'cassandra_objects': 'cassandraObjects',  # noqa: E501
         'couchbase_objects': 'couchbaseObjects',  # noqa: E501
+        'emails': 'emails',  # noqa: E501
+        'exchange_objects': 'exchangeObjects',  # noqa: E501
+        'files': 'files',  # noqa: E501
         'hbase_objects': 'hbaseObjects',  # noqa: E501
+        'hdfs_objects': 'hdfsObjects',  # noqa: E501
         'hive_objects': 'hiveObjects',  # noqa: E501
         'mongo_objects': 'mongoObjects',  # noqa: E501
-        'hdfs_objects': 'hdfsObjects',  # noqa: E501
-        'exchange_objects': 'exchangeObjects',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
-        'sfdc_records': 'sfdcRecords',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -179,17 +175,16 @@ class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            emails (HeliosEmails): [optional]  # noqa: E501
-            files (HeliosFiles): [optional]  # noqa: E501
             cassandra_objects (HeliosCassandraObjects): [optional]  # noqa: E501
             couchbase_objects (HeliosCouchbaseObjects): [optional]  # noqa: E501
+            emails (HeliosEmails): [optional]  # noqa: E501
+            exchange_objects (HeliosExchangeObjects): [optional]  # noqa: E501
+            files (HeliosFiles): [optional]  # noqa: E501
             hbase_objects (HeliosHbaseObjects): [optional]  # noqa: E501
+            hdfs_objects (HeliosHdfsObjects): [optional]  # noqa: E501
             hive_objects (HeliosHiveObjects): [optional]  # noqa: E501
             mongo_objects (HeliosMongoObjects): [optional]  # noqa: E501
-            hdfs_objects (HeliosHdfsObjects): [optional]  # noqa: E501
-            exchange_objects (HeliosExchangeObjects): [optional]  # noqa: E501
             public_folder_items (HeliosPublicFolderItems): [optional]  # noqa: E501
-            sfdc_records (SfdcRecords): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

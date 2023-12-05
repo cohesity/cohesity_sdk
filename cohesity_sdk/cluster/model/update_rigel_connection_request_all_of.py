@@ -79,8 +79,8 @@ class UpdateRigelConnectionRequestAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'ungrouped_connectors': ([int],),  # noqa: E501
             'connector_groups': ([ConnectorGroup],),  # noqa: E501
+            'ungrouped_connectors': ([int],),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class UpdateRigelConnectionRequestAllOf(ModelNormal):
 
 
     attribute_map = {
-        'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
         'connector_groups': 'connectorGroups',  # noqa: E501
+        'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class UpdateRigelConnectionRequestAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
             connector_groups ([ConnectorGroup]): Specifies the connector groups in the connection.. [optional]  # noqa: E501
+            ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

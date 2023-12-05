@@ -91,8 +91,8 @@ class HyperVSourceRegistrationParams(ModelNormal):
         return {
             'type': (str, none_type,),  # noqa: E501
             'scvmm_params': (ScvmmRegistrationParams,),  # noqa: E501
-            'standalone_host_params': (StandaloneHostRegistrationParams,),  # noqa: E501
             'standalone_cluster_params': (StandaloneClusterRegistrationParams,),  # noqa: E501
+            'standalone_host_params': (StandaloneHostRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -104,8 +104,8 @@ class HyperVSourceRegistrationParams(ModelNormal):
     attribute_map = {
         'type': 'type',  # noqa: E501
         'scvmm_params': 'scvmmParams',  # noqa: E501
-        'standalone_host_params': 'standaloneHostParams',  # noqa: E501
         'standalone_cluster_params': 'standaloneClusterParams',  # noqa: E501
+        'standalone_host_params': 'standaloneHostParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,8 +159,8 @@ class HyperVSourceRegistrationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             scvmm_params (ScvmmRegistrationParams): [optional]  # noqa: E501
-            standalone_host_params (StandaloneHostRegistrationParams): [optional]  # noqa: E501
             standalone_cluster_params (StandaloneClusterRegistrationParams): [optional]  # noqa: E501
+            standalone_host_params (StandaloneHostRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

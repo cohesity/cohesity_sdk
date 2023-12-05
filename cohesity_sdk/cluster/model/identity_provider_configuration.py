@@ -81,18 +81,18 @@ class IdentityProviderConfiguration(ModelComposed):
         """
         lazy_import()
         return {
+            'certificate': (str, none_type,),  # noqa: E501
             'issuer_id': (str, none_type,),  # noqa: E501
             'sso_url': (str, none_type,),  # noqa: E501
-            'certificate': (str, none_type,),  # noqa: E501
+            'allow_local_user_login': (bool, none_type,),  # noqa: E501
+            'is_enabled': (bool, none_type,),  # noqa: E501
             'roles': ([str], none_type,),  # noqa: E501
             'saml_attribute_name': (str, none_type,),  # noqa: E501
-            'allow_local_user_login': (bool, none_type,),  # noqa: E501
             'sign_request': (bool, none_type,),  # noqa: E501
-            'is_enabled': (bool, none_type,),  # noqa: E501
-            'id': (int, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,18 +102,18 @@ class IdentityProviderConfiguration(ModelComposed):
 
 
     attribute_map = {
+        'certificate': 'certificate',  # noqa: E501
         'issuer_id': 'issuerId',  # noqa: E501
         'sso_url': 'ssoUrl',  # noqa: E501
-        'certificate': 'certificate',  # noqa: E501
+        'allow_local_user_login': 'allowLocalUserLogin',  # noqa: E501
+        'is_enabled': 'isEnabled',  # noqa: E501
         'roles': 'roles',  # noqa: E501
         'saml_attribute_name': 'samlAttributeName',  # noqa: E501
-        'allow_local_user_login': 'allowLocalUserLogin',  # noqa: E501
         'sign_request': 'signRequest',  # noqa: E501
-        'is_enabled': 'isEnabled',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'domain': 'domain',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     required_properties = set([
@@ -129,13 +129,13 @@ class IdentityProviderConfiguration(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, issuer_id, sso_url, certificate, *args, **kwargs):  # noqa: E501
+    def __init__(self, certificate, issuer_id, sso_url, *args, **kwargs):  # noqa: E501
         """IdentityProviderConfiguration - a model defined in OpenAPI
 
         Args:
+            certificate (str, none_type): Specifies the certificate generated for the app by the idp service when the cluster is registered as an app. This is required to verify the SAML response.
             issuer_id (str, none_type): Specifies identity provider issuer id
             sso_url (str, none_type): Specifies the identity provider SSO url
-            certificate (str, none_type): Specifies the certificate generated for the app by the idp service when the cluster is registered as an app. This is required to verify the SAML response.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,15 +169,15 @@ class IdentityProviderConfiguration(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            allow_local_user_login (bool, none_type): Specifies if local user login is allowed. When idp is configured, only idp users are allowed to login to the cluster, local login is disabled except for users with admin role. If this flag is set to true, local (non-idp) logins are allowed for all local and AD users. Local or AD users with admin role can login always independent of this flag's setting. By default there is no local authentication i.e the value is false.. [optional]  # noqa: E501
+            is_enabled (bool, none_type): Specifies a flag to enable or disable this idp service. When it is set to true, idp service is enabled. When it is set to false, idp service is disabled. By defaut idp is enabled i.e the value is true.. [optional]  # noqa: E501
             roles ([str], none_type): Specifies the default roles assined for all SSO users. [optional]  # noqa: E501
             saml_attribute_name (str, none_type): Specifies the SAML attribute name that contains a comma separated list of cluster roles. This sets the default roles for all SSO users. Either this field or roles must be set, this field takes higher precedence than the roles field.. [optional]  # noqa: E501
-            allow_local_user_login (bool, none_type): Specifies if local user login is allowed. When idp is configured, only idp users are allowed to login to the cluster, local login is disabled except for users with admin role. If this flag is set to true, local (non-idp) logins are allowed for all local and AD users. Local or AD users with admin role can login always independent of this flag's setting. By default there is no local authentication i.e the value is false.. [optional]  # noqa: E501
             sign_request (bool, none_type): Specifies whether to sign the SAML request or not. When it is set to true, SAML request will be signed. When it is set to false, SAML request is not signed. Default is false, set this flag to true if the idp site is configured to expect the SAML request from the Cluster signed. If this is set to true, users must get the cluster's certificate and upload it on the idp site.. [optional]  # noqa: E501
-            is_enabled (bool, none_type): Specifies a flag to enable or disable this idp service. When it is set to true, idp service is enabled. When it is set to false, idp service is disabled. By defaut idp is enabled i.e the value is true.. [optional]  # noqa: E501
-            id (int, none_type): Specifies id of idp configuration. [optional]  # noqa: E501
-            tenant_id (str, none_type): Specifies the tenant id if the idp is configured for a tenant. If this is not set, this idp configuration is used for the cluster level users and for all users of tenants not having an idp configuration.. [optional]  # noqa: E501
-            name (str, none_type): Specifies name of the vendor providing idp service. [optional]  # noqa: E501
             domain (str, none_type): Specifies domain of idp configuration. [optional]  # noqa: E501
+            id (int, none_type): Specifies id of idp configuration. [optional]  # noqa: E501
+            name (str, none_type): Specifies name of the vendor providing idp service. [optional]  # noqa: E501
+            tenant_id (str, none_type): Specifies the tenant id if the idp is configured for a tenant. If this is not set, this idp configuration is used for the cluster level users and for all users of tenants not having an idp configuration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -212,9 +212,9 @@ class IdentityProviderConfiguration(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
+            'certificate': certificate,
             'issuer_id': issuer_id,
             'sso_url': sso_url,
-            'certificate': certificate,
         }
         model_args = {}
         model_args.update(required_args)

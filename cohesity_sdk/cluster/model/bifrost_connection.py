@@ -82,8 +82,8 @@ class BifrostConnection(ModelNormal):
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'certificate_version': (int, none_type,),  # noqa: E501
-            'network_connection_info': (NetworkConnectionInfo,),  # noqa: E501
             'connectors': ([str],),  # noqa: E501
+            'network_connection_info': (NetworkConnectionInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -96,8 +96,8 @@ class BifrostConnection(ModelNormal):
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'certificate_version': 'certificateVersion',  # noqa: E501
-        'network_connection_info': 'networkConnectionInfo',  # noqa: E501
         'connectors': 'connectors',  # noqa: E501
+        'network_connection_info': 'networkConnectionInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,8 +152,8 @@ class BifrostConnection(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             certificate_version (int, none_type): Specifies the version of the connection's certificate. The version is used to revoke/renew connection's certificates.. [optional]  # noqa: E501
-            network_connection_info (NetworkConnectionInfo): [optional]  # noqa: E501
             connectors ([str]): Specifies the ids of the connectors in this connection. [optional]  # noqa: E501
+            network_connection_info (NetworkConnectionInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

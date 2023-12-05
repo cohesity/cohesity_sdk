@@ -79,15 +79,15 @@ class AppliedPatch(ModelNormal):
         """
         lazy_import()
         return {
-            'service': (str,),  # noqa: E501
-            'component': (str,),  # noqa: E501
-            'version': (str,),  # noqa: E501
-            'version_replaced': (str,),  # noqa: E501
-            'patch_level': (int,),  # noqa: E501
             'applied_time_msecs': (int,),  # noqa: E501
+            'component': (str,),  # noqa: E501
             'count': (int,),  # noqa: E501
             'dependencies': ([str], none_type,),  # noqa: E501
             'fixed_issues': ([FixedIssue],),  # noqa: E501
+            'patch_level': (int,),  # noqa: E501
+            'service': (str,),  # noqa: E501
+            'version': (str,),  # noqa: E501
+            'version_replaced': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -97,15 +97,15 @@ class AppliedPatch(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
-        'component': 'component',  # noqa: E501
-        'version': 'version',  # noqa: E501
-        'version_replaced': 'versionReplaced',  # noqa: E501
-        'patch_level': 'patchLevel',  # noqa: E501
         'applied_time_msecs': 'appliedTimeMsecs',  # noqa: E501
+        'component': 'component',  # noqa: E501
         'count': 'count',  # noqa: E501
         'dependencies': 'dependencies',  # noqa: E501
         'fixed_issues': 'fixedIssues',  # noqa: E501
+        'patch_level': 'patchLevel',  # noqa: E501
+        'service': 'service',  # noqa: E501
+        'version': 'version',  # noqa: E501
+        'version_replaced': 'versionReplaced',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,15 +155,15 @@ class AppliedPatch(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str): Specifies the name of the service.. [optional]  # noqa: E501
-            component (str): Specifies the description of the service.. [optional]  # noqa: E501
-            version (str): Specifies the version of the patch.. [optional]  # noqa: E501
-            version_replaced (str): Specifies the version it replaced.. [optional]  # noqa: E501
-            patch_level (int): Specifies the number of patches applied so far for this service.. [optional]  # noqa: E501
             applied_time_msecs (int): Specifies the time when the patch was applied in Unix epoch in milliseconds.. [optional]  # noqa: E501
+            component (str): Specifies the description of the service.. [optional]  # noqa: E501
             count (int): Specifies the number of fixed issues.. [optional]  # noqa: E501
             dependencies ([str], none_type): Specifies the services for which their patches were applied together. They will also be reverted together.. [optional]  # noqa: E501
             fixed_issues ([FixedIssue]): Specifies the details of the issues fixed in the patch.. [optional]  # noqa: E501
+            patch_level (int): Specifies the number of patches applied so far for this service.. [optional]  # noqa: E501
+            service (str): Specifies the name of the service.. [optional]  # noqa: E501
+            version (str): Specifies the version of the patch.. [optional]  # noqa: E501
+            version_replaced (str): Specifies the version it replaced.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

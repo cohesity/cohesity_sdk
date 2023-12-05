@@ -81,12 +81,12 @@ class FilerAuditLogConfigs(ModelNormal):
         """
         lazy_import()
         return {
-            'share_permissions': ([SmbPermission], none_type,),  # noqa: E501
-            'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
-            'override_global_subnet_whitelist': (bool, none_type,),  # noqa: E501
-            'smb_mount_paths': ([str], none_type,),  # noqa: E501
             'nfs_mount_path': (str, none_type,),  # noqa: E501
             'nfs_mount_paths': ([str], none_type,),  # noqa: E501
+            'override_global_subnet_whitelist': (bool, none_type,),  # noqa: E501
+            'share_permissions': ([SmbPermission], none_type,),  # noqa: E501
+            'smb_mount_paths': ([str], none_type,),  # noqa: E501
+            'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,12 +96,12 @@ class FilerAuditLogConfigs(ModelNormal):
 
 
     attribute_map = {
-        'share_permissions': 'sharePermissions',  # noqa: E501
-        'subnet_whitelist': 'subnetWhitelist',  # noqa: E501
-        'override_global_subnet_whitelist': 'overrideGlobalSubnetWhitelist',  # noqa: E501
-        'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         'nfs_mount_path': 'nfsMountPath',  # noqa: E501
         'nfs_mount_paths': 'nfsMountPaths',  # noqa: E501
+        'override_global_subnet_whitelist': 'overrideGlobalSubnetWhitelist',  # noqa: E501
+        'share_permissions': 'sharePermissions',  # noqa: E501
+        'smb_mount_paths': 'smbMountPaths',  # noqa: E501
+        'subnet_whitelist': 'subnetWhitelist',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,12 +151,12 @@ class FilerAuditLogConfigs(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            share_permissions ([SmbPermission], none_type): Specifies a list of share level permissions.. [optional]  # noqa: E501
-            subnet_whitelist ([Subnet], none_type): Specifies a list of Subnets with IP addresses that have permissions to access a Cohesity View containing filer audit logs.. [optional]  # noqa: E501
-            override_global_subnet_whitelist (bool, none_type): Specifies whether view level client subnet whitelist overrides cluster and global setting.. [optional]  # noqa: E501
-            smb_mount_paths ([str], none_type): Specifies a list of SMB mount paths of a Cohesity View containing filer audit logs.. [optional]  # noqa: E501
             nfs_mount_path (str, none_type): This field is currently deprecated. Please use NFS MountPaths which would be an array of strings.. [optional]  # noqa: E501
             nfs_mount_paths ([str], none_type): Specifies a list of NFS mount paths of a Cohesity View containing filer audit logs.. [optional]  # noqa: E501
+            override_global_subnet_whitelist (bool, none_type): Specifies whether view level client subnet whitelist overrides cluster and global setting.. [optional]  # noqa: E501
+            share_permissions ([SmbPermission], none_type): Specifies a list of share level permissions.. [optional]  # noqa: E501
+            smb_mount_paths ([str], none_type): Specifies a list of SMB mount paths of a Cohesity View containing filer audit logs.. [optional]  # noqa: E501
+            subnet_whitelist ([Subnet], none_type): Specifies a list of Subnets with IP addresses that have permissions to access a Cohesity View containing filer audit logs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

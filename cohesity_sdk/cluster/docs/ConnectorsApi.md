@@ -3,6 +3,7 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_bifrost_connector**](ConnectorsApi.md#create_bifrost_connector) | **POST** /connector-hybrid-extender | Create a Bifrost connector on the cluster.
 [**create_rigel_connector**](ConnectorsApi.md#create_rigel_connector) | **POST** /connector-rigel | Create a Rigel connector on the cluster.
 [**delete_bifrost_connector**](ConnectorsApi.md#delete_bifrost_connector) | **DELETE** /connector-hybrid-extender/{id} | Delete a Bifrost connector.
 [**delete_rigel_connector**](ConnectorsApi.md#delete_rigel_connector) | **DELETE** /connector-rigel/{id} | Delete a Rigel connector.
@@ -16,6 +17,74 @@ Method | HTTP request | Description
 [**update_rigel_connector**](ConnectorsApi.md#update_rigel_connector) | **PUT** /connector-rigel/{id} | Update a Rigel connector.
 
 
+# **create_bifrost_connector**
+> BifrostConnector create_bifrost_connector(body)
+
+Create a Bifrost connector on the cluster.
+
+Create a Bifrost connector on the cluster.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.bifrost_connector import BifrostConnector
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.create_bifrost_connector_request import CreateBifrostConnectorRequest
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+body = CreateBifrostConnectorRequest(
+        connection_id=1,
+        name="name_example",
+    ) # CreateBifrostConnectorRequest | Specifies the parameters to create a connector.
+
+# example passing only required values which don't have defaults set
+try:
+	# Create a Bifrost connector on the cluster.
+	api_response = client.connectors.create_bifrost_connector(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ConnectorsApi->create_bifrost_connector: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CreateBifrostConnectorRequest**](CreateBifrostConnectorRequest.md)| Specifies the parameters to create a connector. |
+
+### Return type
+
+[**BifrostConnector**](BifrostConnector.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_rigel_connector**
 > RigelConnector create_rigel_connector(body)
 
@@ -25,7 +94,6 @@ Create a Rigel connector on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.rigel_connector import RigelConnector
@@ -41,7 +109,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateRigelConnectorRequest() # CreateRigelConnectorRequest | Specifies the parameters to create a connector.
 
@@ -67,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -92,7 +159,6 @@ Delete a Bifrost connector.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -106,7 +172,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str, none_type | Specifies the id of connector.
 
@@ -131,7 +196,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -156,7 +221,6 @@ Delete a Rigel connector.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -171,7 +235,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of connector.
 body = DeleteRigelConnectorRequest(
@@ -200,7 +263,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -225,7 +288,6 @@ Get Bifrost connectors on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -240,7 +302,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -277,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -302,7 +363,6 @@ Get a Bifrost connector by the id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.bifrost_connector import BifrostConnector
@@ -317,7 +377,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str, none_type | Specifies the id of connector.
 tenant_id = "tenantId_example" # str, none_type | Specifies the id of the tenant which the connector belongs to. (optional)
@@ -354,7 +413,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -379,7 +438,6 @@ Get connectivity check results.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -394,7 +452,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -416,7 +473,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -441,7 +498,6 @@ Get Rigel connectors on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -456,7 +512,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         1,
@@ -493,7 +548,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -518,7 +573,6 @@ Get a Rigel connector by the id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.rigel_connector import RigelConnector
@@ -533,7 +587,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of connector.
 tenant_id = "tenantId_example" # str, none_type | Specifies the id of the tenant which the connector belongs to. (optional)
@@ -570,7 +623,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -595,7 +648,6 @@ Perform connectivity checks on endpoints.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -609,7 +661,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -630,7 +681,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -655,7 +706,6 @@ Update a Bifrost connector.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.bifrost_connector import BifrostConnector
@@ -671,7 +721,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str, none_type | Specifies the id of connector.
 body = UpdateBifrostConnectorRequest() # UpdateBifrostConnectorRequest | Specifies the parameters to update a connector.
@@ -699,7 +748,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -724,7 +773,6 @@ Update a Rigel connector.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.rigel_connector import RigelConnector
@@ -740,7 +788,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of connector.
 body = UpdateRigelConnectorRequest() # UpdateRigelConnectorRequest | Specifies the parameters to update a connector.
@@ -768,7 +815,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

@@ -89,8 +89,8 @@ class HiveOnPremSearchParams(ModelComposed):
         """
         lazy_import()
         return {
-            'search_string': (str, none_type,),  # noqa: E501
             'hive_object_types': ([str],),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
             'source_ids': ([int], none_type,),  # noqa: E501
         }
 
@@ -101,8 +101,8 @@ class HiveOnPremSearchParams(ModelComposed):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
         'hive_object_types': 'hiveObjectTypes',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
         'source_ids': 'sourceIds',  # noqa: E501
     }
 
@@ -119,12 +119,12 @@ class HiveOnPremSearchParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, search_string, hive_object_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, hive_object_types, search_string, *args, **kwargs):  # noqa: E501
         """HiveOnPremSearchParams - a model defined in OpenAPI
 
         Args:
-            search_string (str, none_type): Specifies the search string to search the Hive Objects
             hive_object_types ([str]): Specifies one or more Hive object types be searched.
+            search_string (str, none_type): Specifies the search string to search the Hive Objects
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class HiveOnPremSearchParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'search_string': search_string,
             'hive_object_types': hive_object_types,
+            'search_string': search_string,
         }
         model_args = {}
         model_args.update(required_args)

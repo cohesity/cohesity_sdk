@@ -89,13 +89,13 @@ class GenericNasRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'mount_point': (str, none_type,),  # noqa: E501
             'mode': (str, none_type,),  # noqa: E501
+            'mount_point': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'skip_validation': (bool, none_type,),  # noqa: E501
-            'uid': (UniversalId,),  # noqa: E501
             'smb_mount_credentials': (SmbMountCredentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'uid': (UniversalId,),  # noqa: E501
         }
 
     @cached_property
@@ -105,13 +105,13 @@ class GenericNasRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'mount_point': 'mountPoint',  # noqa: E501
         'mode': 'mode',  # noqa: E501
+        'mount_point': 'mountPoint',  # noqa: E501
         'description': 'description',  # noqa: E501
         'skip_validation': 'skipValidation',  # noqa: E501
-        'uid': 'uid',  # noqa: E501
         'smb_mount_credentials': 'smbMountCredentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
+        'uid': 'uid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -126,12 +126,12 @@ class GenericNasRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, mount_point, mode, *args, **kwargs):  # noqa: E501
+    def __init__(self, mode, mount_point, *args, **kwargs):  # noqa: E501
         """GenericNasRegistrationParams - a model defined in OpenAPI
 
         Args:
-            mount_point (str, none_type): Specifies the MountPoint for Generic NAS Source.
             mode (str, none_type): Specifies the mode of the source. 'kNfs3' indicates NFS3 mode. 'kNfs4_1' indicates NFS4.1 mode. 'kCifs1' indicates SMB mode.
+            mount_point (str, none_type): Specifies the MountPoint for Generic NAS Source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -167,9 +167,9 @@ class GenericNasRegistrationParams(ModelNormal):
 
             description (str, none_type): Specifies the Description for Generic NAS Source.. [optional]  # noqa: E501
             skip_validation (bool, none_type): Specifies if validation has to be skipped while registering the mount point.. [optional]  # noqa: E501
-            uid (UniversalId): [optional]  # noqa: E501
             smb_mount_credentials (SmbMountCredentials): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
+            uid (UniversalId): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -196,8 +196,8 @@ class GenericNasRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.mount_point = mount_point
         self.mode = mode
+        self.mount_point = mount_point
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

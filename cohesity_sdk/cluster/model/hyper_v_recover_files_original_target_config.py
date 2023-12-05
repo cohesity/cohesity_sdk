@@ -74,8 +74,8 @@ class HyperVRecoverFilesOriginalTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'recover_to_original_path': (bool, none_type,),  # noqa: E501
+            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'alternate_path': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class HyperVRecoverFilesOriginalTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
         'recover_to_original_path': 'recoverToOriginalPath',  # noqa: E501
+        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
         'alternate_path': 'alternatePath',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class HyperVRecoverFilesOriginalTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target_vm_credentials, recover_to_original_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, recover_to_original_path, target_vm_credentials, *args, **kwargs):  # noqa: E501
         """HyperVRecoverFilesOriginalTargetConfig - a model defined in OpenAPI
 
         Args:
-            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.
             recover_to_original_path (bool, none_type): Specifies whether to recover files and folders to the original path location. If false, alternatePath must be specified.
+            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class HyperVRecoverFilesOriginalTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.target_vm_credentials = target_vm_credentials
         self.recover_to_original_path = recover_to_original_path
+        self.target_vm_credentials = target_vm_credentials
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

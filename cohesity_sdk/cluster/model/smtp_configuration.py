@@ -76,9 +76,9 @@ class SMTPConfiguration(ModelNormal):
         return {
             'hostname': (str,),  # noqa: E501
             'port': (int,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
-            'use_ssl': (bool, none_type,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
+            'use_ssl': (bool, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,9 +90,9 @@ class SMTPConfiguration(ModelNormal):
     attribute_map = {
         'hostname': 'hostname',  # noqa: E501
         'port': 'port',  # noqa: E501
-        'username': 'username',  # noqa: E501
-        'use_ssl': 'useSSL',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
+        'use_ssl': 'useSSL',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,9 +146,9 @@ class SMTPConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            username (str, none_type): Specifies the username which will be used to connect to the SMTP server. If username is not specified, then it would imply that SMTP server is set up for unauthenticated access.. [optional]  # noqa: E501
-            use_ssl (bool, none_type): This is set to true when the SMTP server uses SSL/TLS without supporting STARTTLS. Typically, this is used for port 465.. [optional] if omitted the server will use the default value of False  # noqa: E501
             is_active (bool, none_type): Specifies if the SMTP configuration is active.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            use_ssl (bool, none_type): This is set to true when the SMTP server uses SSL/TLS without supporting STARTTLS. Typically, this is used for port 465.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            username (str, none_type): Specifies the username which will be used to connect to the SMTP server. If username is not specified, then it would imply that SMTP server is set up for unauthenticated access.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

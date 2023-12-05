@@ -61,10 +61,10 @@ class AwsRdsProtectionGroupParams(ModelNormal):
     }
 
     validations = {
-        ('objects',): {
+        ('exclude_object_ids',): {
         },
 
-        ('exclude_object_ids',): {
+        ('objects',): {
         },
 
     }
@@ -85,10 +85,10 @@ class AwsRdsProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([AwsRdsProtectionGroupObjectParams],),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
-            'rds_tag_ids': ([[int]], none_type,),  # noqa: E501
             'exclude_rds_tag_ids': ([[int]], none_type,),  # noqa: E501
+            'objects': ([AwsRdsProtectionGroupObjectParams],),  # noqa: E501
+            'rds_tag_ids': ([[int]], none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
         }
@@ -100,10 +100,10 @@ class AwsRdsProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
-        'rds_tag_ids': 'rdsTagIds',  # noqa: E501
         'exclude_rds_tag_ids': 'excludeRdsTagIds',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
+        'rds_tag_ids': 'rdsTagIds',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
     }
@@ -155,10 +155,10 @@ class AwsRdsProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([AwsRdsProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
-            rds_tag_ids ([[int]], none_type): Array of arrays of RDS Tag Ids that Specify db instaces to Protect.. [optional]  # noqa: E501
             exclude_rds_tag_ids ([[int]], none_type): Array of arrays of RDS Tag Ids that Specify db instaces to Exclude.. [optional]  # noqa: E501
+            objects ([AwsRdsProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
+            rds_tag_ids ([[int]], none_type): Array of arrays of RDS Tag Ids that Specify db instaces to Protect.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
         """

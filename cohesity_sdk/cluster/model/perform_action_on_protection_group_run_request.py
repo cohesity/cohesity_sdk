@@ -90,9 +90,9 @@ class PerformActionOnProtectionGroupRunRequest(ModelNormal):
         lazy_import()
         return {
             'action': (str, none_type,),  # noqa: E501
+            'cancel_params': ([CancelProtectionGroupRunRequest],),  # noqa: E501
             'pause_params': ([PauseProtectionRunActionParams],),  # noqa: E501
             'resume_params': ([ResumeProtectionRunActionParams],),  # noqa: E501
-            'cancel_params': ([CancelProtectionGroupRunRequest],),  # noqa: E501
         }
 
     @cached_property
@@ -103,9 +103,9 @@ class PerformActionOnProtectionGroupRunRequest(ModelNormal):
 
     attribute_map = {
         'action': 'action',  # noqa: E501
+        'cancel_params': 'cancelParams',  # noqa: E501
         'pause_params': 'pauseParams',  # noqa: E501
         'resume_params': 'resumeParams',  # noqa: E501
-        'cancel_params': 'cancelParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,9 +158,9 @@ class PerformActionOnProtectionGroupRunRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cancel_params ([CancelProtectionGroupRunRequest]): Specifies the cancel action params for a protection run.. [optional]  # noqa: E501
             pause_params ([PauseProtectionRunActionParams]): Specifies the pause action params for a protection run.. [optional]  # noqa: E501
             resume_params ([ResumeProtectionRunActionParams]): Specifies the resume action params for a protection run.. [optional]  # noqa: E501
-            cancel_params ([CancelProtectionGroupRunRequest]): Specifies the cancel action params for a protection run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

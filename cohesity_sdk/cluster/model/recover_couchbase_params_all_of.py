@@ -81,12 +81,12 @@ class RecoverCouchbaseParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'snapshots': ([RecoverCouchbaseSnapshotParams], none_type,),  # noqa: E501
             'filter_documents_params': (FilterDocumentsParams,),  # noqa: E501
-            'suffix': (str, none_type,),  # noqa: E501
+            'snapshots': ([RecoverCouchbaseSnapshotParams], none_type,),  # noqa: E501
             'append_documents': (bool, none_type,),  # noqa: E501
             'ddl_only_recovery': (bool, none_type,),  # noqa: E501
             'overwrite_users': (bool, none_type,),  # noqa: E501
+            'suffix': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,12 +96,12 @@ class RecoverCouchbaseParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'snapshots': 'snapshots',  # noqa: E501
         'filter_documents_params': 'filterDocumentsParams',  # noqa: E501
-        'suffix': 'suffix',  # noqa: E501
+        'snapshots': 'snapshots',  # noqa: E501
         'append_documents': 'appendDocuments',  # noqa: E501
         'ddl_only_recovery': 'ddlOnlyRecovery',  # noqa: E501
         'overwrite_users': 'overwriteUsers',  # noqa: E501
+        'suffix': 'suffix',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -116,12 +116,12 @@ class RecoverCouchbaseParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, snapshots, filter_documents_params, *args, **kwargs):  # noqa: E501
+    def __init__(self, filter_documents_params, snapshots, *args, **kwargs):  # noqa: E501
         """RecoverCouchbaseParamsAllOf - a model defined in OpenAPI
 
         Args:
-            snapshots ([RecoverCouchbaseSnapshotParams], none_type): Specifies the local snapshot ids of the Objects to be recovered.
             filter_documents_params (FilterDocumentsParams):
+            snapshots ([RecoverCouchbaseSnapshotParams], none_type): Specifies the local snapshot ids of the Objects to be recovered.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -155,10 +155,10 @@ class RecoverCouchbaseParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501
             append_documents (bool, none_type): If set to true, docuements from the bucket being recovered will be appended into the bucket at the destination.. [optional]  # noqa: E501
             ddl_only_recovery (bool, none_type): Set to true to recover only the bucket configurations. No documents will be recovered.. [optional]  # noqa: E501
             overwrite_users (bool, none_type): If set to true existing users will be replaced with users from the bucket being recovered.. [optional]  # noqa: E501
+            suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -185,8 +185,8 @@ class RecoverCouchbaseParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.snapshots = snapshots
         self.filter_documents_params = filter_documents_params
+        self.snapshots = snapshots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

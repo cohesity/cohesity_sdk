@@ -27,9 +27,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.sites_discovery_params import SitesDiscoveryParams
     from cohesity_sdk.cluster.model.users_discovery_params import UsersDiscoveryParams
-    globals()['SitesDiscoveryParams'] = SitesDiscoveryParams
     globals()['UsersDiscoveryParams'] = UsersDiscoveryParams
 
 
@@ -105,7 +103,6 @@ class ObjectsDiscoveryParams(ModelNormal):
         return {
             'discoverable_object_type_list': ([str], none_type,),  # noqa: E501
             'users_discovery_params': (UsersDiscoveryParams,),  # noqa: E501
-            'sites_discovery_params': (SitesDiscoveryParams,),  # noqa: E501
         }
 
     @cached_property
@@ -117,7 +114,6 @@ class ObjectsDiscoveryParams(ModelNormal):
     attribute_map = {
         'discoverable_object_type_list': 'discoverableObjectTypeList',  # noqa: E501
         'users_discovery_params': 'usersDiscoveryParams',  # noqa: E501
-        'sites_discovery_params': 'sitesDiscoveryParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -169,7 +165,6 @@ class ObjectsDiscoveryParams(ModelNormal):
 
             discoverable_object_type_list ([str], none_type): Specifies the list of object types that will be discovered as part of source registration or refresh.. [optional]  # noqa: E501
             users_discovery_params (UsersDiscoveryParams): [optional]  # noqa: E501
-            sites_discovery_params (SitesDiscoveryParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -84,9 +84,9 @@ class RecoverPublicFoldersParams(ModelNormal):
         lazy_import()
         return {
             'root_public_folders': ([RootPublicFolderParam], none_type,),  # noqa: E501
-            'target_root_public_folder': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'target_folder_path': (str, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'target_folder_path': (str, none_type,),  # noqa: E501
+            'target_root_public_folder': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +97,9 @@ class RecoverPublicFoldersParams(ModelNormal):
 
     attribute_map = {
         'root_public_folders': 'rootPublicFolders',  # noqa: E501
-        'target_root_public_folder': 'targetRootPublicFolder',  # noqa: E501
-        'target_folder_path': 'targetFolderPath',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'target_folder_path': 'targetFolderPath',  # noqa: E501
+        'target_root_public_folder': 'targetRootPublicFolder',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,9 +152,9 @@ class RecoverPublicFoldersParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_root_public_folder ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target RootPublicFolder to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
-            target_folder_path (str, none_type): Specifies the path to the target folder.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other Public Folders if one of Public Folder failed to recover. Default value is false.. [optional]  # noqa: E501
+            target_folder_path (str, none_type): Specifies the path to the target folder.. [optional]  # noqa: E501
+            target_root_public_folder ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target RootPublicFolder to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

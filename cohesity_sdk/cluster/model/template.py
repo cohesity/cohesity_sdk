@@ -65,7 +65,6 @@ class Template(ModelNormal):
             'FILESERVICEARCHIVE': "FileServiceArchive",
             'OBJECTSERVICECONTAINER': "ObjectServiceContainer",
             'ZDLRA': "ZDLRA",
-            'SAPHANA': "SAPHANA",
             'TSM': "TSM",
             'APPLICATIONSDUMP': "ApplicationsDump",
             'FILESERVICEGENERAL': "FileServiceGeneral",
@@ -94,12 +93,12 @@ class Template(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'dedup': (bool, none_type,),  # noqa: E501
             'compress': (bool, none_type,),  # noqa: E501
-            'is_default': (bool, none_type,),  # noqa: E501
+            'dedup': (bool, none_type,),  # noqa: E501
             'default_template_name': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'is_default': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -110,12 +109,12 @@ class Template(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'dedup': 'dedup',  # noqa: E501
         'compress': 'compress',  # noqa: E501
-        'is_default': 'isDefault',  # noqa: E501
+        'dedup': 'dedup',  # noqa: E501
         'default_template_name': 'defaultTemplateName',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'is_default': 'isDefault',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'view_params': 'viewParams',  # noqa: E501
     }
 
@@ -166,12 +165,12 @@ class Template(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies an id of the view template.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the view template.. [optional]  # noqa: E501
-            dedup (bool, none_type): Specifies whether to enable dedup in storage domain.. [optional]  # noqa: E501
             compress (bool, none_type): Specifies whether to enable compression in storage domain.. [optional]  # noqa: E501
-            is_default (bool, none_type): Specifies if the tempate is custom or static.. [optional]  # noqa: E501
+            dedup (bool, none_type): Specifies whether to enable dedup in storage domain.. [optional]  # noqa: E501
             default_template_name (str, none_type): Used for uniquely indentifying a default template.. [optional]  # noqa: E501
+            id (int, none_type): Specifies an id of the view template.. [optional]  # noqa: E501
+            is_default (bool, none_type): Specifies if the tempate is custom or static.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the view template.. [optional]  # noqa: E501
             view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters which is used to create the view. No field is required.. [optional]  # noqa: E501
         """
 

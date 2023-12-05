@@ -12,7 +12,6 @@ Method | HTTP request | Description
 [**get_tenant_swift**](TenantApi.md#get_tenant_swift) | **GET** /tenants/swift | Get a Swift configuration.
 [**list_tenants**](TenantApi.md#list_tenants) | **GET** /tenants | Get a list of Tenants.
 [**perform_tenant_action**](TenantApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions on a Tenant.
-[**perform_tenant_migration_action**](TenantApi.md#perform_tenant_migration_action) | **POST** /tenant-migration/actions | Perform Tenant Migration Action
 [**register_swift**](TenantApi.md#register_swift) | **POST** /tenants/swift/register | Register Swift service on a Keystone server.
 [**unregister_swift**](TenantApi.md#unregister_swift) | **POST** /tenants/swift/unregister | Unregister Swift service from a Keystone server.
 [**update_on_prem_tenant_config**](TenantApi.md#update_on_prem_tenant_config) | **POST** /clusters/tenant-config | Update Tenants Config.
@@ -29,7 +28,6 @@ Assign/Unassign properties like storage domain, entities, policies etc. to the t
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_assignments import TenantAssignments
@@ -46,23 +44,22 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "C/" # str | The Tenant id.
 body = TenantAssignmentsParams(
-        storage_domain_ids=[
-            1,
-        ],
         object_ids=[
-            1,
-        ],
-        vlan_iface_names=[
-            "vlan_iface_names_example",
-        ],
-        view_ids=[
             1,
         ],
         policy_ids=[
             "policy_ids_example",
+        ],
+        storage_domain_ids=[
+            1,
+        ],
+        view_ids=[
+            1,
+        ],
+        vlan_iface_names=[
+            "vlan_iface_names_example",
         ],
     ) # TenantAssignmentsParams | 
 
@@ -89,7 +86,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -112,12 +109,11 @@ Create a new Tenant.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.create_tenant_parameters import CreateTenantParameters
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.unknownbasetype import UNKNOWNBASETYPE
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -129,8 +125,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body =  # UNKNOWN_BASE_TYPE | 
+body = CreateTenantParameters() # CreateTenantParameters | 
 
 # example passing only required values which don't have defaults set
 try:
@@ -146,7 +141,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  |
+ **body** | [**CreateTenantParameters**](CreateTenantParameters.md)|  |
 
 ### Return type
 
@@ -154,7 +149,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -177,7 +172,6 @@ Delete Tenant with given ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -191,7 +185,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "C/" # str | The Tenant id.
 
@@ -216,7 +209,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -241,7 +234,6 @@ Get all assigned properties like storage domain, entities, policies, objects, vi
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_assignment_properties import TenantAssignmentProperties
@@ -256,7 +248,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "C/" # str | The Tenant id.
 
@@ -282,7 +273,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -307,7 +298,6 @@ Get Tenant related configurations for the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
@@ -322,7 +312,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -344,7 +333,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -367,7 +356,6 @@ Get Tenant by ID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
@@ -382,7 +370,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "C/" # str | The Tenant id.
 
@@ -408,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -433,7 +420,6 @@ Get a Swift configuration.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.swift_params import SwiftParams
@@ -448,7 +434,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 tenant_id = "tenantId_example" # str | Specifies the tenant Id. (optional)
 
@@ -475,7 +460,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -498,7 +483,6 @@ Get a list of Tenants.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -513,7 +497,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -546,7 +529,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -571,7 +554,6 @@ Perform actions like activate and deactivate on a given Tenant.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
@@ -587,7 +569,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "C/" # str | The Tenant id.
 body = TenantActionBody(
@@ -617,76 +598,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **perform_tenant_migration_action**
-> TenantMigrationAction perform_tenant_migration_action(body)
-
-Perform Tenant Migration Action
-
-Perform an action on a DMaaS tenant.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.tenant_migration_action import TenantMigrationAction
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = TenantMigrationAction(
-        tenant_id="tenant_id_example",
-        action="StartMigration",
-    ) # TenantMigrationAction | Specifies the parameters to perform a tenant migration action.
-
-# example passing only required values which don't have defaults set
-try:
-	# Perform Tenant Migration Action
-	api_response = client.tenant.perform_tenant_migration_action(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling TenantApi->perform_tenant_migration_action: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**TenantMigrationAction**](TenantMigrationAction.md)| Specifies the parameters to perform a tenant migration action. |
-
-### Return type
-
-[**TenantMigrationAction**](TenantMigrationAction.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -711,7 +623,6 @@ Register Swift service on Keystone server.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.register_swift_params import RegisterSwiftParams
@@ -727,13 +638,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = RegisterSwiftParams(
-        tenant_id="tenant_id_example",
         keystone_credentials=KeystoneCredentials(
             admin_creds={},
             scope={},
         ),
+        tenant_id="tenant_id_example",
     ) # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
 
 # example passing only required values which don't have defaults set
@@ -757,7 +667,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -782,7 +692,6 @@ Unregister Swift service from Keystone server.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.unregister_swift_params import UnregisterSwiftParams
@@ -798,13 +707,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = UnregisterSwiftParams(
-        tenant_id="tenant_id_example",
         keystone_credentials=KeystoneCredentials(
             admin_creds={},
             scope={},
         ),
+        tenant_id="tenant_id_example",
     ) # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
 
 # example passing only required values which don't have defaults set
@@ -828,7 +736,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -853,7 +761,6 @@ Update Tenant related configurations for the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
@@ -868,7 +775,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = OnPremTenantConfig(
         organizations_enabled=True,
@@ -897,7 +803,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -922,7 +828,6 @@ Update Tenant's properties.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
@@ -938,7 +843,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "C/" # str, none_type | 
 body = UpdateTenantBody() # UpdateTenantBody | 
@@ -966,7 +870,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -991,7 +895,6 @@ Update a Swift configuration.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.swift_params import SwiftParams
@@ -1007,13 +910,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = SwiftParams(
-        tenant_id="tenant_id_example",
         keystone_id=1,
         operator_roles=[
             "operator_roles_example",
         ],
+        tenant_id="tenant_id_example",
     ) # SwiftParams | Specifies the parameters to update a Swift configuration.
 
 # example passing only required values which don't have defaults set
@@ -1038,7 +940,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

@@ -137,38 +137,38 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'vmware_params': (VmwareProtectionGroupParams,),  # noqa: E501
             'acropolis_params': (AcropolisProtectionGroupParams,),  # noqa: E501
-            'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
-            'mssql_params': (MSSQLProtectionGroupParams,),  # noqa: E501
-            'oracle_params': (OracleProtectionGroupParams,),  # noqa: E501
-            'view_params': (ViewProtectionGroupParams,),  # noqa: E501
-            'pure_params': (PureProtectionGroupParams,),  # noqa: E501
-            'nimble_params': (NimbleProtectionGroupParams,),  # noqa: E501
-            'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'ad_params': (ADProtectionGroupParams,),  # noqa: E501
             'aws_params': (AwsProtectionGroupParams,),  # noqa: E501
             'azure_params': (AzureProtectionGroupParams,),  # noqa: E501
-            'gcp_params': (GcpProtectionGroupParams,),  # noqa: E501
-            'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
-            'physical_params': (PhysicalProtectionGroupParams,),  # noqa: E501
-            'ad_params': (ADProtectionGroupParams,),  # noqa: E501
-            'office365_params': (Office365ProtectionGroupParams,),  # noqa: E501
-            'netapp_params': (NetappProtectionGroupParams,),  # noqa: E501
-            'generic_nas_params': (GenericNasProtectionGroupParams,),  # noqa: E501
-            'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
-            'flashblade_params': (FlashbladeProtectionGroupParams,),  # noqa: E501
-            'gpfs_params': (GpfsProtectionGroupParams,),  # noqa: E501
+            'cassandra_params': (CassandraProtectionGroupParams,),  # noqa: E501
             'couchbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'elastifile_params': (ElastifileProtectionGroupParams,),  # noqa: E501
-            'cassandra_params': (CassandraProtectionGroupParams,),  # noqa: E501
-            'mongodb_params': (MongoDBProtectionGroupParams,),  # noqa: E501
-            'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
-            'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
-            'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
-            'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
             'exchange_params': (ExchangeProtectionGroupParams,),  # noqa: E501
-            'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
+            'flashblade_params': (FlashbladeProtectionGroupParams,),  # noqa: E501
+            'gcp_params': (GcpProtectionGroupParams,),  # noqa: E501
+            'generic_nas_params': (GenericNasProtectionGroupParams,),  # noqa: E501
+            'gpfs_params': (GpfsProtectionGroupParams,),  # noqa: E501
+            'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
+            'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
+            'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
+            'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
+            'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
+            'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
+            'mongodb_params': (MongoDBProtectionGroupParams,),  # noqa: E501
+            'mssql_params': (MSSQLProtectionGroupParams,),  # noqa: E501
+            'netapp_params': (NetappProtectionGroupParams,),  # noqa: E501
+            'nimble_params': (NimbleProtectionGroupParams,),  # noqa: E501
+            'office365_params': (Office365ProtectionGroupParams,),  # noqa: E501
+            'oracle_params': (OracleProtectionGroupParams,),  # noqa: E501
+            'physical_params': (PhysicalProtectionGroupParams,),  # noqa: E501
+            'pure_params': (PureProtectionGroupParams,),  # noqa: E501
+            'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
             'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
+            'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
+            'view_params': (ViewProtectionGroupParams,),  # noqa: E501
+            'vmware_params': (VmwareProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -178,38 +178,38 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
 
 
     attribute_map = {
-        'vmware_params': 'vmwareParams',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
-        'kubernetes_params': 'kubernetesParams',  # noqa: E501
-        'mssql_params': 'mssqlParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
-        'view_params': 'viewParams',  # noqa: E501
-        'pure_params': 'pureParams',  # noqa: E501
-        'nimble_params': 'nimbleParams',  # noqa: E501
-        'hyperv_params': 'hypervParams',  # noqa: E501
+        'ad_params': 'adParams',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
-        'gcp_params': 'gcpParams',  # noqa: E501
-        'kvm_params': 'kvmParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'ad_params': 'adParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
-        'gpfs_params': 'gpfsParams',  # noqa: E501
+        'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
-        'cassandra_params': 'cassandraParams',  # noqa: E501
-        'mongodb_params': 'mongodbParams',  # noqa: E501
-        'hive_params': 'hiveParams',  # noqa: E501
-        'hdfs_params': 'hdfsParams',  # noqa: E501
-        'hbase_params': 'hbaseParams',  # noqa: E501
-        'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'gcp_params': 'gcpParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'gpfs_params': 'gpfsParams',  # noqa: E501
+        'hbase_params': 'hbaseParams',  # noqa: E501
+        'hdfs_params': 'hdfsParams',  # noqa: E501
+        'hive_params': 'hiveParams',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
+        'kubernetes_params': 'kubernetesParams',  # noqa: E501
+        'kvm_params': 'kvmParams',  # noqa: E501
+        'mongodb_params': 'mongodbParams',  # noqa: E501
+        'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'nimble_params': 'nimbleParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
+        'pure_params': 'pureParams',  # noqa: E501
+        'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -259,38 +259,38 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vmware_params (VmwareProtectionGroupParams): [optional]  # noqa: E501
             acropolis_params (AcropolisProtectionGroupParams): [optional]  # noqa: E501
-            kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
-            mssql_params (MSSQLProtectionGroupParams): [optional]  # noqa: E501
-            oracle_params (OracleProtectionGroupParams): [optional]  # noqa: E501
-            view_params (ViewProtectionGroupParams): [optional]  # noqa: E501
-            pure_params (PureProtectionGroupParams): [optional]  # noqa: E501
-            nimble_params (NimbleProtectionGroupParams): [optional]  # noqa: E501
-            hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            ad_params (ADProtectionGroupParams): [optional]  # noqa: E501
             aws_params (AwsProtectionGroupParams): [optional]  # noqa: E501
             azure_params (AzureProtectionGroupParams): [optional]  # noqa: E501
-            gcp_params (GcpProtectionGroupParams): [optional]  # noqa: E501
-            kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501
-            physical_params (PhysicalProtectionGroupParams): [optional]  # noqa: E501
-            ad_params (ADProtectionGroupParams): [optional]  # noqa: E501
-            office365_params (Office365ProtectionGroupParams): [optional]  # noqa: E501
-            netapp_params (NetappProtectionGroupParams): [optional]  # noqa: E501
-            generic_nas_params (GenericNasProtectionGroupParams): [optional]  # noqa: E501
-            isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
-            flashblade_params (FlashbladeProtectionGroupParams): [optional]  # noqa: E501
-            gpfs_params (GpfsProtectionGroupParams): [optional]  # noqa: E501
+            cassandra_params (CassandraProtectionGroupParams): [optional]  # noqa: E501
             couchbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             elastifile_params (ElastifileProtectionGroupParams): [optional]  # noqa: E501
-            cassandra_params (CassandraProtectionGroupParams): [optional]  # noqa: E501
-            mongodb_params (MongoDBProtectionGroupParams): [optional]  # noqa: E501
-            hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
-            hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
-            hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
-            remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
             exchange_params (ExchangeProtectionGroupParams): [optional]  # noqa: E501
-            uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
+            flashblade_params (FlashbladeProtectionGroupParams): [optional]  # noqa: E501
+            gcp_params (GcpProtectionGroupParams): [optional]  # noqa: E501
+            generic_nas_params (GenericNasProtectionGroupParams): [optional]  # noqa: E501
+            gpfs_params (GpfsProtectionGroupParams): [optional]  # noqa: E501
+            hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
+            hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
+            hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
+            hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
+            kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
+            kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501
+            mongodb_params (MongoDBProtectionGroupParams): [optional]  # noqa: E501
+            mssql_params (MSSQLProtectionGroupParams): [optional]  # noqa: E501
+            netapp_params (NetappProtectionGroupParams): [optional]  # noqa: E501
+            nimble_params (NimbleProtectionGroupParams): [optional]  # noqa: E501
+            office365_params (Office365ProtectionGroupParams): [optional]  # noqa: E501
+            oracle_params (OracleProtectionGroupParams): [optional]  # noqa: E501
+            physical_params (PhysicalProtectionGroupParams): [optional]  # noqa: E501
+            pure_params (PureProtectionGroupParams): [optional]  # noqa: E501
+            remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
             sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
+            uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
+            view_params (ViewProtectionGroupParams): [optional]  # noqa: E501
+            vmware_params (VmwareProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

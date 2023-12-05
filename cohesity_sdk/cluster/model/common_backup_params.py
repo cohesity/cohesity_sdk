@@ -96,16 +96,16 @@ class CommonBackupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'policy_id': (str, none_type,),  # noqa: E501
-            'policy_config': (PolicyConfig,),  # noqa: E501
-            'storage_domain_id': (int, none_type,),  # noqa: E501
-            'start_time': (TimeOfDay,),  # noqa: E501
-            'priority': (str, none_type,),  # noqa: E501
-            'sla': ([SlaRule], none_type,),  # noqa: E501
-            'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
-            'skip_rigel_for_backup': (bool, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
+            'policy_config': (PolicyConfig,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'priority': (str, none_type,),  # noqa: E501
+            'qos_policy': (str, none_type,),  # noqa: E501
+            'skip_rigel_for_backup': (bool, none_type,),  # noqa: E501
+            'sla': ([SlaRule], none_type,),  # noqa: E501
+            'start_time': (TimeOfDay,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -115,16 +115,16 @@ class CommonBackupParams(ModelNormal):
 
 
     attribute_map = {
-        'policy_id': 'policyId',  # noqa: E501
-        'policy_config': 'policyConfig',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'start_time': 'startTime',  # noqa: E501
-        'priority': 'priority',  # noqa: E501
-        'sla': 'sla',  # noqa: E501
-        'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
-        'skip_rigel_for_backup': 'skipRigelForBackup',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'policy_config': 'policyConfig',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'priority': 'priority',  # noqa: E501
+        'qos_policy': 'qosPolicy',  # noqa: E501
+        'skip_rigel_for_backup': 'skipRigelForBackup',  # noqa: E501
+        'sla': 'sla',  # noqa: E501
+        'start_time': 'startTime',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,16 +174,16 @@ class CommonBackupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
-            policy_config (PolicyConfig): [optional]  # noqa: E501
-            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
-            start_time (TimeOfDay): [optional]  # noqa: E501
-            priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
-            sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
-            qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
-            skip_rigel_for_backup (bool, none_type): Specifies whether to skip Rigel for backup or not.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
+            policy_config (PolicyConfig): [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
+            priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
+            qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
+            skip_rigel_for_backup (bool, none_type): Specifies whether to skip Rigel for backup or not.. [optional]  # noqa: E501
+            sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
+            start_time (TimeOfDay): [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

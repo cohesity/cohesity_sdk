@@ -111,7 +111,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisNetgroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-netgroups',
@@ -233,7 +233,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisProvider,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-providers',
@@ -359,7 +359,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-netgroups/{name}',
@@ -487,7 +487,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-providers/{domain}',
@@ -608,7 +608,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisNetgroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-netgroups/{name}',
@@ -725,7 +725,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisNetgroups,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-netgroups',
@@ -845,7 +845,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisProvider,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-providers/{domain}',
@@ -962,7 +962,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisProviders,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-providers',
@@ -1086,7 +1086,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisNetgroup,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-netgroups/{name}',
@@ -1218,7 +1218,7 @@ class NetworkInformationServiceApi(object):
                 'response_type': (NisProvider,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nis-providers/{domain}',

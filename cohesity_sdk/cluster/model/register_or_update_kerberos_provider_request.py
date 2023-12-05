@@ -87,10 +87,10 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'realm_name': (str, none_type,),  # noqa: E501
-            'kdc_servers': ([str],),  # noqa: E501
             'admin_server': (str, none_type,),  # noqa: E501
             'host_alias': ([str],),  # noqa: E501
+            'kdc_servers': ([str],),  # noqa: E501
+            'realm_name': (str, none_type,),  # noqa: E501
             'admin_password': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
@@ -105,10 +105,10 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
 
 
     attribute_map = {
-        'realm_name': 'realmName',  # noqa: E501
-        'kdc_servers': 'kdcServers',  # noqa: E501
         'admin_server': 'adminServer',  # noqa: E501
         'host_alias': 'hostAlias',  # noqa: E501
+        'kdc_servers': 'kdcServers',  # noqa: E501
+        'realm_name': 'realmName',  # noqa: E501
         'admin_password': 'adminPassword',  # noqa: E501
         'id': 'id',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
@@ -129,14 +129,14 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, realm_name, kdc_servers, admin_server, host_alias, admin_password, *args, **kwargs):  # noqa: E501
+    def __init__(self, admin_server, host_alias, kdc_servers, realm_name, admin_password, *args, **kwargs):  # noqa: E501
         """RegisterOrUpdateKerberosProviderRequest - a model defined in OpenAPI
 
         Args:
-            realm_name (str, none_type): Specifies the realm name.
-            kdc_servers ([str]): Specifies a list of Key distribution Centre(KDC) Severs.
             admin_server (str, none_type): Specifies the admin server used for registration from the list of KDC servers.
             host_alias ([str]): Specifies the DNS routable host alias names.
+            kdc_servers ([str]): Specifies a list of Key distribution Centre(KDC) Severs.
+            realm_name (str, none_type): Specifies the realm name.
             admin_password (str, none_type): Specifies the password of Kerberos admin principal.
 
         Keyword Args:
@@ -209,10 +209,10 @@ class RegisterOrUpdateKerberosProviderRequest(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'realm_name': realm_name,
-            'kdc_servers': kdc_servers,
             'admin_server': admin_server,
             'host_alias': host_alias,
+            'kdc_servers': kdc_servers,
+            'realm_name': realm_name,
             'admin_password': admin_password,
         }
         model_args = {}

@@ -74,8 +74,8 @@ class IpmiLanConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'ipmi_subnet_mask': (str,),  # noqa: E501
             'ipmi_gateway': (str,),  # noqa: E501
+            'ipmi_subnet_mask': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class IpmiLanConfig(ModelNormal):
 
 
     attribute_map = {
-        'ipmi_subnet_mask': 'ipmiSubnetMask',  # noqa: E501
         'ipmi_gateway': 'ipmiGateway',  # noqa: E501
+        'ipmi_subnet_mask': 'ipmiSubnetMask',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class IpmiLanConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, ipmi_subnet_mask, ipmi_gateway, *args, **kwargs):  # noqa: E501
+    def __init__(self, ipmi_gateway, ipmi_subnet_mask, *args, **kwargs):  # noqa: E501
         """IpmiLanConfig - a model defined in OpenAPI
 
         Args:
-            ipmi_subnet_mask (str): IPMI subnet mask. This should be either in CIDR prefix or in dotted decimal for IPv4.
             ipmi_gateway (str): IPMI subnet gateway.
+            ipmi_subnet_mask (str): IPMI subnet mask. This should be either in CIDR prefix or in dotted decimal for IPv4.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class IpmiLanConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.ipmi_subnet_mask = ipmi_subnet_mask
         self.ipmi_gateway = ipmi_gateway
+        self.ipmi_subnet_mask = ipmi_subnet_mask
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

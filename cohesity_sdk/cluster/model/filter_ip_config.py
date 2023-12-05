@@ -74,8 +74,8 @@ class FilterIpConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'denied_ip_addresses': ([str], none_type,),  # noqa: E501
             'allowed_ip_addresses': ([str], none_type,),  # noqa: E501
+            'denied_ip_addresses': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class FilterIpConfig(ModelNormal):
 
 
     attribute_map = {
-        'denied_ip_addresses': 'deniedIpAddresses',  # noqa: E501
         'allowed_ip_addresses': 'allowedIpAddresses',  # noqa: E501
+        'denied_ip_addresses': 'deniedIpAddresses',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class FilterIpConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            denied_ip_addresses ([str], none_type): Specifies the IP addresses that should not be used during recovery recovery. Cannot be set if allowedIpAddresses is set.. [optional]  # noqa: E501
             allowed_ip_addresses ([str], none_type): Specifies the IP addresses that should be used exclusively during recovery. Cannot be set if deniedIpAddresses is set.. [optional]  # noqa: E501
+            denied_ip_addresses ([str], none_type): Specifies the IP addresses that should not be used during recovery recovery. Cannot be set if allowedIpAddresses is set.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

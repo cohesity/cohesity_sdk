@@ -19,7 +19,6 @@ Create the Node Group and returns the newly created node group object.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -35,7 +34,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = NodeGroupRequest() # NodeGroupRequest | Request to create a Node Group.
 
@@ -61,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -86,7 +84,6 @@ Deletes a Node Group based on given node group name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -100,7 +97,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 group_name = "groupName_example" # str | Specifies a unique name of the Node Group to delete.
 
@@ -125,7 +121,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -150,7 +146,6 @@ Returns Node Group for given Group Name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -165,7 +160,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 group_name = "groupName_example" # str | Specifies a unique id of Node Group to return.
 
@@ -191,7 +185,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -216,7 +210,6 @@ List node groups.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -231,7 +224,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 group_names = [
         "groupNames_example",
@@ -262,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -287,7 +279,6 @@ Specifies the request to update the existing Node Group. On successful update, r
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
@@ -303,7 +294,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 group_name = "groupName_example" # str | Specifies a unique name of the Node Group to update.
 body = NodeGroupRequest() # NodeGroupRequest | Request to update a Node Group.
@@ -331,7 +321,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

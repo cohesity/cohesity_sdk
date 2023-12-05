@@ -100,8 +100,8 @@ class CreateTdmTaskRequest(ModelComposed):
             'action': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'clone_params': (TdmCloneTaskRequestParams,),  # noqa: E501
-            'snapshot_params': (TdmSnapshotTaskParams,),  # noqa: E501
             'refresh_params': (TdmRefreshTaskRequestParams,),  # noqa: E501
+            'snapshot_params': (TdmSnapshotTaskParams,),  # noqa: E501
             'teardown_params': (TdmTeardownTaskRequestParams,),  # noqa: E501
         }
 
@@ -115,8 +115,8 @@ class CreateTdmTaskRequest(ModelComposed):
         'action': 'action',  # noqa: E501
         'name': 'name',  # noqa: E501
         'clone_params': 'cloneParams',  # noqa: E501
-        'snapshot_params': 'snapshotParams',  # noqa: E501
         'refresh_params': 'refreshParams',  # noqa: E501
+        'snapshot_params': 'snapshotParams',  # noqa: E501
         'teardown_params': 'teardownParams',  # noqa: E501
     }
 
@@ -173,8 +173,8 @@ class CreateTdmTaskRequest(ModelComposed):
 
             name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
             clone_params (TdmCloneTaskRequestParams): [optional]  # noqa: E501
-            snapshot_params (TdmSnapshotTaskParams): [optional]  # noqa: E501
             refresh_params (TdmRefreshTaskRequestParams): [optional]  # noqa: E501
+            snapshot_params (TdmSnapshotTaskParams): [optional]  # noqa: E501
             teardown_params (TdmTeardownTaskRequestParams): [optional]  # noqa: E501
         """
 

@@ -85,12 +85,12 @@ class ClusterNodeOperationStatus(ModelNormal):
         """
         lazy_import()
         return {
+            'events': ([OperationEvents],),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'ip': (str, none_type,),  # noqa: E501
             'percentage': (int,),  # noqa: E501
-            'time_remaining_seconds': (int,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
-            'events': ([OperationEvents],),  # noqa: E501
+            'time_remaining_seconds': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -100,12 +100,12 @@ class ClusterNodeOperationStatus(ModelNormal):
 
 
     attribute_map = {
+        'events': 'events',  # noqa: E501
         'id': 'id',  # noqa: E501
         'ip': 'ip',  # noqa: E501
         'percentage': 'percentage',  # noqa: E501
-        'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'events': 'events',  # noqa: E501
+        'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,12 +155,12 @@ class ClusterNodeOperationStatus(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            events ([OperationEvents]): Specifies the list of events that took place during the operation.. [optional]  # noqa: E501
             id (int, none_type): Specifies the id of the node.. [optional]  # noqa: E501
             ip (str, none_type): Specifies the Ip address of the node.. [optional]  # noqa: E501
             percentage (int): Specifies an approximate completion percentage for the operation.. [optional]  # noqa: E501
-            time_remaining_seconds (int): Specifies an estimated number of seconds until the operation is complete.. [optional]  # noqa: E501
             status (str, none_type): Specifies the status of the operation. 'Success' indicates the operation is successful. 'Failed' indicates the operation failed due to an error. 'InProgress' indicates the operation is in progress.. [optional]  # noqa: E501
-            events ([OperationEvents]): Specifies the list of events that took place during the operation.. [optional]  # noqa: E501
+            time_remaining_seconds (int): Specifies an estimated number of seconds until the operation is complete.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -81,10 +81,10 @@ class AwsSnapshotManagerObjectProtectionParams(ModelNormal):
         """
         lazy_import()
         return {
+            'ami_creation_frequency': (int, none_type,),  # noqa: E501
+            'create_ami': (bool, none_type,),  # noqa: E501
             'objects': ([AwsObjectLevelParams],),  # noqa: E501
             'volume_exclusion_params': (EbsVolumeExclusionParams,),  # noqa: E501
-            'create_ami': (bool, none_type,),  # noqa: E501
-            'ami_creation_frequency': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +94,10 @@ class AwsSnapshotManagerObjectProtectionParams(ModelNormal):
 
 
     attribute_map = {
+        'ami_creation_frequency': 'amiCreationFrequency',  # noqa: E501
+        'create_ami': 'createAmi',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'volume_exclusion_params': 'volumeExclusionParams',  # noqa: E501
-        'create_ami': 'createAmi',  # noqa: E501
-        'ami_creation_frequency': 'amiCreationFrequency',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,10 +147,10 @@ class AwsSnapshotManagerObjectProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            ami_creation_frequency (int, none_type): The frequency of AMI creation. This should be set if the option to create AMI is set. A value of n creates an AMI from the snapshots after every n runs. eg. n = 2 implies every alternate backup run starting from the first will create an AMI.. [optional]  # noqa: E501
+            create_ami (bool, none_type): Specifies whether AMI should be created after taking snapshots of the instance.. [optional]  # noqa: E501
             objects ([AwsObjectLevelParams]): Specifies the objects to be protected.. [optional]  # noqa: E501
             volume_exclusion_params (EbsVolumeExclusionParams): [optional]  # noqa: E501
-            create_ami (bool, none_type): Specifies whether AMI should be created after taking snapshots of the instance.. [optional]  # noqa: E501
-            ami_creation_frequency (int, none_type): The frequency of AMI creation. This should be set if the option to create AMI is set. A value of n creates an AMI from the snapshots after every n runs. eg. n = 2 implies every alternate backup run starting from the first will create an AMI.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

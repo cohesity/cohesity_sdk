@@ -80,10 +80,10 @@ class ConnectionBandwidthLimits(ModelNormal):
         lazy_import()
         return {
             'tenant_id': (str, none_type,),  # noqa: E501
-            'download': ([BandwidthLimit], none_type,),  # noqa: E501
-            'upload': ([BandwidthLimit], none_type,),  # noqa: E501
-            'timezone': (str, none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
+            'download': ([BandwidthLimit], none_type,),  # noqa: E501
+            'timezone': (str, none_type,),  # noqa: E501
+            'upload': ([BandwidthLimit], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +94,10 @@ class ConnectionBandwidthLimits(ModelNormal):
 
     attribute_map = {
         'tenant_id': 'tenantId',  # noqa: E501
-        'download': 'download',  # noqa: E501
-        'upload': 'upload',  # noqa: E501
-        'timezone': 'timezone',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
+        'download': 'download',  # noqa: E501
+        'timezone': 'timezone',  # noqa: E501
+        'upload': 'upload',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,10 +150,10 @@ class ConnectionBandwidthLimits(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download ([BandwidthLimit], none_type): Specifies the max rate limit at which we download the data.. [optional]  # noqa: E501
-            upload ([BandwidthLimit], none_type): Specifies the max rate limit at which we upload the data.. [optional]  # noqa: E501
-            timezone (str, none_type): Specifies a time zone for the specified time period. The time zone is defined in the following format: 'Area/Location', for example: 'America/New_York'.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
+            download ([BandwidthLimit], none_type): Specifies the max rate limit at which we download the data.. [optional]  # noqa: E501
+            timezone (str, none_type): Specifies a time zone for the specified time period. The time zone is defined in the following format: 'Area/Location', for example: 'America/New_York'.. [optional]  # noqa: E501
+            upload ([BandwidthLimit], none_type): Specifies the max rate limit at which we upload the data.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -85,8 +85,8 @@ class MsGroupParam(ModelNormal):
         """
         return {
             'recover_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'recover_entire_group': (bool, none_type,),  # noqa: E501
             'mailbox_restore_type': (str, none_type,),  # noqa: E501
+            'recover_entire_group': (bool, none_type,),  # noqa: E501
             'site_restore_type': (str, none_type,),  # noqa: E501
         }
 
@@ -98,8 +98,8 @@ class MsGroupParam(ModelNormal):
 
     attribute_map = {
         'recover_object': 'recoverObject',  # noqa: E501
-        'recover_entire_group': 'recoverEntireGroup',  # noqa: E501
         'mailbox_restore_type': 'mailboxRestoreType',  # noqa: E501
+        'recover_entire_group': 'recoverEntireGroup',  # noqa: E501
         'site_restore_type': 'siteRestoreType',  # noqa: E501
     }
 
@@ -153,8 +153,8 @@ class MsGroupParam(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_entire_group (bool, none_type): Specifies if the entire Group (mailbox + site) is to be restored.. [optional]  # noqa: E501
             mailbox_restore_type (str, none_type): Specifies whether mailbox restore is full or granular.. [optional]  # noqa: E501
+            recover_entire_group (bool, none_type): Specifies if the entire Group (mailbox + site) is to be restored.. [optional]  # noqa: E501
             site_restore_type (str, none_type): Specifies whether site restore is full or granular.. [optional]  # noqa: E501
         """
 

@@ -81,15 +81,15 @@ class TrustedCa(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'issued_by': (str, none_type,),  # noqa: E501
-            'issued_to': (str, none_type,),  # noqa: E501
-            'issued_time_usecs': (int, none_type,),  # noqa: E501
-            'expiration_time_usecs': (int, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'registration_time_usecs': (int, none_type,),  # noqa: E501
+            'expiration_time_usecs': (int, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'issued_by': (str, none_type,),  # noqa: E501
+            'issued_time_usecs': (int, none_type,),  # noqa: E501
+            'issued_to': (str, none_type,),  # noqa: E501
             'last_validated_time_usecs': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'registration_time_usecs': (int, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
         }
 
@@ -100,15 +100,15 @@ class TrustedCa(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'issued_by': 'issuedBy',  # noqa: E501
-        'issued_to': 'issuedTo',  # noqa: E501
-        'issued_time_usecs': 'issuedTimeUsecs',  # noqa: E501
-        'expiration_time_usecs': 'expirationTimeUsecs',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'registration_time_usecs': 'registrationTimeUsecs',  # noqa: E501
+        'expiration_time_usecs': 'expirationTimeUsecs',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'issued_by': 'issuedBy',  # noqa: E501
+        'issued_time_usecs': 'issuedTimeUsecs',  # noqa: E501
+        'issued_to': 'issuedTo',  # noqa: E501
         'last_validated_time_usecs': 'lastValidatedTimeUsecs',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'registration_time_usecs': 'registrationTimeUsecs',  # noqa: E501
         'status': 'status',  # noqa: E501
     }
 
@@ -159,15 +159,15 @@ class TrustedCa(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Unique id for the certificate.. [optional]  # noqa: E501
-            name (str, none_type): Unique name for the certificate.. [optional]  # noqa: E501
-            issued_by (str, none_type): Specifies the issuer.. [optional]  # noqa: E501
-            issued_to (str, none_type): Specifies whom it was issued to.. [optional]  # noqa: E501
-            issued_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate will start being valid.. [optional]  # noqa: E501
-            expiration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate will no longer be valid.. [optional]  # noqa: E501
             description (str, none_type): description of the certificate.. [optional]  # noqa: E501
-            registration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate was registered on the cluster.. [optional]  # noqa: E501
+            expiration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate will no longer be valid.. [optional]  # noqa: E501
+            id (str, none_type): Unique id for the certificate.. [optional]  # noqa: E501
+            issued_by (str, none_type): Specifies the issuer.. [optional]  # noqa: E501
+            issued_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate will start being valid.. [optional]  # noqa: E501
+            issued_to (str, none_type): Specifies whom it was issued to.. [optional]  # noqa: E501
             last_validated_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate was last validated.. [optional]  # noqa: E501
+            name (str, none_type): Unique name for the certificate.. [optional]  # noqa: E501
+            registration_time_usecs (int, none_type): Specifies the timestamp epoch in microseconds when this certificate was registered on the cluster.. [optional]  # noqa: E501
             status (str, none_type): Validation Status of the certificate.. [optional]  # noqa: E501
         """
 

@@ -74,12 +74,12 @@ class CreateCloudRetrieveTaskRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'vault_ids': ([int], none_type,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
-            'retrieve_all_jobs': (bool, none_type,),  # noqa: E501
-            'job_ids': ([str], none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
+            'job_ids': ([str], none_type,),  # noqa: E501
+            'retrieve_all_jobs': (bool, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'vault_ids': ([int], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class CreateCloudRetrieveTaskRequest(ModelNormal):
 
 
     attribute_map = {
-        'vault_ids': 'vaultIds',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
-        'retrieve_all_jobs': 'retrieveAllJobs',  # noqa: E501
-        'job_ids': 'jobIds',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'job_ids': 'jobIds',  # noqa: E501
+        'retrieve_all_jobs': 'retrieveAllJobs',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'vault_ids': 'vaultIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class CreateCloudRetrieveTaskRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vault_ids ([int], none_type): Specifies the array of vault IDs.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the cluster ID.. [optional]  # noqa: E501
-            retrieve_all_jobs (bool, none_type): Specifies whether to retrieve all tasks.. [optional]  # noqa: E501
-            job_ids ([str], none_type): Job ids to retrieve.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the start time in microseconds and filter the task by the start time.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in microseconds and filter the tasks by the end time.. [optional]  # noqa: E501
+            job_ids ([str], none_type): Job ids to retrieve.. [optional]  # noqa: E501
+            retrieve_all_jobs (bool, none_type): Specifies whether to retrieve all tasks.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time in microseconds and filter the task by the start time.. [optional]  # noqa: E501
+            vault_ids ([int], none_type): Specifies the array of vault IDs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

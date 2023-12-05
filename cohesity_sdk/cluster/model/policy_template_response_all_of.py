@@ -75,8 +75,8 @@ class PolicyTemplateResponseAllOf(ModelNormal):
         """
         return {
             'id': (str, none_type,),  # noqa: E501
-            'num_linked_policies': (int, none_type,),  # noqa: E501
             'is_usable': (bool, none_type,),  # noqa: E501
+            'num_linked_policies': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class PolicyTemplateResponseAllOf(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'num_linked_policies': 'numLinkedPolicies',  # noqa: E501
         'is_usable': 'isUsable',  # noqa: E501
+        'num_linked_policies': 'numLinkedPolicies',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class PolicyTemplateResponseAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies a unique Policy id assigned by the Cohesity Cluster.. [optional]  # noqa: E501
-            num_linked_policies (int, none_type): Specifies the number of policies linked to this policy template. Only applicable in case of policy template.. [optional]  # noqa: E501
             is_usable (bool, none_type): This field is set to true if this policy template qualifies to create more policies. If the template is partially filled and can not create a working policy then this field will be set to false.. [optional]  # noqa: E501
+            num_linked_policies (int, none_type): Specifies the number of policies linked to this policy template. Only applicable in case of policy template.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

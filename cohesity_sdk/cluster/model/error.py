@@ -76,7 +76,6 @@ class Error(ModelNormal):
         return {
             'error_code': (str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
-            'task_log_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,7 +87,6 @@ class Error(ModelNormal):
     attribute_map = {
         'error_code': 'errorCode',  # noqa: E501
         'message': 'message',  # noqa: E501
-        'task_log_id': 'taskLogId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,7 +138,6 @@ class Error(ModelNormal):
 
             error_code (str, none_type): Specifies the error code.. [optional]  # noqa: E501
             message (str, none_type): Specifies the error message.. [optional]  # noqa: E501
-            task_log_id (str, none_type): Specifies the TaskLogId of the failed task.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

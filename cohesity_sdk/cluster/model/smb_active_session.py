@@ -79,11 +79,11 @@ class SmbActiveSession(ModelNormal):
         """
         lazy_import()
         return {
-            'session_id': (int, none_type,),  # noqa: E501
-            'client_ip': (str, none_type,),  # noqa: E501
-            'user_name': (str, none_type,),  # noqa: E501
-            'domain': (str, none_type,),  # noqa: E501
             'active_opens': ([SmbActiveOpen], none_type,),  # noqa: E501
+            'client_ip': (str, none_type,),  # noqa: E501
+            'domain': (str, none_type,),  # noqa: E501
+            'session_id': (int, none_type,),  # noqa: E501
+            'user_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class SmbActiveSession(ModelNormal):
 
 
     attribute_map = {
-        'session_id': 'sessionId',  # noqa: E501
-        'client_ip': 'clientIp',  # noqa: E501
-        'user_name': 'userName',  # noqa: E501
-        'domain': 'domain',  # noqa: E501
         'active_opens': 'activeOpens',  # noqa: E501
+        'client_ip': 'clientIp',  # noqa: E501
+        'domain': 'domain',  # noqa: E501
+        'session_id': 'sessionId',  # noqa: E501
+        'user_name': 'userName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class SmbActiveSession(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            session_id (int, none_type): Specifies the id of the session.. [optional]  # noqa: E501
-            client_ip (str, none_type): Specifies the IP address from which the file is open.. [optional]  # noqa: E501
-            user_name (str, none_type): Specifies the username who keeps the file open.. [optional]  # noqa: E501
-            domain (str, none_type): Specifies the domain of the user.. [optional]  # noqa: E501
             active_opens ([SmbActiveOpen], none_type): Specifies an active open of an SMB file, its access and sharing information.. [optional]  # noqa: E501
+            client_ip (str, none_type): Specifies the IP address from which the file is open.. [optional]  # noqa: E501
+            domain (str, none_type): Specifies the domain of the user.. [optional]  # noqa: E501
+            session_id (int, none_type): Specifies the id of the session.. [optional]  # noqa: E501
+            user_name (str, none_type): Specifies the username who keeps the file open.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

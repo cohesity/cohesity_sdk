@@ -104,7 +104,7 @@ class NetworkResetApi(object):
                 'response_type': (ResetStates,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/networkReset/status',
@@ -218,7 +218,7 @@ class NetworkResetApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/networkReset',

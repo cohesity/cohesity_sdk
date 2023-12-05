@@ -60,14 +60,6 @@ class SearchMsTeamsRequestParams(ModelNormal):
     """
 
     allowed_values = {
-        ('types',): {
-            'None': None,
-            'CHANNEL': "Channel",
-            'CHAT': "Chat",
-            'CONVERSATION': "Conversation",
-            'FILE': "File",
-            'FOLDER': "Folder",
-        },
         ('category_types',): {
             'None': None,
             'DOCUMENT': "Document",
@@ -76,13 +68,21 @@ class SearchMsTeamsRequestParams(ModelNormal):
             'IMAGE': "Image",
             'ONENOTE': "OneNote",
         },
+        ('types',): {
+            'None': None,
+            'CHANNEL': "Channel",
+            'CHAT': "Chat",
+            'CONVERSATION': "Conversation",
+            'FILE': "File",
+            'FOLDER': "Folder",
+        },
     }
 
     validations = {
-        ('types',): {
+        ('category_types',): {
         },
 
-        ('category_types',): {
+        ('types',): {
         },
 
     }
@@ -103,17 +103,17 @@ class SearchMsTeamsRequestParams(ModelNormal):
         """
         lazy_import()
         return {
-            'search_string': (str, none_type,),  # noqa: E501
-            'types': ([str], none_type,),  # noqa: E501
             'category_types': ([str], none_type,),  # noqa: E501
-            'creation_start_time_secs': (int, none_type,),  # noqa: E501
-            'creation_end_time_secs': (int, none_type,),  # noqa: E501
-            'size_bytes_lower_limit': (int, none_type,),  # noqa: E501
-            'size_bytes_upper_limit': (int, none_type,),  # noqa: E501
-            'owner_names': ([str], none_type,),  # noqa: E501
             'channel_names': ([str], none_type,),  # noqa: E501
             'channel_params': (O365TeamsChannelsSearchRequestParams,),  # noqa: E501
+            'creation_end_time_secs': (int, none_type,),  # noqa: E501
+            'creation_start_time_secs': (int, none_type,),  # noqa: E501
             'o365_params': (O365SearchRequestParams,),  # noqa: E501
+            'owner_names': ([str], none_type,),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
+            'size_bytes_lower_limit': (int, none_type,),  # noqa: E501
+            'size_bytes_upper_limit': (int, none_type,),  # noqa: E501
+            'types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -123,17 +123,17 @@ class SearchMsTeamsRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
-        'types': 'types',  # noqa: E501
         'category_types': 'categoryTypes',  # noqa: E501
-        'creation_start_time_secs': 'creationStartTimeSecs',  # noqa: E501
-        'creation_end_time_secs': 'creationEndTimeSecs',  # noqa: E501
-        'size_bytes_lower_limit': 'sizeBytesLowerLimit',  # noqa: E501
-        'size_bytes_upper_limit': 'sizeBytesUpperLimit',  # noqa: E501
-        'owner_names': 'ownerNames',  # noqa: E501
         'channel_names': 'channelNames',  # noqa: E501
         'channel_params': 'channelParams',  # noqa: E501
+        'creation_end_time_secs': 'creationEndTimeSecs',  # noqa: E501
+        'creation_start_time_secs': 'creationStartTimeSecs',  # noqa: E501
         'o365_params': 'o365Params',  # noqa: E501
+        'owner_names': 'ownerNames',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
+        'size_bytes_lower_limit': 'sizeBytesLowerLimit',  # noqa: E501
+        'size_bytes_upper_limit': 'sizeBytesUpperLimit',  # noqa: E501
+        'types': 'types',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -183,17 +183,17 @@ class SearchMsTeamsRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            search_string (str, none_type): Specifies the search string to filter the items. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string.. [optional]  # noqa: E501
-            types ([str], none_type): Specifies a list of Teams item types. Only items within the given types will be returned.. [optional]  # noqa: E501
             category_types ([str], none_type): Specifies a list of teams files types. Only items within the given types will be returned.. [optional]  # noqa: E501
-            creation_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds when the item is created.. [optional]  # noqa: E501
-            creation_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds when the item is created.. [optional]  # noqa: E501
-            size_bytes_lower_limit (int, none_type): Specifies the minimum size of the item in bytes.. [optional]  # noqa: E501
-            size_bytes_upper_limit (int, none_type): Specifies the maximum size of the item in bytes.. [optional]  # noqa: E501
-            owner_names ([str], none_type): Specifies the list of owner email ids to filter on owner of the item.. [optional]  # noqa: E501
             channel_names ([str], none_type): Specifies the list of channel names to filter while doing search for files.. [optional]  # noqa: E501
             channel_params (O365TeamsChannelsSearchRequestParams): [optional]  # noqa: E501
+            creation_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds when the item is created.. [optional]  # noqa: E501
+            creation_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds when the item is created.. [optional]  # noqa: E501
             o365_params (O365SearchRequestParams): [optional]  # noqa: E501
+            owner_names ([str], none_type): Specifies the list of owner email ids to filter on owner of the item.. [optional]  # noqa: E501
+            search_string (str, none_type): Specifies the search string to filter the items. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string.. [optional]  # noqa: E501
+            size_bytes_lower_limit (int, none_type): Specifies the minimum size of the item in bytes.. [optional]  # noqa: E501
+            size_bytes_upper_limit (int, none_type): Specifies the maximum size of the item in bytes.. [optional]  # noqa: E501
+            types ([str], none_type): Specifies a list of Teams item types. Only items within the given types will be returned.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

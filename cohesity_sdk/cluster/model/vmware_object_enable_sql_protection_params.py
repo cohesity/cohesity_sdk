@@ -79,8 +79,8 @@ class VmwareObjectEnableSqlProtectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'use_installed_agent': (bool, none_type,),  # noqa: E501
             'credentials': (VmwareSQLCredentialParams,),  # noqa: E501
+            'use_installed_agent': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class VmwareObjectEnableSqlProtectionParams(ModelNormal):
 
 
     attribute_map = {
-        'use_installed_agent': 'useInstalledAgent',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
+        'use_installed_agent': 'useInstalledAgent',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class VmwareObjectEnableSqlProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            use_installed_agent (bool, none_type): Specifies if agent is already installed.. [optional]  # noqa: E501
             credentials (VmwareSQLCredentialParams): [optional]  # noqa: E501
+            use_installed_agent (bool, none_type): Specifies if agent is already installed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

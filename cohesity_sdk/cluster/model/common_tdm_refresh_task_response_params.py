@@ -80,8 +80,8 @@ class CommonTdmRefreshTaskResponseParams(ModelNormal):
         return {
             'environment': (str, none_type,),  # noqa: E501
             'parent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'target': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'snapshot': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'target': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'view': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -94,8 +94,8 @@ class CommonTdmRefreshTaskResponseParams(ModelNormal):
     attribute_map = {
         'environment': 'environment',  # noqa: E501
         'parent': 'parent',  # noqa: E501
-        'target': 'target',  # noqa: E501
         'snapshot': 'snapshot',  # noqa: E501
+        'target': 'target',  # noqa: E501
         'view': 'view',  # noqa: E501
     }
 
@@ -150,8 +150,8 @@ class CommonTdmRefreshTaskResponseParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             parent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the parent object of the clone.. [optional]  # noqa: E501
-            target ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the target, where the clone is created.. [optional]  # noqa: E501
             snapshot ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the snapshot used for refresh.. [optional]  # noqa: E501
+            target ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the target, where the clone is created.. [optional]  # noqa: E501
             view ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the view, which is used for the clone.. [optional]  # noqa: E501
         """
 

@@ -74,8 +74,8 @@ class SupportChannelConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'is_enabled': (bool, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
+            'is_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class SupportChannelConfig(ModelNormal):
 
 
     attribute_map = {
-        'is_enabled': 'isEnabled',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'is_enabled': 'isEnabled',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class SupportChannelConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, is_enabled, end_time_usecs, *args, **kwargs):  # noqa: E501
+    def __init__(self, end_time_usecs, is_enabled, *args, **kwargs):  # noqa: E501
         """SupportChannelConfig - a model defined in OpenAPI
 
         Args:
-            is_enabled (bool, none_type): Specifies id the support channel is enabled.
             end_time_usecs (int, none_type): Specifies the support channel expiry time.
+            is_enabled (bool, none_type): Specifies id the support channel is enabled.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class SupportChannelConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.is_enabled = is_enabled
         self.end_time_usecs = end_time_usecs
+        self.is_enabled = is_enabled
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

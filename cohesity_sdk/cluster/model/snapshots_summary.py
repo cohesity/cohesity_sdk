@@ -54,13 +54,6 @@ class SnapshotsSummary(ModelNormal):
     """
 
     allowed_values = {
-        ('snapshot_target_type',): {
-            'None': None,
-            'LOCAL': "Local",
-            'ARCHIVAL': "Archival",
-            'RPAASARCHIVAL': "RpaasArchival",
-            'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
-        },
         ('latest_run_status',): {
             'None': None,
             'ACCEPTED': "Accepted",
@@ -73,12 +66,18 @@ class SnapshotsSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
         },
         ('ownership_context',): {
             'None': None,
             'LOCAL': "Local",
             'FORTKNOX': "FortKnox",
+        },
+        ('snapshot_target_type',): {
+            'None': None,
+            'LOCAL': "Local",
+            'ARCHIVAL': "Archival",
+            'RPAASARCHIVAL': "RpaasArchival",
+            'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
         },
     }
 
@@ -102,14 +101,14 @@ class SnapshotsSummary(ModelNormal):
         return {
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
-            'region_id': (str, none_type,),  # noqa: E501
-            'snapshot_target_type': (str, none_type,),  # noqa: E501
             'external_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'snapshot_count': (int, none_type,),  # noqa: E501
-            'latest_snapshot_timestamp_usecs': (int, none_type,),  # noqa: E501
             'latest_run_start_time_usecs': (int, none_type,),  # noqa: E501
             'latest_run_status': (str, none_type,),  # noqa: E501
+            'latest_snapshot_timestamp_usecs': (int, none_type,),  # noqa: E501
             'ownership_context': (str, none_type,),  # noqa: E501
+            'region_id': (str, none_type,),  # noqa: E501
+            'snapshot_count': (int, none_type,),  # noqa: E501
+            'snapshot_target_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -121,14 +120,14 @@ class SnapshotsSummary(ModelNormal):
     attribute_map = {
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
-        'region_id': 'regionId',  # noqa: E501
-        'snapshot_target_type': 'snapshotTargetType',  # noqa: E501
         'external_target_info': 'externalTargetInfo',  # noqa: E501
-        'snapshot_count': 'snapshotCount',  # noqa: E501
-        'latest_snapshot_timestamp_usecs': 'latestSnapshotTimestampUsecs',  # noqa: E501
         'latest_run_start_time_usecs': 'latestRunStartTimeUsecs',  # noqa: E501
         'latest_run_status': 'latestRunStatus',  # noqa: E501
+        'latest_snapshot_timestamp_usecs': 'latestSnapshotTimestampUsecs',  # noqa: E501
         'ownership_context': 'ownershipContext',  # noqa: E501
+        'region_id': 'regionId',  # noqa: E501
+        'snapshot_count': 'snapshotCount',  # noqa: E501
+        'snapshot_target_type': 'snapshotTargetType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -180,14 +179,14 @@ class SnapshotsSummary(ModelNormal):
 
             cluster_id (int, none_type): Specifies the cluster id where the snapshots is stored.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the cluster incarnation id where the snapshots is stored.. [optional]  # noqa: E501
-            region_id (str, none_type): Specifies the cluster indentifier where the snapshots is stored.. [optional]  # noqa: E501
-            snapshot_target_type (str, none_type): Specifies the target type where the Object's snapshot resides.. [optional]  # noqa: E501
             external_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the external target information if this is an archival snapshot.. [optional]  # noqa: E501
-            snapshot_count (int, none_type): Specifies the number of snapshots of this type and target.. [optional]  # noqa: E501
-            latest_snapshot_timestamp_usecs (int, none_type): Specifies the timestamp in Unix time epoch in microseconds when the latest snapshot is taken.. [optional]  # noqa: E501
             latest_run_start_time_usecs (int, none_type): Specifies the timestamp in Unix time epoch in microseconds when the latest run started.. [optional]  # noqa: E501
             latest_run_status (str, none_type): Specifies the status of latest run.. [optional]  # noqa: E501
+            latest_snapshot_timestamp_usecs (int, none_type): Specifies the timestamp in Unix time epoch in microseconds when the latest snapshot is taken.. [optional]  # noqa: E501
             ownership_context (str, none_type): Specifies the ownership context of the snapshot target.. [optional]  # noqa: E501
+            region_id (str, none_type): Specifies the cluster indentifier where the snapshots is stored.. [optional]  # noqa: E501
+            snapshot_count (int, none_type): Specifies the number of snapshots of this type and target.. [optional]  # noqa: E501
+            snapshot_target_type (str, none_type): Specifies the target type where the Object's snapshot resides.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -19,7 +19,6 @@ Get a cluster audit logs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.audit_logs import AuditLogs
@@ -34,7 +33,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 search_string = "searchString_example" # str, none_type | Search audit logs by 'entityName' or 'details'. (optional)
 usernames = [
@@ -91,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -116,7 +114,6 @@ Get all actions of cluster audit logs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -131,7 +128,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -153,7 +149,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -178,7 +174,6 @@ Get all entity types of cluster audit logs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -193,7 +188,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -215,7 +209,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -240,7 +234,6 @@ Get filer audit log configs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -255,7 +248,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -277,7 +269,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -302,7 +294,6 @@ Update filer audit log configs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -318,16 +309,16 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = FilerAuditLogConfigs(
+        override_global_subnet_whitelist=True,
         share_permissions=[
             SmbPermission(
-                type="Allow",
-                mode="FolderSubFoldersAndFiles",
                 access="ReadOnly",
+                mode="FolderSubFoldersAndFiles",
                 sid="sid_example",
-                special_type=1,
                 special_access_mask=1,
+                special_type=1,
+                type="Allow",
             ),
         ],
         subnet_whitelist=[
@@ -341,11 +332,10 @@ body = FilerAuditLogConfigs(
                 netmask_ip4="netmask_ip4_example",
                 nfs_access="kDisabled",
                 nfs_squash="kNone",
-                smb_access="kDisabled",
                 s3_access="kDisabled",
+                smb_access="kDisabled",
             ),
         ],
-        override_global_subnet_whitelist=True,
     ) # FilerAuditLogConfigs | Specifies the filer audit log config to update.
 
 # example passing only required values which don't have defaults set
@@ -370,7 +360,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

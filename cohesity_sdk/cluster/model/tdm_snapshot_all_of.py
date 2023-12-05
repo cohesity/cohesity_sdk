@@ -75,10 +75,10 @@ class TdmSnapshotAllOf(ModelNormal):
         """
         return {
             'id': (str, none_type,),  # noqa: E501
-            'is_automated': (bool, none_type,),  # noqa: E501
             'created_at': (int, none_type,),  # noqa: E501
-            'updated_at': (int, none_type,),  # noqa: E501
             'created_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'is_automated': (bool, none_type,),  # noqa: E501
+            'updated_at': (int, none_type,),  # noqa: E501
             'updated_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -90,10 +90,10 @@ class TdmSnapshotAllOf(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'is_automated': 'isAutomated',  # noqa: E501
         'created_at': 'createdAt',  # noqa: E501
-        'updated_at': 'updatedAt',  # noqa: E501
         'created_by_user': 'createdByUser',  # noqa: E501
+        'is_automated': 'isAutomated',  # noqa: E501
+        'updated_at': 'updatedAt',  # noqa: E501
         'updated_by_user': 'updatedByUser',  # noqa: E501
     }
 
@@ -147,10 +147,10 @@ class TdmSnapshotAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_automated (bool, none_type): Specifies whether the snapshot was taken automatically by the scheduler.. [optional]  # noqa: E501
             created_at (int, none_type): Specifies the time (in usecs from epoch) when the snapshot was created.. [optional]  # noqa: E501
-            updated_at (int, none_type): Specifies the time (in usecs from epoch) when the snapshot was last updated.. [optional]  # noqa: E501
             created_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the user, who created the snapshot. This will be null for snapshots, that are taken by system, such as a scheduler.. [optional]  # noqa: E501
+            is_automated (bool, none_type): Specifies whether the snapshot was taken automatically by the scheduler.. [optional]  # noqa: E501
+            updated_at (int, none_type): Specifies the time (in usecs from epoch) when the snapshot was last updated.. [optional]  # noqa: E501
             updated_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the details of the user, who last updated the snapshot.. [optional]  # noqa: E501
         """
 

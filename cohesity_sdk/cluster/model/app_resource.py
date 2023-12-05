@@ -85,9 +85,9 @@ class AppResource(ModelNormal):
         """
         lazy_import()
         return {
+            'endpoints': ([ResourceEndpoint], none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'endpoints': ([ResourceEndpoint], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +97,9 @@ class AppResource(ModelNormal):
 
 
     attribute_map = {
+        'endpoints': 'endpoints',  # noqa: E501
         'id': 'id',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'endpoints': 'endpoints',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,9 +149,9 @@ class AppResource(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            endpoints ([ResourceEndpoint], none_type): Specifies the information about endpoint associated with this resorce.. [optional]  # noqa: E501
             id (str, none_type): Specifies the unique id of the app resource.. [optional]  # noqa: E501
             type (str, none_type): Specifies the type of the app resource.. [optional]  # noqa: E501
-            endpoints ([ResourceEndpoint], none_type): Specifies the information about endpoint associated with this resorce.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

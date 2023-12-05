@@ -79,13 +79,13 @@ class ServiceUnitProgress(ModelNormal):
         """
         lazy_import()
         return {
-            'service': (str, none_type,),  # noqa: E501
             'in_progress': (bool, none_type,),  # noqa: E501
+            'nodes_progress': ([NodeUnitProgress], none_type,),  # noqa: E501
             'percentage': (int, none_type,),  # noqa: E501
+            'service': (str, none_type,),  # noqa: E501
+            'service_message': (str, none_type,),  # noqa: E501
             'time_remaining_seconds': (int, none_type,),  # noqa: E501
             'time_taken_seconds': (int, none_type,),  # noqa: E501
-            'nodes_progress': ([NodeUnitProgress], none_type,),  # noqa: E501
-            'service_message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,13 +95,13 @@ class ServiceUnitProgress(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
         'in_progress': 'inProgress',  # noqa: E501
+        'nodes_progress': 'nodesProgress',  # noqa: E501
         'percentage': 'percentage',  # noqa: E501
+        'service': 'service',  # noqa: E501
+        'service_message': 'serviceMessage',  # noqa: E501
         'time_remaining_seconds': 'timeRemainingSeconds',  # noqa: E501
         'time_taken_seconds': 'timeTakenSeconds',  # noqa: E501
-        'nodes_progress': 'nodesProgress',  # noqa: E501
-        'service_message': 'serviceMessage',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,13 +151,13 @@ class ServiceUnitProgress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str, none_type): Specifies the service which is patched.. [optional]  # noqa: E501
             in_progress (bool, none_type): Specifies whether a operation is in progress for the service.. [optional]  # noqa: E501
+            nodes_progress ([NodeUnitProgress], none_type): Specifies the details of patch operation for each service at each patch level.. [optional]  # noqa: E501
             percentage (int, none_type): Specifies the percentage of completion of the patch unit operation.. [optional]  # noqa: E501
+            service (str, none_type): Specifies the service which is patched.. [optional]  # noqa: E501
+            service_message (str, none_type): Specifies a message about the patch unit operation.. [optional]  # noqa: E501
             time_remaining_seconds (int, none_type): Specifies the time remaining to complete the patch operation for the service.. [optional]  # noqa: E501
             time_taken_seconds (int, none_type): Specifies the time taken so far in this patch unit operation for the service.. [optional]  # noqa: E501
-            nodes_progress ([NodeUnitProgress], none_type): Specifies the details of patch operation for each service at each patch level.. [optional]  # noqa: E501
-            service_message (str, none_type): Specifies a message about the patch unit operation.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

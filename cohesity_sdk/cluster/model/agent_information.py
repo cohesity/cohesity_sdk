@@ -94,11 +94,11 @@ class AgentInformation(ModelNormal):
         """
         lazy_import()
         return {
-            'connection_status': (str, none_type,),  # noqa: E501
-            'support_status': (str, none_type,),  # noqa: E501
             'agent_sw_version': (str, none_type,),  # noqa: E501
-            'last_fetched_time_in_usecs': (int, none_type,),  # noqa: E501
+            'connection_status': (str, none_type,),  # noqa: E501
             'host_setting_checks': ([HostSettingCheck], none_type,),  # noqa: E501
+            'last_fetched_time_in_usecs': (int, none_type,),  # noqa: E501
+            'support_status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -108,11 +108,11 @@ class AgentInformation(ModelNormal):
 
 
     attribute_map = {
-        'connection_status': 'connectionStatus',  # noqa: E501
-        'support_status': 'supportStatus',  # noqa: E501
         'agent_sw_version': 'agentSwVersion',  # noqa: E501
-        'last_fetched_time_in_usecs': 'lastFetchedTimeInUsecs',  # noqa: E501
+        'connection_status': 'connectionStatus',  # noqa: E501
         'host_setting_checks': 'hostSettingChecks',  # noqa: E501
+        'last_fetched_time_in_usecs': 'lastFetchedTimeInUsecs',  # noqa: E501
+        'support_status': 'supportStatus',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,11 +162,11 @@ class AgentInformation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            connection_status (str, none_type): Specifies the status of agent connection.. [optional]  # noqa: E501
-            support_status (str, none_type): Specifies the whether agent version is compatible with cluster version ro use various features.. [optional]  # noqa: E501
             agent_sw_version (str, none_type): Specifies the software version of the agent. [optional]  # noqa: E501
-            last_fetched_time_in_usecs (int, none_type): Specifies the time in usecs when the last agent info was fetched.. [optional]  # noqa: E501
+            connection_status (str, none_type): Specifies the status of agent connection.. [optional]  # noqa: E501
             host_setting_checks ([HostSettingCheck], none_type): Specifies the list of host checks and its results.. [optional]  # noqa: E501
+            last_fetched_time_in_usecs (int, none_type): Specifies the time in usecs when the last agent info was fetched.. [optional]  # noqa: E501
+            support_status (str, none_type): Specifies the whether agent version is compatible with cluster version ro use various features.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

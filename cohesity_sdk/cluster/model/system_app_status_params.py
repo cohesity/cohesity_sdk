@@ -74,11 +74,11 @@ class SystemAppStatusParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str,),  # noqa: E501
-            'service_endpoint': (str,),  # noqa: E501
-            'configured_replicas': (int,),  # noqa: E501
-            'ready_replicas': (int,),  # noqa: E501
             'available_replicas': (int,),  # noqa: E501
+            'configured_replicas': (int,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'ready_replicas': (int,),  # noqa: E501
+            'service_endpoint': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class SystemAppStatusParams(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'service_endpoint': 'serviceEndpoint',  # noqa: E501
-        'configured_replicas': 'configuredReplicas',  # noqa: E501
-        'ready_replicas': 'readyReplicas',  # noqa: E501
         'available_replicas': 'availableReplicas',  # noqa: E501
+        'configured_replicas': 'configuredReplicas',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'ready_replicas': 'readyReplicas',  # noqa: E501
+        'service_endpoint': 'serviceEndpoint',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class SystemAppStatusParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str): Specifies the name of the system app.. [optional]  # noqa: E501
-            service_endpoint (str): Specifies the service endpoint.. [optional]  # noqa: E501
-            configured_replicas (int): Specifies the number of configured replicas.. [optional]  # noqa: E501
-            ready_replicas (int): Specifies the number of ready replicas.. [optional]  # noqa: E501
             available_replicas (int): Specifies the number of available replicas.. [optional]  # noqa: E501
+            configured_replicas (int): Specifies the number of configured replicas.. [optional]  # noqa: E501
+            name (str): Specifies the name of the system app.. [optional]  # noqa: E501
+            ready_replicas (int): Specifies the number of ready replicas.. [optional]  # noqa: E501
+            service_endpoint (str): Specifies the service endpoint.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

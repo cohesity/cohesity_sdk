@@ -80,8 +80,8 @@ class OperationEvents(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'severity': (str, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
+            'severity': (str, none_type,),  # noqa: E501
             'timestamp': (int,),  # noqa: E501
         }
 
@@ -92,8 +92,8 @@ class OperationEvents(ModelNormal):
 
 
     attribute_map = {
-        'severity': 'severity',  # noqa: E501
         'message': 'message',  # noqa: E501
+        'severity': 'severity',  # noqa: E501
         'timestamp': 'timestamp',  # noqa: E501
     }
 
@@ -144,8 +144,8 @@ class OperationEvents(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            severity (str, none_type): Specifies the severity of an event.. [optional]  # noqa: E501
             message (str, none_type): Specifies the message describing the event.. [optional]  # noqa: E501
+            severity (str, none_type): Specifies the severity of an event.. [optional]  # noqa: E501
             timestamp (int): Specifies the unix epoch timestamp in microseconds when this event took place.. [optional]  # noqa: E501
         """
 

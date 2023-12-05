@@ -53,7 +53,6 @@ from cohesity_sdk.cluster.api.storage_domain import StorageDomainApi
 from cohesity_sdk.cluster.api.syslog import SyslogApi
 from cohesity_sdk.cluster.api.tag import TagApi
 from cohesity_sdk.cluster.api.tasks import TasksApi
-from cohesity_sdk.cluster.api.templates import TemplatesApi
 from cohesity_sdk.cluster.api.tenant import TenantApi
 from cohesity_sdk.cluster.api.test_data_management import TestDataManagementApi
 from cohesity_sdk.cluster.api.uda_connector_config import UdaConnectorConfigApi
@@ -438,12 +437,6 @@ class ClusterClient:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return TasksApi(api_client)
-
-    @lazy_property
-    def templates(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return TemplatesApi(api_client)
 
     @lazy_property
     def tenant(self):

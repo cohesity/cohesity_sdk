@@ -79,8 +79,8 @@ class CentrifyZones(ModelNormal):
         """
         lazy_import()
         return {
-            'domain_name': (str, none_type,),  # noqa: E501
             'centrify_zones': ([CentrifyZone], none_type,),  # noqa: E501
+            'domain_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class CentrifyZones(ModelNormal):
 
 
     attribute_map = {
-        'domain_name': 'domainName',  # noqa: E501
         'centrify_zones': 'centrifyZones',  # noqa: E501
+        'domain_name': 'domainName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class CentrifyZones(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            domain_name (str, none_type): Specifies a domain name with these centrify zones.. [optional]  # noqa: E501
             centrify_zones ([CentrifyZone], none_type): Specifies a list of centrify zones for this domain.. [optional]  # noqa: E501
+            domain_name (str, none_type): Specifies a domain name with these centrify zones.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

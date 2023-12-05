@@ -105,8 +105,8 @@ class HeliosCommonSearchIndexedObjectsRequestParams(ModelNormal):
         return {
             'object_type': (str, none_type,),  # noqa: E501
             'cluster_identifiers': ([str], none_type,),  # noqa: E501
-            'region_ids': ([str], none_type,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
+            'region_ids': ([str], none_type,),  # noqa: E501
             'source_uuids': (HeliosSourceUUIDs,),  # noqa: E501
         }
 
@@ -119,8 +119,8 @@ class HeliosCommonSearchIndexedObjectsRequestParams(ModelNormal):
     attribute_map = {
         'object_type': 'objectType',  # noqa: E501
         'cluster_identifiers': 'clusterIdentifiers',  # noqa: E501
-        'region_ids': 'regionIds',  # noqa: E501
         'count': 'count',  # noqa: E501
+        'region_ids': 'regionIds',  # noqa: E501
         'source_uuids': 'sourceUUIDs',  # noqa: E501
     }
 
@@ -175,8 +175,8 @@ class HeliosCommonSearchIndexedObjectsRequestParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cluster_identifiers ([str], none_type): List of Clusters Identifiers to filter from. The format is clusterId:clusterIncarnationId.. [optional]  # noqa: E501
-            region_ids ([str], none_type): List of Regions to filter from.. [optional]  # noqa: E501
             count (int, none_type): Specifies the number of indexed objects to be fetched.. [optional]  # noqa: E501
+            region_ids ([str], none_type): List of Regions to filter from.. [optional]  # noqa: E501
             source_uuids (HeliosSourceUUIDs): [optional]  # noqa: E501
         """
 

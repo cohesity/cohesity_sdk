@@ -75,8 +75,8 @@ class ConnectorConnectionInfo(ModelNormal):
         """
         return {
             'is_active': (bool, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
             'last_connected_timestamp_msecs': (int, none_type,),  # noqa: E501
+            'message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class ConnectorConnectionInfo(ModelNormal):
 
     attribute_map = {
         'is_active': 'isActive',  # noqa: E501
-        'message': 'message',  # noqa: E501
         'last_connected_timestamp_msecs': 'lastConnectedTimestampMsecs',  # noqa: E501
+        'message': 'message',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class ConnectorConnectionInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             is_active (bool, none_type): Specifies whether the connector is currently connected to cohesity server.. [optional]  # noqa: E501
-            message (str, none_type): Specifies possible error message when the connector is not able to connect.. [optional]  # noqa: E501
             last_connected_timestamp_msecs (int, none_type): Specifies last timestamp for which connection status was known.. [optional]  # noqa: E501
+            message (str, none_type): Specifies possible error message when the connector is not able to connect.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

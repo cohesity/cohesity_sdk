@@ -106,13 +106,13 @@ class ReplicationTargetProgressInfo(ModelComposed):
             'cluster_name': (str, none_type,),  # noqa: E501
             'aws_target_config': (AWSTargetConfig,),  # noqa: E501
             'azure_target_config': (AzureTargetConfig,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'events': ([ProgressTaskEvent],),  # noqa: E501
+            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
             'percentage_completed': (float, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'expected_remaining_time_usecs': (int, none_type,),  # noqa: E501
-            'events': ([ProgressTaskEvent],),  # noqa: E501
             'stats': (ProgressStats,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'objects': ([ObjectProgressInfo], none_type,),  # noqa: E501
         }
 
@@ -128,13 +128,13 @@ class ReplicationTargetProgressInfo(ModelComposed):
         'cluster_name': 'clusterName',  # noqa: E501
         'aws_target_config': 'awsTargetConfig',  # noqa: E501
         'azure_target_config': 'azureTargetConfig',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'events': 'events',  # noqa: E501
+        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
         'percentage_completed': 'percentageCompleted',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'expected_remaining_time_usecs': 'expectedRemainingTimeUsecs',  # noqa: E501
-        'events': 'events',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'objects': 'objects',  # noqa: E501
     }
 
@@ -191,13 +191,13 @@ class ReplicationTargetProgressInfo(ModelComposed):
             cluster_name (str, none_type): Specifies the name of the cluster.. [optional]  # noqa: E501
             aws_target_config (AWSTargetConfig): [optional]  # noqa: E501
             azure_target_config (AzureTargetConfig): [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
+            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
+            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             percentage_completed (float, none_type): Specifies the current completed percentage of the progress task.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            expected_remaining_time_usecs (int, none_type): Specifies the expected remaining time of the progress task in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            events ([ProgressTaskEvent]): Specifies the event log created for progress Task.. [optional]  # noqa: E501
             stats (ProgressStats): [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the progress task.. [optional]  # noqa: E501
             objects ([ObjectProgressInfo], none_type): Specifies progress for objects.. [optional]  # noqa: E501
         """
 

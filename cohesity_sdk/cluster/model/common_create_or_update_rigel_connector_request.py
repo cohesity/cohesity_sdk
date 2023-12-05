@@ -74,10 +74,10 @@ class CommonCreateOrUpdateRigelConnectorRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'connection_id': (int, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'certificate_version': (int, none_type,),  # noqa: E501
+            'connection_id': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class CommonCreateOrUpdateRigelConnectorRequest(ModelNormal):
 
 
     attribute_map = {
-        'connection_id': 'connectionId',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'certificate_version': 'certificateVersion',  # noqa: E501
+        'connection_id': 'connectionId',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,14 +105,14 @@ class CommonCreateOrUpdateRigelConnectorRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, connection_id, tenant_id, name, certificate_version, *args, **kwargs):  # noqa: E501
+    def __init__(self, certificate_version, connection_id, name, tenant_id, *args, **kwargs):  # noqa: E501
         """CommonCreateOrUpdateRigelConnectorRequest - a model defined in OpenAPI
 
         Args:
-            connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.
-            tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.
-            name (str, none_type): Specifies the name of the connector.
             certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.
+            connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.
+            name (str, none_type): Specifies the name of the connector.
+            tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,10 +172,10 @@ class CommonCreateOrUpdateRigelConnectorRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.connection_id = connection_id
-        self.tenant_id = tenant_id
-        self.name = name
         self.certificate_version = certificate_version
+        self.connection_id = connection_id
+        self.name = name
+        self.tenant_id = tenant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

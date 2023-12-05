@@ -103,7 +103,7 @@ class MarketplaceAppApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/marketplace-app-ui-details',

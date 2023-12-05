@@ -58,7 +58,6 @@ class GatewayParams(ModelNormal):
             'None': None,
             'INPUT': "INPUT",
             'OUTPUT': "OUTPUT",
-            'NAT_INPUT': "NAT_INPUT",
         },
     }
 
@@ -80,8 +79,8 @@ class GatewayParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'port': (str, none_type,),  # noqa: E501
             'direction': (str, none_type,),  # noqa: E501
+            'port': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +90,8 @@ class GatewayParams(ModelNormal):
 
 
     attribute_map = {
-        'port': 'port',  # noqa: E501
         'direction': 'direction',  # noqa: E501
+        'port': 'port',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,8 +141,8 @@ class GatewayParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            port (str, none_type): Specifies the port along with the protocol settings. For example 22/tcp, 68/udp.. [optional]  # noqa: E501
             direction (str, none_type): Specifies the packet direction settings.. [optional]  # noqa: E501
+            port (str, none_type): Specifies the port along with the protocol settings. For example 22/tcp, 68/udp.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

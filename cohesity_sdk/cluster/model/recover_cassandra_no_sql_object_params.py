@@ -80,8 +80,8 @@ class RecoverCassandraNoSqlObjectParams(ModelNormal):
         lazy_import()
         return {
             'object_name': (str, none_type,),  # noqa: E501
-            'rename_to': (str, none_type,),  # noqa: E501
             'object_properties': ([NoSqlObjectProperty], none_type,),  # noqa: E501
+            'rename_to': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class RecoverCassandraNoSqlObjectParams(ModelNormal):
 
     attribute_map = {
         'object_name': 'objectName',  # noqa: E501
-        'rename_to': 'renameTo',  # noqa: E501
         'object_properties': 'objectProperties',  # noqa: E501
+        'rename_to': 'renameTo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class RecoverCassandraNoSqlObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rename_to (str, none_type): Specifies the new name to which the object should be renamed to after the recovery.. [optional]  # noqa: E501
             object_properties ([NoSqlObjectProperty], none_type): Specifies the properties to be applied to the object at the time of recovery.. [optional]  # noqa: E501
+            rename_to (str, none_type): Specifies the new name to which the object should be renamed to after the recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

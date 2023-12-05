@@ -75,9 +75,9 @@ class MSSQLVolumeProtectionGroupHostParams(ModelNormal):
         """
         return {
             'host_id': (int, none_type,),  # noqa: E501
+            'enable_system_backup': (bool, none_type,),  # noqa: E501
             'host_name': (str, none_type,),  # noqa: E501
             'volume_guids': ([str], none_type,),  # noqa: E501
-            'enable_system_backup': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,9 +88,9 @@ class MSSQLVolumeProtectionGroupHostParams(ModelNormal):
 
     attribute_map = {
         'host_id': 'hostId',  # noqa: E501
+        'enable_system_backup': 'enableSystemBackup',  # noqa: E501
         'host_name': 'hostName',  # noqa: E501
         'volume_guids': 'volumeGuids',  # noqa: E501
-        'enable_system_backup': 'enableSystemBackup',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class MSSQLVolumeProtectionGroupHostParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            enable_system_backup (bool, none_type): Specifies whether to enable system/bmr backup using 3rd party tools installed on agent host.. [optional]  # noqa: E501
             host_name (str, none_type): Specifies the name of the host container on which databases are hosted.. [optional]  # noqa: E501
             volume_guids ([str], none_type): Specifies the list of volume GUIDs to be protected. If not specified, all the volumes of the host will be protected. Note that volumes of host on which databases are hosted are protected even if its not mentioned in this list.. [optional]  # noqa: E501
-            enable_system_backup (bool, none_type): Specifies whether to enable system/bmr backup using 3rd party tools installed on agent host.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

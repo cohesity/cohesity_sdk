@@ -89,8 +89,8 @@ class RecoverSalesforceParams(ModelNormal):
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
-            'recover_to': (int, none_type,),  # noqa: E501
             'recover_sfdc_object_params': (RecoverSfdcObjectParams,),  # noqa: E501
+            'recover_to': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,8 +103,8 @@ class RecoverSalesforceParams(ModelNormal):
         'objects': 'objects',  # noqa: E501
         'recovery_action': 'recoveryAction',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
-        'recover_to': 'recoverTo',  # noqa: E501
         'recover_sfdc_object_params': 'recoverSfdcObjectParams',  # noqa: E501
+        'recover_to': 'recoverTo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,8 +159,8 @@ class RecoverSalesforceParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering other salesforce objects if one of Object failed to recover. Default value is false.. [optional]  # noqa: E501
-            recover_to (int, none_type): Specifies the id of registered source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
             recover_sfdc_object_params (RecoverSfdcObjectParams): [optional]  # noqa: E501
+            recover_to (int, none_type): Specifies the id of registered source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

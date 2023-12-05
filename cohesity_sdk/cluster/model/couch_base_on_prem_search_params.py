@@ -87,8 +87,8 @@ class CouchBaseOnPremSearchParams(ModelComposed):
         """
         lazy_import()
         return {
-            'search_string': (str, none_type,),  # noqa: E501
             'couchbase_object_types': ([str],),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
             'source_ids': ([int], none_type,),  # noqa: E501
         }
 
@@ -99,8 +99,8 @@ class CouchBaseOnPremSearchParams(ModelComposed):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
         'couchbase_object_types': 'couchbaseObjectTypes',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
         'source_ids': 'sourceIds',  # noqa: E501
     }
 
@@ -117,12 +117,12 @@ class CouchBaseOnPremSearchParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, search_string, couchbase_object_types, *args, **kwargs):  # noqa: E501
+    def __init__(self, couchbase_object_types, search_string, *args, **kwargs):  # noqa: E501
         """CouchBaseOnPremSearchParams - a model defined in OpenAPI
 
         Args:
-            search_string (str, none_type): Specifies the search string to search the Couchbase Objects
             couchbase_object_types ([str]): Specifies Couchbase object types be searched. For Couchbase it can only be set to 'CouchbaseBuckets'.
+            search_string (str, none_type): Specifies the search string to search the Couchbase Objects
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -191,8 +191,8 @@ class CouchBaseOnPremSearchParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'search_string': search_string,
             'couchbase_object_types': couchbase_object_types,
+            'search_string': search_string,
         }
         model_args = {}
         model_args.update(required_args)

@@ -41,7 +41,6 @@ If an Active Directory/IdP domain is specified, a new group is added to the Cohe
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_groups_params import CreateGroupsParams
@@ -58,17 +57,16 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateGroupsParams([
         CreateGroupParams(
-            name="name_example",
-            domain="domain_example",
             description="description_example",
+            domain="domain_example",
             local_group_params={},
+            name="name_example",
+            restricted=True,
             roles=[
                 "roles_example",
             ],
-            restricted=True,
             tenant_ids=[
                 "tenant_ids_example",
             ],
@@ -97,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -122,7 +120,6 @@ Create a user session
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_user_session_request_params import CreateUserSessionRequestParams
@@ -139,15 +136,14 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateUserSessionRequestParams(
-        username="username_example",
-        password="password_example",
-        domain="domain_example",
         certificate="certificate_example",
-        private_key="private_key_example",
+        domain="domain_example",
         otp_code="otp_code_example",
         otp_type="email",
+        password="password_example",
+        private_key="private_key_example",
+        username="username_example",
     ) # CreateUserSessionRequestParams | Specifies the parameters to create a user session
 
 # example passing only required values which don't have defaults set
@@ -172,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -197,7 +193,6 @@ Create a new user API key.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.created_user_api_key import CreatedUserAPIKey
@@ -214,12 +209,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 body = CreateOrUpdateAPIKeyRequest(
-        name="name_example",
-        is_active=True,
         expiry_time_msecs=1,
+        is_active=True,
+        name="name_example",
     ) # CreateOrUpdateAPIKeyRequest | Request to create a new API Key
 
 # example passing only required values which don't have defaults set
@@ -245,7 +239,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -270,7 +264,6 @@ Add one or more users to Cohesity Cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.users_list import UsersList
@@ -287,20 +280,19 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateUsersParams([
         CreateUserParams(
-            username="username_example",
-            domain="domain_example",
             description="description_example",
+            domain="domain_example",
+            effective_time_msecs=1,
+            expiry_time_msecs=1,
             local_user_params={},
+            locked=True,
+            restricted=True,
             roles=[
                 "roles_example",
             ],
-            restricted=True,
-            effective_time_msecs=1,
-            expiry_time_msecs=1,
-            locked=True,
+            username="username_example",
         ),
     ]) # CreateUsersParams | If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
 
@@ -326,7 +318,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -351,7 +343,6 @@ If the group on the Cohesity Cluster was added for an Active Directory/IdP group
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -365,7 +356,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the group.
 
@@ -390,7 +380,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -415,7 +405,6 @@ If the Cohesity group was created against an Active Directory/IdP, the reference
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.delete_groups_request import DeleteGroupsRequest
@@ -430,7 +419,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = DeleteGroupsRequest(
         sids=[
@@ -459,7 +447,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -484,7 +472,6 @@ Deletes all sessions for given user sid or system wide sessions
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -498,7 +485,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specifies a user sid. If sid is not given system wide sessions are deleted. (optional)
 
@@ -524,7 +510,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -549,7 +535,6 @@ Delete a Cohesity user.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -563,7 +548,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the user.
 
@@ -588,7 +572,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -613,7 +597,6 @@ Delete a user API key.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -627,7 +610,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 id = "id_example" # str | Specify the id of the API key.
@@ -654,7 +636,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -679,7 +661,6 @@ Delete one or more Cohesity users.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.delete_users_request import DeleteUsersRequest
@@ -694,7 +675,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = DeleteUsersRequest(
         sids=[
@@ -723,7 +703,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -748,7 +728,6 @@ Get the number of user sessions.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.active_sessions_count_params import ActiveSessionsCountParams
@@ -763,7 +742,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sids = [
         "sids_example",
@@ -792,7 +770,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -817,7 +795,6 @@ Get the list of all API keys which are created or owned by the user.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -832,7 +809,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -869,7 +845,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -894,7 +870,6 @@ Get Group by SID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -909,7 +884,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the group.
 
@@ -935,7 +909,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -960,7 +934,6 @@ Get groups on the Cohesity cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -975,7 +948,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 names = [
         "names_example",
@@ -1022,7 +994,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1047,7 +1019,6 @@ Fetches all the sources assigned to a principal.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1062,7 +1033,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the principal.
 
@@ -1088,7 +1058,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1113,7 +1083,6 @@ Get Security Principals
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.security_principals import SecurityPrincipals
@@ -1128,7 +1097,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sids = [
         "S-0-072888001528021798096225500850762068629-39333975650685139102691291732729478601482026-0912727550417577019298162864882916633228770521-191166478378563875565986836152-8784425528468720999697682-579364428489671318576363915338224935163074506805717279357060662066496241-415434479790599868759540626151494012626181911847617323796802209082-677715773090491175877238622700367804481067589385995284318716971548-9437255518186242126631124808712-209361142227111098265387333954577961103760673817300538998580525021695595165-175112804308695820986859-22048655",
@@ -1156,7 +1124,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1181,7 +1149,6 @@ Get the API key by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1196,7 +1163,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specify the id of the API key.
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
@@ -1224,7 +1190,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1249,7 +1215,6 @@ Returns the list of API keys owned by the user. For security reasons there is no
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1264,7 +1229,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 ids = [
@@ -1307,7 +1271,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1332,7 +1296,6 @@ Get User by SID.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1347,7 +1310,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the user.
 
@@ -1373,7 +1335,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1398,7 +1360,6 @@ Get customized UI config for the logged in user.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1413,7 +1374,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -1435,7 +1395,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1460,7 +1420,6 @@ Get Users.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.users_list import UsersList
@@ -1475,7 +1434,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 domain = "domain_example" # str | Specifies the user domain to filter. (optional)
 sids = [
@@ -1526,7 +1484,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1551,7 +1509,6 @@ Refresh an existing user API key.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.created_user_api_key import CreatedUserAPIKey
@@ -1566,7 +1523,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 id = "id_example" # str | Specify the id of the API key.
@@ -1594,7 +1550,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1619,7 +1575,6 @@ Only group settings on the Cohesity Cluster are updated. No changes are made to 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_group_params import UpdateGroupParams
@@ -1636,15 +1591,14 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 sid = "sid_example" # str | Specify the SID of the group.
 body = UpdateGroupParams(
         description="description_example",
         local_group_params={},
+        restricted=True,
         roles=[
             "roles_example",
         ],
-        restricted=True,
         tenant_ids=[
             "tenant_ids_example",
         ],
@@ -1673,7 +1627,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1698,7 +1652,6 @@ Update protection sources assigned to a user/group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1713,7 +1666,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the principal.
 body = AssignedSources(
@@ -1748,7 +1700,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1773,7 +1725,6 @@ Update an existing user on the Cohesity Cluster. Only user settings on the Cohes
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1789,7 +1740,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 sid = "sid_example" # str | Specify the SID of the user.
 body = UpdateUserParams() # UpdateUserParams | Specifies the user information.
@@ -1817,7 +1767,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1842,7 +1792,6 @@ Update a user API key.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1859,13 +1808,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specify the id of the API key.
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 body = CreateOrUpdateAPIKeyRequest(
-        name="name_example",
-        is_active=True,
         expiry_time_msecs=1,
+        is_active=True,
+        name="name_example",
     ) # CreateOrUpdateAPIKeyRequest | Request to update a user API key
 
 # example passing only required values which don't have defaults set
@@ -1892,7 +1840,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1917,7 +1865,6 @@ Update customized UI config for the logged in user.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1933,10 +1880,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = UserUiConfig(
-        preferences="preferences_example",
         locale="locale_example",
+        preferences="preferences_example",
     ) # UserUiConfig | Specifies the user UI config.
 
 # example passing only required values which don't have defaults set
@@ -1961,7 +1907,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

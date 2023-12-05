@@ -74,14 +74,14 @@ class PublicFolderItemAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
-            'subject': (str, none_type,),  # noqa: E501
             'has_attachments': (bool, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'item_class': (str, none_type,),  # noqa: E501
-            'received_time_secs': (int, none_type,),  # noqa: E501
             'item_size': (int, none_type,),  # noqa: E501
             'parent_folder_id': (str, none_type,),  # noqa: E501
+            'received_time_secs': (int, none_type,),  # noqa: E501
+            'subject': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +91,14 @@ class PublicFolderItemAllOf(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'subject': 'subject',  # noqa: E501
         'has_attachments': 'hasAttachments',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'item_class': 'itemClass',  # noqa: E501
-        'received_time_secs': 'receivedTimeSecs',  # noqa: E501
         'item_size': 'itemSize',  # noqa: E501
         'parent_folder_id': 'parentFolderId',  # noqa: E501
+        'received_time_secs': 'receivedTimeSecs',  # noqa: E501
+        'subject': 'subject',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,14 +148,14 @@ class PublicFolderItemAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the Public folder item type.. [optional]  # noqa: E501
-            id (str, none_type): Specifies the id of the indexed item.. [optional]  # noqa: E501
-            subject (str, none_type): Specifies the subject of the indexed item.. [optional]  # noqa: E501
             has_attachments (bool, none_type): Specifies whether the item has any attachments. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the indexed item.. [optional]  # noqa: E501
             item_class (str, none_type): Specifies the item class of the indexed item.. [optional]  # noqa: E501
-            received_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this item is received.. [optional]  # noqa: E501
             item_size (int, none_type): Specifies the size in bytes for the indexed item.. [optional]  # noqa: E501
             parent_folder_id (str, none_type): Specifies the id of parent folder the indexed item.. [optional]  # noqa: E501
+            received_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this item is received.. [optional]  # noqa: E501
+            subject (str, none_type): Specifies the subject of the indexed item.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the Public folder item type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

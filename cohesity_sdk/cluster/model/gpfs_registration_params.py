@@ -83,10 +83,10 @@ class GpfsRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'endpoint': (str, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
-            'throttling_config': (NasThrottlingConfig,),  # noqa: E501
+            'endpoint': (str, none_type,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
+            'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -96,10 +96,10 @@ class GpfsRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'endpoint': 'endpoint',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
-        'throttling_config': 'throttlingConfig',  # noqa: E501
+        'endpoint': 'endpoint',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
+        'throttling_config': 'throttlingConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,12 +114,12 @@ class GpfsRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, endpoint, credentials, *args, **kwargs):  # noqa: E501
+    def __init__(self, credentials, endpoint, *args, **kwargs):  # noqa: E501
         """GpfsRegistrationParams - a model defined in OpenAPI
 
         Args:
-            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the GPFS Source.
             credentials (Credentials):
+            endpoint (str, none_type): Specifies the Hostname or IP Address Endpoint for the GPFS Source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,8 +153,8 @@ class GpfsRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
+            throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,8 +181,8 @@ class GpfsRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.endpoint = endpoint
         self.credentials = credentials
+        self.endpoint = endpoint
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

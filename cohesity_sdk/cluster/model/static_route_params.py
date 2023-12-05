@@ -74,12 +74,12 @@ class StaticRouteParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'interface_group': (str, none_type,),  # noqa: E501
             'destination_network': (str, none_type,),  # noqa: E501
+            'interface_group': (str, none_type,),  # noqa: E501
             'next_hop': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'interface': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'mtu': (int, none_type,),  # noqa: E501
             'node_group_name': (str, none_type,),  # noqa: E501
         }
@@ -91,12 +91,12 @@ class StaticRouteParams(ModelNormal):
 
 
     attribute_map = {
-        'interface_group': 'interfaceGroup',  # noqa: E501
         'destination_network': 'destinationNetwork',  # noqa: E501
+        'interface_group': 'interfaceGroup',  # noqa: E501
         'next_hop': 'nextHop',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'id': 'id',  # noqa: E501
         'interface': 'interface',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'mtu': 'mtu',  # noqa: E501
         'node_group_name': 'nodeGroupName',  # noqa: E501
     }
@@ -113,12 +113,12 @@ class StaticRouteParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, interface_group, destination_network, next_hop, *args, **kwargs):  # noqa: E501
+    def __init__(self, destination_network, interface_group, next_hop, *args, **kwargs):  # noqa: E501
         """StaticRouteParams - a model defined in OpenAPI
 
         Args:
-            interface_group (str, none_type): Specifies the network interfaces name to use for communicating with the destination network.
             destination_network (str, none_type): Specifies the destination network of the Static Route.
+            interface_group (str, none_type): Specifies the network interfaces name to use for communicating with the destination network.
             next_hop (str, none_type): Specifies the next hop to the destination network.
 
         Keyword Args:
@@ -153,9 +153,9 @@ class StaticRouteParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            description (str, none_type): Specifies a description of the Static Route.. [optional]  # noqa: E501
             id (str, none_type): Specifies the unique identifier for the route.. [optional]  # noqa: E501
             interface (str, none_type): Specifies the network interface name to use for communicating with the destination network.. [optional]  # noqa: E501
-            description (str, none_type): Specifies a description of the Static Route.. [optional]  # noqa: E501
             mtu (int, none_type): Specifies MTU setting per route.. [optional]  # noqa: E501
             node_group_name (str, none_type): Specifies the network node group to represent a group of nodes.. [optional]  # noqa: E501
         """
@@ -184,8 +184,8 @@ class StaticRouteParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.interface_group = interface_group
         self.destination_network = destination_network
+        self.interface_group = interface_group
         self.next_hop = next_hop
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

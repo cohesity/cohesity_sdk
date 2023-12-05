@@ -84,9 +84,9 @@ class RecoverGenericNasNasVolumeParams(ModelNormal):
         """
         return {
             'target_environment': (str,),  # noqa: E501
-            'generic_nas_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'elastifile_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'flashblade_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'generic_nas_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'gpfs_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'isilon_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'netapp_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -101,9 +101,9 @@ class RecoverGenericNasNasVolumeParams(ModelNormal):
 
     attribute_map = {
         'target_environment': 'targetEnvironment',  # noqa: E501
-        'generic_nas_target_params': 'genericNasTargetParams',  # noqa: E501
         'elastifile_target_params': 'elastifileTargetParams',  # noqa: E501
         'flashblade_target_params': 'flashbladeTargetParams',  # noqa: E501
+        'generic_nas_target_params': 'genericNasTargetParams',  # noqa: E501
         'gpfs_target_params': 'gpfsTargetParams',  # noqa: E501
         'isilon_target_params': 'isilonTargetParams',  # noqa: E501
         'netapp_target_params': 'netappTargetParams',  # noqa: E501
@@ -160,9 +160,9 @@ class RecoverGenericNasNasVolumeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            generic_nas_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Generic NAS recovery target.. [optional]  # noqa: E501
             elastifile_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Elastifile recovery target.. [optional]  # noqa: E501
             flashblade_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Flashblade recovery target.. [optional]  # noqa: E501
+            generic_nas_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Generic NAS recovery target.. [optional]  # noqa: E501
             gpfs_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a GPFS recovery target.. [optional]  # noqa: E501
             isilon_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Isilon recovery target.. [optional]  # noqa: E501
             netapp_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Netapp recovery target.. [optional]  # noqa: E501

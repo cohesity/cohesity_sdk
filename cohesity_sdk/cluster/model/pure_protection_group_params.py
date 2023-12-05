@@ -87,9 +87,9 @@ class PureProtectionGroupParams(ModelNormal):
         return {
             'objects': ([PureProtectionGroupObjectParams],),  # noqa: E501
             'max_snapshots_on_primary': (int, none_type,),  # noqa: E501
+            'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
         }
 
     @cached_property
@@ -101,9 +101,9 @@ class PureProtectionGroupParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'max_snapshots_on_primary': 'maxSnapshotsOnPrimary',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,9 +157,9 @@ class PureProtectionGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             max_snapshots_on_primary (int, none_type): Specifies the number of snapshots to retain on the primary environment. If not specified, then snapshots will not be deleted from the primary environment.. [optional]  # noqa: E501
+            pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,9 +74,9 @@ class VlanParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'vlan_id': (int, none_type,),  # noqa: E501
             'disable_vlan': (bool, none_type,),  # noqa: E501
             'interface_name': (str, none_type,),  # noqa: E501
+            'vlan_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class VlanParams(ModelNormal):
 
 
     attribute_map = {
-        'vlan_id': 'vlanId',  # noqa: E501
         'disable_vlan': 'disableVlan',  # noqa: E501
         'interface_name': 'interfaceName',  # noqa: E501
+        'vlan_id': 'vlanId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class VlanParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vlan_id (int, none_type): If this is set, then the Cohesity host name or the IP address associated with this VLAN is used for mounting Cohesity's view on the remote host.. [optional]  # noqa: E501
             disable_vlan (bool, none_type): If this is set to true, then even if VLANs are configured on the system, the partition VIPs will be used for the restore.. [optional]  # noqa: E501
             interface_name (str, none_type): Interface group to use for backup/restore. If this is not specified, primary interface group for the cluster will be used.. [optional]  # noqa: E501
+            vlan_id (int, none_type): If this is set, then the Cohesity host name or the IP address associated with this VLAN is used for mounting Cohesity's view on the remote host.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

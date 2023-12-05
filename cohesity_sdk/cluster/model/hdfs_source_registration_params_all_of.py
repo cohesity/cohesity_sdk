@@ -85,13 +85,13 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'host': (str,),  # noqa: E501
             'configuration_directory': (str,),  # noqa: E501
             'hadoop_distribution': (str,),  # noqa: E501
             'hadoop_version': (str,),  # noqa: E501
+            'host': (str,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,13 +101,13 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
         'hadoop_distribution': 'hadoopDistribution',  # noqa: E501
         'hadoop_version': 'hadoopVersion',  # noqa: E501
+        'host': 'host',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -122,14 +122,14 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, configuration_directory, hadoop_distribution, hadoop_version, *args, **kwargs):  # noqa: E501
+    def __init__(self, configuration_directory, hadoop_distribution, hadoop_version, host, *args, **kwargs):  # noqa: E501
         """HdfsSourceRegistrationParamsAllOf - a model defined in OpenAPI
 
         Args:
-            host (str): IP or hostname of any host from which the HDFS configuration files core-site.xml and hdfs-site.xml can be read.
             configuration_directory (str): The directory containing the core-site.xml and hdfs-site.xml configuration files.
             hadoop_distribution (str): The hadoop distribution for this cluster. This can be either 'CDH' or 'HDP'
             hadoop_version (str): The hadoop version for this cluster.
+            host (str): IP or hostname of any host from which the HDFS configuration files core-site.xml and hdfs-site.xml can be read.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,9 +163,9 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this HDFS source.. [optional]  # noqa: E501
             ssh_password_credentials (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
-            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this HDFS source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,10 +192,10 @@ class HdfsSourceRegistrationParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.host = host
         self.configuration_directory = configuration_directory
         self.hadoop_distribution = hadoop_distribution
         self.hadoop_version = hadoop_version
+        self.host = host
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

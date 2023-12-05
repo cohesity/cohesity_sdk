@@ -80,11 +80,11 @@ class DocumentLibraryItemAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'creation_time_secs': (int, none_type,),  # noqa: E501
             'file_type': (str, none_type,),  # noqa: E501
             'item_size': (int, none_type,),  # noqa: E501
-            'creation_time_secs': (int, none_type,),  # noqa: E501
-            'owner_name': (str, none_type,),  # noqa: E501
             'owner_email': (str, none_type,),  # noqa: E501
+            'owner_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,11 +94,11 @@ class DocumentLibraryItemAllOf(ModelNormal):
 
 
     attribute_map = {
+        'creation_time_secs': 'creationTimeSecs',  # noqa: E501
         'file_type': 'fileType',  # noqa: E501
         'item_size': 'itemSize',  # noqa: E501
-        'creation_time_secs': 'creationTimeSecs',  # noqa: E501
-        'owner_name': 'ownerName',  # noqa: E501
         'owner_email': 'ownerEmail',  # noqa: E501
+        'owner_name': 'ownerName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,11 +148,11 @@ class DocumentLibraryItemAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            creation_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this item is created.. [optional]  # noqa: E501
             file_type (str, none_type): Specifies the file type.. [optional]  # noqa: E501
             item_size (int, none_type): Specifies the size in bytes for the indexed item.. [optional]  # noqa: E501
-            creation_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this item is created.. [optional]  # noqa: E501
-            owner_name (str, none_type): Specifies the name of the owner of the document library item.. [optional]  # noqa: E501
             owner_email (str, none_type): Specifies the email of the owner of the document library item.. [optional]  # noqa: E501
+            owner_name (str, none_type): Specifies the name of the owner of the document library item.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

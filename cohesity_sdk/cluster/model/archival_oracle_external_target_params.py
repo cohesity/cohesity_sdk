@@ -86,15 +86,15 @@ class ArchivalOracleExternalTargetParams(ModelComposed):
         """
         lazy_import()
         return {
+            'access_key_id': (str, none_type,),  # noqa: E501
             'bucket_name': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
-            'access_key_id': (str, none_type,),  # noqa: E501
             'tenancy': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
             'storage_access_key': (str, none_type,),  # noqa: E501
-            'source_side_deduplication': (bool, none_type,),  # noqa: E501
-            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'source_side_deduplication': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,15 +104,15 @@ class ArchivalOracleExternalTargetParams(ModelComposed):
 
 
     attribute_map = {
+        'access_key_id': 'accessKeyId',  # noqa: E501
         'bucket_name': 'bucketName',  # noqa: E501
         'region': 'region',  # noqa: E501
-        'access_key_id': 'accessKeyId',  # noqa: E501
         'tenancy': 'tenancy',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
         'storage_access_key': 'storageAccessKey',  # noqa: E501
-        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
-        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
+        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
     }
 
     required_properties = set([
@@ -128,13 +128,13 @@ class ArchivalOracleExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket_name, region, access_key_id, tenancy, storage_class, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_key_id, bucket_name, region, tenancy, storage_class, *args, **kwargs):  # noqa: E501
         """ArchivalOracleExternalTargetParams - a model defined in OpenAPI
 
         Args:
+            access_key_id (str, none_type): Specifies the access key id of the external target.
             bucket_name (str, none_type): Specifies the bucket name of the external target.
             region (str, none_type): Specifies the region of the external target.
-            access_key_id (str, none_type): Specifies the access key id of the external target.
             tenancy (str, none_type): Specifies the tenancy of the external target.
             storage_class (str, none_type): Specifies the Oracle External Target storage class.
 
@@ -171,9 +171,9 @@ class ArchivalOracleExternalTargetParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             storage_access_key (str, none_type): Specifies the storage access key of the external target.. [optional]  # noqa: E501
-            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Oracle external target. [optional]  # noqa: E501
-            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the Oracle external target. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -208,9 +208,9 @@ class ArchivalOracleExternalTargetParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
+            'access_key_id': access_key_id,
             'bucket_name': bucket_name,
             'region': region,
-            'access_key_id': access_key_id,
             'tenancy': tenancy,
             'storage_class': storage_class,
         }

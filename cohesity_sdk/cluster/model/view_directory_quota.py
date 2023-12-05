@@ -76,8 +76,8 @@ class ViewDirectoryQuota(ModelNormal):
         return {
             'directory_path': (str, none_type,),  # noqa: E501
             'quota_policy': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'usage_bytes': (int, none_type,),  # noqa: E501
             'directory_walk_pending': (bool, none_type,),  # noqa: E501
+            'usage_bytes': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class ViewDirectoryQuota(ModelNormal):
     attribute_map = {
         'directory_path': 'directoryPath',  # noqa: E501
         'quota_policy': 'quotaPolicy',  # noqa: E501
-        'usage_bytes': 'usageBytes',  # noqa: E501
         'directory_walk_pending': 'directoryWalkPending',  # noqa: E501
+        'usage_bytes': 'usageBytes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class ViewDirectoryQuota(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            usage_bytes (int, none_type): Specifies the directory usage in bytes.. [optional]  # noqa: E501
             directory_walk_pending (bool, none_type): Specifies whether directory quota walk is pending.. [optional]  # noqa: E501
+            usage_bytes (int, none_type): Specifies the directory usage in bytes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
