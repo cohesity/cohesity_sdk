@@ -102,16 +102,16 @@ class DataTieringTask(ModelComposed):
         return {
             'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'is_active': (bool, none_type,),  # noqa: E501
+            'is_deleted': (bool, none_type,),  # noqa: E501
+            'is_paused': (bool, none_type,),  # noqa: E501
+            'last_run': (DataTieringTaskRun,),  # noqa: E501
+            'schedule': (DataTieringSchedule,),  # noqa: E501
             'source': (DataTieringSource,),  # noqa: E501
             'target': (DataTieringTarget,),  # noqa: E501
-            'schedule': (DataTieringSchedule,),  # noqa: E501
-            'last_run': (DataTieringTaskRun,),  # noqa: E501
-            'is_active': (bool, none_type,),  # noqa: E501
-            'is_paused': (bool, none_type,),  # noqa: E501
-            'is_deleted': (bool, none_type,),  # noqa: E501
             'downtiering_policy': (DowntieringPolicy,),  # noqa: E501
             'uptiering_policy': (UptieringPolicy,),  # noqa: E501
         }
@@ -125,16 +125,16 @@ class DataTieringTask(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'is_active': 'isActive',  # noqa: E501
+        'is_deleted': 'isDeleted',  # noqa: E501
+        'is_paused': 'isPaused',  # noqa: E501
+        'last_run': 'lastRun',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
         'source': 'source',  # noqa: E501
         'target': 'target',  # noqa: E501
-        'schedule': 'schedule',  # noqa: E501
-        'last_run': 'lastRun',  # noqa: E501
-        'is_active': 'isActive',  # noqa: E501
-        'is_paused': 'isPaused',  # noqa: E501
-        'is_deleted': 'isDeleted',  # noqa: E501
         'downtiering_policy': 'downtieringPolicy',  # noqa: E501
         'uptiering_policy': 'uptieringPolicy',  # noqa: E501
     }
@@ -191,16 +191,16 @@ class DataTieringTask(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the id of the data tiering task.. [optional]  # noqa: E501
-            description (str, none_type): Specifies a description of the data tiering task.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
+            description (str, none_type): Specifies a description of the data tiering task.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the data tiering task.. [optional]  # noqa: E501
+            is_active (bool, none_type): Whether the data tiering task is active or not.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            is_deleted (bool, none_type): Tracks whether the backup job has actually been deleted.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            is_paused (bool, none_type): Whether the data tiering task is paused. New runs are not scheduled for the paused tasks. Active run of the task (if any) is not impacted.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            last_run (DataTieringTaskRun): [optional]  # noqa: E501
+            schedule (DataTieringSchedule): [optional]  # noqa: E501
             source (DataTieringSource): [optional]  # noqa: E501
             target (DataTieringTarget): [optional]  # noqa: E501
-            schedule (DataTieringSchedule): [optional]  # noqa: E501
-            last_run (DataTieringTaskRun): [optional]  # noqa: E501
-            is_active (bool, none_type): Whether the data tiering task is active or not.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            is_paused (bool, none_type): Whether the data tiering task is paused. New runs are not scheduled for the paused tasks. Active run of the task (if any) is not impacted.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            is_deleted (bool, none_type): Tracks whether the backup job has actually been deleted.. [optional] if omitted the server will use the default value of True  # noqa: E501
             downtiering_policy (DowntieringPolicy): [optional]  # noqa: E501
             uptiering_policy (UptieringPolicy): [optional]  # noqa: E501
         """

@@ -95,8 +95,8 @@ class AwsAuthenticationMethodsParams(ModelComposed):
         lazy_import()
         return {
             'authentication_type': (str, none_type,),  # noqa: E501
-            'i_am_user_params': (AwsIAmUserParams,),  # noqa: E501
             'i_am_role_params': (AwsIAmRoleParams,),  # noqa: E501
+            'i_am_user_params': (AwsIAmUserParams,),  # noqa: E501
             'use_sts_params': (AwsUseSTSParams,),  # noqa: E501
         }
 
@@ -108,8 +108,8 @@ class AwsAuthenticationMethodsParams(ModelComposed):
 
     attribute_map = {
         'authentication_type': 'authenticationType',  # noqa: E501
-        'i_am_user_params': 'iAmUserParams',  # noqa: E501
         'i_am_role_params': 'iAmRoleParams',  # noqa: E501
+        'i_am_user_params': 'iAmUserParams',  # noqa: E501
         'use_sts_params': 'useSTSParams',  # noqa: E501
     }
 
@@ -164,8 +164,8 @@ class AwsAuthenticationMethodsParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            i_am_user_params (AwsIAmUserParams): [optional]  # noqa: E501
             i_am_role_params (AwsIAmRoleParams): [optional]  # noqa: E501
+            i_am_user_params (AwsIAmUserParams): [optional]  # noqa: E501
             use_sts_params (AwsUseSTSParams): [optional]  # noqa: E501
         """
 

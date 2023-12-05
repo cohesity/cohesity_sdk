@@ -79,8 +79,8 @@ class DataLockConstraints(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'mode': (str, none_type,),  # noqa: E501
             'expiry_time_usecs': (int, none_type,),  # noqa: E501
+            'mode': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class DataLockConstraints(ModelNormal):
 
 
     attribute_map = {
-        'mode': 'mode',  # noqa: E501
         'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
+        'mode': 'mode',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class DataLockConstraints(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            mode (str, none_type): Specifies the type of WORM retention type. <br>'Compliance' implies WORM retention is set for compliance reason. <br>'Administrative' implies WORM retention is set for administrative purposes.. [optional]  # noqa: E501
             expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
+            mode (str, none_type): Specifies the type of WORM retention type. <br>'Compliance' implies WORM retention is set for compliance reason. <br>'Administrative' implies WORM retention is set for administrative purposes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

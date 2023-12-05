@@ -81,12 +81,12 @@ class HiveSourceRegistrationParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'host': (str,),  # noqa: E501
             'configuration_directory': (str,),  # noqa: E501
             'hdfs_source_registration_id': (int,),  # noqa: E501
+            'host': (str,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HiveSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,12 +96,12 @@ class HiveSourceRegistrationParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
         'hdfs_source_registration_id': 'hdfsSourceRegistrationID',  # noqa: E501
+        'host': 'host',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -116,13 +116,13 @@ class HiveSourceRegistrationParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, configuration_directory, hdfs_source_registration_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, configuration_directory, hdfs_source_registration_id, host, *args, **kwargs):  # noqa: E501
         """HiveSourceRegistrationParamsAllOf - a model defined in OpenAPI
 
         Args:
-            host (str): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.
             configuration_directory (str): The directory containing the hive-site.xml.
             hdfs_source_registration_id (int): Protection Source registration id of the HDFS on which this Hive is running.
+            host (str): IP or hostname of any host from which the Hive configuration file hive-site.xml can be read.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,9 +156,9 @@ class HiveSourceRegistrationParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
             ssh_password_credentials (HiveSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
-            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hive source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -185,9 +185,9 @@ class HiveSourceRegistrationParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.host = host
         self.configuration_directory = configuration_directory
         self.hdfs_source_registration_id = hdfs_source_registration_id
+        self.host = host
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

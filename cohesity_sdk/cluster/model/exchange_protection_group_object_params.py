@@ -80,8 +80,8 @@ class ExchangeProtectionGroupObjectParams(ModelNormal):
         lazy_import()
         return {
             'id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'app_params': ([ExchangeAppParams], none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class ExchangeProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'app_params': 'appParams',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class ExchangeProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the registered Exchange DAG(Database Availability Group) source or Exchange physical source.. [optional]  # noqa: E501
             app_params ([ExchangeAppParams], none_type): Specifies the specific parameters required for Exchange app configuration.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the registered Exchange DAG(Database Availability Group) source or Exchange physical source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

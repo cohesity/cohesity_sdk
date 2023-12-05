@@ -78,9 +78,9 @@ class UpdateRemoteClusterParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'username': (str,),  # noqa: E501
-            'password': (str, none_type,),  # noqa: E501
             'node_addresses': ([str],),  # noqa: E501
+            'password': (str, none_type,),  # noqa: E501
+            'username': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -90,9 +90,9 @@ class UpdateRemoteClusterParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
-        'password': 'password',  # noqa: E501
         'node_addresses': 'nodeAddresses',  # noqa: E501
+        'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,9 +142,9 @@ class UpdateRemoteClusterParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            username (str): Specifies the Cohesity user name used to connect to the Remote Cluster.. [optional]  # noqa: E501
-            password (str, none_type): Specifies the password for Cohesity user to use when connecting to the Remote Cluster.. [optional]  # noqa: E501
             node_addresses ([str]): Specifies the VIP or IP addresses of the Nodes on the Remote Cluster to connect with. Hostnames are not supported.. [optional]  # noqa: E501
+            password (str, none_type): Specifies the password for Cohesity user to use when connecting to the Remote Cluster.. [optional]  # noqa: E501
+            username (str): Specifies the Cohesity user name used to connect to the Remote Cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

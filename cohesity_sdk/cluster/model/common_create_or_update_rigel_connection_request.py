@@ -74,8 +74,8 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'scalable': (bool, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
 
 
     attribute_map = {
-        'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'scalable': 'scalable',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, tenant_id, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, tenant_id, *args, **kwargs):  # noqa: E501
         """CommonCreateOrUpdateRigelConnectionRequest - a model defined in OpenAPI
 
         Args:
-            tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.
             name (str, none_type): Specifies the name of the connection.
+            tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class CommonCreateOrUpdateRigelConnectionRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.tenant_id = tenant_id
         self.name = name
+        self.tenant_id = tenant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

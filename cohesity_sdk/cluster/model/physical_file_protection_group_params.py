@@ -93,16 +93,16 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([PhysicalFileProtectionGroupObjectParams],),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
-            'perform_brick_based_deduplication': (bool, none_type,),  # noqa: E501
-            'quiesce': (bool, none_type,),  # noqa: E501
             'continue_on_quiesce_failure': (bool, none_type,),  # noqa: E501
-            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
             'dedup_exclusion_source_ids': ([int],),  # noqa: E501
-            'global_exclude_paths': ([str],),  # noqa: E501
             'global_exclude_fs': ([str],),  # noqa: E501
+            'global_exclude_paths': ([str],),  # noqa: E501
             'ignorable_errors': ([str], none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'perform_brick_based_deduplication': (bool, none_type,),  # noqa: E501
+            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
+            'pre_post_script': (PrePostScriptParams,),  # noqa: E501
+            'quiesce': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -113,16 +113,16 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
-        'perform_brick_based_deduplication': 'performBrickBasedDeduplication',  # noqa: E501
-        'quiesce': 'quiesce',  # noqa: E501
         'continue_on_quiesce_failure': 'continueOnQuiesceFailure',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
         'dedup_exclusion_source_ids': 'dedupExclusionSourceIds',  # noqa: E501
-        'global_exclude_paths': 'globalExcludePaths',  # noqa: E501
         'global_exclude_fs': 'globalExcludeFS',  # noqa: E501
+        'global_exclude_paths': 'globalExcludePaths',  # noqa: E501
         'ignorable_errors': 'ignorableErrors',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'perform_brick_based_deduplication': 'performBrickBasedDeduplication',  # noqa: E501
+        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
+        'quiesce': 'quiesce',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -175,16 +175,16 @@ class PhysicalFileProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
-            perform_brick_based_deduplication (bool, none_type): Specifies whether or not to perform brick based deduplication on this Protection Group.. [optional]  # noqa: E501
-            quiesce (bool, none_type): Specifies Whether to take app-consistent snapshots by quiescing apps and the filesystem before taking a backup.. [optional]  # noqa: E501
             continue_on_quiesce_failure (bool, none_type): Specifies whether to continue backing up on quiesce failure.. [optional]  # noqa: E501
-            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
             dedup_exclusion_source_ids ([int]): Specifies ids of sources for which deduplication has to be disabled.. [optional]  # noqa: E501
-            global_exclude_paths ([str]): Specifies global exclude filters which are applied to all sources in a job.. [optional]  # noqa: E501
             global_exclude_fs ([str]): Specifies global exclude filesystems which are applied to all sources in a job.. [optional]  # noqa: E501
+            global_exclude_paths ([str]): Specifies global exclude filters which are applied to all sources in a job.. [optional]  # noqa: E501
             ignorable_errors ([str], none_type): Specifies the Errors to be ignored in error db.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            perform_brick_based_deduplication (bool, none_type): Specifies whether or not to perform brick based deduplication on this Protection Group.. [optional]  # noqa: E501
+            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
+            pre_post_script (PrePostScriptParams): [optional]  # noqa: E501
+            quiesce (bool, none_type): Specifies Whether to take app-consistent snapshots by quiescing apps and the filesystem before taking a backup.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

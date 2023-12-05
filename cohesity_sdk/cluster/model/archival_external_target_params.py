@@ -84,7 +84,6 @@ class ArchivalExternalTargetParams(ModelComposed):
             'GOOGLE': "Google",
             'AWS': "AWS",
             'ORACLE': "Oracle",
-            'NAS': "Nas",
             'NAS': "NAS",
             'QSTARTAPE': "QStarTape",
             'S3COMPATIBLE': "S3Compatible",
@@ -110,14 +109,14 @@ class ArchivalExternalTargetParams(ModelComposed):
         """
         lazy_import()
         return {
-            'storage_type': (str, none_type,),  # noqa: E501
             'encryption': (EncryptionSettings,),  # noqa: E501
+            'storage_type': (str, none_type,),  # noqa: E501
             'target_bandwidth_throttlings': (TargetBandwidthThrottlings,),  # noqa: E501
+            'aws_params': (ArchivalAwsExternalTargetParams,),  # noqa: E501
             'azure_params': (ArchivalAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (ArchivalGcpExternalTargetParams,),  # noqa: E501
-            'aws_params': (ArchivalAwsExternalTargetParams,),  # noqa: E501
-            'oracle_params': (ArchivalOracleExternalTargetParams,),  # noqa: E501
             'nas_params': (ArchivalNasExternalTargetParams,),  # noqa: E501
+            'oracle_params': (ArchivalOracleExternalTargetParams,),  # noqa: E501
             'qstar_tape_params': (ArchivalQstarTapeExternalTargetParams,),  # noqa: E501
             's3_comp_params': (ArchivalS3CompExternalTargetParams,),  # noqa: E501
         }
@@ -129,14 +128,14 @@ class ArchivalExternalTargetParams(ModelComposed):
 
 
     attribute_map = {
-        'storage_type': 'storageType',  # noqa: E501
         'encryption': 'encryption',  # noqa: E501
+        'storage_type': 'storageType',  # noqa: E501
         'target_bandwidth_throttlings': 'targetBandwidthThrottlings',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
         'nas_params': 'nasParams',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
         'qstar_tape_params': 'qstarTapeParams',  # noqa: E501
         's3_comp_params': 's3CompParams',  # noqa: E501
     }
@@ -154,12 +153,12 @@ class ArchivalExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, storage_type, encryption, *args, **kwargs):  # noqa: E501
+    def __init__(self, encryption, storage_type, *args, **kwargs):  # noqa: E501
         """ArchivalExternalTargetParams - a model defined in OpenAPI
 
         Args:
-            storage_type (str, none_type): Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.
             encryption (EncryptionSettings):
+            storage_type (str, none_type): Specifies the Storage type of the External Target.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -194,11 +193,11 @@ class ArchivalExternalTargetParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             target_bandwidth_throttlings (TargetBandwidthThrottlings): [optional]  # noqa: E501
+            aws_params (ArchivalAwsExternalTargetParams): [optional]  # noqa: E501
             azure_params (ArchivalAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (ArchivalGcpExternalTargetParams): [optional]  # noqa: E501
-            aws_params (ArchivalAwsExternalTargetParams): [optional]  # noqa: E501
-            oracle_params (ArchivalOracleExternalTargetParams): [optional]  # noqa: E501
             nas_params (ArchivalNasExternalTargetParams): [optional]  # noqa: E501
+            oracle_params (ArchivalOracleExternalTargetParams): [optional]  # noqa: E501
             qstar_tape_params (ArchivalQstarTapeExternalTargetParams): [optional]  # noqa: E501
             s3_comp_params (ArchivalS3CompExternalTargetParams): [optional]  # noqa: E501
         """
@@ -235,8 +234,8 @@ class ArchivalExternalTargetParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'storage_type': storage_type,
             'encryption': encryption,
+            'storage_type': storage_type,
         }
         model_args = {}
         model_args.update(required_args)

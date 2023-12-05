@@ -74,8 +74,8 @@ class RecoverVolumeMapping(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source_volume_guid': (str, none_type,),  # noqa: E501
             'destination_volume_guid': (str, none_type,),  # noqa: E501
+            'source_volume_guid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class RecoverVolumeMapping(ModelNormal):
 
 
     attribute_map = {
-        'source_volume_guid': 'sourceVolumeGuid',  # noqa: E501
         'destination_volume_guid': 'destinationVolumeGuid',  # noqa: E501
+        'source_volume_guid': 'sourceVolumeGuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class RecoverVolumeMapping(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_volume_guid, destination_volume_guid, *args, **kwargs):  # noqa: E501
+    def __init__(self, destination_volume_guid, source_volume_guid, *args, **kwargs):  # noqa: E501
         """RecoverVolumeMapping - a model defined in OpenAPI
 
         Args:
-            source_volume_guid (str, none_type): Specifies the guid of the source volume.
             destination_volume_guid (str, none_type): Specifies the guid of the destination volume.
+            source_volume_guid (str, none_type): Specifies the guid of the source volume.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class RecoverVolumeMapping(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_volume_guid = source_volume_guid
         self.destination_volume_guid = destination_volume_guid
+        self.source_volume_guid = source_volume_guid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

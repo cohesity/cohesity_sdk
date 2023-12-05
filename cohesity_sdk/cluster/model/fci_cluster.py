@@ -83,12 +83,12 @@ class FCICluster(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'error': (Error,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'is_selected_by_default': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'resource_info': (AppResource,),  # noqa: E501
             'servers': ([SQLServer], none_type,),  # noqa: E501
-            'is_selected_by_default': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,12 +98,12 @@ class FCICluster(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'error': 'error',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'is_selected_by_default': 'isSelectedByDefault',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'resource_info': 'resourceInfo',  # noqa: E501
         'servers': 'servers',  # noqa: E501
-        'is_selected_by_default': 'isSelectedByDefault',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,12 +153,12 @@ class FCICluster(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the unique identifier of the FCI.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the FCI.. [optional]  # noqa: E501
             error (Error): [optional]  # noqa: E501
+            id (str, none_type): Specifies the unique identifier of the FCI.. [optional]  # noqa: E501
+            is_selected_by_default (bool, none_type): Indicates to the UI whether this FCI cluster should be selected by default. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the FCI.. [optional]  # noqa: E501
             resource_info (AppResource): [optional]  # noqa: E501
             servers ([SQLServer], none_type): Specifies the list of SQL servers which belongs to the given FCI. . [optional]  # noqa: E501
-            is_selected_by_default (bool, none_type): Indicates to the UI whether this FCI cluster should be selected by default. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

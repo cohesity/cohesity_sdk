@@ -85,11 +85,11 @@ class MssqlConnectionResponseParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'error': (Error,),  # noqa: E501
-            'skip_connection_discovery': (bool, none_type,),  # noqa: E501
-            'servers': ([SQLServer], none_type,),  # noqa: E501
-            'fci_clusters': ([FCICluster], none_type,),  # noqa: E501
             'aag_groups': ([AAGGroup], none_type,),  # noqa: E501
+            'error': (Error,),  # noqa: E501
+            'fci_clusters': ([FCICluster], none_type,),  # noqa: E501
+            'servers': ([SQLServer], none_type,),  # noqa: E501
+            'skip_connection_discovery': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,11 +99,11 @@ class MssqlConnectionResponseParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'error': 'error',  # noqa: E501
-        'skip_connection_discovery': 'skipConnectionDiscovery',  # noqa: E501
-        'servers': 'servers',  # noqa: E501
-        'fci_clusters': 'fciClusters',  # noqa: E501
         'aag_groups': 'aagGroups',  # noqa: E501
+        'error': 'error',  # noqa: E501
+        'fci_clusters': 'fciClusters',  # noqa: E501
+        'servers': 'servers',  # noqa: E501
+        'skip_connection_discovery': 'skipConnectionDiscovery',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,11 +153,11 @@ class MssqlConnectionResponseParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            error (Error): [optional]  # noqa: E501
-            skip_connection_discovery (bool, none_type): Specifies whether to skip the discovery phase of all SQL servers, AAG groups etc during registration process.. [optional]  # noqa: E501
-            servers ([SQLServer], none_type): Specifies the list of SQL servers. If SQL server is a part of avalibility group then it will be returned in aagServers field. This will include the list of all standalone SQL servers and servers belonging to any FCI enviournment.. [optional]  # noqa: E501
-            fci_clusters ([FCICluster], none_type): Specifies the list of FCI (Failover Cluster Instaces) Clusters. This will contain the list of all failover pools under a windows cluster. FCI clusters which are part of AAG, will be returned seperatly under aagServers field.. [optional]  # noqa: E501
             aag_groups ([AAGGroup], none_type): Specifies the list of AAG (Always on Avalibility) groups.. [optional]  # noqa: E501
+            error (Error): [optional]  # noqa: E501
+            fci_clusters ([FCICluster], none_type): Specifies the list of FCI (Failover Cluster Instaces) Clusters. This will contain the list of all failover pools under a windows cluster. FCI clusters which are part of AAG, will be returned seperatly under aagServers field.. [optional]  # noqa: E501
+            servers ([SQLServer], none_type): Specifies the list of SQL servers. If SQL server is a part of avalibility group then it will be returned in aagServers field. This will include the list of all standalone SQL servers and servers belonging to any FCI enviournment.. [optional]  # noqa: E501
+            skip_connection_discovery (bool, none_type): Specifies whether to skip the discovery phase of all SQL servers, AAG groups etc during registration process.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

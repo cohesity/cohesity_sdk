@@ -81,8 +81,8 @@ class UdaProtectionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'primary_fields': (UdaProtectionParamsPrimaryFields,),  # noqa: E501
             'dynamic_form': (UdaDynamicFormParams,),  # noqa: E501
+            'primary_fields': (UdaProtectionParamsPrimaryFields,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class UdaProtectionParams(ModelNormal):
 
 
     attribute_map = {
-        'primary_fields': 'primaryFields',  # noqa: E501
         'dynamic_form': 'dynamicForm',  # noqa: E501
+        'primary_fields': 'primaryFields',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class UdaProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            primary_fields (UdaProtectionParamsPrimaryFields): [optional]  # noqa: E501
             dynamic_form (UdaDynamicFormParams): [optional]  # noqa: E501
+            primary_fields (UdaProtectionParamsPrimaryFields): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

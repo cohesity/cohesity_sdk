@@ -74,8 +74,8 @@ class HeliosAWSTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source_id': (int, none_type,),  # noqa: E501
             'region': (int, none_type,),  # noqa: E501
+            'source_id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'region_name': (str, none_type,),  # noqa: E501
         }
@@ -87,8 +87,8 @@ class HeliosAWSTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'source_id': 'sourceId',  # noqa: E501
         'region': 'region',  # noqa: E501
+        'source_id': 'sourceId',  # noqa: E501
         'name': 'name',  # noqa: E501
         'region_name': 'regionName',  # noqa: E501
     }
@@ -105,12 +105,12 @@ class HeliosAWSTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_id, region, *args, **kwargs):  # noqa: E501
+    def __init__(self, region, source_id, *args, **kwargs):  # noqa: E501
         """HeliosAWSTargetConfig - a model defined in OpenAPI
 
         Args:
-            source_id (int, none_type): Specifies the source id of the AWS protection source registered on Cohesity cluster.
             region (int, none_type): Specifies id of the AWS region in which to replicate the Snapshot to. Applicable if replication target is AWS target.
+            source_id (int, none_type): Specifies the source id of the AWS protection source registered on Cohesity cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,8 +172,8 @@ class HeliosAWSTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_id = source_id
         self.region = region
+        self.source_id = source_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

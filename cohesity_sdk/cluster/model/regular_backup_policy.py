@@ -87,11 +87,11 @@ class RegularBackupPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'incremental': (IncrementalBackupPolicy,),  # noqa: E501
             'full': (FullBackupPolicy,),  # noqa: E501
             'full_backups': ([FullScheduleAndRetention],),  # noqa: E501
-            'retention': (Retention,),  # noqa: E501
+            'incremental': (IncrementalBackupPolicy,),  # noqa: E501
             'primary_backup_target': (PrimaryBackupTarget,),  # noqa: E501
+            'retention': (Retention,),  # noqa: E501
         }
 
     @cached_property
@@ -101,11 +101,11 @@ class RegularBackupPolicy(ModelNormal):
 
 
     attribute_map = {
-        'incremental': 'incremental',  # noqa: E501
         'full': 'full',  # noqa: E501
         'full_backups': 'fullBackups',  # noqa: E501
-        'retention': 'retention',  # noqa: E501
+        'incremental': 'incremental',  # noqa: E501
         'primary_backup_target': 'primaryBackupTarget',  # noqa: E501
+        'retention': 'retention',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,11 +155,11 @@ class RegularBackupPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            incremental (IncrementalBackupPolicy): [optional]  # noqa: E501
             full (FullBackupPolicy): [optional]  # noqa: E501
             full_backups ([FullScheduleAndRetention]): Specifies multiple schedules and retentions for full backup. Specify either of the 'full' or 'fullBackups' values. Its recommended to use 'fullBaackups' value since 'full' will be deprecated after few releases.. [optional]  # noqa: E501
-            retention (Retention): [optional]  # noqa: E501
+            incremental (IncrementalBackupPolicy): [optional]  # noqa: E501
             primary_backup_target (PrimaryBackupTarget): [optional]  # noqa: E501
+            retention (Retention): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

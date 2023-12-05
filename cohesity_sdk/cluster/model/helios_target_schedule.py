@@ -87,8 +87,8 @@ class HeliosTargetSchedule(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'unit': (str, none_type,),  # noqa: E501
             'frequency': (int, none_type,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +98,8 @@ class HeliosTargetSchedule(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
         'frequency': 'frequency',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,8 +149,8 @@ class HeliosTargetSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            unit (str, none_type): Specifies the frequency that Snapshots should be copied to the specified target. Used in combination with multiplier. <br>'Runs' means that the Snapshot copy occurs after the number of Protection Group Runs equals the number specified in the frequency. <br>'Hours' means that the Snapshot copy occurs hourly at the frequency set in the frequency, for example if scheduleFrequency is 2, the copy occurs every 2 hours. <br>'Days' means that the Snapshot copy occurs daily at the frequency set in the frequency. <br>'Weeks' means that the Snapshot copy occurs weekly at the frequency set in the frequency. <br>'Months' means that the Snapshot copy occurs monthly at the frequency set in the Frequency. <br>'Years' means that the Snapshot copy occurs yearly at the frequency set in the scheduleFrequency.. [optional]  # noqa: E501
             frequency (int, none_type): Specifies a factor to multiply the unit by, to determine the copy schedule. For example if set to 2 and the unit is hourly, then Snapshots from the first eligible Job Run for every 2 hour period is copied.. [optional]  # noqa: E501
+            unit (str, none_type): Specifies the frequency that Snapshots should be copied to the specified target. Used in combination with multiplier. <br>'Runs' means that the Snapshot copy occurs after the number of Protection Group Runs equals the number specified in the frequency. <br>'Hours' means that the Snapshot copy occurs hourly at the frequency set in the frequency, for example if scheduleFrequency is 2, the copy occurs every 2 hours. <br>'Days' means that the Snapshot copy occurs daily at the frequency set in the frequency. <br>'Weeks' means that the Snapshot copy occurs weekly at the frequency set in the frequency. <br>'Months' means that the Snapshot copy occurs monthly at the frequency set in the Frequency. <br>'Years' means that the Snapshot copy occurs yearly at the frequency set in the scheduleFrequency.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

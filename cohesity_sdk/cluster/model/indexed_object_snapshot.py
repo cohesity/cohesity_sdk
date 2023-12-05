@@ -83,19 +83,19 @@ class IndexedObjectSnapshot(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'indexed_object_name': (str, none_type,),  # noqa: E501
-            'object_snapshotid': (str, none_type,),  # noqa: E501
-            'snapshot_timestamp_usecs': (int, none_type,),  # noqa: E501
-            'run_type': (str, none_type,),  # noqa: E501
-            'protection_group_id': (str, none_type,),  # noqa: E501
-            'protection_group_name': (str, none_type,),  # noqa: E501
-            'storage_domain_id': (int, none_type,),  # noqa: E501
             'attempts': (int, none_type,),  # noqa: E501
-            'size_bytes': (int, none_type,),  # noqa: E501
+            'external_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'indexed_object_name': (str, none_type,),  # noqa: E501
+            'indexed_object_source_uuid': (str, none_type,),  # noqa: E501
             'inode_id': (int, none_type,),  # noqa: E501
             'last_modified_time_usecs': (int, none_type,),  # noqa: E501
-            'external_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'indexed_object_source_uuid': (str, none_type,),  # noqa: E501
+            'object_snapshotid': (str, none_type,),  # noqa: E501
+            'protection_group_id': (str, none_type,),  # noqa: E501
+            'protection_group_name': (str, none_type,),  # noqa: E501
+            'run_type': (str, none_type,),  # noqa: E501
+            'size_bytes': (int, none_type,),  # noqa: E501
+            'snapshot_timestamp_usecs': (int, none_type,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,19 +105,19 @@ class IndexedObjectSnapshot(ModelNormal):
 
 
     attribute_map = {
-        'indexed_object_name': 'indexedObjectName',  # noqa: E501
-        'object_snapshotid': 'objectSnapshotid',  # noqa: E501
-        'snapshot_timestamp_usecs': 'snapshotTimestampUsecs',  # noqa: E501
-        'run_type': 'runType',  # noqa: E501
-        'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
         'attempts': 'attempts',  # noqa: E501
-        'size_bytes': 'sizeBytes',  # noqa: E501
+        'external_target_info': 'externalTargetInfo',  # noqa: E501
+        'indexed_object_name': 'indexedObjectName',  # noqa: E501
+        'indexed_object_source_uuid': 'indexedObjectSourceUuid',  # noqa: E501
         'inode_id': 'inodeId',  # noqa: E501
         'last_modified_time_usecs': 'lastModifiedTimeUsecs',  # noqa: E501
-        'external_target_info': 'externalTargetInfo',  # noqa: E501
-        'indexed_object_source_uuid': 'indexedObjectSourceUuid',  # noqa: E501
+        'object_snapshotid': 'objectSnapshotid',  # noqa: E501
+        'protection_group_id': 'protectionGroupId',  # noqa: E501
+        'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'run_type': 'runType',  # noqa: E501
+        'size_bytes': 'sizeBytes',  # noqa: E501
+        'snapshot_timestamp_usecs': 'snapshotTimestampUsecs',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,19 +167,19 @@ class IndexedObjectSnapshot(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            indexed_object_name (str, none_type): Specifies the indexed object name.. [optional]  # noqa: E501
-            object_snapshotid (str, none_type): Specifies snapshot id of the object containing this indexed object.. [optional]  # noqa: E501
-            snapshot_timestamp_usecs (int, none_type): Specifies a unix timestamp when the object snapshot was taken in micro seconds.. [optional]  # noqa: E501
-            run_type (str, none_type): Specifies the type of protection run created this snapshot.. [optional]  # noqa: E501
-            protection_group_id (str, none_type): Specifies the protection group id which contains this snapshot.. [optional]  # noqa: E501
-            protection_group_name (str, none_type): Specifies the protection group name which contains this snapshot.. [optional]  # noqa: E501
-            storage_domain_id (int, none_type): Specifies the storage domain id containing this snapshot.. [optional]  # noqa: E501
             attempts (int, none_type): Specifies the number of runs have been executed before the run completed successfully.. [optional]  # noqa: E501
-            size_bytes (int, none_type): Specifies the indexed object size in bytes.. [optional]  # noqa: E501
+            external_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the external target information if this is an archival snapshot.. [optional]  # noqa: E501
+            indexed_object_name (str, none_type): Specifies the indexed object name.. [optional]  # noqa: E501
+            indexed_object_source_uuid (str, none_type): Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery.. [optional]  # noqa: E501
             inode_id (int, none_type): Specifies the source inode number of the file being recovered.. [optional]  # noqa: E501
             last_modified_time_usecs (int, none_type): Specifies the last time file was modified in unix timestamp.. [optional]  # noqa: E501
-            external_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the external target information if this is an archival snapshot.. [optional]  # noqa: E501
-            indexed_object_source_uuid (str, none_type): Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery.. [optional]  # noqa: E501
+            object_snapshotid (str, none_type): Specifies snapshot id of the object containing this indexed object.. [optional]  # noqa: E501
+            protection_group_id (str, none_type): Specifies the protection group id which contains this snapshot.. [optional]  # noqa: E501
+            protection_group_name (str, none_type): Specifies the protection group name which contains this snapshot.. [optional]  # noqa: E501
+            run_type (str, none_type): Specifies the type of protection run created this snapshot.. [optional]  # noqa: E501
+            size_bytes (int, none_type): Specifies the indexed object size in bytes.. [optional]  # noqa: E501
+            snapshot_timestamp_usecs (int, none_type): Specifies a unix timestamp when the object snapshot was taken in micro seconds.. [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the storage domain id containing this snapshot.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

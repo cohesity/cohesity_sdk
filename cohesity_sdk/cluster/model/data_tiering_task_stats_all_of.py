@@ -74,8 +74,8 @@ class DataTieringTaskStatsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'entity_count': (int, none_type,),  # noqa: E501
             'changed_entity_count': (int, none_type,),  # noqa: E501
+            'entity_count': (int, none_type,),  # noqa: E501
             'is_tiering_goal_met': (bool, none_type,),  # noqa: E501
             'total_tiered_bytes': (int, none_type,),  # noqa: E501
         }
@@ -87,8 +87,8 @@ class DataTieringTaskStatsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'entity_count': 'entityCount',  # noqa: E501
         'changed_entity_count': 'changedEntityCount',  # noqa: E501
+        'entity_count': 'entityCount',  # noqa: E501
         'is_tiering_goal_met': 'isTieringGoalMet',  # noqa: E501
         'total_tiered_bytes': 'totalTieredBytes',  # noqa: E501
     }
@@ -140,8 +140,8 @@ class DataTieringTaskStatsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            entity_count (int, none_type): Specifies total entity count.. [optional]  # noqa: E501
             changed_entity_count (int, none_type): Specifies changed entity count.. [optional]  # noqa: E501
+            entity_count (int, none_type): Specifies total entity count.. [optional]  # noqa: E501
             is_tiering_goal_met (bool, none_type): Specifies whether tiering goal has been met.. [optional] if omitted the server will use the default value of False  # noqa: E501
             total_tiered_bytes (int, none_type): Specifies total amount of data successfully tiered from the NAS source.. [optional]  # noqa: E501
         """

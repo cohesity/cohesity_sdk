@@ -79,9 +79,9 @@ class DataTieringTaskRun(ModelNormal):
         """
         lazy_import()
         return {
+            'end_time_usecs': (int, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
             'tiering_info': (TieringInfo,),  # noqa: E501
         }
 
@@ -92,9 +92,9 @@ class DataTieringTaskRun(ModelNormal):
 
 
     attribute_map = {
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'id': 'id',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'tiering_info': 'tieringInfo',  # noqa: E501
     }
 
@@ -145,9 +145,9 @@ class DataTieringTaskRun(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            end_time_usecs (int, none_type): Specifies the end time of task run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the data tiering task run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of task run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of task run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             tiering_info (TieringInfo): [optional]  # noqa: E501
         """
 

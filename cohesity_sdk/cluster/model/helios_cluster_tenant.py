@@ -93,15 +93,14 @@ class HeliosClusterTenant(ModelComposed):
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'network': (TenantNetwork,),  # noqa: E501
             'created_at_time_msecs': (int, none_type,),  # noqa: E501
-            'last_updated_at_time_msecs': (int, none_type,),  # noqa: E501
             'deleted_at_time_msecs': (int, none_type,),  # noqa: E501
-            'is_managed_on_helios': (bool, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
+            'last_updated_at_time_msecs': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'network': (TenantNetwork,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,15 +113,14 @@ class HeliosClusterTenant(ModelComposed):
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'network': 'network',  # noqa: E501
         'created_at_time_msecs': 'createdAtTimeMsecs',  # noqa: E501
-        'last_updated_at_time_msecs': 'lastUpdatedAtTimeMsecs',  # noqa: E501
         'deleted_at_time_msecs': 'deletedAtTimeMsecs',  # noqa: E501
-        'is_managed_on_helios': 'isManagedOnHelios',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'last_updated_at_time_msecs': 'lastUpdatedAtTimeMsecs',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'network': 'network',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     required_properties = set([
@@ -176,15 +174,14 @@ class HeliosClusterTenant(ModelComposed):
             cluster_id (int, none_type): Specifies the cluster id of the cluster.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the incarnation id of the cluster.. [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id of the cluster. Only valid for DMaaS clusters.. [optional]  # noqa: E501
-            id (str, none_type): The tenant id.. [optional]  # noqa: E501
-            name (str, none_type): Name of the Tenant.. [optional]  # noqa: E501
-            description (str, none_type): Description about the tenant.. [optional]  # noqa: E501
-            status (str, none_type): Current Status of the Tenant.. [optional]  # noqa: E501
-            network (TenantNetwork): [optional]  # noqa: E501
             created_at_time_msecs (int, none_type): Epoch time when tenant was created.. [optional]  # noqa: E501
-            last_updated_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
             deleted_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
-            is_managed_on_helios (bool, none_type): Flag to indicate if tenant is managed on helios. [optional]  # noqa: E501
+            description (str, none_type): Description about the tenant.. [optional]  # noqa: E501
+            id (str, none_type): The tenant id.. [optional]  # noqa: E501
+            last_updated_at_time_msecs (int, none_type): Epoch time when tenant was last updated.. [optional]  # noqa: E501
+            name (str, none_type): Name of the Tenant.. [optional]  # noqa: E501
+            network (TenantNetwork): [optional]  # noqa: E501
+            status (str, none_type): Current Status of the Tenant.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

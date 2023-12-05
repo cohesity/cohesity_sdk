@@ -74,8 +74,8 @@ class DataTieringTarget(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'view_name': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
             'mount_path': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class DataTieringTarget(ModelNormal):
 
 
     attribute_map = {
-        'view_name': 'viewName',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
         'mount_path': 'mountPath',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class DataTieringTarget(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, view_name, storage_domain_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, storage_domain_id, view_name, *args, **kwargs):  # noqa: E501
         """DataTieringTarget - a model defined in OpenAPI
 
         Args:
-            view_name (str, none_type): Specifies the view name.
             storage_domain_id (int, none_type): Specifies the Storage Domain ID where the view will be kept.
+            view_name (str, none_type): Specifies the view name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class DataTieringTarget(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.view_name = view_name
         self.storage_domain_id = storage_domain_id
+        self.view_name = view_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

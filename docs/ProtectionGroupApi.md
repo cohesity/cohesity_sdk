@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**get_protection_group_runs**](ProtectionGroupApi.md#get_protection_group_runs) | **GET** /data-protect/protection-groups/{id}/runs | Get the list of runs for a Protection Group.
 [**get_protection_groups**](ProtectionGroupApi.md#get_protection_groups) | **GET** /data-protect/protection-groups | Get the list of Protection Groups.
 [**get_protection_run_progress**](ProtectionGroupApi.md#get_protection_run_progress) | **GET** /data-protect/runs/{runId}/progress | Get the progress of a run.
-[**get_protection_run_stats**](ProtectionGroupApi.md#get_protection_run_stats) | **GET** /data-protect/runs/{runId}/stats | Get the stats for a run.
 [**get_protection_runs**](ProtectionGroupApi.md#get_protection_runs) | **GET** /data-protect/runs/summary | Get the list of runs.
 [**get_run_debug_logs**](ProtectionGroupApi.md#get_run_debug_logs) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/debug-logs | Get the debug logs for a run from a Protection Group.
 [**get_run_debug_logs_for_object**](ProtectionGroupApi.md#get_run_debug_logs_for_object) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/debug-logs | Get the debug logs for a particular object in a run from a Protection Group.
@@ -24,7 +23,7 @@ Method | HTTP request | Description
 
 
 # **create_protection_group**
-> CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b create_protection_group(body)
+> ProtectionGroup create_protection_group(body)
 
 Create a Protection Group.
 
@@ -32,12 +31,11 @@ Create a Protection Group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
-from cohesity_sdk.cluster.model.common_protection_group_request_paramsdc3738211b78497f_a31b107b557906d5 import CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -49,43 +47,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5(
-        name="name_example",
-        policy_id="policy_id_example",
-        priority="kLow",
-        storage_domain_id=1,
-        description="description_example",
-        start_time=TimeOfDay(
-            hour=0,
-            minute=0,
-            time_zone="America/Los_Angeles",
-        ),
-        end_time_usecs=1,
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        sla=[
-            SlaRule(
-                backup_run_type="kIncremental",
-                sla_minutes=1,
-            ),
-        ],
-        qos_policy="kBackupHDD",
-        abort_in_blackouts=True,
-        pause_in_blackouts=True,
-        environment="kVMware",
-        is_paused=True,
-    ) # CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5 | Specifies the parameters to create a Protection Group.
+body = CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to create a Protection Group.
 
 # example passing only required values which don't have defaults set
 try:
@@ -101,15 +63,15 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5**](CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5.md)| Specifies the parameters to create a Protection Group. |
+ **body** | [**CreateOrUpdateProtectionGroupRequest**](CreateOrUpdateProtectionGroupRequest.md)| Specifies the parameters to create a Protection Group. |
 
 ### Return type
 
-[**CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b**](CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b.md)
+[**ProtectionGroup**](ProtectionGroup.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -134,7 +96,6 @@ Create a new protection run. This can be used to start a run for a Protection Gr
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
@@ -151,78 +112,77 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 body = CreateProtectionGroupRunRequest(
-        run_type="kRegular",
         objects=[
             RunObject(
-                id=1,
                 app_ids=[
                     1,
                 ],
+                id=1,
                 physical_params=RunObjectPhysicalParams(
                     metadata_file_path="metadata_file_path_example",
                 ),
             ),
         ],
+        run_type="kRegular",
         targets_config=RunTargetsConfiguration(
-            use_policy_defaults=False,
-            replications=[
-                RunReplicationConfig(
-                    id=1,
-                    retention=Retention(
-                        unit="Days",
-                        duration=1,
-                        data_lock_config=DataLockConfig(
-                            mode="Compliance",
-                            unit="Days",
-                            duration=1,
-                            enable_worm_on_external_target=True,
-                        ),
-                    ),
-                ),
-            ],
             archivals=[
                 RunArchivalConfig(
-                    id=1,
                     archival_target_type="Tape",
+                    copy_only_fully_successful=True,
+                    id=1,
                     retention=Retention(
-                        unit="Days",
-                        duration=1,
                         data_lock_config=DataLockConfig(
-                            mode="Compliance",
-                            unit="Days",
                             duration=1,
                             enable_worm_on_external_target=True,
+                            mode="Compliance",
+                            unit="Days",
                         ),
+                        duration=1,
+                        unit="Days",
                     ),
-                    copy_only_fully_successful=True,
                 ),
             ],
             cloud_replications=[
                 RunCloudReplicationConfig(
-                    target_type="AWS",
                     aws_target=AWSTargetConfig(
-                        source_id=1,
                         region=1,
+                        source_id=1,
                     ),
                     azure_target=AzureTargetConfig(
-                        source_id=1,
                         resource_group=1,
+                        source_id=1,
                     ),
                     retention=Retention(
-                        unit="Days",
-                        duration=1,
                         data_lock_config=DataLockConfig(
-                            mode="Compliance",
-                            unit="Days",
                             duration=1,
                             enable_worm_on_external_target=True,
+                            mode="Compliance",
+                            unit="Days",
                         ),
+                        duration=1,
+                        unit="Days",
+                    ),
+                    target_type="AWS",
+                ),
+            ],
+            replications=[
+                RunReplicationConfig(
+                    id=1,
+                    retention=Retention(
+                        data_lock_config=DataLockConfig(
+                            duration=1,
+                            enable_worm_on_external_target=True,
+                            mode="Compliance",
+                            unit="Days",
+                        ),
+                        duration=1,
+                        unit="Days",
                     ),
                 ),
             ],
+            use_policy_defaults=False,
         ),
     ) # CreateProtectionGroupRunRequest | Specifies the parameters to start a protection run.
 
@@ -249,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -274,7 +234,6 @@ Returns Success if the Protection Group is deleted.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -288,7 +247,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 delete_snapshots = True # bool | Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted. (optional)
@@ -323,7 +281,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -340,7 +298,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_group_by_id**
-> CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b get_protection_group_by_id(id)
+> ProtectionGroup get_protection_group_by_id(id)
 
 List details about single Protection Group.
 
@@ -348,11 +306,10 @@ Returns the Protection Group corresponding to the specified Group id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -363,7 +320,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
@@ -402,11 +358,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b**](CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b.md)
+[**ProtectionGroup**](ProtectionGroup.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -431,7 +387,6 @@ Get a run for a particular Protection Group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -446,7 +401,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
@@ -495,7 +449,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -520,7 +474,6 @@ Get the runs for a particular Protection Group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -535,7 +488,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
@@ -552,16 +504,16 @@ run_types = [
 include_object_details = True # bool | Specifies if the result includes the object details for each protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned. (optional)
 local_backup_run_status = [
         "Accepted",
-    ] # [str] | Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 replication_run_status = [
         "Accepted",
-    ] # [str] | Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 archival_run_status = [
         "Accepted",
-    ] # [str] | Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 cloud_spin_run_status = [
         "Accepted",
-    ] # [str] | Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 num_runs = 1 # int | Specifies the max number of runs. If not specified, at most 100 runs will be returned. (optional)
 exclude_non_restorable_runs = False # bool | Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. (optional) if omitted the server will use the default value of False
 run_tags = [
@@ -601,10 +553,10 @@ Name | Type | Description  | Notes
  **include_tenants** | **bool**| If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Group Runs created by the current user will be returned. | [optional]
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. | [optional]
  **include_object_details** | **bool**| Specifies if the result includes the object details for each protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned. | [optional]
- **local_backup_run_status** | **[str]**| Specifies a list of local backup status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **replication_run_status** | **[str]**| Specifies a list of replication status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **archival_run_status** | **[str]**| Specifies a list of archival status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **cloud_spin_run_status** | **[str]**| Specifies a list of cloud spin status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
+ **local_backup_run_status** | **[str]**| Specifies a list of local backup status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **replication_run_status** | **[str]**| Specifies a list of replication status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **archival_run_status** | **[str]**| Specifies a list of archival status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **cloud_spin_run_status** | **[str]**| Specifies a list of cloud spin status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
  **num_runs** | **int**| Specifies the max number of runs. If not specified, at most 100 runs will be returned. | [optional]
  **exclude_non_restorable_runs** | **bool**| Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. | [optional] if omitted the server will use the default value of False
  **run_tags** | **[str]**| Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned. | [optional]
@@ -616,7 +568,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -641,7 +593,6 @@ Get the list of Protection Groups.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_groups import ProtectionGroups
@@ -656,7 +607,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 ids = [
@@ -681,19 +631,19 @@ is_deleted = True # bool | If true, return only Protection Groups that have been
 is_paused = True # bool | Filter by paused or non paused Protection Groups, If not set, all paused and non paused Protection Groups are returned. If true, only paused Protection Groups are returned. If false, only non paused Protection Groups are returned. (optional)
 last_run_local_backup_status = [
         "Accepted",
-    ] # [str] | Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 last_run_replication_status = [
         "Accepted",
-    ] # [str] | Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 last_run_archival_status = [
         "Accepted",
-    ] # [str] | Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 last_run_cloud_spin_status = [
         "Accepted",
-    ] # [str] | Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 last_run_any_status = [
         "Accepted",
-    ] # [str] | Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused. (optional)
 is_last_run_sla_violated = True # bool | If true, return Protection Groups for which last run SLA was violated. (optional)
 tenant_ids = [
         "tenantIds_example",
@@ -730,11 +680,11 @@ Name | Type | Description  | Notes
  **is_active** | **bool**| Filter by Inactive or Active Protection Groups. If not set, all Inactive and Active Protection Groups are returned. If true, only Active Protection Groups are returned. If false, only Inactive Protection Groups are returned. When you create a Protection Group on a Primary Cluster with a replication schedule, the Cluster creates an Inactive copy of the Protection Group on the Remote Cluster. In addition, when an Active and running Protection Group is deactivated, the Protection Group becomes Inactive. | [optional]
  **is_deleted** | **bool**| If true, return only Protection Groups that have been deleted but still have Snapshots associated with them. If false, return all Protection Groups except those Protection Groups that have been deleted and still have Snapshots associated with them. A Protection Group that is deleted with all its Snapshots is not returned for either of these cases. | [optional]
  **is_paused** | **bool**| Filter by paused or non paused Protection Groups, If not set, all paused and non paused Protection Groups are returned. If true, only paused Protection Groups are returned. If false, only non paused Protection Groups are returned. | [optional]
- **last_run_local_backup_status** | **[str]**| Filter by last local backup run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **last_run_replication_status** | **[str]**| Filter by last remote replication run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **last_run_archival_status** | **[str]**| Filter by last cloud archival run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **last_run_cloud_spin_status** | **[str]**| Filter by last cloud spin run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
- **last_run_any_status** | **[str]**| Filter by last any run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
+ **last_run_local_backup_status** | **[str]**| Filter by last local backup run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **last_run_replication_status** | **[str]**| Filter by last remote replication run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **last_run_archival_status** | **[str]**| Filter by last cloud archival run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **last_run_cloud_spin_status** | **[str]**| Filter by last cloud spin run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
+ **last_run_any_status** | **[str]**| Filter by last any run status.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Paused&#39; indicates that the ongoing run has been paused. | [optional]
  **is_last_run_sla_violated** | **bool**| If true, return Protection Groups for which last run SLA was violated. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
  **include_tenants** | **bool**| If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. | [optional]
@@ -749,7 +699,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -774,7 +724,6 @@ Get the progress of a run.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -789,7 +738,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 run_id = "runId_example" # str | Specifies a unique run id of the Protection Run.
 objects = [
@@ -854,108 +802,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_protection_run_stats**
-> GetProtectionRunStatsBody get_protection_run_stats(run_id)
-
-Get the stats for a run.
-
-Get the stats for a run.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.get_protection_run_stats_body import GetProtectionRunStatsBody
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-run_id = "runId_example" # str | Specifies a unique run id of the Protection Run.
-objects = [
-        1,
-    ] # [int] | Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned. (optional)
-tenant_ids = [
-        "tenantIds_example",
-    ] # [str] | TenantIds contains ids of the tenants for which the run is to be returned. (optional)
-include_tenants = True # bool | If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default. (optional)
-include_finished_tasks = True # bool | Specifies whether to return finished tasks. By default only active tasks are returned. (optional)
-start_time_usecs = 1 # int | Specifies the time after which the stats task starts in Unix epoch Timestamp(in microseconds). (optional)
-end_time_usecs = 1 # int | Specifies the time before which the stats task ends in Unix epoch Timestamp(in microseconds). (optional)
-max_tasks_num = 1 # int | Specifies the maximum number of tasks to return. (optional)
-exclude_object_details = True # bool | Specifies whether to return objects. By default all the task tree are returned. (optional)
-run_task_path = "runTaskPath_example" # str | Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format. (optional)
-object_task_paths = [
-        "objectTaskPaths_example",
-    ] # [str] | Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object. (optional)
-
-# example passing only required values which don't have defaults set
-try:
-	# Get the stats for a run.
-	api_response = client.protection_group.get_protection_run_stats(run_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling ProtectionGroupApi->get_protection_run_stats: %s\n" % e)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get the stats for a run.
-	api_response = client.protection_group.get_protection_run_stats(run_id, objects=objects, tenant_ids=tenant_ids, include_tenants=include_tenants, include_finished_tasks=include_finished_tasks, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, max_tasks_num=max_tasks_num, exclude_object_details=exclude_object_details, run_task_path=run_task_path, object_task_paths=object_task_paths)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling ProtectionGroupApi->get_protection_run_stats: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **run_id** | **str**| Specifies a unique run id of the Protection Run. |
- **objects** | **[int]**| Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned. | [optional]
- **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which the run is to be returned. | [optional]
- **include_tenants** | **bool**| If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it&#39;s not specified, it is true by default. | [optional]
- **include_finished_tasks** | **bool**| Specifies whether to return finished tasks. By default only active tasks are returned. | [optional]
- **start_time_usecs** | **int**| Specifies the time after which the stats task starts in Unix epoch Timestamp(in microseconds). | [optional]
- **end_time_usecs** | **int**| Specifies the time before which the stats task ends in Unix epoch Timestamp(in microseconds). | [optional]
- **max_tasks_num** | **int**| Specifies the maximum number of tasks to return. | [optional]
- **exclude_object_details** | **bool**| Specifies whether to return objects. By default all the task tree are returned. | [optional]
- **run_task_path** | **str**| Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format. | [optional]
- **object_task_paths** | **[str]**| Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object. | [optional]
-
-### Return type
-
-[**GetProtectionRunStatsBody**](GetProtectionRunStatsBody.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -980,7 +827,6 @@ Get a list of protection runs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protection_runs_summary import ProtectionRunsSummary
@@ -996,12 +842,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 start_time_usecs = 1 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. (optional)
 end_time_usecs = 1 # int | Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. (optional)
 run_status = [
         "Accepted",
-    ] # [str] | Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped. (optional)
+    ] # [str] | Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
@@ -1020,7 +865,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **start_time_usecs** | **int**| Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. | [optional]
  **end_time_usecs** | **int**| Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. | [optional]
- **run_status** | **[str]**| Specifies a list of status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
+ **run_status** | **[str]**| Specifies a list of status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages. | [optional]
 
 ### Return type
 
@@ -1028,7 +873,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1053,7 +898,6 @@ Get the debug logs for all objects of a run for a particular Protection Group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1067,7 +911,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the Protection Group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
@@ -1104,7 +947,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1129,7 +972,6 @@ Get the debug logs for a particular object of a run for a particular Protection 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1143,7 +985,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the Protection Group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
@@ -1172,7 +1013,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1197,7 +1038,6 @@ Get an CSV error report for given objectId and run id. Each row in CSV report co
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1211,7 +1051,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
@@ -1240,7 +1079,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1265,7 +1104,6 @@ Get an CSV report for given objectId and run id. Report will depend on the query
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1279,7 +1117,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the Protection Group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
@@ -1318,7 +1155,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1343,7 +1180,6 @@ Perform various actions on a Protection Group run.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
@@ -1360,10 +1196,27 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 body = PerformActionOnProtectionGroupRunRequest(
         action="Pause",
+        cancel_params=[
+            CancelProtectionGroupRunRequest(
+                archival_task_id=[
+                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                ],
+                cloud_spin_task_id=[
+                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                ],
+                local_task_id="4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                object_ids=[
+                    1,
+                ],
+                replication_task_id=[
+                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                ],
+                run_id="4:072888001528021798096225500850762068629",
+            ),
+        ],
         pause_params=[
             PauseProtectionRunActionParams(
                 run_id="4:072888001528021798096225500850762068629",
@@ -1372,24 +1225,6 @@ body = PerformActionOnProtectionGroupRunRequest(
         resume_params=[
             ResumeProtectionRunActionParams(
                 run_id="4:072888001528021798096225500850762068629",
-            ),
-        ],
-        cancel_params=[
-            CancelProtectionGroupRunRequest(
-                run_id="4:072888001528021798096225500850762068629",
-                local_task_id="4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                object_ids=[
-                    1,
-                ],
-                replication_task_id=[
-                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                ],
-                archival_task_id=[
-                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                ],
-                cloud_spin_task_id=[
-                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                ],
             ),
         ],
     ) # PerformActionOnProtectionGroupRunRequest | Specifies the parameters to perform an action on a protection run.
@@ -1417,7 +1252,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1434,7 +1269,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_protection_group**
-> CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b update_protection_group(id, body)
+> ProtectionGroup update_protection_group(id, body)
 
 Update a Protection Group.
 
@@ -1442,12 +1277,11 @@ Update the specified Protection Group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
-from cohesity_sdk.cluster.model.common_protection_group_request_paramsdc3738211b78497f_a31b107b557906d5 import CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1459,44 +1293,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the Protection Group.
-body = CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5(
-        name="name_example",
-        policy_id="policy_id_example",
-        priority="kLow",
-        storage_domain_id=1,
-        description="description_example",
-        start_time=TimeOfDay(
-            hour=0,
-            minute=0,
-            time_zone="America/Los_Angeles",
-        ),
-        end_time_usecs=1,
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        sla=[
-            SlaRule(
-                backup_run_type="kIncremental",
-                sla_minutes=1,
-            ),
-        ],
-        qos_policy="kBackupHDD",
-        abort_in_blackouts=True,
-        pause_in_blackouts=True,
-        environment="kVMware",
-        is_paused=True,
-    ) # CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5 | Specifies the parameters to update a Protection Group.
+body = CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to update a Protection Group.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1513,15 +1311,15 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the Protection Group. |
- **body** | [**CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5**](CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5.md)| Specifies the parameters to update a Protection Group. |
+ **body** | [**CreateOrUpdateProtectionGroupRequest**](CreateOrUpdateProtectionGroupRequest.md)| Specifies the parameters to update a Protection Group. |
 
 ### Return type
 
-[**CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b**](CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b.md)
+[**ProtectionGroup**](ProtectionGroup.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1546,7 +1344,6 @@ Update runs for a particular Protection Group. A user can perform the following 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_protection_group_run_request_body import UpdateProtectionGroupRunRequestBody
@@ -1563,75 +1360,74 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 body = UpdateProtectionGroupRunRequestBody(
         update_protection_group_run_params=[
             UpdateProtectionGroupRunParams(
-                run_id="4:072888001528021798096225500850762068629",
+                archival_snapshot_config=UpdateArchivalSnapshotConfig(
+                    new_snapshot_config=[
+                        RunArchivalConfig(
+                            archival_target_type="Tape",
+                            copy_only_fully_successful=True,
+                            id=1,
+                            retention=Retention(
+                                data_lock_config=DataLockConfig(
+                                    duration=1,
+                                    enable_worm_on_external_target=True,
+                                    mode="Compliance",
+                                    unit="Days",
+                                ),
+                                duration=1,
+                                unit="Days",
+                            ),
+                        ),
+                    ],
+                    update_existing_snapshot_config=[
+                        UpdateExistingArchivalSnapshotConfig(
+                            archival_target_type="Tape",
+                            data_lock="Compliance",
+                            days_to_keep=1,
+                            delete_snapshot=True,
+                            enable_legal_hold=True,
+                            id=1,
+                            resync=True,
+                        ),
+                    ],
+                ),
                 local_snapshot_config=UpdateLocalSnapshotConfig(
-                    enable_legal_hold=True,
-                    delete_snapshot=True,
                     data_lock="Compliance",
                     days_to_keep=1,
+                    delete_snapshot=True,
+                    enable_legal_hold=True,
                 ),
                 replication_snapshot_config=UpdateReplicationSnapshotConfig(
                     new_snapshot_config=[
                         RunReplicationConfig(
                             id=1,
                             retention=Retention(
-                                unit="Days",
-                                duration=1,
                                 data_lock_config=DataLockConfig(
-                                    mode="Compliance",
-                                    unit="Days",
                                     duration=1,
                                     enable_worm_on_external_target=True,
+                                    mode="Compliance",
+                                    unit="Days",
                                 ),
+                                duration=1,
+                                unit="Days",
                             ),
                         ),
                     ],
                     update_existing_snapshot_config=[
                         UpdateExistingReplicationSnapshotConfig(
-                            id=1,
-                            enable_legal_hold=True,
-                            delete_snapshot=True,
-                            resync=True,
                             data_lock="Compliance",
                             days_to_keep=1,
+                            delete_snapshot=True,
+                            enable_legal_hold=True,
+                            id=1,
+                            resync=True,
                         ),
                     ],
                 ),
-                archival_snapshot_config=UpdateArchivalSnapshotConfig(
-                    new_snapshot_config=[
-                        RunArchivalConfig(
-                            id=1,
-                            archival_target_type="Tape",
-                            retention=Retention(
-                                unit="Days",
-                                duration=1,
-                                data_lock_config=DataLockConfig(
-                                    mode="Compliance",
-                                    unit="Days",
-                                    duration=1,
-                                    enable_worm_on_external_target=True,
-                                ),
-                            ),
-                            copy_only_fully_successful=True,
-                        ),
-                    ],
-                    update_existing_snapshot_config=[
-                        UpdateExistingArchivalSnapshotConfig(
-                            id=1,
-                            archival_target_type="Tape",
-                            enable_legal_hold=True,
-                            delete_snapshot=True,
-                            resync=True,
-                            data_lock="Compliance",
-                            days_to_keep=1,
-                        ),
-                    ],
-                ),
+                run_id="4:072888001528021798096225500850762068629",
             ),
         ],
     ) # UpdateProtectionGroupRunRequestBody | Specifies the parameters to update a Protection Group Run.
@@ -1659,7 +1455,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1684,7 +1480,6 @@ Perform an action like pause, resume, active, deactivate on all specified Protec
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1700,7 +1495,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = UpdateProtectionGroupsStateRequest(
         action="kPause",
@@ -1731,7 +1525,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

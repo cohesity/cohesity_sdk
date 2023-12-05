@@ -109,7 +109,7 @@ class LDAPApi(object):
                 'response_type': (LdapStatus,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/ldap/{id}/connection-status',
@@ -228,7 +228,7 @@ class LDAPApi(object):
                 'response_type': (Ldaps,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/ldap',

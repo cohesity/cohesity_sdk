@@ -74,15 +74,15 @@ class McmClusterClaimResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'cluster_ca_chain': (str, none_type,),  # noqa: E501
+            'cluster_certificate': (str, none_type,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'cluster_name': (str, none_type,),  # noqa: E501
-            'sf_account_id': (str, none_type,),  # noqa: E501
-            'cluster_certificate': (str, none_type,),  # noqa: E501
             'cluster_private_key': (str, none_type,),  # noqa: E501
-            'passphrase': (str, none_type,),  # noqa: E501
-            'cluster_ca_chain': (str, none_type,),  # noqa: E501
             'helios_certificate': (str, none_type,),  # noqa: E501
+            'passphrase': (str, none_type,),  # noqa: E501
+            'sf_account_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,15 +92,15 @@ class McmClusterClaimResponseParams(ModelNormal):
 
 
     attribute_map = {
+        'cluster_ca_chain': 'clusterCaChain',  # noqa: E501
+        'cluster_certificate': 'clusterCertificate',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'cluster_name': 'clusterName',  # noqa: E501
-        'sf_account_id': 'sfAccountId',  # noqa: E501
-        'cluster_certificate': 'clusterCertificate',  # noqa: E501
         'cluster_private_key': 'clusterPrivateKey',  # noqa: E501
-        'passphrase': 'passphrase',  # noqa: E501
-        'cluster_ca_chain': 'clusterCaChain',  # noqa: E501
         'helios_certificate': 'heliosCertificate',  # noqa: E501
+        'passphrase': 'passphrase',  # noqa: E501
+        'sf_account_id': 'sfAccountId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,15 +150,15 @@ class McmClusterClaimResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cluster_ca_chain (str, none_type): Specifies the CA chain that is used to sign the Cluster certificate.. [optional]  # noqa: E501
+            cluster_certificate (str, none_type): Specifies the Cluster certificate.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the cluster id.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the cluster incarnation id.. [optional]  # noqa: E501
             cluster_name (str, none_type): Specifies the cluster name.. [optional]  # noqa: E501
-            sf_account_id (str, none_type): Specifies the Salesforce account id used to claim the cluster.. [optional]  # noqa: E501
-            cluster_certificate (str, none_type): Specifies the Cluster certificate.. [optional]  # noqa: E501
             cluster_private_key (str, none_type): Specifies the Cluster private key.. [optional]  # noqa: E501
-            passphrase (str, none_type): Specifies the passphrase (if used) to encrypt the cluster private key.. [optional]  # noqa: E501
-            cluster_ca_chain (str, none_type): Specifies the CA chain that is used to sign the Cluster certificate.. [optional]  # noqa: E501
             helios_certificate (str, none_type): Specifies the Helios certificate that can be used to authenticate api calls made from Helios to cluster.. [optional]  # noqa: E501
+            passphrase (str, none_type): Specifies the passphrase (if used) to encrypt the cluster private key.. [optional]  # noqa: E501
+            sf_account_id (str, none_type): Specifies the Salesforce account id used to claim the cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

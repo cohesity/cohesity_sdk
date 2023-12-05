@@ -93,8 +93,8 @@ class ModifyObjectStoreCiphersRequestBody(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'enable': (bool, none_type,),  # noqa: E501
             'ciphers': ([str], none_type,),  # noqa: E501
+            'enable': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,8 +104,8 @@ class ModifyObjectStoreCiphersRequestBody(ModelNormal):
 
 
     attribute_map = {
-        'enable': 'enable',  # noqa: E501
         'ciphers': 'ciphers',  # noqa: E501
+        'enable': 'enable',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,12 +120,12 @@ class ModifyObjectStoreCiphersRequestBody(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, enable, ciphers, *args, **kwargs):  # noqa: E501
+    def __init__(self, ciphers, enable, *args, **kwargs):  # noqa: E501
         """ModifyObjectStoreCiphersRequestBody - a model defined in OpenAPI
 
         Args:
-            enable (bool, none_type): If true, the ciphers passed in will be enabled on the cluster and all other ciphers will be disabled. If false, the ciphers specified will be disabled and all other ciphers on the cluster will be enabled.
             ciphers ([str], none_type): Specifies a list of object store ciphers to enable/disable on the cluster.
+            enable (bool, none_type): If true, the ciphers passed in will be enabled on the cluster and all other ciphers will be disabled. If false, the ciphers specified will be disabled and all other ciphers on the cluster will be enabled.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -185,8 +185,8 @@ class ModifyObjectStoreCiphersRequestBody(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.enable = enable
         self.ciphers = ciphers
+        self.enable = enable
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

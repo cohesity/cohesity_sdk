@@ -94,17 +94,17 @@ class ProtectionPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'backup_policy': (BackupPolicy,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'blackout_window': ([BlackoutWindow], none_type,),  # noqa: E501
-            'extended_retention': ([ExtendedRetentionPolicy], none_type,),  # noqa: E501
-            'remote_target_policy': (TargetsConfiguration,),  # noqa: E501
             'cascaded_targets_config': ([CascadedTargetConfiguration],),  # noqa: E501
-            'retry_options': (RetryOptions,),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
-            'version': (int, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'extended_retention': ([ExtendedRetentionPolicy], none_type,),  # noqa: E501
             'is_cbs_enabled': (bool, none_type,),  # noqa: E501
+            'remote_target_policy': (TargetsConfiguration,),  # noqa: E501
+            'retry_options': (RetryOptions,),  # noqa: E501
+            'version': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,17 +114,17 @@ class ProtectionPolicy(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'backup_policy': 'backupPolicy',  # noqa: E501
-        'description': 'description',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'blackout_window': 'blackoutWindow',  # noqa: E501
-        'extended_retention': 'extendedRetention',  # noqa: E501
-        'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
         'cascaded_targets_config': 'cascadedTargetsConfig',  # noqa: E501
-        'retry_options': 'retryOptions',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
-        'version': 'version',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'extended_retention': 'extendedRetention',  # noqa: E501
         'is_cbs_enabled': 'isCBSEnabled',  # noqa: E501
+        'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
+        'retry_options': 'retryOptions',  # noqa: E501
+        'version': 'version',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,12 +139,12 @@ class ProtectionPolicy(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, backup_policy, *args, **kwargs):  # noqa: E501
+    def __init__(self, backup_policy, name, *args, **kwargs):  # noqa: E501
         """ProtectionPolicy - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the name of the Protection Policy.
             backup_policy (BackupPolicy):
+            name (str, none_type): Specifies the name of the Protection Policy.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -178,15 +178,15 @@ class ProtectionPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
             blackout_window ([BlackoutWindow], none_type): List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod.. [optional]  # noqa: E501
-            extended_retention ([ExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
-            remote_target_policy (TargetsConfiguration): [optional]  # noqa: E501
             cascaded_targets_config ([CascadedTargetConfiguration]): Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. Its recommended to create cascaded configuration where protection group will be created.. [optional]  # noqa: E501
-            retry_options (RetryOptions): [optional]  # noqa: E501
             data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
-            version (int, none_type): Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.. [optional]  # noqa: E501
+            description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
+            extended_retention ([ExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
             is_cbs_enabled (bool, none_type): Specifies true if Calender Based Schedule is supported by client. Default value is assumed as false for this feature.. [optional]  # noqa: E501
+            remote_target_policy (TargetsConfiguration): [optional]  # noqa: E501
+            retry_options (RetryOptions): [optional]  # noqa: E501
+            version (int, none_type): Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -213,8 +213,8 @@ class ProtectionPolicy(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.backup_policy = backup_policy
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -87,13 +87,13 @@ class ObjectRunResult(ModelNormal):
         """
         lazy_import()
         return {
-            'object': (ObjectSummary,),  # noqa: E501
-            'local_snapshot_info': (BackupRun,),  # noqa: E501
-            'original_backup_info': (BackupRun,),  # noqa: E501
-            'replication_info': (ReplicationRun,),  # noqa: E501
             'archival_info': (ArchivalRun,),  # noqa: E501
             'cloud_spin_info': (CloudSpinRun,),  # noqa: E501
+            'local_snapshot_info': (BackupRun,),  # noqa: E501
+            'object': (ObjectSummary,),  # noqa: E501
             'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'original_backup_info': (BackupRun,),  # noqa: E501
+            'replication_info': (ReplicationRun,),  # noqa: E501
         }
 
     @cached_property
@@ -103,13 +103,13 @@ class ObjectRunResult(ModelNormal):
 
 
     attribute_map = {
-        'object': 'object',  # noqa: E501
-        'local_snapshot_info': 'localSnapshotInfo',  # noqa: E501
-        'original_backup_info': 'originalBackupInfo',  # noqa: E501
-        'replication_info': 'replicationInfo',  # noqa: E501
         'archival_info': 'archivalInfo',  # noqa: E501
         'cloud_spin_info': 'cloudSpinInfo',  # noqa: E501
+        'local_snapshot_info': 'localSnapshotInfo',  # noqa: E501
+        'object': 'object',  # noqa: E501
         'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'original_backup_info': 'originalBackupInfo',  # noqa: E501
+        'replication_info': 'replicationInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,13 +159,13 @@ class ObjectRunResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object (ObjectSummary): [optional]  # noqa: E501
-            local_snapshot_info (BackupRun): [optional]  # noqa: E501
-            original_backup_info (BackupRun): [optional]  # noqa: E501
-            replication_info (ReplicationRun): [optional]  # noqa: E501
             archival_info (ArchivalRun): [optional]  # noqa: E501
             cloud_spin_info (CloudSpinRun): [optional]  # noqa: E501
+            local_snapshot_info (BackupRun): [optional]  # noqa: E501
+            object (ObjectSummary): [optional]  # noqa: E501
             on_legal_hold (bool, none_type): Specifies if object's snapshot is on legal hold.. [optional]  # noqa: E501
+            original_backup_info (BackupRun): [optional]  # noqa: E501
+            replication_info (ReplicationRun): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

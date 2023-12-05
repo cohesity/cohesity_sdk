@@ -74,8 +74,8 @@ class FileFilteringPolicy(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'include_list': ([str],),  # noqa: E501
             'exclude_list': ([str],),  # noqa: E501
+            'include_list': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class FileFilteringPolicy(ModelNormal):
 
 
     attribute_map = {
-        'include_list': 'includeList',  # noqa: E501
         'exclude_list': 'excludeList',  # noqa: E501
+        'include_list': 'includeList',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class FileFilteringPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            include_list ([str]): Specifies the list of included files for this Protection Group.. [optional]  # noqa: E501
             exclude_list ([str]): Specifies the list of excluded files for this protection Protection Group. Exclude filters have a higher priority than include filters.. [optional]  # noqa: E501
+            include_list ([str]): Specifies the list of included files for this Protection Group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

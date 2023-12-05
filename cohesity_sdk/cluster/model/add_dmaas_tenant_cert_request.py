@@ -74,10 +74,10 @@ class AddDmaasTenantCertRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'tenant_id': (str, none_type,),  # noqa: E501
             'certificate': (str, none_type,),  # noqa: E501
-            'private_key': (str, none_type,),  # noqa: E501
             'connector_ca_chain': (str, none_type,),  # noqa: E501
+            'private_key': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'passphrase': (str, none_type,),  # noqa: E501
         }
 
@@ -88,10 +88,10 @@ class AddDmaasTenantCertRequest(ModelNormal):
 
 
     attribute_map = {
-        'tenant_id': 'tenantId',  # noqa: E501
         'certificate': 'certificate',  # noqa: E501
-        'private_key': 'privateKey',  # noqa: E501
         'connector_ca_chain': 'connectorCaChain',  # noqa: E501
+        'private_key': 'privateKey',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'passphrase': 'passphrase',  # noqa: E501
     }
 
@@ -107,14 +107,14 @@ class AddDmaasTenantCertRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, tenant_id, certificate, private_key, connector_ca_chain, *args, **kwargs):  # noqa: E501
+    def __init__(self, certificate, connector_ca_chain, private_key, tenant_id, *args, **kwargs):  # noqa: E501
         """AddDmaasTenantCertRequest - a model defined in OpenAPI
 
         Args:
-            tenant_id (str, none_type): The id of the tenant.
             certificate (str, none_type): Specifies the tenant certificate.
-            private_key (str, none_type): Specifies the tenant private key.
             connector_ca_chain (str, none_type): Specifies the CA chain that is used to sign the connector certificate.
+            private_key (str, none_type): Specifies the tenant private key.
+            tenant_id (str, none_type): The id of the tenant.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,10 +175,10 @@ class AddDmaasTenantCertRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.tenant_id = tenant_id
         self.certificate = certificate
-        self.private_key = private_key
         self.connector_ca_chain = connector_ca_chain
+        self.private_key = private_key
+        self.tenant_id = tenant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

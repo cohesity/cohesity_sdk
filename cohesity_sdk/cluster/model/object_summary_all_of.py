@@ -196,16 +196,6 @@ class ObjectSummaryAllOf(ModelNormal):
             'KORG': "kOrg",
             'KAPPINSTANCE': "kAppInstance",
         },
-        ('protection_type',): {
-            'None': None,
-            'KAGENT': "kAgent",
-            'KNATIVE': "kNative",
-            'KSNAPSHOTMANAGER': "kSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
-            'KFILE': "kFile",
-            'KVOLUME': "kVolume",
-        },
         ('os_type',): {
             'None': None,
             'KLINUX': "kLinux",
@@ -215,6 +205,16 @@ class ObjectSummaryAllOf(ModelNormal):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+        },
+        ('protection_type',): {
+            'None': None,
+            'KAGENT': "kAgent",
+            'KNATIVE': "kNative",
+            'KSNAPSHOTMANAGER': "kSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KFILE': "kFile",
+            'KVOLUME': "kVolume",
         },
     }
 
@@ -237,15 +237,15 @@ class ObjectSummaryAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'global_id': (str, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
             'object_type': (str, none_type,),  # noqa: E501
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'uuid': (str, none_type,),  # noqa: E501
-            'global_id': (str, none_type,),  # noqa: E501
-            'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
-            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
+            'protection_type': (str, none_type,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
+            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
         }
 
@@ -256,15 +256,15 @@ class ObjectSummaryAllOf(ModelNormal):
 
 
     attribute_map = {
+        'global_id': 'globalId',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
         'object_type': 'objectType',  # noqa: E501
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'uuid': 'uuid',  # noqa: E501
-        'global_id': 'globalId',  # noqa: E501
-        'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
-        'v_center_summary': 'vCenterSummary',  # noqa: E501
+        'protection_type': 'protectionType',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
+        'v_center_summary': 'vCenterSummary',  # noqa: E501
         'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
     }
 
@@ -315,15 +315,15 @@ class ObjectSummaryAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
-            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
-            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
-            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
-            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
-            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
+            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
+            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
         """
 

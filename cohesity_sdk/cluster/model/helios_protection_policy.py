@@ -106,15 +106,15 @@ class HeliosProtectionPolicy(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'cluster_identifier': (str, none_type,),  # noqa: E501
-            'tenant_ids': ([str, none_type],),  # noqa: E501
             'backup_policy': (HeliosBackupPolicy,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'blackout_window': ([HeliosBlackoutWindow], none_type,),  # noqa: E501
+            'cluster_identifier': (str, none_type,),  # noqa: E501
+            'data_lock': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'extended_retention': ([HeliosExtendedRetentionPolicy], none_type,),  # noqa: E501
             'remote_target_policy': (HeliosTargetsConfiguration,),  # noqa: E501
             'retry_options': (HeliosRetryOptions,),  # noqa: E501
-            'data_lock': (str, none_type,),  # noqa: E501
+            'tenant_ids': ([str, none_type],),  # noqa: E501
         }
 
     @cached_property
@@ -126,15 +126,15 @@ class HeliosProtectionPolicy(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'cluster_identifier': 'clusterIdentifier',  # noqa: E501
-        'tenant_ids': 'tenantIds',  # noqa: E501
         'backup_policy': 'backupPolicy',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'blackout_window': 'blackoutWindow',  # noqa: E501
+        'cluster_identifier': 'clusterIdentifier',  # noqa: E501
+        'data_lock': 'dataLock',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'extended_retention': 'extendedRetention',  # noqa: E501
         'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
         'retry_options': 'retryOptions',  # noqa: E501
-        'data_lock': 'dataLock',  # noqa: E501
+        'tenant_ids': 'tenantIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -188,15 +188,15 @@ class HeliosProtectionPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_identifier (str, none_type): Specifies the cluster to which this policy belongs. This required is only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.. [optional]  # noqa: E501
-            tenant_ids ([str, none_type]): Specifies the tenants which have access to this object.. [optional]  # noqa: E501
             backup_policy (HeliosBackupPolicy): [optional]  # noqa: E501
-            description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
             blackout_window ([HeliosBlackoutWindow], none_type): List of Blackout Windows. If specified, this field defines blackout periods when new Group Runs are not started. If a Group Run has been scheduled but not yet executed and the blackout period starts, the behavior depends on the policy field AbortInBlackoutPeriod.. [optional]  # noqa: E501
+            cluster_identifier (str, none_type): Specifies the cluster to which this policy belongs. This required is only for type OnPremPolicy. The format is clusterId:clusterIncarnationId.. [optional]  # noqa: E501
+            data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
+            description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
             extended_retention ([HeliosExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
             remote_target_policy (HeliosTargetsConfiguration): [optional]  # noqa: E501
             retry_options (HeliosRetryOptions): [optional]  # noqa: E501
-            data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
+            tenant_ids ([str, none_type]): Specifies the tenants which have access to this object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

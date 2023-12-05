@@ -75,8 +75,8 @@ class S3ConfigForIndexing(ModelNormal):
         """
         return {
             's3_bucket_name': (str, none_type,),  # noqa: E501
-            's3_prefix': (str, none_type,),  # noqa: E501
             's3_iam_role_arn': (str, none_type,),  # noqa: E501
+            's3_prefix': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class S3ConfigForIndexing(ModelNormal):
 
     attribute_map = {
         's3_bucket_name': 's3BucketName',  # noqa: E501
-        's3_prefix': 's3Prefix',  # noqa: E501
         's3_iam_role_arn': 's3IamRoleArn',  # noqa: E501
+        's3_prefix': 's3Prefix',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class S3ConfigForIndexing(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, s3_bucket_name, s3_prefix, s3_iam_role_arn, *args, **kwargs):  # noqa: E501
+    def __init__(self, s3_bucket_name, s3_iam_role_arn, s3_prefix, *args, **kwargs):  # noqa: E501
         """S3ConfigForIndexing - a model defined in OpenAPI
 
         Args:
             s3_bucket_name (str, none_type): Name of S3 bucket to store indexed data.
-            s3_prefix (str, none_type): Prefix under S3 bucket where data will be stored.
             s3_iam_role_arn (str, none_type): IAM role ARN which has access to S3 instance.
+            s3_prefix (str, none_type): Prefix under S3 bucket where data will be stored.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class S3ConfigForIndexing(ModelNormal):
 
 
         self.s3_bucket_name = s3_bucket_name
-        self.s3_prefix = s3_prefix
         self.s3_iam_role_arn = s3_iam_role_arn
+        self.s3_prefix = s3_prefix
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

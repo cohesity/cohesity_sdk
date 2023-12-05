@@ -74,8 +74,8 @@ class RigelClaimLog(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'time_stamp': (int, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
+            'time_stamp': (int, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class RigelClaimLog(ModelNormal):
 
 
     attribute_map = {
-        'time_stamp': 'timeStamp',  # noqa: E501
         'message': 'message',  # noqa: E501
+        'time_stamp': 'timeStamp',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class RigelClaimLog(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            time_stamp (int, none_type): Specifies the time stamp in microseconds of the event.. [optional]  # noqa: E501
             message (str, none_type): Specifies the message of this event.. [optional]  # noqa: E501
+            time_stamp (int, none_type): Specifies the time stamp in microseconds of the event.. [optional]  # noqa: E501
             type (str, none_type): Specifies the severity of the event.. [optional]  # noqa: E501
         """
 

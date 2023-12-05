@@ -74,10 +74,10 @@ class AwsKmsConfigurationUpdateParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'ca_certificate': (str, none_type,),  # noqa: E501
-            'secret_access_key': (str, none_type,),  # noqa: E501
             'access_key_id': (str, none_type,),  # noqa: E501
+            'ca_certificate': (str, none_type,),  # noqa: E501
             'iam_role_arn': (str, none_type,),  # noqa: E501
+            'secret_access_key': (str, none_type,),  # noqa: E501
             'verify_ssl': (bool, none_type,),  # noqa: E501
         }
 
@@ -88,10 +88,10 @@ class AwsKmsConfigurationUpdateParams(ModelNormal):
 
 
     attribute_map = {
-        'ca_certificate': 'caCertificate',  # noqa: E501
-        'secret_access_key': 'secretAccessKey',  # noqa: E501
         'access_key_id': 'accessKeyId',  # noqa: E501
+        'ca_certificate': 'caCertificate',  # noqa: E501
         'iam_role_arn': 'iamRoleArn',  # noqa: E501
+        'secret_access_key': 'secretAccessKey',  # noqa: E501
         'verify_ssl': 'verifySSL',  # noqa: E501
     }
 
@@ -142,10 +142,10 @@ class AwsKmsConfigurationUpdateParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            ca_certificate (str, none_type): Specify the ca certificate.. [optional]  # noqa: E501
-            secret_access_key (str, none_type): AWS account secret access key. Required when 'iamRoleArn' is not given.. [optional]  # noqa: E501
             access_key_id (str, none_type): AWS account access key id. Required when 'iamRoleArn' is not given.. [optional]  # noqa: E501
+            ca_certificate (str, none_type): Specify the ca certificate.. [optional]  # noqa: E501
             iam_role_arn (str, none_type): The IAM role which will be used to authenticate with AWS KMS. Required when 'accessKeyId' and 'secretAccessKey' fields are not provided.. [optional]  # noqa: E501
+            secret_access_key (str, none_type): AWS account secret access key. Required when 'iamRoleArn' is not given.. [optional]  # noqa: E501
             verify_ssl (bool, none_type): Enable SSL verification or not.. [optional] if omitted the server will use the default value of True  # noqa: E501
         """
 

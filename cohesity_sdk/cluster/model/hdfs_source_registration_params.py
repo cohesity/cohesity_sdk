@@ -94,16 +94,16 @@ class HdfsSourceRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'host': (str,),  # noqa: E501
             'configuration_directory': (str,),  # noqa: E501
             'hadoop_distribution': (str,),  # noqa: E501
             'hadoop_version': (str,),  # noqa: E501
+            'host': (str,),  # noqa: E501
+            'auth_type': (str, none_type,),  # noqa: E501
             'namenode_address': (str,),  # noqa: E501
             'webhdfs_port': (int,),  # noqa: E501
-            'auth_type': (str, none_type,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -113,16 +113,16 @@ class HdfsSourceRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
         'hadoop_distribution': 'hadoopDistribution',  # noqa: E501
         'hadoop_version': 'hadoopVersion',  # noqa: E501
+        'host': 'host',  # noqa: E501
+        'auth_type': 'authType',  # noqa: E501
         'namenode_address': 'namenodeAddress',  # noqa: E501
         'webhdfs_port': 'webhdfsPort',  # noqa: E501
-        'auth_type': 'authType',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     required_properties = set([
@@ -138,14 +138,14 @@ class HdfsSourceRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, configuration_directory, hadoop_distribution, hadoop_version, *args, **kwargs):  # noqa: E501
+    def __init__(self, configuration_directory, hadoop_distribution, hadoop_version, host, *args, **kwargs):  # noqa: E501
         """HdfsSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            host (str): IP or hostname of any host from which the HDFS configuration files core-site.xml and hdfs-site.xml can be read.
             configuration_directory (str): The directory containing the core-site.xml and hdfs-site.xml configuration files.
             hadoop_distribution (str): The hadoop distribution for this cluster. This can be either 'CDH' or 'HDP'
             hadoop_version (str): The hadoop version for this cluster.
+            host (str): IP or hostname of any host from which the HDFS configuration files core-site.xml and hdfs-site.xml can be read.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -179,12 +179,12 @@ class HdfsSourceRegistrationParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
             namenode_address (str): The HDFS Namenode IP or hostname.. [optional]  # noqa: E501
             webhdfs_port (int): The HDFS WebHDFS port.. [optional]  # noqa: E501
-            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
+            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this HDFS source.. [optional]  # noqa: E501
             ssh_password_credentials (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
-            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this HDFS source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -219,10 +219,10 @@ class HdfsSourceRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'host': host,
             'configuration_directory': configuration_directory,
             'hadoop_distribution': hadoop_distribution,
             'hadoop_version': hadoop_version,
+            'host': host,
         }
         model_args = {}
         model_args.update(required_args)

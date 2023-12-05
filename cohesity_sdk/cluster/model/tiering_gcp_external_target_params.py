@@ -86,8 +86,8 @@ class TieringGcpExternalTargetParams(ModelComposed):
         lazy_import()
         return {
             'bucket_name': (str, none_type,),  # noqa: E501
-            'project_id': (str, none_type,),  # noqa: E501
             'client_email_address': (str, none_type,),  # noqa: E501
+            'project_id': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
             'client_private_key': (str, none_type,),  # noqa: E501
         }
@@ -100,8 +100,8 @@ class TieringGcpExternalTargetParams(ModelComposed):
 
     attribute_map = {
         'bucket_name': 'bucketName',  # noqa: E501
-        'project_id': 'projectId',  # noqa: E501
         'client_email_address': 'clientEmailAddress',  # noqa: E501
+        'project_id': 'projectId',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
         'client_private_key': 'clientPrivateKey',  # noqa: E501
     }
@@ -119,13 +119,13 @@ class TieringGcpExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket_name, project_id, client_email_address, *args, **kwargs):  # noqa: E501
+    def __init__(self, bucket_name, client_email_address, project_id, *args, **kwargs):  # noqa: E501
         """TieringGcpExternalTargetParams - a model defined in OpenAPI
 
         Args:
             bucket_name (str, none_type): Specifies the bucket name of the external target.
-            project_id (str, none_type): Specifies the project Id of the external target.
             client_email_address (str, none_type): Specifies the client email address of the external target.
+            project_id (str, none_type): Specifies the project Id of the external target.
 
         Keyword Args:
             storage_class (str, none_type): Specifies the GCP External Target class.. defaults to "GCPStandard", must be one of ["GCPStandard", ]  # noqa: E501
@@ -197,8 +197,8 @@ class TieringGcpExternalTargetParams(ModelComposed):
         }
         required_args = {
             'bucket_name': bucket_name,
-            'project_id': project_id,
             'client_email_address': client_email_address,
+            'project_id': project_id,
             'storage_class': storage_class,
         }
         model_args = {}

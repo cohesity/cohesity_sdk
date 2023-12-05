@@ -85,13 +85,13 @@ class UserIdMappingParams(ModelNormal):
         """
         return {
             'type': (str,),  # noqa: E501
-            'rfc2307_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'sfu30_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'centrify_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'custom_attributes_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'fixed_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'ldap_provider_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'nis_provider_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'centrify_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'fixed_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'custom_attributes_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'rfc2307_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'sfu30_type_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,13 +102,13 @@ class UserIdMappingParams(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'rfc2307_type_params': 'rfc2307TypeParams',  # noqa: E501
-        'sfu30_type_params': 'sfu30TypeParams',  # noqa: E501
+        'centrify_type_params': 'centrifyTypeParams',  # noqa: E501
+        'custom_attributes_type_params': 'customAttributesTypeParams',  # noqa: E501
+        'fixed_type_params': 'fixedTypeParams',  # noqa: E501
         'ldap_provider_type_params': 'ldapProviderTypeParams',  # noqa: E501
         'nis_provider_type_params': 'nisProviderTypeParams',  # noqa: E501
-        'centrify_type_params': 'centrifyTypeParams',  # noqa: E501
-        'fixed_type_params': 'fixedTypeParams',  # noqa: E501
-        'custom_attributes_type_params': 'customAttributesTypeParams',  # noqa: E501
+        'rfc2307_type_params': 'rfc2307TypeParams',  # noqa: E501
+        'sfu30_type_params': 'sfu30TypeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,13 +161,13 @@ class UserIdMappingParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rfc2307_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Rfc2307 mapping type mapping.. [optional]  # noqa: E501
-            sfu30_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Sfu30 mapping type mapping.. [optional]  # noqa: E501
+            centrify_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Centrify mapping type mapping.. [optional]  # noqa: E501
+            custom_attributes_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for CustomAttributes mapping type mapping.. [optional]  # noqa: E501
+            fixed_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Fixed mapping type mapping.. [optional]  # noqa: E501
             ldap_provider_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for LdapProvider mapping type mapping.. [optional]  # noqa: E501
             nis_provider_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for NisProvider mapping type mapping.. [optional]  # noqa: E501
-            centrify_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Centrify mapping type mapping.. [optional]  # noqa: E501
-            fixed_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Fixed mapping type mapping.. [optional]  # noqa: E501
-            custom_attributes_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for CustomAttributes mapping type mapping.. [optional]  # noqa: E501
+            rfc2307_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Rfc2307 mapping type mapping.. [optional]  # noqa: E501
+            sfu30_type_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for Sfu30 mapping type mapping.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -60,6 +60,11 @@ class BondMember(ModelNormal):
     """
 
     allowed_values = {
+        ('link_state',): {
+            'None': None,
+            'UP': "Up",
+            'DOWN': "Down",
+        },
         ('speed',): {
             'None': None,
             '1GBIT/S': "1Gbit/s",
@@ -68,11 +73,6 @@ class BondMember(ModelNormal):
             '40GBIT/S': "40Gbit/s",
             '100GBIT/S': "100Gbit/s",
             'UNKNOWN': "Unknown",
-        },
-        ('link_state',): {
-            'None': None,
-            'UP': "Up",
-            'DOWN': "Down",
         },
     }
 
@@ -95,12 +95,12 @@ class BondMember(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'mac_address': (str, none_type,),  # noqa: E501
-            'speed': (str, none_type,),  # noqa: E501
-            'link_state': (str, none_type,),  # noqa: E501
             'active_secondary': (bool, none_type,),  # noqa: E501
+            'link_state': (str, none_type,),  # noqa: E501
+            'mac_address': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'slot': (str, none_type,),  # noqa: E501
+            'speed': (str, none_type,),  # noqa: E501
             'stats': (InterfaceStats,),  # noqa: E501
             'uplink_switch': (UplinkSwitch,),  # noqa: E501
         }
@@ -112,12 +112,12 @@ class BondMember(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'mac_address': 'macAddress',  # noqa: E501
-        'speed': 'speed',  # noqa: E501
-        'link_state': 'linkState',  # noqa: E501
         'active_secondary': 'activeSecondary',  # noqa: E501
+        'link_state': 'linkState',  # noqa: E501
+        'mac_address': 'macAddress',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'slot': 'slot',  # noqa: E501
+        'speed': 'speed',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'uplink_switch': 'uplinkSwitch',  # noqa: E501
     }
@@ -169,12 +169,12 @@ class BondMember(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Name of the bond secondary.. [optional]  # noqa: E501
-            mac_address (str, none_type): MAC address of the bond secondary.. [optional]  # noqa: E501
-            speed (str, none_type): Speed of the bond secondary.. [optional]  # noqa: E501
-            link_state (str, none_type): Bond secondary link state.. [optional]  # noqa: E501
             active_secondary (bool, none_type): Specifies whether or not this is a active secondary. This is only valid in ActiveBackup bonding mode.. [optional]  # noqa: E501
+            link_state (str, none_type): Bond secondary link state.. [optional]  # noqa: E501
+            mac_address (str, none_type): MAC address of the bond secondary.. [optional]  # noqa: E501
+            name (str, none_type): Name of the bond secondary.. [optional]  # noqa: E501
             slot (str, none_type): Slot information of the bond secondary.. [optional]  # noqa: E501
+            speed (str, none_type): Speed of the bond secondary.. [optional]  # noqa: E501
             stats (InterfaceStats): [optional]  # noqa: E501
             uplink_switch (UplinkSwitch): [optional]  # noqa: E501
         """

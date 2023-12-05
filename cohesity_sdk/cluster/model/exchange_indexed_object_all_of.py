@@ -74,9 +74,9 @@ class ExchangeIndexedObjectAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'object_name': (str, none_type,),  # noqa: E501
-            'email': (str, none_type,),  # noqa: E501
             'database_name': (str, none_type,),  # noqa: E501
+            'email': (str, none_type,),  # noqa: E501
+            'object_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ExchangeIndexedObjectAllOf(ModelNormal):
 
 
     attribute_map = {
-        'object_name': 'objectName',  # noqa: E501
-        'email': 'email',  # noqa: E501
         'database_name': 'databaseName',  # noqa: E501
+        'email': 'email',  # noqa: E501
+        'object_name': 'objectName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class ExchangeIndexedObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_name (str, none_type): Specifies the name of the Exchange mailbox.. [optional]  # noqa: E501
-            email (str, none_type): Specifies the email corresponding to the mailbox.. [optional]  # noqa: E501
             database_name (str, none_type): Specifies the name of the Exchange database corresponding to the mailbox.. [optional]  # noqa: E501
+            email (str, none_type): Specifies the email corresponding to the mailbox.. [optional]  # noqa: E501
+            object_name (str, none_type): Specifies the name of the Exchange mailbox.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -94,9 +94,9 @@ class AwsGlacierParams(ModelComposed):
         lazy_import()
         return {
             'cloud_type': (str, none_type,),  # noqa: E501
-            'aws_cloud_standard_params': (AwsCloudStandardParams,),  # noqa: E501
-            'aws_cloud_gov_params': (AwsCloudGovParams,),  # noqa: E501
             'aws_cloud_c2_s_params': (AwsCloudC2SParams,),  # noqa: E501
+            'aws_cloud_gov_params': (AwsCloudGovParams,),  # noqa: E501
+            'aws_cloud_standard_params': (AwsCloudStandardParams,),  # noqa: E501
         }
 
     @cached_property
@@ -107,9 +107,9 @@ class AwsGlacierParams(ModelComposed):
 
     attribute_map = {
         'cloud_type': 'cloudType',  # noqa: E501
-        'aws_cloud_standard_params': 'awsCloudStandardParams',  # noqa: E501
-        'aws_cloud_gov_params': 'awsCloudGovParams',  # noqa: E501
         'aws_cloud_c2_s_params': 'awsCloudC2SParams',  # noqa: E501
+        'aws_cloud_gov_params': 'awsCloudGovParams',  # noqa: E501
+        'aws_cloud_standard_params': 'awsCloudStandardParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -163,9 +163,9 @@ class AwsGlacierParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            aws_cloud_standard_params (AwsCloudStandardParams): [optional]  # noqa: E501
-            aws_cloud_gov_params (AwsCloudGovParams): [optional]  # noqa: E501
             aws_cloud_c2_s_params (AwsCloudC2SParams): [optional]  # noqa: E501
+            aws_cloud_gov_params (AwsCloudGovParams): [optional]  # noqa: E501
+            aws_cloud_standard_params (AwsCloudStandardParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

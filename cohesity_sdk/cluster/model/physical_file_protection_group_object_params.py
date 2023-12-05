@@ -80,12 +80,12 @@ class PhysicalFileProtectionGroupObjectParams(ModelNormal):
         lazy_import()
         return {
             'id': (int,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'file_paths': ([PhysicalFileBackupPathParams],),  # noqa: E501
-            'uses_path_level_skip_nested_volume_setting': (bool, none_type,),  # noqa: E501
-            'nested_volume_types_to_skip': ([str],),  # noqa: E501
             'follow_nas_symlink_target': (bool, none_type,),  # noqa: E501
             'metadata_file_path': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'nested_volume_types_to_skip': ([str],),  # noqa: E501
+            'uses_path_level_skip_nested_volume_setting': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,12 +96,12 @@ class PhysicalFileProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'file_paths': 'filePaths',  # noqa: E501
-        'uses_path_level_skip_nested_volume_setting': 'usesPathLevelSkipNestedVolumeSetting',  # noqa: E501
-        'nested_volume_types_to_skip': 'nestedVolumeTypesToSkip',  # noqa: E501
         'follow_nas_symlink_target': 'followNasSymlinkTarget',  # noqa: E501
         'metadata_file_path': 'metadataFilePath',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'nested_volume_types_to_skip': 'nestedVolumeTypesToSkip',  # noqa: E501
+        'uses_path_level_skip_nested_volume_setting': 'usesPathLevelSkipNestedVolumeSetting',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,12 +154,12 @@ class PhysicalFileProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the object protected.. [optional]  # noqa: E501
             file_paths ([PhysicalFileBackupPathParams]): Specifies a list of file paths to be protected by this Protection Group.. [optional]  # noqa: E501
-            uses_path_level_skip_nested_volume_setting (bool, none_type): Specifies whether path level or object level skip nested volume setting will be used.. [optional]  # noqa: E501
-            nested_volume_types_to_skip ([str]): Specifies mount types of nested volumes to be skipped.. [optional]  # noqa: E501
             follow_nas_symlink_target (bool, none_type): Specifies whether to follow NAS target pointed by symlink for windows sources.. [optional]  # noqa: E501
             metadata_file_path (str, none_type): Specifies the path of metadatafile on source. This file contains absolute paths of files that needs to be backed up on the same source.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the object protected.. [optional]  # noqa: E501
+            nested_volume_types_to_skip ([str]): Specifies mount types of nested volumes to be skipped.. [optional]  # noqa: E501
+            uses_path_level_skip_nested_volume_setting (bool, none_type): Specifies whether path level or object level skip nested volume setting will be used.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

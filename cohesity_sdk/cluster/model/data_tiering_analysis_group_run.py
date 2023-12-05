@@ -81,11 +81,11 @@ class DataTieringAnalysisGroupRun(ModelNormal):
         """
         lazy_import()
         return {
+            'analysis_info': (DataTieringAnalysisInfo,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'objects': ([DataTieringObjectInfo], none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'analysis_info': (DataTieringAnalysisInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -95,11 +95,11 @@ class DataTieringAnalysisGroupRun(ModelNormal):
 
 
     attribute_map = {
+        'analysis_info': 'analysisInfo',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'id': 'id',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'analysis_info': 'analysisInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,11 +149,11 @@ class DataTieringAnalysisGroupRun(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            analysis_info (DataTieringAnalysisInfo): [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of analysis run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
             id (str, none_type): Specifies the ID of the data tiering analysis group run.. [optional]  # noqa: E501
             objects ([DataTieringObjectInfo], none_type): Specifies the objects details analyzed during data tiering analysis group run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of analysis run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of analysis run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            analysis_info (DataTieringAnalysisInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

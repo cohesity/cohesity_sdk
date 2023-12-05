@@ -79,9 +79,9 @@ class VmwareRecoverFilesNewTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_method': (str,),  # noqa: E501
             'absolute_path': (str, none_type,),  # noqa: E501
+            'recover_method': (str,),  # noqa: E501
+            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -92,9 +92,9 @@ class VmwareRecoverFilesNewTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'target_vm': 'targetVm',  # noqa: E501
-        'recover_method': 'recoverMethod',  # noqa: E501
         'absolute_path': 'absolutePath',  # noqa: E501
+        'recover_method': 'recoverMethod',  # noqa: E501
+        'target_vm': 'targetVm',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
     }
 
@@ -110,13 +110,13 @@ class VmwareRecoverFilesNewTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target_vm, recover_method, absolute_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, absolute_path, recover_method, target_vm, *args, **kwargs):  # noqa: E501
         """VmwareRecoverFilesNewTargetConfig - a model defined in OpenAPI
 
         Args:
-            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
-            recover_method (str): Specifies the method to recover files and folders.
             absolute_path (str, none_type): Specifies the path location to recover files to.
+            recover_method (str): Specifies the method to recover files and folders.
+            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -177,9 +177,9 @@ class VmwareRecoverFilesNewTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.target_vm = target_vm
-        self.recover_method = recover_method
         self.absolute_path = absolute_path
+        self.recover_method = recover_method
+        self.target_vm = target_vm
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

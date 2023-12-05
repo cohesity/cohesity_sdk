@@ -74,9 +74,9 @@ class DiskIdentify(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'identify': (bool, none_type,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
             'serial_number': (str, none_type,),  # noqa: E501
-            'identify': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class DiskIdentify(ModelNormal):
 
 
     attribute_map = {
+        'identify': 'identify',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
         'serial_number': 'serialNumber',  # noqa: E501
-        'identify': 'identify',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class DiskIdentify(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, node_id, serial_number, identify, *args, **kwargs):  # noqa: E501
+    def __init__(self, identify, node_id, serial_number, *args, **kwargs):  # noqa: E501
         """DiskIdentify - a model defined in OpenAPI
 
         Args:
+            identify (bool, none_type): Turn on/off led light if it is set to true/false
             node_id (int, none_type): Specifies the node id of node that disk belongs to.
             serial_number (str, none_type): Specifies serial number of disk.
-            identify (bool, none_type): Turn on/off led light if it is set to true/false
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,9 +169,9 @@ class DiskIdentify(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.identify = identify
         self.node_id = node_id
         self.serial_number = serial_number
-        self.identify = identify
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

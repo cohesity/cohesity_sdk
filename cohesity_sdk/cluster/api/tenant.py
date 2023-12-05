@@ -21,6 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.create_tenant_parameters import CreateTenantParameters
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
 from cohesity_sdk.cluster.model.register_swift_params import RegisterSwiftParams
@@ -30,9 +31,7 @@ from cohesity_sdk.cluster.model.tenant_assignment_properties import TenantAssign
 from cohesity_sdk.cluster.model.tenant_assignments import TenantAssignments
 from cohesity_sdk.cluster.model.tenant_assignments_params import TenantAssignmentsParams
 from cohesity_sdk.cluster.model.tenant_info import TenantInfo
-from cohesity_sdk.cluster.model.tenant_migration_action import TenantMigrationAction
 from cohesity_sdk.cluster.model.tenants_info import TenantsInfo
-#from cohesity_sdk.cluster.model.unknownbasetype import UNKNOWNBASETYPE
 from cohesity_sdk.cluster.model.unregister_swift_params import UnregisterSwiftParams
 from cohesity_sdk.cluster.model.update_tenant_body import UpdateTenantBody
 
@@ -124,7 +123,7 @@ class TenantApi(object):
                 'response_type': (TenantAssignments,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/{id}/assignments',
@@ -202,7 +201,7 @@ class TenantApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UNKNOWN_BASE_TYPE):
+                body (CreateTenantParameters):
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -258,7 +257,7 @@ class TenantApi(object):
                 'response_type': (TenantInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants',
@@ -287,7 +286,7 @@ class TenantApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (UNKNOWN_BASE_TYPE,),
+                        (CreateTenantParameters,),
                 },
                 'attribute_map': {
                 },
@@ -379,7 +378,7 @@ class TenantApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/{id}',
@@ -507,7 +506,7 @@ class TenantApi(object):
                 'response_type': (TenantAssignmentProperties,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/{id}/assignments',
@@ -630,7 +629,7 @@ class TenantApi(object):
                 'response_type': (OnPremTenantConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/tenant-config',
@@ -743,7 +742,7 @@ class TenantApi(object):
                 'response_type': (TenantInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/{id}',
@@ -867,7 +866,7 @@ class TenantApi(object):
                 'response_type': (SwiftParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/swift',
@@ -982,7 +981,7 @@ class TenantApi(object):
                 'response_type': (TenantsInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants',
@@ -1120,7 +1119,7 @@ class TenantApi(object):
                 'response_type': (TenantInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/{id}/actions',
@@ -1182,128 +1181,6 @@ class TenantApi(object):
             },
             api_client=api_client,
             callable=__perform_tenant_action
-        )
-
-        def __perform_tenant_migration_action(
-            self,
-            body,
-            **kwargs
-        ):
-            """Perform Tenant Migration Action  # noqa: E501
-
-            Perform an action on a DMaaS tenant.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.perform_tenant_migration_action(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (TenantMigrationAction): Specifies the parameters to perform a tenant migration action.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                TenantMigrationAction
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.perform_tenant_migration_action = _Endpoint(
-            settings={
-                'response_type': (TenantMigrationAction,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/tenant-migration/actions',
-                'operation_id': 'perform_tenant_migration_action',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (TenantMigrationAction,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__perform_tenant_migration_action
         )
 
         def __register_swift(
@@ -1377,7 +1254,7 @@ class TenantApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/swift/register',
@@ -1499,7 +1376,7 @@ class TenantApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/swift/unregister',
@@ -1621,7 +1498,7 @@ class TenantApi(object):
                 'response_type': (OnPremTenantConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/tenant-config',
@@ -1747,7 +1624,7 @@ class TenantApi(object):
                 'response_type': (TenantInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/{id}',
@@ -1884,7 +1761,7 @@ class TenantApi(object):
                 'response_type': (SwiftParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tenants/swift',

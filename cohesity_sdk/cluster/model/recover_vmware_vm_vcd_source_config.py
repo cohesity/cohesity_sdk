@@ -83,11 +83,11 @@ class RecoverVmwareVmVCDSourceConfig(ModelNormal):
         return {
             'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'vdc': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'v_app': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'datastores': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
-            'storage_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'org_vdc_network': (OrgVDCNetwork,),  # noqa: E501
+            'storage_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'v_app': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,11 +99,11 @@ class RecoverVmwareVmVCDSourceConfig(ModelNormal):
     attribute_map = {
         'source': 'source',  # noqa: E501
         'vdc': 'vdc',  # noqa: E501
-        'v_app': 'vApp',  # noqa: E501
         'datastores': 'datastores',  # noqa: E501
-        'storage_profile': 'storageProfile',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
         'org_vdc_network': 'orgVdcNetwork',  # noqa: E501
+        'storage_profile': 'storageProfile',  # noqa: E501
+        'v_app': 'vApp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,11 +157,11 @@ class RecoverVmwareVmVCDSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            v_app ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the vApp object where the recovered objects will be attached.. [optional]  # noqa: E501
             datastores ([RecoveryObjectIdentifier], none_type): Specifies the datastore objects where the object's files should be recovered to. This should only be specified if storageProfile is not specified.. [optional]  # noqa: E501
-            storage_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the storage profile to which the objects should be recovered. This should only be specified if datastores are not specified.. [optional]  # noqa: E501
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.. [optional]  # noqa: E501
             org_vdc_network (OrgVDCNetwork): [optional]  # noqa: E501
+            storage_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the storage profile to which the objects should be recovered. This should only be specified if datastores are not specified.. [optional]  # noqa: E501
+            v_app ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the vApp object where the recovered objects will be attached.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

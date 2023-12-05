@@ -40,7 +40,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.helios_public_folder_items import HeliosPublicFolderItems
     from cohesity_sdk.cluster.model.helios_search_indexed_objects_cluster_error import HeliosSearchIndexedObjectsClusterError
     from cohesity_sdk.cluster.model.helios_search_indexed_objects_response_body_all_of import HeliosSearchIndexedObjectsResponseBodyAllOf
-    from cohesity_sdk.cluster.model.sfdc_records import SfdcRecords
     globals()['HeliosCassandraObjects'] = HeliosCassandraObjects
     globals()['HeliosCommonSearchIndexedObjectsResponseParams'] = HeliosCommonSearchIndexedObjectsResponseParams
     globals()['HeliosCouchbaseObjects'] = HeliosCouchbaseObjects
@@ -54,7 +53,6 @@ def lazy_import():
     globals()['HeliosPublicFolderItems'] = HeliosPublicFolderItems
     globals()['HeliosSearchIndexedObjectsClusterError'] = HeliosSearchIndexedObjectsClusterError
     globals()['HeliosSearchIndexedObjectsResponseBodyAllOf'] = HeliosSearchIndexedObjectsResponseBodyAllOf
-    globals()['SfdcRecords'] = SfdcRecords
 
 
 class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
@@ -123,20 +121,19 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
         """
         lazy_import()
         return {
-            'object_type': (str, none_type,),  # noqa: E501
-            'count': (int, none_type,),  # noqa: E501
             'cluster_errors': ([HeliosSearchIndexedObjectsClusterError],),  # noqa: E501
-            'emails': (HeliosEmails,),  # noqa: E501
-            'files': (HeliosFiles,),  # noqa: E501
+            'count': (int, none_type,),  # noqa: E501
+            'object_type': (str, none_type,),  # noqa: E501
             'cassandra_objects': (HeliosCassandraObjects,),  # noqa: E501
             'couchbase_objects': (HeliosCouchbaseObjects,),  # noqa: E501
+            'emails': (HeliosEmails,),  # noqa: E501
+            'exchange_objects': (HeliosExchangeObjects,),  # noqa: E501
+            'files': (HeliosFiles,),  # noqa: E501
             'hbase_objects': (HeliosHbaseObjects,),  # noqa: E501
+            'hdfs_objects': (HeliosHdfsObjects,),  # noqa: E501
             'hive_objects': (HeliosHiveObjects,),  # noqa: E501
             'mongo_objects': (HeliosMongoObjects,),  # noqa: E501
-            'hdfs_objects': (HeliosHdfsObjects,),  # noqa: E501
-            'exchange_objects': (HeliosExchangeObjects,),  # noqa: E501
             'public_folder_items': (HeliosPublicFolderItems,),  # noqa: E501
-            'sfdc_records': (SfdcRecords,),  # noqa: E501
         }
 
     @cached_property
@@ -146,20 +143,19 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
 
 
     attribute_map = {
-        'object_type': 'objectType',  # noqa: E501
-        'count': 'count',  # noqa: E501
         'cluster_errors': 'clusterErrors',  # noqa: E501
-        'emails': 'emails',  # noqa: E501
-        'files': 'files',  # noqa: E501
+        'count': 'count',  # noqa: E501
+        'object_type': 'objectType',  # noqa: E501
         'cassandra_objects': 'cassandraObjects',  # noqa: E501
         'couchbase_objects': 'couchbaseObjects',  # noqa: E501
+        'emails': 'emails',  # noqa: E501
+        'exchange_objects': 'exchangeObjects',  # noqa: E501
+        'files': 'files',  # noqa: E501
         'hbase_objects': 'hbaseObjects',  # noqa: E501
+        'hdfs_objects': 'hdfsObjects',  # noqa: E501
         'hive_objects': 'hiveObjects',  # noqa: E501
         'mongo_objects': 'mongoObjects',  # noqa: E501
-        'hdfs_objects': 'hdfsObjects',  # noqa: E501
-        'exchange_objects': 'exchangeObjects',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
-        'sfdc_records': 'sfdcRecords',  # noqa: E501
     }
 
     required_properties = set([
@@ -210,20 +206,19 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_type (str, none_type): Specifies the object type.. [optional]  # noqa: E501
-            count (int, none_type): Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.. [optional]  # noqa: E501
             cluster_errors ([HeliosSearchIndexedObjectsClusterError]): A List of errors that occured on a subset of clusters.. [optional]  # noqa: E501
-            emails (HeliosEmails): [optional]  # noqa: E501
-            files (HeliosFiles): [optional]  # noqa: E501
+            count (int, none_type): Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.. [optional]  # noqa: E501
+            object_type (str, none_type): Specifies the object type.. [optional]  # noqa: E501
             cassandra_objects (HeliosCassandraObjects): [optional]  # noqa: E501
             couchbase_objects (HeliosCouchbaseObjects): [optional]  # noqa: E501
+            emails (HeliosEmails): [optional]  # noqa: E501
+            exchange_objects (HeliosExchangeObjects): [optional]  # noqa: E501
+            files (HeliosFiles): [optional]  # noqa: E501
             hbase_objects (HeliosHbaseObjects): [optional]  # noqa: E501
+            hdfs_objects (HeliosHdfsObjects): [optional]  # noqa: E501
             hive_objects (HeliosHiveObjects): [optional]  # noqa: E501
             mongo_objects (HeliosMongoObjects): [optional]  # noqa: E501
-            hdfs_objects (HeliosHdfsObjects): [optional]  # noqa: E501
-            exchange_objects (HeliosExchangeObjects): [optional]  # noqa: E501
             public_folder_items (HeliosPublicFolderItems): [optional]  # noqa: E501
-            sfdc_records (SfdcRecords): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -26,7 +26,6 @@ Create a connection of Bifrost on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_bifrost_connection_request import CreateBifrostConnectionRequest
@@ -43,8 +42,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateBifrostConnectionRequest(
+        certificate_version=1,
         name="name_example",
     ) # CreateBifrostConnectionRequest | Specifies the parameters to create a connection.
 
@@ -70,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -95,7 +94,6 @@ Create a connection of Rigel on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_rigel_connection_request import CreateRigelConnectionRequest
@@ -111,7 +109,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateRigelConnectionRequest() # CreateRigelConnectionRequest | Specifies the parameters to create a connection.
 
@@ -137,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -162,7 +159,6 @@ Delete a connection of Bifrost.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -176,7 +172,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of a Bifrost connection.
 
@@ -201,7 +196,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -226,7 +221,6 @@ Delete a connection of Rigel.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -240,7 +234,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of the Rigel connection.
 
@@ -265,7 +258,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -290,7 +283,6 @@ Get connections of Bifrost on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -306,7 +298,6 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 ids = [
         1,
     ] # [int], none_type | Specifies the id of the connections. (optional)
@@ -314,13 +305,12 @@ tenant_id = "tenantId_example" # str, none_type | Specifies the id of the tenant
 names = [
         "names_example",
     ] # [str], none_type | Specifies the name of the connections. (optional)
-default_connection_only = True # bool, none_type | Only return the default Bifrost connections (exactly one default connection is internally created for each Bifrost enabled tenant). (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get connections of Bifrost on the cluster.
-	api_response = client.external_connection.get_bifrost_connection(ids=ids, tenant_id=tenant_id, names=names, default_connection_only=default_connection_only)
+	api_response = client.external_connection.get_bifrost_connection(ids=ids, tenant_id=tenant_id, names=names)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ExternalConnectionApi->get_bifrost_connection: %s\n" % e)
@@ -334,7 +324,6 @@ Name | Type | Description  | Notes
  **ids** | **[int], none_type**| Specifies the id of the connections. | [optional]
  **tenant_id** | **str, none_type**| Specifies the id of the tenant which the connection belongs to. | [optional]
  **names** | **[str], none_type**| Specifies the name of the connections. | [optional]
- **default_connection_only** | **bool, none_type**| Only return the default Bifrost connections (exactly one default connection is internally created for each Bifrost enabled tenant). | [optional]
 
 ### Return type
 
@@ -342,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -367,7 +356,6 @@ Get a connection of Bifrost by the id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.bifrost_connection import BifrostConnection
@@ -382,7 +370,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of the Bifrost connection.
 
@@ -408,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -433,7 +420,6 @@ Returns the upload and download bandwidth limits for a connection.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_connection_bandwidth_response_body import GetConnectionBandwidthResponseBody
@@ -448,7 +434,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Connection Id for which bandwidth settings are to be returned.
 tenant_id = "tenantId_example" # str | TenantId corresponding to the connection. (optional)
@@ -485,7 +470,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -510,7 +495,6 @@ Get connections of Rigel on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -525,7 +509,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         1,
@@ -560,7 +543,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -585,7 +568,6 @@ Get a connection of Rigel by the id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -600,7 +582,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of the Rigel connection.
 
@@ -626,7 +607,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -651,7 +632,6 @@ Update a connection of Bifrost.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.bifrost_connection import BifrostConnection
@@ -667,7 +647,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of a Bifrost connection.
 body = UpdateBifrostConnectionRequest() # UpdateBifrostConnectionRequest | Specifies the parameters to update a connection.
@@ -695,7 +674,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -720,7 +699,6 @@ Returns the updated connection bandwidth limits.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_connection_bandwidth_response_body import GetConnectionBandwidthResponseBody
@@ -737,9 +715,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int, none_type | Connection Id for which bandwidth settings are to be returned
 body = ConnectionBandwidthLimits(
+        connector_group_id=1,
         download=[
             BandwidthLimit(
                 bytes_per_second=1,
@@ -747,20 +725,22 @@ body = ConnectionBandwidthLimits(
                     days=[
                         "Sunday",
                     ],
-                    start_time=TimeOfDay(
-                        hour=0,
-                        minute=0,
-                        time_zone="America/Los_Angeles",
-                    ),
                     end_time=TimeOfDay(
                         hour=0,
                         minute=0,
                         time_zone="America/Los_Angeles",
                     ),
                     is_all_day=True,
+                    start_time=TimeOfDay(
+                        hour=0,
+                        minute=0,
+                        time_zone="America/Los_Angeles",
+                    ),
                 ),
             ),
         ],
+        tenant_id="tenant_id_example",
+        timezone="timezone_example",
         upload=[
             BandwidthLimit(
                 bytes_per_second=1,
@@ -768,23 +748,20 @@ body = ConnectionBandwidthLimits(
                     days=[
                         "Sunday",
                     ],
-                    start_time=TimeOfDay(
-                        hour=0,
-                        minute=0,
-                        time_zone="America/Los_Angeles",
-                    ),
                     end_time=TimeOfDay(
                         hour=0,
                         minute=0,
                         time_zone="America/Los_Angeles",
                     ),
                     is_all_day=True,
+                    start_time=TimeOfDay(
+                        hour=0,
+                        minute=0,
+                        time_zone="America/Los_Angeles",
+                    ),
                 ),
             ),
         ],
-        tenant_id="tenant_id_example",
-        timezone="timezone_example",
-        connector_group_id=1,
     ) # ConnectionBandwidthLimits | Request to update connection bandwidth limits settings.
 
 # example passing only required values which don't have defaults set
@@ -810,7 +787,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -835,7 +812,6 @@ Update a connection of Rigel.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_rigel_connection_request import UpdateRigelConnectionRequest
@@ -851,7 +827,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int, none_type | Specifies the id of the Rigel connection.
 body = UpdateRigelConnectionRequest() # UpdateRigelConnectionRequest | Specifies the parameters to update the connection.
@@ -879,7 +854,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

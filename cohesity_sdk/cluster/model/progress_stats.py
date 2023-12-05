@@ -74,9 +74,9 @@ class ProgressStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'backup_file_count': (int, none_type,),  # noqa: E501
             'file_walk_done': (bool, none_type,),  # noqa: E501
             'total_file_count': (int, none_type,),  # noqa: E501
-            'backup_file_count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ProgressStats(ModelNormal):
 
 
     attribute_map = {
+        'backup_file_count': 'backupFileCount',  # noqa: E501
         'file_walk_done': 'fileWalkDone',  # noqa: E501
         'total_file_count': 'totalFileCount',  # noqa: E501
-        'backup_file_count': 'backupFileCount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class ProgressStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            backup_file_count (int, none_type): Specifies the total number of file and directory entities that are backed up in this run. Only applicable to file based backups.. [optional]  # noqa: E501
             file_walk_done (bool, none_type): Specifies whether the file system walk is done. Only applicable to file based backups.. [optional]  # noqa: E501
             total_file_count (int, none_type): Specifies the total number of file and directory entities visited in this backup. Only applicable to file based backups.. [optional]  # noqa: E501
-            backup_file_count (int, none_type): Specifies the total number of file and directory entities that are backed up in this run. Only applicable to file based backups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

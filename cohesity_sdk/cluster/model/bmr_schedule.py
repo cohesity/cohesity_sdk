@@ -94,8 +94,8 @@ class BmrSchedule(ModelNormal):
         return {
             'unit': (str, none_type,),  # noqa: E501
             'day_schedule': (DaySchedule,),  # noqa: E501
-            'week_schedule': (WeekSchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
+            'week_schedule': (WeekSchedule,),  # noqa: E501
             'year_schedule': (YearSchedule,),  # noqa: E501
         }
 
@@ -108,8 +108,8 @@ class BmrSchedule(ModelNormal):
     attribute_map = {
         'unit': 'unit',  # noqa: E501
         'day_schedule': 'daySchedule',  # noqa: E501
-        'week_schedule': 'weekSchedule',  # noqa: E501
         'month_schedule': 'monthSchedule',  # noqa: E501
+        'week_schedule': 'weekSchedule',  # noqa: E501
         'year_schedule': 'yearSchedule',  # noqa: E501
     }
 
@@ -164,8 +164,8 @@ class BmrSchedule(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             day_schedule (DaySchedule): [optional]  # noqa: E501
-            week_schedule (WeekSchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
+            week_schedule (WeekSchedule): [optional]  # noqa: E501
             year_schedule (YearSchedule): [optional]  # noqa: E501
         """
 

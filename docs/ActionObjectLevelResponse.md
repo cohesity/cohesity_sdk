@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int, none_type** | Specifies the ID of the object. | 
 **name** | **str, none_type** | Specifies the name of the object. | [optional] [readonly] 
-**resume_status** | [**ResumeActionObjectLevelResponse**](ResumeActionObjectLevelResponse.md) |  | [optional] 
 **pause_status** | [**PauseActionObjectLevelResponse**](PauseActionObjectLevelResponse.md) |  | [optional] 
+**resume_status** | [**ResumeActionObjectLevelResponse**](ResumeActionObjectLevelResponse.md) |  | [optional] 
 **run_now_status** | [**RunNowActionObjectLevelResponse**](RunNowActionObjectLevelResponse.md) |  | [optional] 
 **un_protect_status** | [**UnprotectActionObjectLevelResponse**](UnprotectActionObjectLevelResponse.md) |  | [optional] 
 

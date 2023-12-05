@@ -85,11 +85,11 @@ class OracleCloneTask(ModelComposed):
         """
         lazy_import()
         return {
+            'base_folder': (str, none_type,),  # noqa: E501
             'db_name': (str, none_type,),  # noqa: E501
             'home_folder': (str, none_type,),  # noqa: E501
-            'base_folder': (str, none_type,),  # noqa: E501
-            'pre_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'post_script': (CommonPostBackupScriptParams,),  # noqa: E501
+            'pre_script': (CommonPreBackupScriptParams,),  # noqa: E501
             'sga': (str, none_type,),  # noqa: E501
         }
 
@@ -100,11 +100,11 @@ class OracleCloneTask(ModelComposed):
 
 
     attribute_map = {
+        'base_folder': 'baseFolder',  # noqa: E501
         'db_name': 'dbName',  # noqa: E501
         'home_folder': 'homeFolder',  # noqa: E501
-        'base_folder': 'baseFolder',  # noqa: E501
-        'pre_script': 'preScript',  # noqa: E501
         'post_script': 'postScript',  # noqa: E501
+        'pre_script': 'preScript',  # noqa: E501
         'sga': 'sga',  # noqa: E501
     }
 
@@ -121,13 +121,13 @@ class OracleCloneTask(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, db_name, home_folder, base_folder, *args, **kwargs):  # noqa: E501
+    def __init__(self, base_folder, db_name, home_folder, *args, **kwargs):  # noqa: E501
         """OracleCloneTask - a model defined in OpenAPI
 
         Args:
+            base_folder (str, none_type): Specifies the base folder of Oracle installation on the target host.
             db_name (str, none_type): Specifies the name of the cloned database.
             home_folder (str, none_type): Specifies the home folder for the cloned database.
-            base_folder (str, none_type): Specifies the base folder of Oracle installation on the target host.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -161,8 +161,8 @@ class OracleCloneTask(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            pre_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             post_script (CommonPostBackupScriptParams): [optional]  # noqa: E501
+            pre_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
             sga (str, none_type): Specifies the System Global Area (SGA) for the clone database.. [optional]  # noqa: E501
         """
 
@@ -198,9 +198,9 @@ class OracleCloneTask(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
+            'base_folder': base_folder,
             'db_name': db_name,
             'home_folder': home_folder,
-            'base_folder': base_folder,
         }
         model_args = {}
         model_args.update(required_args)

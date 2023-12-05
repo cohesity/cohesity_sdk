@@ -83,16 +83,16 @@ class SnapshotDiffParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'cluster_id': (int,),  # noqa: E501
-            'partition_id': (int,),  # noqa: E501
-            'job_id': (int,),  # noqa: E501
-            'entity_type': (str,),  # noqa: E501
             'base_snapshot_job_instance_id': (int,),  # noqa: E501
             'base_snapshot_time_usecs': (int,),  # noqa: E501
-            'snapshot_job_instance_id': (int,),  # noqa: E501
-            'snapshot_time_usecs': (int,),  # noqa: E501
+            'cluster_id': (int,),  # noqa: E501
+            'entity_type': (str,),  # noqa: E501
+            'job_id': (int,),  # noqa: E501
             'page_number': (int,),  # noqa: E501
             'page_size': (int,),  # noqa: E501
+            'partition_id': (int,),  # noqa: E501
+            'snapshot_job_instance_id': (int,),  # noqa: E501
+            'snapshot_time_usecs': (int,),  # noqa: E501
             'incarnation_id': (int,),  # noqa: E501
         }
 
@@ -103,16 +103,16 @@ class SnapshotDiffParams(ModelNormal):
 
 
     attribute_map = {
-        'cluster_id': 'clusterId',  # noqa: E501
-        'partition_id': 'partitionId',  # noqa: E501
-        'job_id': 'jobId',  # noqa: E501
-        'entity_type': 'entityType',  # noqa: E501
         'base_snapshot_job_instance_id': 'baseSnapshotJobInstanceId',  # noqa: E501
         'base_snapshot_time_usecs': 'baseSnapshotTimeUsecs',  # noqa: E501
-        'snapshot_job_instance_id': 'snapshotJobInstanceId',  # noqa: E501
-        'snapshot_time_usecs': 'snapshotTimeUsecs',  # noqa: E501
+        'cluster_id': 'clusterId',  # noqa: E501
+        'entity_type': 'entityType',  # noqa: E501
+        'job_id': 'jobId',  # noqa: E501
         'page_number': 'pageNumber',  # noqa: E501
         'page_size': 'pageSize',  # noqa: E501
+        'partition_id': 'partitionId',  # noqa: E501
+        'snapshot_job_instance_id': 'snapshotJobInstanceId',  # noqa: E501
+        'snapshot_time_usecs': 'snapshotTimeUsecs',  # noqa: E501
         'incarnation_id': 'incarnationId',  # noqa: E501
     }
 
@@ -128,20 +128,20 @@ class SnapshotDiffParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, cluster_id, partition_id, job_id, entity_type, base_snapshot_job_instance_id, base_snapshot_time_usecs, snapshot_job_instance_id, snapshot_time_usecs, page_number, page_size, *args, **kwargs):  # noqa: E501
+    def __init__(self, base_snapshot_job_instance_id, base_snapshot_time_usecs, cluster_id, entity_type, job_id, page_number, page_size, partition_id, snapshot_job_instance_id, snapshot_time_usecs, *args, **kwargs):  # noqa: E501
         """SnapshotDiffParams - a model defined in OpenAPI
 
         Args:
-            cluster_id (int):
-            partition_id (int):
-            job_id (int):
-            entity_type (str):
             base_snapshot_job_instance_id (int):
             base_snapshot_time_usecs (int):
-            snapshot_job_instance_id (int):
-            snapshot_time_usecs (int):
+            cluster_id (int):
+            entity_type (str):
+            job_id (int):
             page_number (int):
             page_size (int):
+            partition_id (int):
+            snapshot_job_instance_id (int):
+            snapshot_time_usecs (int):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -202,16 +202,16 @@ class SnapshotDiffParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.cluster_id = cluster_id
-        self.partition_id = partition_id
-        self.job_id = job_id
-        self.entity_type = entity_type
         self.base_snapshot_job_instance_id = base_snapshot_job_instance_id
         self.base_snapshot_time_usecs = base_snapshot_time_usecs
-        self.snapshot_job_instance_id = snapshot_job_instance_id
-        self.snapshot_time_usecs = snapshot_time_usecs
+        self.cluster_id = cluster_id
+        self.entity_type = entity_type
+        self.job_id = job_id
         self.page_number = page_number
         self.page_size = page_size
+        self.partition_id = partition_id
+        self.snapshot_job_instance_id = snapshot_job_instance_id
+        self.snapshot_time_usecs = snapshot_time_usecs
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

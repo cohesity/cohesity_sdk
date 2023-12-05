@@ -99,8 +99,8 @@ class FilterObjectsRequest(ModelNormal):
             'filters': ([Filter], none_type,),  # noqa: E501
             'object_ids': ([int], none_type,),  # noqa: E501
             'application_environment': (str, none_type,),  # noqa: E501
-            'tenant_ids': ([str], none_type,),  # noqa: E501
             'include_tenants': (bool, none_type,),  # noqa: E501
+            'tenant_ids': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,8 +114,8 @@ class FilterObjectsRequest(ModelNormal):
         'filters': 'filters',  # noqa: E501
         'object_ids': 'objectIds',  # noqa: E501
         'application_environment': 'applicationEnvironment',  # noqa: E501
-        'tenant_ids': 'tenantIds',  # noqa: E501
         'include_tenants': 'includeTenants',  # noqa: E501
+        'tenant_ids': 'tenantIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -171,8 +171,8 @@ class FilterObjectsRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             application_environment (str, none_type): Specifies the type of application enviornment needed for filtering to be applied on. This is needed because in case of applications like SQL, Oracle, a single source can contain multiple application enviornments.. [optional] if omitted the server will use the default value of "kSQL"  # noqa: E501
-            tenant_ids ([str], none_type): TenantIds contains list of the tenant for which objects are to be returned.. [optional]  # noqa: E501
             include_tenants (bool, none_type): If true, the response will include objects which belongs to all tenants which the current user has permission to see. Default value is false.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            tenant_ids ([str], none_type): TenantIds contains list of the tenant for which objects are to be returned.. [optional]  # noqa: E501
         """
 
         filter_type = kwargs.get('filter_type', "exclude")

@@ -62,12 +62,6 @@ class Share(ModelComposed):
     """
 
     allowed_values = {
-        ('file_audit_logging_state',): {
-            'None': None,
-            'INHERITED': "Inherited",
-            'ENABLED': "Enabled",
-            'DISABLED': "Disabled",
-        },
     }
 
     validations = {
@@ -92,13 +86,12 @@ class Share(ModelComposed):
             'name': (str, none_type,),  # noqa: E501
             'view_name': (str, none_type,),  # noqa: E501
             'view_path': (str, none_type,),  # noqa: E501
-            'enable_filer_audit_logging': (bool, none_type,),  # noqa: E501
-            'file_audit_logging_state': (str, none_type,),  # noqa: E501
-            'smb_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'client_subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
+            'enable_filer_audit_logging': (bool, none_type,),  # noqa: E501
+            'smb_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'nfs_mount_paths': ([str], none_type,),  # noqa: E501
-            'smb_mount_paths': ([str], none_type,),  # noqa: E501
             's3_access_path': (str, none_type,),  # noqa: E501
+            'smb_mount_paths': ([str], none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
         }
 
@@ -112,13 +105,12 @@ class Share(ModelComposed):
         'name': 'name',  # noqa: E501
         'view_name': 'viewName',  # noqa: E501
         'view_path': 'viewPath',  # noqa: E501
-        'enable_filer_audit_logging': 'enableFilerAuditLogging',  # noqa: E501
-        'file_audit_logging_state': 'fileAuditLoggingState',  # noqa: E501
-        'smb_config': 'smbConfig',  # noqa: E501
         'client_subnet_whitelist': 'clientSubnetWhitelist',  # noqa: E501
+        'enable_filer_audit_logging': 'enableFilerAuditLogging',  # noqa: E501
+        'smb_config': 'smbConfig',  # noqa: E501
         'nfs_mount_paths': 'nfsMountPaths',  # noqa: E501
-        'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         's3_access_path': 's3AccessPath',  # noqa: E501
+        'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
     }
 
@@ -175,13 +167,12 @@ class Share(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enable_filer_audit_logging (bool, none_type): This field is currently deprecated. Specifies if Filer Audit Logging is enabled for this Share.. [optional]  # noqa: E501
-            file_audit_logging_state (str, none_type): Specifies the state of File Audit logging for this Share. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share.. [optional]  # noqa: E501
-            smb_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): SMB config for the alias (share).. [optional]  # noqa: E501
             client_subnet_whitelist ([Subnet], none_type): List of external client subnet IPs that are allowed to access the share.. [optional]  # noqa: E501
+            enable_filer_audit_logging (bool, none_type): Specifies if Filer Audit Logging is enabled for this view.. [optional]  # noqa: E501
+            smb_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): SMB config for the alias (share).. [optional]  # noqa: E501
             nfs_mount_paths ([str], none_type): Specifies the path for mounting this Share as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has its own path.. [optional]  # noqa: E501
-            smb_mount_paths ([str], none_type): Specifies the possible paths that can be used to mount this Share as a SMB share. If Active Directory has multiple account names, each machine account has its own path.. [optional]  # noqa: E501
             s3_access_path (str, none_type): Specifies the path to access this Share as an S3 share.. [optional]  # noqa: E501
+            smb_mount_paths ([str], none_type): Specifies the possible paths that can be used to mount this Share as a SMB share. If Active Directory has multiple account names, each machine account has its own path.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id who has access to this Share.. [optional]  # noqa: E501
         """
 

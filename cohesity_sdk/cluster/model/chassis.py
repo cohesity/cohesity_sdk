@@ -74,12 +74,12 @@ class Chassis(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
             'hardware_model': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'serial_number': (str, none_type,),  # noqa: E501
             'node_ids': ([int], none_type,),  # noqa: E501
             'rack_id': (int, none_type,),  # noqa: E501
+            'serial_number': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class Chassis(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'hardware_model': 'hardwareModel',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'serial_number': 'serialNumber',  # noqa: E501
         'node_ids': 'nodeIds',  # noqa: E501
         'rack_id': 'rackId',  # noqa: E501
+        'serial_number': 'serialNumber',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class Chassis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the id of the chassis used to uniquely identify a chassis.. [optional]  # noqa: E501
             hardware_model (str, none_type): Specifies the hardware model of the chassis.. [optional]  # noqa: E501
+            id (int, none_type): Specifies the id of the chassis used to uniquely identify a chassis.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the chassis.. [optional]  # noqa: E501
-            serial_number (str, none_type): Specifies the serial number of the chassis.. [optional]  # noqa: E501
             node_ids ([int], none_type): Specifies list of ids of all the nodes in chassis.. [optional]  # noqa: E501
             rack_id (int, none_type): Rack Id that this chassis belong to. [optional]  # noqa: E501
+            serial_number (str, none_type): Specifies the serial number of the chassis.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

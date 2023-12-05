@@ -74,9 +74,9 @@ class OracleVlanInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'ip_list': ([str], none_type,),  # noqa: E501
             'gateway': (str, none_type,),  # noqa: E501
             'id': (int,),  # noqa: E501
+            'ip_list': ([str], none_type,),  # noqa: E501
             'subnet_ip': (str, none_type,),  # noqa: E501
         }
 
@@ -87,9 +87,9 @@ class OracleVlanInfo(ModelNormal):
 
 
     attribute_map = {
-        'ip_list': 'ipList',  # noqa: E501
         'gateway': 'gateway',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'ip_list': 'ipList',  # noqa: E501
         'subnet_ip': 'subnetIp',  # noqa: E501
     }
 
@@ -140,9 +140,9 @@ class OracleVlanInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            ip_list ([str], none_type): Specifies the list of Ips in this VLAN.. [optional]  # noqa: E501
             gateway (str, none_type): Specifies the gateway of this VLAN.. [optional]  # noqa: E501
             id (int): Specifies the Id of this VLAN.. [optional]  # noqa: E501
+            ip_list ([str], none_type): Specifies the list of Ips in this VLAN.. [optional]  # noqa: E501
             subnet_ip (str, none_type): Specifies the subnet Ip for this VLAN.. [optional]  # noqa: E501
         """
 

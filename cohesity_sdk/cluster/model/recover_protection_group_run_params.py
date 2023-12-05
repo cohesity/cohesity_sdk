@@ -80,8 +80,8 @@ class RecoverProtectionGroupRunParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'protection_group_run_id': (str, none_type,),  # noqa: E501
             'protection_group_instance_id': (int, none_type,),  # noqa: E501
+            'protection_group_run_id': (str, none_type,),  # noqa: E501
             'archival_target_id': (int, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
         }
@@ -93,8 +93,8 @@ class RecoverProtectionGroupRunParams(ModelNormal):
 
 
     attribute_map = {
-        'protection_group_run_id': 'protectionGroupRunId',  # noqa: E501
         'protection_group_instance_id': 'protectionGroupInstanceId',  # noqa: E501
+        'protection_group_run_id': 'protectionGroupRunId',  # noqa: E501
         'archival_target_id': 'archivalTargetId',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
     }
@@ -111,12 +111,12 @@ class RecoverProtectionGroupRunParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, protection_group_run_id, protection_group_instance_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, protection_group_instance_id, protection_group_run_id, *args, **kwargs):  # noqa: E501
         """RecoverProtectionGroupRunParams - a model defined in OpenAPI
 
         Args:
-            protection_group_run_id (str, none_type): Specifies the Protection Group Run id from which to recover VMs. All the VM's that are successfully protected by this Run will be recovered.
             protection_group_instance_id (int, none_type): Specifies the Protection Group Instance id.
+            protection_group_run_id (str, none_type): Specifies the Protection Group Run id from which to recover VMs. All the VM's that are successfully protected by this Run will be recovered.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -178,8 +178,8 @@ class RecoverProtectionGroupRunParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.protection_group_run_id = protection_group_run_id
         self.protection_group_instance_id = protection_group_instance_id
+        self.protection_group_run_id = protection_group_run_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

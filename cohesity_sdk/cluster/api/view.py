@@ -140,7 +140,7 @@ class ViewApi(object):
                 'response_type': (UserQuotaOverrides,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
@@ -268,7 +268,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/nlm-locks',
@@ -394,7 +394,7 @@ class ViewApi(object):
                 'response_type': (View,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/clone',
@@ -522,7 +522,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/clone-directory',
@@ -640,7 +640,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/smb-file-opens',
@@ -760,7 +760,7 @@ class ViewApi(object):
                 'response_type': (Share,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/shares',
@@ -882,7 +882,7 @@ class ViewApi(object):
                 'response_type': (View,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views',
@@ -1004,7 +1004,7 @@ class ViewApi(object):
                 'response_type': (Template,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-template',
@@ -1126,7 +1126,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/shares/{name}',
@@ -1247,7 +1247,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}',
@@ -1370,7 +1370,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/directory-quotas',
@@ -1501,7 +1501,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-template/{id}',
@@ -1626,7 +1626,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
@@ -1758,7 +1758,7 @@ class ViewApi(object):
                 'response_type': (FileLockStatus,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/file-lock',
@@ -1884,7 +1884,7 @@ class ViewApi(object):
                 'response_type': (GetNlmLocksResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/nlm-locks',
@@ -2013,7 +2013,7 @@ class ViewApi(object):
                 'response_type': (QosPoliciesResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/qos-policies',
@@ -2128,7 +2128,7 @@ class ViewApi(object):
                 'response_type': (Shares,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/shares',
@@ -2273,7 +2273,7 @@ class ViewApi(object):
                 'response_type': (View,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}',
@@ -2392,7 +2392,7 @@ class ViewApi(object):
                 'response_type': (ViewClients,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-clients',
@@ -2525,7 +2525,7 @@ class ViewApi(object):
                 'response_type': (ViewClientsSummary,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-clients/summary',
@@ -2647,7 +2647,7 @@ class ViewApi(object):
                 'response_type': (ViewDirectoryQuotas,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/directory-quotas',
@@ -2782,7 +2782,7 @@ class ViewApi(object):
                 'response_type': (ViewUserQuotas,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',
@@ -2894,10 +2894,10 @@ class ViewApi(object):
                 filer_audit_log_enabled (bool): If set to true, only views with filer audit log enabled will be returned. If set to false, only views with filer audit log disabled will be returned.. [optional]
                 categories ([str]): Filter by a list of View categories.. [optional]
                 view_protection_types ([str]): Filter by a list of View protection types. Supported types: [Local Archival ReplicationOut ReplicationIn UnProtected]. UnProtected is mutually exclusive from remaining types.. [optional]
-                last_run_any_statuses ([str]): Filter by last any run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_local_backup_statuses ([str]): Filter by last local backup run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_replication_statuses ([str]): Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
-                last_run_archival_statuses ([str]): Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_any_statuses ([str]): Filter by last any run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_local_backup_statuses ([str]): Filter by last local backup run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_replication_statuses ([str]): Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_archival_statuses ([str]): Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
                 is_protected (bool): Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.. [optional]
                 qos_principal_ids ([int]): qosPrincipalIds contains ids of the QoS principal for which views are to be returned.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
@@ -2952,7 +2952,7 @@ class ViewApi(object):
                 'response_type': (GetViewsResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views',
@@ -3049,8 +3049,7 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                     ('last_run_local_backup_statuses',): {
 
@@ -3063,8 +3062,7 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                     ('last_run_replication_statuses',): {
 
@@ -3077,8 +3075,7 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                     ('last_run_archival_statuses',): {
 
@@ -3091,8 +3088,7 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                 },
                 'openapi_types': {
@@ -3334,7 +3330,7 @@ class ViewApi(object):
                 'response_type': (ViewsSummary,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views-summary',
@@ -3457,7 +3453,7 @@ class ViewApi(object):
                 'response_type': (SmbFileOpens,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/smb-file-opens',
@@ -3599,7 +3595,7 @@ class ViewApi(object):
                 'response_type': (FileLockStatus,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/file-lock',
@@ -3731,7 +3727,7 @@ class ViewApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/overwrite',
@@ -3859,7 +3855,7 @@ class ViewApi(object):
                 'response_type': (Template,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-template/{id}',
@@ -3975,7 +3971,7 @@ class ViewApi(object):
                 'response_type': (GetViewTemplatesResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-template',
@@ -4093,7 +4089,7 @@ class ViewApi(object):
                 'response_type': (Share,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/shares/{name}',
@@ -4225,7 +4221,7 @@ class ViewApi(object):
                 'response_type': (View,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}',
@@ -4357,7 +4353,7 @@ class ViewApi(object):
                 'response_type': (ViewDirectoryQuota,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{id}/directory-quotas',
@@ -4489,7 +4485,7 @@ class ViewApi(object):
                 'response_type': (Template,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/view-template/{id}',
@@ -4625,7 +4621,7 @@ class ViewApi(object):
                 'response_type': (UserQuota,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas/{userId}',
@@ -4763,7 +4759,7 @@ class ViewApi(object):
                 'response_type': (ViewUserQuotas,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/file-services/views/{viewId}/user-quotas',

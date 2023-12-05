@@ -74,12 +74,12 @@ class NumberFormFieldParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'required': (bool, none_type,),  # noqa: E501
             'default_value': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'maximum_value': (str, none_type,),  # noqa: E501
             'minimum_value': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'placeholder': (str, none_type,),  # noqa: E501
+            'required': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class NumberFormFieldParams(ModelNormal):
 
 
     attribute_map = {
-        'required': 'required',  # noqa: E501
         'default_value': 'defaultValue',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'maximum_value': 'maximumValue',  # noqa: E501
         'minimum_value': 'minimumValue',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'placeholder': 'placeholder',  # noqa: E501
+        'required': 'required',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class NumberFormFieldParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            required (bool, none_type): Specifies whether the field is mandatory. [optional]  # noqa: E501
             default_value (str, none_type): Default value for the field. [optional]  # noqa: E501
+            description (str, none_type): Description for the field to be shown on UI screen. [optional]  # noqa: E501
             maximum_value (str, none_type): Maximum allowable value for the field. [optional]  # noqa: E501
             minimum_value (str, none_type): Minimum allowable value for the field. [optional]  # noqa: E501
-            description (str, none_type): Description for the field to be shown on UI screen. [optional]  # noqa: E501
             placeholder (str, none_type): Placeholder for the form field. [optional]  # noqa: E501
+            required (bool, none_type): Specifies whether the field is mandatory. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

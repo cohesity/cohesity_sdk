@@ -90,8 +90,8 @@ class VmwareSourceRegistrationParams(ModelNormal):
         lazy_import()
         return {
             'type': (str, none_type,),  # noqa: E501
-            'v_center_params': (VcenterRegistrationParams,),  # noqa: E501
             'esxi_params': (EsxiRegistrationParams,),  # noqa: E501
+            'v_center_params': (VcenterRegistrationParams,),  # noqa: E501
             'vcd_params': (VcdRegistrationParams,),  # noqa: E501
         }
 
@@ -103,8 +103,8 @@ class VmwareSourceRegistrationParams(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'v_center_params': 'vCenterParams',  # noqa: E501
         'esxi_params': 'esxiParams',  # noqa: E501
+        'v_center_params': 'vCenterParams',  # noqa: E501
         'vcd_params': 'vcdParams',  # noqa: E501
     }
 
@@ -158,8 +158,8 @@ class VmwareSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            v_center_params (VcenterRegistrationParams): [optional]  # noqa: E501
             esxi_params (EsxiRegistrationParams): [optional]  # noqa: E501
+            v_center_params (VcenterRegistrationParams): [optional]  # noqa: E501
             vcd_params (VcdRegistrationParams): [optional]  # noqa: E501
         """
 

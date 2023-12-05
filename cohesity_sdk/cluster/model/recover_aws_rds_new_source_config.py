@@ -74,9 +74,9 @@ class RecoverAwsRdsNewSourceConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'region': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'region': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class RecoverAwsRdsNewSourceConfig(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
-        'region': 'region',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
+        'region': 'region',  # noqa: E501
+        'source': 'source',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class RecoverAwsRdsNewSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, region, network_config, *args, **kwargs):  # noqa: E501
+    def __init__(self, network_config, region, source, *args, **kwargs):  # noqa: E501
         """RecoverAwsRdsNewSourceConfig - a model defined in OpenAPI
 
         Args:
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the RDS.
-            region ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the AWS region in which to deploy the RDS instance.
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.
+            region ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the AWS region in which to deploy the RDS instance.
+            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the RDS.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,9 +169,9 @@ class RecoverAwsRdsNewSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source = source
-        self.region = region
         self.network_config = network_config
+        self.region = region
+        self.source = source
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -74,8 +74,8 @@ class UserUiConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'preferences': (str, none_type,),  # noqa: E501
             'locale': (str, none_type,),  # noqa: E501
+            'preferences': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class UserUiConfig(ModelNormal):
 
 
     attribute_map = {
-        'preferences': 'preferences',  # noqa: E501
         'locale': 'locale',  # noqa: E501
+        'preferences': 'preferences',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class UserUiConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            preferences (str, none_type): Specifies the user's preferences for UI customization.. [optional]  # noqa: E501
             locale (str, none_type): Specifies the locale.. [optional]  # noqa: E501
+            preferences (str, none_type): Specifies the user's preferences for UI customization.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

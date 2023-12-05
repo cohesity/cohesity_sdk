@@ -5,8 +5,8 @@ Specifies the snapshot label for incremental and full backup of Secondary Netapp
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**incremental_label** | **str, none_type** | Specifies the incremental snapshot label value | [optional] 
 **full_label** | **str, none_type** | Specifies the full snapshot label value | [optional] 
+**incremental_label** | **str, none_type** | Specifies the incremental snapshot label value | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

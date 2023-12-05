@@ -74,13 +74,13 @@ class ClusterAMQPTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'server_ip': (str, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
-            'password': (str, none_type,),  # noqa: E501
-            'virtual_host': (str, none_type,),  # noqa: E501
+            'certificate': (str, none_type,),  # noqa: E501
             'exchange': (str, none_type,),  # noqa: E501
             'filer_id': (int, none_type,),  # noqa: E501
-            'certificate': (str, none_type,),  # noqa: E501
+            'password': (str, none_type,),  # noqa: E501
+            'server_ip': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
+            'virtual_host': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,13 +90,13 @@ class ClusterAMQPTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'server_ip': 'serverIp',  # noqa: E501
-        'username': 'username',  # noqa: E501
-        'password': 'password',  # noqa: E501
-        'virtual_host': 'virtualHost',  # noqa: E501
+        'certificate': 'certificate',  # noqa: E501
         'exchange': 'exchange',  # noqa: E501
         'filer_id': 'filerId',  # noqa: E501
-        'certificate': 'certificate',  # noqa: E501
+        'password': 'password',  # noqa: E501
+        'server_ip': 'serverIp',  # noqa: E501
+        'username': 'username',  # noqa: E501
+        'virtual_host': 'virtualHost',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,13 +146,13 @@ class ClusterAMQPTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            server_ip (str, none_type): Specifies the server ip.. [optional]  # noqa: E501
-            username (str, none_type): Specifies the username.. [optional]  # noqa: E501
-            password (str, none_type): Specifies the password.. [optional]  # noqa: E501
-            virtual_host (str, none_type): Specifies the virtual host.. [optional]  # noqa: E501
+            certificate (str, none_type): Specifies the certificate.. [optional]  # noqa: E501
             exchange (str, none_type): Specifies the exchange.. [optional]  # noqa: E501
             filer_id (int, none_type): Specifies the filer id.. [optional]  # noqa: E501
-            certificate (str, none_type): Specifies the certificate.. [optional]  # noqa: E501
+            password (str, none_type): Specifies the password.. [optional]  # noqa: E501
+            server_ip (str, none_type): Specifies the server ip.. [optional]  # noqa: E501
+            username (str, none_type): Specifies the username.. [optional]  # noqa: E501
+            virtual_host (str, none_type): Specifies the virtual host.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

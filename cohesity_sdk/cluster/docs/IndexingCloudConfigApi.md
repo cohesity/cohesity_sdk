@@ -13,7 +13,6 @@ Create a new indexing config for a Tenant on Helios.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.indexing_cloud_config import IndexingCloudConfig
@@ -29,29 +28,18 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = IndexingCloudConfig(
-        tenant_id="tenant_id_example",
-        region="region_example",
         es_config=ESConfigForIndexing(
             es_domain="es_domain_example",
             es_iam_role_arn="es_iam_role_arn_example",
         ),
-        azure_es_config=AzureESConfigForIndexing(
-            es_domain="es_domain_example",
-            vault_url="vault_url_example",
-            client_id="client_id_example",
-            secret_name="secret_name_example",
-        ),
+        region="region_example",
         s3_config=S3ConfigForIndexing(
             s3_bucket_name="s3_bucket_name_example",
-            s3_prefix="s3_prefix_example",
             s3_iam_role_arn="s3_iam_role_arn_example",
+            s3_prefix="s3_prefix_example",
         ),
-        azure_storage_config=AzureStorageConfigForIndexing(
-            container_name="container_name_example",
-            storage_account_name="storage_account_name_example",
-        ),
+        tenant_id="tenant_id_example",
     ) # IndexingCloudConfig | 
 
 # example passing only required values which don't have defaults set
@@ -76,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

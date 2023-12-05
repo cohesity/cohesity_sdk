@@ -121,7 +121,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/cancel',
@@ -242,7 +242,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}/cancel',
@@ -367,7 +367,7 @@ class FailoverApi(object):
                 'response_type': (FailoverCreateRunResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/planned-run',
@@ -499,7 +499,7 @@ class FailoverApi(object):
                 'response_type': (Failover,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}',
@@ -627,7 +627,7 @@ class FailoverApi(object):
                 'response_type': (GetFailoverOpsResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}/operations',
@@ -749,7 +749,7 @@ class FailoverApi(object):
                 'response_type': (GetTrackingViewIdResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/trackingViewId/{id}',
@@ -875,7 +875,7 @@ class FailoverApi(object):
                 'response_type': (GetViewFailoverResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}',
@@ -1000,7 +1000,7 @@ class FailoverApi(object):
                 'response_type': (InitFailoverResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}',
@@ -1132,7 +1132,7 @@ class FailoverApi(object):
                 'response_type': (ReplicationBackupActivationResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backupActivation',
@@ -1264,7 +1264,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/object-linkage',
@@ -1394,7 +1394,7 @@ class FailoverApi(object):
                 'response_type': (FailoverRunsResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/planned-runs',
@@ -1531,7 +1531,7 @@ class FailoverApi(object):
                 'response_type': (ReplicationBackupActivationResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backup-activation',
@@ -1663,7 +1663,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backup-deactivation',

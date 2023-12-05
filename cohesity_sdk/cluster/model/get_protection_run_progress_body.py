@@ -83,8 +83,8 @@ class GetProtectionRunProgressBody(ModelNormal):
         """
         lazy_import()
         return {
-            'local_run': (BackupRunProgressInfo,),  # noqa: E501
             'archival_run': ([ArchivalTargetProgressInfo], none_type,),  # noqa: E501
+            'local_run': (BackupRunProgressInfo,),  # noqa: E501
             'replication_run': ([ReplicationTargetProgressInfo], none_type,),  # noqa: E501
         }
 
@@ -95,8 +95,8 @@ class GetProtectionRunProgressBody(ModelNormal):
 
 
     attribute_map = {
-        'local_run': 'localRun',  # noqa: E501
         'archival_run': 'archivalRun',  # noqa: E501
+        'local_run': 'localRun',  # noqa: E501
         'replication_run': 'replicationRun',  # noqa: E501
     }
 
@@ -147,8 +147,8 @@ class GetProtectionRunProgressBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            local_run (BackupRunProgressInfo): [optional]  # noqa: E501
             archival_run ([ArchivalTargetProgressInfo], none_type): Progress for the archival run.. [optional]  # noqa: E501
+            local_run (BackupRunProgressInfo): [optional]  # noqa: E501
             replication_run ([ReplicationTargetProgressInfo], none_type): Progress for the replication run.. [optional]  # noqa: E501
         """
 

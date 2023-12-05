@@ -86,8 +86,8 @@ class MSSQLFileProtectionGroupParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'objects': ([MSSQLFileProtectionGroupObjectParams], none_type,),  # noqa: E501
-            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
             'additional_host_params': ([MSSQLFileProtectionGroupHostParams],),  # noqa: E501
+            'perform_source_side_deduplication': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +98,8 @@ class MSSQLFileProtectionGroupParamsAllOf(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
         'additional_host_params': 'additionalHostParams',  # noqa: E501
+        'perform_source_side_deduplication': 'performSourceSideDeduplication',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,8 +152,8 @@ class MSSQLFileProtectionGroupParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
             additional_host_params ([MSSQLFileProtectionGroupHostParams]): Specifies settings which are to be applied to specific host containers in this protection group.. [optional]  # noqa: E501
+            perform_source_side_deduplication (bool, none_type): Specifies whether or not to perform source side deduplication on this Protection Group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

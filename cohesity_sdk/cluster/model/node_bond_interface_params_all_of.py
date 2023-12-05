@@ -78,8 +78,8 @@ class NodeBondInterfaceParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str,),  # noqa: E501
             'bonding_mode': (str,),  # noqa: E501
+            'name': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class NodeBondInterfaceParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'bonding_mode': 'bondingMode',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,12 +105,12 @@ class NodeBondInterfaceParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, bonding_mode, *args, **kwargs):  # noqa: E501
+    def __init__(self, bonding_mode, name, *args, **kwargs):  # noqa: E501
         """NodeBondInterfaceParamsAllOf - a model defined in OpenAPI
 
         Args:
-            name (str): Name of the bond interface.
             bonding_mode (str): Bonding mode of the interface.
+            name (str): Name of the bond interface.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class NodeBondInterfaceParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.bonding_mode = bonding_mode
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

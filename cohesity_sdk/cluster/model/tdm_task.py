@@ -101,14 +101,14 @@ class TdmTask(ModelComposed):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
             'action': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'created_by_user': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'clone_params': (TdmCloneTaskResponseParams,),  # noqa: E501
             'refresh_params': (TdmRefreshTaskResponseParams,),  # noqa: E501
         }
@@ -120,14 +120,14 @@ class TdmTask(ModelComposed):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'action': 'action',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'created_by_user': 'createdByUser',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'clone_params': 'cloneParams',  # noqa: E501
         'refresh_params': 'refreshParams',  # noqa: E501
     }
@@ -145,12 +145,12 @@ class TdmTask(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, action, *args, **kwargs):  # noqa: E501
+    def __init__(self, action, id, *args, **kwargs):  # noqa: E501
         """TdmTask - a model defined in OpenAPI
 
         Args:
-            id (str, none_type): Specifies the unique ID of the task.
             action (str, none_type): Specifies the TDM Task action.
+            id (str, none_type): Specifies the unique ID of the task.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,12 +184,12 @@ class TdmTask(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was started.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was completed.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the current status of the task.. [optional]  # noqa: E501
             created_by_user ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the user, who created this task.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was completed.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Specifies the ID for tracking progress of this task.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the time (in usecs from epoch) when the task was started.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the current status of the task.. [optional]  # noqa: E501
             clone_params (TdmCloneTaskResponseParams): [optional]  # noqa: E501
             refresh_params (TdmRefreshTaskResponseParams): [optional]  # noqa: E501
         """
@@ -226,8 +226,8 @@ class TdmTask(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'id': id,
             'action': action,
+            'id': id,
         }
         model_args = {}
         model_args.update(required_args)

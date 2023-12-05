@@ -6,9 +6,9 @@ Specifies the backup schedule and retentions of a Protection Policy.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **regular** | [**RegularBackupPolicy**](RegularBackupPolicy.md) |  | 
-**log** | [**LogBackupPolicy**](LogBackupPolicy.md) |  | [optional] 
 **bmr** | [**BmrBackupPolicy**](BmrBackupPolicy.md) |  | [optional] 
 **cdp** | [**CdpBackupPolicy**](CdpBackupPolicy.md) |  | [optional] 
+**log** | [**LogBackupPolicy**](LogBackupPolicy.md) |  | [optional] 
 **storage_array_snapshot** | [**StorageArraySnapshotBackupPolicy**](StorageArraySnapshotBackupPolicy.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

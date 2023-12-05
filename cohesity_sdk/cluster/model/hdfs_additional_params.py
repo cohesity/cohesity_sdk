@@ -79,9 +79,9 @@ class HdfsAdditionalParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'auth_type': (str, none_type,),  # noqa: E501
             'namenode_address': (str,),  # noqa: E501
             'webhdfs_port': (int,),  # noqa: E501
-            'auth_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class HdfsAdditionalParams(ModelNormal):
 
 
     attribute_map = {
+        'auth_type': 'authType',  # noqa: E501
         'namenode_address': 'namenodeAddress',  # noqa: E501
         'webhdfs_port': 'webhdfsPort',  # noqa: E501
-        'auth_type': 'authType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class HdfsAdditionalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
             namenode_address (str): The HDFS Namenode IP or hostname.. [optional]  # noqa: E501
             webhdfs_port (int): The HDFS WebHDFS port.. [optional]  # noqa: E501
-            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

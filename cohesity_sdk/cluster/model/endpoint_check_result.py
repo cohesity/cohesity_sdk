@@ -82,8 +82,8 @@ class EndpointCheckResult(ModelNormal):
         """
         return {
             'check_name': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
             'error_msg': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class EndpointCheckResult(ModelNormal):
 
     attribute_map = {
         'check_name': 'checkName',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'error_msg': 'errorMsg',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class EndpointCheckResult(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             check_name (str, none_type): Specifies the name of the check.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the status of the check.. [optional]  # noqa: E501
             error_msg (str, none_type): Specifies the error message to help troubleshoot.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the status of the check.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

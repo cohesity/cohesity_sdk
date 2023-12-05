@@ -85,9 +85,9 @@ class OracleArchiveLogInfo(ModelNormal):
         """
         lazy_import()
         return {
-            'range_type': (str, none_type,),  # noqa: E501
-            'range_info_vec': ([OracleRangeMetaInfo], none_type,),  # noqa: E501
             'archive_log_restore_dest': (str, none_type,),  # noqa: E501
+            'range_info_vec': ([OracleRangeMetaInfo], none_type,),  # noqa: E501
+            'range_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +97,9 @@ class OracleArchiveLogInfo(ModelNormal):
 
 
     attribute_map = {
-        'range_type': 'rangeType',  # noqa: E501
-        'range_info_vec': 'rangeInfoVec',  # noqa: E501
         'archive_log_restore_dest': 'archiveLogRestoreDest',  # noqa: E501
+        'range_info_vec': 'rangeInfoVec',  # noqa: E501
+        'range_type': 'rangeType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,9 +149,9 @@ class OracleArchiveLogInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            range_type (str, none_type): Specifies the type of range.. [optional]  # noqa: E501
-            range_info_vec ([OracleRangeMetaInfo], none_type): Specifies an array of oracle restore ranges.. [optional]  # noqa: E501
             archive_log_restore_dest (str, none_type): Specifies destination where archive logs are to be restored.. [optional]  # noqa: E501
+            range_info_vec ([OracleRangeMetaInfo], none_type): Specifies an array of oracle restore ranges.. [optional]  # noqa: E501
+            range_type (str, none_type): Specifies the type of range.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

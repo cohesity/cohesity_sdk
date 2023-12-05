@@ -74,9 +74,9 @@ class ClusterCreateNodeStatusResponse(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'message': (str, none_type,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
             'node_ip': (str, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ClusterCreateNodeStatusResponse(ModelNormal):
 
 
     attribute_map = {
+        'message': 'message',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
         'node_ip': 'nodeIp',  # noqa: E501
-        'message': 'message',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class ClusterCreateNodeStatusResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            message (str, none_type): Specifies optional message related to node status.. [optional]  # noqa: E501
             node_id (int, none_type): Specifies the id of the node.. [optional]  # noqa: E501
             node_ip (str, none_type): Specifies the Ip address of the node.. [optional]  # noqa: E501
-            message (str, none_type): Specifies optional message related to node status.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

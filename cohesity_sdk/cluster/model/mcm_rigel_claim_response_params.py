@@ -84,18 +84,18 @@ class McmRigelClaimResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'rigel_guid': (int, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'rigel_type': (str, none_type,),  # noqa: E501
-            'rigel_certificate': (str, none_type,),  # noqa: E501
-            'rigel_private_key': (str, none_type,),  # noqa: E501
-            'rigel_ca_chain': (str, none_type,),  # noqa: E501
-            'tenant_ca_chain': ([str, none_type], none_type,),  # noqa: E501
-            'helios_certificate': (str, none_type,),  # noqa: E501
             'dataplane_endpoint': (str, none_type,),  # noqa: E501
-            'rigel_use_case': (str, none_type,),  # noqa: E501
+            'helios_certificate': (str, none_type,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
+            'rigel_ca_chain': (str, none_type,),  # noqa: E501
+            'rigel_certificate': (str, none_type,),  # noqa: E501
+            'rigel_guid': (int, none_type,),  # noqa: E501
+            'rigel_private_key': (str, none_type,),  # noqa: E501
+            'rigel_type': (str, none_type,),  # noqa: E501
+            'rigel_use_case': (str, none_type,),  # noqa: E501
+            'tenant_ca_chain': ([str, none_type], none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,18 +105,18 @@ class McmRigelClaimResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'rigel_guid': 'rigelGuid',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'rigel_type': 'rigelType',  # noqa: E501
-        'rigel_certificate': 'rigelCertificate',  # noqa: E501
-        'rigel_private_key': 'rigelPrivateKey',  # noqa: E501
-        'rigel_ca_chain': 'rigelCaChain',  # noqa: E501
-        'tenant_ca_chain': 'tenantCaChain',  # noqa: E501
-        'helios_certificate': 'heliosCertificate',  # noqa: E501
         'dataplane_endpoint': 'dataplaneEndpoint',  # noqa: E501
-        'rigel_use_case': 'rigelUseCase',  # noqa: E501
+        'helios_certificate': 'heliosCertificate',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
+        'rigel_ca_chain': 'rigelCaChain',  # noqa: E501
+        'rigel_certificate': 'rigelCertificate',  # noqa: E501
+        'rigel_guid': 'rigelGuid',  # noqa: E501
+        'rigel_private_key': 'rigelPrivateKey',  # noqa: E501
+        'rigel_type': 'rigelType',  # noqa: E501
+        'rigel_use_case': 'rigelUseCase',  # noqa: E501
+        'tenant_ca_chain': 'tenantCaChain',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -166,18 +166,18 @@ class McmRigelClaimResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rigel_guid (int, none_type): Unique id for rigel instance.. [optional]  # noqa: E501
             connection_id (int, none_type): Connection id for rigel instance.. [optional]  # noqa: E501
-            tenant_id (str, none_type): Tenant id associated with the claimed rigel.. [optional]  # noqa: E501
-            rigel_type (str, none_type): Specifies the Rigel type that is being claimed.. [optional]  # noqa: E501
-            rigel_certificate (str, none_type): Specifies the Rigel certificate.. [optional]  # noqa: E501
-            rigel_private_key (str, none_type): Specifies the Rigel private key.. [optional]  # noqa: E501
-            rigel_ca_chain (str, none_type): Specifies the CA chain that is used to sign the Rigel certificate.. [optional]  # noqa: E501
-            tenant_ca_chain ([str, none_type], none_type): Specifies the Tenant CA chain.. [optional]  # noqa: E501
-            helios_certificate (str, none_type): Specifies the Helios certificate that can be used to authenticate api calls made from Helios to Rigel.. [optional]  # noqa: E501
             dataplane_endpoint (str, none_type): Endpoint for associated data plane.. [optional]  # noqa: E501
-            rigel_use_case (str, none_type): Specifies the Rigel use case.. [optional]  # noqa: E501
+            helios_certificate (str, none_type): Specifies the Helios certificate that can be used to authenticate api calls made from Helios to Rigel.. [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id of the Rigel cluster.. [optional]  # noqa: E501
+            rigel_ca_chain (str, none_type): Specifies the CA chain that is used to sign the Rigel certificate.. [optional]  # noqa: E501
+            rigel_certificate (str, none_type): Specifies the Rigel certificate.. [optional]  # noqa: E501
+            rigel_guid (int, none_type): Unique id for rigel instance.. [optional]  # noqa: E501
+            rigel_private_key (str, none_type): Specifies the Rigel private key.. [optional]  # noqa: E501
+            rigel_type (str, none_type): Specifies the Rigel type that is being claimed.. [optional]  # noqa: E501
+            rigel_use_case (str, none_type): Specifies the Rigel use case.. [optional]  # noqa: E501
+            tenant_ca_chain ([str, none_type], none_type): Specifies the Tenant CA chain.. [optional]  # noqa: E501
+            tenant_id (str, none_type): Tenant id associated with the claimed rigel.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

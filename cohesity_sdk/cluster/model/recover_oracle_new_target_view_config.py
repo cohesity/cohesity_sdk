@@ -84,14 +84,14 @@ class RecoverOracleNewTargetViewConfig(ModelComposed):
         lazy_import()
         return {
             'view_mount_path': (str, none_type,),  # noqa: E501
-            'restore_time_usecs': (int, none_type,),  # noqa: E501
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
-            'recovery_mode': (bool, none_type,),  # noqa: E501
-            'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_archive_log_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_recovery_validation_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recovery_mode': (bool, none_type,),  # noqa: E501
             'restore_spfile_or_pfile_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'restore_time_usecs': (int, none_type,),  # noqa: E501
+            'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'use_scn_for_restore': (bool, none_type,),  # noqa: E501
         }
 
@@ -103,14 +103,14 @@ class RecoverOracleNewTargetViewConfig(ModelComposed):
 
     attribute_map = {
         'view_mount_path': 'viewMountPath',  # noqa: E501
-        'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
         'db_channels': 'dbChannels',  # noqa: E501
-        'recovery_mode': 'recoveryMode',  # noqa: E501
-        'shell_evironment_vars': 'shellEvironmentVars',  # noqa: E501
         'granular_restore_info': 'granularRestoreInfo',  # noqa: E501
         'oracle_archive_log_info': 'oracleArchiveLogInfo',  # noqa: E501
         'oracle_recovery_validation_info': 'oracleRecoveryValidationInfo',  # noqa: E501
+        'recovery_mode': 'recoveryMode',  # noqa: E501
         'restore_spfile_or_pfile_info': 'restoreSpfileOrPfileInfo',  # noqa: E501
+        'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
+        'shell_evironment_vars': 'shellEvironmentVars',  # noqa: E501
         'use_scn_for_restore': 'useScnForRestore',  # noqa: E501
     }
 
@@ -163,14 +163,14 @@ class RecoverOracleNewTargetViewConfig(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             view_mount_path (str, none_type): Specifies the directory where cohesity view for app recovery will be mounted.. [optional]  # noqa: E501
-            restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
-            recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
-            shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501
             oracle_archive_log_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.. [optional]  # noqa: E501
             oracle_recovery_validation_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Oracle Recovery Validation.. [optional]  # noqa: E501
+            recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
             restore_spfile_or_pfile_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to spfile/pfile restore.. [optional]  # noqa: E501
+            restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
+            shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             use_scn_for_restore (bool, none_type): Specifies whether database recovery performed should use scn value or not.. [optional]  # noqa: E501
         """
 

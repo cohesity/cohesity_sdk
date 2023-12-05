@@ -79,8 +79,8 @@ class UpdateProtectionGroupRunResponseBody(ModelNormal):
         """
         lazy_import()
         return {
-            'successful_run_ids': ([str], none_type,),  # noqa: E501
             'failed_runs': ([FailedRunDetails], none_type,),  # noqa: E501
+            'successful_run_ids': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class UpdateProtectionGroupRunResponseBody(ModelNormal):
 
 
     attribute_map = {
-        'successful_run_ids': 'successfulRunIds',  # noqa: E501
         'failed_runs': 'failedRuns',  # noqa: E501
+        'successful_run_ids': 'successfulRunIds',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class UpdateProtectionGroupRunResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            successful_run_ids ([str], none_type): Specifies a list of ids of Protection Group Runs that are successfully updated.. [optional]  # noqa: E501
             failed_runs ([FailedRunDetails], none_type): Specifies a list of ids of Protection Group Runs that failed to update along with error details.. [optional]  # noqa: E501
+            successful_run_ids ([str], none_type): Specifies a list of ids of Protection Group Runs that are successfully updated.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

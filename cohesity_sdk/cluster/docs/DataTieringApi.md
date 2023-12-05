@@ -11,13 +11,11 @@ Method | HTTP request | Description
 [**create_data_tiering_task_run**](DataTieringApi.md#create_data_tiering_task_run) | **POST** /data-tiering/tasks/{id}/runs | Create a data tiering tasks run.
 [**delete_data_tiering_analysis_group**](DataTieringApi.md#delete_data_tiering_analysis_group) | **DELETE** /data-tiering/analysis-groups/{id} | Delete data tiering analysis group.
 [**delete_data_tiering_task**](DataTieringApi.md#delete_data_tiering_task) | **DELETE** /data-tiering/tasks/{id} | delete the data tiering task.
-[**get_capacity_trend_analysis**](DataTieringApi.md#get_capacity_trend_analysis) | **GET** /data-tiering/capacity-trend | Get capacity trend analysis for all sources or a specific source.
 [**get_data_tiering_analysis_group_by_id**](DataTieringApi.md#get_data_tiering_analysis_group_by_id) | **GET** /data-tiering/analysis-groups/{id} | Get data tiering analysis group by id.
 [**get_data_tiering_analysis_groups**](DataTieringApi.md#get_data_tiering_analysis_groups) | **GET** /data-tiering/analysis-groups | Get the list of data tiering analysis groups.
-[**get_data_tiering_analysis_groups_default_config**](DataTieringApi.md#get_data_tiering_analysis_groups_default_config) | **GET** /data-tiering/analysis-groups/config | Get the default config of data tiering analysis groups.
 [**get_data_tiering_task_by_id**](DataTieringApi.md#get_data_tiering_task_by_id) | **GET** /data-tiering/tasks/{id} | Get data tiering task by id.
 [**get_data_tiering_tasks**](DataTieringApi.md#get_data_tiering_tasks) | **GET** /data-tiering/tasks | Get the list of data tiering tasks.
-[**update_data_tiering_analysis_group**](DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
+[**update_data_tiering_analysis_group**](DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources only.
 [**update_data_tiering_analysis_group_tags_config**](DataTieringApi.md#update_data_tiering_analysis_group_tags_config) | **PUT** /data-tiering/analysis-groups/{id}/config | Update data tiering analysis group config.
 [**update_data_tiering_analysis_groups_state**](DataTieringApi.md#update_data_tiering_analysis_groups_state) | **POST** /data-tiering/analysis-groups/states | Update data tiering analysis groups state.
 [**update_data_tiering_task**](DataTieringApi.md#update_data_tiering_task) | **PUT** /data-tiering/tasks/{id} | Update a data tiering task.
@@ -33,7 +31,6 @@ Cancel data tiering analysis run for given analysis group ID and run ID
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -47,7 +44,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of data tiering group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of data tiering group run.
@@ -74,7 +70,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -99,7 +95,6 @@ Cancel data tiering task run for given data tiering task id and run id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -113,7 +108,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of data tiering task.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of data tiering task.
@@ -140,7 +134,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -165,7 +159,6 @@ Create a data tiering analysis group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -181,7 +174,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CommonDataTieringAnalysisGroupParams(
         name="name_example",
@@ -212,27 +204,6 @@ body = CommonDataTieringAnalysisGroupParams(
                 source_id=1,
             ),
         ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
     ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
 
 # example passing only required values which don't have defaults set
@@ -257,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -282,7 +253,6 @@ Create a data tiering analysis group run.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -297,7 +267,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering analysis group.
 body = DataTieringAnalysisRunRequest(
@@ -338,7 +307,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -355,7 +324,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_data_tiering_task**
-> CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9 create_data_tiering_task(body)
+> DataTieringTask create_data_tiering_task(body)
 
 Create a data tiering task.
 
@@ -363,12 +332,11 @@ Create a data tiering task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_task_response29ec89c4_f06e4868_a4710fdd67809bd9 import CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9
-from cohesity_sdk.cluster.model.common_data_tiering_task_params0e0b87411857430e_ab5330b6e7bc4e9e import CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -380,77 +348,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
-body = CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e(
-        name="name_example",
-        description="description_example",
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-        ),
-        target=DataTieringTarget(
-            view_name="view_name_example",
-            mount_path="mount_path_example",
-            storage_domain_id=1,
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
-        type="Downtier",
-    ) # CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e | Specifies the parameters to create a data tiering task.
+body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -466,15 +364,15 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e**](CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e.md)| Specifies the parameters to create a data tiering task. |
+ **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to create a data tiering task. |
 
 ### Return type
 
-[**CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9**](CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -499,7 +397,6 @@ Create a data tiering tasks run.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.data_tiering_task_run_request import DataTieringTaskRunRequest
@@ -515,16 +412,15 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering tasks.
 body = DataTieringTaskRunRequest(
-        uptier_path="uptier_path_example",
         shares=[
             DataTieringShareInfo(
                 share_id=1,
                 uptier_path="uptier_path_example",
             ),
         ],
+        uptier_path="uptier_path_example",
     ) # DataTieringTaskRunRequest | Specifies the request to run tiering task once. (optional)
 
 # example passing only required values which don't have defaults set
@@ -557,7 +453,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -582,7 +478,6 @@ Returns NoContentResponse if the data tiering analysis group is deleted.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -596,7 +491,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 
@@ -621,7 +515,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -646,7 +540,6 @@ Returns Success if the data tiering task is deleted.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -660,7 +553,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the data tiering task.
 
@@ -685,7 +577,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -701,77 +593,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_capacity_trend_analysis**
-> CapacityTrendAnalysis get_capacity_trend_analysis()
-
-Get capacity trend analysis for all sources or a specific source.
-
-Get capacity trend analysis for the given time range, and for the given source or set of sources.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.capacity_trend_analysis import CapacityTrendAnalysis
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-start_time_usecs = 1 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
-end_time_usecs = 1 # int | Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). (optional)
-source_id = 1 # int | Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. (optional)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Get capacity trend analysis for all sources or a specific source.
-	api_response = client.data_tiering.get_capacity_trend_analysis(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, source_id=source_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataTieringApi->get_capacity_trend_analysis: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **start_time_usecs** | **int**| Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). | [optional]
- **end_time_usecs** | **int**| Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). | [optional]
- **source_id** | **int**| Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. | [optional]
-
-### Return type
-
-[**CapacityTrendAnalysis**](CapacityTrendAnalysis.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_data_tiering_analysis_group_by_id**
 > DataTieringAnalysisGroup get_data_tiering_analysis_group_by_id(id)
 
@@ -781,7 +602,6 @@ Get data tiering analysis group by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -796,7 +616,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 
@@ -822,7 +641,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -847,7 +666,6 @@ Get list of all data tiering analysis groups.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -863,17 +681,15 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 ids = [
         "ids_example",
     ] # [str] | Filter by a list of Analysis Group IDs. (optional)
-include_last_run_stats = True # bool | If true, the response will include last run info. If it is false or not specified, the last run info won't be returned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of data tiering analysis groups.
-	api_response = client.data_tiering.get_data_tiering_analysis_groups(ids=ids, include_last_run_stats=include_last_run_stats)
+	api_response = client.data_tiering.get_data_tiering_analysis_groups(ids=ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_analysis_groups: %s\n" % e)
@@ -885,7 +701,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **[str]**| Filter by a list of Analysis Group IDs. | [optional]
- **include_last_run_stats** | **bool**| If true, the response will include last run info. If it is false or not specified, the last run info won&#39;t be returned. | [optional]
 
 ### Return type
 
@@ -893,69 +708,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_data_tiering_analysis_groups_default_config**
-> DataTieringTagConfig get_data_tiering_analysis_groups_default_config()
-
-Get the default config of data tiering analysis groups.
-
-Get default grouping configuration for data tiering analysis groups.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.data_tiering_tag_config import DataTieringTagConfig
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get the default config of data tiering analysis groups.
-	api_response = client.data_tiering.get_data_tiering_analysis_groups_default_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling DataTieringApi->get_data_tiering_analysis_groups_default_config: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**DataTieringTagConfig**](DataTieringTagConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -972,7 +725,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_data_tiering_task_by_id**
-> CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9 get_data_tiering_task_by_id(id)
+> DataTieringTask get_data_tiering_task_by_id(id)
 
 Get data tiering task by id.
 
@@ -980,11 +733,10 @@ Get data tiering task by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_task_response29ec89c4_f06e4868_a4710fdd67809bd9 import CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -995,7 +747,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the data tiering task.
 
@@ -1017,11 +768,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9**](CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1046,7 +797,6 @@ Get the list of data tiering tasks.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.data_tiering_tasks import DataTieringTasks
@@ -1061,7 +811,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -1092,7 +841,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1111,13 +860,12 @@ Name | Type | Description  | Notes
 # **update_data_tiering_analysis_group**
 > DataTieringAnalysisGroup update_data_tiering_analysis_group(id, body)
 
-Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
+Update a data tiering analysis group. Currently, it supports updating sources only.
 
 Update a data tiering analysis group.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1133,7 +881,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 body = CommonDataTieringAnalysisGroupParams(
@@ -1165,32 +912,11 @@ body = CommonDataTieringAnalysisGroupParams(
                 source_id=1,
             ),
         ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
     ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
 
 # example passing only required values which don't have defaults set
 try:
-	# Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
+	# Update a data tiering analysis group. Currently, it supports updating sources only.
 	api_response = client.data_tiering.update_data_tiering_analysis_group(id, body)
 	pprint(api_response)
 except ApiException as e:
@@ -1211,7 +937,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1236,7 +962,6 @@ Update data tiering analysis group config.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.data_tiering_tag_config import DataTieringTagConfig
@@ -1252,18 +977,17 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 body = DataTieringTagConfig(
         tags_info=[
             DataTieringTagObject(
-                type="fileTypeTag",
                 tags=[
                     DataTieringTag(
                         label="label_example",
                         value="value_example",
                     ),
                 ],
+                type="type_example",
             ),
         ],
     ) # DataTieringTagConfig | Specifies the data tiering analysis Tags Config.
@@ -1291,7 +1015,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1316,7 +1040,6 @@ Perform actions like pause or resume on the data tiering analysis groups for the
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_data_tiering_state import UpdateDataTieringState
@@ -1332,7 +1055,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = UpdateDataTieringStateRequest(
         action="Pause",
@@ -1363,7 +1085,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1380,7 +1102,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_data_tiering_task**
-> CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9 update_data_tiering_task(id, body)
+> DataTieringTask update_data_tiering_task(id, body)
 
 Update a data tiering task.
 
@@ -1388,12 +1110,11 @@ Update a data tiering task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_task_response29ec89c4_f06e4868_a4710fdd67809bd9 import CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9
-from cohesity_sdk.cluster.model.common_data_tiering_task_params0e0b87411857430e_ab5330b6e7bc4e9e import CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1405,78 +1126,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the data tiering task.
-body = CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e(
-        name="name_example",
-        description="description_example",
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-        ),
-        target=DataTieringTarget(
-            view_name="view_name_example",
-            mount_path="mount_path_example",
-            storage_domain_id=1,
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
-        type="Downtier",
-    ) # CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e | Specifies the parameters to update a data tiering task.
+body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1493,15 +1144,15 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering task. |
- **body** | [**CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e**](CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e.md)| Specifies the parameters to update a data tiering task. |
+ **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to update a data tiering task. |
 
 ### Return type
 
-[**CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9**](CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1526,7 +1177,6 @@ Perform actions like pause or resume on the data tiering tasks.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_data_tiering_state import UpdateDataTieringState
@@ -1542,7 +1192,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = UpdateDataTieringStateRequest(
         action="Pause",
@@ -1573,7 +1222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

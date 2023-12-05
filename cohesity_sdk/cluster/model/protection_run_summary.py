@@ -112,7 +112,6 @@ class ProtectionRunSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -135,19 +134,19 @@ class ProtectionRunSummary(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'bytes_written': (int, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'environment': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
+            'is_full_run': (bool, none_type,),  # noqa: E501
+            'is_sla_violated': (bool, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
-            'is_sla_violated': (bool, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
-            'is_full_run': (bool, none_type,),  # noqa: E501
-            'total_objects_count': (int, none_type,),  # noqa: E501
             'success_objects_count': (int, none_type,),  # noqa: E501
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'bytes_written': (int, none_type,),  # noqa: E501
+            'total_objects_count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -157,19 +156,19 @@ class ProtectionRunSummary(ModelNormal):
 
 
     attribute_map = {
+        'bytes_written': 'bytesWritten',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'is_full_run': 'isFullRun',  # noqa: E501
+        'is_sla_violated': 'isSlaViolated',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
-        'is_sla_violated': 'isSlaViolated',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'is_full_run': 'isFullRun',  # noqa: E501
-        'total_objects_count': 'totalObjectsCount',  # noqa: E501
         'success_objects_count': 'successObjectsCount',  # noqa: E501
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'bytes_written': 'bytesWritten',  # noqa: E501
+        'total_objects_count': 'totalObjectsCount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -219,19 +218,19 @@ class ProtectionRunSummary(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            bytes_written (int, none_type): Specifies total size of data in bytes written after taking backup.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
+            environment (str, none_type): Specifies the environment type of the Protection Group.. [optional]  # noqa: E501
             id (str, none_type): Specifies the ID of the Protection Group run.. [optional]  # noqa: E501
+            is_full_run (bool, none_type): Specifies if the protection run is a full run.. [optional]  # noqa: E501
+            is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies total logical size of object(s) in bytes.. [optional]  # noqa: E501
             protection_group_id (str, none_type): ProtectionGroupId to which this run belongs.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Name of the Protection Group to which this run belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment type of the Protection Group.. [optional]  # noqa: E501
-            is_sla_violated (bool, none_type): Indicated if SLA has been violated for this run.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of backup run in Unix epoch Timestamp(in microseconds).. [optional]  # noqa: E501
-            status (str, none_type): Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
-            is_full_run (bool, none_type): Specifies if the protection run is a full run.. [optional]  # noqa: E501
-            total_objects_count (int, none_type): Specifies the total number of objects protected in this run.. [optional]  # noqa: E501
+            status (str, none_type): Status of the backup run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
             success_objects_count (int, none_type): Specifies the number of objects which are successfully protected in this run.. [optional]  # noqa: E501
-            logical_size_bytes (int, none_type): Specifies total logical size of object(s) in bytes.. [optional]  # noqa: E501
-            bytes_written (int, none_type): Specifies total size of data in bytes written after taking backup.. [optional]  # noqa: E501
+            total_objects_count (int, none_type): Specifies the total number of objects protected in this run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -12,6 +12,5 @@
 
 __version__ = "2.0.0"
 
+# from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-#from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.helios.helios_client import HeliosClient

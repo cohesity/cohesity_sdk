@@ -81,11 +81,11 @@ class EncryptionSettings(ModelNormal):
         """
         return {
             'encryption_level': (str, none_type,),  # noqa: E501
-            'kms_server_id': (int, none_type,),  # noqa: E501
             'enable_additional_security': (bool, none_type,),  # noqa: E501
+            'encryption_key_file_downloaded': (bool, none_type,),  # noqa: E501
             'key_file_download_time_usecs': (int, none_type,),  # noqa: E501
             'key_file_download_user': (str, none_type,),  # noqa: E501
-            'encryption_key_file_downloaded': (bool, none_type,),  # noqa: E501
+            'kms_server_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,11 +96,11 @@ class EncryptionSettings(ModelNormal):
 
     attribute_map = {
         'encryption_level': 'encryptionLevel',  # noqa: E501
-        'kms_server_id': 'kmsServerId',  # noqa: E501
         'enable_additional_security': 'enableAdditionalSecurity',  # noqa: E501
+        'encryption_key_file_downloaded': 'encryptionKeyFileDownloaded',  # noqa: E501
         'key_file_download_time_usecs': 'keyFileDownloadTimeUsecs',  # noqa: E501
         'key_file_download_user': 'keyFileDownloadUser',  # noqa: E501
-        'encryption_key_file_downloaded': 'encryptionKeyFileDownloaded',  # noqa: E501
+        'kms_server_id': 'kmsServerId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,11 +153,11 @@ class EncryptionSettings(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            kms_server_id (int, none_type): Specifies the Key Management Service Server ID for the Encryption Setting.. [optional]  # noqa: E501
             enable_additional_security (bool, none_type): Enable Additional security by managing key manually. [optional]  # noqa: E501
+            encryption_key_file_downloaded (bool, none_type): Specifies if the encryption key file has been downloaded using the Cohesity Dashboard (Cohesity UI). If true, the encryption key has been downloaded using the Cohesity Dashboard. An encryption key can only be downloaded once using the Cohesity Dashboard. After setting it to true once, subsequent updates to this field will be ignored.. [optional]  # noqa: E501
             key_file_download_time_usecs (int, none_type): Specifies the time (in microseconds) when the encryption key file was downloaded from the Cohesity Dashboard (Cohesity UI). An encryption key can only be downloaded once using Cohesity Dashboard. Can be set only once when the key is downloaded.. [optional]  # noqa: E501
             key_file_download_user (str, none_type): Specifies the user who downloaded the encryption key from the Cohesity Dashboard (Cohesity UI). This field is only populated if encryption is enabled for the Vault and customerManagingEncryptionKeys is true. Can be set only once when the key is downloaded.. [optional]  # noqa: E501
-            encryption_key_file_downloaded (bool, none_type): Specifies if the encryption key file has been downloaded using the Cohesity Dashboard (Cohesity UI). If true, the encryption key has been downloaded using the Cohesity Dashboard. An encryption key can only be downloaded once using the Cohesity Dashboard. After setting it to true once, subsequent updates to this field will be ignored.. [optional]  # noqa: E501
+            kms_server_id (int, none_type): Specifies the Key Management Service Server ID for the Encryption Setting.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

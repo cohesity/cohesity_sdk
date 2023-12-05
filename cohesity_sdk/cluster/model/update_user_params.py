@@ -82,11 +82,11 @@ class UpdateUserParams(ModelComposed):
         lazy_import()
         return {
             'description': (str, none_type,),  # noqa: E501
-            'roles': ([str], none_type,),  # noqa: E501
-            'restricted': (bool, none_type,),  # noqa: E501
             'effective_time_msecs': (int, none_type,),  # noqa: E501
             'expiry_time_msecs': (int, none_type,),  # noqa: E501
             'locked': (bool, none_type,),  # noqa: E501
+            'restricted': (bool, none_type,),  # noqa: E501
+            'roles': ([str], none_type,),  # noqa: E501
             'local_user_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -98,11 +98,11 @@ class UpdateUserParams(ModelComposed):
 
     attribute_map = {
         'description': 'description',  # noqa: E501
-        'roles': 'roles',  # noqa: E501
-        'restricted': 'restricted',  # noqa: E501
         'effective_time_msecs': 'effectiveTimeMsecs',  # noqa: E501
         'expiry_time_msecs': 'expiryTimeMsecs',  # noqa: E501
         'locked': 'locked',  # noqa: E501
+        'restricted': 'restricted',  # noqa: E501
+        'roles': 'roles',  # noqa: E501
         'local_user_params': 'localUserParams',  # noqa: E501
     }
 
@@ -155,11 +155,11 @@ class UpdateUserParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description of the User.. [optional]  # noqa: E501
-            roles ([str], none_type): Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.. [optional]  # noqa: E501
-            restricted (bool, none_type): Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
             effective_time_msecs (int, none_type): Specifies the epoch time in milliseconds since when the user can login.. [optional]  # noqa: E501
             expiry_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.. [optional]  # noqa: E501
             locked (bool, none_type): Specifies whether the User is locked.. [optional]  # noqa: E501
+            restricted (bool, none_type): Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
+            roles ([str], none_type): Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.. [optional]  # noqa: E501
             local_user_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL user properties. This field is required when updating LOCAL Cohesity User params.. [optional]  # noqa: E501
         """
 

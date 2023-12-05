@@ -79,13 +79,13 @@ class BifrostConnector(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'connection_status': (ConnectorConnectionInfo,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'cohesity_side_ip': (str, none_type,),  # noqa: E501
-            'tenant_source_side_ip': (str, none_type,),  # noqa: E501
+            'connection_status': (ConnectorConnectionInfo,),  # noqa: E501
             'hyx_version': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'tenant_source_side_ip': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,13 +95,13 @@ class BifrostConnector(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'connection_status': 'connectionStatus',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'cohesity_side_ip': 'cohesitySideIp',  # noqa: E501
-        'tenant_source_side_ip': 'tenantSourceSideIp',  # noqa: E501
+        'connection_status': 'connectionStatus',  # noqa: E501
         'hyx_version': 'hyxVersion',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'tenant_source_side_ip': 'tenantSourceSideIp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -116,12 +116,12 @@ class BifrostConnector(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, connection_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, connection_id, id, *args, **kwargs):  # noqa: E501
         """BifrostConnector - a model defined in OpenAPI
 
         Args:
-            id (str, none_type): Specifies the id of the connector.
             connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.
+            id (str, none_type): Specifies the id of the connector.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -155,11 +155,11 @@ class BifrostConnector(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the connector.. [optional]  # noqa: E501
-            connection_status (ConnectorConnectionInfo): [optional]  # noqa: E501
             cohesity_side_ip (str, none_type): Specifies the cohesity side ip of the connector. [optional]  # noqa: E501
-            tenant_source_side_ip (str, none_type): Specifies the tenant source side ip of the connector. [optional]  # noqa: E501
+            connection_status (ConnectorConnectionInfo): [optional]  # noqa: E501
             hyx_version (str, none_type): Specifies the connector's software Version. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the connector.. [optional]  # noqa: E501
+            tenant_source_side_ip (str, none_type): Specifies the tenant source side ip of the connector. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -186,8 +186,8 @@ class BifrostConnector(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.id = id
         self.connection_id = connection_id
+        self.id = id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

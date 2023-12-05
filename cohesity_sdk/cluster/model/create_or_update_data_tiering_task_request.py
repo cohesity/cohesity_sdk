@@ -100,11 +100,11 @@ class CreateOrUpdateDataTieringTaskRequest(ModelComposed):
         return {
             'name': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'schedule': (DataTieringSchedule,),  # noqa: E501
             'source': (DataTieringSource,),  # noqa: E501
             'target': (DataTieringTarget,),  # noqa: E501
-            'schedule': (DataTieringSchedule,),  # noqa: E501
             'downtiering_policy': (DowntieringPolicy,),  # noqa: E501
             'uptiering_policy': (UptieringPolicy,),  # noqa: E501
         }
@@ -118,11 +118,11 @@ class CreateOrUpdateDataTieringTaskRequest(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
         'source': 'source',  # noqa: E501
         'target': 'target',  # noqa: E501
-        'schedule': 'schedule',  # noqa: E501
         'downtiering_policy': 'downtieringPolicy',  # noqa: E501
         'uptiering_policy': 'uptieringPolicy',  # noqa: E501
     }
@@ -179,11 +179,11 @@ class CreateOrUpdateDataTieringTaskRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            description (str, none_type): Specifies a description of the data tiering task.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
+            description (str, none_type): Specifies a description of the data tiering task.. [optional]  # noqa: E501
+            schedule (DataTieringSchedule): [optional]  # noqa: E501
             source (DataTieringSource): [optional]  # noqa: E501
             target (DataTieringTarget): [optional]  # noqa: E501
-            schedule (DataTieringSchedule): [optional]  # noqa: E501
             downtiering_policy (DowntieringPolicy): [optional]  # noqa: E501
             uptiering_policy (UptieringPolicy): [optional]  # noqa: E501
         """

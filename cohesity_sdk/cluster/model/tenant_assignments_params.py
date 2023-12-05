@@ -74,11 +74,11 @@ class TenantAssignmentsParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'storage_domain_ids': ([int], none_type,),  # noqa: E501
             'object_ids': ([int], none_type,),  # noqa: E501
-            'vlan_iface_names': ([str], none_type,),  # noqa: E501
-            'view_ids': ([int], none_type,),  # noqa: E501
             'policy_ids': ([str], none_type,),  # noqa: E501
+            'storage_domain_ids': ([int], none_type,),  # noqa: E501
+            'view_ids': ([int], none_type,),  # noqa: E501
+            'vlan_iface_names': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class TenantAssignmentsParams(ModelNormal):
 
 
     attribute_map = {
-        'storage_domain_ids': 'storageDomainIds',  # noqa: E501
         'object_ids': 'objectIds',  # noqa: E501
-        'vlan_iface_names': 'vlanIfaceNames',  # noqa: E501
-        'view_ids': 'viewIds',  # noqa: E501
         'policy_ids': 'policyIds',  # noqa: E501
+        'storage_domain_ids': 'storageDomainIds',  # noqa: E501
+        'view_ids': 'viewIds',  # noqa: E501
+        'vlan_iface_names': 'vlanIfaceNames',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class TenantAssignmentsParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            storage_domain_ids ([int], none_type): List of storage domains on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
             object_ids ([int], none_type): List of objects on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
-            vlan_iface_names ([str], none_type): List of vlans on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
-            view_ids ([int], none_type): List of views on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
             policy_ids ([str], none_type): List of policies on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
+            storage_domain_ids ([int], none_type): List of storage domains on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
+            view_ids ([int], none_type): List of views on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
+            vlan_iface_names ([str], none_type): List of vlans on the cluster, to be associated to the Tenant.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

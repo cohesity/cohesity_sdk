@@ -107,7 +107,7 @@ class IndexingCloudConfigApi(object):
                 'response_type': (IndexingCloudConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/indexing-cloud-config',

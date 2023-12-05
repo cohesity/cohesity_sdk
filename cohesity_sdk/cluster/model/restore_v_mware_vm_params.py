@@ -74,15 +74,15 @@ class RestoreVMwareVMParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_vm_folder_id': (int, none_type,),  # noqa: E501
-            'target_data_store_id': (int, none_type,),  # noqa: E501
-            'enable_copy_recovery': (bool, none_type,),  # noqa: E501
-            'resource_pool_id': (int, none_type,),  # noqa: E501
+            'attempt_differential_restore': (bool, none_type,),  # noqa: E501
             'datastore_ids': ([int], none_type,),  # noqa: E501
+            'enable_copy_recovery': (bool, none_type,),  # noqa: E501
+            'is_on_prem_deploy': (bool, none_type,),  # noqa: E501
             'overwrite_existing_vm': (bool, none_type,),  # noqa: E501
             'power_off_and_rename_existing_vm': (bool, none_type,),  # noqa: E501
-            'attempt_differential_restore': (bool, none_type,),  # noqa: E501
-            'is_on_prem_deploy': (bool, none_type,),  # noqa: E501
+            'resource_pool_id': (int, none_type,),  # noqa: E501
+            'target_data_store_id': (int, none_type,),  # noqa: E501
+            'target_vm_folder_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,15 +92,15 @@ class RestoreVMwareVMParams(ModelNormal):
 
 
     attribute_map = {
-        'target_vm_folder_id': 'targetVMFolderId',  # noqa: E501
-        'target_data_store_id': 'targetDataStoreId',  # noqa: E501
-        'enable_copy_recovery': 'enableCopyRecovery',  # noqa: E501
-        'resource_pool_id': 'resourcePoolId',  # noqa: E501
+        'attempt_differential_restore': 'attemptDifferentialRestore',  # noqa: E501
         'datastore_ids': 'datastoreIds',  # noqa: E501
+        'enable_copy_recovery': 'enableCopyRecovery',  # noqa: E501
+        'is_on_prem_deploy': 'isOnPremDeploy',  # noqa: E501
         'overwrite_existing_vm': 'overwriteExistingVm',  # noqa: E501
         'power_off_and_rename_existing_vm': 'powerOffAndRenameExistingVm',  # noqa: E501
-        'attempt_differential_restore': 'attemptDifferentialRestore',  # noqa: E501
-        'is_on_prem_deploy': 'isOnPremDeploy',  # noqa: E501
+        'resource_pool_id': 'resourcePoolId',  # noqa: E501
+        'target_data_store_id': 'targetDataStoreId',  # noqa: E501
+        'target_vm_folder_id': 'targetVMFolderId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,15 +150,15 @@ class RestoreVMwareVMParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_vm_folder_id (int, none_type): Specifies the folder ID where the VMs should be created.. [optional]  # noqa: E501
-            target_data_store_id (int, none_type): Specifies the folder where the restore datastore should be created.. [optional]  # noqa: E501
-            enable_copy_recovery (bool, none_type): Specifies whether to perform copy recovery or not.. [optional]  # noqa: E501
-            resource_pool_id (int, none_type): Specifies if the restore is to alternate location.. [optional]  # noqa: E501
+            attempt_differential_restore (bool, none_type): Specifies whether to attempt differential restore.. [optional]  # noqa: E501
             datastore_ids ([int], none_type): Specifies Datastore Ids, if the restore is to alternate location.. [optional]  # noqa: E501
+            enable_copy_recovery (bool, none_type): Specifies whether to perform copy recovery or not.. [optional]  # noqa: E501
+            is_on_prem_deploy (bool, none_type): Specifies whether a task in on prem deploy or not.. [optional]  # noqa: E501
             overwrite_existing_vm (bool, none_type): Specifies whether to overwrite the VM at the target location.. [optional]  # noqa: E501
             power_off_and_rename_existing_vm (bool, none_type): Specifies whether to power off and mark the VM at the target location as deprecated.. [optional]  # noqa: E501
-            attempt_differential_restore (bool, none_type): Specifies whether to attempt differential restore.. [optional]  # noqa: E501
-            is_on_prem_deploy (bool, none_type): Specifies whether a task in on prem deploy or not.. [optional]  # noqa: E501
+            resource_pool_id (int, none_type): Specifies if the restore is to alternate location.. [optional]  # noqa: E501
+            target_data_store_id (int, none_type): Specifies the folder where the restore datastore should be created.. [optional]  # noqa: E501
+            target_vm_folder_id (int, none_type): Specifies the folder ID where the VMs should be created.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

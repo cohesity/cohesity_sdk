@@ -61,10 +61,10 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
     }
 
     validations = {
-        ('objects',): {
+        ('exclude_object_ids',): {
         },
 
-        ('exclude_object_ids',): {
+        ('objects',): {
         },
 
     }
@@ -85,10 +85,10 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([AwsAuroraProtectionGroupObjectParams],),  # noqa: E501
-            'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'aurora_tag_ids': ([[int]], none_type,),  # noqa: E501
             'exclude_aurora_tag_ids': ([[int]], none_type,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'objects': ([AwsAuroraProtectionGroupObjectParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
         }
@@ -100,10 +100,10 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'aurora_tag_ids': 'auroraTagIds',  # noqa: E501
         'exclude_aurora_tag_ids': 'excludeAuroraTagIds',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
     }
@@ -155,10 +155,10 @@ class AwsAuroraProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([AwsAuroraProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
-            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             aurora_tag_ids ([[int]], none_type): Array of arrays of Aurora Tag Ids that specify aurora clusters to protect.. [optional]  # noqa: E501
             exclude_aurora_tag_ids ([[int]], none_type): Array of arrays of RDS Tag Ids that specify aurora clusters to exclude.. [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            objects ([AwsAuroraProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
         """

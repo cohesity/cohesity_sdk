@@ -54,6 +54,10 @@ class ConstructMetaInfoParams(ModelNormal):
     """
 
     allowed_values = {
+        ('environment',): {
+            'None': None,
+            'KORACLE': "kOracle",
+        },
     }
 
     validations = {
@@ -76,7 +80,6 @@ class ConstructMetaInfoParams(ModelNormal):
         return {
             'environment': (str, none_type,),  # noqa: E501
             'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'sfdc_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -88,7 +91,6 @@ class ConstructMetaInfoParams(ModelNormal):
     attribute_map = {
         'environment': 'environment',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +105,13 @@ class ConstructMetaInfoParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, environment, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ConstructMetaInfoParams - a model defined in OpenAPI
 
         Args:
-            environment (str, none_type): Specifies the environment type of the Protection group
 
         Keyword Args:
+            environment (str, none_type): Specifies the environment type of the Protection group. defaults to "kOracle", must be one of ["kOracle", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -142,9 +144,9 @@ class ConstructMetaInfoParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Oracle Params to construct meta info for alternate restore or clone.. [optional]  # noqa: E501
-            sfdc_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies params to construct list of dependent objects.. [optional]  # noqa: E501
         """
 
+        environment = kwargs.get('environment', "kOracle")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

@@ -79,9 +79,9 @@ class HiveAdditionalParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'auth_type': (str, none_type,),  # noqa: E501
             'metastore_address': (str,),  # noqa: E501
             'metastore_port': (int,),  # noqa: E501
-            'auth_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class HiveAdditionalParams(ModelNormal):
 
 
     attribute_map = {
+        'auth_type': 'authType',  # noqa: E501
         'metastore_address': 'metastoreAddress',  # noqa: E501
         'metastore_port': 'metastorePort',  # noqa: E501
-        'auth_type': 'authType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class HiveAdditionalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
             metastore_address (str): The MetastoreAddress for this Hive.. [optional]  # noqa: E501
             metastore_port (int): The MetastorePort for this Hive.. [optional]  # noqa: E501
-            auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

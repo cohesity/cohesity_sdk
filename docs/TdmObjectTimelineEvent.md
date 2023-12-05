@@ -5,14 +5,14 @@ Specifies a TDM object timeline event.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str, none_type** | Specifies the unique ID of the event. | 
 **action** | **str, none_type** | Specifies the action for the event. | 
+**id** | **str, none_type** | Specifies the unique ID of the event. | 
 **created_at** | **int, none_type** | Specifies the time (in usecs from epoch) at which the event was created. | [optional] 
 **created_by_user** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the user, who triggered the event. | [optional] 
-**status** | **str, none_type** | Specifies the current status of the event. | [optional] 
-**error_message** | **str, none_type** | Specifies the error message if the event is in failed state. | [optional] 
 **description** | **str, none_type** | Specifies the description of the event, as provided by the user. | [optional] 
+**error_message** | **str, none_type** | Specifies the error message if the event is in failed state. | [optional] 
 **event_group_id** | **str, none_type** | Specifies the ID of the group this event belongs to. Events with same group ID are considered to be a single timeline for the TDM object. Different group IDs mean different timelines for the TDM object. | [optional] 
+**status** | **str, none_type** | Specifies the current status of the event. | [optional] 
 **clone_params** | [**TdmCloneTaskResponseParams**](TdmCloneTaskResponseParams.md) |  | [optional] 
 **snapshot_params** | [**TdmSnapshot**](TdmSnapshot.md) |  | [optional] 
 

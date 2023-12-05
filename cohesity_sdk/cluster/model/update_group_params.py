@@ -76,8 +76,8 @@ class UpdateGroupParams(ModelNormal):
         return {
             'description': (str, none_type,),  # noqa: E501
             'local_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'roles': ([str],),  # noqa: E501
             'restricted': (bool, none_type,),  # noqa: E501
+            'roles': ([str],),  # noqa: E501
             'tenant_ids': ([str],),  # noqa: E501
         }
 
@@ -90,8 +90,8 @@ class UpdateGroupParams(ModelNormal):
     attribute_map = {
         'description': 'description',  # noqa: E501
         'local_group_params': 'localGroupParams',  # noqa: E501
-        'roles': 'roles',  # noqa: E501
         'restricted': 'restricted',  # noqa: E501
+        'roles': 'roles',  # noqa: E501
         'tenant_ids': 'tenantIds',  # noqa: E501
     }
 
@@ -144,8 +144,8 @@ class UpdateGroupParams(ModelNormal):
 
             description (str, none_type): Specifies the description of the group.. [optional]  # noqa: E501
             local_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL group properties.. [optional]  # noqa: E501
-            roles ([str]): Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.. [optional]  # noqa: E501
             restricted (bool, none_type): Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
+            roles ([str]): Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.. [optional]  # noqa: E501
             tenant_ids ([str]): Specifies a list of tenant ids who can access this group.. [optional]  # noqa: E501
         """
 

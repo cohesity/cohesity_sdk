@@ -78,8 +78,8 @@ class ShareAllOf(ModelNormal):
             'view_name': (str, none_type,),  # noqa: E501
             'view_path': (str, none_type,),  # noqa: E501
             'nfs_mount_paths': ([str], none_type,),  # noqa: E501
-            'smb_mount_paths': ([str], none_type,),  # noqa: E501
             's3_access_path': (str, none_type,),  # noqa: E501
+            'smb_mount_paths': ([str], none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
         }
 
@@ -94,8 +94,8 @@ class ShareAllOf(ModelNormal):
         'view_name': 'viewName',  # noqa: E501
         'view_path': 'viewPath',  # noqa: E501
         'nfs_mount_paths': 'nfsMountPaths',  # noqa: E501
-        'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         's3_access_path': 's3AccessPath',  # noqa: E501
+        'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
     }
 
@@ -152,8 +152,8 @@ class ShareAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             nfs_mount_paths ([str], none_type): Specifies the path for mounting this Share as an NFS share. If Kerberos Provider has multiple hostaliases, each host alias has its own path.. [optional]  # noqa: E501
-            smb_mount_paths ([str], none_type): Specifies the possible paths that can be used to mount this Share as a SMB share. If Active Directory has multiple account names, each machine account has its own path.. [optional]  # noqa: E501
             s3_access_path (str, none_type): Specifies the path to access this Share as an S3 share.. [optional]  # noqa: E501
+            smb_mount_paths ([str], none_type): Specifies the possible paths that can be used to mount this Share as a SMB share. If Active Directory has multiple account names, each machine account has its own path.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id who has access to this Share.. [optional]  # noqa: E501
         """
 

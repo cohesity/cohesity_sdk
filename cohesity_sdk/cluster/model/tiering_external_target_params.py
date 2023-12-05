@@ -70,6 +70,12 @@ class TieringExternalTargetParams(ModelComposed):
     """
 
     allowed_values = {
+        ('encryption_level',): {
+            'None': None,
+            'NONE': "None",
+            'WEAK': "Weak",
+            'STRONG': "Strong",
+        },
         ('storage_type',): {
             'None': None,
             'AZURE': "Azure",
@@ -77,12 +83,6 @@ class TieringExternalTargetParams(ModelComposed):
             'AWS': "AWS",
             'ORACLE': "Oracle",
             'S3COMPATIBLE': "S3Compatible",
-        },
-        ('encryption_level',): {
-            'None': None,
-            'NONE': "None",
-            'WEAK': "Weak",
-            'STRONG': "Strong",
         },
     }
 
@@ -105,11 +105,11 @@ class TieringExternalTargetParams(ModelComposed):
         """
         lazy_import()
         return {
-            'storage_type': (str, none_type,),  # noqa: E501
             'encryption_level': (str, none_type,),  # noqa: E501
+            'storage_type': (str, none_type,),  # noqa: E501
+            'aws_params': (TieringAwsExternalTargetParams,),  # noqa: E501
             'azure_params': (TieringAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (TieringGcpExternalTargetParams,),  # noqa: E501
-            'aws_params': (TieringAwsExternalTargetParams,),  # noqa: E501
             'oracle_params': (TieringOracleExternalTargetParams,),  # noqa: E501
             's3_comp_params': (TieringS3CompExternalTargetParams,),  # noqa: E501
         }
@@ -121,11 +121,11 @@ class TieringExternalTargetParams(ModelComposed):
 
 
     attribute_map = {
-        'storage_type': 'storageType',  # noqa: E501
         'encryption_level': 'encryptionLevel',  # noqa: E501
+        'storage_type': 'storageType',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         's3_comp_params': 's3CompParams',  # noqa: E501
     }
@@ -143,12 +143,12 @@ class TieringExternalTargetParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, storage_type, encryption_level, *args, **kwargs):  # noqa: E501
+    def __init__(self, encryption_level, storage_type, *args, **kwargs):  # noqa: E501
         """TieringExternalTargetParams - a model defined in OpenAPI
 
         Args:
-            storage_type (str, none_type): Specifies the Storage type of the External Target.
             encryption_level (str, none_type): Specifies the type of encryption for the Setting.
+            storage_type (str, none_type): Specifies the Storage type of the External Target.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -182,9 +182,9 @@ class TieringExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            aws_params (TieringAwsExternalTargetParams): [optional]  # noqa: E501
             azure_params (TieringAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (TieringGcpExternalTargetParams): [optional]  # noqa: E501
-            aws_params (TieringAwsExternalTargetParams): [optional]  # noqa: E501
             oracle_params (TieringOracleExternalTargetParams): [optional]  # noqa: E501
             s3_comp_params (TieringS3CompExternalTargetParams): [optional]  # noqa: E501
         """
@@ -221,8 +221,8 @@ class TieringExternalTargetParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'storage_type': storage_type,
             'encryption_level': encryption_level,
+            'storage_type': storage_type,
         }
         model_args = {}
         model_args.update(required_args)

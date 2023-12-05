@@ -88,8 +88,8 @@ class CdpRetention(ModelNormal):
         """
         lazy_import()
         return {
-            'unit': (str, none_type,),  # noqa: E501
             'duration': (int, none_type,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
             'data_lock_config': (DataLockConfig,),  # noqa: E501
         }
 
@@ -100,8 +100,8 @@ class CdpRetention(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
         'duration': 'duration',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
         'data_lock_config': 'dataLockConfig',  # noqa: E501
     }
 
@@ -117,12 +117,12 @@ class CdpRetention(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, unit, duration, *args, **kwargs):  # noqa: E501
+    def __init__(self, duration, unit, *args, **kwargs):  # noqa: E501
         """CdpRetention - a model defined in OpenAPI
 
         Args:
-            unit (str, none_type): Specificies the Retention Unit of a CDP backup measured in minutes or hours.
             duration (int, none_type): Specifies the duration for a cdp backup retention.
+            unit (str, none_type): Specificies the Retention Unit of a CDP backup measured in minutes or hours.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -183,8 +183,8 @@ class CdpRetention(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.unit = unit
         self.duration = duration
+        self.unit = unit
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

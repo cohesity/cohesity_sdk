@@ -74,9 +74,9 @@ class MountedVolumeMapping(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'original_volume': (str, none_type,),  # noqa: E501
-            'mounted_volume': (str, none_type,),  # noqa: E501
             'file_system_type': (str, none_type,),  # noqa: E501
+            'mounted_volume': (str, none_type,),  # noqa: E501
+            'original_volume': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class MountedVolumeMapping(ModelNormal):
 
 
     attribute_map = {
-        'original_volume': 'originalVolume',  # noqa: E501
-        'mounted_volume': 'mountedVolume',  # noqa: E501
         'file_system_type': 'fileSystemType',  # noqa: E501
+        'mounted_volume': 'mountedVolume',  # noqa: E501
+        'original_volume': 'originalVolume',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class MountedVolumeMapping(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            original_volume (str, none_type): Specifies the name of the original volume.. [optional]  # noqa: E501
-            mounted_volume (str, none_type): Specifies the name of the point where the volume is mounted.. [optional]  # noqa: E501
             file_system_type (str, none_type): Specifies the type of the file system of the volume.. [optional]  # noqa: E501
+            mounted_volume (str, none_type): Specifies the name of the point where the volume is mounted.. [optional]  # noqa: E501
+            original_volume (str, none_type): Specifies the name of the original volume.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

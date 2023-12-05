@@ -74,8 +74,8 @@ class FailedRunDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'run_id': (str, none_type,),  # noqa: E501
             'error_message': (str, none_type,),  # noqa: E501
+            'run_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class FailedRunDetails(ModelNormal):
 
 
     attribute_map = {
-        'run_id': 'runId',  # noqa: E501
         'error_message': 'errorMessage',  # noqa: E501
+        'run_id': 'runId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class FailedRunDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            run_id (str, none_type): Specifies the id of the failed run.. [optional]  # noqa: E501
             error_message (str, none_type): Specifies the error mesage for failed run.. [optional]  # noqa: E501
+            run_id (str, none_type): Specifies the id of the failed run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

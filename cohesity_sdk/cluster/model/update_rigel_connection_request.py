@@ -83,11 +83,11 @@ class UpdateRigelConnectionRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'tenant_id': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'scalable': (bool, none_type,),  # noqa: E501
-            'ungrouped_connectors': ([int],),  # noqa: E501
             'connector_groups': ([ConnectorGroup],),  # noqa: E501
+            'ungrouped_connectors': ([int],),  # noqa: E501
         }
 
     @cached_property
@@ -97,11 +97,11 @@ class UpdateRigelConnectionRequest(ModelComposed):
 
 
     attribute_map = {
-        'tenant_id': 'tenantId',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'scalable': 'scalable',  # noqa: E501
-        'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
         'connector_groups': 'connectorGroups',  # noqa: E501
+        'ungrouped_connectors': 'ungroupedConnectors',  # noqa: E501
     }
 
     required_properties = set([
@@ -117,12 +117,12 @@ class UpdateRigelConnectionRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, tenant_id, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, tenant_id, *args, **kwargs):  # noqa: E501
         """UpdateRigelConnectionRequest - a model defined in OpenAPI
 
         Args:
-            tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.
             name (str, none_type): Specifies the name of the connection.
+            tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,8 +157,8 @@ class UpdateRigelConnectionRequest(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             scalable (bool, none_type): Flag to specify if the connection is scalable.. [optional]  # noqa: E501
-            ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
             connector_groups ([ConnectorGroup]): Specifies the connector groups in the connection.. [optional]  # noqa: E501
+            ungrouped_connectors ([int]): Specifies the ids of the connectors which are not grouped in this connection. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,8 +193,8 @@ class UpdateRigelConnectionRequest(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'tenant_id': tenant_id,
             'name': name,
+            'tenant_id': tenant_id,
         }
         model_args = {}
         model_args.update(required_args)

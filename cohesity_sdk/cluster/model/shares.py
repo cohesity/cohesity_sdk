@@ -79,8 +79,8 @@ class Shares(ModelNormal):
         """
         lazy_import()
         return {
-            'shares': ([Share], none_type,),  # noqa: E501
             'cookie': (str, none_type,),  # noqa: E501
+            'shares': ([Share], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class Shares(ModelNormal):
 
 
     attribute_map = {
-        'shares': 'shares',  # noqa: E501
         'cookie': 'cookie',  # noqa: E501
+        'shares': 'shares',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class Shares(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            shares ([Share], none_type): Specifies the list of shares.. [optional]  # noqa: E501
             cookie (str, none_type): Specifies the pagination cookie.. [optional]  # noqa: E501
+            shares ([Share], none_type): Specifies the list of shares.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

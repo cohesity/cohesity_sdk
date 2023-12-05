@@ -27,14 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.audit_log_config import AuditLogConfig
-    from cohesity_sdk.cluster.model.cluster_audit_log_config import ClusterAuditLogConfig
     from cohesity_sdk.cluster.model.cluster_create_network_config import ClusterCreateNetworkConfig
     from cohesity_sdk.cluster.model.cluster_proxy_server_config import ClusterProxyServerConfig
     from cohesity_sdk.cluster.model.rigel_cluster_config_params import RigelClusterConfigParams
     from cohesity_sdk.cluster.model.views_global_settings import ViewsGlobalSettings
-    globals()['AuditLogConfig'] = AuditLogConfig
-    globals()['ClusterAuditLogConfig'] = ClusterAuditLogConfig
     globals()['ClusterCreateNetworkConfig'] = ClusterCreateNetworkConfig
     globals()['ClusterProxyServerConfig'] = ClusterProxyServerConfig
     globals()['RigelClusterConfigParams'] = RigelClusterConfigParams
@@ -68,6 +64,14 @@ class Cluster(ModelNormal):
     """
 
     allowed_values = {
+        ('cluster_size',): {
+            'None': None,
+            'SMALL': "Small",
+            'MEDIUM': "Medium",
+            'LARGE': "Large",
+            'XLARGE': "XLarge",
+            'NEXTGEN': "NextGen",
+        },
         ('type',): {
             'None': None,
             'PHYSICAL': "Physical",
@@ -76,14 +80,6 @@ class Cluster(ModelNormal):
             'RIGEL': "Rigel",
             'UNKNOWN': "Unknown",
             'HELIOSONPREMVM': "HeliosOnPremVM",
-        },
-        ('cluster_size',): {
-            'None': None,
-            'SMALL': "Small",
-            'MEDIUM': "Medium",
-            'LARGE': "Large",
-            'XLARGE': "XLarge",
-            'NEXTGEN': "NextGen",
         },
     }
 
@@ -106,23 +102,21 @@ class Cluster(ModelNormal):
         """
         lazy_import()
         return {
+            'cluster_size': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'enable_encryption': (bool, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'incarnation_id': (int, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'cluster_size': (str, none_type,),  # noqa: E501
             'local_tenant_id': (str, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
+            'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
             'region_id': (str, none_type,),  # noqa: E501
             'rigel_cluster_params': (RigelClusterConfigParams,),  # noqa: E501
             'sw_version': (str, none_type,),  # noqa: E501
-            'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
-            'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
-            'enable_encryption': (bool, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
             'views_global_settings': (ViewsGlobalSettings,),  # noqa: E501
-            'file_services_audit_log_config': (AuditLogConfig,),  # noqa: E501
-            'cluster_audit_log_config': (ClusterAuditLogConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -132,23 +126,21 @@ class Cluster(ModelNormal):
 
 
     attribute_map = {
+        'cluster_size': 'clusterSize',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'enable_encryption': 'enableEncryption',  # noqa: E501
         'id': 'id',  # noqa: E501
         'incarnation_id': 'incarnationId',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'cluster_size': 'clusterSize',  # noqa: E501
         'local_tenant_id': 'localTenantId',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'network_config': 'networkConfig',  # noqa: E501
+        'proxy_server_config': 'proxyServerConfig',  # noqa: E501
         'region_id': 'regionId',  # noqa: E501
         'rigel_cluster_params': 'rigelClusterParams',  # noqa: E501
         'sw_version': 'swVersion',  # noqa: E501
-        'network_config': 'networkConfig',  # noqa: E501
-        'proxy_server_config': 'proxyServerConfig',  # noqa: E501
-        'enable_encryption': 'enableEncryption',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'views_global_settings': 'viewsGlobalSettings',  # noqa: E501
-        'file_services_audit_log_config': 'fileServicesAuditLogConfig',  # noqa: E501
-        'cluster_audit_log_config': 'clusterAuditLogConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -198,23 +190,21 @@ class Cluster(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cluster_size (str, none_type): Specifies the size of the cloud platforms.. [optional]  # noqa: E501
+            description (str, none_type): Description of the cluster.. [optional]  # noqa: E501
+            enable_encryption (bool, none_type): Specifies whether or not encryption is enabled. If encryption is enabled, all data on the Cluster will be encrypted.. [optional]  # noqa: E501
             id (int, none_type): Specifies the cluster id of the new cluster.. [optional]  # noqa: E501
             incarnation_id (int, none_type): Specifies the incarnation id of the new cluster.. [optional]  # noqa: E501
-            name (str, none_type): Name of the new cluster.. [optional]  # noqa: E501
-            description (str, none_type): Description of the cluster.. [optional]  # noqa: E501
-            type (str, none_type): Specifies the type of the new cluster.. [optional]  # noqa: E501
-            cluster_size (str, none_type): Specifies the size of the cloud platforms.. [optional]  # noqa: E501
             local_tenant_id (str, none_type): Specifies the local tenant id. Only applicable on Helios.. [optional]  # noqa: E501
-            tenant_id (str, none_type): Specifies the globally unique tenant id. Only applicable on Helios.. [optional]  # noqa: E501
+            name (str, none_type): Name of the new cluster.. [optional]  # noqa: E501
+            network_config (ClusterCreateNetworkConfig): [optional]  # noqa: E501
+            proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
             region_id (str, none_type): Specifies the region id on which this cluster is present. Only applicable on Helios for DMaaS clusters.. [optional]  # noqa: E501
             rigel_cluster_params (RigelClusterConfigParams): [optional]  # noqa: E501
             sw_version (str, none_type): Software version of the new cluster.. [optional]  # noqa: E501
-            network_config (ClusterCreateNetworkConfig): [optional]  # noqa: E501
-            proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
-            enable_encryption (bool, none_type): Specifies whether or not encryption is enabled. If encryption is enabled, all data on the Cluster will be encrypted.. [optional]  # noqa: E501
+            tenant_id (str, none_type): Specifies the globally unique tenant id. Only applicable on Helios.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the type of the new cluster.. [optional]  # noqa: E501
             views_global_settings (ViewsGlobalSettings): [optional]  # noqa: E501
-            file_services_audit_log_config (AuditLogConfig): [optional]  # noqa: E501
-            cluster_audit_log_config (ClusterAuditLogConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

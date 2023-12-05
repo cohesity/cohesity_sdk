@@ -54,17 +54,17 @@ class CreateRemoteDiskStatus(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'None': None,
+            'SUCCEEDED': "Succeeded",
+            'FAILED': "Failed",
+        },
         ('tier',): {
             'None': None,
             'PCIESSD': "PCIeSSD",
             'SATA-SSD': "SATA-SSD",
             'SATA-HDD': "SATA-HDD",
             'CLOUD': "CLOUD",
-        },
-        ('status',): {
-            'None': None,
-            'SUCCEEDED': "Succeeded",
-            'FAILED': "Failed",
         },
     }
 
@@ -86,11 +86,11 @@ class CreateRemoteDiskStatus(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'message': (str, none_type,),  # noqa: E501
             'mount_path': (str, none_type,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
-            'tier': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
+            'tier': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,11 +100,11 @@ class CreateRemoteDiskStatus(ModelNormal):
 
 
     attribute_map = {
+        'message': 'message',  # noqa: E501
         'mount_path': 'mountPath',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
-        'tier': 'tier',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'message': 'message',  # noqa: E501
+        'tier': 'tier',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,11 +154,11 @@ class CreateRemoteDiskStatus(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            message (str, none_type): Specifies the error message when creating remote disk fails.. [optional]  # noqa: E501
             mount_path (str, none_type): Specifies the NFS mount path of the remote disk.. [optional]  # noqa: E501
             node_id (int, none_type): Specifies the node id of the disk. If not specified, the disk will be evenly distributed across all the nodes.. [optional]  # noqa: E501
-            tier (str, none_type): Specifies the tier of the disk. [optional]  # noqa: E501
             status (str, none_type): Specifies the creating status of this disk.. [optional]  # noqa: E501
-            message (str, none_type): Specifies the error message when creating remote disk fails.. [optional]  # noqa: E501
+            tier (str, none_type): Specifies the tier of the disk. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

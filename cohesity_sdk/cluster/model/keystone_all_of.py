@@ -74,8 +74,8 @@ class KeystoneAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'auth_url': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class KeystoneAllOf(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'auth_url': 'authUrl',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class KeystoneAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, auth_url, *args, **kwargs):  # noqa: E501
+    def __init__(self, auth_url, name, *args, **kwargs):  # noqa: E501
         """KeystoneAllOf - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the Keystone configuration name.
             auth_url (str, none_type): Specifies the url points to the Keystone service.
+            name (str, none_type): Specifies the Keystone configuration name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class KeystoneAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.auth_url = auth_url
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

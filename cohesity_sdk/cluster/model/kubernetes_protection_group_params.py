@@ -63,10 +63,10 @@ class KubernetesProtectionGroupParams(ModelNormal):
     }
 
     validations = {
-        ('objects',): {
+        ('exclude_object_ids',): {
         },
 
-        ('exclude_object_ids',): {
+        ('objects',): {
         },
 
     }
@@ -87,15 +87,15 @@ class KubernetesProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([KubernetesProtectionGroupObjectParams],),  # noqa: E501
+            'exclude_label_ids': ([[int]],),  # noqa: E501
             'exclude_object_ids': ([int],),  # noqa: E501
+            'exclude_params': (KubernetesFilterParams,),  # noqa: E501
+            'include_params': (KubernetesFilterParams,),  # noqa: E501
+            'label_ids': ([[int]], none_type,),  # noqa: E501
+            'leverage_csi_snapshot': (bool, none_type,),  # noqa: E501
+            'objects': ([KubernetesProtectionGroupObjectParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'label_ids': ([[int]], none_type,),  # noqa: E501
-            'exclude_label_ids': ([[int]],),  # noqa: E501
-            'include_params': (KubernetesFilterParams,),  # noqa: E501
-            'exclude_params': (KubernetesFilterParams,),  # noqa: E501
-            'leverage_csi_snapshot': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,15 +105,15 @@ class KubernetesProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
+        'exclude_label_ids': 'excludeLabelIds',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'exclude_params': 'excludeParams',  # noqa: E501
+        'include_params': 'includeParams',  # noqa: E501
+        'label_ids': 'labelIds',  # noqa: E501
+        'leverage_csi_snapshot': 'leverageCSISnapshot',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'label_ids': 'labelIds',  # noqa: E501
-        'exclude_label_ids': 'excludeLabelIds',  # noqa: E501
-        'include_params': 'includeParams',  # noqa: E501
-        'exclude_params': 'excludeParams',  # noqa: E501
-        'leverage_csi_snapshot': 'leverageCSISnapshot',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -163,15 +163,15 @@ class KubernetesProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([KubernetesProtectionGroupObjectParams]): Specifies the objects included in the Protection Group.. [optional]  # noqa: E501
+            exclude_label_ids ([[int]]): Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array.. [optional]  # noqa: E501
             exclude_object_ids ([int]): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            exclude_params (KubernetesFilterParams): [optional]  # noqa: E501
+            include_params (KubernetesFilterParams): [optional]  # noqa: E501
+            label_ids ([[int]], none_type): Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array.. [optional]  # noqa: E501
+            leverage_csi_snapshot (bool, none_type): Specifies if CSI snapshots should be used for backup of namespaces.. [optional]  # noqa: E501
+            objects ([KubernetesProtectionGroupObjectParams]): Specifies the objects included in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            label_ids ([[int]], none_type): Array of array of label IDs that specify labels to protect. Optionally specify a list of labels to protect by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the cluster generates a list of namespaces to protect, which are derived from intersections of the inner arrays and union of the outer array.. [optional]  # noqa: E501
-            exclude_label_ids ([[int]]): Array of arrays of label IDs that specify labels to exclude. Optionally specify a list of labels to exclude from protecting by listing protection source ids of labels in this two dimensional array. Using this two dimensional array of label IDs, the Cluster generates a list of namespaces to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array.. [optional]  # noqa: E501
-            include_params (KubernetesFilterParams): [optional]  # noqa: E501
-            exclude_params (KubernetesFilterParams): [optional]  # noqa: E501
-            leverage_csi_snapshot (bool, none_type): Specifies if CSI snapshots should be used for backup of namespaces.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

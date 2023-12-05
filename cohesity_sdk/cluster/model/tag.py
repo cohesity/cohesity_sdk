@@ -82,12 +82,12 @@ class Tag(ModelNormal):
         return {
             'name': (str, none_type,),  # noqa: E501
             'namespace': (str, none_type,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'created_time_usecs': (int, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'last_updated_time_usecs': (int, none_type,),  # noqa: E501
             'marked_for_deletion': (bool, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'ui_color': (str, none_type,),  # noqa: E501
             'ui_path_elements': ([str], none_type,),  # noqa: E501
         }
@@ -101,12 +101,12 @@ class Tag(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'namespace': 'namespace',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'created_time_usecs': 'createdTimeUsecs',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'last_updated_time_usecs': 'lastUpdatedTimeUsecs',  # noqa: E501
         'marked_for_deletion': 'markedForDeletion',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'ui_color': 'uiColor',  # noqa: E501
         'ui_path_elements': 'uiPathElements',  # noqa: E501
     }
@@ -162,12 +162,12 @@ class Tag(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies unique id of the Tag.. [optional]  # noqa: E501
-            tenant_id (str, none_type): Tenant Id to whom the Tag belongs.. [optional]  # noqa: E501
-            description (str, none_type): Description of the Tag.. [optional]  # noqa: E501
             created_time_usecs (int, none_type): Specifies the timestamp in microseconds since the epoch when this Tag was created.. [optional]  # noqa: E501
+            description (str, none_type): Description of the Tag.. [optional]  # noqa: E501
+            id (str, none_type): Specifies unique id of the Tag.. [optional]  # noqa: E501
             last_updated_time_usecs (int, none_type): Specifies the timestamp in microseconds since the epoch when this Tag was last updated.. [optional]  # noqa: E501
             marked_for_deletion (bool, none_type): If true, Tag is marked for deletion.. [optional]  # noqa: E501
+            tenant_id (str, none_type): Tenant Id to whom the Tag belongs.. [optional]  # noqa: E501
             ui_color (str, none_type): Color of the tag in UI.. [optional]  # noqa: E501
             ui_path_elements ([str], none_type): Path of the tag for UI nesting purposes.. [optional]  # noqa: E501
         """

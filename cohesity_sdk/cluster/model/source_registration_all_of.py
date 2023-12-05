@@ -115,25 +115,25 @@ class SourceRegistrationAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
-            'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
-            'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
-            'isilon_params': (IsilonRegistrationParams,),  # noqa: E501
-            'netapp_params': (NetappRegistrationParams,),  # noqa: E501
+            'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
+            'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
+            'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
             'elastifile_params': (ElastifileRegistrationParams,),  # noqa: E501
             'flashblade_params': (FlashbladeRegistrationParams,),  # noqa: E501
+            'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
             'gpfs_params': (GpfsRegistrationParams,),  # noqa: E501
-            'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
-            'mongodb_params': (MongoDBSourceRegistrationParams,),  # noqa: E501
-            'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
-            'hdfs_params': (HdfsSourceRegistrationParams,),  # noqa: E501
             'hbase_params': (HbaseSourceRegistrationParams,),  # noqa: E501
+            'hdfs_params': (HdfsSourceRegistrationParams,),  # noqa: E501
             'hive_params': (HiveSourceRegistrationParams,),  # noqa: E501
-            'uda_params': (UdaSourceRegistrationParams,),  # noqa: E501
-            'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
-            'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
             'hyperv_params': (HyperVSourceRegistrationParams,),  # noqa: E501
+            'isilon_params': (IsilonRegistrationParams,),  # noqa: E501
+            'mongodb_params': (MongoDBSourceRegistrationParams,),  # noqa: E501
+            'netapp_params': (NetappRegistrationParams,),  # noqa: E501
+            'office365_params': (Office365SourceRegistrationParams,),  # noqa: E501
+            'physical_params': (PhysicalSourceRegistrationParams,),  # noqa: E501
             'sfdc_params': (SfdcSourceRegistrationParams,),  # noqa: E501
+            'uda_params': (UdaSourceRegistrationParams,),  # noqa: E501
+            'vmware_params': (VmwareSourceRegistrationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -143,25 +143,25 @@ class SourceRegistrationAllOf(ModelNormal):
 
 
     attribute_map = {
-        'vmware_params': 'vmwareParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'cassandra_params': 'cassandraParams',  # noqa: E501
+        'couchbase_params': 'couchbaseParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
-        'cassandra_params': 'cassandraParams',  # noqa: E501
-        'mongodb_params': 'mongodbParams',  # noqa: E501
-        'couchbase_params': 'couchbaseParams',  # noqa: E501
-        'hdfs_params': 'hdfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
+        'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
+        'mongodb_params': 'mongodbParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -211,25 +211,25 @@ class SourceRegistrationAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
-            physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
-            generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
-            isilon_params (IsilonRegistrationParams): [optional]  # noqa: E501
-            netapp_params (NetappRegistrationParams): [optional]  # noqa: E501
+            aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
+            cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
+            couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
             elastifile_params (ElastifileRegistrationParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeRegistrationParams): [optional]  # noqa: E501
+            generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
             gpfs_params (GpfsRegistrationParams): [optional]  # noqa: E501
-            cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
-            mongodb_params (MongoDBSourceRegistrationParams): [optional]  # noqa: E501
-            couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
-            hdfs_params (HdfsSourceRegistrationParams): [optional]  # noqa: E501
             hbase_params (HbaseSourceRegistrationParams): [optional]  # noqa: E501
+            hdfs_params (HdfsSourceRegistrationParams): [optional]  # noqa: E501
             hive_params (HiveSourceRegistrationParams): [optional]  # noqa: E501
-            uda_params (UdaSourceRegistrationParams): [optional]  # noqa: E501
-            office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
-            aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
             hyperv_params (HyperVSourceRegistrationParams): [optional]  # noqa: E501
+            isilon_params (IsilonRegistrationParams): [optional]  # noqa: E501
+            mongodb_params (MongoDBSourceRegistrationParams): [optional]  # noqa: E501
+            netapp_params (NetappRegistrationParams): [optional]  # noqa: E501
+            office365_params (Office365SourceRegistrationParams): [optional]  # noqa: E501
+            physical_params (PhysicalSourceRegistrationParams): [optional]  # noqa: E501
             sfdc_params (SfdcSourceRegistrationParams): [optional]  # noqa: E501
+            uda_params (UdaSourceRegistrationParams): [optional]  # noqa: E501
+            vmware_params (VmwareSourceRegistrationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -21,8 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_recovery_request_params387f2f9779b8401b_a119446ec2da3995 import CommonRecoveryRequestParams387f2f9779b8401bA119446ec2da3995
-from cohesity_sdk.cluster.model.common_recovery_response_paramsee88264f7bbd40f99a036ae692c6dc06 import CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06
+from cohesity_sdk.cluster.model.create_recovery_request import CreateRecoveryRequest
 from cohesity_sdk.cluster.model.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.fetch_uptier_data_response import FetchUptierDataResponse
@@ -113,7 +112,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/cancel',
@@ -241,7 +240,7 @@ class RecoveryApi(object):
                 'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/download-files-folders',
@@ -307,7 +306,7 @@ class RecoveryApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonRecoveryRequestParams387f2f9779b8401bA119446ec2da3995): Specifies the parameters to create a Recovery.
+                body (CreateRecoveryRequest): Specifies the parameters to create a Recovery.
 
             Keyword Args:
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
@@ -332,7 +331,7 @@ class RecoveryApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -361,10 +360,10 @@ class RecoveryApi(object):
 
         self.create_recovery = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries',
@@ -395,13 +394,12 @@ class RecoveryApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                 },
                 'openapi_types': {
                     'body':
-                        (CommonRecoveryRequestParams387f2f9779b8401bA119446ec2da3995,),
+                        (CreateRecoveryRequest,),
                     'request_initiator_type':
                         (str,),
                 },
@@ -502,7 +500,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/download-files',
@@ -654,7 +652,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotsId}/download-file',
@@ -795,7 +793,7 @@ class RecoveryApi(object):
                 'response_type': (FetchUptierDataResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/fetch-uptier-data',
@@ -930,7 +928,7 @@ class RecoveryApi(object):
                 'response_type': (Recoveries,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries',
@@ -1044,8 +1042,7 @@ class RecoveryApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                     ('recovery_actions',): {
 
@@ -1059,11 +1056,9 @@ class RecoveryApi(object):
                         "RECOVERRDS": "RecoverRDS",
                         "RECOVERAURORA": "RecoverAurora",
                         "RECOVERAPPS": "RecoverApps",
-                        "CLONEAPPS": "CloneApps",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
                         "RECOVERPHYSICALVOLUMES": "RecoverPhysicalVolumes",
                         "RECOVERSYSTEM": "RecoverSystem",
-                        "RECOVEREXCHANGEDBS": "RecoverExchangeDbs",
                         "CLONEAPPVIEW": "CloneAppView",
                         "RECOVERSANVOLUMES": "RecoverSanVolumes",
                         "RECOVERMAILBOX": "RecoverMailbox",
@@ -1078,13 +1073,7 @@ class RecoveryApi(object):
                         "RECOVERSFDCOBJECTS": "RecoverSfdcObjects",
                         "RECOVERSFDCORG": "RecoverSfdcOrg",
                         "RECOVERSFDCRECORDS": "RecoverSfdcRecords",
-                        "DOWNLOADFILESANDFOLDERS": "DownloadFilesAndFolders",
-                        "CLONEVMS": "CloneVMs",
-                        "CLONEVIEW": "CloneView",
-                        "CLONEREFRESHAPP": "CloneRefreshApp",
-                        "CLONEVMSTOVIEW": "CloneVMsToView",
-                        "CONVERTANDDEPLOYVMS": "ConvertAndDeployVMs",
-                        "DEPLOYVMS": "DeployVMs"
+                        "DOWNLOADFILESANDFOLDERS": "DownloadFilesAndFolders"
                     },
                 },
                 'openapi_types': {
@@ -1201,7 +1190,7 @@ class RecoveryApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1230,10 +1219,10 @@ class RecoveryApi(object):
 
         self.get_recovery_by_id = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}',
@@ -1366,7 +1355,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/debug-logs',
@@ -1494,7 +1483,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/download-messages',
@@ -1622,7 +1611,7 @@ class RecoveryApi(object):
                 'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/downloadFilesAndFoldersRecovery',
@@ -1747,7 +1736,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/downloadFiles',
@@ -1894,7 +1883,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotsId}/downloadFile',
@@ -2035,7 +2024,7 @@ class RecoveryApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/recoveries/{id}/tear-down',

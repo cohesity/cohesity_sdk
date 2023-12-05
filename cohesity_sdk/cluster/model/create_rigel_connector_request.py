@@ -81,10 +81,10 @@ class CreateRigelConnectorRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'connection_id': (int, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'certificate_version': (int, none_type,),  # noqa: E501
+            'connection_id': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
             'connector_id': (int, none_type,),  # noqa: E501
         }
 
@@ -95,10 +95,10 @@ class CreateRigelConnectorRequest(ModelComposed):
 
 
     attribute_map = {
-        'connection_id': 'connectionId',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'certificate_version': 'certificateVersion',  # noqa: E501
+        'connection_id': 'connectionId',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
         'connector_id': 'connectorId',  # noqa: E501
     }
 
@@ -115,14 +115,14 @@ class CreateRigelConnectorRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, connection_id, tenant_id, name, certificate_version, connector_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, certificate_version, connection_id, name, tenant_id, connector_id, *args, **kwargs):  # noqa: E501
         """CreateRigelConnectorRequest - a model defined in OpenAPI
 
         Args:
-            connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.
-            tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.
-            name (str, none_type): Specifies the name of the connector.
             certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.
+            connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.
+            name (str, none_type): Specifies the name of the connector.
+            tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.
             connector_id (int, none_type): Specifies the Id of the connector.
 
         Keyword Args:
@@ -191,10 +191,10 @@ class CreateRigelConnectorRequest(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'connection_id': connection_id,
-            'tenant_id': tenant_id,
-            'name': name,
             'certificate_version': certificate_version,
+            'connection_id': connection_id,
+            'name': name,
+            'tenant_id': tenant_id,
             'connector_id': connector_id,
         }
         model_args = {}

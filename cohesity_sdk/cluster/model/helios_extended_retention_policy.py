@@ -88,10 +88,10 @@ class HeliosExtendedRetentionPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'schedule': (HeliosExtendedRetentionSchedule,),  # noqa: E501
-            'retention': (HeliosRetention,),  # noqa: E501
             'config_id': (str, none_type,),  # noqa: E501
+            'retention': (HeliosRetention,),  # noqa: E501
             'run_type': (str, none_type,),  # noqa: E501
+            'schedule': (HeliosExtendedRetentionSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -101,10 +101,10 @@ class HeliosExtendedRetentionPolicy(ModelNormal):
 
 
     attribute_map = {
-        'schedule': 'schedule',  # noqa: E501
-        'retention': 'retention',  # noqa: E501
         'config_id': 'configId',  # noqa: E501
+        'retention': 'retention',  # noqa: E501
         'run_type': 'runType',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,10 +154,10 @@ class HeliosExtendedRetentionPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            schedule (HeliosExtendedRetentionSchedule): [optional]  # noqa: E501
-            retention (HeliosRetention): [optional]  # noqa: E501
             config_id (str, none_type): Specifies the unique identifier for the extedned  retention getting added. This field should only be set if policy is getting updated.. [optional]  # noqa: E501
+            retention (HeliosRetention): [optional]  # noqa: E501
             run_type (str, none_type): The backup run type to which this extended retention applies to. If this is not set, the extended retention will be applicable to all non-log backup types. Currently, the only value that can be set here is Full. 'Regular' indicates a incremental (CBT) backup. Incremental backups utilizing CBT (if supported) are captured of the target protection objects. The first run of a Regular schedule captures all the blocks. 'Full' indicates a full (no CBT) backup. A complete backup (all blocks) of the target protection objects are always captured and Change Block Tracking (CBT) is not utilized. 'Log' indicates a Database Log backup. Capture the database transaction logs to allow rolling back to a specific point in time. 'System' indicates a system backup. System backups are used to do bare metal recovery of the system to a specific point in time.. [optional]  # noqa: E501
+            schedule (HeliosExtendedRetentionSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

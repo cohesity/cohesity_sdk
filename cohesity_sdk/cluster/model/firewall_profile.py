@@ -82,8 +82,8 @@ class FirewallProfile(ModelNormal):
         lazy_import()
         return {
             'name': (str, none_type,),  # noqa: E501
-            'gateway_params': ([GatewayParams],),  # noqa: E501
             'attachments': ([Attachment],),  # noqa: E501
+            'gateway_params': ([GatewayParams],),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class FirewallProfile(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'gateway_params': 'gatewayParams',  # noqa: E501
         'attachments': 'attachments',  # noqa: E501
+        'gateway_params': 'gatewayParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,8 +148,8 @@ class FirewallProfile(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            gateway_params ([GatewayParams]): Specifies the port & direction settings.. [optional]  # noqa: E501
             attachments ([Attachment]): Specifies the profile attachments.. [optional]  # noqa: E501
+            gateway_params ([GatewayParams]): Specifies the port & direction settings.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

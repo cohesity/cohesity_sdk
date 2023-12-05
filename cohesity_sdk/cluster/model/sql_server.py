@@ -85,13 +85,13 @@ class SQLServer(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'resource_info': (AppResource,),  # noqa: E501
             'agent_info': (AgentInformation,),  # noqa: E501
             'error': (Error,),  # noqa: E501
-            'is_primary': (bool, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'instances': ([SQLServerInstance], none_type,),  # noqa: E501
+            'is_primary': (bool, none_type,),  # noqa: E501
             'is_selected_by_default': (bool, none_type,),  # noqa: E501
+            'resource_info': (AppResource,),  # noqa: E501
         }
 
     @cached_property
@@ -101,13 +101,13 @@ class SQLServer(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'resource_info': 'resourceInfo',  # noqa: E501
         'agent_info': 'agentInfo',  # noqa: E501
         'error': 'error',  # noqa: E501
-        'is_primary': 'isPrimary',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'instances': 'instances',  # noqa: E501
+        'is_primary': 'isPrimary',  # noqa: E501
         'is_selected_by_default': 'isSelectedByDefault',  # noqa: E501
+        'resource_info': 'resourceInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,13 +157,13 @@ class SQLServer(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the unique identifier of the SQL server host.. [optional]  # noqa: E501
-            resource_info (AppResource): [optional]  # noqa: E501
             agent_info (AgentInformation): [optional]  # noqa: E501
             error (Error): [optional]  # noqa: E501
-            is_primary (bool, none_type): Indicates whether this is a active node of a FCI cluster or hosts primary replica of a AAG group.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the unique identifier of the SQL server host.. [optional]  # noqa: E501
             instances ([SQLServerInstance], none_type): Specifies the list of all sql instances running inside the current SQL host.. [optional]  # noqa: E501
+            is_primary (bool, none_type): Indicates whether this is a active node of a FCI cluster or hosts primary replica of a AAG group.. [optional]  # noqa: E501
             is_selected_by_default (bool, none_type): Indicates to the UI whether this server should be selected by default. [optional]  # noqa: E501
+            resource_info (AppResource): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

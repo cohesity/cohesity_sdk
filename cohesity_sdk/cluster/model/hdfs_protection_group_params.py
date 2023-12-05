@@ -84,12 +84,12 @@ class HdfsProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'hdfs_source_id': (int, none_type,),  # noqa: E501
-            'include_paths': ([str],),  # noqa: E501
-            'exclude_paths': ([str],),  # noqa: E501
-            'concurrency': (int, none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
-            'source_id': (int, none_type,),  # noqa: E501
+            'concurrency': (int, none_type,),  # noqa: E501
+            'exclude_paths': ([str],),  # noqa: E501
+            'include_paths': ([str],),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
         }
 
@@ -101,12 +101,12 @@ class HdfsProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'hdfs_source_id': 'hdfsSourceId',  # noqa: E501
-        'include_paths': 'includePaths',  # noqa: E501
-        'exclude_paths': 'excludePaths',  # noqa: E501
-        'concurrency': 'concurrency',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
-        'source_id': 'sourceId',  # noqa: E501
+        'concurrency': 'concurrency',  # noqa: E501
+        'exclude_paths': 'excludePaths',  # noqa: E501
+        'include_paths': 'includePaths',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
     }
 
@@ -160,12 +160,12 @@ class HdfsProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            include_paths ([str]): Specifies the paths to be included in the Protection Group.. [optional]  # noqa: E501
-            exclude_paths ([str]): Specifies the paths to be excluded in the Protection Group. excludePaths will ovrride includePaths.. [optional]  # noqa: E501
-            concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
-            source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
+            concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
+            exclude_paths ([str]): Specifies the paths to be excluded in the Protection Group. excludePaths will ovrride includePaths.. [optional]  # noqa: E501
+            include_paths ([str]): Specifies the paths to be included in the Protection Group.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
         """
 

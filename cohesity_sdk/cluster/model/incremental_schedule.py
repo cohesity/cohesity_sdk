@@ -99,11 +99,11 @@ class IncrementalSchedule(ModelNormal):
         lazy_import()
         return {
             'unit': (str, none_type,),  # noqa: E501
-            'minute_schedule': (MinuteSchedule,),  # noqa: E501
-            'hour_schedule': (HourSchedule,),  # noqa: E501
             'day_schedule': (DaySchedule,),  # noqa: E501
-            'week_schedule': (WeekSchedule,),  # noqa: E501
+            'hour_schedule': (HourSchedule,),  # noqa: E501
+            'minute_schedule': (MinuteSchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
+            'week_schedule': (WeekSchedule,),  # noqa: E501
             'year_schedule': (YearSchedule,),  # noqa: E501
         }
 
@@ -115,11 +115,11 @@ class IncrementalSchedule(ModelNormal):
 
     attribute_map = {
         'unit': 'unit',  # noqa: E501
-        'minute_schedule': 'minuteSchedule',  # noqa: E501
-        'hour_schedule': 'hourSchedule',  # noqa: E501
         'day_schedule': 'daySchedule',  # noqa: E501
-        'week_schedule': 'weekSchedule',  # noqa: E501
+        'hour_schedule': 'hourSchedule',  # noqa: E501
+        'minute_schedule': 'minuteSchedule',  # noqa: E501
         'month_schedule': 'monthSchedule',  # noqa: E501
+        'week_schedule': 'weekSchedule',  # noqa: E501
         'year_schedule': 'yearSchedule',  # noqa: E501
     }
 
@@ -173,11 +173,11 @@ class IncrementalSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            minute_schedule (MinuteSchedule): [optional]  # noqa: E501
-            hour_schedule (HourSchedule): [optional]  # noqa: E501
             day_schedule (DaySchedule): [optional]  # noqa: E501
-            week_schedule (WeekSchedule): [optional]  # noqa: E501
+            hour_schedule (HourSchedule): [optional]  # noqa: E501
+            minute_schedule (MinuteSchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
+            week_schedule (WeekSchedule): [optional]  # noqa: E501
             year_schedule (YearSchedule): [optional]  # noqa: E501
         """
 

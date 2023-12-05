@@ -77,8 +77,8 @@ class ClusterProxyServerConfig(ModelNormal):
             'ip': (str, none_type,),  # noqa: E501
             'port': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +91,8 @@ class ClusterProxyServerConfig(ModelNormal):
         'ip': 'ip',  # noqa: E501
         'port': 'port',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,8 +147,8 @@ class ClusterProxyServerConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             name (str, none_type): Specifies the unique name of the proxy server.. [optional]  # noqa: E501
-            username (str, none_type): Specifies the username for the proxy.. [optional]  # noqa: E501
             password (str, none_type): Specifies the password for the proxy.. [optional]  # noqa: E501
+            username (str, none_type): Specifies the username for the proxy.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

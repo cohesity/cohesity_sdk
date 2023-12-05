@@ -79,11 +79,11 @@ class ReplicationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'storage_domain_pairs': ([StorageDomainPair],),  # noqa: E501
             'all_endpoints_reachable': (bool, none_type,),  # noqa: E501
+            'bandwidth_limit': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'compression_enabled': (bool, none_type,),  # noqa: E501
             'encryption_key': (str, none_type,),  # noqa: E501
-            'bandwidth_limit': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'storage_domain_pairs': ([StorageDomainPair],),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class ReplicationParams(ModelNormal):
 
 
     attribute_map = {
-        'storage_domain_pairs': 'storageDomainPairs',  # noqa: E501
         'all_endpoints_reachable': 'allEndpointsReachable',  # noqa: E501
+        'bandwidth_limit': 'bandwidthLimit',  # noqa: E501
         'compression_enabled': 'compressionEnabled',  # noqa: E501
         'encryption_key': 'encryptionKey',  # noqa: E501
-        'bandwidth_limit': 'bandwidthLimit',  # noqa: E501
+        'storage_domain_pairs': 'storageDomainPairs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class ReplicationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            storage_domain_pairs ([StorageDomainPair]): Specifies a list of Storage Domain pairs.. [optional]  # noqa: E501
             all_endpoints_reachable (bool, none_type): Specifies if all endpoints on Remote Cluster are reachable.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            bandwidth_limit ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies settings for limiting the data transfer rate between the local and Remote Clusters.. [optional]  # noqa: E501
             compression_enabled (bool, none_type): Specifies whether to compress the outbound data when transferring the replication data over the network to the Remote Cluster.. [optional] if omitted the server will use the default value of True  # noqa: E501
             encryption_key (str, none_type): Specifies the encryption key used for encrypting the replication data from a local Cluster to a Remote Cluster. If a key is not specified, replication traffic encryption is disabled. When Snapshots are replicated from a local Cluster to a Remote Cluster, the encryption key specified on the local Cluster must be the same as the key specified on the Remote Cluster.. [optional]  # noqa: E501
-            bandwidth_limit ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies settings for limiting the data transfer rate between the local and Remote Clusters.. [optional]  # noqa: E501
+            storage_domain_pairs ([StorageDomainPair]): Specifies a list of Storage Domain pairs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

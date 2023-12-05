@@ -81,14 +81,14 @@ class RecoverOtherNasToGpfsFilesTargetParams(ModelNormal):
         """
         lazy_import()
         return {
-            'volume': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'alternate_path': (str, none_type,),  # noqa: E501
-            'parent_source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'overwrite_existing_file': (bool, none_type,),  # noqa: E501
-            'preserve_file_attributes': (bool, none_type,),  # noqa: E501
+            'volume': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'encryption_enabled': (bool, none_type,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
+            'overwrite_existing_file': (bool, none_type,),  # noqa: E501
+            'parent_source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'preserve_file_attributes': (bool, none_type,),  # noqa: E501
             'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
@@ -99,14 +99,14 @@ class RecoverOtherNasToGpfsFilesTargetParams(ModelNormal):
 
 
     attribute_map = {
-        'volume': 'volume',  # noqa: E501
         'alternate_path': 'alternatePath',  # noqa: E501
-        'parent_source': 'parentSource',  # noqa: E501
-        'overwrite_existing_file': 'overwriteExistingFile',  # noqa: E501
-        'preserve_file_attributes': 'preserveFileAttributes',  # noqa: E501
+        'volume': 'volume',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
         'encryption_enabled': 'encryptionEnabled',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
+        'overwrite_existing_file': 'overwriteExistingFile',  # noqa: E501
+        'parent_source': 'parentSource',  # noqa: E501
+        'preserve_file_attributes': 'preserveFileAttributes',  # noqa: E501
         'vlan_config': 'vlanConfig',  # noqa: E501
     }
 
@@ -122,12 +122,12 @@ class RecoverOtherNasToGpfsFilesTargetParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, volume, alternate_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, alternate_path, volume, *args, **kwargs):  # noqa: E501
         """RecoverOtherNasToGpfsFilesTargetParams - a model defined in OpenAPI
 
         Args:
-            volume ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id and name of the parent NAS to recover to. This volume will be the target of the recovery.
             alternate_path (str, none_type): Specifies the path location to recover files to.
+            volume ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id and name of the parent NAS to recover to. This volume will be the target of the recovery.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -161,12 +161,12 @@ class RecoverOtherNasToGpfsFilesTargetParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            parent_source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id of the parent source of the recovery target.. [optional]  # noqa: E501
-            overwrite_existing_file (bool, none_type): Specifies whether to overwrite existing file/folder during recovery.. [optional]  # noqa: E501
-            preserve_file_attributes (bool, none_type): Specifies whether to preserve file/folder attributes during recovery.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other files if one of the files fails to recover. Default value is false.. [optional]  # noqa: E501
             encryption_enabled (bool, none_type): Specifies whether encryption should be enabled during recovery.. [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
+            overwrite_existing_file (bool, none_type): Specifies whether to overwrite existing file/folder during recovery.. [optional]  # noqa: E501
+            parent_source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id of the parent source of the recovery target.. [optional]  # noqa: E501
+            preserve_file_attributes (bool, none_type): Specifies whether to preserve file/folder attributes during recovery.. [optional]  # noqa: E501
             vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 
@@ -194,8 +194,8 @@ class RecoverOtherNasToGpfsFilesTargetParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.volume = volume
         self.alternate_path = alternate_path
+        self.volume = volume
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

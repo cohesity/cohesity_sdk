@@ -74,9 +74,9 @@ class ServicePatchLevel(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'service': (str, none_type,),  # noqa: E501
             'patch_level': (int, none_type,),  # noqa: E501
             'patch_version': (str, none_type,),  # noqa: E501
+            'service': (str, none_type,),  # noqa: E501
             'start_level': (int, none_type,),  # noqa: E501
             'start_version': (str, none_type,),  # noqa: E501
         }
@@ -88,9 +88,9 @@ class ServicePatchLevel(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
         'patch_level': 'patchLevel',  # noqa: E501
         'patch_version': 'patchVersion',  # noqa: E501
+        'service': 'service',  # noqa: E501
         'start_level': 'startLevel',  # noqa: E501
         'start_version': 'startVersion',  # noqa: E501
     }
@@ -142,9 +142,9 @@ class ServicePatchLevel(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str, none_type): Specifies the name of the service.. [optional]  # noqa: E501
             patch_level (int, none_type): Specifies patch level of the service after the patch operation.. [optional]  # noqa: E501
             patch_version (str, none_type): Specifies the version of the service patch after the patch operation.. [optional]  # noqa: E501
+            service (str, none_type): Specifies the name of the service.. [optional]  # noqa: E501
             start_level (int, none_type): Specifies patch level of the service before the patch operation.. [optional]  # noqa: E501
             start_version (str, none_type): Specifies the version of the service running on the cluster before the patch operation.. [optional]  # noqa: E501
         """

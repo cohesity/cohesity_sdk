@@ -74,10 +74,10 @@ class WormSpecificTargetParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'resource_group': (str, none_type,),  # noqa: E501
-            'subscription_id': (str, none_type,),  # noqa: E501
             'application_id': (str, none_type,),  # noqa: E501
             'encrypted_application_key': (str, none_type,),  # noqa: E501
+            'resource_group': (str, none_type,),  # noqa: E501
+            'subscription_id': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
         }
 
@@ -88,10 +88,10 @@ class WormSpecificTargetParams(ModelNormal):
 
 
     attribute_map = {
-        'resource_group': 'resourceGroup',  # noqa: E501
-        'subscription_id': 'subscriptionId',  # noqa: E501
         'application_id': 'applicationId',  # noqa: E501
         'encrypted_application_key': 'encryptedApplicationKey',  # noqa: E501
+        'resource_group': 'resourceGroup',  # noqa: E501
+        'subscription_id': 'subscriptionId',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
     }
 
@@ -142,10 +142,10 @@ class WormSpecificTargetParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            resource_group (str, none_type): Specifies the resource group of worm enabled external target.. [optional]  # noqa: E501
-            subscription_id (str, none_type): Specifies the subscription id of worm enabled external target.. [optional]  # noqa: E501
             application_id (str, none_type): Specifies the application id of worm enabled external target.. [optional]  # noqa: E501
             encrypted_application_key (str, none_type): Specifies the encrypted application key of worm enabled external target.. [optional]  # noqa: E501
+            resource_group (str, none_type): Specifies the resource group of worm enabled external target.. [optional]  # noqa: E501
+            subscription_id (str, none_type): Specifies the subscription id of worm enabled external target.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id of worm enabled external target.. [optional]  # noqa: E501
         """
 

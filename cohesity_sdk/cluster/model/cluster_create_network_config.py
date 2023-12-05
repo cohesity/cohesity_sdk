@@ -86,15 +86,13 @@ class ClusterCreateNetworkConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'ntp_servers': ([str], none_type,),  # noqa: E501
             'domain_names': ([str], none_type,),  # noqa: E501
+            'ntp_servers': ([str], none_type,),  # noqa: E501
             'use_dhcp': (bool, none_type,),  # noqa: E501
-            'vip_host_name': (str, none_type,),  # noqa: E501
-            'ip_preference': (str, none_type,),  # noqa: E501
             'dhcp_network_config': (ClusterDhcpNetworkConfig,),  # noqa: E501
+            'ip_preference': (str, none_type,),  # noqa: E501
             'manual_network_config': (ClusterManualNetworkConfig,),  # noqa: E501
-            'secondary_dhcp_network_config': (ClusterDhcpNetworkConfig,),  # noqa: E501
-            'secondary_manual_network_config': (ClusterManualNetworkConfig,),  # noqa: E501
+            'vip_host_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,15 +102,13 @@ class ClusterCreateNetworkConfig(ModelNormal):
 
 
     attribute_map = {
-        'ntp_servers': 'ntpServers',  # noqa: E501
         'domain_names': 'domainNames',  # noqa: E501
+        'ntp_servers': 'ntpServers',  # noqa: E501
         'use_dhcp': 'useDhcp',  # noqa: E501
-        'vip_host_name': 'vipHostName',  # noqa: E501
-        'ip_preference': 'ipPreference',  # noqa: E501
         'dhcp_network_config': 'dhcpNetworkConfig',  # noqa: E501
+        'ip_preference': 'ipPreference',  # noqa: E501
         'manual_network_config': 'manualNetworkConfig',  # noqa: E501
-        'secondary_dhcp_network_config': 'secondaryDhcpNetworkConfig',  # noqa: E501
-        'secondary_manual_network_config': 'secondaryManualNetworkConfig',  # noqa: E501
+        'vip_host_name': 'vipHostName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -127,12 +123,12 @@ class ClusterCreateNetworkConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, ntp_servers, domain_names, use_dhcp, *args, **kwargs):  # noqa: E501
+    def __init__(self, domain_names, ntp_servers, use_dhcp, *args, **kwargs):  # noqa: E501
         """ClusterCreateNetworkConfig - a model defined in OpenAPI
 
         Args:
-            ntp_servers ([str], none_type): Specifies the list of NTP Servers new cluster should be configured with.
             domain_names ([str], none_type): Specifies the list of Domain Names new cluster should be configured with.
+            ntp_servers ([str], none_type): Specifies the list of NTP Servers new cluster should be configured with.
             use_dhcp (bool, none_type): Specifies whether or not to use DHCP to configure the network of the Cluster.
 
         Keyword Args:
@@ -167,12 +163,10 @@ class ClusterCreateNetworkConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vip_host_name (str, none_type): Specifies the FQDN hostname of the cluster.. [optional]  # noqa: E501
-            ip_preference (str, none_type): Specifies IP preference of the cluster to be Ipv4/Ipv6. It is Ipv4 by default.. [optional]  # noqa: E501
             dhcp_network_config (ClusterDhcpNetworkConfig): [optional]  # noqa: E501
+            ip_preference (str, none_type): Specifies IP preference of the cluster to be Ipv4/Ipv6. It is Ipv4 by default.. [optional]  # noqa: E501
             manual_network_config (ClusterManualNetworkConfig): [optional]  # noqa: E501
-            secondary_dhcp_network_config (ClusterDhcpNetworkConfig): [optional]  # noqa: E501
-            secondary_manual_network_config (ClusterManualNetworkConfig): [optional]  # noqa: E501
+            vip_host_name (str, none_type): Specifies the FQDN hostname of the cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -199,8 +193,8 @@ class ClusterCreateNetworkConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.ntp_servers = ntp_servers
         self.domain_names = domain_names
+        self.ntp_servers = ntp_servers
         self.use_dhcp = use_dhcp
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

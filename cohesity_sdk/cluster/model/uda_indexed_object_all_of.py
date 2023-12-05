@@ -74,8 +74,8 @@ class UdaIndexedObjectAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str, none_type,),  # noqa: E501
             'full_name': (str, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'object_type': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class UdaIndexedObjectAllOf(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'full_name': 'fullName',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'object_type': 'objectType',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class UdaIndexedObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
             full_name (str, none_type): Specifies the full name of the indexed object.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
             object_type (str, none_type): Specifies the type of the indexed object.. [optional]  # noqa: E501
         """
 

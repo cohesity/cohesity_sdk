@@ -75,6 +75,7 @@ class CreateBifrostConnectionRequest(ModelNormal):
         """
         return {
             'name': (str, none_type,),  # noqa: E501
+            'certificate_version': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,6 +86,7 @@ class CreateBifrostConnectionRequest(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
+        'certificate_version': 'certificateVersion',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -137,6 +139,7 @@ class CreateBifrostConnectionRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            certificate_version (int, none_type): Specifies the version of the connection's certificate. The version is used to revoke/renew connection's certificates.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

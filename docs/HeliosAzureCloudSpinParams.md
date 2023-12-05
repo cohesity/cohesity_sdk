@@ -5,12 +5,12 @@ Specifies various resources when converting and deploying a VM to Azure.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**availability_set_id** | **int, none_type** | Specifies the availability set. | [optional] 
 **network_resource_group_id** | **int, none_type** | Specifies id of the resource group for the selected virtual network. | [optional] 
 **resource_group_id** | **int, none_type** | Specifies id of the Azure resource group. Its value is globally unique within Azure. | [optional] 
 **storage_account_id** | **int, none_type** | Specifies id of the storage account that will contain the storage container within which we will create the blob that will become the VHD disk for the cloned VM. | [optional] 
 **storage_container_id** | **int, none_type** | Specifies id of the storage container within the above storage account. | [optional] 
 **storage_resource_group_id** | **int, none_type** | Specifies id of the resource group for the selected storage account. | [optional] 
-**availability_set_id** | **int, none_type** | Specifies the availability set. | [optional] 
 **temp_vm_resource_group_id** | **int, none_type** | Specifies id of the temporary Azure resource group. | [optional] 
 **temp_vm_storage_account_id** | **int, none_type** | Specifies id of the temporary VM storage account that will contain the storage container within which we will create the blob that will become the VHD disk for the cloned VM. | [optional] 
 **temp_vm_storage_container_id** | **int, none_type** | Specifies id of the temporary VM storage container within the above storage account. | [optional] 

@@ -16,7 +16,6 @@ View the configuration for Helios OnPrem VM Node.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.helios_on_prem_config import HeliosOnPremConfig
@@ -31,7 +30,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -53,7 +51,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -78,7 +76,6 @@ Update the configuration for Helios OnPrem VM Node.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.helios_on_prem_config import HeliosOnPremConfig
@@ -94,58 +91,44 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = HeliosOnPremConfig(
-        name="name_example",
-        nodes=[
-            HeliosOnPremVMNode(
-                node_ip="node_ip_example",
-                node_id=1,
-            ),
-        ],
         kubernetes_subnet_cidr="kubernetes_subnet_cidr_example",
+        name="name_example",
         network_config=ClusterCreateNetworkConfig(
-            ntp_servers=[
-                "ntp_servers_example",
-            ],
-            domain_names=[
-                "domain_names_example",
-            ],
-            vip_host_name="vip_host_name_example",
-            ip_preference="Ipv4",
-            use_dhcp=True,
             dhcp_network_config=ClusterDhcpNetworkConfig(
                 dns_servers=[
                     "dns_servers_example",
                 ],
             ),
+            domain_names=[
+                "domain_names_example",
+            ],
+            ip_preference="Ipv4",
             manual_network_config=ClusterManualNetworkConfig(
+                dns_servers=[
+                    "dns_servers_example",
+                ],
                 gateway="gateway_example",
                 subnet_ip="subnet_ip_example",
                 subnet_mask="subnet_mask_example",
-                dns_servers=[
-                    "dns_servers_example",
-                ],
             ),
-            secondary_dhcp_network_config=ClusterDhcpNetworkConfig(
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-            ),
-            secondary_manual_network_config=ClusterManualNetworkConfig(
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
-                dns_servers=[
-                    "dns_servers_example",
-                ],
-            ),
+            ntp_servers=[
+                "ntp_servers_example",
+            ],
+            use_dhcp=True,
+            vip_host_name="vip_host_name_example",
         ),
+        nodes=[
+            HeliosOnPremVMNode(
+                node_id=1,
+                node_ip="node_ip_example",
+            ),
+        ],
         proxy_server_config=ClusterProxyServerConfig(
             ip="ip_example",
+            password="password_example",
             port=1,
             username="username_example",
-            password="password_example",
         ),
         ssh_config=HeliosOnPremSSHConfig(
         ),
@@ -173,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

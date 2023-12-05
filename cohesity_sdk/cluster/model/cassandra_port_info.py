@@ -74,11 +74,11 @@ class CassandraPortInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'jmx_port': (int, none_type,),  # noqa: E501
             'native_transport_port': (int, none_type,),  # noqa: E501
             'rpc_port': (int, none_type,),  # noqa: E501
-            'storage_port': (int, none_type,),  # noqa: E501
             'ssl_storage_port': (int, none_type,),  # noqa: E501
-            'jmx_port': (int, none_type,),  # noqa: E501
+            'storage_port': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class CassandraPortInfo(ModelNormal):
 
 
     attribute_map = {
+        'jmx_port': 'jmxPort',  # noqa: E501
         'native_transport_port': 'nativeTransportPort',  # noqa: E501
         'rpc_port': 'rpcPort',  # noqa: E501
-        'storage_port': 'storagePort',  # noqa: E501
         'ssl_storage_port': 'sslStoragePort',  # noqa: E501
-        'jmx_port': 'jmxPort',  # noqa: E501
+        'storage_port': 'storagePort',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class CassandraPortInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            jmx_port (int, none_type): Cassandra management port.. [optional]  # noqa: E501
             native_transport_port (int, none_type): Port for the CQL native transport.. [optional]  # noqa: E501
             rpc_port (int, none_type): Remote Procedure Call (RPC) port for general mechanism for client-server applications.. [optional]  # noqa: E501
-            storage_port (int, none_type): TCP port for data. Internally used by Cassandra bulk loader.. [optional]  # noqa: E501
             ssl_storage_port (int, none_type): SSL port for encrypted communication. Internally used by the Cassandra bulk loader.. [optional]  # noqa: E501
-            jmx_port (int, none_type): Cassandra management port.. [optional]  # noqa: E501
+            storage_port (int, none_type): TCP port for data. Internally used by Cassandra bulk loader.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

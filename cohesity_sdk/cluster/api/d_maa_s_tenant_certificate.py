@@ -109,7 +109,7 @@ class DMaaSTenantCertificateApi(object):
                 'response_type': (AddDmaasTenantCertRequest,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/dmaas-tenant-certificate',
@@ -231,7 +231,7 @@ class DMaaSTenantCertificateApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/dmaas-tenant-certificate/{tenantId}',
@@ -349,7 +349,7 @@ class DMaaSTenantCertificateApi(object):
                 'response_type': (TenantDmaasCerts,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/dmaas-tenant-certificate',

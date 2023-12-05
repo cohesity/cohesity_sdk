@@ -97,11 +97,11 @@ class HeliosIncrementalSchedule(ModelNormal):
         lazy_import()
         return {
             'unit': (str, none_type,),  # noqa: E501
-            'minute_schedule': (HeliosMinuteSchedule,),  # noqa: E501
-            'hour_schedule': (HeliosHourSchedule,),  # noqa: E501
             'day_schedule': (HeliosDaySchedule,),  # noqa: E501
-            'week_schedule': (HeliosWeekSchedule,),  # noqa: E501
+            'hour_schedule': (HeliosHourSchedule,),  # noqa: E501
+            'minute_schedule': (HeliosMinuteSchedule,),  # noqa: E501
             'month_schedule': (HeliosMonthSchedule,),  # noqa: E501
+            'week_schedule': (HeliosWeekSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -112,11 +112,11 @@ class HeliosIncrementalSchedule(ModelNormal):
 
     attribute_map = {
         'unit': 'unit',  # noqa: E501
-        'minute_schedule': 'minuteSchedule',  # noqa: E501
-        'hour_schedule': 'hourSchedule',  # noqa: E501
         'day_schedule': 'daySchedule',  # noqa: E501
-        'week_schedule': 'weekSchedule',  # noqa: E501
+        'hour_schedule': 'hourSchedule',  # noqa: E501
+        'minute_schedule': 'minuteSchedule',  # noqa: E501
         'month_schedule': 'monthSchedule',  # noqa: E501
+        'week_schedule': 'weekSchedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -169,11 +169,11 @@ class HeliosIncrementalSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            minute_schedule (HeliosMinuteSchedule): [optional]  # noqa: E501
-            hour_schedule (HeliosHourSchedule): [optional]  # noqa: E501
             day_schedule (HeliosDaySchedule): [optional]  # noqa: E501
-            week_schedule (HeliosWeekSchedule): [optional]  # noqa: E501
+            hour_schedule (HeliosHourSchedule): [optional]  # noqa: E501
+            minute_schedule (HeliosMinuteSchedule): [optional]  # noqa: E501
             month_schedule (HeliosMonthSchedule): [optional]  # noqa: E501
+            week_schedule (HeliosWeekSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

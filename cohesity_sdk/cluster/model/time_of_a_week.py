@@ -90,9 +90,9 @@ class TimeOfAWeek(ModelNormal):
         lazy_import()
         return {
             'days': ([str], none_type,),  # noqa: E501
-            'start_time': (TimeOfDay,),  # noqa: E501
             'end_time': (TimeOfDay,),  # noqa: E501
             'is_all_day': (bool, none_type,),  # noqa: E501
+            'start_time': (TimeOfDay,),  # noqa: E501
         }
 
     @cached_property
@@ -103,9 +103,9 @@ class TimeOfAWeek(ModelNormal):
 
     attribute_map = {
         'days': 'days',  # noqa: E501
-        'start_time': 'startTime',  # noqa: E501
         'end_time': 'endTime',  # noqa: E501
         'is_all_day': 'isAllDay',  # noqa: E501
+        'start_time': 'startTime',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,9 +156,9 @@ class TimeOfAWeek(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             days ([str], none_type): Array of Week Days. Specifies a list of days of a week (such as 'Sunday') when the time period should be applied. If not set, the time range applies to all days of the week. Specifies a day in a week such as 'Sunday', 'Monday', etc.. [optional]  # noqa: E501
-            start_time (TimeOfDay): [optional]  # noqa: E501
             end_time (TimeOfDay): [optional]  # noqa: E501
             is_all_day (bool, none_type): All Day. Specifies that bandwidth limit is applied for entire day.. [optional]  # noqa: E501
+            start_time (TimeOfDay): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

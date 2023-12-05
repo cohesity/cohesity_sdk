@@ -83,9 +83,9 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'antivirus_services': ([AntivirusService], none_type,),  # noqa: E501
             'enabled': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
         }
 
@@ -96,9 +96,9 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'antivirus_services': 'antivirusServices',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
     }
 
@@ -114,13 +114,13 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, antivirus_services, enabled, *args, **kwargs):  # noqa: E501
+    def __init__(self, antivirus_services, enabled, name, *args, **kwargs):  # noqa: E501
         """CreateAntivirusServiceGroupParams - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the Antivirus Service group name.
             antivirus_services ([AntivirusService], none_type): Specifies a list of Antivirus Services for this group.
             enabled (bool, none_type): Specifies whether the Antivirus Group is enabled.
+            name (str, none_type): Specifies the Antivirus Service group name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -181,9 +181,9 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.antivirus_services = antivirus_services
         self.enabled = enabled
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

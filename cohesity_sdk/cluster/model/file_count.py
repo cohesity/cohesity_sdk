@@ -74,9 +74,9 @@ class FileCount(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'count': (int, none_type,),  # noqa: E501
             'lower_size_bytes': (int, none_type,),  # noqa: E501
             'upper_size_bytes': (int, none_type,),  # noqa: E501
-            'count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class FileCount(ModelNormal):
 
 
     attribute_map = {
+        'count': 'count',  # noqa: E501
         'lower_size_bytes': 'lowerSizeBytes',  # noqa: E501
         'upper_size_bytes': 'upperSizeBytes',  # noqa: E501
-        'count': 'count',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class FileCount(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            count (int, none_type): Specifies the number of files with size in this range.. [optional]  # noqa: E501
             lower_size_bytes (int, none_type): Specifies the lower bound of file size in bytes. This value is inclusive.. [optional]  # noqa: E501
             upper_size_bytes (int, none_type): Specifies the upper bound of file size in bytes. This value is exclusive.. [optional]  # noqa: E501
-            count (int, none_type): Specifies the number of files with size in this range.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

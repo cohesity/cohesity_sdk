@@ -74,9 +74,9 @@ class SubnetInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'subnet_ip': (str, none_type,),  # noqa: E501
-            'netmask_bits': (int, none_type,),  # noqa: E501
             'gateway': (str, none_type,),  # noqa: E501
+            'netmask_bits': (int, none_type,),  # noqa: E501
+            'subnet_ip': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class SubnetInfo(ModelNormal):
 
 
     attribute_map = {
-        'subnet_ip': 'subnetIp',  # noqa: E501
-        'netmask_bits': 'netmaskBits',  # noqa: E501
         'gateway': 'gateway',  # noqa: E501
+        'netmask_bits': 'netmaskBits',  # noqa: E501
+        'subnet_ip': 'subnetIp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class SubnetInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            subnet_ip (str, none_type): Subnet IP.. [optional]  # noqa: E501
-            netmask_bits (int, none_type): Subnet netmask bits.. [optional]  # noqa: E501
             gateway (str, none_type): Gateway.. [optional]  # noqa: E501
+            netmask_bits (int, none_type): Subnet netmask bits.. [optional]  # noqa: E501
+            subnet_ip (str, none_type): Subnet IP.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

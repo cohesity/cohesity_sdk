@@ -81,9 +81,9 @@ class ArchivalGcpExternalTargetParamsAllOf(ModelNormal):
         """
         return {
             'storage_class': (str, none_type,),  # noqa: E501
-            'source_side_deduplication': (bool, none_type,),  # noqa: E501
-            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
+            'source_side_deduplication': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,9 +94,9 @@ class ArchivalGcpExternalTargetParamsAllOf(ModelNormal):
 
     attribute_map = {
         'storage_class': 'storageClass',  # noqa: E501
-        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
-        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
+        'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
+        'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,9 +149,9 @@ class ArchivalGcpExternalTargetParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the GCP external target. [optional]  # noqa: E501
-            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
+            source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the GCP external target. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

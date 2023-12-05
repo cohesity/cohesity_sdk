@@ -74,8 +74,8 @@ class FleetNetworkParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'vpc': (str, none_type,),  # noqa: E501
             'subnet': (str, none_type,),  # noqa: E501
+            'vpc': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class FleetNetworkParams(ModelNormal):
 
 
     attribute_map = {
-        'vpc': 'vpc',  # noqa: E501
         'subnet': 'subnet',  # noqa: E501
+        'vpc': 'vpc',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class FleetNetworkParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, vpc, subnet, *args, **kwargs):  # noqa: E501
+    def __init__(self, subnet, vpc, *args, **kwargs):  # noqa: E501
         """FleetNetworkParams - a model defined in OpenAPI
 
         Args:
-            vpc (str, none_type): Specifies vpc for the fleet.
             subnet (str, none_type): Specifies subnet for the fleet.
+            vpc (str, none_type): Specifies vpc for the fleet.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class FleetNetworkParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.vpc = vpc
         self.subnet = subnet
+        self.vpc = vpc
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

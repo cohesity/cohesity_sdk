@@ -74,12 +74,12 @@ class UdaIndexParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'source_type': (str, none_type,),  # noqa: E501
-            'label': (str, none_type,),  # noqa: E501
             'enabled': (bool, none_type,),  # noqa: E501
-            'version': (int, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'label': (str, none_type,),  # noqa: E501
+            'source_type': (str, none_type,),  # noqa: E501
             'ui_feature_flag': (str, none_type,),  # noqa: E501
+            'version': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class UdaIndexParams(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'source_type': 'sourceType',  # noqa: E501
-        'label': 'label',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
-        'version': 'version',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'label': 'label',  # noqa: E501
+        'source_type': 'sourceType',  # noqa: E501
         'ui_feature_flag': 'uiFeatureFlag',  # noqa: E501
+        'version': 'version',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class UdaIndexParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Unique id for each Uda connector.. [optional]  # noqa: E501
-            source_type (str, none_type): Type of the uda connector.. [optional]  # noqa: E501
-            label (str, none_type): Label to be shown On UI screen.. [optional]  # noqa: E501
             enabled (bool, none_type): Whether the dynamic config support is enabled or not.. [optional]  # noqa: E501
-            version (int, none_type): Version of the connector.. [optional]  # noqa: E501
+            id (int, none_type): Unique id for each Uda connector.. [optional]  # noqa: E501
+            label (str, none_type): Label to be shown On UI screen.. [optional]  # noqa: E501
+            source_type (str, none_type): Type of the uda connector.. [optional]  # noqa: E501
             ui_feature_flag (str, none_type): UI feature flag that controls the visibility of the connector.. [optional]  # noqa: E501
+            version (int, none_type): Version of the connector.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

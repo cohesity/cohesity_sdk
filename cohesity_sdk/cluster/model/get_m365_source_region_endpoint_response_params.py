@@ -74,11 +74,11 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'device_auth_endpoint': (str, none_type,),  # noqa: E501
+            'graph_endpoint': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
             'sub_region': (str, none_type,),  # noqa: E501
             'token_endpoint': (str, none_type,),  # noqa: E501
-            'graph_endpoint': (str, none_type,),  # noqa: E501
-            'device_auth_endpoint': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
 
 
     attribute_map = {
+        'device_auth_endpoint': 'deviceAuthEndpoint',  # noqa: E501
+        'graph_endpoint': 'graphEndpoint',  # noqa: E501
         'region': 'region',  # noqa: E501
         'sub_region': 'subRegion',  # noqa: E501
         'token_endpoint': 'tokenEndpoint',  # noqa: E501
-        'graph_endpoint': 'graphEndpoint',  # noqa: E501
-        'device_auth_endpoint': 'deviceAuthEndpoint',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            device_auth_endpoint (str, none_type): Specifies the device authorization endpoint to be used for Microsoft graph calls.. [optional]  # noqa: E501
+            graph_endpoint (str, none_type): Specifies the Microsoft graph host url to be used for graph calls.. [optional]  # noqa: E501
             region (str, none_type): Specifies the scope of the region.For eg NA for North America or AS for australia.. [optional]  # noqa: E501
             sub_region (str, none_type): Specifies the scope of the sub region. For US Gcc it can be USG or USGov.. [optional]  # noqa: E501
             token_endpoint (str, none_type): Specifies the token endpoint of the Microsoft365 source.. [optional]  # noqa: E501
-            graph_endpoint (str, none_type): Specifies the Microsoft graph host url to be used for graph calls.. [optional]  # noqa: E501
-            device_auth_endpoint (str, none_type): Specifies the device authorization endpoint to be used for Microsoft graph calls.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

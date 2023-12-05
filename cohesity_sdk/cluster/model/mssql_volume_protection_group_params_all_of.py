@@ -88,10 +88,10 @@ class MSSQLVolumeProtectionGroupParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'objects': ([MSSQLVolumeProtectionGroupObjectParams], none_type,),  # noqa: E501
+            'additional_host_params': ([MSSQLVolumeProtectionGroupHostParams],),  # noqa: E501
+            'backup_db_volumes_only': (bool, none_type,),  # noqa: E501
             'incremental_backup_after_restart': (bool, none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'backup_db_volumes_only': (bool, none_type,),  # noqa: E501
-            'additional_host_params': ([MSSQLVolumeProtectionGroupHostParams],),  # noqa: E501
         }
 
     @cached_property
@@ -102,10 +102,10 @@ class MSSQLVolumeProtectionGroupParamsAllOf(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
+        'additional_host_params': 'additionalHostParams',  # noqa: E501
+        'backup_db_volumes_only': 'backupDbVolumesOnly',  # noqa: E501
         'incremental_backup_after_restart': 'incrementalBackupAfterRestart',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'backup_db_volumes_only': 'backupDbVolumesOnly',  # noqa: E501
-        'additional_host_params': 'additionalHostParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,10 +158,10 @@ class MSSQLVolumeProtectionGroupParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            additional_host_params ([MSSQLVolumeProtectionGroupHostParams]): Specifies settings which are to be applied to specific host containers in this protection group.. [optional]  # noqa: E501
+            backup_db_volumes_only (bool, none_type): Specifies whether to only backup volumes on which the specified databases reside. If not specified (default), all the volumes of the host will be protected.. [optional]  # noqa: E501
             incremental_backup_after_restart (bool, none_type): Specifies whether or to perform incremental backups the first time after a server restarts. By default, a full backup will be performed.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            backup_db_volumes_only (bool, none_type): Specifies whether to only backup volumes on which the specified databases reside. If not specified (default), all the volumes of the host will be protected.. [optional]  # noqa: E501
-            additional_host_params ([MSSQLVolumeProtectionGroupHostParams]): Specifies settings which are to be applied to specific host containers in this protection group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

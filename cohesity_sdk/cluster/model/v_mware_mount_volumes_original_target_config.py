@@ -75,8 +75,8 @@ class VMwareMountVolumesOriginalTargetConfig(ModelNormal):
         """
         return {
             'bring_disks_online': (bool, none_type,),  # noqa: E501
-            'use_existing_agent': (bool, none_type,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'use_existing_agent': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class VMwareMountVolumesOriginalTargetConfig(ModelNormal):
 
     attribute_map = {
         'bring_disks_online': 'bringDisksOnline',  # noqa: E501
-        'use_existing_agent': 'useExistingAgent',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
+        'use_existing_agent': 'useExistingAgent',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class VMwareMountVolumesOriginalTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            use_existing_agent (bool, none_type): Specifies whether this will use an existing agent on the target vm or will deploy a new agent. This is required if bringDisksOnline is set to true.. [optional]  # noqa: E501
             target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies credentials to access the target VM. This is required if bringDisksOnline is set to true and useExistingAgent set to false.. [optional]  # noqa: E501
+            use_existing_agent (bool, none_type): Specifies whether this will use an existing agent on the target vm or will deploy a new agent. This is required if bringDisksOnline is set to true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

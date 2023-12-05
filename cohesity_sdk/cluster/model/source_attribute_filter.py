@@ -74,8 +74,8 @@ class SourceAttributeFilter(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'filter_attribute': (str, none_type,),  # noqa: E501
             'attribute_values': ([str], none_type,),  # noqa: E501
+            'filter_attribute': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class SourceAttributeFilter(ModelNormal):
 
 
     attribute_map = {
-        'filter_attribute': 'filterAttribute',  # noqa: E501
         'attribute_values': 'attributeValues',  # noqa: E501
+        'filter_attribute': 'filterAttribute',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class SourceAttributeFilter(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            filter_attribute (str, none_type): Specifies the filter attribute for the source.. [optional]  # noqa: E501
             attribute_values ([str], none_type): Specifies the list of attribute values for above filter.. [optional]  # noqa: E501
+            filter_attribute (str, none_type): Specifies the filter attribute for the source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

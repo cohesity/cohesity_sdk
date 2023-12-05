@@ -80,9 +80,9 @@ class AwsCloudSpinParams(ModelNormal):
         lazy_import()
         return {
             'region': (int, none_type,),  # noqa: E501
-            'vpc_id': (int, none_type,),  # noqa: E501
-            'subnet_id': (int, none_type,),  # noqa: E501
             'custom_tag_list': ([CustomTagParams], none_type,),  # noqa: E501
+            'subnet_id': (int, none_type,),  # noqa: E501
+            'vpc_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class AwsCloudSpinParams(ModelNormal):
 
     attribute_map = {
         'region': 'region',  # noqa: E501
-        'vpc_id': 'vpcId',  # noqa: E501
-        'subnet_id': 'subnetId',  # noqa: E501
         'custom_tag_list': 'customTagList',  # noqa: E501
+        'subnet_id': 'subnetId',  # noqa: E501
+        'vpc_id': 'vpcId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class AwsCloudSpinParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vpc_id (int, none_type): Specifies id of the Virtual Private Cloud to chose for the instance type.. [optional]  # noqa: E501
-            subnet_id (int, none_type): Specifies id of the subnet within above VPC.. [optional]  # noqa: E501
             custom_tag_list ([CustomTagParams], none_type): Specifies tags of various resources when converting and deploying a VM to AWS.. [optional]  # noqa: E501
+            subnet_id (int, none_type): Specifies id of the subnet within above VPC.. [optional]  # noqa: E501
+            vpc_id (int, none_type): Specifies id of the Virtual Private Cloud to chose for the instance type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

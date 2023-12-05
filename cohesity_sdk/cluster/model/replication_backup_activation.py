@@ -125,13 +125,13 @@ class ReplicationBackupActivation(ModelNormal):
         """
         lazy_import()
         return {
+            'create_object_backup': (bool, none_type,),  # noqa: E501
+            'do_not_protect': (bool, none_type,),  # noqa: E501
+            'enable_reverse_replication': (bool, none_type,),  # noqa: E501
             'objects': ([FailoverObject], none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
-            'enable_reverse_replication': (bool, none_type,),  # noqa: E501
-            'do_not_protect': (bool, none_type,),  # noqa: E501
-            'create_object_backup': (bool, none_type,),  # noqa: E501
-            'target_failover_policy_id': (str, none_type,),  # noqa: E501
             'target_failover_environment': (str, none_type,),  # noqa: E501
+            'target_failover_policy_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -141,13 +141,13 @@ class ReplicationBackupActivation(ModelNormal):
 
 
     attribute_map = {
+        'create_object_backup': 'createObjectBackup',  # noqa: E501
+        'do_not_protect': 'doNotProtect',  # noqa: E501
+        'enable_reverse_replication': 'enableReverseReplication',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'enable_reverse_replication': 'enableReverseReplication',  # noqa: E501
-        'do_not_protect': 'doNotProtect',  # noqa: E501
-        'create_object_backup': 'createObjectBackup',  # noqa: E501
-        'target_failover_policy_id': 'targetFailoverPolicyId',  # noqa: E501
         'target_failover_environment': 'targetFailoverEnvironment',  # noqa: E501
+        'target_failover_policy_id': 'targetFailoverPolicyId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -197,13 +197,13 @@ class ReplicationBackupActivation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            create_object_backup (bool, none_type): If set to true then object based backups will be created for the failed over VMs.. [optional]  # noqa: E501
+            do_not_protect (bool, none_type): Whether to skip protecting the failed over entities previously specified via Initiate Failover API.. [optional]  # noqa: E501
+            enable_reverse_replication (bool, none_type): If this is specifed as true, then reverse replication of failover objects will be enabled from replication cluster to source cluster. If source cluster is not reachable, then replications will fail until source cluster comes up again. Here orchastrator should also ensure that storage domain on replication cluster is correctly mapped to the same storage domain on the source cluster.. [optional]  # noqa: E501
             objects ([FailoverObject], none_type): Specifies the list of failover object that need to be protected on replication cluster. If the object set that was sent earlier is provided again then API will return an error. If this objects list is not specified then internally it will be inferred if '/objectLinkage' API has been called previously.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id that will be used for backing up the failover entities on replication cluster. This is a optional argument and only need to be passed if user wants to use the existing job for the backup. If specified then Orchastrator should enusre that protection group is compatible to handle all provided failover objects.. [optional]  # noqa: E501
-            enable_reverse_replication (bool, none_type): If this is specifed as true, then reverse replication of failover objects will be enabled from replication cluster to source cluster. If source cluster is not reachable, then replications will fail until source cluster comes up again. Here orchastrator should also ensure that storage domain on replication cluster is correctly mapped to the same storage domain on the source cluster.. [optional]  # noqa: E501
-            do_not_protect (bool, none_type): Whether to skip protecting the failed over entities previously specified via Initiate Failover API.. [optional]  # noqa: E501
-            create_object_backup (bool, none_type): If set to true then object based backups will be created for the failed over VMs.. [optional]  # noqa: E501
-            target_failover_policy_id (str, none_type): Policy which will be used in the protection of the failed over objects.. [optional]  # noqa: E501
             target_failover_environment (str, none_type): If this is specified, then the protection environment of the failed over objects will be set to this. Otherwise, the protection environment of the failed over objects is determined by the objects' environment.. [optional]  # noqa: E501
+            target_failover_policy_id (str, none_type): Policy which will be used in the protection of the failed over objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

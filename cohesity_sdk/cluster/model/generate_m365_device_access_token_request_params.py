@@ -74,8 +74,8 @@ class GenerateM365DeviceAccessTokenRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'domain': (str, none_type,),  # noqa: E501
             'device_code': (str, none_type,),  # noqa: E501
+            'domain': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class GenerateM365DeviceAccessTokenRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'domain': 'domain',  # noqa: E501
         'device_code': 'deviceCode',  # noqa: E501
+        'domain': 'domain',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class GenerateM365DeviceAccessTokenRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            domain (str, none_type): Specifies the Microsoft365 domain.. [optional]  # noqa: E501
             device_code (str, none_type): Specifies the string used to verify the session between the client and the authorization server. The client uses this parameter to request the access token from the authorization server.. [optional]  # noqa: E501
+            domain (str, none_type): Specifies the Microsoft365 domain.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

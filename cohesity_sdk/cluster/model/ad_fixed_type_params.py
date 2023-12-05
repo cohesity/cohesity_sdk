@@ -74,8 +74,8 @@ class AdFixedTypeParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'uid': (int, none_type,),  # noqa: E501
             'gid': (int, none_type,),  # noqa: E501
+            'uid': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class AdFixedTypeParams(ModelNormal):
 
 
     attribute_map = {
-        'uid': 'uid',  # noqa: E501
         'gid': 'gid',  # noqa: E501
+        'uid': 'uid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class AdFixedTypeParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, uid, gid, *args, **kwargs):  # noqa: E501
+    def __init__(self, gid, uid, *args, **kwargs):  # noqa: E501
         """AdFixedTypeParams - a model defined in OpenAPI
 
         Args:
-            uid (int, none_type): Specifies the fixed Unix UID, when mapping type is set to kFixed.
             gid (int, none_type): Specifies the fixed Unix GID, when mapping type is set to kFixed.
+            uid (int, none_type): Specifies the fixed Unix UID, when mapping type is set to kFixed.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class AdFixedTypeParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.uid = uid
         self.gid = gid
+        self.uid = uid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

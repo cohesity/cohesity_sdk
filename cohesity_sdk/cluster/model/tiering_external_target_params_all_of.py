@@ -87,9 +87,9 @@ class TieringExternalTargetParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'aws_params': (TieringAwsExternalTargetParams,),  # noqa: E501
             'azure_params': (TieringAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (TieringGcpExternalTargetParams,),  # noqa: E501
-            'aws_params': (TieringAwsExternalTargetParams,),  # noqa: E501
             'oracle_params': (TieringOracleExternalTargetParams,),  # noqa: E501
             's3_comp_params': (TieringS3CompExternalTargetParams,),  # noqa: E501
         }
@@ -101,9 +101,9 @@ class TieringExternalTargetParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         's3_comp_params': 's3CompParams',  # noqa: E501
     }
@@ -155,9 +155,9 @@ class TieringExternalTargetParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            aws_params (TieringAwsExternalTargetParams): [optional]  # noqa: E501
             azure_params (TieringAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (TieringGcpExternalTargetParams): [optional]  # noqa: E501
-            aws_params (TieringAwsExternalTargetParams): [optional]  # noqa: E501
             oracle_params (TieringOracleExternalTargetParams): [optional]  # noqa: E501
             s3_comp_params (TieringS3CompExternalTargetParams): [optional]  # noqa: E501
         """

@@ -87,9 +87,9 @@ class KmsConfigurationUpdateParams(ModelComposed):
         return {
             'name': (str,),  # noqa: E501
             'aws_kms_params': (AwsKmsConfigurationUpdateParams,),  # noqa: E501
-            'storage_domain_ids': ([int], none_type,),  # noqa: E501
             'external_target_ids': ([int], none_type,),  # noqa: E501
             'kmip_kms_params': (KmipKmsConfiguration,),  # noqa: E501
+            'storage_domain_ids': ([int], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,9 +101,9 @@ class KmsConfigurationUpdateParams(ModelComposed):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'aws_kms_params': 'awsKmsParams',  # noqa: E501
-        'storage_domain_ids': 'storageDomainIds',  # noqa: E501
         'external_target_ids': 'externalTargetIds',  # noqa: E501
         'kmip_kms_params': 'kmipKmsParams',  # noqa: E501
+        'storage_domain_ids': 'storageDomainIds',  # noqa: E501
     }
 
     required_properties = set([
@@ -158,9 +158,9 @@ class KmsConfigurationUpdateParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             aws_kms_params (AwsKmsConfigurationUpdateParams): [optional]  # noqa: E501
-            storage_domain_ids ([int], none_type): Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.. [optional]  # noqa: E501
             external_target_ids ([int], none_type): Ids of external targets used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to an external target, it cannot be changed.. [optional]  # noqa: E501
             kmip_kms_params (KmipKmsConfiguration): [optional]  # noqa: E501
+            storage_domain_ids ([int], none_type): Ids of storage domains used to assign the KMS for encryption. Once an external KMS (AWS KMS or KIMP KMS) is assigned to a storage domain, it cannot be changed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

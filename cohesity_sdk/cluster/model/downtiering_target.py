@@ -79,10 +79,10 @@ class DowntieringTarget(ModelNormal):
         """
         lazy_import()
         return {
-            'view_name_prefix': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
-            'mount_path_prefix': (str, none_type,),  # noqa: E501
+            'view_name_prefix': (str, none_type,),  # noqa: E501
             'downtiered_data_locations': ([DowntieredDataLocation], none_type,),  # noqa: E501
+            'mount_path_prefix': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class DowntieringTarget(ModelNormal):
 
 
     attribute_map = {
-        'view_name_prefix': 'viewNamePrefix',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'mount_path_prefix': 'mountPathPrefix',  # noqa: E501
+        'view_name_prefix': 'viewNamePrefix',  # noqa: E501
         'downtiered_data_locations': 'downtieredDataLocations',  # noqa: E501
+        'mount_path_prefix': 'mountPathPrefix',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -110,12 +110,12 @@ class DowntieringTarget(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, view_name_prefix, storage_domain_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, storage_domain_id, view_name_prefix, *args, **kwargs):  # noqa: E501
         """DowntieringTarget - a model defined in OpenAPI
 
         Args:
-            view_name_prefix (str, none_type): Specifies the view name prefix.
             storage_domain_id (int, none_type): Specifies the Storage Domain ID where the view will be kept.
+            view_name_prefix (str, none_type): Specifies the view name prefix.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,8 +149,8 @@ class DowntieringTarget(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            mount_path_prefix (str, none_type): Specifies the mount path prefix inside the view.. [optional]  # noqa: E501
             downtiered_data_locations ([DowntieredDataLocation], none_type): Specifies a list of mapping between sources and its corresponding viewNames and mountPaths, where the sources were downtiered.. [optional]  # noqa: E501
+            mount_path_prefix (str, none_type): Specifies the mount path prefix inside the view.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -177,8 +177,8 @@ class DowntieringTarget(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.view_name_prefix = view_name_prefix
         self.storage_domain_id = storage_domain_id
+        self.view_name_prefix = view_name_prefix
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

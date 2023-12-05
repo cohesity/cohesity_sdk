@@ -74,9 +74,9 @@ class FileId(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'view_id': (int, none_type,),  # noqa: E501
-            'root_inode_id': (int, none_type,),  # noqa: E501
             'entity_id': (int, none_type,),  # noqa: E501
+            'root_inode_id': (int, none_type,),  # noqa: E501
+            'view_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class FileId(ModelNormal):
 
 
     attribute_map = {
-        'view_id': 'viewId',  # noqa: E501
-        'root_inode_id': 'rootInodeId',  # noqa: E501
         'entity_id': 'entityId',  # noqa: E501
+        'root_inode_id': 'rootInodeId',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class FileId(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            view_id (int, none_type): Specifies the id of the View the file belongs to.. [optional]  # noqa: E501
-            root_inode_id (int, none_type): Specifies the root inode id of the file system that file belongs to.. [optional]  # noqa: E501
             entity_id (int, none_type): Specifies the entity id of the file.. [optional]  # noqa: E501
+            root_inode_id (int, none_type): Specifies the root inode id of the file system that file belongs to.. [optional]  # noqa: E501
+            view_id (int, none_type): Specifies the id of the View the file belongs to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -85,11 +85,11 @@ class IsilonRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'endpoint': (str, none_type,),  # noqa: E501
             'credentials': (Credentials,),  # noqa: E501
+            'endpoint': (str, none_type,),  # noqa: E501
             'back_up_smb_volumes': (bool, none_type,),  # noqa: E501
-            'smb_credentials': (SmbMountCredentials,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
+            'smb_credentials': (SmbMountCredentials,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
         }
 
@@ -100,11 +100,11 @@ class IsilonRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'endpoint': 'endpoint',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
+        'endpoint': 'endpoint',  # noqa: E501
         'back_up_smb_volumes': 'backUpSMBVolumes',  # noqa: E501
-        'smb_credentials': 'smbCredentials',  # noqa: E501
         'filter_ip_config': 'filterIpConfig',  # noqa: E501
+        'smb_credentials': 'smbCredentials',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
     }
 
@@ -120,12 +120,12 @@ class IsilonRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, endpoint, credentials, *args, **kwargs):  # noqa: E501
+    def __init__(self, credentials, endpoint, *args, **kwargs):  # noqa: E501
         """IsilonRegistrationParams - a model defined in OpenAPI
 
         Args:
-            endpoint (str, none_type): Specifies the IP Address Endpoint for the Isilon Source.
             credentials (Credentials):
+            endpoint (str, none_type): Specifies the IP Address Endpoint for the Isilon Source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,8 +160,8 @@ class IsilonRegistrationParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             back_up_smb_volumes (bool, none_type): Specifies whether or not to back up SMB Volumes.. [optional]  # noqa: E501
-            smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
+            smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
         """
 
@@ -189,8 +189,8 @@ class IsilonRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.endpoint = endpoint
         self.credentials = credentials
+        self.endpoint = endpoint
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

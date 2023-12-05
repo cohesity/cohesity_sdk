@@ -82,8 +82,8 @@ class ClusterCreateRigelParams(ModelNormal):
         """
         lazy_import()
         return {
-            'nodes': ([RigelClusterNode],),  # noqa: E501
             'claim_token': (str, none_type,),  # noqa: E501
+            'nodes': ([RigelClusterNode],),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class ClusterCreateRigelParams(ModelNormal):
 
 
     attribute_map = {
-        'nodes': 'nodes',  # noqa: E501
         'claim_token': 'claimToken',  # noqa: E501
+        'nodes': 'nodes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -109,12 +109,12 @@ class ClusterCreateRigelParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, nodes, claim_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, claim_token, nodes, *args, **kwargs):  # noqa: E501
         """ClusterCreateRigelParams - a model defined in OpenAPI
 
         Args:
-            nodes ([RigelClusterNode]):
             claim_token (str, none_type): Specifies the token which will be used to claim this Cluster to Helios.
+            nodes ([RigelClusterNode]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,8 +174,8 @@ class ClusterCreateRigelParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.nodes = nodes
         self.claim_token = claim_token
+        self.nodes = nodes
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

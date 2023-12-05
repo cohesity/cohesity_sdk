@@ -86,8 +86,8 @@ class PhysicalProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'protection_type': (str,),  # noqa: E501
-            'volume_protection_type_params': (PhysicalVolumeProtectionGroupParams,),  # noqa: E501
             'file_protection_type_params': (PhysicalFileProtectionGroupParams,),  # noqa: E501
+            'volume_protection_type_params': (PhysicalVolumeProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +98,8 @@ class PhysicalProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'protection_type': 'protectionType',  # noqa: E501
-        'volume_protection_type_params': 'volumeProtectionTypeParams',  # noqa: E501
         'file_protection_type_params': 'fileProtectionTypeParams',  # noqa: E501
+        'volume_protection_type_params': 'volumeProtectionTypeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,8 +152,8 @@ class PhysicalProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            volume_protection_type_params (PhysicalVolumeProtectionGroupParams): [optional]  # noqa: E501
             file_protection_type_params (PhysicalFileProtectionGroupParams): [optional]  # noqa: E501
+            volume_protection_type_params (PhysicalVolumeProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

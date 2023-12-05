@@ -79,9 +79,9 @@ class RigelClusterConfigParams(ModelNormal):
         """
         lazy_import()
         return {
-            'nodes': ([RigelClusterNode], none_type,),  # noqa: E501
-            'dataplane_endpoint': (str, none_type,),  # noqa: E501
             'claim_token': (str, none_type,),  # noqa: E501
+            'dataplane_endpoint': (str, none_type,),  # noqa: E501
+            'nodes': ([RigelClusterNode], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class RigelClusterConfigParams(ModelNormal):
 
 
     attribute_map = {
-        'nodes': 'nodes',  # noqa: E501
-        'dataplane_endpoint': 'dataplaneEndpoint',  # noqa: E501
         'claim_token': 'claimToken',  # noqa: E501
+        'dataplane_endpoint': 'dataplaneEndpoint',  # noqa: E501
+        'nodes': 'nodes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class RigelClusterConfigParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            nodes ([RigelClusterNode], none_type): Specifies the Nodes present in this Cluster.. [optional]  # noqa: E501
-            dataplane_endpoint (str, none_type): Specifies the endpoint of the dataplane cluster which is associated with this rigel.. [optional]  # noqa: E501
             claim_token (str, none_type): Specifies the token which is used to claim this Cluster to Helios.. [optional]  # noqa: E501
+            dataplane_endpoint (str, none_type): Specifies the endpoint of the dataplane cluster which is associated with this rigel.. [optional]  # noqa: E501
+            nodes ([RigelClusterNode], none_type): Specifies the Nodes present in this Cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

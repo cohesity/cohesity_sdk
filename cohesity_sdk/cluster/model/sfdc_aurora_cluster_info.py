@@ -74,14 +74,10 @@ class SfdcAuroraClusterInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'database_user': (str, none_type,),  # noqa: E501
-            'database_port': (str, none_type,),  # noqa: E501
-            's3_buket_prefix': (str, none_type,),  # noqa: E501
-            'writer_endpoint': (str, none_type,),  # noqa: E501
-            'reader_endpoint': (str, none_type,),  # noqa: E501
-            'aurora_cluster_arn': (str, none_type,),  # noqa: E501
-            'region_id': (str, none_type,),  # noqa: E501
-            'database_schema': (str, none_type,),  # noqa: E501
+            'cluster_endpoint': (str,),  # noqa: E501
+            'database_user': (str,),  # noqa: E501
+            'kms_key_arn': (str,),  # noqa: E501
+            'region_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +87,10 @@ class SfdcAuroraClusterInfo(ModelNormal):
 
 
     attribute_map = {
+        'cluster_endpoint': 'clusterEndpoint',  # noqa: E501
         'database_user': 'databaseUser',  # noqa: E501
-        'database_port': 'databasePort',  # noqa: E501
-        's3_buket_prefix': 's3BuketPrefix',  # noqa: E501
-        'writer_endpoint': 'writerEndpoint',  # noqa: E501
-        'reader_endpoint': 'readerEndpoint',  # noqa: E501
-        'aurora_cluster_arn': 'auroraClusterArn',  # noqa: E501
-        'region_id': 'regionId',  # noqa: E501
-        'database_schema': 'databaseSchema',  # noqa: E501
+        'kms_key_arn': 'kmsKeyArn',  # noqa: E501
+        'region_id': 'regionID',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -113,17 +105,8 @@ class SfdcAuroraClusterInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, database_user, database_port, s3_buket_prefix, writer_endpoint, reader_endpoint, aurora_cluster_arn, region_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """SfdcAuroraClusterInfo - a model defined in OpenAPI
-
-        Args:
-            database_user (str, none_type): Database user to access the dbs on the Aurora cluster.
-            database_port (str, none_type): Database port to access the dbs on the Aurora cluster.
-            s3_buket_prefix (str, none_type): S3Bucket prefix for the intermediate.
-            writer_endpoint (str, none_type): Writer endpoint of the Aurora cluster.
-            reader_endpoint (str, none_type): Reader endpoint of the Aurora cluster.
-            aurora_cluster_arn (str, none_type): Arn of the Aurora cluster.
-            region_id (str, none_type): Specifies the region id of the Aurora cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,7 +140,10 @@ class SfdcAuroraClusterInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            database_schema (str, none_type): Database schema to access the dbs on the Aurora cluster.. [optional]  # noqa: E501
+            cluster_endpoint (str): Specifies the endpoint for this Aurora Cluster.. [optional]  # noqa: E501
+            database_user (str): Database user to access the dbs on the Aurora cluster.. [optional]  # noqa: E501
+            kms_key_arn (str): Specifies the KMS key for accessing Aurora Cluster.. [optional]  # noqa: E501
+            region_id (str): Specifies the region id of the Aurora cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,13 +170,6 @@ class SfdcAuroraClusterInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.database_user = database_user
-        self.database_port = database_port
-        self.s3_buket_prefix = s3_buket_prefix
-        self.writer_endpoint = writer_endpoint
-        self.reader_endpoint = reader_endpoint
-        self.aurora_cluster_arn = aurora_cluster_arn
-        self.region_id = region_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

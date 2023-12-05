@@ -85,13 +85,13 @@ class RecoverVmwareVAppTemplateVCDSourceConfig(ModelNormal):
         """
         lazy_import()
         return {
+            'catalog': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'vdc': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'catalog': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'datastores': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
-            'storage_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'org_vdc_network': (OrgVDCNetwork,),  # noqa: E501
+            'storage_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -101,13 +101,13 @@ class RecoverVmwareVAppTemplateVCDSourceConfig(ModelNormal):
 
 
     attribute_map = {
+        'catalog': 'catalog',  # noqa: E501
         'source': 'source',  # noqa: E501
         'vdc': 'vdc',  # noqa: E501
-        'catalog': 'catalog',  # noqa: E501
         'datastores': 'datastores',  # noqa: E501
-        'storage_profile': 'storageProfile',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
         'org_vdc_network': 'orgVdcNetwork',  # noqa: E501
+        'storage_profile': 'storageProfile',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -122,13 +122,13 @@ class RecoverVmwareVAppTemplateVCDSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, vdc, catalog, *args, **kwargs):  # noqa: E501
+    def __init__(self, catalog, source, vdc, *args, **kwargs):  # noqa: E501
         """RecoverVmwareVAppTemplateVCDSourceConfig - a model defined in OpenAPI
 
         Args:
+            catalog ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the catalog where the vApp template should reside.
             source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the vApp templates.
             vdc ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the VDC object where the recovered objects will be attached.
-            catalog ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the catalog where the vApp template should reside.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,9 +163,9 @@ class RecoverVmwareVAppTemplateVCDSourceConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             datastores ([RecoveryObjectIdentifier], none_type): Specifies the datastore objects where the object's files should be recovered to.. [optional]  # noqa: E501
-            storage_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the storage profile to which the objects should be recovered. This should only be specified if datastores are not specified.. [optional]  # noqa: E501
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered vApp templates.. [optional]  # noqa: E501
             org_vdc_network (OrgVDCNetwork): [optional]  # noqa: E501
+            storage_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the storage profile to which the objects should be recovered. This should only be specified if datastores are not specified.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,9 +192,9 @@ class RecoverVmwareVAppTemplateVCDSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.catalog = catalog
         self.source = source
         self.vdc = vdc
-        self.catalog = catalog
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

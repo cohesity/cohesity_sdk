@@ -83,8 +83,8 @@ class VmwareProtectionGroupParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([VmwareProtectionGroupObjectParams],),  # noqa: E501
             'global_exclude_disks': ([DiskInfo], none_type,),  # noqa: E501
+            'objects': ([VmwareProtectionGroupObjectParams],),  # noqa: E501
             'standby_resource_objects': ([VmwareProtectionGroupStandbyResourceParams], none_type,),  # noqa: E501
         }
 
@@ -95,8 +95,8 @@ class VmwareProtectionGroupParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
         'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'standby_resource_objects': 'standbyResourceObjects',  # noqa: E501
     }
 
@@ -147,8 +147,8 @@ class VmwareProtectionGroupParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([VmwareProtectionGroupObjectParams]): Specifies the objects to include in the backup.. [optional]  # noqa: E501
             global_exclude_disks ([DiskInfo], none_type): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
+            objects ([VmwareProtectionGroupObjectParams]): Specifies the objects to include in the backup.. [optional]  # noqa: E501
             standby_resource_objects ([VmwareProtectionGroupStandbyResourceParams], none_type): Specifies the standby resource objects for this backup.. [optional]  # noqa: E501
         """
 

@@ -80,11 +80,10 @@ class S3Config(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            's3_access_path': (str, none_type,),  # noqa: E501
             'acl_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            's3_access_path': (str, none_type,),  # noqa: E501
             'versioning': (str, none_type,),  # noqa: E501
-            'lifecycle_management': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -94,11 +93,10 @@ class S3Config(ModelNormal):
 
 
     attribute_map = {
-        's3_access_path': 's3AccessPath',  # noqa: E501
         'acl_config': 'aclConfig',  # noqa: E501
         'owner_info': 'ownerInfo',  # noqa: E501
+        's3_access_path': 's3AccessPath',  # noqa: E501
         'versioning': 'versioning',  # noqa: E501
-        'lifecycle_management': 'lifecycleManagement',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,11 +146,10 @@ class S3Config(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             acl_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ACL config of the View as an S3 bucket.. [optional]  # noqa: E501
             owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the owner info of the View as an S3 bucket.. [optional]  # noqa: E501
+            s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             versioning (str, none_type): Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.. [optional]  # noqa: E501
-            lifecycle_management ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the S3 Lifecycle policy of the bucket. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

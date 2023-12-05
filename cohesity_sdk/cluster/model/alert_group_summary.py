@@ -112,11 +112,11 @@ class AlertGroupSummary(ModelNormal):
         """
         return {
             'category': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
-            'warning_count': (int, none_type,),  # noqa: E501
             'critical_count': (int, none_type,),  # noqa: E501
             'info_count': (int, none_type,),  # noqa: E501
             'total_count': (int, none_type,),  # noqa: E501
+            'type': (str,),  # noqa: E501
+            'warning_count': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -127,11 +127,11 @@ class AlertGroupSummary(ModelNormal):
 
     attribute_map = {
         'category': 'category',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'warning_count': 'warningCount',  # noqa: E501
         'critical_count': 'criticalCount',  # noqa: E501
         'info_count': 'infoCount',  # noqa: E501
         'total_count': 'totalCount',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'warning_count': 'warningCount',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -182,11 +182,11 @@ class AlertGroupSummary(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             category (str): Category of alerts by which summary is grouped.. [optional]  # noqa: E501
-            type (str): Type/bucket that this alert category belongs to.. [optional]  # noqa: E501
-            warning_count (int, none_type): Specifies count of warning alerts.. [optional]  # noqa: E501
             critical_count (int, none_type): Specifies count of critical alerts.. [optional]  # noqa: E501
             info_count (int, none_type): Specifies count of info alerts.. [optional]  # noqa: E501
             total_count (int, none_type): Specifies count of total alerts.. [optional]  # noqa: E501
+            type (str): Type/bucket that this alert category belongs to.. [optional]  # noqa: E501
+            warning_count (int, none_type): Specifies count of warning alerts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

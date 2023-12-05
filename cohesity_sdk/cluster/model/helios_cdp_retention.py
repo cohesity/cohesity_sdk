@@ -88,9 +88,9 @@ class HeliosCdpRetention(ModelNormal):
         """
         lazy_import()
         return {
-            'unit': (str, none_type,),  # noqa: E501
-            'duration': (int, none_type,),  # noqa: E501
             'data_lock_config': (DataLockConfig,),  # noqa: E501
+            'duration': (int, none_type,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,9 +100,9 @@ class HeliosCdpRetention(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
-        'duration': 'duration',  # noqa: E501
         'data_lock_config': 'dataLockConfig',  # noqa: E501
+        'duration': 'duration',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,9 +152,9 @@ class HeliosCdpRetention(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            unit (str, none_type): Specificies the Retention Unit of a CDP backup measured in minutes or hours.. [optional]  # noqa: E501
-            duration (int, none_type): Specifies the duration for a cdp backup retention.. [optional]  # noqa: E501
             data_lock_config (DataLockConfig): [optional]  # noqa: E501
+            duration (int, none_type): Specifies the duration for a cdp backup retention.. [optional]  # noqa: E501
+            unit (str, none_type): Specificies the Retention Unit of a CDP backup measured in minutes or hours.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

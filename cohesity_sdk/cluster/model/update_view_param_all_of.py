@@ -93,34 +93,34 @@ class UpdateViewParamAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
+            'access_sids': ([str], none_type,),  # noqa: E501
+            'allow_mount_on_windows': (bool, none_type,),  # noqa: E501
+            'antivirus_scan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'category': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'enable_filer_audit_logging': (bool, none_type,),  # noqa: E501
+            'enable_live_indexing': (bool, none_type,),  # noqa: E501
+            'enable_metadata_accelerator': (bool, none_type,),  # noqa: E501
+            'enable_minion': (bool, none_type,),  # noqa: E501
+            'enable_offline_caching': (bool, none_type,),  # noqa: E501
+            'file_extension_filter': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'file_lock_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'is_externally_triggered_backup_target': (bool, none_type,),  # noqa: E501
+            'is_read_only': (bool, none_type,),  # noqa: E501
+            'logical_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'netgroup_whitelist': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'override_global_netgroup_whitelist': (bool, none_type,),  # noqa: E501
+            'override_global_subnet_whitelist': (bool, none_type,),  # noqa: E501
             'protocol_access': ([ViewProtocol], none_type,),  # noqa: E501
             'qos': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'override_global_subnet_whitelist': (bool, none_type,),  # noqa: E501
-            'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
-            'override_global_netgroup_whitelist': (bool, none_type,),  # noqa: E501
-            'netgroup_whitelist': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'security_mode': (str, none_type,),  # noqa: E501
-            'storage_policy_override': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'logical_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'file_lock_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'file_extension_filter': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'antivirus_scan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'allow_mount_on_windows': (bool, none_type,),  # noqa: E501
-            'enable_minion': (bool, none_type,),  # noqa: E501
-            'enable_filer_audit_logging': (bool, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'enable_live_indexing': (bool, none_type,),  # noqa: E501
-            'enable_offline_caching': (bool, none_type,),  # noqa: E501
-            'access_sids': ([str], none_type,),  # noqa: E501
-            'view_lock_enabled': (bool, none_type,),  # noqa: E501
-            'is_read_only': (bool, none_type,),  # noqa: E501
-            'view_pinning_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'self_service_snapshot_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'enable_metadata_accelerator': (bool, none_type,),  # noqa: E501
-            'is_externally_triggered_backup_target': (bool, none_type,),  # noqa: E501
+            'storage_policy_override': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
+            'view_lock_enabled': (bool, none_type,),  # noqa: E501
+            'view_pinning_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -130,34 +130,34 @@ class UpdateViewParamAllOf(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
+        'access_sids': 'accessSids',  # noqa: E501
+        'allow_mount_on_windows': 'allowMountOnWindows',  # noqa: E501
+        'antivirus_scan_config': 'antivirusScanConfig',  # noqa: E501
         'category': 'category',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'enable_filer_audit_logging': 'enableFilerAuditLogging',  # noqa: E501
+        'enable_live_indexing': 'enableLiveIndexing',  # noqa: E501
+        'enable_metadata_accelerator': 'enableMetadataAccelerator',  # noqa: E501
+        'enable_minion': 'enableMinion',  # noqa: E501
+        'enable_offline_caching': 'enableOfflineCaching',  # noqa: E501
+        'file_extension_filter': 'fileExtensionFilter',  # noqa: E501
+        'file_lock_config': 'fileLockConfig',  # noqa: E501
+        'is_externally_triggered_backup_target': 'isExternallyTriggeredBackupTarget',  # noqa: E501
+        'is_read_only': 'isReadOnly',  # noqa: E501
+        'logical_quota': 'logicalQuota',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'netgroup_whitelist': 'netgroupWhitelist',  # noqa: E501
+        'override_global_netgroup_whitelist': 'overrideGlobalNetgroupWhitelist',  # noqa: E501
+        'override_global_subnet_whitelist': 'overrideGlobalSubnetWhitelist',  # noqa: E501
         'protocol_access': 'protocolAccess',  # noqa: E501
         'qos': 'qos',  # noqa: E501
-        'override_global_subnet_whitelist': 'overrideGlobalSubnetWhitelist',  # noqa: E501
-        'subnet_whitelist': 'subnetWhitelist',  # noqa: E501
-        'override_global_netgroup_whitelist': 'overrideGlobalNetgroupWhitelist',  # noqa: E501
-        'netgroup_whitelist': 'netgroupWhitelist',  # noqa: E501
         'security_mode': 'securityMode',  # noqa: E501
-        'storage_policy_override': 'storagePolicyOverride',  # noqa: E501
-        'logical_quota': 'logicalQuota',  # noqa: E501
-        'file_lock_config': 'fileLockConfig',  # noqa: E501
-        'file_extension_filter': 'fileExtensionFilter',  # noqa: E501
-        'antivirus_scan_config': 'antivirusScanConfig',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'allow_mount_on_windows': 'allowMountOnWindows',  # noqa: E501
-        'enable_minion': 'enableMinion',  # noqa: E501
-        'enable_filer_audit_logging': 'enableFilerAuditLogging',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'enable_live_indexing': 'enableLiveIndexing',  # noqa: E501
-        'enable_offline_caching': 'enableOfflineCaching',  # noqa: E501
-        'access_sids': 'accessSids',  # noqa: E501
-        'view_lock_enabled': 'viewLockEnabled',  # noqa: E501
-        'is_read_only': 'isReadOnly',  # noqa: E501
-        'view_pinning_config': 'viewPinningConfig',  # noqa: E501
         'self_service_snapshot_config': 'selfServiceSnapshotConfig',  # noqa: E501
-        'enable_metadata_accelerator': 'enableMetadataAccelerator',  # noqa: E501
-        'is_externally_triggered_backup_target': 'isExternallyTriggeredBackupTarget',  # noqa: E501
+        'storage_policy_override': 'storagePolicyOverride',  # noqa: E501
+        'subnet_whitelist': 'subnetWhitelist',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
+        'view_lock_enabled': 'viewLockEnabled',  # noqa: E501
+        'view_pinning_config': 'viewPinningConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -207,34 +207,34 @@ class UpdateViewParamAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the View.. [optional]  # noqa: E501
+            access_sids ([str], none_type): Array of Security Identifiers (SIDs) Specifies the list of security identifiers (SIDs) for the restricted Principals who have access to this View.. [optional]  # noqa: E501
+            allow_mount_on_windows (bool, none_type): Specifies if this View can be mounted using the NFS protocol on Windows systems. If true, this View can be NFS mounted on Windows systems.. [optional]  # noqa: E501
+            antivirus_scan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the antivirus scan config settings for this View.. [optional]  # noqa: E501
             category (str, none_type): Specifies the category of the View.. [optional]  # noqa: E501
+            description (str, none_type): Specifies an optional text description about the View.. [optional]  # noqa: E501
+            enable_filer_audit_logging (bool, none_type): Specifies if Filer Audit Logging is enabled for this view.. [optional]  # noqa: E501
+            enable_live_indexing (bool, none_type): Specifies whether to enable live indexing for the view.. [optional]  # noqa: E501
+            enable_metadata_accelerator (bool, none_type): Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.. [optional]  # noqa: E501
+            enable_minion (bool, none_type): Specifies if this view should allow minion or not. If true, this will allow minion.. [optional]  # noqa: E501
+            enable_offline_caching (bool, none_type): Specifies whether to enable offline file caching of the view.. [optional]  # noqa: E501
+            file_extension_filter ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Optional filtering criteria that should be satisfied by all the files created in this view. It does not affect existing files.. [optional]  # noqa: E501
+            file_lock_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Optional config that enables file locking for this view. It cannot be disabled during the edit of a view, if it has been enabled during the creation of the view. Also, it cannot be enabled if it was disabled during the creation of the view.. [optional]  # noqa: E501
+            is_externally_triggered_backup_target (bool, none_type): Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.. [optional]  # noqa: E501
+            is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
+            logical_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies an optional logical quota limit (in bytes) for the usage allowed on this View. (Logical data is when the data is fully hydrated and expanded.) This limit overrides the limit inherited from the Storage Domain (View Box) (if set). If logicalQuota is nil, the limit is inherited from the Storage Domain (View Box) (if set). A new write is not allowed if the Storage Domain (View Box) will exceed the specified quota. However, it takes time for the Cohesity Cluster to calculate the usage across Nodes, so the limit may be exceeded by a small amount. In addition, if the limit is increased or data is removed, there may be a delay before the Cohesity Cluster allows more data to be written to the View, as the Cluster is calculating the usage across Nodes.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the View.. [optional]  # noqa: E501
+            netgroup_whitelist ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Array of Netgroups. Specifies a list of netgroups with domains that have permissions to access the View. (Overrides or extends the Netgroup specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
+            override_global_netgroup_whitelist (bool, none_type): Specifies whether view level client netgroup whitelist overrides cluster and global setting.. [optional]  # noqa: E501
+            override_global_subnet_whitelist (bool, none_type): Specifies whether view level client subnet whitelist overrides cluster and global setting.. [optional]  # noqa: E501
             protocol_access ([ViewProtocol], none_type): Specifies the supported Protocols for the View.. [optional]  # noqa: E501
             qos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Quality of Service (QoS) Policy for the View.. [optional]  # noqa: E501
-            override_global_subnet_whitelist (bool, none_type): Specifies whether view level client subnet whitelist overrides cluster and global setting.. [optional]  # noqa: E501
-            subnet_whitelist ([Subnet], none_type): Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
-            override_global_netgroup_whitelist (bool, none_type): Specifies whether view level client netgroup whitelist overrides cluster and global setting.. [optional]  # noqa: E501
-            netgroup_whitelist ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Array of Netgroups. Specifies a list of netgroups with domains that have permissions to access the View. (Overrides or extends the Netgroup specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
             security_mode (str, none_type): Specifies the security mode used for this view. Currently we support the following modes: Native, Unified and NTFS style. 'NativeMode' indicates a native security mode. 'UnifiedMode' indicates a unified security mode. 'NtfsMode' indicates a NTFS style security mode.. [optional]  # noqa: E501
-            storage_policy_override ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies if inline deduplication and compression settings inherited from the Storage Domain (View Box) should be disabled for this View.. [optional]  # noqa: E501
-            logical_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies an optional logical quota limit (in bytes) for the usage allowed on this View. (Logical data is when the data is fully hydrated and expanded.) This limit overrides the limit inherited from the Storage Domain (View Box) (if set). If logicalQuota is nil, the limit is inherited from the Storage Domain (View Box) (if set). A new write is not allowed if the Storage Domain (View Box) will exceed the specified quota. However, it takes time for the Cohesity Cluster to calculate the usage across Nodes, so the limit may be exceeded by a small amount. In addition, if the limit is increased or data is removed, there may be a delay before the Cohesity Cluster allows more data to be written to the View, as the Cluster is calculating the usage across Nodes.. [optional]  # noqa: E501
-            file_lock_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Optional config that enables file locking for this view. It cannot be disabled during the edit of a view, if it has been enabled during the creation of the view. Also, it cannot be enabled if it was disabled during the creation of the view.. [optional]  # noqa: E501
-            file_extension_filter ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Optional filtering criteria that should be satisfied by all the files created in this view. It does not affect existing files.. [optional]  # noqa: E501
-            antivirus_scan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the antivirus scan config settings for this View.. [optional]  # noqa: E501
-            description (str, none_type): Specifies an optional text description about the View.. [optional]  # noqa: E501
-            allow_mount_on_windows (bool, none_type): Specifies if this View can be mounted using the NFS protocol on Windows systems. If true, this View can be NFS mounted on Windows systems.. [optional]  # noqa: E501
-            enable_minion (bool, none_type): Specifies if this view should allow minion or not. If true, this will allow minion.. [optional]  # noqa: E501
-            enable_filer_audit_logging (bool, none_type): Specifies if Filer Audit Logging is enabled for this view.. [optional]  # noqa: E501
-            tenant_id (str, none_type): Optional tenant id who has access to this View.. [optional]  # noqa: E501
-            enable_live_indexing (bool, none_type): Specifies whether to enable live indexing for the view.. [optional]  # noqa: E501
-            enable_offline_caching (bool, none_type): Specifies whether to enable offline file caching of the view.. [optional]  # noqa: E501
-            access_sids ([str], none_type): Array of Security Identifiers (SIDs) Specifies the list of security identifiers (SIDs) for the restricted Principals who have access to this View.. [optional]  # noqa: E501
-            view_lock_enabled (bool, none_type): Specifies whether view lock is enabled. If enabled the view cannot be modified or deleted until unlock. By default it is disabled.. [optional]  # noqa: E501
-            is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
-            view_pinning_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the pinning config of this view.. [optional]  # noqa: E501
             self_service_snapshot_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies self service config of this view.. [optional]  # noqa: E501
-            enable_metadata_accelerator (bool, none_type): Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.. [optional]  # noqa: E501
-            is_externally_triggered_backup_target (bool, none_type): Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.. [optional]  # noqa: E501
+            storage_policy_override ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies if inline deduplication and compression settings inherited from the Storage Domain (View Box) should be disabled for this View.. [optional]  # noqa: E501
+            subnet_whitelist ([Subnet], none_type): Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
+            tenant_id (str, none_type): Optional tenant id who has access to this View.. [optional]  # noqa: E501
+            view_lock_enabled (bool, none_type): Specifies whether view lock is enabled. If enabled the view cannot be modified or deleted until unlock. By default it is disabled.. [optional]  # noqa: E501
+            view_pinning_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the pinning config of this view.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

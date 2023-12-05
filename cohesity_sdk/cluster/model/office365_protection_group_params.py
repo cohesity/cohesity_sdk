@@ -110,8 +110,8 @@ class Office365ProtectionGroupParams(ModelNormal):
             'protection_types': ([str],),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'outlook_protection_type_params': (Office365OutlookProtectionGroupParams,),  # noqa: E501
             'one_drive_protection_type_params': (Office365OneDriveProtectionGroupParams,),  # noqa: E501
+            'outlook_protection_type_params': (Office365OutlookProtectionGroupParams,),  # noqa: E501
             'public_folders_protection_type_params': (Office365PublicFoldersProtectionGroupParams,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
@@ -128,8 +128,8 @@ class Office365ProtectionGroupParams(ModelNormal):
         'protection_types': 'protectionTypes',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'outlook_protection_type_params': 'outlookProtectionTypeParams',  # noqa: E501
         'one_drive_protection_type_params': 'oneDriveProtectionTypeParams',  # noqa: E501
+        'outlook_protection_type_params': 'outlookProtectionTypeParams',  # noqa: E501
         'public_folders_protection_type_params': 'publicFoldersProtectionTypeParams',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
@@ -188,8 +188,8 @@ class Office365ProtectionGroupParams(ModelNormal):
 
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            outlook_protection_type_params (Office365OutlookProtectionGroupParams): [optional]  # noqa: E501
             one_drive_protection_type_params (Office365OneDriveProtectionGroupParams): [optional]  # noqa: E501
+            outlook_protection_type_params (Office365OutlookProtectionGroupParams): [optional]  # noqa: E501
             public_folders_protection_type_params (Office365PublicFoldersProtectionGroupParams): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501

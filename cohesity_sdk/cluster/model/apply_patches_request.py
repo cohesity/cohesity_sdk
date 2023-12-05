@@ -74,8 +74,8 @@ class ApplyPatchesRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'service': (str, none_type,),  # noqa: E501
             'all': (bool, none_type,),  # noqa: E501
+            'service': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ApplyPatchesRequest(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
         'all': 'all',  # noqa: E501
+        'service': 'service',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ApplyPatchesRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str, none_type): Specifies the name of the service whose patch should be applied.. [optional]  # noqa: E501
             all (bool, none_type): Specifies all the available patches should be applied.. [optional]  # noqa: E501
+            service (str, none_type): Specifies the name of the service whose patch should be applied.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

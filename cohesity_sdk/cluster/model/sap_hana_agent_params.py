@@ -54,13 +54,13 @@ class SapHanaAgentParams(ModelNormal):
     """
 
     allowed_values = {
-        ('package_type',): {
-            'KSCRIPT': "kScript",
-            'KRPM': "kRPM",
-        },
         ('agent_type',): {
             'KJAVA': "kJava",
             'KLEGACY': "kLegacy",
+        },
+        ('package_type',): {
+            'KSCRIPT': "kScript",
+            'KRPM': "kRPM",
         },
     }
 
@@ -82,8 +82,8 @@ class SapHanaAgentParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'package_type': (str,),  # noqa: E501
             'agent_type': (str,),  # noqa: E501
+            'package_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class SapHanaAgentParams(ModelNormal):
 
 
     attribute_map = {
-        'package_type': 'packageType',  # noqa: E501
         'agent_type': 'agentType',  # noqa: E501
+        'package_type': 'packageType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -109,12 +109,12 @@ class SapHanaAgentParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, package_type, agent_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, agent_type, package_type, *args, **kwargs):  # noqa: E501
         """SapHanaAgentParams - a model defined in OpenAPI
 
         Args:
-            package_type (str): Specifies the type of installer.
             agent_type (str): Specifies the type of agent. kJava agent type is supported only for kScript package type.
+            package_type (str): Specifies the type of installer.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,8 +174,8 @@ class SapHanaAgentParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.package_type = package_type
         self.agent_type = agent_type
+        self.package_type = package_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -79,10 +79,10 @@ class EsxiRegistrationParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
+            'max_concurrent_streams': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_gb': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_percentage': (int, none_type,),  # noqa: E501
-            'max_concurrent_streams': (int, none_type,),  # noqa: E501
-            'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class EsxiRegistrationParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'data_store_params': 'dataStoreParams',  # noqa: E501
+        'max_concurrent_streams': 'maxConcurrentStreams',  # noqa: E501
         'min_free_datastore_space_for_backup_gb': 'minFreeDatastoreSpaceForBackupGb',  # noqa: E501
         'min_free_datastore_space_for_backup_percentage': 'minFreeDatastoreSpaceForBackupPercentage',  # noqa: E501
-        'max_concurrent_streams': 'maxConcurrentStreams',  # noqa: E501
-        'data_store_params': 'dataStoreParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,10 +145,10 @@ class EsxiRegistrationParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            data_store_params ([DatastoreParams], none_type): Specifies the datastore specific params.. [optional]  # noqa: E501
+            max_concurrent_streams (int, none_type): If this value is > 0 and the number of streams concurrently active on a datastore is equal to it, then any further requests to access the datastore would be denied until the number of active streams reduces. This applies for all the datastores in the specified host.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_gb (int, none_type): Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_percentage (int, none_type): Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
-            max_concurrent_streams (int, none_type): If this value is > 0 and the number of streams concurrently active on a datastore is equal to it, then any further requests to access the datastore would be denied until the number of active streams reduces. This applies for all the datastores in the specified host.. [optional]  # noqa: E501
-            data_store_params ([DatastoreParams], none_type): Specifies the datastore specific params.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

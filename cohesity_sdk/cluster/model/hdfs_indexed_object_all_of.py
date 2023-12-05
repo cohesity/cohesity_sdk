@@ -79,8 +79,8 @@ class HDFSIndexedObjectAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class HDFSIndexedObjectAllOf(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class HDFSIndexedObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the HDFS Object Type.. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the HDFS Object Type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -82,9 +82,9 @@ class UdaConnectorConfigParams(ModelNormal):
         lazy_import()
         return {
             'index_config': (str, none_type,),  # noqa: E501
-            'ui_translation_config': ([UdaLocaleSpecificTranslations],),  # noqa: E501
             'os_specific_config': ([UdaOSSpecificConfigParams],),  # noqa: E501
             'replace': (bool, none_type,),  # noqa: E501
+            'ui_translation_config': ([UdaLocaleSpecificTranslations],),  # noqa: E501
         }
 
     @cached_property
@@ -95,9 +95,9 @@ class UdaConnectorConfigParams(ModelNormal):
 
     attribute_map = {
         'index_config': 'indexConfig',  # noqa: E501
-        'ui_translation_config': 'uiTranslationConfig',  # noqa: E501
         'os_specific_config': 'osSpecificConfig',  # noqa: E501
         'replace': 'replace',  # noqa: E501
+        'ui_translation_config': 'uiTranslationConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class UdaConnectorConfigParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             index_config (str, none_type): Specifies the index config as json string.. [optional]  # noqa: E501
-            ui_translation_config ([UdaLocaleSpecificTranslations]): Specifies the translation messages for various locales. It maps locale name to their respective translation json strings.. [optional]  # noqa: E501
             os_specific_config ([UdaOSSpecificConfigParams]): Specifies operating system specific configuration.. [optional]  # noqa: E501
             replace (bool, none_type): If true, any existing connector config with the the same ID is replaced if it exists.. [optional]  # noqa: E501
+            ui_translation_config ([UdaLocaleSpecificTranslations]): Specifies the translation messages for various locales. It maps locale name to their respective translation json strings.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

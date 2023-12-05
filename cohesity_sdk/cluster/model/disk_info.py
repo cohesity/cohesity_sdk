@@ -80,8 +80,8 @@ class DiskInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'unit_number': (int, none_type,),  # noqa: E501
             'bus_number': (int, none_type,),  # noqa: E501
+            'unit_number': (int, none_type,),  # noqa: E501
             'controller_type': (str, none_type,),  # noqa: E501
         }
 
@@ -92,8 +92,8 @@ class DiskInfo(ModelNormal):
 
 
     attribute_map = {
-        'unit_number': 'unitNumber',  # noqa: E501
         'bus_number': 'busNumber',  # noqa: E501
+        'unit_number': 'unitNumber',  # noqa: E501
         'controller_type': 'controllerType',  # noqa: E501
     }
 
@@ -109,12 +109,12 @@ class DiskInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, unit_number, bus_number, *args, **kwargs):  # noqa: E501
+    def __init__(self, bus_number, unit_number, *args, **kwargs):  # noqa: E501
         """DiskInfo - a model defined in OpenAPI
 
         Args:
-            unit_number (int, none_type): Specifies the disk file name. This is the VMDK name and not the flat file name.
             bus_number (int, none_type): Specifies the Id of the controller bus that controls the disk.
+            unit_number (int, none_type): Specifies the disk file name. This is the VMDK name and not the flat file name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,8 +175,8 @@ class DiskInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.unit_number = unit_number
         self.bus_number = bus_number
+        self.unit_number = unit_number
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

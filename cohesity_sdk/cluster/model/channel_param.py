@@ -85,9 +85,9 @@ class ChannelParam(ModelNormal):
         return {
             'id': (str, none_type,),  # noqa: E501
             'recover_entire_channel': (bool, none_type,),  # noqa: E501
+            'document_library_params': ([OneDriveParam], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'type': (str,),  # noqa: E501
-            'document_library_params': ([OneDriveParam], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,9 +99,9 @@ class ChannelParam(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'recover_entire_channel': 'recoverEntireChannel',  # noqa: E501
+        'document_library_params': 'documentLibraryParams',  # noqa: E501
         'name': 'name',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'document_library_params': 'documentLibraryParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,9 +155,9 @@ class ChannelParam(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            document_library_params ([OneDriveParam], none_type): Specifies the list of doclibs of the Channel to recover. It is populated iff recoverEntireChannel is false.. [optional]  # noqa: E501
             name (str, none_type): Specifies the Channel name.. [optional]  # noqa: E501
             type (str): Specifies the type of channel public or private. [optional]  # noqa: E501
-            document_library_params ([OneDriveParam], none_type): Specifies the list of doclibs of the Channel to recover. It is populated iff recoverEntireChannel is false.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

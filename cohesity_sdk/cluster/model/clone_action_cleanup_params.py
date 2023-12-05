@@ -87,8 +87,8 @@ class CloneActionCleanupParams(ModelNormal):
         lazy_import()
         return {
             'cleanup_type': (str, none_type,),  # noqa: E501
-            'power_off_vm_params': (CloneActionCleanupPowerOffVmParams,),  # noqa: E501
             'cloud_resources_cleanup_params': (CloneActionCleanupCloudResourcesCleanupParams,),  # noqa: E501
+            'power_off_vm_params': (CloneActionCleanupPowerOffVmParams,),  # noqa: E501
         }
 
     @cached_property
@@ -99,8 +99,8 @@ class CloneActionCleanupParams(ModelNormal):
 
     attribute_map = {
         'cleanup_type': 'cleanupType',  # noqa: E501
-        'power_off_vm_params': 'powerOffVmParams',  # noqa: E501
         'cloud_resources_cleanup_params': 'cloudResourcesCleanupParams',  # noqa: E501
+        'power_off_vm_params': 'powerOffVmParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,8 +153,8 @@ class CloneActionCleanupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            power_off_vm_params (CloneActionCleanupPowerOffVmParams): [optional]  # noqa: E501
             cloud_resources_cleanup_params (CloneActionCleanupCloudResourcesCleanupParams): [optional]  # noqa: E501
+            power_off_vm_params (CloneActionCleanupPowerOffVmParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

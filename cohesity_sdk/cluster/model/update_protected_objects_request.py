@@ -174,31 +174,31 @@ class UpdateProtectedObjectsRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'policy_id': (str, none_type,),  # noqa: E501
-            'policy_config': (PolicyConfig,),  # noqa: E501
-            'storage_domain_id': (int, none_type,),  # noqa: E501
-            'start_time': (TimeOfDay,),  # noqa: E501
-            'priority': (str, none_type,),  # noqa: E501
-            'sla': ([SlaRule], none_type,),  # noqa: E501
-            'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
-            'skip_rigel_for_backup': (bool, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
+            'policy_config': (PolicyConfig,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'priority': (str, none_type,),  # noqa: E501
+            'qos_policy': (str, none_type,),  # noqa: E501
+            'skip_rigel_for_backup': (bool, none_type,),  # noqa: E501
+            'sla': ([SlaRule], none_type,),  # noqa: E501
+            'start_time': (TimeOfDay,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
+            'aws_params': (AwsObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'elastifile_params': (ElastifileObjectProtectionUpdateRequestParams,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
-            'vmware_params': (VmwareObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'flashblade_params': (FlashbladeObjectProtectionUpdateRequestParams,),  # noqa: E501
             'generic_nas_params': (GenericNasObjectProtectionUpdateRequestParams,),  # noqa: E501
             'gpfs_params': (GpfsObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'elastifile_params': (ElastifileObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'netapp_params': (NetappObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'isilon_params': (IsilonObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'flashblade_params': (FlashbladeObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'mssql_params': (MssqlObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'oracle_params': (OracleObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'office365_params': (Office365ObjectProtectionUpdateRequestParams,),  # noqa: E501
-            'aws_params': (AwsObjectProtectionUpdateRequestParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'isilon_params': (IsilonObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'mssql_params': (MssqlObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'netapp_params': (NetappObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'office365_params': (Office365ObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'oracle_params': (OracleObjectProtectionUpdateRequestParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionUpdateRequestParams,),  # noqa: E501
             'sfdc_params': (SfdcObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'vmware_params': (VmwareObjectProtectionUpdateRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -208,31 +208,31 @@ class UpdateProtectedObjectsRequest(ModelComposed):
 
 
     attribute_map = {
-        'policy_id': 'policyId',  # noqa: E501
-        'policy_config': 'policyConfig',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'start_time': 'startTime',  # noqa: E501
-        'priority': 'priority',  # noqa: E501
-        'sla': 'sla',  # noqa: E501
-        'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
-        'skip_rigel_for_backup': 'skipRigelForBackup',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'policy_config': 'policyConfig',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'priority': 'priority',  # noqa: E501
+        'qos_policy': 'qosPolicy',  # noqa: E501
+        'skip_rigel_for_backup': 'skipRigelForBackup',  # noqa: E501
+        'sla': 'sla',  # noqa: E501
+        'start_time': 'startTime',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'elastifile_params': 'elastifileParams',  # noqa: E501
         'environment': 'environment',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
-        'elastifile_params': 'elastifileParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
-        'mssql_params': 'mssqlParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
+        'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -283,31 +283,31 @@ class UpdateProtectedObjectsRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
-            policy_config (PolicyConfig): [optional]  # noqa: E501
-            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
-            start_time (TimeOfDay): [optional]  # noqa: E501
-            priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
-            sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
-            qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
-            skip_rigel_for_backup (bool, none_type): Specifies whether to skip Rigel for backup or not.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
+            policy_config (PolicyConfig): [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the unique id of the Protection Policy. The Policy settings will be attached with every object and will be used in backup.. [optional]  # noqa: E501
+            priority (str, none_type): Specifies the priority for the objects backup.. [optional]  # noqa: E501
+            qos_policy (str, none_type): Specifies whether object backup will be written to HDD or SSD.. [optional]  # noqa: E501
+            skip_rigel_for_backup (bool, none_type): Specifies whether to skip Rigel for backup or not.. [optional]  # noqa: E501
+            sla ([SlaRule], none_type): Specifies the SLA parameters for list of objects.. [optional]  # noqa: E501
+            start_time (TimeOfDay): [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
+            aws_params (AwsObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            elastifile_params (ElastifileObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
-            vmware_params (VmwareObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            flashblade_params (FlashbladeObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             gpfs_params (GpfsObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            elastifile_params (ElastifileObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            netapp_params (NetappObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            isilon_params (IsilonObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            flashblade_params (FlashbladeObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            mssql_params (MssqlObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            oracle_params (OracleObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            office365_params (Office365ObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
-            aws_params (AwsObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            isilon_params (IsilonObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            mssql_params (MssqlObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            netapp_params (NetappObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            office365_params (Office365ObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             sfdc_params (SfdcObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            vmware_params (VmwareObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

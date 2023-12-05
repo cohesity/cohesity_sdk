@@ -77,8 +77,8 @@ class KubernetesFilterParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'objects': ([int], none_type,),  # noqa: E501
             'label_ids': ([[int]], none_type,),  # noqa: E501
+            'objects': ([int], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,8 +88,8 @@ class KubernetesFilterParams(ModelNormal):
 
 
     attribute_map = {
-        'objects': 'objects',  # noqa: E501
         'label_ids': 'labelIds',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class KubernetesFilterParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            objects ([int], none_type): Array of objects that are to be included.. [optional]  # noqa: E501
             label_ids ([[int]], none_type): Array of Arrays of Label Ids that Specify Objects (e.g.: Persistent Volumes and Persistent Volume Claims) to Include or Exclude. Optionally specify a list of items to include in filter by listing Source Ids of Labels in this two dimensional array. Using this two dimensional array of Labels, the Cluster generates a list of items to include in the filter, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Namespace is selected to be protected but you want to exclude all the 'Employees:Former' items in the 'Location:East' and 'Location:West' but keep all the items for 'Employees:Former' in the South which are also stored in this Namespace, by specifying the following source id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Employee:Former' Label id, 2221 is the 'Location:East' Label id and 3031 is the 'West' Label id. The first inner array [1000, 2221] produces a list of items that are both labeled with 'Employees:Former' and 'Location:East' (an intersection). The second inner array [1000, 3031] produces a list of items that are both labeled with 'Employees:Former' and 'Location:West' (an intersection). The outer array combines the items from the two inner arrays. The list of resulting items, when combined with isExclude=true, are then excluded from being protected this Job.. [optional]  # noqa: E501
+            objects ([int], none_type): Array of objects that are to be included.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

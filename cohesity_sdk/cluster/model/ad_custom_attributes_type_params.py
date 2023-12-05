@@ -74,9 +74,9 @@ class AdCustomAttributesTypeParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'uid_attr_name': (str, none_type,),  # noqa: E501
-            'gid_attr_name': (str, none_type,),  # noqa: E501
             'fallback_option': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'gid_attr_name': (str, none_type,),  # noqa: E501
+            'uid_attr_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class AdCustomAttributesTypeParams(ModelNormal):
 
 
     attribute_map = {
-        'uid_attr_name': 'uidAttrName',  # noqa: E501
-        'gid_attr_name': 'gidAttrName',  # noqa: E501
         'fallback_option': 'fallbackOption',  # noqa: E501
+        'gid_attr_name': 'gidAttrName',  # noqa: E501
+        'uid_attr_name': 'uidAttrName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,13 +103,13 @@ class AdCustomAttributesTypeParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, uid_attr_name, gid_attr_name, fallback_option, *args, **kwargs):  # noqa: E501
+    def __init__(self, fallback_option, gid_attr_name, uid_attr_name, *args, **kwargs):  # noqa: E501
         """AdCustomAttributesTypeParams - a model defined in OpenAPI
 
         Args:
-            uid_attr_name (str, none_type): Specifies the custom field name in Active Directory user properties to get the UID.
-            gid_attr_name (str, none_type): Specifies the custom field name in Active Directory user properties to get the GID.
             fallback_option ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies a fallback user id mapping param in case the primary config does not work.
+            gid_attr_name (str, none_type): Specifies the custom field name in Active Directory user properties to get the GID.
+            uid_attr_name (str, none_type): Specifies the custom field name in Active Directory user properties to get the UID.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,9 +169,9 @@ class AdCustomAttributesTypeParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.uid_attr_name = uid_attr_name
-        self.gid_attr_name = gid_attr_name
         self.fallback_option = fallback_option
+        self.gid_attr_name = gid_attr_name
+        self.uid_attr_name = uid_attr_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

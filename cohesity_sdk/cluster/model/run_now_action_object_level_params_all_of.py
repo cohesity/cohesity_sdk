@@ -82,8 +82,8 @@ class RunNowActionObjectLevelParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'take_local_snapshot_only': (bool, none_type,),  # noqa: E501
             'backup_type': (str,),  # noqa: E501
+            'take_local_snapshot_only': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,8 +93,8 @@ class RunNowActionObjectLevelParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'take_local_snapshot_only': 'takeLocalSnapshotOnly',  # noqa: E501
         'backup_type': 'backupType',  # noqa: E501
+        'take_local_snapshot_only': 'takeLocalSnapshotOnly',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class RunNowActionObjectLevelParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            take_local_snapshot_only (bool, none_type): If sepcified as true then runNow will only take local snapshot ignoring all other targets such as replication, archivals etc. If not sepcified or specified as false then runNow will follow the policy settings.. [optional]  # noqa: E501
             backup_type (str): Specifies the backup type should be used for RunNow action.. [optional]  # noqa: E501
+            take_local_snapshot_only (bool, none_type): If sepcified as true then runNow will only take local snapshot ignoring all other targets such as replication, archivals etc. If not sepcified or specified as false then runNow will follow the policy settings.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

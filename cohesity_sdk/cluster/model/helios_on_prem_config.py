@@ -85,11 +85,11 @@ class HeliosOnPremConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'kubernetes_subnet_cidr': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'cluster_id': (int, none_type,),  # noqa: E501
-            'nodes': ([HeliosOnPremVMNode],),  # noqa: E501
             'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
+            'nodes': ([HeliosOnPremVMNode],),  # noqa: E501
             'proxy_server_config': (ClusterProxyServerConfig,),  # noqa: E501
             'ssh_config': (HeliosOnPremSSHConfig,),  # noqa: E501
         }
@@ -101,11 +101,11 @@ class HeliosOnPremConfig(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'kubernetes_subnet_cidr': 'kubernetesSubnetCidr',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
-        'nodes': 'nodes',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
+        'nodes': 'nodes',  # noqa: E501
         'proxy_server_config': 'proxyServerConfig',  # noqa: E501
         'ssh_config': 'sshConfig',  # noqa: E501
     }
@@ -122,12 +122,12 @@ class HeliosOnPremConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, kubernetes_subnet_cidr, *args, **kwargs):  # noqa: E501
+    def __init__(self, kubernetes_subnet_cidr, name, *args, **kwargs):  # noqa: E501
         """HeliosOnPremConfig - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Name of the new Helios OnPrem VM.
             kubernetes_subnet_cidr (str, none_type): Subnet to use for setting up the Kubernetes cluster's internal network on which Cohesity Helios will run.
+            name (str, none_type): Name of the new Helios OnPrem VM.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -162,8 +162,8 @@ class HeliosOnPremConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cluster_id (int, none_type): Specifies the ID of the Cluster.. [optional]  # noqa: E501
-            nodes ([HeliosOnPremVMNode]): Specifies the Nodes present in this Cluster.. [optional]  # noqa: E501
             network_config (ClusterCreateNetworkConfig): [optional]  # noqa: E501
+            nodes ([HeliosOnPremVMNode]): Specifies the Nodes present in this Cluster.. [optional]  # noqa: E501
             proxy_server_config (ClusterProxyServerConfig): [optional]  # noqa: E501
             ssh_config (HeliosOnPremSSHConfig): [optional]  # noqa: E501
         """
@@ -192,8 +192,8 @@ class HeliosOnPremConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.kubernetes_subnet_cidr = kubernetes_subnet_cidr
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

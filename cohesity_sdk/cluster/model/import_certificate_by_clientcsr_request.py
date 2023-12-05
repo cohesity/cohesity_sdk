@@ -74,8 +74,8 @@ class ImportCertificateByClientcsrRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'certificate_server': (str, none_type,),  # noqa: E501
             'certificate_client': (str, none_type,),  # noqa: E501
+            'certificate_server': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ImportCertificateByClientcsrRequest(ModelNormal):
 
 
     attribute_map = {
-        'certificate_server': 'certificateServer',  # noqa: E501
         'certificate_client': 'certificateClient',  # noqa: E501
+        'certificate_server': 'certificateServer',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class ImportCertificateByClientcsrRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, certificate_server, certificate_client, *args, **kwargs):  # noqa: E501
+    def __init__(self, certificate_client, certificate_server, *args, **kwargs):  # noqa: E501
         """ImportCertificateByClientcsrRequest - a model defined in OpenAPI
 
         Args:
-            certificate_server (str, none_type): Specifies the server certificate to be imported.
             certificate_client (str, none_type): Specifies the client certificate to be imported.
+            certificate_server (str, none_type): Specifies the server certificate to be imported.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class ImportCertificateByClientcsrRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.certificate_server = certificate_server
         self.certificate_client = certificate_client
+        self.certificate_server = certificate_server
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

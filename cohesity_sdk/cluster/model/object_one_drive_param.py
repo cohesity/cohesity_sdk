@@ -79,8 +79,8 @@ class ObjectOneDriveParam(ModelNormal):
         """
         lazy_import()
         return {
-            'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'one_drive_params': ([OneDriveParam], none_type,),  # noqa: E501
+            'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class ObjectOneDriveParam(ModelNormal):
 
 
     attribute_map = {
-        'owner_info': 'ownerInfo',  # noqa: E501
         'one_drive_params': 'oneDriveParams',  # noqa: E501
+        'owner_info': 'ownerInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class ObjectOneDriveParam(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the OneDrive owner info.. [optional]  # noqa: E501
             one_drive_params ([OneDriveParam], none_type): Specifies parameters to recover a OneDrive.. [optional]  # noqa: E501
+            owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the OneDrive owner info.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

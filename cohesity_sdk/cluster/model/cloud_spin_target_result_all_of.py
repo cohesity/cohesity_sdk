@@ -72,7 +72,6 @@ class CloudSpinTargetResultAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -96,17 +95,17 @@ class CloudSpinTargetResultAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
-            'stats': (CloudSpinDataStats,),  # noqa: E501
-            'is_manually_deleted': (bool, none_type,),  # noqa: E501
-            'expiry_time_usecs': (int, none_type,),  # noqa: E501
             'cloudspin_task_id': (str, none_type,),  # noqa: E501
-            'progress_task_id': (str, none_type,),  # noqa: E501
             'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'expiry_time_usecs': (int, none_type,),  # noqa: E501
+            'is_manually_deleted': (bool, none_type,),  # noqa: E501
+            'message': (str, none_type,),  # noqa: E501
             'on_legal_hold': (bool, none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'stats': (CloudSpinDataStats,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -116,17 +115,17 @@ class CloudSpinTargetResultAllOf(ModelNormal):
 
 
     attribute_map = {
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'message': 'message',  # noqa: E501
-        'stats': 'stats',  # noqa: E501
-        'is_manually_deleted': 'isManuallyDeleted',  # noqa: E501
-        'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
         'cloudspin_task_id': 'cloudspinTaskId',  # noqa: E501
-        'progress_task_id': 'progressTaskId',  # noqa: E501
         'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
+        'is_manually_deleted': 'isManuallyDeleted',  # noqa: E501
+        'message': 'message',  # noqa: E501
         'on_legal_hold': 'onLegalHold',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'stats': 'stats',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -176,17 +175,17 @@ class CloudSpinTargetResultAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_time_usecs (int, none_type): Specifies the start time of Cloud Spin in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of Cloud Spin in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Cloud Spin for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
-            message (str, none_type): Message about the Cloud Spin run.. [optional]  # noqa: E501
-            stats (CloudSpinDataStats): [optional]  # noqa: E501
-            is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501
-            expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
             cloudspin_task_id (str, none_type): Task ID for a CloudSpin protection run.. [optional]  # noqa: E501
-            progress_task_id (str, none_type): Progress monitor task id for Cloud Spin run.. [optional]  # noqa: E501
             data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of Cloud Spin in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
+            expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
+            is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501
+            message (str, none_type): Message about the Cloud Spin run.. [optional]  # noqa: E501
             on_legal_hold (bool, none_type): Specifies the legal hold status for a cloud spin target.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task id for Cloud Spin run.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time of Cloud Spin in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
+            stats (CloudSpinDataStats): [optional]  # noqa: E501
+            status (str, none_type): Status of the Cloud Spin for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

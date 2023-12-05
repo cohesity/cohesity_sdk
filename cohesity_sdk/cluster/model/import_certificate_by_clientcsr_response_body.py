@@ -75,8 +75,8 @@ class ImportCertificateByClientcsrResponseBody(ModelNormal):
         """
         return {
             'certificate_server': (str, none_type,),  # noqa: E501
-            'private_key': (str, none_type,),  # noqa: E501
             'file_server_cert': (str, none_type,),  # noqa: E501
+            'private_key': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class ImportCertificateByClientcsrResponseBody(ModelNormal):
 
     attribute_map = {
         'certificate_server': 'certificateServer',  # noqa: E501
-        'private_key': 'privateKey',  # noqa: E501
         'file_server_cert': 'fileServerCert',  # noqa: E501
+        'private_key': 'privateKey',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class ImportCertificateByClientcsrResponseBody(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             certificate_server (str, none_type): Specifies the server certificate.. [optional]  # noqa: E501
-            private_key (str, none_type): Specifies the private key of agent.. [optional]  # noqa: E501
             file_server_cert (str, none_type): Specifies the path to the file to be uploaded to server. This file has the server cert, id and encrypted private key. [optional]  # noqa: E501
+            private_key (str, none_type): Specifies the private key of agent.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

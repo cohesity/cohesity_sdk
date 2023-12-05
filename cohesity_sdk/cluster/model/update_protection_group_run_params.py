@@ -90,9 +90,9 @@ class UpdateProtectionGroupRunParams(ModelNormal):
         lazy_import()
         return {
             'run_id': (str, none_type,),  # noqa: E501
+            'archival_snapshot_config': (UpdateArchivalSnapshotConfig,),  # noqa: E501
             'local_snapshot_config': (UpdateLocalSnapshotConfig,),  # noqa: E501
             'replication_snapshot_config': (UpdateReplicationSnapshotConfig,),  # noqa: E501
-            'archival_snapshot_config': (UpdateArchivalSnapshotConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -103,9 +103,9 @@ class UpdateProtectionGroupRunParams(ModelNormal):
 
     attribute_map = {
         'run_id': 'runId',  # noqa: E501
+        'archival_snapshot_config': 'archivalSnapshotConfig',  # noqa: E501
         'local_snapshot_config': 'localSnapshotConfig',  # noqa: E501
         'replication_snapshot_config': 'replicationSnapshotConfig',  # noqa: E501
-        'archival_snapshot_config': 'archivalSnapshotConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,9 +158,9 @@ class UpdateProtectionGroupRunParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            archival_snapshot_config (UpdateArchivalSnapshotConfig): [optional]  # noqa: E501
             local_snapshot_config (UpdateLocalSnapshotConfig): [optional]  # noqa: E501
             replication_snapshot_config (UpdateReplicationSnapshotConfig): [optional]  # noqa: E501
-            archival_snapshot_config (UpdateArchivalSnapshotConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

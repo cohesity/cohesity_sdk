@@ -89,10 +89,10 @@ class AzureAgentProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([AzureAgentProtectionGroupObjectParams],),  # noqa: E501
-            'exclude_object_ids': ([int],),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'cloud_migration': (bool, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int],),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
         }
@@ -105,10 +105,10 @@ class AzureAgentProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'cloud_migration': 'cloudMigration',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
     }
@@ -163,10 +163,10 @@ class AzureAgentProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            exclude_object_ids ([int]): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            exclude_object_ids ([int]): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
         """

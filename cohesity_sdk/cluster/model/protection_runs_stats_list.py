@@ -79,8 +79,8 @@ class ProtectionRunsStatsList(ModelNormal):
         """
         lazy_import()
         return {
-            'timestamp': (int, none_type,),  # noqa: E501
             'stats': ([ProtectionRunsStats], none_type,),  # noqa: E501
+            'timestamp': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class ProtectionRunsStatsList(ModelNormal):
 
 
     attribute_map = {
-        'timestamp': 'timestamp',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'timestamp': 'timestamp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class ProtectionRunsStatsList(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            timestamp (int, none_type): Specifies a Unix epoch Timestamp (in microseconds) of this statistics.. [optional]  # noqa: E501
             stats ([ProtectionRunsStats], none_type): Specifies the protection runs stats.. [optional]  # noqa: E501
+            timestamp (int, none_type): Specifies a Unix epoch Timestamp (in microseconds) of this statistics.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

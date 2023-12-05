@@ -91,8 +91,8 @@ class RunNowActionObjectLevelParams(ModelComposed):
         return {
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'take_local_snapshot_only': (bool, none_type,),  # noqa: E501
             'backup_type': (str,),  # noqa: E501
+            'take_local_snapshot_only': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,8 +104,8 @@ class RunNowActionObjectLevelParams(ModelComposed):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'take_local_snapshot_only': 'takeLocalSnapshotOnly',  # noqa: E501
         'backup_type': 'backupType',  # noqa: E501
+        'take_local_snapshot_only': 'takeLocalSnapshotOnly',  # noqa: E501
     }
 
     required_properties = set([
@@ -160,8 +160,8 @@ class RunNowActionObjectLevelParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
-            take_local_snapshot_only (bool, none_type): If sepcified as true then runNow will only take local snapshot ignoring all other targets such as replication, archivals etc. If not sepcified or specified as false then runNow will follow the policy settings.. [optional]  # noqa: E501
             backup_type (str): Specifies the backup type should be used for RunNow action.. [optional]  # noqa: E501
+            take_local_snapshot_only (bool, none_type): If sepcified as true then runNow will only take local snapshot ignoring all other targets such as replication, archivals etc. If not sepcified or specified as false then runNow will follow the policy settings.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

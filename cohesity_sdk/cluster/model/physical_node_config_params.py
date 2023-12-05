@@ -76,8 +76,8 @@ class PhysicalNodeConfigParams(ModelNormal):
         return {
             'id': (int,),  # noqa: E501
             'ip': (str,),  # noqa: E501
-            'is_compute_node': (bool,),  # noqa: E501
             'ipmi_ip': (str,),  # noqa: E501
+            'is_compute_node': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class PhysicalNodeConfigParams(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'ip': 'ip',  # noqa: E501
-        'is_compute_node': 'isComputeNode',  # noqa: E501
         'ipmi_ip': 'ipmiIp',  # noqa: E501
+        'is_compute_node': 'isComputeNode',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class PhysicalNodeConfigParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_compute_node (bool): Specifies whether to use the node for compute only.. [optional]  # noqa: E501
             ipmi_ip (str): Specifies IPMI IP for the node.. [optional]  # noqa: E501
+            is_compute_node (bool): Specifies whether to use the node for compute only.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

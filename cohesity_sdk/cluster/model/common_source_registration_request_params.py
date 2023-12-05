@@ -112,12 +112,12 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
         lazy_import()
         return {
             'environment': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'is_internal_encrypted': (bool, none_type,),  # noqa: E501
-            'encryption_key': (str, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
+            'encryption_key': (str, none_type,),  # noqa: E501
+            'is_internal_encrypted': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -128,12 +128,12 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'is_internal_encrypted': 'isInternalEncrypted',  # noqa: E501
-        'encryption_key': 'encryptionKey',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
+        'encryption_key': 'encryptionKey',  # noqa: E501
+        'is_internal_encrypted': 'isInternalEncrypted',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -186,12 +186,12 @@ class CommonSourceRegistrationRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): A user specified name for this source.. [optional]  # noqa: E501
-            is_internal_encrypted (bool, none_type): Specifies if credentials are encrypted by internal key.. [optional]  # noqa: E501
-            encryption_key (str, none_type): Specifies the key that user has encrypted the credential with.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
+            encryption_key (str, none_type): Specifies the key that user has encrypted the credential with.. [optional]  # noqa: E501
+            is_internal_encrypted (bool, none_type): Specifies if credentials are encrypted by internal key.. [optional]  # noqa: E501
+            name (str, none_type): A user specified name for this source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

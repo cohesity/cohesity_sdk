@@ -74,9 +74,9 @@ class ConnectorGroup(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'connectors': ([int],),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'connectors': ([int],),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ConnectorGroup(ModelNormal):
 
 
     attribute_map = {
+        'connectors': 'connectors',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'connectors': 'connectors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class ConnectorGroup(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            connectors ([int]): Specifies the ids of the connectors in the group.. [optional]  # noqa: E501
             id (int, none_type): Specifies the id of the group.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the group.. [optional]  # noqa: E501
-            connectors ([int]): Specifies the ids of the connectors in the group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

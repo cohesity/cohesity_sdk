@@ -75,8 +75,8 @@ class RecoverAcropolisVmNewSourceConfig(ModelNormal):
         """
         return {
             'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'storage_container': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'storage_container': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class RecoverAcropolisVmNewSourceConfig(ModelNormal):
 
     attribute_map = {
         'source': 'source',  # noqa: E501
-        'storage_container': 'storageContainer',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
+        'storage_container': 'storageContainer',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class RecoverAcropolisVmNewSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            storage_container ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): A storage container where the VM's files should be restored to.. [optional]  # noqa: E501
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.. [optional]  # noqa: E501
+            storage_container ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): A storage container where the VM's files should be restored to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

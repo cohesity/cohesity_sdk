@@ -74,21 +74,21 @@ class AuditLog(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'action': (str, none_type,),  # noqa: E501
             'details': (str, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
             'entity_name': (str, none_type,),  # noqa: E501
             'entity_type': (str, none_type,),  # noqa: E501
-            'action': (str, none_type,),  # noqa: E501
-            'timestamp_usecs': (int, none_type,),  # noqa: E501
             'ip': (str, none_type,),  # noqa: E501
             'is_impersonation': (bool, none_type,),  # noqa: E501
-            'tenant_id': (str, none_type,),  # noqa: E501
-            'tenant_name': (str, none_type,),  # noqa: E501
+            'new_record': (str, none_type,),  # noqa: E501
             'original_tenant_id': (str, none_type,),  # noqa: E501
             'original_tenant_name': (str, none_type,),  # noqa: E501
             'previous_record': (str, none_type,),  # noqa: E501
-            'new_record': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
+            'tenant_name': (str, none_type,),  # noqa: E501
+            'timestamp_usecs': (int, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,21 +98,21 @@ class AuditLog(ModelNormal):
 
 
     attribute_map = {
+        'action': 'action',  # noqa: E501
         'details': 'details',  # noqa: E501
-        'username': 'username',  # noqa: E501
         'domain': 'domain',  # noqa: E501
         'entity_name': 'entityName',  # noqa: E501
         'entity_type': 'entityType',  # noqa: E501
-        'action': 'action',  # noqa: E501
-        'timestamp_usecs': 'timestampUsecs',  # noqa: E501
         'ip': 'ip',  # noqa: E501
         'is_impersonation': 'isImpersonation',  # noqa: E501
-        'tenant_id': 'tenantId',  # noqa: E501
-        'tenant_name': 'tenantName',  # noqa: E501
+        'new_record': 'newRecord',  # noqa: E501
         'original_tenant_id': 'originalTenantId',  # noqa: E501
         'original_tenant_name': 'originalTenantName',  # noqa: E501
         'previous_record': 'previousRecord',  # noqa: E501
-        'new_record': 'newRecord',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
+        'tenant_name': 'tenantName',  # noqa: E501
+        'timestamp_usecs': 'timestampUsecs',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -162,21 +162,21 @@ class AuditLog(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            action (str, none_type): Specifies the action type of this audit log.. [optional]  # noqa: E501
             details (str, none_type): Specifies the change details of this audit log.. [optional]  # noqa: E501
-            username (str, none_type): Specifies the username who made this audit log.. [optional]  # noqa: E501
             domain (str, none_type): Specifies the domain of user who made this audit log.. [optional]  # noqa: E501
             entity_name (str, none_type): Specifies the entity name.. [optional]  # noqa: E501
             entity_type (str, none_type): Specifies the entity type.. [optional]  # noqa: E501
-            action (str, none_type): Specifies the action type of this audit log.. [optional]  # noqa: E501
-            timestamp_usecs (int, none_type): Specifies a unix timestamp in micro seconds when the audit log was taken.. [optional]  # noqa: E501
             ip (str, none_type): Specifies the ip of user who made this audit log.. [optional]  # noqa: E501
             is_impersonation (bool, none_type): Specifies if the action is made through impersonation.. [optional]  # noqa: E501
-            tenant_id (str, none_type): Specifies the tenant id who made this audit log.. [optional]  # noqa: E501
-            tenant_name (str, none_type): Specifies the tenant name who made this audit log.. [optional]  # noqa: E501
+            new_record (str, none_type): Specifies the record after the action is invoked. This will be returned only if verbose audit is enabled. . [optional]  # noqa: E501
             original_tenant_id (str, none_type): Specifies the original tenant id who made this audit log.. [optional]  # noqa: E501
             original_tenant_name (str, none_type): Specifies the original tenant name who made this audit log.. [optional]  # noqa: E501
             previous_record (str, none_type): Specifies the record before the action is invoked. This will be returned only if verbose audit is enabled. . [optional]  # noqa: E501
-            new_record (str, none_type): Specifies the record after the action is invoked. This will be returned only if verbose audit is enabled. . [optional]  # noqa: E501
+            tenant_id (str, none_type): Specifies the tenant id who made this audit log.. [optional]  # noqa: E501
+            tenant_name (str, none_type): Specifies the tenant name who made this audit log.. [optional]  # noqa: E501
+            timestamp_usecs (int, none_type): Specifies a unix timestamp in micro seconds when the audit log was taken.. [optional]  # noqa: E501
+            username (str, none_type): Specifies the username who made this audit log.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

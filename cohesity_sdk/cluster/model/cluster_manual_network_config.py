@@ -74,10 +74,10 @@ class ClusterManualNetworkConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'dns_servers': ([str], none_type,),  # noqa: E501
             'gateway': (str, none_type,),  # noqa: E501
             'subnet_ip': (str, none_type,),  # noqa: E501
             'subnet_mask': (str, none_type,),  # noqa: E501
-            'dns_servers': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class ClusterManualNetworkConfig(ModelNormal):
 
 
     attribute_map = {
+        'dns_servers': 'dnsServers',  # noqa: E501
         'gateway': 'gateway',  # noqa: E501
         'subnet_ip': 'subnetIp',  # noqa: E501
         'subnet_mask': 'subnetMask',  # noqa: E501
-        'dns_servers': 'dnsServers',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,14 +105,14 @@ class ClusterManualNetworkConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, gateway, subnet_ip, subnet_mask, dns_servers, *args, **kwargs):  # noqa: E501
+    def __init__(self, dns_servers, gateway, subnet_ip, subnet_mask, *args, **kwargs):  # noqa: E501
         """ClusterManualNetworkConfig - a model defined in OpenAPI
 
         Args:
+            dns_servers ([str], none_type): Specifies the list of Dns Servers new cluster should be configured with.
             gateway (str, none_type): Specifies the gateway of the new cluster network.
             subnet_ip (str, none_type): Specifies the ip subnet ip of the cluster network.
             subnet_mask (str, none_type): Specifies the ip subnet mask of the cluster network.
-            dns_servers ([str], none_type): Specifies the list of Dns Servers new cluster should be configured with.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,10 +172,10 @@ class ClusterManualNetworkConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.dns_servers = dns_servers
         self.gateway = gateway
         self.subnet_ip = subnet_ip
         self.subnet_mask = subnet_mask
-        self.dns_servers = dns_servers
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

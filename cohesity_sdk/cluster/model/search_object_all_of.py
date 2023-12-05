@@ -79,8 +79,8 @@ class SearchObjectAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'object_protection_infos': ([ObjectProtectionInfo], none_type,),  # noqa: E501
+            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class SearchObjectAllOf(ModelNormal):
 
 
     attribute_map = {
-        'source_info': 'sourceInfo',  # noqa: E501
         'object_protection_infos': 'objectProtectionInfos',  # noqa: E501
+        'source_info': 'sourceInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class SearchObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
             object_protection_infos ([ObjectProtectionInfo], none_type): Specifies the object info on each cluster.. [optional]  # noqa: E501
+            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -86,9 +86,9 @@ class CreateMcmClaimResponseBody(ModelNormal):
         """
         lazy_import()
         return {
+            'cluster_params': (McmClusterClaimResponseParams,),  # noqa: E501
             'entity_type': (str, none_type,),  # noqa: E501
             'rigel_params': (McmRigelClaimResponseParams,),  # noqa: E501
-            'cluster_params': (McmClusterClaimResponseParams,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +98,9 @@ class CreateMcmClaimResponseBody(ModelNormal):
 
 
     attribute_map = {
+        'cluster_params': 'clusterParams',  # noqa: E501
         'entity_type': 'entityType',  # noqa: E501
         'rigel_params': 'rigelParams',  # noqa: E501
-        'cluster_params': 'clusterParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,9 +150,9 @@ class CreateMcmClaimResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cluster_params (McmClusterClaimResponseParams): [optional]  # noqa: E501
             entity_type (str, none_type): Specfies the type of entity.. [optional]  # noqa: E501
             rigel_params (McmRigelClaimResponseParams): [optional]  # noqa: E501
-            cluster_params (McmClusterClaimResponseParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

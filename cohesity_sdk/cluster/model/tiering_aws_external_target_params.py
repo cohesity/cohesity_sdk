@@ -94,8 +94,8 @@ class TieringAwsExternalTargetParams(ModelComposed):
             'bucket_name': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
-            'aws_s3_standard_params': (AwsS3StandardParams,),  # noqa: E501
             'aws_s3_intelligent_params': (AwsS3IntelligentParams,),  # noqa: E501
+            'aws_s3_standard_params': (AwsS3StandardParams,),  # noqa: E501
         }
 
     @cached_property
@@ -108,8 +108,8 @@ class TieringAwsExternalTargetParams(ModelComposed):
         'bucket_name': 'bucketName',  # noqa: E501
         'region': 'region',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
-        'aws_s3_standard_params': 'awsS3StandardParams',  # noqa: E501
         'aws_s3_intelligent_params': 'awsS3IntelligentParams',  # noqa: E501
+        'aws_s3_standard_params': 'awsS3StandardParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -165,8 +165,8 @@ class TieringAwsExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            aws_s3_standard_params (AwsS3StandardParams): [optional]  # noqa: E501
             aws_s3_intelligent_params (AwsS3IntelligentParams): [optional]  # noqa: E501
+            aws_s3_standard_params (AwsS3StandardParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

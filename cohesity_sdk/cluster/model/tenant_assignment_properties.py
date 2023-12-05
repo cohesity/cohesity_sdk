@@ -87,11 +87,11 @@ class TenantAssignmentProperties(ModelNormal):
         """
         lazy_import()
         return {
-            'storage_domains': (StorageDomains,),  # noqa: E501
             'objects': (TenantAssignmentTypeIntegerId,),  # noqa: E501
-            'vlans': (TenantAssignmentTypeStringId,),  # noqa: E501
-            'views': (GetViewsResult,),  # noqa: E501
             'policies': (ProtectionPolicyResponseWithPagination,),  # noqa: E501
+            'storage_domains': (StorageDomains,),  # noqa: E501
+            'views': (GetViewsResult,),  # noqa: E501
+            'vlans': (TenantAssignmentTypeStringId,),  # noqa: E501
         }
 
     @cached_property
@@ -101,11 +101,11 @@ class TenantAssignmentProperties(ModelNormal):
 
 
     attribute_map = {
-        'storage_domains': 'storageDomains',  # noqa: E501
         'objects': 'objects',  # noqa: E501
-        'vlans': 'vlans',  # noqa: E501
-        'views': 'views',  # noqa: E501
         'policies': 'policies',  # noqa: E501
+        'storage_domains': 'storageDomains',  # noqa: E501
+        'views': 'views',  # noqa: E501
+        'vlans': 'vlans',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,11 +155,11 @@ class TenantAssignmentProperties(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            storage_domains (StorageDomains): [optional]  # noqa: E501
             objects (TenantAssignmentTypeIntegerId): [optional]  # noqa: E501
-            vlans (TenantAssignmentTypeStringId): [optional]  # noqa: E501
-            views (GetViewsResult): [optional]  # noqa: E501
             policies (ProtectionPolicyResponseWithPagination): [optional]  # noqa: E501
+            storage_domains (StorageDomains): [optional]  # noqa: E501
+            views (GetViewsResult): [optional]  # noqa: E501
+            vlans (TenantAssignmentTypeStringId): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

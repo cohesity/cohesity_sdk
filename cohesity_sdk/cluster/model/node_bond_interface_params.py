@@ -95,8 +95,8 @@ class NodeBondInterfaceParams(ModelComposed):
         return {
             'members': ([str],),  # noqa: E501
             'node_type': (str,),  # noqa: E501
-            'name': (str,),  # noqa: E501
             'bonding_mode': (str,),  # noqa: E501
+            'name': (str,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
         }
 
@@ -109,8 +109,8 @@ class NodeBondInterfaceParams(ModelComposed):
     attribute_map = {
         'members': 'members',  # noqa: E501
         'node_type': 'nodeType',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'bonding_mode': 'bondingMode',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
     }
 
@@ -127,14 +127,14 @@ class NodeBondInterfaceParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, members, node_type, name, bonding_mode, *args, **kwargs):  # noqa: E501
+    def __init__(self, members, node_type, bonding_mode, name, *args, **kwargs):  # noqa: E501
         """NodeBondInterfaceParams - a model defined in OpenAPI
 
         Args:
             members ([str]): Names of the secondary interfaces.
             node_type (str): Type of the node where the interface has to be created. 'ClusterNode' indicates a node that is part of a cluster. 'FreeNode' indicates a node that is not part of cluster.
-            name (str): Name of the bond interface.
             bonding_mode (str): Bonding mode of the interface.
+            name (str): Name of the bond interface.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -205,8 +205,8 @@ class NodeBondInterfaceParams(ModelComposed):
         required_args = {
             'members': members,
             'node_type': node_type,
-            'name': name,
             'bonding_mode': bonding_mode,
+            'name': name,
         }
         model_args = {}
         model_args.update(required_args)

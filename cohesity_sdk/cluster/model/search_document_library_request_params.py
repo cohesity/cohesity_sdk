@@ -90,16 +90,16 @@ class SearchDocumentLibraryRequestParams(ModelNormal):
         """
         lazy_import()
         return {
-            'search_string': (str, none_type,),  # noqa: E501
-            'include_folders': (bool, none_type,),  # noqa: E501
-            'include_files': (bool, none_type,),  # noqa: E501
             'category_types': ([str], none_type,),  # noqa: E501
-            'creation_start_time_secs': (int, none_type,),  # noqa: E501
             'creation_end_time_secs': (int, none_type,),  # noqa: E501
+            'creation_start_time_secs': (int, none_type,),  # noqa: E501
+            'include_files': (bool, none_type,),  # noqa: E501
+            'include_folders': (bool, none_type,),  # noqa: E501
+            'o365_params': (O365SearchRequestParams,),  # noqa: E501
+            'owner_names': ([str], none_type,),  # noqa: E501
+            'search_string': (str, none_type,),  # noqa: E501
             'size_bytes_lower_limit': (int, none_type,),  # noqa: E501
             'size_bytes_upper_limit': (int, none_type,),  # noqa: E501
-            'owner_names': ([str], none_type,),  # noqa: E501
-            'o365_params': (O365SearchRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -109,16 +109,16 @@ class SearchDocumentLibraryRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'search_string': 'searchString',  # noqa: E501
-        'include_folders': 'includeFolders',  # noqa: E501
-        'include_files': 'includeFiles',  # noqa: E501
         'category_types': 'categoryTypes',  # noqa: E501
-        'creation_start_time_secs': 'creationStartTimeSecs',  # noqa: E501
         'creation_end_time_secs': 'creationEndTimeSecs',  # noqa: E501
+        'creation_start_time_secs': 'creationStartTimeSecs',  # noqa: E501
+        'include_files': 'includeFiles',  # noqa: E501
+        'include_folders': 'includeFolders',  # noqa: E501
+        'o365_params': 'o365Params',  # noqa: E501
+        'owner_names': 'ownerNames',  # noqa: E501
+        'search_string': 'searchString',  # noqa: E501
         'size_bytes_lower_limit': 'sizeBytesLowerLimit',  # noqa: E501
         'size_bytes_upper_limit': 'sizeBytesUpperLimit',  # noqa: E501
-        'owner_names': 'ownerNames',  # noqa: E501
-        'o365_params': 'o365Params',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,16 +168,16 @@ class SearchDocumentLibraryRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            search_string (str, none_type): Specifies the search string to filter the files/folders. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string.. [optional]  # noqa: E501
-            include_folders (bool, none_type): Specifies whether to include folders in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
-            include_files (bool, none_type): Specifies whether to include files in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
             category_types ([str], none_type): Specifies a list of document library types. Only items within the given types will be returned.. [optional]  # noqa: E501
-            creation_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds when the file/folder is created.. [optional]  # noqa: E501
             creation_end_time_secs (int, none_type): Specifies the end time in Unix timestamp epoch in seconds when the file/folder is created.. [optional]  # noqa: E501
+            creation_start_time_secs (int, none_type): Specifies the start time in Unix timestamp epoch in seconds when the file/folder is created.. [optional]  # noqa: E501
+            include_files (bool, none_type): Specifies whether to include files in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            include_folders (bool, none_type): Specifies whether to include folders in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            o365_params (O365SearchRequestParams): [optional]  # noqa: E501
+            owner_names ([str], none_type): Specifies the list of owner names to filter on owner of the file/folder.. [optional]  # noqa: E501
+            search_string (str, none_type): Specifies the search string to filter the files/folders. User can specify a wildcard character '*' as a suffix to a string where all item names are matched with the prefix string.. [optional]  # noqa: E501
             size_bytes_lower_limit (int, none_type): Specifies the minimum size of the file in bytes.. [optional]  # noqa: E501
             size_bytes_upper_limit (int, none_type): Specifies the maximum size of the file in bytes.. [optional]  # noqa: E501
-            owner_names ([str], none_type): Specifies the list of owner names to filter on owner of the file/folder.. [optional]  # noqa: E501
-            o365_params (O365SearchRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

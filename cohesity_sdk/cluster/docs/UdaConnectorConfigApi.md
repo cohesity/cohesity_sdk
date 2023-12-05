@@ -20,7 +20,6 @@ Stores the new config in gandalf via iris proxy.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -36,25 +35,24 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = UdaConnectorConfigParams(
         index_config="index_config_example",
+        os_specific_config=[
+            UdaOSSpecificConfigParams(
+                index_config="index_config_example",
+                os_type="os_type_example",
+                protection_config="protection_config_example",
+                recovery_config="recovery_config_example",
+                registration_config="registration_config_example",
+            ),
+        ],
+        replace=True,
         ui_translation_config=[
             UdaLocaleSpecificTranslations(
                 locale_name="locale_name_example",
                 translations="translations_example",
             ),
         ],
-        os_specific_config=[
-            UdaOSSpecificConfigParams(
-                os_type="os_type_example",
-                index_config="index_config_example",
-                registration_config="registration_config_example",
-                protection_config="protection_config_example",
-                recovery_config="recovery_config_example",
-            ),
-        ],
-        replace=True,
     ) # UdaConnectorConfigParams | Specifies the parameters to create a new UDA config.
 
 # example passing only required values which don't have defaults set
@@ -78,7 +76,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -103,7 +101,6 @@ Delete the config in gandalf via iris proxy.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -117,7 +114,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the UDA 
 
@@ -142,7 +138,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -167,7 +163,6 @@ Get the workflow Parameters for all the sources.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.uda_config_params import UdaConfigParams
@@ -182,7 +177,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -204,7 +198,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -229,7 +223,6 @@ Get the Parameters of a source based on id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.uda_config_params import UdaConfigParams
@@ -244,7 +237,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the Uda Source.
 
@@ -270,7 +262,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -295,7 +287,6 @@ Get the UDA config from gandalf via iris proxy.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.uda_configs_list import UdaConfigsList
@@ -310,7 +301,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the id of the UDA config. (optional)
 filter_index_config = True # bool | If true, returns index config only as response. (optional)
@@ -339,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -364,7 +354,6 @@ Updates the config in gandalf via iris proxy.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -380,25 +369,24 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = UdaConnectorConfigParams(
         index_config="index_config_example",
+        os_specific_config=[
+            UdaOSSpecificConfigParams(
+                index_config="index_config_example",
+                os_type="os_type_example",
+                protection_config="protection_config_example",
+                recovery_config="recovery_config_example",
+                registration_config="registration_config_example",
+            ),
+        ],
+        replace=True,
         ui_translation_config=[
             UdaLocaleSpecificTranslations(
                 locale_name="locale_name_example",
                 translations="translations_example",
             ),
         ],
-        os_specific_config=[
-            UdaOSSpecificConfigParams(
-                os_type="os_type_example",
-                index_config="index_config_example",
-                registration_config="registration_config_example",
-                protection_config="protection_config_example",
-                recovery_config="recovery_config_example",
-            ),
-        ],
-        replace=True,
     ) # UdaConnectorConfigParams | Specifies the parameters to update the UDA config.
 
 # example passing only required values which don't have defaults set
@@ -422,7 +410,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

@@ -74,8 +74,8 @@ class RecoverVmwareChildSnapshotParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'instant_recovery_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'datastore_migration_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'instant_recovery_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class RecoverVmwareChildSnapshotParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'instant_recovery_info': 'instantRecoveryInfo',  # noqa: E501
         'datastore_migration_info': 'datastoreMigrationInfo',  # noqa: E501
+        'instant_recovery_info': 'instantRecoveryInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class RecoverVmwareChildSnapshotParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            instant_recovery_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about instant recovery. This is only applicable for RecoverVm.. [optional]  # noqa: E501
             datastore_migration_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about datastore migration. This is only applicable for RecoverVm.. [optional]  # noqa: E501
+            instant_recovery_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about instant recovery. This is only applicable for RecoverVm.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -79,10 +79,10 @@ class FormPanelParams(ModelNormal):
         """
         lazy_import()
         return {
+            'fields': ([FormFieldParams],),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'optional': (bool, none_type,),  # noqa: E501
             'title': (str, none_type,),  # noqa: E501
-            'fields': ([FormFieldParams],),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class FormPanelParams(ModelNormal):
 
 
     attribute_map = {
+        'fields': 'fields',  # noqa: E501
         'id': 'id',  # noqa: E501
         'optional': 'optional',  # noqa: E501
         'title': 'title',  # noqa: E501
-        'fields': 'fields',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,10 +145,10 @@ class FormPanelParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            fields ([FormFieldParams]): Array of fields. [optional]  # noqa: E501
             id (str, none_type): Id to identify the panel. This is also be used for assigning component html ids which can be leveraged for writing automation against the panel.. [optional]  # noqa: E501
             optional (bool, none_type): Specifies whether the panel is optional and kept behind a toggle slider/collapsed state. [optional]  # noqa: E501
             title (str, none_type): Title for the panel to be shown on UI screen. [optional]  # noqa: E501
-            fields ([FormFieldParams]): Array of fields. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

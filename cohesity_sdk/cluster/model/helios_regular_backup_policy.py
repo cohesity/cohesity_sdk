@@ -29,11 +29,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.helios_full_backup_policy import HeliosFullBackupPolicy
     from cohesity_sdk.cluster.model.helios_incremental_backup_policy import HeliosIncrementalBackupPolicy
-    from cohesity_sdk.cluster.model.helios_primary_backup_target import HeliosPrimaryBackupTarget
     from cohesity_sdk.cluster.model.helios_retention import HeliosRetention
     globals()['HeliosFullBackupPolicy'] = HeliosFullBackupPolicy
     globals()['HeliosIncrementalBackupPolicy'] = HeliosIncrementalBackupPolicy
-    globals()['HeliosPrimaryBackupTarget'] = HeliosPrimaryBackupTarget
     globals()['HeliosRetention'] = HeliosRetention
 
 
@@ -85,10 +83,9 @@ class HeliosRegularBackupPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'incremental': (HeliosIncrementalBackupPolicy,),  # noqa: E501
             'full': (HeliosFullBackupPolicy,),  # noqa: E501
+            'incremental': (HeliosIncrementalBackupPolicy,),  # noqa: E501
             'retention': (HeliosRetention,),  # noqa: E501
-            'primary_backup_target': (HeliosPrimaryBackupTarget,),  # noqa: E501
         }
 
     @cached_property
@@ -98,10 +95,9 @@ class HeliosRegularBackupPolicy(ModelNormal):
 
 
     attribute_map = {
-        'incremental': 'incremental',  # noqa: E501
         'full': 'full',  # noqa: E501
+        'incremental': 'incremental',  # noqa: E501
         'retention': 'retention',  # noqa: E501
-        'primary_backup_target': 'primaryBackupTarget',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,10 +147,9 @@ class HeliosRegularBackupPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            incremental (HeliosIncrementalBackupPolicy): [optional]  # noqa: E501
             full (HeliosFullBackupPolicy): [optional]  # noqa: E501
+            incremental (HeliosIncrementalBackupPolicy): [optional]  # noqa: E501
             retention (HeliosRetention): [optional]  # noqa: E501
-            primary_backup_target (HeliosPrimaryBackupTarget): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

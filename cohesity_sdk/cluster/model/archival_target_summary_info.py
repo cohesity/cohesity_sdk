@@ -58,6 +58,11 @@ class ArchivalTargetSummaryInfo(ModelNormal):
     """
 
     allowed_values = {
+        ('ownership_context',): {
+            'None': None,
+            'LOCAL': "Local",
+            'FORTKNOX': "FortKnox",
+        },
         ('target_type',): {
             'None': None,
             'TAPE': "Tape",
@@ -69,11 +74,6 @@ class ArchivalTargetSummaryInfo(ModelNormal):
             'ARCHIVAL': "Archival",
             'TIERING': "Tiering",
             'RPAAS': "Rpaas",
-        },
-        ('ownership_context',): {
-            'None': None,
-            'LOCAL': "Local",
-            'FORTKNOX': "FortKnox",
         },
     }
 
@@ -96,13 +96,13 @@ class ArchivalTargetSummaryInfo(ModelNormal):
         """
         lazy_import()
         return {
-            'target_id': (int, none_type,),  # noqa: E501
             'archival_task_id': (str, none_type,),  # noqa: E501
+            'ownership_context': (str, none_type,),  # noqa: E501
+            'target_id': (int, none_type,),  # noqa: E501
             'target_name': (str, none_type,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
-            'usage_type': (str, none_type,),  # noqa: E501
-            'ownership_context': (str, none_type,),  # noqa: E501
             'tier_settings': (ArchivalTargetTierInfo,),  # noqa: E501
+            'usage_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -112,13 +112,13 @@ class ArchivalTargetSummaryInfo(ModelNormal):
 
 
     attribute_map = {
-        'target_id': 'targetId',  # noqa: E501
         'archival_task_id': 'archivalTaskId',  # noqa: E501
+        'ownership_context': 'ownershipContext',  # noqa: E501
+        'target_id': 'targetId',  # noqa: E501
         'target_name': 'targetName',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
-        'usage_type': 'usageType',  # noqa: E501
-        'ownership_context': 'ownershipContext',  # noqa: E501
         'tier_settings': 'tierSettings',  # noqa: E501
+        'usage_type': 'usageType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,13 +168,13 @@ class ArchivalTargetSummaryInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_id (int, none_type): Specifies the archival target ID.. [optional]  # noqa: E501
             archival_task_id (str, none_type): Specifies the archival task id. This is a protection group UID which only applies when archival type is 'Tape'.. [optional]  # noqa: E501
+            ownership_context (str, none_type): Specifies the ownership context for the target.. [optional]  # noqa: E501
+            target_id (int, none_type): Specifies the archival target ID.. [optional]  # noqa: E501
             target_name (str, none_type): Specifies the archival target name.. [optional]  # noqa: E501
             target_type (str, none_type): Specifies the archival target type.. [optional]  # noqa: E501
-            usage_type (str, none_type): Specifies the usage type for the target.. [optional]  # noqa: E501
-            ownership_context (str, none_type): Specifies the ownership context for the target.. [optional]  # noqa: E501
             tier_settings (ArchivalTargetTierInfo): [optional]  # noqa: E501
+            usage_type (str, none_type): Specifies the usage type for the target.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

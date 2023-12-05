@@ -78,8 +78,8 @@ class CouchbaseIndexedObjectAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,8 +89,8 @@ class CouchbaseIndexedObjectAllOf(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,8 +140,8 @@ class CouchbaseIndexedObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the Couchbase Object Type. For Couchbase this is alywas set to Bucket.. [optional] if omitted the server will use the default value of "CouchbaseBuckets"  # noqa: E501
             id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the Couchbase Object Type. For Couchbase this is alywas set to Bucket.. [optional] if omitted the server will use the default value of "CouchbaseBuckets"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

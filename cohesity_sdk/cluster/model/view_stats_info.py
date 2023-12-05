@@ -79,10 +79,10 @@ class ViewStatsInfo(ModelNormal):
         """
         lazy_import()
         return {
-            'view_id': (int, none_type,),  # noqa: E501
-            'view_name': (str, none_type,),  # noqa: E501
             'protocols': ([str], none_type,),  # noqa: E501
             'stats': ([ViewStatsInfoDetails], none_type,),  # noqa: E501
+            'view_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class ViewStatsInfo(ModelNormal):
 
 
     attribute_map = {
-        'view_id': 'viewId',  # noqa: E501
-        'view_name': 'viewName',  # noqa: E501
         'protocols': 'protocols',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,10 +145,10 @@ class ViewStatsInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            view_id (int, none_type): Specifies the view Id.. [optional]  # noqa: E501
-            view_name (str, none_type): Specifies the view name.. [optional]  # noqa: E501
             protocols ([str], none_type): Specifies the protocols of this view.. [optional]  # noqa: E501
             stats ([ViewStatsInfoDetails], none_type): Specifies the list of View stats.. [optional]  # noqa: E501
+            view_id (int, none_type): Specifies the view Id.. [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the view name.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

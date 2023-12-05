@@ -79,11 +79,11 @@ class RigelConnector(ModelNormal):
         """
         lazy_import()
         return {
+            'certificate_version': (int, none_type,),  # noqa: E501
+            'connection_id': (int, none_type,),  # noqa: E501
+            'connection_status': (ConnectorConnectionInfo,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'connection_id': (int, none_type,),  # noqa: E501
-            'certificate_version': (int, none_type,),  # noqa: E501
-            'connection_status': (ConnectorConnectionInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -93,11 +93,11 @@ class RigelConnector(ModelNormal):
 
 
     attribute_map = {
+        'certificate_version': 'certificateVersion',  # noqa: E501
+        'connection_id': 'connectionId',  # noqa: E501
+        'connection_status': 'connectionStatus',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'connection_id': 'connectionId',  # noqa: E501
-        'certificate_version': 'certificateVersion',  # noqa: E501
-        'connection_status': 'connectionStatus',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,11 +147,11 @@ class RigelConnector(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.. [optional]  # noqa: E501
+            connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.. [optional]  # noqa: E501
+            connection_status (ConnectorConnectionInfo): [optional]  # noqa: E501
             id (int, none_type): Specifies the id of the connector.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the connector.. [optional]  # noqa: E501
-            connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.. [optional]  # noqa: E501
-            certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.. [optional]  # noqa: E501
-            connection_status (ConnectorConnectionInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

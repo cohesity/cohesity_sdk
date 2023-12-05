@@ -75,8 +75,8 @@ class ObjectSnapshotIdParams(ModelNormal):
         """
         return {
             'protection_group_id': (str, none_type,),  # noqa: E501
-            'snapshot_job_instance_id': (int, none_type,),  # noqa: E501
             'run_start_time_usecs': (int, none_type,),  # noqa: E501
+            'snapshot_job_instance_id': (int, none_type,),  # noqa: E501
             'source_group_id': (str, none_type,),  # noqa: E501
             'vault_id': (int, none_type,),  # noqa: E501
         }
@@ -89,8 +89,8 @@ class ObjectSnapshotIdParams(ModelNormal):
 
     attribute_map = {
         'protection_group_id': 'protectionGroupId',  # noqa: E501
-        'snapshot_job_instance_id': 'snapshotJobInstanceId',  # noqa: E501
         'run_start_time_usecs': 'runStartTimeUsecs',  # noqa: E501
+        'snapshot_job_instance_id': 'snapshotJobInstanceId',  # noqa: E501
         'source_group_id': 'sourceGroupId',  # noqa: E501
         'vault_id': 'vaultId',  # noqa: E501
     }
@@ -145,8 +145,8 @@ class ObjectSnapshotIdParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            snapshot_job_instance_id (int, none_type): Specifies the instance id of the snapshot.. [optional]  # noqa: E501
             run_start_time_usecs (int, none_type): Specifies the start time of the snapshot in micro seconds.. [optional]  # noqa: E501
+            snapshot_job_instance_id (int, none_type): Specifies the instance id of the snapshot.. [optional]  # noqa: E501
             source_group_id (str, none_type): Specifies the source protection group id.. [optional]  # noqa: E501
             vault_id (int, none_type): Specifies the vault id.. [optional]  # noqa: E501
         """

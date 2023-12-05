@@ -92,10 +92,10 @@ class HeliosRpaasConfig(ModelComposed):
         lazy_import()
         return {
             'target_id': (int, none_type,),  # noqa: E501
-            'schedule': (HeliosTargetSchedule,),  # noqa: E501
-            'retention': (HeliosRetention,),  # noqa: E501
-            'copy_on_run_success': (bool, none_type,),  # noqa: E501
             'config_id': (str, none_type,),  # noqa: E501
+            'copy_on_run_success': (bool, none_type,),  # noqa: E501
+            'retention': (HeliosRetention,),  # noqa: E501
+            'schedule': (HeliosTargetSchedule,),  # noqa: E501
             'target_name': (str, none_type,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
         }
@@ -108,10 +108,10 @@ class HeliosRpaasConfig(ModelComposed):
 
     attribute_map = {
         'target_id': 'targetId',  # noqa: E501
-        'schedule': 'schedule',  # noqa: E501
-        'retention': 'retention',  # noqa: E501
-        'copy_on_run_success': 'copyOnRunSuccess',  # noqa: E501
         'config_id': 'configId',  # noqa: E501
+        'copy_on_run_success': 'copyOnRunSuccess',  # noqa: E501
+        'retention': 'retention',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
         'target_name': 'targetName',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
     }
@@ -167,10 +167,10 @@ class HeliosRpaasConfig(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            schedule (HeliosTargetSchedule): [optional]  # noqa: E501
-            retention (HeliosRetention): [optional]  # noqa: E501
-            copy_on_run_success (bool, none_type): Specifies if Snapshots are copied from the first completely successful Protection Group Run or the first partially successful Protection Group Run occurring at the start of the replication schedule. <br> If true, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule that was completely successful i.e. Snapshots for all the Objects in the Protection Group were successfully captured. <br> If false, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule, even if first Protection Group Run was not completely successful i.e. Snapshots were not captured for all Objects in the Protection Group.. [optional]  # noqa: E501
             config_id (str, none_type): Specifies the unique identifier for the target getting added. This field need to be passed only when helios policies are updated.. [optional]  # noqa: E501
+            copy_on_run_success (bool, none_type): Specifies if Snapshots are copied from the first completely successful Protection Group Run or the first partially successful Protection Group Run occurring at the start of the replication schedule. <br> If true, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule that was completely successful i.e. Snapshots for all the Objects in the Protection Group were successfully captured. <br> If false, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule, even if first Protection Group Run was not completely successful i.e. Snapshots were not captured for all Objects in the Protection Group.. [optional]  # noqa: E501
+            retention (HeliosRetention): [optional]  # noqa: E501
+            schedule (HeliosTargetSchedule): [optional]  # noqa: E501
             target_name (str, none_type): Specifies the RPaaS target name where Snapshots are copied.. [optional]  # noqa: E501
             target_type (str, none_type): Specifies the RPaaS target type where Snapshots are copied.. [optional]  # noqa: E501
         """

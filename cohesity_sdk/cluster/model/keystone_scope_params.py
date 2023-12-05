@@ -80,8 +80,8 @@ class KeystoneScopeParams(ModelNormal):
         """
         return {
             'type': (str, none_type,),  # noqa: E501
-            'project_scope_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'domain_scope_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'project_scope_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class KeystoneScopeParams(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'project_scope_params': 'projectScopeParams',  # noqa: E501
         'domain_scope_params': 'domainScopeParams',  # noqa: E501
+        'project_scope_params': 'projectScopeParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -146,8 +146,8 @@ class KeystoneScopeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            project_scope_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameter for project type scope.. [optional]  # noqa: E501
             domain_scope_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for domain type scope.. [optional]  # noqa: E501
+            project_scope_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameter for project type scope.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

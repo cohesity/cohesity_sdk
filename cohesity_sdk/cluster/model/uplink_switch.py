@@ -74,8 +74,8 @@ class UplinkSwitch(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'port_id': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class UplinkSwitch(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'port_id': 'portId',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class UplinkSwitch(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Name of the system.. [optional]  # noqa: E501
             description (str, none_type): Description of the system.. [optional]  # noqa: E501
+            name (str, none_type): Name of the system.. [optional]  # noqa: E501
             port_id (str, none_type): Port id.. [optional]  # noqa: E501
         """
 

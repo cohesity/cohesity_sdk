@@ -74,11 +74,11 @@ class O365TeamsChannelsSearchRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'channel_email': (str, none_type,),  # noqa: E501
             'channel_id': (str, none_type,),  # noqa: E501
             'channel_name': (str, none_type,),  # noqa: E501
-            'channel_email': (str, none_type,),  # noqa: E501
-            'include_public_channels': (bool, none_type,),  # noqa: E501
             'include_private_channels': (bool, none_type,),  # noqa: E501
+            'include_public_channels': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class O365TeamsChannelsSearchRequestParams(ModelNormal):
 
 
     attribute_map = {
+        'channel_email': 'channelEmail',  # noqa: E501
         'channel_id': 'channelId',  # noqa: E501
         'channel_name': 'channelName',  # noqa: E501
-        'channel_email': 'channelEmail',  # noqa: E501
-        'include_public_channels': 'includePublicChannels',  # noqa: E501
         'include_private_channels': 'includePrivateChannels',  # noqa: E501
+        'include_public_channels': 'includePublicChannels',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class O365TeamsChannelsSearchRequestParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            channel_email (str, none_type): Specifies the email id of the channel.. [optional]  # noqa: E501
             channel_id (str, none_type): Specifies the unique id of the channel.. [optional]  # noqa: E501
             channel_name (str, none_type): Specifies the name of the channel. Only items within the specified channel will be returned.. [optional]  # noqa: E501
-            channel_email (str, none_type): Specifies the email id of the channel.. [optional]  # noqa: E501
-            include_public_channels (bool, none_type): Specifies whether to include public channels in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
             include_private_channels (bool, none_type): Specifies whether to include private channels in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            include_public_channels (bool, none_type): Specifies whether to include public channels in the response. Default is true.. [optional] if omitted the server will use the default value of True  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -80,8 +80,8 @@ class BandwidthThrottling(ModelNormal):
         lazy_import()
         return {
             'rate_limit_bytes_per_sec': (int, none_type,),  # noqa: E501
-            'timezone': (str, none_type,),  # noqa: E501
             'bandwidth_limit_overrides': ([BandwidthThrottlingOverride],),  # noqa: E501
+            'timezone': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class BandwidthThrottling(ModelNormal):
 
     attribute_map = {
         'rate_limit_bytes_per_sec': 'RateLimitBytesPerSec',  # noqa: E501
-        'timezone': 'timezone',  # noqa: E501
         'bandwidth_limit_overrides': 'bandwidthLimitOverrides',  # noqa: E501
+        'timezone': 'timezone',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class BandwidthThrottling(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             rate_limit_bytes_per_sec (int, none_type): Specifies the maximum allowed data transfer rate between the local Cluster and remote Clusters.. [optional]  # noqa: E501
-            timezone (str, none_type): Specifies a time zone for the specified time period.. [optional]  # noqa: E501
             bandwidth_limit_overrides ([BandwidthThrottlingOverride]): Specifies the max rate limit at which we upload the data.. [optional]  # noqa: E501
+            timezone (str, none_type): Specifies a time zone for the specified time period.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

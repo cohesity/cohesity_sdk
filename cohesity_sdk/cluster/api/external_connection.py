@@ -117,7 +117,7 @@ class ExternalConnectionApi(object):
                 'response_type': (BifrostConnection,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-bifrost',
@@ -239,7 +239,7 @@ class ExternalConnectionApi(object):
                 'response_type': (RigelConnection,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel',
@@ -361,7 +361,7 @@ class ExternalConnectionApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-bifrost/{id}',
@@ -483,7 +483,7 @@ class ExternalConnectionApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel/{id}',
@@ -552,7 +552,6 @@ class ExternalConnectionApi(object):
                 ids ([int], none_type): Specifies the id of the connections.. [optional]
                 tenant_id (str, none_type): Specifies the id of the tenant which the connection belongs to.. [optional]
                 names ([str], none_type): Specifies the name of the connections.. [optional]
-                default_connection_only (bool, none_type): Only return the default Bifrost connections (exactly one default connection is internally created for each Bifrost enabled tenant).. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -604,7 +603,7 @@ class ExternalConnectionApi(object):
                 'response_type': (BifrostConnections,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-bifrost',
@@ -617,14 +616,12 @@ class ExternalConnectionApi(object):
                     'ids',
                     'tenant_id',
                     'names',
-                    'default_connection_only',
                 ],
                 'required': [],
                 'nullable': [
                     'ids',
                     'tenant_id',
                     'names',
-                    'default_connection_only',
                 ],
                 'enum': [
                 ],
@@ -643,20 +640,16 @@ class ExternalConnectionApi(object):
                         (str, none_type,),
                     'names':
                         ([str], none_type,),
-                    'default_connection_only':
-                        (bool, none_type,),
                 },
                 'attribute_map': {
                     'ids': 'ids',
                     'tenant_id': 'tenantId',
                     'names': 'names',
-                    'default_connection_only': 'defaultConnectionOnly',
                 },
                 'location_map': {
                     'ids': 'query',
                     'tenant_id': 'query',
                     'names': 'query',
-                    'default_connection_only': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -744,7 +737,7 @@ class ExternalConnectionApi(object):
                 'response_type': (BifrostConnection,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-bifrost/{id}',
@@ -867,7 +860,7 @@ class ExternalConnectionApi(object):
                 'response_type': (GetConnectionBandwidthResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel/{id}/bandwidth',
@@ -992,7 +985,7 @@ class ExternalConnectionApi(object):
                 'response_type': (RigelConnections,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel',
@@ -1126,7 +1119,7 @@ class ExternalConnectionApi(object):
                 'response_type': (RigelConnection,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel/{id}',
@@ -1252,7 +1245,7 @@ class ExternalConnectionApi(object):
                 'response_type': (BifrostConnection,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-bifrost/{id}',
@@ -1385,7 +1378,7 @@ class ExternalConnectionApi(object):
                 'response_type': (GetConnectionBandwidthResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel/{id}/bandwidth',
@@ -1518,7 +1511,7 @@ class ExternalConnectionApi(object):
                 'response_type': (RigelConnection,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/connection-rigel/{id}',

@@ -81,8 +81,8 @@ class TagObject(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': ([TagInfo], none_type,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
+            'tags': ([TagInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class TagObject(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'snapshot_tags': 'snapshotTags',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class TagObject(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501
+            tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

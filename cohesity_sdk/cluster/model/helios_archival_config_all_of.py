@@ -88,10 +88,10 @@ class HeliosArchivalConfigAllOf(ModelNormal):
         lazy_import()
         return {
             'target_id': (int, none_type,),  # noqa: E501
+            'extended_retention': ([HeliosExtendedRetentionPolicy], none_type,),  # noqa: E501
             'target_name': (str, none_type,),  # noqa: E501
             'target_type': (str, none_type,),  # noqa: E501
             'tier_settings': (HeliosTierLevelSettings,),  # noqa: E501
-            'extended_retention': ([HeliosExtendedRetentionPolicy], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,10 +102,10 @@ class HeliosArchivalConfigAllOf(ModelNormal):
 
     attribute_map = {
         'target_id': 'targetId',  # noqa: E501
+        'extended_retention': 'extendedRetention',  # noqa: E501
         'target_name': 'targetName',  # noqa: E501
         'target_type': 'targetType',  # noqa: E501
         'tier_settings': 'tierSettings',  # noqa: E501
-        'extended_retention': 'extendedRetention',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,10 +158,10 @@ class HeliosArchivalConfigAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            extended_retention ([HeliosExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the archived backup. Archived backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
             target_name (str, none_type): Specifies the Archival target name where Snapshots are copied.. [optional]  # noqa: E501
             target_type (str, none_type): Specifies the Archival target type where Snapshots are copied.. [optional]  # noqa: E501
             tier_settings (HeliosTierLevelSettings): [optional]  # noqa: E501
-            extended_retention ([HeliosExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the archived backup. Archived backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

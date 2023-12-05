@@ -54,6 +54,28 @@ class NetworkInterface(ModelNormal):
     """
 
     allowed_values = {
+        ('bonding_mode',): {
+            'None': None,
+            'ACTIVEBACKUP': "ActiveBackup",
+            '802_3AD': "802_3ad",
+            'BALANCEALB': "BalanceAlb",
+            'INVALID': "Invalid",
+        },
+        ('role',): {
+            'None': None,
+            'PRIMARY': "Primary",
+            'SECONDARY': "Secondary",
+            'UNDEFINED': "Undefined",
+        },
+        ('speed',): {
+            'None': None,
+            '1GBIT/S': "1Gbit/s",
+            '10GBIT/S': "10Gbit/s",
+            '25GBIT/S': "25Gbit/s",
+            '40GBIT/S': "40Gbit/s",
+            '100GBIT/S': "100Gbit/s",
+            'UNKNOWN': "Unknown",
+        },
         ('type',): {
             'None': None,
             'PHYSICAL': "Physical",
@@ -66,28 +88,6 @@ class NetworkInterface(ModelNormal):
             'VLANGROUP': "VlanGroup",
             'VLANBRIDGE': "VlanBridge",
             'INVALID': "Invalid",
-        },
-        ('role',): {
-            'None': None,
-            'PRIMARY': "Primary",
-            'SECONDARY': "Secondary",
-            'UNDEFINED': "Undefined",
-        },
-        ('bonding_mode',): {
-            'None': None,
-            'ACTIVEBACKUP': "ActiveBackup",
-            '802_3AD': "802_3ad",
-            'BALANCEALB': "BalanceAlb",
-            'INVALID': "Invalid",
-        },
-        ('speed',): {
-            'None': None,
-            '1GBIT/S': "1Gbit/s",
-            '10GBIT/S': "10Gbit/s",
-            '25GBIT/S': "25Gbit/s",
-            '40GBIT/S': "40Gbit/s",
-            '100GBIT/S': "100Gbit/s",
-            'UNKNOWN': "Unknown",
         },
     }
 
@@ -109,23 +109,23 @@ class NetworkInterface(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'static_ip': (str, none_type,),  # noqa: E501
-            'virtual_ip': (str, none_type,),  # noqa: E501
-            'gateway': (str, none_type,),  # noqa: E501
-            'mtu': (int, none_type,),  # noqa: E501
-            'subnet': (str, none_type,),  # noqa: E501
-            'is_up': (bool, none_type,),  # noqa: E501
-            'group': (str, none_type,),  # noqa: E501
-            'role': (str, none_type,),  # noqa: E501
-            'default_route': (bool, none_type,),  # noqa: E501
             'bond_slave_names': ([str], none_type,),  # noqa: E501
             'bond_slave_slots': ([str], none_type,),  # noqa: E501
             'bonding_mode': (str, none_type,),  # noqa: E501
-            'mac_address': (str, none_type,),  # noqa: E501
+            'default_route': (bool, none_type,),  # noqa: E501
+            'gateway': (str, none_type,),  # noqa: E501
+            'group': (str, none_type,),  # noqa: E501
             'is_connected': (bool, none_type,),  # noqa: E501
+            'is_up': (bool, none_type,),  # noqa: E501
+            'mac_address': (str, none_type,),  # noqa: E501
+            'mtu': (int, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'role': (str, none_type,),  # noqa: E501
             'speed': (str, none_type,),  # noqa: E501
+            'static_ip': (str, none_type,),  # noqa: E501
+            'subnet': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
+            'virtual_ip': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -135,23 +135,23 @@ class NetworkInterface(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'static_ip': 'staticIP',  # noqa: E501
-        'virtual_ip': 'virtualIP',  # noqa: E501
-        'gateway': 'gateway',  # noqa: E501
-        'mtu': 'mtu',  # noqa: E501
-        'subnet': 'subnet',  # noqa: E501
-        'is_up': 'isUp',  # noqa: E501
-        'group': 'group',  # noqa: E501
-        'role': 'role',  # noqa: E501
-        'default_route': 'defaultRoute',  # noqa: E501
         'bond_slave_names': 'bondSlaveNames',  # noqa: E501
         'bond_slave_slots': 'bondSlaveSlots',  # noqa: E501
         'bonding_mode': 'bondingMode',  # noqa: E501
-        'mac_address': 'macAddress',  # noqa: E501
+        'default_route': 'defaultRoute',  # noqa: E501
+        'gateway': 'gateway',  # noqa: E501
+        'group': 'group',  # noqa: E501
         'is_connected': 'isConnected',  # noqa: E501
+        'is_up': 'isUp',  # noqa: E501
+        'mac_address': 'macAddress',  # noqa: E501
+        'mtu': 'mtu',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'role': 'role',  # noqa: E501
         'speed': 'speed',  # noqa: E501
+        'static_ip': 'staticIP',  # noqa: E501
+        'subnet': 'subnet',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'virtual_ip': 'virtualIP',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -201,23 +201,23 @@ class NetworkInterface(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the network interface.. [optional]  # noqa: E501
-            type (str, none_type): Specifies the type of the network interface.. [optional]  # noqa: E501
-            static_ip (str, none_type): Specifies the static IP of the network interface.. [optional]  # noqa: E501
-            virtual_ip (str, none_type): Specifies the virtual IP of the network interface.. [optional]  # noqa: E501
-            gateway (str, none_type): Specifies the gateway of the network interface.. [optional]  # noqa: E501
-            mtu (int, none_type): Specifies the MTU of the network interface.. [optional]  # noqa: E501
-            subnet (str, none_type): Specifies the subnet of the network interface.. [optional]  # noqa: E501
-            is_up (bool, none_type): Specifies whether or not the interface is up.. [optional]  # noqa: E501
-            group (str, none_type): Specifies the group to which this interface belongs.. [optional]  # noqa: E501
-            role (str, none_type): Specifies the interface role.. [optional]  # noqa: E501
-            default_route (bool, none_type): Specifies whether or not this interface is the default route.. [optional]  # noqa: E501
             bond_slave_names ([str], none_type): Specifies the names of the bond slaves for this interface.. [optional]  # noqa: E501
             bond_slave_slots ([str], none_type): Specifies the slots of the bond slaves for this interface.. [optional]  # noqa: E501
             bonding_mode (str, none_type): Specifies the bonding mode of this interface.. [optional]  # noqa: E501
-            mac_address (str, none_type): Specifies the MAC address of this interface.. [optional]  # noqa: E501
+            default_route (bool, none_type): Specifies whether or not this interface is the default route.. [optional]  # noqa: E501
+            gateway (str, none_type): Specifies the gateway of the network interface.. [optional]  # noqa: E501
+            group (str, none_type): Specifies the group to which this interface belongs.. [optional]  # noqa: E501
             is_connected (bool, none_type): Specifies whether or not this interface is connected.. [optional]  # noqa: E501
+            is_up (bool, none_type): Specifies whether or not the interface is up.. [optional]  # noqa: E501
+            mac_address (str, none_type): Specifies the MAC address of this interface.. [optional]  # noqa: E501
+            mtu (int, none_type): Specifies the MTU of the network interface.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the network interface.. [optional]  # noqa: E501
+            role (str, none_type): Specifies the interface role.. [optional]  # noqa: E501
             speed (str, none_type): Specifies the speed of this interface.. [optional]  # noqa: E501
+            static_ip (str, none_type): Specifies the static IP of the network interface.. [optional]  # noqa: E501
+            subnet (str, none_type): Specifies the subnet of the network interface.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the type of the network interface.. [optional]  # noqa: E501
+            virtual_ip (str, none_type): Specifies the virtual IP of the network interface.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

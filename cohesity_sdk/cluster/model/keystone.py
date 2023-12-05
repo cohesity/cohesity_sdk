@@ -83,8 +83,8 @@ class Keystone(ModelComposed):
         return {
             'admin_creds': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'scope': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
             'auth_url': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
         }
 
@@ -97,8 +97,8 @@ class Keystone(ModelComposed):
     attribute_map = {
         'admin_creds': 'adminCreds',  # noqa: E501
         'scope': 'scope',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'auth_url': 'authUrl',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'id': 'id',  # noqa: E501
     }
 
@@ -115,14 +115,14 @@ class Keystone(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, admin_creds, scope, name, auth_url, *args, **kwargs):  # noqa: E501
+    def __init__(self, admin_creds, scope, auth_url, name, *args, **kwargs):  # noqa: E501
         """Keystone - a model defined in OpenAPI
 
         Args:
             admin_creds ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Keystone administrator.
             scope ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Keystone scope.
-            name (str, none_type): Specifies the Keystone configuration name.
             auth_url (str, none_type): Specifies the url points to the Keystone service.
+            name (str, none_type): Specifies the Keystone configuration name.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class Keystone(ModelComposed):
         required_args = {
             'admin_creds': admin_creds,
             'scope': scope,
-            'name': name,
             'auth_url': auth_url,
+            'name': name,
         }
         model_args = {}
         model_args.update(required_args)

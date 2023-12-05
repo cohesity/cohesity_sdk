@@ -74,12 +74,12 @@ class CreateClientcsrResponseBody(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'public_key_server': (str, none_type,),  # noqa: E501
-            'csr_server': (str, none_type,),  # noqa: E501
-            'public_key_client': (str, none_type,),  # noqa: E501
             'csr_client': (str, none_type,),  # noqa: E501
-            'file_csr_server': (str, none_type,),  # noqa: E501
+            'csr_server': (str, none_type,),  # noqa: E501
             'file_csr_client': (str, none_type,),  # noqa: E501
+            'file_csr_server': (str, none_type,),  # noqa: E501
+            'public_key_client': (str, none_type,),  # noqa: E501
+            'public_key_server': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,12 +89,12 @@ class CreateClientcsrResponseBody(ModelNormal):
 
 
     attribute_map = {
-        'public_key_server': 'publicKeyServer',  # noqa: E501
-        'csr_server': 'csrServer',  # noqa: E501
-        'public_key_client': 'publicKeyClient',  # noqa: E501
         'csr_client': 'csrClient',  # noqa: E501
-        'file_csr_server': 'fileCsrServer',  # noqa: E501
+        'csr_server': 'csrServer',  # noqa: E501
         'file_csr_client': 'fileCsrClient',  # noqa: E501
+        'file_csr_server': 'fileCsrServer',  # noqa: E501
+        'public_key_client': 'publicKeyClient',  # noqa: E501
+        'public_key_server': 'publicKeyServer',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,12 +144,12 @@ class CreateClientcsrResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            public_key_server (str, none_type): Specifies the public key generated for this CSR for the server.. [optional]  # noqa: E501
-            csr_server (str, none_type): Specifies the CSR generated for the server.. [optional]  # noqa: E501
-            public_key_client (str, none_type): Specifies the public key generated for this CSR for the client.. [optional]  # noqa: E501
             csr_client (str, none_type): Specifies the CSR generated for the client.. [optional]  # noqa: E501
-            file_csr_server (str, none_type): Specifies the path to CSR generated for the server. [optional]  # noqa: E501
+            csr_server (str, none_type): Specifies the CSR generated for the server.. [optional]  # noqa: E501
             file_csr_client (str, none_type): Specifies the path to CSR generated for the client. [optional]  # noqa: E501
+            file_csr_server (str, none_type): Specifies the path to CSR generated for the server. [optional]  # noqa: E501
+            public_key_client (str, none_type): Specifies the public key generated for this CSR for the client.. [optional]  # noqa: E501
+            public_key_server (str, none_type): Specifies the public key generated for this CSR for the server.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

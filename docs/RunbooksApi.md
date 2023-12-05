@@ -15,7 +15,6 @@ Perform actions like power-off vms, power-off vApp, cloud resource cleanup etc. 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -30,7 +29,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = ExecuteRunbookActionRequest(
         action="PowerOffVM",
@@ -62,7 +60,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

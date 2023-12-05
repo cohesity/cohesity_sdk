@@ -74,8 +74,8 @@ class S3AccountParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            's3_account_id': (str, none_type,),  # noqa: E501
             's3_access_key_id': (str, none_type,),  # noqa: E501
+            's3_account_id': (str, none_type,),  # noqa: E501
             's3_secret_key': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class S3AccountParams(ModelNormal):
 
 
     attribute_map = {
-        's3_account_id': 's3AccountId',  # noqa: E501
         's3_access_key_id': 's3AccessKeyId',  # noqa: E501
+        's3_account_id': 's3AccountId',  # noqa: E501
         's3_secret_key': 's3SecretKey',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class S3AccountParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            s3_account_id (str, none_type): Specifies the S3 Account Canonical User ID.. [optional]  # noqa: E501
             s3_access_key_id (str, none_type): Specifies the S3 Account Access Key ID.. [optional]  # noqa: E501
+            s3_account_id (str, none_type): Specifies the S3 Account Canonical User ID.. [optional]  # noqa: E501
             s3_secret_key (str, none_type): Specifies the S3 Account Secret Key.. [optional]  # noqa: E501
         """
 

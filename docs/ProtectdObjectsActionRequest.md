@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **pause_params** | [**ProtectedObjectPauseActionParams**](ProtectedObjectPauseActionParams.md) |  | [optional] 
 **resume_params** | [**ProtectedObjectResumeActionParams**](ProtectedObjectResumeActionParams.md) |  | [optional] 
 **run_now_params** | [**ProtectedObjectRunNowActionParams**](ProtectedObjectRunNowActionParams.md) |  | [optional] 
-**un_protect_params** | [**ProtectedObjectUnProtectActionParams**](ProtectedObjectUnProtectActionParams.md) |  | [optional] 
 **snapshot_backend_types** | **[str], none_type** | Specifies the protections type on which action to be performed. This is used when an object is protected by multiple protection types. If not specified action will be performed on all protection types. | [optional] 
+**un_protect_params** | [**ProtectedObjectUnProtectActionParams**](ProtectedObjectUnProtectActionParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -82,8 +82,8 @@ class VcdConnectionParams(ModelComposed):
         lazy_import()
         return {
             'host': (str, none_type,),  # noqa: E501
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class VcdConnectionParams(ModelComposed):
 
     attribute_map = {
         'host': 'host',  # noqa: E501
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     required_properties = set([
@@ -111,13 +111,13 @@ class VcdConnectionParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, username, password, *args, **kwargs):  # noqa: E501
+    def __init__(self, host, password, username, *args, **kwargs):  # noqa: E501
         """VcdConnectionParams - a model defined in OpenAPI
 
         Args:
             host (str, none_type): IP or hostname of the source.
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -186,8 +186,8 @@ class VcdConnectionParams(ModelComposed):
         }
         required_args = {
             'host': host,
-            'username': username,
             'password': password,
+            'username': username,
         }
         model_args = {}
         model_args.update(required_args)

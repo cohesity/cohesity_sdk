@@ -80,17 +80,12 @@ class SfdcSourceRegistrationParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'endpoint': (str, none_type,),  # noqa: E501
-            'endpoint_type': (str, none_type,),  # noqa: E501
+            'access_token': (str, none_type,),  # noqa: E501
             'consumer_key': (str, none_type,),  # noqa: E501
             'consumer_secret': (str, none_type,),  # noqa: E501
-            'daily_api_limit': (int, none_type,),  # noqa: E501
-            'concurrent_api_requests_limit': (int, none_type,),  # noqa: E501
-            'auth_token': (str, none_type,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
-            'password': (str, none_type,),  # noqa: E501
-            'soap_endpoint_url': (str, none_type,),  # noqa: E501
-            'metadata_endpoint_url': (str, none_type,),  # noqa: E501
+            'endpoint': (str, none_type,),  # noqa: E501
+            'endpoint_type': (str, none_type,),  # noqa: E501
+            'refresh_token': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,17 +95,12 @@ class SfdcSourceRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'endpoint': 'endpoint',  # noqa: E501
-        'endpoint_type': 'endpointType',  # noqa: E501
+        'access_token': 'accessToken',  # noqa: E501
         'consumer_key': 'consumerKey',  # noqa: E501
         'consumer_secret': 'consumerSecret',  # noqa: E501
-        'daily_api_limit': 'dailyApiLimit',  # noqa: E501
-        'concurrent_api_requests_limit': 'concurrentApiRequestsLimit',  # noqa: E501
-        'auth_token': 'authToken',  # noqa: E501
-        'username': 'username',  # noqa: E501
-        'password': 'password',  # noqa: E501
-        'soap_endpoint_url': 'soapEndpointUrl',  # noqa: E501
-        'metadata_endpoint_url': 'metadataEndpointUrl',  # noqa: E501
+        'endpoint': 'endpoint',  # noqa: E501
+        'endpoint_type': 'endpointType',  # noqa: E501
+        'refresh_token': 'refreshToken',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -125,17 +115,16 @@ class SfdcSourceRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, endpoint, endpoint_type, consumer_key, consumer_secret, daily_api_limit, concurrent_api_requests_limit, auth_token, *args, **kwargs):  # noqa: E501
+    def __init__(self, access_token, consumer_key, consumer_secret, endpoint, endpoint_type, refresh_token, *args, **kwargs):  # noqa: E501
         """SfdcSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            endpoint (str, none_type): Specifies the SFDC endpoint URL.
-            endpoint_type (str, none_type): SFDC Endpoint type.
+            access_token (str, none_type): Specifies the Token that will be used in subsequent api requests.
             consumer_key (str, none_type): Specifies Consumer key from the connected app in SFDC.
             consumer_secret (str, none_type): Specifies Consumer secret from the connected app in SFDC.
-            daily_api_limit (int, none_type): Specifies the maximum number of daily API requests allowed for salesforce.
-            concurrent_api_requests_limit (int, none_type): Specifies the maximum number of concurrent API requests allowed for salesforce.
-            auth_token (str, none_type): Specifies the token that will be used for fetching oAuth tokens from salesforce.
+            endpoint (str, none_type): Specifies the SFDC endpoint URL.
+            endpoint_type (str, none_type): SFDC Endpoint type.
+            refresh_token (str, none_type): Specifies the Token that will be used to refresh the access token.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,10 +158,6 @@ class SfdcSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            username (str, none_type): Specifies the username to access salesforce.. [optional]  # noqa: E501
-            password (str, none_type): Specifies the password to access salesforce.. [optional]  # noqa: E501
-            soap_endpoint_url (str, none_type): Specifies the url to access salesforce soap requests.. [optional]  # noqa: E501
-            metadata_endpoint_url (str, none_type): Specifies the url to access salesforce metadata requests.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -199,13 +184,12 @@ class SfdcSourceRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.endpoint = endpoint
-        self.endpoint_type = endpoint_type
+        self.access_token = access_token
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
-        self.daily_api_limit = daily_api_limit
-        self.concurrent_api_requests_limit = concurrent_api_requests_limit
-        self.auth_token = auth_token
+        self.endpoint = endpoint
+        self.endpoint_type = endpoint_type
+        self.refresh_token = refresh_token
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

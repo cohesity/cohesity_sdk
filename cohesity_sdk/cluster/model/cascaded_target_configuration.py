@@ -79,8 +79,8 @@ class CascadedTargetConfiguration(ModelNormal):
         """
         lazy_import()
         return {
-            'source_cluster_id': (int, none_type,),  # noqa: E501
             'remote_targets': (TargetsConfiguration,),  # noqa: E501
+            'source_cluster_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class CascadedTargetConfiguration(ModelNormal):
 
 
     attribute_map = {
-        'source_cluster_id': 'sourceClusterId',  # noqa: E501
         'remote_targets': 'remoteTargets',  # noqa: E501
+        'source_cluster_id': 'sourceClusterId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -106,12 +106,12 @@ class CascadedTargetConfiguration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_cluster_id, remote_targets, *args, **kwargs):  # noqa: E501
+    def __init__(self, remote_targets, source_cluster_id, *args, **kwargs):  # noqa: E501
         """CascadedTargetConfiguration - a model defined in OpenAPI
 
         Args:
-            source_cluster_id (int, none_type): Specifies the source cluster id from where the remote operations will be performed to the next set of remote targets.
             remote_targets (TargetsConfiguration):
+            source_cluster_id (int, none_type): Specifies the source cluster id from where the remote operations will be performed to the next set of remote targets.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -171,8 +171,8 @@ class CascadedTargetConfiguration(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_cluster_id = source_cluster_id
         self.remote_targets = remote_targets
+        self.source_cluster_id = source_cluster_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -75,7 +75,6 @@ class HeliosClaimRequest(ModelNormal):
         """
         return {
             'registration_token': (str, none_type,),  # noqa: E501
-            'rigel_guid': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,7 +85,6 @@ class HeliosClaimRequest(ModelNormal):
 
     attribute_map = {
         'registration_token': 'registrationToken',  # noqa: E501
-        'rigel_guid': 'rigelGuid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +137,6 @@ class HeliosClaimRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            rigel_guid (int, none_type): Specifies the rigel guid to be used for registration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

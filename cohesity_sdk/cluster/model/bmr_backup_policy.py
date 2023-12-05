@@ -81,8 +81,8 @@ class BmrBackupPolicy(ModelNormal):
         """
         lazy_import()
         return {
-            'schedule': (BmrSchedule,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
+            'schedule': (BmrSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class BmrBackupPolicy(ModelNormal):
 
 
     attribute_map = {
-        'schedule': 'schedule',  # noqa: E501
         'retention': 'retention',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -108,12 +108,12 @@ class BmrBackupPolicy(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, schedule, retention, *args, **kwargs):  # noqa: E501
+    def __init__(self, retention, schedule, *args, **kwargs):  # noqa: E501
         """BmrBackupPolicy - a model defined in OpenAPI
 
         Args:
-            schedule (BmrSchedule):
             retention (Retention):
+            schedule (BmrSchedule):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,8 +173,8 @@ class BmrBackupPolicy(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.schedule = schedule
         self.retention = retention
+        self.schedule = schedule
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

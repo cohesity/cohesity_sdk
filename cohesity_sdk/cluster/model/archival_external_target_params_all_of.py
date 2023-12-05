@@ -91,11 +91,11 @@ class ArchivalExternalTargetParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'aws_params': (ArchivalAwsExternalTargetParams,),  # noqa: E501
             'azure_params': (ArchivalAzureExternalTargetParams,),  # noqa: E501
             'gcp_params': (ArchivalGcpExternalTargetParams,),  # noqa: E501
-            'aws_params': (ArchivalAwsExternalTargetParams,),  # noqa: E501
-            'oracle_params': (ArchivalOracleExternalTargetParams,),  # noqa: E501
             'nas_params': (ArchivalNasExternalTargetParams,),  # noqa: E501
+            'oracle_params': (ArchivalOracleExternalTargetParams,),  # noqa: E501
             'qstar_tape_params': (ArchivalQstarTapeExternalTargetParams,),  # noqa: E501
             's3_comp_params': (ArchivalS3CompExternalTargetParams,),  # noqa: E501
         }
@@ -107,11 +107,11 @@ class ArchivalExternalTargetParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
         'gcp_params': 'gcpParams',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
         'nas_params': 'nasParams',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
         'qstar_tape_params': 'qstarTapeParams',  # noqa: E501
         's3_comp_params': 's3CompParams',  # noqa: E501
     }
@@ -163,11 +163,11 @@ class ArchivalExternalTargetParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            aws_params (ArchivalAwsExternalTargetParams): [optional]  # noqa: E501
             azure_params (ArchivalAzureExternalTargetParams): [optional]  # noqa: E501
             gcp_params (ArchivalGcpExternalTargetParams): [optional]  # noqa: E501
-            aws_params (ArchivalAwsExternalTargetParams): [optional]  # noqa: E501
-            oracle_params (ArchivalOracleExternalTargetParams): [optional]  # noqa: E501
             nas_params (ArchivalNasExternalTargetParams): [optional]  # noqa: E501
+            oracle_params (ArchivalOracleExternalTargetParams): [optional]  # noqa: E501
             qstar_tape_params (ArchivalQstarTapeExternalTargetParams): [optional]  # noqa: E501
             s3_comp_params (ArchivalS3CompExternalTargetParams): [optional]  # noqa: E501
         """

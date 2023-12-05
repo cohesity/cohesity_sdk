@@ -79,9 +79,9 @@ class UpdateObjectSnapshotRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'set_legal_hold': (bool, none_type,),  # noqa: E501
             'data_lock_type': (str, none_type,),  # noqa: E501
             'expiry_time_secs': (int, none_type,),  # noqa: E501
+            'set_legal_hold': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class UpdateObjectSnapshotRequest(ModelNormal):
 
 
     attribute_map = {
-        'set_legal_hold': 'setLegalHold',  # noqa: E501
         'data_lock_type': 'dataLockType',  # noqa: E501
         'expiry_time_secs': 'expiryTimeSecs',  # noqa: E501
+        'set_legal_hold': 'setLegalHold',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class UpdateObjectSnapshotRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            set_legal_hold (bool, none_type): Whether to set the snapshot on legal hold. If set to true, the run cannot be deleted during the retention period.. [optional]  # noqa: E501
             data_lock_type (str, none_type): Specifies the snapshot data lock type.. [optional]  # noqa: E501
             expiry_time_secs (int, none_type): Specifies the expiry time of the snapshot in Unix timestamp epoch in seconds.. [optional]  # noqa: E501
+            set_legal_hold (bool, none_type): Whether to set the snapshot on legal hold. If set to true, the run cannot be deleted during the retention period.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

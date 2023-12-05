@@ -81,9 +81,8 @@ class MssqlObjectEntityParams(ModelNormal):
         """
         lazy_import()
         return {
-            'host_info': (HostInformation,),  # noqa: E501
             'aag_info': (AAGInfo,),  # noqa: E501
-            'is_encrypted': (bool, none_type,),  # noqa: E501
+            'host_info': (HostInformation,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +92,8 @@ class MssqlObjectEntityParams(ModelNormal):
 
 
     attribute_map = {
-        'host_info': 'hostInfo',  # noqa: E501
         'aag_info': 'aagInfo',  # noqa: E501
-        'is_encrypted': 'isEncrypted',  # noqa: E501
+        'host_info': 'hostInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,9 +143,8 @@ class MssqlObjectEntityParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            host_info (HostInformation): [optional]  # noqa: E501
             aag_info (AAGInfo): [optional]  # noqa: E501
-            is_encrypted (bool, none_type): Specifies whether the database is TDE enabled.. [optional]  # noqa: E501
+            host_info (HostInformation): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

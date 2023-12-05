@@ -112,7 +112,7 @@ class StorageDomainApi(object):
                 'response_type': (StorageDomain,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/cad-storage-domains',
@@ -234,7 +234,7 @@ class StorageDomainApi(object):
                 'response_type': (StorageDomain,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/storage-domains',
@@ -356,7 +356,7 @@ class StorageDomainApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/storage-domains/{id}',
@@ -481,7 +481,7 @@ class StorageDomainApi(object):
                 'response_type': (StorageDomain,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/storage-domains/{id}',
@@ -627,7 +627,7 @@ class StorageDomainApi(object):
                 'response_type': (StorageDomains,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/storage-domains',
@@ -799,7 +799,7 @@ class StorageDomainApi(object):
                 'response_type': (StorageDomain,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/storage-domains/{id}',

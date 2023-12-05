@@ -80,8 +80,8 @@ class OracleRestoreRangeInfo(ModelNormal):
         lazy_import()
         return {
             'scn_range_info': ([OracleRangeMetaInfo], none_type,),  # noqa: E501
-            'time_range_info': ([OracleRangeMetaInfo], none_type,),  # noqa: E501
             'sequence_range_info': ([OracleRangeMetaInfo], none_type,),  # noqa: E501
+            'time_range_info': ([OracleRangeMetaInfo], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class OracleRestoreRangeInfo(ModelNormal):
 
     attribute_map = {
         'scn_range_info': 'ScnRangeInfo',  # noqa: E501
-        'time_range_info': 'TimeRangeInfo',  # noqa: E501
         'sequence_range_info': 'SequenceRangeInfo',  # noqa: E501
+        'time_range_info': 'TimeRangeInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -144,8 +144,8 @@ class OracleRestoreRangeInfo(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             scn_range_info ([OracleRangeMetaInfo], none_type): Specifies an array of SCN based oracle restore ranges.. [optional]  # noqa: E501
-            time_range_info ([OracleRangeMetaInfo], none_type): Specifies an array of time based oracle restore ranges.. [optional]  # noqa: E501
             sequence_range_info ([OracleRangeMetaInfo], none_type): Specifies an array of time based oracle restore ranges.. [optional]  # noqa: E501
+            time_range_info ([OracleRangeMetaInfo], none_type): Specifies an array of time based oracle restore ranges.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

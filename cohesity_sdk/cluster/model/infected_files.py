@@ -79,8 +79,8 @@ class InfectedFiles(ModelNormal):
         """
         lazy_import()
         return {
-            'infected_files': ([InfectedFile], none_type,),  # noqa: E501
             'cookie': (str, none_type,),  # noqa: E501
+            'infected_files': ([InfectedFile], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class InfectedFiles(ModelNormal):
 
 
     attribute_map = {
-        'infected_files': 'infectedFiles',  # noqa: E501
         'cookie': 'cookie',  # noqa: E501
+        'infected_files': 'infectedFiles',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class InfectedFiles(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            infected_files ([InfectedFile], none_type): Specifies the list of infected files.. [optional]  # noqa: E501
             cookie (str, none_type): Sepcifies the pagination cookie.. [optional]  # noqa: E501
+            infected_files ([InfectedFile], none_type): Specifies the list of infected files.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

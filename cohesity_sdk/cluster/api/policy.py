@@ -112,7 +112,7 @@ class PolicyApi(object):
                 'response_type': (ProtectionPolicyResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policies',
@@ -234,7 +234,7 @@ class PolicyApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policies/{id}',
@@ -355,7 +355,7 @@ class PolicyApi(object):
                 'response_type': (PolicyTemplateResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policy-templates/{id}',
@@ -475,7 +475,7 @@ class PolicyApi(object):
                 'response_type': (PolicyTemplatesResponseWithPagination,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policy-templates',
@@ -615,7 +615,7 @@ class PolicyApi(object):
                 'response_type': (ProtectionPolicyResponseWithPagination,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policies',
@@ -779,7 +779,7 @@ class PolicyApi(object):
                 'response_type': (ProtectionPolicyResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policies/{id}',
@@ -904,7 +904,7 @@ class PolicyApi(object):
                 'response_type': (ProtectionPolicyResponse,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/policies/{id}',

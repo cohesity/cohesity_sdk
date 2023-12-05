@@ -11,7 +11,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "cohesity-sdk"
-VERSION = "0.0.1"
+VERSION = "1.2.0"
 # To install the library, run the following
 #
 # python setup.py install
@@ -28,8 +28,8 @@ setup(
     name=NAME,
     version=VERSION,
     description="Cohesity REST API",
-    author="Cohesity",
-    author_email="cohesity-api-sdks@cohesity.com",
+    author="OpenAPI Generator community",
+    author_email="team@openapitools.org",
     url="",
     keywords=["OpenAPI", "OpenAPI-Generator", "Cohesity REST API"],
     python_requires=">=3.6",

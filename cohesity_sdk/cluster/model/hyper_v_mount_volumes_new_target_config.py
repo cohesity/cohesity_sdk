@@ -79,8 +79,8 @@ class HyperVMountVolumesNewTargetConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'mount_target': (RecoverTarget,),  # noqa: E501
             'bring_disks_online': (bool, none_type,),  # noqa: E501
+            'mount_target': (RecoverTarget,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -91,8 +91,8 @@ class HyperVMountVolumesNewTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'mount_target': 'mountTarget',  # noqa: E501
         'bring_disks_online': 'bringDisksOnline',  # noqa: E501
+        'mount_target': 'mountTarget',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
     }
 
@@ -108,12 +108,12 @@ class HyperVMountVolumesNewTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, mount_target, bring_disks_online, *args, **kwargs):  # noqa: E501
+    def __init__(self, bring_disks_online, mount_target, *args, **kwargs):  # noqa: E501
         """HyperVMountVolumesNewTargetConfig - a model defined in OpenAPI
 
         Args:
-            mount_target (RecoverTarget):
             bring_disks_online (bool, none_type): Specifies whether the volumes need to be online within the target environment after attaching the disks. For linux VMs, this should always be set to false because bring disks online is only supported for Windows VM. If this is set to true, HyperV Integration Services must be installed on the VM.
+            mount_target (RecoverTarget):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,8 +174,8 @@ class HyperVMountVolumesNewTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.mount_target = mount_target
         self.bring_disks_online = bring_disks_online
+        self.mount_target = mount_target
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

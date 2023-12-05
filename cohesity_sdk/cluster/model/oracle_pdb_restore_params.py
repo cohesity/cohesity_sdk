@@ -83,9 +83,8 @@ class OraclePdbRestoreParams(ModelNormal):
         return {
             'drop_duplicate_pdb': (bool, none_type,),  # noqa: E501
             'pdb_objects': ([OraclePdbObjectInfo], none_type,),  # noqa: E501
-            'restore_to_existing_cdb': (bool, none_type,),  # noqa: E501
             'rename_pdb_map': ([KeyValuePair], none_type,),  # noqa: E501
-            'include_in_restore': (bool, none_type,),  # noqa: E501
+            'restore_to_existing_cdb': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +96,8 @@ class OraclePdbRestoreParams(ModelNormal):
     attribute_map = {
         'drop_duplicate_pdb': 'dropDuplicatePDB',  # noqa: E501
         'pdb_objects': 'pdbObjects',  # noqa: E501
-        'restore_to_existing_cdb': 'restoreToExistingCdb',  # noqa: E501
         'rename_pdb_map': 'renamePdbMap',  # noqa: E501
-        'include_in_restore': 'includeInRestore',  # noqa: E501
+        'restore_to_existing_cdb': 'restoreToExistingCdb',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,9 +149,8 @@ class OraclePdbRestoreParams(ModelNormal):
 
             drop_duplicate_pdb (bool, none_type): Specifies if the PDB should be ignored if a PDB already exists with same name.. [optional]  # noqa: E501
             pdb_objects ([OraclePdbObjectInfo], none_type): Specifies list of PDB objects to restore.. [optional]  # noqa: E501
-            restore_to_existing_cdb (bool, none_type): Specifies if pdbs should be restored to an existing CDB.. [optional]  # noqa: E501
             rename_pdb_map ([KeyValuePair], none_type): Specifies the new PDB name mapping to existing PDBs.. [optional]  # noqa: E501
-            include_in_restore (bool, none_type): Specifies whether to restore or skip the provided PDBs list.. [optional]  # noqa: E501
+            restore_to_existing_cdb (bool, none_type): Specifies if pdbs should be restored to an existing CDB.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

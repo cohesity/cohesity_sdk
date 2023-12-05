@@ -32,7 +32,6 @@ Create two Certificate Signing Request on the cluster with the given details one
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_clientcsr_response_body import CreateClientcsrResponseBody
@@ -48,7 +47,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateCsrRequest() # CreateCsrRequest | Specifies the parameters to create the Certificate Signing Requests.
 
@@ -74,7 +72,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -99,7 +97,6 @@ Create a Certificate Signing Request on the cluster with the given details. Each
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_csr_response_body import CreateCsrResponseBody
@@ -115,7 +112,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateCsrRequest() # CreateCsrRequest | Specifies the parameters to create a Certificate Signing Request.
 
@@ -141,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -166,7 +162,6 @@ Delete a Certificate Signing Request on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -180,7 +175,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the csr to be deleted.
 
@@ -205,7 +199,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -230,7 +224,6 @@ Gets the list of ciphers enabled on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.ciphers_resp import CiphersResp
@@ -245,7 +238,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -267,7 +259,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -292,7 +284,6 @@ List the specified Certificate Signing Request.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -307,7 +298,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the csr.
 
@@ -333,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -358,7 +348,6 @@ List Certificate Signing Requests on the cluster with service name filtering.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_csr_list_response_body import GetCsrListResponseBody
@@ -373,7 +362,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 service_name = "iris" # str | Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned. (optional) if omitted the server will use the default value of "iris"
 ids = [
@@ -404,7 +392,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -429,7 +417,6 @@ Gets the list of object store ciphers enabled on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
@@ -444,7 +431,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -466,7 +452,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -491,7 +477,6 @@ Get cluster security settings.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -506,7 +491,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -528,7 +512,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -553,7 +537,6 @@ Import the signed certificates on the cluster after the Certificate Signing Requ
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
@@ -570,10 +553,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = ImportCertificateByClientcsrRequest(
-        certificate_server="certificate_server_example",
         certificate_client="certificate_client_example",
+        certificate_server="certificate_server_example",
     ) # ImportCertificateByClientcsrRequest | Specifies the parameters to import the certificate.
 
 # example passing only required values which don't have defaults set
@@ -598,7 +580,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -623,7 +605,6 @@ List the specified Certificate.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -638,7 +619,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the certificate.
 
@@ -664,7 +644,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -689,7 +669,6 @@ List all trusted certificates in cluster trust store.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -704,7 +683,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 ids = [
         "ids_example",
@@ -737,7 +715,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -762,7 +740,6 @@ Enable/Disable a list of ciphers on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.ciphers_resp import CiphersResp
@@ -779,12 +756,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = ModifyCiphersRequestBody(
-        enable=True,
         ciphers=[
             "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
         ],
+        enable=True,
     ) # ModifyCiphersRequestBody | Enable/Disable ciphers.
 
 # example passing only required values which don't have defaults set
@@ -809,7 +785,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -834,7 +810,6 @@ Enable/Disable a list of object store ciphers on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
@@ -851,12 +826,11 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = ModifyObjectStoreCiphersRequestBody(
-        enable=True,
         ciphers=[
             "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
         ],
+        enable=True,
     ) # ModifyObjectStoreCiphersRequestBody | Enable/Disable object store ciphers.
 
 # example passing only required values which don't have defaults set
@@ -881,7 +855,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -906,7 +880,6 @@ Register CA Certificate to the cluster trust store.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.register_trusted_cas import RegisterTrustedCas
@@ -923,13 +896,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = RegisterTrustedCas(
         certificates=[
             TrustedCaRequest(
                 certificate="certificate_example",
-                name="name_example",
                 description="description_example",
+                name="name_example",
             ),
         ],
         only_validate=True,
@@ -957,7 +929,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -982,7 +954,6 @@ Unregister CA Certificate from the cluster trust store.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -996,7 +967,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the certificate to be unregistered.
 
@@ -1021,7 +991,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1046,7 +1016,6 @@ Update the signed certificate on the cluster after a Certificate Signing Request
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
@@ -1062,7 +1031,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = UpdateCertificateByCsrRequest(
         certificate="certificate_example",
@@ -1091,7 +1059,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1116,7 +1084,6 @@ Update cluster security settings.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_security_config_request import UpdateSecurityConfigRequest
@@ -1132,7 +1099,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = UpdateSecurityConfigRequest() # UpdateSecurityConfigRequest | Specifies the parameters to update security config.
 
@@ -1158,7 +1124,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -1183,7 +1149,6 @@ Certificate will be checked for Expiration and Revocation.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1198,7 +1163,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the certificate to be validated.
 
@@ -1224,7 +1188,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

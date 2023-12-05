@@ -89,11 +89,11 @@ class AwsAgentProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([AwsAgentProtectionGroupObjectParams],),  # noqa: E501
+            'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,11 +104,11 @@ class AwsAgentProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
+        'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,11 +161,11 @@ class AwsAgentProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots. If not specified or false then snapshots will not be app consistent.. [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots. If not specified or false then snapshots will not be app consistent.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

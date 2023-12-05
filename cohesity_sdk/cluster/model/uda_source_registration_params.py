@@ -93,15 +93,15 @@ class UdaSourceRegistrationParams(ModelNormal):
         """
         lazy_import()
         return {
-            'source_type': (str,),  # noqa: E501
             'hosts': ([str],),  # noqa: E501
             'script_dir': (str,),  # noqa: E501
-            'os_type': (str, none_type,),  # noqa: E501
+            'source_type': (str,),  # noqa: E501
             'credentials': (UdaSourceRegistrationParamsCredentials,),  # noqa: E501
             'mount_view': (bool, none_type,),  # noqa: E501
-            'view_params': (UdaSourceRegistrationParamsViewParams,),  # noqa: E501
+            'os_type': (str, none_type,),  # noqa: E501
             'source_registration_args': (str, none_type,),  # noqa: E501
             'source_registration_arguments': ([KeyValuePair], none_type,),  # noqa: E501
+            'view_params': (UdaSourceRegistrationParamsViewParams,),  # noqa: E501
         }
 
     @cached_property
@@ -111,15 +111,15 @@ class UdaSourceRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'source_type': 'sourceType',  # noqa: E501
         'hosts': 'hosts',  # noqa: E501
         'script_dir': 'scriptDir',  # noqa: E501
-        'os_type': 'osType',  # noqa: E501
+        'source_type': 'sourceType',  # noqa: E501
         'credentials': 'credentials',  # noqa: E501
         'mount_view': 'mountView',  # noqa: E501
-        'view_params': 'viewParams',  # noqa: E501
+        'os_type': 'osType',  # noqa: E501
         'source_registration_args': 'sourceRegistrationArgs',  # noqa: E501
         'source_registration_arguments': 'sourceRegistrationArguments',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,13 +134,13 @@ class UdaSourceRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_type, hosts, script_dir, *args, **kwargs):  # noqa: E501
+    def __init__(self, hosts, script_dir, source_type, *args, **kwargs):  # noqa: E501
         """UdaSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            source_type (str): Specifies the source type for Universal Data Adapter source.
             hosts ([str]): Specifies the IPs/hostnames for the nodes forming the Universal Data Adapter source cluster.
             script_dir (str): Specifies the absolute path of scripts used to interact with the Universal Data Adapter source.
+            source_type (str): Specifies the source type for Universal Data Adapter source.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -174,12 +174,12 @@ class UdaSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            os_type (str, none_type): Specifies the OS type for Universal Data Adapter source.. [optional]  # noqa: E501
             credentials (UdaSourceRegistrationParamsCredentials): [optional]  # noqa: E501
             mount_view (bool, none_type): Specifies if SMB/NFS view mounting should be enabled on source. Default value is false.. [optional]  # noqa: E501
-            view_params (UdaSourceRegistrationParamsViewParams): [optional]  # noqa: E501
+            os_type (str, none_type): Specifies the OS type for Universal Data Adapter source.. [optional]  # noqa: E501
             source_registration_args (str, none_type): Specifies custom arguments to be supplied to the source registration scripts. This field is deprecated. Use sourceRegistrationArguments instead.. [optional]  # noqa: E501
             source_registration_arguments ([KeyValuePair], none_type): Specifies the map of custom arguments to be supplied to the source registration scripts.. [optional]  # noqa: E501
+            view_params (UdaSourceRegistrationParamsViewParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,9 +206,9 @@ class UdaSourceRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_type = source_type
         self.hosts = hosts
         self.script_dir = script_dir
+        self.source_type = source_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

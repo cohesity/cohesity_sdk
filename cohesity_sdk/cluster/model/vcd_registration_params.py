@@ -87,8 +87,8 @@ class VcdRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'endpoint': (str,),  # noqa: E501
             'vcenter_credential_info_list': ([VcenterCredentialInfo], none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
@@ -101,8 +101,8 @@ class VcdRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
         'vcenter_credential_info_list': 'vcenterCredentialInfoList',  # noqa: E501
         'description': 'description',  # noqa: E501
@@ -121,12 +121,12 @@ class VcdRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, endpoint, vcenter_credential_info_list, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, endpoint, vcenter_credential_info_list, *args, **kwargs):  # noqa: E501
         """VcdRegistrationParams - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
             endpoint (str): Specifies the endpoint IPaddress, URL or hostname of the host.
             vcenter_credential_info_list ([VcenterCredentialInfo], none_type): Specifies the credentials information for all the vcenters in vcloud director.
 
@@ -197,8 +197,8 @@ class VcdRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
+            'username': username,
             'endpoint': endpoint,
             'vcenter_credential_info_list': vcenter_credential_info_list,
         }

@@ -206,52 +206,52 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
-            'priority': (str, none_type,),  # noqa: E501
-            'storage_domain_id': (int, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'start_time': (TimeOfDay,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
-            'sla': ([SlaRule], none_type,),  # noqa: E501
-            'qos_policy': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
-            'pause_in_blackouts': (bool, none_type,),  # noqa: E501
+            'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
-            'vmware_params': (VmwareProtectionGroupParams,),  # noqa: E501
+            'pause_in_blackouts': (bool, none_type,),  # noqa: E501
+            'priority': (str, none_type,),  # noqa: E501
+            'qos_policy': (str, none_type,),  # noqa: E501
+            'sla': ([SlaRule], none_type,),  # noqa: E501
+            'start_time': (TimeOfDay,),  # noqa: E501
+            'storage_domain_id': (int, none_type,),  # noqa: E501
             'acropolis_params': (AcropolisProtectionGroupParams,),  # noqa: E501
-            'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
-            'mssql_params': (MSSQLProtectionGroupParams,),  # noqa: E501
-            'oracle_params': (OracleProtectionGroupParams,),  # noqa: E501
-            'view_params': (ViewProtectionGroupParams,),  # noqa: E501
-            'pure_params': (PureProtectionGroupParams,),  # noqa: E501
-            'nimble_params': (NimbleProtectionGroupParams,),  # noqa: E501
-            'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'ad_params': (ADProtectionGroupParams,),  # noqa: E501
             'aws_params': (AwsProtectionGroupParams,),  # noqa: E501
             'azure_params': (AzureProtectionGroupParams,),  # noqa: E501
-            'gcp_params': (GcpProtectionGroupParams,),  # noqa: E501
-            'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
-            'physical_params': (PhysicalProtectionGroupParams,),  # noqa: E501
-            'ad_params': (ADProtectionGroupParams,),  # noqa: E501
-            'office365_params': (Office365ProtectionGroupParams,),  # noqa: E501
-            'netapp_params': (NetappProtectionGroupParams,),  # noqa: E501
-            'generic_nas_params': (GenericNasProtectionGroupParams,),  # noqa: E501
-            'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
-            'flashblade_params': (FlashbladeProtectionGroupParams,),  # noqa: E501
-            'gpfs_params': (GpfsProtectionGroupParams,),  # noqa: E501
+            'cassandra_params': (CassandraProtectionGroupParams,),  # noqa: E501
             'couchbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'elastifile_params': (ElastifileProtectionGroupParams,),  # noqa: E501
-            'cassandra_params': (CassandraProtectionGroupParams,),  # noqa: E501
-            'mongodb_params': (MongoDBProtectionGroupParams,),  # noqa: E501
-            'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
-            'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
-            'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
-            'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
             'exchange_params': (ExchangeProtectionGroupParams,),  # noqa: E501
-            'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
+            'flashblade_params': (FlashbladeProtectionGroupParams,),  # noqa: E501
+            'gcp_params': (GcpProtectionGroupParams,),  # noqa: E501
+            'generic_nas_params': (GenericNasProtectionGroupParams,),  # noqa: E501
+            'gpfs_params': (GpfsProtectionGroupParams,),  # noqa: E501
+            'hbase_params': (NoSqlProtectionGroupParams,),  # noqa: E501
+            'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
+            'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
+            'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
+            'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
+            'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
+            'mongodb_params': (MongoDBProtectionGroupParams,),  # noqa: E501
+            'mssql_params': (MSSQLProtectionGroupParams,),  # noqa: E501
+            'netapp_params': (NetappProtectionGroupParams,),  # noqa: E501
+            'nimble_params': (NimbleProtectionGroupParams,),  # noqa: E501
+            'office365_params': (Office365ProtectionGroupParams,),  # noqa: E501
+            'oracle_params': (OracleProtectionGroupParams,),  # noqa: E501
+            'physical_params': (PhysicalProtectionGroupParams,),  # noqa: E501
+            'pure_params': (PureProtectionGroupParams,),  # noqa: E501
+            'remote_adapter_params': (RemoteAdapterProtectionGroupParams,),  # noqa: E501
             'sfdc_params': (SfdcProtectionGroupParams,),  # noqa: E501
+            'uda_params': (UdaProtectionGroupParams,),  # noqa: E501
+            'view_params': (ViewProtectionGroupParams,),  # noqa: E501
+            'vmware_params': (VmwareProtectionGroupParams,),  # noqa: E501
         }
 
     @cached_property
@@ -261,52 +261,52 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'name': 'name',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
-        'priority': 'priority',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'start_time': 'startTime',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'alert_policy': 'alertPolicy',  # noqa: E501
-        'sla': 'sla',  # noqa: E501
-        'qos_policy': 'qosPolicy',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
-        'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
+        'alert_policy': 'alertPolicy',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
+        'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
+        'priority': 'priority',  # noqa: E501
+        'qos_policy': 'qosPolicy',  # noqa: E501
+        'sla': 'sla',  # noqa: E501
+        'start_time': 'startTime',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
-        'kubernetes_params': 'kubernetesParams',  # noqa: E501
-        'mssql_params': 'mssqlParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
-        'view_params': 'viewParams',  # noqa: E501
-        'pure_params': 'pureParams',  # noqa: E501
-        'nimble_params': 'nimbleParams',  # noqa: E501
-        'hyperv_params': 'hypervParams',  # noqa: E501
+        'ad_params': 'adParams',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
         'azure_params': 'azureParams',  # noqa: E501
-        'gcp_params': 'gcpParams',  # noqa: E501
-        'kvm_params': 'kvmParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'ad_params': 'adParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
-        'gpfs_params': 'gpfsParams',  # noqa: E501
+        'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
-        'cassandra_params': 'cassandraParams',  # noqa: E501
-        'mongodb_params': 'mongodbParams',  # noqa: E501
-        'hive_params': 'hiveParams',  # noqa: E501
-        'hdfs_params': 'hdfsParams',  # noqa: E501
-        'hbase_params': 'hbaseParams',  # noqa: E501
-        'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
         'exchange_params': 'exchangeParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'gcp_params': 'gcpParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'gpfs_params': 'gpfsParams',  # noqa: E501
+        'hbase_params': 'hbaseParams',  # noqa: E501
+        'hdfs_params': 'hdfsParams',  # noqa: E501
+        'hive_params': 'hiveParams',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
+        'kubernetes_params': 'kubernetesParams',  # noqa: E501
+        'kvm_params': 'kvmParams',  # noqa: E501
+        'mongodb_params': 'mongodbParams',  # noqa: E501
+        'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'nimble_params': 'nimbleParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
+        'pure_params': 'pureParams',  # noqa: E501
+        'remote_adapter_params': 'remoteAdapterParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -322,13 +322,13 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, policy_id, environment, *args, **kwargs):  # noqa: E501
+    def __init__(self, environment, name, policy_id, *args, **kwargs):  # noqa: E501
         """CreateOrUpdateProtectionGroupRequest - a model defined in OpenAPI
 
         Args:
+            environment (str, none_type): Specifies the environment type of the Protection Group.
             name (str, none_type): Specifies the name of the Protection Group.
             policy_id (str, none_type): Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.
-            environment (str, none_type): Specifies the environment type of the Protection Group.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -362,49 +362,49 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501
-            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where this Protection Group writes data.. [optional]  # noqa: E501
-            description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
-            start_time (TimeOfDay): [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
-            alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
-            sla ([SlaRule], none_type): Specifies the SLA parameters for this Protection Group.. [optional]  # noqa: E501
-            qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'pauseInBlackouts' is set to true.. [optional]  # noqa: E501
-            pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
+            description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
-            vmware_params (VmwareProtectionGroupParams): [optional]  # noqa: E501
+            pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
+            priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501
+            qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
+            sla ([SlaRule], none_type): Specifies the SLA parameters for this Protection Group.. [optional]  # noqa: E501
+            start_time (TimeOfDay): [optional]  # noqa: E501
+            storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where this Protection Group writes data.. [optional]  # noqa: E501
             acropolis_params (AcropolisProtectionGroupParams): [optional]  # noqa: E501
-            kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
-            mssql_params (MSSQLProtectionGroupParams): [optional]  # noqa: E501
-            oracle_params (OracleProtectionGroupParams): [optional]  # noqa: E501
-            view_params (ViewProtectionGroupParams): [optional]  # noqa: E501
-            pure_params (PureProtectionGroupParams): [optional]  # noqa: E501
-            nimble_params (NimbleProtectionGroupParams): [optional]  # noqa: E501
-            hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            ad_params (ADProtectionGroupParams): [optional]  # noqa: E501
             aws_params (AwsProtectionGroupParams): [optional]  # noqa: E501
             azure_params (AzureProtectionGroupParams): [optional]  # noqa: E501
-            gcp_params (GcpProtectionGroupParams): [optional]  # noqa: E501
-            kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501
-            physical_params (PhysicalProtectionGroupParams): [optional]  # noqa: E501
-            ad_params (ADProtectionGroupParams): [optional]  # noqa: E501
-            office365_params (Office365ProtectionGroupParams): [optional]  # noqa: E501
-            netapp_params (NetappProtectionGroupParams): [optional]  # noqa: E501
-            generic_nas_params (GenericNasProtectionGroupParams): [optional]  # noqa: E501
-            isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
-            flashblade_params (FlashbladeProtectionGroupParams): [optional]  # noqa: E501
-            gpfs_params (GpfsProtectionGroupParams): [optional]  # noqa: E501
+            cassandra_params (CassandraProtectionGroupParams): [optional]  # noqa: E501
             couchbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             elastifile_params (ElastifileProtectionGroupParams): [optional]  # noqa: E501
-            cassandra_params (CassandraProtectionGroupParams): [optional]  # noqa: E501
-            mongodb_params (MongoDBProtectionGroupParams): [optional]  # noqa: E501
-            hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
-            hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
-            hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
-            remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
             exchange_params (ExchangeProtectionGroupParams): [optional]  # noqa: E501
-            uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
+            flashblade_params (FlashbladeProtectionGroupParams): [optional]  # noqa: E501
+            gcp_params (GcpProtectionGroupParams): [optional]  # noqa: E501
+            generic_nas_params (GenericNasProtectionGroupParams): [optional]  # noqa: E501
+            gpfs_params (GpfsProtectionGroupParams): [optional]  # noqa: E501
+            hbase_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
+            hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
+            hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
+            hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
+            kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
+            kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501
+            mongodb_params (MongoDBProtectionGroupParams): [optional]  # noqa: E501
+            mssql_params (MSSQLProtectionGroupParams): [optional]  # noqa: E501
+            netapp_params (NetappProtectionGroupParams): [optional]  # noqa: E501
+            nimble_params (NimbleProtectionGroupParams): [optional]  # noqa: E501
+            office365_params (Office365ProtectionGroupParams): [optional]  # noqa: E501
+            oracle_params (OracleProtectionGroupParams): [optional]  # noqa: E501
+            physical_params (PhysicalProtectionGroupParams): [optional]  # noqa: E501
+            pure_params (PureProtectionGroupParams): [optional]  # noqa: E501
+            remote_adapter_params (RemoteAdapterProtectionGroupParams): [optional]  # noqa: E501
             sfdc_params (SfdcProtectionGroupParams): [optional]  # noqa: E501
+            uda_params (UdaProtectionGroupParams): [optional]  # noqa: E501
+            view_params (ViewProtectionGroupParams): [optional]  # noqa: E501
+            vmware_params (VmwareProtectionGroupParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -439,9 +439,9 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
+            'environment': environment,
             'name': name,
             'policy_id': policy_id,
-            'environment': environment,
         }
         model_args = {}
         model_args.update(required_args)

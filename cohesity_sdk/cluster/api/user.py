@@ -127,7 +127,7 @@ class UserApi(object):
                 'response_type': (Groups,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/groups',
@@ -249,7 +249,7 @@ class UserApi(object):
                 'response_type': (UserSession,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/sessions',
@@ -375,7 +375,7 @@ class UserApi(object):
                 'response_type': (CreatedUserAPIKey,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys',
@@ -503,7 +503,7 @@ class UserApi(object):
                 'response_type': (UsersList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users',
@@ -625,7 +625,7 @@ class UserApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/groups/{sid}',
@@ -746,7 +746,7 @@ class UserApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/groups/delete',
@@ -864,7 +864,7 @@ class UserApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/sessions',
@@ -983,7 +983,7 @@ class UserApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{sid}',
@@ -1108,7 +1108,7 @@ class UserApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}',
@@ -1235,7 +1235,7 @@ class UserApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/delete',
@@ -1353,7 +1353,7 @@ class UserApi(object):
                 'response_type': (ActiveSessionsCountParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/sessions',
@@ -1472,7 +1472,7 @@ class UserApi(object):
                 'response_type': (UserAPIKeys,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/api-keys',
@@ -1608,7 +1608,7 @@ class UserApi(object):
                 'response_type': (GroupParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/groups/{sid}',
@@ -1731,7 +1731,7 @@ class UserApi(object):
                 'response_type': (Groups,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/groups',
@@ -1884,7 +1884,7 @@ class UserApi(object):
                 'response_type': (AssignedSources,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-principals/{sid}/sources',
@@ -2005,7 +2005,7 @@ class UserApi(object):
                 'response_type': (SecurityPrincipals,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-principals',
@@ -2136,7 +2136,7 @@ class UserApi(object):
                 'response_type': (UserAPIKey,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}',
@@ -2266,7 +2266,7 @@ class UserApi(object):
                 'response_type': (UserAPIKeys,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys',
@@ -2403,7 +2403,7 @@ class UserApi(object):
                 'response_type': (UserParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{sid}',
@@ -2519,7 +2519,7 @@ class UserApi(object):
                 'response_type': (UserUiConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/ui-config',
@@ -2636,7 +2636,7 @@ class UserApi(object):
                 'response_type': (UsersList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users',
@@ -2799,7 +2799,7 @@ class UserApi(object):
                 'response_type': (CreatedUserAPIKey,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}/rotate',
@@ -2930,7 +2930,7 @@ class UserApi(object):
                 'response_type': (GroupParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/groups/{sid}',
@@ -3062,7 +3062,7 @@ class UserApi(object):
                 'response_type': (AssignedSources,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-principals/{sid}/sources',
@@ -3194,7 +3194,7 @@ class UserApi(object):
                 'response_type': (UserParams,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{sid}',
@@ -3330,7 +3330,7 @@ class UserApi(object):
                 'response_type': (UserAPIKey,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/{userSid}/api-keys/{id}',
@@ -3464,7 +3464,7 @@ class UserApi(object):
                 'response_type': (UserUiConfig,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/users/ui-config',

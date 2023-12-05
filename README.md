@@ -39,6 +39,7 @@ Cluster-SDK support Matrix
 |Cluster Version	| SDK version|
 |----------------|------------|
 |6.6.0d_ent(V2) | 1.1.0|
+|6.8.1(V2) | 1.2.0|
 
 ## <a name="howto"></a> How to Use: :mag_right:
 

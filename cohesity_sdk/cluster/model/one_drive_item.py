@@ -75,8 +75,8 @@ class OneDriveItem(ModelNormal):
         """
         return {
             'id': (str, none_type,),  # noqa: E501
-            'item_path': (str, none_type,),  # noqa: E501
             'is_file': (bool, none_type,),  # noqa: E501
+            'item_path': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class OneDriveItem(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'item_path': 'itemPath',  # noqa: E501
         'is_file': 'isFile',  # noqa: E501
+        'item_path': 'itemPath',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,8 +139,8 @@ class OneDriveItem(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies the item id.. [optional]  # noqa: E501
-            item_path (str, none_type): Specifies the path to the OneDrive item.. [optional]  # noqa: E501
             is_file (bool, none_type): Specifies if the item is a file.. [optional]  # noqa: E501
+            item_path (str, none_type): Specifies the path to the OneDrive item.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

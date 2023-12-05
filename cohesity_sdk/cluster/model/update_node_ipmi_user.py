@@ -81,8 +81,8 @@ class UpdateNodeIpmiUser(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'node_id': (int,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
         }
 
@@ -93,8 +93,8 @@ class UpdateNodeIpmiUser(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
     }
 
@@ -111,12 +111,12 @@ class UpdateNodeIpmiUser(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, node_id, password, *args, **kwargs):  # noqa: E501
+    def __init__(self, node_id, username, password, *args, **kwargs):  # noqa: E501
         """UpdateNodeIpmiUser - a model defined in OpenAPI
 
         Args:
-            username (str): IPMI username.
             node_id (int): Node id.
+            username (str): IPMI username.
             password (str): IPMI user password.
 
         Keyword Args:
@@ -185,8 +185,8 @@ class UpdateNodeIpmiUser(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'node_id': node_id,
+            'username': username,
             'password': password,
         }
         model_args = {}

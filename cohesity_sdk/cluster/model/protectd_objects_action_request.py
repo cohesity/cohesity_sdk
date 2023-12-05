@@ -155,8 +155,8 @@ class ProtectdObjectsActionRequest(ModelNormal):
             'pause_params': (ProtectedObjectPauseActionParams,),  # noqa: E501
             'resume_params': (ProtectedObjectResumeActionParams,),  # noqa: E501
             'run_now_params': (ProtectedObjectRunNowActionParams,),  # noqa: E501
-            'un_protect_params': (ProtectedObjectUnProtectActionParams,),  # noqa: E501
             'snapshot_backend_types': ([str], none_type,),  # noqa: E501
+            'un_protect_params': (ProtectedObjectUnProtectActionParams,),  # noqa: E501
         }
 
     @cached_property
@@ -171,8 +171,8 @@ class ProtectdObjectsActionRequest(ModelNormal):
         'pause_params': 'pauseParams',  # noqa: E501
         'resume_params': 'resumeParams',  # noqa: E501
         'run_now_params': 'runNowParams',  # noqa: E501
-        'un_protect_params': 'unProtectParams',  # noqa: E501
         'snapshot_backend_types': 'snapshotBackendTypes',  # noqa: E501
+        'un_protect_params': 'unProtectParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -229,8 +229,8 @@ class ProtectdObjectsActionRequest(ModelNormal):
             pause_params (ProtectedObjectPauseActionParams): [optional]  # noqa: E501
             resume_params (ProtectedObjectResumeActionParams): [optional]  # noqa: E501
             run_now_params (ProtectedObjectRunNowActionParams): [optional]  # noqa: E501
-            un_protect_params (ProtectedObjectUnProtectActionParams): [optional]  # noqa: E501
             snapshot_backend_types ([str], none_type): Specifies the protections type on which action to be performed. This is used when an object is protected by multiple protection types. If not specified action will be performed on all protection types.. [optional]  # noqa: E501
+            un_protect_params (ProtectedObjectUnProtectActionParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

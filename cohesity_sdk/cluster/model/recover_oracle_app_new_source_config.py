@@ -80,9 +80,9 @@ class RecoverOracleAppNewSourceConfig(ModelNormal):
         """
         return {
             'host': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recovery_target': (str, none_type,),  # noqa: E501
             'recover_database_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'recover_view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recovery_target': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class RecoverOracleAppNewSourceConfig(ModelNormal):
 
     attribute_map = {
         'host': 'host',  # noqa: E501
-        'recovery_target': 'recoveryTarget',  # noqa: E501
         'recover_database_params': 'recoverDatabaseParams',  # noqa: E501
         'recover_view_params': 'recoverViewParams',  # noqa: E501
+        'recovery_target': 'recoveryTarget',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,9 +148,9 @@ class RecoverOracleAppNewSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recovery_target (str, none_type): Specifies if recovery target is a database or a view.. [optional]  # noqa: E501
             recover_database_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies recovery parameters when recovering to a database. [optional]  # noqa: E501
             recover_view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies recovery parameters when recovering to a view.. [optional]  # noqa: E501
+            recovery_target (str, none_type): Specifies if recovery target is a database or a view.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

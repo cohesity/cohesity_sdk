@@ -105,7 +105,7 @@ class AntivirusServiceApi(object):
                 'response_type': (AntivirusServiceGroups,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/antivirus-service/groups',
@@ -215,7 +215,7 @@ class AntivirusServiceApi(object):
                 'response_type': (IcapUriConnectionStatusList,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/antivirus-service/icap-uri-connection-status',
@@ -335,7 +335,7 @@ class AntivirusServiceApi(object):
                 'response_type': (InfectedFiles,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/antivirus-service/infected-files',

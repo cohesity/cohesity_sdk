@@ -80,10 +80,10 @@ class CancelObjectRunParams(ModelNormal):
         lazy_import()
         return {
             'run_id': (str, none_type,),  # noqa: E501
-            'cancel_local_run': (bool, none_type,),  # noqa: E501
             'archival_target_ids': ([int], none_type,),  # noqa: E501
-            'replication_targets': ([ClusterIdentifier], none_type,),  # noqa: E501
+            'cancel_local_run': (bool, none_type,),  # noqa: E501
             'cloud_spin_target_ids': ([int], none_type,),  # noqa: E501
+            'replication_targets': ([ClusterIdentifier], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +94,10 @@ class CancelObjectRunParams(ModelNormal):
 
     attribute_map = {
         'run_id': 'runId',  # noqa: E501
-        'cancel_local_run': 'cancelLocalRun',  # noqa: E501
         'archival_target_ids': 'archivalTargetIds',  # noqa: E501
-        'replication_targets': 'replicationTargets',  # noqa: E501
+        'cancel_local_run': 'cancelLocalRun',  # noqa: E501
         'cloud_spin_target_ids': 'cloudSpinTargetIds',  # noqa: E501
+        'replication_targets': 'replicationTargets',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,10 +150,10 @@ class CancelObjectRunParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cancel_local_run (bool, none_type): Specifies whether to cancel the local backup run. Default is false.. [optional]  # noqa: E501
             archival_target_ids ([int], none_type): Specifies the archival target ids where the tasks run. If specified, the archival target ids must be present within the run specified by the runId above.. [optional]  # noqa: E501
-            replication_targets ([ClusterIdentifier], none_type): Specifies the cluster identifiers where the tasks run. If specified, the archival target ids must be present within the run specified by the runId above.. [optional]  # noqa: E501
+            cancel_local_run (bool, none_type): Specifies whether to cancel the local backup run. Default is false.. [optional]  # noqa: E501
             cloud_spin_target_ids ([int], none_type): Specifies the cloud spin target ids where the tasks run. If specified, the archival target ids must be present within the run specified by the runId above.. [optional]  # noqa: E501
+            replication_targets ([ClusterIdentifier], none_type): Specifies the cluster identifiers where the tasks run. If specified, the archival target ids must be present within the run specified by the runId above.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class IpRange(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_ip': (str,),  # noqa: E501
             'end_ip': (str,),  # noqa: E501
+            'start_ip': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class IpRange(ModelNormal):
 
 
     attribute_map = {
-        'start_ip': 'startIp',  # noqa: E501
         'end_ip': 'endIp',  # noqa: E501
+        'start_ip': 'startIp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class IpRange(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, start_ip, end_ip, *args, **kwargs):  # noqa: E501
+    def __init__(self, end_ip, start_ip, *args, **kwargs):  # noqa: E501
         """IpRange - a model defined in OpenAPI
 
         Args:
-            start_ip (str): Start IP.
             end_ip (str): End IP.
+            start_ip (str): Start IP.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class IpRange(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.start_ip = start_ip
         self.end_ip = end_ip
+        self.start_ip = start_ip
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

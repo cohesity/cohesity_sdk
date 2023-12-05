@@ -101,18 +101,6 @@ class AuditActions(ModelNormal):
             'CLUSTEREXPAND': "ClusterExpand",
             'FETCH': "Fetch",
             'SEARCH': "Search",
-            'PREPAREFAILOVER': "PrepareFailover",
-            'FAILOVER': "Failover",
-            'PREPAREFAILBACK': "PrepareFailback",
-            'FAILBACK': "Failback",
-            'TEARDOWN': "Teardown",
-            'RETRYREPLICATION': "RetryReplication",
-            'MANUALSYNC': "ManualSync",
-            'PROTECT': "Protect",
-            'RETRYEXECUTION': "RetryExecution",
-            'ADD': "Add",
-            'SCHEDULE': "Schedule",
-            'PUBLISH': "Publish",
         },
     }
 

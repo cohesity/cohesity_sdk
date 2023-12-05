@@ -74,8 +74,8 @@ class OrgVDCNetwork(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'vcd_uuid': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'vcd_uuid': (str, none_type,),  # noqa: E501
             'v_center_uuid': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class OrgVDCNetwork(ModelNormal):
 
 
     attribute_map = {
-        'vcd_uuid': 'vcdUuid',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'vcd_uuid': 'vcdUuid',  # noqa: E501
         'v_center_uuid': 'vCenterUuid',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class OrgVDCNetwork(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, vcd_uuid, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, vcd_uuid, *args, **kwargs):  # noqa: E501
         """OrgVDCNetwork - a model defined in OpenAPI
 
         Args:
-            vcd_uuid (str, none_type): Specifies the UUID of network associated with the Virtual Cloud director.
             name (str, none_type): Specifies the name of the catalog.
+            vcd_uuid (str, none_type): Specifies the UUID of network associated with the Virtual Cloud director.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class OrgVDCNetwork(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.vcd_uuid = vcd_uuid
         self.name = name
+        self.vcd_uuid = vcd_uuid
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -89,13 +89,13 @@ class RecoverNetappFilesParams(ModelNormal):
         return {
             'files_and_folders': ([NetappRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'is_from_source_initiated_protection': (bool, none_type,),  # noqa: E501
-            'netapp_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'elastifile_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'flashblade_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'generic_nas_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'gpfs_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'is_from_source_initiated_protection': (bool, none_type,),  # noqa: E501
             'isilon_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'netapp_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -107,13 +107,13 @@ class RecoverNetappFilesParams(ModelNormal):
     attribute_map = {
         'files_and_folders': 'filesAndFolders',  # noqa: E501
         'target_environment': 'targetEnvironment',  # noqa: E501
-        'is_from_source_initiated_protection': 'isFromSourceInitiatedProtection',  # noqa: E501
-        'netapp_target_params': 'netappTargetParams',  # noqa: E501
         'elastifile_target_params': 'elastifileTargetParams',  # noqa: E501
         'flashblade_target_params': 'flashbladeTargetParams',  # noqa: E501
         'generic_nas_target_params': 'genericNasTargetParams',  # noqa: E501
         'gpfs_target_params': 'gpfsTargetParams',  # noqa: E501
+        'is_from_source_initiated_protection': 'isFromSourceInitiatedProtection',  # noqa: E501
         'isilon_target_params': 'isilonTargetParams',  # noqa: E501
+        'netapp_target_params': 'netappTargetParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -167,13 +167,13 @@ class RecoverNetappFilesParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_from_source_initiated_protection (bool, none_type): Specifies if the snapshot trying to recover is from a source initiated protection.. [optional]  # noqa: E501
-            netapp_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Netapp recovery target.. [optional]  # noqa: E501
             elastifile_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Elastifile recovery target.. [optional]  # noqa: E501
             flashblade_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Flashblade recovery target.. [optional]  # noqa: E501
             generic_nas_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a generic NAS recovery target.. [optional]  # noqa: E501
             gpfs_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a GPFS recovery target.. [optional]  # noqa: E501
+            is_from_source_initiated_protection (bool, none_type): Specifies if the snapshot trying to recover is from a source initiated protection.. [optional]  # noqa: E501
             isilon_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Isilon recovery target.. [optional]  # noqa: E501
+            netapp_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Netapp recovery target.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

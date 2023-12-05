@@ -74,9 +74,9 @@ class ViewOptions(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'whitelist_restore_view_for_all': (bool, none_type,),  # noqa: E501
-            'view_name': (str, none_type,),  # noqa: E501
             'mount_point': (str, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
+            'whitelist_restore_view_for_all': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ViewOptions(ModelNormal):
 
 
     attribute_map = {
-        'whitelist_restore_view_for_all': 'whitelistRestoreViewForAll',  # noqa: E501
-        'view_name': 'viewName',  # noqa: E501
         'mount_point': 'mountPoint',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
+        'whitelist_restore_view_for_all': 'whitelistRestoreViewForAll',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class ViewOptions(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            whitelist_restore_view_for_all (bool, none_type): Whether to white-list the Exchange restore view for all the IP addresses. [optional]  # noqa: E501
-            view_name (str, none_type): The name of the view.. [optional]  # noqa: E501
             mount_point (str, none_type): The path of the SMB share.. [optional]  # noqa: E501
+            view_name (str, none_type): The name of the view.. [optional]  # noqa: E501
+            whitelist_restore_view_for_all (bool, none_type): Whether to white-list the Exchange restore view for all the IP addresses. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

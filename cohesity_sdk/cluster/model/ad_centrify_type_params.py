@@ -98,8 +98,8 @@ class AdCentrifyTypeParams(ModelComposed):
             'distinguished_name': (str, none_type,),  # noqa: E501
             'schema': (str, none_type,),  # noqa: E501
             'fallback_option': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'zone_name': (str, none_type,),  # noqa: E501
             'zone_domain': (str, none_type,),  # noqa: E501
+            'zone_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -113,8 +113,8 @@ class AdCentrifyTypeParams(ModelComposed):
         'distinguished_name': 'distinguishedName',  # noqa: E501
         'schema': 'schema',  # noqa: E501
         'fallback_option': 'fallbackOption',  # noqa: E501
-        'zone_name': 'zoneName',  # noqa: E501
         'zone_domain': 'zoneDomain',  # noqa: E501
+        'zone_name': 'zoneName',  # noqa: E501
     }
 
     required_properties = set([
@@ -171,8 +171,8 @@ class AdCentrifyTypeParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            zone_name (str, none_type): Specifies the zone name of the Centrify zone.. [optional]  # noqa: E501
             zone_domain (str, none_type): Specifies the zone domain of the Centrify zone.. [optional]  # noqa: E501
+            zone_name (str, none_type): Specifies the zone name of the Centrify zone.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

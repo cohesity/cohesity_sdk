@@ -82,9 +82,9 @@ class RecoverUdaParams(ModelNormal):
         lazy_import()
         return {
             'snapshots': ([RecoverUdaSnapshotParams], none_type,),  # noqa: E501
-            'recover_to': (int, none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
             'mounts': (int, none_type,),  # noqa: E501
+            'recover_to': (int, none_type,),  # noqa: E501
             'recovery_args': (str, none_type,),  # noqa: E501
             'recovery_job_arguments': ([KeyValuePair], none_type,),  # noqa: E501
             'warnings': ([str], none_type,),  # noqa: E501
@@ -98,9 +98,9 @@ class RecoverUdaParams(ModelNormal):
 
     attribute_map = {
         'snapshots': 'snapshots',  # noqa: E501
-        'recover_to': 'recoverTo',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
         'mounts': 'mounts',  # noqa: E501
+        'recover_to': 'recoverTo',  # noqa: E501
         'recovery_args': 'recoveryArgs',  # noqa: E501
         'recovery_job_arguments': 'recoveryJobArguments',  # noqa: E501
         'warnings': 'warnings',  # noqa: E501
@@ -156,9 +156,9 @@ class RecoverUdaParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_to (int, none_type): Specifies the 'Source Registration ID' of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster. If not specified, the default value is taken as 1.. [optional] if omitted the server will use the default value of 1  # noqa: E501
             mounts (int, none_type): Specifies the maximum number of view mounts per host. If not specified, the default value is taken as 1.. [optional] if omitted the server will use the default value of 1  # noqa: E501
+            recover_to (int, none_type): Specifies the 'Source Registration ID' of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
             recovery_args (str, none_type): Specifies the custom arguments to be supplied to the restore job script. This field is deprecated. Use recoveryJobArguments instead.. [optional]  # noqa: E501
             recovery_job_arguments ([KeyValuePair], none_type): Specifies the map of custom arguments to be supplied to the restore job script.. [optional]  # noqa: E501
             warnings ([str], none_type): This field will hold the warnings in cases where the job status is SucceededWithWarnings.. [optional]  # noqa: E501

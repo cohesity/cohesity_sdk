@@ -156,20 +156,20 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
         lazy_import()
         return {
             'environment': (str, none_type,),  # noqa: E501
-            'vmware_params': (VmwareObjectProtectionRequestParams,),  # noqa: E501
+            'aws_params': (AwsObjectProtectionRequestParams,),  # noqa: E501
+            'elastifile_params': (ElastifileObjectProtectionRequestParams,),  # noqa: E501
+            'flashblade_params': (FlashbladeObjectProtectionRequestParams,),  # noqa: E501
             'generic_nas_params': (GenericNasObjectProtectionRequestParams,),  # noqa: E501
             'gpfs_params': (GpfsObjectProtectionRequestParams,),  # noqa: E501
-            'elastifile_params': (ElastifileObjectProtectionRequestParams,),  # noqa: E501
-            'netapp_params': (NetappObjectProtectionRequestParams,),  # noqa: E501
-            'isilon_params': (IsilonObjectProtectionRequestParams,),  # noqa: E501
-            'flashblade_params': (FlashbladeObjectProtectionRequestParams,),  # noqa: E501
-            'mssql_params': (MssqlObjectProtectionRequestParams,),  # noqa: E501
-            'oracle_params': (OracleObjectProtectionRequestParams,),  # noqa: E501
-            'office365_params': (Office365ObjectProtectionRequestParams,),  # noqa: E501
-            'aws_params': (AwsObjectProtectionRequestParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionRequestParams,),  # noqa: E501
+            'isilon_params': (IsilonObjectProtectionRequestParams,),  # noqa: E501
+            'mssql_params': (MssqlObjectProtectionRequestParams,),  # noqa: E501
+            'netapp_params': (NetappObjectProtectionRequestParams,),  # noqa: E501
+            'office365_params': (Office365ObjectProtectionRequestParams,),  # noqa: E501
+            'oracle_params': (OracleObjectProtectionRequestParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionRequestParams,),  # noqa: E501
             'sfdc_params': (SfdcObjectProtectionRequestParams,),  # noqa: E501
+            'vmware_params': (VmwareObjectProtectionRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -180,20 +180,20 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'elastifile_params': 'elastifileParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
-        'elastifile_params': 'elastifileParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
-        'mssql_params': 'mssqlParams',  # noqa: E501
-        'oracle_params': 'oracleParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
+        'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
+        'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -245,20 +245,20 @@ class EnvSpecificObjectProtectionRequestParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
-            vmware_params (VmwareObjectProtectionRequestParams): [optional]  # noqa: E501
+            aws_params (AwsObjectProtectionRequestParams): [optional]  # noqa: E501
+            elastifile_params (ElastifileObjectProtectionRequestParams): [optional]  # noqa: E501
+            flashblade_params (FlashbladeObjectProtectionRequestParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasObjectProtectionRequestParams): [optional]  # noqa: E501
             gpfs_params (GpfsObjectProtectionRequestParams): [optional]  # noqa: E501
-            elastifile_params (ElastifileObjectProtectionRequestParams): [optional]  # noqa: E501
-            netapp_params (NetappObjectProtectionRequestParams): [optional]  # noqa: E501
-            isilon_params (IsilonObjectProtectionRequestParams): [optional]  # noqa: E501
-            flashblade_params (FlashbladeObjectProtectionRequestParams): [optional]  # noqa: E501
-            mssql_params (MssqlObjectProtectionRequestParams): [optional]  # noqa: E501
-            oracle_params (OracleObjectProtectionRequestParams): [optional]  # noqa: E501
-            office365_params (Office365ObjectProtectionRequestParams): [optional]  # noqa: E501
-            aws_params (AwsObjectProtectionRequestParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionRequestParams): [optional]  # noqa: E501
+            isilon_params (IsilonObjectProtectionRequestParams): [optional]  # noqa: E501
+            mssql_params (MssqlObjectProtectionRequestParams): [optional]  # noqa: E501
+            netapp_params (NetappObjectProtectionRequestParams): [optional]  # noqa: E501
+            office365_params (Office365ObjectProtectionRequestParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectProtectionRequestParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionRequestParams): [optional]  # noqa: E501
             sfdc_params (SfdcObjectProtectionRequestParams): [optional]  # noqa: E501
+            vmware_params (VmwareObjectProtectionRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -6,8 +6,8 @@ Interface group paramters.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name of the interface group. | 
-**type** | **str** | Type of the interface group. | 
 **node_interface_params** | [**[NodeInterfaceParams]**](NodeInterfaceParams.md) | Node and interface parameters. | 
+**type** | **str** | Type of the interface group. | 
 **network_params** | [**InterfaceGroupNetworkParams**](InterfaceGroupNetworkParams.md) |  | [optional] 
 **id** | **int** | Id of the interface group. | [optional] 
 

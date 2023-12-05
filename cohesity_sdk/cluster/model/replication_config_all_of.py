@@ -89,9 +89,9 @@ class ReplicationConfigAllOf(ModelNormal):
         lazy_import()
         return {
             'target_type': (str,),  # noqa: E501
-            'remote_target_config': (RemoteTargetConfig,),  # noqa: E501
             'aws_target_config': (AWSTargetConfig,),  # noqa: E501
             'azure_target_config': (AzureTargetConfig,),  # noqa: E501
+            'remote_target_config': (RemoteTargetConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -102,9 +102,9 @@ class ReplicationConfigAllOf(ModelNormal):
 
     attribute_map = {
         'target_type': 'targetType',  # noqa: E501
-        'remote_target_config': 'remoteTargetConfig',  # noqa: E501
         'aws_target_config': 'awsTargetConfig',  # noqa: E501
         'azure_target_config': 'azureTargetConfig',  # noqa: E501
+        'remote_target_config': 'remoteTargetConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,9 +157,9 @@ class ReplicationConfigAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            remote_target_config (RemoteTargetConfig): [optional]  # noqa: E501
             aws_target_config (AWSTargetConfig): [optional]  # noqa: E501
             azure_target_config (AzureTargetConfig): [optional]  # noqa: E501
+            remote_target_config (RemoteTargetConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

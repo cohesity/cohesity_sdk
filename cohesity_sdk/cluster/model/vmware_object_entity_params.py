@@ -106,9 +106,9 @@ class VmwareObjectEntityParams(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str, none_type,),  # noqa: E501
             'cdp_info': (VmwareCdpObject,),  # noqa: E501
             'is_template': (bool, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -118,9 +118,9 @@ class VmwareObjectEntityParams(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
         'is_template': 'isTemplate',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -170,9 +170,9 @@ class VmwareObjectEntityParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): VMware Object type.. [optional]  # noqa: E501
             cdp_info (VmwareCdpObject): [optional]  # noqa: E501
             is_template (bool, none_type): Specifies if the object is a VM template.. [optional]  # noqa: E501
+            type (str, none_type): VMware Object type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

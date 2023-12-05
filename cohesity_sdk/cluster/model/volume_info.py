@@ -80,15 +80,15 @@ class VolumeInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'is_supported': (bool, none_type,),  # noqa: E501
-            'volume_type': (str, none_type,),  # noqa: E501
             'filesystem_type': (str, none_type,),  # noqa: E501
             'filesystem_uuid': (str, none_type,),  # noqa: E501
+            'is_dedupe': (bool, none_type,),  # noqa: E501
+            'is_supported': (bool, none_type,),  # noqa: E501
+            'logical_volume_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'volume_guid': (str, none_type,),  # noqa: E501
             'volume_size_in_bytes': (int, none_type,),  # noqa: E501
-            'is_dedupe': (bool, none_type,),  # noqa: E501
-            'logical_volume_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'volume_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,15 +98,15 @@ class VolumeInfo(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'is_supported': 'isSupported',  # noqa: E501
-        'volume_type': 'volumeType',  # noqa: E501
         'filesystem_type': 'filesystemType',  # noqa: E501
         'filesystem_uuid': 'filesystemUuid',  # noqa: E501
+        'is_dedupe': 'isDedupe',  # noqa: E501
+        'is_supported': 'isSupported',  # noqa: E501
+        'logical_volume_info': 'logicalVolumeInfo',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'volume_guid': 'volumeGuid',  # noqa: E501
         'volume_size_in_bytes': 'volumeSizeInBytes',  # noqa: E501
-        'is_dedupe': 'isDedupe',  # noqa: E501
-        'logical_volume_info': 'logicalVolumeInfo',  # noqa: E501
+        'volume_type': 'volumeType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,15 +156,15 @@ class VolumeInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the volume name.. [optional]  # noqa: E501
-            is_supported (bool, none_type): Specifies if this volume is supported.. [optional]  # noqa: E501
-            volume_type (str, none_type): Specifies the volume type.. [optional]  # noqa: E501
             filesystem_type (str, none_type): Specifies the filesystem type.. [optional]  # noqa: E501
             filesystem_uuid (str, none_type): Specifies the filesystem uuid.. [optional]  # noqa: E501
+            is_dedupe (bool, none_type): Specifies if this is NTFS dedupe volume. [optional]  # noqa: E501
+            is_supported (bool, none_type): Specifies if this volume is supported.. [optional]  # noqa: E501
+            logical_volume_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the logical volume info. This fields is for 'LVM' and 'LDM' volume type only.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the volume name.. [optional]  # noqa: E501
             volume_guid (str, none_type): Specifies the volume guid.. [optional]  # noqa: E501
             volume_size_in_bytes (int, none_type): Specifies volume size in bytes.. [optional]  # noqa: E501
-            is_dedupe (bool, none_type): Specifies if this is NTFS dedupe volume. [optional]  # noqa: E501
-            logical_volume_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the logical volume info. This fields is for 'LVM' and 'LDM' volume type only.. [optional]  # noqa: E501
+            volume_type (str, none_type): Specifies the volume type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

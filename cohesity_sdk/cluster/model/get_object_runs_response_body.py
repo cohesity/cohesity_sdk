@@ -81,8 +81,8 @@ class GetObjectRunsResponseBody(ModelNormal):
         """
         lazy_import()
         return {
-            'protection_runs': ([ObjectProtectionRunSummary],),  # noqa: E501
             'pagination_info': (PaginationInfo,),  # noqa: E501
+            'protection_runs': ([ObjectProtectionRunSummary],),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class GetObjectRunsResponseBody(ModelNormal):
 
 
     attribute_map = {
-        'protection_runs': 'protectionRuns',  # noqa: E501
         'pagination_info': 'paginationInfo',  # noqa: E501
+        'protection_runs': 'protectionRuns',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class GetObjectRunsResponseBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            protection_runs ([ObjectProtectionRunSummary]): Specifies the protection runs of the given object.. [optional]  # noqa: E501
             pagination_info (PaginationInfo): [optional]  # noqa: E501
+            protection_runs ([ObjectProtectionRunSummary]): Specifies the protection runs of the given object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

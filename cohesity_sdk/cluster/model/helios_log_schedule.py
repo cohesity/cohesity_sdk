@@ -86,9 +86,9 @@ class HeliosLogSchedule(ModelNormal):
         """
         lazy_import()
         return {
-            'unit': (str, none_type,),  # noqa: E501
-            'minute_schedule': (HeliosMinuteSchedule,),  # noqa: E501
             'hour_schedule': (HeliosHourSchedule,),  # noqa: E501
+            'minute_schedule': (HeliosMinuteSchedule,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +98,9 @@ class HeliosLogSchedule(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
-        'minute_schedule': 'minuteSchedule',  # noqa: E501
         'hour_schedule': 'hourSchedule',  # noqa: E501
+        'minute_schedule': 'minuteSchedule',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,9 +150,9 @@ class HeliosLogSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            unit (str, none_type): Specifies how often to start new Protection Group Runs of a Protection Group. <br>'Minutes' specifies that Protection Group run starts periodically after certain number of minutes specified in 'frequency' field. <br>'Hours' specifies that Protection Group run starts periodically after certain number of hours specified in 'frequency' field.. [optional]  # noqa: E501
-            minute_schedule (HeliosMinuteSchedule): [optional]  # noqa: E501
             hour_schedule (HeliosHourSchedule): [optional]  # noqa: E501
+            minute_schedule (HeliosMinuteSchedule): [optional]  # noqa: E501
+            unit (str, none_type): Specifies how often to start new Protection Group Runs of a Protection Group. <br>'Minutes' specifies that Protection Group run starts periodically after certain number of minutes specified in 'frequency' field. <br>'Hours' specifies that Protection Group run starts periodically after certain number of hours specified in 'frequency' field.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

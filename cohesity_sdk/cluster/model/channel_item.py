@@ -79,12 +79,12 @@ class ChannelItem(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'channel_email': (str, none_type,),  # noqa: E501
             'channel_id': (str, none_type,),  # noqa: E501
-            'channel_type': (str, none_type,),  # noqa: E501
             'channel_name': (str, none_type,),  # noqa: E501
+            'channel_type': (str, none_type,),  # noqa: E501
             'creation_time_secs': (int, none_type,),  # noqa: E501
             'owner_names': ([str], none_type,),  # noqa: E501
-            'channel_email': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,12 +94,12 @@ class ChannelItem(ModelNormal):
 
 
     attribute_map = {
+        'channel_email': 'channelEmail',  # noqa: E501
         'channel_id': 'channelId',  # noqa: E501
-        'channel_type': 'channelType',  # noqa: E501
         'channel_name': 'channelName',  # noqa: E501
+        'channel_type': 'channelType',  # noqa: E501
         'creation_time_secs': 'creationTimeSecs',  # noqa: E501
         'owner_names': 'ownerNames',  # noqa: E501
-        'channel_email': 'channelEmail',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,12 +149,12 @@ class ChannelItem(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            channel_email (str, none_type): Specifies the email of this channel.. [optional]  # noqa: E501
             channel_id (str, none_type): Specifies the id of this channel.. [optional]  # noqa: E501
-            channel_type (str, none_type): Specifies the channel type.. [optional]  # noqa: E501
             channel_name (str, none_type): Specifies the channel name.. [optional]  # noqa: E501
+            channel_type (str, none_type): Specifies the channel type.. [optional]  # noqa: E501
             creation_time_secs (int, none_type): Specifies the Unix timestamp epoch in seconds at which this channel is created.. [optional]  # noqa: E501
             owner_names ([str], none_type): Specifies the names of owners of this channel.. [optional]  # noqa: E501
-            channel_email (str, none_type): Specifies the email of this channel.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

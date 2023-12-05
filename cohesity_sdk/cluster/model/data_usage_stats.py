@@ -98,6 +98,8 @@ class DataUsageStats(ModelNormal):
             'local_tier_resiliency_impact_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
             'local_total_physical_usage_bytes': (int, none_type,),  # noqa: E501
             'local_total_physical_usage_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
+            'num_directories': (int, none_type,),  # noqa: E501
+            'num_files': (int, none_type,),  # noqa: E501
             'outdated_logical_usage_bytes': (int, none_type,),  # noqa: E501
             'outdated_logical_usage_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
             'storage_consumed_bytes': (int, none_type,),  # noqa: E501
@@ -105,8 +107,6 @@ class DataUsageStats(ModelNormal):
             'total_logical_usage_bytes': (int, none_type,),  # noqa: E501
             'total_logical_usage_bytes_timestamp_usec': (int, none_type,),  # noqa: E501
             'unique_physical_data_bytes': (int, none_type,),  # noqa: E501
-            'num_files': (int, none_type,),  # noqa: E501
-            'num_directories': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -140,6 +140,8 @@ class DataUsageStats(ModelNormal):
         'local_tier_resiliency_impact_bytes_timestamp_usec': 'localTierResiliencyImpactBytesTimestampUsec',  # noqa: E501
         'local_total_physical_usage_bytes': 'localTotalPhysicalUsageBytes',  # noqa: E501
         'local_total_physical_usage_bytes_timestamp_usec': 'localTotalPhysicalUsageBytesTimestampUsec',  # noqa: E501
+        'num_directories': 'numDirectories',  # noqa: E501
+        'num_files': 'numFiles',  # noqa: E501
         'outdated_logical_usage_bytes': 'outdatedLogicalUsageBytes',  # noqa: E501
         'outdated_logical_usage_bytes_timestamp_usec': 'outdatedLogicalUsageBytesTimestampUsec',  # noqa: E501
         'storage_consumed_bytes': 'storageConsumedBytes',  # noqa: E501
@@ -147,8 +149,6 @@ class DataUsageStats(ModelNormal):
         'total_logical_usage_bytes': 'totalLogicalUsageBytes',  # noqa: E501
         'total_logical_usage_bytes_timestamp_usec': 'totalLogicalUsageBytesTimestampUsec',  # noqa: E501
         'unique_physical_data_bytes': 'uniquePhysicalDataBytes',  # noqa: E501
-        'num_files': 'numFiles',  # noqa: E501
-        'num_directories': 'numDirectories',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -222,6 +222,8 @@ class DataUsageStats(ModelNormal):
             local_tier_resiliency_impact_bytes_timestamp_usec (int, none_type): Specifies Timestamp of LocalTierResiliencyImpactBytes.. [optional]  # noqa: E501
             local_total_physical_usage_bytes (int, none_type): Specifies the total local capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication.. [optional]  # noqa: E501
             local_total_physical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of LocalTotalPhysicalUsageBytes.. [optional]  # noqa: E501
+            num_directories (int, none_type): Specifies the number of directories.. [optional]  # noqa: E501
+            num_files (int, none_type): Specifies the number of files.. [optional]  # noqa: E501
             outdated_logical_usage_bytes (int, none_type): Specifies the logical usage as computed by the Cohesity Cluster. This field is computed on a same frequency as 'StorageConsumedBytes', and it may not be the latest value. It is used to compute reduction ratio.. [optional]  # noqa: E501
             outdated_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of OutdatedLogicalUsageBytes.. [optional]  # noqa: E501
             storage_consumed_bytes (int, none_type): Specifies the total capacity, as computed by the Cohesity Cluster, after the size of the data has been reduced by change-block tracking, compression and deduplication. This includes resiliency impact.. [optional]  # noqa: E501
@@ -229,8 +231,6 @@ class DataUsageStats(ModelNormal):
             total_logical_usage_bytes (int, none_type): Provides the combined data residing on protected objects. The size of data before reduction by deduplication and compression.. [optional]  # noqa: E501
             total_logical_usage_bytes_timestamp_usec (int, none_type): Specifies Timestamp of TotalLogicalUsageBytes.. [optional]  # noqa: E501
             unique_physical_data_bytes (int, none_type): Specifies the unique physical data usage in bytes.. [optional]  # noqa: E501
-            num_files (int, none_type): Specifies the number of files.. [optional]  # noqa: E501
-            num_directories (int, none_type): Specifies the number of directories.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

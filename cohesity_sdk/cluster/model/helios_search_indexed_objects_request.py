@@ -41,7 +41,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.search_file_request_params_base import SearchFileRequestParamsBase
     from cohesity_sdk.cluster.model.search_ms_teams_request_params import SearchMsTeamsRequestParams
     from cohesity_sdk.cluster.model.search_public_folder_request_params import SearchPublicFolderRequestParams
-    from cohesity_sdk.cluster.model.search_sfdc_records_request_params import SearchSfdcRecordsRequestParams
     from cohesity_sdk.cluster.model.uda_search_params import UdaSearchParams
     globals()['CassandraSearchParams'] = CassandraSearchParams
     globals()['CouchbaseSearchParams'] = CouchbaseSearchParams
@@ -57,7 +56,6 @@ def lazy_import():
     globals()['SearchFileRequestParamsBase'] = SearchFileRequestParamsBase
     globals()['SearchMsTeamsRequestParams'] = SearchMsTeamsRequestParams
     globals()['SearchPublicFolderRequestParams'] = SearchPublicFolderRequestParams
-    globals()['SearchSfdcRecordsRequestParams'] = SearchSfdcRecordsRequestParams
     globals()['UdaSearchParams'] = UdaSearchParams
 
 
@@ -135,22 +133,21 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
         return {
             'object_type': (str, none_type,),  # noqa: E501
             'cluster_identifiers': ([str], none_type,),  # noqa: E501
-            'region_ids': ([str], none_type,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
+            'region_ids': ([str], none_type,),  # noqa: E501
             'source_uuids': (HeliosSourceUUIDs,),  # noqa: E501
-            'email_params': (EmailHeliosSearchParams,),  # noqa: E501
-            'file_params': (SearchFileRequestParamsBase,),  # noqa: E501
             'cassandra_params': (CassandraSearchParams,),  # noqa: E501
             'couchbase_params': (CouchbaseSearchParams,),  # noqa: E501
+            'email_params': (EmailHeliosSearchParams,),  # noqa: E501
+            'exchange_params': (SearchExchangeObjectsRequestParams,),  # noqa: E501
+            'file_params': (SearchFileRequestParamsBase,),  # noqa: E501
             'hbase_params': (HbaseSearchParams,),  # noqa: E501
+            'hdfs_params': (HdfsSearchParams,),  # noqa: E501
             'hive_params': (HiveSearchParams,),  # noqa: E501
             'mongodb_params': (MongodbSearchParams,),  # noqa: E501
-            'hdfs_params': (HdfsSearchParams,),  # noqa: E501
-            'exchange_params': (SearchExchangeObjectsRequestParams,),  # noqa: E501
-            'public_folder_params': (SearchPublicFolderRequestParams,),  # noqa: E501
             'ms_teams_params': (SearchMsTeamsRequestParams,),  # noqa: E501
+            'public_folder_params': (SearchPublicFolderRequestParams,),  # noqa: E501
             'uda_params': (UdaSearchParams,),  # noqa: E501
-            'sfdc_params': (SearchSfdcRecordsRequestParams,),  # noqa: E501
         }
 
     @cached_property
@@ -162,22 +159,21 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
     attribute_map = {
         'object_type': 'objectType',  # noqa: E501
         'cluster_identifiers': 'clusterIdentifiers',  # noqa: E501
-        'region_ids': 'regionIds',  # noqa: E501
         'count': 'count',  # noqa: E501
+        'region_ids': 'regionIds',  # noqa: E501
         'source_uuids': 'sourceUUIDs',  # noqa: E501
-        'email_params': 'emailParams',  # noqa: E501
-        'file_params': 'fileParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
+        'email_params': 'emailParams',  # noqa: E501
+        'exchange_params': 'exchangeParams',  # noqa: E501
+        'file_params': 'fileParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
+        'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'mongodb_params': 'mongodbParams',  # noqa: E501
-        'hdfs_params': 'hdfsParams',  # noqa: E501
-        'exchange_params': 'exchangeParams',  # noqa: E501
-        'public_folder_params': 'publicFolderParams',  # noqa: E501
         'ms_teams_params': 'msTeamsParams',  # noqa: E501
+        'public_folder_params': 'publicFolderParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
-        'sfdc_params': 'sfdcParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -232,22 +228,21 @@ class HeliosSearchIndexedObjectsRequest(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             cluster_identifiers ([str], none_type): List of Clusters Identifiers to filter from. The format is clusterId:clusterIncarnationId.. [optional]  # noqa: E501
-            region_ids ([str], none_type): List of Regions to filter from.. [optional]  # noqa: E501
             count (int, none_type): Specifies the number of indexed objects to be fetched.. [optional]  # noqa: E501
+            region_ids ([str], none_type): List of Regions to filter from.. [optional]  # noqa: E501
             source_uuids (HeliosSourceUUIDs): [optional]  # noqa: E501
-            email_params (EmailHeliosSearchParams): [optional]  # noqa: E501
-            file_params (SearchFileRequestParamsBase): [optional]  # noqa: E501
             cassandra_params (CassandraSearchParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseSearchParams): [optional]  # noqa: E501
+            email_params (EmailHeliosSearchParams): [optional]  # noqa: E501
+            exchange_params (SearchExchangeObjectsRequestParams): [optional]  # noqa: E501
+            file_params (SearchFileRequestParamsBase): [optional]  # noqa: E501
             hbase_params (HbaseSearchParams): [optional]  # noqa: E501
+            hdfs_params (HdfsSearchParams): [optional]  # noqa: E501
             hive_params (HiveSearchParams): [optional]  # noqa: E501
             mongodb_params (MongodbSearchParams): [optional]  # noqa: E501
-            hdfs_params (HdfsSearchParams): [optional]  # noqa: E501
-            exchange_params (SearchExchangeObjectsRequestParams): [optional]  # noqa: E501
-            public_folder_params (SearchPublicFolderRequestParams): [optional]  # noqa: E501
             ms_teams_params (SearchMsTeamsRequestParams): [optional]  # noqa: E501
+            public_folder_params (SearchPublicFolderRequestParams): [optional]  # noqa: E501
             uda_params (UdaSearchParams): [optional]  # noqa: E501
-            sfdc_params (SearchSfdcRecordsRequestParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

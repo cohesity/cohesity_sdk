@@ -60,13 +60,9 @@ class AwsRegionId(ModelNormal):
             'US-WEST-1': "us-west-1",
             'US-WEST-2': "us-west-2",
             'CA-CENTRAL-1': "ca-central-1",
-            'AP-SOUTH-1': "ap-south-1",
-            'AP-SOUTHEAST-1': "ap-southeast-1",
             'AP-SOUTHEAST-2': "ap-southeast-2",
             'EU-CENTRAL-1': "eu-central-1",
             'EU-WEST-2': "eu-west-2",
-            'ME-SOUTH-1': "me-south-1",
-            'EU-WEST-3': "eu-west-3",
         },
     }
 

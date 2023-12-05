@@ -83,8 +83,8 @@ class SecurityPrincipal(ModelNormal):
         return {
             'domain_name': (str, none_type,),  # noqa: E501
             'full_name': (str, none_type,),  # noqa: E501
-            'principal_name': (str, none_type,),  # noqa: E501
             'object_class': (str, none_type,),  # noqa: E501
+            'principal_name': (str, none_type,),  # noqa: E501
             'sid': (str, none_type,),  # noqa: E501
         }
 
@@ -97,8 +97,8 @@ class SecurityPrincipal(ModelNormal):
     attribute_map = {
         'domain_name': 'domainName',  # noqa: E501
         'full_name': 'fullName',  # noqa: E501
-        'principal_name': 'principalName',  # noqa: E501
         'object_class': 'objectClass',  # noqa: E501
+        'principal_name': 'principalName',  # noqa: E501
         'sid': 'sid',  # noqa: E501
     }
 
@@ -151,8 +151,8 @@ class SecurityPrincipal(ModelNormal):
 
             domain_name (str, none_type): Specifies the domain name where the security principal account is maintained.. [optional]  # noqa: E501
             full_name (str, none_type): Specifies the full name (first and last name) of the security principal.. [optional]  # noqa: E501
-            principal_name (str, none_type): Specifies the name of the security principal.. [optional]  # noqa: E501
             object_class (str, none_type): Specifies the object class of the security principal.. [optional]  # noqa: E501
+            principal_name (str, none_type): Specifies the name of the security principal.. [optional]  # noqa: E501
             sid (str, none_type): Specifies the SID of the security principal.. [optional]  # noqa: E501
         """
 

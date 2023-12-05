@@ -74,9 +74,9 @@ class ViewClientsSummaryInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'server_ip': (str, none_type,),  # noqa: E501
-            'node_ip': (str, none_type,),  # noqa: E501
             'nfs_client_count': (int, none_type,),  # noqa: E501
+            'node_ip': (str, none_type,),  # noqa: E501
+            'server_ip': (str, none_type,),  # noqa: E501
             'smb_client_count': (int, none_type,),  # noqa: E501
         }
 
@@ -87,9 +87,9 @@ class ViewClientsSummaryInfo(ModelNormal):
 
 
     attribute_map = {
-        'server_ip': 'serverIp',  # noqa: E501
-        'node_ip': 'nodeIp',  # noqa: E501
         'nfs_client_count': 'nfsClientCount',  # noqa: E501
+        'node_ip': 'nodeIp',  # noqa: E501
+        'server_ip': 'serverIp',  # noqa: E501
         'smb_client_count': 'smbClientCount',  # noqa: E501
     }
 
@@ -140,9 +140,9 @@ class ViewClientsSummaryInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            server_ip (str, none_type): Specifies the server ip the clients are connected to.. [optional]  # noqa: E501
-            node_ip (str, none_type): Specifies the node ip the clients are connected to.. [optional]  # noqa: E501
             nfs_client_count (int, none_type): Specifies the number of NFS clients.. [optional]  # noqa: E501
+            node_ip (str, none_type): Specifies the node ip the clients are connected to.. [optional]  # noqa: E501
+            server_ip (str, none_type): Specifies the server ip the clients are connected to.. [optional]  # noqa: E501
             smb_client_count (int, none_type): Specifies the number of SMB clients.. [optional]  # noqa: E501
         """
 

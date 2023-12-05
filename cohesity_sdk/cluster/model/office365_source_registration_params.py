@@ -77,6 +77,10 @@ class Office365SourceRegistrationParams(ModelComposed):
     }
 
     validations = {
+        ('office365_service_account_credentials_list',): {
+            'min_items': 1,
+        },
+
     }
 
     additional_properties_type = None
@@ -95,17 +99,17 @@ class Office365SourceRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'endpoint': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'office365_app_credentials_list': ([Office365AppCredentials],),  # noqa: E501
-            'office365_service_account_credentials_list': ([Credentials], none_type,),  # noqa: E501
-            'use_o_auth_for_exchange_online': (bool, none_type,),  # noqa: E501
-            'proxy_host_source_id_list': ([int], none_type,),  # noqa: E501
-            'office365_region': (str, none_type,),  # noqa: E501
             'o365_objects_discovery_params': (ObjectsDiscoveryParams,),  # noqa: E501
+            'office365_app_credentials_list': ([Office365AppCredentials],),  # noqa: E501
+            'office365_region': (str, none_type,),  # noqa: E501
+            'office365_service_account_credentials_list': ([Credentials], none_type,),  # noqa: E501
+            'proxy_host_source_id_list': ([int], none_type,),  # noqa: E501
             'use_existing_credentials': (bool, none_type,),  # noqa: E501
+            'use_o_auth_for_exchange_online': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -115,17 +119,17 @@ class Office365SourceRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'office365_app_credentials_list': 'office365AppCredentialsList',  # noqa: E501
-        'office365_service_account_credentials_list': 'office365ServiceAccountCredentialsList',  # noqa: E501
-        'use_o_auth_for_exchange_online': 'useOAuthForExchangeOnline',  # noqa: E501
-        'proxy_host_source_id_list': 'proxyHostSourceIdList',  # noqa: E501
-        'office365_region': 'office365Region',  # noqa: E501
         'o365_objects_discovery_params': 'o365ObjectsDiscoveryParams',  # noqa: E501
+        'office365_app_credentials_list': 'office365AppCredentialsList',  # noqa: E501
+        'office365_region': 'office365Region',  # noqa: E501
+        'office365_service_account_credentials_list': 'office365ServiceAccountCredentialsList',  # noqa: E501
+        'proxy_host_source_id_list': 'proxyHostSourceIdList',  # noqa: E501
         'use_existing_credentials': 'useExistingCredentials',  # noqa: E501
+        'use_o_auth_for_exchange_online': 'useOAuthForExchangeOnline',  # noqa: E501
     }
 
     required_properties = set([
@@ -141,12 +145,12 @@ class Office365SourceRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, endpoint, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, endpoint, *args, **kwargs):  # noqa: E501
         """Office365SourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
             endpoint (str): Specifies the endpoint IPaddress, URL or hostname of the host.
 
         Keyword Args:
@@ -182,13 +186,13 @@ class Office365SourceRegistrationParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description of the source being registered.. [optional]  # noqa: E501
-            office365_app_credentials_list ([Office365AppCredentials]): Specifies a list of office365 azure application credentials needed to authenticate & authorize users for Office 365.. [optional]  # noqa: E501
-            office365_service_account_credentials_list ([Credentials], none_type): Specifies the list of Office365 service account credentials which can be used for Mailbox Backups.. [optional]  # noqa: E501
-            use_o_auth_for_exchange_online (bool, none_type): Specifies whether OAuth should be used for authentication in case of Exchange Online.. [optional]  # noqa: E501
-            proxy_host_source_id_list ([int], none_type): Specifies the list of the protection source id of the windows physical host which will be used during the protection and recovery of the sites that belong to a office365 domain.. [optional]  # noqa: E501
-            office365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501
             o365_objects_discovery_params (ObjectsDiscoveryParams): [optional]  # noqa: E501
+            office365_app_credentials_list ([Office365AppCredentials]): Specifies a list of office365 azure application credentials needed to authenticate & authorize users for Office 365.. [optional]  # noqa: E501
+            office365_region (str, none_type): Specifies the region where Office 365 Exchange environment is.. [optional]  # noqa: E501
+            office365_service_account_credentials_list ([Credentials], none_type): Specifies the list of Office365 service account credentials which can be used for Mailbox Backups.. [optional]  # noqa: E501
+            proxy_host_source_id_list ([int], none_type): Specifies the list of the protection source id of the windows physical host which will be used during the protection and recovery of the sites that belong to a office365 domain.. [optional]  # noqa: E501
             use_existing_credentials (bool, none_type): Specifies whether to use existing Office365 credentials like password and client secret for app id's. This parameter is only valid in the case of updating the registered source.. [optional]  # noqa: E501
+            use_o_auth_for_exchange_online (bool, none_type): Specifies whether OAuth should be used for authentication in case of Exchange Online.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,8 +227,8 @@ class Office365SourceRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
+            'username': username,
             'endpoint': endpoint,
         }
         model_args = {}

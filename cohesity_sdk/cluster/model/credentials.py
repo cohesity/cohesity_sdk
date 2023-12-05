@@ -74,8 +74,8 @@ class Credentials(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class Credentials(ModelNormal):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class Credentials(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, *args, **kwargs):  # noqa: E501
         """Credentials - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class Credentials(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.username = username
         self.password = password
+        self.username = username
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

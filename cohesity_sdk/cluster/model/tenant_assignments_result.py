@@ -81,11 +81,11 @@ class TenantAssignmentsResult(ModelNormal):
         """
         lazy_import()
         return {
-            'storage_domains': (TenantAssignmentTypeIntegerId,),  # noqa: E501
             'objects': (TenantAssignmentTypeIntegerId,),  # noqa: E501
-            'vlans': (TenantAssignmentTypeStringId,),  # noqa: E501
-            'views': (TenantAssignmentTypeIntegerId,),  # noqa: E501
             'policies': (TenantAssignmentTypeStringId,),  # noqa: E501
+            'storage_domains': (TenantAssignmentTypeIntegerId,),  # noqa: E501
+            'views': (TenantAssignmentTypeIntegerId,),  # noqa: E501
+            'vlans': (TenantAssignmentTypeStringId,),  # noqa: E501
         }
 
     @cached_property
@@ -95,11 +95,11 @@ class TenantAssignmentsResult(ModelNormal):
 
 
     attribute_map = {
-        'storage_domains': 'storageDomains',  # noqa: E501
         'objects': 'objects',  # noqa: E501
-        'vlans': 'vlans',  # noqa: E501
-        'views': 'views',  # noqa: E501
         'policies': 'policies',  # noqa: E501
+        'storage_domains': 'storageDomains',  # noqa: E501
+        'views': 'views',  # noqa: E501
+        'vlans': 'vlans',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,11 +149,11 @@ class TenantAssignmentsResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            storage_domains (TenantAssignmentTypeIntegerId): [optional]  # noqa: E501
             objects (TenantAssignmentTypeIntegerId): [optional]  # noqa: E501
-            vlans (TenantAssignmentTypeStringId): [optional]  # noqa: E501
-            views (TenantAssignmentTypeIntegerId): [optional]  # noqa: E501
             policies (TenantAssignmentTypeStringId): [optional]  # noqa: E501
+            storage_domains (TenantAssignmentTypeIntegerId): [optional]  # noqa: E501
+            views (TenantAssignmentTypeIntegerId): [optional]  # noqa: E501
+            vlans (TenantAssignmentTypeStringId): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -87,11 +87,11 @@ class CancelProtectionGroupRunRequest(ModelNormal):
         """
         return {
             'run_id': (str, none_type,),  # noqa: E501
+            'archival_task_id': ([str], none_type,),  # noqa: E501
+            'cloud_spin_task_id': ([str], none_type,),  # noqa: E501
             'local_task_id': (str, none_type,),  # noqa: E501
             'object_ids': ([int], none_type,),  # noqa: E501
             'replication_task_id': ([str], none_type,),  # noqa: E501
-            'archival_task_id': ([str], none_type,),  # noqa: E501
-            'cloud_spin_task_id': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,11 +102,11 @@ class CancelProtectionGroupRunRequest(ModelNormal):
 
     attribute_map = {
         'run_id': 'runId',  # noqa: E501
+        'archival_task_id': 'archivalTaskId',  # noqa: E501
+        'cloud_spin_task_id': 'cloudSpinTaskId',  # noqa: E501
         'local_task_id': 'localTaskId',  # noqa: E501
         'object_ids': 'objectIds',  # noqa: E501
         'replication_task_id': 'replicationTaskId',  # noqa: E501
-        'archival_task_id': 'archivalTaskId',  # noqa: E501
-        'cloud_spin_task_id': 'cloudSpinTaskId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,11 +159,11 @@ class CancelProtectionGroupRunRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            archival_task_id ([str], none_type): Specifies the task id of the archival run.. [optional]  # noqa: E501
+            cloud_spin_task_id ([str], none_type): Specifies the task id of the cloudSpin run.. [optional]  # noqa: E501
             local_task_id (str, none_type): Specifies the task id of the local run.. [optional]  # noqa: E501
             object_ids ([int], none_type): List of entity ids for which we need to cancel the backup tasks. If this is provided it will not cancel the complete run but will cancel only subset of backup tasks (if backup tasks are cancelled correspoding copy task will also get cancelled). If the backup tasks are completed successfully it will not cancel those backup tasks.. [optional]  # noqa: E501
             replication_task_id ([str], none_type): Specifies the task id of the replication run.. [optional]  # noqa: E501
-            archival_task_id ([str], none_type): Specifies the task id of the archival run.. [optional]  # noqa: E501
-            cloud_spin_task_id ([str], none_type): Specifies the task id of the cloudSpin run.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

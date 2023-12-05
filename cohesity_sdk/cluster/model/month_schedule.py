@@ -92,9 +92,9 @@ class MonthSchedule(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'day_of_month': (int, none_type,),  # noqa: E501
             'day_of_week': ([str], none_type,),  # noqa: E501
             'week_of_month': (str, none_type,),  # noqa: E501
-            'day_of_month': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,9 +104,9 @@ class MonthSchedule(ModelNormal):
 
 
     attribute_map = {
+        'day_of_month': 'dayOfMonth',  # noqa: E501
         'day_of_week': 'dayOfWeek',  # noqa: E501
         'week_of_month': 'weekOfMonth',  # noqa: E501
-        'day_of_month': 'dayOfMonth',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,9 +156,9 @@ class MonthSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            day_of_month (int, none_type): Specifies the exact date of the month (such as 18) in a Monthly Schedule specified by unit field as 'Years'. <br> Example: if 'dayOfMonth' is set to '18', a backup is performed on the 18th of every month.. [optional]  # noqa: E501
             day_of_week ([str], none_type): Specifies a list of days of the week when to start Protection Group Runs. <br> Example: To run a Protection Group on every Monday and Tuesday, set the schedule with following values: <br>  unit: 'Weeks' <br>  dayOfWeek: ['Monday','Tuesday']. [optional]  # noqa: E501
             week_of_month (str, none_type): Specifies the week of the month (such as 'Third') or nth day of month (such as 'First' or 'Last') in a Monthly Schedule specified by unit field as 'Months'. <br>This field can be used in combination with 'dayOfWeek' to define the day in the month to start the Protection Group Run. <br> Example: if 'weekOfMonth' is set to 'Third' and day is set to 'Monday', a backup is performed on the third Monday of every month. <br> Example: if 'weekOfMonth' is set to 'Last' and dayOfWeek is not set, a backup is performed on the last day of every month.. [optional]  # noqa: E501
-            day_of_month (int, none_type): Specifies the exact date of the month (such as 18) in a Monthly Schedule specified by unit field as 'Years'. <br> Example: if 'dayOfMonth' is set to '18', a backup is performed on the 18th of every month.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -83,14 +83,14 @@ class EsxiRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'username': (str,),  # noqa: E501
             'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
             'endpoint': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
+            'max_concurrent_streams': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_gb': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_percentage': (int, none_type,),  # noqa: E501
-            'max_concurrent_streams': (int, none_type,),  # noqa: E501
-            'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -100,14 +100,14 @@ class EsxiRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'endpoint': 'endpoint',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'data_store_params': 'dataStoreParams',  # noqa: E501
+        'max_concurrent_streams': 'maxConcurrentStreams',  # noqa: E501
         'min_free_datastore_space_for_backup_gb': 'minFreeDatastoreSpaceForBackupGb',  # noqa: E501
         'min_free_datastore_space_for_backup_percentage': 'minFreeDatastoreSpaceForBackupPercentage',  # noqa: E501
-        'max_concurrent_streams': 'maxConcurrentStreams',  # noqa: E501
-        'data_store_params': 'dataStoreParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -123,12 +123,12 @@ class EsxiRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, endpoint, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, endpoint, *args, **kwargs):  # noqa: E501
         """EsxiRegistrationParams - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the username to access target entity.
             password (str): Specifies the password to access target entity.
+            username (str): Specifies the username to access target entity.
             endpoint (str): Specifies the endpoint IPaddress, URL or hostname of the host.
 
         Keyword Args:
@@ -164,10 +164,10 @@ class EsxiRegistrationParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description of the source being registered.. [optional]  # noqa: E501
+            data_store_params ([DatastoreParams], none_type): Specifies the datastore specific params.. [optional]  # noqa: E501
+            max_concurrent_streams (int, none_type): If this value is > 0 and the number of streams concurrently active on a datastore is equal to it, then any further requests to access the datastore would be denied until the number of active streams reduces. This applies for all the datastores in the specified host.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_gb (int, none_type): Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_percentage (int, none_type): Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
-            max_concurrent_streams (int, none_type): If this value is > 0 and the number of streams concurrently active on a datastore is equal to it, then any further requests to access the datastore would be denied until the number of active streams reduces. This applies for all the datastores in the specified host.. [optional]  # noqa: E501
-            data_store_params ([DatastoreParams], none_type): Specifies the datastore specific params.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,8 +202,8 @@ class EsxiRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'username': username,
             'password': password,
+            'username': username,
             'endpoint': endpoint,
         }
         model_args = {}

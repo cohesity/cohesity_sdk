@@ -74,10 +74,10 @@ class ProtectedObjectBackupConfigAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'is_auto_protect_config': (bool, none_type,),  # noqa: E501
             'auto_protect_parent_id': (int, none_type,),  # noqa: E501
-            'is_paused': (bool, none_type,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
+            'is_auto_protect_config': (bool, none_type,),  # noqa: E501
+            'is_paused': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class ProtectedObjectBackupConfigAllOf(ModelNormal):
 
 
     attribute_map = {
-        'is_auto_protect_config': 'isAutoProtectConfig',  # noqa: E501
         'auto_protect_parent_id': 'autoProtectParentId',  # noqa: E501
-        'is_paused': 'isPaused',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
+        'is_auto_protect_config': 'isAutoProtectConfig',  # noqa: E501
+        'is_paused': 'isPaused',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,10 +140,10 @@ class ProtectedObjectBackupConfigAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_auto_protect_config (bool, none_type): Specifies whether or not this configuration is applied to an autoprotected object rather than this specific object.. [optional]  # noqa: E501
             auto_protect_parent_id (int, none_type): Specifies the parent ID of the object which the backup configuration is applied to if this is an auto protect config.. [optional]  # noqa: E501
-            is_paused (bool, none_type): Specifies whether or not protection has been paused on this object.. [optional]  # noqa: E501
             is_active (bool, none_type): Specifies whether or not protection has been deactivated on this object.. [optional]  # noqa: E501
+            is_auto_protect_config (bool, none_type): Specifies whether or not this configuration is applied to an autoprotected object rather than this specific object.. [optional]  # noqa: E501
+            is_paused (bool, none_type): Specifies whether or not protection has been paused on this object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

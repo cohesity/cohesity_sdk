@@ -62,19 +62,35 @@ class CommonRecoveryResponseParams(ModelNormal):
     """
 
     allowed_values = {
-        ('status',): {
-            'None': None,
-            'ACCEPTED': "Accepted",
-            'RUNNING': "Running",
-            'CANCELED': "Canceled",
-            'CANCELING': "Canceling",
-            'FAILED': "Failed",
-            'MISSED': "Missed",
-            'SUCCEEDED': "Succeeded",
-            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
-            'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
+        ('recovery_action',): {
+            'RECOVERVMS': "RecoverVMs",
+            'RECOVERFILES': "RecoverFiles",
+            'INSTANTVOLUMEMOUNT': "InstantVolumeMount",
+            'RECOVERVMDISKS': "RecoverVmDisks",
+            'RECOVERVAPPS': "RecoverVApps",
+            'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
+            'UPTIERSNAPSHOT': "UptierSnapshot",
+            'RECOVERRDS': "RecoverRDS",
+            'RECOVERAURORA': "RecoverAurora",
+            'RECOVERAPPS': "RecoverApps",
+            'RECOVERNASVOLUME': "RecoverNasVolume",
+            'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
+            'RECOVERSYSTEM': "RecoverSystem",
+            'CLONEAPPVIEW': "CloneAppView",
+            'RECOVERSANVOLUMES': "RecoverSanVolumes",
+            'RECOVERMAILBOX': "RecoverMailbox",
+            'RECOVERONEDRIVE': "RecoverOneDrive",
+            'RECOVERSHAREPOINT': "RecoverSharePoint",
+            'RECOVERPUBLICFOLDERS': "RecoverPublicFolders",
+            'RECOVERMSGROUP': "RecoverMsGroup",
+            'RECOVERMSTEAM': "RecoverMsTeam",
+            'CONVERTTOPST': "ConvertToPst",
+            'RECOVERNAMESPACES': "RecoverNamespaces",
+            'RECOVEROBJECTS': "RecoverObjects",
+            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
+            'RECOVERSFDCORG': "RecoverSfdcOrg",
+            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
+            'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -109,43 +125,18 @@ class CommonRecoveryResponseParams(ModelNormal):
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
         },
-        ('recovery_action',): {
-            'RECOVERVMS': "RecoverVMs",
-            'RECOVERFILES': "RecoverFiles",
-            'INSTANTVOLUMEMOUNT': "InstantVolumeMount",
-            'RECOVERVMDISKS': "RecoverVmDisks",
-            'RECOVERVAPPS': "RecoverVApps",
-            'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
-            'UPTIERSNAPSHOT': "UptierSnapshot",
-            'RECOVERRDS': "RecoverRDS",
-            'RECOVERAURORA': "RecoverAurora",
-            'RECOVERAPPS': "RecoverApps",
-            'CLONEAPPS': "CloneApps",
-            'RECOVERNASVOLUME': "RecoverNasVolume",
-            'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
-            'RECOVERSYSTEM': "RecoverSystem",
-            'RECOVEREXCHANGEDBS': "RecoverExchangeDbs",
-            'CLONEAPPVIEW': "CloneAppView",
-            'RECOVERSANVOLUMES': "RecoverSanVolumes",
-            'RECOVERMAILBOX': "RecoverMailbox",
-            'RECOVERONEDRIVE': "RecoverOneDrive",
-            'RECOVERSHAREPOINT': "RecoverSharePoint",
-            'RECOVERPUBLICFOLDERS': "RecoverPublicFolders",
-            'RECOVERMSGROUP': "RecoverMsGroup",
-            'RECOVERMSTEAM': "RecoverMsTeam",
-            'CONVERTTOPST': "ConvertToPst",
-            'RECOVERNAMESPACES': "RecoverNamespaces",
-            'RECOVEROBJECTS': "RecoverObjects",
-            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
-            'RECOVERSFDCORG': "RecoverSfdcOrg",
-            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
-            'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
-            'CLONEVMS': "CloneVMs",
-            'CLONEVIEW': "CloneView",
-            'CLONEREFRESHAPP': "CloneRefreshApp",
-            'CLONEVMSTOVIEW': "CloneVMsToView",
-            'CONVERTANDDEPLOYVMS': "ConvertAndDeployVMs",
-            'DEPLOYVMS': "DeployVMs",
+        ('status',): {
+            'None': None,
+            'ACCEPTED': "Accepted",
+            'RUNNING': "Running",
+            'CANCELED': "Canceled",
+            'CANCELING': "Canceling",
+            'FAILED': "Failed",
+            'MISSED': "Missed",
+            'SUCCEEDED': "Succeeded",
+            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
+            'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('tear_down_status',): {
             'None': None,
@@ -187,24 +178,24 @@ class CommonRecoveryResponseParams(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'progress_task_id': (str, none_type,),  # noqa: E501
-            'snapshot_environment': (str,),  # noqa: E501
-            'recovery_action': (str,),  # noqa: E501
-            'permissions': ([Tenant], none_type,),  # noqa: E501
-            'creation_info': (CreationInfo,),  # noqa: E501
             'can_tear_down': (bool, none_type,),  # noqa: E501
-            'tear_down_status': (str, none_type,),  # noqa: E501
-            'tear_down_message': (str, none_type,),  # noqa: E501
-            'messages': ([str], none_type,),  # noqa: E501
-            'is_parent_recovery': (bool, none_type,),  # noqa: E501
-            'parent_recovery_id': (str, none_type,),  # noqa: E501
-            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
+            'creation_info': (CreationInfo,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
+            'is_parent_recovery': (bool, none_type,),  # noqa: E501
+            'messages': ([str], none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'parent_recovery_id': (str, none_type,),  # noqa: E501
+            'permissions': ([Tenant], none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
+            'recovery_action': (str,),  # noqa: E501
+            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
+            'snapshot_environment': (str,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'tear_down_message': (str, none_type,),  # noqa: E501
+            'tear_down_status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -214,24 +205,24 @@ class CommonRecoveryResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'progress_task_id': 'progressTaskId',  # noqa: E501
-        'snapshot_environment': 'snapshotEnvironment',  # noqa: E501
-        'recovery_action': 'recoveryAction',  # noqa: E501
-        'permissions': 'permissions',  # noqa: E501
-        'creation_info': 'creationInfo',  # noqa: E501
         'can_tear_down': 'canTearDown',  # noqa: E501
-        'tear_down_status': 'tearDownStatus',  # noqa: E501
-        'tear_down_message': 'tearDownMessage',  # noqa: E501
-        'messages': 'messages',  # noqa: E501
-        'is_parent_recovery': 'isParentRecovery',  # noqa: E501
-        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
-        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
+        'creation_info': 'creationInfo',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
+        'is_parent_recovery': 'isParentRecovery',  # noqa: E501
+        'messages': 'messages',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
+        'permissions': 'permissions',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
+        'recovery_action': 'recoveryAction',  # noqa: E501
+        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
+        'snapshot_environment': 'snapshotEnvironment',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'tear_down_message': 'tearDownMessage',  # noqa: E501
+        'tear_down_status': 'tearDownStatus',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -281,24 +272,24 @@ class CommonRecoveryResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the id of the Recovery.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the Recovery.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
-            progress_task_id (str, none_type): Progress monitor task id for Recovery.. [optional]  # noqa: E501
-            snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
-            recovery_action (str): Specifies the type of recover action.. [optional]  # noqa: E501
-            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this recovery.. [optional]  # noqa: E501
-            creation_info (CreationInfo): [optional]  # noqa: E501
             can_tear_down (bool, none_type): Specifies whether it's possible to tear down the objects created by the recovery.. [optional]  # noqa: E501
-            tear_down_status (str, none_type): Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.. [optional]  # noqa: E501
-            tear_down_message (str, none_type): Specifies the error message about the tear down operation if it fails.. [optional]  # noqa: E501
-            messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
-            is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
-            parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
-            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
+            creation_info (CreationInfo): [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the Recovery.. [optional]  # noqa: E501
             is_multi_stage_restore (bool, none_type): Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case.. [optional]  # noqa: E501
+            is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
+            messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the Recovery.. [optional]  # noqa: E501
+            parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
+            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this recovery.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task id for Recovery.. [optional]  # noqa: E501
+            recovery_action (str): Specifies the type of recover action.. [optional]  # noqa: E501
+            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
+            snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            tear_down_message (str, none_type): Specifies the error message about the tear down operation if it fails.. [optional]  # noqa: E501
+            tear_down_status (str, none_type): Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

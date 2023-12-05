@@ -67,9 +67,6 @@ class UdaProtectionGroupParams(ModelNormal):
             'min_items': 1,
         },
 
-        ('exclude_object_ids',): {
-        },
-
     }
 
     additional_properties_type = None
@@ -88,16 +85,15 @@ class UdaProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
-            'source_id': (int, none_type,),  # noqa: E501
             'objects': ([UdaProtectionGroupObjectParams],),  # noqa: E501
-            'full_backup_args': (str, none_type,),  # noqa: E501
-            'incr_backup_args': (str, none_type,),  # noqa: E501
-            'log_backup_args': (str, none_type,),  # noqa: E501
+            'source_id': (int, none_type,),  # noqa: E501
             'backup_job_arguments': ([KeyValuePair], none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
-            'mounts': (int, none_type,),  # noqa: E501
+            'full_backup_args': (str, none_type,),  # noqa: E501
             'has_entity_support': (bool, none_type,),  # noqa: E501
-            'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'incr_backup_args': (str, none_type,),  # noqa: E501
+            'log_backup_args': (str, none_type,),  # noqa: E501
+            'mounts': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -107,16 +103,15 @@ class UdaProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
-        'source_id': 'sourceId',  # noqa: E501
         'objects': 'objects',  # noqa: E501
-        'full_backup_args': 'fullBackupArgs',  # noqa: E501
-        'incr_backup_args': 'incrBackupArgs',  # noqa: E501
-        'log_backup_args': 'logBackupArgs',  # noqa: E501
+        'source_id': 'sourceId',  # noqa: E501
         'backup_job_arguments': 'backupJobArguments',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
-        'mounts': 'mounts',  # noqa: E501
+        'full_backup_args': 'fullBackupArgs',  # noqa: E501
         'has_entity_support': 'hasEntitySupport',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'incr_backup_args': 'incrBackupArgs',  # noqa: E501
+        'log_backup_args': 'logBackupArgs',  # noqa: E501
+        'mounts': 'mounts',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -131,12 +126,12 @@ class UdaProtectionGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source_id, objects, *args, **kwargs):  # noqa: E501
+    def __init__(self, objects, source_id, *args, **kwargs):  # noqa: E501
         """UdaProtectionGroupParams - a model defined in OpenAPI
 
         Args:
-            source_id (int, none_type): Specifies the source Id of the objects to be protected.
             objects ([UdaProtectionGroupObjectParams]): Specifies a list of fully qualified names of the objects to be protected.
+            source_id (int, none_type): Specifies the source Id of the objects to be protected.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,14 +165,13 @@ class UdaProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            full_backup_args (str, none_type): Specifies the custom arguments to be supplied to the full backup script when a full backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
-            incr_backup_args (str, none_type): Specifies the custom arguments to be supplied to the incremental backup script when an incremental backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
-            log_backup_args (str, none_type): Specifies the custom arguments to be supplied to the log backup script when a log backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
             backup_job_arguments ([KeyValuePair], none_type): Specifies the map of custom arguments to be supplied to the various backup scripts.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster. If not specified, the default value is taken as 1.. [optional] if omitted the server will use the default value of 1  # noqa: E501
-            mounts (int, none_type): Specifies the maximum number of view mounts per host. If not specified, the default value is taken as 1.. [optional] if omitted the server will use the default value of 1  # noqa: E501
+            full_backup_args (str, none_type): Specifies the custom arguments to be supplied to the full backup script when a full backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
             has_entity_support (bool, none_type): Specifies whether this Protection Group is created from a source having entity support.. [optional]  # noqa: E501
-            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
+            incr_backup_args (str, none_type): Specifies the custom arguments to be supplied to the incremental backup script when an incremental backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
+            log_backup_args (str, none_type): Specifies the custom arguments to be supplied to the log backup script when a log backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
+            mounts (int, none_type): Specifies the maximum number of view mounts per host. If not specified, the default value is taken as 1.. [optional] if omitted the server will use the default value of 1  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,8 +198,8 @@ class UdaProtectionGroupParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source_id = source_id
         self.objects = objects
+        self.source_id = source_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

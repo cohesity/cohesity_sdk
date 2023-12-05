@@ -75,8 +75,8 @@ class DnsDelegationZone(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
-            'dns_zone_vips': ([str], none_type,),  # noqa: E501
             'dns_zone_resolved_vips': ([str], none_type,),  # noqa: E501
+            'dns_zone_vips': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class DnsDelegationZone(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
-        'dns_zone_vips': 'dnsZoneVips',  # noqa: E501
         'dns_zone_resolved_vips': 'dnsZoneResolvedVips',  # noqa: E501
+        'dns_zone_vips': 'dnsZoneVips',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class DnsDelegationZone(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            dns_zone_vips ([str], none_type): VIPs part of dns zone.. [optional]  # noqa: E501
             dns_zone_resolved_vips ([str], none_type): Dns zone resolved VIPs.. [optional]  # noqa: E501
+            dns_zone_vips ([str], none_type): VIPs part of dns zone.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

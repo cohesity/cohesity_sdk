@@ -79,12 +79,12 @@ class NodeEndpointState(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (int, none_type,),  # noqa: E501
+            'check_timestamp_usecs': (int, none_type,),  # noqa: E501
+            'dns_server_reachability': (EndpointConnectionState,),  # noqa: E501
             'endpoints': ([EndpointConnectionState], none_type,),  # noqa: E501
             'gateway_reachability': (EndpointConnectionState,),  # noqa: E501
-            'dns_server_reachability': (EndpointConnectionState,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
             'ntp_server_reachability': (EndpointConnectionState,),  # noqa: E501
-            'check_timestamp_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,12 +94,12 @@ class NodeEndpointState(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
+        'check_timestamp_usecs': 'checkTimestampUsecs',  # noqa: E501
+        'dns_server_reachability': 'dnsServerReachability',  # noqa: E501
         'endpoints': 'endpoints',  # noqa: E501
         'gateway_reachability': 'gatewayReachability',  # noqa: E501
-        'dns_server_reachability': 'dnsServerReachability',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'ntp_server_reachability': 'ntpServerReachability',  # noqa: E501
-        'check_timestamp_usecs': 'checkTimestampUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,12 +149,12 @@ class NodeEndpointState(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the Id of the node.. [optional]  # noqa: E501
+            check_timestamp_usecs (int, none_type): Specifies the time in Epoch in micro seconds when the check is performed.. [optional]  # noqa: E501
+            dns_server_reachability (EndpointConnectionState): [optional]  # noqa: E501
             endpoints ([EndpointConnectionState], none_type): Specifies the results of the endpoints.. [optional]  # noqa: E501
             gateway_reachability (EndpointConnectionState): [optional]  # noqa: E501
-            dns_server_reachability (EndpointConnectionState): [optional]  # noqa: E501
+            id (int, none_type): Specifies the Id of the node.. [optional]  # noqa: E501
             ntp_server_reachability (EndpointConnectionState): [optional]  # noqa: E501
-            check_timestamp_usecs (int, none_type): Specifies the time in Epoch in micro seconds when the check is performed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

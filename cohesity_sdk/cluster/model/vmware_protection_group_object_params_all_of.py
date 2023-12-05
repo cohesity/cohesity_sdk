@@ -102,11 +102,11 @@ class VmwareProtectionGroupObjectParamsAllOf(ModelNormal):
         """
         return {
             'id': (int, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'is_autoprotected': (bool, none_type,),  # noqa: E501
             'cdp_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'is_autoprotected': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'standby_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -117,11 +117,11 @@ class VmwareProtectionGroupObjectParamsAllOf(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'is_autoprotected': 'isAutoprotected',  # noqa: E501
         'cdp_info': 'cdpInfo',  # noqa: E501
+        'is_autoprotected': 'isAutoprotected',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'standby_info': 'standbyInfo',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,11 +174,11 @@ class VmwareProtectionGroupObjectParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the type of the VMware object.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the virtual machine.. [optional]  # noqa: E501
-            is_autoprotected (bool, none_type): Specifies whether the vm is part of an Autoprotection and there is at least one object-specific setting applied to this vm. True implies that the vm or its parent directory is autoprotected and will remain part of the autoprotection with additional settings specified here. False implies the object is not part of an Autoprotection and will remain protected and its individual settings here even if a parent directory's Autoprotection setting is altered. Default is false.. [optional]  # noqa: E501
             cdp_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the CDP related information for a given object. This field will only be populated when protection group is configured with policy having CDP retnetion settings.. [optional]  # noqa: E501
+            is_autoprotected (bool, none_type): Specifies whether the vm is part of an Autoprotection and there is at least one object-specific setting applied to this vm. True implies that the vm or its parent directory is autoprotected and will remain part of the autoprotection with additional settings specified here. False implies the object is not part of an Autoprotection and will remain protected and its individual settings here even if a parent directory's Autoprotection setting is altered. Default is false.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the virtual machine.. [optional]  # noqa: E501
             standby_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the standby related information for a given object. This field will only be populated when standby is configured in backup job settings.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the type of the VMware object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,12 +74,12 @@ class AzureCloudSpinParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'availability_set_id': (int, none_type,),  # noqa: E501
             'network_resource_group_id': (int, none_type,),  # noqa: E501
             'resource_group_id': (int, none_type,),  # noqa: E501
             'storage_account_id': (int, none_type,),  # noqa: E501
             'storage_container_id': (int, none_type,),  # noqa: E501
             'storage_resource_group_id': (int, none_type,),  # noqa: E501
-            'availability_set_id': (int, none_type,),  # noqa: E501
             'temp_vm_resource_group_id': (int, none_type,),  # noqa: E501
             'temp_vm_storage_account_id': (int, none_type,),  # noqa: E501
             'temp_vm_storage_container_id': (int, none_type,),  # noqa: E501
@@ -94,12 +94,12 @@ class AzureCloudSpinParams(ModelNormal):
 
 
     attribute_map = {
+        'availability_set_id': 'availabilitySetId',  # noqa: E501
         'network_resource_group_id': 'networkResourceGroupId',  # noqa: E501
         'resource_group_id': 'resourceGroupId',  # noqa: E501
         'storage_account_id': 'storageAccountId',  # noqa: E501
         'storage_container_id': 'storageContainerId',  # noqa: E501
         'storage_resource_group_id': 'storageResourceGroupId',  # noqa: E501
-        'availability_set_id': 'availabilitySetId',  # noqa: E501
         'temp_vm_resource_group_id': 'tempVmResourceGroupId',  # noqa: E501
         'temp_vm_storage_account_id': 'tempVmStorageAccountId',  # noqa: E501
         'temp_vm_storage_container_id': 'tempVmStorageContainerId',  # noqa: E501
@@ -154,12 +154,12 @@ class AzureCloudSpinParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            availability_set_id (int, none_type): Specifies the availability set.. [optional]  # noqa: E501
             network_resource_group_id (int, none_type): Specifies id of the resource group for the selected virtual network.. [optional]  # noqa: E501
             resource_group_id (int, none_type): Specifies id of the Azure resource group. Its value is globally unique within Azure.. [optional]  # noqa: E501
             storage_account_id (int, none_type): Specifies id of the storage account that will contain the storage container within which we will create the blob that will become the VHD disk for the cloned VM.. [optional]  # noqa: E501
             storage_container_id (int, none_type): Specifies id of the storage container within the above storage account.. [optional]  # noqa: E501
             storage_resource_group_id (int, none_type): Specifies id of the resource group for the selected storage account.. [optional]  # noqa: E501
-            availability_set_id (int, none_type): Specifies the availability set.. [optional]  # noqa: E501
             temp_vm_resource_group_id (int, none_type): Specifies id of the temporary Azure resource group.. [optional]  # noqa: E501
             temp_vm_storage_account_id (int, none_type): Specifies id of the temporary VM storage account that will contain the storage container within which we will create the blob that will become the VHD disk for the cloned VM.. [optional]  # noqa: E501
             temp_vm_storage_container_id (int, none_type): Specifies id of the temporary VM storage container within the above storage account.. [optional]  # noqa: E501

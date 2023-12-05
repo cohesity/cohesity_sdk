@@ -74,9 +74,9 @@ class FeatureFlag(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'is_ui_feature': (bool, none_type,),  # noqa: E501
             'is_approved': (bool, none_type,),  # noqa: E501
+            'is_ui_feature': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'reason': (str, none_type,),  # noqa: E501
             'timestamp': (int, none_type,),  # noqa: E501
         }
@@ -88,9 +88,9 @@ class FeatureFlag(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'is_ui_feature': 'isUiFeature',  # noqa: E501
         'is_approved': 'isApproved',  # noqa: E501
+        'is_ui_feature': 'isUiFeature',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'reason': 'reason',  # noqa: E501
         'timestamp': 'timestamp',  # noqa: E501
     }
@@ -142,9 +142,9 @@ class FeatureFlag(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Name of the feature flag.. [optional]  # noqa: E501
-            is_ui_feature (bool, none_type): Bool to denote if it's a UI feature.. [optional]  # noqa: E501
             is_approved (bool, none_type): Bool to approval status of feature flag.. [optional]  # noqa: E501
+            is_ui_feature (bool, none_type): Bool to denote if it's a UI feature.. [optional]  # noqa: E501
+            name (str, none_type): Name of the feature flag.. [optional]  # noqa: E501
             reason (str, none_type): Reason for the feature flag override status.. [optional]  # noqa: E501
             timestamp (int, none_type): Timestamp in secs when the override is done.. [optional]  # noqa: E501
         """

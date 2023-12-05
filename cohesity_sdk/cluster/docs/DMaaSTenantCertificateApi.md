@@ -17,7 +17,6 @@ Add a DMaaS tenant certificate to the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.add_dmaas_tenant_cert_request import AddDmaasTenantCertRequest
@@ -33,13 +32,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = AddDmaasTenantCertRequest(
-        tenant_id="tenant_id_example",
         certificate="certificate_example",
-        private_key="private_key_example",
         connector_ca_chain="connector_ca_chain_example",
         passphrase="passphrase_example",
+        private_key="private_key_example",
+        tenant_id="tenant_id_example",
     ) # AddDmaasTenantCertRequest | Specifies the parameters to add the tenant certificate.
 
 # example passing only required values which don't have defaults set
@@ -64,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -89,7 +87,6 @@ Delete a tenant certificate.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -103,7 +100,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 tenant_id = "tenantId_example" # str, none_type | Specifies the id of tenant.
 
@@ -128,7 +124,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -153,7 +149,6 @@ Get DMaaS tenant certificates on the cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.tenant_dmaas_certs import TenantDmaasCerts
@@ -168,7 +163,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 tenant_ids = [
         "tenantIds_example",
@@ -197,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

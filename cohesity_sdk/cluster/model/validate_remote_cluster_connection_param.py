@@ -78,9 +78,9 @@ class ValidateRemoteClusterConnectionParam(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'username': (str,),  # noqa: E501
-            'password': (str,),  # noqa: E501
             'node_addresses': ([str],),  # noqa: E501
+            'password': (str,),  # noqa: E501
+            'username': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -90,9 +90,9 @@ class ValidateRemoteClusterConnectionParam(ModelNormal):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
-        'password': 'password',  # noqa: E501
         'node_addresses': 'nodeAddresses',  # noqa: E501
+        'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -107,13 +107,13 @@ class ValidateRemoteClusterConnectionParam(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, node_addresses, *args, **kwargs):  # noqa: E501
+    def __init__(self, node_addresses, password, username, *args, **kwargs):  # noqa: E501
         """ValidateRemoteClusterConnectionParam - a model defined in OpenAPI
 
         Args:
-            username (str): Specifies the Cohesity user name used to connect to the Remote Cluster.
-            password (str): Specifies the password for Cohesity user to use when connecting to the Remote Cluster.
             node_addresses ([str]): Specifies the VIP or IP addresses of the Nodes on the Remote Cluster to connect with. Hostnames are not supported.
+            password (str): Specifies the password for Cohesity user to use when connecting to the Remote Cluster.
+            username (str): Specifies the Cohesity user name used to connect to the Remote Cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,9 +173,9 @@ class ValidateRemoteClusterConnectionParam(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.username = username
-        self.password = password
         self.node_addresses = node_addresses
+        self.password = password
+        self.username = username
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

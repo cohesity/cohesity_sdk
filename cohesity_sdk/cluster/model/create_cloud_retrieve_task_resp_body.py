@@ -74,8 +74,8 @@ class CreateCloudRetrieveTaskRespBody(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'retrieve_job_id': (str, none_type,),  # noqa: E501
             'progress_task_id': (int, none_type,),  # noqa: E501
+            'retrieve_job_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class CreateCloudRetrieveTaskRespBody(ModelNormal):
 
 
     attribute_map = {
-        'retrieve_job_id': 'retrieveJobId',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
+        'retrieve_job_id': 'retrieveJobId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class CreateCloudRetrieveTaskRespBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            retrieve_job_id (str, none_type): Specifies the cloud retrieve job Id. [optional]  # noqa: E501
             progress_task_id (int, none_type): Specifies the progress task id.. [optional]  # noqa: E501
+            retrieve_job_id (str, none_type): Specifies the cloud retrieve job Id. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

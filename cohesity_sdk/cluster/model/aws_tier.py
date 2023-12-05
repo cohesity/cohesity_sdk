@@ -98,8 +98,8 @@ class AWSTier(ModelComposed):
         lazy_import()
         return {
             'tier_type': (str, none_type,),  # noqa: E501
-            'move_after_unit': (str, none_type,),  # noqa: E501
             'move_after': (int, none_type,),  # noqa: E501
+            'move_after_unit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -110,8 +110,8 @@ class AWSTier(ModelComposed):
 
     attribute_map = {
         'tier_type': 'tierType',  # noqa: E501
-        'move_after_unit': 'moveAfterUnit',  # noqa: E501
         'move_after': 'moveAfter',  # noqa: E501
+        'move_after_unit': 'moveAfterUnit',  # noqa: E501
     }
 
     required_properties = set([
@@ -165,8 +165,8 @@ class AWSTier(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            move_after_unit (str, none_type): Specifies the unit for moving the data from current tier to next tier. This unit will be a base unit for the 'moveAfter' field specified below.. [optional]  # noqa: E501
             move_after (int, none_type): Specifies the time period after which the backup will be moved from current tier to next tier.. [optional]  # noqa: E501
+            move_after_unit (str, none_type): Specifies the unit for moving the data from current tier to next tier. This unit will be a base unit for the 'moveAfter' field specified below.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

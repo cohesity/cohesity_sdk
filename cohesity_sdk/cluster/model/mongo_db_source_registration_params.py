@@ -85,15 +85,15 @@ class MongoDBSourceRegistrationParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'hosts': ([str],),  # noqa: E501
             'auth_type': (str, none_type,),  # noqa: E501
+            'hosts': ([str],),  # noqa: E501
             'is_ssl_required': (bool,),  # noqa: E501
             'use_secondary_for_backup': (bool,),  # noqa: E501
-            'username': (str, none_type,),  # noqa: E501
-            'principal': (str, none_type,),  # noqa: E501
-            'password': (str, none_type,),  # noqa: E501
             'authenticating_database': (str, none_type,),  # noqa: E501
+            'password': (str, none_type,),  # noqa: E501
+            'principal': (str, none_type,),  # noqa: E501
             'secondary_node_tag': (str,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -103,15 +103,15 @@ class MongoDBSourceRegistrationParams(ModelNormal):
 
 
     attribute_map = {
-        'hosts': 'hosts',  # noqa: E501
         'auth_type': 'authType',  # noqa: E501
+        'hosts': 'hosts',  # noqa: E501
         'is_ssl_required': 'isSslRequired',  # noqa: E501
         'use_secondary_for_backup': 'useSecondaryForBackup',  # noqa: E501
-        'username': 'username',  # noqa: E501
-        'principal': 'principal',  # noqa: E501
-        'password': 'password',  # noqa: E501
         'authenticating_database': 'authenticatingDatabase',  # noqa: E501
+        'password': 'password',  # noqa: E501
+        'principal': 'principal',  # noqa: E501
         'secondary_node_tag': 'secondaryNodeTag',  # noqa: E501
+        'username': 'username',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -126,12 +126,12 @@ class MongoDBSourceRegistrationParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, hosts, auth_type, is_ssl_required, use_secondary_for_backup, *args, **kwargs):  # noqa: E501
+    def __init__(self, auth_type, hosts, is_ssl_required, use_secondary_for_backup, *args, **kwargs):  # noqa: E501
         """MongoDBSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            hosts ([str]): Specify the MongoS hosts for a sharded cluster and the MongoD hosts for a non-sharded cluster. You can specify a sub-set of the hosts.
             auth_type (str, none_type): MongoDB authentication type.
+            hosts ([str]): Specify the MongoS hosts for a sharded cluster and the MongoD hosts for a non-sharded cluster. You can specify a sub-set of the hosts.
             is_ssl_required (bool): Set to true if connection to MongoDB has to be over SSL.
             use_secondary_for_backup (bool): Set this to true if you want the system to peform backups from secondary nodes.
 
@@ -167,11 +167,11 @@ class MongoDBSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            username (str, none_type): Specifies the username of the MongoDB cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.. [optional]  # noqa: E501
-            principal (str, none_type): Specifies the principal name of the MongoDB cluster. Should be set if 'authType' is 'KERBEROS'.. [optional]  # noqa: E501
-            password (str, none_type): Specifies the password for the MongoDB cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.. [optional]  # noqa: E501
             authenticating_database (str, none_type): Authenticating Database for this cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.. [optional]  # noqa: E501
+            password (str, none_type): Specifies the password for the MongoDB cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.. [optional]  # noqa: E501
+            principal (str, none_type): Specifies the principal name of the MongoDB cluster. Should be set if 'authType' is 'KERBEROS'.. [optional]  # noqa: E501
             secondary_node_tag (str): MongoDB Secondary node tag. Required only if 'useSecondaryForBackup' is true.The system will use this to identify the secondary nodes for reading backup data.. [optional]  # noqa: E501
+            username (str, none_type): Specifies the username of the MongoDB cluster. Should be set if 'authType' is 'LDAP' or 'SCRAM'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,8 +198,8 @@ class MongoDBSourceRegistrationParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.hosts = hosts
         self.auth_type = auth_type
+        self.hosts = hosts
         self.is_ssl_required = is_ssl_required
         self.use_secondary_for_backup = use_secondary_for_backup
         for var_name, var_value in kwargs.items():

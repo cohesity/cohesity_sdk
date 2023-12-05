@@ -27,7 +27,6 @@ Specifies the request to cancel failover workflow. The cancellation request shou
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -41,7 +40,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the id of the failover workflow.
 
@@ -66,7 +64,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -91,7 +89,6 @@ Cancel an in progress view failover task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -105,7 +102,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a view id to cancel it's failover.
 
@@ -130,7 +126,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -155,7 +151,6 @@ Specifies the configuration required for executing a special run as a part of fa
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.failover_run_configuration import FailoverRunConfiguration
@@ -172,20 +167,19 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the failover workflow.
 body = FailoverRunConfiguration(
-        replication_cluster_id=1,
+        cancel_non_failover_runs=True,
         objects=[
             FailoverObject(
                 object_id=1,
             ),
         ],
+        pause_next_runs=True,
         protection_group_id="protection_group_id_example",
+        replication_cluster_id=1,
         run_type="kAll",
         view_id=1,
-        cancel_non_failover_runs=True,
-        pause_next_runs=True,
     ) # FailoverRunConfiguration | Specifies the paramteres to create a planned run while failover workflow.
 
 # example passing only required values which don't have defaults set
@@ -211,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -236,7 +230,6 @@ Create a view failover task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_view_failover_request import CreateViewFailoverRequest
@@ -253,11 +246,10 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = 1 # int | Specifies a view id to create an failover task.
 body = CreateViewFailoverRequest(
-        type="Planned",
         planned_failover_params={},
+        type="Planned",
         unplanned_failover_params={},
     ) # CreateViewFailoverRequest | Specifies the request body to create failover task.
 
@@ -284,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -309,7 +301,6 @@ Gets all the failover operations which can be performed on this view.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.get_failover_ops_response import GetFailoverOpsResponse
@@ -324,7 +315,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies the view id.
 
@@ -350,7 +340,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -375,7 +365,6 @@ Get tracking View Id
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -390,7 +379,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = "id_example" # str | Specifies the view_uid of the source view.
 is_forwarded = True # bool | Indicates whether the request is forwarded (optional)
@@ -427,7 +415,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -452,7 +440,6 @@ Get failover tasks of a View.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -467,7 +454,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 id = 1 # int | Specifies a view id to create an failover task.
 
@@ -493,7 +479,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -518,7 +504,6 @@ Initiate a failover request.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.init_failover_response import InitFailoverResponse
@@ -535,12 +520,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the failover workflow.
 body = InitFailoverRequest(
-        source_cluster=FailoverSourceCluster(
-            id=1,
-        ),
+        protection_group_environment="kVMware",
         replication_cluster=FailoverReplicaCluster(
             objects=[
                 FailoverObject(
@@ -549,7 +531,9 @@ body = InitFailoverRequest(
             ],
             protection_group_id="protection_group_id_example",
         ),
-        protection_group_environment="kVMware",
+        source_cluster=FailoverSourceCluster(
+            id=1,
+        ),
     ) # InitFailoverRequest | Specifies the parameters to initiate a failover. This failover request should be intiaited from replication cluster.
 
 # example passing only required values which don't have defaults set
@@ -575,7 +559,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -600,7 +584,6 @@ Specifies the configuration required for activating backup for failover objects 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.replication_backup_activation import ReplicationBackupActivation
@@ -617,20 +600,19 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the failover workflow.
 body = ReplicationBackupActivation(
+        create_object_backup=True,
+        do_not_protect=True,
+        enable_reverse_replication=True,
         objects=[
             FailoverObject(
                 object_id=1,
             ),
         ],
         protection_group_id="protection_group_id_example",
-        enable_reverse_replication=True,
-        do_not_protect=True,
-        create_object_backup=True,
-        target_failover_policy_id="target_failover_policy_id_example",
         target_failover_environment="kVMware",
+        target_failover_policy_id="target_failover_policy_id_example",
     ) # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
 
 # example passing only required values which don't have defaults set
@@ -656,7 +638,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -681,7 +663,6 @@ Specifies the request to link failover objects on replication cluster to the rep
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.object_linking_request import ObjectLinkingRequest
@@ -697,13 +678,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the failover workflow.
 body = ObjectLinkingRequest(
         object_map=[
             ReplicaFailoverObject(
-                replica_object_id=1,
                 failover_object_id=1,
+                replica_object_id=1,
             ),
         ],
     ) # ObjectLinkingRequest | Specifies the paramteres to create links between replicated objects and failover objects.
@@ -730,7 +710,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -755,7 +735,6 @@ Poll to see whether planned run has been scheduled or not.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.failover_runs_response import FailoverRunsResponse
@@ -770,7 +749,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 failover_ids = [
         "failoverIds_example",
@@ -813,7 +791,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -838,7 +816,6 @@ Specifies the configuration required for activating backup for failover objects 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.replication_backup_activation import ReplicationBackupActivation
@@ -855,20 +832,19 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the failover workflow.
 body = ReplicationBackupActivation(
+        create_object_backup=True,
+        do_not_protect=True,
+        enable_reverse_replication=True,
         objects=[
             FailoverObject(
                 object_id=1,
             ),
         ],
         protection_group_id="protection_group_id_example",
-        enable_reverse_replication=True,
-        do_not_protect=True,
-        create_object_backup=True,
-        target_failover_policy_id="target_failover_policy_id_example",
         target_failover_environment="kVMware",
+        target_failover_policy_id="target_failover_policy_id_example",
     ) # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
 
 # example passing only required values which don't have defaults set
@@ -894,7 +870,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -919,7 +895,6 @@ Specifies the configuration required for deactivating backup for failover entiti
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -935,17 +910,16 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 id = "id_example" # str | Specifies the id of the failover workflow.
 body = SourceBackupDeactivation(
-        replication_cluster_id=1,
+        keep_failover_objects=True,
         objects=[
             FailoverObject(
                 object_id=1,
             ),
         ],
         protection_group_id="protection_group_id_example",
-        keep_failover_objects=True,
+        replication_cluster_id=1,
     ) # SourceBackupDeactivation | Specifies the paramteres to deactivate the backup of failover entities.
 
 # example passing only required values which don't have defaults set
@@ -970,7 +944,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

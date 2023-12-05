@@ -74,14 +74,14 @@ class SelfServiceSnapshotConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'allow_access_sids': ([str],),  # noqa: E501
+            'alternate_snapshot_directory_name': (str, none_type,),  # noqa: E501
+            'deny_access_sids': ([str],),  # noqa: E501
             'enabled': (bool, none_type,),  # noqa: E501
-            'previous_versions_enabled': (bool, none_type,),  # noqa: E501
             'nfs_access_enabled': (bool, none_type,),  # noqa: E501
+            'previous_versions_enabled': (bool, none_type,),  # noqa: E501
             'smb_access_enabled': (bool, none_type,),  # noqa: E501
             'snapshot_directory_name': (str, none_type,),  # noqa: E501
-            'alternate_snapshot_directory_name': (str, none_type,),  # noqa: E501
-            'allow_access_sids': ([str],),  # noqa: E501
-            'deny_access_sids': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +91,14 @@ class SelfServiceSnapshotConfig(ModelNormal):
 
 
     attribute_map = {
+        'allow_access_sids': 'allowAccessSids',  # noqa: E501
+        'alternate_snapshot_directory_name': 'alternateSnapshotDirectoryName',  # noqa: E501
+        'deny_access_sids': 'denyAccessSids',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
-        'previous_versions_enabled': 'previousVersionsEnabled',  # noqa: E501
         'nfs_access_enabled': 'nfsAccessEnabled',  # noqa: E501
+        'previous_versions_enabled': 'previousVersionsEnabled',  # noqa: E501
         'smb_access_enabled': 'smbAccessEnabled',  # noqa: E501
         'snapshot_directory_name': 'snapshotDirectoryName',  # noqa: E501
-        'alternate_snapshot_directory_name': 'alternateSnapshotDirectoryName',  # noqa: E501
-        'allow_access_sids': 'allowAccessSids',  # noqa: E501
-        'deny_access_sids': 'denyAccessSids',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,14 +148,14 @@ class SelfServiceSnapshotConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            allow_access_sids ([str]): Specifies a list of sids who has access to the snapshots.. [optional]  # noqa: E501
+            alternate_snapshot_directory_name (str, none_type): Specifies the alternate directory name for the snapshots. If it is not set, this feature for SMB protocol will not work.. [optional]  # noqa: E501
+            deny_access_sids ([str]): Specifies a list of sids who does not have access to the snapshots. This field overrides 'allowAccessSids'.. [optional]  # noqa: E501
             enabled (bool, none_type): Specifies if self service snapshot feature is enabled. If this is set to true, the feature will also be enabled for NFS protocol. This field is deprecated.. [optional]  # noqa: E501
-            previous_versions_enabled (bool, none_type): Specifies if previouse versions feature is enabled with SMB protocol.. [optional]  # noqa: E501
             nfs_access_enabled (bool, none_type): Specifies if self service snapshot feature is enabled for NFS protocol.. [optional]  # noqa: E501
+            previous_versions_enabled (bool, none_type): Specifies if previouse versions feature is enabled with SMB protocol.. [optional]  # noqa: E501
             smb_access_enabled (bool, none_type): Specifies if self service snapshot feature is enabled for SMB protocol.. [optional]  # noqa: E501
             snapshot_directory_name (str, none_type): Specifies the directory name for the snapshots.. [optional]  # noqa: E501
-            alternate_snapshot_directory_name (str, none_type): Specifies the alternate directory name for the snapshots. If it is not set, this feature for SMB protocol will not work.. [optional]  # noqa: E501
-            allow_access_sids ([str]): Specifies a list of sids who has access to the snapshots.. [optional]  # noqa: E501
-            deny_access_sids ([str]): Specifies a list of sids who does not have access to the snapshots. This field overrides 'allowAccessSids'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

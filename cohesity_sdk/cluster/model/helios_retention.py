@@ -92,10 +92,10 @@ class HeliosRetention(ModelNormal):
         """
         lazy_import()
         return {
-            'unit': (str, none_type,),  # noqa: E501
+            'data_lock_config': (DataLockConfig,),  # noqa: E501
             'duration': (int, none_type,),  # noqa: E501
             'tiers': ([HeliosTier],),  # noqa: E501
-            'data_lock_config': (DataLockConfig,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,10 +105,10 @@ class HeliosRetention(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
+        'data_lock_config': 'dataLockConfig',  # noqa: E501
         'duration': 'duration',  # noqa: E501
         'tiers': 'tiers',  # noqa: E501
-        'data_lock_config': 'dataLockConfig',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -158,10 +158,10 @@ class HeliosRetention(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            unit (str, none_type): Specificies the Retention Unit of a backup measured in days, months or years. <br> If unit is 'Months', then number specified in duration is multiplied to 30. <br> Example: If duration is 4 and unit is 'Months' then number of retention days will be 30 * 4 = 120 days. <br> If unit is 'Years', then number specified in duration is multiplied to 365. <br> If duration is 2 and unit is 'Months' then number of retention days will be 365 * 2 = 730 days.. [optional]  # noqa: E501
+            data_lock_config (DataLockConfig): [optional]  # noqa: E501
             duration (int, none_type): Specifies the duration for a backup retention. <br> Example. If duration is 7 and unit is Months, the retention of a backup is 7 * 30 = 210 days.. [optional]  # noqa: E501
             tiers ([HeliosTier]): Specifies the list of tiers where backup will be moved. This will be populated only if poilcy type is DMaaS.. [optional]  # noqa: E501
-            data_lock_config (DataLockConfig): [optional]  # noqa: E501
+            unit (str, none_type): Specificies the Retention Unit of a backup measured in days, months or years. <br> If unit is 'Months', then number specified in duration is multiplied to 30. <br> Example: If duration is 4 and unit is 'Months' then number of retention days will be 30 * 4 = 120 days. <br> If unit is 'Years', then number specified in duration is multiplied to 365. <br> If duration is 2 and unit is 'Months' then number of retention days will be 365 * 2 = 730 days.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -87,12 +87,12 @@ class AgentInfoObject(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'previous_software_version': (str, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'error': (Error,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'previous_software_version': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,12 +102,12 @@ class AgentInfoObject(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'previous_software_version': 'previousSoftwareVersion',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'error': 'error',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'previous_software_version': 'previousSoftwareVersion',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,12 +157,12 @@ class AgentInfoObject(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the source where the agent is installed.. [optional]  # noqa: E501
-            previous_software_version (str, none_type): Specifies the software version of the agent before upgrade.. [optional]  # noqa: E501
-            status (str, none_type): Specifies the upgrade status of the agent.<br> 'Scheduled' indicates that upgrade for the agent is yet to start.<br> 'Started' indicates that upgrade for the agent is started.<br> 'Succeeded' indicates that agent was upgraded successfully.<br> 'Failed' indicates that upgrade for the agent has failed.<br> 'Skipped' indicates that upgrade for the agent was skipped.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the time when the upgrade for an agent started as a Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the time when the upgrade for an agent completed as a Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
             error (Error): [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the source where the agent is installed.. [optional]  # noqa: E501
+            previous_software_version (str, none_type): Specifies the software version of the agent before upgrade.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the time when the upgrade for an agent started as a Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
+            status (str, none_type): Specifies the upgrade status of the agent.<br> 'Scheduled' indicates that upgrade for the agent is yet to start.<br> 'Started' indicates that upgrade for the agent is started.<br> 'Succeeded' indicates that agent was upgraded successfully.<br> 'Failed' indicates that upgrade for the agent has failed.<br> 'Skipped' indicates that upgrade for the agent was skipped.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

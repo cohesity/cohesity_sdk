@@ -74,8 +74,8 @@ class AcropolisRecoverFilesNewTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'absolute_path': (str, none_type,),  # noqa: E501
+            'target_vm': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class AcropolisRecoverFilesNewTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'target_vm': 'targetVm',  # noqa: E501
         'absolute_path': 'absolutePath',  # noqa: E501
+        'target_vm': 'targetVm',  # noqa: E501
         'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
     }
 
@@ -103,12 +103,13 @@ class AcropolisRecoverFilesNewTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, target_vm, absolute_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, absolute_path, target_vm, target_vm_credentials, *args, **kwargs):  # noqa: E501
         """AcropolisRecoverFilesNewTargetConfig - a model defined in OpenAPI
 
         Args:
-            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
             absolute_path (str, none_type): Specifies the absolute path location to recover files to.
+            target_vm ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target VM to recover files and folders to.
+            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,7 +143,6 @@ class AcropolisRecoverFilesNewTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -169,8 +169,9 @@ class AcropolisRecoverFilesNewTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.target_vm = target_vm
         self.absolute_path = absolute_path
+        self.target_vm = target_vm
+        self.target_vm_credentials = target_vm_credentials
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

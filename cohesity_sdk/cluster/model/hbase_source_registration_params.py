@@ -90,15 +90,15 @@ class HbaseSourceRegistrationParams(ModelComposed):
         """
         lazy_import()
         return {
-            'host': (str,),  # noqa: E501
             'configuration_directory': (str,),  # noqa: E501
             'hdfs_source_registration_id': (int,),  # noqa: E501
-            'zookeeper_quorum': ([str], none_type,),  # noqa: E501
-            'data_root_directory': (str, none_type,),  # noqa: E501
+            'host': (str,),  # noqa: E501
             'auth_type': (str, none_type,),  # noqa: E501
+            'data_root_directory': (str, none_type,),  # noqa: E501
+            'zookeeper_quorum': ([str], none_type,),  # noqa: E501
+            'kerberos_principal': (str, none_type,),  # noqa: E501
             'ssh_password_credentials': (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials,),  # noqa: E501
             'ssh_private_key_credentials': (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials,),  # noqa: E501
-            'kerberos_principal': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -108,15 +108,15 @@ class HbaseSourceRegistrationParams(ModelComposed):
 
 
     attribute_map = {
-        'host': 'host',  # noqa: E501
         'configuration_directory': 'configurationDirectory',  # noqa: E501
         'hdfs_source_registration_id': 'hdfsSourceRegistrationID',  # noqa: E501
-        'zookeeper_quorum': 'zookeeperQuorum',  # noqa: E501
-        'data_root_directory': 'dataRootDirectory',  # noqa: E501
+        'host': 'host',  # noqa: E501
         'auth_type': 'authType',  # noqa: E501
+        'data_root_directory': 'dataRootDirectory',  # noqa: E501
+        'zookeeper_quorum': 'zookeeperQuorum',  # noqa: E501
+        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
         'ssh_password_credentials': 'sshPasswordCredentials',  # noqa: E501
         'ssh_private_key_credentials': 'sshPrivateKeyCredentials',  # noqa: E501
-        'kerberos_principal': 'kerberosPrincipal',  # noqa: E501
     }
 
     required_properties = set([
@@ -132,13 +132,13 @@ class HbaseSourceRegistrationParams(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, configuration_directory, hdfs_source_registration_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, configuration_directory, hdfs_source_registration_id, host, *args, **kwargs):  # noqa: E501
         """HbaseSourceRegistrationParams - a model defined in OpenAPI
 
         Args:
-            host (str): IP or hostname of any host from which the HBase configuration file hbase-site.xml can be read.
             configuration_directory (str): The directory containing the hbase-site.xml.
             hdfs_source_registration_id (int): Protection Source registration id of the HDFS on which this HBase is running.
+            host (str): IP or hostname of any host from which the HBase configuration file hbase-site.xml can be read.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,12 +172,12 @@ class HbaseSourceRegistrationParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            zookeeper_quorum ([str], none_type): The 'Zookeeper Quorum' for this HBase.. [optional]  # noqa: E501
-            data_root_directory (str, none_type): The 'Data root directory' for this HBase.. [optional]  # noqa: E501
             auth_type (str, none_type): Authentication type.. [optional]  # noqa: E501
+            data_root_directory (str, none_type): The 'Data root directory' for this HBase.. [optional]  # noqa: E501
+            zookeeper_quorum ([str], none_type): The 'Zookeeper Quorum' for this HBase.. [optional]  # noqa: E501
+            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hbase source.. [optional]  # noqa: E501
             ssh_password_credentials (HbaseSourceRegistrationParamsAllOfSshPasswordCredentials): [optional]  # noqa: E501
             ssh_private_key_credentials (HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials): [optional]  # noqa: E501
-            kerberos_principal (str, none_type): The kerberos principal to be used to connect to this Hbase source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -212,9 +212,9 @@ class HbaseSourceRegistrationParams(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'host': host,
             'configuration_directory': configuration_directory,
             'hdfs_source_registration_id': hdfs_source_registration_id,
+            'host': host,
         }
         model_args = {}
         model_args.update(required_args)

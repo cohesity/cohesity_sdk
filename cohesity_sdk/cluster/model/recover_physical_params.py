@@ -87,10 +87,10 @@ class RecoverPhysicalParams(ModelNormal):
         return {
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
-            'recover_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'mount_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'system_recovery_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -103,10 +103,10 @@ class RecoverPhysicalParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'recovery_action': 'recoveryAction',  # noqa: E501
-        'recover_volume_params': 'recoverVolumeParams',  # noqa: E501
+        'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'mount_volume_params': 'mountVolumeParams',  # noqa: E501
         'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
-        'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
+        'recover_volume_params': 'recoverVolumeParams',  # noqa: E501
         'system_recovery_params': 'systemRecoveryParams',  # noqa: E501
     }
 
@@ -161,10 +161,10 @@ class RecoverPhysicalParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Physical Volumes.. [optional]  # noqa: E501
+            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
             mount_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to mount Physical Volumes.. [optional]  # noqa: E501
             recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to perform a file and folder recovery.. [optional]  # noqa: E501
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
+            recover_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Physical Volumes.. [optional]  # noqa: E501
             system_recovery_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to perform a system recovery.. [optional]  # noqa: E501
         """
 

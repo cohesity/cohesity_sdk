@@ -79,9 +79,9 @@ class RadioGroupFormFieldParams(ModelNormal):
         """
         lazy_import()
         return {
-            'required': (bool, none_type,),  # noqa: E501
             'default_value': (str, none_type,),  # noqa: E501
             'radio_buttons': ([RadioButtonFormFieldParams], none_type,),  # noqa: E501
+            'required': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class RadioGroupFormFieldParams(ModelNormal):
 
 
     attribute_map = {
-        'required': 'required',  # noqa: E501
         'default_value': 'defaultValue',  # noqa: E501
         'radio_buttons': 'radioButtons',  # noqa: E501
+        'required': 'required',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class RadioGroupFormFieldParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            required (bool, none_type): Specifies whether the field is mandatory.. [optional]  # noqa: E501
             default_value (str, none_type): Default selection of the radio button.. [optional]  # noqa: E501
             radio_buttons ([RadioButtonFormFieldParams], none_type): List of radio buttons part of the radio group.. [optional]  # noqa: E501
+            required (bool, none_type): Specifies whether the field is mandatory.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

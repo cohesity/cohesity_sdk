@@ -91,8 +91,8 @@ class RecoverHyperVVmNewSourceConfig(ModelNormal):
         return {
             'source_type': (str, none_type,),  # noqa: E501
             'scvmm_server_params': (RecoverHyperVVmSCVMMSourceConfig,),  # noqa: E501
-            'standalone_host_params': (RecoverHyperVVmStandaloneHostSourceConfig,),  # noqa: E501
             'standalone_cluster_params': (RecoverHyperVVmStandaloneClusterSourceConfig,),  # noqa: E501
+            'standalone_host_params': (RecoverHyperVVmStandaloneHostSourceConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -104,8 +104,8 @@ class RecoverHyperVVmNewSourceConfig(ModelNormal):
     attribute_map = {
         'source_type': 'sourceType',  # noqa: E501
         'scvmm_server_params': 'scvmmServerParams',  # noqa: E501
-        'standalone_host_params': 'standaloneHostParams',  # noqa: E501
         'standalone_cluster_params': 'standaloneClusterParams',  # noqa: E501
+        'standalone_host_params': 'standaloneHostParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,8 +159,8 @@ class RecoverHyperVVmNewSourceConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             scvmm_server_params (RecoverHyperVVmSCVMMSourceConfig): [optional]  # noqa: E501
-            standalone_host_params (RecoverHyperVVmStandaloneHostSourceConfig): [optional]  # noqa: E501
             standalone_cluster_params (RecoverHyperVVmStandaloneClusterSourceConfig): [optional]  # noqa: E501
+            standalone_host_params (RecoverHyperVVmStandaloneHostSourceConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class CreateAccessTokenRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'username': (str, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
+            'username': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class CreateAccessTokenRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'username': 'username',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'username': 'username',  # noqa: E501
         'domain': 'domain',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class CreateAccessTokenRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, username, password, *args, **kwargs):  # noqa: E501
+    def __init__(self, password, username, *args, **kwargs):  # noqa: E501
         """CreateAccessTokenRequestParams - a model defined in OpenAPI
 
         Args:
-            username (str, none_type): Specifies the login name of the Cohesity user.
             password (str, none_type): Specifies the password of the Cohesity user account.
+            username (str, none_type): Specifies the login name of the Cohesity user.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class CreateAccessTokenRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.username = username
         self.password = password
+        self.username = username
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

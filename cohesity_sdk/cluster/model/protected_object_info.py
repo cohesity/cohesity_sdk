@@ -244,16 +244,6 @@ class ProtectedObjectInfo(ModelComposed):
             'KORG': "kOrg",
             'KAPPINSTANCE': "kAppInstance",
         },
-        ('protection_type',): {
-            'None': None,
-            'KAGENT': "kAgent",
-            'KNATIVE': "kNative",
-            'KSNAPSHOTMANAGER': "kSnapshotManager",
-            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
-            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
-            'KFILE': "kFile",
-            'KVOLUME': "kVolume",
-        },
         ('os_type',): {
             'None': None,
             'KLINUX': "kLinux",
@@ -263,6 +253,16 @@ class ProtectedObjectInfo(ModelComposed):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+        },
+        ('protection_type',): {
+            'None': None,
+            'KAGENT': "kAgent",
+            'KNATIVE': "kNative",
+            'KSNAPSHOTMANAGER': "kSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KFILE': "kFile",
+            'KVOLUME': "kVolume",
         },
     }
 
@@ -285,25 +285,25 @@ class ProtectedObjectInfo(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
+            'global_id': (str, none_type,),  # noqa: E501
+            'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
             'object_type': (str, none_type,),  # noqa: E501
-            'logical_size_bytes': (int, none_type,),  # noqa: E501
-            'uuid': (str, none_type,),  # noqa: E501
-            'global_id': (str, none_type,),  # noqa: E501
-            'protection_type': (str, none_type,),  # noqa: E501
             'os_type': (str, none_type,),  # noqa: E501
-            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
+            'protection_type': (str, none_type,),  # noqa: E501
             'sharepoint_site_summary': (SharepointObjectParams,),  # noqa: E501
+            'uuid': (str, none_type,),  # noqa: E501
+            'v_center_summary': (ObjectTypeVCenterParams,),  # noqa: E501
             'windows_cluster_summary': (ObjectTypeWindowsClusterParams,),  # noqa: E501
-            'permissions': ([Tenant], none_type,),  # noqa: E501
-            'object_backup_configuration': (ProtectedObjectBackupConfig,),  # noqa: E501
-            'protection_group_configurations': ([ProtectedObjectGroupBackupConfig], none_type,),  # noqa: E501
             'last_run': (ObjectProtectionRunSummary,),  # noqa: E501
+            'object_backup_configuration': (ProtectedObjectBackupConfig,),  # noqa: E501
+            'permissions': ([Tenant], none_type,),  # noqa: E501
+            'protection_group_configurations': ([ProtectedObjectGroupBackupConfig], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -313,25 +313,25 @@ class ProtectedObjectInfo(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
+        'global_id': 'globalId',  # noqa: E501
+        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
         'object_type': 'objectType',  # noqa: E501
-        'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
-        'uuid': 'uuid',  # noqa: E501
-        'global_id': 'globalId',  # noqa: E501
-        'protection_type': 'protectionType',  # noqa: E501
         'os_type': 'osType',  # noqa: E501
-        'v_center_summary': 'vCenterSummary',  # noqa: E501
+        'protection_type': 'protectionType',  # noqa: E501
         'sharepoint_site_summary': 'sharepointSiteSummary',  # noqa: E501
+        'uuid': 'uuid',  # noqa: E501
+        'v_center_summary': 'vCenterSummary',  # noqa: E501
         'windows_cluster_summary': 'windowsClusterSummary',  # noqa: E501
-        'permissions': 'permissions',  # noqa: E501
-        'object_backup_configuration': 'objectBackupConfiguration',  # noqa: E501
-        'protection_group_configurations': 'protectionGroupConfigurations',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
+        'object_backup_configuration': 'objectBackupConfiguration',  # noqa: E501
+        'permissions': 'permissions',  # noqa: E501
+        'protection_group_configurations': 'protectionGroupConfigurations',  # noqa: E501
     }
 
     required_properties = set([
@@ -382,25 +382,25 @@ class ProtectedObjectInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
+            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
+            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501
             object_type (str, none_type): Specifies the type of the object.. [optional]  # noqa: E501
-            logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
-            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
-            global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
-            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             os_type (str, none_type): Specifies the operating system type of the object.. [optional]  # noqa: E501
-            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
+            protection_type (str, none_type): Specifies the protection type of the object if any.. [optional]  # noqa: E501
             sharepoint_site_summary (SharepointObjectParams): [optional]  # noqa: E501
+            uuid (str, none_type): Specifies the uuid which is a unique identifier of the object.. [optional]  # noqa: E501
+            v_center_summary (ObjectTypeVCenterParams): [optional]  # noqa: E501
             windows_cluster_summary (ObjectTypeWindowsClusterParams): [optional]  # noqa: E501
-            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this accessing given protected object.. [optional]  # noqa: E501
-            object_backup_configuration (ProtectedObjectBackupConfig): [optional]  # noqa: E501
-            protection_group_configurations ([ProtectedObjectGroupBackupConfig], none_type): Specifies the protection info associated with every object. There can be multiple instances of protection info since the same object can be protected in multiple protection groups.. [optional]  # noqa: E501
             last_run (ObjectProtectionRunSummary): [optional]  # noqa: E501
+            object_backup_configuration (ProtectedObjectBackupConfig): [optional]  # noqa: E501
+            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this accessing given protected object.. [optional]  # noqa: E501
+            protection_group_configurations ([ProtectedObjectGroupBackupConfig], none_type): Specifies the protection info associated with every object. There can be multiple instances of protection info since the same object can be protected in multiple protection groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

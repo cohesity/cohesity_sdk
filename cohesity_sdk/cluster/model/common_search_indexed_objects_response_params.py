@@ -91,8 +91,8 @@ class CommonSearchIndexedObjectsResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'object_type': (str,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
+            'object_type': (str,),  # noqa: E501
             'pagination_cookie': (str, none_type,),  # noqa: E501
         }
 
@@ -103,8 +103,8 @@ class CommonSearchIndexedObjectsResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'object_type': 'objectType',  # noqa: E501
         'count': 'count',  # noqa: E501
+        'object_type': 'objectType',  # noqa: E501
         'pagination_cookie': 'paginationCookie',  # noqa: E501
     }
 
@@ -155,8 +155,8 @@ class CommonSearchIndexedObjectsResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_type (str): Specifies the object type.. [optional]  # noqa: E501
             count (int, none_type): Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.. [optional]  # noqa: E501
+            object_type (str): Specifies the object type.. [optional]  # noqa: E501
             pagination_cookie (str, none_type): Specifies cookie for resuming search if pagination is being used.. [optional]  # noqa: E501
         """
 

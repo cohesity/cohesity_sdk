@@ -74,10 +74,10 @@ class DataPoint(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'timestamp_msecs': (int, none_type,),  # noqa: E501
-            'string_value': (str, none_type,),  # noqa: E501
             'double_value': (float, none_type,),  # noqa: E501
             'int64_value': (int, none_type,),  # noqa: E501
+            'string_value': (str, none_type,),  # noqa: E501
+            'timestamp_msecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class DataPoint(ModelNormal):
 
 
     attribute_map = {
-        'timestamp_msecs': 'timestampMsecs',  # noqa: E501
-        'string_value': 'stringValue',  # noqa: E501
         'double_value': 'doubleValue',  # noqa: E501
         'int64_value': 'int64Value',  # noqa: E501
+        'string_value': 'stringValue',  # noqa: E501
+        'timestamp_msecs': 'timestampMsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,10 +140,10 @@ class DataPoint(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            timestamp_msecs (int, none_type): Specifies the timestamp of the data point.. [optional]  # noqa: E501
-            string_value (str, none_type): Specifies the data point value in string format.. [optional]  # noqa: E501
             double_value (float, none_type): Specifies the data point value in double format.. [optional]  # noqa: E501
             int64_value (int, none_type): Specifies the data point value in int64 format.. [optional]  # noqa: E501
+            string_value (str, none_type): Specifies the data point value in string format.. [optional]  # noqa: E501
+            timestamp_msecs (int, none_type): Specifies the timestamp of the data point.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

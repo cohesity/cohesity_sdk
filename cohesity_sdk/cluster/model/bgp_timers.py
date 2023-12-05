@@ -74,8 +74,8 @@ class BgpTimers(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'keep_alive': (int, none_type,),  # noqa: E501
             'hold_time': (int, none_type,),  # noqa: E501
+            'keep_alive': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class BgpTimers(ModelNormal):
 
 
     attribute_map = {
-        'keep_alive': 'keepAlive',  # noqa: E501
         'hold_time': 'holdTime',  # noqa: E501
+        'keep_alive': 'keepAlive',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class BgpTimers(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            keep_alive (int, none_type): Keep alive interval in seconds.. [optional]  # noqa: E501
             hold_time (int, none_type): Hold time in seconds.. [optional]  # noqa: E501
+            keep_alive (int, none_type): Keep alive interval in seconds.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

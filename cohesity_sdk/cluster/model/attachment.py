@@ -56,9 +56,8 @@ class Attachment(ModelNormal):
     allowed_values = {
         ('action',): {
             'None': None,
-            'ALLOW': "allow",
-            'DENY': "deny",
-            'RETURN': "return",
+            'ALLOW': "ALLOW",
+            'DENY': "DENY",
         },
     }
 
@@ -80,12 +79,12 @@ class Attachment(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'interfaces': ([str],),  # noqa: E501
+            'action': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'interface_groups': ([str],),  # noqa: E501
+            'interfaces': ([str],),  # noqa: E501
             'ipset_names': ([str],),  # noqa: E501
             'is_implicit': (bool, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'action': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,12 +94,12 @@ class Attachment(ModelNormal):
 
 
     attribute_map = {
-        'interfaces': 'interfaces',  # noqa: E501
+        'action': 'action',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'interface_groups': 'interfaceGroups',  # noqa: E501
+        'interfaces': 'interfaces',  # noqa: E501
         'ipset_names': 'ipsetNames',  # noqa: E501
         'is_implicit': 'isImplicit',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'action': 'action',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,12 +149,12 @@ class Attachment(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            interfaces ([str]): Specifies the network interfaces. [optional]  # noqa: E501
+            action (str, none_type): Specifies the action.. [optional]  # noqa: E501
+            description (str, none_type): Specifies a description for the attachment.. [optional]  # noqa: E501
             interface_groups ([str]): Specifies the network interface groups.. [optional]  # noqa: E501
+            interfaces ([str]): Specifies the network interfaces. [optional]  # noqa: E501
             ipset_names ([str]): Specifies the ip sets.. [optional]  # noqa: E501
             is_implicit (bool, none_type): [optional]  # noqa: E501
-            description (str, none_type): Specifies a description for the attachment.. [optional]  # noqa: E501
-            action (str, none_type): Specifies the action.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

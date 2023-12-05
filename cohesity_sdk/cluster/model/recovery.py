@@ -124,19 +124,35 @@ class Recovery(ModelComposed):
     """
 
     allowed_values = {
-        ('status',): {
-            'None': None,
-            'ACCEPTED': "Accepted",
-            'RUNNING': "Running",
-            'CANCELED': "Canceled",
-            'CANCELING': "Canceling",
-            'FAILED': "Failed",
-            'MISSED': "Missed",
-            'SUCCEEDED': "Succeeded",
-            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
-            'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
+        ('recovery_action',): {
+            'RECOVERVMS': "RecoverVMs",
+            'RECOVERFILES': "RecoverFiles",
+            'INSTANTVOLUMEMOUNT': "InstantVolumeMount",
+            'RECOVERVMDISKS': "RecoverVmDisks",
+            'RECOVERVAPPS': "RecoverVApps",
+            'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
+            'UPTIERSNAPSHOT': "UptierSnapshot",
+            'RECOVERRDS': "RecoverRDS",
+            'RECOVERAURORA': "RecoverAurora",
+            'RECOVERAPPS': "RecoverApps",
+            'RECOVERNASVOLUME': "RecoverNasVolume",
+            'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
+            'RECOVERSYSTEM': "RecoverSystem",
+            'CLONEAPPVIEW': "CloneAppView",
+            'RECOVERSANVOLUMES': "RecoverSanVolumes",
+            'RECOVERMAILBOX': "RecoverMailbox",
+            'RECOVERONEDRIVE': "RecoverOneDrive",
+            'RECOVERSHAREPOINT': "RecoverSharePoint",
+            'RECOVERPUBLICFOLDERS': "RecoverPublicFolders",
+            'RECOVERMSGROUP': "RecoverMsGroup",
+            'RECOVERMSTEAM': "RecoverMsTeam",
+            'CONVERTTOPST': "ConvertToPst",
+            'RECOVERNAMESPACES': "RecoverNamespaces",
+            'RECOVEROBJECTS': "RecoverObjects",
+            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
+            'RECOVERSFDCORG': "RecoverSfdcOrg",
+            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
+            'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -171,43 +187,18 @@ class Recovery(ModelComposed):
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
         },
-        ('recovery_action',): {
-            'RECOVERVMS': "RecoverVMs",
-            'RECOVERFILES': "RecoverFiles",
-            'INSTANTVOLUMEMOUNT': "InstantVolumeMount",
-            'RECOVERVMDISKS': "RecoverVmDisks",
-            'RECOVERVAPPS': "RecoverVApps",
-            'RECOVERVAPPTEMPLATES': "RecoverVAppTemplates",
-            'UPTIERSNAPSHOT': "UptierSnapshot",
-            'RECOVERRDS': "RecoverRDS",
-            'RECOVERAURORA': "RecoverAurora",
-            'RECOVERAPPS': "RecoverApps",
-            'CLONEAPPS': "CloneApps",
-            'RECOVERNASVOLUME': "RecoverNasVolume",
-            'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
-            'RECOVERSYSTEM': "RecoverSystem",
-            'RECOVEREXCHANGEDBS': "RecoverExchangeDbs",
-            'CLONEAPPVIEW': "CloneAppView",
-            'RECOVERSANVOLUMES': "RecoverSanVolumes",
-            'RECOVERMAILBOX': "RecoverMailbox",
-            'RECOVERONEDRIVE': "RecoverOneDrive",
-            'RECOVERSHAREPOINT': "RecoverSharePoint",
-            'RECOVERPUBLICFOLDERS': "RecoverPublicFolders",
-            'RECOVERMSGROUP': "RecoverMsGroup",
-            'RECOVERMSTEAM': "RecoverMsTeam",
-            'CONVERTTOPST': "ConvertToPst",
-            'RECOVERNAMESPACES': "RecoverNamespaces",
-            'RECOVEROBJECTS': "RecoverObjects",
-            'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
-            'RECOVERSFDCORG': "RecoverSfdcOrg",
-            'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
-            'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
-            'CLONEVMS': "CloneVMs",
-            'CLONEVIEW': "CloneView",
-            'CLONEREFRESHAPP': "CloneRefreshApp",
-            'CLONEVMSTOVIEW': "CloneVMsToView",
-            'CONVERTANDDEPLOYVMS': "ConvertAndDeployVMs",
-            'DEPLOYVMS': "DeployVMs",
+        ('status',): {
+            'None': None,
+            'ACCEPTED': "Accepted",
+            'RUNNING': "Running",
+            'CANCELED': "Canceled",
+            'CANCELING': "Canceling",
+            'FAILED': "Failed",
+            'MISSED': "Missed",
+            'SUCCEEDED': "Succeeded",
+            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
+            'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
         },
         ('tear_down_status',): {
             'None': None,
@@ -249,53 +240,53 @@ class Recovery(ModelComposed):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
-            'name': (str, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
-            'progress_task_id': (str, none_type,),  # noqa: E501
-            'snapshot_environment': (str,),  # noqa: E501
-            'recovery_action': (str,),  # noqa: E501
-            'permissions': ([Tenant], none_type,),  # noqa: E501
-            'creation_info': (CreationInfo,),  # noqa: E501
             'can_tear_down': (bool, none_type,),  # noqa: E501
-            'tear_down_status': (str, none_type,),  # noqa: E501
-            'tear_down_message': (str, none_type,),  # noqa: E501
-            'messages': ([str], none_type,),  # noqa: E501
-            'is_parent_recovery': (bool, none_type,),  # noqa: E501
-            'parent_recovery_id': (str, none_type,),  # noqa: E501
-            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
+            'creation_info': (CreationInfo,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'id': (str, none_type,),  # noqa: E501
             'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
-            'vmware_params': (RecoverVmwareParams,),  # noqa: E501
-            'aws_params': (RecoverAwsParams,),  # noqa: E501
-            'gcp_params': (RecoverGcpParams,),  # noqa: E501
-            'azure_params': (RecoverAzureParams,),  # noqa: E501
-            'kvm_params': (RecoverKvmParams,),  # noqa: E501
+            'is_parent_recovery': (bool, none_type,),  # noqa: E501
+            'messages': ([str], none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'parent_recovery_id': (str, none_type,),  # noqa: E501
+            'permissions': ([Tenant], none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
+            'recovery_action': (str,),  # noqa: E501
+            'retrieve_archive_tasks': ([RetrieveArchiveTask], none_type,),  # noqa: E501
+            'snapshot_environment': (str,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'tear_down_message': (str, none_type,),  # noqa: E501
+            'tear_down_status': (str, none_type,),  # noqa: E501
             'acropolis_params': (RecoverAcropolisParams,),  # noqa: E501
-            'mssql_params': (RecoverSqlParams,),  # noqa: E501
-            'netapp_params': (RecoverNetappParams,),  # noqa: E501
-            'generic_nas_params': (RecoverGenericNasParams,),  # noqa: E501
-            'isilon_params': (RecoverIsilonParams,),  # noqa: E501
-            'flashblade_params': (RecoverFlashbladeParams,),  # noqa: E501
-            'elastifile_params': (RecoverElastifileParams,),  # noqa: E501
-            'gpfs_params': (RecoverGpfsParams,),  # noqa: E501
-            'physical_params': (RecoverPhysicalParams,),  # noqa: E501
-            'hyperv_params': (RecoverHyperVParams,),  # noqa: E501
-            'exchange_params': (RecoverExchangeParams,),  # noqa: E501
+            'aws_params': (RecoverAwsParams,),  # noqa: E501
+            'azure_params': (RecoverAzureParams,),  # noqa: E501
             'cassandra_params': (CassandraParams,),  # noqa: E501
-            'uda_params': (UdaParams,),  # noqa: E501
             'couchbase_params': (CouchbaseParams,),  # noqa: E501
+            'elastifile_params': (RecoverElastifileParams,),  # noqa: E501
+            'exchange_params': (RecoverExchangeParams,),  # noqa: E501
+            'flashblade_params': (RecoverFlashbladeParams,),  # noqa: E501
+            'gcp_params': (RecoverGcpParams,),  # noqa: E501
+            'generic_nas_params': (RecoverGenericNasParams,),  # noqa: E501
+            'gpfs_params': (RecoverGpfsParams,),  # noqa: E501
             'hbase_params': (HbaseParams,),  # noqa: E501
             'hdfs_params': (HdfsParams,),  # noqa: E501
             'hive_params': (HiveParams,),  # noqa: E501
-            'mongodb_params': (MongodbParams,),  # noqa: E501
-            'pure_params': (RecoverPureParams,),  # noqa: E501
-            'office365_params': (RecoverO365Params,),  # noqa: E501
+            'hyperv_params': (RecoverHyperVParams,),  # noqa: E501
+            'isilon_params': (RecoverIsilonParams,),  # noqa: E501
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
+            'kvm_params': (RecoverKvmParams,),  # noqa: E501
+            'mongodb_params': (MongodbParams,),  # noqa: E501
+            'mssql_params': (RecoverSqlParams,),  # noqa: E501
+            'netapp_params': (RecoverNetappParams,),  # noqa: E501
+            'office365_params': (RecoverO365Params,),  # noqa: E501
             'oracle_params': (RecoverOracleParams,),  # noqa: E501
-            'view_params': (RecoverViewParams,),  # noqa: E501
+            'physical_params': (RecoverPhysicalParams,),  # noqa: E501
+            'pure_params': (RecoverPureParams,),  # noqa: E501
             'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
+            'uda_params': (UdaParams,),  # noqa: E501
+            'view_params': (RecoverViewParams,),  # noqa: E501
+            'vmware_params': (RecoverVmwareParams,),  # noqa: E501
         }
 
     @cached_property
@@ -305,53 +296,53 @@ class Recovery(ModelComposed):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'name': 'name',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
-        'progress_task_id': 'progressTaskId',  # noqa: E501
-        'snapshot_environment': 'snapshotEnvironment',  # noqa: E501
-        'recovery_action': 'recoveryAction',  # noqa: E501
-        'permissions': 'permissions',  # noqa: E501
-        'creation_info': 'creationInfo',  # noqa: E501
         'can_tear_down': 'canTearDown',  # noqa: E501
-        'tear_down_status': 'tearDownStatus',  # noqa: E501
-        'tear_down_message': 'tearDownMessage',  # noqa: E501
-        'messages': 'messages',  # noqa: E501
-        'is_parent_recovery': 'isParentRecovery',  # noqa: E501
-        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
-        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
+        'creation_info': 'creationInfo',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
-        'vmware_params': 'vmwareParams',  # noqa: E501
-        'aws_params': 'awsParams',  # noqa: E501
-        'gcp_params': 'gcpParams',  # noqa: E501
-        'azure_params': 'azureParams',  # noqa: E501
-        'kvm_params': 'kvmParams',  # noqa: E501
+        'is_parent_recovery': 'isParentRecovery',  # noqa: E501
+        'messages': 'messages',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'parent_recovery_id': 'parentRecoveryId',  # noqa: E501
+        'permissions': 'permissions',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
+        'recovery_action': 'recoveryAction',  # noqa: E501
+        'retrieve_archive_tasks': 'retrieveArchiveTasks',  # noqa: E501
+        'snapshot_environment': 'snapshotEnvironment',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'tear_down_message': 'tearDownMessage',  # noqa: E501
+        'tear_down_status': 'tearDownStatus',  # noqa: E501
         'acropolis_params': 'acropolisParams',  # noqa: E501
-        'mssql_params': 'mssqlParams',  # noqa: E501
-        'netapp_params': 'netappParams',  # noqa: E501
-        'generic_nas_params': 'genericNasParams',  # noqa: E501
-        'isilon_params': 'isilonParams',  # noqa: E501
-        'flashblade_params': 'flashbladeParams',  # noqa: E501
-        'elastifile_params': 'elastifileParams',  # noqa: E501
-        'gpfs_params': 'gpfsParams',  # noqa: E501
-        'physical_params': 'physicalParams',  # noqa: E501
-        'hyperv_params': 'hypervParams',  # noqa: E501
-        'exchange_params': 'exchangeParams',  # noqa: E501
+        'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
-        'uda_params': 'udaParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
+        'elastifile_params': 'elastifileParams',  # noqa: E501
+        'exchange_params': 'exchangeParams',  # noqa: E501
+        'flashblade_params': 'flashbladeParams',  # noqa: E501
+        'gcp_params': 'gcpParams',  # noqa: E501
+        'generic_nas_params': 'genericNasParams',  # noqa: E501
+        'gpfs_params': 'gpfsParams',  # noqa: E501
         'hbase_params': 'hbaseParams',  # noqa: E501
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
-        'mongodb_params': 'mongodbParams',  # noqa: E501
-        'pure_params': 'pureParams',  # noqa: E501
-        'office365_params': 'office365Params',  # noqa: E501
+        'hyperv_params': 'hypervParams',  # noqa: E501
+        'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
+        'kvm_params': 'kvmParams',  # noqa: E501
+        'mongodb_params': 'mongodbParams',  # noqa: E501
+        'mssql_params': 'mssqlParams',  # noqa: E501
+        'netapp_params': 'netappParams',  # noqa: E501
+        'office365_params': 'office365Params',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
-        'view_params': 'viewParams',  # noqa: E501
+        'physical_params': 'physicalParams',  # noqa: E501
+        'pure_params': 'pureParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
+        'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -402,53 +393,53 @@ class Recovery(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (str, none_type): Specifies the id of the Recovery.. [optional]  # noqa: E501
-            name (str, none_type): Specifies the name of the Recovery.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
-            progress_task_id (str, none_type): Progress monitor task id for Recovery.. [optional]  # noqa: E501
-            snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
-            recovery_action (str): Specifies the type of recover action.. [optional]  # noqa: E501
-            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this recovery.. [optional]  # noqa: E501
-            creation_info (CreationInfo): [optional]  # noqa: E501
             can_tear_down (bool, none_type): Specifies whether it's possible to tear down the objects created by the recovery.. [optional]  # noqa: E501
-            tear_down_status (str, none_type): Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.. [optional]  # noqa: E501
-            tear_down_message (str, none_type): Specifies the error message about the tear down operation if it fails.. [optional]  # noqa: E501
-            messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
-            is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
-            parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
-            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
+            creation_info (CreationInfo): [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
+            id (str, none_type): Specifies the id of the Recovery.. [optional]  # noqa: E501
             is_multi_stage_restore (bool, none_type): Specifies whether the current recovery operation is a multi-stage restore operation. This is currently used by VMware recoveres for the migration/hot-standby use case.. [optional]  # noqa: E501
-            vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
-            aws_params (RecoverAwsParams): [optional]  # noqa: E501
-            gcp_params (RecoverGcpParams): [optional]  # noqa: E501
-            azure_params (RecoverAzureParams): [optional]  # noqa: E501
-            kvm_params (RecoverKvmParams): [optional]  # noqa: E501
+            is_parent_recovery (bool, none_type): Specifies whether the current recovery operation has created child recoveries. This is currently used in SQL recovery where multiple child recoveries can be tracked under a common/parent recovery.. [optional]  # noqa: E501
+            messages ([str], none_type): Specifies messages about the recovery.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the Recovery.. [optional]  # noqa: E501
+            parent_recovery_id (str, none_type): If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.. [optional]  # noqa: E501
+            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this recovery.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task id for Recovery.. [optional]  # noqa: E501
+            recovery_action (str): Specifies the type of recover action.. [optional]  # noqa: E501
+            retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
+            snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            tear_down_message (str, none_type): Specifies the error message about the tear down operation if it fails.. [optional]  # noqa: E501
+            tear_down_status (str, none_type): Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.. [optional]  # noqa: E501
             acropolis_params (RecoverAcropolisParams): [optional]  # noqa: E501
-            mssql_params (RecoverSqlParams): [optional]  # noqa: E501
-            netapp_params (RecoverNetappParams): [optional]  # noqa: E501
-            generic_nas_params (RecoverGenericNasParams): [optional]  # noqa: E501
-            isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
-            flashblade_params (RecoverFlashbladeParams): [optional]  # noqa: E501
-            elastifile_params (RecoverElastifileParams): [optional]  # noqa: E501
-            gpfs_params (RecoverGpfsParams): [optional]  # noqa: E501
-            physical_params (RecoverPhysicalParams): [optional]  # noqa: E501
-            hyperv_params (RecoverHyperVParams): [optional]  # noqa: E501
-            exchange_params (RecoverExchangeParams): [optional]  # noqa: E501
+            aws_params (RecoverAwsParams): [optional]  # noqa: E501
+            azure_params (RecoverAzureParams): [optional]  # noqa: E501
             cassandra_params (CassandraParams): [optional]  # noqa: E501
-            uda_params (UdaParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseParams): [optional]  # noqa: E501
+            elastifile_params (RecoverElastifileParams): [optional]  # noqa: E501
+            exchange_params (RecoverExchangeParams): [optional]  # noqa: E501
+            flashblade_params (RecoverFlashbladeParams): [optional]  # noqa: E501
+            gcp_params (RecoverGcpParams): [optional]  # noqa: E501
+            generic_nas_params (RecoverGenericNasParams): [optional]  # noqa: E501
+            gpfs_params (RecoverGpfsParams): [optional]  # noqa: E501
             hbase_params (HbaseParams): [optional]  # noqa: E501
             hdfs_params (HdfsParams): [optional]  # noqa: E501
             hive_params (HiveParams): [optional]  # noqa: E501
-            mongodb_params (MongodbParams): [optional]  # noqa: E501
-            pure_params (RecoverPureParams): [optional]  # noqa: E501
-            office365_params (RecoverO365Params): [optional]  # noqa: E501
+            hyperv_params (RecoverHyperVParams): [optional]  # noqa: E501
+            isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
+            kvm_params (RecoverKvmParams): [optional]  # noqa: E501
+            mongodb_params (MongodbParams): [optional]  # noqa: E501
+            mssql_params (RecoverSqlParams): [optional]  # noqa: E501
+            netapp_params (RecoverNetappParams): [optional]  # noqa: E501
+            office365_params (RecoverO365Params): [optional]  # noqa: E501
             oracle_params (RecoverOracleParams): [optional]  # noqa: E501
-            view_params (RecoverViewParams): [optional]  # noqa: E501
+            physical_params (RecoverPhysicalParams): [optional]  # noqa: E501
+            pure_params (RecoverPureParams): [optional]  # noqa: E501
             sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
+            uda_params (UdaParams): [optional]  # noqa: E501
+            view_params (RecoverViewParams): [optional]  # noqa: E501
+            vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

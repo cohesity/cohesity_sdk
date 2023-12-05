@@ -17,7 +17,6 @@ Create a cloud retrieve task.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
@@ -34,18 +33,17 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = CreateCloudRetrieveTaskRequest(
-        vault_ids=[
-            1,
-        ],
         cluster_id=1,
-        retrieve_all_jobs=True,
+        end_time_usecs=1,
         job_ids=[
             "job_ids_example",
         ],
+        retrieve_all_jobs=True,
         start_time_usecs=1,
-        end_time_usecs=1,
+        vault_ids=[
+            1,
+        ],
     ) # CreateCloudRetrieveTaskRequest | Specifies the parameters to create a cloud retrieve.
 
 # example passing only required values which don't have defaults set
@@ -70,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -95,7 +93,6 @@ Returns the cloud retrieve task corresponding to the job id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.cloud_retrieve_task import CloudRetrieveTask
@@ -110,7 +107,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 job_id = 1 # int | Specifies a job id of the cloud retrieve task.
 
@@ -136,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -161,7 +157,6 @@ Get the list of cloud retrieve tasks.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -176,7 +171,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -198,7 +192,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

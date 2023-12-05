@@ -66,7 +66,6 @@ class CommonArchivalExternalTargetParams(ModelNormal):
             'GOOGLE': "Google",
             'AWS': "AWS",
             'ORACLE': "Oracle",
-            'NAS': "Nas",
             'NAS': "NAS",
             'QSTARTAPE': "QStarTape",
             'S3COMPATIBLE': "S3Compatible",
@@ -92,8 +91,8 @@ class CommonArchivalExternalTargetParams(ModelNormal):
         """
         lazy_import()
         return {
-            'storage_type': (str, none_type,),  # noqa: E501
             'encryption': (EncryptionSettings,),  # noqa: E501
+            'storage_type': (str, none_type,),  # noqa: E501
             'target_bandwidth_throttlings': (TargetBandwidthThrottlings,),  # noqa: E501
         }
 
@@ -104,8 +103,8 @@ class CommonArchivalExternalTargetParams(ModelNormal):
 
 
     attribute_map = {
-        'storage_type': 'storageType',  # noqa: E501
         'encryption': 'encryption',  # noqa: E501
+        'storage_type': 'storageType',  # noqa: E501
         'target_bandwidth_throttlings': 'targetBandwidthThrottlings',  # noqa: E501
     }
 
@@ -121,12 +120,12 @@ class CommonArchivalExternalTargetParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, storage_type, encryption, *args, **kwargs):  # noqa: E501
+    def __init__(self, encryption, storage_type, *args, **kwargs):  # noqa: E501
         """CommonArchivalExternalTargetParams - a model defined in OpenAPI
 
         Args:
-            storage_type (str, none_type): Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.
             encryption (EncryptionSettings):
+            storage_type (str, none_type): Specifies the Storage type of the External Target.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -187,8 +186,8 @@ class CommonArchivalExternalTargetParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.storage_type = storage_type
         self.encryption = encryption
+        self.storage_type = storage_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -74,8 +74,8 @@ class ReplicaFailoverObject(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'replica_object_id': (int, none_type,),  # noqa: E501
             'failover_object_id': (int, none_type,),  # noqa: E501
+            'replica_object_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ReplicaFailoverObject(ModelNormal):
 
 
     attribute_map = {
-        'replica_object_id': 'replicaObjectId',  # noqa: E501
         'failover_object_id': 'failoverObjectId',  # noqa: E501
+        'replica_object_id': 'replicaObjectId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ReplicaFailoverObject(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            replica_object_id (int, none_type): Specifies the object Id existing on the replciation cluster.. [optional]  # noqa: E501
             failover_object_id (int, none_type): Specifies the corrosponding object id of the failover object.. [optional]  # noqa: E501
+            replica_object_id (int, none_type): Specifies the object Id existing on the replciation cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

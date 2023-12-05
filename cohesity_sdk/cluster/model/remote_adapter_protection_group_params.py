@@ -89,9 +89,9 @@ class RemoteAdapterProtectionGroupParams(ModelNormal):
         return {
             'hosts': ([RemoteAdapterHost], none_type,),  # noqa: E501
             'view_id': (int, none_type,),  # noqa: E501
-            'remote_view_params': (RemoteAdapterProtectionGroupReplicationParams,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'remote_view_params': (RemoteAdapterProtectionGroupReplicationParams,),  # noqa: E501
         }
 
     @cached_property
@@ -103,9 +103,9 @@ class RemoteAdapterProtectionGroupParams(ModelNormal):
     attribute_map = {
         'hosts': 'hosts',  # noqa: E501
         'view_id': 'viewId',  # noqa: E501
-        'remote_view_params': 'remoteViewParams',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'remote_view_params': 'remoteViewParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,9 +159,9 @@ class RemoteAdapterProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            remote_view_params (RemoteAdapterProtectionGroupReplicationParams): [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            remote_view_params (RemoteAdapterProtectionGroupReplicationParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

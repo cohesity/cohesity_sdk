@@ -86,8 +86,8 @@ class CreateTdmTaskRequestAllOf(ModelNormal):
         lazy_import()
         return {
             'clone_params': (TdmCloneTaskRequestParams,),  # noqa: E501
-            'snapshot_params': (TdmSnapshotTaskParams,),  # noqa: E501
             'refresh_params': (TdmRefreshTaskRequestParams,),  # noqa: E501
+            'snapshot_params': (TdmSnapshotTaskParams,),  # noqa: E501
             'teardown_params': (TdmTeardownTaskRequestParams,),  # noqa: E501
         }
 
@@ -99,8 +99,8 @@ class CreateTdmTaskRequestAllOf(ModelNormal):
 
     attribute_map = {
         'clone_params': 'cloneParams',  # noqa: E501
-        'snapshot_params': 'snapshotParams',  # noqa: E501
         'refresh_params': 'refreshParams',  # noqa: E501
+        'snapshot_params': 'snapshotParams',  # noqa: E501
         'teardown_params': 'teardownParams',  # noqa: E501
     }
 
@@ -152,8 +152,8 @@ class CreateTdmTaskRequestAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             clone_params (TdmCloneTaskRequestParams): [optional]  # noqa: E501
-            snapshot_params (TdmSnapshotTaskParams): [optional]  # noqa: E501
             refresh_params (TdmRefreshTaskRequestParams): [optional]  # noqa: E501
+            snapshot_params (TdmSnapshotTaskParams): [optional]  # noqa: E501
             teardown_params (TdmTeardownTaskRequestParams): [optional]  # noqa: E501
         """
 

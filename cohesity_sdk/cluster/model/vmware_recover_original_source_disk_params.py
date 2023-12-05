@@ -75,8 +75,8 @@ class VmwareRecoverOriginalSourceDiskParams(ModelNormal):
         """
         return {
             'disk_uuid': (str, none_type,),  # noqa: E501
-            'overwrite_original_disk': (bool, none_type,),  # noqa: E501
             'datastore_id': (int, none_type,),  # noqa: E501
+            'overwrite_original_disk': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class VmwareRecoverOriginalSourceDiskParams(ModelNormal):
 
     attribute_map = {
         'disk_uuid': 'diskUuid',  # noqa: E501
-        'overwrite_original_disk': 'overwriteOriginalDisk',  # noqa: E501
         'datastore_id': 'datastoreId',  # noqa: E501
+        'overwrite_original_disk': 'overwriteOriginalDisk',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class VmwareRecoverOriginalSourceDiskParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            overwrite_original_disk (bool, none_type): Specifies whether or not to overwrite the original disk. If this is set to true, then datastoreId should not be specified. Otherwise, datastoreId must be specified.. [optional]  # noqa: E501
             datastore_id (int, none_type): Specifies the ID of the datastore on which the specified disk will be spun up.. [optional]  # noqa: E501
+            overwrite_original_disk (bool, none_type): Specifies whether or not to overwrite the original disk. If this is set to true, then datastoreId should not be specified. Otherwise, datastoreId must be specified.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

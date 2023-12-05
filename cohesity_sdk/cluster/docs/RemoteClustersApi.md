@@ -25,7 +25,6 @@ Create an ODP Remote Cluster config.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_odp_remote_cluster_params import CreateOdpRemoteClusterParams
@@ -41,7 +40,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = CreateOdpRemoteClusterParams() # CreateOdpRemoteClusterParams | Specifies the request to create ODP Remote Cluster config.
 
@@ -67,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -92,7 +90,6 @@ Unregister an external Remote Cluster.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -106,7 +103,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 cluster_id = 1 # int | Specifies the cluster id of the Remote Cluster to unregister.
 
@@ -131,7 +127,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -156,7 +152,6 @@ Get ODP Remote Cluster config by id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -171,7 +166,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 cluster_id = 1 # int | Specifies the id of ODP Remote Cluster to fetch.
 
@@ -197,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -222,7 +216,6 @@ Get ODP Remote Cluster configs.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -237,7 +230,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 cluster_ids = [
         1,
@@ -276,7 +268,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -301,7 +293,6 @@ Get Remote Cluster config by cluster id.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
@@ -316,7 +307,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 cluster_id = 1 # int | Specifies the cluster id of Remote Cluster to fetch.
 
@@ -342,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -367,7 +357,6 @@ List the Remote Clusters that are registered on this local Cluster and that matc
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -382,7 +371,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 cluster_ids = [
         1,
@@ -423,7 +411,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -448,7 +436,6 @@ List the Replication Encryption Key. It is used for encrypting replication data 
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.replication_encryption_key import ReplicationEncryptionKey
@@ -463,7 +450,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 
 # example, this endpoint has no required or optional parameters
@@ -485,7 +471,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -510,7 +496,6 @@ Register a Remote Cluster on this local cluster for remote access and/or replica
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
@@ -526,7 +511,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = RegisterRemoteClusterParams() # RegisterRemoteClusterParams | Specifies the request to register Remote Cluster.
 
@@ -552,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -577,7 +561,6 @@ Update an ODP Remote Cluster config.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -594,25 +577,24 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 cluster_id = 1 # int | Specifies the id of ODP Remote Cluster to update.
 body = UpdateOdpRemoteClusterParams(
-        cluster_name="cluster_name_example",
-        cluster_id_stale=True,
         all_endpoints_reachable=True,
+        cluster_id_stale=True,
+        cluster_name="cluster_name_example",
+        compression_enabled=True,
+        interface_group_name="interface_group_name_example",
+        key_encryption_key="key_encryption_key_example",
+        remote_tenant_id="remote_tenant_id_example",
         storage_domain_pairs=[
             StorageDomainPair(
                 local_storage_domain_id=1,
                 remote_storage_domain_id=1,
             ),
         ],
-        compression_enabled=True,
-        key_encryption_key="key_encryption_key_example",
-        used_for_replication=True,
         tenant_id="tenant_id_example",
-        remote_tenant_id="remote_tenant_id_example",
-        interface_group_name="interface_group_name_example",
         use_bifrost_broker_channel=True,
+        used_for_replication=True,
     ) # UpdateOdpRemoteClusterParams | Specifies the request to update ODP Remote Cluster config.
 
 # example passing only required values which don't have defaults set
@@ -638,7 +620,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -663,7 +645,6 @@ Update the connection settings of the specified Remote Cluster that is registere
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
@@ -679,7 +660,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 cluster_id = 1 # int | Specifies the cluster id of the Remote Cluster to update.
 body = UpdateRemoteClusterParams() # UpdateRemoteClusterParams | Specifies the request to update Remote Cluster config.
@@ -707,7 +687,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -732,7 +712,6 @@ Validate a Remote Cluster credentials.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -748,13 +727,12 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = ValidateRemoteClusterConnectionParam(
-        username="username_example",
-        password="password_example",
         node_addresses=[
             "node_addresses_example",
         ],
+        password="password_example",
+        username="username_example",
     ) # ValidateRemoteClusterConnectionParam | Specifies the request to validate Remote Cluster.
 
 # example passing only required values which don't have defaults set
@@ -778,7 +756,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

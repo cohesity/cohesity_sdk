@@ -75,8 +75,8 @@ class IndexingPolicy(ModelNormal):
         """
         return {
             'enable_indexing': (bool, none_type,),  # noqa: E501
-            'include_paths': ([str], none_type,),  # noqa: E501
             'exclude_paths': ([str], none_type,),  # noqa: E501
+            'include_paths': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class IndexingPolicy(ModelNormal):
 
     attribute_map = {
         'enable_indexing': 'enableIndexing',  # noqa: E501
-        'include_paths': 'includePaths',  # noqa: E501
         'exclude_paths': 'excludePaths',  # noqa: E501
+        'include_paths': 'includePaths',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class IndexingPolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            include_paths ([str], none_type): Array of Indexed Directories. Specifies a list of directories to index. Regular expression can also be specified to provide the directory paths. Example: /Users/<wildcard>/AppData. [optional]  # noqa: E501
             exclude_paths ([str], none_type): Array of Excluded Directories. Specifies a list of directories to exclude from indexing.Regular expression can also be specified to provide the directory paths. Example: /Users/<wildcard>/AppData. [optional]  # noqa: E501
+            include_paths ([str], none_type): Array of Indexed Directories. Specifies a list of directories to index. Regular expression can also be specified to provide the directory paths. Example: /Users/<wildcard>/AppData. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

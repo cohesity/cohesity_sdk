@@ -85,10 +85,10 @@ class ProtectedObjectInfoAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'permissions': ([Tenant], none_type,),  # noqa: E501
-            'object_backup_configuration': (ProtectedObjectBackupConfig,),  # noqa: E501
-            'protection_group_configurations': ([ProtectedObjectGroupBackupConfig], none_type,),  # noqa: E501
             'last_run': (ObjectProtectionRunSummary,),  # noqa: E501
+            'object_backup_configuration': (ProtectedObjectBackupConfig,),  # noqa: E501
+            'permissions': ([Tenant], none_type,),  # noqa: E501
+            'protection_group_configurations': ([ProtectedObjectGroupBackupConfig], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -98,10 +98,10 @@ class ProtectedObjectInfoAllOf(ModelNormal):
 
 
     attribute_map = {
-        'permissions': 'permissions',  # noqa: E501
-        'object_backup_configuration': 'objectBackupConfiguration',  # noqa: E501
-        'protection_group_configurations': 'protectionGroupConfigurations',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
+        'object_backup_configuration': 'objectBackupConfiguration',  # noqa: E501
+        'permissions': 'permissions',  # noqa: E501
+        'protection_group_configurations': 'protectionGroupConfigurations',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,10 +151,10 @@ class ProtectedObjectInfoAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this accessing given protected object.. [optional]  # noqa: E501
-            object_backup_configuration (ProtectedObjectBackupConfig): [optional]  # noqa: E501
-            protection_group_configurations ([ProtectedObjectGroupBackupConfig], none_type): Specifies the protection info associated with every object. There can be multiple instances of protection info since the same object can be protected in multiple protection groups.. [optional]  # noqa: E501
             last_run (ObjectProtectionRunSummary): [optional]  # noqa: E501
+            object_backup_configuration (ProtectedObjectBackupConfig): [optional]  # noqa: E501
+            permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this accessing given protected object.. [optional]  # noqa: E501
+            protection_group_configurations ([ProtectedObjectGroupBackupConfig], none_type): Specifies the protection info associated with every object. There can be multiple instances of protection info since the same object can be protected in multiple protection groups.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

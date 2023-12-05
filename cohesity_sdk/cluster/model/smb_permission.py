@@ -54,11 +54,13 @@ class SmbPermission(ModelNormal):
     """
 
     allowed_values = {
-        ('type',): {
+        ('access',): {
             'None': None,
-            'ALLOW': "Allow",
-            'DENY': "Deny",
-            'SPECIALTYPE': "SpecialType",
+            'READONLY': "ReadOnly",
+            'READWRITE': "ReadWrite",
+            'MODIFY': "Modify",
+            'FULLCONTROL': "FullControl",
+            'SPECIALACCESS': "SpecialAccess",
         },
         ('mode',): {
             'None': None,
@@ -70,13 +72,11 @@ class SmbPermission(ModelNormal):
             'SUBFOLDERSONLY': "SubFoldersOnly",
             'FILESONLY': "FilesOnly",
         },
-        ('access',): {
+        ('type',): {
             'None': None,
-            'READONLY': "ReadOnly",
-            'READWRITE': "ReadWrite",
-            'MODIFY': "Modify",
-            'FULLCONTROL': "FullControl",
-            'SPECIALACCESS': "SpecialAccess",
+            'ALLOW': "Allow",
+            'DENY': "Deny",
+            'SPECIALTYPE': "SpecialType",
         },
     }
 
@@ -98,12 +98,12 @@ class SmbPermission(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'type': (str, none_type,),  # noqa: E501
-            'mode': (str, none_type,),  # noqa: E501
             'access': (str, none_type,),  # noqa: E501
+            'mode': (str, none_type,),  # noqa: E501
             'sid': (str, none_type,),  # noqa: E501
-            'special_type': (int, none_type,),  # noqa: E501
             'special_access_mask': (int, none_type,),  # noqa: E501
+            'special_type': (int, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -113,12 +113,12 @@ class SmbPermission(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
-        'mode': 'mode',  # noqa: E501
         'access': 'access',  # noqa: E501
+        'mode': 'mode',  # noqa: E501
         'sid': 'sid',  # noqa: E501
-        'special_type': 'specialType',  # noqa: E501
         'special_access_mask': 'specialAccessMask',  # noqa: E501
+        'special_type': 'specialType',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,12 +168,12 @@ class SmbPermission(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the type of permission. 'Allow' indicates access is allowed. 'Deny' indicates access is denied. 'SpecialType' indicates a type defined in the Access Control Entry (ACE) does not map to 'Allow' or 'Deny'.. [optional]  # noqa: E501
-            mode (str, none_type): Specifies how the permission should be applied to folders and/or files. 'FolderSubFoldersAndFiles' indicates that permissions are applied to a Folder and it's sub folders and files. 'FolderAndSubFolders' indicates that permissions are applied to a Folder and it's sub folders. 'FolderAndSubFiles' indicates that permissions are applied to a Folder and it's sub files. 'FolderOnly' indicates that permsission are applied to folder only. 'SubFoldersAndFilesOnly' indicates that permissions are applied to sub folders and files only. 'SubFoldersOnly' indicates that permissiona are applied to sub folders only. 'FilesOnly' indicates that permissions are applied to files only.. [optional]  # noqa: E501
             access (str, none_type): Specifies the read/write access to the SMB share. 'ReadyOnly' indicates read only access to the SMB share. 'ReadWrite' indicates read and write access to the SMB share. 'FullControl' indicates full administrative control of the SMB share. 'SpecialAccess' indicates custom permissions to the SMB share using  access masks structures. 'SuperUser' indicates root permissions ignoring all SMB ACLs.. [optional]  # noqa: E501
+            mode (str, none_type): Specifies how the permission should be applied to folders and/or files. 'FolderSubFoldersAndFiles' indicates that permissions are applied to a Folder and it's sub folders and files. 'FolderAndSubFolders' indicates that permissions are applied to a Folder and it's sub folders. 'FolderAndSubFiles' indicates that permissions are applied to a Folder and it's sub files. 'FolderOnly' indicates that permsission are applied to folder only. 'SubFoldersAndFilesOnly' indicates that permissions are applied to sub folders and files only. 'SubFoldersOnly' indicates that permissiona are applied to sub folders only. 'FilesOnly' indicates that permissions are applied to files only.. [optional]  # noqa: E501
             sid (str, none_type): Specifies the security identifier (SID) of the principal.. [optional]  # noqa: E501
-            special_type (int, none_type): Specifies a custom type. When the type from the Access Control Entry (ACE) cannot be mapped to one of the enums in 'type', this field is populated with the custom type derived from the ACE and 'type' is set to kSpecialType. This is a placeholder for storing an unmapped type and should not be set when creating and editing a View.. [optional]  # noqa: E501
             special_access_mask (int, none_type): Specifies custom access permissions. When the access mask from the Access Control Entry (ACE) cannot be mapped to one of the enums in 'access', this field is populated with the custom mask derived from the ACE and 'access' is set to kSpecialAccess. This is a placeholder for storing an unmapped access permission and should not be set when creating and editing a View.. [optional]  # noqa: E501
+            special_type (int, none_type): Specifies a custom type. When the type from the Access Control Entry (ACE) cannot be mapped to one of the enums in 'type', this field is populated with the custom type derived from the ACE and 'type' is set to kSpecialType. This is a placeholder for storing an unmapped type and should not be set when creating and editing a View.. [optional]  # noqa: E501
+            type (str, none_type): Specifies the type of permission. 'Allow' indicates access is allowed. 'Deny' indicates access is denied. 'SpecialType' indicates a type defined in the Access Control Entry (ACE) does not map to 'Allow' or 'Deny'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

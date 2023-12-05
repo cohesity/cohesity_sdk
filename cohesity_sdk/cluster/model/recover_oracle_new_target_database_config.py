@@ -85,29 +85,29 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
         """
         lazy_import()
         return {
+            'bct_file_path': (str, none_type,),  # noqa: E501
             'database_name': (str, none_type,),  # noqa: E501
+            'db_config_file_path': (str, none_type,),  # noqa: E501
+            'db_files_destination': (str, none_type,),  # noqa: E501
+            'enable_archive_log_mode': (bool, none_type,),  # noqa: E501
+            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
+            'new_name_clause': (str, none_type,),  # noqa: E501
+            'no_filename_check': (bool, none_type,),  # noqa: E501
+            'num_tempfiles': (int, none_type,),  # noqa: E501
             'oracle_base_folder': (str, none_type,),  # noqa: E501
             'oracle_home_folder': (str, none_type,),  # noqa: E501
-            'db_files_destination': (str, none_type,),  # noqa: E501
-            'db_config_file_path': (str, none_type,),  # noqa: E501
-            'enable_archive_log_mode': (bool, none_type,),  # noqa: E501
-            'pfile_parameter_map': ([KeyValuePair], none_type,),  # noqa: E501
-            'bct_file_path': (str, none_type,),  # noqa: E501
-            'num_tempfiles': (int, none_type,),  # noqa: E501
-            'redo_log_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
             'oracle_update_restore_options': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'pfile_parameter_map': ([KeyValuePair], none_type,),  # noqa: E501
+            'redo_log_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'skip_clone_nid': (bool, none_type,),  # noqa: E501
-            'no_filename_check': (bool, none_type,),  # noqa: E501
-            'new_name_clause': (str, none_type,),  # noqa: E501
-            'restore_time_usecs': (int, none_type,),  # noqa: E501
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
-            'recovery_mode': (bool, none_type,),  # noqa: E501
-            'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_archive_log_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_recovery_validation_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recovery_mode': (bool, none_type,),  # noqa: E501
             'restore_spfile_or_pfile_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'restore_time_usecs': (int, none_type,),  # noqa: E501
+            'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'use_scn_for_restore': (bool, none_type,),  # noqa: E501
         }
 
@@ -118,29 +118,29 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
 
 
     attribute_map = {
+        'bct_file_path': 'bctFilePath',  # noqa: E501
         'database_name': 'databaseName',  # noqa: E501
+        'db_config_file_path': 'dbConfigFilePath',  # noqa: E501
+        'db_files_destination': 'dbFilesDestination',  # noqa: E501
+        'enable_archive_log_mode': 'enableArchiveLogMode',  # noqa: E501
+        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
+        'new_name_clause': 'newNameClause',  # noqa: E501
+        'no_filename_check': 'noFilenameCheck',  # noqa: E501
+        'num_tempfiles': 'numTempfiles',  # noqa: E501
         'oracle_base_folder': 'oracleBaseFolder',  # noqa: E501
         'oracle_home_folder': 'oracleHomeFolder',  # noqa: E501
-        'db_files_destination': 'dbFilesDestination',  # noqa: E501
-        'db_config_file_path': 'dbConfigFilePath',  # noqa: E501
-        'enable_archive_log_mode': 'enableArchiveLogMode',  # noqa: E501
-        'pfile_parameter_map': 'pfileParameterMap',  # noqa: E501
-        'bct_file_path': 'bctFilePath',  # noqa: E501
-        'num_tempfiles': 'numTempfiles',  # noqa: E501
-        'redo_log_config': 'redoLogConfig',  # noqa: E501
-        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
         'oracle_update_restore_options': 'oracleUpdateRestoreOptions',  # noqa: E501
+        'pfile_parameter_map': 'pfileParameterMap',  # noqa: E501
+        'redo_log_config': 'redoLogConfig',  # noqa: E501
         'skip_clone_nid': 'skipCloneNid',  # noqa: E501
-        'no_filename_check': 'noFilenameCheck',  # noqa: E501
-        'new_name_clause': 'newNameClause',  # noqa: E501
-        'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
         'db_channels': 'dbChannels',  # noqa: E501
-        'recovery_mode': 'recoveryMode',  # noqa: E501
-        'shell_evironment_vars': 'shellEvironmentVars',  # noqa: E501
         'granular_restore_info': 'granularRestoreInfo',  # noqa: E501
         'oracle_archive_log_info': 'oracleArchiveLogInfo',  # noqa: E501
         'oracle_recovery_validation_info': 'oracleRecoveryValidationInfo',  # noqa: E501
+        'recovery_mode': 'recoveryMode',  # noqa: E501
         'restore_spfile_or_pfile_info': 'restoreSpfileOrPfileInfo',  # noqa: E501
+        'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
+        'shell_evironment_vars': 'shellEvironmentVars',  # noqa: E501
         'use_scn_for_restore': 'useScnForRestore',  # noqa: E501
     }
 
@@ -192,29 +192,29 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            bct_file_path (str, none_type): Specifies BCT file path.. [optional]  # noqa: E501
             database_name (str, none_type): Specifies a new name for the restored database. If this field is not specified, then the original database will be overwritten after recovery.. [optional]  # noqa: E501
+            db_config_file_path (str, none_type): Specifies the config file path on selected host which configures the restored database.. [optional]  # noqa: E501
+            db_files_destination (str, none_type): Specifies the location to restore database files.. [optional]  # noqa: E501
+            enable_archive_log_mode (bool, none_type): Specifies archive log mode for oracle restore.. [optional]  # noqa: E501
+            is_multi_stage_restore (bool, none_type): Specifies whether this task is a multistage restore task. If set, we migrate the DB after clone completes.. [optional]  # noqa: E501
+            new_name_clause (str, none_type): Specifies newname clause for db files which allows user to have full control on how their database files can be renamed during the oracle alternate restore workflow.. [optional]  # noqa: E501
+            no_filename_check (bool, none_type): Specifies whether to validate filenames or not in Oracle alternate restore workflow.. [optional]  # noqa: E501
+            num_tempfiles (int, none_type): Specifies no. of tempfiles to be used for the recovered database.. [optional]  # noqa: E501
             oracle_base_folder (str, none_type): Specifies the oracle base folder at selected host.. [optional]  # noqa: E501
             oracle_home_folder (str, none_type): Specifies the oracle home folder at selected host.. [optional]  # noqa: E501
-            db_files_destination (str, none_type): Specifies the location to restore database files.. [optional]  # noqa: E501
-            db_config_file_path (str, none_type): Specifies the config file path on selected host which configures the restored database.. [optional]  # noqa: E501
-            enable_archive_log_mode (bool, none_type): Specifies archive log mode for oracle restore.. [optional]  # noqa: E501
-            pfile_parameter_map ([KeyValuePair], none_type): Specifies a key value pair for pfile parameters.. [optional]  # noqa: E501
-            bct_file_path (str, none_type): Specifies BCT file path.. [optional]  # noqa: E501
-            num_tempfiles (int, none_type): Specifies no. of tempfiles to be used for the recovered database.. [optional]  # noqa: E501
-            redo_log_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies redo log config.. [optional]  # noqa: E501
-            is_multi_stage_restore (bool, none_type): Specifies whether this task is a multistage restore task. If set, we migrate the DB after clone completes.. [optional]  # noqa: E501
             oracle_update_restore_options ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters that are needed for updating oracle restore options.. [optional]  # noqa: E501
+            pfile_parameter_map ([KeyValuePair], none_type): Specifies a key value pair for pfile parameters.. [optional]  # noqa: E501
+            redo_log_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies redo log config.. [optional]  # noqa: E501
             skip_clone_nid (bool, none_type): Whether or not to skip the nid step in Oracle Clone workflow. Applicable to both smart and old clone workflow.. [optional]  # noqa: E501
-            no_filename_check (bool, none_type): Specifies whether to validate filenames or not in Oracle alternate restore workflow.. [optional]  # noqa: E501
-            new_name_clause (str, none_type): Specifies newname clause for db files which allows user to have full control on how their database files can be renamed during the oracle alternate restore workflow.. [optional]  # noqa: E501
-            restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
-            recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
-            shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501
             oracle_archive_log_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.. [optional]  # noqa: E501
             oracle_recovery_validation_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Oracle Recovery Validation.. [optional]  # noqa: E501
+            recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
             restore_spfile_or_pfile_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to spfile/pfile restore.. [optional]  # noqa: E501
+            restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
+            shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             use_scn_for_restore (bool, none_type): Specifies whether database recovery performed should use scn value or not.. [optional]  # noqa: E501
         """
 

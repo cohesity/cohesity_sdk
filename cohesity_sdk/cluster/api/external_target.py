@@ -110,7 +110,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets',
@@ -233,7 +233,7 @@ class ExternalTargetApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
@@ -359,7 +359,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
@@ -480,7 +480,7 @@ class ExternalTargetApi(object):
                 'response_type': (file_type,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}/encryption-key',
@@ -596,7 +596,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/settings',
@@ -658,7 +658,7 @@ class ExternalTargetApi(object):
                 global_ids ([str]): Filter by a list of External Target global ids.. [optional]
                 names ([str]): Filter by a list of External Target names.. [optional]
                 purpose_types ([str]): Filter by a list of External Target purpose types.. [optional]
-                storage_types ([str]): Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.. [optional]
+                storage_types ([str]): Filter by a list of External Target storage types.. [optional]
                 storage_classes ([str]): Filter by a list of External Target storage classes.. [optional]
                 ownership_contexts ([str]): Specifies whether how this external target is being consumed either Local or FortKnox.. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -712,7 +712,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTargets,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets',
@@ -758,7 +758,6 @@ class ExternalTargetApi(object):
                         "GOOGLE": "Google",
                         "AWS": "AWS",
                         "ORACLE": "Oracle",
-                        "NAS": "Nas",
                         "NAS": "NAS",
                         "QSTARTAPE": "QStarTape",
                         "S3COMPATIBLE": "S3Compatible"
@@ -772,7 +771,6 @@ class ExternalTargetApi(object):
                         "AMAZONS3GLACIER": "AmazonS3Glacier",
                         "AMAZONS3GLACIERDEEPARCHIVE": "AmazonS3GlacierDeepArchive",
                         "AMAZONGLACIER": "AmazonGlacier",
-                        "AMAZONS3GLACIERIR": "AmazonS3GlacierIR",
                         "AZUREARCHIVEBLOB": "AzureArchiveBlob",
                         "AZURECOOLBLOB": "AzureCoolBlob",
                         "AZUREHOTBLOB": "AzureHotBlob",
@@ -917,7 +915,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
@@ -1045,7 +1043,7 @@ class ExternalTargetApi(object):
                 'response_type': (GlobalBandwidthSettings,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/settings',

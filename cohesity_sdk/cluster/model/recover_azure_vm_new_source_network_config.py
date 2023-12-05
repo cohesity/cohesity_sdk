@@ -74,8 +74,8 @@ class RecoverAzureVmNewSourceNetworkConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'virtual_network': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'subnet': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'virtual_network': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'network_resource_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class RecoverAzureVmNewSourceNetworkConfig(ModelNormal):
 
 
     attribute_map = {
-        'virtual_network': 'virtualNetwork',  # noqa: E501
         'subnet': 'subnet',  # noqa: E501
+        'virtual_network': 'virtualNetwork',  # noqa: E501
         'network_resource_group': 'networkResourceGroup',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class RecoverAzureVmNewSourceNetworkConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, virtual_network, subnet, *args, **kwargs):  # noqa: E501
+    def __init__(self, subnet, virtual_network, *args, **kwargs):  # noqa: E501
         """RecoverAzureVmNewSourceNetworkConfig - a model defined in OpenAPI
 
         Args:
-            virtual_network ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Virtual Network.
             subnet ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the subnet within the above virtual network.
+            virtual_network ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Virtual Network.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class RecoverAzureVmNewSourceNetworkConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.virtual_network = virtual_network
         self.subnet = subnet
+        self.virtual_network = virtual_network
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

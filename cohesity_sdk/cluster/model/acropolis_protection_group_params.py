@@ -27,10 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.acropolis_disk_info import AcropolisDiskInfo
     from cohesity_sdk.cluster.model.acropolis_protection_group_object_params import AcropolisProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
-    globals()['AcropolisDiskInfo'] = AcropolisDiskInfo
     globals()['AcropolisProtectionGroupObjectParams'] = AcropolisProtectionGroupObjectParams
     globals()['IndexingPolicy'] = IndexingPolicy
 
@@ -91,14 +89,12 @@ class AcropolisProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([AcropolisProtectionGroupObjectParams],),  # noqa: E501
-            'source_id': (int, none_type,),  # noqa: E501
-            'source_name': (str, none_type,),  # noqa: E501
-            'exclude_object_ids': ([int], none_type,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'app_consistent_snapshot': (bool, none_type,),  # noqa: E501
             'continue_on_quiesce_failure': (bool, none_type,),  # noqa: E501
-            'global_exclude_disks': ([AcropolisDiskInfo], none_type,),  # noqa: E501
-            'global_include_disks': ([AcropolisDiskInfo], none_type,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'source_id': (int, none_type,),  # noqa: E501
+            'source_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -109,14 +105,12 @@ class AcropolisProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'source_id': 'sourceId',  # noqa: E501
-        'source_name': 'sourceName',  # noqa: E501
-        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
         'app_consistent_snapshot': 'appConsistentSnapshot',  # noqa: E501
         'continue_on_quiesce_failure': 'continueOnQuiesceFailure',  # noqa: E501
-        'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
-        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'source_id': 'sourceId',  # noqa: E501
+        'source_name': 'sourceName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -169,14 +163,12 @@ class AcropolisProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
-            source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            exclude_object_ids ([int], none_type): Specifies the object ids to be excluded in the Protection Group.. [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             app_consistent_snapshot (bool, none_type): Specifies whether or not to quiesce apps and the file system in order to take app consistent snapshots. If not specified or false then snapshots will not be app consistent.. [optional]  # noqa: E501
             continue_on_quiesce_failure (bool, none_type): Specifies whether to continue backing up on quiesce failure. [optional]  # noqa: E501
-            global_exclude_disks ([AcropolisDiskInfo], none_type): Specifies a list of disks to exclude from the backup.. [optional]  # noqa: E501
-            global_include_disks ([AcropolisDiskInfo], none_type): Specifies a list of disks to include in the backup.. [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the object ids to be excluded in the Protection Group.. [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
+            source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

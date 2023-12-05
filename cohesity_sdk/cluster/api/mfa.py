@@ -111,7 +111,7 @@ class MFAApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/email-otp',
@@ -231,7 +231,7 @@ class MFAApi(object):
                 'response_type': (TotpKeyInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/totp-key',
@@ -348,7 +348,7 @@ class MFAApi(object):
                 'response_type': (MfaConfigInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/mfa-config',
@@ -457,7 +457,7 @@ class MFAApi(object):
                 'response_type': (SupportMfaConfigInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-user/mfa',
@@ -566,7 +566,7 @@ class MFAApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/send-email-otp',
@@ -675,7 +675,7 @@ class MFAApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-user/send-email-otp',
@@ -789,7 +789,7 @@ class MFAApi(object):
                 'response_type': (MfaConfigInfo,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/mfa-config',
@@ -911,7 +911,7 @@ class MFAApi(object):
                 'response_type': (UpdateMFAResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-user/mfa',
@@ -1033,7 +1033,7 @@ class MFAApi(object):
                 'response_type': (VerifyTotpResult,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-user/verify-totp',

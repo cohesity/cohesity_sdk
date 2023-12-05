@@ -74,8 +74,8 @@ class TotpKeyInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'totp_key_name': (str,),  # noqa: E501
             'totp_key_id': (str,),  # noqa: E501
+            'totp_key_name': (str,),  # noqa: E501
             'totp_secret_key': (str,),  # noqa: E501
             'totp_uri': (str,),  # noqa: E501
         }
@@ -87,8 +87,8 @@ class TotpKeyInfo(ModelNormal):
 
 
     attribute_map = {
-        'totp_key_name': 'totpKeyName',  # noqa: E501
         'totp_key_id': 'totpKeyId',  # noqa: E501
+        'totp_key_name': 'totpKeyName',  # noqa: E501
         'totp_secret_key': 'totpSecretKey',  # noqa: E501
         'totp_uri': 'totpUri',  # noqa: E501
     }
@@ -140,8 +140,8 @@ class TotpKeyInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            totp_key_name (str): Specifies the Time based OTP key name.. [optional]  # noqa: E501
             totp_key_id (str): Specifies the Time based OTP key ID.. [optional]  # noqa: E501
+            totp_key_name (str): Specifies the Time based OTP key name.. [optional]  # noqa: E501
             totp_secret_key (str): Specifies the Time based OTP secret key.. [optional]  # noqa: E501
             totp_uri (str): Specifies the Time based OTP key URI for generating MFA QR code.. [optional]  # noqa: E501
         """

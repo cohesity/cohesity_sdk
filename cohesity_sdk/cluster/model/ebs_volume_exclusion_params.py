@@ -79,12 +79,12 @@ class EbsVolumeExclusionParams(ModelNormal):
         """
         lazy_import()
         return {
-            'volume_ids': ([str], none_type,),  # noqa: E501
-            'max_volume_size_bytes': (int, none_type,),  # noqa: E501
-            'volume_types': ([str], none_type,),  # noqa: E501
             'device_names': ([str], none_type,),  # noqa: E501
-            'tag_params_array': ([TagParams], none_type,),  # noqa: E501
+            'max_volume_size_bytes': (int, none_type,),  # noqa: E501
             'raw_query': (str, none_type,),  # noqa: E501
+            'tag_params_array': ([TagParams], none_type,),  # noqa: E501
+            'volume_ids': ([str], none_type,),  # noqa: E501
+            'volume_types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,12 +94,12 @@ class EbsVolumeExclusionParams(ModelNormal):
 
 
     attribute_map = {
-        'volume_ids': 'volumeIds',  # noqa: E501
-        'max_volume_size_bytes': 'maxVolumeSizeBytes',  # noqa: E501
-        'volume_types': 'volumeTypes',  # noqa: E501
         'device_names': 'deviceNames',  # noqa: E501
-        'tag_params_array': 'tagParamsArray',  # noqa: E501
+        'max_volume_size_bytes': 'maxVolumeSizeBytes',  # noqa: E501
         'raw_query': 'rawQuery',  # noqa: E501
+        'tag_params_array': 'tagParamsArray',  # noqa: E501
+        'volume_ids': 'volumeIds',  # noqa: E501
+        'volume_types': 'volumeTypes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,12 +149,12 @@ class EbsVolumeExclusionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            volume_ids ([str], none_type): Array of volume IDs that are to be excluded. This is only for object level exclusion.. [optional]  # noqa: E501
-            max_volume_size_bytes (int, none_type): Any volume larger than this size will be excluded.. [optional]  # noqa: E501
-            volume_types ([str], none_type): Array of volume types to exclude. Eg - gp2, gp3.. [optional]  # noqa: E501
             device_names ([str], none_type): Array of device names to exclude. Eg - /dev/sda.. [optional]  # noqa: E501
-            tag_params_array ([TagParams], none_type): Array of TagParams objects. Each TagParams object consists of two vectors: for exclusion and inclusion. Each TagPararms object is present as an ORed item. User can only input queries of form: (<> AND <> AND <> ..) OR (<> AND <> AND <> ..) OR (..) OR (..) OR .. There cannot be an OR operator inside the bracket. Example query: (K1 = V1 AND K2 = V2 AND K3 != V3) OR (K4 = V4 AND K6 != V6). This will lead to formation of two items in tagParamsArray. First item: {exclusionTagArray: [(K1, V1),  (K2, V2)], inclusionTagArray: [(K3, V3)]} Second item: {exclusionTagArray: [(K4, V4)], inclusionTagArray: [(K6, V6)]}.. [optional]  # noqa: E501
+            max_volume_size_bytes (int, none_type): Any volume larger than this size will be excluded.. [optional]  # noqa: E501
             raw_query (str, none_type): Raw boolean query given as input by the user to exclude volume based on tags. In the current version, the query contains only tags. Eg. query 1 - \"K1\" = \"V1\" AND \"K2\" IN (\"V2\", \"V3\") AND \"K4\" != \"V4\" Eg. query 2 - \"K1\" != \"V1\" OR \"K2\" NOT IN (\"V2\", \"V3\") OR \"K4\" = \"V4\" All Keys and Values must be wrapped inside double quotes. Comparision Operators supported - IN, NOT IN, =, !=. Logical Operators supported - AND, OR. We cannot have AND, OR together in the query. Only one of them is allowed. The processed form for this query is stored in the above tagParamsArray.. [optional]  # noqa: E501
+            tag_params_array ([TagParams], none_type): Array of TagParams objects. Each TagParams object consists of two vectors: for exclusion and inclusion. Each TagPararms object is present as an ORed item. User can only input queries of form: (<> AND <> AND <> ..) OR (<> AND <> AND <> ..) OR (..) OR (..) OR .. There cannot be an OR operator inside the bracket. Example query: (K1 = V1 AND K2 = V2 AND K3 != V3) OR (K4 = V4 AND K6 != V6). This will lead to formation of two items in tagParamsArray. First item: {exclusionTagArray: [(K1, V1),  (K2, V2)], inclusionTagArray: [(K3, V3)]} Second item: {exclusionTagArray: [(K4, V4)], inclusionTagArray: [(K6, V6)]}.. [optional]  # noqa: E501
+            volume_ids ([str], none_type): Array of volume IDs that are to be excluded. This is only for object level exclusion.. [optional]  # noqa: E501
+            volume_types ([str], none_type): Array of volume types to exclude. Eg - gp2, gp3.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

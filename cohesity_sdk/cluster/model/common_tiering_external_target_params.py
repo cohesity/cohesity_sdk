@@ -54,6 +54,12 @@ class CommonTieringExternalTargetParams(ModelNormal):
     """
 
     allowed_values = {
+        ('encryption_level',): {
+            'None': None,
+            'NONE': "None",
+            'WEAK': "Weak",
+            'STRONG': "Strong",
+        },
         ('storage_type',): {
             'None': None,
             'AZURE': "Azure",
@@ -61,12 +67,6 @@ class CommonTieringExternalTargetParams(ModelNormal):
             'AWS': "AWS",
             'ORACLE': "Oracle",
             'S3COMPATIBLE': "S3Compatible",
-        },
-        ('encryption_level',): {
-            'None': None,
-            'NONE': "None",
-            'WEAK': "Weak",
-            'STRONG': "Strong",
         },
     }
 
@@ -88,8 +88,8 @@ class CommonTieringExternalTargetParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'storage_type': (str, none_type,),  # noqa: E501
             'encryption_level': (str, none_type,),  # noqa: E501
+            'storage_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,8 +99,8 @@ class CommonTieringExternalTargetParams(ModelNormal):
 
 
     attribute_map = {
-        'storage_type': 'storageType',  # noqa: E501
         'encryption_level': 'encryptionLevel',  # noqa: E501
+        'storage_type': 'storageType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -115,12 +115,12 @@ class CommonTieringExternalTargetParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, storage_type, encryption_level, *args, **kwargs):  # noqa: E501
+    def __init__(self, encryption_level, storage_type, *args, **kwargs):  # noqa: E501
         """CommonTieringExternalTargetParams - a model defined in OpenAPI
 
         Args:
-            storage_type (str, none_type): Specifies the Storage type of the External Target.
             encryption_level (str, none_type): Specifies the type of encryption for the Setting.
+            storage_type (str, none_type): Specifies the Storage type of the External Target.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -180,8 +180,8 @@ class CommonTieringExternalTargetParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.storage_type = storage_type
         self.encryption_level = encryption_level
+        self.storage_type = storage_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

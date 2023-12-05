@@ -24,7 +24,6 @@ Create an NIS netgroup.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_netgroup import NisNetgroup
@@ -40,10 +39,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 body = NisNetgroup(
-        name="name_example",
         domain="domain_example",
+        name="name_example",
         nfs_access="kDisabled",
         nfs_squash="kNone",
     ) # NisNetgroup | Specifies the parameters to create an NIS netgroup.
@@ -70,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -95,7 +93,6 @@ Create an NIS Provider.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_provider import NisProvider
@@ -110,7 +107,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 body = NisProvider(
         domain="domain_example",
@@ -145,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -170,7 +166,6 @@ Delete an NIS netgroup by name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_netgroup import NisNetgroup
@@ -186,11 +181,10 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 name = "name_example" # str | Specifies name of the NIS netgroup.
 body = NisNetgroup(
-        name="name_example",
         domain="domain_example",
+        name="name_example",
         nfs_access="kDisabled",
         nfs_squash="kNone",
     ) # NisNetgroup | Request to delete the NIS netgroup.
@@ -217,7 +211,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -242,7 +236,6 @@ Delete an NIS Provider by domain name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -256,7 +249,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 domain = "domain_example" # str | Specifies domain name of an NIS Provider.
 
@@ -281,7 +273,7 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -306,7 +298,6 @@ Get an NIS netgroup by name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_netgroup import NisNetgroup
@@ -321,7 +312,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 name = "name_example" # str | Specifies name of the NIS netgroup.
 
@@ -347,7 +337,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -372,7 +362,6 @@ Get a list of NIS netgroups.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -387,7 +376,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 netgroup_names = [
         "netgroupNames_example",
@@ -416,7 +404,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -441,7 +429,6 @@ Get an NIS Provider by domain name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_provider import NisProvider
@@ -456,7 +443,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 domain = "domain_example" # str | Specifies domain of an NIS Provider.
 
@@ -482,7 +468,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -507,7 +493,6 @@ Get a list of NIS Providers.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -522,7 +507,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 domain_names = [
         "domainNames_example",
@@ -551,7 +535,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -576,7 +560,6 @@ Update an NIS netgroup by name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_netgroup import NisNetgroup
@@ -592,11 +575,10 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-
 name = "name_example" # str | Specifies name of the NIS netgroup.
 body = NisNetgroup(
-        name="name_example",
         domain="domain_example",
+        name="name_example",
         nfs_access="kDisabled",
         nfs_squash="kNone",
     ) # NisNetgroup | Request to update the NIS netgroup.
@@ -624,7 +606,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 
@@ -649,7 +631,6 @@ Update an NIS Provider by domain name.
 
 ### Example
 
-* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.nis_provider import NisProvider
@@ -664,7 +645,6 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
-
 
 domain = "domain_example" # str | Specifies domain name of an NIS Provider.
 body = NisProvider(
@@ -701,7 +681,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+No authorization required
 
 ### HTTP request headers
 

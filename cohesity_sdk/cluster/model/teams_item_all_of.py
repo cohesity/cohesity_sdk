@@ -89,9 +89,9 @@ class TeamsItemAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str, none_type,),  # noqa: E501
             'channel_item': (ChannelItem,),  # noqa: E501
             'file_item': (TeamsFileItem,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -101,9 +101,9 @@ class TeamsItemAllOf(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'channel_item': 'channelItem',  # noqa: E501
         'file_item': 'fileItem',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -153,9 +153,9 @@ class TeamsItemAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            type (str, none_type): Specifies the M365 Teams item type.. [optional]  # noqa: E501
             channel_item (ChannelItem): [optional]  # noqa: E501
             file_item (TeamsFileItem): [optional]  # noqa: E501
+            type (str, none_type): Specifies the M365 Teams item type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

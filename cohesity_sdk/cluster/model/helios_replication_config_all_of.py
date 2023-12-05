@@ -89,10 +89,10 @@ class HeliosReplicationConfigAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'target_type': (str, none_type,),  # noqa: E501
-            'remote_target_config': (HeliosRemoteTargetConfig,),  # noqa: E501
             'aws_target_config': (HeliosAWSTargetConfig,),  # noqa: E501
             'azure_target_config': (HeliosAzureTargetConfig,),  # noqa: E501
+            'remote_target_config': (HeliosRemoteTargetConfig,),  # noqa: E501
+            'target_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -102,10 +102,10 @@ class HeliosReplicationConfigAllOf(ModelNormal):
 
 
     attribute_map = {
-        'target_type': 'targetType',  # noqa: E501
-        'remote_target_config': 'remoteTargetConfig',  # noqa: E501
         'aws_target_config': 'awsTargetConfig',  # noqa: E501
         'azure_target_config': 'azureTargetConfig',  # noqa: E501
+        'remote_target_config': 'remoteTargetConfig',  # noqa: E501
+        'target_type': 'targetType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,10 +155,10 @@ class HeliosReplicationConfigAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            target_type (str, none_type): Specifies the type of target to which replication need to be performed.. [optional]  # noqa: E501
-            remote_target_config (HeliosRemoteTargetConfig): [optional]  # noqa: E501
             aws_target_config (HeliosAWSTargetConfig): [optional]  # noqa: E501
             azure_target_config (HeliosAzureTargetConfig): [optional]  # noqa: E501
+            remote_target_config (HeliosRemoteTargetConfig): [optional]  # noqa: E501
+            target_type (str, none_type): Specifies the type of target to which replication need to be performed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

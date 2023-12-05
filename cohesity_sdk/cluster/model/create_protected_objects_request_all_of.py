@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.common_env_specific_object_protection_params424e1a68409147df_b821_c23197b469fb import CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb
-    globals()['CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb'] = CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb
+    from cohesity_sdk.cluster.model.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
+    globals()['EnvSpecificObjectProtectionRequestParams'] = EnvSpecificObjectProtectionRequestParams
 
 
 class CreateProtectedObjectsRequestAllOf(ModelNormal):
@@ -79,9 +79,8 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'objects': ([CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb], none_type,),  # noqa: E501
+            'objects': ([EnvSpecificObjectProtectionRequestParams], none_type,),  # noqa: E501
             'activate_remote_object_protection': (bool, none_type,),  # noqa: E501
-            'is_paused': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,7 +92,6 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'activate_remote_object_protection': 'activateRemoteObjectProtection',  # noqa: E501
-        'is_paused': 'isPaused',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,7 +110,7 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
         """CreateProtectedObjectsRequestAllOf - a model defined in OpenAPI
 
         Args:
-            objects ([CommonEnvSpecificObjectProtectionParams424e1a68409147dfB821C23197b469fb], none_type): Specifies the list of objects to be protected. Multiple objects from different adapters can be provided as input.
+            objects ([EnvSpecificObjectProtectionRequestParams], none_type): Specifies the list of objects to be protected. Multiple objects from different adapters can be provided as input.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,7 +145,6 @@ class CreateProtectedObjectsRequestAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             activate_remote_object_protection (bool, none_type): If set to true, it will look for the remote backup of the given user and object, and activates it. Creates a new backup if the remote backup is not found. After activation, this object cannot get snapshots from remote clusters.. [optional]  # noqa: E501
-            is_paused (bool, none_type): If set to true, then the object specs will be created in the paused state preventing any runs from happening until they are unpaused.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

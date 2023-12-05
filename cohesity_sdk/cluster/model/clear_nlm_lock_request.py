@@ -74,9 +74,9 @@ class ClearNlmLockRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'client_id': (str,),  # noqa: E501
             'file_path': (str,),  # noqa: E501
             'view_name': (str,),  # noqa: E501
-            'client_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class ClearNlmLockRequest(ModelNormal):
 
 
     attribute_map = {
+        'client_id': 'clientId',  # noqa: E501
         'file_path': 'filePath',  # noqa: E501
         'view_name': 'viewName',  # noqa: E501
-        'client_id': 'clientId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class ClearNlmLockRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            client_id (str): Specifies the id of the client, related to which NLM locks needs to be clear.. [optional]  # noqa: E501
             file_path (str): Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified.. [optional]  # noqa: E501
             view_name (str): Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified.. [optional]  # noqa: E501
-            client_id (str): Specifies the id of the client, related to which NLM locks needs to be clear.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -6,11 +6,11 @@ Specifies the parameters which are specific to NAS related Protection Groups.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **objects** | [**[ProtectionObjectInput]**](ProtectionObjectInput.md) | Specifies the objects to be included in the Protection Group. | 
-**indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
 **continue_on_error** | **bool, none_type** | Specifies whether or not the backup should continue regardless of whether or not an error was encountered. | [optional] 
 **encryption_enabled** | **bool, none_type** | Specifies whether the encryption should be used while backup or not. | [optional] 
-**file_lock_config** | [**FileLevelDataLockConfig**](FileLevelDataLockConfig.md) |  | [optional] 
 **file_filters** | [**FileFilteringPolicy**](FileFilteringPolicy.md) |  | [optional] 
+**file_lock_config** | [**FileLevelDataLockConfig**](FileLevelDataLockConfig.md) |  | [optional] 
+**indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
 **pre_post_script** | [**HostBasedBackupScriptParams**](HostBasedBackupScriptParams.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
 **direct_cloud_archive** | **bool, none_type** | Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is &#39;false&#39;. | [optional] 

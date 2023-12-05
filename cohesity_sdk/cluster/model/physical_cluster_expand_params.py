@@ -82,8 +82,8 @@ class PhysicalClusterExpandParams(ModelNormal):
         lazy_import()
         return {
             'node_configs': ([PhysicalNodeConfigParams],),  # noqa: E501
-            'vips': ([str],),  # noqa: E501
             'chassis_rack_configs': ([ChassisRackConfigParams],),  # noqa: E501
+            'vips': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -94,8 +94,8 @@ class PhysicalClusterExpandParams(ModelNormal):
 
     attribute_map = {
         'node_configs': 'nodeConfigs',  # noqa: E501
-        'vips': 'vips',  # noqa: E501
         'chassis_rack_configs': 'chassisRackConfigs',  # noqa: E501
+        'vips': 'vips',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,8 +148,8 @@ class PhysicalClusterExpandParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            vips ([str]): Virtual IPs to add to the cluster.. [optional]  # noqa: E501
             chassis_rack_configs ([ChassisRackConfigParams]): Chassis serial to rack id mapping configuration.. [optional]  # noqa: E501
+            vips ([str]): Virtual IPs to add to the cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

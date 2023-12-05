@@ -40,7 +40,6 @@ def lazy_import():
     from cohesity_sdk.cluster.model.one_drive_items import OneDriveItems
     from cohesity_sdk.cluster.model.public_folder_items import PublicFolderItems
     from cohesity_sdk.cluster.model.search_indexed_objects_response_body_all_of import SearchIndexedObjectsResponseBodyAllOf
-    from cohesity_sdk.cluster.model.sfdc_records import SfdcRecords
     from cohesity_sdk.cluster.model.sharepoint_items import SharepointItems
     from cohesity_sdk.cluster.model.teams_items import TeamsItems
     from cohesity_sdk.cluster.model.uda_indexed_objects import UdaIndexedObjects
@@ -57,7 +56,6 @@ def lazy_import():
     globals()['OneDriveItems'] = OneDriveItems
     globals()['PublicFolderItems'] = PublicFolderItems
     globals()['SearchIndexedObjectsResponseBodyAllOf'] = SearchIndexedObjectsResponseBodyAllOf
-    globals()['SfdcRecords'] = SfdcRecords
     globals()['SharepointItems'] = SharepointItems
     globals()['TeamsItems'] = TeamsItems
     globals()['UdaIndexedObjects'] = UdaIndexedObjects
@@ -128,24 +126,23 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
         """
         lazy_import()
         return {
-            'object_type': (str,),  # noqa: E501
             'count': (int, none_type,),  # noqa: E501
+            'object_type': (str,),  # noqa: E501
             'pagination_cookie': (str, none_type,),  # noqa: E501
-            'emails': (Emails,),  # noqa: E501
-            'files': (Files,),  # noqa: E501
             'cassandra_objects': (CassandraIndexedObjects,),  # noqa: E501
             'couchbase_objects': (CouchbaseIndexedObjects,),  # noqa: E501
+            'emails': (Emails,),  # noqa: E501
+            'exchange_objects': (ExchangeIndexedObjects,),  # noqa: E501
+            'files': (Files,),  # noqa: E501
             'hbase_objects': (HbaseIndexedObjects,),  # noqa: E501
+            'hdfs_objects': (HDFSIndexedObjects,),  # noqa: E501
             'hive_objects': (HiveIndexedObjects,),  # noqa: E501
             'mongo_objects': (MongoIndexedObjects,),  # noqa: E501
-            'hdfs_objects': (HDFSIndexedObjects,),  # noqa: E501
-            'exchange_objects': (ExchangeIndexedObjects,),  # noqa: E501
+            'one_drive_items': (OneDriveItems,),  # noqa: E501
             'public_folder_items': (PublicFolderItems,),  # noqa: E501
             'sharepoint_items': (SharepointItems,),  # noqa: E501
-            'one_drive_items': (OneDriveItems,),  # noqa: E501
-            'uda_objects': (UdaIndexedObjects,),  # noqa: E501
             'teams_items': (TeamsItems,),  # noqa: E501
-            'sfdc_records': (SfdcRecords,),  # noqa: E501
+            'uda_objects': (UdaIndexedObjects,),  # noqa: E501
         }
 
     @cached_property
@@ -155,24 +152,23 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
 
 
     attribute_map = {
-        'object_type': 'objectType',  # noqa: E501
         'count': 'count',  # noqa: E501
+        'object_type': 'objectType',  # noqa: E501
         'pagination_cookie': 'paginationCookie',  # noqa: E501
-        'emails': 'emails',  # noqa: E501
-        'files': 'files',  # noqa: E501
         'cassandra_objects': 'cassandraObjects',  # noqa: E501
         'couchbase_objects': 'couchbaseObjects',  # noqa: E501
+        'emails': 'emails',  # noqa: E501
+        'exchange_objects': 'exchangeObjects',  # noqa: E501
+        'files': 'files',  # noqa: E501
         'hbase_objects': 'hbaseObjects',  # noqa: E501
+        'hdfs_objects': 'hdfsObjects',  # noqa: E501
         'hive_objects': 'hiveObjects',  # noqa: E501
         'mongo_objects': 'mongoObjects',  # noqa: E501
-        'hdfs_objects': 'hdfsObjects',  # noqa: E501
-        'exchange_objects': 'exchangeObjects',  # noqa: E501
+        'one_drive_items': 'oneDriveItems',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
         'sharepoint_items': 'sharepointItems',  # noqa: E501
-        'one_drive_items': 'oneDriveItems',  # noqa: E501
-        'uda_objects': 'udaObjects',  # noqa: E501
         'teams_items': 'teamsItems',  # noqa: E501
-        'sfdc_records': 'sfdcRecords',  # noqa: E501
+        'uda_objects': 'udaObjects',  # noqa: E501
     }
 
     required_properties = set([
@@ -223,24 +219,23 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_type (str): Specifies the object type.. [optional]  # noqa: E501
             count (int, none_type): Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.. [optional]  # noqa: E501
+            object_type (str): Specifies the object type.. [optional]  # noqa: E501
             pagination_cookie (str, none_type): Specifies cookie for resuming search if pagination is being used.. [optional]  # noqa: E501
-            emails (Emails): [optional]  # noqa: E501
-            files (Files): [optional]  # noqa: E501
             cassandra_objects (CassandraIndexedObjects): [optional]  # noqa: E501
             couchbase_objects (CouchbaseIndexedObjects): [optional]  # noqa: E501
+            emails (Emails): [optional]  # noqa: E501
+            exchange_objects (ExchangeIndexedObjects): [optional]  # noqa: E501
+            files (Files): [optional]  # noqa: E501
             hbase_objects (HbaseIndexedObjects): [optional]  # noqa: E501
+            hdfs_objects (HDFSIndexedObjects): [optional]  # noqa: E501
             hive_objects (HiveIndexedObjects): [optional]  # noqa: E501
             mongo_objects (MongoIndexedObjects): [optional]  # noqa: E501
-            hdfs_objects (HDFSIndexedObjects): [optional]  # noqa: E501
-            exchange_objects (ExchangeIndexedObjects): [optional]  # noqa: E501
+            one_drive_items (OneDriveItems): [optional]  # noqa: E501
             public_folder_items (PublicFolderItems): [optional]  # noqa: E501
             sharepoint_items (SharepointItems): [optional]  # noqa: E501
-            one_drive_items (OneDriveItems): [optional]  # noqa: E501
-            uda_objects (UdaIndexedObjects): [optional]  # noqa: E501
             teams_items (TeamsItems): [optional]  # noqa: E501
-            sfdc_records (SfdcRecords): [optional]  # noqa: E501
+            uda_objects (UdaIndexedObjects): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

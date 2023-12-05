@@ -54,12 +54,6 @@ class SearchFileRequestParamsBase(ModelNormal):
     """
 
     allowed_values = {
-        ('types',): {
-            'None': None,
-            'FILE': "File",
-            'DIRECTORY': "Directory",
-            'SYMLINK': "Symlink",
-        },
         ('source_environments',): {
             'None': None,
             'KVMWARE': "kVMware",
@@ -89,6 +83,12 @@ class SearchFileRequestParamsBase(ModelNormal):
             'KUDA': "kUDA",
             'KSFDC': "kSfdc",
         },
+        ('types',): {
+            'None': None,
+            'FILE': "File",
+            'DIRECTORY': "Directory",
+            'SYMLINK': "Symlink",
+        },
     }
 
     validations = {
@@ -113,8 +113,8 @@ class SearchFileRequestParamsBase(ModelNormal):
         """
         return {
             'search_string': (str, none_type,),  # noqa: E501
-            'types': ([str], none_type,),  # noqa: E501
             'source_environments': ([str], none_type,),  # noqa: E501
+            'types': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -125,8 +125,8 @@ class SearchFileRequestParamsBase(ModelNormal):
 
     attribute_map = {
         'search_string': 'searchString',  # noqa: E501
-        'types': 'types',  # noqa: E501
         'source_environments': 'sourceEnvironments',  # noqa: E501
+        'types': 'types',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -177,8 +177,8 @@ class SearchFileRequestParamsBase(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             search_string (str, none_type): Specifies the search string to filter the files. User can specify a wildcard character '*' as a suffix to a string where all files name are matched with the prefix string.. [optional]  # noqa: E501
-            types ([str], none_type): Specifies a list of file types. Only files within the given types will be returned.. [optional]  # noqa: E501
             source_environments ([str], none_type): Specifies a list of the source environments. Only files from these types of source will be returned.. [optional]  # noqa: E501
+            types ([str], none_type): Specifies a list of file types. Only files within the given types will be returned.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -74,8 +74,8 @@ class ObjectMsTeamParam(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'recover_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'ms_team_param': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recover_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ObjectMsTeamParam(ModelNormal):
 
 
     attribute_map = {
-        'recover_object': 'recoverObject',  # noqa: E501
         'ms_team_param': 'msTeamParam',  # noqa: E501
+        'recover_object': 'recoverObject',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -101,12 +101,12 @@ class ObjectMsTeamParam(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recover_object, ms_team_param, *args, **kwargs):  # noqa: E501
+    def __init__(self, ms_team_param, recover_object, *args, **kwargs):  # noqa: E501
         """ObjectMsTeamParam - a model defined in OpenAPI
 
         Args:
-            recover_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Microsoft 365 Team recover object info.
             ms_team_param ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters to recover a Microsoft 365 Team.
+            recover_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Microsoft 365 Team recover object info.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -166,8 +166,8 @@ class ObjectMsTeamParam(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.recover_object = recover_object
         self.ms_team_param = ms_team_param
+        self.recover_object = recover_object
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

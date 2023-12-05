@@ -74,11 +74,11 @@ class RecoverGcpVmNewSourceConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'project': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'region': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'availability_zone': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'project': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'region': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class RecoverGcpVmNewSourceConfig(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
-        'project': 'project',  # noqa: E501
-        'region': 'region',  # noqa: E501
         'availability_zone': 'availabilityZone',  # noqa: E501
         'network_config': 'networkConfig',  # noqa: E501
+        'project': 'project',  # noqa: E501
+        'region': 'region',  # noqa: E501
+        'source': 'source',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -107,15 +107,15 @@ class RecoverGcpVmNewSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, project, region, availability_zone, network_config, *args, **kwargs):  # noqa: E501
+    def __init__(self, availability_zone, network_config, project, region, source, *args, **kwargs):  # noqa: E501
         """RecoverGcpVmNewSourceConfig - a model defined in OpenAPI
 
         Args:
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
-            project ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the GCP project in which to deploy the VM.
-            region ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the GCP region in which to deploy the VM.
             availability_zone ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the GCP zone in which to deploy the VM.
             network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.
+            project ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the GCP project in which to deploy the VM.
+            region ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the GCP region in which to deploy the VM.
+            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -175,11 +175,11 @@ class RecoverGcpVmNewSourceConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source = source
-        self.project = project
-        self.region = region
         self.availability_zone = availability_zone
         self.network_config = network_config
+        self.project = project
+        self.region = region
+        self.source = source
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

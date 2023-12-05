@@ -91,8 +91,8 @@ class ActionObjectLevelResponse(ModelComposed):
         return {
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'resume_status': (ResumeActionObjectLevelResponse,),  # noqa: E501
             'pause_status': (PauseActionObjectLevelResponse,),  # noqa: E501
+            'resume_status': (ResumeActionObjectLevelResponse,),  # noqa: E501
             'run_now_status': (RunNowActionObjectLevelResponse,),  # noqa: E501
             'un_protect_status': (UnprotectActionObjectLevelResponse,),  # noqa: E501
         }
@@ -106,8 +106,8 @@ class ActionObjectLevelResponse(ModelComposed):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'resume_status': 'resumeStatus',  # noqa: E501
         'pause_status': 'pauseStatus',  # noqa: E501
+        'resume_status': 'resumeStatus',  # noqa: E501
         'run_now_status': 'runNowStatus',  # noqa: E501
         'un_protect_status': 'unProtectStatus',  # noqa: E501
     }
@@ -164,8 +164,8 @@ class ActionObjectLevelResponse(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
-            resume_status (ResumeActionObjectLevelResponse): [optional]  # noqa: E501
             pause_status (PauseActionObjectLevelResponse): [optional]  # noqa: E501
+            resume_status (ResumeActionObjectLevelResponse): [optional]  # noqa: E501
             run_now_status (RunNowActionObjectLevelResponse): [optional]  # noqa: E501
             un_protect_status (UnprotectActionObjectLevelResponse): [optional]  # noqa: E501
         """

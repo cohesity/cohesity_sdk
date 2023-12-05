@@ -74,8 +74,8 @@ class AwsTargetParamsForRecoverAurora(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'aurora_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class AwsTargetParamsForRecoverAurora(ModelNormal):
 
 
     attribute_map = {
-        'recovery_target_config': 'recoveryTargetConfig',  # noqa: E501
         'aurora_config': 'auroraConfig',  # noqa: E501
+        'recovery_target_config': 'recoveryTargetConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class AwsTargetParamsForRecoverAurora(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.. [optional]  # noqa: E501
             aurora_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Aurora params.. [optional]  # noqa: E501
+            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -83,10 +83,10 @@ class ReplicationBackupActivationResult(ModelNormal):
         """
         lazy_import()
         return {
+            'object_errors': ([Error], none_type,),  # noqa: E501
+            'objects': ([FailoverObject], none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'reverse_replication_result': (ReverseReplicationResult,),  # noqa: E501
-            'objects': ([FailoverObject], none_type,),  # noqa: E501
-            'object_errors': ([Error], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,10 +96,10 @@ class ReplicationBackupActivationResult(ModelNormal):
 
 
     attribute_map = {
+        'object_errors': 'objectErrors',  # noqa: E501
+        'objects': 'objects',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'reverse_replication_result': 'reverseReplicationResult',  # noqa: E501
-        'objects': 'objects',  # noqa: E501
-        'object_errors': 'objectErrors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,10 +149,10 @@ class ReplicationBackupActivationResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            object_errors ([Error], none_type): Specifies the protection errors, if any, pertaining to each object specified in 'objects'.. [optional]  # noqa: E501
+            objects ([FailoverObject], none_type): Specifies the list of failover object that are going to be protected on replication cluster.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id that will be returned upon creation of new group or existing group for backing up failover entities.. [optional]  # noqa: E501
             reverse_replication_result (ReverseReplicationResult): [optional]  # noqa: E501
-            objects ([FailoverObject], none_type): Specifies the list of failover object that are going to be protected on replication cluster.. [optional]  # noqa: E501
-            object_errors ([Error], none_type): Specifies the protection errors, if any, pertaining to each object specified in 'objects'.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

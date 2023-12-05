@@ -88,9 +88,9 @@ class SourceConnectionRequestParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'cassandra_connection_params': (CassandraConnectionParams,),  # noqa: E501
-            'hive_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'hbase_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'hdfs_connection_params': (HadoopConnectionParams,),  # noqa: E501
+            'hive_connection_params': (HadoopConnectionParams,),  # noqa: E501
             'mssql_connection_params': (MssqlConnectionParams,),  # noqa: E501
             'oracle_connection_params': (OracleConnectionParams,),  # noqa: E501
             'vmware_connection_params': (VmwareConnectionParams,),  # noqa: E501
@@ -104,9 +104,9 @@ class SourceConnectionRequestParamsAllOf(ModelNormal):
 
     attribute_map = {
         'cassandra_connection_params': 'cassandraConnectionParams',  # noqa: E501
-        'hive_connection_params': 'hiveConnectionParams',  # noqa: E501
         'hbase_connection_params': 'hbaseConnectionParams',  # noqa: E501
         'hdfs_connection_params': 'hdfsConnectionParams',  # noqa: E501
+        'hive_connection_params': 'hiveConnectionParams',  # noqa: E501
         'mssql_connection_params': 'mssqlConnectionParams',  # noqa: E501
         'oracle_connection_params': 'oracleConnectionParams',  # noqa: E501
         'vmware_connection_params': 'vmwareConnectionParams',  # noqa: E501
@@ -160,9 +160,9 @@ class SourceConnectionRequestParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cassandra_connection_params (CassandraConnectionParams): [optional]  # noqa: E501
-            hive_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             hbase_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             hdfs_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
+            hive_connection_params (HadoopConnectionParams): [optional]  # noqa: E501
             mssql_connection_params (MssqlConnectionParams): [optional]  # noqa: E501
             oracle_connection_params (OracleConnectionParams): [optional]  # noqa: E501
             vmware_connection_params (VmwareConnectionParams): [optional]  # noqa: E501

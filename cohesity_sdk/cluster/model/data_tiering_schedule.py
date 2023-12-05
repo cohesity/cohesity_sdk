@@ -91,11 +91,11 @@ class DataTieringSchedule(ModelNormal):
         """
         lazy_import()
         return {
-            'unit': (str, none_type,),  # noqa: E501
             'day_schedule': (DaySchedule,),  # noqa: E501
-            'week_schedule': (WeekSchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
             'start_time': (TimeOfDay,),  # noqa: E501
+            'unit': (str, none_type,),  # noqa: E501
+            'week_schedule': (WeekSchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -105,11 +105,11 @@ class DataTieringSchedule(ModelNormal):
 
 
     attribute_map = {
-        'unit': 'unit',  # noqa: E501
         'day_schedule': 'daySchedule',  # noqa: E501
-        'week_schedule': 'weekSchedule',  # noqa: E501
         'month_schedule': 'monthSchedule',  # noqa: E501
         'start_time': 'startTime',  # noqa: E501
+        'unit': 'unit',  # noqa: E501
+        'week_schedule': 'weekSchedule',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -159,11 +159,11 @@ class DataTieringSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            unit (str, none_type): Specifies how often to migrate data from source to target. [optional]  # noqa: E501
             day_schedule (DaySchedule): [optional]  # noqa: E501
-            week_schedule (WeekSchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
             start_time (TimeOfDay): [optional]  # noqa: E501
+            unit (str, none_type): Specifies how often to migrate data from source to target. [optional]  # noqa: E501
+            week_schedule (WeekSchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

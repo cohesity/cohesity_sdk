@@ -74,11 +74,11 @@ class PatchDetail(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'service': (str, none_type,),  # noqa: E501
             'component': (str, none_type,),  # noqa: E501
-            'version': (str, none_type,),  # noqa: E501
             'import_version': (str, none_type,),  # noqa: E501
+            'service': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
+            'version': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class PatchDetail(ModelNormal):
 
 
     attribute_map = {
-        'service': 'service',  # noqa: E501
         'component': 'component',  # noqa: E501
-        'version': 'version',  # noqa: E501
         'import_version': 'import_version',  # noqa: E501
+        'service': 'service',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'version': 'version',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class PatchDetail(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service (str, none_type): Specifies the name of the service.. [optional]  # noqa: E501
             component (str, none_type): Specifies the user friendly name of the service.. [optional]  # noqa: E501
-            version (str, none_type): Specifies the existing version of the service. This is the available service patch version if exists. If there is no patch available, then it is the applied patch version if applied. If both don't exist, it is the base version of the service.. [optional]  # noqa: E501
             import_version (str, none_type): Specifies the version of the imported service patch.. [optional]  # noqa: E501
+            service (str, none_type): Specifies the name of the service.. [optional]  # noqa: E501
             status (str, none_type): Specifies the status of the patch whether it is accepted or rejected. A patch is rejected if it is older than the version available or applied on the cluster.. [optional]  # noqa: E501
+            version (str, none_type): Specifies the existing version of the service. This is the available service patch version if exists. If there is no patch available, then it is the applied patch version if applied. If both don't exist, it is the base version of the service.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

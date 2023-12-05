@@ -96,21 +96,21 @@ class AgentUpgradeTaskState(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
-            'id': (int, none_type,),  # noqa: E501
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
             'agent_ids': ([int], none_type,),  # noqa: E501
-            'cluster_version': (str, none_type,),  # noqa: E501
-            'type': (str, none_type,),  # noqa: E501
-            'schedule_time_usecs': (int, none_type,),  # noqa: E501
-            'schedule_end_time_usecs': (int, none_type,),  # noqa: E501
-            'retried_task_id': (int, none_type,),  # noqa: E501
-            'is_retryable': (bool, none_type,),  # noqa: E501
-            'error': (Error,),  # noqa: E501
             'agents': ([AgentUpgradeInfoObject], none_type,),  # noqa: E501
+            'cluster_version': (str, none_type,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'error': (Error,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
+            'is_retryable': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'retried_task_id': (int, none_type,),  # noqa: E501
+            'schedule_end_time_usecs': (int, none_type,),  # noqa: E501
+            'schedule_time_usecs': (int, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
+            'type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -120,21 +120,21 @@ class AgentUpgradeTaskState(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'id': 'id',  # noqa: E501
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'agent_ids': 'agentIDs',  # noqa: E501
-        'cluster_version': 'clusterVersion',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'schedule_time_usecs': 'scheduleTimeUsecs',  # noqa: E501
-        'schedule_end_time_usecs': 'scheduleEndTimeUsecs',  # noqa: E501
-        'retried_task_id': 'retriedTaskID',  # noqa: E501
-        'is_retryable': 'isRetryable',  # noqa: E501
-        'error': 'error',  # noqa: E501
         'agents': 'agents',  # noqa: E501
+        'cluster_version': 'clusterVersion',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'error': 'error',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'is_retryable': 'isRetryable',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'retried_task_id': 'retriedTaskID',  # noqa: E501
+        'schedule_end_time_usecs': 'scheduleEndTimeUsecs',  # noqa: E501
+        'schedule_time_usecs': 'scheduleTimeUsecs',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -184,21 +184,21 @@ class AgentUpgradeTaskState(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
-            description (str, none_type): Specifies the description of the task.. [optional]  # noqa: E501
-            id (int, none_type): Specifies the ID of the task.. [optional]  # noqa: E501
-            start_time_usecs (int, none_type): Specifies the time, as a Unix epoch timestamp in microseconds, when the task started execution.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the time when the upgrade task completed execution as a Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
-            status (str, none_type): Specifies the status of the task.<br> 'Scheduled' indicates that the upgrade task is yet to start.<br> 'Running' indicates that the upgrade task has started execution.<br> 'Succeeded' indicates that the upgrade task completed without an error.<br> 'Failed' indicates that upgrade has failed for all agents. 'PartiallyFailed' indicates that upgrade has failed for some agents.. [optional]  # noqa: E501
             agent_ids ([int], none_type): Specifies the agents upgraded in the task.. [optional]  # noqa: E501
-            cluster_version (str, none_type): Specifies the version to which agents are upgraded.. [optional]  # noqa: E501
-            type (str, none_type): Specifes the type of task.<br> 'Auto' indicates an auto agent upgrade task which is started after a cluster upgrade.<br> 'Manual' indicates a schedule based agent upgrade task.<br> 'Retry' indicates an agent upgrade task which was retried.. [optional]  # noqa: E501
-            schedule_time_usecs (int, none_type): Specifies the time when the task should start execution as a Unix epoch Timestamp (in microseconds). If no schedule is specified, the task will start immediately.. [optional]  # noqa: E501
-            schedule_end_time_usecs (int, none_type): Specifies the time before which the upgrade task should start execution as a Unix epoch Timestamp (in microseconds). If this is not specified the task will start anytime after scheduleTimeUsecs.. [optional]  # noqa: E501
-            retried_task_id (int, none_type): Specifies ID of a task which was retried if type is 'Retry'.. [optional]  # noqa: E501
-            is_retryable (bool, none_type): Specifies if a task can be retried.. [optional]  # noqa: E501
-            error (Error): [optional]  # noqa: E501
             agents ([AgentUpgradeInfoObject], none_type): Specifies the upgrade information for each agent.. [optional]  # noqa: E501
+            cluster_version (str, none_type): Specifies the version to which agents are upgraded.. [optional]  # noqa: E501
+            description (str, none_type): Specifies the description of the task.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the time when the upgrade task completed execution as a Unix epoch Timestamp (in microseconds).. [optional]  # noqa: E501
+            error (Error): [optional]  # noqa: E501
+            id (int, none_type): Specifies the ID of the task.. [optional]  # noqa: E501
+            is_retryable (bool, none_type): Specifies if a task can be retried.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of the task.. [optional]  # noqa: E501
+            retried_task_id (int, none_type): Specifies ID of a task which was retried if type is 'Retry'.. [optional]  # noqa: E501
+            schedule_end_time_usecs (int, none_type): Specifies the time before which the upgrade task should start execution as a Unix epoch Timestamp (in microseconds). If this is not specified the task will start anytime after scheduleTimeUsecs.. [optional]  # noqa: E501
+            schedule_time_usecs (int, none_type): Specifies the time when the task should start execution as a Unix epoch Timestamp (in microseconds). If no schedule is specified, the task will start immediately.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the time, as a Unix epoch timestamp in microseconds, when the task started execution.. [optional]  # noqa: E501
+            status (str, none_type): Specifies the status of the task.<br> 'Scheduled' indicates that the upgrade task is yet to start.<br> 'Running' indicates that the upgrade task has started execution.<br> 'Succeeded' indicates that the upgrade task completed without an error.<br> 'Failed' indicates that upgrade has failed for all agents. 'PartiallyFailed' indicates that upgrade has failed for some agents.. [optional]  # noqa: E501
+            type (str, none_type): Specifes the type of task.<br> 'Auto' indicates an auto agent upgrade task which is started after a cluster upgrade.<br> 'Manual' indicates a schedule based agent upgrade task.<br> 'Retry' indicates an agent upgrade task which was retried.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

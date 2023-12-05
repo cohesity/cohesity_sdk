@@ -87,10 +87,10 @@ class HeliosTargetsConfiguration(ModelNormal):
         """
         lazy_import()
         return {
-            'replication_targets': ([HeliosReplicationConfig],),  # noqa: E501
             'archival_targets': ([HeliosArchivalConfig],),  # noqa: E501
             'cloud_spin_targets': ([HeliosCloudSpinConfig],),  # noqa: E501
             'onprem_deploy_targets': ([HeliosOnpremDeployConfig],),  # noqa: E501
+            'replication_targets': ([HeliosReplicationConfig],),  # noqa: E501
             'rpaas_targets': ([HeliosRpaasConfig],),  # noqa: E501
         }
 
@@ -101,10 +101,10 @@ class HeliosTargetsConfiguration(ModelNormal):
 
 
     attribute_map = {
-        'replication_targets': 'replicationTargets',  # noqa: E501
         'archival_targets': 'archivalTargets',  # noqa: E501
         'cloud_spin_targets': 'cloudSpinTargets',  # noqa: E501
         'onprem_deploy_targets': 'onpremDeployTargets',  # noqa: E501
+        'replication_targets': 'replicationTargets',  # noqa: E501
         'rpaas_targets': 'rpaasTargets',  # noqa: E501
     }
 
@@ -155,10 +155,10 @@ class HeliosTargetsConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            replication_targets ([HeliosReplicationConfig]): [optional]  # noqa: E501
             archival_targets ([HeliosArchivalConfig]): [optional]  # noqa: E501
             cloud_spin_targets ([HeliosCloudSpinConfig]): [optional]  # noqa: E501
             onprem_deploy_targets ([HeliosOnpremDeployConfig]): [optional]  # noqa: E501
+            replication_targets ([HeliosReplicationConfig]): [optional]  # noqa: E501
             rpaas_targets ([HeliosRpaasConfig]): [optional]  # noqa: E501
         """
 

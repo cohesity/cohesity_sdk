@@ -74,8 +74,8 @@ class UpdateTenantParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class UpdateTenantParams(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'name': 'name',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class UpdateTenantParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Name of the Tenant.. [optional]  # noqa: E501
             description (str, none_type): Description about the tenant. [optional]  # noqa: E501
+            name (str, none_type): Name of the Tenant.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

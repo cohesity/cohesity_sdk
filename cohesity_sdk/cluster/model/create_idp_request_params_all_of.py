@@ -74,8 +74,8 @@ class CreateIdpRequestParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'domain': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class CreateIdpRequestParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'domain': 'domain',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
     }
 
@@ -103,12 +103,12 @@ class CreateIdpRequestParamsAllOf(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, domain, *args, **kwargs):  # noqa: E501
+    def __init__(self, domain, name, *args, **kwargs):  # noqa: E501
         """CreateIdpRequestParamsAllOf - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies name of the vendor providing idp service
             domain (str, none_type): Specifies domain of idp configuration
+            name (str, none_type): Specifies name of the vendor providing idp service
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -169,8 +169,8 @@ class CreateIdpRequestParamsAllOf(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.domain = domain
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -77,8 +77,8 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
             'base_dir': (str, none_type,),  # noqa: E501
             'home_dir': (str, none_type,),  # noqa: E501
             'is_clone': (bool, none_type,),  # noqa: E501
-            'db_name': (str, none_type,),  # noqa: E501
             'db_file_destination': (str, none_type,),  # noqa: E501
+            'db_name': (str, none_type,),  # noqa: E501
             'is_granular_restore': (bool, none_type,),  # noqa: E501
             'is_recovery_validation': (bool, none_type,),  # noqa: E501
         }
@@ -93,8 +93,8 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
         'base_dir': 'baseDir',  # noqa: E501
         'home_dir': 'homeDir',  # noqa: E501
         'is_clone': 'isClone',  # noqa: E501
-        'db_name': 'dbName',  # noqa: E501
         'db_file_destination': 'dbFileDestination',  # noqa: E501
+        'db_name': 'dbName',  # noqa: E501
         'is_granular_restore': 'isGranularRestore',  # noqa: E501
         'is_recovery_validation': 'isRecoveryValidation',  # noqa: E501
     }
@@ -151,8 +151,8 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            db_name (str, none_type): Specifies the name of the Oracle database that we restore to.. [optional]  # noqa: E501
             db_file_destination (str, none_type): Specifies the location to put the database files(datafiles, logfiles etc.). [optional]  # noqa: E501
+            db_name (str, none_type): Specifies the name of the Oracle database that we restore to.. [optional]  # noqa: E501
             is_granular_restore (bool, none_type): Specifies whether the operation is granular restore or not.. [optional]  # noqa: E501
             is_recovery_validation (bool, none_type): Specifies whether the operation is recovery validation or not.. [optional]  # noqa: E501
         """

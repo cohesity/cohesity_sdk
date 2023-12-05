@@ -70,7 +70,6 @@ class BackupAttempt(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -94,16 +93,16 @@ class BackupAttempt(ModelNormal):
         """
         lazy_import()
         return {
-            'start_time_usecs': (int, none_type,),  # noqa: E501
-            'end_time_usecs': (int, none_type,),  # noqa: E501
             'admitted_time_usecs': (int, none_type,),  # noqa: E501
+            'end_time_usecs': (int, none_type,),  # noqa: E501
+            'message': (str, none_type,),  # noqa: E501
             'permit_grant_time_usecs': (int, none_type,),  # noqa: E501
+            'progress_task_id': (str, none_type,),  # noqa: E501
             'queue_duration_usecs': (int, none_type,),  # noqa: E501
             'snapshot_creation_time_usecs': (int, none_type,),  # noqa: E501
-            'status': (str, none_type,),  # noqa: E501
+            'start_time_usecs': (int, none_type,),  # noqa: E501
             'stats': (BackupDataStats,),  # noqa: E501
-            'progress_task_id': (str, none_type,),  # noqa: E501
-            'message': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -113,16 +112,16 @@ class BackupAttempt(ModelNormal):
 
 
     attribute_map = {
-        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
-        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'admitted_time_usecs': 'admittedTimeUsecs',  # noqa: E501
+        'end_time_usecs': 'endTimeUsecs',  # noqa: E501
+        'message': 'message',  # noqa: E501
         'permit_grant_time_usecs': 'permitGrantTimeUsecs',  # noqa: E501
+        'progress_task_id': 'progressTaskId',  # noqa: E501
         'queue_duration_usecs': 'queueDurationUsecs',  # noqa: E501
         'snapshot_creation_time_usecs': 'snapshotCreationTimeUsecs',  # noqa: E501
-        'status': 'status',  # noqa: E501
+        'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'stats': 'stats',  # noqa: E501
-        'progress_task_id': 'progressTaskId',  # noqa: E501
-        'message': 'message',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -172,16 +171,16 @@ class BackupAttempt(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            start_time_usecs (int, none_type): Specifies the start time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
-            end_time_usecs (int, none_type): Specifies the end time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             admitted_time_usecs (int, none_type): Specifies the time at which the backup task was admitted to run in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
+            end_time_usecs (int, none_type): Specifies the end time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
+            message (str, none_type): A message about the error if encountered while performing backup.. [optional]  # noqa: E501
             permit_grant_time_usecs (int, none_type): Specifies the time when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated to the time when permit is granted again.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task for an object... [optional]  # noqa: E501
             queue_duration_usecs (int, none_type): Specifies the duration between the startTime and when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated considering the time when permit is granted again. Queue duration = PermitGrantTimeUsecs - StartTimeUsecs. [optional]  # noqa: E501
             snapshot_creation_time_usecs (int, none_type): Specifies the time at which the source snapshot was taken in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
-            status (str, none_type): Status of the attempt for an object. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Pausing' indicates that the ongoing run is in the process of being paused. 'Resuming' indicates that the already paused run is in the process of being running again. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
+            start_time_usecs (int, none_type): Specifies the start time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             stats (BackupDataStats): [optional]  # noqa: E501
-            progress_task_id (str, none_type): Progress monitor task for an object... [optional]  # noqa: E501
-            message (str, none_type): A message about the error if encountered while performing backup.. [optional]  # noqa: E501
+            status (str, none_type): Status of the attempt for an object. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Pausing' indicates that the ongoing run is in the process of being paused. 'Resuming' indicates that the already paused run is in the process of being running again. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

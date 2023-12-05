@@ -79,10 +79,10 @@ class GroupParamsAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'sid': (str, none_type,),  # noqa: E501
-            'smb_principals': ([SMBPrincipal],),  # noqa: E501
             'created_time_msecs': (int, none_type,),  # noqa: E501
             'last_updated_time_msecs': (int, none_type,),  # noqa: E501
+            'sid': (str, none_type,),  # noqa: E501
+            'smb_principals': ([SMBPrincipal],),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +92,10 @@ class GroupParamsAllOf(ModelNormal):
 
 
     attribute_map = {
-        'sid': 'sid',  # noqa: E501
-        'smb_principals': 'smbPrincipals',  # noqa: E501
         'created_time_msecs': 'createdTimeMsecs',  # noqa: E501
         'last_updated_time_msecs': 'lastUpdatedTimeMsecs',  # noqa: E501
+        'sid': 'sid',  # noqa: E501
+        'smb_principals': 'smbPrincipals',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,10 +145,10 @@ class GroupParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            sid (str, none_type): Specifies the sid of the Group.. [optional]  # noqa: E501
-            smb_principals ([SMBPrincipal]): Specifies the SMB principals.. [optional]  # noqa: E501
             created_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the group was created.. [optional]  # noqa: E501
             last_updated_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the group was last modified.. [optional]  # noqa: E501
+            sid (str, none_type): Specifies the sid of the Group.. [optional]  # noqa: E501
+            smb_principals ([SMBPrincipal]): Specifies the SMB principals.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

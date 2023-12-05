@@ -107,22 +107,22 @@ class IsilonProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([IsilonProtectionGroupObjectParams],),  # noqa: E501
-            'direct_cloud_archive': (bool, none_type,),  # noqa: E501
-            'native_format': (bool, none_type,),  # noqa: E501
-            'indexing_policy': (IndexingPolicy,),  # noqa: E501
-            'protocol': (str, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
+            'direct_cloud_archive': (bool, none_type,),  # noqa: E501
             'encryption_enabled': (bool, none_type,),  # noqa: E501
-            'file_lock_config': (FileLevelDataLockConfig,),  # noqa: E501
             'file_filters': (FileFilteringPolicy,),  # noqa: E501
-            'use_changelist': (bool, none_type,),  # noqa: E501
+            'file_lock_config': (FileLevelDataLockConfig,),  # noqa: E501
+            'filter_ip_config': (FilterIpConfig,),  # noqa: E501
+            'indexing_policy': (IndexingPolicy,),  # noqa: E501
+            'modify_source_permissions': (bool, none_type,),  # noqa: E501
+            'native_format': (bool, none_type,),  # noqa: E501
+            'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
+            'protocol': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'pre_post_script': (HostBasedBackupScriptParams,),  # noqa: E501
-            'continuous_snapshots': (ContinuousSnapshotParams,),  # noqa: E501
-            'filter_ip_config': (FilterIpConfig,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
-            'modify_source_permissions': (bool, none_type,),  # noqa: E501
+            'use_changelist': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -133,22 +133,22 @@ class IsilonProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
-        'direct_cloud_archive': 'directCloudArchive',  # noqa: E501
-        'native_format': 'nativeFormat',  # noqa: E501
-        'indexing_policy': 'indexingPolicy',  # noqa: E501
-        'protocol': 'protocol',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
+        'direct_cloud_archive': 'directCloudArchive',  # noqa: E501
         'encryption_enabled': 'encryptionEnabled',  # noqa: E501
-        'file_lock_config': 'fileLockConfig',  # noqa: E501
         'file_filters': 'fileFilters',  # noqa: E501
-        'use_changelist': 'useChangelist',  # noqa: E501
+        'file_lock_config': 'fileLockConfig',  # noqa: E501
+        'filter_ip_config': 'filterIpConfig',  # noqa: E501
+        'indexing_policy': 'indexingPolicy',  # noqa: E501
+        'modify_source_permissions': 'modifySourcePermissions',  # noqa: E501
+        'native_format': 'nativeFormat',  # noqa: E501
+        'pre_post_script': 'prePostScript',  # noqa: E501
+        'protocol': 'protocol',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'pre_post_script': 'prePostScript',  # noqa: E501
-        'continuous_snapshots': 'continuousSnapshots',  # noqa: E501
-        'filter_ip_config': 'filterIpConfig',  # noqa: E501
         'throttling_config': 'throttlingConfig',  # noqa: E501
-        'modify_source_permissions': 'modifySourcePermissions',  # noqa: E501
+        'use_changelist': 'useChangelist',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -201,22 +201,22 @@ class IsilonProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            direct_cloud_archive (bool, none_type): Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is 'false'.. [optional]  # noqa: E501
-            native_format (bool, none_type): Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving.. [optional]  # noqa: E501
-            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
-            protocol (str, none_type): Specifies the preferred protocol to use if this device supports multiple protocols.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether or not the Protection Group should continue regardless of whether or not an error was encountered during protection group run.. [optional]  # noqa: E501
+            continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
+            direct_cloud_archive (bool, none_type): Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is 'false'.. [optional]  # noqa: E501
             encryption_enabled (bool, none_type): Specifies whether the protection group should use encryption while backup or not.. [optional]  # noqa: E501
-            file_lock_config (FileLevelDataLockConfig): [optional]  # noqa: E501
             file_filters (FileFilteringPolicy): [optional]  # noqa: E501
-            use_changelist (bool, none_type): Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.. [optional]  # noqa: E501
+            file_lock_config (FileLevelDataLockConfig): [optional]  # noqa: E501
+            filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
+            indexing_policy (IndexingPolicy): [optional]  # noqa: E501
+            modify_source_permissions (bool, none_type): Specifies if the Isilon source permissions should be modified internally to allow backups.. [optional]  # noqa: E501
+            native_format (bool, none_type): Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving.. [optional]  # noqa: E501
+            pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
+            protocol (str, none_type): Specifies the preferred protocol to use if this device supports multiple protocols.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
-            pre_post_script (HostBasedBackupScriptParams): [optional]  # noqa: E501
-            continuous_snapshots (ContinuousSnapshotParams): [optional]  # noqa: E501
-            filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501
-            modify_source_permissions (bool, none_type): Specifies if the Isilon source permissions should be modified internally to allow backups.. [optional]  # noqa: E501
+            use_changelist (bool, none_type): Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

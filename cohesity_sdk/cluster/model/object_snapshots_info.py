@@ -95,19 +95,19 @@ class ObjectSnapshotsInfo(ModelNormal):
         """
         lazy_import()
         return {
-            'local_snapshot_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'archival_snapshots_info': ([ObjectArchivalSnapshotInfo], none_type,),  # noqa: E501
             'indexing_status': (str, none_type,),  # noqa: E501
+            'local_snapshot_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
+            'protection_run_end_time_usecs': (int, none_type,),  # noqa: E501
+            'protection_run_id': (str, none_type,),  # noqa: E501
+            'protection_run_start_time_usecs': (int, none_type,),  # noqa: E501
             'run_instance_id': (int, none_type,),  # noqa: E501
+            'run_type': (str, none_type,),  # noqa: E501
             'source_group_id': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'storage_domain_name': (str, none_type,),  # noqa: E501
-            'protection_run_id': (str, none_type,),  # noqa: E501
-            'run_type': (str, none_type,),  # noqa: E501
-            'protection_run_start_time_usecs': (int, none_type,),  # noqa: E501
-            'protection_run_end_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -117,19 +117,19 @@ class ObjectSnapshotsInfo(ModelNormal):
 
 
     attribute_map = {
-        'local_snapshot_info': 'localSnapshotInfo',  # noqa: E501
         'archival_snapshots_info': 'archivalSnapshotsInfo',  # noqa: E501
         'indexing_status': 'indexingStatus',  # noqa: E501
+        'local_snapshot_info': 'localSnapshotInfo',  # noqa: E501
         'protection_group_id': 'protectionGroupId',  # noqa: E501
         'protection_group_name': 'protectionGroupName',  # noqa: E501
+        'protection_run_end_time_usecs': 'protectionRunEndTimeUsecs',  # noqa: E501
+        'protection_run_id': 'protectionRunId',  # noqa: E501
+        'protection_run_start_time_usecs': 'protectionRunStartTimeUsecs',  # noqa: E501
         'run_instance_id': 'runInstanceId',  # noqa: E501
+        'run_type': 'runType',  # noqa: E501
         'source_group_id': 'sourceGroupId',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'storage_domain_name': 'storageDomainName',  # noqa: E501
-        'protection_run_id': 'protectionRunId',  # noqa: E501
-        'run_type': 'runType',  # noqa: E501
-        'protection_run_start_time_usecs': 'protectionRunStartTimeUsecs',  # noqa: E501
-        'protection_run_end_time_usecs': 'protectionRunEndTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -179,19 +179,19 @@ class ObjectSnapshotsInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            local_snapshot_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the local snapshot information.. [optional]  # noqa: E501
             archival_snapshots_info ([ObjectArchivalSnapshotInfo], none_type): Specifies the archival snapshots information.. [optional]  # noqa: E501
             indexing_status (str, none_type): Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.. [optional]  # noqa: E501
+            local_snapshot_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the local snapshot information.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies id of the Protection Group.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies name of the Protection Group.. [optional]  # noqa: E501
+            protection_run_end_time_usecs (int, none_type): Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
+            protection_run_id (str, none_type): Specifies the id of Protection Group Run.. [optional]  # noqa: E501
+            protection_run_start_time_usecs (int, none_type): Specifies the start time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             run_instance_id (int, none_type): Specifies the instance id of the protection run which create the snapshot.. [optional]  # noqa: E501
+            run_type (str, none_type): Specifies the type of protection run created this snapshot.. [optional]  # noqa: E501
             source_group_id (str, none_type): Specifies the source protection group id in case of replication.. [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain id where the backup data of Object is present.. [optional]  # noqa: E501
             storage_domain_name (str, none_type): Specifies the name of Storage Domain id where the backup data of Object is present. [optional]  # noqa: E501
-            protection_run_id (str, none_type): Specifies the id of Protection Group Run.. [optional]  # noqa: E501
-            run_type (str, none_type): Specifies the type of protection run created this snapshot.. [optional]  # noqa: E501
-            protection_run_start_time_usecs (int, none_type): Specifies the start time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            protection_run_end_time_usecs (int, none_type): Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

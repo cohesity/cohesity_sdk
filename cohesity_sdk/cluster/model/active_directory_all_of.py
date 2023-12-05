@@ -27,17 +27,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.active_directory_error import ActiveDirectoryError
     from cohesity_sdk.cluster.model.centrify_zones import CentrifyZones
     from cohesity_sdk.cluster.model.domain_controllers import DomainControllers
     from cohesity_sdk.cluster.model.security_principal import SecurityPrincipal
-    from cohesity_sdk.cluster.model.task_logs import TaskLogs
     from cohesity_sdk.cluster.model.tenant import Tenant
-    globals()['ActiveDirectoryError'] = ActiveDirectoryError
     globals()['CentrifyZones'] = CentrifyZones
     globals()['DomainControllers'] = DomainControllers
     globals()['SecurityPrincipal'] = SecurityPrincipal
-    globals()['TaskLogs'] = TaskLogs
     globals()['Tenant'] = Tenant
 
 
@@ -89,15 +85,13 @@ class ActiveDirectoryAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'task_logs': (TaskLogs,),  # noqa: E501
-            'id_mapping_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'domain_name': (str, none_type,),  # noqa: E501
             'centrify_zones': ([CentrifyZones], none_type,),  # noqa: E501
             'domain_controllers': ([DomainControllers], none_type,),  # noqa: E501
-            'security_principals': ([SecurityPrincipal], none_type,),  # noqa: E501
+            'domain_name': (str, none_type,),  # noqa: E501
+            'id_mapping_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'permissions': ([Tenant], none_type,),  # noqa: E501
+            'security_principals': ([SecurityPrincipal], none_type,),  # noqa: E501
             'transitive_ad_trust_level_limit': (int, none_type,),  # noqa: E501
-            'error': (ActiveDirectoryError,),  # noqa: E501
         }
 
     @cached_property
@@ -107,15 +101,13 @@ class ActiveDirectoryAllOf(ModelNormal):
 
 
     attribute_map = {
-        'task_logs': 'taskLogs',  # noqa: E501
-        'id_mapping_params': 'idMappingParams',  # noqa: E501
-        'domain_name': 'domainName',  # noqa: E501
         'centrify_zones': 'centrifyZones',  # noqa: E501
         'domain_controllers': 'domainControllers',  # noqa: E501
-        'security_principals': 'securityPrincipals',  # noqa: E501
+        'domain_name': 'domainName',  # noqa: E501
+        'id_mapping_params': 'idMappingParams',  # noqa: E501
         'permissions': 'permissions',  # noqa: E501
+        'security_principals': 'securityPrincipals',  # noqa: E501
         'transitive_ad_trust_level_limit': 'transitiveAdTrustLevelLimit',  # noqa: E501
-        'error': 'error',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -165,15 +157,13 @@ class ActiveDirectoryAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            task_logs (TaskLogs): [optional]  # noqa: E501
-            id_mapping_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of the user id mapping info of an Active Directory.. [optional]  # noqa: E501
-            domain_name (str, none_type): Specifies the domain name of the Active Directory.. [optional]  # noqa: E501
             centrify_zones ([CentrifyZones], none_type): Specifies a list of centrify zones.. [optional]  # noqa: E501
             domain_controllers ([DomainControllers], none_type): A list of domain names with a list of it's domain controllers.. [optional]  # noqa: E501
-            security_principals ([SecurityPrincipal], none_type): Specifies a list of security principals.. [optional]  # noqa: E501
+            domain_name (str, none_type): Specifies the domain name of the Active Directory.. [optional]  # noqa: E501
+            id_mapping_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of the user id mapping info of an Active Directory.. [optional]  # noqa: E501
             permissions ([Tenant], none_type): Specifies the list of tenants that have permissions for this Active Directory.. [optional]  # noqa: E501
+            security_principals ([SecurityPrincipal], none_type): Specifies a list of security principals.. [optional]  # noqa: E501
             transitive_ad_trust_level_limit (int, none_type): Specifies level of transitive Active Directory trust domains to be used.. [optional]  # noqa: E501
-            error (ActiveDirectoryError): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

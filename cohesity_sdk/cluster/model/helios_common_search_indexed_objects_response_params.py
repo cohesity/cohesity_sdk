@@ -97,9 +97,9 @@ class HeliosCommonSearchIndexedObjectsResponseParams(ModelNormal):
         """
         lazy_import()
         return {
-            'object_type': (str, none_type,),  # noqa: E501
-            'count': (int, none_type,),  # noqa: E501
             'cluster_errors': ([HeliosSearchIndexedObjectsClusterError],),  # noqa: E501
+            'count': (int, none_type,),  # noqa: E501
+            'object_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -109,9 +109,9 @@ class HeliosCommonSearchIndexedObjectsResponseParams(ModelNormal):
 
 
     attribute_map = {
-        'object_type': 'objectType',  # noqa: E501
-        'count': 'count',  # noqa: E501
         'cluster_errors': 'clusterErrors',  # noqa: E501
+        'count': 'count',  # noqa: E501
+        'object_type': 'objectType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,9 +161,9 @@ class HeliosCommonSearchIndexedObjectsResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            object_type (str, none_type): Specifies the object type.. [optional]  # noqa: E501
-            count (int, none_type): Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.. [optional]  # noqa: E501
             cluster_errors ([HeliosSearchIndexedObjectsClusterError]): A List of errors that occured on a subset of clusters.. [optional]  # noqa: E501
+            count (int, none_type): Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.. [optional]  # noqa: E501
+            object_type (str, none_type): Specifies the object type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -54,21 +54,6 @@ class ProtectionSummary(ModelNormal):
     """
 
     allowed_values = {
-        ('last_backup_run_status',): {
-            'None': None,
-            'ACCEPTED': "Accepted",
-            'RUNNING': "Running",
-            'CANCELED': "Canceled",
-            'CANCELING': "Canceling",
-            'FAILED': "Failed",
-            'MISSED': "Missed",
-            'SUCCEEDED': "Succeeded",
-            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
-            'ONHOLD': "OnHold",
-            'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
-            'PAUSED': "Paused",
-        },
         ('last_archival_run_status',): {
             'None': None,
             'ACCEPTED': "Accepted",
@@ -81,7 +66,20 @@ class ProtectionSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
+            'PAUSED': "Paused",
+        },
+        ('last_backup_run_status',): {
+            'None': None,
+            'ACCEPTED': "Accepted",
+            'RUNNING': "Running",
+            'CANCELED': "Canceled",
+            'CANCELING': "Canceling",
+            'FAILED': "Failed",
+            'MISSED': "Missed",
+            'SUCCEEDED': "Succeeded",
+            'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
+            'ONHOLD': "OnHold",
+            'FINALIZING': "Finalizing",
             'PAUSED': "Paused",
         },
         ('last_replication_run_status',): {
@@ -96,7 +94,6 @@ class ProtectionSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
-            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -119,13 +116,13 @@ class ProtectionSummary(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'policy_name': (str, none_type,),  # noqa: E501
-            'policy_id': (str, none_type,),  # noqa: E501
-            'storage_domain_id': (str, none_type,),  # noqa: E501
-            'last_backup_run_status': (str, none_type,),  # noqa: E501
             'last_archival_run_status': (str, none_type,),  # noqa: E501
+            'last_backup_run_status': (str, none_type,),  # noqa: E501
             'last_replication_run_status': (str, none_type,),  # noqa: E501
             'last_run_sla_violated': (bool, none_type,),  # noqa: E501
+            'policy_id': (str, none_type,),  # noqa: E501
+            'policy_name': (str, none_type,),  # noqa: E501
+            'storage_domain_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -135,13 +132,13 @@ class ProtectionSummary(ModelNormal):
 
 
     attribute_map = {
-        'policy_name': 'policyName',  # noqa: E501
-        'policy_id': 'policyId',  # noqa: E501
-        'storage_domain_id': 'storageDomainId',  # noqa: E501
-        'last_backup_run_status': 'lastBackupRunStatus',  # noqa: E501
         'last_archival_run_status': 'lastArchivalRunStatus',  # noqa: E501
+        'last_backup_run_status': 'lastBackupRunStatus',  # noqa: E501
         'last_replication_run_status': 'lastReplicationRunStatus',  # noqa: E501
         'last_run_sla_violated': 'lastRunSlaViolated',  # noqa: E501
+        'policy_id': 'policyId',  # noqa: E501
+        'policy_name': 'policyName',  # noqa: E501
+        'storage_domain_id': 'storageDomainId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -191,13 +188,13 @@ class ProtectionSummary(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            policy_name (str, none_type): Specifies the policy name for this group.. [optional]  # noqa: E501
-            policy_id (str, none_type): Specifies the policy id for this protection.. [optional]  # noqa: E501
-            storage_domain_id (str, none_type): Specifies the storage domain id of this protection. Format is clusterId:clusterIncarnationId:storageDomainId.. [optional]  # noqa: E501
-            last_backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             last_archival_run_status (str, none_type): Specifies the status of last archival run.. [optional]  # noqa: E501
+            last_backup_run_status (str, none_type): Specifies the status of last local back up run.. [optional]  # noqa: E501
             last_replication_run_status (str, none_type): Specifies the status of last replication run.. [optional]  # noqa: E501
             last_run_sla_violated (bool, none_type): Specifies if the sla is violated in last run.. [optional]  # noqa: E501
+            policy_id (str, none_type): Specifies the policy id for this protection.. [optional]  # noqa: E501
+            policy_name (str, none_type): Specifies the policy name for this group.. [optional]  # noqa: E501
+            storage_domain_id (str, none_type): Specifies the storage domain id of this protection. Format is clusterId:clusterIncarnationId:storageDomainId.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

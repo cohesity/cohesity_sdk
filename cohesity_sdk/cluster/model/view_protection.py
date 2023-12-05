@@ -79,9 +79,9 @@ class ViewProtection(ModelNormal):
         """
         lazy_import()
         return {
+            'inactive': (bool, none_type,),  # noqa: E501
             'magneto_entity_id': (int, none_type,),  # noqa: E501
             'protection_groups': ([ProtectionGroupInfo], none_type,),  # noqa: E501
-            'inactive': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,9 +91,9 @@ class ViewProtection(ModelNormal):
 
 
     attribute_map = {
+        'inactive': 'inactive',  # noqa: E501
         'magneto_entity_id': 'magnetoEntityId',  # noqa: E501
         'protection_groups': 'protectionGroups',  # noqa: E501
-        'inactive': 'inactive',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,9 +143,9 @@ class ViewProtection(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            inactive (bool, none_type): Specifies if this View is an inactive View that was created on this Remote Cluster to store the Snapshots created by replication. This inactive View cannot be NFS or SMB mounted.. [optional]  # noqa: E501
             magneto_entity_id (int, none_type): Specifies the id of the Protection Source that is using this View.. [optional]  # noqa: E501
             protection_groups ([ProtectionGroupInfo], none_type): Array of Protection Group. Specifies the Protection Group that are protecting the View.. [optional]  # noqa: E501
-            inactive (bool, none_type): Specifies if this View is an inactive View that was created on this Remote Cluster to store the Snapshots created by replication. This inactive View cannot be NFS or SMB mounted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

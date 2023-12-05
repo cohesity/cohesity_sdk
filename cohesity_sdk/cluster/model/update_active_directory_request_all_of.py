@@ -75,8 +75,8 @@ class UpdateActiveDirectoryRequestAllOf(ModelNormal):
         """
         return {
             'active_directory_admin_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'overwrite_machine_accounts': (bool, none_type,),  # noqa: E501
             'id_mapping_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'overwrite_machine_accounts': (bool, none_type,),  # noqa: E501
             'transitive_ad_trust_level_limit': (int, none_type,),  # noqa: E501
         }
 
@@ -88,8 +88,8 @@ class UpdateActiveDirectoryRequestAllOf(ModelNormal):
 
     attribute_map = {
         'active_directory_admin_params': 'activeDirectoryAdminParams',  # noqa: E501
-        'overwrite_machine_accounts': 'overwriteMachineAccounts',  # noqa: E501
         'id_mapping_params': 'idMappingParams',  # noqa: E501
+        'overwrite_machine_accounts': 'overwriteMachineAccounts',  # noqa: E501
         'transitive_ad_trust_level_limit': 'transitiveAdTrustLevelLimit',  # noqa: E501
     }
 
@@ -141,8 +141,8 @@ class UpdateActiveDirectoryRequestAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             active_directory_admin_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of a user with administrative privilege of this Active Directory. This field is mandatory if machine accounts are updated.. [optional]  # noqa: E501
-            overwrite_machine_accounts (bool, none_type): Specifies if specified machine accounts should overwrite existing machine accounts.. [optional]  # noqa: E501
             id_mapping_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params of the user id mapping info of an Active Directory.. [optional]  # noqa: E501
+            overwrite_machine_accounts (bool, none_type): Specifies if specified machine accounts should overwrite existing machine accounts.. [optional]  # noqa: E501
             transitive_ad_trust_level_limit (int, none_type): Specifies level of transitive Active Directory trust domains to be used.. [optional]  # noqa: E501
         """
 

@@ -75,11 +75,11 @@ class ProtectionPolicyResponseAllOf(ModelNormal):
         """
         return {
             'id': (str, none_type,),  # noqa: E501
-            'template_id': (str, none_type,),  # noqa: E501
-            'is_usable': (bool, none_type,),  # noqa: E501
             'is_replicated': (bool, none_type,),  # noqa: E501
-            'num_protection_groups': (int, none_type,),  # noqa: E501
+            'is_usable': (bool, none_type,),  # noqa: E501
             'num_protected_objects': (int, none_type,),  # noqa: E501
+            'num_protection_groups': (int, none_type,),  # noqa: E501
+            'template_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,11 +90,11 @@ class ProtectionPolicyResponseAllOf(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'template_id': 'templateId',  # noqa: E501
-        'is_usable': 'isUsable',  # noqa: E501
         'is_replicated': 'isReplicated',  # noqa: E501
-        'num_protection_groups': 'numProtectionGroups',  # noqa: E501
+        'is_usable': 'isUsable',  # noqa: E501
         'num_protected_objects': 'numProtectedObjects',  # noqa: E501
+        'num_protection_groups': 'numProtectionGroups',  # noqa: E501
+        'template_id': 'templateId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -145,11 +145,11 @@ class ProtectionPolicyResponseAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies a unique Policy id assigned by the Cohesity Cluster.. [optional]  # noqa: E501
-            template_id (str, none_type): Specifies the parent policy template id to which the policy is linked to. This field is set only when policy is created from template.. [optional]  # noqa: E501
-            is_usable (bool, none_type): This field is set to true if the linked policy which is internally created from a policy templates qualifies as usable to create more policies on the cluster. If the linked policy is partially filled and can not create a working policy then this field will be set to false. In case of normal policy created on the cluster, this field wont be populated.. [optional]  # noqa: E501
             is_replicated (bool, none_type): This field is set to true when policy is the replicated policy.. [optional]  # noqa: E501
-            num_protection_groups (int, none_type): Specifies the number of protection groups using the protection policy.. [optional]  # noqa: E501
+            is_usable (bool, none_type): This field is set to true if the linked policy which is internally created from a policy templates qualifies as usable to create more policies on the cluster. If the linked policy is partially filled and can not create a working policy then this field will be set to false. In case of normal policy created on the cluster, this field wont be populated.. [optional]  # noqa: E501
             num_protected_objects (int, none_type): Specifies the number of protected objects using the protection policy.. [optional]  # noqa: E501
+            num_protection_groups (int, none_type): Specifies the number of protection groups using the protection policy.. [optional]  # noqa: E501
+            template_id (str, none_type): Specifies the parent policy template id to which the policy is linked to. This field is set only when policy is created from template.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

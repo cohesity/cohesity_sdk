@@ -21,11 +21,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_search_indexed_objects_request_params10ad3b2c_e8864d87_b3c05ce6605593f0 import CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0
-from cohesity_sdk.cluster.model.common_search_indexed_objects_response_params53dc35a6_c64f4952_a4482b9a1911cfe8 import CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.objects_search_response_body import ObjectsSearchResponseBody
 from cohesity_sdk.cluster.model.protected_objects_search_response_body import ProtectedObjectsSearchResponseBody
+from cohesity_sdk.cluster.model.search_indexed_objects_request import SearchIndexedObjectsRequest
+from cohesity_sdk.cluster.model.search_indexed_objects_response_body import SearchIndexedObjectsResponseBody
 
 
 class SearchApi(object):
@@ -55,7 +55,7 @@ class SearchApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0): Specifies the parameters to search for indexed objects.
+                body (SearchIndexedObjectsRequest): Specifies the parameters to search for indexed objects.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -79,7 +79,7 @@ class SearchApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8
+                SearchIndexedObjectsResponseBody
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -108,10 +108,10 @@ class SearchApi(object):
 
         self.search_indexed_objects = _Endpoint(
             settings={
-                'response_type': (CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8,),
+                'response_type': (SearchIndexedObjectsResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/search/indexed-objects',
@@ -140,7 +140,7 @@ class SearchApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0,),
+                        (SearchIndexedObjectsRequest,),
                 },
                 'attribute_map': {
                 },
@@ -253,7 +253,7 @@ class SearchApi(object):
                 'response_type': (ObjectsSearchResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/search/objects',
@@ -334,8 +334,7 @@ class SearchApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                     ('environments',): {
 
@@ -426,8 +425,7 @@ class SearchApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing",
-                        "SKIPPED": "Skipped"
+                        "FINALIZING": "Finalizing"
                     },
                 },
                 'openapi_types': {
@@ -651,7 +649,7 @@ class SearchApi(object):
                 'response_type': (ProtectedObjectsSearchResponseBody,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/search/protected-objects',
@@ -710,8 +708,7 @@ class SearchApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto",
-                        "HELIOS": "Helios"
+                        "UIAUTO": "UIAuto"
                     },
                     ('environments',): {
 
