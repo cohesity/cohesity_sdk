@@ -13,9 +13,11 @@ Name | Type | Description | Notes
 **hdfs_params** | [**HDFSOnPremSearchParams**](HDFSOnPremSearchParams.md) |  | [optional] 
 **hive_params** | [**HiveOnPremSearchParams**](HiveOnPremSearchParams.md) |  | [optional] 
 **mongodb_params** | [**MongoDbOnPremSearchParams**](MongoDbOnPremSearchParams.md) |  | [optional] 
+**ms_groups_params** | [**SearchMsGroupsRequestParams**](SearchMsGroupsRequestParams.md) |  | [optional] 
 **ms_teams_params** | [**SearchMsTeamsRequestParams**](SearchMsTeamsRequestParams.md) |  | [optional] 
 **one_drive_params** | [**SearchDocumentLibraryRequestParams**](SearchDocumentLibraryRequestParams.md) |  | [optional] 
 **public_folder_params** | [**SearchPublicFolderRequestParams**](SearchPublicFolderRequestParams.md) |  | [optional] 
+**sfdc_params** | [**SearchSfdcRecordsRequestParams**](SearchSfdcRecordsRequestParams.md) |  | [optional] 
 **sharepoint_params** | [**SearchDocumentLibraryRequestParams**](SearchDocumentLibraryRequestParams.md) |  | [optional] 
 **uda_params** | [**UdaOnPremSearchParams**](UdaOnPremSearchParams.md) |  | [optional] 
 

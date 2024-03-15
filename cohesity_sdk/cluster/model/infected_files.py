@@ -141,7 +141,7 @@ class InfectedFiles(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cookie (str, none_type): Sepcifies the pagination cookie.. [optional]  # noqa: E501
+            cookie (str, none_type): Specifies the pagination cookie. Cookie is used to  resume the enumeration of infected files. When the cookie is set the fields viewNameVec, includeQuarantinedFiles and includeUnquarantinedFiles are ignored. . [optional]  # noqa: E501
             infected_files ([InfectedFile], none_type): Specifies the list of infected files.. [optional]  # noqa: E501
         """
 

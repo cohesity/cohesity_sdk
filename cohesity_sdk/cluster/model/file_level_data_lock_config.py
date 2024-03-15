@@ -89,7 +89,6 @@ class FileLevelDataLockConfig(ModelNormal):
             'default_retention_duration_msecs': (int, none_type,),  # noqa: E501
             'default_retention_duration_years': (int, none_type,),  # noqa: E501
             'expiry_timestamp_msecs': (int, none_type,),  # noqa: E501
-            'ignore_existing_files': (bool, none_type,),  # noqa: E501
             'locking_protocol': (str, none_type,),  # noqa: E501
             'max_retention_duration_msecs': (int, none_type,),  # noqa: E501
             'min_retention_duration_msecs': (int, none_type,),  # noqa: E501
@@ -108,7 +107,6 @@ class FileLevelDataLockConfig(ModelNormal):
         'default_retention_duration_msecs': 'defaultRetentionDurationMsecs',  # noqa: E501
         'default_retention_duration_years': 'defaultRetentionDurationYears',  # noqa: E501
         'expiry_timestamp_msecs': 'expiryTimestampMsecs',  # noqa: E501
-        'ignore_existing_files': 'ignoreExistingFiles',  # noqa: E501
         'locking_protocol': 'lockingProtocol',  # noqa: E501
         'max_retention_duration_msecs': 'maxRetentionDurationMsecs',  # noqa: E501
         'min_retention_duration_msecs': 'minRetentionDurationMsecs',  # noqa: E501
@@ -167,7 +165,6 @@ class FileLevelDataLockConfig(ModelNormal):
             default_retention_duration_msecs (int, none_type): Specifies a global default retention duration for files in this view, if file lock is enabled for this view. Also, it is a required field if file lock is enabled. Set to -1 if the required default retention period is forever.. [optional]  # noqa: E501
             default_retention_duration_years (int, none_type): Specifies a global default retention duration in years for files in this view, if file/object lock is enabled for this view.. [optional]  # noqa: E501
             expiry_timestamp_msecs (int, none_type): Specifies a definite timestamp in milliseconds for retaining the file.. [optional]  # noqa: E501
-            ignore_existing_files (bool, none_type): If set, implicit locking will be applied only to the newly created or updated inodes.. [optional]  # noqa: E501
             locking_protocol (str, none_type): Specifies the supported mechanisms to explicity lock a file from NFS/SMB interface. Supported locking protocols: SetReadOnly, SetAtime. 'SetReadOnly' is compatible with Isilon/Netapp behaviour. This locks the file and the retention duration is determined in this order: 1) atime, if set by user/application and within min and max retention duration. 2) Min retention duration, if set. 3) Otherwise, file is switched to expired data automatically. 'SetAtime' is compatible with Data Domain behaviour.. [optional]  # noqa: E501
             max_retention_duration_msecs (int, none_type): Specifies a maximum duration in milliseconds for which any file in this view can be retained for. Set to -1 if the required retention duration is forever. If set, it should be greater than or equal to the default retention period as well as the min retention period.. [optional]  # noqa: E501
             min_retention_duration_msecs (int, none_type): Specifies a minimum retention duration in milliseconds after a file gets locked. The file cannot be modified or deleted during this timeframe. Set to -1 if the required retention duration is forever. This should be set less than or equal to the default retention duration.. [optional]  # noqa: E501

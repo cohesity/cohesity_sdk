@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **active_directory_admin_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the params of a user with administrative privilege of this Active Directory. | 
 **domain_name** | **str, none_type** | Specifies the domain name of the Active Directory. | 
 **connection_id** | **int, none_type** | Specifies the id of the connection. | [optional] 
+**domain_controllers_deny_list** | **[str, none_type]** | Specifies a list of denied domain controllers of this Active Directory Domain. | [optional] 
 **id** | **int, none_type** | Specifies the id of the Active Directory. | [optional] [readonly] 
 **ldap_provider_id** | **int, none_type** | Specifies the LDAP provider id which is mapped to this Active Directory | [optional] 
 **nis_provider_domain_name** | **str, none_type** | Specifies the name of the NIS Provider which is mapped to this Active Directory. | [optional] 

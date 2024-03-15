@@ -30,12 +30,16 @@ def lazy_import():
     from cohesity_sdk.cluster.model.aws_agent_protection_group_params import AwsAgentProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_aurora_protection_group_params import AwsAuroraProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_native_protection_group_params import AwsNativeProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_rds_postgres_protection_group_params import AwsRdsPostgresProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_rds_protection_group_params import AwsRdsProtectionGroupParams
+    from cohesity_sdk.cluster.model.aws_s3_protection_group_params import AwsS3ProtectionGroupParams
     from cohesity_sdk.cluster.model.aws_snapshot_manager_protection_group_params import AwsSnapshotManagerProtectionGroupParams
     globals()['AwsAgentProtectionGroupParams'] = AwsAgentProtectionGroupParams
     globals()['AwsAuroraProtectionGroupParams'] = AwsAuroraProtectionGroupParams
     globals()['AwsNativeProtectionGroupParams'] = AwsNativeProtectionGroupParams
+    globals()['AwsRdsPostgresProtectionGroupParams'] = AwsRdsPostgresProtectionGroupParams
     globals()['AwsRdsProtectionGroupParams'] = AwsRdsProtectionGroupParams
+    globals()['AwsS3ProtectionGroupParams'] = AwsS3ProtectionGroupParams
     globals()['AwsSnapshotManagerProtectionGroupParams'] = AwsSnapshotManagerProtectionGroupParams
 
 
@@ -72,6 +76,8 @@ class AwsProtectionGroupParams(ModelNormal):
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
         },
     }
 
@@ -98,7 +104,9 @@ class AwsProtectionGroupParams(ModelNormal):
             'agent_protection_type_params': (AwsAgentProtectionGroupParams,),  # noqa: E501
             'aurora_protection_type_params': (AwsAuroraProtectionGroupParams,),  # noqa: E501
             'native_protection_type_params': (AwsNativeProtectionGroupParams,),  # noqa: E501
+            'rds_postgres_protection_type_params': (AwsRdsPostgresProtectionGroupParams,),  # noqa: E501
             'rds_protection_type_params': (AwsRdsProtectionGroupParams,),  # noqa: E501
+            's3_protection_type_params': (AwsS3ProtectionGroupParams,),  # noqa: E501
             'snapshot_manager_protection_type_params': (AwsSnapshotManagerProtectionGroupParams,),  # noqa: E501
         }
 
@@ -113,7 +121,9 @@ class AwsProtectionGroupParams(ModelNormal):
         'agent_protection_type_params': 'agentProtectionTypeParams',  # noqa: E501
         'aurora_protection_type_params': 'auroraProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'rds_postgres_protection_type_params': 'rdsPostgresProtectionTypeParams',  # noqa: E501
         'rds_protection_type_params': 'rdsProtectionTypeParams',  # noqa: E501
+        's3_protection_type_params': 's3ProtectionTypeParams',  # noqa: E501
         'snapshot_manager_protection_type_params': 'snapshotManagerProtectionTypeParams',  # noqa: E501
     }
 
@@ -170,7 +180,9 @@ class AwsProtectionGroupParams(ModelNormal):
             agent_protection_type_params (AwsAgentProtectionGroupParams): [optional]  # noqa: E501
             aurora_protection_type_params (AwsAuroraProtectionGroupParams): [optional]  # noqa: E501
             native_protection_type_params (AwsNativeProtectionGroupParams): [optional]  # noqa: E501
+            rds_postgres_protection_type_params (AwsRdsPostgresProtectionGroupParams): [optional]  # noqa: E501
             rds_protection_type_params (AwsRdsProtectionGroupParams): [optional]  # noqa: E501
+            s3_protection_type_params (AwsS3ProtectionGroupParams): [optional]  # noqa: E501
             snapshot_manager_protection_type_params (AwsSnapshotManagerProtectionGroupParams): [optional]  # noqa: E501
         """
 

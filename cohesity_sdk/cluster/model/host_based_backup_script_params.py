@@ -84,7 +84,9 @@ class HostBasedBackupScriptParams(ModelNormal):
         lazy_import()
         return {
             'host': (ScriptHost,),  # noqa: E501
+            'post_backup_script': (CommonPostBackupScriptParams,),  # noqa: E501
             'post_script': (CommonPostBackupScriptParams,),  # noqa: E501
+            'post_snapshot_script': (CommonPostBackupScriptParams,),  # noqa: E501
             'pre_script': (CommonPreBackupScriptParams,),  # noqa: E501
         }
 
@@ -96,7 +98,9 @@ class HostBasedBackupScriptParams(ModelNormal):
 
     attribute_map = {
         'host': 'host',  # noqa: E501
+        'post_backup_script': 'postBackupScript',  # noqa: E501
         'post_script': 'postScript',  # noqa: E501
+        'post_snapshot_script': 'postSnapshotScript',  # noqa: E501
         'pre_script': 'preScript',  # noqa: E501
     }
 
@@ -150,7 +154,9 @@ class HostBasedBackupScriptParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            post_backup_script (CommonPostBackupScriptParams): [optional]  # noqa: E501
             post_script (CommonPostBackupScriptParams): [optional]  # noqa: E501
+            post_snapshot_script (CommonPostBackupScriptParams): [optional]  # noqa: E501
             pre_script (CommonPreBackupScriptParams): [optional]  # noqa: E501
         """
 

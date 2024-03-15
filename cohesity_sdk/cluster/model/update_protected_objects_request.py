@@ -28,6 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_object_protection_update_request_params import AwsObjectProtectionUpdateRequestParams
+    from cohesity_sdk.cluster.model.azure_object_protection_update_request_params import AzureObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.common_object_protect_params import CommonObjectProtectParams
     from cohesity_sdk.cluster.model.elastifile_object_protection_update_request_params import ElastifileObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.env_specific_object_protection_update_request_params import EnvSpecificObjectProtectionUpdateRequestParams
@@ -45,8 +46,10 @@ def lazy_import():
     from cohesity_sdk.cluster.model.sfdc_object_protection_update_request_params import SfdcObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
+    from cohesity_sdk.cluster.model.uda_object_protection_update_request_params import UdaObjectProtectionUpdateRequestParams
     from cohesity_sdk.cluster.model.vmware_object_protection_update_request_params import VmwareObjectProtectionUpdateRequestParams
     globals()['AwsObjectProtectionUpdateRequestParams'] = AwsObjectProtectionUpdateRequestParams
+    globals()['AzureObjectProtectionUpdateRequestParams'] = AzureObjectProtectionUpdateRequestParams
     globals()['CommonObjectProtectParams'] = CommonObjectProtectParams
     globals()['ElastifileObjectProtectionUpdateRequestParams'] = ElastifileObjectProtectionUpdateRequestParams
     globals()['EnvSpecificObjectProtectionUpdateRequestParams'] = EnvSpecificObjectProtectionUpdateRequestParams
@@ -64,6 +67,7 @@ def lazy_import():
     globals()['SfdcObjectProtectionUpdateRequestParams'] = SfdcObjectProtectionUpdateRequestParams
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
+    globals()['UdaObjectProtectionUpdateRequestParams'] = UdaObjectProtectionUpdateRequestParams
     globals()['VmwareObjectProtectionUpdateRequestParams'] = VmwareObjectProtectionUpdateRequestParams
 
 
@@ -118,9 +122,14 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
             'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
@@ -130,6 +139,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -185,6 +195,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'start_time': (TimeOfDay,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'aws_params': (AwsObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'azure_params': (AzureObjectProtectionUpdateRequestParams,),  # noqa: E501
             'elastifile_params': (ElastifileObjectProtectionUpdateRequestParams,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionUpdateRequestParams,),  # noqa: E501
@@ -198,6 +209,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             'oracle_params': (OracleObjectProtectionUpdateRequestParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionUpdateRequestParams,),  # noqa: E501
             'sfdc_params': (SfdcObjectProtectionUpdateRequestParams,),  # noqa: E501
+            'uda_params': (UdaObjectProtectionUpdateRequestParams,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionUpdateRequestParams,),  # noqa: E501
         }
 
@@ -219,6 +231,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
         'start_time': 'startTime',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
@@ -232,6 +245,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
@@ -294,6 +308,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             start_time (TimeOfDay): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
             aws_params (AwsObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            azure_params (AzureObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             elastifile_params (ElastifileObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
@@ -307,6 +322,7 @@ class UpdateProtectedObjectsRequest(ModelComposed):
             oracle_params (OracleObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             sfdc_params (SfdcObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
+            uda_params (UdaObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionUpdateRequestParams): [optional]  # noqa: E501
         """
 

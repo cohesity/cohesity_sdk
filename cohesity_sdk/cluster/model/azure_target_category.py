@@ -55,6 +55,7 @@ class AzureTargetCategory(ModelNormal):
 
     allowed_values = {
         ('enum',): {
+            'AZURE': "Azure",
             'AZURESTANDARD': "AzureStandard",
             'AZUREGOVCLOUD': "AzureGovCloud",
         },

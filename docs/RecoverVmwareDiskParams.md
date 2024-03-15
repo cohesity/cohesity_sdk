@@ -1,6 +1,6 @@
 # RecoverVmwareDiskParams
 
-Specifies the parameters to recover VMware VM.
+Specifies the parameters to recover VMware Disks.
 
 ## Properties
 Name | Type | Description | Notes

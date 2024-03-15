@@ -54,6 +54,14 @@ class VmwareTargetParamsForRecoverVAppTemplate(ModelNormal):
     """
 
     allowed_values = {
+        ('disk_provision_type',): {
+            'None': None,
+            'KTHICKLAZYZEROED': "kThickLazyZeroed",
+            'KTHICKEAGERZERO': "kThickEagerZero",
+            'KTHIN': "kThin",
+            'KBACKEDUPDISKTYPE': "kBackedUpDiskType",
+            'ORIGINALBACKUPDISK': "originalBackUpDisk",
+        },
         ('recovery_process_type',): {
             'INSTANTRECOVERY': "InstantRecovery",
             'COPYRECOVERY': "CopyRecovery",
@@ -80,6 +88,9 @@ class VmwareTargetParamsForRecoverVAppTemplate(ModelNormal):
         return {
             'attempt_differential_restore': (bool, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'disk_provision_type': (str, none_type,),  # noqa: E501
+            'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
+            'leverage_san_transport': (bool, none_type,),  # noqa: E501
             'recovery_process_type': (str,),  # noqa: E501
             'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'rename_recovered_v_app_template_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -96,6 +107,9 @@ class VmwareTargetParamsForRecoverVAppTemplate(ModelNormal):
     attribute_map = {
         'attempt_differential_restore': 'attemptDifferentialRestore',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'disk_provision_type': 'diskProvisionType',  # noqa: E501
+        'enable_nbdssl_fallback': 'enableNBDSSLFallback',  # noqa: E501
+        'leverage_san_transport': 'leverageSanTransport',  # noqa: E501
         'recovery_process_type': 'recoveryProcessType',  # noqa: E501
         'recovery_target_config': 'recoveryTargetConfig',  # noqa: E501
         'rename_recovered_v_app_template_params': 'renameRecoveredVAppTemplateParams',  # noqa: E501
@@ -152,6 +166,9 @@ class VmwareTargetParamsForRecoverVAppTemplate(ModelNormal):
 
             attempt_differential_restore (bool, none_type): Specifies whether to attempt differential restore.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other vms if one of vms failed to recover. Default value is false.. [optional]  # noqa: E501
+            disk_provision_type (str, none_type): Specifies the Virtual Disk Provisioning Policies for Vmware VM. [optional]  # noqa: E501
+            enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport recovery fails, then recovery will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
+            leverage_san_transport (bool, none_type): Specifies whether to enable SAN transport for copy recovery or not. [optional]  # noqa: E501
             recovery_process_type (str): Specifies type of Recovery Process to be used. InstantRecovery/CopyRecovery etc... Default value is InstantRecovery.. [optional]  # noqa: E501
             recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vApp templates will be performed to original location with all configuration parameters retained.. [optional]  # noqa: E501
             rename_recovered_v_app_template_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the vApps templates that are recovered. If not specified, the original names of the vApp templates are preserved.. [optional]  # noqa: E501

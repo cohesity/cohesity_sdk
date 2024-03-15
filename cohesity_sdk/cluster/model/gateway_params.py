@@ -58,6 +58,7 @@ class GatewayParams(ModelNormal):
             'None': None,
             'INPUT': "INPUT",
             'OUTPUT': "OUTPUT",
+            'NAT_INPUT': "NAT_INPUT",
         },
     }
 

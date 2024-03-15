@@ -37,6 +37,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.helios_hive_objects import HeliosHiveObjects
     from cohesity_sdk.cluster.model.helios_mongo_objects import HeliosMongoObjects
     from cohesity_sdk.cluster.model.helios_public_folder_items import HeliosPublicFolderItems
+    from cohesity_sdk.cluster.model.sfdc_records import SfdcRecords
     globals()['HeliosCassandraObjects'] = HeliosCassandraObjects
     globals()['HeliosCouchbaseObjects'] = HeliosCouchbaseObjects
     globals()['HeliosEmails'] = HeliosEmails
@@ -47,6 +48,7 @@ def lazy_import():
     globals()['HeliosHiveObjects'] = HeliosHiveObjects
     globals()['HeliosMongoObjects'] = HeliosMongoObjects
     globals()['HeliosPublicFolderItems'] = HeliosPublicFolderItems
+    globals()['SfdcRecords'] = SfdcRecords
 
 
 class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
@@ -107,6 +109,7 @@ class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
             'hive_objects': (HeliosHiveObjects,),  # noqa: E501
             'mongo_objects': (HeliosMongoObjects,),  # noqa: E501
             'public_folder_items': (HeliosPublicFolderItems,),  # noqa: E501
+            'sfdc_records': (SfdcRecords,),  # noqa: E501
         }
 
     @cached_property
@@ -126,6 +129,7 @@ class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
         'hive_objects': 'hiveObjects',  # noqa: E501
         'mongo_objects': 'mongoObjects',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
+        'sfdc_records': 'sfdcRecords',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -185,6 +189,7 @@ class HeliosSearchIndexedObjectsResponseBodyAllOf(ModelNormal):
             hive_objects (HeliosHiveObjects): [optional]  # noqa: E501
             mongo_objects (HeliosMongoObjects): [optional]  # noqa: E501
             public_folder_items (HeliosPublicFolderItems): [optional]  # noqa: E501
+            sfdc_records (SfdcRecords): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

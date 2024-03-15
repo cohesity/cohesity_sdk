@@ -83,6 +83,7 @@ class VcenterRegistrationParamsAllOf(ModelNormal):
         return {
             'ca_cert': (str, none_type,),  # noqa: E501
             'data_store_params': ([DatastoreParams], none_type,),  # noqa: E501
+            'link_vms_across_vcenter': (bool, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_gb': (int, none_type,),  # noqa: E501
             'min_free_datastore_space_for_backup_percentage': (int, none_type,),  # noqa: E501
             'throttling_params': (VmwareThrottlingParams,),  # noqa: E501
@@ -98,6 +99,7 @@ class VcenterRegistrationParamsAllOf(ModelNormal):
     attribute_map = {
         'ca_cert': 'caCert',  # noqa: E501
         'data_store_params': 'dataStoreParams',  # noqa: E501
+        'link_vms_across_vcenter': 'linkVmsAcrossVcenter',  # noqa: E501
         'min_free_datastore_space_for_backup_gb': 'minFreeDatastoreSpaceForBackupGb',  # noqa: E501
         'min_free_datastore_space_for_backup_percentage': 'minFreeDatastoreSpaceForBackupPercentage',  # noqa: E501
         'throttling_params': 'throttlingParams',  # noqa: E501
@@ -153,6 +155,7 @@ class VcenterRegistrationParamsAllOf(ModelNormal):
 
             ca_cert (str, none_type): Specifies the CA certificate to enable SSL communication between host and cluster.. [optional]  # noqa: E501
             data_store_params ([DatastoreParams], none_type): Specifies datastore specific parameters.. [optional]  # noqa: E501
+            link_vms_across_vcenter (bool, none_type): Specifies if the VM linking feature is enabled for the VCenter. If enabled, migrated VMs present in the VCenter which earlier belonged to some other VCenter will be linked during EH refresh.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_gb (int, none_type): Specifies the minimum free space (in GB) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             min_free_datastore_space_for_backup_percentage (int, none_type): Specifies the minimum free space (in percentage) expected to be available in the datastore where the virtual disks of the VM being backed up reside. If the space available is lower than the specified value, backup will be aborted.. [optional]  # noqa: E501
             throttling_params (VmwareThrottlingParams): [optional]  # noqa: E501

@@ -27,9 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.create_role_params import CreateRoleParams
+    from cohesity_sdk.cluster.model.create_role_parameters import CreateRoleParameters
     from cohesity_sdk.cluster.model.role_all_of import RoleAllOf
-    globals()['CreateRoleParams'] = CreateRoleParams
+    globals()['CreateRoleParameters'] = CreateRoleParameters
     globals()['RoleAllOf'] = RoleAllOf
 
 
@@ -243,7 +243,7 @@ class Role(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              CreateRoleParams,
+              CreateRoleParameters,
               RoleAllOf,
           ],
           'oneOf': [

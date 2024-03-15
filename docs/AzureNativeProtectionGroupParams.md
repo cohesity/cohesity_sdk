@@ -6,6 +6,7 @@ Specifies the parameters which are specific to Azure related Protection Groups u
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cloud_migration** | **bool, none_type** | Specifies whether or not to move the workload to the cloud. | [optional] 
+**cloud_pre_post_script** | [**CloudBackupScriptParams**](CloudBackupScriptParams.md) |  | [optional] 
 **data_transfer_info** | [**DataTransferInfo**](DataTransferInfo.md) |  | [optional] 
 **exclude_object_ids** | **[int]** | Specifies the objects to be excluded in the Protection Group. | [optional] 
 **exclude_vm_tag_ids** | **[[int]], none_type** | Array of arrays of VM Tag Ids that Specify VMs to Exclude. | [optional] 

@@ -54,6 +54,11 @@ class StoragePolicy(ModelNormal):
     """
 
     allowed_values = {
+        ('aes_encryption_mode',): {
+            'None': None,
+            'CBC': "CBC",
+            'GCM': "GCM",
+        },
         ('encryption_type',): {
             'None': None,
             'NONE': "None",
@@ -80,6 +85,7 @@ class StoragePolicy(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'aes_encryption_mode': (str, none_type,),  # noqa: E501
             'app_marker_detection_enabled': (bool, none_type,),  # noqa: E501
             'cloud_spill_vault_id': (int, none_type,),  # noqa: E501
             'compression_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -98,6 +104,7 @@ class StoragePolicy(ModelNormal):
 
 
     attribute_map = {
+        'aes_encryption_mode': 'aesEncryptionMode',  # noqa: E501
         'app_marker_detection_enabled': 'appMarkerDetectionEnabled',  # noqa: E501
         'cloud_spill_vault_id': 'cloudSpillVaultId',  # noqa: E501
         'compression_params': 'compressionParams',  # noqa: E501
@@ -156,6 +163,7 @@ class StoragePolicy(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            aes_encryption_mode (str, none_type): Specifies the encryption mode for a Storage Domain.. [optional]  # noqa: E501
             app_marker_detection_enabled (bool, none_type): Specifies whether app marker detection is enabled. When enabled, app markers will be removed from data and put in separate chunks.. [optional]  # noqa: E501
             cloud_spill_vault_id (int, none_type): Specifies the vault id assigned for cloud spill for a Storage Domain.. [optional]  # noqa: E501
             compression_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies compression settings for a Storage Domain.. [optional]  # noqa: E501

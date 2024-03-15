@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_oracle_app_source_config import CommonOracleAppSourceConfig
+    from cohesity_sdk.cluster.model.disaster_recovery_options import DisasterRecoveryOptions
     from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.oracle_db_channel import OracleDbChannel
     from cohesity_sdk.cluster.model.shell_key_value_pair import ShellKeyValuePair
     globals()['CommonOracleAppSourceConfig'] = CommonOracleAppSourceConfig
+    globals()['DisasterRecoveryOptions'] = DisasterRecoveryOptions
     globals()['KeyValuePair'] = KeyValuePair
     globals()['OracleDbChannel'] = OracleDbChannel
     globals()['ShellKeyValuePair'] = ShellKeyValuePair
@@ -89,6 +91,7 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
             'database_name': (str, none_type,),  # noqa: E501
             'db_config_file_path': (str, none_type,),  # noqa: E501
             'db_files_destination': (str, none_type,),  # noqa: E501
+            'disaster_recovery_options': (DisasterRecoveryOptions,),  # noqa: E501
             'enable_archive_log_mode': (bool, none_type,),  # noqa: E501
             'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
             'new_name_clause': (str, none_type,),  # noqa: E501
@@ -99,6 +102,7 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
             'oracle_update_restore_options': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'pfile_parameter_map': ([KeyValuePair], none_type,),  # noqa: E501
             'redo_log_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'restore_to_rac': (bool, none_type,),  # noqa: E501
             'skip_clone_nid': (bool, none_type,),  # noqa: E501
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
             'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -122,6 +126,7 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
         'database_name': 'databaseName',  # noqa: E501
         'db_config_file_path': 'dbConfigFilePath',  # noqa: E501
         'db_files_destination': 'dbFilesDestination',  # noqa: E501
+        'disaster_recovery_options': 'disasterRecoveryOptions',  # noqa: E501
         'enable_archive_log_mode': 'enableArchiveLogMode',  # noqa: E501
         'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
         'new_name_clause': 'newNameClause',  # noqa: E501
@@ -132,6 +137,7 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
         'oracle_update_restore_options': 'oracleUpdateRestoreOptions',  # noqa: E501
         'pfile_parameter_map': 'pfileParameterMap',  # noqa: E501
         'redo_log_config': 'redoLogConfig',  # noqa: E501
+        'restore_to_rac': 'restoreToRac',  # noqa: E501
         'skip_clone_nid': 'skipCloneNid',  # noqa: E501
         'db_channels': 'dbChannels',  # noqa: E501
         'granular_restore_info': 'granularRestoreInfo',  # noqa: E501
@@ -196,6 +202,7 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
             database_name (str, none_type): Specifies a new name for the restored database. If this field is not specified, then the original database will be overwritten after recovery.. [optional]  # noqa: E501
             db_config_file_path (str, none_type): Specifies the config file path on selected host which configures the restored database.. [optional]  # noqa: E501
             db_files_destination (str, none_type): Specifies the location to restore database files.. [optional]  # noqa: E501
+            disaster_recovery_options (DisasterRecoveryOptions): [optional]  # noqa: E501
             enable_archive_log_mode (bool, none_type): Specifies archive log mode for oracle restore.. [optional]  # noqa: E501
             is_multi_stage_restore (bool, none_type): Specifies whether this task is a multistage restore task. If set, we migrate the DB after clone completes.. [optional]  # noqa: E501
             new_name_clause (str, none_type): Specifies newname clause for db files which allows user to have full control on how their database files can be renamed during the oracle alternate restore workflow.. [optional]  # noqa: E501
@@ -206,6 +213,7 @@ class RecoverOracleNewTargetDatabaseConfig(ModelComposed):
             oracle_update_restore_options ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters that are needed for updating oracle restore options.. [optional]  # noqa: E501
             pfile_parameter_map ([KeyValuePair], none_type): Specifies a key value pair for pfile parameters.. [optional]  # noqa: E501
             redo_log_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies redo log config.. [optional]  # noqa: E501
+            restore_to_rac (bool, none_type): Whether or not to restore to a RAC database.. [optional]  # noqa: E501
             skip_clone_nid (bool, none_type): Whether or not to skip the nid step in Oracle Clone workflow. Applicable to both smart and old clone workflow.. [optional]  # noqa: E501
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
             granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501

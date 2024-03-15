@@ -74,9 +74,9 @@ class PreCheckValidation(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'validation': (str, none_type,),  # noqa: E501
             'is_passed': (bool, none_type,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
+            'validation': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class PreCheckValidation(ModelNormal):
 
 
     attribute_map = {
-        'validation': 'validation',  # noqa: E501
         'is_passed': 'isPassed',  # noqa: E501
         'message': 'message',  # noqa: E501
+        'validation': 'validation',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class PreCheckValidation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            validation (str, none_type): Specifies validation type. [optional]  # noqa: E501
             is_passed (bool, none_type): Specifies validation passed or failed. [optional]  # noqa: E501
             message (str, none_type): Specifies the validation failure message. [optional]  # noqa: E501
+            validation (str, none_type): Specifies validation type. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

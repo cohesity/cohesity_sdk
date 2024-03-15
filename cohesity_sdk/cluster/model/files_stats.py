@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.file_count import FileCount
     from cohesity_sdk.cluster.model.files_stats_for_entity import FilesStatsForEntity
+    globals()['FileCount'] = FileCount
     globals()['FilesStatsForEntity'] = FilesStatsForEntity
 
 
@@ -79,6 +81,7 @@ class FilesStats(ModelNormal):
         """
         lazy_import()
         return {
+            'file_size_distribution': ([FileCount], none_type,),  # noqa: E501
             'files_stats': ([FilesStatsForEntity], none_type,),  # noqa: E501
         }
 
@@ -89,6 +92,7 @@ class FilesStats(ModelNormal):
 
 
     attribute_map = {
+        'file_size_distribution': 'fileSizeDistribution',  # noqa: E501
         'files_stats': 'filesStats',  # noqa: E501
     }
 
@@ -139,6 +143,7 @@ class FilesStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            file_size_distribution ([FileCount], none_type): Specifies the aggregated distribution by size of files stored in the Cohesity cluster.. [optional]  # noqa: E501
             files_stats ([FilesStatsForEntity], none_type): Specifies a list of file stats for entities.. [optional]  # noqa: E501
         """
 

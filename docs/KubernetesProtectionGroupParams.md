@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **objects** | [**[KubernetesProtectionGroupObjectParams]**](KubernetesProtectionGroupObjectParams.md) | Specifies the objects included in the Protection Group. | [optional] 
 **source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
 **source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 
+**vlan_params** | [**VlanParams**](VlanParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

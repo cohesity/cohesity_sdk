@@ -75,6 +75,7 @@ class Office365OutlookProtectionGroupParams(ModelNormal):
         """
         return {
             'exclude_folders': ([str], none_type,),  # noqa: E501
+            'include_folders': ([str], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,6 +86,7 @@ class Office365OutlookProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'exclude_folders': 'excludeFolders',  # noqa: E501
+        'include_folders': 'includeFolders',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,7 +136,8 @@ class Office365OutlookProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            exclude_folders ([str], none_type): Array of Excluded Outlook folders. Specifies filters to match Outlook folders which should be excluded when backing up Office 365 source. Two kinds of filters are supported. a) prefix which always starts with '/'. b) posix which always starts with empty quotes(''). Regular expressions are not supported. If not specified, all the mailboxes will be protected.. [optional]  # noqa: E501
+            exclude_folders ([str], none_type): Array of prefixes used to exclude folders which are by default included. Two kinds of filters are supported. a) prefix which always starts with '/'. b) posix which always starts with empty quotes(''). Regular expressions are not supported. If not specified, all folders which are included by default will be included. These prefixes have no effect on folders that are excluded by default. The only folders excluded by default are documented with includeFolders.. [optional]  # noqa: E501
+            include_folders ([str], none_type): Array of prefixes used to include folders which are by default excluded. Two kinds of filters are supported. a) prefix which always starts with '/'. b) posix which always starts with empty quotes(''). Regular expressions are not supported. If not specified, all folders which are excluded by default will be excluded. These prefixes have no effect on folders that are included by default. All folders are included by default except for the Recoverable Items folder.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

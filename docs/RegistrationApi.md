@@ -4,7 +4,6 @@
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_helios_reg_config**](RegistrationApi.md#get_helios_reg_config) | **GET** /helios-registration-config | Lists the Helios Registration Config.
-[**get_rigel_claim_logs**](RegistrationApi.md#get_rigel_claim_logs) | **GET** /rigel-claim-logs | Lists the claim logs for rigel.
 [**helios_claim**](RegistrationApi.md#helios_claim) | **POST** /helios-registration | Register to Helios.
 
 
@@ -25,12 +24,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -68,66 +63,6 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_rigel_claim_logs**
-> RigelClaimLogs get_rigel_claim_logs()
-
-Lists the claim logs for rigel.
-
-Lists the logs during rigel cluster creation and claim.
-
-### Example
-
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.rigel_claim_logs import RigelClaimLogs
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Lists the claim logs for rigel.
-	api_response = client.registration.get_rigel_claim_logs()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling RegistrationApi->get_rigel_claim_logs: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**RigelClaimLogs**](RigelClaimLogs.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **helios_claim**
 > helios_claim(body)
 
@@ -145,15 +80,12 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = HeliosClaimRequest(
         registration_token="registration_token_example",
+        rigel_guid=1,
     ) # HeliosClaimRequest | Specifies the parameters to claim to Helios.
 
 # example passing only required values which don't have defaults set

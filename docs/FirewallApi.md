@@ -5,8 +5,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**list_firewall_ip_sets**](FirewallApi.md#list_firewall_ip_sets) | **GET** /network/firewall/ip-sets | List all firewall IP sets
 [**list_firewall_profiles**](FirewallApi.md#list_firewall_profiles) | **GET** /network/firewall/profiles | List all firewall profiles.
+[**remove_firewall_profiles**](FirewallApi.md#remove_firewall_profiles) | **PUT** /network/firewall/profile/remove | Remove firewall profiles.
 [**reset_firewall_profile**](FirewallApi.md#reset_firewall_profile) | **POST** /network/firewall/profiles/reset | Reset firewall profiles.
 [**update_firewall_ip_sets**](FirewallApi.md#update_firewall_ip_sets) | **PUT** /network/firewall/ip-sets | Update firewall IP sets
+[**update_firewall_profile**](FirewallApi.md#update_firewall_profile) | **PUT** /network/firewall/profile | Update firewall profiles &amp; their attachments.
 [**update_firewall_profiles**](FirewallApi.md#update_firewall_profiles) | **PUT** /network/firewall/profiles | Update firewall profiles &amp; their attachments.
 
 
@@ -27,12 +29,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -87,12 +85,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -130,6 +124,71 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **remove_firewall_profiles**
+> SuccessResp remove_firewall_profiles(body)
+
+Remove firewall profiles.
+
+Remove firewall profiles and their attachments.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
+from cohesity_sdk.cluster.model.firewall_profile_names_params import FirewallProfileNamesParams
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+body = FirewallProfileNamesParams(
+        names=[
+            "names_example",
+        ],
+    ) # FirewallProfileNamesParams | Specifies the parameters to remove firewall profiles and their attachments.
+
+# example passing only required values which don't have defaults set
+try:
+	# Remove firewall profiles.
+	api_response = client.firewall.remove_firewall_profiles(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FirewallApi->remove_firewall_profiles: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**FirewallProfileNamesParams**](FirewallProfileNamesParams.md)| Specifies the parameters to remove firewall profiles and their attachments. |
+
+### Return type
+
+[**SuccessResp**](SuccessResp.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **reset_firewall_profile**
 > reset_firewall_profile()
 
@@ -146,12 +205,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -205,12 +260,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = FirewallIPSets(
         ip_sets=[
@@ -261,6 +312,80 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_firewall_profile**
+> FirewallProfileParams update_firewall_profile(body)
+
+Update firewall profiles & their attachments.
+
+Update the firewall profiles and/or their attachments.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.firewall_profile_params import FirewallProfileParams
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+body = FirewallProfileParams(
+        action="allow",
+        description="description_example",
+        direction="INPUT",
+        interface_groups=[
+            "interface_groups_example",
+        ],
+        name="name_example",
+        ports=[
+            "ports_example",
+        ],
+        subnets=[
+            "subnets_example",
+        ],
+    ) # FirewallProfileParams | Specifies the parameters to configure firewall profiles and/or their attachments.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update firewall profiles & their attachments.
+	api_response = client.firewall.update_firewall_profile(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling FirewallApi->update_firewall_profile: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**FirewallProfileParams**](FirewallProfileParams.md)| Specifies the parameters to configure firewall profiles and/or their attachments. |
+
+### Return type
+
+[**FirewallProfileParams**](FirewallProfileParams.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_firewall_profiles**
 > FirewallProfiles update_firewall_profiles(body)
 
@@ -278,19 +403,15 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = FirewallProfiles(
         profiles=[
             FirewallProfile(
                 attachments=[
                     Attachment(
-                        action="ALLOW",
+                        action="allow",
                         description="description_example",
                         interface_groups=[
                             "interface_groups_example",

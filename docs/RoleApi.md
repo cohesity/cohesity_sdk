@@ -22,19 +22,15 @@ Create a Role.
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.role import Role
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_role_params import CreateRoleParams
+from cohesity_sdk.cluster.model.create_role_parameters import CreateRoleParameters
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
 
-body = CreateRoleParams() # CreateRoleParams | Specifies the request body to create a Role.
+client = ClusterClient(cluster_vip)
+
+body = CreateRoleParameters() # CreateRoleParameters | Specifies the request body to create a Role.
 
 # example passing only required values which don't have defaults set
 try:
@@ -50,7 +46,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateRoleParams**](CreateRoleParams.md)| Specifies the request body to create a Role. |
+ **body** | [**CreateRoleParameters**](CreateRoleParameters.md)| Specifies the request body to create a Role. |
 
 ### Return type
 
@@ -90,12 +86,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 name = "name_example" # str | Specifies the name of Role to delete.
 
@@ -153,12 +145,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 names = [
         "names_example",
@@ -220,27 +208,23 @@ Update a Role.
 
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.update_role_params import UpdateRoleParams
 from cohesity_sdk.cluster.model.role import Role
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.update_role_parameters import UpdateRoleParameters
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 name = "name_example" # str | Specifies the name of Role to update.
-body = UpdateRoleParams(
+body = UpdateRoleParameters(
         description="description_example",
         privileges=[
             "privileges_example",
         ],
-    ) # UpdateRoleParams | Specifies the request body to update a Role.
+    ) # UpdateRoleParameters | Specifies the request body to update a Role.
 
 # example passing only required values which don't have defaults set
 try:
@@ -257,7 +241,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| Specifies the name of Role to update. |
- **body** | [**UpdateRoleParams**](UpdateRoleParams.md)| Specifies the request body to update a Role. |
+ **body** | [**UpdateRoleParameters**](UpdateRoleParameters.md)| Specifies the request body to update a Role. |
 
 ### Return type
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **preserve_acls** | **bool, none_type** | Whether to preserve the ACLs of the original file. | [optional] 
 **preserve_attributes** | **bool, none_type** | Specifies whether to preserve file/folder attributes during recovery. | [optional] 
 **preserve_timestamps** | **bool, none_type** | Whether to preserve the original time stamps. | [optional] 
+**restore_entity_type** | **str, none_type** | Specifies the restore type (restore everything or ACLs only) when restoring or downloading files or folders from a Physical file based or block based backup snapshot. | [optional] 
 **restore_to_original_paths** | **bool, none_type** | If this is true, then files will be restored to original paths. | [optional] 
 **save_success_files** | **bool, none_type** | Specifies whether to save success files or not. Default value is false | [optional] 
 **vlan_config** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client&#39;s (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery. | [optional] 

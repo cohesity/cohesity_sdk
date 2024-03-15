@@ -71,6 +71,7 @@ class SnapshotInfo(ModelNormal):
             'KCURRENTATTEMPTRESUMING': "kCurrentAttemptResuming",
             'KCURRENTATTEMPTPAUSING': "kCurrentAttemptPausing",
             'KWAITINGFOROLDERBACKUPRUN': "kWaitingForOlderBackupRun",
+            'KSKIPPED': "kSkipped",
         },
     }
 
@@ -98,6 +99,7 @@ class SnapshotInfo(ModelNormal):
             'data_lock_constraints': (DataLockConstraints,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'expiry_time_usecs': (int, none_type,),  # noqa: E501
+            'indexing_task_id': (str, none_type,),  # noqa: E501
             'is_manually_deleted': (bool, none_type,),  # noqa: E501
             'permit_grant_time_usecs': (int, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
@@ -106,6 +108,7 @@ class SnapshotInfo(ModelNormal):
             'snapshot_id': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'stats': (BackupDataStats,),  # noqa: E501
+            'stats_task_id': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'status_message': (str, none_type,),  # noqa: E501
             'total_file_count': (int, none_type,),  # noqa: E501
@@ -124,6 +127,7 @@ class SnapshotInfo(ModelNormal):
         'data_lock_constraints': 'dataLockConstraints',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
+        'indexing_task_id': 'indexingTaskId',  # noqa: E501
         'is_manually_deleted': 'isManuallyDeleted',  # noqa: E501
         'permit_grant_time_usecs': 'permitGrantTimeUsecs',  # noqa: E501
         'progress_task_id': 'progressTaskId',  # noqa: E501
@@ -132,6 +136,7 @@ class SnapshotInfo(ModelNormal):
         'snapshot_id': 'snapshotId',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'stats_task_id': 'statsTaskId',  # noqa: E501
         'status': 'status',  # noqa: E501
         'status_message': 'statusMessage',  # noqa: E501
         'total_file_count': 'totalFileCount',  # noqa: E501
@@ -190,14 +195,16 @@ class SnapshotInfo(ModelNormal):
             data_lock_constraints (DataLockConstraints): [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             expiry_time_usecs (int, none_type): Specifies the expiry time of attempt in Unix epoch Timestamp (in microseconds) for an object.. [optional]  # noqa: E501
+            indexing_task_id (str, none_type): Progress monitor task for the indexing of documents in an object.. [optional]  # noqa: E501
             is_manually_deleted (bool, none_type): Specifies whether the snapshot is deleted manually.. [optional]  # noqa: E501
             permit_grant_time_usecs (int, none_type): Specifies the time when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated to the time when permit is granted again.. [optional]  # noqa: E501
-            progress_task_id (str, none_type): Progress monitor task for an object.. [optional]  # noqa: E501
+            progress_task_id (str, none_type): Progress monitor task for backup of the object.. [optional]  # noqa: E501
             queue_duration_usecs (int, none_type): Specifies the duration between the startTime and when gatekeeper permit is granted to the backup task. If the backup task is rescheduled due to errors, the field is updated considering the time when permit is granted again. Queue duration = PermitGrantTimeUsecs - StartTimeUsecs. [optional]  # noqa: E501
             snapshot_creation_time_usecs (int, none_type): Specifies the time at which the source snapshot was taken in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             snapshot_id (str, none_type): Snapshot id for a successful snapshot. This field will not be set if the Protection Group Run has no successful attempt.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of attempt in Unix epoch Timestamp(in microseconds) for an object.. [optional]  # noqa: E501
             stats (BackupDataStats): [optional]  # noqa: E501
+            stats_task_id (str, none_type): Stats task for an object.. [optional]  # noqa: E501
             status (str, none_type): Status of snapshot.. [optional]  # noqa: E501
             status_message (str, none_type): A message decribing the status. This will be populated currently only for kWaitingForOlderBackupRun status.. [optional]  # noqa: E501
             total_file_count (int, none_type): The total number of file and directory entities visited in this backup. Only applicable to file based backups.. [optional]  # noqa: E501

@@ -86,6 +86,7 @@ class RecoverOracleAppOriginalSourceConfig(ModelComposed):
             'attempt_complete_recovery': (bool, none_type,),  # noqa: E501
             'roll_forward_log_path_vec': ([str], none_type,),  # noqa: E501
             'roll_forward_time_msecs': (int, none_type,),  # noqa: E501
+            'stop_active_passive': (bool, none_type,),  # noqa: E501
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
             'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'oracle_archive_log_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -107,6 +108,7 @@ class RecoverOracleAppOriginalSourceConfig(ModelComposed):
         'attempt_complete_recovery': 'attemptCompleteRecovery',  # noqa: E501
         'roll_forward_log_path_vec': 'rollForwardLogPathVec',  # noqa: E501
         'roll_forward_time_msecs': 'rollForwardTimeMsecs',  # noqa: E501
+        'stop_active_passive': 'stopActivePassive',  # noqa: E501
         'db_channels': 'dbChannels',  # noqa: E501
         'granular_restore_info': 'granularRestoreInfo',  # noqa: E501
         'oracle_archive_log_info': 'oracleArchiveLogInfo',  # noqa: E501
@@ -169,6 +171,7 @@ class RecoverOracleAppOriginalSourceConfig(ModelComposed):
             attempt_complete_recovery (bool, none_type): Whether or not this is a complete recovery attempt.. [optional]  # noqa: E501
             roll_forward_log_path_vec ([str], none_type): List of archive logs to apply on Database after overwrite restore.. [optional]  # noqa: E501
             roll_forward_time_msecs (int, none_type): UTC time in msecs till which we have to roll-forward the database.. [optional]  # noqa: E501
+            stop_active_passive (bool, none_type): Specifies whether allowed to automatically stop active passive resource.. [optional]  # noqa: E501
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
             granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501
             oracle_archive_log_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.. [optional]  # noqa: E501
