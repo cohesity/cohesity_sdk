@@ -28,6 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_tiering_policy import CommonTieringPolicy
+    from cohesity_sdk.cluster.model.data_tiering_tag_object import DataTieringTagObject
     from cohesity_sdk.cluster.model.downtiering_file_age_policy import DowntieringFileAgePolicy
     from cohesity_sdk.cluster.model.downtiering_policy_all_of import DowntieringPolicyAllOf
     from cohesity_sdk.cluster.model.downtiering_target import DowntieringTarget
@@ -36,6 +37,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.cluster.model.retention import Retention
     globals()['CommonTieringPolicy'] = CommonTieringPolicy
+    globals()['DataTieringTagObject'] = DataTieringTagObject
     globals()['DowntieringFileAgePolicy'] = DowntieringFileAgePolicy
     globals()['DowntieringPolicyAllOf'] = DowntieringPolicyAllOf
     globals()['DowntieringTarget'] = DowntieringTarget
@@ -106,6 +108,7 @@ class DowntieringPolicy(ModelComposed):
             'qos_policy': (str, none_type,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
             'skip_back_symlink': (bool, none_type,),  # noqa: E501
+            'tags_info': ([DataTieringTagObject], none_type,),  # noqa: E501
             'target': (DowntieringTarget,),  # noqa: E501
             'tiering_goal': (int, none_type,),  # noqa: E501
             'enable_audit_logging': (bool, none_type,),  # noqa: E501
@@ -126,6 +129,7 @@ class DowntieringPolicy(ModelComposed):
         'qos_policy': 'qosPolicy',  # noqa: E501
         'retention': 'retention',  # noqa: E501
         'skip_back_symlink': 'skipBackSymlink',  # noqa: E501
+        'tags_info': 'tagsInfo',  # noqa: E501
         'target': 'target',  # noqa: E501
         'tiering_goal': 'tieringGoal',  # noqa: E501
         'enable_audit_logging': 'enableAuditLogging',  # noqa: E501
@@ -187,6 +191,7 @@ class DowntieringPolicy(ModelComposed):
             qos_policy (str, none_type): Specifies whether the data tiering task will be written to HDD or SSD.. [optional]  # noqa: E501
             retention (Retention): [optional]  # noqa: E501
             skip_back_symlink (bool, none_type): Specifies whether to create a symlink for the migrated data from source to target.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            tags_info ([DataTieringTagObject], none_type): Array of Tag objects used to represent different file based policies. [optional]  # noqa: E501
             target (DowntieringTarget): [optional]  # noqa: E501
             tiering_goal (int, none_type): Specifies the maximum amount of data that should be present on source after downtiering.. [optional]  # noqa: E501
             enable_audit_logging (bool, none_type): Specifies whether to audit log the file tiering activity.. [optional] if omitted the server will use the default value of False  # noqa: E501

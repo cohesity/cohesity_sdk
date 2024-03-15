@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **id** | **int, none_type** | Unique id for each Uda connector. | [optional] 
 **label** | **str, none_type** | Label to be shown On UI screen. | [optional] 
 **source_type** | **str, none_type** | Type of the uda connector. | [optional] 
+**syntax** | **int, none_type** | Syntax used for configuration file. | [optional] 
 **ui_feature_flag** | **str, none_type** | UI feature flag that controls the visibility of the connector. | [optional] 
 **version** | **int, none_type** | Version of the connector. | [optional] 
 

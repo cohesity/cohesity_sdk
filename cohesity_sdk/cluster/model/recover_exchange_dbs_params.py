@@ -77,8 +77,8 @@ class RecoverExchangeDbsParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'target_environment': (str,),  # noqa: E501
             'recover_to_new_source': (bool,),  # noqa: E501
+            'target_environment': (str,),  # noqa: E501
             'exchange_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -89,8 +89,8 @@ class RecoverExchangeDbsParams(ModelNormal):
 
 
     attribute_map = {
-        'target_environment': 'targetEnvironment',  # noqa: E501
         'recover_to_new_source': 'recoverToNewSource',  # noqa: E501
+        'target_environment': 'targetEnvironment',  # noqa: E501
         'exchange_target_params': 'exchangeTargetParams',  # noqa: E501
     }
 
@@ -173,8 +173,8 @@ class RecoverExchangeDbsParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.target_environment = target_environment
         self.recover_to_new_source = recover_to_new_source
+        self.target_environment = target_environment
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

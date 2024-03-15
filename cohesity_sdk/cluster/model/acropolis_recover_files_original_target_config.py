@@ -75,8 +75,8 @@ class AcropolisRecoverFilesOriginalTargetConfig(ModelNormal):
         """
         return {
             'recover_to_original_path': (bool, none_type,),  # noqa: E501
-            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'alternate_path': (str, none_type,),  # noqa: E501
+            'target_vm_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,8 +87,8 @@ class AcropolisRecoverFilesOriginalTargetConfig(ModelNormal):
 
     attribute_map = {
         'recover_to_original_path': 'recoverToOriginalPath',  # noqa: E501
-        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
         'alternate_path': 'alternatePath',  # noqa: E501
+        'target_vm_credentials': 'targetVmCredentials',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -103,12 +103,11 @@ class AcropolisRecoverFilesOriginalTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, recover_to_original_path, target_vm_credentials, *args, **kwargs):  # noqa: E501
+    def __init__(self, recover_to_original_path, *args, **kwargs):  # noqa: E501
         """AcropolisRecoverFilesOriginalTargetConfig - a model defined in OpenAPI
 
         Args:
             recover_to_original_path (bool, none_type): Specifies whether to recover files and folders to the original path location. If false, alternatePath must be specified.
-            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -143,6 +142,7 @@ class AcropolisRecoverFilesOriginalTargetConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             alternate_path (str, none_type): Specifies the alternate path location to recover files to.. [optional]  # noqa: E501
+            target_vm_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the credentials for the target VM.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -170,7 +170,6 @@ class AcropolisRecoverFilesOriginalTargetConfig(ModelNormal):
 
 
         self.recover_to_original_path = recover_to_original_path
-        self.target_vm_credentials = target_vm_credentials
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

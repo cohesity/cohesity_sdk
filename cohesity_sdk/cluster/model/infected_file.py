@@ -79,17 +79,18 @@ class InfectedFile(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'entity_id': (int, none_type,),  # noqa: E501
+            'root_inode_id': (int, none_type,),  # noqa: E501
+            'view_id': (int, none_type,),  # noqa: E501
             'antivirus_service_group_name': (str, none_type,),  # noqa: E501
             'antivirus_service_icap_uri': (str, none_type,),  # noqa: E501
             'detected_time_usecs': (int, none_type,),  # noqa: E501
-            'entity_id': (int, none_type,),  # noqa: E501
             'last_modified_time_usecs': (int, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
-            'root_inode_id': (int, none_type,),  # noqa: E501
             'scanned_time_usecs': (int, none_type,),  # noqa: E501
             'state': (str, none_type,),  # noqa: E501
             'threat_descriptions': ([str], none_type,),  # noqa: E501
-            'view_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,17 +100,18 @@ class InfectedFile(ModelNormal):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
+        'root_inode_id': 'rootInodeId',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
         'antivirus_service_group_name': 'antivirusServiceGroupName',  # noqa: E501
         'antivirus_service_icap_uri': 'antivirusServiceIcapUri',  # noqa: E501
         'detected_time_usecs': 'detectedTimeUsecs',  # noqa: E501
-        'entity_id': 'entityId',  # noqa: E501
         'last_modified_time_usecs': 'lastModifiedTimeUsecs',  # noqa: E501
         'path': 'path',  # noqa: E501
-        'root_inode_id': 'rootInodeId',  # noqa: E501
         'scanned_time_usecs': 'scannedTimeUsecs',  # noqa: E501
         'state': 'state',  # noqa: E501
         'threat_descriptions': 'threatDescriptions',  # noqa: E501
-        'view_id': 'viewId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -124,8 +126,13 @@ class InfectedFile(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, entity_id, root_inode_id, view_id, *args, **kwargs):  # noqa: E501
         """InfectedFile - a model defined in OpenAPI
+
+        Args:
+            entity_id (int, none_type): Specifies the entity id of the infected file.
+            root_inode_id (int, none_type): Specifies the root inode id of the file system which the infected file belongs to.
+            view_id (int, none_type): Specifies the view id which the infected file belongs to.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -162,14 +169,12 @@ class InfectedFile(ModelNormal):
             antivirus_service_group_name (str, none_type): Specifies the Antivirus Service group which detected the threats.. [optional]  # noqa: E501
             antivirus_service_icap_uri (str, none_type): Specifies the ICAP Uri of the Antivirus Service which detected the threats.. [optional]  # noqa: E501
             detected_time_usecs (int, none_type): Specifies the timestamp in microseconds when the threats were detected.. [optional]  # noqa: E501
-            entity_id (int, none_type): Specifies the entity id of the infected file.. [optional]  # noqa: E501
             last_modified_time_usecs (int, none_type): Specifies the timestamp in microseconds when this file was last modified.. [optional]  # noqa: E501
             path (str, none_type): Specifies the infected file path.. [optional]  # noqa: E501
-            root_inode_id (int, none_type): Specifies the root inode id of the file system which the infected file belongs to.. [optional]  # noqa: E501
             scanned_time_usecs (int, none_type): Specifies the timestamp in microseconds when inode was scanned for viruses.. [optional]  # noqa: E501
-            state (str, none_type): Sepcifies the state of the infected file.. [optional]  # noqa: E501
+            state (str, none_type): Specifies the state of the infected file.. [optional]  # noqa: E501
             threat_descriptions ([str], none_type): Specifies a list of virus threat descriptions found in the file.. [optional]  # noqa: E501
-            view_id (int, none_type): Specifies the view id which the infected file belongs to.. [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the View name to which the infected file belongs to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -196,6 +201,9 @@ class InfectedFile(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.entity_id = entity_id
+        self.root_inode_id = root_inode_id
+        self.view_id = view_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -100,6 +100,7 @@ class CreateStorageDomainParam(ModelComposed):
             'id': (int, none_type,),  # noqa: E501
             'kerberos_realm_name': (str, none_type,),  # noqa: E501
             'kms_server_id': (int, none_type,),  # noqa: E501
+            'last_key_rotation_timestamp_msecs': (int, none_type,),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
             'nis_domain_names': ([str], none_type,),  # noqa: E501
             'physical_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -136,6 +137,7 @@ class CreateStorageDomainParam(ModelComposed):
         'id': 'id',  # noqa: E501
         'kerberos_realm_name': 'kerberosRealmName',  # noqa: E501
         'kms_server_id': 'kmsServerId',  # noqa: E501
+        'last_key_rotation_timestamp_msecs': 'lastKeyRotationTimestampMsecs',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
         'nis_domain_names': 'nisDomainNames',  # noqa: E501
         'physical_quota': 'physicalQuota',  # noqa: E501
@@ -215,6 +217,7 @@ class CreateStorageDomainParam(ModelComposed):
             id (int, none_type): Specifies the Storage Domain id.. [optional]  # noqa: E501
             kerberos_realm_name (str, none_type): Specifies the Kerberos realm name that this Storage Domain is mapped to.. [optional]  # noqa: E501
             kms_server_id (int, none_type): Specifies the associated KMS server id.. [optional]  # noqa: E501
+            last_key_rotation_timestamp_msecs (int, none_type): Last key rotation timestamp in msecs for storage domain.. [optional]  # noqa: E501
             ldap_provider_id (int, none_type): Specifies the LDAP provider id that this Storage Domain is mapped to.. [optional]  # noqa: E501
             nis_domain_names ([str], none_type): Specifies the NIS domain names that this Storage Domain is mapped to.. [optional]  # noqa: E501
             physical_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies a quota limit for physical usage of this Storage Domain. This quota defines a limit of data that can be physically (after data size is reduced by block tracking, compression and deduplication) stored on this storage domain. A new write will not be allowed when the storage domain usage will exceeds the specified quota. Due to the latency of calculating usage across all nodes, the actual storage domain usage may exceed the quota limit by a little bit.. [optional]  # noqa: E501

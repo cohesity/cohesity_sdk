@@ -28,6 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_source_registration_params import AwsSourceRegistrationParams
+    from cohesity_sdk.cluster.model.azure_source_registration_params import AzureSourceRegistrationParams
     from cohesity_sdk.cluster.model.cassandra_source_registration_params import CassandraSourceRegistrationParams
     from cohesity_sdk.cluster.model.common_source_registration_request_params import CommonSourceRegistrationRequestParams
     from cohesity_sdk.cluster.model.connection_config import ConnectionConfig
@@ -41,15 +42,17 @@ def lazy_import():
     from cohesity_sdk.cluster.model.hive_source_registration_params import HiveSourceRegistrationParams
     from cohesity_sdk.cluster.model.hyper_v_source_registration_params import HyperVSourceRegistrationParams
     from cohesity_sdk.cluster.model.isilon_registration_params import IsilonRegistrationParams
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
     from cohesity_sdk.cluster.model.netapp_registration_params import NetappRegistrationParams
     from cohesity_sdk.cluster.model.office365_source_registration_params import Office365SourceRegistrationParams
     from cohesity_sdk.cluster.model.physical_source_registration_params import PhysicalSourceRegistrationParams
     from cohesity_sdk.cluster.model.sfdc_source_registration_params import SfdcSourceRegistrationParams
-    from cohesity_sdk.cluster.model.source_registration_all_of import SourceRegistrationAllOf
+    from cohesity_sdk.cluster.model.source_registration_request_params_all_of import SourceRegistrationRequestParamsAllOf
     from cohesity_sdk.cluster.model.uda_source_registration_params import UdaSourceRegistrationParams
     from cohesity_sdk.cluster.model.vmware_source_registration_params import VmwareSourceRegistrationParams
     globals()['AwsSourceRegistrationParams'] = AwsSourceRegistrationParams
+    globals()['AzureSourceRegistrationParams'] = AzureSourceRegistrationParams
     globals()['CassandraSourceRegistrationParams'] = CassandraSourceRegistrationParams
     globals()['CommonSourceRegistrationRequestParams'] = CommonSourceRegistrationRequestParams
     globals()['ConnectionConfig'] = ConnectionConfig
@@ -63,12 +66,13 @@ def lazy_import():
     globals()['HiveSourceRegistrationParams'] = HiveSourceRegistrationParams
     globals()['HyperVSourceRegistrationParams'] = HyperVSourceRegistrationParams
     globals()['IsilonRegistrationParams'] = IsilonRegistrationParams
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['MongoDBSourceRegistrationParams'] = MongoDBSourceRegistrationParams
     globals()['NetappRegistrationParams'] = NetappRegistrationParams
     globals()['Office365SourceRegistrationParams'] = Office365SourceRegistrationParams
     globals()['PhysicalSourceRegistrationParams'] = PhysicalSourceRegistrationParams
     globals()['SfdcSourceRegistrationParams'] = SfdcSourceRegistrationParams
-    globals()['SourceRegistrationAllOf'] = SourceRegistrationAllOf
+    globals()['SourceRegistrationRequestParamsAllOf'] = SourceRegistrationRequestParamsAllOf
     globals()['UdaSourceRegistrationParams'] = UdaSourceRegistrationParams
     globals()['VmwareSourceRegistrationParams'] = VmwareSourceRegistrationParams
 
@@ -111,6 +115,7 @@ class SourceRegistrationRequestParams(ModelComposed):
             'KAZURE': "kAzure",
             'KPHYSICAL': "kPhysical",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KNETAPP': "kNetapp",
             'KGENERICNAS': "kGenericNas",
@@ -154,6 +159,7 @@ class SourceRegistrationRequestParams(ModelComposed):
         lazy_import()
         return {
             'environment': (str, none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
@@ -161,6 +167,7 @@ class SourceRegistrationRequestParams(ModelComposed):
             'is_internal_encrypted': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
+            'azure_params': (AzureSourceRegistrationParams,),  # noqa: E501
             'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
             'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
             'elastifile_params': (ElastifileRegistrationParams,),  # noqa: E501
@@ -189,6 +196,7 @@ class SourceRegistrationRequestParams(ModelComposed):
 
     attribute_map = {
         'environment': 'environment',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
@@ -196,6 +204,7 @@ class SourceRegistrationRequestParams(ModelComposed):
         'is_internal_encrypted': 'isInternalEncrypted',  # noqa: E501
         'name': 'name',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
@@ -267,6 +276,7 @@ class SourceRegistrationRequestParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection source.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
@@ -274,6 +284,7 @@ class SourceRegistrationRequestParams(ModelComposed):
             is_internal_encrypted (bool, none_type): Specifies if credentials are encrypted by internal key.. [optional]  # noqa: E501
             name (str, none_type): A user specified name for this source.. [optional]  # noqa: E501
             aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
+            azure_params (AzureSourceRegistrationParams): [optional]  # noqa: E501
             cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
             elastifile_params (ElastifileRegistrationParams): [optional]  # noqa: E501
@@ -365,7 +376,7 @@ class SourceRegistrationRequestParams(ModelComposed):
           ],
           'allOf': [
               CommonSourceRegistrationRequestParams,
-              SourceRegistrationAllOf,
+              SourceRegistrationRequestParamsAllOf,
           ],
           'oneOf': [
           ],

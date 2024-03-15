@@ -81,6 +81,7 @@ class RecoverSiteParams(ModelNormal):
         return {
             'objects': ([ObjectSiteParam], none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'recover_preservation_hold_library': (bool, none_type,),  # noqa: E501
             'target_domain_object_id': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'target_site': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
@@ -94,6 +95,7 @@ class RecoverSiteParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'recover_preservation_hold_library': 'recoverPreservationHoldLibrary',  # noqa: E501
         'target_domain_object_id': 'targetDomainObjectId',  # noqa: E501
         'target_site': 'targetSite',  # noqa: E501
     }
@@ -149,6 +151,7 @@ class RecoverSiteParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering the doc libs of a site, if one or more of doc libs failed to recover. Default value is false.. [optional]  # noqa: E501
+            recover_preservation_hold_library (bool, none_type): Specifies whether to recover Preservation Hold Library associated with the Sites selected for restore. Default value is false.. [optional]  # noqa: E501
             target_domain_object_id ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the object id of the target domain in case of full recovery of a site to a target domain.. [optional]  # noqa: E501
             target_site ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target Site to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
         """

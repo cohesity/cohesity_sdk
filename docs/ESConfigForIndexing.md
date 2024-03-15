@@ -1,6 +1,6 @@
 # ESConfigForIndexing
 
-Elasticsearch config for indexing in DMaaS.
+Elasticsearch config for indexing in AWS CE.
 
 ## Properties
 Name | Type | Description | Notes

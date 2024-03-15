@@ -21,11 +21,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.create_role_params import CreateRoleParams
+from cohesity_sdk.cluster.model.create_role_parameters import CreateRoleParameters
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.role import Role
 from cohesity_sdk.cluster.model.roles import Roles
-from cohesity_sdk.cluster.model.update_role_params import UpdateRoleParams
+from cohesity_sdk.cluster.model.update_role_parameters import UpdateRoleParameters
 
 
 class RoleApi(object):
@@ -55,7 +55,7 @@ class RoleApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateRoleParams): Specifies the request body to create a Role.
+                body (CreateRoleParameters): Specifies the request body to create a Role.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -140,7 +140,7 @@ class RoleApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateRoleParams,),
+                        (CreateRoleParameters,),
                 },
                 'attribute_map': {
                 },
@@ -429,7 +429,7 @@ class RoleApi(object):
 
             Args:
                 name (str): Specifies the name of Role to update.
-                body (UpdateRoleParams): Specifies the request body to update a Role.
+                body (UpdateRoleParameters): Specifies the request body to update a Role.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -520,7 +520,7 @@ class RoleApi(object):
                     'name':
                         (str,),
                     'body':
-                        (UpdateRoleParams,),
+                        (UpdateRoleParameters,),
                 },
                 'attribute_map': {
                     'name': 'name',

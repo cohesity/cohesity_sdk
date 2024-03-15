@@ -75,7 +75,6 @@ class RevertPatchesRequest(ModelNormal):
         """
         return {
             'service': (str,),  # noqa: E501
-            'patch_level': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -86,7 +85,6 @@ class RevertPatchesRequest(ModelNormal):
 
     attribute_map = {
         'service': 'service',  # noqa: E501
-        'patch_level': 'patchLevel',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -139,7 +137,6 @@ class RevertPatchesRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            patch_level (int, none_type): Specifies optional patch level upto which the patches should be reverted. If given, it should be between 1 and the current patch level inclusive.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

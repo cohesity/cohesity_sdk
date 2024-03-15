@@ -28,9 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_no_sql_recovery_options import CommonNoSqlRecoveryOptions
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.recover_hive_params_all_of import RecoverHiveParamsAllOf
     from cohesity_sdk.cluster.model.recover_hive_snapshot_params import RecoverHiveSnapshotParams
     globals()['CommonNoSqlRecoveryOptions'] = CommonNoSqlRecoveryOptions
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['RecoverHiveParamsAllOf'] = RecoverHiveParamsAllOf
     globals()['RecoverHiveSnapshotParams'] = RecoverHiveSnapshotParams
 
@@ -84,6 +86,7 @@ class RecoverHiveParams(ModelComposed):
         lazy_import()
         return {
             'snapshots': ([RecoverHiveSnapshotParams], none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
             'overwrite': (bool, none_type,),  # noqa: E501
@@ -100,6 +103,7 @@ class RecoverHiveParams(ModelComposed):
 
     attribute_map = {
         'snapshots': 'snapshots',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
         'overwrite': 'overwrite',  # noqa: E501
@@ -159,6 +163,7 @@ class RecoverHiveParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a recovery job.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             overwrite (bool, none_type): Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.. [optional]  # noqa: E501

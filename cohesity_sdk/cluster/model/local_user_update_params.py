@@ -82,7 +82,9 @@ class LocalUserUpdateParams(ModelComposed):
         lazy_import()
         return {
             'email': (str, none_type,),  # noqa: E501
+            'groups': ([str],),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
+            'primary_group': (str, none_type,),  # noqa: E501
             'current_password': (str, none_type,),  # noqa: E501
         }
 
@@ -94,7 +96,9 @@ class LocalUserUpdateParams(ModelComposed):
 
     attribute_map = {
         'email': 'email',  # noqa: E501
+        'groups': 'groups',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'primary_group': 'primaryGroup',  # noqa: E501
         'current_password': 'currentPassword',  # noqa: E501
     }
 
@@ -147,7 +151,9 @@ class LocalUserUpdateParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             email (str, none_type): Specifies the email address of the User.. [optional]  # noqa: E501
+            groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
             password (str, none_type): Specifies the password of the User.. [optional]  # noqa: E501
+            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
             current_password (str, none_type): Specifies the current password of the user. This is required when a session user tries to update his own password.. [optional]  # noqa: E501
         """
 

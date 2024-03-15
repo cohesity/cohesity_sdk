@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_hyper_v_protection_params import CommonHyperVProtectionParams
+    from cohesity_sdk.cluster.model.hyper_v_disk_info import HyperVDiskInfo
     from cohesity_sdk.cluster.model.hyper_v_protection_group_object_params import HyperVProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.hyper_v_protection_group_params_all_of import HyperVProtectionGroupParamsAllOf
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     globals()['CommonHyperVProtectionParams'] = CommonHyperVProtectionParams
+    globals()['HyperVDiskInfo'] = HyperVDiskInfo
     globals()['HyperVProtectionGroupObjectParams'] = HyperVProtectionGroupObjectParams
     globals()['HyperVProtectionGroupParamsAllOf'] = HyperVProtectionGroupParamsAllOf
     globals()['IndexingPolicy'] = IndexingPolicy
@@ -97,6 +99,8 @@ class HyperVProtectionGroupParams(ModelComposed):
             'cloud_migration': (bool, none_type,),  # noqa: E501
             'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
+            'global_exclude_disks': ([HyperVDiskInfo], none_type,),  # noqa: E501
+            'global_include_disks': ([HyperVDiskInfo], none_type,),  # noqa: E501
             'objects': ([HyperVProtectionGroupObjectParams],),  # noqa: E501
             'protection_type': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
@@ -117,6 +121,8 @@ class HyperVProtectionGroupParams(ModelComposed):
         'cloud_migration': 'cloudMigration',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
+        'global_exclude_disks': 'globalExcludeDisks',  # noqa: E501
+        'global_include_disks': 'globalIncludeDisks',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'protection_type': 'protectionType',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
@@ -178,6 +184,8 @@ class HyperVProtectionGroupParams(ModelComposed):
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
             exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected by this Protection Group. This can be used to ignore specific objects under a parent object which has been included for protection.. [optional]  # noqa: E501
             exclude_vm_tag_ids ([[int]], none_type): Array of Arrays of VM Tag Ids that Specify VMs to Exclude. Optionally specify a list of VMs to exclude from protecting by listing Protection Source ids of VM Tags in this two dimensional array. Using this two dimensional array of Tag ids, the Cluster generates a list of VMs to exclude from protecting, which are derived from intersections of the inner arrays and union of the outer array, as shown by the following example. For example a Datacenter is selected to be protected but you want to exclude all the 'Former Employees' VMs in the East and West but keep all the VMs for 'Former Employees' in the South which are also stored in this Datacenter, by specifying the following tag id array: [ [1000, 2221], [1000, 3031] ], where 1000 is the 'Former Employee' VM Tag id, 2221 is the 'East' VM Tag id and 3031 is the 'West' VM Tag id. The first inner array [1000, 2221] produces a list of VMs that are both tagged with 'Former Employees' and 'East' (an intersection). The second inner array [1000, 3031] produces a list of VMs that are both tagged with 'Former Employees' and 'West' (an intersection). The outer array combines the list of VMs from the two inner arrays. The list of resulting VMs are excluded from being protected this Job.. [optional]  # noqa: E501
+            global_exclude_disks ([HyperVDiskInfo], none_type): Specifies a global list of disks to be excluded for the all the VMs part of the protection group.. [optional]  # noqa: E501
+            global_include_disks ([HyperVDiskInfo], none_type): Specifies a global list of disks to be included for the all the VMs part of the protection group.. [optional]  # noqa: E501
             objects ([HyperVProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             protection_type (str, none_type): Specifies the Protection Group type. If not specified, then backup method is auto determined. Specifying RCT will forcibly use RCT backup for all VMs in this Protection Group. Available only for VMs with hardware version 8.0 and above, but is more efficient. Specifying VSS will forcibly use VSS backup for all VMs in this Protection Group. Available for VMs with hardware version 5.0 and above, but is slower than RCT backup.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501

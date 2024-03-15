@@ -67,6 +67,11 @@ class CancelObjectRunsParams(ModelNormal):
             'KORACLE': "kOracle",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
+            'KAZURESQL': "kAzureSQL",
         },
     }
 

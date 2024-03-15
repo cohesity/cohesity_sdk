@@ -27,11 +27,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.advanced_settings import AdvancedSettings
     from cohesity_sdk.cluster.model.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
     from cohesity_sdk.cluster.model.filter import Filter
     from cohesity_sdk.cluster.model.mssql_file_object_protection import MssqlFileObjectProtection
     from cohesity_sdk.cluster.model.mssql_file_object_protection_params_all_of import MssqlFileObjectProtectionParamsAllOf
     from cohesity_sdk.cluster.model.pre_post_script_params import PrePostScriptParams
+    globals()['AdvancedSettings'] = AdvancedSettings
     globals()['CommonMSSQLProtectionGroupParams'] = CommonMSSQLProtectionGroupParams
     globals()['Filter'] = Filter
     globals()['MssqlFileObjectProtection'] = MssqlFileObjectProtection
@@ -106,6 +108,7 @@ class MssqlFileObjectProtectionParams(ModelComposed):
         return {
             'objects': ([MssqlFileObjectProtection], none_type,),  # noqa: E501
             'aag_backup_preference_type': (str, none_type,),  # noqa: E501
+            'advanced_settings': (AdvancedSettings,),  # noqa: E501
             'backup_system_dbs': (bool, none_type,),  # noqa: E501
             'exclude_filters': ([Filter], none_type,),  # noqa: E501
             'full_backups_copy_only': (bool, none_type,),  # noqa: E501
@@ -125,6 +128,7 @@ class MssqlFileObjectProtectionParams(ModelComposed):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'aag_backup_preference_type': 'aagBackupPreferenceType',  # noqa: E501
+        'advanced_settings': 'advancedSettings',  # noqa: E501
         'backup_system_dbs': 'backupSystemDbs',  # noqa: E501
         'exclude_filters': 'excludeFilters',  # noqa: E501
         'full_backups_copy_only': 'fullBackupsCopyOnly',  # noqa: E501
@@ -187,6 +191,7 @@ class MssqlFileObjectProtectionParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             aag_backup_preference_type (str, none_type): Specifies the preference type for backing up databases that are part of an AAG. If not specified, then default preferences of the AAG server are applied. This field wont be applicable if user DB preference is set to skip AAG databases.. [optional]  # noqa: E501
+            advanced_settings (AdvancedSettings): [optional]  # noqa: E501
             backup_system_dbs (bool, none_type): Specifies whether to backup system databases. If not specified then parameter is set to true.. [optional]  # noqa: E501
             exclude_filters ([Filter], none_type): Specifies the list of exclusion filters applied during the group creation or edit. These exclusion filters can be wildcard supported strings or regular expressions. Objects satisfying the will filters will be excluded during backup and also auto protected objects will be ignored if filtered by any of the filters.. [optional]  # noqa: E501
             full_backups_copy_only (bool, none_type): Specifies whether full backups should be copy-only.. [optional]  # noqa: E501

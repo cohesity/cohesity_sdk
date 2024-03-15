@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **qos_policy** | **str, none_type** | Specifies whether the data tiering task will be written to HDD or SSD. | [optional] 
 **retention** | [**Retention**](Retention.md) |  | [optional] 
 **skip_back_symlink** | **bool, none_type** | Specifies whether to create a symlink for the migrated data from source to target. | [optional]  if omitted the server will use the default value of True
+**tags_info** | [**[DataTieringTagObject], none_type**](DataTieringTagObject.md) | Array of Tag objects used to represent different file based policies | [optional] 
 **target** | [**DowntieringTarget**](DowntieringTarget.md) |  | [optional] 
 **tiering_goal** | **int, none_type** | Specifies the maximum amount of data that should be present on source after downtiering. | [optional] 
 **enable_audit_logging** | **bool, none_type** | Specifies whether to audit log the file tiering activity. | [optional]  if omitted the server will use the default value of False

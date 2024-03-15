@@ -71,6 +71,7 @@ class RemoteAdapterHost(ModelComposed):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+            'KVOS': "kVOS",
         },
     }
 

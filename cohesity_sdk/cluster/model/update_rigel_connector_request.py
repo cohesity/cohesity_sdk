@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_create_or_update_rigel_connector_request import CommonCreateOrUpdateRigelConnectorRequest
+    from cohesity_sdk.cluster.model.connector_cloud_metadata import ConnectorCloudMetadata
     globals()['CommonCreateOrUpdateRigelConnectorRequest'] = CommonCreateOrUpdateRigelConnectorRequest
+    globals()['ConnectorCloudMetadata'] = ConnectorCloudMetadata
 
 
 class UpdateRigelConnectorRequest(ModelComposed):
@@ -79,10 +81,12 @@ class UpdateRigelConnectorRequest(ModelComposed):
         """
         lazy_import()
         return {
-            'certificate_version': (int, none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
+            'certificate_version': (int, none_type,),  # noqa: E501
+            'certificate_version_list': ([int], none_type,),  # noqa: E501
+            'connector_cloud_metadata': (ConnectorCloudMetadata,),  # noqa: E501
         }
 
     @cached_property
@@ -92,10 +96,12 @@ class UpdateRigelConnectorRequest(ModelComposed):
 
 
     attribute_map = {
-        'certificate_version': 'certificateVersion',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'name': 'name',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
+        'certificate_version': 'certificateVersion',  # noqa: E501
+        'certificate_version_list': 'certificateVersionList',  # noqa: E501
+        'connector_cloud_metadata': 'connectorCloudMetadata',  # noqa: E501
     }
 
     required_properties = set([
@@ -111,11 +117,10 @@ class UpdateRigelConnectorRequest(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, certificate_version, connection_id, name, tenant_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, connection_id, name, tenant_id, *args, **kwargs):  # noqa: E501
         """UpdateRigelConnectorRequest - a model defined in OpenAPI
 
         Args:
-            certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.
             connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.
             name (str, none_type): Specifies the name of the connector.
             tenant_id (str, none_type): Specifies the id of the tenant which the connector belongs to.
@@ -152,6 +157,9 @@ class UpdateRigelConnectorRequest(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.. [optional]  # noqa: E501
+            certificate_version_list ([int], none_type): Specifies the list of accepted version of the connector's certificate. The version is used to revoke/renew connector's certificates.. [optional]  # noqa: E501
+            connector_cloud_metadata (ConnectorCloudMetadata): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -186,7 +194,6 @@ class UpdateRigelConnectorRequest(ModelComposed):
             '_visited_composed_classes': self._visited_composed_classes,
         }
         required_args = {
-            'certificate_version': certificate_version,
             'connection_id': connection_id,
             'name': name,
             'tenant_id': tenant_id,

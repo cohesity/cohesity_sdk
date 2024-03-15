@@ -27,9 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['ProtectionGroupAlertingPolicy'] = ProtectionGroupAlertingPolicy
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
@@ -73,9 +75,14 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
             'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
@@ -85,6 +92,7 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -146,10 +154,12 @@ class CommonProtectionGroupRequestParams(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
+            'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
             'pause_in_blackouts': (bool, none_type,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
@@ -169,10 +179,12 @@ class CommonProtectionGroupRequestParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
         'description': 'description',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
+        'last_modified_timestamp_usecs': 'lastModifiedTimestampUsecs',  # noqa: E501
         'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
         'priority': 'priority',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
@@ -234,10 +246,12 @@ class CommonProtectionGroupRequestParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'pauseInBlackouts' is set to true.. [optional]  # noqa: E501
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection job.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
+            last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
             pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501

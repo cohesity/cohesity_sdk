@@ -57,6 +57,13 @@ class AclGrantee(ModelNormal):
         ('type',): {
             'None': None,
             'REGISTEREDUSER': "RegisteredUser",
+            'GROUP': "Group",
+        },
+        ('group',): {
+            'None': None,
+            'AUTHENTICATEDUSERSGROUP': "AuthenticatedUsersGroup",
+            'ALLUSERSGROUP': "AllUsersGroup",
+            'LOGDELIVERYGROUP': "LogDeliveryGroup",
         },
     }
 
@@ -79,6 +86,7 @@ class AclGrantee(ModelNormal):
         """
         return {
             'type': (str, none_type,),  # noqa: E501
+            'group': (str, none_type,),  # noqa: E501
             'user_id': (str, none_type,),  # noqa: E501
         }
 
@@ -90,6 +98,7 @@ class AclGrantee(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
+        'group': 'group',  # noqa: E501
         'user_id': 'userId',  # noqa: E501
     }
 
@@ -105,13 +114,13 @@ class AclGrantee(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, *args, **kwargs):  # noqa: E501
         """AclGrantee - a model defined in OpenAPI
 
         Args:
+            type (str, none_type): Specifies the grantee type.
 
         Keyword Args:
-            type (str, none_type): Specifies the grantee type.. defaults to "RegisteredUser", must be one of ["RegisteredUser", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -143,10 +152,10 @@ class AclGrantee(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            user_id (str, none_type): Specifies the user id of the grantee.. [optional]  # noqa: E501
+            group (str, none_type): Specifies the group to which permissions are granted if the `type` is Group.. [optional]  # noqa: E501
+            user_id (str, none_type): Specifies the user id of the grantee if the `type` is Registered User.. [optional]  # noqa: E501
         """
 
-        type = kwargs.get('type', "RegisteredUser")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

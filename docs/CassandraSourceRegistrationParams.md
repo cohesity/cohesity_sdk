@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **is_dse_tiered_storage** | **bool** | Set to true if this cluster has DSE tiered storage. | 
 **seed_node** | **str** | Any one seed node of the Cassandra cluster. | 
 **dse_configuration_directory** | **str, none_type** | Directory from where DSE specific configuration can be read. This should be set only when you are using the DSE distribution of Cassandra. | [optional] 
-**ssh_password_credentials** | [**CassandraConnectionParamsSshPasswordCredentials**](CassandraConnectionParamsSshPasswordCredentials.md) |  | [optional] 
-**ssh_private_key_credentials** | [**CassandraConnectionParamsSshPrivateKeyCredentials**](CassandraConnectionParamsSshPrivateKeyCredentials.md) |  | [optional] 
+**ssh_password_credentials** | [**SshPasswordCredentials**](SshPasswordCredentials.md) |  | [optional] 
+**ssh_private_key_credentials** | [**SshPrivateKeyCredentials**](SshPrivateKeyCredentials.md) |  | [optional] 
 **cassandra_credentials** | [**CassandraSourceRegistrationParamsAllOfCassandraCredentials**](CassandraSourceRegistrationParamsAllOfCassandraCredentials.md) |  | [optional] 
 **commit_log_backup_location** | **str, none_type** | Commit Logs backup location on cassandra nodes | [optional] 
 **data_center_names** | **[str]** | Data centers for this cluster. | [optional] 

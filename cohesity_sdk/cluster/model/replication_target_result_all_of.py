@@ -72,6 +72,7 @@ class ReplicationTargetResultAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -197,7 +198,7 @@ class ReplicationTargetResultAllOf(ModelNormal):
             replication_task_id (str, none_type): Task UID for a replication protection run. This is for tasks that are replicated from another cluster.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of replication in Unix epoch Timestamp(in microseconds) for a target.. [optional]  # noqa: E501
             stats (ReplicationDataStats): [optional]  # noqa: E501
-            status (str, none_type): Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the replication for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -24,12 +24,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -84,12 +80,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = HeliosOnPremConfig(
         kubernetes_subnet_cidr="kubernetes_subnet_cidr_example",
@@ -115,6 +107,19 @@ body = HeliosOnPremConfig(
             ntp_servers=[
                 "ntp_servers_example",
             ],
+            secondary_dhcp_network_config=ClusterDhcpNetworkConfig(
+                dns_servers=[
+                    "dns_servers_example",
+                ],
+            ),
+            secondary_manual_network_config=ClusterManualNetworkConfig(
+                dns_servers=[
+                    "dns_servers_example",
+                ],
+                gateway="gateway_example",
+                subnet_ip="subnet_ip_example",
+                subnet_mask="subnet_mask_example",
+            ),
             use_dhcp=True,
             vip_host_name="vip_host_name_example",
         ),

@@ -60,6 +60,11 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
     """
 
     allowed_values = {
+        ('storage_class',): {
+            'None': None,
+            'S3COMPATIBLEREGULAR': "S3CompatibleRegular",
+            'S3COMPATIBLETAPEBASED': "S3CompatibleTapeBased",
+        },
     }
 
     validations = {
@@ -85,12 +90,14 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
             'bucket_name': (str, none_type,),  # noqa: E501
             'end_point': (str, none_type,),  # noqa: E501
             'is_aws_snowball': (bool, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
             'secret_access_key': (str, none_type,),  # noqa: E501
             'secure_connection': (bool, none_type,),  # noqa: E501
             'signature_version': (int, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
+            'storage_class': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,12 +111,14 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
         'bucket_name': 'bucketName',  # noqa: E501
         'end_point': 'endPoint',  # noqa: E501
         'is_aws_snowball': 'isAwsSnowball',  # noqa: E501
+        'region': 'region',  # noqa: E501
         'secret_access_key': 'secretAccessKey',  # noqa: E501
         'secure_connection': 'secureConnection',  # noqa: E501
         'signature_version': 'signatureVersion',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
+        'storage_class': 'storageClass',  # noqa: E501
     }
 
     required_properties = set([
@@ -166,12 +175,14 @@ class ArchivalS3CompExternalTargetParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             is_aws_snowball (bool, none_type): Specifies whether the external target is AWS Snowball.. [optional]  # noqa: E501
+            region (str, none_type): Specifies the region of the external target.. [optional]  # noqa: E501
             secret_access_key (str, none_type): Specifies the secret access key of the external target.. [optional]  # noqa: E501
             secure_connection (bool, none_type): Specifies the secure connection(https) is enabled or not.. [optional]  # noqa: E501
             signature_version (int, none_type): Specifies the aws signature version of the external target.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the S3 Compatible external target. [optional]  # noqa: E501
+            storage_class (str, none_type): Specifies the S3Compatible External Target storage class.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -41,12 +41,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateCsrRequest() # CreateCsrRequest | Specifies the parameters to create the Certificate Signing Requests.
 
@@ -106,12 +102,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateCsrRequest() # CreateCsrRequest | Specifies the parameters to create a Certificate Signing Request.
 
@@ -169,12 +161,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the csr to be deleted.
 
@@ -232,12 +220,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -292,12 +276,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the csr.
 
@@ -356,12 +336,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 service_name = "iris" # str | Specifies the Cohesity service name for which the CSR is generated. If this is not specified, all the csrs on the cluster will be returned. (optional) if omitted the server will use the default value of "iris"
 ids = [
@@ -425,12 +401,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -485,12 +457,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -546,12 +514,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = ImportCertificateByClientcsrRequest(
         certificate_client="certificate_client_example",
@@ -613,12 +577,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the certificate.
 
@@ -677,12 +637,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 ids = [
         "ids_example",
@@ -749,16 +705,12 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = ModifyCiphersRequestBody(
         ciphers=[
-            "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+            "TLS_AES_256_GCM_SHA384",
         ],
         enable=True,
     ) # ModifyCiphersRequestBody | Enable/Disable ciphers.
@@ -819,16 +771,12 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = ModifyObjectStoreCiphersRequestBody(
         ciphers=[
-            "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+            "TLS_AES_256_GCM_SHA384",
         ],
         enable=True,
     ) # ModifyObjectStoreCiphersRequestBody | Enable/Disable object store ciphers.
@@ -889,12 +837,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = RegisterTrustedCas(
         certificates=[
@@ -961,12 +905,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the certificate to be unregistered.
 
@@ -1025,12 +965,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = UpdateCertificateByCsrRequest(
         certificate="certificate_example",
@@ -1093,12 +1029,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = UpdateSecurityConfigRequest() # UpdateSecurityConfigRequest | Specifies the parameters to update security config.
 
@@ -1157,12 +1089,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the certificate to be validated.
 

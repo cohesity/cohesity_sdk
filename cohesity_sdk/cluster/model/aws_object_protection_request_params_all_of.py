@@ -29,11 +29,15 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_aurora_snapshot_manager_object_protection_params import AwsAuroraSnapshotManagerObjectProtectionParams
     from cohesity_sdk.cluster.model.aws_native_object_protection_params import AwsNativeObjectProtectionParams
+    from cohesity_sdk.cluster.model.aws_rds_postgres_protection_params import AwsRdsPostgresProtectionParams
     from cohesity_sdk.cluster.model.aws_rds_snapshot_manager_object_protection_params import AwsRdsSnapshotManagerObjectProtectionParams
+    from cohesity_sdk.cluster.model.aws_s3_protection_params import AwsS3ProtectionParams
     from cohesity_sdk.cluster.model.aws_snapshot_manager_object_protection_params import AwsSnapshotManagerObjectProtectionParams
     globals()['AwsAuroraSnapshotManagerObjectProtectionParams'] = AwsAuroraSnapshotManagerObjectProtectionParams
     globals()['AwsNativeObjectProtectionParams'] = AwsNativeObjectProtectionParams
+    globals()['AwsRdsPostgresProtectionParams'] = AwsRdsPostgresProtectionParams
     globals()['AwsRdsSnapshotManagerObjectProtectionParams'] = AwsRdsSnapshotManagerObjectProtectionParams
+    globals()['AwsS3ProtectionParams'] = AwsS3ProtectionParams
     globals()['AwsSnapshotManagerObjectProtectionParams'] = AwsSnapshotManagerObjectProtectionParams
 
 
@@ -87,7 +91,9 @@ class AwsObjectProtectionRequestParamsAllOf(ModelNormal):
         return {
             'aurora_snapshot_manager_protection_type_params': (AwsAuroraSnapshotManagerObjectProtectionParams,),  # noqa: E501
             'native_protection_type_params': (AwsNativeObjectProtectionParams,),  # noqa: E501
+            'rds_postgres_protection_type_params': (AwsRdsPostgresProtectionParams,),  # noqa: E501
             'rds_snapshot_manager_protection_type_params': (AwsRdsSnapshotManagerObjectProtectionParams,),  # noqa: E501
+            's3_protection_type_params': (AwsS3ProtectionParams,),  # noqa: E501
             'snapshot_manager_protection_type_params': (AwsSnapshotManagerObjectProtectionParams,),  # noqa: E501
         }
 
@@ -100,7 +106,9 @@ class AwsObjectProtectionRequestParamsAllOf(ModelNormal):
     attribute_map = {
         'aurora_snapshot_manager_protection_type_params': 'auroraSnapshotManagerProtectionTypeParams',  # noqa: E501
         'native_protection_type_params': 'nativeProtectionTypeParams',  # noqa: E501
+        'rds_postgres_protection_type_params': 'rdsPostgresProtectionTypeParams',  # noqa: E501
         'rds_snapshot_manager_protection_type_params': 'rdsSnapshotManagerProtectionTypeParams',  # noqa: E501
+        's3_protection_type_params': 's3ProtectionTypeParams',  # noqa: E501
         'snapshot_manager_protection_type_params': 'snapshotManagerProtectionTypeParams',  # noqa: E501
     }
 
@@ -153,7 +161,9 @@ class AwsObjectProtectionRequestParamsAllOf(ModelNormal):
 
             aurora_snapshot_manager_protection_type_params (AwsAuroraSnapshotManagerObjectProtectionParams): [optional]  # noqa: E501
             native_protection_type_params (AwsNativeObjectProtectionParams): [optional]  # noqa: E501
+            rds_postgres_protection_type_params (AwsRdsPostgresProtectionParams): [optional]  # noqa: E501
             rds_snapshot_manager_protection_type_params (AwsRdsSnapshotManagerObjectProtectionParams): [optional]  # noqa: E501
+            s3_protection_type_params (AwsS3ProtectionParams): [optional]  # noqa: E501
             snapshot_manager_protection_type_params (AwsSnapshotManagerObjectProtectionParams): [optional]  # noqa: E501
         """
 

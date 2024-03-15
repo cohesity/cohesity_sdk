@@ -82,7 +82,9 @@ class LocalUserParams(ModelComposed):
         lazy_import()
         return {
             'email': (str, none_type,),  # noqa: E501
+            'groups': ([str],),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
+            'primary_group': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,7 +95,9 @@ class LocalUserParams(ModelComposed):
 
     attribute_map = {
         'email': 'email',  # noqa: E501
+        'groups': 'groups',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'primary_group': 'primaryGroup',  # noqa: E501
     }
 
     required_properties = set([
@@ -145,7 +149,9 @@ class LocalUserParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             email (str, none_type): Specifies the email address of the User.. [optional]  # noqa: E501
+            groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
             password (str, none_type): Specifies the password of the User.. [optional]  # noqa: E501
+            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

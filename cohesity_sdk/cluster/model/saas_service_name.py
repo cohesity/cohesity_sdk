@@ -57,8 +57,10 @@ class SaasServiceName(ModelNormal):
         ('service',): {
             'DATAPROTECT': "DataProtect",
             'SITECONTINUITY': "SiteContinuity",
-            'DATAGOVERNANCE': "DataGovernance",
+            'DATAHAWK': "DataHawk",
             'RANSOMWARE': "Ransomware",
+            'FORTKNOXCOLD': "FortKnoxCold",
+            'DATAINSIGHTS': "DataInsights",
         },
     }
 

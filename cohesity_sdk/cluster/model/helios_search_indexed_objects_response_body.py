@@ -40,6 +40,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.helios_public_folder_items import HeliosPublicFolderItems
     from cohesity_sdk.cluster.model.helios_search_indexed_objects_cluster_error import HeliosSearchIndexedObjectsClusterError
     from cohesity_sdk.cluster.model.helios_search_indexed_objects_response_body_all_of import HeliosSearchIndexedObjectsResponseBodyAllOf
+    from cohesity_sdk.cluster.model.sfdc_records import SfdcRecords
     globals()['HeliosCassandraObjects'] = HeliosCassandraObjects
     globals()['HeliosCommonSearchIndexedObjectsResponseParams'] = HeliosCommonSearchIndexedObjectsResponseParams
     globals()['HeliosCouchbaseObjects'] = HeliosCouchbaseObjects
@@ -53,6 +54,7 @@ def lazy_import():
     globals()['HeliosPublicFolderItems'] = HeliosPublicFolderItems
     globals()['HeliosSearchIndexedObjectsClusterError'] = HeliosSearchIndexedObjectsClusterError
     globals()['HeliosSearchIndexedObjectsResponseBodyAllOf'] = HeliosSearchIndexedObjectsResponseBodyAllOf
+    globals()['SfdcRecords'] = SfdcRecords
 
 
 class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
@@ -94,6 +96,7 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
             'HDFSOBJECTS': "HDFSObjects",
             'EXCHANGEOBJECTS': "ExchangeObjects",
             'PUBLICFOLDERS': "PublicFolders",
+            'GROUPSOBJECTS': "GroupsObjects",
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",
@@ -134,6 +137,7 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
             'hive_objects': (HeliosHiveObjects,),  # noqa: E501
             'mongo_objects': (HeliosMongoObjects,),  # noqa: E501
             'public_folder_items': (HeliosPublicFolderItems,),  # noqa: E501
+            'sfdc_records': (SfdcRecords,),  # noqa: E501
         }
 
     @cached_property
@@ -156,6 +160,7 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
         'hive_objects': 'hiveObjects',  # noqa: E501
         'mongo_objects': 'mongoObjects',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
+        'sfdc_records': 'sfdcRecords',  # noqa: E501
     }
 
     required_properties = set([
@@ -219,6 +224,7 @@ class HeliosSearchIndexedObjectsResponseBody(ModelComposed):
             hive_objects (HeliosHiveObjects): [optional]  # noqa: E501
             mongo_objects (HeliosMongoObjects): [optional]  # noqa: E501
             public_folder_items (HeliosPublicFolderItems): [optional]  # noqa: E501
+            sfdc_records (SfdcRecords): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

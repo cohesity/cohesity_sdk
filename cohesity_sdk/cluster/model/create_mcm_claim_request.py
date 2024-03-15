@@ -28,8 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.mcm_cluster_claim_request_params import McmClusterClaimRequestParams
+    from cohesity_sdk.cluster.model.mcm_cohesion_claim_request_params import McmCohesionClaimRequestParams
+    from cohesity_sdk.cluster.model.mcm_ibm_storage_protect_claim_request_params import McmIBMStorageProtectClaimRequestParams
     from cohesity_sdk.cluster.model.mcm_rigel_claim_request_params import McmRigelClaimRequestParams
     globals()['McmClusterClaimRequestParams'] = McmClusterClaimRequestParams
+    globals()['McmCohesionClaimRequestParams'] = McmCohesionClaimRequestParams
+    globals()['McmIBMStorageProtectClaimRequestParams'] = McmIBMStorageProtectClaimRequestParams
     globals()['McmRigelClaimRequestParams'] = McmRigelClaimRequestParams
 
 
@@ -63,6 +67,8 @@ class CreateMcmClaimRequest(ModelNormal):
         ('entity_type',): {
             'RIGEL': "Rigel",
             'CLUSTER': "Cluster",
+            'COHESION': "Cohesion",
+            'IBMSTORAGEPROTECT': "IBMStorageProtect",
         },
     }
 
@@ -87,6 +93,8 @@ class CreateMcmClaimRequest(ModelNormal):
         return {
             'entity_type': (str,),  # noqa: E501
             'cluster_params': (McmClusterClaimRequestParams,),  # noqa: E501
+            'cohesion_params': (McmCohesionClaimRequestParams,),  # noqa: E501
+            'ibm_storage_protect_params': (McmIBMStorageProtectClaimRequestParams,),  # noqa: E501
             'rigel_params': (McmRigelClaimRequestParams,),  # noqa: E501
         }
 
@@ -99,6 +107,8 @@ class CreateMcmClaimRequest(ModelNormal):
     attribute_map = {
         'entity_type': 'entityType',  # noqa: E501
         'cluster_params': 'clusterParams',  # noqa: E501
+        'cohesion_params': 'cohesionParams',  # noqa: E501
+        'ibm_storage_protect_params': 'ibmStorageProtectParams',  # noqa: E501
         'rigel_params': 'rigelParams',  # noqa: E501
     }
 
@@ -153,6 +163,8 @@ class CreateMcmClaimRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cluster_params (McmClusterClaimRequestParams): [optional]  # noqa: E501
+            cohesion_params (McmCohesionClaimRequestParams): [optional]  # noqa: E501
+            ibm_storage_protect_params (McmIBMStorageProtectClaimRequestParams): [optional]  # noqa: E501
             rigel_params (McmRigelClaimRequestParams): [optional]  # noqa: E501
         """
 

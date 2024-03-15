@@ -64,6 +64,7 @@ class SfdcObjectProtectionResponseParams(ModelComposed):
 
     validations = {
         ('objects',): {
+            'max_items': 1,
             'min_items': 1,
         },
 

@@ -31,12 +31,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateEmailOtpRequestBody(
         domain="domain_example",
@@ -100,12 +96,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateTotpKeyRequestBody(
         totp_key_name="totp_key_name_example",
@@ -166,12 +158,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -226,12 +214,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -285,12 +269,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -343,12 +323,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -402,12 +378,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = MfaConfigInfo(
         authentication_types=[
@@ -473,12 +445,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = SupportMfaConfigInfo(
         email="email_example",
@@ -543,12 +511,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = VerifyTotpRequest(
         totp_code="totp_code_example",

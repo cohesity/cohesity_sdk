@@ -30,6 +30,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.common_object_summary import CommonObjectSummary
     from cohesity_sdk.cluster.model.object_all_of import ObjectAllOf
     from cohesity_sdk.cluster.model.object_protection_stats_summary import ObjectProtectionStatsSummary
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.object_type_v_center_params import ObjectTypeVCenterParams
     from cohesity_sdk.cluster.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.cluster.model.permission_info import PermissionInfo
@@ -38,6 +39,7 @@ def lazy_import():
     globals()['CommonObjectSummary'] = CommonObjectSummary
     globals()['ObjectAllOf'] = ObjectAllOf
     globals()['ObjectProtectionStatsSummary'] = ObjectProtectionStatsSummary
+    globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
     globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['PermissionInfo'] = PermissionInfo
@@ -79,6 +81,7 @@ class Object(ModelComposed):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -90,6 +93,7 @@ class Object(ModelComposed):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -168,18 +172,22 @@ class Object(ModelComposed):
             'KHYPERVHOST': "kHypervHost",
             'KHOSTCLUSTER': "kHostCluster",
             'KCUSTOMPROPERTY': "kCustomProperty",
+            'KTENANT': "kTenant",
             'KSUBSCRIPTION': "kSubscription",
             'KRESOURCEGROUP': "kResourceGroup",
             'KSTORAGEACCOUNT': "kStorageAccount",
             'KSTORAGEKEY': "kStorageKey",
             'KSTORAGECONTAINER': "kStorageContainer",
             'KSTORAGEBLOB': "kStorageBlob",
+            'KAPPLICATIONSECURITYGROUP': "kApplicationSecurityGroup",
             'KNETWORKSECURITYGROUP': "kNetworkSecurityGroup",
             'KVIRTUALNETWORK': "kVirtualNetwork",
             'KSUBNET': "kSubnet",
             'KCOMPUTEOPTIONS': "kComputeOptions",
             'KSNAPSHOTMANAGERPERMIT': "kSnapshotManagerPermit",
             'KAVAILABILITYSET': "kAvailabilitySet",
+            'KSQLSERVER': "kSQLServer",
+            'KSQLDATABASE': "kSQLDatabase",
             'KOVIRTMANAGER': "kOVirtManager",
             'KHOST': "kHost",
             'KSTORAGEDOMAIN': "kStorageDomain",
@@ -200,14 +208,17 @@ class Object(ModelComposed):
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
+            'KS3BUCKET': "kS3Bucket",
+            'KS3TAG': "kS3Tag",
+            'KKMSKEY': "kKmsKey",
+            'KRDSPOSTGRESDB': "kRDSPostgresDb",
+            'KAURORACLUSTERPOSTGRESDB': "kAuroraClusterPostgresDb",
             'KPROJECT': "kProject",
             'KLABEL': "kLabel",
             'KMETADATA': "kMetadata",
             'KVPCCONNECTOR': "kVPCConnector",
             'KPRISMCENTRAL': "kPrismCentral",
             'KOTHERHYPERVISORCLUSTER': "kOtherHypervisorCluster",
-            'KDFSGROUP': "kDfsGroup",
-            'KDFSTOPDIR': "kDfsTopDir",
             'KZONE': "kZone",
             'KMOUNTPOINT': "kMountPoint",
             'KSTORAGEARRAY': "kStorageArray",
@@ -215,6 +226,9 @@ class Object(ModelComposed):
             'KCONTAINER': "kContainer",
             'KFILESYSTEM': "kFilesystem",
             'KFILESET': "kFileset",
+            'KPUREPROTECTIONGROUP': "kPureProtectionGroup",
+            'KVOLUMEGROUP': "kVolumeGroup",
+            'KSTORAGEPOOL': "kStoragePool",
             'KVIEWBOX': "kViewBox",
             'KVIEW': "kView",
             'KWINDOWSCLUSTER': "kWindowsCluster",
@@ -235,6 +249,7 @@ class Object(ModelComposed):
             'KINSTANCE': "kInstance",
             'KAAG': "kAAG",
             'KAAGROOTCONTAINER': "kAAGRootContainer",
+            'KAAGDATABASE': "kAAGDatabase",
             'KRACROOTCONTAINER': "kRACRootContainer",
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
@@ -251,6 +266,7 @@ class Object(ModelComposed):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+            'KVOS': "kVOS",
         },
         ('protection_type',): {
             'None': None,
@@ -259,6 +275,9 @@ class Object(ModelComposed):
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURESQL': "kAzureSQL",
             'KFILE': "kFile",
             'KVOLUME': "kVolume",
         },
@@ -288,6 +307,7 @@ class Object(ModelComposed):
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
+            'child_objects': ([ObjectSummary], none_type,),  # noqa: E501
             'global_id': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
@@ -304,6 +324,7 @@ class Object(ModelComposed):
             'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'isilon_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'netapp_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -311,6 +332,7 @@ class Object(ModelComposed):
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
         }
 
@@ -326,6 +348,7 @@ class Object(ModelComposed):
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
+        'child_objects': 'childObjects',  # noqa: E501
         'global_id': 'globalId',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
@@ -342,6 +365,7 @@ class Object(ModelComposed):
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
+        'group_params': 'groupParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
@@ -349,6 +373,7 @@ class Object(ModelComposed):
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
@@ -405,6 +430,7 @@ class Object(ModelComposed):
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
+            child_objects ([ObjectSummary], none_type): Specifies child object details.. [optional]  # noqa: E501
             global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501
@@ -421,6 +447,7 @@ class Object(ModelComposed):
             flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Flashblade object.. [optional]  # noqa: E501
             generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GenericNas object.. [optional]  # noqa: E501
             gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
+            group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for M365 Group object.. [optional]  # noqa: E501
             isilon_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Isilon object.. [optional]  # noqa: E501
             mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
             netapp_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for NetApp object.. [optional]  # noqa: E501
@@ -428,6 +455,7 @@ class Object(ModelComposed):
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
             sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
             uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
+            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for a View.. [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
         """
 

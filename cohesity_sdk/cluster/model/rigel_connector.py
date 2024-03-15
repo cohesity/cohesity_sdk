@@ -80,6 +80,7 @@ class RigelConnector(ModelNormal):
         lazy_import()
         return {
             'certificate_version': (int, none_type,),  # noqa: E501
+            'certificate_version_list': ([int], none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connection_status': (ConnectorConnectionInfo,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
@@ -94,6 +95,7 @@ class RigelConnector(ModelNormal):
 
     attribute_map = {
         'certificate_version': 'certificateVersion',  # noqa: E501
+        'certificate_version_list': 'certificateVersionList',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connection_status': 'connectionStatus',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -148,6 +150,7 @@ class RigelConnector(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             certificate_version (int, none_type): Specifies the version of the connector's certificate. The version is used to revoke/renew connector's certificates.. [optional]  # noqa: E501
+            certificate_version_list ([int], none_type): Specifies the list of accepted version of the connector's certificate. The version is used to revoke/renew connector's certificates.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the Id of the connection which this connector belongs to.. [optional]  # noqa: E501
             connection_status (ConnectorConnectionInfo): [optional]  # noqa: E501
             id (int, none_type): Specifies the id of the connector.. [optional]  # noqa: E501

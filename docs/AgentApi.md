@@ -27,12 +27,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateUpgradeTaskRequest(
         agent_ids=[
@@ -100,12 +96,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = DownloadAgentRequestParams(
         aix_params=AixAgentParams(
@@ -124,6 +116,9 @@ body = DownloadAgentRequestParams(
         ),
         sap_oracle_params=SapOracleAgentParams(
             package_type="kScript",
+        ),
+        vmware_cdp_filter_params=VMWareCDPFilterParams(
+            esxi_version="esxi_version_example",
         ),
     ) # DownloadAgentRequestParams | Specifies agent details.
 
@@ -182,12 +177,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 ids = [
         1,
@@ -256,12 +247,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = AgentUpgradeTaskActionRequest(
         action="Retry",

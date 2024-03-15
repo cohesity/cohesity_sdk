@@ -81,10 +81,10 @@ class WorkloadSubType(ModelComposed):
         """
         lazy_import()
         return {
-            'name': (str, none_type,),  # noqa: E501
             'entity_id': (str, none_type,),  # noqa: E501
-            'schema': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'entities': ([EntityIdentifier], none_type,),  # noqa: E501
+            'schema': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +94,10 @@ class WorkloadSubType(ModelComposed):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'entity_id': 'entityId',  # noqa: E501
-        'schema': 'schema',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'entities': 'entities',  # noqa: E501
+        'schema': 'schema',  # noqa: E501
     }
 
     required_properties = set([
@@ -148,10 +148,10 @@ class WorkloadSubType(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            name (str, none_type): Specifies the name of an Entity.. [optional]  # noqa: E501
             entity_id (str, none_type): Specifies the Id of an Entity.. [optional]  # noqa: E501
-            schema (str, none_type): Specifies the Schema Name of Workload.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the name of an Entity.. [optional]  # noqa: E501
             entities ([EntityIdentifier], none_type): Specifies the entities part of Workload schema.. [optional]  # noqa: E501
+            schema (str, none_type): Specifies the Schema Name of Workload.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

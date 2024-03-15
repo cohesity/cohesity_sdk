@@ -56,6 +56,7 @@ class RecoverPureSanVolumeParams(ModelNormal):
     allowed_values = {
         ('target_environment',): {
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
         },
     }
 
@@ -104,13 +105,13 @@ class RecoverPureSanVolumeParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, target_environment, *args, **kwargs):  # noqa: E501
         """RecoverPureSanVolumeParams - a model defined in OpenAPI
 
         Args:
+            target_environment (str): Specifies the environment of the recovery target. The corresponding target params must be filled out.
 
         Keyword Args:
-            target_environment (str): Specifies the environment of the recovery target. The corresponding target params must be filled out.. defaults to "kPure", must be one of ["kPure", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -145,7 +146,6 @@ class RecoverPureSanVolumeParams(ModelNormal):
             pure_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters of the Pure SAN volume to recover to.. [optional]  # noqa: E501
         """
 
-        target_environment = kwargs.get('target_environment', "kPure")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

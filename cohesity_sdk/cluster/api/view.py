@@ -2341,6 +2341,7 @@ class ViewApi(object):
                 protocols ([str]): Specifies a list of protocols to filter the clients.. [optional]
                 view_ids ([int]): Specifies a list of View ids. Only clients connected to these Views will be returned.. [optional]
                 node_ip (str): Specifies a node ip. Only clients connected to this node will be returned.. [optional]
+                max_count (int): Specifies the maximum number of connections to return for SMB and NFS protocols respectively.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2405,6 +2406,7 @@ class ViewApi(object):
                     'protocols',
                     'view_ids',
                     'node_ip',
+                    'max_count',
                 ],
                 'required': [],
                 'nullable': [
@@ -2432,16 +2434,20 @@ class ViewApi(object):
                         ([int],),
                     'node_ip':
                         (str,),
+                    'max_count':
+                        (int,),
                 },
                 'attribute_map': {
                     'protocols': 'protocols',
                     'view_ids': 'viewIds',
                     'node_ip': 'nodeIp',
+                    'max_count': 'maxCount',
                 },
                 'location_map': {
                     'protocols': 'query',
                     'view_ids': 'query',
                     'node_ip': 'query',
+                    'max_count': 'query',
                 },
                 'collection_format_map': {
                     'protocols': 'csv',
@@ -2894,13 +2900,14 @@ class ViewApi(object):
                 filer_audit_log_enabled (bool): If set to true, only views with filer audit log enabled will be returned. If set to false, only views with filer audit log disabled will be returned.. [optional]
                 categories ([str]): Filter by a list of View categories.. [optional]
                 view_protection_types ([str]): Filter by a list of View protection types. Supported types: [Local Archival ReplicationOut ReplicationIn UnProtected]. UnProtected is mutually exclusive from remaining types.. [optional]
-                last_run_any_statuses ([str]): Filter by last any run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_local_backup_statuses ([str]): Filter by last local backup run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_replication_statuses ([str]): Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
-                last_run_archival_statuses ([str]): Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                last_run_any_statuses ([str]): Filter by last any run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_local_backup_statuses ([str]): Filter by last local backup run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_replication_statuses ([str]): Filter by last remote replication run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_archival_statuses ([str]): Filter by last cloud archival run status of the view.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 is_protected (bool): Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.. [optional]
                 qos_principal_ids ([int]): qosPrincipalIds contains ids of the QoS principal for which views are to be returned.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                include_deleted_protection_groups (bool): Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2996,6 +3003,7 @@ class ViewApi(object):
                     'is_protected',
                     'qos_principal_ids',
                     'use_cached_data',
+                    'include_deleted_protection_groups',
                 ],
                 'required': [],
                 'nullable': [
@@ -3049,7 +3057,8 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing"
+                        "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped"
                     },
                     ('last_run_local_backup_statuses',): {
 
@@ -3062,7 +3071,8 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing"
+                        "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped"
                     },
                     ('last_run_replication_statuses',): {
 
@@ -3075,7 +3085,8 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing"
+                        "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped"
                     },
                     ('last_run_archival_statuses',): {
 
@@ -3088,7 +3099,8 @@ class ViewApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing"
+                        "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped"
                     },
                 },
                 'openapi_types': {
@@ -3160,6 +3172,8 @@ class ViewApi(object):
                         ([int],),
                     'use_cached_data':
                         (bool,),
+                    'include_deleted_protection_groups':
+                        (bool,),
                 },
                 'attribute_map': {
                     'view_names': 'viewNames',
@@ -3196,6 +3210,7 @@ class ViewApi(object):
                     'is_protected': 'isProtected',
                     'qos_principal_ids': 'qosPrincipalIds',
                     'use_cached_data': 'useCachedData',
+                    'include_deleted_protection_groups': 'includeDeletedProtectionGroups',
                 },
                 'location_map': {
                     'view_names': 'query',
@@ -3232,6 +3247,7 @@ class ViewApi(object):
                     'is_protected': 'query',
                     'qos_principal_ids': 'query',
                     'use_cached_data': 'query',
+                    'include_deleted_protection_groups': 'query',
                 },
                 'collection_format_map': {
                     'view_names': 'csv',

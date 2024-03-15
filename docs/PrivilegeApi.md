@@ -23,12 +23,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 names = [
         "names_example",

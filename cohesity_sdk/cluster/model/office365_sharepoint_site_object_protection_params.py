@@ -30,9 +30,13 @@ def lazy_import():
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.cluster.model.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
     from cohesity_sdk.cluster.model.office365_object_protection_object_params import Office365ObjectProtectionObjectParams
+    from cohesity_sdk.cluster.model.office365_preservation_hold_library_params import Office365PreservationHoldLibraryParams
+    from cohesity_sdk.cluster.model.office365_sharepoint_site_object_protection_params_all_of import Office365SharepointSiteObjectProtectionParamsAllOf
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['Office365ObjectProtectionCommonParams'] = Office365ObjectProtectionCommonParams
     globals()['Office365ObjectProtectionObjectParams'] = Office365ObjectProtectionObjectParams
+    globals()['Office365PreservationHoldLibraryParams'] = Office365PreservationHoldLibraryParams
+    globals()['Office365SharepointSiteObjectProtectionParamsAllOf'] = Office365SharepointSiteObjectProtectionParamsAllOf
 
 
 class Office365SharepointSiteObjectProtectionParams(ModelComposed):
@@ -91,6 +95,8 @@ class Office365SharepointSiteObjectProtectionParams(ModelComposed):
             'indexing_policy': (IndexingPolicy,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
+            'exclude_paths': ([str], none_type,),  # noqa: E501
+            'preservation_hold_library_params': (Office365PreservationHoldLibraryParams,),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +110,8 @@ class Office365SharepointSiteObjectProtectionParams(ModelComposed):
         'indexing_policy': 'indexingPolicy',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
+        'exclude_paths': 'excludePaths',  # noqa: E501
+        'preservation_hold_library_params': 'preservationHoldLibraryParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -160,6 +168,8 @@ class Office365SharepointSiteObjectProtectionParams(ModelComposed):
             indexing_policy (IndexingPolicy): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
+            exclude_paths ([str], none_type): Array of paths to be excluded from backup. Specifies list of doclib/directory paths which should be excluded when backing up Office 365 source. supported exclusion: - doclib exclusion: whole doclib is excluded from backup. sample: /Doclib1 - directory exclusion: specified path in doclib will be excluded from backup. sample: /Doclib1/folderA/forderB Doclibs can be specified by either a) Doclib name - eg, Documents. b) Drive id of doclib - b!ZMSl2JRm0UeXLHfHR1m-iuD10p0CIV9qSa6TtgM Regular expressions are not supported. If not specified, all the doclibs within sharepoint site will be protected.. [optional]  # noqa: E501
+            preservation_hold_library_params (Office365PreservationHoldLibraryParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,6 +243,7 @@ class Office365SharepointSiteObjectProtectionParams(ModelComposed):
           ],
           'allOf': [
               Office365ObjectProtectionCommonParams,
+              Office365SharepointSiteObjectProtectionParamsAllOf,
           ],
           'oneOf': [
           ],

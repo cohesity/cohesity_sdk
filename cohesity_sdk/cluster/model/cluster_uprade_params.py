@@ -79,6 +79,7 @@ class ClusterUpradeParams(ModelNormal):
         """
         return {
             'type': (str,),  # noqa: E501
+            'abort_upgrade_on_checks_failure': (bool,),  # noqa: E501
             'url': (str,),  # noqa: E501
             'version_name': (str,),  # noqa: E501
         }
@@ -91,6 +92,7 @@ class ClusterUpradeParams(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
+        'abort_upgrade_on_checks_failure': 'abortUpgradeOnChecksFailure',  # noqa: E501
         'url': 'url',  # noqa: E501
         'version_name': 'versionName',  # noqa: E501
     }
@@ -145,6 +147,7 @@ class ClusterUpradeParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            abort_upgrade_on_checks_failure (bool): Specifies if pre upgrade healthchecks failure will cause upgrade to be aborted. By default we abort upgrade if there are healthchecks failures .Cluster will stop the upgrade.and present the failures which need to be resolved before proceeding with upgrade. If set to false upgrade will not be aborted on healthchecks failure.. [optional] if omitted the server will use the default value of True  # noqa: E501
             url (str): The URL where the package is hosted. This is required when the operation type is 'UploadPackageAndUpgrade'. [optional]  # noqa: E501
             version_name (str): Version name of the package. Example: 6.3.1h_release-20210714_0fad884e. This is required when the operation type is 'Upgrade'. [optional]  # noqa: E501
         """

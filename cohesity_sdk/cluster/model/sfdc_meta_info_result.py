@@ -79,8 +79,8 @@ class SfdcMetaInfoResult(ModelNormal):
         """
         lazy_import()
         return {
-            'parent_objects': ([SfdcDependentObject], none_type,),  # noqa: E501
             'child_objects': ([SfdcDependentObject], none_type,),  # noqa: E501
+            'parent_objects': ([SfdcDependentObject], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class SfdcMetaInfoResult(ModelNormal):
 
 
     attribute_map = {
-        'parent_objects': 'parentObjects',  # noqa: E501
         'child_objects': 'childObjects',  # noqa: E501
+        'parent_objects': 'parentObjects',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class SfdcMetaInfoResult(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            parent_objects ([SfdcDependentObject], none_type): Specifies the list of parent objects.. [optional]  # noqa: E501
             child_objects ([SfdcDependentObject], none_type): Specifies the list of child objects.. [optional]  # noqa: E501
+            parent_objects ([SfdcDependentObject], none_type): Specifies the list of parent objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

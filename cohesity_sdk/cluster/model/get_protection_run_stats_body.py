@@ -81,8 +81,8 @@ class GetProtectionRunStatsBody(ModelNormal):
         """
         lazy_import()
         return {
-            'local_run': (BackupRunStatsInfo,),  # noqa: E501
             'archival_run': ([ArchivalTargetStatsInfo], none_type,),  # noqa: E501
+            'local_run': (BackupRunStatsInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -92,8 +92,8 @@ class GetProtectionRunStatsBody(ModelNormal):
 
 
     attribute_map = {
-        'local_run': 'localRun',  # noqa: E501
         'archival_run': 'archivalRun',  # noqa: E501
+        'local_run': 'localRun',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,8 +143,8 @@ class GetProtectionRunStatsBody(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            local_run (BackupRunStatsInfo): [optional]  # noqa: E501
             archival_run ([ArchivalTargetStatsInfo], none_type): Stats for the archival run.. [optional]  # noqa: E501
+            local_run (BackupRunStatsInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

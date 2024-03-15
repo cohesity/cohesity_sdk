@@ -76,6 +76,7 @@ class AzureVmRecoveryTargetConfig(ModelNormal):
         return {
             'recover_to_new_source': (bool,),  # noqa: E501
             'new_source_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'original_source_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +88,7 @@ class AzureVmRecoveryTargetConfig(ModelNormal):
     attribute_map = {
         'recover_to_new_source': 'recoverToNewSource',  # noqa: E501
         'new_source_config': 'newSourceConfig',  # noqa: E501
+        'original_source_config': 'originalSourceConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +142,7 @@ class AzureVmRecoveryTargetConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             new_source_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the new destination Source configuration parameters where the VMs will be recovered. This is mandatory if recoverToNewSource is set to true.. [optional]  # noqa: E501
+            original_source_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Source configuration if VM's are being recovered to Original Source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **filter_documents_params** | [**FilterDocumentsParams**](FilterDocumentsParams.md) |  | 
 **snapshots** | [**[RecoverCouchbaseSnapshotParams], none_type**](RecoverCouchbaseSnapshotParams.md) | Specifies the local snapshot ids of the Objects to be recovered. | 
+**advanced_configs** | [**[KeyValuePair], none_type**](KeyValuePair.md) | Specifies the advanced configuration for a recovery job. | [optional] 
 **bandwidth_mbps** | **int, none_type** | Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster. | [optional] 
 **concurrency** | **int, none_type** | Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster. | [optional] 
 **overwrite** | **bool, none_type** | Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object. | [optional] 

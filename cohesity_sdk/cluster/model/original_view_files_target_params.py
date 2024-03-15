@@ -81,9 +81,9 @@ class OriginalViewFilesTargetParams(ModelNormal):
         return {
             'recover_to_original_path': (bool, none_type,),  # noqa: E501
             'alternate_path': (str, none_type,),  # noqa: E501
+            'continue_on_error': (bool, none_type,),  # noqa: E501
             'overwrite_existing_file': (bool, none_type,),  # noqa: E501
             'preserve_file_attributes': (bool, none_type,),  # noqa: E501
-            'continue_on_error': (bool, none_type,),  # noqa: E501
             'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
@@ -96,9 +96,9 @@ class OriginalViewFilesTargetParams(ModelNormal):
     attribute_map = {
         'recover_to_original_path': 'recoverToOriginalPath',  # noqa: E501
         'alternate_path': 'alternatePath',  # noqa: E501
+        'continue_on_error': 'continueOnError',  # noqa: E501
         'overwrite_existing_file': 'overwriteExistingFile',  # noqa: E501
         'preserve_file_attributes': 'preserveFileAttributes',  # noqa: E501
-        'continue_on_error': 'continueOnError',  # noqa: E501
         'vlan_config': 'vlanConfig',  # noqa: E501
     }
 
@@ -153,9 +153,9 @@ class OriginalViewFilesTargetParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             alternate_path (str, none_type): Specifies the alternate path location to recover files to.. [optional]  # noqa: E501
+            continue_on_error (bool, none_type): Specifies whether to continue recovering other files if one of the files fails to recover. Default value is false.. [optional]  # noqa: E501
             overwrite_existing_file (bool, none_type): Specifies whether to overwrite existing file/folder during recovery.. [optional]  # noqa: E501
             preserve_file_attributes (bool, none_type): Specifies whether to preserve file/folder attributes during recovery.. [optional]  # noqa: E501
-            continue_on_error (bool, none_type): Specifies whether to continue recovering other files if one of the files fails to recover. Default value is false.. [optional]  # noqa: E501
             vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 

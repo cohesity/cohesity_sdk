@@ -61,6 +61,7 @@ class RecoverAzureParams(ModelNormal):
         ('recovery_action',): {
             'RECOVERVMS': "RecoverVMs",
             'RECOVERFILES': "RecoverFiles",
+            'RECOVERAZURESQL': "RecoverAzureSQL",
         },
     }
 
@@ -84,6 +85,7 @@ class RecoverAzureParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
+            'azure_sql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -98,6 +100,7 @@ class RecoverAzureParams(ModelNormal):
 
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'azure_sql_params': 'azureSqlParams',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
@@ -154,6 +157,7 @@ class RecoverAzureParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            azure_sql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Azure SQL workloads.. [optional]  # noqa: E501
             download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.. [optional]  # noqa: E501
             recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Azure files and folders.. [optional]  # noqa: E501

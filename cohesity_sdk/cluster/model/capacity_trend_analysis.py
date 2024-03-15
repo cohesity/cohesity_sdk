@@ -79,8 +79,8 @@ class CapacityTrendAnalysis(ModelNormal):
         """
         lazy_import()
         return {
-            'last_updated_time_usecs': (int, none_type,),  # noqa: E501
             'data_point_vec': ([CapacityTrendDatapoint], none_type,),  # noqa: E501
+            'last_updated_time_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class CapacityTrendAnalysis(ModelNormal):
 
 
     attribute_map = {
-        'last_updated_time_usecs': 'lastUpdatedTimeUsecs',  # noqa: E501
         'data_point_vec': 'dataPointVec',  # noqa: E501
+        'last_updated_time_usecs': 'lastUpdatedTimeUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class CapacityTrendAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            last_updated_time_usecs (int, none_type): Last updated time of capacity trend.. [optional]  # noqa: E501
             data_point_vec ([CapacityTrendDatapoint], none_type): Vector of data points. Each data point contains statistics on analysis and downtiered data.. [optional]  # noqa: E501
+            last_updated_time_usecs (int, none_type): Last updated time of capacity trend.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

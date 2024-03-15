@@ -66,6 +66,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
         ('last_backup_run_status',): {
             'None': None,
@@ -79,6 +80,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
         ('last_replication_run_status',): {
             'None': None,
@@ -92,6 +94,20 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
+        },
+        ('protection_env_type',): {
+            'None': None,
+            'KAGENT': "kAgent",
+            'KNATIVE': "kNative",
+            'KSNAPSHOTMANAGER': "kSnapshotManager",
+            'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
+            'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURESQL': "kAzureSQL",
+            'KFILE': "kFile",
+            'KVOLUME': "kVolume",
         },
     }
 
@@ -121,6 +137,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'policy_name': (str, none_type,),  # noqa: E501
+            'protection_env_type': (str, none_type,),  # noqa: E501
             'storage_domain_id': (str, none_type,),  # noqa: E501
         }
 
@@ -139,6 +156,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
         'name': 'name',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'policy_name': 'policyName',  # noqa: E501
+        'protection_env_type': 'protectionEnvType',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
     }
 
@@ -197,6 +215,7 @@ class ObjectProtectionGroupSummary(ModelNormal):
             name (str, none_type): Specifies the protection group name.. [optional]  # noqa: E501
             policy_id (str, none_type): Specifies the policy id for this group.. [optional]  # noqa: E501
             policy_name (str, none_type): Specifies the policy name for this group.. [optional]  # noqa: E501
+            protection_env_type (str, none_type): Specifies the protection type of the job if any.. [optional]  # noqa: E501
             storage_domain_id (str, none_type): Specifies the storage domain id of this group. Format is clusterId:clusterIncarnationId:storageDomainId.. [optional]  # noqa: E501
         """
 

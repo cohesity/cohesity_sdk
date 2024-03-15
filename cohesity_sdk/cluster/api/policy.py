@@ -420,6 +420,7 @@ class PolicyApi(object):
 
 
             Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 ids ([str]): Filter policies by a list of policy template ids.. [optional]
                 policy_names ([str]): Filter policies by a list of policy names.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the organizations for which objects are to be returned.. [optional]
@@ -485,6 +486,7 @@ class PolicyApi(object):
             },
             params_map={
                 'all': [
+                    'request_initiator_type',
                     'ids',
                     'policy_names',
                     'tenant_ids',
@@ -494,6 +496,7 @@ class PolicyApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'request_initiator_type',
                 ],
                 'validation': [
                 ]
@@ -502,8 +505,16 @@ class PolicyApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
                 },
                 'openapi_types': {
+                    'request_initiator_type':
+                        (str,),
                     'ids':
                         ([str],),
                     'policy_names':
@@ -514,12 +525,14 @@ class PolicyApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'request_initiator_type': 'requestInitiatorType',
                     'ids': 'ids',
                     'policy_names': 'policyNames',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
+                    'request_initiator_type': 'header',
                     'ids': 'query',
                     'policy_names': 'query',
                     'tenant_ids': 'query',
@@ -556,6 +569,7 @@ class PolicyApi(object):
 
 
             Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 ids ([str]): Filter policies by a list of policy ids.. [optional]
                 policy_names ([str]): Filter policies by a list of policy names.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the organizations for which objects are to be returned.. [optional]
@@ -625,6 +639,7 @@ class PolicyApi(object):
             },
             params_map={
                 'all': [
+                    'request_initiator_type',
                     'ids',
                     'policy_names',
                     'tenant_ids',
@@ -638,6 +653,7 @@ class PolicyApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'request_initiator_type',
                     'types',
                 ],
                 'validation': [
@@ -647,6 +663,12 @@ class PolicyApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
                     ('types',): {
 
                         "REGULAR": "Regular",
@@ -654,6 +676,8 @@ class PolicyApi(object):
                     },
                 },
                 'openapi_types': {
+                    'request_initiator_type':
+                        (str,),
                     'ids':
                         ([str],),
                     'policy_names':
@@ -672,6 +696,7 @@ class PolicyApi(object):
                         (bool,),
                 },
                 'attribute_map': {
+                    'request_initiator_type': 'requestInitiatorType',
                     'ids': 'ids',
                     'policy_names': 'policyNames',
                     'tenant_ids': 'tenantIds',
@@ -682,6 +707,7 @@ class PolicyApi(object):
                     'include_stats': 'includeStats',
                 },
                 'location_map': {
+                    'request_initiator_type': 'header',
                     'ids': 'query',
                     'policy_names': 'query',
                     'tenant_ids': 'query',
@@ -726,6 +752,7 @@ class PolicyApi(object):
                 id (str): Specifies a unique id of the Protection Policy to return.
 
             Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -790,6 +817,7 @@ class PolicyApi(object):
             params_map={
                 'all': [
                     'id',
+                    'request_initiator_type',
                 ],
                 'required': [
                     'id',
@@ -797,6 +825,7 @@ class PolicyApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'request_initiator_type',
                 ],
                 'validation': [
                 ]
@@ -805,16 +834,26 @@ class PolicyApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
                 },
                 'openapi_types': {
                     'id':
                         (str,),
+                    'request_initiator_type':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'request_initiator_type': 'requestInitiatorType',
                 },
                 'location_map': {
                     'id': 'path',
+                    'request_initiator_type': 'header',
                 },
                 'collection_format_map': {
                 }

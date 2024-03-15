@@ -11,11 +11,14 @@ Method | HTTP request | Description
 [**create_data_tiering_task_run**](DataTieringApi.md#create_data_tiering_task_run) | **POST** /data-tiering/tasks/{id}/runs | Create a data tiering tasks run.
 [**delete_data_tiering_analysis_group**](DataTieringApi.md#delete_data_tiering_analysis_group) | **DELETE** /data-tiering/analysis-groups/{id} | Delete data tiering analysis group.
 [**delete_data_tiering_task**](DataTieringApi.md#delete_data_tiering_task) | **DELETE** /data-tiering/tasks/{id} | delete the data tiering task.
+[**get_capacity_trend_analysis**](DataTieringApi.md#get_capacity_trend_analysis) | **GET** /data-tiering/capacity-trend | Get capacity trend analysis for all sources or a specific source.
 [**get_data_tiering_analysis_group_by_id**](DataTieringApi.md#get_data_tiering_analysis_group_by_id) | **GET** /data-tiering/analysis-groups/{id} | Get data tiering analysis group by id.
+[**get_data_tiering_analysis_group_runs**](DataTieringApi.md#get_data_tiering_analysis_group_runs) | **GET** /data-tiering/analysis-groups/{id}/runs | Get data tiering analysis group runs.
 [**get_data_tiering_analysis_groups**](DataTieringApi.md#get_data_tiering_analysis_groups) | **GET** /data-tiering/analysis-groups | Get the list of data tiering analysis groups.
+[**get_data_tiering_analysis_groups_default_config**](DataTieringApi.md#get_data_tiering_analysis_groups_default_config) | **GET** /data-tiering/analysis-groups/config | Get the default config of data tiering analysis groups.
 [**get_data_tiering_task_by_id**](DataTieringApi.md#get_data_tiering_task_by_id) | **GET** /data-tiering/tasks/{id} | Get data tiering task by id.
 [**get_data_tiering_tasks**](DataTieringApi.md#get_data_tiering_tasks) | **GET** /data-tiering/tasks | Get the list of data tiering tasks.
-[**update_data_tiering_analysis_group**](DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources only.
+[**update_data_tiering_analysis_group**](DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 [**update_data_tiering_analysis_group_tags_config**](DataTieringApi.md#update_data_tiering_analysis_group_tags_config) | **PUT** /data-tiering/analysis-groups/{id}/config | Update data tiering analysis group config.
 [**update_data_tiering_analysis_groups_state**](DataTieringApi.md#update_data_tiering_analysis_groups_state) | **POST** /data-tiering/analysis-groups/states | Update data tiering analysis groups state.
 [**update_data_tiering_task**](DataTieringApi.md#update_data_tiering_task) | **PUT** /data-tiering/tasks/{id} | Update a data tiering task.
@@ -38,12 +41,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of data tiering group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of data tiering group run.
@@ -102,12 +101,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of data tiering task.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of data tiering task.
@@ -168,15 +163,32 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CommonDataTieringAnalysisGroupParams(
         name="name_example",
+        schedule=DataTieringSchedule(
+            day_schedule=DaySchedule(),
+            month_schedule=MonthSchedule(
+                day_of_month=1,
+                day_of_week=[
+                    "Sunday",
+                ],
+                week_of_month="First",
+            ),
+            start_time=TimeOfDay(
+                hour=0,
+                minute=0,
+                time_zone="America/Los_Angeles",
+            ),
+            unit="Days",
+            week_schedule=WeekSchedule(
+                day_of_week=[
+                    "Sunday",
+                ],
+            ),
+        ),
         source=DataTieringSource(
             environment="kGenericNas",
             generic_nas_params=GenericNasDataTieringParams(
@@ -261,12 +273,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering analysis group.
 body = DataTieringAnalysisRunRequest(
@@ -341,12 +349,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
 
@@ -405,12 +409,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering tasks.
 body = DataTieringTaskRunRequest(
@@ -485,12 +485,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 
@@ -547,12 +543,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the data tiering task.
 
@@ -593,6 +585,71 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_capacity_trend_analysis**
+> CapacityTrendAnalysis get_capacity_trend_analysis()
+
+Get capacity trend analysis for all sources or a specific source.
+
+Get capacity trend analysis for the given time range, and for the given source or set of sources.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.capacity_trend_analysis import CapacityTrendAnalysis
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+start_time_usecs = 1 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
+end_time_usecs = 1 # int | Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). (optional)
+source_id = 1 # int | Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. (optional)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get capacity trend analysis for all sources or a specific source.
+	api_response = client.data_tiering.get_capacity_trend_analysis(start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, source_id=source_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_capacity_trend_analysis: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_time_usecs** | **int**| Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). | [optional]
+ **end_time_usecs** | **int**| Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). | [optional]
+ **source_id** | **int**| Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. | [optional]
+
+### Return type
+
+[**CapacityTrendAnalysis**](CapacityTrendAnalysis.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_data_tiering_analysis_group_by_id**
 > DataTieringAnalysisGroup get_data_tiering_analysis_group_by_id(id)
 
@@ -610,12 +667,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 
@@ -657,6 +710,79 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_data_tiering_analysis_group_runs**
+> DataTieringAnalysisGroupRuns get_data_tiering_analysis_group_runs(id)
+
+Get data tiering analysis group runs.
+
+Get data tiering analysis group runs for an analysis group.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.data_tiering_analysis_group_runs import DataTieringAnalysisGroupRuns
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+run_ids = [
+        "runIds_example",
+    ] # [str] | Filter by a list of analysis group run ids. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get data tiering analysis group runs.
+	api_response = client.data_tiering.get_data_tiering_analysis_group_runs(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_analysis_group_runs: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get data tiering analysis group runs.
+	api_response = client.data_tiering.get_data_tiering_analysis_group_runs(id, run_ids=run_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_analysis_group_runs: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies a unique id of the data tiering analysis group. |
+ **run_ids** | **[str]**| Filter by a list of analysis group run ids. | [optional]
+
+### Return type
+
+[**DataTieringAnalysisGroupRuns**](DataTieringAnalysisGroupRuns.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_data_tiering_analysis_groups**
 > DataTieringAnalysisGroups get_data_tiering_analysis_groups()
 
@@ -674,22 +800,19 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 ids = [
         "ids_example",
     ] # [str] | Filter by a list of Analysis Group IDs. (optional)
+include_last_run_stats = True # bool | If true, the response will include last run info. If it is false or not specified, the last run info won't be returned. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of data tiering analysis groups.
-	api_response = client.data_tiering.get_data_tiering_analysis_groups(ids=ids)
+	api_response = client.data_tiering.get_data_tiering_analysis_groups(ids=ids, include_last_run_stats=include_last_run_stats)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling DataTieringApi->get_data_tiering_analysis_groups: %s\n" % e)
@@ -701,10 +824,67 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ids** | **[str]**| Filter by a list of Analysis Group IDs. | [optional]
+ **include_last_run_stats** | **bool**| If true, the response will include last run info. If it is false or not specified, the last run info won&#39;t be returned. | [optional]
 
 ### Return type
 
 [**DataTieringAnalysisGroups**](DataTieringAnalysisGroups.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_data_tiering_analysis_groups_default_config**
+> DataTieringTagConfig get_data_tiering_analysis_groups_default_config()
+
+Get the default config of data tiering analysis groups.
+
+Get default grouping configuration for data tiering analysis groups.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_tag_config import DataTieringTagConfig
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get the default config of data tiering analysis groups.
+	api_response = client.data_tiering.get_data_tiering_analysis_groups_default_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_analysis_groups_default_config: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DataTieringTagConfig**](DataTieringTagConfig.md)
 
 ### Authorization
 
@@ -741,12 +921,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the data tiering task.
 
@@ -805,12 +981,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 ids = [
         "ids_example",
@@ -860,7 +1032,7 @@ No authorization required
 # **update_data_tiering_analysis_group**
 > DataTieringAnalysisGroup update_data_tiering_analysis_group(id, body)
 
-Update a data tiering analysis group. Currently, it supports updating sources only.
+Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 
 Update a data tiering analysis group.
 
@@ -875,16 +1047,33 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 body = CommonDataTieringAnalysisGroupParams(
         name="name_example",
+        schedule=DataTieringSchedule(
+            day_schedule=DaySchedule(),
+            month_schedule=MonthSchedule(
+                day_of_month=1,
+                day_of_week=[
+                    "Sunday",
+                ],
+                week_of_month="First",
+            ),
+            start_time=TimeOfDay(
+                hour=0,
+                minute=0,
+                time_zone="America/Los_Angeles",
+            ),
+            unit="Days",
+            week_schedule=WeekSchedule(
+                day_of_week=[
+                    "Sunday",
+                ],
+            ),
+        ),
         source=DataTieringSource(
             environment="kGenericNas",
             generic_nas_params=GenericNasDataTieringParams(
@@ -916,7 +1105,7 @@ body = CommonDataTieringAnalysisGroupParams(
 
 # example passing only required values which don't have defaults set
 try:
-	# Update a data tiering analysis group. Currently, it supports updating sources only.
+	# Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 	api_response = client.data_tiering.update_data_tiering_analysis_group(id, body)
 	pprint(api_response)
 except ApiException as e:
@@ -970,12 +1159,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 body = DataTieringTagConfig(
@@ -987,7 +1172,7 @@ body = DataTieringTagConfig(
                         value="value_example",
                     ),
                 ],
-                type="type_example",
+                type="fileTypeTag",
             ),
         ],
     ) # DataTieringTagConfig | Specifies the data tiering analysis Tags Config.
@@ -1049,12 +1234,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = UpdateDataTieringStateRequest(
         action="Pause",
@@ -1119,12 +1300,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "id_example" # str | Specifies the id of the data tiering task.
 body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
@@ -1186,12 +1363,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = UpdateDataTieringStateRequest(
         action="Pause",

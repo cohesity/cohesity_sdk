@@ -6,7 +6,7 @@ Specifies the parameters which are specific to Archival purpose type External Ta
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **encryption** | [**EncryptionSettings**](EncryptionSettings.md) |  | 
-**storage_type** | **str, none_type** | Specifies the Storage type of the External Target. | 
+**storage_type** | **str, none_type** | Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | 
 **target_bandwidth_throttlings** | [**TargetBandwidthThrottlings**](TargetBandwidthThrottlings.md) |  | [optional] 
 **aws_params** | [**ArchivalAwsExternalTargetParams**](ArchivalAwsExternalTargetParams.md) |  | [optional] 
 **azure_params** | [**ArchivalAzureExternalTargetParams**](ArchivalAzureExternalTargetParams.md) |  | [optional] 

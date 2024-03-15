@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **snapshot_tags** | [**[SnapshotTagInfo], none_type**](SnapshotTagInfo.md) | Specifies snapshot tags applied to the object. | [optional] 
 **tags** | [**[TagInfo], none_type**](TagInfo.md) | Specifies tag applied to the object. | [optional] 
 **id** | **str, none_type** | Specifies the id of the indexed object. | [optional] 
+**keyspace_type** | **str, none_type** | Specifies type of Keyspace. | [optional] 
 **type** | **str, none_type** | Specifies the Cassandra Object type. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

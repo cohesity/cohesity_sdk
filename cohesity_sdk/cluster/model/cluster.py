@@ -27,10 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.audit_log_config import AuditLogConfig
+    from cohesity_sdk.cluster.model.cluster_audit_log_config import ClusterAuditLogConfig
     from cohesity_sdk.cluster.model.cluster_create_network_config import ClusterCreateNetworkConfig
     from cohesity_sdk.cluster.model.cluster_proxy_server_config import ClusterProxyServerConfig
     from cohesity_sdk.cluster.model.rigel_cluster_config_params import RigelClusterConfigParams
     from cohesity_sdk.cluster.model.views_global_settings import ViewsGlobalSettings
+    globals()['AuditLogConfig'] = AuditLogConfig
+    globals()['ClusterAuditLogConfig'] = ClusterAuditLogConfig
     globals()['ClusterCreateNetworkConfig'] = ClusterCreateNetworkConfig
     globals()['ClusterProxyServerConfig'] = ClusterProxyServerConfig
     globals()['RigelClusterConfigParams'] = RigelClusterConfigParams
@@ -102,9 +106,11 @@ class Cluster(ModelNormal):
         """
         lazy_import()
         return {
+            'cluster_audit_log_config': (ClusterAuditLogConfig,),  # noqa: E501
             'cluster_size': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'enable_encryption': (bool, none_type,),  # noqa: E501
+            'file_services_audit_log_config': (AuditLogConfig,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'incarnation_id': (int, none_type,),  # noqa: E501
             'local_tenant_id': (str, none_type,),  # noqa: E501
@@ -126,9 +132,11 @@ class Cluster(ModelNormal):
 
 
     attribute_map = {
+        'cluster_audit_log_config': 'clusterAuditLogConfig',  # noqa: E501
         'cluster_size': 'clusterSize',  # noqa: E501
         'description': 'description',  # noqa: E501
         'enable_encryption': 'enableEncryption',  # noqa: E501
+        'file_services_audit_log_config': 'fileServicesAuditLogConfig',  # noqa: E501
         'id': 'id',  # noqa: E501
         'incarnation_id': 'incarnationId',  # noqa: E501
         'local_tenant_id': 'localTenantId',  # noqa: E501
@@ -190,9 +198,11 @@ class Cluster(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cluster_audit_log_config (ClusterAuditLogConfig): [optional]  # noqa: E501
             cluster_size (str, none_type): Specifies the size of the cloud platforms.. [optional]  # noqa: E501
             description (str, none_type): Description of the cluster.. [optional]  # noqa: E501
             enable_encryption (bool, none_type): Specifies whether or not encryption is enabled. If encryption is enabled, all data on the Cluster will be encrypted.. [optional]  # noqa: E501
+            file_services_audit_log_config (AuditLogConfig): [optional]  # noqa: E501
             id (int, none_type): Specifies the cluster id of the new cluster.. [optional]  # noqa: E501
             incarnation_id (int, none_type): Specifies the incarnation id of the new cluster.. [optional]  # noqa: E501
             local_tenant_id (str, none_type): Specifies the local tenant id. Only applicable on Helios.. [optional]  # noqa: E501

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **attempt_complete_recovery** | **bool, none_type** | Whether or not this is a complete recovery attempt. | [optional] 
 **roll_forward_log_path_vec** | **[str], none_type** | List of archive logs to apply on Database after overwrite restore. | [optional] 
 **roll_forward_time_msecs** | **int, none_type** | UTC time in msecs till which we have to roll-forward the database. | [optional] 
+**stop_active_passive** | **bool, none_type** | Specifies whether allowed to automatically stop active passive resource. | [optional] 
 **db_channels** | [**[OracleDbChannel], none_type**](OracleDbChannel.md) | Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases. | [optional] 
 **granular_restore_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies information about list of objects (PDBs) to restore. | [optional] 
 **oracle_archive_log_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies Range in Time, Scn or Sequence to restore archive logs of a DB. | [optional] 

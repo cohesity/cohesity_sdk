@@ -79,8 +79,8 @@ class CapacityTrendDatapointStats(ModelNormal):
         """
         lazy_import()
         return {
-            'tag_info': (DataTieringTag,),  # noqa: E501
             'num_bytes': (int, none_type,),  # noqa: E501
+            'tag_info': (DataTieringTag,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class CapacityTrendDatapointStats(ModelNormal):
 
 
     attribute_map = {
-        'tag_info': 'tagInfo',  # noqa: E501
         'num_bytes': 'numBytes',  # noqa: E501
+        'tag_info': 'tagInfo',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class CapacityTrendDatapointStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            tag_info (DataTieringTag): [optional]  # noqa: E501
             num_bytes (int, none_type): Specifies the size of data corresponding to above tag.. [optional]  # noqa: E501
+            tag_info (DataTieringTag): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

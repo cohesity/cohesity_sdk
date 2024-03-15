@@ -150,13 +150,13 @@ class McmClusterClaimResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_ca_chain (str, none_type): Specifies the CA chain that is used to sign the Cluster certificate.. [optional]  # noqa: E501
-            cluster_certificate (str, none_type): Specifies the Cluster certificate.. [optional]  # noqa: E501
+            cluster_ca_chain (str, none_type): Specifies the CA chain that is used to sign the cluster certificate.. [optional]  # noqa: E501
+            cluster_certificate (str, none_type): Specifies the cluster certificate.. [optional]  # noqa: E501
             cluster_id (int, none_type): Specifies the cluster id.. [optional]  # noqa: E501
             cluster_incarnation_id (int, none_type): Specifies the cluster incarnation id.. [optional]  # noqa: E501
             cluster_name (str, none_type): Specifies the cluster name.. [optional]  # noqa: E501
-            cluster_private_key (str, none_type): Specifies the Cluster private key.. [optional]  # noqa: E501
-            helios_certificate (str, none_type): Specifies the Helios certificate that can be used to authenticate api calls made from Helios to cluster.. [optional]  # noqa: E501
+            cluster_private_key (str, none_type): Specifies the cluster private key.. [optional]  # noqa: E501
+            helios_certificate (str, none_type): Specifies the Helios certificate that can be used to authenticate API calls made from Helios to cluster.. [optional]  # noqa: E501
             passphrase (str, none_type): Specifies the passphrase (if used) to encrypt the cluster private key.. [optional]  # noqa: E501
             sf_account_id (str, none_type): Specifies the Salesforce account id used to claim the cluster.. [optional]  # noqa: E501
         """

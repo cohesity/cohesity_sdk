@@ -28,8 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.mcm_cluster_claim_response_params import McmClusterClaimResponseParams
+    from cohesity_sdk.cluster.model.mcm_cohesion_claim_response_params import McmCohesionClaimResponseParams
+    from cohesity_sdk.cluster.model.mcm_ibm_storage_protect_claim_response_params import McmIBMStorageProtectClaimResponseParams
     from cohesity_sdk.cluster.model.mcm_rigel_claim_response_params import McmRigelClaimResponseParams
     globals()['McmClusterClaimResponseParams'] = McmClusterClaimResponseParams
+    globals()['McmCohesionClaimResponseParams'] = McmCohesionClaimResponseParams
+    globals()['McmIBMStorageProtectClaimResponseParams'] = McmIBMStorageProtectClaimResponseParams
     globals()['McmRigelClaimResponseParams'] = McmRigelClaimResponseParams
 
 
@@ -64,6 +68,8 @@ class CreateMcmClaimResponseBody(ModelNormal):
             'None': None,
             'RIGEL': "Rigel",
             'CLUSTER': "Cluster",
+            'COHESION': "Cohesion",
+            'IBMSTORAGEPROTECT': "IBMStorageProtect",
         },
     }
 
@@ -87,7 +93,9 @@ class CreateMcmClaimResponseBody(ModelNormal):
         lazy_import()
         return {
             'cluster_params': (McmClusterClaimResponseParams,),  # noqa: E501
+            'cohesion_params': (McmCohesionClaimResponseParams,),  # noqa: E501
             'entity_type': (str, none_type,),  # noqa: E501
+            'ibm_storage_protect_params': (McmIBMStorageProtectClaimResponseParams,),  # noqa: E501
             'rigel_params': (McmRigelClaimResponseParams,),  # noqa: E501
         }
 
@@ -99,7 +107,9 @@ class CreateMcmClaimResponseBody(ModelNormal):
 
     attribute_map = {
         'cluster_params': 'clusterParams',  # noqa: E501
+        'cohesion_params': 'cohesionParams',  # noqa: E501
         'entity_type': 'entityType',  # noqa: E501
+        'ibm_storage_protect_params': 'ibmStorageProtectParams',  # noqa: E501
         'rigel_params': 'rigelParams',  # noqa: E501
     }
 
@@ -151,7 +161,9 @@ class CreateMcmClaimResponseBody(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cluster_params (McmClusterClaimResponseParams): [optional]  # noqa: E501
+            cohesion_params (McmCohesionClaimResponseParams): [optional]  # noqa: E501
             entity_type (str, none_type): Specfies the type of entity.. [optional]  # noqa: E501
+            ibm_storage_protect_params (McmIBMStorageProtectClaimResponseParams): [optional]  # noqa: E501
             rigel_params (McmRigelClaimResponseParams): [optional]  # noqa: E501
         """
 

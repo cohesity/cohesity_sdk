@@ -74,13 +74,13 @@ class BackupNasStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'files_discovered': (int, none_type,),  # noqa: E501
+            'file_analysis_rate': (int, none_type,),  # noqa: E501
             'file_discovery_rate': (int, none_type,),  # noqa: E501
             'file_discovery_time': (int, none_type,),  # noqa: E501
-            'files_analyzed': (int, none_type,),  # noqa: E501
-            'file_analysis_rate': (int, none_type,),  # noqa: E501
-            'files_ingested': (int, none_type,),  # noqa: E501
             'file_ingestion_rate': (int, none_type,),  # noqa: E501
+            'files_analyzed': (int, none_type,),  # noqa: E501
+            'files_discovered': (int, none_type,),  # noqa: E501
+            'files_ingested': (int, none_type,),  # noqa: E501
             'walker_run_time': (int, none_type,),  # noqa: E501
         }
 
@@ -91,13 +91,13 @@ class BackupNasStats(ModelNormal):
 
 
     attribute_map = {
-        'files_discovered': 'filesDiscovered',  # noqa: E501
+        'file_analysis_rate': 'fileAnalysisRate',  # noqa: E501
         'file_discovery_rate': 'fileDiscoveryRate',  # noqa: E501
         'file_discovery_time': 'fileDiscoveryTime',  # noqa: E501
-        'files_analyzed': 'filesAnalyzed',  # noqa: E501
-        'file_analysis_rate': 'fileAnalysisRate',  # noqa: E501
-        'files_ingested': 'filesIngested',  # noqa: E501
         'file_ingestion_rate': 'fileIngestionRate',  # noqa: E501
+        'files_analyzed': 'filesAnalyzed',  # noqa: E501
+        'files_discovered': 'filesDiscovered',  # noqa: E501
+        'files_ingested': 'filesIngested',  # noqa: E501
         'walker_run_time': 'walkerRunTime',  # noqa: E501
     }
 
@@ -148,13 +148,13 @@ class BackupNasStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            files_discovered (int, none_type): Specifies the number of files which have already been discovered.. [optional]  # noqa: E501
+            file_analysis_rate (int, none_type): Specifies the rate at which files are being analyzed in files per minute.. [optional]  # noqa: E501
             file_discovery_rate (int, none_type): Specifies the rate at which files are being discovered in files per minute.. [optional]  # noqa: E501
             file_discovery_time (int, none_type): Specifies the time taken for file discovery.. [optional]  # noqa: E501
-            files_analyzed (int, none_type): Specifies the number of files which have been analyzed.. [optional]  # noqa: E501
-            file_analysis_rate (int, none_type): Specifies the rate at which files are being analyzed in files per minute.. [optional]  # noqa: E501
-            files_ingested (int, none_type): Specifies the number of files which have been ingested.. [optional]  # noqa: E501
             file_ingestion_rate (int, none_type): Specifies the rate at which files are being ingested in files per minute.. [optional]  # noqa: E501
+            files_analyzed (int, none_type): Specifies the number of files which have been analyzed.. [optional]  # noqa: E501
+            files_discovered (int, none_type): Specifies the number of files which have already been discovered.. [optional]  # noqa: E501
+            files_ingested (int, none_type): Specifies the number of files which have been ingested.. [optional]  # noqa: E501
             walker_run_time (int, none_type): Specifies the run time for directory walker in seconds.. [optional]  # noqa: E501
         """
 

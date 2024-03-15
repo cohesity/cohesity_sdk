@@ -27,12 +27,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = Tag(
         description="description_example",
@@ -98,12 +94,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D" # str | Specifies the Id of the tag.
 
@@ -161,12 +153,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D" # str | Specifies the Id of the tag.
 
@@ -225,12 +213,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 ids = [
         "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
@@ -308,12 +292,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D" # str | Specifies the Id of the tag.
 body = Tag(

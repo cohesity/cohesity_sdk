@@ -83,6 +83,7 @@ class TieringS3CompExternalTargetParams(ModelComposed):
             'bucket_name': (str, none_type,),  # noqa: E501
             'end_point': (str, none_type,),  # noqa: E501
             'is_aws_snowball': (bool, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
             'secret_access_key': (str, none_type,),  # noqa: E501
             'secure_connection': (bool, none_type,),  # noqa: E501
             'signature_version': (int, none_type,),  # noqa: E501
@@ -99,6 +100,7 @@ class TieringS3CompExternalTargetParams(ModelComposed):
         'bucket_name': 'bucketName',  # noqa: E501
         'end_point': 'endPoint',  # noqa: E501
         'is_aws_snowball': 'isAwsSnowball',  # noqa: E501
+        'region': 'region',  # noqa: E501
         'secret_access_key': 'secretAccessKey',  # noqa: E501
         'secure_connection': 'secureConnection',  # noqa: E501
         'signature_version': 'signatureVersion',  # noqa: E501
@@ -158,6 +160,7 @@ class TieringS3CompExternalTargetParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             is_aws_snowball (bool, none_type): Specifies whether the external target is AWS Snowball.. [optional]  # noqa: E501
+            region (str, none_type): Specifies the region of the external target.. [optional]  # noqa: E501
             secret_access_key (str, none_type): Specifies the secret access key of the external target.. [optional]  # noqa: E501
             secure_connection (bool, none_type): Specifies the secure connection(https) is enabled or not.. [optional]  # noqa: E501
             signature_version (int, none_type): Specifies the aws signature version of the external target.. [optional]  # noqa: E501

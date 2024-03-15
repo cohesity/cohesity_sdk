@@ -98,6 +98,8 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
             'container_name': (str, none_type,),  # noqa: E501
             'storage_account_name': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
+            'client_id': (str, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
             'storage_access_key': (str, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
@@ -119,6 +121,8 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
         'container_name': 'containerName',  # noqa: E501
         'storage_account_name': 'storageAccountName',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
+        'client_id': 'clientId',  # noqa: E501
+        'region': 'region',  # noqa: E501
         'storage_access_key': 'storageAccessKey',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
@@ -183,6 +187,8 @@ class ArchivalAzureExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            client_id (str, none_type): Specifies the client id of the managed identity assigned to the cluster This is used only for clusters running as Azure VMs where authentication is done using AD.. [optional]  # noqa: E501
+            region (str, none_type): Specifies region of the External Target. This is only populated for FortKnox vaults.. [optional]  # noqa: E501
             storage_access_key (str, none_type): Specifies the storage access key of the external target.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501

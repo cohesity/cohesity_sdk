@@ -104,6 +104,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
         return {
             'objects': ([EnvSpecificObjectProtectionRequestParams], none_type,),  # noqa: E501
             'activate_remote_object_protection': (bool, none_type,),  # noqa: E501
+            'is_paused': (bool, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'policy_config': (PolicyConfig,),  # noqa: E501
@@ -125,6 +126,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'activate_remote_object_protection': 'activateRemoteObjectProtection',  # noqa: E501
+        'is_paused': 'isPaused',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'policy_config': 'policyConfig',  # noqa: E501
@@ -189,6 +191,7 @@ class CreateProtectedObjectsRequest(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             activate_remote_object_protection (bool, none_type): If set to true, it will look for the remote backup of the given user and object, and activates it. Creates a new backup if the remote backup is not found. After activation, this object cannot get snapshots from remote clusters.. [optional]  # noqa: E501
+            is_paused (bool, none_type): If set to true, then the object specs will be created in the paused state preventing any runs from happening until they are unpaused.. [optional]  # noqa: E501
             abort_in_blackouts (bool, none_type): Specifies whether currently executing object backup should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             policy_config (PolicyConfig): [optional]  # noqa: E501

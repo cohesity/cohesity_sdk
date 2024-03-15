@@ -74,6 +74,7 @@ class OnPremDeployTargetResult(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -168,7 +169,7 @@ class OnPremDeployTargetResult(ModelNormal):
             environment (str, none_type): Target environment of the onprem deploy task.. [optional] if omitted the server will use the default value of "kVMware"  # noqa: E501
             error_message (str, none_type): Specifies the error message for onprem task failure.. [optional]  # noqa: E501
             message (str, none_type): Message about the onprem deploy run.. [optional]  # noqa: E501
-            status (str, none_type): Status of the OnPrem deploy for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the OnPrem deploy for a target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
             vmware_params (OnPremDeployTargetResultVmwareParams): [optional]  # noqa: E501
         """
 

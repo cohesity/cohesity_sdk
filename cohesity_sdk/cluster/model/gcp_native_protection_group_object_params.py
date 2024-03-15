@@ -75,6 +75,7 @@ class GcpNativeProtectionGroupObjectParams(ModelNormal):
         """
         return {
             'id': (int, none_type,),  # noqa: E501
+            'disk_exclusion_name_params': ([str], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
         }
 
@@ -86,6 +87,7 @@ class GcpNativeProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'disk_exclusion_name_params': 'diskExclusionNameParams',  # noqa: E501
         'name': 'name',  # noqa: E501
     }
 
@@ -139,6 +141,7 @@ class GcpNativeProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            disk_exclusion_name_params ([str], none_type): Specifies the paramaters to exclude disks attached to GCP VM instances. Here only the name of the disks are taken for exclusion.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the virtual machine.. [optional]  # noqa: E501
         """
 

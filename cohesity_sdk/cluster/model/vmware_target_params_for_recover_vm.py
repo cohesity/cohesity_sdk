@@ -54,6 +54,14 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
     """
 
     allowed_values = {
+        ('disk_provision_type',): {
+            'None': None,
+            'KTHICKLAZYZEROED': "kThickLazyZeroed",
+            'KTHICKEAGERZERO': "kThickEagerZero",
+            'KTHIN': "kThin",
+            'KBACKEDUPDISKTYPE': "kBackedUpDiskType",
+            'ORIGINALBACKUPDISK': "originalBackUpDisk",
+        },
         ('recovery_process_type',): {
             'INSTANTRECOVERY': "InstantRecovery",
             'COPYRECOVERY': "CopyRecovery",
@@ -80,7 +88,10 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
         return {
             'attempt_differential_restore': (bool, none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
+            'disk_provision_type': (str, none_type,),  # noqa: E501
+            'enable_nbdssl_fallback': (bool, none_type,),  # noqa: E501
             'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
+            'leverage_san_transport': (bool, none_type,),  # noqa: E501
             'overwrite_existing_vm': (bool, none_type,),  # noqa: E501
             'power_off_and_rename_existing_vm': (bool, none_type,),  # noqa: E501
             'power_on_vms': (bool, none_type,),  # noqa: E501
@@ -99,7 +110,10 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
     attribute_map = {
         'attempt_differential_restore': 'attemptDifferentialRestore',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'disk_provision_type': 'diskProvisionType',  # noqa: E501
+        'enable_nbdssl_fallback': 'enableNBDSSLFallback',  # noqa: E501
         'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
+        'leverage_san_transport': 'leverageSanTransport',  # noqa: E501
         'overwrite_existing_vm': 'overwriteExistingVm',  # noqa: E501
         'power_off_and_rename_existing_vm': 'powerOffAndRenameExistingVm',  # noqa: E501
         'power_on_vms': 'powerOnVms',  # noqa: E501
@@ -158,7 +172,10 @@ class VmwareTargetParamsForRecoverVM(ModelNormal):
 
             attempt_differential_restore (bool, none_type): Specifies whether to attempt differential restore.. [optional]  # noqa: E501
             continue_on_error (bool, none_type): Specifies whether to continue recovering other vms if one of vms failed to recover. Default value is false.. [optional]  # noqa: E501
+            disk_provision_type (str, none_type): Specifies the Virtual Disk Provisioning Policies for Vmware VM. [optional]  # noqa: E501
+            enable_nbdssl_fallback (bool, none_type): If this field is set to true and SAN transport recovery fails, then recovery will fallback to use NBDSSL transport. This field only applies if 'leverageSanTransport' is set to true.. [optional]  # noqa: E501
             is_multi_stage_restore (bool, none_type): Specifies whether this is a multistage restore which is used for migration/hot-standby purpose.. [optional]  # noqa: E501
+            leverage_san_transport (bool, none_type): Specifies whether to enable SAN transport for copy recovery or not. [optional]  # noqa: E501
             overwrite_existing_vm (bool, none_type): Specifies whether to overwrite the VM at the target location. This is a data destructive operation and if this is selected, the original VM may no longer be accessible. This option is only applicable if renameRecoveredVmParams is null and powerOffAndRenameExistingVm is false. This option is not supported for vApp or vApp template recoveries. Default value is false.. [optional]  # noqa: E501
             power_off_and_rename_existing_vm (bool, none_type): Specifies whether to power off and mark the VM at the target location as deprecated. As an example, <vm_name> will be renamed to deprecated::<vm_name>, and a new VM with the name <vm_name> in place of the now deprecated VM. Both deprecated::<vm_name> and <vm_name> will exist on the primary, but the corresponding protection job will only backup <vm_name> on its next run. Only applicable if renameRecoveredVmParams is null and overwriteExistingVm is false. This option is not supported for vApp or vApp template recoveries. Default value is false.. [optional]  # noqa: E501
             power_on_vms (bool, none_type): Specifies whether to power on vms after recovery. If not specified, or false, recovered vms will be in powered off state.. [optional]  # noqa: E501

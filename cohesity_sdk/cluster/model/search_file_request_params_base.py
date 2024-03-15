@@ -64,6 +64,7 @@ class SearchFileRequestParamsBase(ModelNormal):
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KAZURE': "kAzure",
             'KNETAPP': "kNetapp",
             'KGENERICNAS': "kGenericNas",

@@ -83,6 +83,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
             'PAUSED': "Paused",
         },
     }
@@ -127,6 +128,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
             'snapshot_id': (str, none_type,),  # noqa: E501
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'stats': (ArchivalDataStats,),  # noqa: E501
+            'stats_task_id': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'successful_app_objects_count': (int, none_type,),  # noqa: E501
             'successful_objects_count': (int, none_type,),  # noqa: E501
@@ -161,6 +163,7 @@ class ArchivalTargetResultAllOf(ModelNormal):
         'snapshot_id': 'snapshotId',  # noqa: E501
         'start_time_usecs': 'startTimeUsecs',  # noqa: E501
         'stats': 'stats',  # noqa: E501
+        'stats_task_id': 'statsTaskId',  # noqa: E501
         'status': 'status',  # noqa: E501
         'successful_app_objects_count': 'successfulAppObjectsCount',  # noqa: E501
         'successful_objects_count': 'successfulObjectsCount',  # noqa: E501
@@ -235,7 +238,8 @@ class ArchivalTargetResultAllOf(ModelNormal):
             snapshot_id (str, none_type): Snapshot id for a successful snapshot. This field will not be set if the archival Run fails to take the snapshot.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of replication run in Unix epoch Timestamp(in microseconds) for an archival target.. [optional]  # noqa: E501
             stats (ArchivalDataStats): [optional]  # noqa: E501
-            status (str, none_type): Status of the replication run for an archival target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            stats_task_id (str, none_type): Run Stats task id for archival.. [optional]  # noqa: E501
+            status (str, none_type): Status of the replication run for an archival target. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being canceled. 'Paused' indicates that the ongoing run has been paused. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
             successful_app_objects_count (int, none_type): Specifies the count of app objects for which backup was successful.. [optional]  # noqa: E501
             successful_objects_count (int, none_type): Specifies the count of objects for which backup was successful.. [optional]  # noqa: E501
             worm_properties (WormProperties): [optional]  # noqa: E501

@@ -85,6 +85,7 @@ class IdentityProviderConfiguration(ModelComposed):
             'issuer_id': (str, none_type,),  # noqa: E501
             'sso_url': (str, none_type,),  # noqa: E501
             'allow_local_user_login': (bool, none_type,),  # noqa: E501
+            'certificate_filename': (str, none_type,),  # noqa: E501
             'is_enabled': (bool, none_type,),  # noqa: E501
             'roles': ([str], none_type,),  # noqa: E501
             'saml_attribute_name': (str, none_type,),  # noqa: E501
@@ -106,6 +107,7 @@ class IdentityProviderConfiguration(ModelComposed):
         'issuer_id': 'issuerId',  # noqa: E501
         'sso_url': 'ssoUrl',  # noqa: E501
         'allow_local_user_login': 'allowLocalUserLogin',  # noqa: E501
+        'certificate_filename': 'certificateFilename',  # noqa: E501
         'is_enabled': 'isEnabled',  # noqa: E501
         'roles': 'roles',  # noqa: E501
         'saml_attribute_name': 'samlAttributeName',  # noqa: E501
@@ -170,6 +172,7 @@ class IdentityProviderConfiguration(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             allow_local_user_login (bool, none_type): Specifies if local user login is allowed. When idp is configured, only idp users are allowed to login to the cluster, local login is disabled except for users with admin role. If this flag is set to true, local (non-idp) logins are allowed for all local and AD users. Local or AD users with admin role can login always independent of this flag's setting. By default there is no local authentication i.e the value is false.. [optional]  # noqa: E501
+            certificate_filename (str, none_type): Specifies the filename used for the certificate. The default value is idp_certificate.pem. [optional]  # noqa: E501
             is_enabled (bool, none_type): Specifies a flag to enable or disable this idp service. When it is set to true, idp service is enabled. When it is set to false, idp service is disabled. By defaut idp is enabled i.e the value is true.. [optional]  # noqa: E501
             roles ([str], none_type): Specifies the default roles assined for all SSO users. [optional]  # noqa: E501
             saml_attribute_name (str, none_type): Specifies the SAML attribute name that contains a comma separated list of cluster roles. This sets the default roles for all SSO users. Either this field or roles must be set, this field takes higher precedence than the roles field.. [optional]  # noqa: E501

@@ -23,9 +23,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.cluster.model.active_directories import ActiveDirectories
 from cohesity_sdk.cluster.model.active_directory import ActiveDirectory
+from cohesity_sdk.cluster.model.centrify_zones import CentrifyZones
 from cohesity_sdk.cluster.model.create_active_directory_request import CreateActiveDirectoryRequest
 from cohesity_sdk.cluster.model.domain_controllers_response import DomainControllersResponse
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.trusted_domain_params import TrustedDomainParams
 from cohesity_sdk.cluster.model.update_active_directory_request import UpdateActiveDirectoryRequest
 
 
@@ -610,6 +612,134 @@ class ActiveDirectoryApi(object):
             callable=__get_active_directory_by_id
         )
 
+        def __get_centrify_zones(
+            self,
+            domain_name,
+            **kwargs
+        ):
+            """Get Centrify Zones.  # noqa: E501
+
+            Get Centrify zones for a specified domain.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_centrify_zones(domain_name, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                domain_name (str): Specifies the FQDN of the domain name.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CentrifyZones
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['domain_name'] = \
+                domain_name
+            return self.call_with_http_info(**kwargs)
+
+        self.get_centrify_zones = _Endpoint(
+            settings={
+                'response_type': (CentrifyZones,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/centrify-zones',
+                'operation_id': 'get_centrify_zones',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'domain_name',
+                ],
+                'required': [
+                    'domain_name',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'domain_name',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('domain_name',): {
+
+                        'regex': {
+                            'pattern': r'^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9_\-]{0,61}[a-zA-Z0-9]))*$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'domain_name':
+                        (str,),
+                },
+                'attribute_map': {
+                    'domain_name': 'domainName',
+                },
+                'location_map': {
+                    'domain_name': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_centrify_zones
+        )
+
         def __get_domain_controllers(
             self,
             domain_names,
@@ -744,6 +874,258 @@ class ActiveDirectoryApi(object):
             callable=__get_domain_controllers
         )
 
+        def __get_trusted_domains(
+            self,
+            domain_name,
+            **kwargs
+        ):
+            """Get Trusted Domains.  # noqa: E501
+
+            Get Trusted Domains for a specified domain.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_trusted_domains(domain_name, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                domain_name (str): Specifies the FQDN of an Active directory domain.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TrustedDomainParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['domain_name'] = \
+                domain_name
+            return self.call_with_http_info(**kwargs)
+
+        self.get_trusted_domains = _Endpoint(
+            settings={
+                'response_type': (TrustedDomainParams,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/trusted-domains',
+                'operation_id': 'get_trusted_domains',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'domain_name',
+                ],
+                'required': [
+                    'domain_name',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'domain_name':
+                        (str,),
+                },
+                'attribute_map': {
+                    'domain_name': 'domainName',
+                },
+                'location_map': {
+                    'domain_name': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_trusted_domains
+        )
+
+        def __trigger_trusted_domains_discovery(
+            self,
+            domain_name,
+            rediscover,
+            **kwargs
+        ):
+            """Rediscover trusted domains.  # noqa: E501
+
+            Re-trigger the trusted domains of an Active Directory.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.trigger_trusted_domains_discovery(domain_name, rediscover, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                domain_name (str): Specifies the FQDN of an Active directory domain.
+                rediscover (bool): Specifies if trusted domains should be rediscovered.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['domain_name'] = \
+                domain_name
+            kwargs['rediscover'] = \
+                rediscover
+            return self.call_with_http_info(**kwargs)
+
+        self.trigger_trusted_domains_discovery = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/trusted-domains',
+                'operation_id': 'trigger_trusted_domains_discovery',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'domain_name',
+                    'rediscover',
+                ],
+                'required': [
+                    'domain_name',
+                    'rediscover',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'domain_name':
+                        (str,),
+                    'rediscover':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'domain_name': 'domainName',
+                    'rediscover': 'rediscover',
+                },
+                'location_map': {
+                    'domain_name': 'query',
+                    'rediscover': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__trigger_trusted_domains_discovery
+        )
+
         def __update_active_directory(
             self,
             id,
@@ -874,4 +1256,137 @@ class ActiveDirectoryApi(object):
             },
             api_client=api_client,
             callable=__update_active_directory
+        )
+
+        def __update_trusted_domains(
+            self,
+            domain_name,
+            body,
+            **kwargs
+        ):
+            """Update trusted domains.  # noqa: E501
+
+            To update trusted domains of an Active Directory.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_trusted_domains(domain_name, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                domain_name (str, none_type): Specifies the FQDN of an Active directory domain.
+                body (TrustedDomainParams): Specifies the trusted domains params.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                TrustedDomainParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['domain_name'] = \
+                domain_name
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_trusted_domains = _Endpoint(
+            settings={
+                'response_type': (TrustedDomainParams,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/trusted-domains',
+                'operation_id': 'update_trusted_domains',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'domain_name',
+                    'body',
+                ],
+                'required': [
+                    'domain_name',
+                    'body',
+                ],
+                'nullable': [
+                    'domain_name',
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'domain_name':
+                        (str, none_type,),
+                    'body':
+                        (TrustedDomainParams,),
+                },
+                'attribute_map': {
+                    'domain_name': 'domainName',
+                },
+                'location_map': {
+                    'domain_name': 'query',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_trusted_domains
         )

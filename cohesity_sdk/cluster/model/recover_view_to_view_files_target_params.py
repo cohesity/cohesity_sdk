@@ -77,8 +77,8 @@ class RecoverViewToViewFilesTargetParams(ModelNormal):
             'recover_to_new_view': (bool,),  # noqa: E501
             'new_view_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'original_view_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'view_name': (str, none_type,),  # noqa: E501
             'view_id': (int, none_type,),  # noqa: E501
+            'view_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,8 +91,8 @@ class RecoverViewToViewFilesTargetParams(ModelNormal):
         'recover_to_new_view': 'recoverToNewView',  # noqa: E501
         'new_view_config': 'newViewConfig',  # noqa: E501
         'original_view_config': 'originalViewConfig',  # noqa: E501
-        'view_name': 'viewName',  # noqa: E501
         'view_id': 'viewId',  # noqa: E501
+        'view_name': 'viewName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,8 +147,8 @@ class RecoverViewToViewFilesTargetParams(ModelNormal):
 
             new_view_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the new destination View configuration parameters where the files will be recovered. This is mandatory if recoverToNewView is set to true.. [optional]  # noqa: E501
             original_view_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the View configuration if files are being recovered to original View. If not specified, all the configuration parameters will be retained.. [optional]  # noqa: E501
-            view_name (str, none_type): Specifies the name of the new view that's the target for recovery.. [optional]  # noqa: E501
             view_id (int, none_type): Specifies the ID of the view.. [optional]  # noqa: E501
+            view_name (str, none_type): Specifies the name of the new view that's the target for recovery.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

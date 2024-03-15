@@ -100,39 +100,38 @@ Class | Method | HTTP request | Description
 *ActiveDirectoryApi* | [**delete_active_directory**](docs/ActiveDirectoryApi.md#delete_active_directory) | **DELETE** /active-directories/{id} | Delete an Active Directory.
 *ActiveDirectoryApi* | [**get_active_directory**](docs/ActiveDirectoryApi.md#get_active_directory) | **GET** /active-directories | Get the list of Active Directories.
 *ActiveDirectoryApi* | [**get_active_directory_by_id**](docs/ActiveDirectoryApi.md#get_active_directory_by_id) | **GET** /active-directories/{id} | Get an Active Directory by id.
+*ActiveDirectoryApi* | [**get_centrify_zones**](docs/ActiveDirectoryApi.md#get_centrify_zones) | **GET** /centrify-zones | Get Centrify Zones.
 *ActiveDirectoryApi* | [**get_domain_controllers**](docs/ActiveDirectoryApi.md#get_domain_controllers) | **GET** /domain-controllers | Get Domain Controllers of specified domains.
+*ActiveDirectoryApi* | [**get_trusted_domains**](docs/ActiveDirectoryApi.md#get_trusted_domains) | **GET** /trusted-domains | Get Trusted Domains.
+*ActiveDirectoryApi* | [**trigger_trusted_domains_discovery**](docs/ActiveDirectoryApi.md#trigger_trusted_domains_discovery) | **PUT** /trusted-domains | Rediscover trusted domains.
 *ActiveDirectoryApi* | [**update_active_directory**](docs/ActiveDirectoryApi.md#update_active_directory) | **PUT** /active-directories/{id} | Update an Active Directory.
+*ActiveDirectoryApi* | [**update_trusted_domains**](docs/ActiveDirectoryApi.md#update_trusted_domains) | **POST** /trusted-domains | Update trusted domains.
 *AgentApi* | [**create_upgrade_task**](docs/AgentApi.md#create_upgrade_task) | **POST** /data-protect/agents/upgrade-tasks | Create an upgrade task
 *AgentApi* | [**download_agent**](docs/AgentApi.md#download_agent) | **POST** /data-protect/agents/download | Download agent
 *AgentApi* | [**get_upgrade_tasks**](docs/AgentApi.md#get_upgrade_tasks) | **GET** /data-protect/agents/upgrade-tasks | Get upgrade tasks
 *AgentApi* | [**perform_action_on_agent_upgrade_task**](docs/AgentApi.md#perform_action_on_agent_upgrade_task) | **POST** /data-protect/agents/upgrade-tasks/actions | Perform action on an upgrade task.
 *AlertApi* | [**get_alert_summary**](docs/AlertApi.md#get_alert_summary) | **GET** /alerts-summary | Get alerts summary.
+*AntivirusServiceApi* | [**create_antivirus_group**](docs/AntivirusServiceApi.md#create_antivirus_group) | **POST** /antivirus-service/groups | Create an Antivirus Service group.
+*AntivirusServiceApi* | [**delete_antivirus_group**](docs/AntivirusServiceApi.md#delete_antivirus_group) | **DELETE** /antivirus-service/groups/{id} | Delete an Antivirus Service group
+*AntivirusServiceApi* | [**delete_infected_files**](docs/AntivirusServiceApi.md#delete_infected_files) | **DELETE** /antivirus-service/infected-files | Delete infected files.
 *AntivirusServiceApi* | [**get_antivirus_service_groups**](docs/AntivirusServiceApi.md#get_antivirus_service_groups) | **GET** /antivirus-service/groups | Get Antivirus Service groups.
 *AntivirusServiceApi* | [**get_icap_uri_connection_status**](docs/AntivirusServiceApi.md#get_icap_uri_connection_status) | **GET** /antivirus-service/icap-uri-connection-status | Get ICAP Uri connection status.
 *AntivirusServiceApi* | [**get_infected_files**](docs/AntivirusServiceApi.md#get_infected_files) | **GET** /antivirus-service/infected-files | Get infected files.
+*AntivirusServiceApi* | [**update_antivirus_group**](docs/AntivirusServiceApi.md#update_antivirus_group) | **PUT** /antivirus-service/groups/{id} | Update an Antivirus Service group with given parameters or if state is specified, enable or disable given group.
+*AntivirusServiceApi* | [**update_infected_files**](docs/AntivirusServiceApi.md#update_infected_files) | **PUT** /antivirus-service/infected-files | Update infected files state.
 *AuditLogApi* | [**get_audit_logs**](docs/AuditLogApi.md#get_audit_logs) | **GET** /audit-logs | Get cluster audit logs.
 *AuditLogApi* | [**get_audit_logs_actions**](docs/AuditLogApi.md#get_audit_logs_actions) | **GET** /audit-logs/actions | Get cluster audit logs actions.
 *AuditLogApi* | [**get_audit_logs_entity_types**](docs/AuditLogApi.md#get_audit_logs_entity_types) | **GET** /audit-logs/entity-types | Get cluster audit logs entity types.
 *AuditLogApi* | [**get_filer_audit_log_configs**](docs/AuditLogApi.md#get_filer_audit_log_configs) | **GET** /audit-logs/filer-configs | Get filer audit log configs.
 *AuditLogApi* | [**update_filer_audit_log_configs**](docs/AuditLogApi.md#update_filer_audit_log_configs) | **PUT** /audit-logs/filer-configs | Update filer audit log configs.
+*BaseosPatchManagementApi* | [**apply_baseos_patch**](docs/BaseosPatchManagementApi.md#apply_baseos_patch) | **POST** /patch-management/baseos-patch-apply | Applies the given baseos patch.
+*BaseosPatchManagementApi* | [**download_baseos_patch**](docs/BaseosPatchManagementApi.md#download_baseos_patch) | **POST** /patch-management/baseos-patch-download | Downloads the given baseos patch.
+*BaseosPatchManagementApi* | [**get_baseos_patch_list**](docs/BaseosPatchManagementApi.md#get_baseos_patch_list) | **GET** /patch-management/baseos-patch-list | Get available baseos patches
+*BaseosPatchManagementApi* | [**get_baseos_patch_log**](docs/BaseosPatchManagementApi.md#get_baseos_patch_log) | **GET** /patch-management/baseos-patch-log | Get Baseos patch application log
+*BaseosPatchManagementApi* | [**remove_baseos_patch**](docs/BaseosPatchManagementApi.md#remove_baseos_patch) | **POST** /patch-management/baseos-patch-remove | Cleans up the given baseos patch files.
 *CloudRetrieveTaskApi* | [**create_cloud_retrieve_task**](docs/CloudRetrieveTaskApi.md#create_cloud_retrieve_task) | **POST** /data-protect/retrieve | Create a cloud retrieve task.
 *CloudRetrieveTaskApi* | [**get_cloud_retrieve_task_by_job_id**](docs/CloudRetrieveTaskApi.md#get_cloud_retrieve_task_by_job_id) | **GET** /data-protect/retrieve/{jobId} | List details about the cloud retrieve task with the specific job id.
 *CloudRetrieveTaskApi* | [**get_cloud_retrieve_tasks**](docs/CloudRetrieveTaskApi.md#get_cloud_retrieve_tasks) | **GET** /data-protect/retrieve | Get the list of cloud retrieve tasks.
-*ConnectorsApi* | [**create_bifrost_connector**](docs/ConnectorsApi.md#create_bifrost_connector) | **POST** /connector-hybrid-extender | Create a Bifrost connector on the cluster.
-*ConnectorsApi* | [**create_rigel_connector**](docs/ConnectorsApi.md#create_rigel_connector) | **POST** /connector-rigel | Create a Rigel connector on the cluster.
-*ConnectorsApi* | [**delete_bifrost_connector**](docs/ConnectorsApi.md#delete_bifrost_connector) | **DELETE** /connector-hybrid-extender/{id} | Delete a Bifrost connector.
-*ConnectorsApi* | [**delete_rigel_connector**](docs/ConnectorsApi.md#delete_rigel_connector) | **DELETE** /connector-rigel/{id} | Delete a Rigel connector.
-*ConnectorsApi* | [**get_bifrost_connector**](docs/ConnectorsApi.md#get_bifrost_connector) | **GET** /connector-hybrid-extender | Get Bifrost connectors on the cluster.
-*ConnectorsApi* | [**get_bifrost_connector_by_id**](docs/ConnectorsApi.md#get_bifrost_connector_by_id) | **GET** /connector-hybrid-extender/{id} | Get a Bifrost connector by the id.
-*ConnectorsApi* | [**get_connectivity_check**](docs/ConnectorsApi.md#get_connectivity_check) | **GET** /connectivity-endpoints | Get connectivity check results.
-*ConnectorsApi* | [**get_rigel_connector**](docs/ConnectorsApi.md#get_rigel_connector) | **GET** /connector-rigel | Get Rigel connectors on the cluster.
-*ConnectorsApi* | [**get_rigel_connector_by_id**](docs/ConnectorsApi.md#get_rigel_connector_by_id) | **GET** /connector-rigel/{id} | Get a Rigel connector by the id.
-*ConnectorsApi* | [**perform_connectivity_check**](docs/ConnectorsApi.md#perform_connectivity_check) | **POST** /connectivity-endpoints | Perform Connectivity Check.
-*ConnectorsApi* | [**update_bifrost_connector**](docs/ConnectorsApi.md#update_bifrost_connector) | **PUT** /connector-hybrid-extender/{id} | Update a Bifrost connector.
-*ConnectorsApi* | [**update_rigel_connector**](docs/ConnectorsApi.md#update_rigel_connector) | **PUT** /connector-rigel/{id} | Update a Rigel connector.
-*DMaaSTenantCertificateApi* | [**add_dmaas_tenant_cert**](docs/DMaaSTenantCertificateApi.md#add_dmaas_tenant_cert) | **POST** /dmaas-tenant-certificate | Add a DMaaS tenant certificate to the cluster.
-*DMaaSTenantCertificateApi* | [**delete_dmaas_tenant_cert**](docs/DMaaSTenantCertificateApi.md#delete_dmaas_tenant_cert) | **DELETE** /dmaas-tenant-certificate/{tenantId} | Delete a tenant certificate.
-*DMaaSTenantCertificateApi* | [**get_dmaas_tenant_certs**](docs/DMaaSTenantCertificateApi.md#get_dmaas_tenant_certs) | **GET** /dmaas-tenant-certificate | Get DMaaS tenant certificates on the cluster.
 *DataTieringApi* | [**cancel_data_tiering_analysis_group_run**](docs/DataTieringApi.md#cancel_data_tiering_analysis_group_run) | **POST** /data-tiering/analysis-groups/{id}/runs/{runId}/cancel | Cancel data tiering analysis run.
 *DataTieringApi* | [**cancel_data_tiering_task_run**](docs/DataTieringApi.md#cancel_data_tiering_task_run) | **POST** /data-tiering/tasks/{id}/runs/{runId}/cancel | Cancel data tiering task.
 *DataTieringApi* | [**create_data_tiering_analysis_group**](docs/DataTieringApi.md#create_data_tiering_analysis_group) | **POST** /data-tiering/analysis-groups | Create a data tiering analysis group.
@@ -141,31 +140,23 @@ Class | Method | HTTP request | Description
 *DataTieringApi* | [**create_data_tiering_task_run**](docs/DataTieringApi.md#create_data_tiering_task_run) | **POST** /data-tiering/tasks/{id}/runs | Create a data tiering tasks run.
 *DataTieringApi* | [**delete_data_tiering_analysis_group**](docs/DataTieringApi.md#delete_data_tiering_analysis_group) | **DELETE** /data-tiering/analysis-groups/{id} | Delete data tiering analysis group.
 *DataTieringApi* | [**delete_data_tiering_task**](docs/DataTieringApi.md#delete_data_tiering_task) | **DELETE** /data-tiering/tasks/{id} | delete the data tiering task.
+*DataTieringApi* | [**get_capacity_trend_analysis**](docs/DataTieringApi.md#get_capacity_trend_analysis) | **GET** /data-tiering/capacity-trend | Get capacity trend analysis for all sources or a specific source.
 *DataTieringApi* | [**get_data_tiering_analysis_group_by_id**](docs/DataTieringApi.md#get_data_tiering_analysis_group_by_id) | **GET** /data-tiering/analysis-groups/{id} | Get data tiering analysis group by id.
+*DataTieringApi* | [**get_data_tiering_analysis_group_runs**](docs/DataTieringApi.md#get_data_tiering_analysis_group_runs) | **GET** /data-tiering/analysis-groups/{id}/runs | Get data tiering analysis group runs.
 *DataTieringApi* | [**get_data_tiering_analysis_groups**](docs/DataTieringApi.md#get_data_tiering_analysis_groups) | **GET** /data-tiering/analysis-groups | Get the list of data tiering analysis groups.
+*DataTieringApi* | [**get_data_tiering_analysis_groups_default_config**](docs/DataTieringApi.md#get_data_tiering_analysis_groups_default_config) | **GET** /data-tiering/analysis-groups/config | Get the default config of data tiering analysis groups.
 *DataTieringApi* | [**get_data_tiering_task_by_id**](docs/DataTieringApi.md#get_data_tiering_task_by_id) | **GET** /data-tiering/tasks/{id} | Get data tiering task by id.
 *DataTieringApi* | [**get_data_tiering_tasks**](docs/DataTieringApi.md#get_data_tiering_tasks) | **GET** /data-tiering/tasks | Get the list of data tiering tasks.
-*DataTieringApi* | [**update_data_tiering_analysis_group**](docs/DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources only.
+*DataTieringApi* | [**update_data_tiering_analysis_group**](docs/DataTieringApi.md#update_data_tiering_analysis_group) | **PUT** /data-tiering/analysis-groups/{id} | Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
 *DataTieringApi* | [**update_data_tiering_analysis_group_tags_config**](docs/DataTieringApi.md#update_data_tiering_analysis_group_tags_config) | **PUT** /data-tiering/analysis-groups/{id}/config | Update data tiering analysis group config.
 *DataTieringApi* | [**update_data_tiering_analysis_groups_state**](docs/DataTieringApi.md#update_data_tiering_analysis_groups_state) | **POST** /data-tiering/analysis-groups/states | Update data tiering analysis groups state.
 *DataTieringApi* | [**update_data_tiering_task**](docs/DataTieringApi.md#update_data_tiering_task) | **PUT** /data-tiering/tasks/{id} | Update a data tiering task.
 *DataTieringApi* | [**update_data_tiering_tasks_state**](docs/DataTieringApi.md#update_data_tiering_tasks_state) | **POST** /data-tiering/tasks/states | Update data tiering source analysis tasks state.
-*ExternalConnectionApi* | [**create_bifrost_connection**](docs/ExternalConnectionApi.md#create_bifrost_connection) | **POST** /connection-bifrost | Create a connection of Bifrost on the cluster.
-*ExternalConnectionApi* | [**create_rigel_connection**](docs/ExternalConnectionApi.md#create_rigel_connection) | **POST** /connection-rigel | Create a connection of Rigel on the cluster.
-*ExternalConnectionApi* | [**delete_bifrost_connection**](docs/ExternalConnectionApi.md#delete_bifrost_connection) | **DELETE** /connection-bifrost/{id} | Delete a connection of Bifrost.
-*ExternalConnectionApi* | [**delete_rigel_connection**](docs/ExternalConnectionApi.md#delete_rigel_connection) | **DELETE** /connection-rigel/{id} | Delete a connection of Rigel.
-*ExternalConnectionApi* | [**get_bifrost_connection**](docs/ExternalConnectionApi.md#get_bifrost_connection) | **GET** /connection-bifrost | Get connections of Bifrost on the cluster.
-*ExternalConnectionApi* | [**get_bifrost_connection_by_id**](docs/ExternalConnectionApi.md#get_bifrost_connection_by_id) | **GET** /connection-bifrost/{id} | Get a connection of Bifrost by the id.
-*ExternalConnectionApi* | [**get_connection_bandwidth**](docs/ExternalConnectionApi.md#get_connection_bandwidth) | **GET** /connection-rigel/{id}/bandwidth | List the upload and download bandwidth limits for a connection.
-*ExternalConnectionApi* | [**get_rigel_connection**](docs/ExternalConnectionApi.md#get_rigel_connection) | **GET** /connection-rigel | Get connections of Rigel on the cluster.
-*ExternalConnectionApi* | [**get_rigel_connection_by_id**](docs/ExternalConnectionApi.md#get_rigel_connection_by_id) | **GET** /connection-rigel/{id} | Get a connection of Rigel by the id.
-*ExternalConnectionApi* | [**update_bifrost_connection**](docs/ExternalConnectionApi.md#update_bifrost_connection) | **PUT** /connection-bifrost/{id} | Update a connection of Bifrost.
-*ExternalConnectionApi* | [**update_connection_bandwidth**](docs/ExternalConnectionApi.md#update_connection_bandwidth) | **PUT** /connection-rigel/{id}/bandwidth | Updates bandwidth limits for a connection.
-*ExternalConnectionApi* | [**update_rigel_connection**](docs/ExternalConnectionApi.md#update_rigel_connection) | **PUT** /connection-rigel/{id} | Update a connection of Rigel.
 *ExternalTargetApi* | [**create_external_target**](docs/ExternalTargetApi.md#create_external_target) | **POST** /data-protect/external-targets | Create a External Target.
 *ExternalTargetApi* | [**delete_external_target**](docs/ExternalTargetApi.md#delete_external_target) | **DELETE** /data-protect/external-targets/{id} | Delete a External Target.
 *ExternalTargetApi* | [**get_external_target_by_id**](docs/ExternalTargetApi.md#get_external_target_by_id) | **GET** /data-protect/external-targets/{id} | List details about single External Target.
 *ExternalTargetApi* | [**get_external_target_encryption_key_info**](docs/ExternalTargetApi.md#get_external_target_encryption_key_info) | **GET** /data-protect/external-targets/{id}/encryption-key | Get the encryption key info for an external target
+*ExternalTargetApi* | [**get_external_target_media_info**](docs/ExternalTargetApi.md#get_external_target_media_info) | **GET** /data-protect/external-targets/media-info | List archive media information
 *ExternalTargetApi* | [**get_external_target_settings**](docs/ExternalTargetApi.md#get_external_target_settings) | **GET** /data-protect/external-targets/settings | Get the list of External Target Settings.
 *ExternalTargetApi* | [**get_external_targets**](docs/ExternalTargetApi.md#get_external_targets) | **GET** /data-protect/external-targets | Get the list of External Targets.
 *ExternalTargetApi* | [**update_external_target**](docs/ExternalTargetApi.md#update_external_target) | **PUT** /data-protect/external-targets/{id} | Update a External Target.
@@ -178,27 +169,30 @@ Class | Method | HTTP request | Description
 *FailoverApi* | [**get_tracking_view_id**](docs/FailoverApi.md#get_tracking_view_id) | **GET** /data-protect/failover/views/trackingViewId/{id} | Get tracking View Id
 *FailoverApi* | [**get_view_failover**](docs/FailoverApi.md#get_view_failover) | **GET** /data-protect/failover/views/{id} | Get View Failover.
 *FailoverApi* | [**init_failover**](docs/FailoverApi.md#init_failover) | **POST** /data-protect/failover/{id} | Initiate a failover request.
-*FailoverApi* | [**internal_api_replication_backup_activation**](docs/FailoverApi.md#internal_api_replication_backup_activation) | **POST** /data-protect/failover/{id}/backupActivation | Activate failover entity backup on replication clsuter.
 *FailoverApi* | [**object_linkage**](docs/FailoverApi.md#object_linkage) | **POST** /data-protect/failover/{id}/object-linkage | Linking between replicated objects and failover objects
 *FailoverApi* | [**poll_planned_runs**](docs/FailoverApi.md#poll_planned_runs) | **GET** /data-protect/failover/planned-runs | Get the list of failover planned runs.
 *FailoverApi* | [**replication_backup_activation**](docs/FailoverApi.md#replication_backup_activation) | **POST** /data-protect/failover/{id}/backup-activation | Activate failover entity backup on replication clsuter.
 *FailoverApi* | [**source_backup_deactivation**](docs/FailoverApi.md#source_backup_deactivation) | **POST** /data-protect/failover/{id}/backup-deactivation | Deactivate failover entity backup on source clsuter.
 *FirewallApi* | [**list_firewall_ip_sets**](docs/FirewallApi.md#list_firewall_ip_sets) | **GET** /network/firewall/ip-sets | List all firewall IP sets
 *FirewallApi* | [**list_firewall_profiles**](docs/FirewallApi.md#list_firewall_profiles) | **GET** /network/firewall/profiles | List all firewall profiles.
+*FirewallApi* | [**remove_firewall_profiles**](docs/FirewallApi.md#remove_firewall_profiles) | **PUT** /network/firewall/profile/remove | Remove firewall profiles.
 *FirewallApi* | [**reset_firewall_profile**](docs/FirewallApi.md#reset_firewall_profile) | **POST** /network/firewall/profiles/reset | Reset firewall profiles.
 *FirewallApi* | [**update_firewall_ip_sets**](docs/FirewallApi.md#update_firewall_ip_sets) | **PUT** /network/firewall/ip-sets | Update firewall IP sets
+*FirewallApi* | [**update_firewall_profile**](docs/FirewallApi.md#update_firewall_profile) | **PUT** /network/firewall/profile | Update firewall profiles &amp; their attachments.
 *FirewallApi* | [**update_firewall_profiles**](docs/FirewallApi.md#update_firewall_profiles) | **PUT** /network/firewall/profiles | Update firewall profiles &amp; their attachments.
-*FleetInstanceApi* | [**update_fleet_env_info**](docs/FleetInstanceApi.md#update_fleet_env_info) | **POST** /fleet-env-info | Update Fleet Env Info.
 *HeliosOnPremApi* | [**get_helios_on_prem_config**](docs/HeliosOnPremApi.md#get_helios_on_prem_config) | **GET** /helios-onprem/config | Retreive Helios OnPrem Configuration
 *HeliosOnPremApi* | [**update_helios_on_prem_config**](docs/HeliosOnPremApi.md#update_helios_on_prem_config) | **PUT** /helios-onprem/config | Update Helios OnPrem Configuration
 *IPsApi* | [**configure_ip_settings**](docs/IPsApi.md#configure_ip_settings) | **PUT** /network/ips | Configure an IP setting.
+*IdentityProviderApi* | [**create_identity**](docs/IdentityProviderApi.md#create_identity) | **POST** /identity-providers | Configure Identity Provider
 *IdentityProviderApi* | [**create_identity_provider**](docs/IdentityProviderApi.md#create_identity_provider) | **POST** /idps | Configure identity provider
+*IdentityProviderApi* | [**delete_identity**](docs/IdentityProviderApi.md#delete_identity) | **DELETE** /identity-providers/{id} | Delete Identity Provider
 *IdentityProviderApi* | [**delete_identity_provider**](docs/IdentityProviderApi.md#delete_identity_provider) | **DELETE** /idps/{id} | Delete identity provider
+*IdentityProviderApi* | [**get_identities**](docs/IdentityProviderApi.md#get_identities) | **GET** /identity-providers | Get Identities
 *IdentityProviderApi* | [**get_identity_providers**](docs/IdentityProviderApi.md#get_identity_providers) | **GET** /idps | Get identity providers
 *IdentityProviderApi* | [**idps_login**](docs/IdentityProviderApi.md#idps_login) | **GET** /idps/login | Login to cluster using idp
+*IdentityProviderApi* | [**perform_identity_action**](docs/IdentityProviderApi.md#perform_identity_action) | **POST** /identity-providers/actions | Perform Identity Action
+*IdentityProviderApi* | [**update_identity**](docs/IdentityProviderApi.md#update_identity) | **PUT** /identity-providers/{id} | Update Identity Provider
 *IdentityProviderApi* | [**update_identity_provider**](docs/IdentityProviderApi.md#update_identity_provider) | **PUT** /idps/{id} | Update identity provider
-*IndexingCloudConfigApi* | [**create_indexing_cloud_config**](docs/IndexingCloudConfigApi.md#create_indexing_cloud_config) | **POST** /indexing-cloud-config | Create a new indexing config for a Tenant on Helios.
-*InternalApi* | [**refresh_bulletin_board**](docs/InternalApi.md#refresh_bulletin_board) | **POST** /refresh-bulletin-board | Refresh bulletin board from Helios.
 *KerberosProviderApi* | [**get_kerberos_provider_by_id**](docs/KerberosProviderApi.md#get_kerberos_provider_by_id) | **GET** /kerberos-providers/{id} | Get the Registered Kerberos Provider by id.
 *KerberosProviderApi* | [**get_kerberos_providers**](docs/KerberosProviderApi.md#get_kerberos_providers) | **GET** /kerberos-providers | Get the list of Kerberos Providers.
 *KerberosProviderApi* | [**register_kerberos_provider**](docs/KerberosProviderApi.md#register_kerberos_provider) | **POST** /kerberos-providers/register | Register a Kerberos Authentication Provider.
@@ -213,8 +207,11 @@ Class | Method | HTTP request | Description
 *KeystoneApi* | [**get_keystones**](docs/KeystoneApi.md#get_keystones) | **GET** /keystones | Get Keystones.
 *KeystoneApi* | [**get_keystones_by_id**](docs/KeystoneApi.md#get_keystones_by_id) | **GET** /keystones/{id} | Get a Keystone by its id.
 *KeystoneApi* | [**update_keystone**](docs/KeystoneApi.md#update_keystone) | **PUT** /keystones/{id} | Update a Keystone configuration.
+*LDAPApi* | [**create_ldap_provider**](docs/LDAPApi.md#create_ldap_provider) | **POST** /ldap | Create Ldap provider.
+*LDAPApi* | [**delete_ldap_provider**](docs/LDAPApi.md#delete_ldap_provider) | **DELETE** /ldap/{id} | Delete LDAP provider.
 *LDAPApi* | [**get_ldap_connection_status**](docs/LDAPApi.md#get_ldap_connection_status) | **GET** /ldap/{id}/connection-status | Get LDAP connection status.
 *LDAPApi* | [**get_ldaps**](docs/LDAPApi.md#get_ldaps) | **GET** /ldap | Get Groups.
+*LDAPApi* | [**update_ldap_provider**](docs/LDAPApi.md#update_ldap_provider) | **PUT** /ldap | Update Ldap provider.
 *MFAApi* | [**create_email_otp**](docs/MFAApi.md#create_email_otp) | **POST** /email-otp | Creates a new OTP to be sent to the user email.
 *MFAApi* | [**create_totp_key**](docs/MFAApi.md#create_totp_key) | **POST** /totp-key | Create a new TOTP secret URI and store the secret key.
 *MFAApi* | [**get_mfa_config**](docs/MFAApi.md#get_mfa_config) | **GET** /mfa-config | Returns the current MFA configuration.
@@ -224,33 +221,21 @@ Class | Method | HTTP request | Description
 *MFAApi* | [**update_mfa_config**](docs/MFAApi.md#update_mfa_config) | **PUT** /mfa-config | Stores the updated MFA configuration.
 *MFAApi* | [**update_support_mfa_config**](docs/MFAApi.md#update_support_mfa_config) | **PATCH** /support-user/mfa | Stores the updated MFA configuration.
 *MFAApi* | [**verify_support_user_totp**](docs/MFAApi.md#verify_support_user_totp) | **POST** /support-user/verify-totp | Verify the totp code for support user.
-*MarketplaceAppApi* | [**get_marketplace_app_ui_details**](docs/MarketplaceAppApi.md#get_marketplace_app_ui_details) | **GET** /marketplace-app-ui-details | Get Marketplace App UI details.
-*NetworkInformationServiceApi* | [**create_nis_netgroup**](docs/NetworkInformationServiceApi.md#create_nis_netgroup) | **POST** /nis-netgroups | Create an NIS netgroup.
-*NetworkInformationServiceApi* | [**create_nis_provider**](docs/NetworkInformationServiceApi.md#create_nis_provider) | **POST** /nis-providers | Create an NIS Provider.
-*NetworkInformationServiceApi* | [**delete_nis_netgroup_by_name**](docs/NetworkInformationServiceApi.md#delete_nis_netgroup_by_name) | **DELETE** /nis-netgroups/{name} | Delete an NIS netgroup by name.
-*NetworkInformationServiceApi* | [**delete_nis_provider_by_domain_name**](docs/NetworkInformationServiceApi.md#delete_nis_provider_by_domain_name) | **DELETE** /nis-providers/{domain} | Delete an NIS Provider by domain name.
-*NetworkInformationServiceApi* | [**get_nis_netgroup_by_name**](docs/NetworkInformationServiceApi.md#get_nis_netgroup_by_name) | **GET** /nis-netgroups/{name} | Get an NIS netgroup by name.
-*NetworkInformationServiceApi* | [**get_nis_netgroups**](docs/NetworkInformationServiceApi.md#get_nis_netgroups) | **GET** /nis-netgroups | Get a list of NIS netgroups.
-*NetworkInformationServiceApi* | [**get_nis_provider_by_domain_name**](docs/NetworkInformationServiceApi.md#get_nis_provider_by_domain_name) | **GET** /nis-providers/{domain} | Get an NIS Provider by domain name.
-*NetworkInformationServiceApi* | [**get_nis_providers**](docs/NetworkInformationServiceApi.md#get_nis_providers) | **GET** /nis-providers | Get a list of NIS Providers.
-*NetworkInformationServiceApi* | [**update_nis_netgroup_by_name**](docs/NetworkInformationServiceApi.md#update_nis_netgroup_by_name) | **PUT** /nis-netgroups/{name} | Update an NIS netgroup by name.
-*NetworkInformationServiceApi* | [**update_nis_provider_by_domain_name**](docs/NetworkInformationServiceApi.md#update_nis_provider_by_domain_name) | **PUT** /nis-providers/{domain} | Update an NIS Provider by domain name.
 *NodeGroupApi* | [**create_node_group**](docs/NodeGroupApi.md#create_node_group) | **POST** /node-groups | Create a Node Group.
 *NodeGroupApi* | [**delete_node_group**](docs/NodeGroupApi.md#delete_node_group) | **DELETE** /node-groups/{groupName} | Delete a Node Group.
 *NodeGroupApi* | [**get_node_group_by_name**](docs/NodeGroupApi.md#get_node_group_by_name) | **GET** /node-groups/{groupName} | List Node Groups for a given Group Name.
 *NodeGroupApi* | [**get_node_groups**](docs/NodeGroupApi.md#get_node_groups) | **GET** /node-groups | List Node Groups based on provided filtering parameters.
 *NodeGroupApi* | [**update_node_group**](docs/NodeGroupApi.md#update_node_group) | **PUT** /node-groups/{groupName} | Update a Node Group.
+*ObjectApi* | [**associate_entity_metadata**](docs/ObjectApi.md#associate_entity_metadata) | **PUT** /data-protect/objects/metadata | Associate Metadata with Entity
 *ObjectApi* | [**browse_object_contents**](docs/ObjectApi.md#browse_object_contents) | **POST** /data-protect/objects/{id}/browse | Fetch the contents (files &amp; folders) for the specified object.
 *ObjectApi* | [**cancel_object_runs**](docs/ObjectApi.md#cancel_object_runs) | **POST** /data-protect/objects/runs/cancel | Cancel object runs.
 *ObjectApi* | [**construct_meta_info**](docs/ObjectApi.md#construct_meta_info) | **POST** /data-protect/snapshots/{snapshotId}/meta-info | Construct meta info for any workflow from object snapshot and some other information.
 *ObjectApi* | [**filter_objects**](docs/ObjectApi.md#filter_objects) | **POST** /data-protect/filter/objects | List all the filtered objects.
 *ObjectApi* | [**get_all_indexed_object_snapshots**](docs/ObjectApi.md#get_all_indexed_object_snapshots) | **GET** /data-protect/objects/{objectId}/indexed-objects/snapshots | Get snapshots of indexed object.
-*ObjectApi* | [**get_deleted_protected_objects**](docs/ObjectApi.md#get_deleted_protected_objects) | **GET** /data-protect/sources/{sourceId}/deleted-protected-objects | List deleted protected objects.
+*ObjectApi* | [**get_entity_metadata**](docs/ObjectApi.md#get_entity_metadata) | **GET** /data-protect/objects/{sourceId}/metadata | Get Metadata of Entities
 *ObjectApi* | [**get_indexed_object_snapshots**](docs/ObjectApi.md#get_indexed_object_snapshots) | **GET** /data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots | Get snapshots of indexed object.
-*ObjectApi* | [**get_object_identifiers**](docs/ObjectApi.md#get_object_identifiers) | **GET** /data-protect/objects/object-identifiers | Get Object Identifiers
 *ObjectApi* | [**get_object_run_by_run_id**](docs/ObjectApi.md#get_object_run_by_run_id) | **GET** /data-protect/objects/{id}/runs/{runId} | Get a run for an object.
 *ObjectApi* | [**get_object_runs**](docs/ObjectApi.md#get_object_runs) | **GET** /data-protect/objects/{id}/runs | Get the list of runs for an object.
-*ObjectApi* | [**get_object_snapshot_id**](docs/ObjectApi.md#get_object_snapshot_id) | **POST** /data-protect/objects/{objectId}/snapshotId | Get snapshot id for a given object.
 *ObjectApi* | [**get_object_snapshot_info**](docs/ObjectApi.md#get_object_snapshot_info) | **GET** /data-protect/snapshots/{snapshotId} | Get details of object snapshot.
 *ObjectApi* | [**get_object_snapshot_volume_info**](docs/ObjectApi.md#get_object_snapshot_volume_info) | **GET** /data-protect/snapshots/{snapshotId}/volume | Get volume info of object snapshot.
 *ObjectApi* | [**get_object_snapshots**](docs/ObjectApi.md#get_object_snapshots) | **GET** /data-protect/objects/{id}/snapshots | List the snapshots for a given object.
@@ -262,8 +247,6 @@ Class | Method | HTTP request | Description
 *ObjectApi* | [**get_protected_objects_of_any_type**](docs/ObjectApi.md#get_protected_objects_of_any_type) | **GET** /data-protect/objects | Get Objects.
 *ObjectApi* | [**get_snapshot_diff**](docs/ObjectApi.md#get_snapshot_diff) | **POST** /data-protect/objects/{id}/snapshot-diff | Get diff between two snapshots of a given object.
 *ObjectApi* | [**get_source_hierarchy_objects**](docs/ObjectApi.md#get_source_hierarchy_objects) | **GET** /data-protect/sources/{sourceId}/objects | List objects on a source which can be used for data protection.
-*ObjectApi* | [**internal_api_construct_meta_info**](docs/ObjectApi.md#internal_api_construct_meta_info) | **POST** /data-protect/snapshots/{snapshotId}/metaInfo | Construct meta info for any workflow from object snapshot and some other information.
-*ObjectApi* | [**internal_api_get_snapshot_diff**](docs/ObjectApi.md#internal_api_get_snapshot_diff) | **POST** /data-protect/objects/{id}/snapshotDiff | Get diff between two snapshots of a given object.
 *ObjectApi* | [**objects_actions**](docs/ObjectApi.md#objects_actions) | **POST** /data-protect/objects/actions | Actions on Objects
 *ObjectApi* | [**perform_action_on_object**](docs/ObjectApi.md#perform_action_on_object) | **POST** /data-protect/objects/{id}/actions | Perform an action on an object.
 *ObjectApi* | [**update_object_snapshot**](docs/ObjectApi.md#update_object_snapshot) | **PUT** /data-protect/objects/{id}/snapshots/{snapshotId} | Update an object snapshot.
@@ -276,22 +259,18 @@ Class | Method | HTTP request | Description
 *PatchManagementApi* | [**revert_patches**](docs/PatchManagementApi.md#revert_patches) | **POST** /patch-management/applied-patches | Revert patches
 *PlatformApi* | [**add_hosts**](docs/PlatformApi.md#add_hosts) | **POST** /clusters/host-mappings | Create Cluster Host Mappings
 *PlatformApi* | [**add_remote_disk**](docs/PlatformApi.md#add_remote_disk) | **POST** /disks/remote | Add remote disk
-*PlatformApi* | [**cleanup_tenant_migration**](docs/PlatformApi.md#cleanup_tenant_migration) | **POST** /clusters/cleanup-tenant-migration | Cleanup Tenant Migration.
 *PlatformApi* | [**clear_smtp_configuration**](docs/PlatformApi.md#clear_smtp_configuration) | **DELETE** /clusters/smtp | Clear SMTP configuration.
 *PlatformApi* | [**create_cluster**](docs/PlatformApi.md#create_cluster) | **POST** /clusters | Create a cluster.
 *PlatformApi* | [**create_cluster_vlan**](docs/PlatformApi.md#create_cluster_vlan) | **POST** /network/vlans | Create vlan
 *PlatformApi* | [**create_interface_group**](docs/PlatformApi.md#create_interface_group) | **POST** /network/interface-groups | Create interface group
-*PlatformApi* | [**create_node_bond_interface**](docs/PlatformApi.md#create_node_bond_interface) | **POST** /network/nodes/bonds | Create bond interface
 *PlatformApi* | [**create_racks**](docs/PlatformApi.md#create_racks) | **POST** /racks | Create racks
 *PlatformApi* | [**delete_amqp_target_config**](docs/PlatformApi.md#delete_amqp_target_config) | **DELETE** /clusters/amqp-target-config | Delete AMQP Target Config
 *PlatformApi* | [**delete_cluster_package**](docs/PlatformApi.md#delete_cluster_package) | **DELETE** /clusters/packages/{versionName} | Delete package
 *PlatformApi* | [**delete_cluster_vlan**](docs/PlatformApi.md#delete_cluster_vlan) | **DELETE** /network/vlans/{interfaceName} | Delete vlan
 *PlatformApi* | [**delete_hosts**](docs/PlatformApi.md#delete_hosts) | **POST** /clusters/host-mappings/delete | Deletes multiple Host Mappings within the cluster
 *PlatformApi* | [**delete_interface_group**](docs/PlatformApi.md#delete_interface_group) | **DELETE** /network/interface-groups/{id} | Delete interface group
-*PlatformApi* | [**delete_node_bond_interface**](docs/PlatformApi.md#delete_node_bond_interface) | **DELETE** /network/nodes/bonds/{name} | Delete bond interface
 *PlatformApi* | [**delete_rack_by_id**](docs/PlatformApi.md#delete_rack_by_id) | **DELETE** /racks/{id} | Delete a rack by id.
 *PlatformApi* | [**delete_racks**](docs/PlatformApi.md#delete_racks) | **DELETE** /racks | Delete all the racks.
-*PlatformApi* | [**destroy_cluster**](docs/PlatformApi.md#destroy_cluster) | **DELETE** /clusters | Destroy a cluster.
 *PlatformApi* | [**discover_disks**](docs/PlatformApi.md#discover_disks) | **GET** /disks/discover | Discover new disks
 *PlatformApi* | [**disk_identify**](docs/PlatformApi.md#disk_identify) | **POST** /disks/identify | Identify a disk
 *PlatformApi* | [**disks_assimilate**](docs/PlatformApi.md#disks_assimilate) | **POST** /disks/assimilate | Assimilate disks.
@@ -300,12 +279,9 @@ Class | Method | HTTP request | Description
 *PlatformApi* | [**get_chassis**](docs/PlatformApi.md#get_chassis) | **GET** /chassis | Get list of chassis
 *PlatformApi* | [**get_chassis_by_id**](docs/PlatformApi.md#get_chassis_by_id) | **GET** /chassis/{id} | Get a chassis by chassis id.
 *PlatformApi* | [**get_cluster**](docs/PlatformApi.md#get_cluster) | **GET** /clusters | Retrieve Cluster Configuration
-*PlatformApi* | [**get_cluster_destroy_hmac**](docs/PlatformApi.md#get_cluster_destroy_hmac) | **GET** /clusters/api-based-fetch-info | Retrieve specific cluster information.
 *PlatformApi* | [**get_cluster_local_domain_sid**](docs/PlatformApi.md#get_cluster_local_domain_sid) | **GET** /clusters/local-domain-sid | Get Cluster Local Domain SID
-*PlatformApi* | [**get_cluster_operation_status**](docs/PlatformApi.md#get_cluster_operation_status) | **GET** /clusters/operation-status/{operationId} | Get cluster operations status.
 *PlatformApi* | [**get_cluster_packages**](docs/PlatformApi.md#get_cluster_packages) | **GET** /clusters/packages | Get packages
 *PlatformApi* | [**get_cluster_state**](docs/PlatformApi.md#get_cluster_state) | **GET** /clusters/state | Get cluster state
-*PlatformApi* | [**get_cluster_ui_config**](docs/PlatformApi.md#get_cluster_ui_config) | **GET** /clusters/ui-config | Get cluster UI Config.
 *PlatformApi* | [**get_cluster_vlans**](docs/PlatformApi.md#get_cluster_vlans) | **GET** /network/vlans | Get vlans
 *PlatformApi* | [**get_interface_groups**](docs/PlatformApi.md#get_interface_groups) | **GET** /network/interface-groups | Get interface groups
 *PlatformApi* | [**get_interfaces**](docs/PlatformApi.md#get_interfaces) | **GET** /network/interfaces | Get interfaces
@@ -320,20 +296,22 @@ Class | Method | HTTP request | Description
 *PlatformApi* | [**get_smtp_configuration**](docs/PlatformApi.md#get_smtp_configuration) | **GET** /clusters/smtp | Get SMTP configuration.
 *PlatformApi* | [**get_support_channel_config**](docs/PlatformApi.md#get_support_channel_config) | **GET** /support-channel-config | Get support channel configuration.
 *PlatformApi* | [**identify_node**](docs/PlatformApi.md#identify_node) | **POST** /nodes/{id}/identify | Identify node
+*PlatformApi* | [**import_crl_file**](docs/PlatformApi.md#import_crl_file) | **PUT** /clusters/import-crl-file | Import Crl File
 *PlatformApi* | [**list_disks**](docs/PlatformApi.md#list_disks) | **GET** /disks/local | Get list of disks
 *PlatformApi* | [**list_feature_flag**](docs/PlatformApi.md#list_feature_flag) | **GET** /clusters/feature-flag | Get feature flag overrides list.
+*PlatformApi* | [**list_free_nodes**](docs/PlatformApi.md#list_free_nodes) | **GET** /clusters/nodes/free | List the free Cohesity Nodes present on a network.
 *PlatformApi* | [**list_hosts**](docs/PlatformApi.md#list_hosts) | **GET** /clusters/host-mappings | List Host Mappings
 *PlatformApi* | [**mark_baseos_upgrade**](docs/PlatformApi.md#mark_baseos_upgrade) | **PUT** /clusters/baseos-upgrade | Sets/clears the BaseOS upgrade cluster operation.
 *PlatformApi* | [**mark_disk_removal**](docs/PlatformApi.md#mark_disk_removal) | **POST** /disks/{id}/remove | Mark Disk for removal
 *PlatformApi* | [**mark_node_removal**](docs/PlatformApi.md#mark_node_removal) | **POST** /nodes/{id}/remove | Mark Node for removal
-*PlatformApi* | [**remove_cluster_node**](docs/PlatformApi.md#remove_cluster_node) | **DELETE** /clusters/nodes/{id} | Remove node
+*PlatformApi* | [**node_information**](docs/PlatformApi.md#node_information) | **GET** /nodes | Fetch Node General Information
+*PlatformApi* | [**public_key_request**](docs/PlatformApi.md#public_key_request) | **POST** /clusters/ssh-public-key | Get the SSH public key.
 *PlatformApi* | [**remove_remote_disk**](docs/PlatformApi.md#remove_remote_disk) | **DELETE** /disks/remote/{id} | Remove remote disk
 *PlatformApi* | [**set_node_power**](docs/PlatformApi.md#set_node_power) | **POST** /node-power | Reboot or shutdown nodes in cluster.
+*PlatformApi* | [**update_airgap_config**](docs/PlatformApi.md#update_airgap_config) | **PUT** /clusters/airgap | Update Airgap config
 *PlatformApi* | [**update_amqp_target_config**](docs/PlatformApi.md#update_amqp_target_config) | **PUT** /clusters/amqp-target-config | Update AMQP Target Config
 *PlatformApi* | [**update_chassis_by_id**](docs/PlatformApi.md#update_chassis_by_id) | **PATCH** /chassis/{id} | Update a chassis by chassis id.
 *PlatformApi* | [**update_cluster**](docs/PlatformApi.md#update_cluster) | **PUT** /clusters | Update a cluster.
-*PlatformApi* | [**update_cluster_bifrost_config**](docs/PlatformApi.md#update_cluster_bifrost_config) | **PUT** /clusters/bifrost-config | Update cluster Bifrost config.
-*PlatformApi* | [**update_cluster_ui_config**](docs/PlatformApi.md#update_cluster_ui_config) | **PUT** /clusters/ui-config | Update cluster UI Config.
 *PlatformApi* | [**update_cluster_vlan**](docs/PlatformApi.md#update_cluster_vlan) | **PUT** /network/vlans/{interfaceName} | Update vlan
 *PlatformApi* | [**update_feature_flag**](docs/PlatformApi.md#update_feature_flag) | **PUT** /clusters/feature-flag | Update feature flag override status.
 *PlatformApi* | [**update_hosts**](docs/PlatformApi.md#update_hosts) | **PUT** /clusters/host-mappings | Update Host Mappings
@@ -342,13 +320,13 @@ Class | Method | HTTP request | Description
 *PlatformApi* | [**update_ipmi_lan_config**](docs/PlatformApi.md#update_ipmi_lan_config) | **PATCH** /network/ipmi/lan | Update IPMI LAN configuration
 *PlatformApi* | [**update_ipmi_users**](docs/PlatformApi.md#update_ipmi_users) | **PATCH** /network/ipmi/users | Update IPMI users
 *PlatformApi* | [**update_is_d_maa_s_cluster**](docs/PlatformApi.md#update_is_d_maa_s_cluster) | **PUT** /clusters/is-dmaas | Update whether the cluster is a DMaaS cluster.
-*PlatformApi* | [**update_node_bond_interface**](docs/PlatformApi.md#update_node_bond_interface) | **PUT** /network/nodes/bonds/{name} | Update bond interface
 *PlatformApi* | [**update_rack_by_id**](docs/PlatformApi.md#update_rack_by_id) | **PATCH** /racks/{id} | 
 *PlatformApi* | [**update_racks**](docs/PlatformApi.md#update_racks) | **PATCH** /racks | Update racks
 *PlatformApi* | [**update_smtp_configuration**](docs/PlatformApi.md#update_smtp_configuration) | **PUT** /clusters/smtp | Update SMTP configuration.
 *PlatformApi* | [**update_support_channel_config**](docs/PlatformApi.md#update_support_channel_config) | **PUT** /support-channel-config | Update support channel configuration.
+*PlatformApi* | [**upgrade_check_get_results**](docs/PlatformApi.md#upgrade_check_get_results) | **GET** /cluster/upgrade-checks/{testRunInstanceId} | Get upgrade checks results.
+*PlatformApi* | [**upgrade_check_run_tests**](docs/PlatformApi.md#upgrade_check_run_tests) | **PUT** /cluster/upgrade-checks | Run upgrade checks on cluster.
 *PlatformApi* | [**upgrade_cluster_software**](docs/PlatformApi.md#upgrade_cluster_software) | **PUT** /clusters/upgrade | Upgrade cluster
-*PlatformApi* | [**upload_file_package**](docs/PlatformApi.md#upload_file_package) | **POST** /clusters/packages/file | Upload package by file
 *PlatformApi* | [**upload_package_by_url**](docs/PlatformApi.md#upload_package_by_url) | **POST** /clusters/packages/url | Upload package by URL
 *PlatformApi* | [**validate_smtp_configuration**](docs/PlatformApi.md#validate_smtp_configuration) | **POST** /clusters/smtp/validate | Validate SMTP configuration.
 *PolicyApi* | [**create_protection_policy**](docs/PolicyApi.md#create_protection_policy) | **POST** /data-protect/policies | Create a Protection Policy.
@@ -370,6 +348,7 @@ Class | Method | HTTP request | Description
 *ProtectionGroupApi* | [**get_protection_group_runs**](docs/ProtectionGroupApi.md#get_protection_group_runs) | **GET** /data-protect/protection-groups/{id}/runs | Get the list of runs for a Protection Group.
 *ProtectionGroupApi* | [**get_protection_groups**](docs/ProtectionGroupApi.md#get_protection_groups) | **GET** /data-protect/protection-groups | Get the list of Protection Groups.
 *ProtectionGroupApi* | [**get_protection_run_progress**](docs/ProtectionGroupApi.md#get_protection_run_progress) | **GET** /data-protect/runs/{runId}/progress | Get the progress of a run.
+*ProtectionGroupApi* | [**get_protection_run_stats**](docs/ProtectionGroupApi.md#get_protection_run_stats) | **GET** /data-protect/runs/{runId}/stats | Get the stats for a run.
 *ProtectionGroupApi* | [**get_protection_runs**](docs/ProtectionGroupApi.md#get_protection_runs) | **GET** /data-protect/runs/summary | Get the list of runs.
 *ProtectionGroupApi* | [**get_run_debug_logs**](docs/ProtectionGroupApi.md#get_run_debug_logs) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/debug-logs | Get the debug logs for a run from a Protection Group.
 *ProtectionGroupApi* | [**get_run_debug_logs_for_object**](docs/ProtectionGroupApi.md#get_run_debug_logs_for_object) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/debug-logs | Get the debug logs for a particular object in a run from a Protection Group.
@@ -389,22 +368,13 @@ Class | Method | HTTP request | Description
 *RecoveryApi* | [**get_recovery_by_id**](docs/RecoveryApi.md#get_recovery_by_id) | **GET** /data-protect/recoveries/{id} | Get Recovery for a given id.
 *RecoveryApi* | [**get_recovery_debug_logs**](docs/RecoveryApi.md#get_recovery_debug_logs) | **GET** /data-protect/recoveries/{id}/debug-logs | Get the debug logs for a particular recovery operation.
 *RecoveryApi* | [**get_recovery_errors_report**](docs/RecoveryApi.md#get_recovery_errors_report) | **GET** /data-protect/recoveries/{id}/download-messages | Get the CSV of errors/warnings for a given recovery operation.
-*RecoveryApi* | [**internal_api_create_download_files_and_folders_recovery**](docs/RecoveryApi.md#internal_api_create_download_files_and_folders_recovery) | **POST** /data-protect/recoveries/downloadFilesAndFoldersRecovery | Create a download files and folders recovery.
-*RecoveryApi* | [**internal_api_download_files_from_recovery**](docs/RecoveryApi.md#internal_api_download_files_from_recovery) | **GET** /data-protect/recoveries/{id}/downloadFiles | Download files from the given download file recovery.
-*RecoveryApi* | [**internal_api_download_indexed_file**](docs/RecoveryApi.md#internal_api_download_indexed_file) | **GET** /data-protect/snapshots/{snapshotsId}/downloadFile | Download an indexed file.
 *RecoveryApi* | [**tear_down_recovery_by_id**](docs/RecoveryApi.md#tear_down_recovery_by_id) | **POST** /data-protect/recoveries/{id}/tear-down | Tear down Recovery for a given id.
 *RegistrationApi* | [**get_helios_reg_config**](docs/RegistrationApi.md#get_helios_reg_config) | **GET** /helios-registration-config | Lists the Helios Registration Config.
-*RegistrationApi* | [**get_rigel_claim_logs**](docs/RegistrationApi.md#get_rigel_claim_logs) | **GET** /rigel-claim-logs | Lists the claim logs for rigel.
 *RegistrationApi* | [**helios_claim**](docs/RegistrationApi.md#helios_claim) | **POST** /helios-registration | Register to Helios.
-*RemoteClustersApi* | [**create_odp_remote_cluster**](docs/RemoteClustersApi.md#create_odp_remote_cluster) | **POST** /odp-remote-clusters | Create an ODP Remote Cluster config.
 *RemoteClustersApi* | [**delete_remote_cluster**](docs/RemoteClustersApi.md#delete_remote_cluster) | **DELETE** /remote-clusters/{clusterId} | Unregister a Remote Cluster.
-*RemoteClustersApi* | [**get_odp_remote_cluster_by_id**](docs/RemoteClustersApi.md#get_odp_remote_cluster_by_id) | **GET** /odp-remote-clusters/{clusterId} | Get ODP Remote Cluster config by id.
-*RemoteClustersApi* | [**get_odp_remote_clusters**](docs/RemoteClustersApi.md#get_odp_remote_clusters) | **GET** /odp-remote-clusters | Get ODP Remote Cluster configs.
 *RemoteClustersApi* | [**get_remote_cluster_by_id**](docs/RemoteClustersApi.md#get_remote_cluster_by_id) | **GET** /remote-clusters/{clusterId} | Get Remote Cluster config by id.
 *RemoteClustersApi* | [**get_remote_clusters**](docs/RemoteClustersApi.md#get_remote_clusters) | **GET** /remote-clusters | Get all registered Remote Clusters.
-*RemoteClustersApi* | [**get_replication_encryption_key**](docs/RemoteClustersApi.md#get_replication_encryption_key) | **GET** /replicationEncryptionKey | Get Replication Encryption Key
 *RemoteClustersApi* | [**register_remote_cluster**](docs/RemoteClustersApi.md#register_remote_cluster) | **POST** /remote-clusters | Register a Remote Cluster.
-*RemoteClustersApi* | [**update_odp_remote_cluster**](docs/RemoteClustersApi.md#update_odp_remote_cluster) | **PUT** /odp-remote-clusters/{clusterId} | Update an ODP Remote Cluster config.
 *RemoteClustersApi* | [**update_remote_cluster**](docs/RemoteClustersApi.md#update_remote_cluster) | **PUT** /remote-clusters/{clusterId} | Update a Remote Cluster config.
 *RemoteClustersApi* | [**validate_remote_cluster**](docs/RemoteClustersApi.md#validate_remote_cluster) | **POST** /remote-clusters/validate | Validate Remote Cluster config.
 *RemoteStorageApi* | [**delete_remote_storage_registration**](docs/RemoteStorageApi.md#delete_remote_storage_registration) | **DELETE** /remote-storage/{id} | Delete Remote Storage Registration
@@ -442,15 +412,16 @@ Class | Method | HTTP request | Description
 *SecurityApi* | [**update_security_config**](docs/SecurityApi.md#update_security_config) | **PUT** /security-config | Update cluster security settings.
 *SecurityApi* | [**validate_trusted_ca_by_id**](docs/SecurityApi.md#validate_trusted_ca_by_id) | **POST** /trusted-cas/{id}/validate | Validate CA Certificate.
 *SourceApi* | [**create_azure_applications**](docs/SourceApi.md#create_azure_applications) | **POST** /data-protect/sources/microsoft365/azure-applications | Create Microsoft 365 Azure Applications for a given domain.
+*SourceApi* | [**create_or_update_azure_applications**](docs/SourceApi.md#create_or_update_azure_applications) | **PUT** /data-protect/sources/microsoft365/azure-applications | Create/Update Microsoft 365 Azure Applications for a given domain.
 *SourceApi* | [**delete_protection_source_registration**](docs/SourceApi.md#delete_protection_source_registration) | **DELETE** /data-protect/sources/registrations/{id} | Delete Protection Source Registration.
 *SourceApi* | [**generate_m365_device_access_token**](docs/SourceApi.md#generate_m365_device_access_token) | **POST** /data-protect/sources/microsoft365/auth/token | Generate access token for Microsoft365 Device Authorization Grant flow.
 *SourceApi* | [**generate_m365_device_code**](docs/SourceApi.md#generate_m365_device_code) | **POST** /data-protect/sources/microsoft365/auth/device-code | Generate device code for Microsoft365 Device Authorization Grant flow.
-*SourceApi* | [**get_m365_source_region_endpoint**](docs/SourceApi.md#get_m365_source_region_endpoint) | **GET** /data-protect/sources/microsoft365/region-info | Generates the region and endpoint for the Microsoft365 source.
 *SourceApi* | [**get_protection_source_registration**](docs/SourceApi.md#get_protection_source_registration) | **GET** /data-protect/sources/registrations/{id} | Get a Protection Source registration.
 *SourceApi* | [**get_protection_sources**](docs/SourceApi.md#get_protection_sources) | **GET** /data-protect/sources | Get a List of Protection Sources.
 *SourceApi* | [**get_source_attribute_filters**](docs/SourceApi.md#get_source_attribute_filters) | **GET** /data-protect/sources/filters | List attribute filters for a source.
 *SourceApi* | [**get_source_registrations**](docs/SourceApi.md#get_source_registrations) | **GET** /data-protect/sources/registrations | Get the list of Protection Source registrations.
 *SourceApi* | [**get_vdc_details**](docs/SourceApi.md#get_vdc_details) | **GET** /data-protect/sources/virtual-datacenter/{id} | Get VDC Details.
+*SourceApi* | [**patch_protection_source_registration**](docs/SourceApi.md#patch_protection_source_registration) | **PATCH** /data-protect/sources/registrations/{id} | Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
 *SourceApi* | [**protection_source_by_id**](docs/SourceApi.md#protection_source_by_id) | **GET** /data-protect/sources/{id} | Get a Protection Sources.
 *SourceApi* | [**refresh_protection_source_by_id**](docs/SourceApi.md#refresh_protection_source_by_id) | **POST** /data-protect/sources/{id}/refresh | Refresh a Protection Source.
 *SourceApi* | [**register_protection_source**](docs/SourceApi.md#register_protection_source) | **POST** /data-protect/sources/registrations | Register a Protection Source.
@@ -462,12 +433,15 @@ Class | Method | HTTP request | Description
 *StatsApi* | [**get_time_series_stats**](docs/StatsApi.md#get_time_series_stats) | **GET** /stats/time-series-stats | Get Time Series Stats.
 *StatsApi* | [**get_view_client_stats**](docs/StatsApi.md#get_view_client_stats) | **GET** /stats/view-clients | Get Stats of View Clients
 *StatsApi* | [**get_views_stats**](docs/StatsApi.md#get_views_stats) | **GET** /stats/views | Get Views Stats.
-*StorageDomainApi* | [**create_cad_storage_domains**](docs/StorageDomainApi.md#create_cad_storage_domains) | **POST** /cad-storage-domains | Create CAD Storage Domains.
+*StatsApi* | [**get_workload_stats**](docs/StatsApi.md#get_workload_stats) | **GET** /stats/workload-stats | Get Workload Stats Schema.
 *StorageDomainApi* | [**create_storage_domain**](docs/StorageDomainApi.md#create_storage_domain) | **POST** /storage-domains | Create a Storage Domain.
 *StorageDomainApi* | [**delete_storage_domain**](docs/StorageDomainApi.md#delete_storage_domain) | **DELETE** /storage-domains/{id} | Delete a Storage Domain.
 *StorageDomainApi* | [**get_storage_domain_by_id**](docs/StorageDomainApi.md#get_storage_domain_by_id) | **GET** /storage-domains/{id} | Get a Storage Domain by id.
 *StorageDomainApi* | [**get_storage_domains**](docs/StorageDomainApi.md#get_storage_domains) | **GET** /storage-domains | Get Storage Domains.
 *StorageDomainApi* | [**update_storage_domain**](docs/StorageDomainApi.md#update_storage_domain) | **PUT** /storage-domains/{id} | Update a Storage Domain.
+*SupportApi* | [**get_support_user_config**](docs/SupportApi.md#get_support_user_config) | **GET** /support-user/config | Get support user configuration.
+*SupportApi* | [**update_support_user_config**](docs/SupportApi.md#update_support_user_config) | **PUT** /support-user/config | Update support user configuration.
+*SupportApi* | [**validate_support_user_creds**](docs/SupportApi.md#validate_support_user_creds) | **POST** /support-user/config/validate | Validates the support user credentials.
 *SyslogApi* | [**add_syslog_server**](docs/SyslogApi.md#add_syslog_server) | **POST** /syslog | Add Syslog Server
 *SyslogApi* | [**get_supported_syslog_program_names**](docs/SyslogApi.md#get_supported_syslog_program_names) | **GET** /syslog/program-names | Get supported program names.
 *SyslogApi* | [**get_syslog_audit_tags**](docs/SyslogApi.md#get_syslog_audit_tags) | **GET** /syslog/audit-tags | Get cluster audit tags.
@@ -484,7 +458,7 @@ Class | Method | HTTP request | Description
 *TagApi* | [**get_tag_by_id**](docs/TagApi.md#get_tag_by_id) | **GET** /tags/{id} | Get Tag by id.
 *TagApi* | [**get_tags**](docs/TagApi.md#get_tags) | **GET** /tags | Get tags based on filters.
 *TagApi* | [**update_tag**](docs/TagApi.md#update_tag) | **PUT** /tags/{id} | Update a Tag
-*TasksApi* | [**get_progress_tasks**](docs/TasksApi.md#get_progress_tasks) | **GET** /tasks | Get tasks details.
+*TemplatesApi* | [**download_art_file**](docs/TemplatesApi.md#download_art_file) | **GET** /data-protect/templates/downloadArtFile | Download the azure resource template.
 *TenantApi* | [**assign_properties_to_tenant**](docs/TenantApi.md#assign_properties_to_tenant) | **PUT** /tenants/{id}/assignments | Update assginment of properties for a tenant.
 *TenantApi* | [**create_tenant**](docs/TenantApi.md#create_tenant) | **POST** /tenants | Create a new Tenant.
 *TenantApi* | [**delete_tenant**](docs/TenantApi.md#delete_tenant) | **DELETE** /tenants/{id} | Delete Tenant with given ID.
@@ -499,21 +473,6 @@ Class | Method | HTTP request | Description
 *TenantApi* | [**update_on_prem_tenant_config**](docs/TenantApi.md#update_on_prem_tenant_config) | **POST** /clusters/tenant-config | Update Tenants Config.
 *TenantApi* | [**update_tenant**](docs/TenantApi.md#update_tenant) | **PUT** /tenants/{id} | Update Tenant.
 *TenantApi* | [**update_tenant_swift**](docs/TenantApi.md#update_tenant_swift) | **PUT** /tenants/swift | Update a Swift configuration.
-*TestDataManagementApi* | [**create_tdm_task**](docs/TestDataManagementApi.md#create_tdm_task) | **POST** /tdm/tasks | Create a TDM task
-*TestDataManagementApi* | [**delete_tdm_snapshot_by_id**](docs/TestDataManagementApi.md#delete_tdm_snapshot_by_id) | **DELETE** /tdm/snapshots/{id} | Delete a snapshot by ID
-*TestDataManagementApi* | [**get_tdm_object_by_id**](docs/TestDataManagementApi.md#get_tdm_object_by_id) | **GET** /tdm/objects/{id} | Get TDM object by ID
-*TestDataManagementApi* | [**get_tdm_objects**](docs/TestDataManagementApi.md#get_tdm_objects) | **GET** /tdm/objects | Get all TDM objects
-*TestDataManagementApi* | [**get_tdm_task_by_id**](docs/TestDataManagementApi.md#get_tdm_task_by_id) | **GET** /tdm/tasks/{id} | Get a TDM task by ID
-*TestDataManagementApi* | [**get_tdm_tasks**](docs/TestDataManagementApi.md#get_tdm_tasks) | **GET** /tdm/tasks | Get all TDM tasks
-*TestDataManagementApi* | [**get_tdm_timeline_events_by_object_id**](docs/TestDataManagementApi.md#get_tdm_timeline_events_by_object_id) | **GET** /tdm/objects/{id}/timeline-events | Get timeline events of object
-*TestDataManagementApi* | [**perform_action_on_clones**](docs/TestDataManagementApi.md#perform_action_on_clones) | **POST** /tdm/clones/actions | Perform actions on clones
-*TestDataManagementApi* | [**update_tdm_snapshot_by_id**](docs/TestDataManagementApi.md#update_tdm_snapshot_by_id) | **PUT** /tdm/snapshots/{id} | Update a snapshot by ID
-*UdaConnectorConfigApi* | [**create_uda_connector_config**](docs/UdaConnectorConfigApi.md#create_uda_connector_config) | **POST** /uda/connector-configs | Create a new UDA connector config
-*UdaConnectorConfigApi* | [**delete_uda_connector_config**](docs/UdaConnectorConfigApi.md#delete_uda_connector_config) | **DELETE** /uda/connector-configs/{id} | Delete a UDA connector config
-*UdaConnectorConfigApi* | [**get_connector_configs**](docs/UdaConnectorConfigApi.md#get_connector_configs) | **GET** /uda/connector-configs | Get the workflow Parameters for all the sources
-*UdaConnectorConfigApi* | [**get_connector_configs_by_id**](docs/UdaConnectorConfigApi.md#get_connector_configs_by_id) | **GET** /uda/connector-configs/{id} | Get the Parameters of a source based on id
-*UdaConnectorConfigApi* | [**get_uda_connector_config_raw**](docs/UdaConnectorConfigApi.md#get_uda_connector_config_raw) | **GET** /uda/connector-configs/raw | Get UDA connector config
-*UdaConnectorConfigApi* | [**update_uda_connector_config**](docs/UdaConnectorConfigApi.md#update_uda_connector_config) | **PUT** /uda/connector-configs | Update a UDA connector config
 *UserApi* | [**create_group**](docs/UserApi.md#create_group) | **POST** /groups | Create Groups
 *UserApi* | [**create_session**](docs/UserApi.md#create_session) | **POST** /users/sessions | Create a user session
 *UserApi* | [**create_user_api_key**](docs/UserApi.md#create_user_api_key) | **POST** /users/{userSid}/api-keys | Create a new user API key.
@@ -533,14 +492,13 @@ Class | Method | HTTP request | Description
 *UserApi* | [**get_user_api_key_by_id**](docs/UserApi.md#get_user_api_key_by_id) | **GET** /users/{userSid}/api-keys/{id} | Get the API key by id.
 *UserApi* | [**get_user_api_keys**](docs/UserApi.md#get_user_api_keys) | **GET** /users/{userSid}/api-keys | Get the list of API keys owned by the user.
 *UserApi* | [**get_user_by_sid**](docs/UserApi.md#get_user_by_sid) | **GET** /users/{sid} | Get User by SID.
-*UserApi* | [**get_user_ui_config**](docs/UserApi.md#get_user_ui_config) | **GET** /users/ui-config | Get user UI config.
 *UserApi* | [**get_users**](docs/UserApi.md#get_users) | **GET** /users | Get Users.
+*UserApi* | [**regenerate_s3_key**](docs/UserApi.md#regenerate_s3_key) | **POST** /users/{sid}/s3-secret-key | Reset S3 secret access key
 *UserApi* | [**rotate_user_api_key**](docs/UserApi.md#rotate_user_api_key) | **POST** /users/{userSid}/api-keys/{id}/rotate | Refresh an existing user API key.
 *UserApi* | [**update_group**](docs/UserApi.md#update_group) | **PUT** /groups/{sid} | Update Group
 *UserApi* | [**update_principal_sources**](docs/UserApi.md#update_principal_sources) | **PUT** /security-principals/{sid}/sources | Update protection sources assigned to a user/group.
 *UserApi* | [**update_user**](docs/UserApi.md#update_user) | **PUT** /users/{sid} | Update User information.
 *UserApi* | [**update_user_api_key_by_id**](docs/UserApi.md#update_user_api_key_by_id) | **PUT** /users/{userSid}/api-keys/{id} | Update a user API key.
-*UserApi* | [**update_user_ui_config**](docs/UserApi.md#update_user_ui_config) | **PUT** /users/ui-config | Update user UI config.
 *ViewApi* | [**add_view_user_quota_overrides**](docs/ViewApi.md#add_view_user_quota_overrides) | **POST** /file-services/views/{viewId}/user-quotas | Add User Quota overrides.
 *ViewApi* | [**clear_nlm_locks**](docs/ViewApi.md#clear_nlm_locks) | **DELETE** /file-services/nlm-locks | Clear NLM locks.
 *ViewApi* | [**clone_view**](docs/ViewApi.md#clone_view) | **POST** /file-services/views/{id}/clone | Clone View.
@@ -576,9 +534,6 @@ Class | Method | HTTP request | Description
 *ViewApi* | [**update_view_template**](docs/ViewApi.md#update_view_template) | **PUT** /file-services/view-template/{id} | Update a View Template
 *ViewApi* | [**update_view_user_quota_override**](docs/ViewApi.md#update_view_user_quota_override) | **PUT** /file-services/views/{viewId}/user-quotas/{userId} | Update user quota override.
 *ViewApi* | [**update_view_user_quota_settings**](docs/ViewApi.md#update_view_user_quota_settings) | **PUT** /file-services/views/{viewId}/user-quotas | Update View user quota settings.
-*NetworkResetApi* | [**get_network_reset_states**](docs/NetworkResetApi.md#get_network_reset_states) | **GET** /networkReset/status | List of nodes reset states.
-*NetworkResetApi* | [**reset_nodes_network**](docs/NetworkResetApi.md#reset_nodes_network) | **POST** /networkReset | Set or cancel cluster reset state. This is destructive operation.
-*RunbooksApi* | [**perform_runbook_action**](docs/RunbooksApi.md#perform_runbook_action) | **POST** /runbook/actions | Perform actions based on the passed args
 
 
 ## Documentation For Models
@@ -595,10 +550,12 @@ Class | Method | HTTP request | Description
  - [AWSTieringLevels](docs/AWSTieringLevels.md)
  - [AWSTiers](docs/AWSTiers.md)
  - [AagBackupPreference](docs/AagBackupPreference.md)
+ - [AbortIncompleteMultipartUploadAction](docs/AbortIncompleteMultipartUploadAction.md)
  - [AccessTokenResponse](docs/AccessTokenResponse.md)
  - [AclConfig](docs/AclConfig.md)
  - [AclGrant](docs/AclGrant.md)
  - [AclGrantee](docs/AclGrantee.md)
+ - [AcropolisDiskInfo](docs/AcropolisDiskInfo.md)
  - [AcropolisProtectionGroupObjectParams](docs/AcropolisProtectionGroupObjectParams.md)
  - [AcropolisProtectionGroupParams](docs/AcropolisProtectionGroupParams.md)
  - [AcropolisRecoverFilesNewTargetConfig](docs/AcropolisRecoverFilesNewTargetConfig.md)
@@ -613,6 +570,7 @@ Class | Method | HTTP request | Description
  - [ActiveDirectoryAdminParams](docs/ActiveDirectoryAdminParams.md)
  - [ActiveDirectoryAllOf](docs/ActiveDirectoryAllOf.md)
  - [ActiveDirectoryAppParams](docs/ActiveDirectoryAppParams.md)
+ - [ActiveDirectoryError](docs/ActiveDirectoryError.md)
  - [ActiveDirectoryProtectionGroupObjectParams](docs/ActiveDirectoryProtectionGroupObjectParams.md)
  - [ActiveSessionsCountParams](docs/ActiveSessionsCountParams.md)
  - [AdAuthMapping](docs/AdAuthMapping.md)
@@ -626,6 +584,7 @@ Class | Method | HTTP request | Description
  - [AdSfu30TypeParams](docs/AdSfu30TypeParams.md)
  - [AddDmaasTenantCertRequest](docs/AddDmaasTenantCertRequest.md)
  - [AddRemoteDiskResponseBody](docs/AddRemoteDiskResponseBody.md)
+ - [AdvancedSettings](docs/AdvancedSettings.md)
  - [AgentInfoObject](docs/AgentInfoObject.md)
  - [AgentInformation](docs/AgentInformation.md)
  - [AgentUpgradeInfoObject](docs/AgentUpgradeInfoObject.md)
@@ -633,6 +592,8 @@ Class | Method | HTTP request | Description
  - [AgentUpgradeTaskActionRequest](docs/AgentUpgradeTaskActionRequest.md)
  - [AgentUpgradeTaskState](docs/AgentUpgradeTaskState.md)
  - [AgentUpgradeTaskStates](docs/AgentUpgradeTaskStates.md)
+ - [AirgapConfig](docs/AirgapConfig.md)
+ - [AirgapStatus](docs/AirgapStatus.md)
  - [AixAgentParams](docs/AixAgentParams.md)
  - [AlertGroupSummary](docs/AlertGroupSummary.md)
  - [AlertStatus](docs/AlertStatus.md)
@@ -649,6 +610,7 @@ Class | Method | HTTP request | Description
  - [AppResource](docs/AppResource.md)
  - [AppliedPatch](docs/AppliedPatch.md)
  - [AppliedPatches](docs/AppliedPatches.md)
+ - [ApplyBaseosPatchRequest](docs/ApplyBaseosPatchRequest.md)
  - [ApplyPatchesRequest](docs/ApplyPatchesRequest.md)
  - [ArchivalAwsExternalTargetParams](docs/ArchivalAwsExternalTargetParams.md)
  - [ArchivalAwsExternalTargetParamsAllOf](docs/ArchivalAwsExternalTargetParamsAllOf.md)
@@ -662,6 +624,7 @@ Class | Method | HTTP request | Description
  - [ArchivalExternalTargetParamsAllOf](docs/ArchivalExternalTargetParamsAllOf.md)
  - [ArchivalGcpExternalTargetParams](docs/ArchivalGcpExternalTargetParams.md)
  - [ArchivalGcpExternalTargetParamsAllOf](docs/ArchivalGcpExternalTargetParamsAllOf.md)
+ - [ArchivalMediaInfo](docs/ArchivalMediaInfo.md)
  - [ArchivalNasExternalTargetParams](docs/ArchivalNasExternalTargetParams.md)
  - [ArchivalOracleExternalTargetParams](docs/ArchivalOracleExternalTargetParams.md)
  - [ArchivalOracleExternalTargetParamsAllOf](docs/ArchivalOracleExternalTargetParamsAllOf.md)
@@ -674,16 +637,22 @@ Class | Method | HTTP request | Description
  - [ArchivalTargetProgressInfoAllOf](docs/ArchivalTargetProgressInfoAllOf.md)
  - [ArchivalTargetResult](docs/ArchivalTargetResult.md)
  - [ArchivalTargetResultAllOf](docs/ArchivalTargetResultAllOf.md)
+ - [ArchivalTargetStatsInfo](docs/ArchivalTargetStatsInfo.md)
+ - [ArchivalTargetStatsInfoAllOf](docs/ArchivalTargetStatsInfoAllOf.md)
  - [ArchivalTargetStorageType](docs/ArchivalTargetStorageType.md)
  - [ArchivalTargetSummaryInfo](docs/ArchivalTargetSummaryInfo.md)
  - [ArchivalTargetTierInfo](docs/ArchivalTargetTierInfo.md)
  - [ArchivalTargetTierInfoAllOf](docs/ArchivalTargetTierInfoAllOf.md)
  - [ArchivalTargets](docs/ArchivalTargets.md)
  - [AssignedSources](docs/AssignedSources.md)
+ - [AssociateEntityMetadataRequest](docs/AssociateEntityMetadataRequest.md)
+ - [AssociateEntityMetadataResult](docs/AssociateEntityMetadataResult.md)
+ - [AssociateEntityMetadataResultParams](docs/AssociateEntityMetadataResultParams.md)
  - [Attachment](docs/Attachment.md)
  - [AuditActions](docs/AuditActions.md)
  - [AuditEntityTypes](docs/AuditEntityTypes.md)
  - [AuditLog](docs/AuditLog.md)
+ - [AuditLogConfig](docs/AuditLogConfig.md)
  - [AuditLogs](docs/AuditLogs.md)
  - [AuditLogsActions](docs/AuditLogsActions.md)
  - [AuditLogsEntityTypes](docs/AuditLogsEntityTypes.md)
@@ -706,6 +675,8 @@ Class | Method | HTTP request | Description
  - [AwsCloudSpinParams](docs/AwsCloudSpinParams.md)
  - [AwsCloudStandardParams](docs/AwsCloudStandardParams.md)
  - [AwsCommonObjectProtectionParams](docs/AwsCommonObjectProtectionParams.md)
+ - [AwsEntityMetadata](docs/AwsEntityMetadata.md)
+ - [AwsFleetInfo](docs/AwsFleetInfo.md)
  - [AwsGlacierParams](docs/AwsGlacierParams.md)
  - [AwsGlacierParamsAllOf](docs/AwsGlacierParamsAllOf.md)
  - [AwsIAmRoleParams](docs/AwsIAmRoleParams.md)
@@ -722,22 +693,37 @@ Class | Method | HTTP request | Description
  - [AwsObjectProtectionRequestParamsAllOf](docs/AwsObjectProtectionRequestParamsAllOf.md)
  - [AwsObjectProtectionResponseParams](docs/AwsObjectProtectionResponseParams.md)
  - [AwsObjectProtectionUpdateRequestParams](docs/AwsObjectProtectionUpdateRequestParams.md)
+ - [AwsPostgresEntityMetadata](docs/AwsPostgresEntityMetadata.md)
+ - [AwsPostgresMetadata](docs/AwsPostgresMetadata.md)
+ - [AwsPostgresMetadataType](docs/AwsPostgresMetadataType.md)
  - [AwsProtectionGroupParams](docs/AwsProtectionGroupParams.md)
  - [AwsProtectionGroupType](docs/AwsProtectionGroupType.md)
+ - [AwsRdsPostgresObjectLevelParams](docs/AwsRdsPostgresObjectLevelParams.md)
+ - [AwsRdsPostgresProtectionGroupObjectParams](docs/AwsRdsPostgresProtectionGroupObjectParams.md)
+ - [AwsRdsPostgresProtectionGroupParams](docs/AwsRdsPostgresProtectionGroupParams.md)
+ - [AwsRdsPostgresProtectionParams](docs/AwsRdsPostgresProtectionParams.md)
  - [AwsRdsProtectionGroupObjectParams](docs/AwsRdsProtectionGroupObjectParams.md)
  - [AwsRdsProtectionGroupParams](docs/AwsRdsProtectionGroupParams.md)
  - [AwsRdsRecoveryTargetConfig](docs/AwsRdsRecoveryTargetConfig.md)
  - [AwsRdsSnapshotManagerObjectProtectionParams](docs/AwsRdsSnapshotManagerObjectProtectionParams.md)
  - [AwsRecoverFilesNewTargetConfig](docs/AwsRecoverFilesNewTargetConfig.md)
  - [AwsRecoverFilesOriginalTargetConfig](docs/AwsRecoverFilesOriginalTargetConfig.md)
+ - [AwsRecoverS3NewTargetConfig](docs/AwsRecoverS3NewTargetConfig.md)
  - [AwsRegionId](docs/AwsRegionId.md)
+ - [AwsS3BucketRestoreFilterPolicy](docs/AwsS3BucketRestoreFilterPolicy.md)
  - [AwsS3GlacierDeepArchiveParams](docs/AwsS3GlacierDeepArchiveParams.md)
  - [AwsS3GlacierDeepArchiveParamsAllOf](docs/AwsS3GlacierDeepArchiveParamsAllOf.md)
+ - [AwsS3GlacierIRParams](docs/AwsS3GlacierIRParams.md)
  - [AwsS3GlacierParams](docs/AwsS3GlacierParams.md)
  - [AwsS3IntelligentParams](docs/AwsS3IntelligentParams.md)
+ - [AwsS3ObjectLevelParams](docs/AwsS3ObjectLevelParams.md)
  - [AwsS3OneZoneIAParams](docs/AwsS3OneZoneIAParams.md)
+ - [AwsS3ProtectionGroupObjectParams](docs/AwsS3ProtectionGroupObjectParams.md)
+ - [AwsS3ProtectionGroupParams](docs/AwsS3ProtectionGroupParams.md)
+ - [AwsS3ProtectionParams](docs/AwsS3ProtectionParams.md)
  - [AwsS3StandardIAParams](docs/AwsS3StandardIAParams.md)
  - [AwsS3StandardParams](docs/AwsS3StandardParams.md)
+ - [AwsS3StorageClass](docs/AwsS3StorageClass.md)
  - [AwsSnapshotManagerObjectProtectionParams](docs/AwsSnapshotManagerObjectProtectionParams.md)
  - [AwsSnapshotManagerProtectionGroupObjectParams](docs/AwsSnapshotManagerProtectionGroupObjectParams.md)
  - [AwsSnapshotManagerProtectionGroupParams](docs/AwsSnapshotManagerProtectionGroupParams.md)
@@ -747,29 +733,53 @@ Class | Method | HTTP request | Description
  - [AwsTargetCategory](docs/AwsTargetCategory.md)
  - [AwsTargetParamsForRecoverAurora](docs/AwsTargetParamsForRecoverAurora.md)
  - [AwsTargetParamsForRecoverFileAndFolder](docs/AwsTargetParamsForRecoverFileAndFolder.md)
+ - [AwsTargetParamsForRecoverRDSPostgres](docs/AwsTargetParamsForRecoverRDSPostgres.md)
  - [AwsTargetParamsForRecoverRds](docs/AwsTargetParamsForRecoverRds.md)
+ - [AwsTargetParamsForRecoverS3](docs/AwsTargetParamsForRecoverS3.md)
  - [AwsTargetParamsForRecoverVm](docs/AwsTargetParamsForRecoverVm.md)
  - [AwsTieringStorageClass](docs/AwsTieringStorageClass.md)
  - [AwsUseSTSParams](docs/AwsUseSTSParams.md)
  - [AwsVmRecoveryTargetConfig](docs/AwsVmRecoveryTargetConfig.md)
  - [AzureAgentProtectionGroupObjectParams](docs/AzureAgentProtectionGroupObjectParams.md)
  - [AzureAgentProtectionGroupParams](docs/AzureAgentProtectionGroupParams.md)
+ - [AzureApplicationCredentials](docs/AzureApplicationCredentials.md)
  - [AzureArchivalStorageClass](docs/AzureArchivalStorageClass.md)
  - [AzureArchiveBlobParams](docs/AzureArchiveBlobParams.md)
  - [AzureCloudSpinParams](docs/AzureCloudSpinParams.md)
+ - [AzureCommonObjectProtectionParams](docs/AzureCommonObjectProtectionParams.md)
  - [AzureCoolBlobParams](docs/AzureCoolBlobParams.md)
+ - [AzureESConfigForIndexing](docs/AzureESConfigForIndexing.md)
+ - [AzureEntityMetadata](docs/AzureEntityMetadata.md)
+ - [AzureFleetInfo](docs/AzureFleetInfo.md)
  - [AzureHotBlobParams](docs/AzureHotBlobParams.md)
+ - [AzureNativeObjectProtectionParams](docs/AzureNativeObjectProtectionParams.md)
  - [AzureNativeProtectionGroupObjectParams](docs/AzureNativeProtectionGroupObjectParams.md)
  - [AzureNativeProtectionGroupParams](docs/AzureNativeProtectionGroupParams.md)
+ - [AzureObjectLevelParams](docs/AzureObjectLevelParams.md)
+ - [AzureObjectProtectionRequestParams](docs/AzureObjectProtectionRequestParams.md)
+ - [AzureObjectProtectionRequestParamsAllOf](docs/AzureObjectProtectionRequestParamsAllOf.md)
+ - [AzureObjectProtectionResponseParams](docs/AzureObjectProtectionResponseParams.md)
+ - [AzureObjectProtectionUpdateRequestParams](docs/AzureObjectProtectionUpdateRequestParams.md)
  - [AzureProtectionGroupParams](docs/AzureProtectionGroupParams.md)
  - [AzureProtectionGroupType](docs/AzureProtectionGroupType.md)
+ - [AzureProtectionUseCaseType](docs/AzureProtectionUseCaseType.md)
  - [AzureRecoverFilesNewTargetConfig](docs/AzureRecoverFilesNewTargetConfig.md)
  - [AzureRecoverFilesOriginalTargetConfig](docs/AzureRecoverFilesOriginalTargetConfig.md)
  - [AzureSnapshotManagerProtectionGroupObjectParams](docs/AzureSnapshotManagerProtectionGroupObjectParams.md)
  - [AzureSnapshotManagerProtectionGroupParams](docs/AzureSnapshotManagerProtectionGroupParams.md)
  - [AzureSnapshotParams](docs/AzureSnapshotParams.md)
+ - [AzureSourceRegistrationParams](docs/AzureSourceRegistrationParams.md)
+ - [AzureSqlEntityMetadata](docs/AzureSqlEntityMetadata.md)
+ - [AzureSqlMetadata](docs/AzureSqlMetadata.md)
+ - [AzureSqlMetadataType](docs/AzureSqlMetadataType.md)
+ - [AzureSqlObjectProtectionParams](docs/AzureSqlObjectProtectionParams.md)
+ - [AzureSqlPackageOptions](docs/AzureSqlPackageOptions.md)
+ - [AzureSqlSkuOptions](docs/AzureSqlSkuOptions.md)
+ - [AzureStorageConfigForIndexing](docs/AzureStorageConfigForIndexing.md)
+ - [AzureSubscription](docs/AzureSubscription.md)
  - [AzureTargetCategory](docs/AzureTargetCategory.md)
  - [AzureTargetConfig](docs/AzureTargetConfig.md)
+ - [AzureTargetParamsForRecoverAzureSql](docs/AzureTargetParamsForRecoverAzureSql.md)
  - [AzureTargetParamsForRecoverFileAndFolder](docs/AzureTargetParamsForRecoverFileAndFolder.md)
  - [AzureTargetParamsForRecoverVm](docs/AzureTargetParamsForRecoverVm.md)
  - [AzureTier](docs/AzureTier.md)
@@ -780,13 +790,20 @@ Class | Method | HTTP request | Description
  - [AzureVmRecoveryTargetConfig](docs/AzureVmRecoveryTargetConfig.md)
  - [BackupAttempt](docs/BackupAttempt.md)
  - [BackupDataStats](docs/BackupDataStats.md)
+ - [BackupErrorClass](docs/BackupErrorClass.md)
+ - [BackupGenericStats](docs/BackupGenericStats.md)
+ - [BackupNasStats](docs/BackupNasStats.md)
  - [BackupPolicy](docs/BackupPolicy.md)
  - [BackupRun](docs/BackupRun.md)
  - [BackupRunProgressInfo](docs/BackupRunProgressInfo.md)
+ - [BackupRunStatsInfo](docs/BackupRunStatsInfo.md)
  - [BackupRunSummary](docs/BackupRunSummary.md)
  - [BandwidthLimit](docs/BandwidthLimit.md)
  - [BandwidthThrottling](docs/BandwidthThrottling.md)
  - [BandwidthThrottlingOverride](docs/BandwidthThrottlingOverride.md)
+ - [BaseosPatchList](docs/BaseosPatchList.md)
+ - [BaseosPatchListItem](docs/BaseosPatchListItem.md)
+ - [BaseosPatchLog](docs/BaseosPatchLog.md)
  - [BgpInstance](docs/BgpInstance.md)
  - [BgpPeer](docs/BgpPeer.md)
  - [BgpTimers](docs/BgpTimers.md)
@@ -801,7 +818,10 @@ Class | Method | HTTP request | Description
  - [BondMember](docs/BondMember.md)
  - [BondingModeType](docs/BondingModeType.md)
  - [BooleanFormFieldParams](docs/BooleanFormFieldParams.md)
+ - [BucketPolicy](docs/BucketPolicy.md)
  - [CDPFilterStatus](docs/CDPFilterStatus.md)
+ - [CancelGaiaIndexingParams](docs/CancelGaiaIndexingParams.md)
+ - [CancelGaiaIndexingResult](docs/CancelGaiaIndexingResult.md)
  - [CancelObjectRunParams](docs/CancelObjectRunParams.md)
  - [CancelObjectRunsParams](docs/CancelObjectRunsParams.md)
  - [CancelObjectRunsRequest](docs/CancelObjectRunsRequest.md)
@@ -809,12 +829,14 @@ Class | Method | HTTP request | Description
  - [CancelObjectRunsResults](docs/CancelObjectRunsResults.md)
  - [CancelProtectionGroupRunRequest](docs/CancelProtectionGroupRunRequest.md)
  - [CancelProtectionGroupRunResponseParams](docs/CancelProtectionGroupRunResponseParams.md)
+ - [CancellationTimeoutParams](docs/CancellationTimeoutParams.md)
  - [CapacityByTier](docs/CapacityByTier.md)
+ - [CapacityTrendAnalysis](docs/CapacityTrendAnalysis.md)
+ - [CapacityTrendDatapoint](docs/CapacityTrendDatapoint.md)
+ - [CapacityTrendDatapointStats](docs/CapacityTrendDatapointStats.md)
  - [CascadedTargetConfiguration](docs/CascadedTargetConfiguration.md)
  - [CassandraAuthType](docs/CassandraAuthType.md)
  - [CassandraConnectionParams](docs/CassandraConnectionParams.md)
- - [CassandraConnectionParamsSshPasswordCredentials](docs/CassandraConnectionParamsSshPasswordCredentials.md)
- - [CassandraConnectionParamsSshPrivateKeyCredentials](docs/CassandraConnectionParamsSshPrivateKeyCredentials.md)
  - [CassandraIndexedObject](docs/CassandraIndexedObject.md)
  - [CassandraIndexedObjectAllOf](docs/CassandraIndexedObjectAllOf.md)
  - [CassandraIndexedObjects](docs/CassandraIndexedObjects.md)
@@ -823,6 +845,7 @@ Class | Method | HTTP request | Description
  - [CassandraPortInfo](docs/CassandraPortInfo.md)
  - [CassandraProtectionGroupParams](docs/CassandraProtectionGroupParams.md)
  - [CassandraProtectionGroupParamsAllOf](docs/CassandraProtectionGroupParamsAllOf.md)
+ - [CassandraProtectionRunParams](docs/CassandraProtectionRunParams.md)
  - [CassandraSearchParams](docs/CassandraSearchParams.md)
  - [CassandraSecurityInfo](docs/CassandraSecurityInfo.md)
  - [CassandraSourceConfigParams](docs/CassandraSourceConfigParams.md)
@@ -830,9 +853,9 @@ Class | Method | HTTP request | Description
  - [CassandraSourceRegistrationParamsAllOf](docs/CassandraSourceRegistrationParamsAllOf.md)
  - [CassandraSourceRegistrationParamsAllOfCassandraCredentials](docs/CassandraSourceRegistrationParamsAllOfCassandraCredentials.md)
  - [CassandraSourceRegistrationParamsAllOfJmxCredentials](docs/CassandraSourceRegistrationParamsAllOfJmxCredentials.md)
- - [CassandraSourceRegistrationUpdateParams](docs/CassandraSourceRegistrationUpdateParams.md)
- - [CassandraSourceRegistrationUpdateParamsCassandraCredentials](docs/CassandraSourceRegistrationUpdateParamsCassandraCredentials.md)
- - [CassandraSourceRegistrationUpdateParamsJmxCredentials](docs/CassandraSourceRegistrationUpdateParamsJmxCredentials.md)
+ - [CassandraSourceRegistrationPatchParams](docs/CassandraSourceRegistrationPatchParams.md)
+ - [CassandraSourceRegistrationPatchParamsCassandraCredentials](docs/CassandraSourceRegistrationPatchParamsCassandraCredentials.md)
+ - [CassandraSourceRegistrationPatchParamsJmxCredentials](docs/CassandraSourceRegistrationPatchParamsJmxCredentials.md)
  - [CdpBackupPolicy](docs/CdpBackupPolicy.md)
  - [CdpLocalBackupInfo](docs/CdpLocalBackupInfo.md)
  - [CdpObjectInfo](docs/CdpObjectInfo.md)
@@ -840,7 +863,9 @@ Class | Method | HTTP request | Description
  - [CdpRetention](docs/CdpRetention.md)
  - [CentrifyZone](docs/CentrifyZone.md)
  - [CentrifyZones](docs/CentrifyZones.md)
+ - [Certificate](docs/Certificate.md)
  - [CertificateAuthMapping](docs/CertificateAuthMapping.md)
+ - [CertificateRequestParams](docs/CertificateRequestParams.md)
  - [CertificateValidationStatus](docs/CertificateValidationStatus.md)
  - [ChannelItem](docs/ChannelItem.md)
  - [ChannelParam](docs/ChannelParam.md)
@@ -859,6 +884,7 @@ Class | Method | HTTP request | Description
  - [CloneViewDirectoryParams](docs/CloneViewDirectoryParams.md)
  - [CloneViewParams](docs/CloneViewParams.md)
  - [CloseSmbFileOpenParams](docs/CloseSmbFileOpenParams.md)
+ - [CloudBackupScriptParams](docs/CloudBackupScriptParams.md)
  - [CloudClusterExpandParams](docs/CloudClusterExpandParams.md)
  - [CloudDomain](docs/CloudDomain.md)
  - [CloudDownWaterFallParams](docs/CloudDownWaterFallParams.md)
@@ -876,6 +902,8 @@ Class | Method | HTTP request | Description
  - [CloudSpinTargetResultAllOf](docs/CloudSpinTargetResultAllOf.md)
  - [Cluster](docs/Cluster.md)
  - [ClusterAMQPTargetConfig](docs/ClusterAMQPTargetConfig.md)
+ - [ClusterAuditLogConfig](docs/ClusterAuditLogConfig.md)
+ - [ClusterAuditLogConfigAllOf](docs/ClusterAuditLogConfigAllOf.md)
  - [ClusterCreateCloudParams](docs/ClusterCreateCloudParams.md)
  - [ClusterCreateNetworkConfig](docs/ClusterCreateNetworkConfig.md)
  - [ClusterCreateNodeParams](docs/ClusterCreateNodeParams.md)
@@ -886,6 +914,7 @@ Class | Method | HTTP request | Description
  - [ClusterDhcpNetworkConfig](docs/ClusterDhcpNetworkConfig.md)
  - [ClusterExpandParams](docs/ClusterExpandParams.md)
  - [ClusterFreeDisks](docs/ClusterFreeDisks.md)
+ - [ClusterHealthStatus](docs/ClusterHealthStatus.md)
  - [ClusterIdentifier](docs/ClusterIdentifier.md)
  - [ClusterInterfaces](docs/ClusterInterfaces.md)
  - [ClusterIpmiUser](docs/ClusterIpmiUser.md)
@@ -897,6 +926,7 @@ Class | Method | HTTP request | Description
  - [ClusterOperationStatus](docs/ClusterOperationStatus.md)
  - [ClusterPackageParams](docs/ClusterPackageParams.md)
  - [ClusterPackages](docs/ClusterPackages.md)
+ - [ClusterProviderType](docs/ClusterProviderType.md)
  - [ClusterProxyServerConfig](docs/ClusterProxyServerConfig.md)
  - [ClusterSize](docs/ClusterSize.md)
  - [ClusterStateParams](docs/ClusterStateParams.md)
@@ -907,6 +937,8 @@ Class | Method | HTTP request | Description
  - [ClusterVlanParams](docs/ClusterVlanParams.md)
  - [ClusterVlanParamsAllOf](docs/ClusterVlanParamsAllOf.md)
  - [ClusterVlans](docs/ClusterVlans.md)
+ - [CohesityCaKeyInfo](docs/CohesityCaKeyInfo.md)
+ - [CohesityCaStatusResponse](docs/CohesityCaStatusResponse.md)
  - [CommonAWSCategoryParams](docs/CommonAWSCategoryParams.md)
  - [CommonActiveDirectoryParams](docs/CommonActiveDirectoryParams.md)
  - [CommonArchivalAwsExternalTargetParams](docs/CommonArchivalAwsExternalTargetParams.md)
@@ -960,6 +992,7 @@ Class | Method | HTTP request | Description
  - [CommonPostBackupScriptParams](docs/CommonPostBackupScriptParams.md)
  - [CommonPreBackupScriptParams](docs/CommonPreBackupScriptParams.md)
  - [CommonPreBackupScriptParamsAllOf](docs/CommonPreBackupScriptParamsAllOf.md)
+ - [CommonPrePostCloudScriptParams](docs/CommonPrePostCloudScriptParams.md)
  - [CommonPrePostScriptParams](docs/CommonPrePostScriptParams.md)
  - [CommonProtectionGroupRequestParams](docs/CommonProtectionGroupRequestParams.md)
  - [CommonProtectionGroupResponseParams](docs/CommonProtectionGroupResponseParams.md)
@@ -1003,17 +1036,23 @@ Class | Method | HTTP request | Description
  - [CommonUpdatableUserParams](docs/CommonUpdatableUserParams.md)
  - [CommonVmwareObjectParams](docs/CommonVmwareObjectParams.md)
  - [CommonVmwareProtectionParams](docs/CommonVmwareProtectionParams.md)
+ - [ComponentRemovalProgress](docs/ComponentRemovalProgress.md)
  - [CompressionParams](docs/CompressionParams.md)
  - [CompressionType](docs/CompressionType.md)
  - [ConnectionBandwidthLimits](docs/ConnectionBandwidthLimits.md)
  - [ConnectionConfig](docs/ConnectionConfig.md)
  - [ConnectivityCheckResponseBody](docs/ConnectivityCheckResponseBody.md)
  - [ConnectivityStatus](docs/ConnectivityStatus.md)
+ - [ConnectorAwsMetadata](docs/ConnectorAwsMetadata.md)
+ - [ConnectorAzureMetadata](docs/ConnectorAzureMetadata.md)
+ - [ConnectorCloudMetadata](docs/ConnectorCloudMetadata.md)
  - [ConnectorConnectionInfo](docs/ConnectorConnectionInfo.md)
  - [ConnectorGroup](docs/ConnectorGroup.md)
  - [ConnectorType](docs/ConnectorType.md)
  - [ConstructMetaInfoParams](docs/ConstructMetaInfoParams.md)
+ - [ConstructMetaInfoRequest](docs/ConstructMetaInfoRequest.md)
  - [ConstructMetaInfoResult](docs/ConstructMetaInfoResult.md)
+ - [ConstructMetaInfoSfdcParams](docs/ConstructMetaInfoSfdcParams.md)
  - [ConstructRestoreMetaInfoOracleParams](docs/ConstructRestoreMetaInfoOracleParams.md)
  - [ContainerDatabaseInfo](docs/ContainerDatabaseInfo.md)
  - [ContinuousSnapshotParams](docs/ContinuousSnapshotParams.md)
@@ -1033,7 +1072,6 @@ Class | Method | HTTP request | Description
  - [CreateAzureApplicationRequestParams](docs/CreateAzureApplicationRequestParams.md)
  - [CreateAzureApplicationResponseParams](docs/CreateAzureApplicationResponseParams.md)
  - [CreateBifrostConnectionRequest](docs/CreateBifrostConnectionRequest.md)
- - [CreateBifrostConnectorRequest](docs/CreateBifrostConnectorRequest.md)
  - [CreateCadStorageDomainParam](docs/CreateCadStorageDomainParam.md)
  - [CreateClientcsrResponseBody](docs/CreateClientcsrResponseBody.md)
  - [CreateCloudRetrieveTaskRequest](docs/CreateCloudRetrieveTaskRequest.md)
@@ -1044,6 +1082,7 @@ Class | Method | HTTP request | Description
  - [CreateCsrRequest](docs/CreateCsrRequest.md)
  - [CreateCsrResponseBody](docs/CreateCsrResponseBody.md)
  - [CreateEmailOtpRequestBody](docs/CreateEmailOtpRequestBody.md)
+ - [CreateGaiaIndexParams](docs/CreateGaiaIndexParams.md)
  - [CreateGroupParams](docs/CreateGroupParams.md)
  - [CreateGroupsParams](docs/CreateGroupsParams.md)
  - [CreateIdpRequestParams](docs/CreateIdpRequestParams.md)
@@ -1071,8 +1110,8 @@ Class | Method | HTTP request | Description
  - [CreateRigelConnectionRequestAllOf](docs/CreateRigelConnectionRequestAllOf.md)
  - [CreateRigelConnectorRequest](docs/CreateRigelConnectorRequest.md)
  - [CreateRigelConnectorRequestAllOf](docs/CreateRigelConnectorRequestAllOf.md)
- - [CreateRoleParams](docs/CreateRoleParams.md)
- - [CreateRoleParamsAllOf](docs/CreateRoleParamsAllOf.md)
+ - [CreateRoleParameters](docs/CreateRoleParameters.md)
+ - [CreateRoleParametersAllOf](docs/CreateRoleParametersAllOf.md)
  - [CreateStorageDomainParam](docs/CreateStorageDomainParam.md)
  - [CreateTdmTaskRequest](docs/CreateTdmTaskRequest.md)
  - [CreateTdmTaskRequestAllOf](docs/CreateTdmTaskRequestAllOf.md)
@@ -1081,9 +1120,9 @@ Class | Method | HTTP request | Description
  - [CreateTenantParams](docs/CreateTenantParams.md)
  - [CreateTotpKeyRequestBody](docs/CreateTotpKeyRequestBody.md)
  - [CreateUpgradeTaskRequest](docs/CreateUpgradeTaskRequest.md)
- - [CreateUserParams](docs/CreateUserParams.md)
+ - [CreateUserParameters](docs/CreateUserParameters.md)
  - [CreateUserSessionRequestParams](docs/CreateUserSessionRequestParams.md)
- - [CreateUsersParams](docs/CreateUsersParams.md)
+ - [CreateUsersParameters](docs/CreateUsersParameters.md)
  - [CreateView](docs/CreateView.md)
  - [CreateViewAllOf](docs/CreateViewAllOf.md)
  - [CreateViewFailoverRequest](docs/CreateViewFailoverRequest.md)
@@ -1094,6 +1133,7 @@ Class | Method | HTTP request | Description
  - [Credentials](docs/Credentials.md)
  - [CsrKeyType](docs/CsrKeyType.md)
  - [CsrServiceName](docs/CsrServiceName.md)
+ - [CurrentClusterOperations](docs/CurrentClusterOperations.md)
  - [CustomTagParams](docs/CustomTagParams.md)
  - [DMaaSInfo](docs/DMaaSInfo.md)
  - [DSESolrInfo](docs/DSESolrInfo.md)
@@ -1103,6 +1143,7 @@ Class | Method | HTTP request | Description
  - [DataTieringAnalysisGroup](docs/DataTieringAnalysisGroup.md)
  - [DataTieringAnalysisGroupAllOf](docs/DataTieringAnalysisGroupAllOf.md)
  - [DataTieringAnalysisGroupRun](docs/DataTieringAnalysisGroupRun.md)
+ - [DataTieringAnalysisGroupRuns](docs/DataTieringAnalysisGroupRuns.md)
  - [DataTieringAnalysisGroups](docs/DataTieringAnalysisGroups.md)
  - [DataTieringAnalysisInfo](docs/DataTieringAnalysisInfo.md)
  - [DataTieringAnalysisRunRequest](docs/DataTieringAnalysisRunRequest.md)
@@ -1134,12 +1175,15 @@ Class | Method | HTTP request | Description
  - [DeleteActiveDirectoryRequest](docs/DeleteActiveDirectoryRequest.md)
  - [DeleteGroupsRequest](docs/DeleteGroupsRequest.md)
  - [DeleteHostsParameters](docs/DeleteHostsParameters.md)
+ - [DeleteInfectedFiles](docs/DeleteInfectedFiles.md)
+ - [DeleteInfectedFilesParameters](docs/DeleteInfectedFilesParameters.md)
  - [DeleteRigelConnectorRequest](docs/DeleteRigelConnectorRequest.md)
  - [DeleteUsersRequest](docs/DeleteUsersRequest.md)
  - [DeletedProtectedObjectsResponseBody](docs/DeletedProtectedObjectsResponseBody.md)
  - [DeviceTreeLeafNode](docs/DeviceTreeLeafNode.md)
  - [DeviceTreeNode](docs/DeviceTreeNode.md)
  - [DeviceTreeNonLeafNode](docs/DeviceTreeNonLeafNode.md)
+ - [DisasterRecoveryOptions](docs/DisasterRecoveryOptions.md)
  - [Disk](docs/Disk.md)
  - [DiskIdentify](docs/DiskIdentify.md)
  - [DiskInfo](docs/DiskInfo.md)
@@ -1148,6 +1192,8 @@ Class | Method | HTTP request | Description
  - [DiskTiers](docs/DiskTiers.md)
  - [DiskType](docs/DiskType.md)
  - [DisksList](docs/DisksList.md)
+ - [DmaasAuditActions](docs/DmaasAuditActions.md)
+ - [DmaasAuditEntityTypes](docs/DmaasAuditEntityTypes.md)
  - [DmaasTenantAction](docs/DmaasTenantAction.md)
  - [DnsDelegationZone](docs/DnsDelegationZone.md)
  - [DnsServersInfo](docs/DnsServersInfo.md)
@@ -1161,6 +1207,10 @@ Class | Method | HTTP request | Description
  - [DomainScopeParams](docs/DomainScopeParams.md)
  - [DownTieringFileSelectionType](docs/DownTieringFileSelectionType.md)
  - [DownloadAgentRequestParams](docs/DownloadAgentRequestParams.md)
+ - [DownloadBaseosPatchRequest](docs/DownloadBaseosPatchRequest.md)
+ - [DownloadChatsParams](docs/DownloadChatsParams.md)
+ - [DownloadClusterCertResponse](docs/DownloadClusterCertResponse.md)
+ - [DownloadFileType](docs/DownloadFileType.md)
  - [DownloadFilesAndFoldersRequestParams](docs/DownloadFilesAndFoldersRequestParams.md)
  - [DownloadFilesAndFoldersResponseParams](docs/DownloadFilesAndFoldersResponseParams.md)
  - [DowntieredDataLocation](docs/DowntieredDataLocation.md)
@@ -1168,6 +1218,8 @@ Class | Method | HTTP request | Description
  - [DowntieringPolicy](docs/DowntieringPolicy.md)
  - [DowntieringPolicyAllOf](docs/DowntieringPolicyAllOf.md)
  - [DowntieringTarget](docs/DowntieringTarget.md)
+ - [DraasAuditActions](docs/DraasAuditActions.md)
+ - [DraasAuditEntityTypes](docs/DraasAuditEntityTypes.md)
  - [EBSTag](docs/EBSTag.md)
  - [ESConfigForIndexing](docs/ESConfigForIndexing.md)
  - [EbsVolumeExclusionParams](docs/EbsVolumeExclusionParams.md)
@@ -1184,10 +1236,16 @@ Class | Method | HTTP request | Description
  - [EmailHeliosSearchParams](docs/EmailHeliosSearchParams.md)
  - [EmailHeliosSearchParamsAllOf](docs/EmailHeliosSearchParamsAllOf.md)
  - [Emails](docs/Emails.md)
+ - [EmblemServiceInfo](docs/EmblemServiceInfo.md)
+ - [EncryptionConfig](docs/EncryptionConfig.md)
  - [EncryptionSettings](docs/EncryptionSettings.md)
+ - [EndPoint](docs/EndPoint.md)
  - [EndpointCheckResult](docs/EndpointCheckResult.md)
  - [EndpointConnectionState](docs/EndpointConnectionState.md)
  - [EndpointOnlyRegistrationParams](docs/EndpointOnlyRegistrationParams.md)
+ - [EntityExternalMetadata](docs/EntityExternalMetadata.md)
+ - [EntityIdentifier](docs/EntityIdentifier.md)
+ - [EntityMetadataParams](docs/EntityMetadataParams.md)
  - [EnvSpecificObjectProtectionRequestParams](docs/EnvSpecificObjectProtectionRequestParams.md)
  - [EnvSpecificObjectProtectionRequestParamsAllOf](docs/EnvSpecificObjectProtectionRequestParamsAllOf.md)
  - [EnvSpecificObjectProtectionResponseParams](docs/EnvSpecificObjectProtectionResponseParams.md)
@@ -1195,6 +1253,8 @@ Class | Method | HTTP request | Description
  - [Environment](docs/Environment.md)
  - [ErasureCodingParams](docs/ErasureCodingParams.md)
  - [Error](docs/Error.md)
+ - [ErrorClass](docs/ErrorClass.md)
+ - [ErrorType](docs/ErrorType.md)
  - [EsxiRegistrationParams](docs/EsxiRegistrationParams.md)
  - [EsxiRegistrationParamsAllOf](docs/EsxiRegistrationParamsAllOf.md)
  - [ExchangeAppParams](docs/ExchangeAppParams.md)
@@ -1205,9 +1265,12 @@ Class | Method | HTTP request | Description
  - [ExchangeProtectionGroupObjectParams](docs/ExchangeProtectionGroupObjectParams.md)
  - [ExchangeProtectionGroupParams](docs/ExchangeProtectionGroupParams.md)
  - [ExchangeRecoverDatabaseParams](docs/ExchangeRecoverDatabaseParams.md)
+ - [ExchangeRecoveryTargetConfig](docs/ExchangeRecoveryTargetConfig.md)
  - [ExchangeTargetParamsForRecoverExchangeApp](docs/ExchangeTargetParamsForRecoverExchangeApp.md)
+ - [ExchangeTargetParamsForRecoverExchangeDbs](docs/ExchangeTargetParamsForRecoverExchangeDbs.md)
  - [ExecuteRunbookActionRequest](docs/ExecuteRunbookActionRequest.md)
  - [ExistingGroupParam](docs/ExistingGroupParam.md)
+ - [ExpirationAction](docs/ExpirationAction.md)
  - [ExtendedRetentionPolicy](docs/ExtendedRetentionPolicy.md)
  - [ExtendedRetentionSchedule](docs/ExtendedRetentionSchedule.md)
  - [ExternalTarget](docs/ExternalTarget.md)
@@ -1251,6 +1314,11 @@ Class | Method | HTTP request | Description
  - [FileType](docs/FileType.md)
  - [FilenamePatternToDirectory](docs/FilenamePatternToDirectory.md)
  - [FilerAuditLogConfigs](docs/FilerAuditLogConfigs.md)
+ - [FilerLifecycleAgingPolicy](docs/FilerLifecycleAgingPolicy.md)
+ - [FilerLifecycleManagement](docs/FilerLifecycleManagement.md)
+ - [FilerLifecycleRule](docs/FilerLifecycleRule.md)
+ - [FilerLifecycleRuleFilter](docs/FilerLifecycleRuleFilter.md)
+ - [FilerLifecycleSizeFilter](docs/FilerLifecycleSizeFilter.md)
  - [Files](docs/Files.md)
  - [FilesAndFoldersObject](docs/FilesAndFoldersObject.md)
  - [FilesStats](docs/FilesStats.md)
@@ -1264,6 +1332,8 @@ Class | Method | HTTP request | Description
  - [FirewallIPSet](docs/FirewallIPSet.md)
  - [FirewallIPSets](docs/FirewallIPSets.md)
  - [FirewallProfile](docs/FirewallProfile.md)
+ - [FirewallProfileNamesParams](docs/FirewallProfileNamesParams.md)
+ - [FirewallProfileParams](docs/FirewallProfileParams.md)
  - [FirewallProfiles](docs/FirewallProfiles.md)
  - [FixedIssue](docs/FixedIssue.md)
  - [FlashBladeRegistrationInfo](docs/FlashBladeRegistrationInfo.md)
@@ -1285,6 +1355,8 @@ Class | Method | HTTP request | Description
  - [FormFieldParams](docs/FormFieldParams.md)
  - [FormPanelParams](docs/FormPanelParams.md)
  - [FreeDisk](docs/FreeDisk.md)
+ - [FreeNodeInformation](docs/FreeNodeInformation.md)
+ - [FreeNodes](docs/FreeNodes.md)
  - [FrequencySchedule](docs/FrequencySchedule.md)
  - [FullBackupPolicy](docs/FullBackupPolicy.md)
  - [FullSchedule](docs/FullSchedule.md)
@@ -1292,7 +1364,12 @@ Class | Method | HTTP request | Description
  - [FullScheduleUnit](docs/FullScheduleUnit.md)
  - [GCPArchivalStorageClass](docs/GCPArchivalStorageClass.md)
  - [GCPTieringStorageClass](docs/GCPTieringStorageClass.md)
+ - [GaiaGenericParams](docs/GaiaGenericParams.md)
+ - [GaiaGenericResult](docs/GaiaGenericResult.md)
+ - [GaiaIndexingStats](docs/GaiaIndexingStats.md)
+ - [GaiaSnapshotInfo](docs/GaiaSnapshotInfo.md)
  - [GatewayParams](docs/GatewayParams.md)
+ - [GcpDiskExclusionParams](docs/GcpDiskExclusionParams.md)
  - [GcpNativeProtectionGroupObjectParams](docs/GcpNativeProtectionGroupObjectParams.md)
  - [GcpNativeProtectionGroupParams](docs/GcpNativeProtectionGroupParams.md)
  - [GcpProtectionGroupParams](docs/GcpProtectionGroupParams.md)
@@ -1303,10 +1380,17 @@ Class | Method | HTTP request | Description
  - [GcpTargetParamsForRecoverVm](docs/GcpTargetParamsForRecoverVm.md)
  - [GcpVmRecoveryTargetConfig](docs/GcpVmRecoveryTargetConfig.md)
  - [GcpVpcSubnetConfig](docs/GcpVpcSubnetConfig.md)
+ - [GenerateCaCertificateRequest](docs/GenerateCaCertificateRequest.md)
+ - [GenerateCaCertificateResponse](docs/GenerateCaCertificateResponse.md)
+ - [GenerateCsrResponse](docs/GenerateCsrResponse.md)
  - [GenerateM365DeviceAccessTokenRequestParams](docs/GenerateM365DeviceAccessTokenRequestParams.md)
  - [GenerateM365DeviceAccessTokenResponseParams](docs/GenerateM365DeviceAccessTokenResponseParams.md)
  - [GenerateM365DeviceCodeRequestParams](docs/GenerateM365DeviceCodeRequestParams.md)
  - [GenerateM365DeviceCodeResponseParams](docs/GenerateM365DeviceCodeResponseParams.md)
+ - [GenerateNewCertificateRequest](docs/GenerateNewCertificateRequest.md)
+ - [GenerateNewCertificateResponse](docs/GenerateNewCertificateResponse.md)
+ - [GenerateSignCsrRequest](docs/GenerateSignCsrRequest.md)
+ - [GenerateSignCsrResponse](docs/GenerateSignCsrResponse.md)
  - [GenericNasDataTieringParams](docs/GenericNasDataTieringParams.md)
  - [GenericNasObjectProtectionParams](docs/GenericNasObjectProtectionParams.md)
  - [GenericNasObjectProtectionRequestParams](docs/GenericNasObjectProtectionRequestParams.md)
@@ -1319,7 +1403,10 @@ Class | Method | HTTP request | Description
  - [GetConnectionBandwidthResponseBody](docs/GetConnectionBandwidthResponseBody.md)
  - [GetConnectionBandwidthResponseBodyAllOf](docs/GetConnectionBandwidthResponseBodyAllOf.md)
  - [GetCsrListResponseBody](docs/GetCsrListResponseBody.md)
+ - [GetEntityMetadataResult](docs/GetEntityMetadataResult.md)
  - [GetFailoverOpsResponse](docs/GetFailoverOpsResponse.md)
+ - [GetGaiaIndexingStatusParams](docs/GetGaiaIndexingStatusParams.md)
+ - [GetGaiaIndexingStatusResult](docs/GetGaiaIndexingStatusResult.md)
  - [GetIndexedObjectSnapshotsResponseBody](docs/GetIndexedObjectSnapshotsResponseBody.md)
  - [GetM365SourceRegionEndpointResponseParams](docs/GetM365SourceRegionEndpointResponseParams.md)
  - [GetNlmLocksResult](docs/GetNlmLocksResult.md)
@@ -1330,6 +1417,7 @@ Class | Method | HTTP request | Description
  - [GetProtectedObjectResponse](docs/GetProtectedObjectResponse.md)
  - [GetProtectedObjectsResponse](docs/GetProtectedObjectsResponse.md)
  - [GetProtectionRunProgressBody](docs/GetProtectionRunProgressBody.md)
+ - [GetProtectionRunStatsBody](docs/GetProtectionRunStatsBody.md)
  - [GetProtectionRunsStatusResponseBody](docs/GetProtectionRunsStatusResponseBody.md)
  - [GetTagsResult](docs/GetTagsResult.md)
  - [GetTrackingViewIdResponse](docs/GetTrackingViewIdResponse.md)
@@ -1351,6 +1439,7 @@ Class | Method | HTTP request | Description
  - [GpfsProtectionGroupParams](docs/GpfsProtectionGroupParams.md)
  - [GpfsRegistrationParams](docs/GpfsRegistrationParams.md)
  - [Group](docs/Group.md)
+ - [GroupObjectEntityParams](docs/GroupObjectEntityParams.md)
  - [GroupParams](docs/GroupParams.md)
  - [GroupParamsAllOf](docs/GroupParamsAllOf.md)
  - [Groups](docs/Groups.md)
@@ -1446,6 +1535,7 @@ Class | Method | HTTP request | Description
  - [HeliosPolicyRequest](docs/HeliosPolicyRequest.md)
  - [HeliosPolicyResponse](docs/HeliosPolicyResponse.md)
  - [HeliosPolicyResponseAllOf](docs/HeliosPolicyResponseAllOf.md)
+ - [HeliosPrimaryBackupTarget](docs/HeliosPrimaryBackupTarget.md)
  - [HeliosProtectionPolicy](docs/HeliosProtectionPolicy.md)
  - [HeliosProtectionPolicyIdentifier](docs/HeliosProtectionPolicyIdentifier.md)
  - [HeliosPublicFolderItems](docs/HeliosPublicFolderItems.md)
@@ -1490,6 +1580,7 @@ Class | Method | HTTP request | Description
  - [HostMappingsParameters](docs/HostMappingsParameters.md)
  - [HostSettingCheck](docs/HostSettingCheck.md)
  - [HourSchedule](docs/HourSchedule.md)
+ - [HyperVDiskInfo](docs/HyperVDiskInfo.md)
  - [HyperVMountVolumesNewTargetConfig](docs/HyperVMountVolumesNewTargetConfig.md)
  - [HyperVMountVolumesOriginalTargetConfig](docs/HyperVMountVolumesOriginalTargetConfig.md)
  - [HyperVObjectProtectionRequest](docs/HyperVObjectProtectionRequest.md)
@@ -1516,18 +1607,27 @@ Class | Method | HTTP request | Description
  - [IPConfigParams](docs/IPConfigParams.md)
  - [IamRoleAwsCredentials](docs/IamRoleAwsCredentials.md)
  - [IamUserAwsCredentials](docs/IamUserAwsCredentials.md)
+ - [IbmFlashSystemProtectionGroupObjectParams](docs/IbmFlashSystemProtectionGroupObjectParams.md)
+ - [IbmFlashSystemProtectionGroupParams](docs/IbmFlashSystemProtectionGroupParams.md)
  - [IcapUriConnectionStatus](docs/IcapUriConnectionStatus.md)
  - [IcapUriConnectionStatusList](docs/IcapUriConnectionStatusList.md)
  - [IdMappingParams](docs/IdMappingParams.md)
+ - [IdentityAction](docs/IdentityAction.md)
+ - [IdentityConfig](docs/IdentityConfig.md)
+ - [IdentityConfigs](docs/IdentityConfigs.md)
  - [IdentityProviderConfiguration](docs/IdentityProviderConfiguration.md)
  - [IdentityProviderConfigurationAllOf](docs/IdentityProviderConfigurationAllOf.md)
  - [IdentityProviderConfigurations](docs/IdentityProviderConfigurations.md)
+ - [ImportCertRequest](docs/ImportCertRequest.md)
+ - [ImportCertResponse](docs/ImportCertResponse.md)
  - [ImportCertificateByClientcsrRequest](docs/ImportCertificateByClientcsrRequest.md)
  - [ImportCertificateByClientcsrResponseBody](docs/ImportCertificateByClientcsrResponseBody.md)
+ - [ImportCertificateRequest](docs/ImportCertificateRequest.md)
  - [IncrementalBackupPolicy](docs/IncrementalBackupPolicy.md)
  - [IncrementalSchedule](docs/IncrementalSchedule.md)
  - [IndexedCassandraType](docs/IndexedCassandraType.md)
  - [IndexedCouchbaseType](docs/IndexedCouchbaseType.md)
+ - [IndexedGroupItemType](docs/IndexedGroupItemType.md)
  - [IndexedHDFSType](docs/IndexedHDFSType.md)
  - [IndexedHbaseType](docs/IndexedHbaseType.md)
  - [IndexedHiveType](docs/IndexedHiveType.md)
@@ -1540,6 +1640,8 @@ Class | Method | HTTP request | Description
  - [InfectedFile](docs/InfectedFile.md)
  - [InfectedFileState](docs/InfectedFileState.md)
  - [InfectedFiles](docs/InfectedFiles.md)
+ - [InitCohesityCaRequest](docs/InitCohesityCaRequest.md)
+ - [InitCohesityCaResponse](docs/InitCohesityCaResponse.md)
  - [InitFailoverRequest](docs/InitFailoverRequest.md)
  - [InitFailoverResponse](docs/InitFailoverResponse.md)
  - [Interface](docs/Interface.md)
@@ -1552,6 +1654,7 @@ Class | Method | HTTP request | Description
  - [InterfaceParams](docs/InterfaceParams.md)
  - [InterfaceRoleType](docs/InterfaceRoleType.md)
  - [InterfaceStats](docs/InterfaceStats.md)
+ - [InterventionType](docs/InterventionType.md)
  - [IpPool](docs/IpPool.md)
  - [IpPreference](docs/IpPreference.md)
  - [IpRange](docs/IpRange.md)
@@ -1594,10 +1697,12 @@ Class | Method | HTTP request | Description
  - [KmsConfigurationUpdateParamsAllOf](docs/KmsConfigurationUpdateParamsAllOf.md)
  - [KmsConfigurations](docs/KmsConfigurations.md)
  - [KubernetesFilterParams](docs/KubernetesFilterParams.md)
+ - [KubernetesLabel](docs/KubernetesLabel.md)
  - [KubernetesNamespaceRecoveryNewSourceConfig](docs/KubernetesNamespaceRecoveryNewSourceConfig.md)
  - [KubernetesNamespaceRecoveryTargetConfig](docs/KubernetesNamespaceRecoveryTargetConfig.md)
  - [KubernetesProtectionGroupObjectParams](docs/KubernetesProtectionGroupObjectParams.md)
  - [KubernetesProtectionGroupParams](docs/KubernetesProtectionGroupParams.md)
+ - [KubernetesPvcInfo](docs/KubernetesPvcInfo.md)
  - [KubernetesTargetParamsForRecoverKubernetesNamespace](docs/KubernetesTargetParamsForRecoverKubernetesNamespace.md)
  - [KvmProtectionGroupObjectParams](docs/KvmProtectionGroupObjectParams.md)
  - [KvmProtectionGroupParams](docs/KvmProtectionGroupParams.md)
@@ -1609,6 +1714,10 @@ Class | Method | HTTP request | Description
  - [LdapConnectionStatus](docs/LdapConnectionStatus.md)
  - [LdapStatus](docs/LdapStatus.md)
  - [Ldaps](docs/Ldaps.md)
+ - [LifecycleRule](docs/LifecycleRule.md)
+ - [LifecycleRuleFilter](docs/LifecycleRuleFilter.md)
+ - [LifecycleRuleFilterAnd](docs/LifecycleRuleFilterAnd.md)
+ - [LifecycleRuleFilterTag](docs/LifecycleRuleFilterTag.md)
  - [LinuxAgentParams](docs/LinuxAgentParams.md)
  - [ListTrustedCasResult](docs/ListTrustedCasResult.md)
  - [LocalDiskStatus](docs/LocalDiskStatus.md)
@@ -1624,6 +1733,7 @@ Class | Method | HTTP request | Description
  - [LockFileParams](docs/LockFileParams.md)
  - [LockRange](docs/LockRange.md)
  - [LogBackupPolicy](docs/LogBackupPolicy.md)
+ - [LogRetention](docs/LogRetention.md)
  - [LogSchedule](docs/LogSchedule.md)
  - [LogicalVolumeInfo](docs/LogicalVolumeInfo.md)
  - [MOref](docs/MOref.md)
@@ -1643,15 +1753,23 @@ Class | Method | HTTP request | Description
  - [MachineAccountEncryptionType](docs/MachineAccountEncryptionType.md)
  - [MailboxItemType](docs/MailboxItemType.md)
  - [MailboxParam](docs/MailboxParam.md)
+ - [MaintenanceModeConfig](docs/MaintenanceModeConfig.md)
+ - [MaintenanceModeWorkflowType](docs/MaintenanceModeWorkflowType.md)
  - [MarkBaseosUpgradeInfo](docs/MarkBaseosUpgradeInfo.md)
+ - [McmAuditEntityTypes](docs/McmAuditEntityTypes.md)
  - [McmClaimEntityType](docs/McmClaimEntityType.md)
  - [McmClusterClaimRequestParams](docs/McmClusterClaimRequestParams.md)
  - [McmClusterClaimResponseParams](docs/McmClusterClaimResponseParams.md)
  - [McmClusterIdentifier](docs/McmClusterIdentifier.md)
+ - [McmCohesionClaimRequestParams](docs/McmCohesionClaimRequestParams.md)
+ - [McmCohesionClaimResponseParams](docs/McmCohesionClaimResponseParams.md)
+ - [McmIBMStorageProtectClaimRequestParams](docs/McmIBMStorageProtectClaimRequestParams.md)
+ - [McmIBMStorageProtectClaimResponseParams](docs/McmIBMStorageProtectClaimResponseParams.md)
  - [McmObjectActivityAttributeType](docs/McmObjectActivityAttributeType.md)
  - [McmObjectActivityType](docs/McmObjectActivityType.md)
  - [McmRigelClaimRequestParams](docs/McmRigelClaimRequestParams.md)
  - [McmRigelClaimResponseParams](docs/McmRigelClaimResponseParams.md)
+ - [McmServiceType](docs/McmServiceType.md)
  - [McmSignupRequestStatus](docs/McmSignupRequestStatus.md)
  - [McmTenantType](docs/McmTenantType.md)
  - [MfaAuthenticationTypes](docs/MfaAuthenticationTypes.md)
@@ -1677,6 +1795,9 @@ Class | Method | HTTP request | Description
  - [MountPhysicalVolumeParams](docs/MountPhysicalVolumeParams.md)
  - [MountVmwareVolumeParams](docs/MountVmwareVolumeParams.md)
  - [MountedVolumeMapping](docs/MountedVolumeMapping.md)
+ - [MsGroupItem](docs/MsGroupItem.md)
+ - [MsGroupItemAllOf](docs/MsGroupItemAllOf.md)
+ - [MsGroupItems](docs/MsGroupItems.md)
  - [MsGroupParam](docs/MsGroupParam.md)
  - [MsSQLCommonConnectionParams](docs/MsSQLCommonConnectionParams.md)
  - [MsTeamParam](docs/MsTeamParam.md)
@@ -1721,6 +1842,7 @@ Class | Method | HTTP request | Description
  - [NetworkInterfaceParams](docs/NetworkInterfaceParams.md)
  - [NetworkInterfaceType](docs/NetworkInterfaceType.md)
  - [NewGroupParam](docs/NewGroupParam.md)
+ - [NewViewFilesTargetParams](docs/NewViewFilesTargetParams.md)
  - [NfsConfig](docs/NfsConfig.md)
  - [NfsProtocol](docs/NfsProtocol.md)
  - [NfsRootPermissions](docs/NfsRootPermissions.md)
@@ -1746,6 +1868,7 @@ Class | Method | HTTP request | Description
  - [NodeGroupResponse](docs/NodeGroupResponse.md)
  - [NodeHardwareInfo](docs/NodeHardwareInfo.md)
  - [NodeIdentifyParams](docs/NodeIdentifyParams.md)
+ - [NodeInfo](docs/NodeInfo.md)
  - [NodeInterfaceParams](docs/NodeInterfaceParams.md)
  - [NodeInterfaces](docs/NodeInterfaces.md)
  - [NodeIpmiLanParams](docs/NodeIpmiLanParams.md)
@@ -1758,6 +1881,7 @@ Class | Method | HTTP request | Description
  - [NodeStats](docs/NodeStats.md)
  - [NodeSystemDiskInfo](docs/NodeSystemDiskInfo.md)
  - [NodeUnitProgress](docs/NodeUnitProgress.md)
+ - [NonCurrentVersionExpirationAction](docs/NonCurrentVersionExpirationAction.md)
  - [NumWeekInMonth](docs/NumWeekInMonth.md)
  - [NumberFormFieldParams](docs/NumberFormFieldParams.md)
  - [O365HeliosSearchEmailsRequestParams](docs/O365HeliosSearchEmailsRequestParams.md)
@@ -1766,6 +1890,9 @@ Class | Method | HTTP request | Description
  - [O365SearchEmailsRequestParams](docs/O365SearchEmailsRequestParams.md)
  - [O365SearchRequestParams](docs/O365SearchRequestParams.md)
  - [O365TeamsChannelsSearchRequestParams](docs/O365TeamsChannelsSearchRequestParams.md)
+ - [OAuth2Action](docs/OAuth2Action.md)
+ - [OAuth2Provider](docs/OAuth2Provider.md)
+ - [OAuthAudience](docs/OAuthAudience.md)
  - [Object](docs/Object.md)
  - [ObjectActionRequest](docs/ObjectActionRequest.md)
  - [ObjectActionRequestAllOf](docs/ObjectActionRequestAllOf.md)
@@ -1777,6 +1904,8 @@ Class | Method | HTTP request | Description
  - [ObjectBrowseRequestAllOf](docs/ObjectBrowseRequestAllOf.md)
  - [ObjectEnvironment](docs/ObjectEnvironment.md)
  - [ObjectIdentifier](docs/ObjectIdentifier.md)
+ - [ObjectIdentifiersParams](docs/ObjectIdentifiersParams.md)
+ - [ObjectInfo](docs/ObjectInfo.md)
  - [ObjectLastRun](docs/ObjectLastRun.md)
  - [ObjectLastRunAllOf](docs/ObjectLastRunAllOf.md)
  - [ObjectLinkingParams](docs/ObjectLinkingParams.md)
@@ -1805,6 +1934,8 @@ Class | Method | HTTP request | Description
  - [ObjectSnapshotVolumeInfo](docs/ObjectSnapshotVolumeInfo.md)
  - [ObjectSnapshotsInfo](docs/ObjectSnapshotsInfo.md)
  - [ObjectStats](docs/ObjectStats.md)
+ - [ObjectStatsInfo](docs/ObjectStatsInfo.md)
+ - [ObjectStatsInfoAllOf](docs/ObjectStatsInfoAllOf.md)
  - [ObjectStoreCiphersResp](docs/ObjectStoreCiphersResp.md)
  - [ObjectSummary](docs/ObjectSummary.md)
  - [ObjectSummaryAllOf](docs/ObjectSummaryAllOf.md)
@@ -1812,6 +1943,7 @@ Class | Method | HTTP request | Description
  - [ObjectTypeVCenterParams](docs/ObjectTypeVCenterParams.md)
  - [ObjectTypeWindowsClusterParams](docs/ObjectTypeWindowsClusterParams.md)
  - [ObjectUnLinkingParams](docs/ObjectUnLinkingParams.md)
+ - [ObjectUniqueIdentifier](docs/ObjectUniqueIdentifier.md)
  - [ObjectWithChildren](docs/ObjectWithChildren.md)
  - [ObjectWithChildrenAllOf](docs/ObjectWithChildrenAllOf.md)
  - [Objects](docs/Objects.md)
@@ -1819,6 +1951,7 @@ Class | Method | HTTP request | Description
  - [ObjectsBulkAction](docs/ObjectsBulkAction.md)
  - [ObjectsDiscoveryParams](docs/ObjectsDiscoveryParams.md)
  - [ObjectsLastRun](docs/ObjectsLastRun.md)
+ - [ObjectsLinkType](docs/ObjectsLinkType.md)
  - [ObjectsSearchResponseBody](docs/ObjectsSearchResponseBody.md)
  - [OdpRemoteCluster](docs/OdpRemoteCluster.md)
  - [OdpRemoteClusters](docs/OdpRemoteClusters.md)
@@ -1832,10 +1965,14 @@ Class | Method | HTTP request | Description
  - [Office365ObjectProtectionUpdateRequestParams](docs/Office365ObjectProtectionUpdateRequestParams.md)
  - [Office365OneDriveProtectionGroupParams](docs/Office365OneDriveProtectionGroupParams.md)
  - [Office365OutlookProtectionGroupParams](docs/Office365OutlookProtectionGroupParams.md)
+ - [Office365PreservationHoldLibraryParams](docs/Office365PreservationHoldLibraryParams.md)
  - [Office365ProtectionGroupObjectParams](docs/Office365ProtectionGroupObjectParams.md)
  - [Office365ProtectionGroupParams](docs/Office365ProtectionGroupParams.md)
  - [Office365PublicFoldersProtectionGroupParams](docs/Office365PublicFoldersProtectionGroupParams.md)
+ - [Office365RegionType](docs/Office365RegionType.md)
+ - [Office365SharePointProtectionGroupParams](docs/Office365SharePointProtectionGroupParams.md)
  - [Office365SharepointSiteObjectProtectionParams](docs/Office365SharepointSiteObjectProtectionParams.md)
+ - [Office365SharepointSiteObjectProtectionParamsAllOf](docs/Office365SharepointSiteObjectProtectionParamsAllOf.md)
  - [Office365SourceRegistrationParams](docs/Office365SourceRegistrationParams.md)
  - [Office365SourceRegistrationParamsAllOf](docs/Office365SourceRegistrationParamsAllOf.md)
  - [Office365TeamsObjectProtectionParams](docs/Office365TeamsObjectProtectionParams.md)
@@ -1856,6 +1993,8 @@ Class | Method | HTTP request | Description
  - [OnpremDeployConfigAllOf](docs/OnpremDeployConfigAllOf.md)
  - [OnpremDeployParams](docs/OnpremDeployParams.md)
  - [OnpremDeployTargetEnvironmentType](docs/OnpremDeployTargetEnvironmentType.md)
+ - [OpenIdConnectAction](docs/OpenIdConnectAction.md)
+ - [OpenIdProvider](docs/OpenIdProvider.md)
  - [OperationEvents](docs/OperationEvents.md)
  - [OracleArchivalStorageClass](docs/OracleArchivalStorageClass.md)
  - [OracleArchiveLogInfo](docs/OracleArchiveLogInfo.md)
@@ -1905,6 +2044,7 @@ Class | Method | HTTP request | Description
  - [OriginalIsilonTargetParams](docs/OriginalIsilonTargetParams.md)
  - [OriginalNetappFilesTargetParams](docs/OriginalNetappFilesTargetParams.md)
  - [OriginalNetappTargetParams](docs/OriginalNetappTargetParams.md)
+ - [OriginalViewFilesTargetParams](docs/OriginalViewFilesTargetParams.md)
  - [OverwriteViewParams](docs/OverwriteViewParams.md)
  - [OwnershipContext](docs/OwnershipContext.md)
  - [PaginationInfo](docs/PaginationInfo.md)
@@ -1952,6 +2092,7 @@ Class | Method | HTTP request | Description
  - [PolicyTemplateResponseAllOf](docs/PolicyTemplateResponseAllOf.md)
  - [PolicyTemplatesResponseWithPagination](docs/PolicyTemplatesResponseWithPagination.md)
  - [PowerOffVmParams](docs/PowerOffVmParams.md)
+ - [PreCheckValidation](docs/PreCheckValidation.md)
  - [PrePostScriptParams](docs/PrePostScriptParams.md)
  - [PreparePlannedFailverParams](docs/PreparePlannedFailverParams.md)
  - [PrimaryArchivalTarget](docs/PrimaryArchivalTarget.md)
@@ -2019,9 +2160,12 @@ Class | Method | HTTP request | Description
  - [PublicFolderItemAllOf](docs/PublicFolderItemAllOf.md)
  - [PublicFolderItemType](docs/PublicFolderItemType.md)
  - [PublicFolderItems](docs/PublicFolderItems.md)
+ - [PublicKeyRequest](docs/PublicKeyRequest.md)
+ - [PublicKeyResponse](docs/PublicKeyResponse.md)
  - [PublicTaskStatus](docs/PublicTaskStatus.md)
  - [PureProtectionGroupObjectParams](docs/PureProtectionGroupObjectParams.md)
  - [PureProtectionGroupParams](docs/PureProtectionGroupParams.md)
+ - [PvcInformationResponseParams](docs/PvcInformationResponseParams.md)
  - [QoS](docs/QoS.md)
  - [QosPoliciesResult](docs/QosPoliciesResult.md)
  - [QosPolicy](docs/QosPolicy.md)
@@ -2033,6 +2177,8 @@ Class | Method | HTTP request | Description
  - [RdsConfig](docs/RdsConfig.md)
  - [RecoverAcropolisFileAndFolderParams](docs/RecoverAcropolisFileAndFolderParams.md)
  - [RecoverAcropolisParams](docs/RecoverAcropolisParams.md)
+ - [RecoverAcropolisSnapshotParams](docs/RecoverAcropolisSnapshotParams.md)
+ - [RecoverAcropolisSnapshotParamsAllOf](docs/RecoverAcropolisSnapshotParamsAllOf.md)
  - [RecoverAcropolisVmNewSourceConfig](docs/RecoverAcropolisVmNewSourceConfig.md)
  - [RecoverAcropolisVmNewSourceNetworkConfig](docs/RecoverAcropolisVmNewSourceNetworkConfig.md)
  - [RecoverAcropolisVmOriginalSourceConfig](docs/RecoverAcropolisVmOriginalSourceConfig.md)
@@ -2047,13 +2193,20 @@ Class | Method | HTTP request | Description
  - [RecoverAwsRdsNewSourceConfig](docs/RecoverAwsRdsNewSourceConfig.md)
  - [RecoverAwsRdsNewSourceNetworkConfig](docs/RecoverAwsRdsNewSourceNetworkConfig.md)
  - [RecoverAwsRdsParams](docs/RecoverAwsRdsParams.md)
+ - [RecoverAwsS3BucketParams](docs/RecoverAwsS3BucketParams.md)
  - [RecoverAwsVmNewSourceConfig](docs/RecoverAwsVmNewSourceConfig.md)
  - [RecoverAwsVmNewSourceNetworkConfig](docs/RecoverAwsVmNewSourceNetworkConfig.md)
  - [RecoverAwsVmParams](docs/RecoverAwsVmParams.md)
  - [RecoverAzureFileAndFolderParams](docs/RecoverAzureFileAndFolderParams.md)
  - [RecoverAzureParams](docs/RecoverAzureParams.md)
+ - [RecoverAzureSqlNewSourceConfig](docs/RecoverAzureSqlNewSourceConfig.md)
+ - [RecoverAzureSqlObjectParams](docs/RecoverAzureSqlObjectParams.md)
+ - [RecoverAzureSqlParams](docs/RecoverAzureSqlParams.md)
+ - [RecoverAzureSqlSnapshotParams](docs/RecoverAzureSqlSnapshotParams.md)
+ - [RecoverAzureSqlSnapshotParamsAllOf](docs/RecoverAzureSqlSnapshotParamsAllOf.md)
  - [RecoverAzureVmNewSourceConfig](docs/RecoverAzureVmNewSourceConfig.md)
  - [RecoverAzureVmNewSourceNetworkConfig](docs/RecoverAzureVmNewSourceNetworkConfig.md)
+ - [RecoverAzureVmOriginalSourceConfig](docs/RecoverAzureVmOriginalSourceConfig.md)
  - [RecoverAzureVmParams](docs/RecoverAzureVmParams.md)
  - [RecoverCassandraNoSqlObjectParams](docs/RecoverCassandraNoSqlObjectParams.md)
  - [RecoverCassandraParams](docs/RecoverCassandraParams.md)
@@ -2073,6 +2226,9 @@ Class | Method | HTTP request | Description
  - [RecoverExchangeAppParams](docs/RecoverExchangeAppParams.md)
  - [RecoverExchangeAppSnapshotParams](docs/RecoverExchangeAppSnapshotParams.md)
  - [RecoverExchangeAppSnapshotParamsAllOf](docs/RecoverExchangeAppSnapshotParamsAllOf.md)
+ - [RecoverExchangeDbsParams](docs/RecoverExchangeDbsParams.md)
+ - [RecoverExchangeDbsSnapshotParams](docs/RecoverExchangeDbsSnapshotParams.md)
+ - [RecoverExchangeDbsSnapshotParamsAllOf](docs/RecoverExchangeDbsSnapshotParamsAllOf.md)
  - [RecoverExchangeParams](docs/RecoverExchangeParams.md)
  - [RecoverFileAndFolderMethod](docs/RecoverFileAndFolderMethod.md)
  - [RecoverFlashbladeFilesParams](docs/RecoverFlashbladeFilesParams.md)
@@ -2176,11 +2332,18 @@ Class | Method | HTTP request | Description
  - [RecoverPhysicalVolumeParams](docs/RecoverPhysicalVolumeParams.md)
  - [RecoverProtectionGroupRunParams](docs/RecoverProtectionGroupRunParams.md)
  - [RecoverPublicFoldersParams](docs/RecoverPublicFoldersParams.md)
+ - [RecoverPureGroupTargetParams](docs/RecoverPureGroupTargetParams.md)
  - [RecoverPureParams](docs/RecoverPureParams.md)
+ - [RecoverPureSanGroupNewSourceConfig](docs/RecoverPureSanGroupNewSourceConfig.md)
+ - [RecoverPureSanGroupOriginalSourceConfig](docs/RecoverPureSanGroupOriginalSourceConfig.md)
+ - [RecoverPureSanGroupParams](docs/RecoverPureSanGroupParams.md)
  - [RecoverPureSanVolumeNewSourceConfig](docs/RecoverPureSanVolumeNewSourceConfig.md)
  - [RecoverPureSanVolumeOriginalSourceConfig](docs/RecoverPureSanVolumeOriginalSourceConfig.md)
  - [RecoverPureSanVolumeParams](docs/RecoverPureSanVolumeParams.md)
  - [RecoverPureVolumeTargetParams](docs/RecoverPureVolumeTargetParams.md)
+ - [RecoverRDSPostgresCustomServerConfig](docs/RecoverRDSPostgresCustomServerConfig.md)
+ - [RecoverRDSPostgresParams](docs/RecoverRDSPostgresParams.md)
+ - [RecoverRDSPostgresToKnownSourceConfig](docs/RecoverRDSPostgresToKnownSourceConfig.md)
  - [RecoverSalesforceParams](docs/RecoverSalesforceParams.md)
  - [RecoverSfdcObjectParams](docs/RecoverSfdcObjectParams.md)
  - [RecoverSiteParams](docs/RecoverSiteParams.md)
@@ -2196,7 +2359,9 @@ Class | Method | HTTP request | Description
  - [RecoverUdaSnapshotParams](docs/RecoverUdaSnapshotParams.md)
  - [RecoverUdaSnapshotParamsAllOf](docs/RecoverUdaSnapshotParamsAllOf.md)
  - [RecoverVMwareFileAndFolderParams](docs/RecoverVMwareFileAndFolderParams.md)
+ - [RecoverViewFilesParams](docs/RecoverViewFilesParams.md)
  - [RecoverViewParams](docs/RecoverViewParams.md)
+ - [RecoverViewToViewFilesTargetParams](docs/RecoverViewToViewFilesTargetParams.md)
  - [RecoverVmwareChildSnapshotParams](docs/RecoverVmwareChildSnapshotParams.md)
  - [RecoverVmwareChildSnapshotParamsAllOf](docs/RecoverVmwareChildSnapshotParamsAllOf.md)
  - [RecoverVmwareDiskParams](docs/RecoverVmwareDiskParams.md)
@@ -2223,7 +2388,6 @@ Class | Method | HTTP request | Description
  - [RecoveredOrClonedVmsRenameConfig](docs/RecoveredOrClonedVmsRenameConfig.md)
  - [Recoveries](docs/Recoveries.md)
  - [Recovery](docs/Recovery.md)
- - [RecoveryAllOf](docs/RecoveryAllOf.md)
  - [RecoveryObjectIdentifier](docs/RecoveryObjectIdentifier.md)
  - [RecoveryOracleTaskInfo](docs/RecoveryOracleTaskInfo.md)
  - [RecoveryProcessType](docs/RecoveryProcessType.md)
@@ -2252,6 +2416,7 @@ Class | Method | HTTP request | Description
  - [RemoteStorageInfo](docs/RemoteStorageInfo.md)
  - [RemoteStorageInfoAllOf](docs/RemoteStorageInfoAllOf.md)
  - [RemoteTargetConfig](docs/RemoteTargetConfig.md)
+ - [RemoveBaseosPatchRequest](docs/RemoveBaseosPatchRequest.md)
  - [RemoveDisk](docs/RemoveDisk.md)
  - [RemoveNode](docs/RemoveNode.md)
  - [ReplicaFailoverObject](docs/ReplicaFailoverObject.md)
@@ -2317,19 +2482,29 @@ Class | Method | HTTP request | Description
  - [RunObjectPhysicalParams](docs/RunObjectPhysicalParams.md)
  - [RunReplicationConfig](docs/RunReplicationConfig.md)
  - [RunTargetsConfiguration](docs/RunTargetsConfiguration.md)
+ - [S3AbacServerCreateRequestParams](docs/S3AbacServerCreateRequestParams.md)
+ - [S3AbacServerCreateRequestParamsAllOf](docs/S3AbacServerCreateRequestParamsAllOf.md)
+ - [S3AbacServerResponse](docs/S3AbacServerResponse.md)
+ - [S3AbacServerUpdateRequestParams](docs/S3AbacServerUpdateRequestParams.md)
+ - [S3AbacServersResponse](docs/S3AbacServersResponse.md)
  - [S3AccountParams](docs/S3AccountParams.md)
  - [S3AclGranteeType](docs/S3AclGranteeType.md)
  - [S3AclPermission](docs/S3AclPermission.md)
+ - [S3CompatibleArchivalStorageClass](docs/S3CompatibleArchivalStorageClass.md)
  - [S3Config](docs/S3Config.md)
  - [S3ConfigForIndexing](docs/S3ConfigForIndexing.md)
+ - [S3LifecycleManagement](docs/S3LifecycleManagement.md)
  - [S3OwnerInfo](docs/S3OwnerInfo.md)
  - [SFDCEndpointType](docs/SFDCEndpointType.md)
  - [SMBPrincipal](docs/SMBPrincipal.md)
  - [SMTPConfiguration](docs/SMTPConfiguration.md)
  - [SQLServer](docs/SQLServer.md)
  - [SQLServerInstance](docs/SQLServerInstance.md)
+ - [SaasServiceName](docs/SaasServiceName.md)
  - [SapHanaAgentParams](docs/SapHanaAgentParams.md)
  - [SapOracleAgentParams](docs/SapOracleAgentParams.md)
+ - [Schedule](docs/Schedule.md)
+ - [ScheduleType](docs/ScheduleType.md)
  - [ScheduleUnit](docs/ScheduleUnit.md)
  - [ScheduledBackup](docs/ScheduledBackup.md)
  - [Schema](docs/Schema.md)
@@ -2348,10 +2523,13 @@ Class | Method | HTTP request | Description
  - [SearchIndexedObjectsRequestAllOf](docs/SearchIndexedObjectsRequestAllOf.md)
  - [SearchIndexedObjectsResponseBody](docs/SearchIndexedObjectsResponseBody.md)
  - [SearchIndexedObjectsResponseBodyAllOf](docs/SearchIndexedObjectsResponseBodyAllOf.md)
+ - [SearchMsGroupsRequestParams](docs/SearchMsGroupsRequestParams.md)
  - [SearchMsTeamsRequestParams](docs/SearchMsTeamsRequestParams.md)
  - [SearchObject](docs/SearchObject.md)
  - [SearchObjectAllOf](docs/SearchObjectAllOf.md)
  - [SearchPublicFolderRequestParams](docs/SearchPublicFolderRequestParams.md)
+ - [SearchSfdcRecordsRequestParams](docs/SearchSfdcRecordsRequestParams.md)
+ - [SecretKeyEntity](docs/SecretKeyEntity.md)
  - [SecurityConfig](docs/SecurityConfig.md)
  - [SecurityConfigAccountLockout](docs/SecurityConfigAccountLockout.md)
  - [SecurityConfigCertificateBasedAuth](docs/SecurityConfigCertificateBasedAuth.md)
@@ -2361,22 +2539,28 @@ Class | Method | HTTP request | Description
  - [SecurityConfigPasswordStrength](docs/SecurityConfigPasswordStrength.md)
  - [SecurityConfigResponse](docs/SecurityConfigResponse.md)
  - [SecurityConfigSessionConfiguration](docs/SecurityConfigSessionConfiguration.md)
+ - [SecurityConfigSshConfiguration](docs/SecurityConfigSshConfiguration.md)
  - [SecurityPrincipal](docs/SecurityPrincipal.md)
  - [SecurityPrincipals](docs/SecurityPrincipals.md)
  - [SelfServiceSnapshotConfig](docs/SelfServiceSnapshotConfig.md)
  - [ServicePatchLevel](docs/ServicePatchLevel.md)
  - [ServicePatchLevels](docs/ServicePatchLevels.md)
  - [ServiceUnitProgress](docs/ServiceUnitProgress.md)
+ - [ServiceVersionInfo](docs/ServiceVersionInfo.md)
  - [SfdcAuroraClusterInfo](docs/SfdcAuroraClusterInfo.md)
+ - [SfdcDependentObject](docs/SfdcDependentObject.md)
+ - [SfdcMetaInfoResult](docs/SfdcMetaInfoResult.md)
+ - [SfdcMetaInfoType](docs/SfdcMetaInfoType.md)
+ - [SfdcObjectFieldExclusion](docs/SfdcObjectFieldExclusion.md)
  - [SfdcObjectParams](docs/SfdcObjectParams.md)
  - [SfdcObjectProtectionObjectParams](docs/SfdcObjectProtectionObjectParams.md)
- - [SfdcObjectProtectionObjectParamsFieldExclusionList](docs/SfdcObjectProtectionObjectParamsFieldExclusionList.md)
  - [SfdcObjectProtectionParams](docs/SfdcObjectProtectionParams.md)
  - [SfdcObjectProtectionRequestParams](docs/SfdcObjectProtectionRequestParams.md)
  - [SfdcObjectProtectionResponseParams](docs/SfdcObjectProtectionResponseParams.md)
  - [SfdcObjectProtectionUpdateRequestParams](docs/SfdcObjectProtectionUpdateRequestParams.md)
  - [SfdcProtectionGroupObjectParams](docs/SfdcProtectionGroupObjectParams.md)
  - [SfdcProtectionGroupParams](docs/SfdcProtectionGroupParams.md)
+ - [SfdcRecords](docs/SfdcRecords.md)
  - [SfdcSourceRegistrationParams](docs/SfdcSourceRegistrationParams.md)
  - [Share](docs/Share.md)
  - [ShareAllOf](docs/ShareAllOf.md)
@@ -2387,7 +2571,10 @@ Class | Method | HTTP request | Description
  - [Shares](docs/Shares.md)
  - [ShellKeyValuePair](docs/ShellKeyValuePair.md)
  - [SimpleAuthParams](docs/SimpleAuthParams.md)
+ - [SimpleTags](docs/SimpleTags.md)
+ - [SitesDiscoveryParams](docs/SitesDiscoveryParams.md)
  - [SlaRule](docs/SlaRule.md)
+ - [SlaveData](docs/SlaveData.md)
  - [SmbActiveFilePath](docs/SmbActiveFilePath.md)
  - [SmbActiveOpen](docs/SmbActiveOpen.md)
  - [SmbActiveSession](docs/SmbActiveSession.md)
@@ -2401,6 +2588,7 @@ Class | Method | HTTP request | Description
  - [SnapshotActions](docs/SnapshotActions.md)
  - [SnapshotDiffParams](docs/SnapshotDiffParams.md)
  - [SnapshotDiffResult](docs/SnapshotDiffResult.md)
+ - [SnapshotHandle](docs/SnapshotHandle.md)
  - [SnapshotInfo](docs/SnapshotInfo.md)
  - [SnapshotLabel](docs/SnapshotLabel.md)
  - [SnapshotRecoveryTargetType](docs/SnapshotRecoveryTargetType.md)
@@ -2421,18 +2609,27 @@ Class | Method | HTTP request | Description
  - [SourceHierarchyObjectSummaryAllOf](docs/SourceHierarchyObjectSummaryAllOf.md)
  - [SourceRegistration](docs/SourceRegistration.md)
  - [SourceRegistrationAllOf](docs/SourceRegistrationAllOf.md)
+ - [SourceRegistrationPatchRequestParams](docs/SourceRegistrationPatchRequestParams.md)
  - [SourceRegistrationRequestParams](docs/SourceRegistrationRequestParams.md)
+ - [SourceRegistrationRequestParamsAllOf](docs/SourceRegistrationRequestParamsAllOf.md)
  - [SourceRegistrationUpdateRequestParams](docs/SourceRegistrationUpdateRequestParams.md)
+ - [SourceRegistrationUpdateRequestParamsAllOf](docs/SourceRegistrationUpdateRequestParamsAllOf.md)
  - [SourceRegistrations](docs/SourceRegistrations.md)
  - [SourceReplicaObject](docs/SourceReplicaObject.md)
  - [Sources](docs/Sources.md)
  - [SqlTargetParamsForRecoverSqlApp](docs/SqlTargetParamsForRecoverSqlApp.md)
+ - [SshPasswordCredentials](docs/SshPasswordCredentials.md)
+ - [SshPrivateKeyCredentials](docs/SshPrivateKeyCredentials.md)
  - [StandaloneClusterRegistrationParams](docs/StandaloneClusterRegistrationParams.md)
  - [StandaloneHostRegistrationParams](docs/StandaloneHostRegistrationParams.md)
  - [StandardParams](docs/StandardParams.md)
  - [StandbyObject](docs/StandbyObject.md)
  - [StaticRouteParams](docs/StaticRouteParams.md)
  - [StaticRoutes](docs/StaticRoutes.md)
+ - [StatsTask](docs/StatsTask.md)
+ - [StatsTaskAllOf](docs/StatsTaskAllOf.md)
+ - [StatsTaskInfo](docs/StatsTaskInfo.md)
+ - [StatsTasks](docs/StatsTasks.md)
  - [StorageArraySnapshotBackupPolicy](docs/StorageArraySnapshotBackupPolicy.md)
  - [StorageArraySnapshotConfig](docs/StorageArraySnapshotConfig.md)
  - [StorageArraySnapshotMaxSnapshotConfig](docs/StorageArraySnapshotMaxSnapshotConfig.md)
@@ -2447,9 +2644,11 @@ Class | Method | HTTP request | Description
  - [StringFormFieldParams](docs/StringFormFieldParams.md)
  - [Subnet](docs/Subnet.md)
  - [SubnetInfo](docs/SubnetInfo.md)
+ - [SuccessResp](docs/SuccessResp.md)
  - [SupportChannelConfig](docs/SupportChannelConfig.md)
  - [SupportMfaConfigInfo](docs/SupportMfaConfigInfo.md)
  - [SupportTotpKeyInfo](docs/SupportTotpKeyInfo.md)
+ - [SupportUserConfig](docs/SupportUserConfig.md)
  - [SupportedHadoopDistributions](docs/SupportedHadoopDistributions.md)
  - [SwiftConfig](docs/SwiftConfig.md)
  - [SwiftParams](docs/SwiftParams.md)
@@ -2466,7 +2665,6 @@ Class | Method | HTTP request | Description
  - [TargetBandwidthThrottlings](docs/TargetBandwidthThrottlings.md)
  - [TargetEncryptionLevel](docs/TargetEncryptionLevel.md)
  - [TargetMailboxParam](docs/TargetMailboxParam.md)
- - [TargetMailboxParamAllOf](docs/TargetMailboxParamAllOf.md)
  - [TargetMsTeamParam](docs/TargetMsTeamParam.md)
  - [TargetNfsSecurityType](docs/TargetNfsSecurityType.md)
  - [TargetNfsVersionNumber](docs/TargetNfsVersionNumber.md)
@@ -2479,6 +2677,7 @@ Class | Method | HTTP request | Description
  - [TargetSiteParamAllOf](docs/TargetSiteParamAllOf.md)
  - [TargetTeamsChannelParam](docs/TargetTeamsChannelParam.md)
  - [TargetsConfiguration](docs/TargetsConfiguration.md)
+ - [TaskLogs](docs/TaskLogs.md)
  - [TdmAction](docs/TdmAction.md)
  - [TdmCloneTaskRequestParams](docs/TdmCloneTaskRequestParams.md)
  - [TdmCloneTaskRequestParamsAllOf](docs/TdmCloneTaskRequestParamsAllOf.md)
@@ -2503,6 +2702,7 @@ Class | Method | HTTP request | Description
  - [TdmTasks](docs/TdmTasks.md)
  - [TdmTeardownTaskRequestParams](docs/TdmTeardownTaskRequestParams.md)
  - [TeamChannelType](docs/TeamChannelType.md)
+ - [TeamsAdditionalParams](docs/TeamsAdditionalParams.md)
  - [TeamsFileItem](docs/TeamsFileItem.md)
  - [TeamsItem](docs/TeamsItem.md)
  - [TeamsItemAllOf](docs/TeamsItemAllOf.md)
@@ -2522,6 +2722,10 @@ Class | Method | HTTP request | Description
  - [TenantDmaasCert](docs/TenantDmaasCert.md)
  - [TenantDmaasCerts](docs/TenantDmaasCerts.md)
  - [TenantInfo](docs/TenantInfo.md)
+ - [TenantMigrationAction](docs/TenantMigrationAction.md)
+ - [TenantMigrationResult](docs/TenantMigrationResult.md)
+ - [TenantMigrationService](docs/TenantMigrationService.md)
+ - [TenantMigrationServiceAction](docs/TenantMigrationServiceAction.md)
  - [TenantNetwork](docs/TenantNetwork.md)
  - [TenantStatus](docs/TenantStatus.md)
  - [TenantsInfo](docs/TenantsInfo.md)
@@ -2545,11 +2749,14 @@ Class | Method | HTTP request | Description
  - [TieringS3CompExternalTargetParams](docs/TieringS3CompExternalTargetParams.md)
  - [TieringTargetStorageType](docs/TieringTargetStorageType.md)
  - [TieringType](docs/TieringType.md)
+ - [Time](docs/Time.md)
  - [TimeOfAWeek](docs/TimeOfAWeek.md)
  - [TimeOfDay](docs/TimeOfDay.md)
+ - [TimeRangeUsecs](docs/TimeRangeUsecs.md)
  - [TimeSeriesStats](docs/TimeSeriesStats.md)
  - [TimeSeriesStatsForMetric](docs/TimeSeriesStatsForMetric.md)
  - [TimeUnits](docs/TimeUnits.md)
+ - [TimeWindow](docs/TimeWindow.md)
  - [TotpKeyInfo](docs/TotpKeyInfo.md)
  - [TrustedCa](docs/TrustedCa.md)
  - [TrustedCaRequest](docs/TrustedCaRequest.md)
@@ -2558,7 +2765,9 @@ Class | Method | HTTP request | Description
  - [UdaConfigParams](docs/UdaConfigParams.md)
  - [UdaConfigsList](docs/UdaConfigsList.md)
  - [UdaConnectorConfigParams](docs/UdaConnectorConfigParams.md)
+ - [UdaCreateRunResponseParams](docs/UdaCreateRunResponseParams.md)
  - [UdaDynamicFormParams](docs/UdaDynamicFormParams.md)
+ - [UdaExternallyTriggeredRunParams](docs/UdaExternallyTriggeredRunParams.md)
  - [UdaHostOsSpecificParams](docs/UdaHostOsSpecificParams.md)
  - [UdaIndexParams](docs/UdaIndexParams.md)
  - [UdaIndexedObject](docs/UdaIndexedObject.md)
@@ -2568,6 +2777,11 @@ Class | Method | HTTP request | Description
  - [UdaOSIndexConfigParams](docs/UdaOSIndexConfigParams.md)
  - [UdaOSSpecificConfigParams](docs/UdaOSSpecificConfigParams.md)
  - [UdaObjectParams](docs/UdaObjectParams.md)
+ - [UdaObjectProtectionObjectParams](docs/UdaObjectProtectionObjectParams.md)
+ - [UdaObjectProtectionParams](docs/UdaObjectProtectionParams.md)
+ - [UdaObjectProtectionRequestParams](docs/UdaObjectProtectionRequestParams.md)
+ - [UdaObjectProtectionResponseParams](docs/UdaObjectProtectionResponseParams.md)
+ - [UdaObjectProtectionUpdateRequestParams](docs/UdaObjectProtectionUpdateRequestParams.md)
  - [UdaOnPremSearchParams](docs/UdaOnPremSearchParams.md)
  - [UdaParams](docs/UdaParams.md)
  - [UdaProtectionGroupObjectParams](docs/UdaProtectionGroupObjectParams.md)
@@ -2577,6 +2791,7 @@ Class | Method | HTTP request | Description
  - [UdaProtectionParamsPrimaryFieldsFullBackupArgs](docs/UdaProtectionParamsPrimaryFieldsFullBackupArgs.md)
  - [UdaProtectionParamsPrimaryFieldsIncrBackupArgs](docs/UdaProtectionParamsPrimaryFieldsIncrBackupArgs.md)
  - [UdaProtectionParamsPrimaryFieldsLogBackupArgs](docs/UdaProtectionParamsPrimaryFieldsLogBackupArgs.md)
+ - [UdaProtectionRunParams](docs/UdaProtectionRunParams.md)
  - [UdaRecoveryParams](docs/UdaRecoveryParams.md)
  - [UdaRecoveryParamsPrimaryFields](docs/UdaRecoveryParamsPrimaryFields.md)
  - [UdaRecoveryParamsPrimaryFieldsRecoveryArgs](docs/UdaRecoveryParamsPrimaryFieldsRecoveryArgs.md)
@@ -2616,8 +2831,10 @@ Class | Method | HTTP request | Description
  - [UpdateExistingReplicationSnapshotConfig](docs/UpdateExistingReplicationSnapshotConfig.md)
  - [UpdateFeatureFlagParams](docs/UpdateFeatureFlagParams.md)
  - [UpdateFleetEnvInfoRequest](docs/UpdateFleetEnvInfoRequest.md)
- - [UpdateGroupParams](docs/UpdateGroupParams.md)
+ - [UpdateGroupParameters](docs/UpdateGroupParameters.md)
  - [UpdateIdpRequestParams](docs/UpdateIdpRequestParams.md)
+ - [UpdateInfectedFilesList](docs/UpdateInfectedFilesList.md)
+ - [UpdateInfectedFilesParameters](docs/UpdateInfectedFilesParameters.md)
  - [UpdateIpmiUsers](docs/UpdateIpmiUsers.md)
  - [UpdateKeystoneRequest](docs/UpdateKeystoneRequest.md)
  - [UpdateLocalSnapshotConfig](docs/UpdateLocalSnapshotConfig.md)
@@ -2638,20 +2855,32 @@ Class | Method | HTTP request | Description
  - [UpdateRigelConnectionRequest](docs/UpdateRigelConnectionRequest.md)
  - [UpdateRigelConnectionRequestAllOf](docs/UpdateRigelConnectionRequestAllOf.md)
  - [UpdateRigelConnectorRequest](docs/UpdateRigelConnectorRequest.md)
- - [UpdateRoleParams](docs/UpdateRoleParams.md)
+ - [UpdateRoleParameters](docs/UpdateRoleParameters.md)
  - [UpdateSMTPParams](docs/UpdateSMTPParams.md)
  - [UpdateSMTPParamsAllOf](docs/UpdateSMTPParamsAllOf.md)
  - [UpdateSecurityConfigRequest](docs/UpdateSecurityConfigRequest.md)
  - [UpdateShareParam](docs/UpdateShareParam.md)
  - [UpdateStorageDomainParam](docs/UpdateStorageDomainParam.md)
+ - [UpdateSupportUserParams](docs/UpdateSupportUserParams.md)
  - [UpdateTdmSnapshotRequest](docs/UpdateTdmSnapshotRequest.md)
  - [UpdateTenantBody](docs/UpdateTenantBody.md)
  - [UpdateTenantParams](docs/UpdateTenantParams.md)
- - [UpdateUserParams](docs/UpdateUserParams.md)
- - [UpdateUserParamsAllOf](docs/UpdateUserParamsAllOf.md)
+ - [UpdateUserParameters](docs/UpdateUserParameters.md)
+ - [UpdateUserParametersAllOf](docs/UpdateUserParametersAllOf.md)
  - [UpdateViewParam](docs/UpdateViewParam.md)
  - [UpdateViewParamAllOf](docs/UpdateViewParamAllOf.md)
+ - [UpgradeCheckNodeResult](docs/UpgradeCheckNodeResult.md)
+ - [UpgradeCheckRunTestsRequest](docs/UpgradeCheckRunTestsRequest.md)
+ - [UpgradeCheckRunTestsResult](docs/UpgradeCheckRunTestsResult.md)
+ - [UpgradeCheckTestResult](docs/UpgradeCheckTestResult.md)
+ - [UpgradeChecksResults](docs/UpgradeChecksResults.md)
+ - [UpgradecheckNodeTestStatus](docs/UpgradecheckNodeTestStatus.md)
+ - [UpgradecheckRequestType](docs/UpgradecheckRequestType.md)
+ - [UpgradecheckResultStatus](docs/UpgradecheckResultStatus.md)
+ - [UpgradecheckTestResult](docs/UpgradecheckTestResult.md)
  - [UplinkSwitch](docs/UplinkSwitch.md)
+ - [UploadClusterCertRequest](docs/UploadClusterCertRequest.md)
+ - [UploadClusterCertResponse](docs/UploadClusterCertResponse.md)
  - [UploadPackageUrlParams](docs/UploadPackageUrlParams.md)
  - [UptieringFileAgePolicy](docs/UptieringFileAgePolicy.md)
  - [UptieringPolicy](docs/UptieringPolicy.md)
@@ -2678,9 +2907,11 @@ Class | Method | HTTP request | Description
  - [UsersList](docs/UsersList.md)
  - [VMFilter](docs/VMFilter.md)
  - [VMFilterAllOf](docs/VMFilterAllOf.md)
+ - [VMWareCDPFilterParams](docs/VMWareCDPFilterParams.md)
  - [VMwareMountVolumesNewTargetConfig](docs/VMwareMountVolumesNewTargetConfig.md)
  - [VMwareMountVolumesOriginalTargetConfig](docs/VMwareMountVolumesOriginalTargetConfig.md)
  - [ValidateRemoteClusterConnectionParam](docs/ValidateRemoteClusterConnectionParam.md)
+ - [ValidateSupportUserCredParams](docs/ValidateSupportUserCredParams.md)
  - [VcdAdditionalParams](docs/VcdAdditionalParams.md)
  - [VcdConnectionParams](docs/VcdConnectionParams.md)
  - [VcdConnectionParamsAllOf](docs/VcdConnectionParamsAllOf.md)
@@ -2712,6 +2943,7 @@ Class | Method | HTTP request | Description
  - [ViewDirectoryQuotas](docs/ViewDirectoryQuotas.md)
  - [ViewFailover](docs/ViewFailover.md)
  - [ViewIntent](docs/ViewIntent.md)
+ - [ViewObjectParams](docs/ViewObjectParams.md)
  - [ViewObjectSummary](docs/ViewObjectSummary.md)
  - [ViewOptions](docs/ViewOptions.md)
  - [ViewParams](docs/ViewParams.md)
@@ -2725,6 +2957,7 @@ Class | Method | HTTP request | Description
  - [ViewProtocol](docs/ViewProtocol.md)
  - [ViewProtocolAccess](docs/ViewProtocolAccess.md)
  - [ViewProtocolAccessMode](docs/ViewProtocolAccessMode.md)
+ - [ViewRecoverFileAndFolderInfo](docs/ViewRecoverFileAndFolderInfo.md)
  - [ViewSecurityMode](docs/ViewSecurityMode.md)
  - [ViewSharePermissions](docs/ViewSharePermissions.md)
  - [ViewStats](docs/ViewStats.md)
@@ -2742,6 +2975,7 @@ Class | Method | HTTP request | Description
  - [VmwareCdpObjectAllOf](docs/VmwareCdpObjectAllOf.md)
  - [VmwareConnectionParams](docs/VmwareConnectionParams.md)
  - [VmwareDiskControllerType](docs/VmwareDiskControllerType.md)
+ - [VmwareDiskProvisionType](docs/VmwareDiskProvisionType.md)
  - [VmwareObjectAction](docs/VmwareObjectAction.md)
  - [VmwareObjectActionParams](docs/VmwareObjectActionParams.md)
  - [VmwareObjectEnableAppProtectionParams](docs/VmwareObjectEnableAppProtectionParams.md)
@@ -2788,6 +3022,13 @@ Class | Method | HTTP request | Description
  - [WebSocketRequestStatus](docs/WebSocketRequestStatus.md)
  - [WeekDays](docs/WeekDays.md)
  - [WeekSchedule](docs/WeekSchedule.md)
+ - [WorkflowInterventionSpec](docs/WorkflowInterventionSpec.md)
+ - [WorkloadStatsSchema](docs/WorkloadStatsSchema.md)
+ - [WorkloadStatsSchemaAllOf](docs/WorkloadStatsSchemaAllOf.md)
+ - [WorkloadStatsSummary](docs/WorkloadStatsSummary.md)
+ - [WorkloadSubType](docs/WorkloadSubType.md)
+ - [WorkloadSubTypeAllOf](docs/WorkloadSubTypeAllOf.md)
+ - [WorkloadType](docs/WorkloadType.md)
  - [WormProperties](docs/WormProperties.md)
  - [WormRetention](docs/WormRetention.md)
  - [WormSpecificTargetParams](docs/WormSpecificTargetParams.md)

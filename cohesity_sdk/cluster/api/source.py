@@ -28,12 +28,12 @@ from cohesity_sdk.cluster.model.generate_m365_device_access_token_request_params
 from cohesity_sdk.cluster.model.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
 from cohesity_sdk.cluster.model.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
 from cohesity_sdk.cluster.model.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
-from cohesity_sdk.cluster.model.get_m365_source_region_endpoint_response_params import GetM365SourceRegionEndpointResponseParams
 from cohesity_sdk.cluster.model.source import Source
 from cohesity_sdk.cluster.model.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
 from cohesity_sdk.cluster.model.source_connection_request_params import SourceConnectionRequestParams
 from cohesity_sdk.cluster.model.source_connection_response_params import SourceConnectionResponseParams
 from cohesity_sdk.cluster.model.source_registration import SourceRegistration
+from cohesity_sdk.cluster.model.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
 from cohesity_sdk.cluster.model.source_registration_request_params import SourceRegistrationRequestParams
 from cohesity_sdk.cluster.model.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 from cohesity_sdk.cluster.model.source_registrations import SourceRegistrations
@@ -173,6 +173,128 @@ class SourceApi(object):
             },
             api_client=api_client,
             callable=__create_azure_applications
+        )
+
+        def __create_or_update_azure_applications(
+            self,
+            body,
+            **kwargs
+        ):
+            """Create/Update Microsoft 365 Azure Applications for a given domain.  # noqa: E501
+
+            Creates/Updates Microsoft 365 Azure Applications  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_or_update_azure_applications(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (CreateAzureApplicationRequestParams): Specifies the parameters to create/update Azure applications within a given Microsoft365 source.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CreateAzureApplicationResponseParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.create_or_update_azure_applications = _Endpoint(
+            settings={
+                'response_type': (CreateAzureApplicationResponseParams,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/microsoft365/azure-applications',
+                'operation_id': 'create_or_update_azure_applications',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (CreateAzureApplicationRequestParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_or_update_azure_applications
         )
 
         def __delete_protection_source_registration(
@@ -540,127 +662,6 @@ class SourceApi(object):
             callable=__generate_m365_device_code
         )
 
-        def __get_m365_source_region_endpoint(
-            self,
-            domain,
-            **kwargs
-        ):
-            """Generates the region and endpoint for the Microsoft365 source.  # noqa: E501
-
-            Fetches the region and endpoint for the Microsoft365 source.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_m365_source_region_endpoint(domain, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                domain (str): Specifies the domain name of the source.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                GetM365SourceRegionEndpointResponseParams
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['domain'] = \
-                domain
-            return self.call_with_http_info(**kwargs)
-
-        self.get_m365_source_region_endpoint = _Endpoint(
-            settings={
-                'response_type': (GetM365SourceRegionEndpointResponseParams,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/sources/microsoft365/region-info',
-                'operation_id': 'get_m365_source_region_endpoint',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'domain',
-                ],
-                'required': [
-                    'domain',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'domain':
-                        (str,),
-                },
-                'attribute_map': {
-                    'domain': 'domain',
-                },
-                'location_map': {
-                    'domain': 'query',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_m365_source_region_endpoint
-        )
-
         def __get_protection_source_registration(
             self,
             id,
@@ -679,6 +680,7 @@ class SourceApi(object):
                 id (int): Specifies the id of the Protection Source registration.
 
             Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -743,6 +745,7 @@ class SourceApi(object):
             params_map={
                 'all': [
                     'id',
+                    'request_initiator_type',
                 ],
                 'required': [
                     'id',
@@ -750,6 +753,7 @@ class SourceApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'request_initiator_type',
                 ],
                 'validation': [
                 ]
@@ -758,16 +762,26 @@ class SourceApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
                 },
                 'openapi_types': {
                     'id':
                         (int,),
+                    'request_initiator_type':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
+                    'request_initiator_type': 'requestInitiatorType',
                 },
                 'location_map': {
                     'id': 'path',
+                    'request_initiator_type': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -797,6 +811,7 @@ class SourceApi(object):
 
 
             Keyword Args:
+                request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which Sources are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned.. [optional]
                 include_source_credentials (bool): If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key.. [optional]
@@ -862,6 +877,7 @@ class SourceApi(object):
             },
             params_map={
                 'all': [
+                    'request_initiator_type',
                     'tenant_ids',
                     'include_tenants',
                     'include_source_credentials',
@@ -871,6 +887,7 @@ class SourceApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'request_initiator_type',
                 ],
                 'validation': [
                 ]
@@ -879,8 +896,16 @@ class SourceApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('request_initiator_type',): {
+
+                        "UIUSER": "UIUser",
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
+                    },
                 },
                 'openapi_types': {
+                    'request_initiator_type':
+                        (str,),
                     'tenant_ids':
                         ([str],),
                     'include_tenants':
@@ -891,12 +916,14 @@ class SourceApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'request_initiator_type': 'requestInitiatorType',
                     'tenant_ids': 'tenantIds',
                     'include_tenants': 'includeTenants',
                     'include_source_credentials': 'includeSourceCredentials',
                     'encryption_key': 'encryptionKey',
                 },
                 'location_map': {
+                    'request_initiator_type': 'header',
                     'tenant_ids': 'query',
                     'include_tenants': 'query',
                     'include_source_credentials': 'query',
@@ -1028,6 +1055,7 @@ class SourceApi(object):
                         "KAZURE": "kAzure",
                         "KPHYSICAL": "kPhysical",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KNIMBLE": "kNimble",
                         "KNETAPP": "kNetapp",
                         "KGENERICNAS": "kGenericNas",
@@ -1098,6 +1126,7 @@ class SourceApi(object):
                 include_source_credentials (bool): If true, the encrypted crednetial for the registered sources will be included. Credential is first encrypted with internal key and then reencrypted with user supplied encryption key.. [optional]
                 encryption_key (str): Specifies the key to be used to encrypt the source credential. If includeSourceCredentials is set to true this key must be specified.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                include_external_metadata (bool): If true, the external entity metadata like maintenance mode config for the registered sources will be included.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1165,6 +1194,7 @@ class SourceApi(object):
                     'include_source_credentials',
                     'encryption_key',
                     'use_cached_data',
+                    'include_external_metadata',
                 ],
                 'required': [],
                 'nullable': [
@@ -1192,6 +1222,8 @@ class SourceApi(object):
                         (str,),
                     'use_cached_data':
                         (bool,),
+                    'include_external_metadata':
+                        (bool,),
                 },
                 'attribute_map': {
                     'ids': 'ids',
@@ -1200,6 +1232,7 @@ class SourceApi(object):
                     'include_source_credentials': 'includeSourceCredentials',
                     'encryption_key': 'encryptionKey',
                     'use_cached_data': 'useCachedData',
+                    'include_external_metadata': 'includeExternalMetadata',
                 },
                 'location_map': {
                     'ids': 'query',
@@ -1208,6 +1241,7 @@ class SourceApi(object):
                     'include_source_credentials': 'query',
                     'encryption_key': 'query',
                     'use_cached_data': 'query',
+                    'include_external_metadata': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -1343,6 +1377,138 @@ class SourceApi(object):
             },
             api_client=api_client,
             callable=__get_vdc_details
+        )
+
+        def __patch_protection_source_registration(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra  # noqa: E501
+
+            Patches a Protection Source.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.patch_protection_source_registration(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies the id of the Protection Source registration.
+                body (SourceRegistrationPatchRequestParams): Specifies the parameters to partially update the registration.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SourceRegistration
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.patch_protection_source_registration = _Endpoint(
+            settings={
+                'response_type': (SourceRegistration,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/sources/registrations/{id}',
+                'operation_id': 'patch_protection_source_registration',
+                'http_method': 'PATCH',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (SourceRegistrationPatchRequestParams,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__patch_protection_source_registration
         )
 
         def __protection_source_by_id(

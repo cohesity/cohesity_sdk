@@ -80,6 +80,7 @@ class AwsObjectLevelParams(ModelNormal):
         lazy_import()
         return {
             'id': (int, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int, none_type],),  # noqa: E501
             'volume_exclusion_params': (EbsVolumeExclusionParams,),  # noqa: E501
         }
 
@@ -91,6 +92,7 @@ class AwsObjectLevelParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'volume_exclusion_params': 'volumeExclusionParams',  # noqa: E501
     }
 
@@ -144,6 +146,7 @@ class AwsObjectLevelParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            exclude_object_ids ([int, none_type]): Specifies the list of IDs of the objects to not be protected in this backup. This field only applies if provided object id is non leaf entity such as Tag or a folder. This can be used to ignore specific objects (can include tags) under a parent object which has been included for protection.. [optional]  # noqa: E501
             volume_exclusion_params (EbsVolumeExclusionParams): [optional]  # noqa: E501
         """
 

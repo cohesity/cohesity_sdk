@@ -28,6 +28,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_object_protection_request_params import AwsObjectProtectionRequestParams
+    from cohesity_sdk.cluster.model.azure_object_protection_request_params import AzureObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.elastifile_object_protection_request_params import ElastifileObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.flashblade_object_protection_request_params import FlashbladeObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.generic_nas_object_protection_request_params import GenericNasObjectProtectionRequestParams
@@ -40,8 +41,10 @@ def lazy_import():
     from cohesity_sdk.cluster.model.oracle_object_protection_request_params import OracleObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.physical_object_protection_request_params import PhysicalObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.sfdc_object_protection_request_params import SfdcObjectProtectionRequestParams
+    from cohesity_sdk.cluster.model.uda_object_protection_request_params import UdaObjectProtectionRequestParams
     from cohesity_sdk.cluster.model.vmware_object_protection_request_params import VmwareObjectProtectionRequestParams
     globals()['AwsObjectProtectionRequestParams'] = AwsObjectProtectionRequestParams
+    globals()['AzureObjectProtectionRequestParams'] = AzureObjectProtectionRequestParams
     globals()['ElastifileObjectProtectionRequestParams'] = ElastifileObjectProtectionRequestParams
     globals()['FlashbladeObjectProtectionRequestParams'] = FlashbladeObjectProtectionRequestParams
     globals()['GenericNasObjectProtectionRequestParams'] = GenericNasObjectProtectionRequestParams
@@ -54,6 +57,7 @@ def lazy_import():
     globals()['OracleObjectProtectionRequestParams'] = OracleObjectProtectionRequestParams
     globals()['PhysicalObjectProtectionRequestParams'] = PhysicalObjectProtectionRequestParams
     globals()['SfdcObjectProtectionRequestParams'] = SfdcObjectProtectionRequestParams
+    globals()['UdaObjectProtectionRequestParams'] = UdaObjectProtectionRequestParams
     globals()['VmwareObjectProtectionRequestParams'] = VmwareObjectProtectionRequestParams
 
 
@@ -106,6 +110,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'aws_params': (AwsObjectProtectionRequestParams,),  # noqa: E501
+            'azure_params': (AzureObjectProtectionRequestParams,),  # noqa: E501
             'elastifile_params': (ElastifileObjectProtectionRequestParams,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionRequestParams,),  # noqa: E501
             'generic_nas_params': (GenericNasObjectProtectionRequestParams,),  # noqa: E501
@@ -118,6 +123,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
             'oracle_params': (OracleObjectProtectionRequestParams,),  # noqa: E501
             'physical_params': (PhysicalObjectProtectionRequestParams,),  # noqa: E501
             'sfdc_params': (SfdcObjectProtectionRequestParams,),  # noqa: E501
+            'uda_params': (UdaObjectProtectionRequestParams,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionRequestParams,),  # noqa: E501
         }
 
@@ -129,6 +135,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
 
     attribute_map = {
         'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
@@ -141,6 +148,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
@@ -192,6 +200,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             aws_params (AwsObjectProtectionRequestParams): [optional]  # noqa: E501
+            azure_params (AzureObjectProtectionRequestParams): [optional]  # noqa: E501
             elastifile_params (ElastifileObjectProtectionRequestParams): [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionRequestParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasObjectProtectionRequestParams): [optional]  # noqa: E501
@@ -204,6 +213,7 @@ class EnvSpecificObjectProtectionRequestParamsAllOf(ModelNormal):
             oracle_params (OracleObjectProtectionRequestParams): [optional]  # noqa: E501
             physical_params (PhysicalObjectProtectionRequestParams): [optional]  # noqa: E501
             sfdc_params (SfdcObjectProtectionRequestParams): [optional]  # noqa: E501
+            uda_params (UdaObjectProtectionRequestParams): [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionRequestParams): [optional]  # noqa: E501
         """
 

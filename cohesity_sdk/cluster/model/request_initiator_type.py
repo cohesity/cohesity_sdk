@@ -57,6 +57,7 @@ class RequestInitiatorType(ModelNormal):
         ('request_initiator_type',): {
             'UIUSER': "UIUser",
             'UIAUTO': "UIAuto",
+            'HELIOS': "Helios",
         },
     }
 

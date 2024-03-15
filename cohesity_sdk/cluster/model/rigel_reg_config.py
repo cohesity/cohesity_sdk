@@ -83,6 +83,7 @@ class RigelRegConfig(ModelNormal):
         return {
             'control_plane_connection_info': (RigelConnectionInfo,),  # noqa: E501
             'data_plane_connection_info': (RigelConnectionInfo,),  # noqa: E501
+            'is_certificate_valid': (bool, none_type,),  # noqa: E501
             'reg_info': (RigelClaimInfo,),  # noqa: E501
         }
 
@@ -95,6 +96,7 @@ class RigelRegConfig(ModelNormal):
     attribute_map = {
         'control_plane_connection_info': 'controlPlaneConnectionInfo',  # noqa: E501
         'data_plane_connection_info': 'dataPlaneConnectionInfo',  # noqa: E501
+        'is_certificate_valid': 'isCertificateValid',  # noqa: E501
         'reg_info': 'regInfo',  # noqa: E501
     }
 
@@ -147,6 +149,7 @@ class RigelRegConfig(ModelNormal):
 
             control_plane_connection_info (RigelConnectionInfo): [optional]  # noqa: E501
             data_plane_connection_info (RigelConnectionInfo): [optional]  # noqa: E501
+            is_certificate_valid (bool, none_type): Flag to indicate if certificate is valid.. [optional]  # noqa: E501
             reg_info (RigelClaimInfo): [optional]  # noqa: E501
         """
 

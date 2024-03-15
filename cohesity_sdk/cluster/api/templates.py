@@ -102,7 +102,7 @@ class TemplatesApi(object):
                 'response_type': (file_type,),
                 'auth': [
                     'TokenHeader',
-        
+                    'ClusterId',
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/templates/downloadArtFile',

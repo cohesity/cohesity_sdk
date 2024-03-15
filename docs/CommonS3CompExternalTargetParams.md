@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **bucket_name** | **str, none_type** | Specifies the bucket name of the external target. | 
 **end_point** | **str, none_type** | Specifies the endpoint of the external target. | 
 **is_aws_snowball** | **bool, none_type** | Specifies whether the external target is AWS Snowball. | [optional] 
+**region** | **str, none_type** | Specifies the region of the external target. | [optional] 
 **secret_access_key** | **str, none_type** | Specifies the secret access key of the external target. | [optional] 
 **secure_connection** | **bool, none_type** | Specifies the secure connection(https) is enabled or not. | [optional] 
 **signature_version** | **int, none_type** | Specifies the aws signature version of the external target. | [optional] 

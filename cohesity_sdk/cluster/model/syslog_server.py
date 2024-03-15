@@ -86,6 +86,7 @@ class SyslogServer(ModelNormal):
             'program_name_list': ([str],),  # noqa: E501
             'protocol': (str, none_type,),  # noqa: E501
             'raw_msg_pattern_list': ([str],),  # noqa: E501
+            'token_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -107,6 +108,7 @@ class SyslogServer(ModelNormal):
         'program_name_list': 'programNameList',  # noqa: E501
         'protocol': 'protocol',  # noqa: E501
         'raw_msg_pattern_list': 'rawMsgPatternList',  # noqa: E501
+        'token_id': 'tokenId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -168,6 +170,7 @@ class SyslogServer(ModelNormal):
             program_name_list ([str]): Send programes related logs to logging server.. [optional]  # noqa: E501
             protocol (str, none_type): Specifies the protocol used to send the logs.. [optional]  # noqa: E501
             raw_msg_pattern_list ([str]): Send logs including the msg patterns to logging server.. [optional]  # noqa: E501
+            token_id (str, none_type): TokenId used for filtering messages on a relay or collector. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

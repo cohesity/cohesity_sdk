@@ -56,8 +56,9 @@ class Attachment(ModelNormal):
     allowed_values = {
         ('action',): {
             'None': None,
-            'ALLOW': "ALLOW",
-            'DENY': "DENY",
+            'ALLOW': "allow",
+            'DENY': "deny",
+            'RETURN': "return",
         },
     }
 

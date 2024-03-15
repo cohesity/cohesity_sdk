@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **domain** | **str, none_type** | Specifies domain of idp configuration | 
 **name** | **str, none_type** | Specifies name of the vendor providing idp service | 
 **allow_local_user_login** | **bool, none_type** | Specifies if local user login is allowed. When idp is configured, only idp users are allowed to login to the cluster, local login is disabled except for users with admin role. If this flag is set to true, local (non-idp) logins are allowed for all local and AD users. Local or AD users with admin role can login always independent of this flag&#39;s setting. By default there is no local authentication i.e the value is false. | [optional] 
+**certificate_filename** | **str, none_type** | Specifies the filename used for the certificate. The default value is idp_certificate.pem | [optional] 
 **is_enabled** | **bool, none_type** | Specifies a flag to enable or disable this idp service. When it is set to true, idp service is enabled. When it is set to false, idp service is disabled. By defaut idp is enabled i.e the value is true. | [optional] 
 **roles** | **[str], none_type** | Specifies the default roles assined for all SSO users | [optional] 
 **saml_attribute_name** | **str, none_type** | Specifies the SAML attribute name that contains a comma separated list of cluster roles. This sets the default roles for all SSO users. Either this field or roles must be set, this field takes higher precedence than the roles field. | [optional] 

@@ -75,6 +75,7 @@ class O365SearchRequestParams(ModelNormal):
         """
         return {
             'domain_ids': ([int], none_type,),  # noqa: E501
+            'group_ids': ([int], none_type,),  # noqa: E501
             'site_ids': ([int], none_type,),  # noqa: E501
             'teams_ids': ([int], none_type,),  # noqa: E501
             'user_ids': ([int], none_type,),  # noqa: E501
@@ -88,6 +89,7 @@ class O365SearchRequestParams(ModelNormal):
 
     attribute_map = {
         'domain_ids': 'domainIds',  # noqa: E501
+        'group_ids': 'groupIds',  # noqa: E501
         'site_ids': 'siteIds',  # noqa: E501
         'teams_ids': 'teamsIds',  # noqa: E501
         'user_ids': 'userIds',  # noqa: E501
@@ -141,6 +143,7 @@ class O365SearchRequestParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             domain_ids ([int], none_type): Specifies the domain Ids in which indexed items are searched.. [optional]  # noqa: E501
+            group_ids ([int], none_type): Specifies the Group ids across which the indexed items needs to be searched.. [optional]  # noqa: E501
             site_ids ([int], none_type): Specifies the Sharepoint site ids across which the indexed items needs to be searched.. [optional]  # noqa: E501
             teams_ids ([int], none_type): Specifies the Teams ids across which the indexed items needs to be searched.. [optional]  # noqa: E501
             user_ids ([int], none_type): Specifies the user ids across which the indexed items needs to be searched.. [optional]  # noqa: E501

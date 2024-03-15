@@ -59,6 +59,7 @@ class AzureSnapshotParams(ModelNormal):
             'KAGENT': "kAgent",
             'KNATIVE': "kNative",
             'KSNAPSHOTMANAGER': "kSnapshotManager",
+            'KAZURESQL': "kAzureSQL",
         },
     }
 

@@ -56,6 +56,8 @@ class ModifyObjectStoreCiphersRequestBody(ModelNormal):
     allowed_values = {
         ('ciphers',): {
             'None': None,
+            'AES_256_GCM_SHA384': "TLS_AES_256_GCM_SHA384",
+            'AES_128_GCM_SHA256': "TLS_AES_128_GCM_SHA256",
             'ECDHE_ECDSA_WITH_AES_256_GCM_SHA384': "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
             'ECDHE_ECDSA_WITH_AES_128_GCM_SHA256': "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
             'ECDHE_RSA_WITH_AES_256_GCM_SHA384': "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",

@@ -6,6 +6,7 @@ Specify a Rigel connector.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **certificate_version** | **int, none_type** | Specifies the version of the connector&#39;s certificate. The version is used to revoke/renew connector&#39;s certificates. | [optional] 
+**certificate_version_list** | **[int], none_type** | Specifies the list of accepted version of the connector&#39;s certificate. The version is used to revoke/renew connector&#39;s certificates. | [optional] 
 **connection_id** | **int, none_type** | Specifies the Id of the connection which this connector belongs to. | [optional] 
 **connection_status** | [**ConnectorConnectionInfo**](ConnectorConnectionInfo.md) |  | [optional] 
 **id** | **int, none_type** | Specifies the id of the connector. | [optional] 

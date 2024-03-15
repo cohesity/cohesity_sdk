@@ -76,11 +76,11 @@ class LifecycleRule(ModelNormal):
         return {
             'id': (str, none_type,),  # noqa: E501
             'status': (bool, none_type,),  # noqa: E501
-            'prefix': (str, none_type,),  # noqa: E501
-            'filter': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'expiration': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'non_current_version_expiration_action': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'abort_incomplete_multipart_upload_action': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'expiration': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'filter': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'non_current_version_expiration_action': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'prefix': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -92,11 +92,11 @@ class LifecycleRule(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'prefix': 'prefix',  # noqa: E501
-        'filter': 'filter',  # noqa: E501
-        'expiration': 'expiration',  # noqa: E501
-        'non_current_version_expiration_action': 'nonCurrentVersionExpirationAction',  # noqa: E501
         'abort_incomplete_multipart_upload_action': 'abortIncompleteMultipartUploadAction',  # noqa: E501
+        'expiration': 'expiration',  # noqa: E501
+        'filter': 'filter',  # noqa: E501
+        'non_current_version_expiration_action': 'nonCurrentVersionExpirationAction',  # noqa: E501
+        'prefix': 'prefix',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,11 +150,11 @@ class LifecycleRule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            prefix (str, none_type): Specifies the prefix used to identify objects that a lifecycle rule applies to.. [optional]  # noqa: E501
-            filter ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the filter used to identify objects that a Lifecycle Rule applies to.. [optional]  # noqa: E501
-            expiration ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the expiration for the lifecycle of the object in the form of date, days and whether the object has a delete marker.. [optional]  # noqa: E501
-            non_current_version_expiration_action ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies when non-current object versions expire. Upon expiration, non-current object versions are permanently deleted. The action can be specified only in versioning enabled or suspended buckets.. [optional]  # noqa: E501
             abort_incomplete_multipart_upload_action ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the days since the initiation of an incomplete multipart upload before permanently removing all parts of the upload.. [optional]  # noqa: E501
+            expiration ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the expiration for the lifecycle of the object in the form of date, days and whether the object has a delete marker.. [optional]  # noqa: E501
+            filter ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the filter used to identify objects that a Lifecycle Rule applies to.. [optional]  # noqa: E501
+            non_current_version_expiration_action ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies when non-current object versions expire. Upon expiration, non-current object versions are permanently deleted. The action can be specified only in versioning enabled or suspended buckets.. [optional]  # noqa: E501
+            prefix (str, none_type): Specifies the prefix used to identify objects that a lifecycle rule applies to.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

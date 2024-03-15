@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.azure_snapshot_manager_protection_group_object_params import AzureSnapshotManagerProtectionGroupObjectParams
+    from cohesity_sdk.cluster.model.cloud_backup_script_params import CloudBackupScriptParams
     globals()['AzureSnapshotManagerProtectionGroupObjectParams'] = AzureSnapshotManagerProtectionGroupObjectParams
+    globals()['CloudBackupScriptParams'] = CloudBackupScriptParams
 
 
 class AzureSnapshotManagerProtectionGroupParams(ModelNormal):
@@ -85,6 +87,7 @@ class AzureSnapshotManagerProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
+            'cloud_pre_post_script': (CloudBackupScriptParams,),  # noqa: E501
             'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
             'objects': ([AzureSnapshotManagerProtectionGroupObjectParams],),  # noqa: E501
@@ -100,6 +103,7 @@ class AzureSnapshotManagerProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
+        'cloud_pre_post_script': 'cloudPrePostScript',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
         'objects': 'objects',  # noqa: E501
@@ -155,6 +159,7 @@ class AzureSnapshotManagerProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cloud_pre_post_script (CloudBackupScriptParams): [optional]  # noqa: E501
             exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             exclude_vm_tag_ids ([[int]], none_type): Array of arrays of VM Tag Ids that Specify VMs to Exclude.. [optional]  # noqa: E501
             objects ([AzureSnapshotManagerProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501

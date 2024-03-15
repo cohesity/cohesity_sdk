@@ -27,9 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.object_type_v_center_params import ObjectTypeVCenterParams
     from cohesity_sdk.cluster.model.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
     from cohesity_sdk.cluster.model.sharepoint_object_params import SharepointObjectParams
+    globals()['ObjectSummary'] = ObjectSummary
     globals()['ObjectTypeVCenterParams'] = ObjectTypeVCenterParams
     globals()['ObjectTypeWindowsClusterParams'] = ObjectTypeWindowsClusterParams
     globals()['SharepointObjectParams'] = SharepointObjectParams
@@ -122,18 +124,22 @@ class ObjectSummaryAllOf(ModelNormal):
             'KHYPERVHOST': "kHypervHost",
             'KHOSTCLUSTER': "kHostCluster",
             'KCUSTOMPROPERTY': "kCustomProperty",
+            'KTENANT': "kTenant",
             'KSUBSCRIPTION': "kSubscription",
             'KRESOURCEGROUP': "kResourceGroup",
             'KSTORAGEACCOUNT': "kStorageAccount",
             'KSTORAGEKEY': "kStorageKey",
             'KSTORAGECONTAINER': "kStorageContainer",
             'KSTORAGEBLOB': "kStorageBlob",
+            'KAPPLICATIONSECURITYGROUP': "kApplicationSecurityGroup",
             'KNETWORKSECURITYGROUP': "kNetworkSecurityGroup",
             'KVIRTUALNETWORK': "kVirtualNetwork",
             'KSUBNET': "kSubnet",
             'KCOMPUTEOPTIONS': "kComputeOptions",
             'KSNAPSHOTMANAGERPERMIT': "kSnapshotManagerPermit",
             'KAVAILABILITYSET': "kAvailabilitySet",
+            'KSQLSERVER': "kSQLServer",
+            'KSQLDATABASE': "kSQLDatabase",
             'KOVIRTMANAGER': "kOVirtManager",
             'KHOST': "kHost",
             'KSTORAGEDOMAIN': "kStorageDomain",
@@ -154,14 +160,17 @@ class ObjectSummaryAllOf(ModelNormal):
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
+            'KS3BUCKET': "kS3Bucket",
+            'KS3TAG': "kS3Tag",
+            'KKMSKEY': "kKmsKey",
+            'KRDSPOSTGRESDB': "kRDSPostgresDb",
+            'KAURORACLUSTERPOSTGRESDB': "kAuroraClusterPostgresDb",
             'KPROJECT': "kProject",
             'KLABEL': "kLabel",
             'KMETADATA': "kMetadata",
             'KVPCCONNECTOR': "kVPCConnector",
             'KPRISMCENTRAL': "kPrismCentral",
             'KOTHERHYPERVISORCLUSTER': "kOtherHypervisorCluster",
-            'KDFSGROUP': "kDfsGroup",
-            'KDFSTOPDIR': "kDfsTopDir",
             'KZONE': "kZone",
             'KMOUNTPOINT': "kMountPoint",
             'KSTORAGEARRAY': "kStorageArray",
@@ -169,6 +178,9 @@ class ObjectSummaryAllOf(ModelNormal):
             'KCONTAINER': "kContainer",
             'KFILESYSTEM': "kFilesystem",
             'KFILESET': "kFileset",
+            'KPUREPROTECTIONGROUP': "kPureProtectionGroup",
+            'KVOLUMEGROUP': "kVolumeGroup",
+            'KSTORAGEPOOL': "kStoragePool",
             'KVIEWBOX': "kViewBox",
             'KVIEW': "kView",
             'KWINDOWSCLUSTER': "kWindowsCluster",
@@ -189,6 +201,7 @@ class ObjectSummaryAllOf(ModelNormal):
             'KINSTANCE': "kInstance",
             'KAAG': "kAAG",
             'KAAGROOTCONTAINER': "kAAGRootContainer",
+            'KAAGDATABASE': "kAAGDatabase",
             'KRACROOTCONTAINER': "kRACRootContainer",
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
@@ -205,6 +218,7 @@ class ObjectSummaryAllOf(ModelNormal):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+            'KVOS': "kVOS",
         },
         ('protection_type',): {
             'None': None,
@@ -213,6 +227,9 @@ class ObjectSummaryAllOf(ModelNormal):
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURESQL': "kAzureSQL",
             'KFILE': "kFile",
             'KVOLUME': "kVolume",
         },
@@ -237,6 +254,7 @@ class ObjectSummaryAllOf(ModelNormal):
         """
         lazy_import()
         return {
+            'child_objects': ([ObjectSummary], none_type,),  # noqa: E501
             'global_id': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
@@ -256,6 +274,7 @@ class ObjectSummaryAllOf(ModelNormal):
 
 
     attribute_map = {
+        'child_objects': 'childObjects',  # noqa: E501
         'global_id': 'globalId',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
@@ -315,6 +334,7 @@ class ObjectSummaryAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            child_objects ([ObjectSummary], none_type): Specifies child object details.. [optional]  # noqa: E501
             global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501

@@ -81,6 +81,9 @@ class S3Config(ModelNormal):
         """
         return {
             'acl_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'bucket_policy': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'enable_abac': (bool, none_type,),  # noqa: E501
+            'lifecycle_management': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             's3_access_path': (str, none_type,),  # noqa: E501
             'versioning': (str, none_type,),  # noqa: E501
@@ -94,6 +97,9 @@ class S3Config(ModelNormal):
 
     attribute_map = {
         'acl_config': 'aclConfig',  # noqa: E501
+        'bucket_policy': 'bucketPolicy',  # noqa: E501
+        'enable_abac': 'enableAbac',  # noqa: E501
+        'lifecycle_management': 'lifecycleManagement',  # noqa: E501
         'owner_info': 'ownerInfo',  # noqa: E501
         's3_access_path': 's3AccessPath',  # noqa: E501
         'versioning': 'versioning',  # noqa: E501
@@ -147,6 +153,9 @@ class S3Config(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             acl_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ACL config of the View as an S3 bucket.. [optional]  # noqa: E501
+            bucket_policy ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the policy in effect for this bucket.. [optional]  # noqa: E501
+            enable_abac (bool, none_type): Specifies if this View has S3 ABAC enabled. This can only be set while creating a view. The ABAC server corresponding the tenant will be used for authentication and authorization checks. . [optional]  # noqa: E501
+            lifecycle_management ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the S3 Lifecycle policy of the bucket. [optional]  # noqa: E501
             owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the owner info of the View as an S3 bucket.. [optional]  # noqa: E501
             s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             versioning (str, none_type): Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.. [optional]  # noqa: E501

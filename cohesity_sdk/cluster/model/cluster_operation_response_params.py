@@ -74,7 +74,7 @@ class ClusterOperationResponseParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'operation_id': (int,),  # noqa: E501
+            'operation_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -134,7 +134,7 @@ class ClusterOperationResponseParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            operation_id (int): Specifies the cluster operation id. This can be used to track the progress of the operation.. [optional]  # noqa: E501
+            operation_id (str): Specifies the cluster operation id. This can be used to track the progress of the operation.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

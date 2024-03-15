@@ -88,6 +88,7 @@ class PhysicalVolumeProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'objects': ([PhysicalVolumeProtectionGroupObjectParams],),  # noqa: E501
+            'cobmr_backup': (bool, none_type,),  # noqa: E501
             'continue_on_quiesce_failure': (bool, none_type,),  # noqa: E501
             'dedup_exclusion_source_ids': ([int],),  # noqa: E501
             'excluded_vss_writers': ([str], none_type,),  # noqa: E501
@@ -106,6 +107,7 @@ class PhysicalVolumeProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'objects': 'objects',  # noqa: E501
+        'cobmr_backup': 'cobmrBackup',  # noqa: E501
         'continue_on_quiesce_failure': 'continueOnQuiesceFailure',  # noqa: E501
         'dedup_exclusion_source_ids': 'dedupExclusionSourceIds',  # noqa: E501
         'excluded_vss_writers': 'excludedVssWriters',  # noqa: E501
@@ -166,6 +168,7 @@ class PhysicalVolumeProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cobmr_backup (bool, none_type): Specifies whether to take a CoBMR backup.. [optional]  # noqa: E501
             continue_on_quiesce_failure (bool, none_type): Specifies whether to continue backing up on quiesce failure. [optional]  # noqa: E501
             dedup_exclusion_source_ids ([int]): Specifies ids of sources for which deduplication has to be disabled.. [optional]  # noqa: E501
             excluded_vss_writers ([str], none_type): Specifies writer names which should be excluded from physical volume based backups.. [optional]  # noqa: E501

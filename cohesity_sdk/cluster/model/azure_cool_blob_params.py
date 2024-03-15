@@ -56,6 +56,7 @@ class AzureCoolBlobParams(ModelNormal):
     allowed_values = {
         ('category',): {
             'None': None,
+            'AZURE': "Azure",
             'AZURESTANDARD': "AzureStandard",
             'AZUREGOVCLOUD': "AzureGovCloud",
         },

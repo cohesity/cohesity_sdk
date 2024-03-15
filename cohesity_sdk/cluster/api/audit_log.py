@@ -238,13 +238,12 @@ class AuditLogApi(object):
                         "PATCH": "Patch",
                         "HOTFIX": "Hotfix",
                         "NISNETGROUP": "NisNetgroup",
-                        "GFLAGRECIPE": "GflagRecipe",
-                        "GFLAG": "Gflag",
-                        "WHITELABELINGSETTING": "WhitelabelingSetting",
                         "QUORUMGROUP": "QuorumGroup",
                         "QUORUMAPPLICATION": "QuorumApplication",
                         "BIFROSTCONNECTION": "BifrostConnection",
-                        "BIFROSTCONNECTOR": "BifrostConnector"
+                        "BIFROSTCONNECTOR": "BifrostConnector",
+                        "HOSTMAPPING": "HostMapping",
+                        "FIREWALLSETTING": "FirewallSetting"
                     },
                     ('actions',): {
                         'None': None,
@@ -293,7 +292,18 @@ class AuditLogApi(object):
                         "VALIDATE": "Validate",
                         "CLUSTEREXPAND": "ClusterExpand",
                         "FETCH": "Fetch",
-                        "SEARCH": "Search"
+                        "SEARCH": "Search",
+                        "PREPAREFAILOVER": "PrepareFailover",
+                        "FAILOVER": "Failover",
+                        "PREPAREFAILBACK": "PrepareFailback",
+                        "FAILBACK": "Failback",
+                        "TEARDOWN": "Teardown",
+                        "RETRYREPLICATION": "RetryReplication",
+                        "MANUALSYNC": "ManualSync",
+                        "PROTECT": "Protect",
+                        "RETRYEXECUTION": "RetryExecution",
+                        "ADD": "Add",
+                        "SCHEDULE": "Schedule"
                     },
                 },
                 'openapi_types': {

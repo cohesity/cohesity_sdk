@@ -42,7 +42,9 @@ def lazy_import():
     from cohesity_sdk.cluster.model.gpfs_protection_group_params import GpfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hdfs_protection_group_params import HdfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hyper_v_protection_group_params import HyperVProtectionGroupParams
+    from cohesity_sdk.cluster.model.ibm_flash_system_protection_group_params import IbmFlashSystemProtectionGroupParams
     from cohesity_sdk.cluster.model.isilon_protection_group_params import IsilonProtectionGroupParams
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.kubernetes_protection_group_params import KubernetesProtectionGroupParams
     from cohesity_sdk.cluster.model.kvm_protection_group_params import KvmProtectionGroupParams
     from cohesity_sdk.cluster.model.mongo_db_protection_group_params import MongoDBProtectionGroupParams
@@ -77,7 +79,9 @@ def lazy_import():
     globals()['GpfsProtectionGroupParams'] = GpfsProtectionGroupParams
     globals()['HdfsProtectionGroupParams'] = HdfsProtectionGroupParams
     globals()['HyperVProtectionGroupParams'] = HyperVProtectionGroupParams
+    globals()['IbmFlashSystemProtectionGroupParams'] = IbmFlashSystemProtectionGroupParams
     globals()['IsilonProtectionGroupParams'] = IsilonProtectionGroupParams
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['KubernetesProtectionGroupParams'] = KubernetesProtectionGroupParams
     globals()['KvmProtectionGroupParams'] = KvmProtectionGroupParams
     globals()['MSSQLProtectionGroupParams'] = MSSQLProtectionGroupParams
@@ -137,9 +141,14 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
             'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
@@ -149,6 +158,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -210,10 +220,12 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'name': (str, none_type,),  # noqa: E501
             'policy_id': (str, none_type,),  # noqa: E501
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
+            'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
             'pause_in_blackouts': (bool, none_type,),  # noqa: E501
             'priority': (str, none_type,),  # noqa: E501
             'qos_policy': (str, none_type,),  # noqa: E501
@@ -236,6 +248,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
             'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'ibm_flash_system_params': (IbmFlashSystemProtectionGroupParams,),  # noqa: E501
             'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
             'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
             'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
@@ -265,10 +278,12 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
         'name': 'name',  # noqa: E501
         'policy_id': 'policyId',  # noqa: E501
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
         'description': 'description',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
+        'last_modified_timestamp_usecs': 'lastModifiedTimestampUsecs',  # noqa: E501
         'pause_in_blackouts': 'pauseInBlackouts',  # noqa: E501
         'priority': 'priority',  # noqa: E501
         'qos_policy': 'qosPolicy',  # noqa: E501
@@ -291,6 +306,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'ibm_flash_system_params': 'ibmFlashSystemParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
@@ -363,10 +379,12 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'pauseInBlackouts' is set to true.. [optional]  # noqa: E501
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection job.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
+            last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
             pause_in_blackouts (bool, none_type): Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.. [optional]  # noqa: E501
             priority (str, none_type): Specifies the priority of the Protection Group.. [optional]  # noqa: E501
             qos_policy (str, none_type): Specifies whether the Protection Group will be written to HDD or SSD.. [optional]  # noqa: E501
@@ -389,6 +407,7 @@ class CreateOrUpdateProtectionGroupRequest(ModelComposed):
             hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
             hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            ibm_flash_system_params (IbmFlashSystemProtectionGroupParams): [optional]  # noqa: E501
             isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
             kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
             kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501

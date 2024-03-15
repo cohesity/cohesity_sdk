@@ -74,13 +74,13 @@ class AntivirusScanConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'scan_timeout_usecs': (int, none_type,),  # noqa: E501
             'block_access_on_scan_failure': (bool, none_type,),  # noqa: E501
             'is_enabled': (bool, none_type,),  # noqa: E501
             'maximum_scan_file_size': (int, none_type,),  # noqa: E501
             'scan_filter': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'scan_on_access': (bool, none_type,),  # noqa: E501
             'scan_on_close': (bool, none_type,),  # noqa: E501
-            'scan_timeout_usecs': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,13 +90,13 @@ class AntivirusScanConfig(ModelNormal):
 
 
     attribute_map = {
+        'scan_timeout_usecs': 'scanTimeoutUsecs',  # noqa: E501
         'block_access_on_scan_failure': 'blockAccessOnScanFailure',  # noqa: E501
         'is_enabled': 'isEnabled',  # noqa: E501
         'maximum_scan_file_size': 'maximumScanFileSize',  # noqa: E501
         'scan_filter': 'scanFilter',  # noqa: E501
         'scan_on_access': 'scanOnAccess',  # noqa: E501
         'scan_on_close': 'scanOnClose',  # noqa: E501
-        'scan_timeout_usecs': 'scanTimeoutUsecs',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,8 +111,11 @@ class AntivirusScanConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, scan_timeout_usecs, *args, **kwargs):  # noqa: E501
         """AntivirusScanConfig - a model defined in OpenAPI
+
+        Args:
+            scan_timeout_usecs (int, none_type): Specifies the maximum amount of time that a scan can take before timing out.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,7 +155,6 @@ class AntivirusScanConfig(ModelNormal):
             scan_filter ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Files extension that meets these filter criteria will be sent to antivirus server for the scan.. [optional]  # noqa: E501
             scan_on_access (bool, none_type): Specifies whether to scan a file when it is opened.. [optional]  # noqa: E501
             scan_on_close (bool, none_type): Specifies whether to scan a file when it is closed after modify.. [optional]  # noqa: E501
-            scan_timeout_usecs (int, none_type): Specifies the maximum amount of time that a scan can take before timing out.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -179,6 +181,7 @@ class AntivirusScanConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.scan_timeout_usecs = scan_timeout_usecs
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

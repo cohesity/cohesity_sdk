@@ -61,6 +61,8 @@ class AwsSnapshotParams(ModelNormal):
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
         },
     }
 

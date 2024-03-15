@@ -61,6 +61,7 @@ class ObjectUniqueIdentifier(ModelNormal):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -72,6 +73,7 @@ class ObjectUniqueIdentifier(ModelNormal):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -110,9 +112,9 @@ class ObjectUniqueIdentifier(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'parent_identifier': (str, none_type,),  # noqa: E501
-            'object_identifier': (str, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
+            'object_identifier': (str, none_type,),  # noqa: E501
+            'parent_identifier': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -122,9 +124,9 @@ class ObjectUniqueIdentifier(ModelNormal):
 
 
     attribute_map = {
-        'parent_identifier': 'parentIdentifier',  # noqa: E501
-        'object_identifier': 'objectIdentifier',  # noqa: E501
         'environment': 'environment',  # noqa: E501
+        'object_identifier': 'objectIdentifier',  # noqa: E501
+        'parent_identifier': 'parentIdentifier',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -174,9 +176,9 @@ class ObjectUniqueIdentifier(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            parent_identifier (str, none_type): Unique identifier of the parent for the object. This is assigned by the third party adapter and saved with the object data.. [optional]  # noqa: E501
-            object_identifier (str, none_type): Unique identifier of the object. This is assigned by the third party adapter and saved with the object data.. [optional]  # noqa: E501
             environment (str, none_type): Environment of the object. [optional]  # noqa: E501
+            object_identifier (str, none_type): Unique identifier of the object. This is assigned by the third party adapter and saved with the object data.. [optional]  # noqa: E501
+            parent_identifier (str, none_type): Unique identifier of the parent for the object. This is assigned by the third party adapter and saved with the object data.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

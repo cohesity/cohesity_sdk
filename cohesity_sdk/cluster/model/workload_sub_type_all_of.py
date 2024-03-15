@@ -79,8 +79,8 @@ class WorkloadSubTypeAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'schema': (str, none_type,),  # noqa: E501
             'entities': ([EntityIdentifier], none_type,),  # noqa: E501
+            'schema': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class WorkloadSubTypeAllOf(ModelNormal):
 
 
     attribute_map = {
-        'schema': 'schema',  # noqa: E501
         'entities': 'entities',  # noqa: E501
+        'schema': 'schema',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class WorkloadSubTypeAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            schema (str, none_type): Specifies the Schema Name of Workload.. [optional]  # noqa: E501
             entities ([EntityIdentifier], none_type): Specifies the entities part of Workload schema.. [optional]  # noqa: E501
+            schema (str, none_type): Specifies the Schema Name of Workload.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

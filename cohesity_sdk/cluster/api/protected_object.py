@@ -267,7 +267,8 @@ class ProtectedObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                 },
                 'openapi_types': {
@@ -407,7 +408,8 @@ class ProtectedObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                 },
                 'openapi_types': {

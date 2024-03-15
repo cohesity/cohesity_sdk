@@ -74,10 +74,10 @@ class AzureESConfigForIndexing(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'es_domain': (str, none_type,),  # noqa: E501
-            'vault_url': (str, none_type,),  # noqa: E501
             'client_id': (str, none_type,),  # noqa: E501
+            'es_domain': (str, none_type,),  # noqa: E501
             'secret_name': (str, none_type,),  # noqa: E501
+            'vault_url': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +87,10 @@ class AzureESConfigForIndexing(ModelNormal):
 
 
     attribute_map = {
-        'es_domain': 'esDomain',  # noqa: E501
-        'vault_url': 'vaultURL',  # noqa: E501
         'client_id': 'clientId',  # noqa: E501
+        'es_domain': 'esDomain',  # noqa: E501
         'secret_name': 'secretName',  # noqa: E501
+        'vault_url': 'vaultURL',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,14 +105,14 @@ class AzureESConfigForIndexing(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, es_domain, vault_url, client_id, secret_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, client_id, es_domain, secret_name, vault_url, *args, **kwargs):  # noqa: E501
         """AzureESConfigForIndexing - a model defined in OpenAPI
 
         Args:
-            es_domain (str, none_type): Fully qualified ES domain name.
-            vault_url (str, none_type): URL of the KeyVault where ES creds will be stored.
             client_id (str, none_type): Client Id for the KeyVault.
+            es_domain (str, none_type): Fully qualified ES domain name.
             secret_name (str, none_type): Name of the secret corresponding to tenant's ES creds.
+            vault_url (str, none_type): URL of the KeyVault where ES creds will be stored.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -172,10 +172,10 @@ class AzureESConfigForIndexing(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.es_domain = es_domain
-        self.vault_url = vault_url
         self.client_id = client_id
+        self.es_domain = es_domain
         self.secret_name = secret_name
+        self.vault_url = vault_url
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

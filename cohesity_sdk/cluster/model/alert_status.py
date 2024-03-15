@@ -58,6 +58,7 @@ class AlertStatus(ModelNormal):
             'KSUCCESS': "kSuccess",
             'KFAILURE': "kFailure",
             'KSLAVIOLATION': "kSlaViolation",
+            'KWARNING': "kWarning",
         },
     }
 

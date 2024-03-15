@@ -6,6 +6,7 @@ Specifies the parameters which are common between all Protection Source registra
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **environment** | **str, none_type** | Specifies the environment type of the Protection Source. | 
+**advanced_configs** | [**[KeyValuePair], none_type**](KeyValuePair.md) | Specifies the advanced configuration for a protection source. | [optional] 
 **connection_id** | **int, none_type** | Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. | [optional] 
 **connections** | [**[ConnectionConfig], none_type**](ConnectionConfig.md) | Specfies the list of connections for the source. | [optional] 
 **connector_group_id** | **int, none_type** | Specifies the connector group id of connector groups. | [optional] 

@@ -65,6 +65,7 @@ class Template(ModelNormal):
             'FILESERVICEARCHIVE': "FileServiceArchive",
             'OBJECTSERVICECONTAINER': "ObjectServiceContainer",
             'ZDLRA': "ZDLRA",
+            'SAPHANA': "SAPHANA",
             'TSM': "TSM",
             'APPLICATIONSDUMP': "ApplicationsDump",
             'FILESERVICEGENERAL': "FileServiceGeneral",

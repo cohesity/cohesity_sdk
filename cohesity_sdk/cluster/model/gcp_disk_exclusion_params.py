@@ -74,8 +74,8 @@ class GcpDiskExclusionParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'raw_query': (str, none_type,),  # noqa: E501
             'exclude_vm_with_no_disk': (bool, none_type,),  # noqa: E501
+            'raw_query': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class GcpDiskExclusionParams(ModelNormal):
 
 
     attribute_map = {
-        'raw_query': 'rawQuery',  # noqa: E501
         'exclude_vm_with_no_disk': 'excludeVmWithNoDisk',  # noqa: E501
+        'raw_query': 'rawQuery',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class GcpDiskExclusionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            raw_query (str, none_type): Raw boolean query given as input by the user to exclude disk. User can input params in raw query form: (<> AND <> AND <> ..) OR (<> AND <> AND <> ..) OR (..) OR (..) OR .. There cannot be an OR operator inside the bracket. Example query: (K1 = V1 AND K2 = V2 AND K3 != V3) OR (K4 = V4 AND K6 != V6).. [optional]  # noqa: E501
             exclude_vm_with_no_disk (bool, none_type): Specifies the paramaters to exclude VM without disks.. [optional]  # noqa: E501
+            raw_query (str, none_type): Raw boolean query given as input by the user to exclude disk. User can input params in raw query form: (<> AND <> AND <> ..) OR (<> AND <> AND <> ..) OR (..) OR (..) OR .. There cannot be an OR operator inside the bracket. Example query: (K1 = V1 AND K2 = V2 AND K3 != V3) OR (K4 = V4 AND K6 != V6).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -54,6 +54,12 @@ class CassandraIndexedObjectAllOf(ModelNormal):
     """
 
     allowed_values = {
+        ('keyspace_type',): {
+            'None': None,
+            'KREGULAR': "kRegular",
+            'KGRAPH': "kGraph",
+            'KSYSTEM': "kSystem",
+        },
         ('type',): {
             'None': None,
             'CASSANDRAKEYSPACES': "CassandraKeyspaces",
@@ -80,6 +86,7 @@ class CassandraIndexedObjectAllOf(ModelNormal):
         """
         return {
             'id': (str, none_type,),  # noqa: E501
+            'keyspace_type': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
         }
 
@@ -91,6 +98,7 @@ class CassandraIndexedObjectAllOf(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'keyspace_type': 'keyspaceType',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -142,6 +150,7 @@ class CassandraIndexedObjectAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
+            keyspace_type (str, none_type): Specifies type of Keyspace.. [optional]  # noqa: E501
             type (str, none_type): Specifies the Cassandra Object type.. [optional]  # noqa: E501
         """
 

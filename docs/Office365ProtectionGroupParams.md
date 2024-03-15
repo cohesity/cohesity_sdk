@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **one_drive_protection_type_params** | [**Office365OneDriveProtectionGroupParams**](Office365OneDriveProtectionGroupParams.md) |  | [optional] 
 **outlook_protection_type_params** | [**Office365OutlookProtectionGroupParams**](Office365OutlookProtectionGroupParams.md) |  | [optional] 
 **public_folders_protection_type_params** | [**Office365PublicFoldersProtectionGroupParams**](Office365PublicFoldersProtectionGroupParams.md) |  | [optional] 
+**share_point_protection_type_params** | [**Office365SharePointProtectionGroupParams**](Office365SharePointProtectionGroupParams.md) |  | [optional] 
 **source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
 **source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 
 

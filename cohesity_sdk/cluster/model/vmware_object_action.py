@@ -59,6 +59,7 @@ class VmwareObjectAction(ModelNormal):
             'DISABLEAPPPROTECTION': "disableAppProtection",
             'UPGRADECDPIOFILTER': "upgradeCdpIoFilter",
             'UNINSTALLCDPIOFILTER': "uninstallCdpIoFilter",
+            'REENABLECDP': "reEnableCDP",
         },
     }
 

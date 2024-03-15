@@ -61,6 +61,7 @@ class ObjectSnapshot(ModelNormal):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -72,6 +73,7 @@ class ObjectSnapshot(ModelNormal):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -117,6 +119,7 @@ class ObjectSnapshot(ModelNormal):
             'ARCHIVAL': "Archival",
             'RPAASARCHIVAL': "RpaasArchival",
             'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
+            'REMOTE': "Remote",
         },
     }
 

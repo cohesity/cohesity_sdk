@@ -74,9 +74,11 @@ class ViewsGlobalSettings(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'enable_remote_views_gui_visibility': (bool, none_type,),  # noqa: E501
             'enable_remote_views_visibility': (bool, none_type,),  # noqa: E501
             'enable_smb_auth': (bool, none_type,),  # noqa: E501
             'enable_smb_multi_channel': (bool, none_type,),  # noqa: E501
+            's3_virtual_hosted_domain_names': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +88,11 @@ class ViewsGlobalSettings(ModelNormal):
 
 
     attribute_map = {
+        'enable_remote_views_gui_visibility': 'enableRemoteViewsGuiVisibility',  # noqa: E501
         'enable_remote_views_visibility': 'enableRemoteViewsVisibility',  # noqa: E501
         'enable_smb_auth': 'enableSmbAuth',  # noqa: E501
         'enable_smb_multi_channel': 'enableSmbMultiChannel',  # noqa: E501
+        's3_virtual_hosted_domain_names': 's3VirtualHostedDomainNames',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +142,11 @@ class ViewsGlobalSettings(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            enable_remote_views_gui_visibility (bool, none_type): Specifies the visibility of Remote Cohesity Views on Cohesity GUI.. [optional]  # noqa: E501
             enable_remote_views_visibility (bool, none_type): Specifies the visibility of Remote Cohesity Views for external clients.. [optional]  # noqa: E501
             enable_smb_auth (bool, none_type): Specifies if SMB Authentication should be enabled.. [optional]  # noqa: E501
             enable_smb_multi_channel (bool, none_type): Specifies if SMB Multi-Channel should be enabled.. [optional]  # noqa: E501
+            s3_virtual_hosted_domain_names ([str]): Specifies the list of domain names for S3 Virtual Hosted Style Paths. If set, all the Cohesity S3 Views in the cluster can be accessed using any of the specified domain names.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

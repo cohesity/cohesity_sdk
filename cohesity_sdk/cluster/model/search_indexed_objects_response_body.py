@@ -37,9 +37,11 @@ def lazy_import():
     from cohesity_sdk.cluster.model.hdfs_indexed_objects import HDFSIndexedObjects
     from cohesity_sdk.cluster.model.hive_indexed_objects import HiveIndexedObjects
     from cohesity_sdk.cluster.model.mongo_indexed_objects import MongoIndexedObjects
+    from cohesity_sdk.cluster.model.ms_group_items import MsGroupItems
     from cohesity_sdk.cluster.model.one_drive_items import OneDriveItems
     from cohesity_sdk.cluster.model.public_folder_items import PublicFolderItems
     from cohesity_sdk.cluster.model.search_indexed_objects_response_body_all_of import SearchIndexedObjectsResponseBodyAllOf
+    from cohesity_sdk.cluster.model.sfdc_records import SfdcRecords
     from cohesity_sdk.cluster.model.sharepoint_items import SharepointItems
     from cohesity_sdk.cluster.model.teams_items import TeamsItems
     from cohesity_sdk.cluster.model.uda_indexed_objects import UdaIndexedObjects
@@ -53,9 +55,11 @@ def lazy_import():
     globals()['HbaseIndexedObjects'] = HbaseIndexedObjects
     globals()['HiveIndexedObjects'] = HiveIndexedObjects
     globals()['MongoIndexedObjects'] = MongoIndexedObjects
+    globals()['MsGroupItems'] = MsGroupItems
     globals()['OneDriveItems'] = OneDriveItems
     globals()['PublicFolderItems'] = PublicFolderItems
     globals()['SearchIndexedObjectsResponseBodyAllOf'] = SearchIndexedObjectsResponseBodyAllOf
+    globals()['SfdcRecords'] = SfdcRecords
     globals()['SharepointItems'] = SharepointItems
     globals()['TeamsItems'] = TeamsItems
     globals()['UdaIndexedObjects'] = UdaIndexedObjects
@@ -99,6 +103,7 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
             'HDFSOBJECTS': "HDFSObjects",
             'EXCHANGEOBJECTS': "ExchangeObjects",
             'PUBLICFOLDERS': "PublicFolders",
+            'GROUPSOBJECTS': "GroupsObjects",
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",
@@ -138,8 +143,10 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
             'hdfs_objects': (HDFSIndexedObjects,),  # noqa: E501
             'hive_objects': (HiveIndexedObjects,),  # noqa: E501
             'mongo_objects': (MongoIndexedObjects,),  # noqa: E501
+            'ms_group_items': (MsGroupItems,),  # noqa: E501
             'one_drive_items': (OneDriveItems,),  # noqa: E501
             'public_folder_items': (PublicFolderItems,),  # noqa: E501
+            'sfdc_records': (SfdcRecords,),  # noqa: E501
             'sharepoint_items': (SharepointItems,),  # noqa: E501
             'teams_items': (TeamsItems,),  # noqa: E501
             'uda_objects': (UdaIndexedObjects,),  # noqa: E501
@@ -164,8 +171,10 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
         'hdfs_objects': 'hdfsObjects',  # noqa: E501
         'hive_objects': 'hiveObjects',  # noqa: E501
         'mongo_objects': 'mongoObjects',  # noqa: E501
+        'ms_group_items': 'msGroupItems',  # noqa: E501
         'one_drive_items': 'oneDriveItems',  # noqa: E501
         'public_folder_items': 'publicFolderItems',  # noqa: E501
+        'sfdc_records': 'sfdcRecords',  # noqa: E501
         'sharepoint_items': 'sharepointItems',  # noqa: E501
         'teams_items': 'teamsItems',  # noqa: E501
         'uda_objects': 'udaObjects',  # noqa: E501
@@ -231,8 +240,10 @@ class SearchIndexedObjectsResponseBody(ModelComposed):
             hdfs_objects (HDFSIndexedObjects): [optional]  # noqa: E501
             hive_objects (HiveIndexedObjects): [optional]  # noqa: E501
             mongo_objects (MongoIndexedObjects): [optional]  # noqa: E501
+            ms_group_items (MsGroupItems): [optional]  # noqa: E501
             one_drive_items (OneDriveItems): [optional]  # noqa: E501
             public_folder_items (PublicFolderItems): [optional]  # noqa: E501
+            sfdc_records (SfdcRecords): [optional]  # noqa: E501
             sharepoint_items (SharepointItems): [optional]  # noqa: E501
             teams_items (TeamsItems): [optional]  # noqa: E501
             uda_objects (UdaIndexedObjects): [optional]  # noqa: E501

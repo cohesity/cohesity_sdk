@@ -7,8 +7,12 @@ Method | HTTP request | Description
 [**delete_active_directory**](ActiveDirectoryApi.md#delete_active_directory) | **DELETE** /active-directories/{id} | Delete an Active Directory.
 [**get_active_directory**](ActiveDirectoryApi.md#get_active_directory) | **GET** /active-directories | Get the list of Active Directories.
 [**get_active_directory_by_id**](ActiveDirectoryApi.md#get_active_directory_by_id) | **GET** /active-directories/{id} | Get an Active Directory by id.
+[**get_centrify_zones**](ActiveDirectoryApi.md#get_centrify_zones) | **GET** /centrify-zones | Get Centrify Zones.
 [**get_domain_controllers**](ActiveDirectoryApi.md#get_domain_controllers) | **GET** /domain-controllers | Get Domain Controllers of specified domains.
+[**get_trusted_domains**](ActiveDirectoryApi.md#get_trusted_domains) | **GET** /trusted-domains | Get Trusted Domains.
+[**trigger_trusted_domains_discovery**](ActiveDirectoryApi.md#trigger_trusted_domains_discovery) | **PUT** /trusted-domains | Rediscover trusted domains.
 [**update_active_directory**](ActiveDirectoryApi.md#update_active_directory) | **PUT** /active-directories/{id} | Update an Active Directory.
+[**update_trusted_domains**](ActiveDirectoryApi.md#update_trusted_domains) | **POST** /trusted-domains | Update trusted domains.
 
 
 # **create_active_directory**
@@ -29,12 +33,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = CreateActiveDirectoryRequest() # CreateActiveDirectoryRequest | Specifies the parameters to create an Active Directory.
 
@@ -92,12 +92,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies id of an Active Directory.
 active_directory_admin_username = "activeDirectoryAdminUsername_example" # str | Specifies the username of the Active Directory Admin.
@@ -169,15 +165,11 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 domain_names = [
-        "CWzyBAw2ZuufUOHOEhA8IcFQXnuaZcdyyvKX7HzKpul80FcVjSkp5IHYCD.y.FZfUofvKERjsmInY9s-EmMH6kw8gsnXv2Z7jRPd.LXGp8ZohR8pb-ziKqEde8fXg9wO.fa2-zRi2iAxU4NCUavTrirUe4ba7JnjrgEdBCJE-ArE6U3CZ-Vnrj9RmauFxv7y.0CjOv6MeuI.nb.pUIQ8yNXhXoEdbZpGptfI4pvLXGuLk-kN.ijcMEEkIauW5ApNaDi5ackLaR2kw9-zmvqRnM-dar09VaHC0.q.c.D42Jml4PJXMbVMO8G0e5q9Z4WMWovY63Gk6ixTd5NxRU25mQYd6VBLRGkQ5b.WH2v5iUaMQ6iIJ-7auxDSR-lIIfhhw9bP3XhsKpT6YkX2ymMVo.u.Px8OyxaBZ75cAiG.hlvrLQxb.H.E.DjhCbEZunVXTqV3VI.z.OzY-c9WhD1h649M9.q.K7NG9dihNlL1YPO1GvRUDnbsR0-SswaNr.w.7NPZw-HNPtVfykpnotMPK4Aqhv7VjToBNn1oLFWRpSx-dyd2clYhZAGia.PPB5iVX1lhmY7Gh2I3pT2SDuv66tyxEBpX6RQusWUzrY2IaluFJfz8Zwxi.YNhQCndVdQ8Zqh8o9Fu3-luW1PzrlptgIbB7lMjnQXJdim087U4e00bXq.E63P2Qk0LGzQ-Q5b8qpf900OPrJ7NsXeu0SeHiClor8kJwu9CQe1tTxWj.9.WObZMXxUrUZPuO24g6xCEEGYs5NZ9BhURG1p1vKPKEsaka3T.uXM15Q-LQUOofFYT6wb4OCgvTgDaAqbKuYuD.TTDCxuHecKtov6lMCwqpGvF10AyNzV.KKNXeFooO85mDfP6.L.T.WUItRxglXsbfmNlQ5dxg25oBYSAJH9pP2AsvJ1ScQkpd0.Yb48VqkgYNMd7LrDcYKGedFO0HBfI81yv9G-D76SNMA.zPPPdI22mRwNS.q.Pp92k53h1KEc7ag0ak9d.wLnPl34V25Jc4YC3rXILhaa6Jcc4hzAqllACM9319wGio4p44OFkGlf.3lbtJZS0AaW9X3CHj-n2hyQAB8SPpfjusH.H.B.Xb-Hj0LrcV6H8x",
+        "CAMDTMv2D2ylmgd10Z3UB6UkJSISSB512iz2DiJykO4IVP7YNsKQHh9BsD.y.Fo3_QLOpkBmKIPOf2Flbsh1TpRS00PDvgoKGNXd.LoPJE-_eVrdJNcY9CLxYxBbcfSO.fGSCF7dC-lSY-7ZlQJLW1_GNchKk5EBLDz1ctzsIY4oIgcl12VtuaSfjvmymTJy.0c17VJpcqI.nb.p6lFYtIUw23vATP5cgpgctxW3q4fsZS5N.ivg2bA4mI-r1orbd3s4Kdu4Q19mfvL0A7Rpn3Av26g7OJWs0.q.c.DCuuRrMkJf5gzLvv2wYTNPqhvoybcy8QU60_1u6BhIo-27B5JIFoxlv9-BJb.WelW6lINX6D1Elv8Z4qYvYNwb3t4awGG-6yh0-gMEzQ8uhi90o.u.Ps5LWBoOt62fDnG.hM59JJWb.H.E.DpwFCTpIA0Gnqa9PI.z.OR3UYpt1vrS1pQR9.q.KfgrgcyvfHmHL7bSaRv9kZ_KaNGkIi19r.w.7x8qCkWG3nkJgXYUf-2g1bLoF4Q2SDvsQvki_Gvu3xSglBiD_kTqWft7a.Pq8DkTxH9-GEgnhdskTUa-JGB99tBTH1m8LyVjqKCRWp6XS1rwkzrnn4hi.Y7cYVKPWx4kXAhG_GEdV9fi1LUY2eBXIK-aaNx-IAoUxtYKQpsS2HM0cq.E88aJmQRbOi5pM9K4SWNKj0UeVyhnBjVWguY2vNQIw3D_aRMF2Tm7Selj.9.WLRs2IImu0zJ-sEvqrLoPmgi4JrQNmT_4QLVs0oSHjB6pC-T.uXNIZ-mK8w9K1xfp9OikxJ6eiOUAchnVGrwD.TWHJ7Z1SeTeQr7h2GhDiufc8pTDOUV.KwyEct13aGy9ShD6.L.T.WuS1qDT5br69Zb9J7ztaciXoL3UMxQsS4RhgPVNkMuBN0.Y_vT6kENTnbd0jYevK4Igno2LdfSDI1Cs6huybGb1zA.zcz_sYPOWoI5S.q.PLcYufJVmh2PNuin04Qd.wjetJ2wYXno2W6zwIrDKlbs9CPExuzXJjOmov9hu5QjJ_xMDMiy-rwf.3gfVA0tbOL0WzdgU9sGpVxk-V0XsgBCaMH.H.B.X2AHCmB9lVwewx",
     ] # [str] | Filter by a list of Active Directory domain names. (optional)
 ids = [
         1,
@@ -246,12 +238,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies id of an Active Directory.
 include_centrify_zones = True # bool | Specifies whether to include Centrify Zones of the Active Directory in response. (optional)
@@ -314,6 +302,66 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_centrify_zones**
+> CentrifyZones get_centrify_zones(domain_name)
+
+Get Centrify Zones.
+
+Get Centrify zones for a specified domain.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.centrify_zones import CentrifyZones
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+domain_name = "CAMDTMv2D2ylmgd10Z3UB6UkJSISSB512iz2DiJykO4IVP7YNsKQHh9BsD.y.Fo3_QLOpkBmKIPOf2Flbsh1TpRS00PDvgoKGNXd.LoPJE-_eVrdJNcY9CLxYxBbcfSO.fGSCF7dC-lSY-7ZlQJLW1_GNchKk5EBLDz1ctzsIY4oIgcl12VtuaSfjvmymTJy.0c17VJpcqI.nb.p6lFYtIUw23vATP5cgpgctxW3q4fsZS5N.ivg2bA4mI-r1orbd3s4Kdu4Q19mfvL0A7Rpn3Av26g7OJWs0.q.c.DCuuRrMkJf5gzLvv2wYTNPqhvoybcy8QU60_1u6BhIo-27B5JIFoxlv9-BJb.WelW6lINX6D1Elv8Z4qYvYNwb3t4awGG-6yh0-gMEzQ8uhi90o.u.Ps5LWBoOt62fDnG.hM59JJWb.H.E.DpwFCTpIA0Gnqa9PI.z.OR3UYpt1vrS1pQR9.q.KfgrgcyvfHmHL7bSaRv9kZ_KaNGkIi19r.w.7x8qCkWG3nkJgXYUf-2g1bLoF4Q2SDvsQvki_Gvu3xSglBiD_kTqWft7a.Pq8DkTxH9-GEgnhdskTUa-JGB99tBTH1m8LyVjqKCRWp6XS1rwkzrnn4hi.Y7cYVKPWx4kXAhG_GEdV9fi1LUY2eBXIK-aaNx-IAoUxtYKQpsS2HM0cq.E88aJmQRbOi5pM9K4SWNKj0UeVyhnBjVWguY2vNQIw3D_aRMF2Tm7Selj.9.WLRs2IImu0zJ-sEvqrLoPmgi4JrQNmT_4QLVs0oSHjB6pC-T.uXNIZ-mK8w9K1xfp9OikxJ6eiOUAchnVGrwD.TWHJ7Z1SeTeQr7h2GhDiufc8pTDOUV.KwyEct13aGy9ShD6.L.T.WuS1qDT5br69Zb9J7ztaciXoL3UMxQsS4RhgPVNkMuBN0.Y_vT6kENTnbd0jYevK4Igno2LdfSDI1Cs6huybGb1zA.zcz_sYPOWoI5S.q.PLcYufJVmh2PNuin04Qd.wjetJ2wYXno2W6zwIrDKlbs9CPExuzXJjOmov9hu5QjJ_xMDMiy-rwf.3gfVA0tbOL0WzdgU9sGpVxk-V0XsgBCaMH.H.B.X2AHCmB9lVwewx" # str | Specifies the FQDN of the domain name.
+
+# example passing only required values which don't have defaults set
+try:
+	# Get Centrify Zones.
+	api_response = client.active_directory.get_centrify_zones(domain_name)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->get_centrify_zones: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain_name** | **str**| Specifies the FQDN of the domain name. |
+
+### Return type
+
+[**CentrifyZones**](CentrifyZones.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_domain_controllers**
 > DomainControllersResponse get_domain_controllers(domain_names)
 
@@ -331,15 +379,11 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 domain_names = [
-        "CWzyBAw2ZuufUOHOEhA8IcFQXnuaZcdyyvKX7HzKpul80FcVjSkp5IHYCD.y.FZfUofvKERjsmInY9s-EmMH6kw8gsnXv2Z7jRPd.LXGp8ZohR8pb-ziKqEde8fXg9wO.fa2-zRi2iAxU4NCUavTrirUe4ba7JnjrgEdBCJE-ArE6U3CZ-Vnrj9RmauFxv7y.0CjOv6MeuI.nb.pUIQ8yNXhXoEdbZpGptfI4pvLXGuLk-kN.ijcMEEkIauW5ApNaDi5ackLaR2kw9-zmvqRnM-dar09VaHC0.q.c.D42Jml4PJXMbVMO8G0e5q9Z4WMWovY63Gk6ixTd5NxRU25mQYd6VBLRGkQ5b.WH2v5iUaMQ6iIJ-7auxDSR-lIIfhhw9bP3XhsKpT6YkX2ymMVo.u.Px8OyxaBZ75cAiG.hlvrLQxb.H.E.DjhCbEZunVXTqV3VI.z.OzY-c9WhD1h649M9.q.K7NG9dihNlL1YPO1GvRUDnbsR0-SswaNr.w.7NPZw-HNPtVfykpnotMPK4Aqhv7VjToBNn1oLFWRpSx-dyd2clYhZAGia.PPB5iVX1lhmY7Gh2I3pT2SDuv66tyxEBpX6RQusWUzrY2IaluFJfz8Zwxi.YNhQCndVdQ8Zqh8o9Fu3-luW1PzrlptgIbB7lMjnQXJdim087U4e00bXq.E63P2Qk0LGzQ-Q5b8qpf900OPrJ7NsXeu0SeHiClor8kJwu9CQe1tTxWj.9.WObZMXxUrUZPuO24g6xCEEGYs5NZ9BhURG1p1vKPKEsaka3T.uXM15Q-LQUOofFYT6wb4OCgvTgDaAqbKuYuD.TTDCxuHecKtov6lMCwqpGvF10AyNzV.KKNXeFooO85mDfP6.L.T.WUItRxglXsbfmNlQ5dxg25oBYSAJH9pP2AsvJ1ScQkpd0.Yb48VqkgYNMd7LrDcYKGedFO0HBfI81yv9G-D76SNMA.zPPPdI22mRwNS.q.Pp92k53h1KEc7ag0ak9d.wLnPl34V25Jc4YC3rXILhaa6Jcc4hzAqllACM9319wGio4p44OFkGlf.3lbtJZS0AaW9X3CHj-n2hyQAB8SPpfjusH.H.B.Xb-Hj0LrcV6H8x",
+        "CAMDTMv2D2ylmgd10Z3UB6UkJSISSB512iz2DiJykO4IVP7YNsKQHh9BsD.y.Fo3_QLOpkBmKIPOf2Flbsh1TpRS00PDvgoKGNXd.LoPJE-_eVrdJNcY9CLxYxBbcfSO.fGSCF7dC-lSY-7ZlQJLW1_GNchKk5EBLDz1ctzsIY4oIgcl12VtuaSfjvmymTJy.0c17VJpcqI.nb.p6lFYtIUw23vATP5cgpgctxW3q4fsZS5N.ivg2bA4mI-r1orbd3s4Kdu4Q19mfvL0A7Rpn3Av26g7OJWs0.q.c.DCuuRrMkJf5gzLvv2wYTNPqhvoybcy8QU60_1u6BhIo-27B5JIFoxlv9-BJb.WelW6lINX6D1Elv8Z4qYvYNwb3t4awGG-6yh0-gMEzQ8uhi90o.u.Ps5LWBoOt62fDnG.hM59JJWb.H.E.DpwFCTpIA0Gnqa9PI.z.OR3UYpt1vrS1pQR9.q.KfgrgcyvfHmHL7bSaRv9kZ_KaNGkIi19r.w.7x8qCkWG3nkJgXYUf-2g1bLoF4Q2SDvsQvki_Gvu3xSglBiD_kTqWft7a.Pq8DkTxH9-GEgnhdskTUa-JGB99tBTH1m8LyVjqKCRWp6XS1rwkzrnn4hi.Y7cYVKPWx4kXAhG_GEdV9fi1LUY2eBXIK-aaNx-IAoUxtYKQpsS2HM0cq.E88aJmQRbOi5pM9K4SWNKj0UeVyhnBjVWguY2vNQIw3D_aRMF2Tm7Selj.9.WLRs2IImu0zJ-sEvqrLoPmgi4JrQNmT_4QLVs0oSHjB6pC-T.uXNIZ-mK8w9K1xfp9OikxJ6eiOUAchnVGrwD.TWHJ7Z1SeTeQr7h2GhDiufc8pTDOUV.KwyEct13aGy9ShD6.L.T.WuS1qDT5br69Zb9J7ztaciXoL3UMxQsS4RhgPVNkMuBN0.Y_vT6kENTnbd0jYevK4Igno2LdfSDI1Cs6huybGb1zA.zcz_sYPOWoI5S.q.PLcYufJVmh2PNuin04Qd.wjetJ2wYXno2W6zwIrDKlbs9CPExuzXJjOmov9hu5QjJ_xMDMiy-rwf.3gfVA0tbOL0WzdgU9sGpVxk-V0XsgBCaMH.H.B.X2AHCmB9lVwewx",
     ] # [str] | Specifies a list of domain names.
 connection_id = 1 # int, none_type | Specifies the Id of the connection which the connector belongs to. (optional)
 
@@ -391,6 +435,126 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_trusted_domains**
+> TrustedDomainParams get_trusted_domains(domain_name)
+
+Get Trusted Domains.
+
+Get Trusted Domains for a specified domain.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.trusted_domain_params import TrustedDomainParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+domain_name = "domainName_example" # str | Specifies the FQDN of an Active directory domain.
+
+# example passing only required values which don't have defaults set
+try:
+	# Get Trusted Domains.
+	api_response = client.active_directory.get_trusted_domains(domain_name)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->get_trusted_domains: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain_name** | **str**| Specifies the FQDN of an Active directory domain. |
+
+### Return type
+
+[**TrustedDomainParams**](TrustedDomainParams.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **trigger_trusted_domains_discovery**
+> trigger_trusted_domains_discovery(domain_name, rediscover)
+
+Rediscover trusted domains.
+
+Re-trigger the trusted domains of an Active Directory.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+domain_name = "domainName_example" # str | Specifies the FQDN of an Active directory domain.
+rediscover = True # bool | Specifies if trusted domains should be rediscovered.
+
+# example passing only required values which don't have defaults set
+try:
+	# Rediscover trusted domains.
+	client.active_directory.trigger_trusted_domains_discovery(domain_name, rediscover)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->trigger_trusted_domains_discovery: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain_name** | **str**| Specifies the FQDN of an Active directory domain. |
+ **rediscover** | **bool**| Specifies if trusted domains should be rediscovered. |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Request Accepted |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_active_directory**
 > ActiveDirectory update_active_directory(id, body)
 
@@ -409,12 +573,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies id of an Active Directory.
 body = UpdateActiveDirectoryRequest() # UpdateActiveDirectoryRequest | Request to update an Active Directory.
@@ -439,6 +599,90 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ActiveDirectory**](ActiveDirectory.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_trusted_domains**
+> TrustedDomainParams update_trusted_domains(domain_name, body)
+
+Update trusted domains.
+
+To update trusted domains of an Active Directory.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.trusted_domain_params import TrustedDomainParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+domain_name = "domainName_example" # str, none_type | Specifies the FQDN of an Active directory domain.
+body = TrustedDomainParams(
+        blacklisted_domains=[
+            "blacklisted_domains_example",
+        ],
+        enabled=True,
+        only_use_whitelisted_domains=True,
+        trusted_domains=[
+            TrustedDomain(
+                domain_controllers_deny_list=[
+                    "domain_controllers_deny_list_example",
+                ],
+                domain_name="domain_name_example",
+                preferred_domain_controllers=[
+                    DomainController(
+                        name="name_example",
+                    ),
+                ],
+            ),
+        ],
+        whitelisted_domains=[
+            "CAMDTMv2D2ylmgd10Z3UB6UkJSISSB512iz2DiJykO4IVP7YNsKQHh9BsD.y.Fo3_QLOpkBmKIPOf2Flbsh1TpRS00PDvgoKGNXd.LoPJE-_eVrdJNcY9CLxYxBbcfSO.fGSCF7dC-lSY-7ZlQJLW1_GNchKk5EBLDz1ctzsIY4oIgcl12VtuaSfjvmymTJy.0c17VJpcqI.nb.p6lFYtIUw23vATP5cgpgctxW3q4fsZS5N.ivg2bA4mI-r1orbd3s4Kdu4Q19mfvL0A7Rpn3Av26g7OJWs0.q.c.DCuuRrMkJf5gzLvv2wYTNPqhvoybcy8QU60_1u6BhIo-27B5JIFoxlv9-BJb.WelW6lINX6D1Elv8Z4qYvYNwb3t4awGG-6yh0-gMEzQ8uhi90o.u.Ps5LWBoOt62fDnG.hM59JJWb.H.E.DpwFCTpIA0Gnqa9PI.z.OR3UYpt1vrS1pQR9.q.KfgrgcyvfHmHL7bSaRv9kZ_KaNGkIi19r.w.7x8qCkWG3nkJgXYUf-2g1bLoF4Q2SDvsQvki_Gvu3xSglBiD_kTqWft7a.Pq8DkTxH9-GEgnhdskTUa-JGB99tBTH1m8LyVjqKCRWp6XS1rwkzrnn4hi.Y7cYVKPWx4kXAhG_GEdV9fi1LUY2eBXIK-aaNx-IAoUxtYKQpsS2HM0cq.E88aJmQRbOi5pM9K4SWNKj0UeVyhnBjVWguY2vNQIw3D_aRMF2Tm7Selj.9.WLRs2IImu0zJ-sEvqrLoPmgi4JrQNmT_4QLVs0oSHjB6pC-T.uXNIZ-mK8w9K1xfp9OikxJ6eiOUAchnVGrwD.TWHJ7Z1SeTeQr7h2GhDiufc8pTDOUV.KwyEct13aGy9ShD6.L.T.WuS1qDT5br69Zb9J7ztaciXoL3UMxQsS4RhgPVNkMuBN0.Y_vT6kENTnbd0jYevK4Igno2LdfSDI1Cs6huybGb1zA.zcz_sYPOWoI5S.q.PLcYufJVmh2PNuin04Qd.wjetJ2wYXno2W6zwIrDKlbs9CPExuzXJjOmov9hu5QjJ_xMDMiy-rwf.3gfVA0tbOL0WzdgU9sGpVxk-V0XsgBCaMH.H.B.X2AHCmB9lVwewx",
+        ],
+    ) # TrustedDomainParams | Specifies the trusted domains params.
+
+# example passing only required values which don't have defaults set
+try:
+	# Update trusted domains.
+	api_response = client.active_directory.update_trusted_domains(domain_name, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ActiveDirectoryApi->update_trusted_domains: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **domain_name** | **str, none_type**| Specifies the FQDN of an Active directory domain. |
+ **body** | [**TrustedDomainParams**](TrustedDomainParams.md)| Specifies the trusted domains params. |
+
+### Return type
+
+[**TrustedDomainParams**](TrustedDomainParams.md)
 
 ### Authorization
 

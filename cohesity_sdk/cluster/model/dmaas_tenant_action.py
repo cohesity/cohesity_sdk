@@ -57,6 +57,20 @@ class DmaasTenantAction(ModelNormal):
         ('enum',): {
             'STARTMIGRATION': "StartMigration",
             'STOPMIGRATION': "StopMigration",
+            'GETTENANTMIGRATIONSERVICES': "GetTenantMigrationServices",
+            'PRECHECK': "PreCheck",
+            'IMPORT': "Import",
+            'EXPORT': "Export",
+            'QUIESCE': "Quiesce",
+            'UNQUIESCE': "Unquiesce",
+            'MIGRATEMETADATA': "MigrateMetadata",
+            'MIGRATEDATA': "MigrateData",
+            'PURGETENANTDATA': "PurgeTenantData",
+            'EXPORTMETADATAFORVALIDATION': "ExportMetadataForValidation",
+            'IMPORTMETADATAFORVALIDATION': "ImportMetadataForValidation",
+            'VALIDATEMETADATA': "ValidateMetadata",
+            'DISABLEINLINECHANGES': "DisableInlineChanges",
+            'ENABLEINLINECHANGES': "EnableInlineChanges",
         },
     }
 

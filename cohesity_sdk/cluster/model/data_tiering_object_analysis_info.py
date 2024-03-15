@@ -72,6 +72,7 @@ class DataTieringObjectAnalysisInfo(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
     }
 
@@ -162,7 +163,7 @@ class DataTieringObjectAnalysisInfo(ModelNormal):
 
             message (str, none_type): A message about the error if encountered while performing data tiering analysis.. [optional]  # noqa: E501
             stats ([DataTieringShareStats], none_type): Specifies the source share analysis stats.. [optional]  # noqa: E501
-            status (str, none_type): Status of the analysis run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being  canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the  scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished  successfully, but there were some warning messages. 'OnHold' indicates that the run has On hold.. [optional]  # noqa: E501
+            status (str, none_type): Status of the analysis run. 'Running' indicates that the run is still running. 'Canceled' indicates that the run has been canceled. 'Canceling' indicates that the run is in the process of being  canceled. 'Failed' indicates that the run has failed. 'Missed' indicates that the run was unable to take place at the  scheduled time because the previous run was still happening. 'Succeeded' indicates that the run has finished successfully. 'SucceededWithWarning' indicates that the run finished  successfully, but there were some warning messages. 'OnHold' indicates that the run has On hold. 'Skipped' indicates that the run was skipped.. [optional]  # noqa: E501
             tags_info ([DataTieringTagObject], none_type): Array of Tag objects.. [optional]  # noqa: E501
         """
 

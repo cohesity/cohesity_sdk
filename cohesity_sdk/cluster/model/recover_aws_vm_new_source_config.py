@@ -77,6 +77,7 @@ class RecoverAwsVmNewSourceConfig(ModelNormal):
             'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'region': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'encryption_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'key_pair': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
@@ -90,6 +91,7 @@ class RecoverAwsVmNewSourceConfig(ModelNormal):
         'network_config': 'networkConfig',  # noqa: E501
         'region': 'region',  # noqa: E501
         'source': 'source',  # noqa: E501
+        'encryption_config': 'encryptionConfig',  # noqa: E501
         'key_pair': 'keyPair',  # noqa: E501
     }
 
@@ -145,6 +147,7 @@ class RecoverAwsVmNewSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            encryption_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the encryption configuration.. [optional]  # noqa: E501
             key_pair ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the pair of public and private key used to login into the VM. [optional]  # noqa: E501
         """
 

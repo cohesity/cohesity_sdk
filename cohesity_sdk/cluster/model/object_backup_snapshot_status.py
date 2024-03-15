@@ -64,6 +64,7 @@ class ObjectBackupSnapshotStatus(ModelNormal):
             'KCURRENTATTEMPTRESUMING': "kCurrentAttemptResuming",
             'KCURRENTATTEMPTPAUSING': "kCurrentAttemptPausing",
             'KWAITINGFOROLDERBACKUPRUN': "kWaitingForOlderBackupRun",
+            'KSKIPPED': "kSkipped",
         },
     }
 

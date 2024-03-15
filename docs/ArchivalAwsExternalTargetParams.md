@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **source_side_deduplication** | **bool, none_type** | Specifies the Source Side Deduplication setting for the AWS external target | [optional] 
 **aws_glacier_params** | [**AwsGlacierParams**](AwsGlacierParams.md) |  | [optional] 
 **aws_s3_glacier_deep_archive_params** | [**AwsS3GlacierDeepArchiveParams**](AwsS3GlacierDeepArchiveParams.md) |  | [optional] 
+**aws_s3_glacier_ir_params** | [**AwsS3GlacierIRParams**](AwsS3GlacierIRParams.md) |  | [optional] 
 **aws_s3_glacier_params** | [**AwsS3GlacierParams**](AwsS3GlacierParams.md) |  | [optional] 
 **aws_s3_intelligent_params** | [**AwsS3IntelligentParams**](AwsS3IntelligentParams.md) |  | [optional] 
 **aws_s3_one_zone_ia_params** | [**AwsS3OneZoneIAParams**](AwsS3OneZoneIAParams.md) |  | [optional] 

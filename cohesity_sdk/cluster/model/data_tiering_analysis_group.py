@@ -30,10 +30,12 @@ def lazy_import():
     from cohesity_sdk.cluster.model.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
     from cohesity_sdk.cluster.model.data_tiering_analysis_group_all_of import DataTieringAnalysisGroupAllOf
     from cohesity_sdk.cluster.model.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
+    from cohesity_sdk.cluster.model.data_tiering_schedule import DataTieringSchedule
     from cohesity_sdk.cluster.model.data_tiering_source import DataTieringSource
     globals()['CommonDataTieringAnalysisGroupParams'] = CommonDataTieringAnalysisGroupParams
     globals()['DataTieringAnalysisGroupAllOf'] = DataTieringAnalysisGroupAllOf
     globals()['DataTieringAnalysisGroupRun'] = DataTieringAnalysisGroupRun
+    globals()['DataTieringSchedule'] = DataTieringSchedule
     globals()['DataTieringSource'] = DataTieringSource
 
 
@@ -86,9 +88,11 @@ class DataTieringAnalysisGroup(ModelComposed):
         lazy_import()
         return {
             'name': (str, none_type,),  # noqa: E501
+            'schedule': (DataTieringSchedule,),  # noqa: E501
             'source': (DataTieringSource,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'last_run': (DataTieringAnalysisGroupRun,),  # noqa: E501
+            'last_successful_run': (DataTieringAnalysisGroupRun,),  # noqa: E501
         }
 
     @cached_property
@@ -99,9 +103,11 @@ class DataTieringAnalysisGroup(ModelComposed):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
+        'schedule': 'schedule',  # noqa: E501
         'source': 'source',  # noqa: E501
         'id': 'id',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
+        'last_successful_run': 'lastSuccessfulRun',  # noqa: E501
     }
 
     required_properties = set([
@@ -117,12 +123,11 @@ class DataTieringAnalysisGroup(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, source, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, *args, **kwargs):  # noqa: E501
         """DataTieringAnalysisGroup - a model defined in OpenAPI
 
         Args:
             name (str, none_type): Specifies the name of the data tiering analysis group.
-            source (DataTieringSource):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,8 +161,11 @@ class DataTieringAnalysisGroup(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            schedule (DataTieringSchedule): [optional]  # noqa: E501
+            source (DataTieringSource): [optional]  # noqa: E501
             id (str, none_type): Specifies the ID of the data tiering analysis group.. [optional]  # noqa: E501
             last_run (DataTieringAnalysisGroupRun): [optional]  # noqa: E501
+            last_successful_run (DataTieringAnalysisGroupRun): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,7 +201,6 @@ class DataTieringAnalysisGroup(ModelComposed):
         }
         required_args = {
             'name': name,
-            'source': source,
         }
         model_args = {}
         model_args.update(required_args)

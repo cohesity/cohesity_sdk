@@ -69,6 +69,7 @@ class SourceRegistrationPatchRequestParams(ModelNormal):
             'KAZURE': "kAzure",
             'KPHYSICAL': "kPhysical",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KNETAPP': "kNetapp",
             'KGENERICNAS': "kGenericNas",
