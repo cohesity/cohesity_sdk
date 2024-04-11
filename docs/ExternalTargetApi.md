@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**delete_external_target**](ExternalTargetApi.md#delete_external_target) | **DELETE** /data-protect/external-targets/{id} | Delete a External Target.
 [**get_external_target_by_id**](ExternalTargetApi.md#get_external_target_by_id) | **GET** /data-protect/external-targets/{id} | List details about single External Target.
 [**get_external_target_encryption_key_info**](ExternalTargetApi.md#get_external_target_encryption_key_info) | **GET** /data-protect/external-targets/{id}/encryption-key | Get the encryption key info for an external target
+[**get_external_target_media_info**](ExternalTargetApi.md#get_external_target_media_info) | **GET** /data-protect/external-targets/media-info | List archive media information
 [**get_external_target_settings**](ExternalTargetApi.md#get_external_target_settings) | **GET** /data-protect/external-targets/settings | Get the list of External Target Settings.
 [**get_external_targets**](ExternalTargetApi.md#get_external_targets) | **GET** /data-protect/external-targets | Get the list of External Targets.
 [**update_external_target**](ExternalTargetApi.md#update_external_target) | **PUT** /data-protect/external-targets/{id} | Update a External Target.
@@ -30,12 +31,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = ExternalTarget() # ExternalTarget | Specifies the parameters to create a External Target.
 
@@ -93,12 +90,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies a unique id of the External Target.
 force_delete = True # bool | Specifies whether to force delete the External target. (optional)
@@ -166,12 +159,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies a unique id of the External Target.
 
@@ -229,12 +218,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies the id of the External Target.
 
@@ -276,6 +261,85 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_external_target_media_info**
+> ArchivalMediaInfo get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id)
+
+List archive media information
+
+Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.archival_media_info import ArchivalMediaInfo
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+cluster_id = 1 # int | Specifies the id of the Cohesity cluster which archived to a QStart media target.
+cluster_incarnation_id = 1 # int | Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.
+archival_job_id = 1 # int | Specifies the id of the Job that archived to a QStar media Vault.
+restore_task_id = 1 # int | Specifies the id of the restore task to optionally filter by. (optional)
+entity_ids = [
+        1,
+    ] # [int] | Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# List archive media information
+	api_response = client.external_target.get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ExternalTargetApi->get_external_target_media_info: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List archive media information
+	api_response = client.external_target.get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id, restore_task_id=restore_task_id, entity_ids=entity_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ExternalTargetApi->get_external_target_media_info: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | **int**| Specifies the id of the Cohesity cluster which archived to a QStart media target. |
+ **cluster_incarnation_id** | **int**| Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target. |
+ **archival_job_id** | **int**| Specifies the id of the Job that archived to a QStar media Vault. |
+ **restore_task_id** | **int**| Specifies the id of the restore task to optionally filter by. | [optional]
+ **entity_ids** | **[int]**| Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster. | [optional]
+
+### Return type
+
+[**ArchivalMediaInfo**](ArchivalMediaInfo.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_external_target_settings**
 > ExternalTarget get_external_target_settings()
 
@@ -293,12 +357,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -353,12 +413,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 ids = [
         1,
@@ -374,7 +430,7 @@ purpose_types = [
     ] # [str] | Filter by a list of External Target purpose types. (optional)
 storage_types = [
         "Azure",
-    ] # [str] | Filter by a list of External Target storage types. (optional)
+    ] # [str] | Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. (optional)
 storage_classes = [
         "AmazonS3Standard",
     ] # [str] | Filter by a list of External Target storage classes. (optional)
@@ -401,7 +457,7 @@ Name | Type | Description  | Notes
  **global_ids** | **[str]**| Filter by a list of External Target global ids. | [optional]
  **names** | **[str]**| Filter by a list of External Target names. | [optional]
  **purpose_types** | **[str]**| Filter by a list of External Target purpose types. | [optional]
- **storage_types** | **[str]**| Filter by a list of External Target storage types. | [optional]
+ **storage_types** | **[str]**| Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | [optional]
  **storage_classes** | **[str]**| Filter by a list of External Target storage classes. | [optional]
  **ownership_contexts** | **[str]**| Specifies whether how this external target is being consumed either Local or FortKnox. | [optional]
 
@@ -444,12 +500,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 id = 1 # int | Specifies the id of the External Target.
 body = ExternalTarget() # ExternalTarget | Specifies the parameters to update a External Target.
@@ -510,12 +562,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 body = GlobalBandwidthSettings(
         archival_params=ArchivalBandwidthSettings(),

@@ -28,11 +28,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.bmr_backup_policy import BmrBackupPolicy
+    from cohesity_sdk.cluster.model.cancellation_timeout_params import CancellationTimeoutParams
     from cohesity_sdk.cluster.model.cdp_backup_policy import CdpBackupPolicy
     from cohesity_sdk.cluster.model.log_backup_policy import LogBackupPolicy
     from cohesity_sdk.cluster.model.regular_backup_policy import RegularBackupPolicy
     from cohesity_sdk.cluster.model.storage_array_snapshot_backup_policy import StorageArraySnapshotBackupPolicy
     globals()['BmrBackupPolicy'] = BmrBackupPolicy
+    globals()['CancellationTimeoutParams'] = CancellationTimeoutParams
     globals()['CdpBackupPolicy'] = CdpBackupPolicy
     globals()['LogBackupPolicy'] = LogBackupPolicy
     globals()['RegularBackupPolicy'] = RegularBackupPolicy
@@ -91,6 +93,7 @@ class BackupPolicy(ModelNormal):
             'bmr': (BmrBackupPolicy,),  # noqa: E501
             'cdp': (CdpBackupPolicy,),  # noqa: E501
             'log': (LogBackupPolicy,),  # noqa: E501
+            'run_timeouts': ([CancellationTimeoutParams], none_type,),  # noqa: E501
             'storage_array_snapshot': (StorageArraySnapshotBackupPolicy,),  # noqa: E501
         }
 
@@ -105,6 +108,7 @@ class BackupPolicy(ModelNormal):
         'bmr': 'bmr',  # noqa: E501
         'cdp': 'cdp',  # noqa: E501
         'log': 'log',  # noqa: E501
+        'run_timeouts': 'runTimeouts',  # noqa: E501
         'storage_array_snapshot': 'storageArraySnapshot',  # noqa: E501
     }
 
@@ -161,6 +165,7 @@ class BackupPolicy(ModelNormal):
             bmr (BmrBackupPolicy): [optional]  # noqa: E501
             cdp (CdpBackupPolicy): [optional]  # noqa: E501
             log (LogBackupPolicy): [optional]  # noqa: E501
+            run_timeouts ([CancellationTimeoutParams], none_type): Specifies the backup timeouts for different type of runs(kFull, kRegular etc.).. [optional]  # noqa: E501
             storage_array_snapshot (StorageArraySnapshotBackupPolicy): [optional]  # noqa: E501
         """
 

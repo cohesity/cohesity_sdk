@@ -26,6 +26,7 @@ from cohesity_sdk.cluster.model.create_protection_group_run_request import Creat
 from cohesity_sdk.cluster.model.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.get_protection_run_progress_body import GetProtectionRunProgressBody
+from cohesity_sdk.cluster.model.get_protection_run_stats_body import GetProtectionRunStatsBody
 from cohesity_sdk.cluster.model.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
 from cohesity_sdk.cluster.model.perform_run_action_response import PerformRunActionResponse
 from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
@@ -542,7 +543,8 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                 },
                 'openapi_types': {
@@ -708,7 +710,8 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                 },
                 'openapi_types': {
@@ -779,20 +782,24 @@ class ProtectionGroupApi(object):
             Keyword Args:
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 run_id (str): Specifies the protection run id.. [optional]
-                start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
-                end_time_usecs (int): Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
+                start_time_usecs (int): Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
+                end_time_usecs (int): End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Group Runs created by the current user will be returned.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned.. [optional]
                 include_object_details (bool): Specifies if the result includes the object details for each protection run. If set to true, details of the protected object will be returned. If set to false or not specified, details will not be returned.. [optional]
-                local_backup_run_status ([str]): Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                replication_run_status ([str]): Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                archival_run_status ([str]): Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                cloud_spin_run_status ([str]): Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                local_backup_run_status ([str]): Specifies a list of local backup status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                replication_run_status ([str]): Specifies a list of replication status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                archival_run_status ([str]): Specifies a list of archival status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                cloud_spin_run_status ([str]): Specifies a list of cloud spin status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 num_runs (int): Specifies the max number of runs. If not specified, at most 100 runs will be returned.. [optional]
                 exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
                 run_tags ([str]): Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                filter_by_end_time (bool): If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned.. [optional]
+                snapshot_target_types ([str]): Specifies the snapshot's target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.. [optional]
+                only_return_successful_copy_run (bool): If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.. [optional]
+                filter_by_copy_task_end_time (bool): If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -873,6 +880,10 @@ class ProtectionGroupApi(object):
                     'exclude_non_restorable_runs',
                     'run_tags',
                     'use_cached_data',
+                    'filter_by_end_time',
+                    'snapshot_target_types',
+                    'only_return_successful_copy_run',
+                    'filter_by_copy_task_end_time',
                 ],
                 'required': [
                     'id',
@@ -886,14 +897,23 @@ class ProtectionGroupApi(object):
                     'replication_run_status',
                     'archival_run_status',
                     'cloud_spin_run_status',
+                    'snapshot_target_types',
                 ],
                 'validation': [
+                    'id',
                     'run_id',
                     'run_types',
+                    'snapshot_target_types',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
                     ('run_id',): {
 
                         'regex': {
@@ -903,12 +923,16 @@ class ProtectionGroupApi(object):
                     ('run_types',): {
 
                     },
+                    ('snapshot_target_types',): {
+
+                    },
                 },
                 'allowed_values': {
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                     ('run_types',): {
 
@@ -932,6 +956,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('replication_run_status',): {
@@ -946,6 +971,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('archival_run_status',): {
@@ -960,6 +986,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('cloud_spin_run_status',): {
@@ -974,7 +1001,16 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
+                    },
+                    ('snapshot_target_types',): {
+
+                        "LOCAL": "Local",
+                        "ARCHIVAL": "Archival",
+                        "RPAASARCHIVAL": "RpaasArchival",
+                        "STORAGEARRAYSNAPSHOT": "StorageArraySnapshot",
+                        "REMOTE": "Remote"
                     },
                 },
                 'openapi_types': {
@@ -1012,6 +1048,14 @@ class ProtectionGroupApi(object):
                         ([str],),
                     'use_cached_data':
                         (bool,),
+                    'filter_by_end_time':
+                        (bool,),
+                    'snapshot_target_types':
+                        ([str],),
+                    'only_return_successful_copy_run':
+                        (bool,),
+                    'filter_by_copy_task_end_time':
+                        (bool,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -1031,6 +1075,10 @@ class ProtectionGroupApi(object):
                     'exclude_non_restorable_runs': 'excludeNonRestorableRuns',
                     'run_tags': 'runTags',
                     'use_cached_data': 'useCachedData',
+                    'filter_by_end_time': 'filterByEndTime',
+                    'snapshot_target_types': 'snapshotTargetTypes',
+                    'only_return_successful_copy_run': 'onlyReturnSuccessfulCopyRun',
+                    'filter_by_copy_task_end_time': 'filterByCopyTaskEndTime',
                 },
                 'location_map': {
                     'id': 'path',
@@ -1050,6 +1098,10 @@ class ProtectionGroupApi(object):
                     'exclude_non_restorable_runs': 'query',
                     'run_tags': 'query',
                     'use_cached_data': 'query',
+                    'filter_by_end_time': 'query',
+                    'snapshot_target_types': 'query',
+                    'only_return_successful_copy_run': 'query',
+                    'filter_by_copy_task_end_time': 'query',
                 },
                 'collection_format_map': {
                     'tenant_ids': 'csv',
@@ -1059,6 +1111,7 @@ class ProtectionGroupApi(object):
                     'archival_run_status': 'csv',
                     'cloud_spin_run_status': 'csv',
                     'run_tags': 'csv',
+                    'snapshot_target_types': 'csv',
                 }
             },
             headers_map={
@@ -1097,11 +1150,11 @@ class ProtectionGroupApi(object):
                 is_active (bool): Filter by Inactive or Active Protection Groups. If not set, all Inactive and Active Protection Groups are returned. If true, only Active Protection Groups are returned. If false, only Inactive Protection Groups are returned. When you create a Protection Group on a Primary Cluster with a replication schedule, the Cluster creates an Inactive copy of the Protection Group on the Remote Cluster. In addition, when an Active and running Protection Group is deactivated, the Protection Group becomes Inactive.. [optional]
                 is_deleted (bool): If true, return only Protection Groups that have been deleted but still have Snapshots associated with them. If false, return all Protection Groups except those Protection Groups that have been deleted and still have Snapshots associated with them. A Protection Group that is deleted with all its Snapshots is not returned for either of these cases.. [optional]
                 is_paused (bool): Filter by paused or non paused Protection Groups, If not set, all paused and non paused Protection Groups are returned. If true, only paused Protection Groups are returned. If false, only non paused Protection Groups are returned.. [optional]
-                last_run_local_backup_status ([str]): Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                last_run_replication_status ([str]): Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                last_run_archival_status ([str]): Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                last_run_cloud_spin_status ([str]): Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
-                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.. [optional]
+                last_run_local_backup_status ([str]): Filter by last local backup run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_replication_status ([str]): Filter by last remote replication run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_archival_status ([str]): Filter by last cloud archival run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_cloud_spin_status ([str]): Filter by last cloud spin run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
+                last_run_any_status ([str]): Filter by last any run status.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Paused' indicates that the ongoing run has been paused.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 is_last_run_sla_violated (bool): If true, return Protection Groups for which last run SLA was violated.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned.. [optional]
@@ -1109,6 +1162,7 @@ class ProtectionGroupApi(object):
                 prune_excluded_source_ids (bool): If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.. [optional]
                 prune_source_ids (bool, none_type): If true, the response will exclude the list of source IDs within the group specified.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                source_ids ([int]): Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1193,6 +1247,7 @@ class ProtectionGroupApi(object):
                     'prune_excluded_source_ids',
                     'prune_source_ids',
                     'use_cached_data',
+                    'source_ids',
                 ],
                 'required': [],
                 'nullable': [
@@ -1218,7 +1273,8 @@ class ProtectionGroupApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                     ('environments',): {
 
@@ -1231,9 +1287,14 @@ class ProtectionGroupApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -1243,6 +1304,7 @@ class ProtectionGroupApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -1287,6 +1349,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_replication_status',): {
@@ -1301,6 +1364,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_archival_status',): {
@@ -1315,6 +1379,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_cloud_spin_status',): {
@@ -1329,6 +1394,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                     ('last_run_any_status',): {
@@ -1343,6 +1409,7 @@ class ProtectionGroupApi(object):
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
                         "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
                 },
@@ -1393,6 +1460,8 @@ class ProtectionGroupApi(object):
                         (bool, none_type,),
                     'use_cached_data':
                         (bool,),
+                    'source_ids':
+                        ([int],),
                 },
                 'attribute_map': {
                     'request_initiator_type': 'requestInitiatorType',
@@ -1418,6 +1487,7 @@ class ProtectionGroupApi(object):
                     'prune_excluded_source_ids': 'pruneExcludedSourceIds',
                     'prune_source_ids': 'pruneSourceIds',
                     'use_cached_data': 'useCachedData',
+                    'source_ids': 'sourceIds',
                 },
                 'location_map': {
                     'request_initiator_type': 'header',
@@ -1443,6 +1513,7 @@ class ProtectionGroupApi(object):
                     'prune_excluded_source_ids': 'query',
                     'prune_source_ids': 'query',
                     'use_cached_data': 'query',
+                    'source_ids': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -1456,6 +1527,7 @@ class ProtectionGroupApi(object):
                     'last_run_cloud_spin_status': 'csv',
                     'last_run_any_status': 'csv',
                     'tenant_ids': 'csv',
+                    'source_ids': 'csv',
                 }
             },
             headers_map={
@@ -1664,6 +1736,194 @@ class ProtectionGroupApi(object):
             callable=__get_protection_run_progress
         )
 
+        def __get_protection_run_stats(
+            self,
+            run_id,
+            **kwargs
+        ):
+            """Get the stats for a run.  # noqa: E501
+
+            Get the stats for a run.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_protection_run_stats(run_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                run_id (str): Specifies a unique run id of the Protection Run.
+
+            Keyword Args:
+                objects ([int]): Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which the run is to be returned.. [optional]
+                include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. If it's not specified, it is true by default.. [optional]
+                include_finished_tasks (bool): Specifies whether to return finished tasks. By default only active tasks are returned.. [optional]
+                start_time_usecs (int): Specifies the time after which the stats task starts in Unix epoch Timestamp(in microseconds).. [optional]
+                end_time_usecs (int): Specifies the time before which the stats task ends in Unix epoch Timestamp(in microseconds).. [optional]
+                max_tasks_num (int): Specifies the maximum number of tasks to return.. [optional]
+                exclude_object_details (bool): Specifies whether to return objects. By default all the task tree are returned.. [optional]
+                run_task_path (str): Specifies the task path of the run or object run. This is applicable only if stats of a protection group with one or more object is required. If provided this will be used to fetch stats details directly without looking actual task path of the object. Objects field is stil expected else it changes the response format.. [optional]
+                object_task_paths ([str]): Specifies the object level task path. This relates to the objectID. If provided this will take precedence over the objects, and will be used to fetch stats details directly without looking actuall task path of the object.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                GetProtectionRunStatsBody
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['run_id'] = \
+                run_id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_protection_run_stats = _Endpoint(
+            settings={
+                'response_type': (GetProtectionRunStatsBody,),
+                'auth': [
+                    'TokenHeader',
+                    'ClusterId',
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/runs/{runId}/stats',
+                'operation_id': 'get_protection_run_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'run_id',
+                    'objects',
+                    'tenant_ids',
+                    'include_tenants',
+                    'include_finished_tasks',
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'max_tasks_num',
+                    'exclude_object_details',
+                    'run_task_path',
+                    'object_task_paths',
+                ],
+                'required': [
+                    'run_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'run_id',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('run_id',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'run_id':
+                        (str,),
+                    'objects':
+                        ([int],),
+                    'tenant_ids':
+                        ([str],),
+                    'include_tenants':
+                        (bool,),
+                    'include_finished_tasks':
+                        (bool,),
+                    'start_time_usecs':
+                        (int,),
+                    'end_time_usecs':
+                        (int,),
+                    'max_tasks_num':
+                        (int,),
+                    'exclude_object_details':
+                        (bool,),
+                    'run_task_path':
+                        (str,),
+                    'object_task_paths':
+                        ([str],),
+                },
+                'attribute_map': {
+                    'run_id': 'runId',
+                    'objects': 'objects',
+                    'tenant_ids': 'tenantIds',
+                    'include_tenants': 'includeTenants',
+                    'include_finished_tasks': 'includeFinishedTasks',
+                    'start_time_usecs': 'startTimeUsecs',
+                    'end_time_usecs': 'endTimeUsecs',
+                    'max_tasks_num': 'maxTasksNum',
+                    'exclude_object_details': 'excludeObjectDetails',
+                    'run_task_path': 'runTaskPath',
+                    'object_task_paths': 'objectTaskPaths',
+                },
+                'location_map': {
+                    'run_id': 'path',
+                    'objects': 'query',
+                    'tenant_ids': 'query',
+                    'include_tenants': 'query',
+                    'include_finished_tasks': 'query',
+                    'start_time_usecs': 'query',
+                    'end_time_usecs': 'query',
+                    'max_tasks_num': 'query',
+                    'exclude_object_details': 'query',
+                    'run_task_path': 'query',
+                    'object_task_paths': 'query',
+                },
+                'collection_format_map': {
+                    'objects': 'csv',
+                    'tenant_ids': 'csv',
+                    'object_task_paths': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_protection_run_stats
+        )
+
         def __get_protection_runs(
             self,
             **kwargs
@@ -1679,9 +1939,9 @@ class ProtectionGroupApi(object):
 
 
             Keyword Args:
-                start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
-                end_time_usecs (int): Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
-                run_status ([str]): Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.. [optional]
+                start_time_usecs (int): Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
+                end_time_usecs (int): End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
+                run_status ([str]): Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1771,7 +2031,8 @@ class ProtectionGroupApi(object):
                         "SUCCEEDED": "Succeeded",
                         "SUCCEEDEDWITHWARNING": "SucceededWithWarning",
                         "ONHOLD": "OnHold",
-                        "FINALIZING": "Finalizing"
+                        "FINALIZING": "Finalizing",
+                        "SKIPPED": "Skipped"
                     },
                 },
                 'openapi_types': {
@@ -2283,6 +2544,7 @@ class ProtectionGroupApi(object):
 
             Keyword Args:
                 file_type (str): Specifies the downloaded type, i.e: success_files_list, default: success_files_list. [optional]
+                name (str): Specifies the name of the source being backed up. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2354,6 +2616,7 @@ class ProtectionGroupApi(object):
                     'run_id',
                     'object_id',
                     'file_type',
+                    'name',
                 ],
                 'required': [
                     'id',
@@ -2395,18 +2658,22 @@ class ProtectionGroupApi(object):
                         (str,),
                     'file_type':
                         (str,),
+                    'name':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
                     'object_id': 'objectId',
                     'file_type': 'fileType',
+                    'name': 'name',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
                     'object_id': 'path',
                     'file_type': 'query',
+                    'name': 'query',
                 },
                 'collection_format_map': {
                 }

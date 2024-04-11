@@ -62,6 +62,7 @@ class SecurityConfigAccountLockout(ModelNormal):
         },
 
         ('inactivity_time_days',): {
+            'inclusive_maximum': 365,
             'inclusive_minimum': 1,
         },
 

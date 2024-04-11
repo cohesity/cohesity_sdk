@@ -1,6 +1,6 @@
 # S3ConfigForIndexing
 
-S3 config for indexing in DMaaS.
+S3 config for indexing in DMaaS (AWS CE).
 
 ## Properties
 Name | Type | Description | Notes

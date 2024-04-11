@@ -70,7 +70,6 @@ class KmsConfigurationResponseParams(ModelNormal):
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
-            'NONE': "None",
         },
         ('usage_type',): {
             'None': None,

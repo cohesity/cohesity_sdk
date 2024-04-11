@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **absolute_path** | **str, none_type** | Specifies the absolute path to the file or folder. | 
 **destination_dir** | **str, none_type** | Specifies the destination directory where the file/directory was copied. | [optional] [readonly] 
 **is_directory** | **bool, none_type** | Specifies whether this is a directory or not. | [optional] 
+**is_view_file_recovery** | **bool, none_type** | Specify if the recovery is of type view file/folder. | [optional] 
 **messages** | **[str], none_type** | Specify error messages about the file during recovery. | [optional] [readonly] 
 **status** | **str, none_type** | Specifies the recovery status for this file or folder. | [optional] [readonly] 
 

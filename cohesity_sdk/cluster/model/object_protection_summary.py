@@ -73,6 +73,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -84,6 +85,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -162,18 +164,22 @@ class ObjectProtectionSummary(ModelComposed):
             'KHYPERVHOST': "kHypervHost",
             'KHOSTCLUSTER': "kHostCluster",
             'KCUSTOMPROPERTY': "kCustomProperty",
+            'KTENANT': "kTenant",
             'KSUBSCRIPTION': "kSubscription",
             'KRESOURCEGROUP': "kResourceGroup",
             'KSTORAGEACCOUNT': "kStorageAccount",
             'KSTORAGEKEY': "kStorageKey",
             'KSTORAGECONTAINER': "kStorageContainer",
             'KSTORAGEBLOB': "kStorageBlob",
+            'KAPPLICATIONSECURITYGROUP': "kApplicationSecurityGroup",
             'KNETWORKSECURITYGROUP': "kNetworkSecurityGroup",
             'KVIRTUALNETWORK': "kVirtualNetwork",
             'KSUBNET': "kSubnet",
             'KCOMPUTEOPTIONS': "kComputeOptions",
             'KSNAPSHOTMANAGERPERMIT': "kSnapshotManagerPermit",
             'KAVAILABILITYSET': "kAvailabilitySet",
+            'KSQLSERVER': "kSQLServer",
+            'KSQLDATABASE': "kSQLDatabase",
             'KOVIRTMANAGER': "kOVirtManager",
             'KHOST': "kHost",
             'KSTORAGEDOMAIN': "kStorageDomain",
@@ -194,14 +200,17 @@ class ObjectProtectionSummary(ModelComposed):
             'KAURORACLUSTER': "kAuroraCluster",
             'KACCOUNT': "kAccount",
             'KSUBTASKPERMIT': "kSubTaskPermit",
+            'KS3BUCKET': "kS3Bucket",
+            'KS3TAG': "kS3Tag",
+            'KKMSKEY': "kKmsKey",
+            'KRDSPOSTGRESDB': "kRDSPostgresDb",
+            'KAURORACLUSTERPOSTGRESDB': "kAuroraClusterPostgresDb",
             'KPROJECT': "kProject",
             'KLABEL': "kLabel",
             'KMETADATA': "kMetadata",
             'KVPCCONNECTOR': "kVPCConnector",
             'KPRISMCENTRAL': "kPrismCentral",
             'KOTHERHYPERVISORCLUSTER': "kOtherHypervisorCluster",
-            'KDFSGROUP': "kDfsGroup",
-            'KDFSTOPDIR': "kDfsTopDir",
             'KZONE': "kZone",
             'KMOUNTPOINT': "kMountPoint",
             'KSTORAGEARRAY': "kStorageArray",
@@ -209,6 +218,9 @@ class ObjectProtectionSummary(ModelComposed):
             'KCONTAINER': "kContainer",
             'KFILESYSTEM': "kFilesystem",
             'KFILESET': "kFileset",
+            'KPUREPROTECTIONGROUP': "kPureProtectionGroup",
+            'KVOLUMEGROUP': "kVolumeGroup",
+            'KSTORAGEPOOL': "kStoragePool",
             'KVIEWBOX': "kViewBox",
             'KVIEW': "kView",
             'KWINDOWSCLUSTER': "kWindowsCluster",
@@ -229,6 +241,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KINSTANCE': "kInstance",
             'KAAG': "kAAG",
             'KAAGROOTCONTAINER': "kAAGRootContainer",
+            'KAAGDATABASE': "kAAGDatabase",
             'KRACROOTCONTAINER': "kRACRootContainer",
             'KTABLESPACE': "kTableSpace",
             'KPDB': "kPDB",
@@ -245,6 +258,7 @@ class ObjectProtectionSummary(ModelComposed):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+            'KVOS': "kVOS",
         },
         ('protection_type',): {
             'None': None,
@@ -253,6 +267,9 @@ class ObjectProtectionSummary(ModelComposed):
             'KSNAPSHOTMANAGER': "kSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSS3': "kAwsS3",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURESQL': "kAzureSQL",
             'KFILE': "kFile",
             'KVOLUME': "kVolume",
         },
@@ -287,6 +304,7 @@ class ObjectProtectionSummary(ModelComposed):
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
+            'child_objects': ([ObjectSummary], none_type,),  # noqa: E501
             'global_id': (str, none_type,),  # noqa: E501
             'logical_size_bytes': (int, none_type,),  # noqa: E501
             'object_hash': (str, none_type,),  # noqa: E501
@@ -313,6 +331,7 @@ class ObjectProtectionSummary(ModelComposed):
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
+        'child_objects': 'childObjects',  # noqa: E501
         'global_id': 'globalId',  # noqa: E501
         'logical_size_bytes': 'logicalSizeBytes',  # noqa: E501
         'object_hash': 'objectHash',  # noqa: E501
@@ -380,6 +399,7 @@ class ObjectProtectionSummary(ModelComposed):
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
+            child_objects ([ObjectSummary], none_type): Specifies child object details.. [optional]  # noqa: E501
             global_id (str, none_type): Specifies the global id which is a unique identifier of the object.. [optional]  # noqa: E501
             logical_size_bytes (int, none_type): Specifies the logical size of object in bytes.. [optional]  # noqa: E501
             object_hash (str, none_type): Specifies the hash identifier of the object.. [optional]  # noqa: E501

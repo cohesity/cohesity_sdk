@@ -74,9 +74,9 @@ class LifecycleRuleFilter(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            '_and': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'prefix': (str, none_type,),  # noqa: E501
             'tag': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            '_and': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
     @cached_property
@@ -86,9 +86,9 @@ class LifecycleRuleFilter(ModelNormal):
 
 
     attribute_map = {
+        '_and': 'and',  # noqa: E501
         'prefix': 'prefix',  # noqa: E501
         'tag': 'tag',  # noqa: E501
-        '_and': 'and',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -138,9 +138,9 @@ class LifecycleRuleFilter(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            _and ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Lifecycle Rule Filter to apply a logical AND to two or more predicates. The Lifecycle Rule will apply to any object matching all of the predicates configured inside the AND operator.. [optional]  # noqa: E501
             prefix (str, none_type): Specifies the Prefix identifying one or more objects to which the rule applies.. [optional]  # noqa: E501
             tag ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the tag in the object's tag set to which the rule applies.. [optional]  # noqa: E501
-            _and ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Lifecycle Rule Filter to apply a logical AND to two or more predicates. The Lifecycle Rule will apply to any object matching all of the predicates configured inside the AND operator.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

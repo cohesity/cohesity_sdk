@@ -29,10 +29,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.common_source_registration_reponse_params_all_of import CommonSourceRegistrationReponseParamsAllOf
     from cohesity_sdk.cluster.model.connection_config import ConnectionConfig
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.registration_info import RegistrationInfo
     globals()['CommonSourceRegistrationReponseParamsAllOf'] = CommonSourceRegistrationReponseParamsAllOf
     globals()['ConnectionConfig'] = ConnectionConfig
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['Object'] = Object
     globals()['RegistrationInfo'] = RegistrationInfo
 
@@ -75,6 +77,7 @@ class CommonSourceRegistrationReponseParams(ModelComposed):
             'KAZURE': "kAzure",
             'KPHYSICAL': "kPhysical",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KNETAPP': "kNetapp",
             'KGENERICNAS': "kGenericNas",
@@ -124,6 +127,7 @@ class CommonSourceRegistrationReponseParams(ModelComposed):
         """
         lazy_import()
         return {
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
@@ -144,6 +148,7 @@ class CommonSourceRegistrationReponseParams(ModelComposed):
 
 
     attribute_map = {
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
@@ -205,6 +210,7 @@ class CommonSourceRegistrationReponseParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection source.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501

@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_time_series_stats**](StatsApi.md#get_time_series_stats) | **GET** /stats/time-series-stats | Get Time Series Stats.
 [**get_view_client_stats**](StatsApi.md#get_view_client_stats) | **GET** /stats/view-clients | Get Stats of View Clients
 [**get_views_stats**](StatsApi.md#get_views_stats) | **GET** /stats/views | Get Views Stats.
+[**get_workload_stats**](StatsApi.md#get_workload_stats) | **GET** /stats/workload-stats | Get Workload Stats Schema.
 
 
 # **get_cluster_storage_stats**
@@ -28,12 +29,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 
 # example, this endpoint has no required or optional parameters
@@ -88,12 +85,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 entity_type = "kCluster" # str | Specifies the entity type based on which the files stats are calculated. By default stats are calculated based on Cluster (optional)
 
@@ -153,12 +146,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 start_time_usecs = 1 # int | Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be counted. By default it is current time minus a day. (optional)
 end_time_usecs = 1 # int | Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be counted. By default it is current time. (optional)
@@ -224,12 +213,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 schema_name = "schemaName_example" # str | Specifies the schema name.
 metric_names = [
@@ -311,12 +296,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 metric = "kNumBytesRead" # str, none_type | Specifies the metric to which stats has to be sorted. (optional)
 num_top_view_clients = 1 # int, none_type | Specifies the number of view clients for which stats has to be computed. Specifying this field will return the Views sorted in the descending order on the metric specified. If specified, minimum value is 1. If not specified, all view clients will be returned. If metric is not specified, this parameter must also not be specified. (optional)
@@ -380,12 +361,8 @@ from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
 
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
+
+client = ClusterClient(cluster_vip)
 
 metric = "kNumBytesRead" # str, none_type | Specifies the metric to which stats has to be sorted. (optional)
 protocol = "kAny" # str, none_type | Specifies the protocol to sort. (optional)
@@ -415,6 +392,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ViewsStats**](ViewsStats.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_workload_stats**
+> WorkloadStatsSummary get_workload_stats()
+
+Get Workload Stats Schema.
+
+Get Workload Stats Schema. API will provide the high level information about different Workloads on Cohesity cluster along with their Entity Ids.
+
+### Example
+
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.workload_stats_summary import WorkloadStatsSummary
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+
+client = ClusterClient(cluster_vip)
+
+
+# example, this endpoint has no required or optional parameters
+try:
+	# Get Workload Stats Schema.
+	api_response = client.stats.get_workload_stats()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StatsApi->get_workload_stats: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WorkloadStatsSummary**](WorkloadStatsSummary.md)
 
 ### Authorization
 

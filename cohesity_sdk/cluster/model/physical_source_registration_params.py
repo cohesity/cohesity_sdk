@@ -68,6 +68,7 @@ class PhysicalSourceRegistrationParams(ModelNormal):
             'KSAPHANA': "kSapHana",
             'KOTHER': "kOther",
             'KHPUX': "kHPUX",
+            'KVOS': "kVOS",
         },
         ('physical_type',): {
             'None': None,

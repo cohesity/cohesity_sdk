@@ -75,10 +75,11 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
         """
         return {
             'base_dir': (str, none_type,),  # noqa: E501
-            'home_dir': (str, none_type,),  # noqa: E501
-            'is_clone': (bool, none_type,),  # noqa: E501
             'db_file_destination': (str, none_type,),  # noqa: E501
             'db_name': (str, none_type,),  # noqa: E501
+            'home_dir': (str, none_type,),  # noqa: E501
+            'is_clone': (bool, none_type,),  # noqa: E501
+            'is_disaster_recovery': (bool, none_type,),  # noqa: E501
             'is_granular_restore': (bool, none_type,),  # noqa: E501
             'is_recovery_validation': (bool, none_type,),  # noqa: E501
         }
@@ -91,10 +92,11 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
 
     attribute_map = {
         'base_dir': 'baseDir',  # noqa: E501
-        'home_dir': 'homeDir',  # noqa: E501
-        'is_clone': 'isClone',  # noqa: E501
         'db_file_destination': 'dbFileDestination',  # noqa: E501
         'db_name': 'dbName',  # noqa: E501
+        'home_dir': 'homeDir',  # noqa: E501
+        'is_clone': 'isClone',  # noqa: E501
+        'is_disaster_recovery': 'isDisasterRecovery',  # noqa: E501
         'is_granular_restore': 'isGranularRestore',  # noqa: E501
         'is_recovery_validation': 'isRecoveryValidation',  # noqa: E501
     }
@@ -111,13 +113,8 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, base_dir, home_dir, is_clone, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ConstructRestoreMetaInfoOracleParams - a model defined in OpenAPI
-
-        Args:
-            base_dir (str, none_type): Specifies the base directory of Oracle at destination.
-            home_dir (str, none_type): Specifies the home directory of Oracle at destination.
-            is_clone (bool, none_type): Specifies whether operation is clone or not
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -151,8 +148,12 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            base_dir (str, none_type): Specifies the base directory of Oracle at destination.. [optional]  # noqa: E501
             db_file_destination (str, none_type): Specifies the location to put the database files(datafiles, logfiles etc.). [optional]  # noqa: E501
             db_name (str, none_type): Specifies the name of the Oracle database that we restore to.. [optional]  # noqa: E501
+            home_dir (str, none_type): Specifies the home directory of Oracle at destination.. [optional]  # noqa: E501
+            is_clone (bool, none_type): Specifies whether operation is clone or not. [optional]  # noqa: E501
+            is_disaster_recovery (bool, none_type): Specifies whether the recovery is of type Disaster Recovery.. [optional]  # noqa: E501
             is_granular_restore (bool, none_type): Specifies whether the operation is granular restore or not.. [optional]  # noqa: E501
             is_recovery_validation (bool, none_type): Specifies whether the operation is recovery validation or not.. [optional]  # noqa: E501
         """
@@ -181,9 +182,6 @@ class ConstructRestoreMetaInfoOracleParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.base_dir = base_dir
-        self.home_dir = home_dir
-        self.is_clone = is_clone
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

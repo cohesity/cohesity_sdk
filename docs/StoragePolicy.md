@@ -5,6 +5,7 @@ Specifies the storage policy of a Storage Domain.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aes_encryption_mode** | **str, none_type** | Specifies the encryption mode for a Storage Domain. | [optional] 
 **app_marker_detection_enabled** | **bool, none_type** | Specifies whether app marker detection is enabled. When enabled, app markers will be removed from data and put in separate chunks. | [optional] 
 **cloud_spill_vault_id** | **int, none_type** | Specifies the vault id assigned for cloud spill for a Storage Domain. | [optional] 
 **compression_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies compression settings for a Storage Domain. | [optional] 

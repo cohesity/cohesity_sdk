@@ -58,6 +58,13 @@ class DataTieringTagObject(ModelNormal):
     """
 
     allowed_values = {
+        ('type',): {
+            'None': None,
+            'FILETYPETAG': "fileTypeTag",
+            'FILESIZETAG': "fileSizeTag",
+            'ACCESSTIMETAG': "accessTimeTag",
+            'MODTIMETAG': "modTimeTag",
+        },
     }
 
     validations = {

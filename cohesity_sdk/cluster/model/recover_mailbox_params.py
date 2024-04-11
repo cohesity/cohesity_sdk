@@ -82,6 +82,9 @@ class RecoverMailboxParams(ModelNormal):
             'objects': ([ObjectMailboxParam], none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'pst_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'skip_recover_archive_mailbox': (bool, none_type,),  # noqa: E501
+            'skip_recover_archive_recoverable_items': (bool, none_type,),  # noqa: E501
+            'skip_recover_recoverable_items': (bool, none_type,),  # noqa: E501
             'target_mailbox': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -95,6 +98,9 @@ class RecoverMailboxParams(ModelNormal):
         'objects': 'objects',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
         'pst_params': 'pstParams',  # noqa: E501
+        'skip_recover_archive_mailbox': 'skipRecoverArchiveMailbox',  # noqa: E501
+        'skip_recover_archive_recoverable_items': 'skipRecoverArchiveRecoverableItems',  # noqa: E501
+        'skip_recover_recoverable_items': 'skipRecoverRecoverableItems',  # noqa: E501
         'target_mailbox': 'targetMailbox',  # noqa: E501
     }
 
@@ -150,6 +156,9 @@ class RecoverMailboxParams(ModelNormal):
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering other Mailboxes if one of Mailbox failed to recover. Default value is false.. [optional]  # noqa: E501
             pst_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the PST conversion specific parameters. This should always be specified when need to convert selected items to PST.. [optional]  # noqa: E501
+            skip_recover_archive_mailbox (bool, none_type): Specifies whether to skip the recovery of the archive mailbox and/or items present in the archive mailbox. Default value is true. [optional]  # noqa: E501
+            skip_recover_archive_recoverable_items (bool, none_type): Specifies whether to skip the recovery of the Archive Recoverable Items present in the selected snapshot. Default value is true. [optional]  # noqa: E501
+            skip_recover_recoverable_items (bool, none_type): Specifies whether to skip the recovery of the Recoverable Items present in the selected snapshot. Default value is true. [optional]  # noqa: E501
             target_mailbox ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target Mailbox to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
         """
 

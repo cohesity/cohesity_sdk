@@ -80,7 +80,10 @@ class RecoverCassandraParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'snapshots': ([RecoverCassandraSnapshotParams], none_type,),  # noqa: E501
+            'is_live_table_restore': (bool, none_type,),  # noqa: E501
+            'is_system_keyspace_restore': (bool, none_type,),  # noqa: E501
             'log_restore_directory': (str, none_type,),  # noqa: E501
+            'recover_privileges': (bool, none_type,),  # noqa: E501
             'restart_at_usecs': (int, none_type,),  # noqa: E501
             'restart_command': (str, none_type,),  # noqa: E501
             'restart_immediately': (bool, none_type,),  # noqa: E501
@@ -99,7 +102,10 @@ class RecoverCassandraParamsAllOf(ModelNormal):
 
     attribute_map = {
         'snapshots': 'snapshots',  # noqa: E501
+        'is_live_table_restore': 'isLiveTableRestore',  # noqa: E501
+        'is_system_keyspace_restore': 'isSystemKeyspaceRestore',  # noqa: E501
         'log_restore_directory': 'logRestoreDirectory',  # noqa: E501
+        'recover_privileges': 'recoverPrivileges',  # noqa: E501
         'restart_at_usecs': 'restartAtUsecs',  # noqa: E501
         'restart_command': 'restartCommand',  # noqa: E501
         'restart_immediately': 'restartImmediately',  # noqa: E501
@@ -160,12 +166,15 @@ class RecoverCassandraParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            is_live_table_restore (bool, none_type): Specifies whether the current recovery operation is a live table restore operation.. [optional]  # noqa: E501
+            is_system_keyspace_restore (bool, none_type): Specifies whether the current recovery operation is a system keyspace restore operation.. [optional]  # noqa: E501
             log_restore_directory (str, none_type): Specifies the directory for restoring the logs.. [optional]  # noqa: E501
+            recover_privileges (bool, none_type): Specifies whether recover/skip roles and permissions.. [optional]  # noqa: E501
             restart_at_usecs (int, none_type): Specifies the time in Unix epoch timestamp in microseconds at which the Cassandra services are to be restarted.. [optional]  # noqa: E501
             restart_command (str, none_type): Specifies the command to restart Cassandra services after the point in time recovery.. [optional]  # noqa: E501
             restart_immediately (bool, none_type): Specifies whether to restart Cassandra services immediately after the point in time recovery.. [optional]  # noqa: E501
             restart_services (bool, none_type): Specifies whether to restart Cassandra services after the point in time recovery.. [optional]  # noqa: E501
-            restart_services_task_id (int, none_type): Specifies the Id of the task requiered to restart Cassandra services.. [optional]  # noqa: E501
+            restart_services_task_id (int, none_type): Specifies the Id of the task required to restart Cassandra services.. [optional]  # noqa: E501
             selected_data_centers ([str]): Selected Data centers for this cluster.. [optional]  # noqa: E501
             staging_directory_list ([str]): Specifies the directory on the primary to copy the files which are to be uploaded using destination sstableloader.. [optional]  # noqa: E501
             suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501

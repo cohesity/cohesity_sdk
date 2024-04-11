@@ -54,6 +54,14 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
     """
 
     allowed_values = {
+        ('tenant_region',): {
+            'None': None,
+            'DEFAULT': "Default",
+            'CHINA': "China",
+            'GERMANY': "Germany",
+            'USDOD': "UsDoD",
+            'USGCCHIGH': "UsGccHigh",
+        },
     }
 
     validations = {
@@ -78,6 +86,7 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
             'graph_endpoint': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
             'sub_region': (str, none_type,),  # noqa: E501
+            'tenant_region': (str, none_type,),  # noqa: E501
             'token_endpoint': (str, none_type,),  # noqa: E501
         }
 
@@ -92,6 +101,7 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
         'graph_endpoint': 'graphEndpoint',  # noqa: E501
         'region': 'region',  # noqa: E501
         'sub_region': 'subRegion',  # noqa: E501
+        'tenant_region': 'tenantRegion',  # noqa: E501
         'token_endpoint': 'tokenEndpoint',  # noqa: E501
     }
 
@@ -144,8 +154,9 @@ class GetM365SourceRegionEndpointResponseParams(ModelNormal):
 
             device_auth_endpoint (str, none_type): Specifies the device authorization endpoint to be used for Microsoft graph calls.. [optional]  # noqa: E501
             graph_endpoint (str, none_type): Specifies the Microsoft graph host url to be used for graph calls.. [optional]  # noqa: E501
-            region (str, none_type): Specifies the scope of the region.For eg NA for North America or AS for australia.. [optional]  # noqa: E501
-            sub_region (str, none_type): Specifies the scope of the sub region. For US Gcc it can be USG or USGov.. [optional]  # noqa: E501
+            region (str, none_type): Specifies the scope of the region. For eg NA for North America or AS for Australia. For Azure Gov cloud it can be USG or USGov.. [optional]  # noqa: E501
+            sub_region (str, none_type): Specifies the scope of the sub region.. [optional]  # noqa: E501
+            tenant_region (str, none_type): Specifies the tenant region for the given domain. This can be either Default(Commercial), GCC, GCC High or DoD. This is different from the Geo location which is represented by the region parameter.. [optional]  # noqa: E501
             token_endpoint (str, none_type): Specifies the token endpoint of the Microsoft365 source.. [optional]  # noqa: E501
         """
 

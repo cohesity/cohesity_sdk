@@ -30,6 +30,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.archival_aws_external_target_params_all_of import ArchivalAwsExternalTargetParamsAllOf
     from cohesity_sdk.cluster.model.aws_glacier_params import AwsGlacierParams
     from cohesity_sdk.cluster.model.aws_s3_glacier_deep_archive_params import AwsS3GlacierDeepArchiveParams
+    from cohesity_sdk.cluster.model.aws_s3_glacier_ir_params import AwsS3GlacierIRParams
     from cohesity_sdk.cluster.model.aws_s3_glacier_params import AwsS3GlacierParams
     from cohesity_sdk.cluster.model.aws_s3_intelligent_params import AwsS3IntelligentParams
     from cohesity_sdk.cluster.model.aws_s3_one_zone_ia_params import AwsS3OneZoneIAParams
@@ -39,6 +40,7 @@ def lazy_import():
     globals()['ArchivalAwsExternalTargetParamsAllOf'] = ArchivalAwsExternalTargetParamsAllOf
     globals()['AwsGlacierParams'] = AwsGlacierParams
     globals()['AwsS3GlacierDeepArchiveParams'] = AwsS3GlacierDeepArchiveParams
+    globals()['AwsS3GlacierIRParams'] = AwsS3GlacierIRParams
     globals()['AwsS3GlacierParams'] = AwsS3GlacierParams
     globals()['AwsS3IntelligentParams'] = AwsS3IntelligentParams
     globals()['AwsS3OneZoneIAParams'] = AwsS3OneZoneIAParams
@@ -83,6 +85,7 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
             'AMAZONS3GLACIER': "AmazonS3Glacier",
             'AMAZONS3GLACIERDEEPARCHIVE': "AmazonS3GlacierDeepArchive",
             'AMAZONGLACIER': "AmazonGlacier",
+            'AMAZONS3GLACIERIR': "AmazonS3GlacierIR",
         },
     }
 
@@ -113,6 +116,7 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
             'aws_glacier_params': (AwsGlacierParams,),  # noqa: E501
             'aws_s3_glacier_deep_archive_params': (AwsS3GlacierDeepArchiveParams,),  # noqa: E501
+            'aws_s3_glacier_ir_params': (AwsS3GlacierIRParams,),  # noqa: E501
             'aws_s3_glacier_params': (AwsS3GlacierParams,),  # noqa: E501
             'aws_s3_intelligent_params': (AwsS3IntelligentParams,),  # noqa: E501
             'aws_s3_one_zone_ia_params': (AwsS3OneZoneIAParams,),  # noqa: E501
@@ -135,6 +139,7 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
         'aws_glacier_params': 'awsGlacierParams',  # noqa: E501
         'aws_s3_glacier_deep_archive_params': 'awsS3GlacierDeepArchiveParams',  # noqa: E501
+        'aws_s3_glacier_ir_params': 'awsS3GlacierIRParams',  # noqa: E501
         'aws_s3_glacier_params': 'awsS3GlacierParams',  # noqa: E501
         'aws_s3_intelligent_params': 'awsS3IntelligentParams',  # noqa: E501
         'aws_s3_one_zone_ia_params': 'awsS3OneZoneIAParams',  # noqa: E501
@@ -200,6 +205,7 @@ class ArchivalAwsExternalTargetParams(ModelComposed):
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the AWS external target. [optional]  # noqa: E501
             aws_glacier_params (AwsGlacierParams): [optional]  # noqa: E501
             aws_s3_glacier_deep_archive_params (AwsS3GlacierDeepArchiveParams): [optional]  # noqa: E501
+            aws_s3_glacier_ir_params (AwsS3GlacierIRParams): [optional]  # noqa: E501
             aws_s3_glacier_params (AwsS3GlacierParams): [optional]  # noqa: E501
             aws_s3_intelligent_params (AwsS3IntelligentParams): [optional]  # noqa: E501
             aws_s3_one_zone_ia_params (AwsS3OneZoneIAParams): [optional]  # noqa: E501

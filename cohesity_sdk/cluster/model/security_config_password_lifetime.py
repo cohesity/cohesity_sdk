@@ -58,6 +58,7 @@ class SecurityConfigPasswordLifetime(ModelNormal):
 
     validations = {
         ('max_lifetime_days',): {
+            'inclusive_maximum': 365,
             'inclusive_minimum': 1,
         },
 

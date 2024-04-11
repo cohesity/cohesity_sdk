@@ -76,9 +76,9 @@ class AwsFleetInfo(ModelNormal):
         return {
             'iam_role': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
-            'vpc_id': (str, none_type,),  # noqa: E501
-            'subnet_id': (str, none_type,),  # noqa: E501
             'security_group_id': (str, none_type,),  # noqa: E501
+            'subnet_id': (str, none_type,),  # noqa: E501
+            'vpc_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,9 +90,9 @@ class AwsFleetInfo(ModelNormal):
     attribute_map = {
         'iam_role': 'iamRole',  # noqa: E501
         'region': 'region',  # noqa: E501
-        'vpc_id': 'vpcId',  # noqa: E501
-        'subnet_id': 'subnetId',  # noqa: E501
         'security_group_id': 'securityGroupId',  # noqa: E501
+        'subnet_id': 'subnetId',  # noqa: E501
+        'vpc_id': 'vpcId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -107,15 +107,15 @@ class AwsFleetInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, iam_role, region, vpc_id, subnet_id, security_group_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, iam_role, region, security_group_id, subnet_id, vpc_id, *args, **kwargs):  # noqa: E501
         """AwsFleetInfo - a model defined in OpenAPI
 
         Args:
             iam_role (str, none_type): Specifies the IAM role used to create instances.
             region (str, none_type): Specifies the Region of the CE cluster.
-            vpc_id (str, none_type): Specifies the VPC of the CE cluster.
-            subnet_id (str, none_type): Specifies the Subnet of the CE cluster.
             security_group_id (str, none_type): Specifies the security group Id.
+            subnet_id (str, none_type): Specifies the Subnet of the CE cluster.
+            vpc_id (str, none_type): Specifies the VPC of the CE cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -177,9 +177,9 @@ class AwsFleetInfo(ModelNormal):
 
         self.iam_role = iam_role
         self.region = region
-        self.vpc_id = vpc_id
-        self.subnet_id = subnet_id
         self.security_group_id = security_group_id
+        self.subnet_id = subnet_id
+        self.vpc_id = vpc_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

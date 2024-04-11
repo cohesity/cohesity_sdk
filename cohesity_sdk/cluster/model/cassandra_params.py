@@ -84,6 +84,8 @@ class CassandraParams(ModelNormal):
         return {
             'recover_cassandra_params': (RecoverCassandraParams,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
+            'continue_on_error': (bool, none_type,),  # noqa: E501
+            'is_multi_stage_restore': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +97,8 @@ class CassandraParams(ModelNormal):
     attribute_map = {
         'recover_cassandra_params': 'recoverCassandraParams',  # noqa: E501
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'continue_on_error': 'continueOnError',  # noqa: E501
+        'is_multi_stage_restore': 'isMultiStageRestore',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,6 +152,8 @@ class CassandraParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            continue_on_error (bool, none_type): Specifies whether to continue recovering other objects if one of Object failed to recover. Default value is false.. [optional]  # noqa: E501
+            is_multi_stage_restore (bool, none_type): Specifies whether the current recovery operation is a multi-stage restore operation.. [optional]  # noqa: E501
         """
 
         recovery_action = kwargs.get('recovery_action', "RecoverObjects")

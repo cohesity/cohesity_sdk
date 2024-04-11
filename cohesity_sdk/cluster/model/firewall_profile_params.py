@@ -86,13 +86,13 @@ class FirewallProfileParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
             'action': (str, none_type,),  # noqa: E501
-            'direction': (str, none_type,),  # noqa: E501
-            'ports': ([str], none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'subnets': ([str],),  # noqa: E501
+            'direction': (str, none_type,),  # noqa: E501
             'interface_groups': ([str],),  # noqa: E501
+            'ports': ([str], none_type,),  # noqa: E501
+            'subnets': ([str],),  # noqa: E501
         }
 
     @cached_property
@@ -102,13 +102,13 @@ class FirewallProfileParams(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'action': 'action',  # noqa: E501
-        'direction': 'direction',  # noqa: E501
-        'ports': 'ports',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'subnets': 'subnets',  # noqa: E501
+        'direction': 'direction',  # noqa: E501
         'interface_groups': 'interfaceGroups',  # noqa: E501
+        'ports': 'ports',  # noqa: E501
+        'subnets': 'subnets',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -123,12 +123,12 @@ class FirewallProfileParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, action, *args, **kwargs):  # noqa: E501
+    def __init__(self, action, name, *args, **kwargs):  # noqa: E501
         """FirewallProfileParams - a model defined in OpenAPI
 
         Args:
-            name (str, none_type): Specifies the name of the profile.
             action (str, none_type): Specifies the action.
+            name (str, none_type): Specifies the name of the profile.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -162,11 +162,11 @@ class FirewallProfileParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            direction (str, none_type): Specifies the packet direction settings.. [optional]  # noqa: E501
-            ports ([str], none_type): Specifies the port along with the protocol settings.. [optional]  # noqa: E501
             description (str, none_type): Specifies a description for the profile attachments.. [optional]  # noqa: E501
-            subnets ([str]): Specifies the subnets.. [optional]  # noqa: E501
+            direction (str, none_type): Specifies the packet direction settings.. [optional]  # noqa: E501
             interface_groups ([str]): Specifies the network interface groups.. [optional]  # noqa: E501
+            ports ([str], none_type): Specifies the port along with the protocol settings.. [optional]  # noqa: E501
+            subnets ([str]): Specifies the subnets.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,8 +193,8 @@ class FirewallProfileParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.name = name
         self.action = action
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

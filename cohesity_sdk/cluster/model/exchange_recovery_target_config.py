@@ -74,13 +74,13 @@ class ExchangeRecoveryTargetConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'database_name': (str, none_type,),  # noqa: E501
             'database_directory_location': (str, none_type,),  # noqa: E501
+            'database_name': (str, none_type,),  # noqa: E501
             'log_directory_location': (str, none_type,),  # noqa: E501
             'mount_database': (bool, none_type,),  # noqa: E501
             'restore_as_recovery_db': (bool, none_type,),  # noqa: E501
             'roll_forward_recovery': (bool, none_type,),  # noqa: E501
+            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,13 +90,13 @@ class ExchangeRecoveryTargetConfig(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
-        'database_name': 'databaseName',  # noqa: E501
         'database_directory_location': 'databaseDirectoryLocation',  # noqa: E501
+        'database_name': 'databaseName',  # noqa: E501
         'log_directory_location': 'logDirectoryLocation',  # noqa: E501
         'mount_database': 'mountDatabase',  # noqa: E501
         'restore_as_recovery_db': 'restoreAsRecoveryDB',  # noqa: E501
         'roll_forward_recovery': 'rollForwardRecovery',  # noqa: E501
+        'source': 'source',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,14 +111,8 @@ class ExchangeRecoveryTargetConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, source, database_name, database_directory_location, log_directory_location, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """ExchangeRecoveryTargetConfig - a model defined in OpenAPI
-
-        Args:
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the source to which the Exchange database will be recovered.
-            database_name (str, none_type): Specifies a new name for the restored database.
-            database_directory_location (str, none_type): Specifies the directory where to put the database data files. Missing directory will be automatically created.
-            log_directory_location (str, none_type): Specifies the directory where to put the database log files. Missing directory will be automatically created.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,9 +146,13 @@ class ExchangeRecoveryTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            database_directory_location (str, none_type): Specifies the directory where to put the database data files. Missing directory will be automatically created.. [optional]  # noqa: E501
+            database_name (str, none_type): Specifies a new name for the restored database.. [optional]  # noqa: E501
+            log_directory_location (str, none_type): Specifies the directory where to put the database log files. Missing directory will be automatically created.. [optional]  # noqa: E501
             mount_database (bool, none_type): Specifies whether to mount the database after successful recovery.. [optional]  # noqa: E501
             restore_as_recovery_db (bool, none_type): Specifies whether to restore the Database as Recovery database.. [optional]  # noqa: E501
             roll_forward_recovery (bool, none_type): Specifies whether to use the latest logs on Exchange Server to perform roll-forward recovery.. [optional]  # noqa: E501
+            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the source to which the Exchange database will be recovered.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,10 +179,6 @@ class ExchangeRecoveryTargetConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.source = source
-        self.database_name = database_name
-        self.database_directory_location = database_directory_location
-        self.log_directory_location = log_directory_location
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

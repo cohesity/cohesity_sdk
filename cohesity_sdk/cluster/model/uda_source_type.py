@@ -66,6 +66,7 @@ class UdaSourceType(ModelNormal):
             'KSAPSYBASEIQ': "kSapSybaseIQ",
             'KSAPASE': "kSapASE",
             'KPOSTGRESQL': "kPostgreSQL",
+            'KCOUCHBASEV2': "kCouchbaseV2",
         },
     }
 

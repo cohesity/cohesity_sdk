@@ -77,10 +77,6 @@ class Office365SourceRegistrationParams(ModelComposed):
     }
 
     validations = {
-        ('office365_service_account_credentials_list',): {
-            'min_items': 1,
-        },
-
     }
 
     additional_properties_type = None

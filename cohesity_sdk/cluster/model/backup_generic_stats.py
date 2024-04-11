@@ -79,12 +79,12 @@ class BackupGenericStats(ModelNormal):
         """
         lazy_import()
         return {
-            'num_errors': (int, none_type,),  # noqa: E501
-            'remaining_data_ingested': (int, none_type,),  # noqa: E501
             'data_ingested': (int, none_type,),  # noqa: E501
             'data_ingestion_rate': (int, none_type,),  # noqa: E501
-            'estimated_backup_time': (int, none_type,),  # noqa: E501
             'error_classes': ([ErrorClass], none_type,),  # noqa: E501
+            'estimated_backup_time': (int, none_type,),  # noqa: E501
+            'num_errors': (int, none_type,),  # noqa: E501
+            'remaining_data_ingested': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,12 +94,12 @@ class BackupGenericStats(ModelNormal):
 
 
     attribute_map = {
-        'num_errors': 'numErrors',  # noqa: E501
-        'remaining_data_ingested': 'remainingDataIngested',  # noqa: E501
         'data_ingested': 'dataIngested',  # noqa: E501
         'data_ingestion_rate': 'dataIngestionRate',  # noqa: E501
-        'estimated_backup_time': 'estimatedBackupTime',  # noqa: E501
         'error_classes': 'errorClasses',  # noqa: E501
+        'estimated_backup_time': 'estimatedBackupTime',  # noqa: E501
+        'num_errors': 'numErrors',  # noqa: E501
+        'remaining_data_ingested': 'remainingDataIngested',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -149,12 +149,12 @@ class BackupGenericStats(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            num_errors (int, none_type): Specifies the number of errors for this run.. [optional]  # noqa: E501
-            remaining_data_ingested (int, none_type): Specifies the amount of data which has to be ingested in bytes.. [optional]  # noqa: E501
             data_ingested (int, none_type): Specifies the amount of data which has been ingested in bytes.. [optional]  # noqa: E501
             data_ingestion_rate (int, none_type): Specifies the rate at which data is being ingested in bytes per minute.. [optional]  # noqa: E501
-            estimated_backup_time (int, none_type): Specifies the time in which backup should finish in minutes.. [optional]  # noqa: E501
             error_classes ([ErrorClass], none_type): Divides the errors into classes for better understanding for the user.. [optional]  # noqa: E501
+            estimated_backup_time (int, none_type): Specifies the time in which backup should finish in minutes.. [optional]  # noqa: E501
+            num_errors (int, none_type): Specifies the number of errors for this run.. [optional]  # noqa: E501
+            remaining_data_ingested (int, none_type): Specifies the amount of data which has to be ingested in bytes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -57,6 +57,8 @@ class McmClaimEntityType(ModelNormal):
         ('type',): {
             'RIGEL': "Rigel",
             'CLUSTER': "Cluster",
+            'COHESION': "Cohesion",
+            'IBMSTORAGEPROTECT': "IBMStorageProtect",
         },
     }
 

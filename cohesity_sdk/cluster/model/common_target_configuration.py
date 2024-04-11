@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.cancellation_timeout_params import CancellationTimeoutParams
+    from cohesity_sdk.cluster.model.log_retention import LogRetention
     from cohesity_sdk.cluster.model.retention import Retention
     from cohesity_sdk.cluster.model.target_schedule import TargetSchedule
+    globals()['CancellationTimeoutParams'] = CancellationTimeoutParams
+    globals()['LogRetention'] = LogRetention
     globals()['Retention'] = Retention
     globals()['TargetSchedule'] = TargetSchedule
 
@@ -60,6 +64,13 @@ class CommonTargetConfiguration(ModelNormal):
     """
 
     allowed_values = {
+        ('backup_run_type',): {
+            'None': None,
+            'REGULAR': "Regular",
+            'FULL': "Full",
+            'LOG': "Log",
+            'SYSTEM': "System",
+        },
     }
 
     validations = {
@@ -83,8 +94,11 @@ class CommonTargetConfiguration(ModelNormal):
         return {
             'retention': (Retention,),  # noqa: E501
             'schedule': (TargetSchedule,),  # noqa: E501
+            'backup_run_type': (str, none_type,),  # noqa: E501
             'config_id': (str, none_type,),  # noqa: E501
             'copy_on_run_success': (bool, none_type,),  # noqa: E501
+            'log_retention': (LogRetention,),  # noqa: E501
+            'run_timeouts': ([CancellationTimeoutParams], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -96,8 +110,11 @@ class CommonTargetConfiguration(ModelNormal):
     attribute_map = {
         'retention': 'retention',  # noqa: E501
         'schedule': 'schedule',  # noqa: E501
+        'backup_run_type': 'backupRunType',  # noqa: E501
         'config_id': 'configId',  # noqa: E501
         'copy_on_run_success': 'copyOnRunSuccess',  # noqa: E501
+        'log_retention': 'logRetention',  # noqa: E501
+        'run_timeouts': 'runTimeouts',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -151,8 +168,11 @@ class CommonTargetConfiguration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            backup_run_type (str, none_type): Specifies which type of run should be copied, if not set, all types of runs will be eligible for copying. If set, this will ensure that the first run of given type in the scheduled period will get copied. Currently, this can only be set to Full.. [optional]  # noqa: E501
             config_id (str, none_type): Specifies the unique identifier for the target getting added. This field need to be passed only when policies are being updated.. [optional]  # noqa: E501
             copy_on_run_success (bool, none_type): Specifies if Snapshots are copied from the first completely successful Protection Group Run or the first partially successful Protection Group Run occurring at the start of the replication schedule. <br> If true, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule that was completely successful i.e. Snapshots for all the Objects in the Protection Group were successfully captured. <br> If false, Snapshots are copied from the first Protection Group Run occurring at the start of the replication schedule, even if first Protection Group Run was not completely successful i.e. Snapshots were not captured for all Objects in the Protection Group.. [optional]  # noqa: E501
+            log_retention (LogRetention): [optional]  # noqa: E501
+            run_timeouts ([CancellationTimeoutParams], none_type): Specifies the replication/archival timeouts for different type of runs(kFull, kRegular etc.).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -32,11 +32,13 @@ def lazy_import():
     from cohesity_sdk.cluster.model.office365_outlook_protection_group_params import Office365OutlookProtectionGroupParams
     from cohesity_sdk.cluster.model.office365_protection_group_object_params import Office365ProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.office365_public_folders_protection_group_params import Office365PublicFoldersProtectionGroupParams
+    from cohesity_sdk.cluster.model.office365_share_point_protection_group_params import Office365SharePointProtectionGroupParams
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['Office365OneDriveProtectionGroupParams'] = Office365OneDriveProtectionGroupParams
     globals()['Office365OutlookProtectionGroupParams'] = Office365OutlookProtectionGroupParams
     globals()['Office365ProtectionGroupObjectParams'] = Office365ProtectionGroupObjectParams
     globals()['Office365PublicFoldersProtectionGroupParams'] = Office365PublicFoldersProtectionGroupParams
+    globals()['Office365SharePointProtectionGroupParams'] = Office365SharePointProtectionGroupParams
 
 
 class Office365ProtectionGroupParams(ModelNormal):
@@ -113,6 +115,7 @@ class Office365ProtectionGroupParams(ModelNormal):
             'one_drive_protection_type_params': (Office365OneDriveProtectionGroupParams,),  # noqa: E501
             'outlook_protection_type_params': (Office365OutlookProtectionGroupParams,),  # noqa: E501
             'public_folders_protection_type_params': (Office365PublicFoldersProtectionGroupParams,),  # noqa: E501
+            'share_point_protection_type_params': (Office365SharePointProtectionGroupParams,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
         }
@@ -131,6 +134,7 @@ class Office365ProtectionGroupParams(ModelNormal):
         'one_drive_protection_type_params': 'oneDriveProtectionTypeParams',  # noqa: E501
         'outlook_protection_type_params': 'outlookProtectionTypeParams',  # noqa: E501
         'public_folders_protection_type_params': 'publicFoldersProtectionTypeParams',  # noqa: E501
+        'share_point_protection_type_params': 'sharePointProtectionTypeParams',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
     }
@@ -191,6 +195,7 @@ class Office365ProtectionGroupParams(ModelNormal):
             one_drive_protection_type_params (Office365OneDriveProtectionGroupParams): [optional]  # noqa: E501
             outlook_protection_type_params (Office365OutlookProtectionGroupParams): [optional]  # noqa: E501
             public_folders_protection_type_params (Office365PublicFoldersProtectionGroupParams): [optional]  # noqa: E501
+            share_point_protection_type_params (Office365SharePointProtectionGroupParams): [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
         """

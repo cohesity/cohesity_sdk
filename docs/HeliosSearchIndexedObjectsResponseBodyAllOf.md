@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **hive_objects** | [**HeliosHiveObjects**](HeliosHiveObjects.md) |  | [optional] 
 **mongo_objects** | [**HeliosMongoObjects**](HeliosMongoObjects.md) |  | [optional] 
 **public_folder_items** | [**HeliosPublicFolderItems**](HeliosPublicFolderItems.md) |  | [optional] 
+**sfdc_records** | [**SfdcRecords**](SfdcRecords.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
