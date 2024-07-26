@@ -67,6 +67,9 @@ class UdaProtectionGroupParams(ModelNormal):
             'min_items': 1,
         },
 
+        ('exclude_object_ids',): {
+        },
+
     }
 
     additional_properties_type = None
@@ -89,6 +92,8 @@ class UdaProtectionGroupParams(ModelNormal):
             'source_id': (int, none_type,),  # noqa: E501
             'backup_job_arguments': ([KeyValuePair], none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
+            'et_log_backup': (bool, none_type,),  # noqa: E501
+            'exclude_object_ids': ([int], none_type,),  # noqa: E501
             'full_backup_args': (str, none_type,),  # noqa: E501
             'has_entity_support': (bool, none_type,),  # noqa: E501
             'incr_backup_args': (str, none_type,),  # noqa: E501
@@ -107,6 +112,8 @@ class UdaProtectionGroupParams(ModelNormal):
         'source_id': 'sourceId',  # noqa: E501
         'backup_job_arguments': 'backupJobArguments',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
+        'et_log_backup': 'etLogBackup',  # noqa: E501
+        'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'full_backup_args': 'fullBackupArgs',  # noqa: E501
         'has_entity_support': 'hasEntitySupport',  # noqa: E501
         'incr_backup_args': 'incrBackupArgs',  # noqa: E501
@@ -167,6 +174,8 @@ class UdaProtectionGroupParams(ModelNormal):
 
             backup_job_arguments ([KeyValuePair], none_type): Specifies the map of custom arguments to be supplied to the various backup scripts.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster. If not specified, the default value is taken as 1.. [optional] if omitted the server will use the default value of 1  # noqa: E501
+            et_log_backup (bool, none_type): Specifies whether this Protection Group is created from a source having externally triggered log backup support.. [optional]  # noqa: E501
+            exclude_object_ids ([int], none_type): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             full_backup_args (str, none_type): Specifies the custom arguments to be supplied to the full backup script when a full backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501
             has_entity_support (bool, none_type): Specifies whether this Protection Group is created from a source having entity support.. [optional]  # noqa: E501
             incr_backup_args (str, none_type): Specifies the custom arguments to be supplied to the incremental backup script when an incremental backup is enabled in the policy. This field is deprecated. Use backupJobArguments instead.. [optional]  # noqa: E501

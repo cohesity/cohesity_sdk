@@ -80,9 +80,9 @@ class NewViewFilesTargetParams(ModelNormal):
         lazy_import()
         return {
             'alternate_path': (str, none_type,),  # noqa: E501
+            'continue_on_error': (bool, none_type,),  # noqa: E501
             'overwrite_existing_file': (bool, none_type,),  # noqa: E501
             'preserve_file_attributes': (bool, none_type,),  # noqa: E501
-            'continue_on_error': (bool, none_type,),  # noqa: E501
             'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
@@ -94,9 +94,9 @@ class NewViewFilesTargetParams(ModelNormal):
 
     attribute_map = {
         'alternate_path': 'alternatePath',  # noqa: E501
+        'continue_on_error': 'continueOnError',  # noqa: E501
         'overwrite_existing_file': 'overwriteExistingFile',  # noqa: E501
         'preserve_file_attributes': 'preserveFileAttributes',  # noqa: E501
-        'continue_on_error': 'continueOnError',  # noqa: E501
         'vlan_config': 'vlanConfig',  # noqa: E501
     }
 
@@ -150,9 +150,9 @@ class NewViewFilesTargetParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            continue_on_error (bool, none_type): Specifies whether to continue recovering other files if one of the files fails to recover. Default value is false.. [optional]  # noqa: E501
             overwrite_existing_file (bool, none_type): Specifies whether to overwrite existing file/folder during recovery.. [optional]  # noqa: E501
             preserve_file_attributes (bool, none_type): Specifies whether to preserve file/folder attributes during recovery.. [optional]  # noqa: E501
-            continue_on_error (bool, none_type): Specifies whether to continue recovering other files if one of the files fails to recover. Default value is false.. [optional]  # noqa: E501
             vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 

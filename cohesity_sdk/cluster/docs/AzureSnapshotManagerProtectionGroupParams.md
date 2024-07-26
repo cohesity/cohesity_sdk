@@ -5,6 +5,7 @@ Specifies the parameters which are specific to Azure related Protection Groups u
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**cloud_pre_post_script** | [**CloudBackupScriptParams**](CloudBackupScriptParams.md) |  | [optional] 
 **exclude_object_ids** | **[int], none_type** | Specifies the objects to be excluded in the Protection Group. | [optional] 
 **exclude_vm_tag_ids** | **[[int]], none_type** | Array of arrays of VM Tag Ids that Specify VMs to Exclude. | [optional] 
 **objects** | [**[AzureSnapshotManagerProtectionGroupObjectParams]**](AzureSnapshotManagerProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | [optional] 

@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.s3_specific_params import S3SpecificParams
     from cohesity_sdk.cluster.model.standard_params import StandardParams
+    globals()['S3SpecificParams'] = S3SpecificParams
     globals()['StandardParams'] = StandardParams
 
 
@@ -86,6 +88,7 @@ class AwsSourceRegistrationParams(ModelNormal):
         lazy_import()
         return {
             'subscription_type': (str, none_type,),  # noqa: E501
+            's3_params': (S3SpecificParams,),  # noqa: E501
             'standard_params': (StandardParams,),  # noqa: E501
         }
 
@@ -97,6 +100,7 @@ class AwsSourceRegistrationParams(ModelNormal):
 
     attribute_map = {
         'subscription_type': 'subscriptionType',  # noqa: E501
+        's3_params': 's3Params',  # noqa: E501
         'standard_params': 'standardParams',  # noqa: E501
     }
 
@@ -150,6 +154,7 @@ class AwsSourceRegistrationParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            s3_params (S3SpecificParams): [optional]  # noqa: E501
             standard_params (StandardParams): [optional]  # noqa: E501
         """
 

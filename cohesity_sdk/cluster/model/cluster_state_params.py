@@ -59,6 +59,7 @@ class ClusterStateParams(ModelNormal):
 
     allowed_values = {
         ('operations',): {
+            'NONE': "None",
             'DESTROY': "Destroy",
             'UPGRADE': "Upgrade",
             'CLEAN': "Clean",
@@ -68,6 +69,9 @@ class ClusterStateParams(ModelNormal):
             'NODEADDITION': "NodeAddition",
             'UPLOADPACKAGEBYURL': "UploadPackageByUrl",
             'UPLOADPACKAGEANDUPGRADE': "UploadPackageAndUpgrade",
+            'BASEOSUPGRADE': "BaseOSUpgrade",
+            'SERVICERESTART': "ServiceRestart",
+            'SYSTEMSERVICERESTART': "SystemServiceRestart",
         },
     }
 
@@ -163,7 +167,7 @@ class ClusterStateParams(ModelNormal):
             cluster_id (int): Specifies the id of the cluster.. [optional]  # noqa: E501
             cluster_incarnation_id (int): Specifies the incarnation id of the cluster.. [optional]  # noqa: E501
             name (str): Specifies the name of the cluster.. [optional]  # noqa: E501
-            operations ([str]): Specifies the operations running on the cluster. 'Destroy' indicates that the cluster is currently being destroyed. 'Upgrade' indicates that the cluster is currently being upgraded. 'Clean' indicates that the cluster is being cleaned. 'NodeRemoval' indicates that a node is being removed from the cluster. 'DiskRemoval' indicates that a disk is being removed from the cluster. 'DiskAddition' indicates that a disk is being added tos the cluster. 'UploadPackageByUrl' indicates that a package is being uploaded using a URL. 'UploadPackageAndUpgrade' indicates package upload by URL and upgrade operation.. [optional]  # noqa: E501
+            operations ([str]): Specifies the operations running on the cluster. 'None' indicates that there are no operations currently running on the cluster. 'Destroy' indicates that the cluster is currently being destroyed. 'Upgrade' indicates that the cluster is currently being upgraded. 'Clean' indicates that the cluster is being cleaned. 'NodeRemoval' indicates that a node is being removed from the cluster. 'DiskRemoval' indicates that a disk is being removed from the cluster. 'DiskAddition' indicates that a disk is being added tos the cluster. 'UploadPackageByUrl' indicates that a package is being uploaded using a URL. 'UploadPackageAndUpgrade' indicates package upload by URL and upgrade operation. 'BaseOSUpgrade' indicates that the BaseOSUpgrade operation on the cluster is set. 'ServiceRestart' indicates that the services on the Cluster are currently being restarted. 'SystemServiceRestart' indicates that system services on the Cluster are currently being restarted.. [optional]  # noqa: E501
             software_version (str): Specifies the software version of the cluster.. [optional]  # noqa: E501
             system_apps ([SystemAppStatusParams]): Specifies the details of each system app state on the cluster.. [optional]  # noqa: E501
         """

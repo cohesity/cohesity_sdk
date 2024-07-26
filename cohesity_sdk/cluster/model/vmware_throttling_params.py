@@ -75,6 +75,7 @@ class VmwareThrottlingParams(ModelNormal):
         """
         return {
             'active_task_latency_threshold_msecs': (int, none_type,),  # noqa: E501
+            'max_concurrent_backups': (int, none_type,),  # noqa: E501
             'max_concurrent_streams': (int, none_type,),  # noqa: E501
             'new_task_latency_threshold_msecs': (int, none_type,),  # noqa: E501
         }
@@ -87,6 +88,7 @@ class VmwareThrottlingParams(ModelNormal):
 
     attribute_map = {
         'active_task_latency_threshold_msecs': 'activeTaskLatencyThresholdMsecs',  # noqa: E501
+        'max_concurrent_backups': 'maxConcurrentBackups',  # noqa: E501
         'max_concurrent_streams': 'maxConcurrentStreams',  # noqa: E501
         'new_task_latency_threshold_msecs': 'newTaskLatencyThresholdMsecs',  # noqa: E501
     }
@@ -139,6 +141,7 @@ class VmwareThrottlingParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             active_task_latency_threshold_msecs (int, none_type): If the latency of a datastore is above this value, then an existing backup task that uses the datastore will start getting throttled.. [optional]  # noqa: E501
+            max_concurrent_backups (int, none_type): Specifies the number of VMs of a vCenter that can be backed up concurrently.. [optional]  # noqa: E501
             max_concurrent_streams (int, none_type): If this value is > 0 and the number of streams concurrently active on a datastore is equal to it, then any further requests to access the datastore would be denied until the number of active streams reduces. This applies for all the datastores in the specified host.. [optional]  # noqa: E501
             new_task_latency_threshold_msecs (int, none_type): If the latency of a datastore is above this value, then a new backup task that uses the datastore won't be started.. [optional]  # noqa: E501
         """

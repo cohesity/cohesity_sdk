@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **hdfs_params** | [**HdfsProtectionGroupParams**](HdfsProtectionGroupParams.md) |  | [optional] 
 **hive_params** | [**NoSqlProtectionGroupParams**](NoSqlProtectionGroupParams.md) |  | [optional] 
 **hyperv_params** | [**HyperVProtectionGroupParams**](HyperVProtectionGroupParams.md) |  | [optional] 
+**ibm_flash_system_params** | [**IbmFlashSystemProtectionGroupParams**](IbmFlashSystemProtectionGroupParams.md) |  | [optional] 
 **isilon_params** | [**IsilonProtectionGroupParams**](IsilonProtectionGroupParams.md) |  | [optional] 
 **kubernetes_params** | [**KubernetesProtectionGroupParams**](KubernetesProtectionGroupParams.md) |  | [optional] 
 **kvm_params** | [**KvmProtectionGroupParams**](KvmProtectionGroupParams.md) |  | [optional] 

@@ -70,6 +70,7 @@ class HeliosCommonSearchIndexedObjectsResponseParams(ModelNormal):
             'HDFSOBJECTS': "HDFSObjects",
             'EXCHANGEOBJECTS': "ExchangeObjects",
             'PUBLICFOLDERS': "PublicFolders",
+            'GROUPSOBJECTS': "GroupsObjects",
             'TEAMSOBJECTS': "TeamsObjects",
             'SHAREPOINTOBJECTS': "SharepointObjects",
             'ONEDRIVEOBJECTS': "OneDriveObjects",

@@ -103,7 +103,7 @@ class HeliosOnPremApi(object):
                 'response_type': (HeliosOnPremConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/helios-onprem/config',
@@ -217,7 +217,7 @@ class HeliosOnPremApi(object):
                 'response_type': (HeliosOnPremConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/helios-onprem/config',

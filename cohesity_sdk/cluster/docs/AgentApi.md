@@ -18,6 +18,7 @@ Create a schedule based agent upgrade task.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.agent_upgrade_task_state import AgentUpgradeTaskState
@@ -33,6 +34,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = CreateUpgradeTaskRequest(
         agent_ids=[
@@ -67,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -92,6 +94,7 @@ Download agent for different hosts.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -106,6 +109,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = DownloadAgentRequestParams(
         aix_params=AixAgentParams(
@@ -124,6 +128,9 @@ body = DownloadAgentRequestParams(
         ),
         sap_oracle_params=SapOracleAgentParams(
             package_type="kScript",
+        ),
+        vmware_cdp_filter_params=VMWareCDPFilterParams(
+            esxi_version="esxi_version_example",
         ),
     ) # DownloadAgentRequestParams | Specifies agent details.
 
@@ -149,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -174,6 +181,7 @@ Get the list of agent upgrade tasks.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -188,6 +196,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 ids = [
         1,
@@ -222,7 +231,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -247,6 +256,7 @@ Perform actions on an agent upgrade task.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
@@ -262,6 +272,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = AgentUpgradeTaskActionRequest(
         action="Retry",
@@ -290,7 +301,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

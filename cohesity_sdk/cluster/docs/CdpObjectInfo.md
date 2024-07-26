@@ -5,6 +5,7 @@ Specifies the CDP related information for a given object. This field will only b
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**allow_re_enable_cdp** | **bool, none_type** | Specifies if re-enabling CDP is allowed or not through UI without any job or policy update through API. | [optional] 
 **cdp_enabled** | **bool, none_type** | Specifies whether CDP is currently active or not. CDP might have been active on this object before, but it might not be anymore. | [optional] 
 **last_run_info** | [**CdpObjectLastRunInfo**](CdpObjectLastRunInfo.md) |  | [optional] 
 **protection_group_id** | **str, none_type** | Specifies the protection group id to which this CDP object belongs. | [optional] [readonly] 

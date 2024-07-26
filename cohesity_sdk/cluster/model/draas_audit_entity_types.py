@@ -59,6 +59,7 @@ class DraasAuditEntityTypes(ModelNormal):
             'DRPLAN': "DRPlan",
             'SITE': "Site",
             'SOURCE': "Source",
+            'APPLICATION': "Application",
         },
     }
 

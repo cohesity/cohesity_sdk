@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**child_objects** | [**[ObjectSummary], none_type**](ObjectSummary.md) | Specifies child object details. | [optional] 
 **global_id** | **str, none_type** | Specifies the global id which is a unique identifier of the object. | [optional] 
 **logical_size_bytes** | **int, none_type** | Specifies the logical size of object in bytes. | [optional] 
 **object_hash** | **str, none_type** | Specifies the hash identifier of the object. | [optional] 

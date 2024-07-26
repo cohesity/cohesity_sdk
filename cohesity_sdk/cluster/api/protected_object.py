@@ -113,7 +113,7 @@ class ProtectedObjectApi(object):
                 'response_type': (ProtectedObjectActionResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protected-objects/actions',
@@ -236,7 +236,7 @@ class ProtectedObjectApi(object):
                 'response_type': (CreateProtectedObjectsResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protected-objects',
@@ -267,7 +267,8 @@ class ProtectedObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                 },
                 'openapi_types': {
@@ -374,7 +375,7 @@ class ProtectedObjectApi(object):
                 'response_type': (GetProtectedObjectResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protected-objects/{id}',
@@ -407,7 +408,8 @@ class ProtectedObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                 },
                 'openapi_types': {

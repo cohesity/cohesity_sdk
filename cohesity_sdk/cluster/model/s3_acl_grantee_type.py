@@ -56,6 +56,7 @@ class S3AclGranteeType(ModelNormal):
     allowed_values = {
         ('enum',): {
             'REGISTEREDUSER': "RegisteredUser",
+            'GROUP': "Group",
         },
     }
 
@@ -137,7 +138,7 @@ class S3AclGranteeType(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            enum (str): Specifies S3 Grantee Type.. [optional] if omitted the server will use the default value of "RegisteredUser"  # noqa: E501
+            enum (str): Specifies S3 Grantee Type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

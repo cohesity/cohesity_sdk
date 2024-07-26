@@ -66,6 +66,7 @@ class SnapshotsSummary(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
         ('ownership_context',): {
             'None': None,
@@ -78,6 +79,7 @@ class SnapshotsSummary(ModelNormal):
             'ARCHIVAL': "Archival",
             'RPAASARCHIVAL': "RpaasArchival",
             'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
+            'REMOTE': "Remote",
         },
     }
 

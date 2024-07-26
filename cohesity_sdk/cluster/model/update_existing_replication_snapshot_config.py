@@ -84,6 +84,7 @@ class UpdateExistingReplicationSnapshotConfig(ModelNormal):
             'days_to_keep': (int, none_type,),  # noqa: E501
             'delete_snapshot': (bool, none_type,),  # noqa: E501
             'enable_legal_hold': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'resync': (bool, none_type,),  # noqa: E501
         }
 
@@ -99,6 +100,7 @@ class UpdateExistingReplicationSnapshotConfig(ModelNormal):
         'days_to_keep': 'daysToKeep',  # noqa: E501
         'delete_snapshot': 'deleteSnapshot',  # noqa: E501
         'enable_legal_hold': 'enableLegalHold',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'resync': 'resync',  # noqa: E501
     }
 
@@ -156,6 +158,7 @@ class UpdateExistingReplicationSnapshotConfig(ModelNormal):
             days_to_keep (int, none_type): Specifies number of days to retain the snapshots. If positive, then this value is added to exisiting expiry time thereby increasing  the retention period of the snapshot. Conversly, if this value is negative, then value is subtracted to existing expiry time thereby decreasing the retention period of the snaphot. Here, by this operation if expiry time goes below current time then snapshot is immediately deleted.. [optional]  # noqa: E501
             delete_snapshot (bool, none_type): Specifies whether to delete the snapshot. When this is set to true, all other params will be ignored.. [optional]  # noqa: E501
             enable_legal_hold (bool, none_type): Specifies whether to retain the snapshot for legal purpose. If set to true, the snapshots cannot be deleted until the retention period. Note that using this option may cause the Cluster to run out of space. If set to false explicitly, the hold is removed, and the snapshots will expire as specified in the policy of the Protection Group. If this field is not specified, there is no change to the hold of the run. This field can be set only by a User having Data Security Role.. [optional]  # noqa: E501
+            name (str, none_type): Specifies the cluster name of the replication cluster.. [optional]  # noqa: E501
             resync (bool, none_type): Specifies whether to retry the replication operation in case if earlier attempt failed. If not specified or set to false, replication is not retried.. [optional]  # noqa: E501
         """
 

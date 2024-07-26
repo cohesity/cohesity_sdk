@@ -72,12 +72,18 @@ class CommonRecoveryResponseParams(ModelNormal):
             'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
+            'RECOVERS3BUCKETS': "RecoverS3Buckets",
+            'RECOVERRDSPOSTGRES': "RecoverRDSPostgres",
+            'RECOVERAZURESQL': "RecoverAzureSQL",
             'RECOVERAPPS': "RecoverApps",
+            'CLONEAPPS': "CloneApps",
             'RECOVERNASVOLUME': "RecoverNasVolume",
             'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
             'RECOVERSYSTEM': "RecoverSystem",
+            'RECOVEREXCHANGEDBS': "RecoverExchangeDbs",
             'CLONEAPPVIEW': "CloneAppView",
             'RECOVERSANVOLUMES': "RecoverSanVolumes",
+            'RECOVERSANGROUP': "RecoverSanGroup",
             'RECOVERMAILBOX': "RecoverMailbox",
             'RECOVERONEDRIVE': "RecoverOneDrive",
             'RECOVERSHAREPOINT': "RecoverSharePoint",
@@ -85,12 +91,19 @@ class CommonRecoveryResponseParams(ModelNormal):
             'RECOVERMSGROUP': "RecoverMsGroup",
             'RECOVERMSTEAM': "RecoverMsTeam",
             'CONVERTTOPST': "ConvertToPst",
+            'DOWNLOADCHATS': "DownloadChats",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
             'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
             'RECOVERSFDCORG': "RecoverSfdcOrg",
             'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
+            'CLONEVMS': "CloneVMs",
+            'CLONEVIEW': "CloneView",
+            'CLONEREFRESHAPP': "CloneRefreshApp",
+            'CLONEVMSTOVIEW': "CloneVMsToView",
+            'CONVERTANDDEPLOYVMS': "ConvertAndDeployVMs",
+            'DEPLOYVMS': "DeployVMs",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -108,6 +121,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -137,6 +151,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
         ('tear_down_status',): {
             'None': None,
@@ -287,7 +302,7 @@ class CommonRecoveryResponseParams(ModelNormal):
             retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
             snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             tear_down_message (str, none_type): Specifies the error message about the tear down operation if it fails.. [optional]  # noqa: E501
             tear_down_status (str, none_type): Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.. [optional]  # noqa: E501
         """

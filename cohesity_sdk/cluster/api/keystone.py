@@ -111,7 +111,7 @@ class KeystoneApi(object):
                 'response_type': (Keystone,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/keystones',
@@ -237,7 +237,7 @@ class KeystoneApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/keystones/{id}',
@@ -362,7 +362,7 @@ class KeystoneApi(object):
                 'response_type': (Keystones,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/keystones',
@@ -501,7 +501,7 @@ class KeystoneApi(object):
                 'response_type': (Keystone,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/keystones/{id}',
@@ -626,7 +626,7 @@ class KeystoneApi(object):
                 'response_type': (Keystone,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/keystones/{id}',

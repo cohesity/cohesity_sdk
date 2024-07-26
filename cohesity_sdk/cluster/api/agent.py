@@ -113,7 +113,7 @@ class AgentApi(object):
                 'response_type': (AgentUpgradeTaskState,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/upgrade-tasks',
@@ -235,7 +235,7 @@ class AgentApi(object):
                 'response_type': (file_type,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/download',
@@ -355,7 +355,7 @@ class AgentApi(object):
                 'response_type': (AgentUpgradeTaskStates,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/upgrade-tasks',
@@ -486,7 +486,7 @@ class AgentApi(object):
                 'response_type': (AgentUpgradeTaskActionObject,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/agents/upgrade-tasks/actions',

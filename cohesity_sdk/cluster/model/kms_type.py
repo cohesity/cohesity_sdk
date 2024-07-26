@@ -58,7 +58,6 @@ class KMSType(ModelNormal):
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
-            'NONE': "None",
         },
     }
 

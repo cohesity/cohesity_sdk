@@ -73,6 +73,7 @@ class ObjectStatsInfo(ModelComposed):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -84,6 +85,7 @@ class ObjectStatsInfo(ModelComposed):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -123,11 +125,11 @@ class ObjectStatsInfo(ModelComposed):
         """
         lazy_import()
         return {
+            'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'environment': (str, none_type,),  # noqa: E501
             'backup_generic_stats': (BackupGenericStats,),  # noqa: E501
             'nas_stats': (BackupNasStats,),  # noqa: E501
             'failed_attempts': ([StatsTaskInfo], none_type,),  # noqa: E501
@@ -140,11 +142,11 @@ class ObjectStatsInfo(ModelComposed):
 
 
     attribute_map = {
+        'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
-        'environment': 'environment',  # noqa: E501
         'backup_generic_stats': 'backupGenericStats',  # noqa: E501
         'nas_stats': 'nasStats',  # noqa: E501
         'failed_attempts': 'failedAttempts',  # noqa: E501
@@ -198,11 +200,11 @@ class ObjectStatsInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies registered source id to which object belongs.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies registered source name to which object belongs.. [optional]  # noqa: E501
-            environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             backup_generic_stats (BackupGenericStats): [optional]  # noqa: E501
             nas_stats (BackupNasStats): [optional]  # noqa: E501
             failed_attempts ([StatsTaskInfo], none_type): Specifies stats for failed attempts of this object.. [optional]  # noqa: E501

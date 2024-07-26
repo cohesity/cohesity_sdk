@@ -27,10 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.data_tiering_tag_object import DataTieringTagObject
     from cohesity_sdk.cluster.model.downtiering_file_age_policy import DowntieringFileAgePolicy
     from cohesity_sdk.cluster.model.downtiering_target import DowntieringTarget
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.cluster.model.retention import Retention
+    globals()['DataTieringTagObject'] = DataTieringTagObject
     globals()['DowntieringFileAgePolicy'] = DowntieringFileAgePolicy
     globals()['DowntieringTarget'] = DowntieringTarget
     globals()['IndexingPolicy'] = IndexingPolicy
@@ -98,6 +100,7 @@ class DowntieringPolicyAllOf(ModelNormal):
             'qos_policy': (str, none_type,),  # noqa: E501
             'retention': (Retention,),  # noqa: E501
             'skip_back_symlink': (bool, none_type,),  # noqa: E501
+            'tags_info': ([DataTieringTagObject], none_type,),  # noqa: E501
             'target': (DowntieringTarget,),  # noqa: E501
             'tiering_goal': (int, none_type,),  # noqa: E501
         }
@@ -115,6 +118,7 @@ class DowntieringPolicyAllOf(ModelNormal):
         'qos_policy': 'qosPolicy',  # noqa: E501
         'retention': 'retention',  # noqa: E501
         'skip_back_symlink': 'skipBackSymlink',  # noqa: E501
+        'tags_info': 'tagsInfo',  # noqa: E501
         'target': 'target',  # noqa: E501
         'tiering_goal': 'tieringGoal',  # noqa: E501
     }
@@ -172,6 +176,7 @@ class DowntieringPolicyAllOf(ModelNormal):
             qos_policy (str, none_type): Specifies whether the data tiering task will be written to HDD or SSD.. [optional]  # noqa: E501
             retention (Retention): [optional]  # noqa: E501
             skip_back_symlink (bool, none_type): Specifies whether to create a symlink for the migrated data from source to target.. [optional] if omitted the server will use the default value of True  # noqa: E501
+            tags_info ([DataTieringTagObject], none_type): Array of Tag objects used to represent different file based policies. [optional]  # noqa: E501
             target (DowntieringTarget): [optional]  # noqa: E501
             tiering_goal (int, none_type): Specifies the maximum amount of data that should be present on source after downtiering.. [optional]  # noqa: E501
         """

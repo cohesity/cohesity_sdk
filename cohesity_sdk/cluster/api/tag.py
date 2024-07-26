@@ -109,7 +109,7 @@ class TagApi(object):
                 'response_type': (Tag,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tags',
@@ -231,7 +231,7 @@ class TagApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tags/{id}',
@@ -359,7 +359,7 @@ class TagApi(object):
                 'response_type': (Tag,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tags/{id}',
@@ -488,7 +488,7 @@ class TagApi(object):
                 'response_type': (GetTagsResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tags',
@@ -640,7 +640,7 @@ class TagApi(object):
                 'response_type': (Tag,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/tags/{id}',

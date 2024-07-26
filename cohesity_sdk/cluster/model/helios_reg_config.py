@@ -62,6 +62,8 @@ class HeliosRegConfig(ModelNormal):
             'None': None,
             'RIGEL': "Rigel",
             'CLUSTER': "Cluster",
+            'COHESION': "Cohesion",
+            'IBMSTORAGEPROTECT': "IBMStorageProtect",
         },
     }
 

@@ -30,10 +30,12 @@ def lazy_import():
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     from cohesity_sdk.cluster.model.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
     from cohesity_sdk.cluster.model.office365_object_protection_object_params import Office365ObjectProtectionObjectParams
+    from cohesity_sdk.cluster.model.office365_preservation_hold_library_params import Office365PreservationHoldLibraryParams
     from cohesity_sdk.cluster.model.office365_user_one_drive_object_protection_params_all_of import Office365UserOneDriveObjectProtectionParamsAllOf
     globals()['IndexingPolicy'] = IndexingPolicy
     globals()['Office365ObjectProtectionCommonParams'] = Office365ObjectProtectionCommonParams
     globals()['Office365ObjectProtectionObjectParams'] = Office365ObjectProtectionObjectParams
+    globals()['Office365PreservationHoldLibraryParams'] = Office365PreservationHoldLibraryParams
     globals()['Office365UserOneDriveObjectProtectionParamsAllOf'] = Office365UserOneDriveObjectProtectionParamsAllOf
 
 
@@ -94,6 +96,7 @@ class Office365UserOneDriveObjectProtectionParams(ModelComposed):
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
             'exclude_folders': ([str], none_type,),  # noqa: E501
+            'preservation_hold_library_params': (Office365PreservationHoldLibraryParams,),  # noqa: E501
         }
 
     @cached_property
@@ -108,6 +111,7 @@ class Office365UserOneDriveObjectProtectionParams(ModelComposed):
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
         'exclude_folders': 'excludeFolders',  # noqa: E501
+        'preservation_hold_library_params': 'preservationHoldLibraryParams',  # noqa: E501
     }
 
     required_properties = set([
@@ -165,6 +169,7 @@ class Office365UserOneDriveObjectProtectionParams(ModelComposed):
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
             exclude_folders ([str], none_type): Specifies filters to match OneDrive folders which should be excluded when backing up office365 onedrive source. Two kinds of filters are supported. a) prefix which always starts with '/'. b) posix which always starts with empty quotes(''). Regular expressions are not supported. If not specified, all the OneDrive will be protected.. [optional]  # noqa: E501
+            preservation_hold_library_params (Office365PreservationHoldLibraryParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

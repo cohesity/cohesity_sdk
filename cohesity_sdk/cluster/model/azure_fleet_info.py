@@ -74,14 +74,14 @@ class AzureFleetInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'client_id': (str, none_type,),  # noqa: E501
-            'region': (str, none_type,),  # noqa: E501
-            'vnet_name': (str, none_type,),  # noqa: E501
-            'subnet_name': (str, none_type,),  # noqa: E501
             'app_security_group_name': (str, none_type,),  # noqa: E501
-            'proximity_placement_group_name': (str, none_type,),  # noqa: E501
             'availability_set_name': (str, none_type,),  # noqa: E501
+            'client_id': (str, none_type,),  # noqa: E501
+            'proximity_placement_group_name': (str, none_type,),  # noqa: E501
+            'region': (str, none_type,),  # noqa: E501
             'resource_group_name': (str, none_type,),  # noqa: E501
+            'subnet_name': (str, none_type,),  # noqa: E501
+            'vnet_name': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -91,14 +91,14 @@ class AzureFleetInfo(ModelNormal):
 
 
     attribute_map = {
-        'client_id': 'clientId',  # noqa: E501
-        'region': 'region',  # noqa: E501
-        'vnet_name': 'vnetName',  # noqa: E501
-        'subnet_name': 'subnetName',  # noqa: E501
         'app_security_group_name': 'appSecurityGroupName',  # noqa: E501
-        'proximity_placement_group_name': 'proximityPlacementGroupName',  # noqa: E501
         'availability_set_name': 'availabilitySetName',  # noqa: E501
+        'client_id': 'clientId',  # noqa: E501
+        'proximity_placement_group_name': 'proximityPlacementGroupName',  # noqa: E501
+        'region': 'region',  # noqa: E501
         'resource_group_name': 'resourceGroupName',  # noqa: E501
+        'subnet_name': 'subnetName',  # noqa: E501
+        'vnet_name': 'vnetName',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -113,18 +113,18 @@ class AzureFleetInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, client_id, region, vnet_name, subnet_name, app_security_group_name, proximity_placement_group_name, availability_set_name, resource_group_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, app_security_group_name, availability_set_name, client_id, proximity_placement_group_name, region, resource_group_name, subnet_name, vnet_name, *args, **kwargs):  # noqa: E501
         """AzureFleetInfo - a model defined in OpenAPI
 
         Args:
-            client_id (str, none_type): Specifies the client Id.
-            region (str, none_type): Specifies the region of Azure dataplane cluster.
-            vnet_name (str, none_type): Specifies the virtual network of Azure dataplane cluster.
-            subnet_name (str, none_type): Specifies the subnet of Azure dataplane cluster.
             app_security_group_name (str, none_type): Specifies the appplication security group of Azure dataplane cluster.
-            proximity_placement_group_name (str, none_type): Specifies the proximity placement group of Azure dataplane cluster.
             availability_set_name (str, none_type): Specifies the availabilty set of Azure dataplane cluster.
+            client_id (str, none_type): Specifies the client Id.
+            proximity_placement_group_name (str, none_type): Specifies the proximity placement group of Azure dataplane cluster.
+            region (str, none_type): Specifies the region of Azure dataplane cluster.
             resource_group_name (str, none_type): Specifies the resource group of Azure dataplane cluster.
+            subnet_name (str, none_type): Specifies the subnet of Azure dataplane cluster.
+            vnet_name (str, none_type): Specifies the virtual network of Azure dataplane cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -184,14 +184,14 @@ class AzureFleetInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.client_id = client_id
-        self.region = region
-        self.vnet_name = vnet_name
-        self.subnet_name = subnet_name
         self.app_security_group_name = app_security_group_name
-        self.proximity_placement_group_name = proximity_placement_group_name
         self.availability_set_name = availability_set_name
+        self.client_id = client_id
+        self.proximity_placement_group_name = proximity_placement_group_name
+        self.region = region
         self.resource_group_name = resource_group_name
+        self.subnet_name = subnet_name
+        self.vnet_name = vnet_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

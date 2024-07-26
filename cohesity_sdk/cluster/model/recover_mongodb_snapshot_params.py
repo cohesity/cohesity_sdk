@@ -68,6 +68,7 @@ class RecoverMongodbSnapshotParams(ModelComposed):
             'ARCHIVAL': "Archival",
             'RPAASARCHIVAL': "RpaasArchival",
             'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
+            'REMOTE': "Remote",
         },
         ('status',): {
             'None': None,
@@ -81,6 +82,7 @@ class RecoverMongodbSnapshotParams(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
     }
 
@@ -212,7 +214,7 @@ class RecoverMongodbSnapshotParams(ModelComposed):
             snapshot_creation_time_usecs (int, none_type): Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             snapshot_target_type (str, none_type): Specifies the snapshot target type.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the ID of the Storage Domain where this snapshot is stored.. [optional]  # noqa: E501
             objects ([RecoverMongodbNoSqlObjectParams], none_type): Specifies details of objects to be recovered.. [optional]  # noqa: E501
         """

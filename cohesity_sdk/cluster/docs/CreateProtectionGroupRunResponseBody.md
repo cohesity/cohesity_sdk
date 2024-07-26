@@ -6,6 +6,7 @@ Specifies the response for create a protection run. On success, the system will 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **protection_group_id** | **str, none_type** | Specifies id of the Protection Group which must be polled for seeing the new run. | [optional] 
+**uda_params** | [**UdaCreateRunResponseParams**](UdaCreateRunResponseParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

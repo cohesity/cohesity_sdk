@@ -108,7 +108,7 @@ class AlertApi(object):
                 'response_type': (AlertsSummaryResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/alerts-summary',

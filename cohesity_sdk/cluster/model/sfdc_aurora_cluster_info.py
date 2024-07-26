@@ -74,10 +74,18 @@ class SfdcAuroraClusterInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'cluster_endpoint': (str,),  # noqa: E501
-            'database_user': (str,),  # noqa: E501
-            'kms_key_arn': (str,),  # noqa: E501
-            'region_id': (str,),  # noqa: E501
+            'aurora_cluster_arn': (str, none_type,),  # noqa: E501
+            'database_access_iam_role_arn': (str, none_type,),  # noqa: E501
+            'database_port': (str, none_type,),  # noqa: E501
+            'database_user': (str, none_type,),  # noqa: E501
+            'region_id': (str, none_type,),  # noqa: E501
+            's3_access_iam_role_arn': (str, none_type,),  # noqa: E501
+            's3_bucket_name': (str, none_type,),  # noqa: E501
+            's3_bucket_prefix': (str, none_type,),  # noqa: E501
+            'tenant_id': (str, none_type,),  # noqa: E501
+            'writer_endpoint': (str, none_type,),  # noqa: E501
+            'database_schema': (str, none_type,),  # noqa: E501
+            'reader_endpoint': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,10 +95,18 @@ class SfdcAuroraClusterInfo(ModelNormal):
 
 
     attribute_map = {
-        'cluster_endpoint': 'clusterEndpoint',  # noqa: E501
+        'aurora_cluster_arn': 'auroraClusterArn',  # noqa: E501
+        'database_access_iam_role_arn': 'databaseAccessIAMRoleArn',  # noqa: E501
+        'database_port': 'databasePort',  # noqa: E501
         'database_user': 'databaseUser',  # noqa: E501
-        'kms_key_arn': 'kmsKeyArn',  # noqa: E501
-        'region_id': 'regionID',  # noqa: E501
+        'region_id': 'regionId',  # noqa: E501
+        's3_access_iam_role_arn': 's3AccessIAMRoleArn',  # noqa: E501
+        's3_bucket_name': 's3BucketName',  # noqa: E501
+        's3_bucket_prefix': 's3BucketPrefix',  # noqa: E501
+        'tenant_id': 'tenantId',  # noqa: E501
+        'writer_endpoint': 'writerEndpoint',  # noqa: E501
+        'database_schema': 'databaseSchema',  # noqa: E501
+        'reader_endpoint': 'readerEndpoint',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -105,8 +121,20 @@ class SfdcAuroraClusterInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, aurora_cluster_arn, database_access_iam_role_arn, database_port, database_user, region_id, s3_access_iam_role_arn, s3_bucket_name, s3_bucket_prefix, tenant_id, writer_endpoint, *args, **kwargs):  # noqa: E501
         """SfdcAuroraClusterInfo - a model defined in OpenAPI
+
+        Args:
+            aurora_cluster_arn (str, none_type): Arn of the Aurora cluster.
+            database_access_iam_role_arn (str, none_type): Contains the Arn of the IAM role of the which has access to the db user allocated to the tenant.
+            database_port (str, none_type): Database port to access the dbs on the Aurora cluster.
+            database_user (str, none_type): Database user to access the dbs on the Aurora cluster.
+            region_id (str, none_type): Specifies the region id of the Aurora cluster.
+            s3_access_iam_role_arn (str, none_type): Contains the Arn of the IAM role which has read and write access to the tenant's s3 bucket.
+            s3_bucket_name (str, none_type): Contains the tenant's S3 bucket.
+            s3_bucket_prefix (str, none_type): S3Bucket prefix for the intermediate.
+            tenant_id (str, none_type): Contains the Id of the tenant.
+            writer_endpoint (str, none_type): Writer endpoint of the Aurora cluster.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,10 +168,8 @@ class SfdcAuroraClusterInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cluster_endpoint (str): Specifies the endpoint for this Aurora Cluster.. [optional]  # noqa: E501
-            database_user (str): Database user to access the dbs on the Aurora cluster.. [optional]  # noqa: E501
-            kms_key_arn (str): Specifies the KMS key for accessing Aurora Cluster.. [optional]  # noqa: E501
-            region_id (str): Specifies the region id of the Aurora cluster.. [optional]  # noqa: E501
+            database_schema (str, none_type): Database schema to access the dbs on the Aurora cluster.. [optional]  # noqa: E501
+            reader_endpoint (str, none_type): Reader endpoint of the Aurora cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -170,6 +196,16 @@ class SfdcAuroraClusterInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
+        self.aurora_cluster_arn = aurora_cluster_arn
+        self.database_access_iam_role_arn = database_access_iam_role_arn
+        self.database_port = database_port
+        self.database_user = database_user
+        self.region_id = region_id
+        self.s3_access_iam_role_arn = s3_access_iam_role_arn
+        self.s3_bucket_name = s3_bucket_name
+        self.s3_bucket_prefix = s3_bucket_prefix
+        self.tenant_id = tenant_id
+        self.writer_endpoint = writer_endpoint
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

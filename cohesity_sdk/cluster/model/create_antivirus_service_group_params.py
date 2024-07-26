@@ -58,6 +58,11 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
     """
 
     allowed_values = {
+        ('state',): {
+            'None': None,
+            'ENABLE': "Enable",
+            'DISABLE': "Disable",
+        },
     }
 
     validations = {
@@ -84,9 +89,10 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
         lazy_import()
         return {
             'antivirus_services': ([AntivirusService], none_type,),  # noqa: E501
-            'enabled': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'enabled': (bool, none_type,),  # noqa: E501
+            'state': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +103,10 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
 
     attribute_map = {
         'antivirus_services': 'antivirusServices',  # noqa: E501
-        'enabled': 'enabled',  # noqa: E501
         'name': 'name',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
+        'state': 'state',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -114,12 +121,11 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, antivirus_services, enabled, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, antivirus_services, name, *args, **kwargs):  # noqa: E501
         """CreateAntivirusServiceGroupParams - a model defined in OpenAPI
 
         Args:
             antivirus_services ([AntivirusService], none_type): Specifies a list of Antivirus Services for this group.
-            enabled (bool, none_type): Specifies whether the Antivirus Group is enabled.
             name (str, none_type): Specifies the Antivirus Service group name.
 
         Keyword Args:
@@ -155,6 +161,8 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description for the Antivirus Service group.. [optional]  # noqa: E501
+            enabled (bool, none_type): This field is currently deprecated. Specifies whether the Antivirus Group is enabled.. [optional]  # noqa: E501
+            state (str, none_type): Specifies the state[Enable, Disable] of the group.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,7 +190,6 @@ class CreateAntivirusServiceGroupParams(ModelNormal):
 
 
         self.antivirus_services = antivirus_services
-        self.enabled = enabled
         self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

@@ -27,10 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.cassandra_protection_run_params import CassandraProtectionRunParams
     from cohesity_sdk.cluster.model.run_object import RunObject
     from cohesity_sdk.cluster.model.run_targets_configuration import RunTargetsConfiguration
+    from cohesity_sdk.cluster.model.uda_protection_run_params import UdaProtectionRunParams
+    globals()['CassandraProtectionRunParams'] = CassandraProtectionRunParams
     globals()['RunObject'] = RunObject
     globals()['RunTargetsConfiguration'] = RunTargetsConfiguration
+    globals()['UdaProtectionRunParams'] = UdaProtectionRunParams
 
 
 class CreateProtectionGroupRunRequest(ModelNormal):
@@ -91,8 +95,10 @@ class CreateProtectionGroupRunRequest(ModelNormal):
         lazy_import()
         return {
             'run_type': (str, none_type,),  # noqa: E501
+            'cassandra_params': (CassandraProtectionRunParams,),  # noqa: E501
             'objects': ([RunObject],),  # noqa: E501
             'targets_config': (RunTargetsConfiguration,),  # noqa: E501
+            'uda_params': (UdaProtectionRunParams,),  # noqa: E501
         }
 
     @cached_property
@@ -103,8 +109,10 @@ class CreateProtectionGroupRunRequest(ModelNormal):
 
     attribute_map = {
         'run_type': 'runType',  # noqa: E501
+        'cassandra_params': 'cassandraParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'targets_config': 'targetsConfig',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -157,8 +165,10 @@ class CreateProtectionGroupRunRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            cassandra_params (CassandraProtectionRunParams): [optional]  # noqa: E501
             objects ([RunObject]): Specifies the list of objects to be protected by this Protection Group run. These can be leaf objects or non-leaf objects in the protection hierarchy. This must be specified only if a subset of objects from the Protection Groups needs to be protected.. [optional]  # noqa: E501
             targets_config (RunTargetsConfiguration): [optional]  # noqa: E501
+            uda_params (UdaProtectionRunParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

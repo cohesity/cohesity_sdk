@@ -90,6 +90,7 @@ class CreateTenantParameters(ModelComposed):
             'name': (str, none_type,),  # noqa: E501
             'tenant_id_suffix': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'is_managed_on_helios': (bool, none_type,),  # noqa: E501
             'network': (TenantNetwork,),  # noqa: E501
         }
 
@@ -103,6 +104,7 @@ class CreateTenantParameters(ModelComposed):
         'name': 'name',  # noqa: E501
         'tenant_id_suffix': 'tenantIdSuffix',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'is_managed_on_helios': 'isManagedOnHelios',  # noqa: E501
         'network': 'network',  # noqa: E501
     }
 
@@ -159,6 +161,7 @@ class CreateTenantParameters(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Description about the tenant. [optional]  # noqa: E501
+            is_managed_on_helios (bool, none_type): Flag to indicate if tenant is managed on helios. [optional]  # noqa: E501
             network (TenantNetwork): [optional]  # noqa: E501
         """
 

@@ -17,6 +17,7 @@ List all the indexed objects like files and folders, emails, mailboxes etc., tha
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.search_indexed_objects_request import SearchIndexedObjectsRequest
@@ -32,6 +33,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = SearchIndexedObjectsRequest() # SearchIndexedObjectsRequest | Specifies the parameters to search for indexed objects.
 
@@ -57,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -82,6 +84,7 @@ List objects.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.objects_search_response_body import ObjectsSearchResponseBody
@@ -96,6 +99,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 search_string = "searchString_example" # str | Specifies the search string to filter the objects. This search string will be applicable for objectnames. User can specify a wildcard character '*' as a suffix to a string where all object names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects will be returned which will match other filtering criteria. (optional)
@@ -121,6 +125,9 @@ os_types = [
 o365_object_types = [
         "kDomain",
     ] # [str] | Specifies the object types to filter objects on. Only applicable if the environment is o365. (optional)
+azure_object_types = [
+        "kTenant",
+    ] # [str] | Specifies the object types to filter objects on. Only applicable if the environment is Azure. (optional)
 source_ids = [
         1,
     ] # [int] | Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. (optional)
@@ -161,7 +168,7 @@ might_have_snapshot_tag_ids = [
 # and optional values
 try:
 	# List Objects.
-	api_response = client.search.search_objects(request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids)
+	api_response = client.search.search_objects(request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, azure_object_types=azure_object_types, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling SearchApi->search_objects: %s\n" % e)
@@ -182,6 +189,7 @@ Name | Type | Description  | Notes
  **object_ids** | **[int]**| Specifies a list of Object ids to filter. | [optional]
  **os_types** | **[str]**| Specifies the operating system types to filter objects on. | [optional]
  **o365_object_types** | **[str]**| Specifies the object types to filter objects on. Only applicable if the environment is o365. | [optional]
+ **azure_object_types** | **[str]**| Specifies the object types to filter objects on. Only applicable if the environment is Azure. | [optional]
  **source_ids** | **[int]**| Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **source_uuids** | **[str]**| Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **is_protected** | **bool**| Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned. | [optional]
@@ -204,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -229,6 +237,7 @@ List protected objects and corresponding detail information from registered sour
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -243,6 +252,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 search_string = "searchString_example" # str | Specifies the search string to filter the objects. This search string will be applicable for objectnames and Protection Group names. User can specify a wildcard character '*' as a suffix to a string where all object and their Protection Group names are matched with the prefix string. For example, if vm1 and vm2 are the names of objects, user can specify vm* to list the objects. If not specified, then all the objects with Protection Groups will be returned which will match other filtering criteria. (optional)
@@ -325,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

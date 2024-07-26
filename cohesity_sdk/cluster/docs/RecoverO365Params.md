@@ -6,6 +6,7 @@ Specifies the recovery options specific to Office 365 environment.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **recovery_action** | **str** | Specifies the type of recovery action to be performed. | 
+**download_chats_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the download chats specific parameters for downloading posts for a team/channel or downloading private chats for a user. | [optional] 
 **download_file_and_folder_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the recovery information to download files and folders. For instance, downloading mailbox items as PST. | [optional] 
 **objects** | [**[CommonRecoverObjectSnapshotParams], none_type**](CommonRecoverObjectSnapshotParams.md) | Specifies the list of recover Object parameters. | [optional] 
 **recover_mailbox_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters to recover Office 365 Mailbox. | [optional] 

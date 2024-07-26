@@ -79,8 +79,8 @@ class S3LifecycleManagement(ModelNormal):
         """
         lazy_import()
         return {
-            'version_id': (int, none_type,),  # noqa: E501
             'rules': ([LifecycleRule], none_type,),  # noqa: E501
+            'version_id': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,8 +90,8 @@ class S3LifecycleManagement(ModelNormal):
 
 
     attribute_map = {
-        'version_id': 'versionId',  # noqa: E501
         'rules': 'rules',  # noqa: E501
+        'version_id': 'versionId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,8 +141,8 @@ class S3LifecycleManagement(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            version_id (int, none_type): Specifies a unique monotonically increasing version for the lifecycle configuration.. [optional]  # noqa: E501
             rules ([LifecycleRule], none_type): Specifies Lifecycle configuration rules for an Amazon S3 bucket. A maximum of 1000 rules can be specified.. [optional]  # noqa: E501
+            version_id (int, none_type): Specifies a unique monotonically increasing version for the lifecycle configuration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

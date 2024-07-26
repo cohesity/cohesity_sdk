@@ -68,7 +68,6 @@ class KmsConfigurationCreateParams(ModelComposed):
             'INTERNALKMS': "InternalKms",
             'AWSKMS': "AwsKms",
             'KMIPKMS': "KmipKms",
-            'NONE': "None",
         },
         ('ownership_context',): {
             'None': None,

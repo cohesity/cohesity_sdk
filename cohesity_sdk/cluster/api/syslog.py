@@ -111,7 +111,7 @@ class SyslogApi(object):
                 'response_type': (SyslogServer,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog',
@@ -228,7 +228,7 @@ class SyslogApi(object):
                 'response_type': ([str],),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/program-names',
@@ -337,7 +337,7 @@ class SyslogApi(object):
                 'response_type': (SyslogAuditTag,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/audit-tags',
@@ -451,7 +451,7 @@ class SyslogApi(object):
                 'response_type': (SyslogServer,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
@@ -572,7 +572,7 @@ class SyslogApi(object):
                 'response_type': (SyslogServerStatus,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/{id}/status',
@@ -688,7 +688,7 @@ class SyslogApi(object):
                 'response_type': (SyslogServers,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog',
@@ -803,7 +803,7 @@ class SyslogApi(object):
                 'response_type': (SyslogServer,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
@@ -930,7 +930,7 @@ class SyslogApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',
@@ -1046,7 +1046,7 @@ class SyslogApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog',
@@ -1156,7 +1156,7 @@ class SyslogApi(object):
                 'response_type': (SyslogAuditTag,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/audit-tags',
@@ -1277,7 +1277,7 @@ class SyslogApi(object):
                 'response_type': (SyslogServer,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/syslog/{id}',

@@ -55,6 +55,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.recover_pure_params import RecoverPureParams
     from cohesity_sdk.cluster.model.recover_salesforce_params import RecoverSalesforceParams
     from cohesity_sdk.cluster.model.recover_sql_params import RecoverSqlParams
+    from cohesity_sdk.cluster.model.recover_view_params import RecoverViewParams
     from cohesity_sdk.cluster.model.recover_vmware_params import RecoverVmwareParams
     from cohesity_sdk.cluster.model.uda_params import UdaParams
     globals()['CassandraParams'] = CassandraParams
@@ -85,6 +86,7 @@ def lazy_import():
     globals()['RecoverPureParams'] = RecoverPureParams
     globals()['RecoverSalesforceParams'] = RecoverSalesforceParams
     globals()['RecoverSqlParams'] = RecoverSqlParams
+    globals()['RecoverViewParams'] = RecoverViewParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
     globals()['UdaParams'] = UdaParams
 
@@ -132,6 +134,7 @@ class CreateRecoveryRequest(ModelComposed):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -187,6 +190,7 @@ class CreateRecoveryRequest(ModelComposed):
             'hdfs_params': (HdfsParams,),  # noqa: E501
             'hive_params': (HiveParams,),  # noqa: E501
             'hyperv_params': (RecoverHyperVParams,),  # noqa: E501
+            'ibm_flash_system_params': (RecoverPureParams,),  # noqa: E501
             'isilon_params': (RecoverIsilonParams,),  # noqa: E501
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
             'kvm_params': (RecoverKvmParams,),  # noqa: E501
@@ -199,6 +203,7 @@ class CreateRecoveryRequest(ModelComposed):
             'pure_params': (RecoverPureParams,),  # noqa: E501
             'sfdc_params': (RecoverSalesforceParams,),  # noqa: E501
             'uda_params': (UdaParams,),  # noqa: E501
+            'view_params': (RecoverViewParams,),  # noqa: E501
             'vmware_params': (RecoverVmwareParams,),  # noqa: E501
         }
 
@@ -226,6 +231,7 @@ class CreateRecoveryRequest(ModelComposed):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'ibm_flash_system_params': 'ibmFlashSystemParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
@@ -238,6 +244,7 @@ class CreateRecoveryRequest(ModelComposed):
         'pure_params': 'pureParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
@@ -308,6 +315,7 @@ class CreateRecoveryRequest(ModelComposed):
             hdfs_params (HdfsParams): [optional]  # noqa: E501
             hive_params (HiveParams): [optional]  # noqa: E501
             hyperv_params (RecoverHyperVParams): [optional]  # noqa: E501
+            ibm_flash_system_params (RecoverPureParams): [optional]  # noqa: E501
             isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
             kvm_params (RecoverKvmParams): [optional]  # noqa: E501
@@ -320,6 +328,7 @@ class CreateRecoveryRequest(ModelComposed):
             pure_params (RecoverPureParams): [optional]  # noqa: E501
             sfdc_params (RecoverSalesforceParams): [optional]  # noqa: E501
             uda_params (UdaParams): [optional]  # noqa: E501
+            view_params (RecoverViewParams): [optional]  # noqa: E501
             vmware_params (RecoverVmwareParams): [optional]  # noqa: E501
         """
 
