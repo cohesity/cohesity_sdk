@@ -74,8 +74,12 @@ class UsersDiscoveryParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'allow_chats_backup': (bool, none_type,),  # noqa: E501
             'discover_users_with_mailbox': (bool, none_type,),  # noqa: E501
             'discover_users_with_onedrive': (bool, none_type,),  # noqa: E501
+            'fetch_mailbox_info': (bool, none_type,),  # noqa: E501
+            'fetch_one_drive_info': (bool, none_type,),  # noqa: E501
+            'skip_users_without_my_site': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +89,12 @@ class UsersDiscoveryParams(ModelNormal):
 
 
     attribute_map = {
+        'allow_chats_backup': 'allowChatsBackup',  # noqa: E501
         'discover_users_with_mailbox': 'discoverUsersWithMailbox',  # noqa: E501
         'discover_users_with_onedrive': 'discoverUsersWithOnedrive',  # noqa: E501
+        'fetch_mailbox_info': 'fetchMailboxInfo',  # noqa: E501
+        'fetch_one_drive_info': 'fetchOneDriveInfo',  # noqa: E501
+        'skip_users_without_my_site': 'skipUsersWithoutMySite',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +144,12 @@ class UsersDiscoveryParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            allow_chats_backup (bool, none_type): Specifies whether users' chats should be backed up or not. If this is false or not specified users' chats backup will not be done.. [optional]  # noqa: E501
             discover_users_with_mailbox (bool, none_type): Specifies if office 365 users with valid mailboxes should be discovered or not.. [optional]  # noqa: E501
             discover_users_with_onedrive (bool, none_type): Specifies if office 365 users with valid Onedrives should be discovered or not.. [optional]  # noqa: E501
+            fetch_mailbox_info (bool, none_type): Specifies whether users' mailbox info including the provisioning status, mailbox type & in-place archival support will be fetched and processed.. [optional]  # noqa: E501
+            fetch_one_drive_info (bool, none_type): Specifies whether users' onedrive info including the provisioning status & storage quota will be fetched and processed.. [optional]  # noqa: E501
+            skip_users_without_my_site (bool, none_type): Specifies whether to skip processing user who have uninitialized OneDrive or are without MySite.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

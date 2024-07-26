@@ -77,6 +77,7 @@ class RecoverPureVolumeTargetParams(ModelNormal):
             'recover_to_new_source': (bool,),  # noqa: E501
             'new_source_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'original_source_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'use_thin_clone': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,6 +90,7 @@ class RecoverPureVolumeTargetParams(ModelNormal):
         'recover_to_new_source': 'recoverToNewSource',  # noqa: E501
         'new_source_config': 'newSourceConfig',  # noqa: E501
         'original_source_config': 'originalSourceConfig',  # noqa: E501
+        'use_thin_clone': 'useThinClone',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +145,7 @@ class RecoverPureVolumeTargetParams(ModelNormal):
 
             new_source_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the new destination Source configuration parameters where the Pure volume will be recovered. This is mandatory if recoverToNewSource is set to true.. [optional]  # noqa: E501
             original_source_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Source configuration if Pure volume is being recovered to Original Source. If not specified, all the configuration parameters will be retained.. [optional]  # noqa: E501
+            use_thin_clone (bool, none_type): Specifies whether to use thin clone to restore storage array snapshots.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

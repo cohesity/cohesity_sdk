@@ -63,6 +63,7 @@ class SnapshotActions(ModelNormal):
             'RECOVERVAPPS': "RecoverVApps",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
+            'RECOVERS3BUCKETS': "RecoverS3Buckets",
             'RECOVERAPPS': "RecoverApps",
             'RECOVERNASVOLUME': "RecoverNasVolume",
             'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
@@ -80,6 +81,9 @@ class SnapshotActions(ModelNormal):
             'RECOVERSHAREPOINT': "RecoverSharePoint",
             'CONVERTTOPST': "ConvertToPst",
             'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
+            'RECOVERAZURESQL': "RecoverAzureSQL",
+            'DOWNLOADCHATS': "DownloadChats",
+            'RECOVERRDSPOSTGRES': "RecoverRDSPostgres",
         },
     }
 

@@ -29,8 +29,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.kubernetes_filter_params import KubernetesFilterParams
     from cohesity_sdk.cluster.model.kubernetes_protection_group_object_params import KubernetesProtectionGroupObjectParams
+    from cohesity_sdk.cluster.model.vlan_params import VlanParams
     globals()['KubernetesFilterParams'] = KubernetesFilterParams
     globals()['KubernetesProtectionGroupObjectParams'] = KubernetesProtectionGroupObjectParams
+    globals()['VlanParams'] = VlanParams
 
 
 class KubernetesProtectionGroupParams(ModelNormal):
@@ -96,6 +98,7 @@ class KubernetesProtectionGroupParams(ModelNormal):
             'objects': ([KubernetesProtectionGroupObjectParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
+            'vlan_params': (VlanParams,),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +117,7 @@ class KubernetesProtectionGroupParams(ModelNormal):
         'objects': 'objects',  # noqa: E501
         'source_id': 'sourceId',  # noqa: E501
         'source_name': 'sourceName',  # noqa: E501
+        'vlan_params': 'vlanParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -172,6 +176,7 @@ class KubernetesProtectionGroupParams(ModelNormal):
             objects ([KubernetesProtectionGroupObjectParams]): Specifies the objects included in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Specifies the id of the parent of the objects.. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the parent of the objects.. [optional]  # noqa: E501
+            vlan_params (VlanParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

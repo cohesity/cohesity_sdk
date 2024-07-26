@@ -117,7 +117,7 @@ class AuditLogApi(object):
                 'response_type': (AuditLogs,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/audit-logs',
@@ -238,13 +238,14 @@ class AuditLogApi(object):
                         "PATCH": "Patch",
                         "HOTFIX": "Hotfix",
                         "NISNETGROUP": "NisNetgroup",
-                        "GFLAGRECIPE": "GflagRecipe",
-                        "GFLAG": "Gflag",
-                        "WHITELABELINGSETTING": "WhitelabelingSetting",
                         "QUORUMGROUP": "QuorumGroup",
                         "QUORUMAPPLICATION": "QuorumApplication",
                         "BIFROSTCONNECTION": "BifrostConnection",
-                        "BIFROSTCONNECTOR": "BifrostConnector"
+                        "BIFROSTCONNECTOR": "BifrostConnector",
+                        "HOSTMAPPING": "HostMapping",
+                        "FIREWALLSETTING": "FirewallSetting",
+                        "CLUSTERSNAPSHOTPOLICY": "ClusterSnapshotPolicy",
+                        "NODEPOWER": "NodePower"
                     },
                     ('actions',): {
                         'None': None,
@@ -293,7 +294,18 @@ class AuditLogApi(object):
                         "VALIDATE": "Validate",
                         "CLUSTEREXPAND": "ClusterExpand",
                         "FETCH": "Fetch",
-                        "SEARCH": "Search"
+                        "SEARCH": "Search",
+                        "PREPAREFAILOVER": "PrepareFailover",
+                        "FAILOVER": "Failover",
+                        "PREPAREFAILBACK": "PrepareFailback",
+                        "FAILBACK": "Failback",
+                        "TEARDOWN": "Teardown",
+                        "RETRYREPLICATION": "RetryReplication",
+                        "MANUALSYNC": "ManualSync",
+                        "PROTECT": "Protect",
+                        "RETRYEXECUTION": "RetryExecution",
+                        "ADD": "Add",
+                        "SCHEDULE": "Schedule"
                     },
                 },
                 'openapi_types': {
@@ -430,7 +442,7 @@ class AuditLogApi(object):
                 'response_type': (AuditLogsActions,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/audit-logs/actions',
@@ -539,7 +551,7 @@ class AuditLogApi(object):
                 'response_type': (AuditLogsEntityTypes,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/audit-logs/entity-types',
@@ -648,7 +660,7 @@ class AuditLogApi(object):
                 'response_type': (FilerAuditLogConfigs,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/audit-logs/filer-configs',
@@ -762,7 +774,7 @@ class AuditLogApi(object):
                 'response_type': (FilerAuditLogConfigs,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/audit-logs/filer-configs',

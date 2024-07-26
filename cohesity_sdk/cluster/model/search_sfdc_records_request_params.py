@@ -84,8 +84,8 @@ class SearchSfdcRecordsRequestParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'object_name': (str, none_type,),  # noqa: E501
             'mutation_types': ([str], none_type,),  # noqa: E501
+            'object_name': (str, none_type,),  # noqa: E501
             'snapshot_id': (str, none_type,),  # noqa: E501
             'query_string': (str, none_type,),  # noqa: E501
         }
@@ -97,8 +97,8 @@ class SearchSfdcRecordsRequestParams(ModelNormal):
 
 
     attribute_map = {
-        'object_name': 'objectName',  # noqa: E501
         'mutation_types': 'mutationTypes',  # noqa: E501
+        'object_name': 'objectName',  # noqa: E501
         'snapshot_id': 'snapshotId',  # noqa: E501
         'query_string': 'queryString',  # noqa: E501
     }
@@ -115,12 +115,12 @@ class SearchSfdcRecordsRequestParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, object_name, mutation_types, snapshot_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, mutation_types, object_name, snapshot_id, *args, **kwargs):  # noqa: E501
         """SearchSfdcRecordsRequestParams - a model defined in OpenAPI
 
         Args:
-            object_name (str, none_type): Specifies the name of the object.
             mutation_types ([str], none_type): Specifies a list of mutuation types for an object.
+            object_name (str, none_type): Specifies the name of the object.
             snapshot_id (str, none_type): Specifies the id of the snapshot for the object.
 
         Keyword Args:
@@ -182,8 +182,8 @@ class SearchSfdcRecordsRequestParams(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.object_name = object_name
         self.mutation_types = mutation_types
+        self.object_name = object_name
         self.snapshot_id = snapshot_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

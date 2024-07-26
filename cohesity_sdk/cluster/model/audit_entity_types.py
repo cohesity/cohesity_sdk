@@ -127,13 +127,14 @@ class AuditEntityTypes(ModelNormal):
             'PATCH': "Patch",
             'HOTFIX': "Hotfix",
             'NISNETGROUP': "NisNetgroup",
-            'GFLAGRECIPE': "GflagRecipe",
-            'GFLAG': "Gflag",
-            'WHITELABELINGSETTING': "WhitelabelingSetting",
             'QUORUMGROUP': "QuorumGroup",
             'QUORUMAPPLICATION': "QuorumApplication",
             'BIFROSTCONNECTION': "BifrostConnection",
             'BIFROSTCONNECTOR': "BifrostConnector",
+            'HOSTMAPPING': "HostMapping",
+            'FIREWALLSETTING': "FirewallSetting",
+            'CLUSTERSNAPSHOTPOLICY': "ClusterSnapshotPolicy",
+            'NODEPOWER': "NodePower",
         },
     }
 

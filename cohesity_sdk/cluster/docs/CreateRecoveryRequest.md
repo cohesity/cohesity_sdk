@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **hdfs_params** | [**HdfsParams**](HdfsParams.md) |  | [optional] 
 **hive_params** | [**HiveParams**](HiveParams.md) |  | [optional] 
 **hyperv_params** | [**RecoverHyperVParams**](RecoverHyperVParams.md) |  | [optional] 
+**ibm_flash_system_params** | [**RecoverPureParams**](RecoverPureParams.md) |  | [optional] 
 **isilon_params** | [**RecoverIsilonParams**](RecoverIsilonParams.md) |  | [optional] 
 **kubernetes_params** | [**RecoverKubernetesParams**](RecoverKubernetesParams.md) |  | [optional] 
 **kvm_params** | [**RecoverKvmParams**](RecoverKvmParams.md) |  | [optional] 
@@ -34,6 +35,7 @@ Name | Type | Description | Notes
 **pure_params** | [**RecoverPureParams**](RecoverPureParams.md) |  | [optional] 
 **sfdc_params** | [**RecoverSalesforceParams**](RecoverSalesforceParams.md) |  | [optional] 
 **uda_params** | [**UdaParams**](UdaParams.md) |  | [optional] 
+**view_params** | [**RecoverViewParams**](RecoverViewParams.md) |  | [optional] 
 **vmware_params** | [**RecoverVmwareParams**](RecoverVmwareParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

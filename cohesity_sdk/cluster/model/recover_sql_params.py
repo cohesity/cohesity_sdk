@@ -60,6 +60,7 @@ class RecoverSqlParams(ModelNormal):
     allowed_values = {
         ('recovery_action',): {
             'RECOVERAPPS': "RecoverApps",
+            'CLONEAPPS': "CloneApps",
         },
     }
 
@@ -115,13 +116,13 @@ class RecoverSqlParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, recovery_action, *args, **kwargs):  # noqa: E501
         """RecoverSqlParams - a model defined in OpenAPI
 
         Args:
+            recovery_action (str): Specifies the type of recover action to be performed.
 
         Keyword Args:
-            recovery_action (str): Specifies the type of recover action to be performed.. defaults to "RecoverApps", must be one of ["RecoverApps", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -157,7 +158,6 @@ class RecoverSqlParams(ModelNormal):
             vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
         """
 
-        recovery_action = kwargs.get('recovery_action', "RecoverApps")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

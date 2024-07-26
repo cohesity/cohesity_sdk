@@ -66,6 +66,7 @@ class RecoverO365Params(ModelNormal):
             'RECOVERMSGROUP': "RecoverMsGroup",
             'RECOVERMSTEAM': "RecoverMsTeam",
             'CONVERTTOPST': "ConvertToPst",
+            'DOWNLOADCHATS': "DownloadChats",
         },
     }
 
@@ -89,6 +90,7 @@ class RecoverO365Params(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
+            'download_chats_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recover_mailbox_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -107,6 +109,7 @@ class RecoverO365Params(ModelNormal):
 
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'download_chats_params': 'downloadChatsParams',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'recover_mailbox_params': 'recoverMailboxParams',  # noqa: E501
@@ -167,6 +170,7 @@ class RecoverO365Params(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            download_chats_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the download chats specific parameters for downloading posts for a team/channel or downloading private chats for a user.. [optional]  # noqa: E501
             download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery information to download files and folders. For instance, downloading mailbox items as PST.. [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters.. [optional]  # noqa: E501
             recover_mailbox_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Office 365 Mailbox.. [optional]  # noqa: E501

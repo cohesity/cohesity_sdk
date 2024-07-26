@@ -21,6 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.archival_media_info import ArchivalMediaInfo
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
 from cohesity_sdk.cluster.model.external_targets import ExternalTargets
@@ -110,7 +111,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets',
@@ -233,7 +234,7 @@ class ExternalTargetApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
@@ -359,7 +360,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
@@ -480,7 +481,7 @@ class ExternalTargetApi(object):
                 'response_type': (file_type,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}/encryption-key',
@@ -528,6 +529,160 @@ class ExternalTargetApi(object):
             },
             api_client=api_client,
             callable=__get_external_target_encryption_key_info
+        )
+
+        def __get_external_target_media_info(
+            self,
+            cluster_id,
+            cluster_incarnation_id,
+            archival_job_id,
+            **kwargs
+        ):
+            """List archive media information  # noqa: E501
+
+            Returns the media information about the specified archive service uid (such as a QStar tape archive service).  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                cluster_id (int): Specifies the id of the Cohesity cluster which archived to a QStart media target.
+                cluster_incarnation_id (int): Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.
+                archival_job_id (int): Specifies the id of the Job that archived to a QStar media Vault.
+
+            Keyword Args:
+                restore_task_id (int): Specifies the id of the restore task to optionally filter by.. [optional]
+                entity_ids ([int]): Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ArchivalMediaInfo
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['cluster_id'] = \
+                cluster_id
+            kwargs['cluster_incarnation_id'] = \
+                cluster_incarnation_id
+            kwargs['archival_job_id'] = \
+                archival_job_id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_external_target_media_info = _Endpoint(
+            settings={
+                'response_type': (ArchivalMediaInfo,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/external-targets/media-info',
+                'operation_id': 'get_external_target_media_info',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'cluster_id',
+                    'cluster_incarnation_id',
+                    'archival_job_id',
+                    'restore_task_id',
+                    'entity_ids',
+                ],
+                'required': [
+                    'cluster_id',
+                    'cluster_incarnation_id',
+                    'archival_job_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'cluster_id':
+                        (int,),
+                    'cluster_incarnation_id':
+                        (int,),
+                    'archival_job_id':
+                        (int,),
+                    'restore_task_id':
+                        (int,),
+                    'entity_ids':
+                        ([int],),
+                },
+                'attribute_map': {
+                    'cluster_id': 'clusterId',
+                    'cluster_incarnation_id': 'clusterIncarnationId',
+                    'archival_job_id': 'archivalJobId',
+                    'restore_task_id': 'restoreTaskId',
+                    'entity_ids': 'entityIds',
+                },
+                'location_map': {
+                    'cluster_id': 'query',
+                    'cluster_incarnation_id': 'query',
+                    'archival_job_id': 'query',
+                    'restore_task_id': 'query',
+                    'entity_ids': 'query',
+                },
+                'collection_format_map': {
+                    'entity_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_external_target_media_info
         )
 
         def __get_external_target_settings(
@@ -596,7 +751,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/settings',
@@ -658,7 +813,7 @@ class ExternalTargetApi(object):
                 global_ids ([str]): Filter by a list of External Target global ids.. [optional]
                 names ([str]): Filter by a list of External Target names.. [optional]
                 purpose_types ([str]): Filter by a list of External Target purpose types.. [optional]
-                storage_types ([str]): Filter by a list of External Target storage types.. [optional]
+                storage_types ([str]): Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead.. [optional]
                 storage_classes ([str]): Filter by a list of External Target storage classes.. [optional]
                 ownership_contexts ([str]): Specifies whether how this external target is being consumed either Local or FortKnox.. [optional]
                 _return_http_data_only (bool): response data without head status
@@ -712,7 +867,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTargets,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets',
@@ -758,6 +913,7 @@ class ExternalTargetApi(object):
                         "GOOGLE": "Google",
                         "AWS": "AWS",
                         "ORACLE": "Oracle",
+                        "NAS": "Nas",
                         "NAS": "NAS",
                         "QSTARTAPE": "QStarTape",
                         "S3COMPATIBLE": "S3Compatible"
@@ -771,6 +927,7 @@ class ExternalTargetApi(object):
                         "AMAZONS3GLACIER": "AmazonS3Glacier",
                         "AMAZONS3GLACIERDEEPARCHIVE": "AmazonS3GlacierDeepArchive",
                         "AMAZONGLACIER": "AmazonGlacier",
+                        "AMAZONS3GLACIERIR": "AmazonS3GlacierIR",
                         "AZUREARCHIVEBLOB": "AzureArchiveBlob",
                         "AZURECOOLBLOB": "AzureCoolBlob",
                         "AZUREHOTBLOB": "AzureHotBlob",
@@ -778,7 +935,9 @@ class ExternalTargetApi(object):
                         "GCPCOLDLINE": "GCPColdline",
                         "GCPNEARLINE": "GCPNearline",
                         "ORACLEOBJECTSTORAGE": "OracleObjectStorage",
-                        "ORACLEARCHIVESTORAGE": "OracleArchiveStorage"
+                        "ORACLEARCHIVESTORAGE": "OracleArchiveStorage",
+                        "S3COMPATIBLEREGULAR": "S3CompatibleRegular",
+                        "S3COMPATIBLETAPEBASED": "S3CompatibleTapeBased"
                     },
                     ('ownership_contexts',): {
 
@@ -915,7 +1074,7 @@ class ExternalTargetApi(object):
                 'response_type': (ExternalTarget,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/{id}',
@@ -1043,7 +1202,7 @@ class ExternalTargetApi(object):
                 'response_type': (GlobalBandwidthSettings,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/external-targets/settings',

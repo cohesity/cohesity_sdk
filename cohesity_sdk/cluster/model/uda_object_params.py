@@ -75,6 +75,7 @@ class UdaObjectParams(ModelNormal):
         """
         return {
             'has_entity_support': (bool, none_type,),  # noqa: E501
+            'source_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,6 +86,7 @@ class UdaObjectParams(ModelNormal):
 
     attribute_map = {
         'has_entity_support': 'hasEntitySupport',  # noqa: E501
+        'source_type': 'sourceType',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -135,6 +137,7 @@ class UdaObjectParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             has_entity_support (bool, none_type): Specifies whether this Object belongs to a source having entity support.. [optional]  # noqa: E501
+            source_type (str, none_type): Specifies the source type for Universal Data Adapter object.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

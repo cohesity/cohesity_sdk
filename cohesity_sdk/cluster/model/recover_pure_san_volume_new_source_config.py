@@ -76,6 +76,7 @@ class RecoverPureSanVolumeNewSourceConfig(ModelNormal):
         return {
             'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'rename_recovered_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'resource_pool': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +88,7 @@ class RecoverPureSanVolumeNewSourceConfig(ModelNormal):
     attribute_map = {
         'source': 'source',  # noqa: E501
         'rename_recovered_volume_params': 'renameRecoveredVolumeParams',  # noqa: E501
+        'resource_pool': 'resourcePool',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +142,7 @@ class RecoverPureSanVolumeNewSourceConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             rename_recovered_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the recovered SAN volumes. If not specified, the original names of the volumes are preserved.. [optional]  # noqa: E501
+            resource_pool ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the resource pool to recover the Pure SAN Volume to. This field must be specified if recoverToNewSource is true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

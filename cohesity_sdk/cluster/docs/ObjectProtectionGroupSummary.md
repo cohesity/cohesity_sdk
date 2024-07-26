@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **name** | **str, none_type** | Specifies the protection group name. | [optional] 
 **policy_id** | **str, none_type** | Specifies the policy id for this group. | [optional] 
 **policy_name** | **str, none_type** | Specifies the policy name for this group. | [optional] 
+**protection_env_type** | **str, none_type** | Specifies the protection type of the job if any. | [optional] 
 **storage_domain_id** | **str, none_type** | Specifies the storage domain id of this group. Format is clusterId:clusterIncarnationId:storageDomainId. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

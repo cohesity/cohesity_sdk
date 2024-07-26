@@ -83,6 +83,7 @@ class ObjectAllOf(ModelNormal):
             'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'isilon_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'netapp_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
@@ -90,6 +91,7 @@ class ObjectAllOf(ModelNormal):
             'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
         }
 
@@ -104,6 +106,7 @@ class ObjectAllOf(ModelNormal):
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
+        'group_params': 'groupParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
@@ -111,6 +114,7 @@ class ObjectAllOf(ModelNormal):
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
@@ -165,6 +169,7 @@ class ObjectAllOf(ModelNormal):
             flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Flashblade object.. [optional]  # noqa: E501
             generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GenericNas object.. [optional]  # noqa: E501
             gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
+            group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for M365 Group object.. [optional]  # noqa: E501
             isilon_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Isilon object.. [optional]  # noqa: E501
             mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
             netapp_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for NetApp object.. [optional]  # noqa: E501
@@ -172,6 +177,7 @@ class ObjectAllOf(ModelNormal):
             physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
             sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
             uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
+            view_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for a View.. [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
         """
 

@@ -125,7 +125,7 @@ class SecurityApi(object):
                 'response_type': (CreateClientcsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/client-csr',
@@ -247,7 +247,7 @@ class SecurityApi(object):
                 'response_type': (CreateCsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr',
@@ -369,7 +369,7 @@ class SecurityApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr/{id}',
@@ -485,7 +485,7 @@ class SecurityApi(object):
                 'response_type': (CiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/ciphers',
@@ -599,7 +599,7 @@ class SecurityApi(object):
                 'response_type': (CommonCsrResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr/{id}',
@@ -717,7 +717,7 @@ class SecurityApi(object):
                 'response_type': (GetCsrListResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr',
@@ -842,7 +842,7 @@ class SecurityApi(object):
                 'response_type': (ObjectStoreCiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/object-store-ciphers',
@@ -951,7 +951,7 @@ class SecurityApi(object):
                 'response_type': (SecurityConfigResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-config',
@@ -1065,7 +1065,7 @@ class SecurityApi(object):
                 'response_type': (ImportCertificateByClientcsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/client-csr/certificate',
@@ -1187,7 +1187,7 @@ class SecurityApi(object):
                 'response_type': (TrustedCa,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}',
@@ -1305,7 +1305,7 @@ class SecurityApi(object):
                 'response_type': (ListTrustedCasResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas',
@@ -1431,7 +1431,7 @@ class SecurityApi(object):
                 'response_type': (CiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/ciphers',
@@ -1553,7 +1553,7 @@ class SecurityApi(object):
                 'response_type': (ObjectStoreCiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/object-store-ciphers',
@@ -1675,7 +1675,7 @@ class SecurityApi(object):
                 'response_type': (ListTrustedCasResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas',
@@ -1797,7 +1797,7 @@ class SecurityApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}',
@@ -1918,7 +1918,7 @@ class SecurityApi(object):
                 'response_type': (UpdateCertificateByCsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr/certificate',
@@ -2040,7 +2040,7 @@ class SecurityApi(object):
                 'response_type': (SecurityConfigResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-config',
@@ -2162,7 +2162,7 @@ class SecurityApi(object):
                 'response_type': (TrustedCa,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}/validate',

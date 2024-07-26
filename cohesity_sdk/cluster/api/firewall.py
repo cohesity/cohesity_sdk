@@ -23,7 +23,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.firewall_ip_sets import FirewallIPSets
+from cohesity_sdk.cluster.model.firewall_profile_names_params import FirewallProfileNamesParams
+from cohesity_sdk.cluster.model.firewall_profile_params import FirewallProfileParams
 from cohesity_sdk.cluster.model.firewall_profiles import FirewallProfiles
+from cohesity_sdk.cluster.model.success_resp import SuccessResp
 
 
 class FirewallApi(object):
@@ -104,7 +107,7 @@ class FirewallApi(object):
                 'response_type': (FirewallIPSets,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/firewall/ip-sets',
@@ -213,7 +216,7 @@ class FirewallApi(object):
                 'response_type': (FirewallProfiles,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/firewall/profiles',
@@ -254,6 +257,128 @@ class FirewallApi(object):
             },
             api_client=api_client,
             callable=__list_firewall_profiles
+        )
+
+        def __remove_firewall_profiles(
+            self,
+            body,
+            **kwargs
+        ):
+            """Remove firewall profiles.  # noqa: E501
+
+            Remove firewall profiles and their attachments.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.remove_firewall_profiles(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (FirewallProfileNamesParams): Specifies the parameters to remove firewall profiles and their attachments.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SuccessResp
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.remove_firewall_profiles = _Endpoint(
+            settings={
+                'response_type': (SuccessResp,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/network/firewall/profile/remove',
+                'operation_id': 'remove_firewall_profiles',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (FirewallProfileNamesParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__remove_firewall_profiles
         )
 
         def __reset_firewall_profile(
@@ -322,7 +447,7 @@ class FirewallApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/firewall/profiles/reset',
@@ -436,7 +561,7 @@ class FirewallApi(object):
                 'response_type': (FirewallIPSets,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/firewall/ip-sets',
@@ -485,6 +610,128 @@ class FirewallApi(object):
             },
             api_client=api_client,
             callable=__update_firewall_ip_sets
+        )
+
+        def __update_firewall_profile(
+            self,
+            body,
+            **kwargs
+        ):
+            """Update firewall profiles & their attachments.  # noqa: E501
+
+            Update the firewall profiles and/or their attachments.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_firewall_profile(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (FirewallProfileParams): Specifies the parameters to configure firewall profiles and/or their attachments.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FirewallProfileParams
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_firewall_profile = _Endpoint(
+            settings={
+                'response_type': (FirewallProfileParams,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/network/firewall/profile',
+                'operation_id': 'update_firewall_profile',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (FirewallProfileParams,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_firewall_profile
         )
 
         def __update_firewall_profiles(
@@ -558,7 +805,7 @@ class FirewallApi(object):
                 'response_type': (FirewallProfiles,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/firewall/profiles',

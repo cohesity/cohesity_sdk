@@ -22,7 +22,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.add_remote_disk_response_body import AddRemoteDiskResponseBody
-from cohesity_sdk.cluster.model.api_based_fetch_info import ApiBasedFetchInfo
+from cohesity_sdk.cluster.model.airgap_config import AirgapConfig
 from cohesity_sdk.cluster.model.chassis import Chassis
 from cohesity_sdk.cluster.model.chassis_list import ChassisList
 from cohesity_sdk.cluster.model.cluster import Cluster
@@ -32,10 +32,9 @@ from cohesity_sdk.cluster.model.cluster_free_disks import ClusterFreeDisks
 from cohesity_sdk.cluster.model.cluster_interfaces import ClusterInterfaces
 from cohesity_sdk.cluster.model.cluster_local_domain_sid import ClusterLocalDomainSID
 from cohesity_sdk.cluster.model.cluster_operation_response_params import ClusterOperationResponseParams
-from cohesity_sdk.cluster.model.cluster_operation_status import ClusterOperationStatus
 from cohesity_sdk.cluster.model.cluster_packages import ClusterPackages
+from cohesity_sdk.cluster.model.cluster_snapshot_policy import ClusterSnapshotPolicy
 from cohesity_sdk.cluster.model.cluster_state_params import ClusterStateParams
-from cohesity_sdk.cluster.model.cluster_ui_config import ClusterUiConfig
 from cohesity_sdk.cluster.model.cluster_uprade_params import ClusterUpradeParams
 from cohesity_sdk.cluster.model.cluster_vlan_params import ClusterVlanParams
 from cohesity_sdk.cluster.model.cluster_vlans import ClusterVlans
@@ -48,6 +47,7 @@ from cohesity_sdk.cluster.model.disk_removal_params import DiskRemovalParams
 from cohesity_sdk.cluster.model.disks_list import DisksList
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.feature_flag_list import FeatureFlagList
+from cohesity_sdk.cluster.model.free_nodes import FreeNodes
 from cohesity_sdk.cluster.model.host_mappings import HostMappings
 from cohesity_sdk.cluster.model.host_mappings_parameters import HostMappingsParameters
 from cohesity_sdk.cluster.model.interface_group import InterfaceGroup
@@ -57,13 +57,14 @@ from cohesity_sdk.cluster.model.interface_params import InterfaceParams
 from cohesity_sdk.cluster.model.ipmi_lan_params import IpmiLanParams
 from cohesity_sdk.cluster.model.ipmi_users import IpmiUsers
 from cohesity_sdk.cluster.model.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
-from cohesity_sdk.cluster.model.mcm_rigel_claim_response_params import McmRigelClaimResponseParams
 from cohesity_sdk.cluster.model.network_interface_params import NetworkInterfaceParams
 from cohesity_sdk.cluster.model.node import Node
-from cohesity_sdk.cluster.model.node_bond_interface_params import NodeBondInterfaceParams
 from cohesity_sdk.cluster.model.node_identify_params import NodeIdentifyParams
+from cohesity_sdk.cluster.model.node_info import NodeInfo
 from cohesity_sdk.cluster.model.node_power_operation import NodePowerOperation
 from cohesity_sdk.cluster.model.node_removal_params import NodeRemovalParams
+from cohesity_sdk.cluster.model.public_key_request import PublicKeyRequest
+from cohesity_sdk.cluster.model.public_key_response import PublicKeyResponse
 from cohesity_sdk.cluster.model.rack import Rack
 from cohesity_sdk.cluster.model.racks import Racks
 from cohesity_sdk.cluster.model.remote_disks import RemoteDisks
@@ -75,8 +76,11 @@ from cohesity_sdk.cluster.model.test_smtp_config import TestSMTPConfig
 from cohesity_sdk.cluster.model.update_cluster_vlan_params import UpdateClusterVlanParams
 from cohesity_sdk.cluster.model.update_feature_flag_params import UpdateFeatureFlagParams
 from cohesity_sdk.cluster.model.update_ipmi_users import UpdateIpmiUsers
-from cohesity_sdk.cluster.model.update_node_bond_interface_params import UpdateNodeBondInterfaceParams
 from cohesity_sdk.cluster.model.update_smtp_params import UpdateSMTPParams
+from cohesity_sdk.cluster.model.update_snapshot_policy_params import UpdateSnapshotPolicyParams
+from cohesity_sdk.cluster.model.upgrade_check_run_tests_request import UpgradeCheckRunTestsRequest
+from cohesity_sdk.cluster.model.upgrade_check_run_tests_result import UpgradeCheckRunTestsResult
+from cohesity_sdk.cluster.model.upgrade_checks_results import UpgradeChecksResults
 from cohesity_sdk.cluster.model.upload_package_url_params import UploadPackageUrlParams
 
 
@@ -163,7 +167,7 @@ class PlatformApi(object):
                 'response_type': (HostMappings,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings',
@@ -285,7 +289,7 @@ class PlatformApi(object):
                 'response_type': (AddRemoteDiskResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/remote',
@@ -334,115 +338,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__add_remote_disk
-        )
-
-        def __cleanup_tenant_migration(
-            self,
-            **kwargs
-        ):
-            """Cleanup Tenant Migration.  # noqa: E501
-
-            Cleanup in cluster config for tenant migration on rigel.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.cleanup_tenant_migration(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.cleanup_tenant_migration = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/cleanup-tenant-migration',
-                'operation_id': 'cleanup_tenant_migration',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__cleanup_tenant_migration
         )
 
         def __clear_smtp_configuration(
@@ -511,7 +406,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp',
@@ -625,7 +520,7 @@ class PlatformApi(object):
                 'response_type': (Cluster,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -747,7 +642,7 @@ class PlatformApi(object):
                 'response_type': (ClusterVlanParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans',
@@ -869,7 +764,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceGroup,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups',
@@ -918,128 +813,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__create_interface_group
-        )
-
-        def __create_node_bond_interface(
-            self,
-            body,
-            **kwargs
-        ):
-            """Create bond interface  # noqa: E501
-
-            Create a bond interface on a free node or cluster node.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_node_bond_interface(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (NodeBondInterfaceParams): Parameters to create bond interface.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                NodeBondInterfaceParams
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.create_node_bond_interface = _Endpoint(
-            settings={
-                'response_type': (NodeBondInterfaceParams,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/network/nodes/bonds',
-                'operation_id': 'create_node_bond_interface',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (NodeBondInterfaceParams,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__create_node_bond_interface
         )
 
         def __create_racks(
@@ -1113,7 +886,7 @@ class PlatformApi(object):
                 'response_type': (Racks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -1230,7 +1003,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/amqp-target-config',
@@ -1344,7 +1117,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages/{versionName}',
@@ -1392,6 +1165,115 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__delete_cluster_package
+        )
+
+        def __delete_cluster_snapshot_policy(
+            self,
+            **kwargs
+        ):
+            """Delete cluster snapshot policy.  # noqa: E501
+
+            Delete cluster snapshot policy.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_cluster_snapshot_policy(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_cluster_snapshot_policy = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/snapshot-policy',
+                'operation_id': 'delete_cluster_snapshot_policy',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_cluster_snapshot_policy
         )
 
         def __delete_cluster_vlan(
@@ -1465,7 +1347,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans/{interfaceName}',
@@ -1586,7 +1468,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings/delete',
@@ -1708,7 +1590,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups/{id}',
@@ -1756,133 +1638,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__delete_interface_group
-        )
-
-        def __delete_node_bond_interface(
-            self,
-            name,
-            **kwargs
-        ):
-            """Delete bond interface  # noqa: E501
-
-            Delete the bond interface on a free or cluster node.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.delete_node_bond_interface(name, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                name (str): Name of the bond interface.
-
-            Keyword Args:
-                node_id (int): Id of the node, this is required when node is part of a cluster.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
-            return self.call_with_http_info(**kwargs)
-
-        self.delete_node_bond_interface = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/network/nodes/bonds/{name}',
-                'operation_id': 'delete_node_bond_interface',
-                'http_method': 'DELETE',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'name',
-                    'node_id',
-                ],
-                'required': [
-                    'name',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'name':
-                        (str,),
-                    'node_id':
-                        (int,),
-                },
-                'attribute_map': {
-                    'name': 'name',
-                    'node_id': 'nodeId',
-                },
-                'location_map': {
-                    'name': 'path',
-                    'node_id': 'query',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__delete_node_bond_interface
         )
 
         def __delete_rack_by_id(
@@ -1956,7 +1711,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks/{id}',
@@ -2072,7 +1827,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -2113,115 +1868,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__delete_racks
-        )
-
-        def __destroy_cluster(
-            self,
-            **kwargs
-        ):
-            """Destroy a cluster.  # noqa: E501
-
-            Destroy a cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.destroy_cluster(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ClusterOperationResponseParams
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.destroy_cluster = _Endpoint(
-            settings={
-                'response_type': (ClusterOperationResponseParams,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters',
-                'operation_id': 'destroy_cluster',
-                'http_method': 'DELETE',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__destroy_cluster
         )
 
         def __discover_disks(
@@ -2290,7 +1936,7 @@ class PlatformApi(object):
                 'response_type': (ClusterFreeDisks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/discover',
@@ -2404,7 +2050,7 @@ class PlatformApi(object):
                 'response_type': (DiskIdentify,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/identify',
@@ -2526,7 +2172,7 @@ class PlatformApi(object):
                 'response_type': (ClusterFreeDisks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/assimilate',
@@ -2648,7 +2294,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/nodes',
@@ -2765,7 +2411,7 @@ class PlatformApi(object):
                 'response_type': (ClusterAMQPTargetConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/amqp-target-config',
@@ -2875,7 +2521,7 @@ class PlatformApi(object):
                 'response_type': (ChassisList,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/chassis',
@@ -2994,7 +2640,7 @@ class PlatformApi(object):
                 'response_type': (Chassis,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/chassis/{id}',
@@ -3110,7 +2756,7 @@ class PlatformApi(object):
                 'response_type': (Cluster,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -3151,115 +2797,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__get_cluster
-        )
-
-        def __get_cluster_destroy_hmac(
-            self,
-            **kwargs
-        ):
-            """Retrieve specific cluster information.  # noqa: E501
-
-            Fetch info regarding cluster to perform certain api based operations.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_cluster_destroy_hmac(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ApiBasedFetchInfo
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_cluster_destroy_hmac = _Endpoint(
-            settings={
-                'response_type': (ApiBasedFetchInfo,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/api-based-fetch-info',
-                'operation_id': 'get_cluster_destroy_hmac',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_cluster_destroy_hmac
         )
 
         def __get_cluster_local_domain_sid(
@@ -3328,7 +2865,7 @@ class PlatformApi(object):
                 'response_type': (ClusterLocalDomainSID,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/local-domain-sid',
@@ -3369,127 +2906,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__get_cluster_local_domain_sid
-        )
-
-        def __get_cluster_operation_status(
-            self,
-            operation_id,
-            **kwargs
-        ):
-            """Get cluster operations status.  # noqa: E501
-
-            Get cluster operations status information.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_cluster_operation_status(operation_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                operation_id (int): The operation id.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ClusterOperationStatus
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['operation_id'] = \
-                operation_id
-            return self.call_with_http_info(**kwargs)
-
-        self.get_cluster_operation_status = _Endpoint(
-            settings={
-                'response_type': (ClusterOperationStatus,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/operation-status/{operationId}',
-                'operation_id': 'get_cluster_operation_status',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'operation_id',
-                ],
-                'required': [
-                    'operation_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'operation_id':
-                        (int,),
-                },
-                'attribute_map': {
-                    'operation_id': 'operationId',
-                },
-                'location_map': {
-                    'operation_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_cluster_operation_status
         )
 
         def __get_cluster_packages(
@@ -3558,7 +2974,7 @@ class PlatformApi(object):
                 'response_type': (ClusterPackages,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages',
@@ -3599,6 +3015,115 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__get_cluster_packages
+        )
+
+        def __get_cluster_snapshot_policy(
+            self,
+            **kwargs
+        ):
+            """Get cluster snapshot policy.  # noqa: E501
+
+            Get cluster snapshot policy.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_cluster_snapshot_policy(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                ClusterSnapshotPolicy
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_cluster_snapshot_policy = _Endpoint(
+            settings={
+                'response_type': (ClusterSnapshotPolicy,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/snapshot-policy',
+                'operation_id': 'get_cluster_snapshot_policy',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_cluster_snapshot_policy
         )
 
         def __get_cluster_state(
@@ -3668,7 +3193,7 @@ class PlatformApi(object):
                 'response_type': (ClusterStateParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/state',
@@ -3714,115 +3239,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__get_cluster_state
-        )
-
-        def __get_cluster_ui_config(
-            self,
-            **kwargs
-        ):
-            """Get cluster UI Config.  # noqa: E501
-
-            Get customized UI config for the cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_cluster_ui_config(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ClusterUiConfig
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_cluster_ui_config = _Endpoint(
-            settings={
-                'response_type': (ClusterUiConfig,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/ui-config',
-                'operation_id': 'get_cluster_ui_config',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_cluster_ui_config
         )
 
         def __get_cluster_vlans(
@@ -3896,7 +3312,7 @@ class PlatformApi(object):
                 'response_type': (ClusterVlans,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans',
@@ -4033,7 +3449,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceGroups,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups',
@@ -4157,7 +3573,7 @@ class PlatformApi(object):
                 'response_type': (NetworkInterfaceParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interfaces',
@@ -4312,7 +3728,7 @@ class PlatformApi(object):
                 'response_type': (IpmiLanParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/lan',
@@ -4428,7 +3844,7 @@ class PlatformApi(object):
                 'response_type': (IpmiUsers,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/users',
@@ -4543,7 +3959,7 @@ class PlatformApi(object):
                 'response_type': (DMaaSInfo,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/is-dmaas',
@@ -4652,7 +4068,7 @@ class PlatformApi(object):
                 'response_type': (ClusterInterfaces,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network-interfaces',
@@ -4767,7 +4183,7 @@ class PlatformApi(object):
                 'response_type': ([Node],),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/nodes',
@@ -4913,7 +4329,7 @@ class PlatformApi(object):
                 'response_type': (Rack,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks/{id}',
@@ -5029,7 +4445,7 @@ class PlatformApi(object):
                 'response_type': (Racks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -5143,7 +4559,7 @@ class PlatformApi(object):
                 'response_type': (RemoteDisks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/remote',
@@ -5288,7 +4704,7 @@ class PlatformApi(object):
                 'response_type': (SMTPConfiguration,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp',
@@ -5397,7 +4813,7 @@ class PlatformApi(object):
                 'response_type': (SupportChannelConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-channel-config',
@@ -5515,7 +4931,7 @@ class PlatformApi(object):
                 'response_type': (NodeIdentifyParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nodes/{id}/identify',
@@ -5570,6 +4986,139 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__identify_node
+        )
+
+        def __import_crl_file(
+            self,
+            file_name,
+            crlfile,
+            **kwargs
+        ):
+            """Import Crl File  # noqa: E501
+
+            Import a Crl file into the cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.import_crl_file(file_name, crlfile, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                file_name (str):
+                crlfile (file_type):
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['file_name'] = \
+                file_name
+            kwargs['crlfile'] = \
+                crlfile
+            return self.call_with_http_info(**kwargs)
+
+        self.import_crl_file = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/import-crl-file',
+                'operation_id': 'import_crl_file',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'file_name',
+                    'crlfile',
+                ],
+                'required': [
+                    'file_name',
+                    'crlfile',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'file_name':
+                        (str,),
+                    'crlfile':
+                        (file_type,),
+                },
+                'attribute_map': {
+                    'file_name': 'fileName',
+                    'crlfile': 'crlfile',
+                },
+                'location_map': {
+                    'file_name': 'form',
+                    'crlfile': 'form',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'multipart/form-data'
+                ]
+            },
+            api_client=api_client,
+            callable=__import_crl_file
         )
 
         def __list_disks(
@@ -5639,7 +5188,7 @@ class PlatformApi(object):
                 'response_type': (DisksList,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/local',
@@ -5753,7 +5302,7 @@ class PlatformApi(object):
                 'response_type': (FeatureFlagList,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/feature-flag',
@@ -5794,6 +5343,115 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__list_feature_flag
+        )
+
+        def __list_free_nodes(
+            self,
+            **kwargs
+        ):
+            """List the free Cohesity Nodes present on a network.  # noqa: E501
+
+            Sends a request to any Node to list all of the free Nodes that are present on the network.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.list_free_nodes(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                FreeNodes
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.list_free_nodes = _Endpoint(
+            settings={
+                'response_type': (FreeNodes,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/nodes/free',
+                'operation_id': 'list_free_nodes',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__list_free_nodes
         )
 
         def __list_hosts(
@@ -5862,7 +5520,7 @@ class PlatformApi(object):
                 'response_type': (HostMappings,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings',
@@ -5976,7 +5634,7 @@ class PlatformApi(object):
                 'response_type': (MarkBaseosUpgradeInfo,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/baseos-upgrade',
@@ -6102,7 +5760,7 @@ class PlatformApi(object):
                 'response_type': (RemoveDisk,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/{id}/remove',
@@ -6234,7 +5892,7 @@ class PlatformApi(object):
                 'response_type': (RemoveNode,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/nodes/{id}/remove',
@@ -6291,22 +5949,137 @@ class PlatformApi(object):
             callable=__mark_node_removal
         )
 
-        def __remove_cluster_node(
+        def __node_information(
             self,
-            id,
             **kwargs
         ):
-            """Remove node  # noqa: E501
+            """Fetch Node General Information  # noqa: E501
 
-            Remove a node from the cluster.  # noqa: E501
+            Fetch general information about the node to which the request is sent to.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.remove_cluster_node(id, async_req=True)
+            >>> thread = api.node_information(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                show_services_version_info (bool): Specifies whether to show version info of the services running on the node.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                NodeInfo
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.node_information = _Endpoint(
+            settings={
+                'response_type': (NodeInfo,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/nodes',
+                'operation_id': 'node_information',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'show_services_version_info',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'show_services_version_info':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'show_services_version_info': 'showServicesVersionInfo',
+                },
+                'location_map': {
+                    'show_services_version_info': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__node_information
+        )
+
+        def __public_key_request(
+            self,
+            body,
+            **kwargs
+        ):
+            """Get the SSH public key.  # noqa: E501
+
+            Get the SSH public key corresponding to the private key used by workloads. For example, users may specify multiple scripts which are supposed to be executed on a remote machine at different progress states of a protection group run (for instance - running a script before the run starts and another after the run completes). The public key returned as part of this response should be added on the remote server where the script is to be executed as there is a specific private key used by the workload for remote login.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.public_key_request(body, async_req=True)
             >>> result = thread.get()
 
             Args:
-                id (int): Id of the node.
+                body (PublicKeyRequest): Specifies the parameters required to retrieve SSH public key
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -6330,7 +6103,7 @@ class PlatformApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                ClusterOperationResponseParams
+                PublicKeyResponse
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -6353,29 +6126,29 @@ class PlatformApi(object):
                 '_check_return_type', True
             )
             kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
+            kwargs['body'] = \
+                body
             return self.call_with_http_info(**kwargs)
 
-        self.remove_cluster_node = _Endpoint(
+        self.public_key_request = _Endpoint(
             settings={
-                'response_type': (ClusterOperationResponseParams,),
+                'response_type': (PublicKeyResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/clusters/nodes/{id}',
-                'operation_id': 'remove_cluster_node',
-                'http_method': 'DELETE',
+                'endpoint_path': '/clusters/ssh-public-key',
+                'operation_id': 'public_key_request',
+                'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'id',
+                    'body',
                 ],
                 'required': [
-                    'id',
+                    'body',
                 ],
                 'nullable': [
                 ],
@@ -6390,14 +6163,13 @@ class PlatformApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'id':
-                        (int,),
+                    'body':
+                        (PublicKeyRequest,),
                 },
                 'attribute_map': {
-                    'id': 'id',
                 },
                 'location_map': {
-                    'id': 'path',
+                    'body': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -6406,10 +6178,12 @@ class PlatformApi(object):
                 'accept': [
                     'application/json'
                 ],
-                'content_type': [],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client,
-            callable=__remove_cluster_node
+            callable=__public_key_request
         )
 
         def __remove_remote_disk(
@@ -6483,7 +6257,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/disks/remote/{id}',
@@ -6604,7 +6378,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-power',
@@ -6653,6 +6427,128 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__set_node_power
+        )
+
+        def __update_airgap_config(
+            self,
+            body,
+            **kwargs
+        ):
+            """Update Airgap config  # noqa: E501
+
+            Enable or Disable Airgap on the cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_airgap_config(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (AirgapConfig): Specifies the parameters to update airgap config.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AirgapConfig
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_airgap_config = _Endpoint(
+            settings={
+                'response_type': (AirgapConfig,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/clusters/airgap',
+                'operation_id': 'update_airgap_config',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (AirgapConfig,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_airgap_config
         )
 
         def __update_amqp_target_config(
@@ -6726,7 +6622,7 @@ class PlatformApi(object):
                 'response_type': (ClusterAMQPTargetConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/amqp-target-config',
@@ -6849,7 +6745,7 @@ class PlatformApi(object):
                 'response_type': (Chassis,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/chassis/{id}',
@@ -6976,7 +6872,7 @@ class PlatformApi(object):
                 'response_type': (Cluster,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters',
@@ -7027,22 +6923,22 @@ class PlatformApi(object):
             callable=__update_cluster
         )
 
-        def __update_cluster_bifrost_config(
+        def __update_cluster_snapshot_policy(
             self,
             body,
             **kwargs
         ):
-            """Update cluster Bifrost config.  # noqa: E501
+            """Update cluster snapshot policy.  # noqa: E501
 
-            Update cluster Bifrost config.  # noqa: E501
+            Update cluster snapshot policy.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.update_cluster_bifrost_config(body, async_req=True)
+            >>> thread = api.update_cluster_snapshot_policy(body, async_req=True)
             >>> result = thread.get()
 
             Args:
-                body (McmRigelClaimResponseParams): Specifies the request to update Bifrost config.
+                body (UpdateSnapshotPolicyParams): Specifies the parameters to update cluster snapshot policy.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -7066,7 +6962,7 @@ class PlatformApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                McmRigelClaimResponseParams
+                ClusterSnapshotPolicy
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -7093,16 +6989,16 @@ class PlatformApi(object):
                 body
             return self.call_with_http_info(**kwargs)
 
-        self.update_cluster_bifrost_config = _Endpoint(
+        self.update_cluster_snapshot_policy = _Endpoint(
             settings={
-                'response_type': (McmRigelClaimResponseParams,),
+                'response_type': (ClusterSnapshotPolicy,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/clusters/bifrost-config',
-                'operation_id': 'update_cluster_bifrost_config',
+                'endpoint_path': '/clusters/snapshot-policy',
+                'operation_id': 'update_cluster_snapshot_policy',
                 'http_method': 'PUT',
                 'servers': None,
             },
@@ -7127,7 +7023,7 @@ class PlatformApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (McmRigelClaimResponseParams,),
+                        (UpdateSnapshotPolicyParams,),
                 },
                 'attribute_map': {
                 },
@@ -7146,129 +7042,7 @@ class PlatformApi(object):
                 ]
             },
             api_client=api_client,
-            callable=__update_cluster_bifrost_config
-        )
-
-        def __update_cluster_ui_config(
-            self,
-            body,
-            **kwargs
-        ):
-            """Update cluster UI Config.  # noqa: E501
-
-            Update customized UI config for the cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_cluster_ui_config(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (ClusterUiConfig): Specifies the UI config.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ClusterUiConfig
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.update_cluster_ui_config = _Endpoint(
-            settings={
-                'response_type': (ClusterUiConfig,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/ui-config',
-                'operation_id': 'update_cluster_ui_config',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (ClusterUiConfig,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__update_cluster_ui_config
+            callable=__update_cluster_snapshot_policy
         )
 
         def __update_cluster_vlan(
@@ -7346,7 +7120,7 @@ class PlatformApi(object):
                 'response_type': (ClusterVlanParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/vlans/{interfaceName}',
@@ -7474,7 +7248,7 @@ class PlatformApi(object):
                 'response_type': (FeatureFlagList,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/feature-flag',
@@ -7596,7 +7370,7 @@ class PlatformApi(object):
                 'response_type': (HostMappings,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/host-mappings',
@@ -7722,7 +7496,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interfaces/{id}',
@@ -7854,7 +7628,7 @@ class PlatformApi(object):
                 'response_type': (InterfaceGroup,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/interface-groups/{id}',
@@ -7982,7 +7756,7 @@ class PlatformApi(object):
                 'response_type': (IpmiLanParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/lan',
@@ -8104,7 +7878,7 @@ class PlatformApi(object):
                 'response_type': (IpmiUsers,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ipmi/users',
@@ -8226,7 +8000,7 @@ class PlatformApi(object):
                 'response_type': (DMaaSInfo,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/is-dmaas',
@@ -8275,138 +8049,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__update_is_d_maa_s_cluster
-        )
-
-        def __update_node_bond_interface(
-            self,
-            name,
-            body,
-            **kwargs
-        ):
-            """Update bond interface  # noqa: E501
-
-            Update the bond interface on a free node or cluster node.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_node_bond_interface(name, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                name (str): Name of the bond interface.
-                body (UpdateNodeBondInterfaceParams): Parameters to update bond interface.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                NodeBondInterfaceParams
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['name'] = \
-                name
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.update_node_bond_interface = _Endpoint(
-            settings={
-                'response_type': (NodeBondInterfaceParams,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/network/nodes/bonds/{name}',
-                'operation_id': 'update_node_bond_interface',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'name',
-                    'body',
-                ],
-                'required': [
-                    'name',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'name':
-                        (str,),
-                    'body':
-                        (UpdateNodeBondInterfaceParams,),
-                },
-                'attribute_map': {
-                    'name': 'name',
-                },
-                'location_map': {
-                    'name': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__update_node_bond_interface
         )
 
         def __update_rack_by_id(
@@ -8481,7 +8123,7 @@ class PlatformApi(object):
                 'response_type': (Rack,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks/{id}',
@@ -8608,7 +8250,7 @@ class PlatformApi(object):
                 'response_type': (Racks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/racks',
@@ -8730,7 +8372,7 @@ class PlatformApi(object):
                 'response_type': (SMTPConfiguration,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp',
@@ -8852,7 +8494,7 @@ class PlatformApi(object):
                 'response_type': (SupportChannelConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/support-channel-config',
@@ -8901,6 +8543,249 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__update_support_channel_config
+        )
+
+        def __upgrade_check_get_results(
+            self,
+            test_run_instance_id,
+            **kwargs
+        ):
+            """Get upgrade checks results.  # noqa: E501
+
+            Get upgrade checks results.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.upgrade_check_get_results(test_run_instance_id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                test_run_instance_id (int): Specifies test run instance for which to fetch results
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                UpgradeChecksResults
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['test_run_instance_id'] = \
+                test_run_instance_id
+            return self.call_with_http_info(**kwargs)
+
+        self.upgrade_check_get_results = _Endpoint(
+            settings={
+                'response_type': (UpgradeChecksResults,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/cluster/upgrade-checks/{testRunInstanceId}',
+                'operation_id': 'upgrade_check_get_results',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'test_run_instance_id',
+                ],
+                'required': [
+                    'test_run_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'test_run_instance_id':
+                        (int,),
+                },
+                'attribute_map': {
+                    'test_run_instance_id': 'testRunInstanceId',
+                },
+                'location_map': {
+                    'test_run_instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__upgrade_check_get_results
+        )
+
+        def __upgrade_check_run_tests(
+            self,
+            body,
+            **kwargs
+        ):
+            """Run upgrade checks on cluster.  # noqa: E501
+
+            Run upgrade checks on cluster.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.upgrade_check_run_tests(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (UpgradeCheckRunTestsRequest): Run upgrade checks on cluster.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                UpgradeCheckRunTestsResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.upgrade_check_run_tests = _Endpoint(
+            settings={
+                'response_type': (UpgradeCheckRunTestsResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/cluster/upgrade-checks',
+                'operation_id': 'upgrade_check_run_tests',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (UpgradeCheckRunTestsRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__upgrade_check_run_tests
         )
 
         def __upgrade_cluster_software(
@@ -8974,7 +8859,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/upgrade',
@@ -9023,129 +8908,6 @@ class PlatformApi(object):
             },
             api_client=api_client,
             callable=__upgrade_cluster_software
-        )
-
-        def __upload_file_package(
-            self,
-            package_file,
-            **kwargs
-        ):
-            """Upload package by file  # noqa: E501
-
-            Upload a package file to the cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.upload_file_package(package_file, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                package_file (file_type): Package to be uploaded to the cluster.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['package_file'] = \
-                package_file
-            return self.call_with_http_info(**kwargs)
-
-        self.upload_file_package = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/clusters/packages/file',
-                'operation_id': 'upload_file_package',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'package_file',
-                ],
-                'required': [
-                    'package_file',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'package_file':
-                        (file_type,),
-                },
-                'attribute_map': {
-                    'package_file': 'packageFile',
-                },
-                'location_map': {
-                    'package_file': 'form',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'multipart/form-data'
-                ]
-            },
-            api_client=api_client,
-            callable=__upload_file_package
         )
 
         def __upload_package_by_url(
@@ -9219,7 +8981,7 @@ class PlatformApi(object):
                 'response_type': (ClusterOperationResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/packages/url',
@@ -9341,7 +9103,7 @@ class PlatformApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/clusters/smtp/validate',

@@ -81,6 +81,7 @@ class CreateTenantParams(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'tenant_id_suffix': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'is_managed_on_helios': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -93,6 +94,7 @@ class CreateTenantParams(ModelNormal):
         'name': 'name',  # noqa: E501
         'tenant_id_suffix': 'tenantIdSuffix',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'is_managed_on_helios': 'isManagedOnHelios',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -147,6 +149,7 @@ class CreateTenantParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Description about the tenant. [optional]  # noqa: E501
+            is_managed_on_helios (bool, none_type): Flag to indicate if tenant is managed on helios. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

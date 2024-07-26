@@ -111,7 +111,7 @@ class CloudRetrieveTaskApi(object):
                 'response_type': (CreateCloudRetrieveTaskRespBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/retrieve',
@@ -233,7 +233,7 @@ class CloudRetrieveTaskApi(object):
                 'response_type': (CloudRetrieveTask,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/retrieve/{jobId}',
@@ -349,7 +349,7 @@ class CloudRetrieveTaskApi(object):
                 'response_type': (CloudRetrieveTasks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/retrieve',

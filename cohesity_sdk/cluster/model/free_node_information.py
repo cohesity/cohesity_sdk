@@ -74,9 +74,9 @@ class FreeNodeInformation(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (int, none_type,),  # noqa: E501
-            'chassis_serial': (str, none_type,),  # noqa: E501
             'can_connect': (bool, none_type,),  # noqa: E501
+            'chassis_serial': (str, none_type,),  # noqa: E501
+            'id': (int, none_type,),  # noqa: E501
             'ipmi_ip': (str, none_type,),  # noqa: E501
             'ips': ([str], none_type,),  # noqa: E501
             'node_serial': (str, none_type,),  # noqa: E501
@@ -94,9 +94,9 @@ class FreeNodeInformation(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'chassis_serial': 'chassisSerial',  # noqa: E501
         'can_connect': 'canConnect',  # noqa: E501
+        'chassis_serial': 'chassisSerial',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'ipmi_ip': 'ipmiIp',  # noqa: E501
         'ips': 'ips',  # noqa: E501
         'node_serial': 'nodeSerial',  # noqa: E501
@@ -154,9 +154,9 @@ class FreeNodeInformation(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            id (int, none_type): Specifies the ID of the node.. [optional]  # noqa: E501
-            chassis_serial (str, none_type): Specifies the serial number of the Chassis the Node is installed in.. [optional]  # noqa: E501
             can_connect (bool, none_type): Specifies if Node can be connected.. [optional]  # noqa: E501
+            chassis_serial (str, none_type): Specifies the serial number of the Chassis the Node is installed in.. [optional]  # noqa: E501
+            id (int, none_type): Specifies the ID of the node.. [optional]  # noqa: E501
             ipmi_ip (str, none_type): Specifies the IPMI IP of the Node.. [optional]  # noqa: E501
             ips ([str], none_type): List of discovered ipv4/ipv6 addresses of the node. Ip field returns ips as comma separated single string which is incorrect.. [optional]  # noqa: E501
             node_serial (str, none_type): Specifies the serial number of the Node.. [optional]  # noqa: E501

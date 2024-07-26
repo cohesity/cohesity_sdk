@@ -80,6 +80,7 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
         lazy_import()
         return {
             'download_file_path': (str, none_type,),  # noqa: E501
+            'expiry_time_usecs': (int, none_type,),  # noqa: E501
             'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
         }
 
@@ -91,6 +92,7 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
 
     attribute_map = {
         'download_file_path': 'downloadFilePath',  # noqa: E501
+        'expiry_time_usecs': 'expiryTimeUsecs',  # noqa: E501
         'files_and_folders': 'filesAndFolders',  # noqa: E501
     }
 
@@ -142,6 +144,7 @@ class CommonDownloadFileAndFolderParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             download_file_path (str, none_type): Specifies the path location to download the files and folders.. [optional]  # noqa: E501
+            expiry_time_usecs (int, none_type): Specifies the time upto which the download link is available.. [optional]  # noqa: E501
             files_and_folders ([CommonRecoverFileAndFolderInfo], none_type): Specifies the info about the files and folders to be recovered.. [optional]  # noqa: E501
         """
 

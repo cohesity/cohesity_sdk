@@ -54,6 +54,11 @@ class ArchivalS3CompExternalTargetParamsAllOf(ModelNormal):
     """
 
     allowed_values = {
+        ('storage_class',): {
+            'None': None,
+            'S3COMPATIBLEREGULAR': "S3CompatibleRegular",
+            'S3COMPATIBLETAPEBASED': "S3CompatibleTapeBased",
+        },
     }
 
     validations = {
@@ -77,6 +82,7 @@ class ArchivalS3CompExternalTargetParamsAllOf(ModelNormal):
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
+            'storage_class': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -89,6 +95,7 @@ class ArchivalS3CompExternalTargetParamsAllOf(ModelNormal):
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
+        'storage_class': 'storageClass',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -141,6 +148,7 @@ class ArchivalS3CompExternalTargetParamsAllOf(ModelNormal):
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the S3 Compatible external target. [optional]  # noqa: E501
+            storage_class (str, none_type): Specifies the S3Compatible External Target storage class.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

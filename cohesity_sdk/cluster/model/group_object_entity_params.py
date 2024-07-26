@@ -74,8 +74,8 @@ class GroupObjectEntityParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'is_security_enabled': (bool, none_type,),  # noqa: E501
             'is_mail_enabled': (bool, none_type,),  # noqa: E501
+            'is_security_enabled': (bool, none_type,),  # noqa: E501
             'member_count': (int, none_type,),  # noqa: E501
         }
 
@@ -86,8 +86,8 @@ class GroupObjectEntityParams(ModelNormal):
 
 
     attribute_map = {
-        'is_security_enabled': 'isSecurityEnabled',  # noqa: E501
         'is_mail_enabled': 'isMailEnabled',  # noqa: E501
+        'is_security_enabled': 'isSecurityEnabled',  # noqa: E501
         'member_count': 'memberCount',  # noqa: E501
     }
 
@@ -138,8 +138,8 @@ class GroupObjectEntityParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            is_security_enabled (bool, none_type): Specifies whether the Group is security enabled. Security enabled groups are used to grant access permissions to resources in Exchange and Active Directory.. [optional]  # noqa: E501
             is_mail_enabled (bool, none_type): Specifies whether the Group is mail enabled. Mail enabled groups are used within Microsoft to distribute messages.. [optional]  # noqa: E501
+            is_security_enabled (bool, none_type): Specifies whether the Group is security enabled. Security enabled groups are used to grant access permissions to resources in Exchange and Active Directory.. [optional]  # noqa: E501
             member_count (int, none_type): Specifies the count of members within the Group.. [optional]  # noqa: E501
         """
 

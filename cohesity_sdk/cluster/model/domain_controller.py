@@ -57,8 +57,9 @@ class DomainController(ModelNormal):
         ('status',): {
             'None': None,
             'REACHABLE': "Reachable",
-            'UNREACHABLE': "Unreachable",
+            'FLAPPING': "Flapping",
             'INCOMPATIBLE': "Incompatible",
+            'CLOCKSKEW': "ClockSkew",
         },
     }
 

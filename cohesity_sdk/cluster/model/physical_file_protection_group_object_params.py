@@ -80,6 +80,7 @@ class PhysicalFileProtectionGroupObjectParams(ModelNormal):
         lazy_import()
         return {
             'id': (int,),  # noqa: E501
+            'excluded_vss_writers': ([str], none_type,),  # noqa: E501
             'file_paths': ([PhysicalFileBackupPathParams],),  # noqa: E501
             'follow_nas_symlink_target': (bool, none_type,),  # noqa: E501
             'metadata_file_path': (str, none_type,),  # noqa: E501
@@ -96,6 +97,7 @@ class PhysicalFileProtectionGroupObjectParams(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'excluded_vss_writers': 'excludedVssWriters',  # noqa: E501
         'file_paths': 'filePaths',  # noqa: E501
         'follow_nas_symlink_target': 'followNasSymlinkTarget',  # noqa: E501
         'metadata_file_path': 'metadataFilePath',  # noqa: E501
@@ -154,6 +156,7 @@ class PhysicalFileProtectionGroupObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            excluded_vss_writers ([str], none_type): Specifies writer names which should be excluded from physical file based backups.. [optional]  # noqa: E501
             file_paths ([PhysicalFileBackupPathParams]): Specifies a list of file paths to be protected by this Protection Group.. [optional]  # noqa: E501
             follow_nas_symlink_target (bool, none_type): Specifies whether to follow NAS target pointed by symlink for windows sources.. [optional]  # noqa: E501
             metadata_file_path (str, none_type): Specifies the path of metadatafile on source. This file contains absolute paths of files that needs to be backed up on the same source.. [optional]  # noqa: E501

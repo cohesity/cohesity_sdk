@@ -28,9 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_no_sql_recovery_options import CommonNoSqlRecoveryOptions
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.recover_cassandra_params_all_of import RecoverCassandraParamsAllOf
     from cohesity_sdk.cluster.model.recover_cassandra_snapshot_params import RecoverCassandraSnapshotParams
     globals()['CommonNoSqlRecoveryOptions'] = CommonNoSqlRecoveryOptions
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['RecoverCassandraParamsAllOf'] = RecoverCassandraParamsAllOf
     globals()['RecoverCassandraSnapshotParams'] = RecoverCassandraSnapshotParams
 
@@ -84,12 +86,16 @@ class RecoverCassandraParams(ModelComposed):
         lazy_import()
         return {
             'snapshots': ([RecoverCassandraSnapshotParams], none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
             'overwrite': (bool, none_type,),  # noqa: E501
             'recover_to': (int, none_type,),  # noqa: E501
             'warnings': ([str], none_type,),  # noqa: E501
+            'is_live_table_restore': (bool, none_type,),  # noqa: E501
+            'is_system_keyspace_restore': (bool, none_type,),  # noqa: E501
             'log_restore_directory': (str, none_type,),  # noqa: E501
+            'recover_privileges': (bool, none_type,),  # noqa: E501
             'restart_at_usecs': (int, none_type,),  # noqa: E501
             'restart_command': (str, none_type,),  # noqa: E501
             'restart_immediately': (bool, none_type,),  # noqa: E501
@@ -108,12 +114,16 @@ class RecoverCassandraParams(ModelComposed):
 
     attribute_map = {
         'snapshots': 'snapshots',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
         'overwrite': 'overwrite',  # noqa: E501
         'recover_to': 'recoverTo',  # noqa: E501
         'warnings': 'warnings',  # noqa: E501
+        'is_live_table_restore': 'isLiveTableRestore',  # noqa: E501
+        'is_system_keyspace_restore': 'isSystemKeyspaceRestore',  # noqa: E501
         'log_restore_directory': 'logRestoreDirectory',  # noqa: E501
+        'recover_privileges': 'recoverPrivileges',  # noqa: E501
         'restart_at_usecs': 'restartAtUsecs',  # noqa: E501
         'restart_command': 'restartCommand',  # noqa: E501
         'restart_immediately': 'restartImmediately',  # noqa: E501
@@ -175,17 +185,21 @@ class RecoverCassandraParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a recovery job.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             overwrite (bool, none_type): Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.. [optional]  # noqa: E501
             recover_to (int, none_type): Specifies the 'Source Registration ID' of the source where the objects are to be recovered. If this is not specified, the recovery job will recover to the original location.. [optional]  # noqa: E501
             warnings ([str], none_type): This field will hold the warnings in cases where the job status is SucceededWithWarnings.. [optional]  # noqa: E501
+            is_live_table_restore (bool, none_type): Specifies whether the current recovery operation is a live table restore operation.. [optional]  # noqa: E501
+            is_system_keyspace_restore (bool, none_type): Specifies whether the current recovery operation is a system keyspace restore operation.. [optional]  # noqa: E501
             log_restore_directory (str, none_type): Specifies the directory for restoring the logs.. [optional]  # noqa: E501
+            recover_privileges (bool, none_type): Specifies whether recover/skip roles and permissions.. [optional]  # noqa: E501
             restart_at_usecs (int, none_type): Specifies the time in Unix epoch timestamp in microseconds at which the Cassandra services are to be restarted.. [optional]  # noqa: E501
             restart_command (str, none_type): Specifies the command to restart Cassandra services after the point in time recovery.. [optional]  # noqa: E501
             restart_immediately (bool, none_type): Specifies whether to restart Cassandra services immediately after the point in time recovery.. [optional]  # noqa: E501
             restart_services (bool, none_type): Specifies whether to restart Cassandra services after the point in time recovery.. [optional]  # noqa: E501
-            restart_services_task_id (int, none_type): Specifies the Id of the task requiered to restart Cassandra services.. [optional]  # noqa: E501
+            restart_services_task_id (int, none_type): Specifies the Id of the task required to restart Cassandra services.. [optional]  # noqa: E501
             selected_data_centers ([str]): Selected Data centers for this cluster.. [optional]  # noqa: E501
             staging_directory_list ([str]): Specifies the directory on the primary to copy the files which are to be uploaded using destination sstableloader.. [optional]  # noqa: E501
             suffix (str, none_type): A suffix that is to be applied to all recovered objects.. [optional]  # noqa: E501

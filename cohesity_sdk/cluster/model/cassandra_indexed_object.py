@@ -64,6 +64,12 @@ class CassandraIndexedObject(ModelComposed):
     """
 
     allowed_values = {
+        ('keyspace_type',): {
+            'None': None,
+            'KREGULAR': "kRegular",
+            'KGRAPH': "kGraph",
+            'KSYSTEM': "kSystem",
+        },
         ('type',): {
             'None': None,
             'CASSANDRAKEYSPACES': "CassandraKeyspaces",
@@ -101,6 +107,7 @@ class CassandraIndexedObject(ModelComposed):
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
             'tags': ([TagInfo], none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
+            'keyspace_type': (str, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
         }
 
@@ -122,6 +129,7 @@ class CassandraIndexedObject(ModelComposed):
         'snapshot_tags': 'snapshotTags',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'keyspace_type': 'keyspaceType',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -184,6 +192,7 @@ class CassandraIndexedObject(ModelComposed):
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501
             tags ([TagInfo], none_type): Specifies tag applied to the object.. [optional]  # noqa: E501
             id (str, none_type): Specifies the id of the indexed object.. [optional]  # noqa: E501
+            keyspace_type (str, none_type): Specifies type of Keyspace.. [optional]  # noqa: E501
             type (str, none_type): Specifies the Cassandra Object type.. [optional]  # noqa: E501
         """
 

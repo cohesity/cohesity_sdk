@@ -79,6 +79,7 @@ class RecoverKubernetesNamespaceParams(ModelNormal):
         return {
             'target_environment': (str,),  # noqa: E501
             'kubernetes_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vlan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,6 +91,7 @@ class RecoverKubernetesNamespaceParams(ModelNormal):
     attribute_map = {
         'target_environment': 'targetEnvironment',  # noqa: E501
         'kubernetes_target_params': 'kubernetesTargetParams',  # noqa: E501
+        'vlan_config': 'vlanConfig',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +145,7 @@ class RecoverKubernetesNamespaceParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             kubernetes_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for recovering to a Kubernetes host.. [optional]  # noqa: E501
+            vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kKubernetes")

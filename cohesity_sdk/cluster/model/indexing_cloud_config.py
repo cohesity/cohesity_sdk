@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.azure_es_config_for_indexing import AzureESConfigForIndexing
+    from cohesity_sdk.cluster.model.azure_storage_config_for_indexing import AzureStorageConfigForIndexing
     from cohesity_sdk.cluster.model.es_config_for_indexing import ESConfigForIndexing
     from cohesity_sdk.cluster.model.s3_config_for_indexing import S3ConfigForIndexing
+    globals()['AzureESConfigForIndexing'] = AzureESConfigForIndexing
+    globals()['AzureStorageConfigForIndexing'] = AzureStorageConfigForIndexing
     globals()['ESConfigForIndexing'] = ESConfigForIndexing
     globals()['S3ConfigForIndexing'] = S3ConfigForIndexing
 
@@ -81,10 +85,13 @@ class IndexingCloudConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'es_config': (ESConfigForIndexing,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
-            's3_config': (S3ConfigForIndexing,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
+            'azure_es_config': (AzureESConfigForIndexing,),  # noqa: E501
+            'azure_storage_config': (AzureStorageConfigForIndexing,),  # noqa: E501
+            'es_config': (ESConfigForIndexing,),  # noqa: E501
+            'is_migrated_tenant': (bool, none_type,),  # noqa: E501
+            's3_config': (S3ConfigForIndexing,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +101,13 @@ class IndexingCloudConfig(ModelNormal):
 
 
     attribute_map = {
-        'es_config': 'esConfig',  # noqa: E501
         'region': 'region',  # noqa: E501
-        's3_config': 's3Config',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
+        'azure_es_config': 'azureEsConfig',  # noqa: E501
+        'azure_storage_config': 'azureStorageConfig',  # noqa: E501
+        'es_config': 'esConfig',  # noqa: E501
+        'is_migrated_tenant': 'isMigratedTenant',  # noqa: E501
+        's3_config': 's3Config',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -112,13 +122,11 @@ class IndexingCloudConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, es_config, region, s3_config, tenant_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, region, tenant_id, *args, **kwargs):  # noqa: E501
         """IndexingCloudConfig - a model defined in OpenAPI
 
         Args:
-            es_config (ESConfigForIndexing):
             region (str, none_type): Name of the cloud region.
-            s3_config (S3ConfigForIndexing):
             tenant_id (str, none_type): Tenant ID to which this config belongs.
 
         Keyword Args:
@@ -153,6 +161,11 @@ class IndexingCloudConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            azure_es_config (AzureESConfigForIndexing): [optional]  # noqa: E501
+            azure_storage_config (AzureStorageConfigForIndexing): [optional]  # noqa: E501
+            es_config (ESConfigForIndexing): [optional]  # noqa: E501
+            is_migrated_tenant (bool, none_type): Whether this tenant is being migrated to this cluster or freshly onboarded.. [optional]  # noqa: E501
+            s3_config (S3ConfigForIndexing): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -179,9 +192,7 @@ class IndexingCloudConfig(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.es_config = es_config
         self.region = region
-        self.s3_config = s3_config
         self.tenant_id = tenant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

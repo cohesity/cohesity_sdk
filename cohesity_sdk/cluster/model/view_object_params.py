@@ -74,8 +74,8 @@ class ViewObjectParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'uid': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'uid': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -85,8 +85,8 @@ class ViewObjectParams(ModelNormal):
 
 
     attribute_map = {
-        'uid': 'uid',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'uid': 'uid',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -136,8 +136,8 @@ class ViewObjectParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            uid (str, none_type): Specifies a distinct value that's unique to a source.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the view.. [optional]  # noqa: E501
+            uid (str, none_type): Specifies a distinct value that's unique to a source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

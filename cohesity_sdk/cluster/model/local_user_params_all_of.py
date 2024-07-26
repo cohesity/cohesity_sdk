@@ -74,7 +74,9 @@ class LocalUserParamsAllOf(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'groups': ([str],),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
+            'primary_group': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -84,7 +86,9 @@ class LocalUserParamsAllOf(ModelNormal):
 
 
     attribute_map = {
+        'groups': 'groups',  # noqa: E501
         'password': 'password',  # noqa: E501
+        'primary_group': 'primaryGroup',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -134,7 +138,9 @@ class LocalUserParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
             password (str, none_type): Specifies the password of the User.. [optional]  # noqa: E501
+            primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

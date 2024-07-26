@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **program_name_list** | **[str]** | Send programes related logs to logging server. | [optional] 
 **protocol** | **str, none_type** | Specifies the protocol used to send the logs. | [optional] 
 **raw_msg_pattern_list** | **[str]** | Send logs including the msg patterns to logging server. | [optional] 
+**token_id** | **str, none_type** | TokenId used for filtering messages on a relay or collector | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

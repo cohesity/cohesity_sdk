@@ -76,6 +76,7 @@ class RigelClusterNode(ModelNormal):
         return {
             'node_ip': (str, none_type,),  # noqa: E501
             'node_id': (int, none_type,),  # noqa: E501
+            'secondary_node_ip': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -87,6 +88,7 @@ class RigelClusterNode(ModelNormal):
     attribute_map = {
         'node_ip': 'nodeIp',  # noqa: E501
         'node_id': 'nodeId',  # noqa: E501
+        'secondary_node_ip': 'secondaryNodeIp',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -140,6 +142,7 @@ class RigelClusterNode(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             node_id (int, none_type): Specifies the ID of the Node.. [optional]  # noqa: E501
+            secondary_node_ip (str, none_type): Specifies the secondary IP address of the Node.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

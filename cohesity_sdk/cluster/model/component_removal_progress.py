@@ -74,11 +74,11 @@ class ComponentRemovalProgress(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'service_name': (str, none_type,),  # noqa: E501
-            'removal_progress': (str, none_type,),  # noqa: E501
-            'progress_percentage': (int, none_type,),  # noqa: E501
-            'time_remaining': (int, none_type,),  # noqa: E501
             'is_removal_stuck': (bool, none_type,),  # noqa: E501
+            'progress_percentage': (int, none_type,),  # noqa: E501
+            'removal_progress': (str, none_type,),  # noqa: E501
+            'service_name': (str, none_type,),  # noqa: E501
+            'time_remaining': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -88,11 +88,11 @@ class ComponentRemovalProgress(ModelNormal):
 
 
     attribute_map = {
-        'service_name': 'serviceName',  # noqa: E501
-        'removal_progress': 'removalProgress',  # noqa: E501
-        'progress_percentage': 'progressPercentage',  # noqa: E501
-        'time_remaining': 'timeRemaining',  # noqa: E501
         'is_removal_stuck': 'isRemovalStuck',  # noqa: E501
+        'progress_percentage': 'progressPercentage',  # noqa: E501
+        'removal_progress': 'removalProgress',  # noqa: E501
+        'service_name': 'serviceName',  # noqa: E501
+        'time_remaining': 'timeRemaining',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -142,11 +142,11 @@ class ComponentRemovalProgress(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            service_name (str, none_type): Specifies service name.. [optional]  # noqa: E501
-            removal_progress (str, none_type): Specifies removal progress details.. [optional]  # noqa: E501
-            progress_percentage (int, none_type): Specifies the overall progress percentage for the service.. [optional]  # noqa: E501
-            time_remaining (int, none_type): Specifies the total duration in seconds left to Ack the service.. [optional]  # noqa: E501
             is_removal_stuck (bool, none_type): Specifies if the removal is stuck.. [optional]  # noqa: E501
+            progress_percentage (int, none_type): Specifies the overall progress percentage for the service.. [optional]  # noqa: E501
+            removal_progress (str, none_type): Specifies removal progress details.. [optional]  # noqa: E501
+            service_name (str, none_type): Specifies service name.. [optional]  # noqa: E501
+            time_remaining (int, none_type): Specifies the total duration in seconds left to Ack the service.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

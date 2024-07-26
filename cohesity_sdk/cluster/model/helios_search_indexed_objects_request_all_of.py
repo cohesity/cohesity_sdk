@@ -36,8 +36,10 @@ def lazy_import():
     from cohesity_sdk.cluster.model.mongodb_search_params import MongodbSearchParams
     from cohesity_sdk.cluster.model.search_exchange_objects_request_params import SearchExchangeObjectsRequestParams
     from cohesity_sdk.cluster.model.search_file_request_params_base import SearchFileRequestParamsBase
+    from cohesity_sdk.cluster.model.search_ms_groups_request_params import SearchMsGroupsRequestParams
     from cohesity_sdk.cluster.model.search_ms_teams_request_params import SearchMsTeamsRequestParams
     from cohesity_sdk.cluster.model.search_public_folder_request_params import SearchPublicFolderRequestParams
+    from cohesity_sdk.cluster.model.search_sfdc_records_request_params import SearchSfdcRecordsRequestParams
     from cohesity_sdk.cluster.model.uda_search_params import UdaSearchParams
     globals()['CassandraSearchParams'] = CassandraSearchParams
     globals()['CouchbaseSearchParams'] = CouchbaseSearchParams
@@ -48,8 +50,10 @@ def lazy_import():
     globals()['MongodbSearchParams'] = MongodbSearchParams
     globals()['SearchExchangeObjectsRequestParams'] = SearchExchangeObjectsRequestParams
     globals()['SearchFileRequestParamsBase'] = SearchFileRequestParamsBase
+    globals()['SearchMsGroupsRequestParams'] = SearchMsGroupsRequestParams
     globals()['SearchMsTeamsRequestParams'] = SearchMsTeamsRequestParams
     globals()['SearchPublicFolderRequestParams'] = SearchPublicFolderRequestParams
+    globals()['SearchSfdcRecordsRequestParams'] = SearchSfdcRecordsRequestParams
     globals()['UdaSearchParams'] = UdaSearchParams
 
 
@@ -110,8 +114,10 @@ class HeliosSearchIndexedObjectsRequestAllOf(ModelNormal):
             'hdfs_params': (HdfsSearchParams,),  # noqa: E501
             'hive_params': (HiveSearchParams,),  # noqa: E501
             'mongodb_params': (MongodbSearchParams,),  # noqa: E501
+            'ms_groups_params': (SearchMsGroupsRequestParams,),  # noqa: E501
             'ms_teams_params': (SearchMsTeamsRequestParams,),  # noqa: E501
             'public_folder_params': (SearchPublicFolderRequestParams,),  # noqa: E501
+            'sfdc_params': (SearchSfdcRecordsRequestParams,),  # noqa: E501
             'uda_params': (UdaSearchParams,),  # noqa: E501
         }
 
@@ -131,8 +137,10 @@ class HeliosSearchIndexedObjectsRequestAllOf(ModelNormal):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'mongodb_params': 'mongodbParams',  # noqa: E501
+        'ms_groups_params': 'msGroupsParams',  # noqa: E501
         'ms_teams_params': 'msTeamsParams',  # noqa: E501
         'public_folder_params': 'publicFolderParams',  # noqa: E501
+        'sfdc_params': 'sfdcParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
     }
 
@@ -192,8 +200,10 @@ class HeliosSearchIndexedObjectsRequestAllOf(ModelNormal):
             hdfs_params (HdfsSearchParams): [optional]  # noqa: E501
             hive_params (HiveSearchParams): [optional]  # noqa: E501
             mongodb_params (MongodbSearchParams): [optional]  # noqa: E501
+            ms_groups_params (SearchMsGroupsRequestParams): [optional]  # noqa: E501
             ms_teams_params (SearchMsTeamsRequestParams): [optional]  # noqa: E501
             public_folder_params (SearchPublicFolderRequestParams): [optional]  # noqa: E501
+            sfdc_params (SearchSfdcRecordsRequestParams): [optional]  # noqa: E501
             uda_params (UdaSearchParams): [optional]  # noqa: E501
         """
 
