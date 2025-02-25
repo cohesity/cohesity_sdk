@@ -28,10 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.file_all_of import FileAllOf
+    from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.snapshot_tag_info import SnapshotTagInfo
     from cohesity_sdk.cluster.model.tag_info import TagInfo
     from cohesity_sdk.cluster.model.tag_object import TagObject
     globals()['FileAllOf'] = FileAllOf
+    globals()['Object'] = Object
     globals()['SnapshotTagInfo'] = SnapshotTagInfo
     globals()['TagInfo'] = TagInfo
     globals()['TagObject'] = TagObject
@@ -97,7 +99,7 @@ class File(ModelComposed):
             'policy_name': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'source_info': (Object,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
             'snapshot_tags': ([SnapshotTagInfo], none_type,),  # noqa: E501
@@ -178,7 +180,7 @@ class File(ModelComposed):
             policy_name (str, none_type): Specifies the protection policy name for this file.. [optional]  # noqa: E501
             protection_group_id (str, none_type): \"Specifies the protection group id which contains this file.\". [optional]  # noqa: E501
             protection_group_name (str, none_type): \"Specifies the protection group name which contains this file.\". [optional]  # noqa: E501
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
+            source_info (Object): [optional]  # noqa: E501
             storage_domain_id (int, none_type): \"Specifies the Storage Domain id where the backup data of Object is present.\". [optional]  # noqa: E501
             type (str, none_type): Specifies the file type.. [optional]  # noqa: E501
             snapshot_tags ([SnapshotTagInfo], none_type): Specifies snapshot tags applied to the object.. [optional]  # noqa: E501

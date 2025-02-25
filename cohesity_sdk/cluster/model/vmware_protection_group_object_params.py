@@ -29,10 +29,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.common_vmware_object_params import CommonVmwareObjectParams
     from cohesity_sdk.cluster.model.disk_info import DiskInfo
+    from cohesity_sdk.cluster.model.vmware_cdp_object import VmwareCdpObject
     from cohesity_sdk.cluster.model.vmware_protection_group_object_params_all_of import VmwareProtectionGroupObjectParamsAllOf
+    from cohesity_sdk.cluster.model.vmware_standby_object import VmwareStandbyObject
     globals()['CommonVmwareObjectParams'] = CommonVmwareObjectParams
     globals()['DiskInfo'] = DiskInfo
+    globals()['VmwareCdpObject'] = VmwareCdpObject
     globals()['VmwareProtectionGroupObjectParamsAllOf'] = VmwareProtectionGroupObjectParamsAllOf
+    globals()['VmwareStandbyObject'] = VmwareStandbyObject
 
 
 class VmwareProtectionGroupObjectParams(ModelComposed):
@@ -111,10 +115,10 @@ class VmwareProtectionGroupObjectParams(ModelComposed):
         lazy_import()
         return {
             'id': (int, none_type,),  # noqa: E501
-            'cdp_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'cdp_info': (VmwareCdpObject,),  # noqa: E501
             'is_autoprotected': (bool, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'standby_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'standby_info': (VmwareStandbyObject,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
             'exclude_disks': ([DiskInfo],),  # noqa: E501
             'truncate_exchange_logs': (bool, none_type,),  # noqa: E501
@@ -188,10 +192,10 @@ class VmwareProtectionGroupObjectParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            cdp_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the CDP related information for a given object. This field will only be populated when protection group is configured with policy having CDP retnetion settings.. [optional]  # noqa: E501
+            cdp_info (VmwareCdpObject): [optional]  # noqa: E501
             is_autoprotected (bool, none_type): Specifies whether the vm is part of an Autoprotection and there is at least one object-specific setting applied to this vm. True implies that the vm or its parent directory is autoprotected and will remain part of the autoprotection with additional settings specified here. False implies the object is not part of an Autoprotection and will remain protected and its individual settings here even if a parent directory's Autoprotection setting is altered. Default is false.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the virtual machine.. [optional]  # noqa: E501
-            standby_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the standby related information for a given object. This field will only be populated when standby is configured in backup job settings.. [optional]  # noqa: E501
+            standby_info (VmwareStandbyObject): [optional]  # noqa: E501
             type (str, none_type): Specifies the type of the VMware object.. [optional]  # noqa: E501
             exclude_disks ([DiskInfo]): Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.. [optional]  # noqa: E501
             truncate_exchange_logs (bool, none_type): Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.. [optional]  # noqa: E501

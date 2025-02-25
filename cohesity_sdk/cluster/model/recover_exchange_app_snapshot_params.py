@@ -27,11 +27,15 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.archival_target_summary_info import ArchivalTargetSummaryInfo
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
     from cohesity_sdk.cluster.model.exchange_recover_database_params import ExchangeRecoverDatabaseParams
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
     from cohesity_sdk.cluster.model.recover_exchange_app_snapshot_params_all_of import RecoverExchangeAppSnapshotParamsAllOf
+    globals()['ArchivalTargetSummaryInfo'] = ArchivalTargetSummaryInfo
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
     globals()['ExchangeRecoverDatabaseParams'] = ExchangeRecoverDatabaseParams
+    globals()['ObjectSummary'] = ObjectSummary
     globals()['RecoverExchangeAppSnapshotParamsAllOf'] = RecoverExchangeAppSnapshotParamsAllOf
 
 
@@ -68,6 +72,7 @@ class RecoverExchangeAppSnapshotParams(ModelComposed):
             'ARCHIVAL': "Archival",
             'RPAASARCHIVAL': "RpaasArchival",
             'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
+            'REMOTE': "Remote",
         },
         ('status',): {
             'None': None,
@@ -81,6 +86,7 @@ class RecoverExchangeAppSnapshotParams(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
     }
 
@@ -104,11 +110,11 @@ class RecoverExchangeAppSnapshotParams(ModelComposed):
         lazy_import()
         return {
             'snapshot_id': (str,),  # noqa: E501
-            'archival_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'archival_target_info': (ArchivalTargetSummaryInfo,),  # noqa: E501
             'bytes_restored': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'messages': ([str], none_type,),  # noqa: E501
-            'object_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'object_info': (ObjectSummary,),  # noqa: E501
             'point_in_time_usecs': (int, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
@@ -199,11 +205,11 @@ class RecoverExchangeAppSnapshotParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            archival_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the archival target information if the snapshot is an archival snapshot.. [optional]  # noqa: E501
+            archival_target_info (ArchivalTargetSummaryInfo): [optional]  # noqa: E501
             bytes_restored (int, none_type): Specify the total bytes restored.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
             messages ([str], none_type): Specify error messages about the object.. [optional]  # noqa: E501
-            object_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the information about the object for which the snapshot is taken.. [optional]  # noqa: E501
+            object_info (ObjectSummary): [optional]  # noqa: E501
             point_in_time_usecs (int, none_type): Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for Recovery of VM.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id of the object snapshot.. [optional]  # noqa: E501
@@ -212,7 +218,7 @@ class RecoverExchangeAppSnapshotParams(ModelComposed):
             snapshot_creation_time_usecs (int, none_type): Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             snapshot_target_type (str, none_type): Specifies the snapshot target type.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the ID of the Storage Domain where this snapshot is stored.. [optional]  # noqa: E501
             app_objects ([ExchangeRecoverDatabaseParams], none_type): Specifies the list of params for all the databases which have to be recovered.. [optional]  # noqa: E501
         """

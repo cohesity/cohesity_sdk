@@ -19,11 +19,11 @@ Create a Keystone configuration.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
-from cohesity_sdk.cluster.model.create_keystone_request import CreateKeystoneRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -35,7 +35,8 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
-body = CreateKeystoneRequest() # CreateKeystoneRequest | Specifies the paremters to create a Keystone configuration.
+
+body = Keystone() # Keystone | Specifies the paremters to create a Keystone configuration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -51,7 +52,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateKeystoneRequest**](CreateKeystoneRequest.md)| Specifies the paremters to create a Keystone configuration. |
+ **body** | [**Keystone**](Keystone.md)| Specifies the paremters to create a Keystone configuration. |
 
 ### Return type
 
@@ -59,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -84,6 +85,7 @@ Delete a Keystone configuration.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -97,6 +99,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies the Keystone id.
 admin_password = "adminPassword_example" # str | Specifies the password of Keystone administrator.
@@ -123,7 +126,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -148,6 +151,7 @@ Get Keystones.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -162,6 +166,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 names = [
         "names_example",
@@ -196,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -221,6 +226,7 @@ Get a Keystone by its id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -235,6 +241,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies the Keystone id.
 
@@ -260,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -285,11 +292,11 @@ Update a Keystone configuration.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
-from cohesity_sdk.cluster.model.update_keystone_request import UpdateKeystoneRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -301,8 +308,9 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 id = 1 # int | Specifies the Keystone id.
-body = UpdateKeystoneRequest() # UpdateKeystoneRequest | Specifies the paremters to update a Keystone configuration.
+body = Keystone() # Keystone | Specifies the paremters to update a Keystone configuration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -319,7 +327,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the Keystone id. |
- **body** | [**UpdateKeystoneRequest**](UpdateKeystoneRequest.md)| Specifies the paremters to update a Keystone configuration. |
+ **body** | [**Keystone**](Keystone.md)| Specifies the paremters to update a Keystone configuration. |
 
 ### Return type
 
@@ -327,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

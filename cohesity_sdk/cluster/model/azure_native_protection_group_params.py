@@ -28,9 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.azure_native_protection_group_object_params import AzureNativeProtectionGroupObjectParams
+    from cohesity_sdk.cluster.model.cloud_backup_script_params import CloudBackupScriptParams
     from cohesity_sdk.cluster.model.data_transfer_info import DataTransferInfo
     from cohesity_sdk.cluster.model.indexing_policy import IndexingPolicy
     globals()['AzureNativeProtectionGroupObjectParams'] = AzureNativeProtectionGroupObjectParams
+    globals()['CloudBackupScriptParams'] = CloudBackupScriptParams
     globals()['DataTransferInfo'] = DataTransferInfo
     globals()['IndexingPolicy'] = IndexingPolicy
 
@@ -87,6 +89,7 @@ class AzureNativeProtectionGroupParams(ModelNormal):
         lazy_import()
         return {
             'cloud_migration': (bool, none_type,),  # noqa: E501
+            'cloud_pre_post_script': (CloudBackupScriptParams,),  # noqa: E501
             'data_transfer_info': (DataTransferInfo,),  # noqa: E501
             'exclude_object_ids': ([int],),  # noqa: E501
             'exclude_vm_tag_ids': ([[int]], none_type,),  # noqa: E501
@@ -105,6 +108,7 @@ class AzureNativeProtectionGroupParams(ModelNormal):
 
     attribute_map = {
         'cloud_migration': 'cloudMigration',  # noqa: E501
+        'cloud_pre_post_script': 'cloudPrePostScript',  # noqa: E501
         'data_transfer_info': 'dataTransferInfo',  # noqa: E501
         'exclude_object_ids': 'excludeObjectIds',  # noqa: E501
         'exclude_vm_tag_ids': 'excludeVmTagIds',  # noqa: E501
@@ -163,6 +167,7 @@ class AzureNativeProtectionGroupParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             cloud_migration (bool, none_type): Specifies whether or not to move the workload to the cloud.. [optional]  # noqa: E501
+            cloud_pre_post_script (CloudBackupScriptParams): [optional]  # noqa: E501
             data_transfer_info (DataTransferInfo): [optional]  # noqa: E501
             exclude_object_ids ([int]): Specifies the objects to be excluded in the Protection Group.. [optional]  # noqa: E501
             exclude_vm_tag_ids ([[int]], none_type): Array of arrays of VM Tag Ids that Specify VMs to Exclude.. [optional]  # noqa: E501

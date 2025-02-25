@@ -33,14 +33,14 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cluster_identifier import ClusterIdentifier
     from cohesity_sdk.cluster.model.on_prem_deploy_run import OnPremDeployRun
     from cohesity_sdk.cluster.model.replication_run import ReplicationRun
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     globals()['ArchivalRun'] = ArchivalRun
     globals()['BackupRun'] = BackupRun
     globals()['CloudSpinRun'] = CloudSpinRun
     globals()['ClusterIdentifier'] = ClusterIdentifier
     globals()['OnPremDeployRun'] = OnPremDeployRun
     globals()['ReplicationRun'] = ReplicationRun
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
 
 
 class ObjectProtectionRunInfo(ModelNormal):

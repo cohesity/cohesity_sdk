@@ -27,8 +27,24 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.download_chats_params import DownloadChatsParams
+    from cohesity_sdk.cluster.model.recover_mailbox_params import RecoverMailboxParams
+    from cohesity_sdk.cluster.model.recover_ms_group_params import RecoverMsGroupParams
+    from cohesity_sdk.cluster.model.recover_ms_team_params import RecoverMsTeamParams
+    from cohesity_sdk.cluster.model.recover_one_drive_params import RecoverOneDriveParams
+    from cohesity_sdk.cluster.model.recover_public_folders_params import RecoverPublicFoldersParams
+    from cohesity_sdk.cluster.model.recover_site_params import RecoverSiteParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['DownloadChatsParams'] = DownloadChatsParams
+    globals()['RecoverMailboxParams'] = RecoverMailboxParams
+    globals()['RecoverMsGroupParams'] = RecoverMsGroupParams
+    globals()['RecoverMsTeamParams'] = RecoverMsTeamParams
+    globals()['RecoverOneDriveParams'] = RecoverOneDriveParams
+    globals()['RecoverPublicFoldersParams'] = RecoverPublicFoldersParams
+    globals()['RecoverSiteParams'] = RecoverSiteParams
 
 
 class RecoverO365Params(ModelNormal):
@@ -66,6 +82,7 @@ class RecoverO365Params(ModelNormal):
             'RECOVERMSGROUP': "RecoverMsGroup",
             'RECOVERMSTEAM': "RecoverMsTeam",
             'CONVERTTOPST': "ConvertToPst",
+            'DOWNLOADCHATS': "DownloadChats",
         },
     }
 
@@ -89,14 +106,15 @@ class RecoverO365Params(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_chats_params': (DownloadChatsParams,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
-            'recover_mailbox_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'recover_ms_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'recover_ms_team_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'recover_one_drive_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'recover_public_folders_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'recover_site_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recover_mailbox_params': (RecoverMailboxParams,),  # noqa: E501
+            'recover_ms_group_params': (RecoverMsGroupParams,),  # noqa: E501
+            'recover_ms_team_params': (RecoverMsTeamParams,),  # noqa: E501
+            'recover_one_drive_params': (RecoverOneDriveParams,),  # noqa: E501
+            'recover_public_folders_params': (RecoverPublicFoldersParams,),  # noqa: E501
+            'recover_site_params': (RecoverSiteParams,),  # noqa: E501
         }
 
     @cached_property
@@ -107,6 +125,7 @@ class RecoverO365Params(ModelNormal):
 
     attribute_map = {
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'download_chats_params': 'downloadChatsParams',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'recover_mailbox_params': 'recoverMailboxParams',  # noqa: E501
@@ -167,14 +186,15 @@ class RecoverO365Params(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery information to download files and folders. For instance, downloading mailbox items as PST.. [optional]  # noqa: E501
+            download_chats_params (DownloadChatsParams): [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters.. [optional]  # noqa: E501
-            recover_mailbox_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Office 365 Mailbox.. [optional]  # noqa: E501
-            recover_ms_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Microsoft 365 Group.. [optional]  # noqa: E501
-            recover_ms_team_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Microsoft 365 Teams.. [optional]  # noqa: E501
-            recover_one_drive_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Office 365 One Drive.. [optional]  # noqa: E501
-            recover_public_folders_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Office 365 Public Folders.. [optional]  # noqa: E501
-            recover_site_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters to recover Microsoft Office 365 Sharepoint Site.. [optional]  # noqa: E501
+            recover_mailbox_params (RecoverMailboxParams): [optional]  # noqa: E501
+            recover_ms_group_params (RecoverMsGroupParams): [optional]  # noqa: E501
+            recover_ms_team_params (RecoverMsTeamParams): [optional]  # noqa: E501
+            recover_one_drive_params (RecoverOneDriveParams): [optional]  # noqa: E501
+            recover_public_folders_params (RecoverPublicFoldersParams): [optional]  # noqa: E501
+            recover_site_params (RecoverSiteParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

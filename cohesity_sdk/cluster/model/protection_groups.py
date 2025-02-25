@@ -79,6 +79,7 @@ class ProtectionGroups(ModelNormal):
         """
         lazy_import()
         return {
+            'pagination_cookie': (str, none_type,),  # noqa: E501
             'protection_groups': ([ProtectionGroup], none_type,),  # noqa: E501
         }
 
@@ -89,6 +90,7 @@ class ProtectionGroups(ModelNormal):
 
 
     attribute_map = {
+        'pagination_cookie': 'paginationCookie',  # noqa: E501
         'protection_groups': 'protectionGroups',  # noqa: E501
     }
 
@@ -139,6 +141,7 @@ class ProtectionGroups(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            pagination_cookie (str, none_type): Specifies the information needed in order to support pagination. This will not be included for the last page of results.. [optional]  # noqa: E501
             protection_groups ([ProtectionGroup], none_type): Specifies the list of Protection Groups which were returned by the request.. [optional]  # noqa: E501
         """
 

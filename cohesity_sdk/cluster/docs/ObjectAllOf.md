@@ -4,17 +4,20 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**elastifile_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Elastifile object. | [optional] 
-**flashblade_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Flashblade object. | [optional] 
-**generic_nas_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for GenericNas object. | [optional] 
-**gpfs_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for GPFS object. | [optional] 
-**isilon_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Isilon object. | [optional] 
-**mssql_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Msssql object. | [optional] 
-**netapp_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for NetApp object. | [optional] 
-**oracle_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Oracle object. | [optional] 
-**physical_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Physical object. | [optional] 
-**sharepoint_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for Sharepoint object. | [optional] 
-**uda_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for UDA object. | [optional] 
+**elastifile_params** | [**CommonNasObjectParams**](CommonNasObjectParams.md) |  | [optional] 
+**flashblade_params** | [**FlashbladeObjectParams**](FlashbladeObjectParams.md) |  | [optional] 
+**generic_nas_params** | [**CommonNasObjectParams**](CommonNasObjectParams.md) |  | [optional] 
+**gpfs_params** | [**CommonNasObjectParams**](CommonNasObjectParams.md) |  | [optional] 
+**group_params** | [**GroupObjectEntityParams**](GroupObjectEntityParams.md) |  | [optional] 
+**isilon_params** | [**IsilonObjectParams**](IsilonObjectParams.md) |  | [optional] 
+**mongo_db_params** | [**MongoDBObjectParams**](MongoDBObjectParams.md) |  | [optional] 
+**mssql_params** | [**MssqlObjectEntityParams**](MssqlObjectEntityParams.md) |  | [optional] 
+**netapp_params** | [**NetappObjectParams**](NetappObjectParams.md) |  | [optional] 
+**oracle_params** | [**OracleObjectEntityParams**](OracleObjectEntityParams.md) |  | [optional] 
+**physical_params** | [**PhysicalObjectEntityParams**](PhysicalObjectEntityParams.md) |  | [optional] 
+**sharepoint_params** | [**SharepointObjectEntityParams**](SharepointObjectEntityParams.md) |  | [optional] 
+**uda_params** | [**UdaObjectParams**](UdaObjectParams.md) |  | [optional] 
+**view_params** | [**ViewObjectParams**](ViewObjectParams.md) |  | [optional] 
 **vmware_params** | [**VmwareObjectEntityParams**](VmwareObjectEntityParams.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

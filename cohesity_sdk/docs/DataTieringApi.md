@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**delete_data_tiering_task**](DataTieringApi.md#delete_data_tiering_task) | **DELETE** /data-tiering/tasks/{id} | delete the data tiering task.
 [**get_capacity_trend_analysis**](DataTieringApi.md#get_capacity_trend_analysis) | **GET** /data-tiering/capacity-trend | Get capacity trend analysis for all sources or a specific source.
 [**get_data_tiering_analysis_group_by_id**](DataTieringApi.md#get_data_tiering_analysis_group_by_id) | **GET** /data-tiering/analysis-groups/{id} | Get data tiering analysis group by id.
+[**get_data_tiering_analysis_group_runs**](DataTieringApi.md#get_data_tiering_analysis_group_runs) | **GET** /data-tiering/analysis-groups/{id}/runs | Get data tiering analysis group runs.
 [**get_data_tiering_analysis_groups**](DataTieringApi.md#get_data_tiering_analysis_groups) | **GET** /data-tiering/analysis-groups | Get the list of data tiering analysis groups.
 [**get_data_tiering_analysis_groups_default_config**](DataTieringApi.md#get_data_tiering_analysis_groups_default_config) | **GET** /data-tiering/analysis-groups/config | Get the default config of data tiering analysis groups.
 [**get_data_tiering_task_by_id**](DataTieringApi.md#get_data_tiering_task_by_id) | **GET** /data-tiering/tasks/{id} | Get data tiering task by id.
@@ -185,6 +186,29 @@ client = ClusterClient(
 
 body = CommonDataTieringAnalysisGroupParams(
         name="name_example",
+        schedule=DataTieringSchedule(
+            day_schedule=FrequencySchedule(
+                frequency=1,
+            ),
+            month_schedule=MonthSchedule(
+                day_of_month=1,
+                day_of_week=[
+                    "Sunday",
+                ],
+                week_of_month="First",
+            ),
+            start_time=TimeOfDay(
+                hour=0,
+                minute=0,
+                time_zone="America/Los_Angeles",
+            ),
+            unit="Days",
+            week_schedule=WeekSchedule(
+                day_of_week=[
+                    "Sunday",
+                ],
+            ),
+        ),
         source=DataTieringSource(
             environment="kGenericNas",
             generic_nas_params=GenericNasDataTieringParams(
@@ -210,27 +234,6 @@ body = CommonDataTieringAnalysisGroupParams(
                     ),
                 ],
                 source_id=1,
-            ),
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
             ),
         ),
     ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
@@ -355,7 +358,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_data_tiering_task**
-> CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9 create_data_tiering_task(body)
+> DataTieringTask create_data_tiering_task(body)
 
 Create a data tiering task.
 
@@ -366,9 +369,9 @@ Create a data tiering task.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_task_response29ec89c4_f06e4868_a4710fdd67809bd9 import CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9
-from cohesity_sdk.cluster.model.common_data_tiering_task_params0e0b87411857430e_ab5330b6e7bc4e9e import CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -381,76 +384,7 @@ client = ClusterClient(
 )
 
 
-body = CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e(
-        name="name_example",
-        description="description_example",
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-        ),
-        target=DataTieringTarget(
-            view_name="view_name_example",
-            mount_path="mount_path_example",
-            storage_domain_id=1,
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
-        type="Downtier",
-    ) # CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e | Specifies the parameters to create a data tiering task.
+body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -466,11 +400,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e**](CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e.md)| Specifies the parameters to create a data tiering task. |
+ **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to create a data tiering task. |
 
 ### Return type
 
-[**CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9**](CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
@@ -518,13 +452,13 @@ client = ClusterClient(
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of the data tiering tasks.
 body = DataTieringTaskRunRequest(
-        uptier_path="uptier_path_example",
         shares=[
             DataTieringShareInfo(
                 share_id=1,
                 uptier_path="uptier_path_example",
             ),
         ],
+        uptier_path="uptier_path_example",
     ) # DataTieringTaskRunRequest | Specifies the request to run tiering task once. (optional)
 
 # example passing only required values which don't have defaults set
@@ -838,6 +772,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_data_tiering_analysis_group_runs**
+> DataTieringAnalysisGroupRuns get_data_tiering_analysis_group_runs(id)
+
+Get data tiering analysis group runs.
+
+Get data tiering analysis group runs for an analysis group.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.data_tiering_analysis_group_runs import DataTieringAnalysisGroupRuns
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
+run_ids = [
+        "runIds_example",
+    ] # [str] | Filter by a list of analysis group run ids. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# Get data tiering analysis group runs.
+	api_response = client.data_tiering.get_data_tiering_analysis_group_runs(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_analysis_group_runs: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get data tiering analysis group runs.
+	api_response = client.data_tiering.get_data_tiering_analysis_group_runs(id, run_ids=run_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling DataTieringApi->get_data_tiering_analysis_group_runs: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Specifies a unique id of the data tiering analysis group. |
+ **run_ids** | **[str]**| Filter by a list of analysis group run ids. | [optional]
+
+### Return type
+
+[**DataTieringAnalysisGroupRuns**](DataTieringAnalysisGroupRuns.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_data_tiering_analysis_groups**
 > DataTieringAnalysisGroups get_data_tiering_analysis_groups()
 
@@ -972,7 +985,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_data_tiering_task_by_id**
-> CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9 get_data_tiering_task_by_id(id)
+> DataTieringTask get_data_tiering_task_by_id(id)
 
 Get data tiering task by id.
 
@@ -983,8 +996,8 @@ Get data tiering task by id.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_task_response29ec89c4_f06e4868_a4710fdd67809bd9 import CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1017,7 +1030,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9**](CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 
@@ -1138,6 +1151,29 @@ client = ClusterClient(
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the data tiering analysis group.
 body = CommonDataTieringAnalysisGroupParams(
         name="name_example",
+        schedule=DataTieringSchedule(
+            day_schedule=FrequencySchedule(
+                frequency=1,
+            ),
+            month_schedule=MonthSchedule(
+                day_of_month=1,
+                day_of_week=[
+                    "Sunday",
+                ],
+                week_of_month="First",
+            ),
+            start_time=TimeOfDay(
+                hour=0,
+                minute=0,
+                time_zone="America/Los_Angeles",
+            ),
+            unit="Days",
+            week_schedule=WeekSchedule(
+                day_of_week=[
+                    "Sunday",
+                ],
+            ),
+        ),
         source=DataTieringSource(
             environment="kGenericNas",
             generic_nas_params=GenericNasDataTieringParams(
@@ -1163,27 +1199,6 @@ body = CommonDataTieringAnalysisGroupParams(
                     ),
                 ],
                 source_id=1,
-            ),
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
             ),
         ),
     ) # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
@@ -1257,13 +1272,13 @@ id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729
 body = DataTieringTagConfig(
         tags_info=[
             DataTieringTagObject(
-                type="fileTypeTag",
                 tags=[
                     DataTieringTag(
                         label="label_example",
                         value="value_example",
                     ),
                 ],
+                type="fileTypeTag",
             ),
         ],
     ) # DataTieringTagConfig | Specifies the data tiering analysis Tags Config.
@@ -1380,7 +1395,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_data_tiering_task**
-> CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9 update_data_tiering_task(id, body)
+> DataTieringTask update_data_tiering_task(id, body)
 
 Update a data tiering task.
 
@@ -1391,9 +1406,9 @@ Update a data tiering task.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_data_tiering_task_response29ec89c4_f06e4868_a4710fdd67809bd9 import CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9
-from cohesity_sdk.cluster.model.common_data_tiering_task_params0e0b87411857430e_ab5330b6e7bc4e9e import CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1407,76 +1422,7 @@ client = ClusterClient(
 
 
 id = "id_example" # str | Specifies the id of the data tiering task.
-body = CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e(
-        name="name_example",
-        description="description_example",
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        source=DataTieringSource(
-            environment="kGenericNas",
-            generic_nas_params=GenericNasDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            isilon_params=IsilonDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-            netapp_params=NetappDataTieringParams(
-                objects=[
-                    ProtectionObjectInput(
-                        id=1,
-                    ),
-                ],
-                source_id=1,
-            ),
-        ),
-        target=DataTieringTarget(
-            view_name="view_name_example",
-            mount_path="mount_path_example",
-            storage_domain_id=1,
-        ),
-        schedule=DataTieringSchedule(
-            unit="Days",
-            day_schedule=DaySchedule(),
-            week_schedule=WeekSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-            ),
-            month_schedule=MonthSchedule(
-                day_of_week=[
-                    "Sunday",
-                ],
-                week_of_month="First",
-                day_of_month=1,
-            ),
-            start_time=TimeOfDay(
-                hour=0,
-                minute=0,
-                time_zone="America/Los_Angeles",
-            ),
-        ),
-        type="Downtier",
-    ) # CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e | Specifies the parameters to update a data tiering task.
+body = CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1493,11 +1439,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the data tiering task. |
- **body** | [**CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e**](CommonDataTieringTaskParams0e0b87411857430eAb5330b6e7bc4e9e.md)| Specifies the parameters to update a data tiering task. |
+ **body** | [**CreateOrUpdateDataTieringTaskRequest**](CreateOrUpdateDataTieringTaskRequest.md)| Specifies the parameters to update a data tiering task. |
 
 ### Return type
 
-[**CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9**](CommonDataTieringTaskResponse29ec89c4F06e4868A4710fdd67809bd9.md)
+[**DataTieringTask**](DataTieringTask.md)
 
 ### Authorization
 

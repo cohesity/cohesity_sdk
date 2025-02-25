@@ -43,26 +43,27 @@ client = ClusterClient(
 
 
 body = SyslogServer(
-        id=1,
-        ip="ip_example",
-        port=1,
-        protocol="protocol_example",
-        name="name_example",
+        ca_certificate="ca_certificate_example",
         enabled=True,
         facility_list=[
             "facility_list_example",
         ],
-        program_name_list=[
-            "program_name_list_example",
-        ],
+        id=1,
+        ip="ip_example",
+        is_tls_enabled=True,
         msg_pattern_list=[
             "msg_pattern_list_example",
         ],
+        name="name_example",
+        port=1,
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        protocol="protocol_example",
         raw_msg_pattern_list=[
             "raw_msg_pattern_list_example",
         ],
-        is_tls_enabled=True,
-        ca_certificate="ca_certificate_example",
+        token_id="token_id_example",
     ) # SyslogServer | Specifies parameters to add syslog server.
 
 # example passing only required values which don't have defaults set
@@ -448,26 +449,27 @@ client = ClusterClient(
 
 id = 1 # int | Specifies the id of syslog server.
 body = SyslogServer(
-        id=1,
-        ip="ip_example",
-        port=1,
-        protocol="protocol_example",
-        name="name_example",
+        ca_certificate="ca_certificate_example",
         enabled=True,
         facility_list=[
             "facility_list_example",
         ],
-        program_name_list=[
-            "program_name_list_example",
-        ],
+        id=1,
+        ip="ip_example",
+        is_tls_enabled=True,
         msg_pattern_list=[
             "msg_pattern_list_example",
         ],
+        name="name_example",
+        port=1,
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        protocol="protocol_example",
         raw_msg_pattern_list=[
             "raw_msg_pattern_list_example",
         ],
-        is_tls_enabled=True,
-        ca_certificate="ca_certificate_example",
+        token_id="token_id_example",
     ) # SyslogServer | Specifies the body of syslog server fields to patch. (optional)
 
 # example passing only required values which don't have defaults set
@@ -669,10 +671,10 @@ client = ClusterClient(
 
 
 body = SyslogAuditTag(
-        cluster_audit="cluster_audit_example",
-        filer_audit="filer_audit_example",
-        data_protection_events_audit="data_protection_events_audit_example",
         alert_audit="alert_audit_example",
+        cluster_audit="cluster_audit_example",
+        data_protection_events_audit="data_protection_events_audit_example",
+        filer_audit="filer_audit_example",
     ) # SyslogAuditTag | Specifies syslog audit tag to update. (optional)
 
 # example passing only required values which don't have defaults set
@@ -742,26 +744,27 @@ client = ClusterClient(
 
 id = 1 # int | Specifies the id of syslog server.
 body = SyslogServer(
-        id=1,
-        ip="ip_example",
-        port=1,
-        protocol="protocol_example",
-        name="name_example",
+        ca_certificate="ca_certificate_example",
         enabled=True,
         facility_list=[
             "facility_list_example",
         ],
-        program_name_list=[
-            "program_name_list_example",
-        ],
+        id=1,
+        ip="ip_example",
+        is_tls_enabled=True,
         msg_pattern_list=[
             "msg_pattern_list_example",
         ],
+        name="name_example",
+        port=1,
+        program_name_list=[
+            "program_name_list_example",
+        ],
+        protocol="protocol_example",
         raw_msg_pattern_list=[
             "raw_msg_pattern_list_example",
         ],
-        is_tls_enabled=True,
-        ca_certificate="ca_certificate_example",
+        token_id="token_id_example",
     ) # SyslogServer | Specifies the body of syslog server body to update. (optional)
 
 # example passing only required values which don't have defaults set

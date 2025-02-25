@@ -28,8 +28,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_updatable_user_params import CommonUpdatableUserParams
+    from cohesity_sdk.cluster.model.local_user_response_params import LocalUserResponseParams
+    from cohesity_sdk.cluster.model.s3_account_params import S3AccountParams
     from cohesity_sdk.cluster.model.user_params_all_of import UserParamsAllOf
     globals()['CommonUpdatableUserParams'] = CommonUpdatableUserParams
+    globals()['LocalUserResponseParams'] = LocalUserResponseParams
+    globals()['S3AccountParams'] = S3AccountParams
     globals()['UserParamsAllOf'] = UserParamsAllOf
 
 
@@ -94,11 +98,11 @@ class UserParams(ModelComposed):
             'force_password_change': (bool, none_type,),  # noqa: E501
             'last_login_time_msecs': (int, none_type,),  # noqa: E501
             'last_updated_time_msecs': (int, none_type,),  # noqa: E501
-            'local_user_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'local_user_params': (LocalUserResponseParams,),  # noqa: E501
             'locked_reason': (str, none_type,),  # noqa: E501
             'other_groups': ([str],),  # noqa: E501
             'primary_group': (str, none_type,),  # noqa: E501
-            's3_account_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            's3_account_params': (S3AccountParams,),  # noqa: E501
             'sid': (str, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             'username': (str,),  # noqa: E501
@@ -191,11 +195,11 @@ class UserParams(ModelComposed):
             force_password_change (bool, none_type): Specifies if the user must change password.. [optional]  # noqa: E501
             last_login_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user last logged in successfully.. [optional]  # noqa: E501
             last_updated_time_msecs (int, none_type): Specifies the epoch time in milliseconds when the user account was last modified.. [optional]  # noqa: E501
-            local_user_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.. [optional]  # noqa: E501
+            local_user_params (LocalUserResponseParams): [optional]  # noqa: E501
             locked_reason (str, none_type): Specifies the reason for locking the User.. [optional]  # noqa: E501
             other_groups ([str]): Specifies additional groups the User may belong to.. [optional]  # noqa: E501
             primary_group (str, none_type): Specifies the primary group of the User. Primary group is used for file access.. [optional]  # noqa: E501
-            s3_account_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the S3 Account parameters of the User.. [optional]  # noqa: E501
+            s3_account_params (S3AccountParams): [optional]  # noqa: E501
             sid (str, none_type): Specifies the sid of the User.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id of the User.. [optional]  # noqa: E501
             username (str): Specifies the username.. [optional]  # noqa: E501

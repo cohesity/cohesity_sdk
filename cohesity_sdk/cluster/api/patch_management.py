@@ -115,7 +115,7 @@ class PatchManagementApi(object):
                 'response_type': (ServicePatchLevels,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/available-patches',
@@ -234,7 +234,7 @@ class PatchManagementApi(object):
                 'response_type': (AppliedPatches,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/applied-patches',
@@ -355,7 +355,7 @@ class PatchManagementApi(object):
                 'response_type': (AvailablePatches,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/available-patches',
@@ -475,7 +475,7 @@ class PatchManagementApi(object):
                 'response_type': (PatchOperationStatus,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/operation-status',
@@ -590,7 +590,7 @@ class PatchManagementApi(object):
                 'response_type': (PatchesHistory,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/patches-history',
@@ -717,7 +717,7 @@ class PatchManagementApi(object):
                 'response_type': (PatchesDetails,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/available-patches',
@@ -852,7 +852,7 @@ class PatchManagementApi(object):
                 'response_type': (ServicePatchLevels,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/patch-management/applied-patches',

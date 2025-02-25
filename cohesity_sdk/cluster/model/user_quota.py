@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.quota_policy import QuotaPolicy
     from cohesity_sdk.cluster.model.user_id import UserId
     from cohesity_sdk.cluster.model.user_quota_all_of import UserQuotaAllOf
+    globals()['QuotaPolicy'] = QuotaPolicy
     globals()['UserId'] = UserId
     globals()['UserQuotaAllOf'] = UserQuotaAllOf
 
@@ -83,7 +85,7 @@ class UserQuota(ModelComposed):
         return {
             'sid': (str, none_type,),  # noqa: E501
             'unix_uid': (int, none_type,),  # noqa: E501
-            'quota_policy': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'quota_policy': (QuotaPolicy,),  # noqa: E501
             'usage_bytes': (int, none_type,),  # noqa: E501
         }
 
@@ -150,7 +152,7 @@ class UserQuota(ModelComposed):
 
             sid (str, none_type): Specifies the user sid.. [optional]  # noqa: E501
             unix_uid (int, none_type): Specifies the unix Uid.. [optional]  # noqa: E501
-            quota_policy ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the quota policy for the given user.. [optional]  # noqa: E501
+            quota_policy (QuotaPolicy): [optional]  # noqa: E501
             usage_bytes (int, none_type): Specifies the user usage in bytes.. [optional]  # noqa: E501
         """
 

@@ -98,7 +98,7 @@ class CreateClusterParams(ModelNormal):
         """
         lazy_import()
         return {
-            'enable_encryption': (bool, none_type,),  # noqa: E501
+            'enable_encryption': (bool,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'network_config': (ClusterCreateNetworkConfig,),  # noqa: E501
             'type': (str, none_type,),  # noqa: E501
@@ -139,16 +139,16 @@ class CreateClusterParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, enable_encryption, name, network_config, type, *args, **kwargs):  # noqa: E501
+    def __init__(self, name, network_config, type, *args, **kwargs):  # noqa: E501
         """CreateClusterParams - a model defined in OpenAPI
 
         Args:
-            enable_encryption (bool, none_type): Specifies whether or not to enable encryption. If encryption is enabled, all data on the Cluster will be encrypted. This can only be enabled at Cluster creation time and cannot be disabled later.
             name (str, none_type): Specifies the name of the new cluster.
             network_config (ClusterCreateNetworkConfig):
             type (str, none_type): Specifies the type of the new cluster.
 
         Keyword Args:
+            enable_encryption (bool): Specifies whether or not to enable encryption. If encryption is enabled, all data on the Cluster will be encrypted. This can only be enabled at Cluster creation time and cannot be disabled later.. defaults to True  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -187,6 +187,7 @@ class CreateClusterParams(ModelNormal):
             virtual_cluster_params (ClusterCreateVirtualParams): [optional]  # noqa: E501
         """
 
+        enable_encryption = kwargs.get('enable_encryption', True)
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

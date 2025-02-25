@@ -27,8 +27,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recovery_vlan_config import RecoveryVlanConfig
     from cohesity_sdk.cluster.model.vmware_recover_disks_original_source_config import VmwareRecoverDisksOriginalSourceConfig
     from cohesity_sdk.cluster.model.vmware_recover_disks_target_source_config import VmwareRecoverDisksTargetSourceConfig
+    globals()['RecoveryVlanConfig'] = RecoveryVlanConfig
     globals()['VmwareRecoverDisksOriginalSourceConfig'] = VmwareRecoverDisksOriginalSourceConfig
     globals()['VmwareRecoverDisksTargetSourceConfig'] = VmwareRecoverDisksTargetSourceConfig
 
@@ -86,7 +88,7 @@ class VmwareTargetParamsForRecoverDisk(ModelNormal):
             'power_off_vms': (bool, none_type,),  # noqa: E501
             'power_on_vms': (bool, none_type,),  # noqa: E501
             'target_source_config': (VmwareRecoverDisksTargetSourceConfig,),  # noqa: E501
-            'vlan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'vlan_config': (RecoveryVlanConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -156,7 +158,7 @@ class VmwareTargetParamsForRecoverDisk(ModelNormal):
             power_off_vms (bool, none_type): Specifies whether or not to power off VMs before performing the recovery.. [optional]  # noqa: E501
             power_on_vms (bool, none_type): Specifies whether or not to power on VMs after performing the recovery.. [optional]  # noqa: E501
             target_source_config (VmwareRecoverDisksTargetSourceConfig): [optional]  # noqa: E501
-            vlan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.. [optional]  # noqa: E501
+            vlan_config (RecoveryVlanConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -109,7 +109,7 @@ class NodeGroupApi(object):
                 'response_type': (NodeGroupResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-groups',
@@ -231,7 +231,7 @@ class NodeGroupApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-groups/{groupName}',
@@ -352,7 +352,7 @@ class NodeGroupApi(object):
                 'response_type': (NodeGroupResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-groups/{groupName}',
@@ -470,7 +470,7 @@ class NodeGroupApi(object):
                 'response_type': (NodeGroupResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-groups',
@@ -599,7 +599,7 @@ class NodeGroupApi(object):
                 'response_type': (NodeGroupResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/node-groups/{groupName}',

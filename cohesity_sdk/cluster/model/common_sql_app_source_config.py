@@ -90,6 +90,7 @@ class CommonSqlAppSourceConfig(ModelNormal):
             'multi_stage_restore_options': (MultiStageRestoreOptions,),  # noqa: E501
             'native_recovery_with_clause': (str, none_type,),  # noqa: E501
             'overwriting_policy': (str, none_type,),  # noqa: E501
+            'replay_entire_last_log': (bool, none_type,),  # noqa: E501
             'restore_time_usecs': (int, none_type,),  # noqa: E501
             'secondary_data_files_dir_list': ([FilenamePatternToDirectory], none_type,),  # noqa: E501
             'with_no_recovery': (bool, none_type,),  # noqa: E501
@@ -106,6 +107,7 @@ class CommonSqlAppSourceConfig(ModelNormal):
         'multi_stage_restore_options': 'multiStageRestoreOptions',  # noqa: E501
         'native_recovery_with_clause': 'nativeRecoveryWithClause',  # noqa: E501
         'overwriting_policy': 'overwritingPolicy',  # noqa: E501
+        'replay_entire_last_log': 'replayEntireLastLog',  # noqa: E501
         'restore_time_usecs': 'restoreTimeUsecs',  # noqa: E501
         'secondary_data_files_dir_list': 'secondaryDataFilesDirList',  # noqa: E501
         'with_no_recovery': 'withNoRecovery',  # noqa: E501
@@ -162,6 +164,7 @@ class CommonSqlAppSourceConfig(ModelNormal):
             multi_stage_restore_options (MultiStageRestoreOptions): [optional]  # noqa: E501
             native_recovery_with_clause (str, none_type): 'with_clause' contains 'with clause' to be used in native sql restore command. This is only applicable for database restore of native sql backup. Here user can specify multiple restore options. Example: 'WITH BUFFERCOUNT = 575, MAXTRANSFERSIZE = 2097152'.. [optional]  # noqa: E501
             overwriting_policy (str, none_type): Specifies a policy to be used while recovering existing databases.. [optional]  # noqa: E501
+            replay_entire_last_log (bool, none_type): Specifies the option to set replay last log bit while creating the sql restore task and doing restore to latest point-in-time. If this is set to true, we will replay the entire last log without STOPAT.. [optional]  # noqa: E501
             restore_time_usecs (int, none_type): Specifies the time in the past to which the Sql database needs to be restored. This allows for granular recovery of Sql databases. If this is not set, the Sql database will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
             secondary_data_files_dir_list ([FilenamePatternToDirectory], none_type): Specifies the secondary data filename pattern and corresponding direcories of the DB. Secondary data files are optional and are user defined. The recommended file extention for secondary files is \".ndf\". If this option is specified and the destination folders do not exist they will be automatically created.. [optional]  # noqa: E501
             with_no_recovery (bool, none_type): Specifies the flag to bring DBs online or not after successful recovery. If this is passed as true, then it means DBs won't be brought online.. [optional]  # noqa: E501

@@ -12,7 +12,6 @@ Method | HTTP request | Description
 [**get_tenant_swift**](TenantApi.md#get_tenant_swift) | **GET** /tenants/swift | Get a Swift configuration.
 [**list_tenants**](TenantApi.md#list_tenants) | **GET** /tenants | Get a list of Tenants.
 [**perform_tenant_action**](TenantApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions on a Tenant.
-[**perform_tenant_migration_action**](TenantApi.md#perform_tenant_migration_action) | **POST** /tenant-migration/actions | Perform Tenant Migration Action
 [**register_swift**](TenantApi.md#register_swift) | **POST** /tenants/swift/register | Register Swift service on a Keystone server.
 [**unregister_swift**](TenantApi.md#unregister_swift) | **POST** /tenants/swift/unregister | Unregister Swift service from a Keystone server.
 [**update_on_prem_tenant_config**](TenantApi.md#update_on_prem_tenant_config) | **POST** /clusters/tenant-config | Update Tenants Config.
@@ -49,20 +48,20 @@ client = ClusterClient(
 
 id = "C/" # str | The Tenant id.
 body = TenantAssignmentsParams(
-        storage_domain_ids=[
-            1,
-        ],
         object_ids=[
-            1,
-        ],
-        vlan_iface_names=[
-            "vlan_iface_names_example",
-        ],
-        view_ids=[
             1,
         ],
         policy_ids=[
             "policy_ids_example",
+        ],
+        storage_domain_ids=[
+            1,
+        ],
+        view_ids=[
+            1,
+        ],
+        vlan_iface_names=[
+            "vlan_iface_names_example",
         ],
     ) # TenantAssignmentsParams | 
 
@@ -633,75 +632,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **perform_tenant_migration_action**
-> TenantMigrationAction perform_tenant_migration_action(body)
-
-Perform Tenant Migration Action
-
-Perform an action on a DMaaS tenant.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.tenant_migration_action import TenantMigrationAction
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = TenantMigrationAction(
-        tenant_id="tenant_id_example",
-        action="StartMigration",
-    ) # TenantMigrationAction | Specifies the parameters to perform a tenant migration action.
-
-# example passing only required values which don't have defaults set
-try:
-	# Perform Tenant Migration Action
-	api_response = client.tenant.perform_tenant_migration_action(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling TenantApi->perform_tenant_migration_action: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**TenantMigrationAction**](TenantMigrationAction.md)| Specifies the parameters to perform a tenant migration action. |
-
-### Return type
-
-[**TenantMigrationAction**](TenantMigrationAction.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **register_swift**
 > register_swift(body)
 
@@ -729,11 +659,24 @@ client = ClusterClient(
 
 
 body = RegisterSwiftParams(
-        tenant_id="tenant_id_example",
         keystone_credentials=KeystoneCredentials(
-            admin_creds={},
-            scope={},
+            admin_creds=KeystoneAdminParams(
+                domain="domain_example",
+                password="password_example",
+                username="username_example",
+            ),
+            scope=KeystoneScopeParams(
+                domain_scope_params=DomainScopeParams(
+                    domain_name="domain_name_example",
+                ),
+                project_scope_params=ProjectScopeParams(
+                    domain_name="domain_name_example",
+                    project_name="project_name_example",
+                ),
+                type="Project",
+            ),
         ),
+        tenant_id="tenant_id_example",
     ) # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
 
 # example passing only required values which don't have defaults set
@@ -800,11 +743,24 @@ client = ClusterClient(
 
 
 body = UnregisterSwiftParams(
-        tenant_id="tenant_id_example",
         keystone_credentials=KeystoneCredentials(
-            admin_creds={},
-            scope={},
+            admin_creds=KeystoneAdminParams(
+                domain="domain_example",
+                password="password_example",
+                username="username_example",
+            ),
+            scope=KeystoneScopeParams(
+                domain_scope_params=DomainScopeParams(
+                    domain_name="domain_name_example",
+                ),
+                project_scope_params=ProjectScopeParams(
+                    domain_name="domain_name_example",
+                    project_name="project_name_example",
+                ),
+                type="Project",
+            ),
         ),
+        tenant_id="tenant_id_example",
     ) # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
 
 # example passing only required values which don't have defaults set
@@ -1009,11 +965,11 @@ client = ClusterClient(
 
 
 body = SwiftParams(
-        tenant_id="tenant_id_example",
         keystone_id=1,
         operator_roles=[
             "operator_roles_example",
         ],
+        tenant_id="tenant_id_example",
     ) # SwiftParams | Specifies the parameters to update a Swift configuration.
 
 # example passing only required values which don't have defaults set

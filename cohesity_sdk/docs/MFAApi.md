@@ -41,9 +41,9 @@ client = ClusterClient(
 
 
 body = CreateEmailOtpRequestBody(
-        username="username_example",
-        password="password_example",
         domain="domain_example",
+        password="password_example",
+        username="username_example",
     ) # CreateEmailOtpRequestBody | Specifies the parameters to send email OTP. (optional)
 
 # example passing only required values which don't have defaults set
@@ -424,10 +424,10 @@ client = ClusterClient(
 
 
 body = MfaConfigInfo(
-        enabled=False,
         authentication_types=[
             "email",
         ],
+        enabled=False,
         retain_user_mfa_settings=True,
     ) # MfaConfigInfo | The update request for the MFA Settings
 
@@ -497,10 +497,11 @@ client = ClusterClient(
 
 
 body = SupportMfaConfigInfo(
-        enabled=False,
-        mfa_type="email",
         email="email_example",
+        enabled=False,
         mfa_code="mfa_code_example",
+        mfa_type="email",
+        otp_verification_state="kNotStarted",
     ) # SupportMfaConfigInfo | The update request for the MFA Settings
 
 # example passing only required values which don't have defaults set

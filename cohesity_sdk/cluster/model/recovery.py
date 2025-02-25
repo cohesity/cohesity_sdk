@@ -30,6 +30,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cassandra_params import CassandraParams
     from cohesity_sdk.cluster.model.common_recovery_response_params import CommonRecoveryResponseParams
     from cohesity_sdk.cluster.model.couchbase_params import CouchbaseParams
+    from cohesity_sdk.cluster.model.create_recovery_request_all_of import CreateRecoveryRequestAllOf
     from cohesity_sdk.cluster.model.creation_info import CreationInfo
     from cohesity_sdk.cluster.model.hbase_params import HbaseParams
     from cohesity_sdk.cluster.model.hdfs_params import HdfsParams
@@ -57,13 +58,13 @@ def lazy_import():
     from cohesity_sdk.cluster.model.recover_sql_params import RecoverSqlParams
     from cohesity_sdk.cluster.model.recover_view_params import RecoverViewParams
     from cohesity_sdk.cluster.model.recover_vmware_params import RecoverVmwareParams
-    from cohesity_sdk.cluster.model.recovery_all_of import RecoveryAllOf
     from cohesity_sdk.cluster.model.retrieve_archive_task import RetrieveArchiveTask
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     from cohesity_sdk.cluster.model.uda_params import UdaParams
     globals()['CassandraParams'] = CassandraParams
     globals()['CommonRecoveryResponseParams'] = CommonRecoveryResponseParams
     globals()['CouchbaseParams'] = CouchbaseParams
+    globals()['CreateRecoveryRequestAllOf'] = CreateRecoveryRequestAllOf
     globals()['CreationInfo'] = CreationInfo
     globals()['HbaseParams'] = HbaseParams
     globals()['HdfsParams'] = HdfsParams
@@ -91,9 +92,8 @@ def lazy_import():
     globals()['RecoverSqlParams'] = RecoverSqlParams
     globals()['RecoverViewParams'] = RecoverViewParams
     globals()['RecoverVmwareParams'] = RecoverVmwareParams
-    globals()['RecoveryAllOf'] = RecoveryAllOf
     globals()['RetrieveArchiveTask'] = RetrieveArchiveTask
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
     globals()['UdaParams'] = UdaParams
 
 
@@ -134,12 +134,18 @@ class Recovery(ModelComposed):
             'UPTIERSNAPSHOT': "UptierSnapshot",
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
+            'RECOVERS3BUCKETS': "RecoverS3Buckets",
+            'RECOVERRDSPOSTGRES': "RecoverRDSPostgres",
+            'RECOVERAZURESQL': "RecoverAzureSQL",
             'RECOVERAPPS': "RecoverApps",
+            'CLONEAPPS': "CloneApps",
             'RECOVERNASVOLUME': "RecoverNasVolume",
             'RECOVERPHYSICALVOLUMES': "RecoverPhysicalVolumes",
             'RECOVERSYSTEM': "RecoverSystem",
+            'RECOVEREXCHANGEDBS': "RecoverExchangeDbs",
             'CLONEAPPVIEW': "CloneAppView",
             'RECOVERSANVOLUMES': "RecoverSanVolumes",
+            'RECOVERSANGROUP': "RecoverSanGroup",
             'RECOVERMAILBOX': "RecoverMailbox",
             'RECOVERONEDRIVE': "RecoverOneDrive",
             'RECOVERSHAREPOINT': "RecoverSharePoint",
@@ -147,12 +153,19 @@ class Recovery(ModelComposed):
             'RECOVERMSGROUP': "RecoverMsGroup",
             'RECOVERMSTEAM': "RecoverMsTeam",
             'CONVERTTOPST': "ConvertToPst",
+            'DOWNLOADCHATS': "DownloadChats",
             'RECOVERNAMESPACES': "RecoverNamespaces",
             'RECOVEROBJECTS': "RecoverObjects",
             'RECOVERSFDCOBJECTS': "RecoverSfdcObjects",
             'RECOVERSFDCORG': "RecoverSfdcOrg",
             'RECOVERSFDCRECORDS': "RecoverSfdcRecords",
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
+            'CLONEVMS': "CloneVMs",
+            'CLONEVIEW': "CloneView",
+            'CLONEREFRESHAPP': "CloneRefreshApp",
+            'CLONEVMSTOVIEW': "CloneVMsToView",
+            'CONVERTANDDEPLOYVMS': "ConvertAndDeployVMs",
+            'DEPLOYVMS': "DeployVMs",
         },
         ('snapshot_environment',): {
             'KVMWARE': "kVMware",
@@ -170,6 +183,7 @@ class Recovery(ModelComposed):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -199,6 +213,7 @@ class Recovery(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
         ('tear_down_status',): {
             'None': None,
@@ -273,6 +288,7 @@ class Recovery(ModelComposed):
             'hdfs_params': (HdfsParams,),  # noqa: E501
             'hive_params': (HiveParams,),  # noqa: E501
             'hyperv_params': (RecoverHyperVParams,),  # noqa: E501
+            'ibm_flash_system_params': (RecoverPureParams,),  # noqa: E501
             'isilon_params': (RecoverIsilonParams,),  # noqa: E501
             'kubernetes_params': (RecoverKubernetesParams,),  # noqa: E501
             'kvm_params': (RecoverKvmParams,),  # noqa: E501
@@ -329,6 +345,7 @@ class Recovery(ModelComposed):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'ibm_flash_system_params': 'ibmFlashSystemParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
@@ -408,7 +425,7 @@ class Recovery(ModelComposed):
             retrieve_archive_tasks ([RetrieveArchiveTask], none_type): Specifies the list of persistent state of a retrieve of an archive task.. [optional]  # noqa: E501
             snapshot_environment (str): Specifies the type of snapshot environment for which the Recovery was performed.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             tear_down_message (str, none_type): Specifies the error message about the tear down operation if it fails.. [optional]  # noqa: E501
             tear_down_status (str, none_type): Specifies the status of the tear down operation. This is only set when the canTearDown is set to true. 'DestroyScheduled' indicates that the tear down is ready to schedule. 'Destroying' indicates that the tear down is still running. 'Destroyed' indicates that the tear down succeeded. 'DestroyError' indicates that the tear down failed.. [optional]  # noqa: E501
             acropolis_params (RecoverAcropolisParams): [optional]  # noqa: E501
@@ -426,6 +443,7 @@ class Recovery(ModelComposed):
             hdfs_params (HdfsParams): [optional]  # noqa: E501
             hive_params (HiveParams): [optional]  # noqa: E501
             hyperv_params (RecoverHyperVParams): [optional]  # noqa: E501
+            ibm_flash_system_params (RecoverPureParams): [optional]  # noqa: E501
             isilon_params (RecoverIsilonParams): [optional]  # noqa: E501
             kubernetes_params (RecoverKubernetesParams): [optional]  # noqa: E501
             kvm_params (RecoverKvmParams): [optional]  # noqa: E501
@@ -512,7 +530,7 @@ class Recovery(ModelComposed):
           ],
           'allOf': [
               CommonRecoveryResponseParams,
-              RecoveryAllOf,
+              CreateRecoveryRequestAllOf,
           ],
           'oneOf': [
           ],

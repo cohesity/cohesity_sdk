@@ -54,24 +54,6 @@ class AdvancedSettings(ModelNormal):
     """
 
     allowed_values = {
-        ('missing_db_backup_status',): {
-            'None': None,
-            'KERROR': "kError",
-            'KWARN': "kWarn",
-            'KIGNORE': "kIgnore",
-        },
-        ('report_all_non_autoprotect_db_errors',): {
-            'None': None,
-            'KERROR': "kError",
-            'KWARN': "kWarn",
-            'KIGNORE': "kIgnore",
-        },
-        ('offline_restoring_db_backup_status',): {
-            'None': None,
-            'KERROR': "kError",
-            'KWARN': "kWarn",
-            'KIGNORE': "kIgnore",
-        },
         ('cloned_db_backup_status',): {
             'None': None,
             'KERROR': "kError",
@@ -84,7 +66,25 @@ class AdvancedSettings(ModelNormal):
             'KWARN': "kWarn",
             'KIGNORE': "kIgnore",
         },
+        ('missing_db_backup_status',): {
+            'None': None,
+            'KERROR': "kError",
+            'KWARN': "kWarn",
+            'KIGNORE': "kIgnore",
+        },
+        ('offline_restoring_db_backup_status',): {
+            'None': None,
+            'KERROR': "kError",
+            'KWARN': "kWarn",
+            'KIGNORE': "kIgnore",
+        },
         ('read_only_db_backup_status',): {
+            'None': None,
+            'KERROR': "kError",
+            'KWARN': "kWarn",
+            'KIGNORE': "kIgnore",
+        },
+        ('report_all_non_autoprotect_db_errors',): {
             'None': None,
             'KERROR': "kError",
             'KWARN': "kWarn",
@@ -110,12 +110,12 @@ class AdvancedSettings(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'missing_db_backup_status': (str, none_type,),  # noqa: E501
-            'report_all_non_autoprotect_db_errors': (str, none_type,),  # noqa: E501
-            'offline_restoring_db_backup_status': (str, none_type,),  # noqa: E501
             'cloned_db_backup_status': (str, none_type,),  # noqa: E501
             'db_backup_if_not_online_status': (str, none_type,),  # noqa: E501
+            'missing_db_backup_status': (str, none_type,),  # noqa: E501
+            'offline_restoring_db_backup_status': (str, none_type,),  # noqa: E501
             'read_only_db_backup_status': (str, none_type,),  # noqa: E501
+            'report_all_non_autoprotect_db_errors': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -125,12 +125,12 @@ class AdvancedSettings(ModelNormal):
 
 
     attribute_map = {
-        'missing_db_backup_status': 'missingDbBackupStatus',  # noqa: E501
-        'report_all_non_autoprotect_db_errors': 'reportAllNonAutoprotectDbErrors',  # noqa: E501
-        'offline_restoring_db_backup_status': 'offlineRestoringDbBackupStatus',  # noqa: E501
         'cloned_db_backup_status': 'clonedDbBackupStatus',  # noqa: E501
         'db_backup_if_not_online_status': 'dbBackupIfNotOnlineStatus',  # noqa: E501
+        'missing_db_backup_status': 'missingDbBackupStatus',  # noqa: E501
+        'offline_restoring_db_backup_status': 'offlineRestoringDbBackupStatus',  # noqa: E501
         'read_only_db_backup_status': 'readOnlyDbBackupStatus',  # noqa: E501
+        'report_all_non_autoprotect_db_errors': 'reportAllNonAutoprotectDbErrors',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -180,12 +180,12 @@ class AdvancedSettings(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            missing_db_backup_status (str, none_type): Fail the backup job when the database is missing. The database may be missing if it is deleted or corrupted.. [optional]  # noqa: E501
-            report_all_non_autoprotect_db_errors (str, none_type): Whether to report error for all dbs in non-autoprotect jobs.. [optional]  # noqa: E501
-            offline_restoring_db_backup_status (str, none_type): Fail the backup job when database is offline or restoring.. [optional]  # noqa: E501
             cloned_db_backup_status (str, none_type): Whether to report error if SQL database is cloned.. [optional]  # noqa: E501
             db_backup_if_not_online_status (str, none_type): Whether to report error if SQL database is not online.. [optional]  # noqa: E501
+            missing_db_backup_status (str, none_type): Fail the backup job when the database is missing. The database may be missing if it is deleted or corrupted.. [optional]  # noqa: E501
+            offline_restoring_db_backup_status (str, none_type): Fail the backup job when database is offline or restoring.. [optional]  # noqa: E501
             read_only_db_backup_status (str, none_type): Whether to skip backup for read-only SQL databases.. [optional]  # noqa: E501
+            report_all_non_autoprotect_db_errors (str, none_type): Whether to report error for all dbs in non-autoprotect jobs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -27,10 +27,16 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.archival_target_summary_info import ArchivalTargetSummaryInfo
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
-    from cohesity_sdk.cluster.model.recover_vmware_child_snapshot_params_all_of import RecoverVmwareChildSnapshotParamsAllOf
+    from cohesity_sdk.cluster.model.object_summary import ObjectSummary
+    from cohesity_sdk.cluster.model.recover_acropolis_snapshot_params_all_of import RecoverAcropolisSnapshotParamsAllOf
+    from cohesity_sdk.cluster.model.recovery_task_info import RecoveryTaskInfo
+    globals()['ArchivalTargetSummaryInfo'] = ArchivalTargetSummaryInfo
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
-    globals()['RecoverVmwareChildSnapshotParamsAllOf'] = RecoverVmwareChildSnapshotParamsAllOf
+    globals()['ObjectSummary'] = ObjectSummary
+    globals()['RecoverAcropolisSnapshotParamsAllOf'] = RecoverAcropolisSnapshotParamsAllOf
+    globals()['RecoveryTaskInfo'] = RecoveryTaskInfo
 
 
 class RecoverVmwareChildSnapshotParams(ModelComposed):
@@ -66,6 +72,7 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
             'ARCHIVAL': "Archival",
             'RPAASARCHIVAL': "RpaasArchival",
             'STORAGEARRAYSNAPSHOT': "StorageArraySnapshot",
+            'REMOTE': "Remote",
         },
         ('status',): {
             'None': None,
@@ -79,6 +86,7 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
             'SUCCEEDEDWITHWARNING': "SucceededWithWarning",
             'ONHOLD': "OnHold",
             'FINALIZING': "Finalizing",
+            'SKIPPED': "Skipped",
         },
     }
 
@@ -102,11 +110,11 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
         lazy_import()
         return {
             'snapshot_id': (str,),  # noqa: E501
-            'archival_target_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'archival_target_info': (ArchivalTargetSummaryInfo,),  # noqa: E501
             'bytes_restored': (int, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'messages': ([str], none_type,),  # noqa: E501
-            'object_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'object_info': (ObjectSummary,),  # noqa: E501
             'point_in_time_usecs': (int, none_type,),  # noqa: E501
             'progress_task_id': (str, none_type,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
@@ -117,8 +125,8 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
             'start_time_usecs': (int, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
-            'datastore_migration_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'instant_recovery_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'datastore_migration_info': (RecoveryTaskInfo,),  # noqa: E501
+            'instant_recovery_info': (RecoveryTaskInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -199,11 +207,11 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            archival_target_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the archival target information if the snapshot is an archival snapshot.. [optional]  # noqa: E501
+            archival_target_info (ArchivalTargetSummaryInfo): [optional]  # noqa: E501
             bytes_restored (int, none_type): Specify the total bytes restored.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.. [optional]  # noqa: E501
             messages ([str], none_type): Specify error messages about the object.. [optional]  # noqa: E501
-            object_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the information about the object for which the snapshot is taken.. [optional]  # noqa: E501
+            object_info (ObjectSummary): [optional]  # noqa: E501
             point_in_time_usecs (int, none_type): Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past.. [optional]  # noqa: E501
             progress_task_id (str, none_type): Progress monitor task id for Recovery of VM.. [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies the protection group id of the object snapshot.. [optional]  # noqa: E501
@@ -212,10 +220,10 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
             snapshot_creation_time_usecs (int, none_type): Specifies the time when the snapshot is created in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
             snapshot_target_type (str, none_type): Specifies the snapshot target type.. [optional]  # noqa: E501
             start_time_usecs (int, none_type): Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501
-            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages.. [optional]  # noqa: E501
+            status (str, none_type): Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.. [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the ID of the Storage Domain where this snapshot is stored.. [optional]  # noqa: E501
-            datastore_migration_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about datastore migration. This is only applicable for RecoverVm.. [optional]  # noqa: E501
-            instant_recovery_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the info about instant recovery. This is only applicable for RecoverVm.. [optional]  # noqa: E501
+            datastore_migration_info (RecoveryTaskInfo): [optional]  # noqa: E501
+            instant_recovery_info (RecoveryTaskInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -289,7 +297,7 @@ class RecoverVmwareChildSnapshotParams(ModelComposed):
           ],
           'allOf': [
               CommonRecoverObjectSnapshotParams,
-              RecoverVmwareChildSnapshotParamsAllOf,
+              RecoverAcropolisSnapshotParamsAllOf,
           ],
           'oneOf': [
           ],

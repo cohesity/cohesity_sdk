@@ -21,8 +21,7 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_recovery_request_params387f2f9779b8401b_a119446ec2da3995 import CommonRecoveryRequestParams387f2f9779b8401bA119446ec2da3995
-from cohesity_sdk.cluster.model.common_recovery_response_paramsee88264f7bbd40f99a036ae692c6dc06 import CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06
+from cohesity_sdk.cluster.model.create_recovery_request import CreateRecoveryRequest
 from cohesity_sdk.cluster.model.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.fetch_uptier_data_response import FetchUptierDataResponse
@@ -307,7 +306,7 @@ class RecoveryApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonRecoveryRequestParams387f2f9779b8401bA119446ec2da3995): Specifies the parameters to create a Recovery.
+                body (CreateRecoveryRequest): Specifies the parameters to create a Recovery.
 
             Keyword Args:
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
@@ -332,7 +331,7 @@ class RecoveryApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -361,7 +360,7 @@ class RecoveryApi(object):
 
         self.create_recovery = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
         
@@ -401,7 +400,7 @@ class RecoveryApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonRecoveryRequestParams387f2f9779b8401bA119446ec2da3995,),
+                        (CreateRecoveryRequest,),
                     'request_initiator_type':
                         (str,),
                 },
@@ -448,6 +447,8 @@ class RecoveryApi(object):
                 start_offset (int): Specifies the start offset of file chunk to be downloaded.. [optional]
                 length (int): Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets). [optional]
                 file_type (str): Specifies the downloaded type, i.e: error, success_files_list. [optional]
+                source_name (str): Specifies the name of the source on which restore is done. [optional]
+                start_time (str): Specifies the start time of restore task. [optional]
                 include_tenants (bool): Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -516,6 +517,8 @@ class RecoveryApi(object):
                     'start_offset',
                     'length',
                     'file_type',
+                    'source_name',
+                    'start_time',
                     'include_tenants',
                 ],
                 'required': [
@@ -549,6 +552,10 @@ class RecoveryApi(object):
                         (int,),
                     'file_type':
                         (str,),
+                    'source_name':
+                        (str,),
+                    'start_time':
+                        (str,),
                     'include_tenants':
                         (bool,),
                 },
@@ -557,6 +564,8 @@ class RecoveryApi(object):
                     'start_offset': 'startOffset',
                     'length': 'length',
                     'file_type': 'fileType',
+                    'source_name': 'sourceName',
+                    'start_time': 'startTime',
                     'include_tenants': 'includeTenants',
                 },
                 'location_map': {
@@ -564,6 +573,8 @@ class RecoveryApi(object):
                     'start_offset': 'query',
                     'length': 'query',
                     'file_type': 'query',
+                    'source_name': 'query',
+                    'start_time': 'query',
                     'include_tenants': 'query',
                 },
                 'collection_format_map': {
@@ -598,6 +609,7 @@ class RecoveryApi(object):
 
             Keyword Args:
                 file_path (str): Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified.. [optional]
+                nvram_file (bool): Specifies if NVRAM file for VMware should be downloaded.. [optional]
                 retry_attempt (int): Specifies the number of attempts the protection run took to create this file.. [optional]
                 start_offset (int): Specifies the start offset of file chunk to be downloaded.. [optional]
                 length (int): Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets). [optional]
@@ -666,6 +678,7 @@ class RecoveryApi(object):
                 'all': [
                     'snapshots_id',
                     'file_path',
+                    'nvram_file',
                     'retry_attempt',
                     'start_offset',
                     'length',
@@ -690,6 +703,8 @@ class RecoveryApi(object):
                         (str,),
                     'file_path':
                         (str,),
+                    'nvram_file':
+                        (bool,),
                     'retry_attempt':
                         (int,),
                     'start_offset':
@@ -700,6 +715,7 @@ class RecoveryApi(object):
                 'attribute_map': {
                     'snapshots_id': 'snapshotsId',
                     'file_path': 'filePath',
+                    'nvram_file': 'nvramFile',
                     'retry_attempt': 'retryAttempt',
                     'start_offset': 'startOffset',
                     'length': 'length',
@@ -707,6 +723,7 @@ class RecoveryApi(object):
                 'location_map': {
                     'snapshots_id': 'path',
                     'file_path': 'query',
+                    'nvram_file': 'query',
                     'retry_attempt': 'query',
                     'start_offset': 'query',
                     'length': 'query',
@@ -991,7 +1008,8 @@ class RecoveryApi(object):
                         "LOCAL": "Local",
                         "ARCHIVAL": "Archival",
                         "RPAASARCHIVAL": "RpaasArchival",
-                        "STORAGEARRAYSNAPSHOT": "StorageArraySnapshot"
+                        "STORAGEARRAYSNAPSHOT": "StorageArraySnapshot",
+                        "REMOTE": "Remote"
                     },
                     ('archival_target_type',): {
 
@@ -1016,6 +1034,7 @@ class RecoveryApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -1058,6 +1077,9 @@ class RecoveryApi(object):
                         "UPTIERSNAPSHOT": "UptierSnapshot",
                         "RECOVERRDS": "RecoverRDS",
                         "RECOVERAURORA": "RecoverAurora",
+                        "RECOVERS3BUCKETS": "RecoverS3Buckets",
+                        "RECOVERRDSPOSTGRES": "RecoverRDSPostgres",
+                        "RECOVERAZURESQL": "RecoverAzureSQL",
                         "RECOVERAPPS": "RecoverApps",
                         "CLONEAPPS": "CloneApps",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
@@ -1066,6 +1088,7 @@ class RecoveryApi(object):
                         "RECOVEREXCHANGEDBS": "RecoverExchangeDbs",
                         "CLONEAPPVIEW": "CloneAppView",
                         "RECOVERSANVOLUMES": "RecoverSanVolumes",
+                        "RECOVERSANGROUP": "RecoverSanGroup",
                         "RECOVERMAILBOX": "RecoverMailbox",
                         "RECOVERONEDRIVE": "RecoverOneDrive",
                         "RECOVERSHAREPOINT": "RecoverSharePoint",
@@ -1073,6 +1096,7 @@ class RecoveryApi(object):
                         "RECOVERMSGROUP": "RecoverMsGroup",
                         "RECOVERMSTEAM": "RecoverMsTeam",
                         "CONVERTTOPST": "ConvertToPst",
+                        "DOWNLOADCHATS": "DownloadChats",
                         "RECOVERNAMESPACES": "RecoverNamespaces",
                         "RECOVEROBJECTS": "RecoverObjects",
                         "RECOVERSFDCOBJECTS": "RecoverSfdcObjects",
@@ -1201,7 +1225,7 @@ class RecoveryApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06
+                Recovery
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1230,7 +1254,7 @@ class RecoveryApi(object):
 
         self.get_recovery_by_id = _Endpoint(
             settings={
-                'response_type': (CommonRecoveryResponseParamsee88264f7bbd40f99a036ae692c6dc06,),
+                'response_type': (Recovery,),
                 'auth': [
                     'TokenHeader',
         
@@ -1549,419 +1573,6 @@ class RecoveryApi(object):
             },
             api_client=api_client,
             callable=__get_recovery_errors_report
-        )
-
-        def __internal_api_create_download_files_and_folders_recovery(
-            self,
-            body,
-            **kwargs
-        ):
-            """Create a download files and folders recovery.  # noqa: E501
-
-            Creates a download files and folders recovery.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.internal_api_create_download_files_and_folders_recovery(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (DownloadFilesAndFoldersRequestParams): Specifies the parameters to create a download files and folder recovery.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                Recovery
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.internal_api_create_download_files_and_folders_recovery = _Endpoint(
-            settings={
-                'response_type': (Recovery,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/recoveries/downloadFilesAndFoldersRecovery',
-                'operation_id': 'internal_api_create_download_files_and_folders_recovery',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (DownloadFilesAndFoldersRequestParams,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__internal_api_create_download_files_and_folders_recovery
-        )
-
-        def __internal_api_download_files_from_recovery(
-            self,
-            id,
-            **kwargs
-        ):
-            """Download files from the given download file recovery.  # noqa: E501
-
-            Download files from the given download file recovery.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.internal_api_download_files_from_recovery(id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (str): Specifies the id of a Recovery.
-
-            Keyword Args:
-                start_offset (int): Specifies the start offset of file chunk to be downloaded.. [optional]
-                length (int): Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets). [optional]
-                include_tenants (bool): Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            return self.call_with_http_info(**kwargs)
-
-        self.internal_api_download_files_from_recovery = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/recoveries/{id}/downloadFiles',
-                'operation_id': 'internal_api_download_files_from_recovery',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'start_offset',
-                    'length',
-                    'include_tenants',
-                ],
-                'required': [
-                    'id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                    'id',
-                ]
-            },
-            root_map={
-                'validations': {
-                    ('id',): {
-
-                        'regex': {
-                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
-                        },
-                    },
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (str,),
-                    'start_offset':
-                        (int,),
-                    'length':
-                        (int,),
-                    'include_tenants':
-                        (bool,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                    'start_offset': 'startOffset',
-                    'length': 'length',
-                    'include_tenants': 'includeTenants',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'start_offset': 'query',
-                    'length': 'query',
-                    'include_tenants': 'query',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__internal_api_download_files_from_recovery
-        )
-
-        def __internal_api_download_indexed_file(
-            self,
-            snapshots_id,
-            **kwargs
-        ):
-            """Download an indexed file.  # noqa: E501
-
-            Download an indexed file from a snapshot.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.internal_api_download_indexed_file(snapshots_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                snapshots_id (str): Specifies the snapshot id to download from.
-
-            Keyword Args:
-                file_path (str): Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified.. [optional]
-                retry_attempt (int): Specifies the number of attempts the protection run took to create this file.. [optional]
-                start_offset (int): Specifies the start offset of file chunk to be downloaded.. [optional]
-                length (int): Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets). [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                None
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['snapshots_id'] = \
-                snapshots_id
-            return self.call_with_http_info(**kwargs)
-
-        self.internal_api_download_indexed_file = _Endpoint(
-            settings={
-                'response_type': None,
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/snapshots/{snapshotsId}/downloadFile',
-                'operation_id': 'internal_api_download_indexed_file',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'snapshots_id',
-                    'file_path',
-                    'retry_attempt',
-                    'start_offset',
-                    'length',
-                ],
-                'required': [
-                    'snapshots_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'snapshots_id':
-                        (str,),
-                    'file_path':
-                        (str,),
-                    'retry_attempt':
-                        (int,),
-                    'start_offset':
-                        (int,),
-                    'length':
-                        (int,),
-                },
-                'attribute_map': {
-                    'snapshots_id': 'snapshotsId',
-                    'file_path': 'filePath',
-                    'retry_attempt': 'retryAttempt',
-                    'start_offset': 'startOffset',
-                    'length': 'length',
-                },
-                'location_map': {
-                    'snapshots_id': 'path',
-                    'file_path': 'query',
-                    'retry_attempt': 'query',
-                    'start_offset': 'query',
-                    'length': 'query',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__internal_api_download_indexed_file
         )
 
         def __tear_down_recovery_by_id(

@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
     from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
+    globals()['RecoverVmwareVmNewSourceNetworkConfig'] = RecoverVmwareVmNewSourceNetworkConfig
     globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
 
 
@@ -80,10 +82,10 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
         lazy_import()
         return {
             'datastores': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
-            'resource_pool': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'vm_folder': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'resource_pool': (RecoveryObjectIdentifier,),  # noqa: E501
+            'source': (RecoveryObjectIdentifier,),  # noqa: E501
+            'network_config': (RecoverVmwareVmNewSourceNetworkConfig,),  # noqa: E501
+            'vm_folder': (RecoveryObjectIdentifier,),  # noqa: E501
         }
 
     @cached_property
@@ -117,8 +119,8 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
 
         Args:
             datastores ([RecoveryObjectIdentifier], none_type): Specifies the datastore objects where the object's files should be recovered to.
-            resource_pool ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the resource pool object where the recovered objects will be attached.
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
+            resource_pool (RecoveryObjectIdentifier):
+            source (RecoveryObjectIdentifier):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -152,8 +154,8 @@ class RecoverVmwareVmVCenterSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.. [optional]  # noqa: E501
-            vm_folder ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Folder where the VMs should be created.. [optional]  # noqa: E501
+            network_config (RecoverVmwareVmNewSourceNetworkConfig): [optional]  # noqa: E501
+            vm_folder (RecoveryObjectIdentifier): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

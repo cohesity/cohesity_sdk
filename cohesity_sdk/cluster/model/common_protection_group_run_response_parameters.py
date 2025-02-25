@@ -33,14 +33,14 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cluster_identifier import ClusterIdentifier
     from cohesity_sdk.cluster.model.object_run_result import ObjectRunResult
     from cohesity_sdk.cluster.model.replication_run_summary import ReplicationRunSummary
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     globals()['ArchivalRunSummary'] = ArchivalRunSummary
     globals()['BackupRunSummary'] = BackupRunSummary
     globals()['CloudSpinRunSummary'] = CloudSpinRunSummary
     globals()['ClusterIdentifier'] = ClusterIdentifier
     globals()['ObjectRunResult'] = ObjectRunResult
     globals()['ReplicationRunSummary'] = ReplicationRunSummary
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
 
 
 class CommonProtectionGroupRunResponseParameters(ModelNormal):
@@ -99,6 +99,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
             'id': (str, none_type,),  # noqa: E501
             'is_cloud_archival_direct': (bool, none_type,),  # noqa: E501
             'is_local_snapshots_deleted': (bool, none_type,),  # noqa: E501
+            'is_metadata_deleted': (bool, none_type,),  # noqa: E501
             'is_replication_run': (bool, none_type,),  # noqa: E501
             'local_backup_info': (BackupRunSummary,),  # noqa: E501
             'objects': ([ObjectRunResult],),  # noqa: E501
@@ -128,6 +129,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
         'id': 'id',  # noqa: E501
         'is_cloud_archival_direct': 'isCloudArchivalDirect',  # noqa: E501
         'is_local_snapshots_deleted': 'isLocalSnapshotsDeleted',  # noqa: E501
+        'is_metadata_deleted': 'isMetadataDeleted',  # noqa: E501
         'is_replication_run': 'isReplicationRun',  # noqa: E501
         'local_backup_info': 'localBackupInfo',  # noqa: E501
         'objects': 'objects',  # noqa: E501
@@ -197,6 +199,7 @@ class CommonProtectionGroupRunResponseParameters(ModelNormal):
             id (str, none_type): Specifies the ID of the Protection Group run.. [optional]  # noqa: E501
             is_cloud_archival_direct (bool, none_type): Specifies whether the run is a CAD run if cloud archive direct feature is enabled. If this field is true, the primary backup copy will only be available at the given archived location.. [optional]  # noqa: E501
             is_local_snapshots_deleted (bool, none_type): Specifies if snapshots for this run has been deleted.. [optional]  # noqa: E501
+            is_metadata_deleted (bool, none_type): Specifies if snapshots metadata for this run has been deleted.. [optional]  # noqa: E501
             is_replication_run (bool, none_type): Specifies if this protection run is a replication run.. [optional]  # noqa: E501
             local_backup_info (BackupRunSummary): [optional]  # noqa: E501
             objects ([ObjectRunResult]): Snapahot, replication, archival results for each object.. [optional]  # noqa: E501

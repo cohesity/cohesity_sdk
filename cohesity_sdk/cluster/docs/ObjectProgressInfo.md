@@ -5,6 +5,7 @@ Specifies the progress of an object.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**entity_id** | [**ObjectStringIdentifier**](ObjectStringIdentifier.md) |  | [optional] 
 **environment** | **str, none_type** | Specifies the environment of the object. | [optional] 
 **id** | **int, none_type** | Specifies object id. | [optional] 
 **name** | **str, none_type** | Specifies the name of the object. | [optional] 

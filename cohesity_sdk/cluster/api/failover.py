@@ -121,7 +121,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/cancel',
@@ -242,7 +242,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}/cancel',
@@ -367,7 +367,7 @@ class FailoverApi(object):
                 'response_type': (FailoverCreateRunResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/planned-run',
@@ -499,7 +499,7 @@ class FailoverApi(object):
                 'response_type': (Failover,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}',
@@ -627,7 +627,7 @@ class FailoverApi(object):
                 'response_type': (GetFailoverOpsResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}/operations',
@@ -749,7 +749,7 @@ class FailoverApi(object):
                 'response_type': (GetTrackingViewIdResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/trackingViewId/{id}',
@@ -875,7 +875,7 @@ class FailoverApi(object):
                 'response_type': (GetViewFailoverResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/views/{id}',
@@ -1000,7 +1000,7 @@ class FailoverApi(object):
                 'response_type': (InitFailoverResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}',
@@ -1055,138 +1055,6 @@ class FailoverApi(object):
             },
             api_client=api_client,
             callable=__init_failover
-        )
-
-        def __internal_api_replication_backup_activation(
-            self,
-            id,
-            body,
-            **kwargs
-        ):
-            """Activate failover entity backup on replication clsuter.  # noqa: E501
-
-            Specifies the configuration required for activating backup for failover objects on replication cluster. Here orchastrator can call this API multiple times as long as full set of object are non-overlapping. They can also use the existing job if its compatible to backup failover objects.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.internal_api_replication_backup_activation(id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (str): Specifies the id of the failover workflow.
-                body (ReplicationBackupActivation): Specifies the paramteres to activate the backup of failover entities.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ReplicationBackupActivationResult
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.internal_api_replication_backup_activation = _Endpoint(
-            settings={
-                'response_type': (ReplicationBackupActivationResult,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/failover/{id}/backupActivation',
-                'operation_id': 'internal_api_replication_backup_activation',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'body',
-                ],
-                'required': [
-                    'id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (str,),
-                    'body':
-                        (ReplicationBackupActivation,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__internal_api_replication_backup_activation
         )
 
         def __object_linkage(
@@ -1264,7 +1132,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/object-linkage',
@@ -1394,7 +1262,7 @@ class FailoverApi(object):
                 'response_type': (FailoverRunsResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/planned-runs',
@@ -1531,7 +1399,7 @@ class FailoverApi(object):
                 'response_type': (ReplicationBackupActivationResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backup-activation',
@@ -1663,7 +1531,7 @@ class FailoverApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/failover/{id}/backup-deactivation',

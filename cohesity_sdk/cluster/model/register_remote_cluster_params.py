@@ -28,8 +28,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.remote_cluster_params import RemoteClusterParams
+    from cohesity_sdk.cluster.model.replication_params import ReplicationParams
     from cohesity_sdk.cluster.model.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
     globals()['RemoteClusterParams'] = RemoteClusterParams
+    globals()['ReplicationParams'] = ReplicationParams
     globals()['ValidateRemoteClusterConnectionParam'] = ValidateRemoteClusterConnectionParam
 
 
@@ -60,10 +62,20 @@ class RegisterRemoteClusterParams(ModelComposed):
     """
 
     allowed_values = {
+        ('effective_aes_encryption_mode',): {
+            'None': None,
+            'CBC': "CBC",
+            'GCM': "GCM",
+        },
         ('purpose',): {
             'None': None,
             'REPLICATION': "Replication",
             'REMOTEACCESS': "RemoteAccess",
+        },
+        ('supported_aes_encryption_mode',): {
+            'None': None,
+            'CBC': "CBC",
+            'GCM': "GCM",
         },
     }
 
@@ -98,11 +110,16 @@ class RegisterRemoteClusterParams(ModelComposed):
             'cluster_incarnation_id': (int, none_type,),  # noqa: E501
             'cluster_name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'effective_aes_encryption_mode': (str, none_type,),  # noqa: E501
             'is_auto_registered': (bool, none_type,),  # noqa: E501
             'local_addresses': ([str],),  # noqa: E501
+            'multi_tenancy_enabled': (bool, none_type,),  # noqa: E501
             'network_interface': (str, none_type,),  # noqa: E501
             'purpose': ([str], none_type,),  # noqa: E501
-            'replication_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'replication_params': (ReplicationParams,),  # noqa: E501
+            'supported_aes_encryption_mode': (str, none_type,),  # noqa: E501
+            'tenant_storage_domain_sharing_enabled': (bool, none_type,),  # noqa: E501
+            'tls_enabled': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -120,11 +137,16 @@ class RegisterRemoteClusterParams(ModelComposed):
         'cluster_incarnation_id': 'clusterIncarnationId',  # noqa: E501
         'cluster_name': 'clusterName',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'effective_aes_encryption_mode': 'effectiveAesEncryptionMode',  # noqa: E501
         'is_auto_registered': 'isAutoRegistered',  # noqa: E501
         'local_addresses': 'localAddresses',  # noqa: E501
+        'multi_tenancy_enabled': 'multiTenancyEnabled',  # noqa: E501
         'network_interface': 'networkInterface',  # noqa: E501
         'purpose': 'purpose',  # noqa: E501
         'replication_params': 'replicationParams',  # noqa: E501
+        'supported_aes_encryption_mode': 'supportedAesEncryptionMode',  # noqa: E501
+        'tenant_storage_domain_sharing_enabled': 'tenantStorageDomainSharingEnabled',  # noqa: E501
+        'tls_enabled': 'tlsEnabled',  # noqa: E501
     }
 
     required_properties = set([
@@ -185,11 +207,16 @@ class RegisterRemoteClusterParams(ModelComposed):
             cluster_incarnation_id (int, none_type): Specifies the Remote Cluster incarnation id.. [optional]  # noqa: E501
             cluster_name (str, none_type): Specifies the Remote Cluster name.. [optional]  # noqa: E501
             description (str, none_type): Specifies any additional information if needed.. [optional]  # noqa: E501
+            effective_aes_encryption_mode (str, none_type): Specifies the effective AES Encryption mode negotiated between local and the remote cluster.. [optional]  # noqa: E501
             is_auto_registered (bool, none_type): Specifies if the Remote Cluster was registered automatically or manually.. [optional]  # noqa: E501
             local_addresses ([str]): Specifies the IP addresses of the interfaces in the local Cluster which will be used for communicating with the remote Cluster.. [optional]  # noqa: E501
+            multi_tenancy_enabled (bool, none_type): Specifies if the Remote Cluster has Multi-Tenancy enabled.. [optional]  # noqa: E501
             network_interface (str, none_type): Specifies the name of the network interfaces to use for communicating with the Remote Cluster.. [optional]  # noqa: E501
             purpose ([str], none_type): Specifies the purpose for which the remote cluster is being registered.. [optional]  # noqa: E501
-            replication_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the replication config for a Remote Cluster. Required when usedForReplication is set to true.. [optional]  # noqa: E501
+            replication_params (ReplicationParams): [optional]  # noqa: E501
+            supported_aes_encryption_mode (str, none_type): Specifies the AES Encryption mode of the remote cluster.. [optional]  # noqa: E501
+            tenant_storage_domain_sharing_enabled (bool, none_type): Specifies if Tenant Storage Domain sharing is enabled on the Remote Cluster.. [optional]  # noqa: E501
+            tls_enabled (bool, none_type): Specifies if TLS is enabled on the Remote Cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

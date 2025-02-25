@@ -27,9 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.common_mssql_file_object_protection_params import CommonMssqlFileObjectProtectionParams
     from cohesity_sdk.cluster.model.common_mssql_native_object_protection_params import CommonMssqlNativeObjectProtectionParams
-    globals()['CommonMssqlFileObjectProtectionParams'] = CommonMssqlFileObjectProtectionParams
+    from cohesity_sdk.cluster.model.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
+    globals()['CommonMSSQLProtectionGroupParams'] = CommonMSSQLProtectionGroupParams
     globals()['CommonMssqlNativeObjectProtectionParams'] = CommonMssqlNativeObjectProtectionParams
 
 
@@ -87,7 +87,7 @@ class CommonMssqlObjectProtectionParams(ModelNormal):
         lazy_import()
         return {
             'object_protection_type': (str,),  # noqa: E501
-            'common_file_object_protection_type_params': (CommonMssqlFileObjectProtectionParams,),  # noqa: E501
+            'common_file_object_protection_type_params': (CommonMSSQLProtectionGroupParams,),  # noqa: E501
             'common_native_object_protection_type_params': (CommonMssqlNativeObjectProtectionParams,),  # noqa: E501
         }
 
@@ -153,7 +153,7 @@ class CommonMssqlObjectProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            common_file_object_protection_type_params (CommonMssqlFileObjectProtectionParams): [optional]  # noqa: E501
+            common_file_object_protection_type_params (CommonMSSQLProtectionGroupParams): [optional]  # noqa: E501
             common_native_object_protection_type_params (CommonMssqlNativeObjectProtectionParams): [optional]  # noqa: E501
         """
 

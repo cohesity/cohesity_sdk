@@ -37,9 +37,9 @@ client = ClusterClient(
 
 
 body = Tag(
+        description="description_example",
         name="name_example",
         namespace="namespace_example",
-        description="description_example",
         ui_color="ui_color_example",
         ui_path_elements=[
             "ui_path_elements_example",
@@ -327,9 +327,9 @@ client = ClusterClient(
 
 id = "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D" # str | Specifies the Id of the tag.
 body = Tag(
+        description="description_example",
         name="name_example",
         namespace="namespace_example",
-        description="description_example",
         ui_color="ui_color_example",
         ui_path_elements=[
             "ui_path_elements_example",

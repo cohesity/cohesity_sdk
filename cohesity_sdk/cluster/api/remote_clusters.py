@@ -21,15 +21,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.create_odp_remote_cluster_params import CreateOdpRemoteClusterParams
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.odp_remote_cluster import OdpRemoteCluster
-from cohesity_sdk.cluster.model.odp_remote_clusters import OdpRemoteClusters
 from cohesity_sdk.cluster.model.register_remote_cluster_params import RegisterRemoteClusterParams
-from cohesity_sdk.cluster.model.remote_cluster import RemoteCluster
+from cohesity_sdk.cluster.model.remote_cluster_params import RemoteClusterParams
 from cohesity_sdk.cluster.model.remote_clusters import RemoteClusters
-from cohesity_sdk.cluster.model.replication_encryption_key import ReplicationEncryptionKey
-from cohesity_sdk.cluster.model.update_odp_remote_cluster_params import UpdateOdpRemoteClusterParams
 from cohesity_sdk.cluster.model.update_remote_cluster_params import UpdateRemoteClusterParams
 from cohesity_sdk.cluster.model.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
 
@@ -45,128 +40,6 @@ class RemoteClustersApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-
-        def __create_odp_remote_cluster(
-            self,
-            body,
-            **kwargs
-        ):
-            """Create an ODP Remote Cluster config.  # noqa: E501
-
-            Create an ODP Remote Cluster config.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.create_odp_remote_cluster(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (CreateOdpRemoteClusterParams): Specifies the request to create ODP Remote Cluster config.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                OdpRemoteCluster
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.create_odp_remote_cluster = _Endpoint(
-            settings={
-                'response_type': (OdpRemoteCluster,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/odp-remote-clusters',
-                'operation_id': 'create_odp_remote_cluster',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (CreateOdpRemoteClusterParams,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__create_odp_remote_cluster
-        )
 
         def __delete_remote_cluster(
             self,
@@ -239,7 +112,7 @@ class RemoteClustersApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
@@ -289,263 +162,6 @@ class RemoteClustersApi(object):
             callable=__delete_remote_cluster
         )
 
-        def __get_odp_remote_cluster_by_id(
-            self,
-            cluster_id,
-            **kwargs
-        ):
-            """Get ODP Remote Cluster config by id.  # noqa: E501
-
-            Get ODP Remote Cluster config by id.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_odp_remote_cluster_by_id(cluster_id, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                cluster_id (int): Specifies the id of ODP Remote Cluster to fetch.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                OdpRemoteCluster
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['cluster_id'] = \
-                cluster_id
-            return self.call_with_http_info(**kwargs)
-
-        self.get_odp_remote_cluster_by_id = _Endpoint(
-            settings={
-                'response_type': (OdpRemoteCluster,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/odp-remote-clusters/{clusterId}',
-                'operation_id': 'get_odp_remote_cluster_by_id',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'cluster_id',
-                ],
-                'required': [
-                    'cluster_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'cluster_id':
-                        (int,),
-                },
-                'attribute_map': {
-                    'cluster_id': 'clusterId',
-                },
-                'location_map': {
-                    'cluster_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_odp_remote_cluster_by_id
-        )
-
-        def __get_odp_remote_clusters(
-            self,
-            **kwargs
-        ):
-            """Get ODP Remote Cluster configs.  # noqa: E501
-
-            Get ODP Remote Cluster configs.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_odp_remote_clusters(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                cluster_ids ([int]): Specifies a list of ODP Remote Cluster ids to filter.. [optional]
-                cluster_names ([str]): Specifies a list of ODP Remote Cluster names to filter.. [optional]
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which ODP Remote Clusters are to be returned.. [optional]
-                include_tenants (bool): If true, the response will include ODP Remote Clusters which were created by all tenants which the current user has permission to see. If false, then only ODP Remote Clusters created by the current user will be returned.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                OdpRemoteClusters
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_odp_remote_clusters = _Endpoint(
-            settings={
-                'response_type': (OdpRemoteClusters,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/odp-remote-clusters',
-                'operation_id': 'get_odp_remote_clusters',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'cluster_ids',
-                    'cluster_names',
-                    'tenant_ids',
-                    'include_tenants',
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'cluster_ids':
-                        ([int],),
-                    'cluster_names':
-                        ([str],),
-                    'tenant_ids':
-                        ([str],),
-                    'include_tenants':
-                        (bool,),
-                },
-                'attribute_map': {
-                    'cluster_ids': 'clusterIds',
-                    'cluster_names': 'clusterNames',
-                    'tenant_ids': 'tenantIds',
-                    'include_tenants': 'includeTenants',
-                },
-                'location_map': {
-                    'cluster_ids': 'query',
-                    'cluster_names': 'query',
-                    'tenant_ids': 'query',
-                    'include_tenants': 'query',
-                },
-                'collection_format_map': {
-                    'cluster_ids': 'csv',
-                    'cluster_names': 'csv',
-                    'tenant_ids': 'csv',
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_odp_remote_clusters
-        )
-
         def __get_remote_cluster_by_id(
             self,
             cluster_id,
@@ -585,7 +201,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                RemoteCluster
+                UpdateRemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -614,10 +230,10 @@ class RemoteClustersApi(object):
 
         self.get_remote_cluster_by_id = _Endpoint(
             settings={
-                'response_type': (RemoteCluster,),
+                'response_type': (UpdateRemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
@@ -686,6 +302,7 @@ class RemoteClustersApi(object):
                 cluster_names ([str]): Specifies a list of Remote Cluster names to filter.. [optional]
                 node_addresses ([str]): Specifies a list of Remote Cluster IPs to filter.. [optional]
                 purpose ([str]): Specifies the purpose for which the remote cluster is being registered.. [optional]
+                include_encrypted_credentials (bool): If true, the response will include encrypted password.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -737,7 +354,7 @@ class RemoteClustersApi(object):
                 'response_type': (RemoteClusters,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters',
@@ -751,6 +368,7 @@ class RemoteClustersApi(object):
                     'cluster_names',
                     'node_addresses',
                     'purpose',
+                    'include_encrypted_credentials',
                 ],
                 'required': [],
                 'nullable': [
@@ -780,18 +398,22 @@ class RemoteClustersApi(object):
                         ([str],),
                     'purpose':
                         ([str],),
+                    'include_encrypted_credentials':
+                        (bool,),
                 },
                 'attribute_map': {
                     'cluster_ids': 'clusterIds',
                     'cluster_names': 'clusterNames',
                     'node_addresses': 'nodeAddresses',
                     'purpose': 'purpose',
+                    'include_encrypted_credentials': 'includeEncryptedCredentials',
                 },
                 'location_map': {
                     'cluster_ids': 'query',
                     'cluster_names': 'query',
                     'node_addresses': 'query',
                     'purpose': 'query',
+                    'include_encrypted_credentials': 'query',
                 },
                 'collection_format_map': {
                     'cluster_ids': 'csv',
@@ -808,115 +430,6 @@ class RemoteClustersApi(object):
             },
             api_client=api_client,
             callable=__get_remote_clusters
-        )
-
-        def __get_replication_encryption_key(
-            self,
-            **kwargs
-        ):
-            """Get Replication Encryption Key  # noqa: E501
-
-            List the Replication Encryption Key. It is used for encrypting replication data between this Cluster and a remote Cluster.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_replication_encryption_key(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ReplicationEncryptionKey
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_replication_encryption_key = _Endpoint(
-            settings={
-                'response_type': (ReplicationEncryptionKey,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/replicationEncryptionKey',
-                'operation_id': 'get_replication_encryption_key',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_replication_encryption_key
         )
 
         def __register_remote_cluster(
@@ -958,7 +471,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                RemoteCluster
+                UpdateRemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -987,10 +500,10 @@ class RemoteClustersApi(object):
 
         self.register_remote_cluster = _Endpoint(
             settings={
-                'response_type': (RemoteCluster,),
+                'response_type': (UpdateRemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters',
@@ -1041,138 +554,6 @@ class RemoteClustersApi(object):
             callable=__register_remote_cluster
         )
 
-        def __update_odp_remote_cluster(
-            self,
-            cluster_id,
-            body,
-            **kwargs
-        ):
-            """Update an ODP Remote Cluster config.  # noqa: E501
-
-            Update an ODP Remote Cluster config.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_odp_remote_cluster(cluster_id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                cluster_id (int): Specifies the id of ODP Remote Cluster to update.
-                body (UpdateOdpRemoteClusterParams): Specifies the request to update ODP Remote Cluster config.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                OdpRemoteCluster
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['cluster_id'] = \
-                cluster_id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.update_odp_remote_cluster = _Endpoint(
-            settings={
-                'response_type': (OdpRemoteCluster,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/odp-remote-clusters/{clusterId}',
-                'operation_id': 'update_odp_remote_cluster',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'cluster_id',
-                    'body',
-                ],
-                'required': [
-                    'cluster_id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'cluster_id':
-                        (int,),
-                    'body':
-                        (UpdateOdpRemoteClusterParams,),
-                },
-                'attribute_map': {
-                    'cluster_id': 'clusterId',
-                },
-                'location_map': {
-                    'cluster_id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__update_odp_remote_cluster
-        )
-
         def __update_remote_cluster(
             self,
             cluster_id,
@@ -1214,7 +595,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                RemoteCluster
+                UpdateRemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1245,10 +626,10 @@ class RemoteClustersApi(object):
 
         self.update_remote_cluster = _Endpoint(
             settings={
-                'response_type': (RemoteCluster,),
+                'response_type': (UpdateRemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/{clusterId}',
@@ -1312,7 +693,7 @@ class RemoteClustersApi(object):
         ):
             """Validate Remote Cluster config.  # noqa: E501
 
-            Validate a Remote Cluster credentials.  # noqa: E501
+            Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, response will include the remote cluster metadata.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -1323,6 +704,7 @@ class RemoteClustersApi(object):
                 body (ValidateRemoteClusterConnectionParam): Specifies the request to validate Remote Cluster.
 
             Keyword Args:
+                include_metadata (bool): Specifies if Remote Cluster metadata should be included in the response.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1344,7 +726,7 @@ class RemoteClustersApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                None
+                RemoteClusterParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1373,10 +755,10 @@ class RemoteClustersApi(object):
 
         self.validate_remote_cluster = _Endpoint(
             settings={
-                'response_type': None,
+                'response_type': (RemoteClusterParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/remote-clusters/validate',
@@ -1387,6 +769,7 @@ class RemoteClustersApi(object):
             params_map={
                 'all': [
                     'body',
+                    'include_metadata',
                 ],
                 'required': [
                     'body',
@@ -1406,11 +789,15 @@ class RemoteClustersApi(object):
                 'openapi_types': {
                     'body':
                         (ValidateRemoteClusterConnectionParam,),
+                    'include_metadata':
+                        (bool,),
                 },
                 'attribute_map': {
+                    'include_metadata': 'includeMetadata',
                 },
                 'location_map': {
                     'body': 'body',
+                    'include_metadata': 'query',
                 },
                 'collection_format_map': {
                 }

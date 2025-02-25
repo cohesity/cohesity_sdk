@@ -27,8 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_isilon_files_params import RecoverIsilonFilesParams
+    from cohesity_sdk.cluster.model.recover_isilon_nas_volume_params import RecoverIsilonNasVolumeParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverIsilonFilesParams'] = RecoverIsilonFilesParams
+    globals()['RecoverIsilonNasVolumeParams'] = RecoverIsilonNasVolumeParams
 
 
 class RecoverIsilonParams(ModelNormal):
@@ -85,9 +91,9 @@ class RecoverIsilonParams(ModelNormal):
         return {
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_nas_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverIsilonFilesParams,),  # noqa: E501
+            'recover_nas_volume_params': (RecoverIsilonNasVolumeParams,),  # noqa: E501
         }
 
     @cached_property
@@ -155,9 +161,9 @@ class RecoverIsilonParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
-            recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover files.. [optional]  # noqa: E501
-            recover_nas_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover NAS Volumes.. [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverIsilonFilesParams): [optional]  # noqa: E501
+            recover_nas_volume_params (RecoverIsilonNasVolumeParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

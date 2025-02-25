@@ -235,6 +235,7 @@ client = ClusterClient(
 )
 
 
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 ids = [
         "ids_example",
     ] # [str] | Filter policies by a list of policy template ids. (optional)
@@ -250,7 +251,7 @@ include_tenants = True # bool | IncludeTenantPolicies specifies if objects of al
 # and optional values
 try:
 	# List Policy Templates filtered by query parameters.
-	api_response = client.policy.get_policy_templates(ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants)
+	api_response = client.policy.get_policy_templates(request_initiator_type=request_initiator_type, ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PolicyApi->get_policy_templates: %s\n" % e)
@@ -261,6 +262,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
  **ids** | **[str]**| Filter policies by a list of policy template ids. | [optional]
  **policy_names** | **[str]**| Filter policies by a list of policy names. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the organizations for which objects are to be returned. | [optional]
@@ -314,6 +316,7 @@ client = ClusterClient(
 )
 
 
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 ids = [
         "ids_example",
     ] # [str] | Filter policies by a list of policy ids. (optional)
@@ -335,7 +338,7 @@ include_stats = True # bool | If includeStats is set to true, then response will
 # and optional values
 try:
 	# List Protection Policies based on provided filtering parameters.
-	api_response = client.policy.get_protection_policies(ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants, types=types, exclude_linked_policies=exclude_linked_policies, include_replicated_policies=include_replicated_policies, include_stats=include_stats)
+	api_response = client.policy.get_protection_policies(request_initiator_type=request_initiator_type, ids=ids, policy_names=policy_names, tenant_ids=tenant_ids, include_tenants=include_tenants, types=types, exclude_linked_policies=exclude_linked_policies, include_replicated_policies=include_replicated_policies, include_stats=include_stats)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PolicyApi->get_protection_policies: %s\n" % e)
@@ -346,6 +349,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
  **ids** | **[str]**| Filter policies by a list of policy ids. | [optional]
  **policy_names** | **[str]**| Filter policies by a list of policy names. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the organizations for which objects are to be returned. | [optional]
@@ -404,11 +408,21 @@ client = ClusterClient(
 
 
 id = "id_example" # str | Specifies a unique id of the Protection Policy to return.
+request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 
 # example passing only required values which don't have defaults set
 try:
 	# List details about a single Protection Policy.
 	api_response = client.policy.get_protection_policy_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PolicyApi->get_protection_policy_by_id: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List details about a single Protection Policy.
+	api_response = client.policy.get_protection_policy_by_id(id, request_initiator_type=request_initiator_type)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling PolicyApi->get_protection_policy_by_id: %s\n" % e)
@@ -420,6 +434,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies a unique id of the Protection Policy to return. |
+ **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
 
 ### Return type
 

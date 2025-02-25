@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.credentials import Credentials
     from cohesity_sdk.cluster.model.recover_target import RecoverTarget
+    globals()['Credentials'] = Credentials
     globals()['RecoverTarget'] = RecoverTarget
 
 
@@ -80,7 +82,7 @@ class PhysicalMountVolumesNewTargetConfig(ModelNormal):
         lazy_import()
         return {
             'mount_target': (RecoverTarget,),  # noqa: E501
-            'server_credentials': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'server_credentials': (Credentials,),  # noqa: E501
         }
 
     @cached_property
@@ -144,7 +146,7 @@ class PhysicalMountVolumesNewTargetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            server_credentials ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies credentials to access the target server. This is required if the server is of Linux OS.. [optional]  # noqa: E501
+            server_credentials (Credentials): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

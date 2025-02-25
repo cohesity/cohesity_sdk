@@ -33,6 +33,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.azure_protection_group_params import AzureProtectionGroupParams
     from cohesity_sdk.cluster.model.cassandra_protection_group_params import CassandraProtectionGroupParams
     from cohesity_sdk.cluster.model.common_protection_group_response_params import CommonProtectionGroupResponseParams
+    from cohesity_sdk.cluster.model.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
     from cohesity_sdk.cluster.model.create_or_update_protection_group_request_all_of import CreateOrUpdateProtectionGroupRequestAllOf
     from cohesity_sdk.cluster.model.elastifile_protection_group_params import ElastifileProtectionGroupParams
     from cohesity_sdk.cluster.model.exchange_protection_group_params import ExchangeProtectionGroupParams
@@ -42,7 +43,9 @@ def lazy_import():
     from cohesity_sdk.cluster.model.gpfs_protection_group_params import GpfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hdfs_protection_group_params import HdfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hyper_v_protection_group_params import HyperVProtectionGroupParams
+    from cohesity_sdk.cluster.model.ibm_flash_system_protection_group_params import IbmFlashSystemProtectionGroupParams
     from cohesity_sdk.cluster.model.isilon_protection_group_params import IsilonProtectionGroupParams
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.kubernetes_protection_group_params import KubernetesProtectionGroupParams
     from cohesity_sdk.cluster.model.kvm_protection_group_params import KvmProtectionGroupParams
     from cohesity_sdk.cluster.model.missing_entity_params import MissingEntityParams
@@ -55,12 +58,11 @@ def lazy_import():
     from cohesity_sdk.cluster.model.oracle_protection_group_params import OracleProtectionGroupParams
     from cohesity_sdk.cluster.model.physical_protection_group_params import PhysicalProtectionGroupParams
     from cohesity_sdk.cluster.model.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
-    from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
     from cohesity_sdk.cluster.model.pure_protection_group_params import PureProtectionGroupParams
     from cohesity_sdk.cluster.model.remote_adapter_protection_group_params import RemoteAdapterProtectionGroupParams
     from cohesity_sdk.cluster.model.sfdc_protection_group_params import SfdcProtectionGroupParams
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
     from cohesity_sdk.cluster.model.uda_protection_group_params import UdaProtectionGroupParams
     from cohesity_sdk.cluster.model.view_protection_group_params import ViewProtectionGroupParams
@@ -71,6 +73,7 @@ def lazy_import():
     globals()['AzureProtectionGroupParams'] = AzureProtectionGroupParams
     globals()['CassandraProtectionGroupParams'] = CassandraProtectionGroupParams
     globals()['CommonProtectionGroupResponseParams'] = CommonProtectionGroupResponseParams
+    globals()['CommonProtectionGroupRunResponseParameters'] = CommonProtectionGroupRunResponseParameters
     globals()['CreateOrUpdateProtectionGroupRequestAllOf'] = CreateOrUpdateProtectionGroupRequestAllOf
     globals()['ElastifileProtectionGroupParams'] = ElastifileProtectionGroupParams
     globals()['ExchangeProtectionGroupParams'] = ExchangeProtectionGroupParams
@@ -80,7 +83,9 @@ def lazy_import():
     globals()['GpfsProtectionGroupParams'] = GpfsProtectionGroupParams
     globals()['HdfsProtectionGroupParams'] = HdfsProtectionGroupParams
     globals()['HyperVProtectionGroupParams'] = HyperVProtectionGroupParams
+    globals()['IbmFlashSystemProtectionGroupParams'] = IbmFlashSystemProtectionGroupParams
     globals()['IsilonProtectionGroupParams'] = IsilonProtectionGroupParams
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['KubernetesProtectionGroupParams'] = KubernetesProtectionGroupParams
     globals()['KvmProtectionGroupParams'] = KvmProtectionGroupParams
     globals()['MSSQLProtectionGroupParams'] = MSSQLProtectionGroupParams
@@ -93,12 +98,11 @@ def lazy_import():
     globals()['OracleProtectionGroupParams'] = OracleProtectionGroupParams
     globals()['PhysicalProtectionGroupParams'] = PhysicalProtectionGroupParams
     globals()['ProtectionGroupAlertingPolicy'] = ProtectionGroupAlertingPolicy
-    globals()['ProtectionGroupRun'] = ProtectionGroupRun
     globals()['PureProtectionGroupParams'] = PureProtectionGroupParams
     globals()['RemoteAdapterProtectionGroupParams'] = RemoteAdapterProtectionGroupParams
     globals()['SfdcProtectionGroupParams'] = SfdcProtectionGroupParams
     globals()['SlaRule'] = SlaRule
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
     globals()['TimeOfDay'] = TimeOfDay
     globals()['UdaProtectionGroupParams'] = UdaProtectionGroupParams
     globals()['ViewProtectionGroupParams'] = ViewProtectionGroupParams
@@ -143,9 +147,14 @@ class ProtectionGroup(ModelComposed):
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
             'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
@@ -155,6 +164,7 @@ class ProtectionGroup(ModelComposed):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -213,17 +223,20 @@ class ProtectionGroup(ModelComposed):
         lazy_import()
         return {
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
             'cluster_id': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
+            'invalid_entities': ([MissingEntityParams], none_type,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
             'is_deleted': (bool, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
             'is_protect_once': (bool, none_type,),  # noqa: E501
-            'last_run': (ProtectionGroupRun,),  # noqa: E501
+            'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
+            'last_run': (CommonProtectionGroupRunResponseParameters,),  # noqa: E501
             'missing_entities': ([MissingEntityParams], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'num_protected_objects': (int, none_type,),  # noqa: E501
@@ -252,6 +265,7 @@ class ProtectionGroup(ModelComposed):
             'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
             'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'ibm_flash_system_params': (IbmFlashSystemProtectionGroupParams,),  # noqa: E501
             'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
             'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
             'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
@@ -278,16 +292,19 @@ class ProtectionGroup(ModelComposed):
 
     attribute_map = {
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'description': 'description',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'invalid_entities': 'invalidEntities',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
         'is_deleted': 'isDeleted',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
         'is_protect_once': 'isProtectOnce',  # noqa: E501
+        'last_modified_timestamp_usecs': 'lastModifiedTimestampUsecs',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
         'missing_entities': 'missingEntities',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -317,6 +334,7 @@ class ProtectionGroup(ModelComposed):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'ibm_flash_system_params': 'ibmFlashSystemParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
@@ -384,17 +402,20 @@ class ProtectionGroup(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection job.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             cluster_id (str, none_type): Specifies the cluster ID.. [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the Protection Group.. [optional]  # noqa: E501
             id (str, none_type): Specifies the ID of the Protection Group.. [optional]  # noqa: E501
+            invalid_entities ([MissingEntityParams], none_type): Specifies the Information about invalid entities. An entity will be considered invalid if it is part of an active protection group but has lost compatibility for the given backup type.. [optional]  # noqa: E501
             is_active (bool, none_type): Specifies if the Protection Group is active or not.. [optional]  # noqa: E501
             is_deleted (bool, none_type): Specifies if the Protection Group has been deleted.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
             is_protect_once (bool, none_type): Specifies if the the Protection Group is using a protect once type of policy. This field is helpful to identify run happen for this group.. [optional]  # noqa: E501
-            last_run (ProtectionGroupRun): [optional]  # noqa: E501
+            last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
+            last_run (CommonProtectionGroupRunResponseParameters): [optional]  # noqa: E501
             missing_entities ([MissingEntityParams], none_type): Specifies the Information about missing entities.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the Protection Group.. [optional]  # noqa: E501
             num_protected_objects (int, none_type): Specifies the number of protected objects of the Protection Group.. [optional]  # noqa: E501
@@ -423,6 +444,7 @@ class ProtectionGroup(ModelComposed):
             hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
             hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            ibm_flash_system_params (IbmFlashSystemProtectionGroupParams): [optional]  # noqa: E501
             isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
             kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
             kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501

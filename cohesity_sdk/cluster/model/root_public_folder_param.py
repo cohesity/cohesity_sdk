@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
     from cohesity_sdk.cluster.model.public_folder import PublicFolder
+    globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
     globals()['PublicFolder'] = PublicFolder
 
 
@@ -79,7 +81,7 @@ class RootPublicFolderParam(ModelNormal):
         """
         lazy_import()
         return {
-            'recover_object': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recover_object': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
             'recover_entire_root_public_folder': (bool, none_type,),  # noqa: E501
             'recover_folders': ([PublicFolder], none_type,),  # noqa: E501
         }
@@ -112,7 +114,7 @@ class RootPublicFolderParam(ModelNormal):
         """RootPublicFolderParam - a model defined in OpenAPI
 
         Args:
-            recover_object ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the RootPublicFolder recover Object info.
+            recover_object (CommonRecoverObjectSnapshotParams):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

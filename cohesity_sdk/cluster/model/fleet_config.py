@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.fleet_network_params import FleetNetworkParams
     from cohesity_sdk.cluster.model.fleet_tags import FleetTags
+    globals()['FleetNetworkParams'] = FleetNetworkParams
     globals()['FleetTags'] = FleetTags
 
 
@@ -85,7 +87,7 @@ class FleetConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'fleet_network_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'fleet_network_params': (FleetNetworkParams,),  # noqa: E501
             'fleet_subnet_type': (str, none_type,),  # noqa: E501
             'fleet_tags': ([FleetTags], none_type,),  # noqa: E501
         }
@@ -149,7 +151,7 @@ class FleetConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            fleet_network_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the network security groups within above VPC.. [optional]  # noqa: E501
+            fleet_network_params (FleetNetworkParams): [optional]  # noqa: E501
             fleet_subnet_type (str, none_type): Specifies the subnet type of the fleet.. [optional]  # noqa: E501
             fleet_tags ([FleetTags], none_type): Specifies the network security groups within above VPC.. [optional]  # noqa: E501
         """

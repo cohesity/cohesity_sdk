@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.object_ms_team_param import ObjectMsTeamParam
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
+    from cohesity_sdk.cluster.model.target_ms_team_param import TargetMsTeamParam
     globals()['ObjectMsTeamParam'] = ObjectMsTeamParam
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
+    globals()['TargetMsTeamParam'] = TargetMsTeamParam
 
 
 class RecoverMsTeamParams(ModelNormal):
@@ -84,12 +88,12 @@ class RecoverMsTeamParams(ModelNormal):
             'create_new_team': (bool, none_type,),  # noqa: E501
             'restore_original_owners': (bool, none_type,),  # noqa: E501
             'restore_to_original': (bool, none_type,),  # noqa: E501
-            'target_ms_team': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'target_ms_team_param': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'target_ms_team': (TargetMsTeamParam,),  # noqa: E501
+            'target_ms_team_param': (TargetMsTeamParam,),  # noqa: E501
             'target_team_full_name': (str, none_type,),  # noqa: E501
             'target_team_name': (str, none_type,),  # noqa: E501
             'target_team_nick_name': (str, none_type,),  # noqa: E501
-            'target_team_owner': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'target_team_owner': (RecoveryObjectIdentifier,),  # noqa: E501
         }
 
     @cached_property
@@ -166,12 +170,12 @@ class RecoverMsTeamParams(ModelNormal):
             create_new_team (bool, none_type): Specifies to create new team in case the target team doesn't exists in case restoreToOriginal is false.. [optional]  # noqa: E501
             restore_original_owners (bool, none_type): Specifies if the original members/owners should be part of the newly created target team or not.. [optional]  # noqa: E501
             restore_to_original (bool, none_type): Specifies whether or not all Microsoft 365 Teams are restored to original location.. [optional]  # noqa: E501
-            target_ms_team ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): This field is deprecated. Use targetTeamNickName and targetTeamFullName instead.. [optional]  # noqa: E501
-            target_ms_team_param ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ms team target parameters in case of restoreToOriginal is false.. [optional]  # noqa: E501
+            target_ms_team (TargetMsTeamParam): [optional]  # noqa: E501
+            target_ms_team_param (TargetMsTeamParam): [optional]  # noqa: E501
             target_team_full_name (str, none_type): This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user).. [optional]  # noqa: E501
             target_team_name (str, none_type): Specifies the target team name in case restoreToOriginal is false.. [optional]  # noqa: E501
             target_team_nick_name (str, none_type): This field is deprecated. Specifies target team nickname in case restoreToOriginal is false.. [optional]  # noqa: E501
-            target_team_owner ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the additional owner entity info for the selected target team.. [optional]  # noqa: E501
+            target_team_owner (RecoveryObjectIdentifier): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

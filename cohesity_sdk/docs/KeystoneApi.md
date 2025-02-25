@@ -24,7 +24,6 @@ Create a Keystone configuration.
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
-from cohesity_sdk.cluster.model.create_keystone_request import CreateKeystoneRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -37,7 +36,7 @@ client = ClusterClient(
 )
 
 
-body = CreateKeystoneRequest() # CreateKeystoneRequest | Specifies the paremters to create a Keystone configuration.
+body = Keystone() # Keystone | Specifies the paremters to create a Keystone configuration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -53,7 +52,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateKeystoneRequest**](CreateKeystoneRequest.md)| Specifies the paremters to create a Keystone configuration. |
+ **body** | [**Keystone**](Keystone.md)| Specifies the paremters to create a Keystone configuration. |
 
 ### Return type
 
@@ -298,7 +297,6 @@ Update a Keystone configuration.
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
-from cohesity_sdk.cluster.model.update_keystone_request import UpdateKeystoneRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -312,7 +310,7 @@ client = ClusterClient(
 
 
 id = 1 # int | Specifies the Keystone id.
-body = UpdateKeystoneRequest() # UpdateKeystoneRequest | Specifies the paremters to update a Keystone configuration.
+body = Keystone() # Keystone | Specifies the paremters to update a Keystone configuration.
 
 # example passing only required values which don't have defaults set
 try:
@@ -329,7 +327,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| Specifies the Keystone id. |
- **body** | [**UpdateKeystoneRequest**](UpdateKeystoneRequest.md)| Specifies the paremters to update a Keystone configuration. |
+ **body** | [**Keystone**](Keystone.md)| Specifies the paremters to update a Keystone configuration. |
 
 ### Return type
 

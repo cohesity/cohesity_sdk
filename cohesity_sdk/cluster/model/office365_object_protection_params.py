@@ -27,14 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.office365_groups_object_protection_params import Office365GroupsObjectProtectionParams
+    from cohesity_sdk.cluster.model.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
     from cohesity_sdk.cluster.model.office365_sharepoint_site_object_protection_params import Office365SharepointSiteObjectProtectionParams
-    from cohesity_sdk.cluster.model.office365_teams_object_protection_params import Office365TeamsObjectProtectionParams
     from cohesity_sdk.cluster.model.office365_user_mailbox_object_protection_params import Office365UserMailboxObjectProtectionParams
     from cohesity_sdk.cluster.model.office365_user_one_drive_object_protection_params import Office365UserOneDriveObjectProtectionParams
-    globals()['Office365GroupsObjectProtectionParams'] = Office365GroupsObjectProtectionParams
+    globals()['Office365ObjectProtectionCommonParams'] = Office365ObjectProtectionCommonParams
     globals()['Office365SharepointSiteObjectProtectionParams'] = Office365SharepointSiteObjectProtectionParams
-    globals()['Office365TeamsObjectProtectionParams'] = Office365TeamsObjectProtectionParams
     globals()['Office365UserMailboxObjectProtectionParams'] = Office365UserMailboxObjectProtectionParams
     globals()['Office365UserOneDriveObjectProtectionParams'] = Office365UserOneDriveObjectProtectionParams
 
@@ -96,9 +94,9 @@ class Office365ObjectProtectionParams(ModelNormal):
         lazy_import()
         return {
             'object_protection_type': (str,),  # noqa: E501
-            'groups_object_protection_params': (Office365GroupsObjectProtectionParams,),  # noqa: E501
+            'groups_object_protection_params': (Office365ObjectProtectionCommonParams,),  # noqa: E501
             'sharepoint_site_object_protection_params': (Office365SharepointSiteObjectProtectionParams,),  # noqa: E501
-            'teams_object_protection_params': (Office365TeamsObjectProtectionParams,),  # noqa: E501
+            'teams_object_protection_params': (Office365ObjectProtectionCommonParams,),  # noqa: E501
             'user_mailbox_object_protection_params': (Office365UserMailboxObjectProtectionParams,),  # noqa: E501
             'user_one_drive_object_protection_params': (Office365UserOneDriveObjectProtectionParams,),  # noqa: E501
         }
@@ -168,9 +166,9 @@ class Office365ObjectProtectionParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            groups_object_protection_params (Office365GroupsObjectProtectionParams): [optional]  # noqa: E501
+            groups_object_protection_params (Office365ObjectProtectionCommonParams): [optional]  # noqa: E501
             sharepoint_site_object_protection_params (Office365SharepointSiteObjectProtectionParams): [optional]  # noqa: E501
-            teams_object_protection_params (Office365TeamsObjectProtectionParams): [optional]  # noqa: E501
+            teams_object_protection_params (Office365ObjectProtectionCommonParams): [optional]  # noqa: E501
             user_mailbox_object_protection_params (Office365UserMailboxObjectProtectionParams): [optional]  # noqa: E501
             user_one_drive_object_protection_params (Office365UserOneDriveObjectProtectionParams): [optional]  # noqa: E501
         """

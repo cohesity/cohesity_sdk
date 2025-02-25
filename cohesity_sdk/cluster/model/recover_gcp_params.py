@@ -27,8 +27,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_gcp_file_and_folder_params import RecoverGcpFileAndFolderParams
+    from cohesity_sdk.cluster.model.recover_gcp_vm_params import RecoverGcpVmParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverGcpFileAndFolderParams'] = RecoverGcpFileAndFolderParams
+    globals()['RecoverGcpVmParams'] = RecoverGcpVmParams
 
 
 class RecoverGcpParams(ModelNormal):
@@ -84,10 +90,10 @@ class RecoverGcpParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
-            'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_vm_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverGcpFileAndFolderParams,),  # noqa: E501
+            'recover_vm_params': (RecoverGcpVmParams,),  # noqa: E501
         }
 
     @cached_property
@@ -154,10 +160,10 @@ class RecoverGcpParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run.. [optional]  # noqa: E501
-            recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover files and folders.. [optional]  # noqa: E501
-            recover_vm_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover GCP VM.. [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverGcpFileAndFolderParams): [optional]  # noqa: E501
+            recover_vm_params (RecoverGcpVmParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

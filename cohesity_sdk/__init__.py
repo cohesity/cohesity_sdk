@@ -10,7 +10,7 @@
 """
 
 
-__version__ = "2.0.0"
+__version__ = "1.3.0"
 
 # from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.cluster_client import ClusterClient

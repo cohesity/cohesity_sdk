@@ -27,15 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.day_schedule import DaySchedule
-    from cohesity_sdk.cluster.model.hour_schedule import HourSchedule
-    from cohesity_sdk.cluster.model.minute_schedule import MinuteSchedule
+    from cohesity_sdk.cluster.model.frequency_schedule import FrequencySchedule
     from cohesity_sdk.cluster.model.month_schedule import MonthSchedule
     from cohesity_sdk.cluster.model.week_schedule import WeekSchedule
     from cohesity_sdk.cluster.model.year_schedule import YearSchedule
-    globals()['DaySchedule'] = DaySchedule
-    globals()['HourSchedule'] = HourSchedule
-    globals()['MinuteSchedule'] = MinuteSchedule
+    globals()['FrequencySchedule'] = FrequencySchedule
     globals()['MonthSchedule'] = MonthSchedule
     globals()['WeekSchedule'] = WeekSchedule
     globals()['YearSchedule'] = YearSchedule
@@ -99,9 +95,9 @@ class IncrementalSchedule(ModelNormal):
         lazy_import()
         return {
             'unit': (str, none_type,),  # noqa: E501
-            'day_schedule': (DaySchedule,),  # noqa: E501
-            'hour_schedule': (HourSchedule,),  # noqa: E501
-            'minute_schedule': (MinuteSchedule,),  # noqa: E501
+            'day_schedule': (FrequencySchedule,),  # noqa: E501
+            'hour_schedule': (FrequencySchedule,),  # noqa: E501
+            'minute_schedule': (FrequencySchedule,),  # noqa: E501
             'month_schedule': (MonthSchedule,),  # noqa: E501
             'week_schedule': (WeekSchedule,),  # noqa: E501
             'year_schedule': (YearSchedule,),  # noqa: E501
@@ -173,9 +169,9 @@ class IncrementalSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            day_schedule (DaySchedule): [optional]  # noqa: E501
-            hour_schedule (HourSchedule): [optional]  # noqa: E501
-            minute_schedule (MinuteSchedule): [optional]  # noqa: E501
+            day_schedule (FrequencySchedule): [optional]  # noqa: E501
+            hour_schedule (FrequencySchedule): [optional]  # noqa: E501
+            minute_schedule (FrequencySchedule): [optional]  # noqa: E501
             month_schedule (MonthSchedule): [optional]  # noqa: E501
             week_schedule (WeekSchedule): [optional]  # noqa: E501
             year_schedule (YearSchedule): [optional]  # noqa: E501

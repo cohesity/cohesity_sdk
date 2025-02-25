@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
     from cohesity_sdk.cluster.model.recovery_vlan_config import RecoveryVlanConfig
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
     globals()['RecoveryVlanConfig'] = RecoveryVlanConfig
 
 
@@ -79,7 +81,7 @@ class RecoverOtherNasToGenericNasVolumeTargetParams(ModelNormal):
         """
         lazy_import()
         return {
-            'volume': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'volume': (RecoveryObjectIdentifier,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'encryption_enabled': (bool, none_type,),  # noqa: E501
             'overwrite_existing_file': (bool, none_type,),  # noqa: E501
@@ -120,7 +122,7 @@ class RecoverOtherNasToGenericNasVolumeTargetParams(ModelNormal):
         """RecoverOtherNasToGenericNasVolumeTargetParams - a model defined in OpenAPI
 
         Args:
-            volume ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the id and name of the parent volume to recover to. This volume will be the target of the recovery.
+            volume (RecoveryObjectIdentifier):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

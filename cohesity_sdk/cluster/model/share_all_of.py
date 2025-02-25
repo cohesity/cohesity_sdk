@@ -81,6 +81,7 @@ class ShareAllOf(ModelNormal):
             's3_access_path': (str, none_type,),  # noqa: E501
             'smb_mount_paths': ([str], none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
+            'view_id': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +98,7 @@ class ShareAllOf(ModelNormal):
         's3_access_path': 's3AccessPath',  # noqa: E501
         'smb_mount_paths': 'smbMountPaths',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
+        'view_id': 'viewId',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -155,6 +157,7 @@ class ShareAllOf(ModelNormal):
             s3_access_path (str, none_type): Specifies the path to access this Share as an S3 share.. [optional]  # noqa: E501
             smb_mount_paths ([str], none_type): Specifies the possible paths that can be used to mount this Share as a SMB share. If Active Directory has multiple account names, each machine account has its own path.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the tenant id who has access to this Share.. [optional]  # noqa: E501
+            view_id (int): Specifies the id of the View.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

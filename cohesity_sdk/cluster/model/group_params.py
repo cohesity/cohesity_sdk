@@ -29,9 +29,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.create_group_params import CreateGroupParams
     from cohesity_sdk.cluster.model.group_params_all_of import GroupParamsAllOf
+    from cohesity_sdk.cluster.model.local_group_params import LocalGroupParams
     from cohesity_sdk.cluster.model.smb_principal import SMBPrincipal
     globals()['CreateGroupParams'] = CreateGroupParams
     globals()['GroupParamsAllOf'] = GroupParamsAllOf
+    globals()['LocalGroupParams'] = LocalGroupParams
     globals()['SMBPrincipal'] = SMBPrincipal
 
 
@@ -86,7 +88,7 @@ class GroupParams(ModelComposed):
             'domain': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'local_group_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'local_group_params': (LocalGroupParams,),  # noqa: E501
             'restricted': (bool, none_type,),  # noqa: E501
             'roles': ([str],),  # noqa: E501
             'tenant_ids': ([str],),  # noqa: E501
@@ -169,7 +171,7 @@ class GroupParams(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             description (str, none_type): Specifies the description of the group.. [optional]  # noqa: E501
-            local_group_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the LOCAL group properties.. [optional]  # noqa: E501
+            local_group_params (LocalGroupParams): [optional]  # noqa: E501
             restricted (bool, none_type): Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.. [optional]  # noqa: E501
             roles ([str]): Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.. [optional]  # noqa: E501
             tenant_ids ([str]): Specifies a list of tenant ids who can access this group.. [optional]  # noqa: E501

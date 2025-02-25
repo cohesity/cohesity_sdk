@@ -27,8 +27,12 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_view_files_params import RecoverViewFilesParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverViewFilesParams'] = RecoverViewFilesParams
 
 
 class RecoverViewParams(ModelNormal):
@@ -60,6 +64,7 @@ class RecoverViewParams(ModelNormal):
     allowed_values = {
         ('recovery_action',): {
             'DOWNLOADFILESANDFOLDERS': "DownloadFilesAndFolders",
+            'RECOVERFILES': "RecoverFiles",
         },
     }
 
@@ -83,8 +88,9 @@ class RecoverViewParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverViewFilesParams,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +103,7 @@ class RecoverViewParams(ModelNormal):
         'recovery_action': 'recoveryAction',  # noqa: E501
         'download_file_and_folder_params': 'downloadFileAndFolderParams',  # noqa: E501
         'objects': 'objects',  # noqa: E501
+        'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -111,13 +118,13 @@ class RecoverViewParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, recovery_action, *args, **kwargs):  # noqa: E501
         """RecoverViewParams - a model defined in OpenAPI
 
         Args:
+            recovery_action (str): Specifies the type of recovery action to be performed.
 
         Keyword Args:
-            recovery_action (str): Specifies the type of recovery action to be performed.. defaults to "DownloadFilesAndFolders", must be one of ["DownloadFilesAndFolders", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -149,11 +156,11 @@ class RecoverViewParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters.. [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverViewFilesParams): [optional]  # noqa: E501
         """
 
-        recovery_action = kwargs.get('recovery_action', "DownloadFilesAndFolders")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

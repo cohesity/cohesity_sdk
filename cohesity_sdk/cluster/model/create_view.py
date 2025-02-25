@@ -27,14 +27,52 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.acl_config import AclConfig
+    from cohesity_sdk.cluster.model.antivirus_scan_config import AntivirusScanConfig
+    from cohesity_sdk.cluster.model.bucket_policy import BucketPolicy
     from cohesity_sdk.cluster.model.create_view_all_of import CreateViewAllOf
+    from cohesity_sdk.cluster.model.file_extension_filter import FileExtensionFilter
+    from cohesity_sdk.cluster.model.file_level_data_lock_config import FileLevelDataLockConfig
+    from cohesity_sdk.cluster.model.filer_lifecycle_management import FilerLifecycleManagement
+    from cohesity_sdk.cluster.model.nfs_root_permissions import NfsRootPermissions
+    from cohesity_sdk.cluster.model.nfs_squash import NfsSquash
+    from cohesity_sdk.cluster.model.nis_netgroups import NisNetgroups
+    from cohesity_sdk.cluster.model.qo_s import QoS
+    from cohesity_sdk.cluster.model.quota_policy import QuotaPolicy
+    from cohesity_sdk.cluster.model.s3_lifecycle_management import S3LifecycleManagement
+    from cohesity_sdk.cluster.model.self_service_snapshot_config import SelfServiceSnapshotConfig
+    from cohesity_sdk.cluster.model.smb_permissions_info import SmbPermissionsInfo
+    from cohesity_sdk.cluster.model.storage_policy_override import StoragePolicyOverride
     from cohesity_sdk.cluster.model.subnet import Subnet
     from cohesity_sdk.cluster.model.update_view_param import UpdateViewParam
+    from cohesity_sdk.cluster.model.view_intent import ViewIntent
+    from cohesity_sdk.cluster.model.view_pinning_config import ViewPinningConfig
+    from cohesity_sdk.cluster.model.view_protection_config import ViewProtectionConfig
     from cohesity_sdk.cluster.model.view_protocol import ViewProtocol
+    from cohesity_sdk.cluster.model.view_share_permissions import ViewSharePermissions
+    globals()['AclConfig'] = AclConfig
+    globals()['AntivirusScanConfig'] = AntivirusScanConfig
+    globals()['BucketPolicy'] = BucketPolicy
     globals()['CreateViewAllOf'] = CreateViewAllOf
+    globals()['FileExtensionFilter'] = FileExtensionFilter
+    globals()['FileLevelDataLockConfig'] = FileLevelDataLockConfig
+    globals()['FilerLifecycleManagement'] = FilerLifecycleManagement
+    globals()['NfsRootPermissions'] = NfsRootPermissions
+    globals()['NfsSquash'] = NfsSquash
+    globals()['NisNetgroups'] = NisNetgroups
+    globals()['QoS'] = QoS
+    globals()['QuotaPolicy'] = QuotaPolicy
+    globals()['S3LifecycleManagement'] = S3LifecycleManagement
+    globals()['SelfServiceSnapshotConfig'] = SelfServiceSnapshotConfig
+    globals()['SmbPermissionsInfo'] = SmbPermissionsInfo
+    globals()['StoragePolicyOverride'] = StoragePolicyOverride
     globals()['Subnet'] = Subnet
     globals()['UpdateViewParam'] = UpdateViewParam
+    globals()['ViewIntent'] = ViewIntent
+    globals()['ViewPinningConfig'] = ViewPinningConfig
+    globals()['ViewProtectionConfig'] = ViewProtectionConfig
     globals()['ViewProtocol'] = ViewProtocol
+    globals()['ViewSharePermissions'] = ViewSharePermissions
 
 
 class CreateView(ModelComposed):
@@ -112,14 +150,14 @@ class CreateView(ModelComposed):
         lazy_import()
         return {
             'case_insensitive_names_enabled': (bool, none_type,),  # noqa: E501
-            'intent': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'intent': (ViewIntent,),  # noqa: E501
             'object_services_mapping_config': (str, none_type,),  # noqa: E501
             's3_folder_support_enabled': (bool, none_type,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
-            'view_protection_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_protection_config': (ViewProtectionConfig,),  # noqa: E501
             'access_sids': ([str], none_type,),  # noqa: E501
             'allow_mount_on_windows': (bool, none_type,),  # noqa: E501
-            'antivirus_scan_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'antivirus_scan_config': (AntivirusScanConfig,),  # noqa: E501
             'category': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'enable_filer_audit_logging': (bool, none_type,),  # noqa: E501
@@ -127,41 +165,47 @@ class CreateView(ModelComposed):
             'enable_metadata_accelerator': (bool, none_type,),  # noqa: E501
             'enable_minion': (bool, none_type,),  # noqa: E501
             'enable_offline_caching': (bool, none_type,),  # noqa: E501
-            'file_extension_filter': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'file_lock_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'file_extension_filter': (FileExtensionFilter,),  # noqa: E501
+            'file_lock_config': (FileLevelDataLockConfig,),  # noqa: E501
+            'filer_lifecycle_management': (FilerLifecycleManagement,),  # noqa: E501
             'is_externally_triggered_backup_target': (bool, none_type,),  # noqa: E501
             'is_read_only': (bool, none_type,),  # noqa: E501
-            'logical_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'lexicographic_prefetch': (bool, none_type,),  # noqa: E501
+            'logical_quota': (QuotaPolicy,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'netgroup_whitelist': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'netgroup_whitelist': (NisNetgroups,),  # noqa: E501
             'override_global_netgroup_whitelist': (bool, none_type,),  # noqa: E501
             'override_global_subnet_whitelist': (bool, none_type,),  # noqa: E501
             'protocol_access': ([ViewProtocol], none_type,),  # noqa: E501
-            'qos': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'qos': (QoS,),  # noqa: E501
             'security_mode': (str, none_type,),  # noqa: E501
-            'self_service_snapshot_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'storage_policy_override': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'self_service_snapshot_config': (SelfServiceSnapshotConfig,),  # noqa: E501
+            'storage_policy_override': (StoragePolicyOverride,),  # noqa: E501
             'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
             'view_lock_enabled': (bool, none_type,),  # noqa: E501
-            'view_pinning_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'view_pinning_config': (ViewPinningConfig,),  # noqa: E501
             'enable_nfs_kerberos_authentication': (bool, none_type,),  # noqa: E501
             'enable_nfs_kerberos_integrity': (bool, none_type,),  # noqa: E501
             'enable_nfs_kerberos_privacy': (bool, none_type,),  # noqa: E501
             'enable_nfs_unix_authentication': (bool, none_type,),  # noqa: E501
             'enable_nfs_view_discovery': (bool, none_type,),  # noqa: E501
-            'nfs_all_squash': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'nfs_root_permissions': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'nfs_root_squash': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'enable_nfs_wcc': (bool, none_type,),  # noqa: E501
+            'nfs_all_squash': (NfsSquash,),  # noqa: E501
+            'nfs_root_permissions': (NfsRootPermissions,),  # noqa: E501
+            'nfs_root_squash': (NfsSquash,),  # noqa: E501
             'enable_fast_durable_handle': (bool, none_type,),  # noqa: E501
             'enable_smb_access_based_enumeration': (bool, none_type,),  # noqa: E501
             'enable_smb_encryption': (bool, none_type,),  # noqa: E501
             'enable_smb_oplock': (bool, none_type,),  # noqa: E501
             'enable_smb_view_discovery': (bool, none_type,),  # noqa: E501
             'enforce_smb_encryption': (bool, none_type,),  # noqa: E501
-            'share_permissions': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'smb_permissions_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'acl_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'share_permissions': (ViewSharePermissions,),  # noqa: E501
+            'smb_permissions_info': (SmbPermissionsInfo,),  # noqa: E501
+            'acl_config': (AclConfig,),  # noqa: E501
+            'bucket_policy': (BucketPolicy,),  # noqa: E501
+            'enable_abac': (bool, none_type,),  # noqa: E501
+            'lifecycle_management': (S3LifecycleManagement,),  # noqa: E501
             'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             's3_access_path': (str, none_type,),  # noqa: E501
             'versioning': (str, none_type,),  # noqa: E501
@@ -196,8 +240,10 @@ class CreateView(ModelComposed):
         'enable_offline_caching': 'enableOfflineCaching',  # noqa: E501
         'file_extension_filter': 'fileExtensionFilter',  # noqa: E501
         'file_lock_config': 'fileLockConfig',  # noqa: E501
+        'filer_lifecycle_management': 'filerLifecycleManagement',  # noqa: E501
         'is_externally_triggered_backup_target': 'isExternallyTriggeredBackupTarget',  # noqa: E501
         'is_read_only': 'isReadOnly',  # noqa: E501
+        'lexicographic_prefetch': 'lexicographicPrefetch',  # noqa: E501
         'logical_quota': 'logicalQuota',  # noqa: E501
         'name': 'name',  # noqa: E501
         'netgroup_whitelist': 'netgroupWhitelist',  # noqa: E501
@@ -217,6 +263,7 @@ class CreateView(ModelComposed):
         'enable_nfs_kerberos_privacy': 'enableNfsKerberosPrivacy',  # noqa: E501
         'enable_nfs_unix_authentication': 'enableNfsUnixAuthentication',  # noqa: E501
         'enable_nfs_view_discovery': 'enableNfsViewDiscovery',  # noqa: E501
+        'enable_nfs_wcc': 'enableNfsWcc',  # noqa: E501
         'nfs_all_squash': 'nfsAllSquash',  # noqa: E501
         'nfs_root_permissions': 'nfsRootPermissions',  # noqa: E501
         'nfs_root_squash': 'nfsRootSquash',  # noqa: E501
@@ -229,6 +276,9 @@ class CreateView(ModelComposed):
         'share_permissions': 'sharePermissions',  # noqa: E501
         'smb_permissions_info': 'smbPermissionsInfo',  # noqa: E501
         'acl_config': 'aclConfig',  # noqa: E501
+        'bucket_policy': 'bucketPolicy',  # noqa: E501
+        'enable_abac': 'enableAbac',  # noqa: E501
+        'lifecycle_management': 'lifecycleManagement',  # noqa: E501
         'owner_info': 'ownerInfo',  # noqa: E501
         's3_access_path': 's3AccessPath',  # noqa: E501
         'versioning': 'versioning',  # noqa: E501
@@ -287,14 +337,14 @@ class CreateView(ModelComposed):
                                 _visited_composed_classes = (Animal,)
 
             case_insensitive_names_enabled (bool, none_type): Specifies whether to support case insensitive file/folder names. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
-            intent ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the intent of the View.. [optional]  # noqa: E501
+            intent (ViewIntent): [optional]  # noqa: E501
             object_services_mapping_config (str, none_type): Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.. [optional]  # noqa: E501
             s3_folder_support_enabled (bool, none_type): Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.. [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the id of the Storage Domain (View Box) where the View will be created.. [optional]  # noqa: E501
-            view_protection_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the protection config of the View.. [optional]  # noqa: E501
+            view_protection_config (ViewProtectionConfig): [optional]  # noqa: E501
             access_sids ([str], none_type): Array of Security Identifiers (SIDs) Specifies the list of security identifiers (SIDs) for the restricted Principals who have access to this View.. [optional]  # noqa: E501
             allow_mount_on_windows (bool, none_type): Specifies if this View can be mounted using the NFS protocol on Windows systems. If true, this View can be NFS mounted on Windows systems.. [optional]  # noqa: E501
-            antivirus_scan_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the antivirus scan config settings for this View.. [optional]  # noqa: E501
+            antivirus_scan_config (AntivirusScanConfig): [optional]  # noqa: E501
             category (str, none_type): Specifies the category of the View.. [optional]  # noqa: E501
             description (str, none_type): Specifies an optional text description about the View.. [optional]  # noqa: E501
             enable_filer_audit_logging (bool, none_type): Specifies if Filer Audit Logging is enabled for this view.. [optional]  # noqa: E501
@@ -302,41 +352,47 @@ class CreateView(ModelComposed):
             enable_metadata_accelerator (bool, none_type): Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.. [optional]  # noqa: E501
             enable_minion (bool, none_type): Specifies if this view should allow minion or not. If true, this will allow minion.. [optional]  # noqa: E501
             enable_offline_caching (bool, none_type): Specifies whether to enable offline file caching of the view.. [optional]  # noqa: E501
-            file_extension_filter ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Optional filtering criteria that should be satisfied by all the files created in this view. It does not affect existing files.. [optional]  # noqa: E501
-            file_lock_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Optional config that enables file locking for this view. It cannot be disabled during the edit of a view, if it has been enabled during the creation of the view. Also, it cannot be enabled if it was disabled during the creation of the view.. [optional]  # noqa: E501
+            file_extension_filter (FileExtensionFilter): [optional]  # noqa: E501
+            file_lock_config (FileLevelDataLockConfig): [optional]  # noqa: E501
+            filer_lifecycle_management (FilerLifecycleManagement): [optional]  # noqa: E501
             is_externally_triggered_backup_target (bool, none_type): Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.. [optional]  # noqa: E501
             is_read_only (bool, none_type): Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.. [optional]  # noqa: E501
-            logical_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies an optional logical quota limit (in bytes) for the usage allowed on this View. (Logical data is when the data is fully hydrated and expanded.) This limit overrides the limit inherited from the Storage Domain (View Box) (if set). If logicalQuota is nil, the limit is inherited from the Storage Domain (View Box) (if set). A new write is not allowed if the Storage Domain (View Box) will exceed the specified quota. However, it takes time for the Cohesity Cluster to calculate the usage across Nodes, so the limit may be exceeded by a small amount. In addition, if the limit is increased or data is removed, there may be a delay before the Cohesity Cluster allows more data to be written to the View, as the Cluster is calculating the usage across Nodes.. [optional]  # noqa: E501
+            lexicographic_prefetch (bool, none_type): If small files are accessed sequentially from a client, this specifies whether to detect and prefetch files based on the lexicographic index to improve file read performance.. [optional]  # noqa: E501
+            logical_quota (QuotaPolicy): [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the View.. [optional]  # noqa: E501
-            netgroup_whitelist ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Array of Netgroups. Specifies a list of netgroups with domains that have permissions to access the View. (Overrides or extends the Netgroup specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
+            netgroup_whitelist (NisNetgroups): [optional]  # noqa: E501
             override_global_netgroup_whitelist (bool, none_type): Specifies whether view level client netgroup whitelist overrides cluster and global setting.. [optional]  # noqa: E501
             override_global_subnet_whitelist (bool, none_type): Specifies whether view level client subnet whitelist overrides cluster and global setting.. [optional]  # noqa: E501
             protocol_access ([ViewProtocol], none_type): Specifies the supported Protocols for the View.. [optional]  # noqa: E501
-            qos ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Quality of Service (QoS) Policy for the View.. [optional]  # noqa: E501
+            qos (QoS): [optional]  # noqa: E501
             security_mode (str, none_type): Specifies the security mode used for this view. Currently we support the following modes: Native, Unified and NTFS style. 'NativeMode' indicates a native security mode. 'UnifiedMode' indicates a unified security mode. 'NtfsMode' indicates a NTFS style security mode.. [optional]  # noqa: E501
-            self_service_snapshot_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies self service config of this view.. [optional]  # noqa: E501
-            storage_policy_override ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies if inline deduplication and compression settings inherited from the Storage Domain (View Box) should be disabled for this View.. [optional]  # noqa: E501
+            self_service_snapshot_config (SelfServiceSnapshotConfig): [optional]  # noqa: E501
+            storage_policy_override (StoragePolicyOverride): [optional]  # noqa: E501
             subnet_whitelist ([Subnet], none_type): Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.). [optional]  # noqa: E501
             tenant_id (str, none_type): Optional tenant id who has access to this View.. [optional]  # noqa: E501
             view_lock_enabled (bool, none_type): Specifies whether view lock is enabled. If enabled the view cannot be modified or deleted until unlock. By default it is disabled.. [optional]  # noqa: E501
-            view_pinning_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the pinning config of this view.. [optional]  # noqa: E501
+            view_pinning_config (ViewPinningConfig): [optional]  # noqa: E501
             enable_nfs_kerberos_authentication (bool, none_type): If set, it enables NFS Kerberos Authentication. [optional]  # noqa: E501
             enable_nfs_kerberos_integrity (bool, none_type): If set, it enables NFS Kerberos Integrity. [optional]  # noqa: E501
             enable_nfs_kerberos_privacy (bool, none_type): If set, it enables NFS Kerberos Privacy. [optional]  # noqa: E501
             enable_nfs_unix_authentication (bool, none_type): If set, it enables NFS UNIX Authentication. [optional]  # noqa: E501
             enable_nfs_view_discovery (bool, none_type): If set, it enables discovery of view for NFS.. [optional]  # noqa: E501
-            nfs_all_squash ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the NFS all squash config.. [optional]  # noqa: E501
-            nfs_root_permissions ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the NFS root permission config of the view file system.. [optional]  # noqa: E501
-            nfs_root_squash ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the NFS root squash config.. [optional]  # noqa: E501
+            enable_nfs_wcc (bool, none_type): If set, it enables NFS weak cache consistency.. [optional]  # noqa: E501
+            nfs_all_squash (NfsSquash): [optional]  # noqa: E501
+            nfs_root_permissions (NfsRootPermissions): [optional]  # noqa: E501
+            nfs_root_squash (NfsSquash): [optional]  # noqa: E501
             enable_fast_durable_handle (bool, none_type): Specifies whether fast durable handle is enabled. If enabled, view open handle will be kept in memory, which results in a higher performance. But the handles cannot be recovered if node or service crashes.. [optional]  # noqa: E501
             enable_smb_access_based_enumeration (bool, none_type): Specifies if access-based enumeration should be enabled. If 'true', only files and folders that the user has permissions to access are visible on the SMB share for that user.. [optional]  # noqa: E501
             enable_smb_encryption (bool, none_type): Specifies the SMB encryption for the View. If set, it enables the SMB encryption for the View. Encryption is supported only by SMB 3.x dialects. Dialects that do not support would still access data in unencrypted format.. [optional]  # noqa: E501
             enable_smb_oplock (bool, none_type): Specifies whether SMB opportunistic lock is enabled.. [optional]  # noqa: E501
             enable_smb_view_discovery (bool, none_type): If set, it enables discovery of view for SMB.. [optional]  # noqa: E501
             enforce_smb_encryption (bool, none_type): Specifies the SMB encryption for all the sessions for the View. If set, encryption is enforced for all the sessions for the View. When enabled all future and existing unencrypted sessions are disallowed.. [optional]  # noqa: E501
-            share_permissions ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies share level permissions of the view.. [optional]  # noqa: E501
-            smb_permissions_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the SMB permissions for the View.. [optional]  # noqa: E501
-            acl_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the ACL config of the View as an S3 bucket.. [optional]  # noqa: E501
+            share_permissions (ViewSharePermissions): [optional]  # noqa: E501
+            smb_permissions_info (SmbPermissionsInfo): [optional]  # noqa: E501
+            acl_config (AclConfig): [optional]  # noqa: E501
+            bucket_policy (BucketPolicy): [optional]  # noqa: E501
+            enable_abac (bool, none_type): Specifies if this View has S3 ABAC enabled. This can only be set while creating a view. The ABAC server corresponding the tenant will be used for authentication and authorization checks. . [optional]  # noqa: E501
+            lifecycle_management (S3LifecycleManagement): [optional]  # noqa: E501
             owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the owner info of the View as an S3 bucket.. [optional]  # noqa: E501
             s3_access_path (str, none_type): Specifies the path to access this View as an S3 share.. [optional]  # noqa: E501
             versioning (str, none_type): Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.. [optional]  # noqa: E501

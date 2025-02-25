@@ -27,10 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.hour_schedule import HourSchedule
-    from cohesity_sdk.cluster.model.minute_schedule import MinuteSchedule
-    globals()['HourSchedule'] = HourSchedule
-    globals()['MinuteSchedule'] = MinuteSchedule
+    from cohesity_sdk.cluster.model.frequency_schedule import FrequencySchedule
+    globals()['FrequencySchedule'] = FrequencySchedule
 
 
 class LogSchedule(ModelNormal):
@@ -87,8 +85,8 @@ class LogSchedule(ModelNormal):
         lazy_import()
         return {
             'unit': (str, none_type,),  # noqa: E501
-            'hour_schedule': (HourSchedule,),  # noqa: E501
-            'minute_schedule': (MinuteSchedule,),  # noqa: E501
+            'hour_schedule': (FrequencySchedule,),  # noqa: E501
+            'minute_schedule': (FrequencySchedule,),  # noqa: E501
         }
 
     @cached_property
@@ -153,8 +151,8 @@ class LogSchedule(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            hour_schedule (HourSchedule): [optional]  # noqa: E501
-            minute_schedule (MinuteSchedule): [optional]  # noqa: E501
+            hour_schedule (FrequencySchedule): [optional]  # noqa: E501
+            minute_schedule (FrequencySchedule): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

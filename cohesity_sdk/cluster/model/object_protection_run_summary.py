@@ -33,18 +33,20 @@ def lazy_import():
     from cohesity_sdk.cluster.model.cluster_identifier import ClusterIdentifier
     from cohesity_sdk.cluster.model.object_identifier import ObjectIdentifier
     from cohesity_sdk.cluster.model.object_protection_run_info import ObjectProtectionRunInfo
+    from cohesity_sdk.cluster.model.object_string_identifier import ObjectStringIdentifier
     from cohesity_sdk.cluster.model.on_prem_deploy_run import OnPremDeployRun
     from cohesity_sdk.cluster.model.replication_run import ReplicationRun
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     globals()['ArchivalRun'] = ArchivalRun
     globals()['BackupRun'] = BackupRun
     globals()['CloudSpinRun'] = CloudSpinRun
     globals()['ClusterIdentifier'] = ClusterIdentifier
     globals()['ObjectIdentifier'] = ObjectIdentifier
     globals()['ObjectProtectionRunInfo'] = ObjectProtectionRunInfo
+    globals()['ObjectStringIdentifier'] = ObjectStringIdentifier
     globals()['OnPremDeployRun'] = OnPremDeployRun
     globals()['ReplicationRun'] = ReplicationRun
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
 
 
 class ObjectProtectionRunSummary(ModelComposed):
@@ -81,6 +83,7 @@ class ObjectProtectionRunSummary(ModelComposed):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -92,6 +95,7 @@ class ObjectProtectionRunSummary(ModelComposed):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -145,6 +149,7 @@ class ObjectProtectionRunSummary(ModelComposed):
         """
         lazy_import()
         return {
+            'entity_id': (ObjectStringIdentifier,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -182,6 +187,7 @@ class ObjectProtectionRunSummary(ModelComposed):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -260,6 +266,7 @@ class ObjectProtectionRunSummary(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            entity_id (ObjectStringIdentifier): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501

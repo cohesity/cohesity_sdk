@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
     from cohesity_sdk.cluster.model.one_drive_param import OneDriveParam
+    globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
     globals()['OneDriveParam'] = OneDriveParam
 
 
@@ -79,7 +81,7 @@ class ObjectSiteParam(ModelNormal):
         """
         lazy_import()
         return {
-            'owner_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'owner_info': (CommonRecoverObjectSnapshotParams,),  # noqa: E501
             'document_library_params': ([OneDriveParam], none_type,),  # noqa: E501
         }
 
@@ -110,7 +112,7 @@ class ObjectSiteParam(ModelNormal):
         """ObjectSiteParam - a model defined in OpenAPI
 
         Args:
-            owner_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Site owner info.
+            owner_info (CommonRecoverObjectSnapshotParams):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

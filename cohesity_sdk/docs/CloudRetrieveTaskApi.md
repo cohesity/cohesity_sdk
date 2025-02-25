@@ -36,16 +36,16 @@ client = ClusterClient(
 
 
 body = CreateCloudRetrieveTaskRequest(
-        vault_ids=[
-            1,
-        ],
         cluster_id=1,
-        retrieve_all_jobs=True,
+        end_time_usecs=1,
         job_ids=[
             "job_ids_example",
         ],
+        retrieve_all_jobs=True,
         start_time_usecs=1,
-        end_time_usecs=1,
+        vault_ids=[
+            1,
+        ],
     ) # CreateCloudRetrieveTaskRequest | Specifies the parameters to create a cloud retrieve.
 
 # example passing only required values which don't have defaults set

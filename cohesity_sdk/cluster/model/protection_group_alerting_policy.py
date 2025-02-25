@@ -62,6 +62,7 @@ class ProtectionGroupAlertingPolicy(ModelNormal):
             'KSUCCESS': "kSuccess",
             'KFAILURE': "kFailure",
             'KSLAVIOLATION': "kSlaViolation",
+            'KWARNING': "kWarning",
         },
     }
 
@@ -90,6 +91,9 @@ class ProtectionGroupAlertingPolicy(ModelNormal):
         return {
             'backup_run_status': ([str],),  # noqa: E501
             'alert_targets': ([AlertTarget],),  # noqa: E501
+            'raise_object_level_failure_alert': (bool,),  # noqa: E501
+            'raise_object_level_failure_alert_after_each_attempt': (bool,),  # noqa: E501
+            'raise_object_level_failure_alert_after_last_attempt': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +105,9 @@ class ProtectionGroupAlertingPolicy(ModelNormal):
     attribute_map = {
         'backup_run_status': 'backupRunStatus',  # noqa: E501
         'alert_targets': 'alertTargets',  # noqa: E501
+        'raise_object_level_failure_alert': 'raiseObjectLevelFailureAlert',  # noqa: E501
+        'raise_object_level_failure_alert_after_each_attempt': 'raiseObjectLevelFailureAlertAfterEachAttempt',  # noqa: E501
+        'raise_object_level_failure_alert_after_last_attempt': 'raiseObjectLevelFailureAlertAfterLastAttempt',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,6 +161,9 @@ class ProtectionGroupAlertingPolicy(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             alert_targets ([AlertTarget]): Specifies a list of targets to receive the alerts.. [optional]  # noqa: E501
+            raise_object_level_failure_alert (bool): Specifies whether object level alerts are raised for backup failures after the backup run.. [optional]  # noqa: E501
+            raise_object_level_failure_alert_after_each_attempt (bool): Specifies whether object level alerts are raised for backup failures after each backup attempt.. [optional]  # noqa: E501
+            raise_object_level_failure_alert_after_last_attempt (bool): Specifies whether object level alerts are raised for backup failures after last backup attempt.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

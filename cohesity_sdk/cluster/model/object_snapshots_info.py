@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.object_archival_snapshot_info import ObjectArchivalSnapshotInfo
+    from cohesity_sdk.cluster.model.object_local_snapshot_info import ObjectLocalSnapshotInfo
     globals()['ObjectArchivalSnapshotInfo'] = ObjectArchivalSnapshotInfo
+    globals()['ObjectLocalSnapshotInfo'] = ObjectLocalSnapshotInfo
 
 
 class ObjectSnapshotsInfo(ModelNormal):
@@ -97,7 +99,7 @@ class ObjectSnapshotsInfo(ModelNormal):
         return {
             'archival_snapshots_info': ([ObjectArchivalSnapshotInfo], none_type,),  # noqa: E501
             'indexing_status': (str, none_type,),  # noqa: E501
-            'local_snapshot_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'local_snapshot_info': (ObjectLocalSnapshotInfo,),  # noqa: E501
             'protection_group_id': (str, none_type,),  # noqa: E501
             'protection_group_name': (str, none_type,),  # noqa: E501
             'protection_run_end_time_usecs': (int, none_type,),  # noqa: E501
@@ -181,7 +183,7 @@ class ObjectSnapshotsInfo(ModelNormal):
 
             archival_snapshots_info ([ObjectArchivalSnapshotInfo], none_type): Specifies the archival snapshots information.. [optional]  # noqa: E501
             indexing_status (str, none_type): Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.. [optional]  # noqa: E501
-            local_snapshot_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the local snapshot information.. [optional]  # noqa: E501
+            local_snapshot_info (ObjectLocalSnapshotInfo): [optional]  # noqa: E501
             protection_group_id (str, none_type): Specifies id of the Protection Group.. [optional]  # noqa: E501
             protection_group_name (str, none_type): Specifies name of the Protection Group.. [optional]  # noqa: E501
             protection_run_end_time_usecs (int, none_type): Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds.. [optional]  # noqa: E501

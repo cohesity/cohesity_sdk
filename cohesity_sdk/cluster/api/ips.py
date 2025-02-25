@@ -108,7 +108,7 @@ class IPsApi(object):
                 'response_type': (IPConfigParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/network/ips',

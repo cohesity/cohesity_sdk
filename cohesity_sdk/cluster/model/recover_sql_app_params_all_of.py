@@ -27,8 +27,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.sql_target_params_for_recover_sql_app import SqlTargetParamsForRecoverSqlApp
-    globals()['SqlTargetParamsForRecoverSqlApp'] = SqlTargetParamsForRecoverSqlApp
+    from cohesity_sdk.cluster.model.common_recover_sql_app_target_params import CommonRecoverSqlAppTargetParams
+    globals()['CommonRecoverSqlAppTargetParams'] = CommonRecoverSqlAppTargetParams
 
 
 class RecoverSqlAppParamsAllOf(ModelNormal):
@@ -83,7 +83,7 @@ class RecoverSqlAppParamsAllOf(ModelNormal):
         lazy_import()
         return {
             'target_environment': (str,),  # noqa: E501
-            'sql_target_params': (SqlTargetParamsForRecoverSqlApp,),  # noqa: E501
+            'sql_target_params': (CommonRecoverSqlAppTargetParams,),  # noqa: E501
         }
 
     @cached_property
@@ -147,7 +147,7 @@ class RecoverSqlAppParamsAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            sql_target_params (SqlTargetParamsForRecoverSqlApp): [optional]  # noqa: E501
+            sql_target_params (CommonRecoverSqlAppTargetParams): [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kSQL")

@@ -21,9 +21,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.capacity_trend_analysis import CapacityTrendAnalysis
 from cohesity_sdk.cluster.model.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
 from cohesity_sdk.cluster.model.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 from cohesity_sdk.cluster.model.data_tiering_analysis_group import DataTieringAnalysisGroup
+from cohesity_sdk.cluster.model.data_tiering_analysis_group_runs import DataTieringAnalysisGroupRuns
 from cohesity_sdk.cluster.model.data_tiering_analysis_groups import DataTieringAnalysisGroups
 from cohesity_sdk.cluster.model.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
 from cohesity_sdk.cluster.model.data_tiering_tag_config import DataTieringTagConfig
@@ -122,7 +124,7 @@ class DataTieringApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/runs/{runId}/cancel',
@@ -267,7 +269,7 @@ class DataTieringApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}/runs/{runId}/cancel',
@@ -408,7 +410,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringAnalysisGroup,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups',
@@ -531,7 +533,7 @@ class DataTieringApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/runs',
@@ -665,7 +667,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringTask,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks',
@@ -788,7 +790,7 @@ class DataTieringApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}/runs',
@@ -922,7 +924,7 @@ class DataTieringApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}',
@@ -1050,7 +1052,7 @@ class DataTieringApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}',
@@ -1098,6 +1100,133 @@ class DataTieringApi(object):
             },
             api_client=api_client,
             callable=__delete_data_tiering_task
+        )
+
+        def __get_capacity_trend_analysis(
+            self,
+            **kwargs
+        ):
+            """Get capacity trend analysis for all sources or a specific source.  # noqa: E501
+
+            Get capacity trend analysis for the given time range, and for the given source or set of sources.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_capacity_trend_analysis(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
+                end_time_usecs (int): Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds).. [optional]
+                source_id (int): Filter by source id. If specified, this will only return the capacity trend analysis of the specific source.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                CapacityTrendAnalysis
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_capacity_trend_analysis = _Endpoint(
+            settings={
+                'response_type': (CapacityTrendAnalysis,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-tiering/capacity-trend',
+                'operation_id': 'get_capacity_trend_analysis',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'start_time_usecs',
+                    'end_time_usecs',
+                    'source_id',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'start_time_usecs':
+                        (int,),
+                    'end_time_usecs':
+                        (int,),
+                    'source_id':
+                        (int,),
+                },
+                'attribute_map': {
+                    'start_time_usecs': 'startTimeUsecs',
+                    'end_time_usecs': 'endTimeUsecs',
+                    'source_id': 'sourceId',
+                },
+                'location_map': {
+                    'start_time_usecs': 'query',
+                    'end_time_usecs': 'query',
+                    'source_id': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_capacity_trend_analysis
         )
 
         def __get_data_tiering_analysis_group_by_id(
@@ -1171,7 +1300,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringAnalysisGroup,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}',
@@ -1228,6 +1357,141 @@ class DataTieringApi(object):
             callable=__get_data_tiering_analysis_group_by_id
         )
 
+        def __get_data_tiering_analysis_group_runs(
+            self,
+            id,
+            **kwargs
+        ):
+            """Get data tiering analysis group runs.  # noqa: E501
+
+            Get data tiering analysis group runs for an analysis group.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_data_tiering_analysis_group_runs(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (str): Specifies a unique id of the data tiering analysis group.
+
+            Keyword Args:
+                run_ids ([str]): Filter by a list of analysis group run ids.. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DataTieringAnalysisGroupRuns
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.get_data_tiering_analysis_group_runs = _Endpoint(
+            settings={
+                'response_type': (DataTieringAnalysisGroupRuns,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-tiering/analysis-groups/{id}/runs',
+                'operation_id': 'get_data_tiering_analysis_group_runs',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'run_ids',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'id',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (str,),
+                    'run_ids':
+                        ([str],),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                    'run_ids': 'runIds',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'run_ids': 'query',
+                },
+                'collection_format_map': {
+                    'run_ids': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_data_tiering_analysis_group_runs
+        )
+
         def __get_data_tiering_analysis_groups(
             self,
             **kwargs
@@ -1244,6 +1508,7 @@ class DataTieringApi(object):
 
             Keyword Args:
                 ids ([str]): Filter by a list of Analysis Group IDs.. [optional]
+                include_last_run_stats (bool): If true, the response will include last run info. If it is false or not specified, the last run info won't be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1295,7 +1560,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringAnalysisGroups,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups',
@@ -1306,6 +1571,7 @@ class DataTieringApi(object):
             params_map={
                 'all': [
                     'ids',
+                    'include_last_run_stats',
                 ],
                 'required': [],
                 'nullable': [
@@ -1323,12 +1589,16 @@ class DataTieringApi(object):
                 'openapi_types': {
                     'ids':
                         ([str],),
+                    'include_last_run_stats':
+                        (bool,),
                 },
                 'attribute_map': {
                     'ids': 'ids',
+                    'include_last_run_stats': 'includeLastRunStats',
                 },
                 'location_map': {
                     'ids': 'query',
+                    'include_last_run_stats': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -1342,6 +1612,115 @@ class DataTieringApi(object):
             },
             api_client=api_client,
             callable=__get_data_tiering_analysis_groups
+        )
+
+        def __get_data_tiering_analysis_groups_default_config(
+            self,
+            **kwargs
+        ):
+            """Get the default config of data tiering analysis groups.  # noqa: E501
+
+            Get default grouping configuration for data tiering analysis groups.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_data_tiering_analysis_groups_default_config(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                DataTieringTagConfig
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_data_tiering_analysis_groups_default_config = _Endpoint(
+            settings={
+                'response_type': (DataTieringTagConfig,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-tiering/analysis-groups/config',
+                'operation_id': 'get_data_tiering_analysis_groups_default_config',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_data_tiering_analysis_groups_default_config
         )
 
         def __get_data_tiering_task_by_id(
@@ -1415,7 +1794,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringTask,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}',
@@ -1533,7 +1912,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringTasks,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks',
@@ -1593,7 +1972,7 @@ class DataTieringApi(object):
             body,
             **kwargs
         ):
-            """Update a data tiering analysis group. Currently, it supports updating sources only.  # noqa: E501
+            """Update a data tiering analysis group. Currently, it supports updating sources and schedule only.  # noqa: E501
 
             Update a data tiering analysis group.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
@@ -1662,7 +2041,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringAnalysisGroup,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}',
@@ -1801,7 +2180,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringTagConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/{id}/config',
@@ -1936,7 +2315,7 @@ class DataTieringApi(object):
                 'response_type': (UpdateDataTieringState,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/analysis-groups/states',
@@ -2062,7 +2441,7 @@ class DataTieringApi(object):
                 'response_type': (DataTieringTask,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/{id}',
@@ -2190,7 +2569,7 @@ class DataTieringApi(object):
                 'response_type': (UpdateDataTieringState,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-tiering/tasks/states',

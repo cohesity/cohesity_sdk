@@ -22,10 +22,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from cohesity_sdk.cluster.model.ciphers_resp import CiphersResp
+from cohesity_sdk.cluster.model.common_csr_request_params import CommonCsrRequestParams
 from cohesity_sdk.cluster.model.common_csr_response_params import CommonCsrResponseParams
 from cohesity_sdk.cluster.model.create_clientcsr_response_body import CreateClientcsrResponseBody
-from cohesity_sdk.cluster.model.create_csr_request import CreateCsrRequest
-from cohesity_sdk.cluster.model.create_csr_response_body import CreateCsrResponseBody
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.get_csr_list_response_body import GetCsrListResponseBody
 from cohesity_sdk.cluster.model.import_certificate_by_clientcsr_request import ImportCertificateByClientcsrRequest
@@ -35,11 +34,10 @@ from cohesity_sdk.cluster.model.modify_ciphers_request_body import ModifyCiphers
 from cohesity_sdk.cluster.model.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
 from cohesity_sdk.cluster.model.object_store_ciphers_resp import ObjectStoreCiphersResp
 from cohesity_sdk.cluster.model.register_trusted_cas import RegisterTrustedCas
-from cohesity_sdk.cluster.model.security_config_response import SecurityConfigResponse
+from cohesity_sdk.cluster.model.security_config import SecurityConfig
 from cohesity_sdk.cluster.model.trusted_ca import TrustedCa
 from cohesity_sdk.cluster.model.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
 from cohesity_sdk.cluster.model.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
-from cohesity_sdk.cluster.model.update_security_config_request import UpdateSecurityConfigRequest
 
 
 class SecurityApi(object):
@@ -69,7 +67,7 @@ class SecurityApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateCsrRequest): Specifies the parameters to create the Certificate Signing Requests.
+                body (CommonCsrRequestParams): Specifies the parameters to create the Certificate Signing Requests.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -125,7 +123,7 @@ class SecurityApi(object):
                 'response_type': (CreateClientcsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/client-csr',
@@ -154,7 +152,7 @@ class SecurityApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateCsrRequest,),
+                        (CommonCsrRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -191,7 +189,7 @@ class SecurityApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateCsrRequest): Specifies the parameters to create a Certificate Signing Request.
+                body (CommonCsrRequestParams): Specifies the parameters to create a Certificate Signing Request.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -215,7 +213,7 @@ class SecurityApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CreateCsrResponseBody
+                CommonCsrResponseParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -244,10 +242,10 @@ class SecurityApi(object):
 
         self.create_csr = _Endpoint(
             settings={
-                'response_type': (CreateCsrResponseBody,),
+                'response_type': (CommonCsrResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr',
@@ -276,7 +274,7 @@ class SecurityApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateCsrRequest,),
+                        (CommonCsrRequestParams,),
                 },
                 'attribute_map': {
                 },
@@ -369,7 +367,7 @@ class SecurityApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr/{id}',
@@ -485,7 +483,7 @@ class SecurityApi(object):
                 'response_type': (CiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/ciphers',
@@ -599,7 +597,7 @@ class SecurityApi(object):
                 'response_type': (CommonCsrResponseParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr/{id}',
@@ -717,7 +715,7 @@ class SecurityApi(object):
                 'response_type': (GetCsrListResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr',
@@ -842,7 +840,7 @@ class SecurityApi(object):
                 'response_type': (ObjectStoreCiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/object-store-ciphers',
@@ -921,7 +919,7 @@ class SecurityApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                SecurityConfigResponse
+                SecurityConfig
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -948,10 +946,10 @@ class SecurityApi(object):
 
         self.get_security_config = _Endpoint(
             settings={
-                'response_type': (SecurityConfigResponse,),
+                'response_type': (SecurityConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-config',
@@ -1065,7 +1063,7 @@ class SecurityApi(object):
                 'response_type': (ImportCertificateByClientcsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/client-csr/certificate',
@@ -1187,7 +1185,7 @@ class SecurityApi(object):
                 'response_type': (TrustedCa,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}',
@@ -1305,7 +1303,7 @@ class SecurityApi(object):
                 'response_type': (ListTrustedCasResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas',
@@ -1431,7 +1429,7 @@ class SecurityApi(object):
                 'response_type': (CiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/ciphers',
@@ -1553,7 +1551,7 @@ class SecurityApi(object):
                 'response_type': (ObjectStoreCiphersResp,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security/object-store-ciphers',
@@ -1675,7 +1673,7 @@ class SecurityApi(object):
                 'response_type': (ListTrustedCasResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas',
@@ -1797,7 +1795,7 @@ class SecurityApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}',
@@ -1918,7 +1916,7 @@ class SecurityApi(object):
                 'response_type': (UpdateCertificateByCsrResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/csr/certificate',
@@ -1984,7 +1982,7 @@ class SecurityApi(object):
             >>> result = thread.get()
 
             Args:
-                body (UpdateSecurityConfigRequest): Specifies the parameters to update security config.
+                body (SecurityConfig): Specifies the parameters to update security config.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2008,7 +2006,7 @@ class SecurityApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                SecurityConfigResponse
+                SecurityConfig
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2037,10 +2035,10 @@ class SecurityApi(object):
 
         self.update_security_config = _Endpoint(
             settings={
-                'response_type': (SecurityConfigResponse,),
+                'response_type': (SecurityConfig,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/security-config',
@@ -2069,7 +2067,7 @@ class SecurityApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (UpdateSecurityConfigRequest,),
+                        (SecurityConfig,),
                 },
                 'attribute_map': {
                 },
@@ -2162,7 +2160,7 @@ class SecurityApi(object):
                 'response_type': (TrustedCa,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/trusted-cas/{id}/validate',

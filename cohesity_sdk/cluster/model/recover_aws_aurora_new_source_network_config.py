@@ -79,9 +79,9 @@ class RecoverAwsAuroraNewSourceNetworkConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'subnet': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'vpc': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'availability_zone': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'subnet': (RecoveryObjectIdentifier,),  # noqa: E501
+            'vpc': (RecoveryObjectIdentifier,),  # noqa: E501
+            'availability_zone': (RecoveryObjectIdentifier,),  # noqa: E501
             'security_groups': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
         }
 
@@ -114,8 +114,8 @@ class RecoverAwsAuroraNewSourceNetworkConfig(ModelNormal):
         """RecoverAwsAuroraNewSourceNetworkConfig - a model defined in OpenAPI
 
         Args:
-            subnet ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the subnet within above VPC.
-            vpc ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Virtual Private Cloud to choose for the instance type.
+            subnet (RecoveryObjectIdentifier):
+            vpc (RecoveryObjectIdentifier):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -149,7 +149,7 @@ class RecoverAwsAuroraNewSourceNetworkConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            availability_zone ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the entity representing the availability zone to use while restoring the DB.. [optional]  # noqa: E501
+            availability_zone (RecoveryObjectIdentifier): [optional]  # noqa: E501
             security_groups ([RecoveryObjectIdentifier], none_type): Specifies the network security groups within above VPC.. [optional]  # noqa: E501
         """
 

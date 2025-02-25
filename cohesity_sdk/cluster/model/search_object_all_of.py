@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.object import Object
     from cohesity_sdk.cluster.model.object_protection_info import ObjectProtectionInfo
+    globals()['Object'] = Object
     globals()['ObjectProtectionInfo'] = ObjectProtectionInfo
 
 
@@ -80,7 +82,7 @@ class SearchObjectAllOf(ModelNormal):
         lazy_import()
         return {
             'object_protection_infos': ([ObjectProtectionInfo], none_type,),  # noqa: E501
-            'source_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'source_info': (Object,),  # noqa: E501
         }
 
     @cached_property
@@ -142,7 +144,7 @@ class SearchObjectAllOf(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             object_protection_infos ([ObjectProtectionInfo], none_type): Specifies the object info on each cluster.. [optional]  # noqa: E501
-            source_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Source Object information.. [optional]  # noqa: E501
+            source_info (Object): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -21,11 +21,14 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.common_identity_provider_configuration import CommonIdentityProviderConfiguration
 from cohesity_sdk.cluster.model.create_idp_request_params import CreateIdpRequestParams
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.identity_action import IdentityAction
+from cohesity_sdk.cluster.model.identity_config import IdentityConfig
+from cohesity_sdk.cluster.model.identity_configs import IdentityConfigs
 from cohesity_sdk.cluster.model.identity_provider_configuration import IdentityProviderConfiguration
 from cohesity_sdk.cluster.model.identity_provider_configurations import IdentityProviderConfigurations
-from cohesity_sdk.cluster.model.update_idp_request_params import UpdateIdpRequestParams
 
 
 class IdentityProviderApi(object):
@@ -40,6 +43,128 @@ class IdentityProviderApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+        def __create_identity(
+            self,
+            body,
+            **kwargs
+        ):
+            """Configure Identity Provider  # noqa: E501
+
+            Configure Identity Provider on the cluster. Currently this API is only for Open ID providers, but will be expanded to include SAML providers in the future.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.create_identity(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (IdentityConfig): Specifies parameters to configure Identity
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityConfig
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.create_identity = _Endpoint(
+            settings={
+                'response_type': (IdentityConfig,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/identity-providers',
+                'operation_id': 'create_identity',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (IdentityConfig,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__create_identity
+        )
+
         def __create_identity_provider(
             self,
             body,
@@ -47,7 +172,7 @@ class IdentityProviderApi(object):
         ):
             """Configure identity provider  # noqa: E501
 
-            Configure identity provider on the cluster  # noqa: E501
+            Configure SAML based identity provider on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -111,7 +236,7 @@ class IdentityProviderApi(object):
                 'response_type': (IdentityProviderConfiguration,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps',
@@ -162,6 +287,127 @@ class IdentityProviderApi(object):
             callable=__create_identity_provider
         )
 
+        def __delete_identity(
+            self,
+            id,
+            **kwargs
+        ):
+            """Delete Identity Provider  # noqa: E501
+
+            Delete identity provider configuration on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.delete_identity(id, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies id of identity provider configuration
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                None
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            return self.call_with_http_info(**kwargs)
+
+        self.delete_identity = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/identity-providers/{id}',
+                'operation_id': 'delete_identity',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                ],
+                'required': [
+                    'id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__delete_identity
+        )
+
         def __delete_identity_provider(
             self,
             id,
@@ -169,7 +415,7 @@ class IdentityProviderApi(object):
         ):
             """Delete identity provider  # noqa: E501
 
-            Delete identity provider configuration on the cluster  # noqa: E501
+            Delete SAML based identity provider configuration on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -233,7 +479,7 @@ class IdentityProviderApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps/{id}',
@@ -283,13 +529,149 @@ class IdentityProviderApi(object):
             callable=__delete_identity_provider
         )
 
+        def __get_identities(
+            self,
+            **kwargs
+        ):
+            """Get Identities  # noqa: E501
+
+            Get Identity Providers configured on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.get_identities(async_req=True)
+            >>> result = thread.get()
+
+
+            Keyword Args:
+                ids ([int]): Specifies IDs of configured identity providers. [optional]
+                tenant_ids ([str]): Specifies the tenant id's to get IDPs configured on tenants. [optional]
+                domains ([str]): Specifies domains of the IDP configurations. [optional]
+                include_all_tenants (bool): Specifies if IDP configurations on all the tenants under the hierarchy of the logged in user should be returned. [optional]
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityConfigs
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            return self.call_with_http_info(**kwargs)
+
+        self.get_identities = _Endpoint(
+            settings={
+                'response_type': (IdentityConfigs,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/identity-providers',
+                'operation_id': 'get_identities',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'ids',
+                    'tenant_ids',
+                    'domains',
+                    'include_all_tenants',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'ids':
+                        ([int],),
+                    'tenant_ids':
+                        ([str],),
+                    'domains':
+                        ([str],),
+                    'include_all_tenants':
+                        (bool,),
+                },
+                'attribute_map': {
+                    'ids': 'ids',
+                    'tenant_ids': 'tenantIds',
+                    'domains': 'domains',
+                    'include_all_tenants': 'includeAllTenants',
+                },
+                'location_map': {
+                    'ids': 'query',
+                    'tenant_ids': 'query',
+                    'domains': 'query',
+                    'include_all_tenants': 'query',
+                },
+                'collection_format_map': {
+                    'ids': 'csv',
+                    'tenant_ids': 'csv',
+                    'domains': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__get_identities
+        )
+
         def __get_identity_providers(
             self,
             **kwargs
         ):
             """Get identity providers  # noqa: E501
 
-            Get identity providers configured on the cluster  # noqa: E501
+            Get SAML based identity providers configured on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -354,7 +736,7 @@ class IdentityProviderApi(object):
                 'response_type': (IdentityProviderConfigurations,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps',
@@ -493,7 +875,7 @@ class IdentityProviderApi(object):
                 'response_type': (Error,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps/login',
@@ -541,6 +923,260 @@ class IdentityProviderApi(object):
             callable=__idps_login
         )
 
+        def __perform_identity_action(
+            self,
+            body,
+            **kwargs
+        ):
+            """Perform Identity Action  # noqa: E501
+
+            Perform an action on an Identity Provider. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.perform_identity_action(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (IdentityAction): Specifies parameters perform an identity action.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityAction
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.perform_identity_action = _Endpoint(
+            settings={
+                'response_type': (IdentityAction,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/identity-providers/actions',
+                'operation_id': 'perform_identity_action',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (IdentityAction,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__perform_identity_action
+        )
+
+        def __update_identity(
+            self,
+            id,
+            body,
+            **kwargs
+        ):
+            """Update Identity Provider  # noqa: E501
+
+            Update Identity Provider on the cluster. Currently this API only supports Open ID based SSO providers, but it will be expanded in the future to support SAML SSO providers.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.update_identity(id, body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                id (int): Specifies id of identity provider configuration
+                body (IdentityConfig): Specifies parameters to update identity provider configuration
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                IdentityConfig
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['id'] = \
+                id
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.update_identity = _Endpoint(
+            settings={
+                'response_type': (IdentityConfig,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/identity-providers/{id}',
+                'operation_id': 'update_identity',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'id',
+                    'body',
+                ],
+                'required': [
+                    'id',
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'id':
+                        (int,),
+                    'body':
+                        (IdentityConfig,),
+                },
+                'attribute_map': {
+                    'id': 'id',
+                },
+                'location_map': {
+                    'id': 'path',
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__update_identity
+        )
+
         def __update_identity_provider(
             self,
             id,
@@ -549,7 +1185,7 @@ class IdentityProviderApi(object):
         ):
             """Update identity provider  # noqa: E501
 
-            Update identity provider configurartion on the cluster  # noqa: E501
+            Update SAML based identity provider configurartion on the cluster  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -558,7 +1194,7 @@ class IdentityProviderApi(object):
 
             Args:
                 id (int): Specifies id of idp configuration
-                body (UpdateIdpRequestParams): Specifies parameters to update identity provider configuration
+                body (CommonIdentityProviderConfiguration): Specifies parameters to update identity provider configuration
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -616,7 +1252,7 @@ class IdentityProviderApi(object):
                 'response_type': (IdentityProviderConfiguration,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/idps/{id}',
@@ -649,7 +1285,7 @@ class IdentityProviderApi(object):
                     'id':
                         (int,),
                     'body':
-                        (UpdateIdpRequestParams,),
+                        (CommonIdentityProviderConfiguration,),
                 },
                 'attribute_map': {
                     'id': 'id',

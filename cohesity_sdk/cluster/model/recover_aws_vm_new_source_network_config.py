@@ -80,8 +80,8 @@ class RecoverAwsVmNewSourceNetworkConfig(ModelNormal):
         lazy_import()
         return {
             'security_groups': ([RecoveryObjectIdentifier], none_type,),  # noqa: E501
-            'subnet': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'vpc': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'subnet': (RecoveryObjectIdentifier,),  # noqa: E501
+            'vpc': (RecoveryObjectIdentifier,),  # noqa: E501
         }
 
     @cached_property
@@ -113,8 +113,8 @@ class RecoverAwsVmNewSourceNetworkConfig(ModelNormal):
 
         Args:
             security_groups ([RecoveryObjectIdentifier], none_type): Specifies the network security groups within above VPC.
-            subnet ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the subnet within above VPC.
-            vpc ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Virtual Private Cloud to choose for the instance type.
+            subnet (RecoveryObjectIdentifier):
+            vpc (RecoveryObjectIdentifier):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

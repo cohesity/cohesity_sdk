@@ -104,8 +104,10 @@ class PolicyTemplateResponse(ModelComposed):
             'cascaded_targets_config': ([CascadedTargetConfiguration],),  # noqa: E501
             'data_lock': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'enable_smart_local_retention_adjustment': (bool, none_type,),  # noqa: E501
             'extended_retention': ([ExtendedRetentionPolicy], none_type,),  # noqa: E501
             'is_cbs_enabled': (bool, none_type,),  # noqa: E501
+            'last_modification_time_usecs': (int, none_type,),  # noqa: E501
             'remote_target_policy': (TargetsConfiguration,),  # noqa: E501
             'retry_options': (RetryOptions,),  # noqa: E501
             'version': (int, none_type,),  # noqa: E501
@@ -127,8 +129,10 @@ class PolicyTemplateResponse(ModelComposed):
         'cascaded_targets_config': 'cascadedTargetsConfig',  # noqa: E501
         'data_lock': 'dataLock',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'enable_smart_local_retention_adjustment': 'enableSmartLocalRetentionAdjustment',  # noqa: E501
         'extended_retention': 'extendedRetention',  # noqa: E501
         'is_cbs_enabled': 'isCBSEnabled',  # noqa: E501
+        'last_modification_time_usecs': 'lastModificationTimeUsecs',  # noqa: E501
         'remote_target_policy': 'remoteTargetPolicy',  # noqa: E501
         'retry_options': 'retryOptions',  # noqa: E501
         'version': 'version',  # noqa: E501
@@ -193,8 +197,10 @@ class PolicyTemplateResponse(ModelComposed):
             cascaded_targets_config ([CascadedTargetConfiguration]): Specifies the configuration for cascaded replications. Using cascaded replication, replication cluster(Rx) can further replicate and archive the snapshot copies to further targets. Its recommended to create cascaded configuration where protection group will be created.. [optional]  # noqa: E501
             data_lock (str, none_type): This field is now deprecated. Please use the DataLockConfig in the backup retention.. [optional]  # noqa: E501
             description (str, none_type): Specifies the description of the Protection Policy.. [optional]  # noqa: E501
+            enable_smart_local_retention_adjustment (bool, none_type): Specifies whether smart local retention adjustment is enabled or not. If enabled, local retention would be extended upon failure of any outgoing replications or archivals. Later, if manual intervention causes the failed copies to succeed, retention would automatically be reduced.. [optional]  # noqa: E501
             extended_retention ([ExtendedRetentionPolicy], none_type): Specifies additional retention policies that should be applied to the backup snapshots. A backup snapshot will be retained up to a time that is the maximum of all retention policies that are applicable to it.. [optional]  # noqa: E501
             is_cbs_enabled (bool, none_type): Specifies true if Calender Based Schedule is supported by client. Default value is assumed as false for this feature.. [optional]  # noqa: E501
+            last_modification_time_usecs (int, none_type): Specifies the last time this Policy was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the policy was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
             remote_target_policy (TargetsConfiguration): [optional]  # noqa: E501
             retry_options (RetryOptions): [optional]  # noqa: E501
             version (int, none_type): Specifies the current policy verison. Policy version is incremented for optionally supporting new features and differentialting across releases.. [optional]  # noqa: E501

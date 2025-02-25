@@ -5,14 +5,14 @@ Specifies the parameters which are specific to Archival purpose type External Ta
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**storage_type** | **str, none_type** | Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | 
 **encryption** | [**EncryptionSettings**](EncryptionSettings.md) |  | 
+**storage_type** | **str, none_type** | Specifies the Storage type of the External Target. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | 
 **target_bandwidth_throttlings** | [**TargetBandwidthThrottlings**](TargetBandwidthThrottlings.md) |  | [optional] 
+**aws_params** | [**ArchivalAwsExternalTargetParams**](ArchivalAwsExternalTargetParams.md) |  | [optional] 
 **azure_params** | [**ArchivalAzureExternalTargetParams**](ArchivalAzureExternalTargetParams.md) |  | [optional] 
 **gcp_params** | [**ArchivalGcpExternalTargetParams**](ArchivalGcpExternalTargetParams.md) |  | [optional] 
-**aws_params** | [**ArchivalAwsExternalTargetParams**](ArchivalAwsExternalTargetParams.md) |  | [optional] 
-**oracle_params** | [**ArchivalOracleExternalTargetParams**](ArchivalOracleExternalTargetParams.md) |  | [optional] 
 **nas_params** | [**ArchivalNasExternalTargetParams**](ArchivalNasExternalTargetParams.md) |  | [optional] 
+**oracle_params** | [**ArchivalOracleExternalTargetParams**](ArchivalOracleExternalTargetParams.md) |  | [optional] 
 **qstar_tape_params** | [**ArchivalQstarTapeExternalTargetParams**](ArchivalQstarTapeExternalTargetParams.md) |  | [optional] 
 **s3_comp_params** | [**ArchivalS3CompExternalTargetParams**](ArchivalS3CompExternalTargetParams.md) |  | [optional] 
 

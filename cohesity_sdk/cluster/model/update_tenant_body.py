@@ -27,11 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
-    from cohesity_sdk.cluster.model.create_tenant_parameters_all_of import CreateTenantParametersAllOf
     from cohesity_sdk.cluster.model.tenant_network import TenantNetwork
+    from cohesity_sdk.cluster.model.update_tenant_body_all_of import UpdateTenantBodyAllOf
     from cohesity_sdk.cluster.model.update_tenant_params import UpdateTenantParams
-    globals()['CreateTenantParametersAllOf'] = CreateTenantParametersAllOf
     globals()['TenantNetwork'] = TenantNetwork
+    globals()['UpdateTenantBodyAllOf'] = UpdateTenantBodyAllOf
     globals()['UpdateTenantParams'] = UpdateTenantParams
 
 
@@ -222,7 +222,7 @@ class UpdateTenantBody(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              CreateTenantParametersAllOf,
+              UpdateTenantBodyAllOf,
               UpdateTenantParams,
           ],
           'oneOf': [

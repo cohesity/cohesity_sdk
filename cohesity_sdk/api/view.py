@@ -2341,6 +2341,7 @@ class ViewApi(object):
                 protocols ([str]): Specifies a list of protocols to filter the clients.. [optional]
                 view_ids ([int]): Specifies a list of View ids. Only clients connected to these Views will be returned.. [optional]
                 node_ip (str): Specifies a node ip. Only clients connected to this node will be returned.. [optional]
+                max_count (int): Specifies the maximum number of connections to return for SMB and NFS protocols respectively.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2405,6 +2406,7 @@ class ViewApi(object):
                     'protocols',
                     'view_ids',
                     'node_ip',
+                    'max_count',
                 ],
                 'required': [],
                 'nullable': [
@@ -2432,16 +2434,20 @@ class ViewApi(object):
                         ([int],),
                     'node_ip':
                         (str,),
+                    'max_count':
+                        (int,),
                 },
                 'attribute_map': {
                     'protocols': 'protocols',
                     'view_ids': 'viewIds',
                     'node_ip': 'nodeIp',
+                    'max_count': 'maxCount',
                 },
                 'location_map': {
                     'protocols': 'query',
                     'view_ids': 'query',
                     'node_ip': 'query',
+                    'max_count': 'query',
                 },
                 'collection_format_map': {
                     'protocols': 'csv',
@@ -2901,6 +2907,7 @@ class ViewApi(object):
                 is_protected (bool): Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned.. [optional]
                 qos_principal_ids ([int]): qosPrincipalIds contains ids of the QoS principal for which views are to be returned.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                include_deleted_protection_groups (bool): Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2996,6 +3003,7 @@ class ViewApi(object):
                     'is_protected',
                     'qos_principal_ids',
                     'use_cached_data',
+                    'include_deleted_protection_groups',
                 ],
                 'required': [],
                 'nullable': [
@@ -3164,6 +3172,8 @@ class ViewApi(object):
                         ([int],),
                     'use_cached_data':
                         (bool,),
+                    'include_deleted_protection_groups':
+                        (bool,),
                 },
                 'attribute_map': {
                     'view_names': 'viewNames',
@@ -3200,6 +3210,7 @@ class ViewApi(object):
                     'is_protected': 'isProtected',
                     'qos_principal_ids': 'qosPrincipalIds',
                     'use_cached_data': 'useCachedData',
+                    'include_deleted_protection_groups': 'includeDeletedProtectionGroups',
                 },
                 'location_map': {
                     'view_names': 'query',
@@ -3236,6 +3247,7 @@ class ViewApi(object):
                     'is_protected': 'query',
                     'qos_principal_ids': 'query',
                     'use_cached_data': 'query',
+                    'include_deleted_protection_groups': 'query',
                 },
                 'collection_format_map': {
                     'view_names': 'csv',
@@ -3283,6 +3295,10 @@ class ViewApi(object):
             Keyword Args:
                 msecs_before_current_time_to_compare (int): Specifies the time in msecs before current time to compare with.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                include_internal_views (bool): Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned.. [optional]
+                tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
+                include_tenants (bool): IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned.. [optional]
+                include_deleted_protection_groups (bool): Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3346,6 +3362,10 @@ class ViewApi(object):
                 'all': [
                     'msecs_before_current_time_to_compare',
                     'use_cached_data',
+                    'include_internal_views',
+                    'tenant_ids',
+                    'include_tenants',
+                    'include_deleted_protection_groups',
                 ],
                 'required': [],
                 'nullable': [
@@ -3365,16 +3385,33 @@ class ViewApi(object):
                         (int,),
                     'use_cached_data':
                         (bool,),
+                    'include_internal_views':
+                        (bool,),
+                    'tenant_ids':
+                        ([str],),
+                    'include_tenants':
+                        (bool,),
+                    'include_deleted_protection_groups':
+                        (bool,),
                 },
                 'attribute_map': {
                     'msecs_before_current_time_to_compare': 'msecsBeforeCurrentTimeToCompare',
                     'use_cached_data': 'useCachedData',
+                    'include_internal_views': 'includeInternalViews',
+                    'tenant_ids': 'tenantIds',
+                    'include_tenants': 'includeTenants',
+                    'include_deleted_protection_groups': 'includeDeletedProtectionGroups',
                 },
                 'location_map': {
                     'msecs_before_current_time_to_compare': 'query',
                     'use_cached_data': 'query',
+                    'include_internal_views': 'query',
+                    'tenant_ids': 'query',
+                    'include_tenants': 'query',
+                    'include_deleted_protection_groups': 'query',
                 },
                 'collection_format_map': {
+                    'tenant_ids': 'csv',
                 }
             },
             headers_map={

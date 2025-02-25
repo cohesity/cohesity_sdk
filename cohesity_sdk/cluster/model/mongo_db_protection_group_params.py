@@ -27,9 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.mongo_db_cdp_job_info import MongoDBCdpJobInfo
     from cohesity_sdk.cluster.model.mongo_db_protection_group_params_all_of import MongoDBProtectionGroupParamsAllOf
     from cohesity_sdk.cluster.model.no_sql_protection_group_object_params import NoSqlProtectionGroupObjectParams
     from cohesity_sdk.cluster.model.no_sql_protection_group_params import NoSqlProtectionGroupParams
+    globals()['MongoDBCdpJobInfo'] = MongoDBCdpJobInfo
     globals()['MongoDBProtectionGroupParamsAllOf'] = MongoDBProtectionGroupParamsAllOf
     globals()['NoSqlProtectionGroupObjectParams'] = NoSqlProtectionGroupObjectParams
     globals()['NoSqlProtectionGroupParams'] = NoSqlProtectionGroupParams
@@ -90,6 +92,7 @@ class MongoDBProtectionGroupParams(ModelComposed):
         """
         lazy_import()
         return {
+            'auto_scale_concurrency': (bool, none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
             'custom_source_name': (str, none_type,),  # noqa: E501
@@ -97,7 +100,7 @@ class MongoDBProtectionGroupParams(ModelComposed):
             'objects': ([NoSqlProtectionGroupObjectParams],),  # noqa: E501
             'source_id': (int, none_type,),  # noqa: E501
             'source_name': (str, none_type,),  # noqa: E501
-            'cdp_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'cdp_info': (MongoDBCdpJobInfo,),  # noqa: E501
         }
 
     @cached_property
@@ -107,6 +110,7 @@ class MongoDBProtectionGroupParams(ModelComposed):
 
 
     attribute_map = {
+        'auto_scale_concurrency': 'autoScaleConcurrency',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
         'custom_source_name': 'customSourceName',  # noqa: E501
@@ -165,6 +169,7 @@ class MongoDBProtectionGroupParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auto_scale_concurrency (bool, none_type): Specifies the flag to automatically scale number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501
@@ -172,7 +177,7 @@ class MongoDBProtectionGroupParams(ModelComposed):
             objects ([NoSqlProtectionGroupObjectParams]): Specifies the objects to be included in the Protection Group.. [optional]  # noqa: E501
             source_id (int, none_type): Object ID of the Source on which this protection was run .. [optional]  # noqa: E501
             source_name (str, none_type): Specifies the name of the Source on which this protection was run.. [optional]  # noqa: E501
-            cdp_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the CDP related information for a given protection group. This field will only be populated when protection group is configured with a CDP policy.. [optional]  # noqa: E501
+            cdp_info (MongoDBCdpJobInfo): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

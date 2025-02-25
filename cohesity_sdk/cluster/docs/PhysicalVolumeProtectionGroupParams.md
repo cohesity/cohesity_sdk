@@ -6,6 +6,7 @@ Specifies the parameters which are specific to Volume based physical Protection 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **objects** | [**[PhysicalVolumeProtectionGroupObjectParams]**](PhysicalVolumeProtectionGroupObjectParams.md) |  | 
+**cobmr_backup** | **bool, none_type** | Specifies whether to take a CoBMR backup. | [optional] 
 **continue_on_quiesce_failure** | **bool, none_type** | Specifies whether to continue backing up on quiesce failure | [optional] 
 **dedup_exclusion_source_ids** | **[int]** | Specifies ids of sources for which deduplication has to be disabled. | [optional] 
 **excluded_vss_writers** | **[str], none_type** | Specifies writer names which should be excluded from physical volume based backups. | [optional] 

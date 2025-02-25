@@ -15,6 +15,7 @@ Get Privileges.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.privileges import Privileges
@@ -29,6 +30,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 names = [
         "names_example",
@@ -57,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

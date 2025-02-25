@@ -30,12 +30,10 @@ def lazy_import():
     from cohesity_sdk.cluster.model.credentials import Credentials
     from cohesity_sdk.cluster.model.filter_ip_config import FilterIpConfig
     from cohesity_sdk.cluster.model.nas_throttling_config import NasThrottlingConfig
-    from cohesity_sdk.cluster.model.smb_mount_credentials import SmbMountCredentials
     from cohesity_sdk.cluster.model.storage_array_snapshot_config import StorageArraySnapshotConfig
     globals()['Credentials'] = Credentials
     globals()['FilterIpConfig'] = FilterIpConfig
     globals()['NasThrottlingConfig'] = NasThrottlingConfig
-    globals()['SmbMountCredentials'] = SmbMountCredentials
     globals()['StorageArraySnapshotConfig'] = StorageArraySnapshotConfig
 
 
@@ -97,7 +95,7 @@ class NetappRegistrationParams(ModelNormal):
             'source_type': (str, none_type,),  # noqa: E501
             'back_up_smb_volumes': (bool, none_type,),  # noqa: E501
             'filter_ip_config': (FilterIpConfig,),  # noqa: E501
-            'smb_credentials': (SmbMountCredentials,),  # noqa: E501
+            'smb_credentials': (Credentials,),  # noqa: E501
             'storage_array_snapshot_config': (StorageArraySnapshotConfig,),  # noqa: E501
             'storage_array_snapshot_enabled': (bool, none_type,),  # noqa: E501
             'throttling_config': (NasThrottlingConfig,),  # noqa: E501
@@ -175,7 +173,7 @@ class NetappRegistrationParams(ModelNormal):
 
             back_up_smb_volumes (bool, none_type): Specifies whether or not to back up SMB Volumes.. [optional]  # noqa: E501
             filter_ip_config (FilterIpConfig): [optional]  # noqa: E501
-            smb_credentials (SmbMountCredentials): [optional]  # noqa: E501
+            smb_credentials (Credentials): [optional]  # noqa: E501
             storage_array_snapshot_config (StorageArraySnapshotConfig): [optional]  # noqa: E501
             storage_array_snapshot_enabled (bool, none_type): Specifies if storage array snapshot is enabled or not in the Source.. [optional]  # noqa: E501
             throttling_config (NasThrottlingConfig): [optional]  # noqa: E501

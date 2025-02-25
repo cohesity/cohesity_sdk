@@ -5,9 +5,9 @@ Specifies the Metadata of a free Node on the network
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int, none_type** | Specifies the ID of the node. | [optional] 
-**chassis_serial** | **str, none_type** | Specifies the serial number of the Chassis the Node is installed in. | [optional] 
 **can_connect** | **bool, none_type** | Specifies if Node can be connected. | [optional] 
+**chassis_serial** | **str, none_type** | Specifies the serial number of the Chassis the Node is installed in. | [optional] 
+**id** | **int, none_type** | Specifies the ID of the node. | [optional] 
 **ipmi_ip** | **str, none_type** | Specifies the IPMI IP of the Node. | [optional] 
 **ips** | **[str], none_type** | List of discovered ipv4/ipv6 addresses of the node. Ip field returns ips as comma separated single string which is incorrect. | [optional] 
 **node_serial** | **str, none_type** | Specifies the serial number of the Node. | [optional] 

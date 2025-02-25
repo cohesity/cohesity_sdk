@@ -26,21 +26,21 @@ from cohesity_sdk.cluster.model.assigned_sources import AssignedSources
 from cohesity_sdk.cluster.model.create_groups_params import CreateGroupsParams
 from cohesity_sdk.cluster.model.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
 from cohesity_sdk.cluster.model.create_user_session_request_params import CreateUserSessionRequestParams
-from cohesity_sdk.cluster.model.create_users_params import CreateUsersParams
+from cohesity_sdk.cluster.model.create_users_parameters import CreateUsersParameters
 from cohesity_sdk.cluster.model.created_user_api_key import CreatedUserAPIKey
 from cohesity_sdk.cluster.model.delete_groups_request import DeleteGroupsRequest
 from cohesity_sdk.cluster.model.delete_users_request import DeleteUsersRequest
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.group_params import GroupParams
 from cohesity_sdk.cluster.model.groups import Groups
+from cohesity_sdk.cluster.model.secret_key_entity import SecretKeyEntity
 from cohesity_sdk.cluster.model.security_principals import SecurityPrincipals
-from cohesity_sdk.cluster.model.update_group_params import UpdateGroupParams
-from cohesity_sdk.cluster.model.update_user_params import UpdateUserParams
+from cohesity_sdk.cluster.model.update_group_parameters import UpdateGroupParameters
+from cohesity_sdk.cluster.model.update_user_parameters import UpdateUserParameters
 from cohesity_sdk.cluster.model.user_api_key import UserAPIKey
 from cohesity_sdk.cluster.model.user_api_keys import UserAPIKeys
 from cohesity_sdk.cluster.model.user_params import UserParams
 from cohesity_sdk.cluster.model.user_session import UserSession
-from cohesity_sdk.cluster.model.user_ui_config import UserUiConfig
 from cohesity_sdk.cluster.model.users_list import UsersList
 
 
@@ -447,7 +447,7 @@ class UserApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateUsersParams): If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
+                body (CreateUsersParameters): If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -532,7 +532,7 @@ class UserApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateUsersParams,),
+                        (CreateUsersParameters,),
                 },
                 'attribute_map': {
                 },
@@ -2453,115 +2453,6 @@ class UserApi(object):
             callable=__get_user_by_sid
         )
 
-        def __get_user_ui_config(
-            self,
-            **kwargs
-        ):
-            """Get user UI config.  # noqa: E501
-
-            Get customized UI config for the logged in user.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_user_ui_config(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                UserUiConfig
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_user_ui_config = _Endpoint(
-            settings={
-                'response_type': (UserUiConfig,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/users/ui-config',
-                'operation_id': 'get_user_ui_config',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_user_ui_config
-        )
-
         def __get_users(
             self,
             **kwargs
@@ -2724,6 +2615,127 @@ class UserApi(object):
             callable=__get_users
         )
 
+        def __regenerate_s3_key(
+            self,
+            sid,
+            **kwargs
+        ):
+            """Reset S3 secret access key  # noqa: E501
+
+            Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.regenerate_s3_key(sid, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                sid (str): Specify the SID of the user.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                SecretKeyEntity
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['sid'] = \
+                sid
+            return self.call_with_http_info(**kwargs)
+
+        self.regenerate_s3_key = _Endpoint(
+            settings={
+                'response_type': (SecretKeyEntity,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/users/{sid}/s3-secret-key',
+                'operation_id': 'regenerate_s3_key',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'sid',
+                ],
+                'required': [
+                    'sid',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'sid':
+                        (str,),
+                },
+                'attribute_map': {
+                    'sid': 'sid',
+                },
+                'location_map': {
+                    'sid': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client,
+            callable=__regenerate_s3_key
+        )
+
         def __rotate_user_api_key(
             self,
             user_sid,
@@ -2872,7 +2884,7 @@ class UserApi(object):
 
             Args:
                 sid (str): Specify the SID of the group.
-                body (UpdateGroupParams): Specifies the group information.
+                body (UpdateGroupParameters): Specifies the group information.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2963,7 +2975,7 @@ class UserApi(object):
                     'sid':
                         (str,),
                     'body':
-                        (UpdateGroupParams,),
+                        (UpdateGroupParameters,),
                 },
                 'attribute_map': {
                     'sid': 'sid',
@@ -3136,7 +3148,7 @@ class UserApi(object):
 
             Args:
                 sid (str): Specify the SID of the user.
-                body (UpdateUserParams): Specifies the user information.
+                body (UpdateUserParameters): Specifies the user information.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -3227,7 +3239,7 @@ class UserApi(object):
                     'sid':
                         (str,),
                     'body':
-                        (UpdateUserParams,),
+                        (UpdateUserParameters,),
                 },
                 'attribute_map': {
                     'sid': 'sid',
@@ -3391,126 +3403,4 @@ class UserApi(object):
             },
             api_client=api_client,
             callable=__update_user_api_key_by_id
-        )
-
-        def __update_user_ui_config(
-            self,
-            body,
-            **kwargs
-        ):
-            """Update user UI config.  # noqa: E501
-
-            Update customized UI config for the logged in user.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.update_user_ui_config(body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                body (UserUiConfig): Specifies the user UI config.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                UserUiConfig
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.update_user_ui_config = _Endpoint(
-            settings={
-                'response_type': (UserUiConfig,),
-                'auth': [
-                    'TokenHeader',
-        
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/users/ui-config',
-                'operation_id': 'update_user_ui_config',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'body',
-                ],
-                'required': [
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'body':
-                        (UserUiConfig,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__update_user_ui_config
         )

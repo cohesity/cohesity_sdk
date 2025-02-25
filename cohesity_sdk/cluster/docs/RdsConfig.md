@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **enable_copy_tags_to_snapshots** | **bool, none_type** | Specifies whether to enable copying of tags to snapshots of the DB. | 
 **enable_iam_db_authentication** | **bool, none_type** | Specifies whether to enable IAM authentication for the DB. | 
 **is_multi_az_deployment** | **bool, none_type** | Specifies whether this is a multi-az deployment or not. | 
-**db_option_group** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies entity representing the RDS option group to use while restoring the DB. | [optional] 
-**db_parameter_group** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the entity representing the RDS parameter group to use while restoring the DB. | [optional] 
+**db_option_group** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**db_parameter_group** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 **enable_public_accessibility** | **bool, none_type** | Specifies whether this DB will be publicly accessible or not. | [optional] 
 **point_in_time_usecs** | **int, none_type** | Specifies a point in time for recovery in microseconds. | [optional] 
 

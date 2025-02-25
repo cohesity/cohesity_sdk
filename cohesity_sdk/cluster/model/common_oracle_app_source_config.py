@@ -27,9 +27,17 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.oracle_archive_log_info import OracleArchiveLogInfo
     from cohesity_sdk.cluster.model.oracle_db_channel import OracleDbChannel
+    from cohesity_sdk.cluster.model.oracle_recovery_validation_info import OracleRecoveryValidationInfo
+    from cohesity_sdk.cluster.model.recover_oracle_granular_restore_info import RecoverOracleGranularRestoreInfo
+    from cohesity_sdk.cluster.model.restore_spfile_or_pfile_info import RestoreSpfileOrPfileInfo
     from cohesity_sdk.cluster.model.shell_key_value_pair import ShellKeyValuePair
+    globals()['OracleArchiveLogInfo'] = OracleArchiveLogInfo
     globals()['OracleDbChannel'] = OracleDbChannel
+    globals()['OracleRecoveryValidationInfo'] = OracleRecoveryValidationInfo
+    globals()['RecoverOracleGranularRestoreInfo'] = RecoverOracleGranularRestoreInfo
+    globals()['RestoreSpfileOrPfileInfo'] = RestoreSpfileOrPfileInfo
     globals()['ShellKeyValuePair'] = ShellKeyValuePair
 
 
@@ -82,11 +90,11 @@ class CommonOracleAppSourceConfig(ModelNormal):
         lazy_import()
         return {
             'db_channels': ([OracleDbChannel], none_type,),  # noqa: E501
-            'granular_restore_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_archive_log_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_recovery_validation_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'granular_restore_info': (RecoverOracleGranularRestoreInfo,),  # noqa: E501
+            'oracle_archive_log_info': (OracleArchiveLogInfo,),  # noqa: E501
+            'oracle_recovery_validation_info': (OracleRecoveryValidationInfo,),  # noqa: E501
             'recovery_mode': (bool, none_type,),  # noqa: E501
-            'restore_spfile_or_pfile_info': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'restore_spfile_or_pfile_info': (RestoreSpfileOrPfileInfo,),  # noqa: E501
             'restore_time_usecs': (int, none_type,),  # noqa: E501
             'shell_evironment_vars': ([ShellKeyValuePair], none_type,),  # noqa: E501
             'use_scn_for_restore': (bool, none_type,),  # noqa: E501
@@ -158,11 +166,11 @@ class CommonOracleAppSourceConfig(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             db_channels ([OracleDbChannel], none_type): Specifies the Oracle database node channels info. If not specified, the default values assigned by the server are applied to all the databases.. [optional]  # noqa: E501
-            granular_restore_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies information about list of objects (PDBs) to restore.. [optional]  # noqa: E501
-            oracle_archive_log_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies Range in Time, Scn or Sequence to restore archive logs of a DB.. [optional]  # noqa: E501
-            oracle_recovery_validation_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to Oracle Recovery Validation.. [optional]  # noqa: E501
+            granular_restore_info (RecoverOracleGranularRestoreInfo): [optional]  # noqa: E501
+            oracle_archive_log_info (OracleArchiveLogInfo): [optional]  # noqa: E501
+            oracle_recovery_validation_info (OracleRecoveryValidationInfo): [optional]  # noqa: E501
             recovery_mode (bool, none_type): Specifies if database should be left in recovery mode.. [optional]  # noqa: E501
-            restore_spfile_or_pfile_info ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies parameters related to spfile/pfile restore.. [optional]  # noqa: E501
+            restore_spfile_or_pfile_info (RestoreSpfileOrPfileInfo): [optional]  # noqa: E501
             restore_time_usecs (int, none_type): Specifies the time in the past to which the Oracle db needs to be restored. This allows for granular recovery of Oracle databases. If this is not set, the Oracle db will be restored from the full/incremental snapshot.. [optional]  # noqa: E501
             shell_evironment_vars ([ShellKeyValuePair], none_type): Specifies key value pairs of shell variables which defines the restore shell environment.. [optional]  # noqa: E501
             use_scn_for_restore (bool, none_type): Specifies whether database recovery performed should use scn value or not.. [optional]  # noqa: E501

@@ -6,7 +6,7 @@ Specifies a snapshot containing the indexed object.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attempts** | **int, none_type** | Specifies the number of runs have been executed before the run completed successfully. | [optional] 
-**external_target_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the external target information if this is an archival snapshot. | [optional] 
+**external_target_info** | [**ArchivalTargetSummaryInfo**](ArchivalTargetSummaryInfo.md) |  | [optional] 
 **indexed_object_name** | **str, none_type** | Specifies the indexed object name. | [optional] 
 **indexed_object_source_uuid** | **str, none_type** | Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery. | [optional] 
 **inode_id** | **int, none_type** | Specifies the source inode number of the file being recovered. | [optional] [readonly] 

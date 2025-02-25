@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recover_oracle_app_params import RecoverOracleAppParams
     from cohesity_sdk.cluster.model.recover_oracle_db_snapshot_params import RecoverOracleDbSnapshotParams
+    globals()['RecoverOracleAppParams'] = RecoverOracleAppParams
     globals()['RecoverOracleDbSnapshotParams'] = RecoverOracleDbSnapshotParams
 
 
@@ -85,7 +87,7 @@ class RecoverOracleParams(ModelNormal):
         return {
             'objects': ([RecoverOracleDbSnapshotParams], none_type,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
-            'recover_app_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_app_params': (RecoverOracleAppParams,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +153,7 @@ class RecoverOracleParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_app_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover Oracle databases.. [optional]  # noqa: E501
+            recover_app_params (RecoverOracleAppParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

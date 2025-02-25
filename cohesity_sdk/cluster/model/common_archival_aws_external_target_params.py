@@ -69,6 +69,7 @@ class CommonArchivalAwsExternalTargetParams(ModelComposed):
             'AMAZONS3GLACIER': "AmazonS3Glacier",
             'AMAZONS3GLACIERDEEPARCHIVE': "AmazonS3GlacierDeepArchive",
             'AMAZONGLACIER': "AmazonGlacier",
+            'AMAZONS3GLACIERIR': "AmazonS3GlacierIR",
         },
     }
 
@@ -94,6 +95,7 @@ class CommonArchivalAwsExternalTargetParams(ModelComposed):
             'bucket_name': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
             'storage_class': (str, none_type,),  # noqa: E501
+            'bucket_owner_account_id': (str, none_type,),  # noqa: E501
             'is_forever_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'is_incremental_archival_enabled': (bool, none_type,),  # noqa: E501
             'source_side_deduplication': (bool, none_type,),  # noqa: E501
@@ -109,6 +111,7 @@ class CommonArchivalAwsExternalTargetParams(ModelComposed):
         'bucket_name': 'bucketName',  # noqa: E501
         'region': 'region',  # noqa: E501
         'storage_class': 'storageClass',  # noqa: E501
+        'bucket_owner_account_id': 'bucketOwnerAccountId',  # noqa: E501
         'is_forever_incremental_archival_enabled': 'isForeverIncrementalArchivalEnabled',  # noqa: E501
         'is_incremental_archival_enabled': 'isIncrementalArchivalEnabled',  # noqa: E501
         'source_side_deduplication': 'sourceSideDeduplication',  # noqa: E501
@@ -167,6 +170,7 @@ class CommonArchivalAwsExternalTargetParams(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            bucket_owner_account_id (str, none_type): Specifies the account Id of the S3 bucket owner.. [optional]  # noqa: E501
             is_forever_incremental_archival_enabled (bool, none_type): Specifies if Forever Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             is_incremental_archival_enabled (bool, none_type): Specifies if Incremental Archival setting is enabled or not.. [optional]  # noqa: E501
             source_side_deduplication (bool, none_type): Specifies the Source Side Deduplication setting for the AWS external target. [optional]  # noqa: E501

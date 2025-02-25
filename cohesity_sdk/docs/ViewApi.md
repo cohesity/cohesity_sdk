@@ -68,11 +68,11 @@ client = ClusterClient(
 
 view_id = 1 # int | Specifies the id of a view.
 body = UserQuotaOverrides(
+        cookie="cookie_example",
+        override_existing_per_user_quotas=True,
         user_quotas=[
             UserQuota(),
         ],
-        cookie="cookie_example",
-        override_existing_per_user_quotas=True,
     ) # UserQuotaOverrides | Specifies the parameters to override the default user quota on the view.
 
 # example passing only required values which don't have defaults set
@@ -141,9 +141,9 @@ client = ClusterClient(
 
 
 body = ClearNlmLockRequest(
+        client_id="client_id_example",
         file_path="file_path_example",
         view_name="view_name_example",
-        client_id="client_id_example",
     ) # ClearNlmLockRequest | Request to clear NLM lock.
 
 # example passing only required values which don't have defaults set
@@ -212,11 +212,35 @@ client = ClusterClient(
 
 id = 1 # int | Specifies the View id to clone.
 body = CloneViewParams(
-        name="name_example",
-        description="description_example",
         data_lock_expiry_usecs=1,
-        storage_policy_override={},
-        qos={},
+        description="description_example",
+        is_read_only=True,
+        name="name_example",
+        netgroup_whitelist=NisNetgroups(
+            nis_netgroups=[
+                NisNetgroup(
+                    domain="domain_example",
+                    name="name_example",
+                    nfs_access="kDisabled",
+                    nfs_squash="kNone",
+                ),
+            ],
+        ),
+        protocol_access=[
+            ViewProtocol(
+                mode="ReadOnly",
+                type="NFS",
+            ),
+        ],
+        qos=QoS(
+            name="BackupTargetHigh",
+            principal_id=1,
+            principal_name="Backup Target High",
+        ),
+        storage_policy_override=StoragePolicyOverride(
+            disable_dedup=True,
+            disable_inline_dedup_and_compression=True,
+        ),
         subnet_whitelist=[
             Subnet(
                 component="component_example",
@@ -228,18 +252,10 @@ body = CloneViewParams(
                 netmask_ip4="netmask_ip4_example",
                 nfs_access="kDisabled",
                 nfs_squash="kNone",
-                smb_access="kDisabled",
                 s3_access="kDisabled",
+                smb_access="kDisabled",
             ),
         ],
-        protocol_access=[
-            ViewProtocol(
-                type="NFS",
-                mode="ReadOnly",
-            ),
-        ],
-        netgroup_whitelist={},
-        is_read_only=True,
     ) # CloneViewParams | Specifies the request to clone the View.
 
 # example passing only required values which don't have defaults set
@@ -309,8 +325,8 @@ client = ClusterClient(
 
 body = CloneViewDirectoryParams(
         source_directory_path="source_directory_path_example",
-        target_parent_directory_path="target_parent_directory_path_example",
         target_directory_name="target_directory_name_example",
+        target_parent_directory_path="target_parent_directory_path_example",
     ) # CloneViewDirectoryParams | Specifies the request to clone View directory.
 
 # example passing only required values which don't have defaults set
@@ -378,8 +394,8 @@ client = ClusterClient(
 
 body = CloseSmbFileOpenParams(
         file_path="file_path_example",
-        view_name="view_name_example",
         open_id=1,
+        view_name="view_name_example",
     ) # CloseSmbFileOpenParams | Specifies parameters to close active  SMB file open. (optional)
 
 # example passing only required values which don't have defaults set
@@ -580,10 +596,10 @@ client = ClusterClient(
 
 
 body = Template(
-        name="name_example",
-        dedup=True,
         compress=True,
-        view_params={},
+        dedup=True,
+        name="name_example",
+        view_params=CreateView(),
     ) # Template | Request to create a view template.
 
 # example passing only required values which don't have defaults set
@@ -1347,12 +1363,13 @@ view_ids = [
         1,
     ] # [int] | Specifies a list of View ids. Only clients connected to these Views will be returned. (optional)
 node_ip = "nodeIp_example" # str | Specifies a node ip. Only clients connected to this node will be returned. (optional)
+max_count = 1 # int | Specifies the maximum number of connections to return for SMB and NFS protocols respectively. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get View Clients.
-	api_response = client.view.get_view_clients(protocols=protocols, view_ids=view_ids, node_ip=node_ip)
+	api_response = client.view.get_view_clients(protocols=protocols, view_ids=view_ids, node_ip=node_ip, max_count=max_count)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ViewApi->get_view_clients: %s\n" % e)
@@ -1366,6 +1383,7 @@ Name | Type | Description  | Notes
  **protocols** | **[str]**| Specifies a list of protocols to filter the clients. | [optional]
  **view_ids** | **[int]**| Specifies a list of View ids. Only clients connected to these Views will be returned. | [optional]
  **node_ip** | **str**| Specifies a node ip. Only clients connected to this node will be returned. | [optional]
+ **max_count** | **int**| Specifies the maximum number of connections to return for SMB and NFS protocols respectively. | [optional]
 
 ### Return type
 
@@ -1712,12 +1730,13 @@ qos_principal_ids = [
         1,
     ] # [int] | qosPrincipalIds contains ids of the QoS principal for which views are to be returned. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
+include_deleted_protection_groups = True # bool | Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# List Views
-	api_response = client.view.get_views(view_names=view_names, view_ids=view_ids, storage_domain_ids=storage_domain_ids, storage_domain_names=storage_domain_names, protocol_accesses=protocol_accesses, match_partial_names=match_partial_names, max_count=max_count, include_internal_views=include_internal_views, include_protection_groups=include_protection_groups, max_view_id=max_view_id, include_inactive=include_inactive, protection_group_ids=protection_group_ids, view_protection_group_ids=view_protection_group_ids, view_count_only=view_count_only, summary_only=summary_only, sort_by_logical_usage=sort_by_logical_usage, internal_access_sids=internal_access_sids, match_alias_names=match_alias_names, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_file_count_by_size=include_file_count_by_size, include_views_with_antivirus_enabled_only=include_views_with_antivirus_enabled_only, include_views_with_data_lock_enabled_only=include_views_with_data_lock_enabled_only, filer_audit_log_enabled=filer_audit_log_enabled, categories=categories, view_protection_types=view_protection_types, last_run_any_statuses=last_run_any_statuses, last_run_local_backup_statuses=last_run_local_backup_statuses, last_run_replication_statuses=last_run_replication_statuses, last_run_archival_statuses=last_run_archival_statuses, is_protected=is_protected, qos_principal_ids=qos_principal_ids, use_cached_data=use_cached_data)
+	api_response = client.view.get_views(view_names=view_names, view_ids=view_ids, storage_domain_ids=storage_domain_ids, storage_domain_names=storage_domain_names, protocol_accesses=protocol_accesses, match_partial_names=match_partial_names, max_count=max_count, include_internal_views=include_internal_views, include_protection_groups=include_protection_groups, max_view_id=max_view_id, include_inactive=include_inactive, protection_group_ids=protection_group_ids, view_protection_group_ids=view_protection_group_ids, view_count_only=view_count_only, summary_only=summary_only, sort_by_logical_usage=sort_by_logical_usage, internal_access_sids=internal_access_sids, match_alias_names=match_alias_names, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_file_count_by_size=include_file_count_by_size, include_views_with_antivirus_enabled_only=include_views_with_antivirus_enabled_only, include_views_with_data_lock_enabled_only=include_views_with_data_lock_enabled_only, filer_audit_log_enabled=filer_audit_log_enabled, categories=categories, view_protection_types=view_protection_types, last_run_any_statuses=last_run_any_statuses, last_run_local_backup_statuses=last_run_local_backup_statuses, last_run_replication_statuses=last_run_replication_statuses, last_run_archival_statuses=last_run_archival_statuses, is_protected=is_protected, qos_principal_ids=qos_principal_ids, use_cached_data=use_cached_data, include_deleted_protection_groups=include_deleted_protection_groups)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ViewApi->get_views: %s\n" % e)
@@ -1762,6 +1781,7 @@ Name | Type | Description  | Notes
  **is_protected** | **bool**| Specifies the protection status of Views. If set to true, only protected Views will be returned. If set to false, only unprotected Views will be returned. | [optional]
  **qos_principal_ids** | **[int]**| qosPrincipalIds contains ids of the QoS principal for which views are to be returned. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
+ **include_deleted_protection_groups** | **bool**| Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter. | [optional]
 
 ### Return type
 
@@ -1813,12 +1833,18 @@ client = ClusterClient(
 
 msecs_before_current_time_to_compare = 1 # int | Specifies the time in msecs before current time to compare with. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
+include_internal_views = True # bool | Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned. (optional)
+tenant_ids = [
+        "tenantIds_example",
+    ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
+include_tenants = True # bool | IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+include_deleted_protection_groups = True # bool | Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter. (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get Views summary.
-	api_response = client.view.get_views_summary(msecs_before_current_time_to_compare=msecs_before_current_time_to_compare, use_cached_data=use_cached_data)
+	api_response = client.view.get_views_summary(msecs_before_current_time_to_compare=msecs_before_current_time_to_compare, use_cached_data=use_cached_data, include_internal_views=include_internal_views, tenant_ids=tenant_ids, include_tenants=include_tenants, include_deleted_protection_groups=include_deleted_protection_groups)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ViewApi->get_views_summary: %s\n" % e)
@@ -1831,6 +1857,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **msecs_before_current_time_to_compare** | **int**| Specifies the time in msecs before current time to compare with. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
+ **include_internal_views** | **bool**| Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned. | [optional]
+ **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
+ **include_tenants** | **bool**| IncludeTenants specifies if objects of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
+ **include_deleted_protection_groups** | **bool**| Specifies if deleted Protection Groups information needs to be returned along with view metadata. By default, deleted Protection Groups are not returned. This is only applied if used along with any view protection related parameter. | [optional]
 
 ### Return type
 
@@ -1956,8 +1986,8 @@ client = ClusterClient(
 
 id = 1 # int | Specifies the id of a view.
 body = LockFileParams(
-        file_path="file_path_example",
         expiry_timestamp_msecs=1,
+        file_path="file_path_example",
     ) # LockFileParams | Specifies the request params to lock a file
 
 # example passing only required values which don't have defaults set
@@ -2225,9 +2255,6 @@ client = ClusterClient(
 
 name = "name_example" # str | Specifies the Share name to update.
 body = UpdateShareParam(
-        enable_filer_audit_logging=True,
-        file_audit_logging_state="Inherited",
-        smb_config={},
         client_subnet_whitelist=[
             Subnet(
                 component="component_example",
@@ -2239,10 +2266,34 @@ body = UpdateShareParam(
                 netmask_ip4="netmask_ip4_example",
                 nfs_access="kDisabled",
                 nfs_squash="kNone",
-                smb_access="kDisabled",
                 s3_access="kDisabled",
+                smb_access="kDisabled",
             ),
         ],
+        enable_filer_audit_logging=True,
+        file_audit_logging_state="Inherited",
+        smb_config=AliasSmbConfig(
+            caching_enabled=True,
+            continuous_availability=True,
+            discovery_enabled=True,
+            encryption_enabled=True,
+            encryption_required=True,
+            is_share_level_permission_empty=True,
+            oplock_enabled=True,
+            permissions=[
+                SmbPermission(
+                    access="ReadOnly",
+                    mode="FolderSubFoldersAndFiles",
+                    sid="sid_example",
+                    special_access_mask=1,
+                    special_type=1,
+                    type="Allow",
+                ),
+            ],
+            super_user_sids=[
+                "super_user_sids_example",
+            ],
+        ),
     ) # UpdateShareParam | Specifies the request to update a Share.
 
 # example passing only required values which don't have defaults set
@@ -2381,7 +2432,10 @@ client = ClusterClient(
 id = 1 # int | Specifies the View id.
 body = ViewDirectoryQuota(
         directory_path="directory_path_example",
-        quota_policy={},
+        quota_policy=ViewDirectoryQuotaPolicy(
+            alert_limit_bytes=1,
+            hard_limit_bytes=1,
+        ),
     ) # ViewDirectoryQuota | Specifies the request to update directory quota.
 
 # example passing only required values which don't have defaults set
@@ -2451,10 +2505,10 @@ client = ClusterClient(
 
 id = 1 # int | Specifies a unique id of the view template.
 body = Template(
-        name="name_example",
-        dedup=True,
         compress=True,
-        view_params={},
+        dedup=True,
+        name="name_example",
+        view_params=CreateView(),
     ) # Template | Request to update a view template.
 
 # example passing only required values which don't have defaults set
@@ -2600,8 +2654,12 @@ client = ClusterClient(
 
 view_id = 1 # int | Specifies the View id.
 body = ViewUserQuotaSettings(
+        default_quota_policy=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
         enabled=True,
-        default_quota_policy={},
     ) # ViewUserQuotaSettings | Specifies the parameters to enable/disable or update the default quota config on the view.
 
 # example passing only required values which don't have defaults set

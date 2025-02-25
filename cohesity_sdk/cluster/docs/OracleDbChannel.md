@@ -6,6 +6,7 @@ Specifies the DB channel info for all the databases of app entity. Length of thi
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **archive_log_retention_days** | **int, none_type** | Specifies the number of days archive log should be stored. For keeping the archived log forever, set this to -1. For deleting the archived log immediately, set this to 0. For deleting the archived log after n days, set this to n. | [optional] 
+**archive_log_retention_hours** | **int, none_type** | Specifies the number of hours archive log should be stored. For keeping the archived log forever, set this to -1. For deleting the archived log immediately, set this to 0. For deleting the archived log after k hours, set this to k. | [optional] 
 **credentials** | [**Credentials**](Credentials.md) |  | [optional] 
 **database_node_list** | [**[OracleDatabaseHost], none_type**](OracleDatabaseHost.md) | Specifies the Node info from where we are allowed to take the backup/restore. | [optional] 
 **database_unique_name** | **str, none_type** | Specifies the unique Name of the database. | [optional] 

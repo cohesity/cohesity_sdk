@@ -27,7 +27,31 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_nas_object_params import CommonNasObjectParams
+    from cohesity_sdk.cluster.model.flashblade_object_params import FlashbladeObjectParams
+    from cohesity_sdk.cluster.model.group_object_entity_params import GroupObjectEntityParams
+    from cohesity_sdk.cluster.model.isilon_object_params import IsilonObjectParams
+    from cohesity_sdk.cluster.model.mongo_db_object_params import MongoDBObjectParams
+    from cohesity_sdk.cluster.model.mssql_object_entity_params import MssqlObjectEntityParams
+    from cohesity_sdk.cluster.model.netapp_object_params import NetappObjectParams
+    from cohesity_sdk.cluster.model.oracle_object_entity_params import OracleObjectEntityParams
+    from cohesity_sdk.cluster.model.physical_object_entity_params import PhysicalObjectEntityParams
+    from cohesity_sdk.cluster.model.sharepoint_object_entity_params import SharepointObjectEntityParams
+    from cohesity_sdk.cluster.model.uda_object_params import UdaObjectParams
+    from cohesity_sdk.cluster.model.view_object_params import ViewObjectParams
     from cohesity_sdk.cluster.model.vmware_object_entity_params import VmwareObjectEntityParams
+    globals()['CommonNasObjectParams'] = CommonNasObjectParams
+    globals()['FlashbladeObjectParams'] = FlashbladeObjectParams
+    globals()['GroupObjectEntityParams'] = GroupObjectEntityParams
+    globals()['IsilonObjectParams'] = IsilonObjectParams
+    globals()['MongoDBObjectParams'] = MongoDBObjectParams
+    globals()['MssqlObjectEntityParams'] = MssqlObjectEntityParams
+    globals()['NetappObjectParams'] = NetappObjectParams
+    globals()['OracleObjectEntityParams'] = OracleObjectEntityParams
+    globals()['PhysicalObjectEntityParams'] = PhysicalObjectEntityParams
+    globals()['SharepointObjectEntityParams'] = SharepointObjectEntityParams
+    globals()['UdaObjectParams'] = UdaObjectParams
+    globals()['ViewObjectParams'] = ViewObjectParams
     globals()['VmwareObjectEntityParams'] = VmwareObjectEntityParams
 
 
@@ -79,17 +103,20 @@ class ObjectAllOf(ModelNormal):
         """
         lazy_import()
         return {
-            'elastifile_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'flashblade_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'generic_nas_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'gpfs_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'isilon_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'mssql_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'netapp_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'oracle_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'physical_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'sharepoint_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'uda_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'elastifile_params': (CommonNasObjectParams,),  # noqa: E501
+            'flashblade_params': (FlashbladeObjectParams,),  # noqa: E501
+            'generic_nas_params': (CommonNasObjectParams,),  # noqa: E501
+            'gpfs_params': (CommonNasObjectParams,),  # noqa: E501
+            'group_params': (GroupObjectEntityParams,),  # noqa: E501
+            'isilon_params': (IsilonObjectParams,),  # noqa: E501
+            'mongo_db_params': (MongoDBObjectParams,),  # noqa: E501
+            'mssql_params': (MssqlObjectEntityParams,),  # noqa: E501
+            'netapp_params': (NetappObjectParams,),  # noqa: E501
+            'oracle_params': (OracleObjectEntityParams,),  # noqa: E501
+            'physical_params': (PhysicalObjectEntityParams,),  # noqa: E501
+            'sharepoint_params': (SharepointObjectEntityParams,),  # noqa: E501
+            'uda_params': (UdaObjectParams,),  # noqa: E501
+            'view_params': (ViewObjectParams,),  # noqa: E501
             'vmware_params': (VmwareObjectEntityParams,),  # noqa: E501
         }
 
@@ -104,13 +131,16 @@ class ObjectAllOf(ModelNormal):
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
+        'group_params': 'groupParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
+        'mongo_db_params': 'mongoDBParams',  # noqa: E501
         'mssql_params': 'mssqlParams',  # noqa: E501
         'netapp_params': 'netappParams',  # noqa: E501
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sharepoint_params': 'sharepointParams',  # noqa: E501
         'uda_params': 'udaParams',  # noqa: E501
+        'view_params': 'viewParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
     }
 
@@ -161,17 +191,20 @@ class ObjectAllOf(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            elastifile_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Elastifile object.. [optional]  # noqa: E501
-            flashblade_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Flashblade object.. [optional]  # noqa: E501
-            generic_nas_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GenericNas object.. [optional]  # noqa: E501
-            gpfs_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for GPFS object.. [optional]  # noqa: E501
-            isilon_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Isilon object.. [optional]  # noqa: E501
-            mssql_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Msssql object.. [optional]  # noqa: E501
-            netapp_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for NetApp object.. [optional]  # noqa: E501
-            oracle_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Oracle object.. [optional]  # noqa: E501
-            physical_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Physical object.. [optional]  # noqa: E501
-            sharepoint_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for Sharepoint object.. [optional]  # noqa: E501
-            uda_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for UDA object.. [optional]  # noqa: E501
+            elastifile_params (CommonNasObjectParams): [optional]  # noqa: E501
+            flashblade_params (FlashbladeObjectParams): [optional]  # noqa: E501
+            generic_nas_params (CommonNasObjectParams): [optional]  # noqa: E501
+            gpfs_params (CommonNasObjectParams): [optional]  # noqa: E501
+            group_params (GroupObjectEntityParams): [optional]  # noqa: E501
+            isilon_params (IsilonObjectParams): [optional]  # noqa: E501
+            mongo_db_params (MongoDBObjectParams): [optional]  # noqa: E501
+            mssql_params (MssqlObjectEntityParams): [optional]  # noqa: E501
+            netapp_params (NetappObjectParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectEntityParams): [optional]  # noqa: E501
+            physical_params (PhysicalObjectEntityParams): [optional]  # noqa: E501
+            sharepoint_params (SharepointObjectEntityParams): [optional]  # noqa: E501
+            uda_params (UdaObjectParams): [optional]  # noqa: E501
+            view_params (ViewObjectParams): [optional]  # noqa: E501
             vmware_params (VmwareObjectEntityParams): [optional]  # noqa: E501
         """
 

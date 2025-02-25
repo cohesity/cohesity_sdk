@@ -21,8 +21,8 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_protection_group_request_paramsdc3738211b78497f_a31b107b557906d5 import CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+from cohesity_sdk.cluster.model.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cluster.model.create_protection_group_run_request import CreateProtectionGroupRunRequest
 from cohesity_sdk.cluster.model.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
 from cohesity_sdk.cluster.model.error import Error
@@ -30,7 +30,7 @@ from cohesity_sdk.cluster.model.get_protection_run_progress_body import GetProte
 from cohesity_sdk.cluster.model.get_protection_run_stats_body import GetProtectionRunStatsBody
 from cohesity_sdk.cluster.model.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
 from cohesity_sdk.cluster.model.perform_run_action_response import PerformRunActionResponse
-from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
 from cohesity_sdk.cluster.model.protection_group_runs import ProtectionGroupRuns
 from cohesity_sdk.cluster.model.protection_groups import ProtectionGroups
 from cohesity_sdk.cluster.model.protection_runs_summary import ProtectionRunsSummary
@@ -67,7 +67,7 @@ class ProtectionGroupApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5): Specifies the parameters to create a Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to create a Protection Group.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -91,7 +91,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -120,7 +120,7 @@ class ProtectionGroupApi(object):
 
         self.create_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
         
@@ -152,7 +152,7 @@ class ProtectionGroupApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5,),
+                        (CreateOrUpdateProtectionGroupRequest,),
                 },
                 'attribute_map': {
                 },
@@ -476,7 +476,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -505,7 +505,7 @@ class ProtectionGroupApi(object):
 
         self.get_protection_group_by_id = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
         
@@ -632,7 +632,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                ProtectionGroupRun
+                CommonProtectionGroupRunResponseParameters
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -663,7 +663,7 @@ class ProtectionGroupApi(object):
 
         self.get_protection_group_run = _Endpoint(
             settings={
-                'response_type': (ProtectionGroupRun,),
+                'response_type': (CommonProtectionGroupRunResponseParameters,),
                 'auth': [
                     'TokenHeader',
         
@@ -782,8 +782,8 @@ class ProtectionGroupApi(object):
             Keyword Args:
                 request_initiator_type (str): Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests.. [optional]
                 run_id (str): Specifies the protection run id.. [optional]
-                start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
-                end_time_usecs (int): Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds).. [optional]
+                start_time_usecs (int): Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
+                end_time_usecs (int): End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
                 tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
                 include_tenants (bool): If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Group Runs created by the current user will be returned.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned.. [optional]
@@ -796,6 +796,12 @@ class ProtectionGroupApi(object):
                 exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
                 run_tags ([str]): Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                filter_by_end_time (bool): If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned.. [optional]
+                snapshot_target_types ([str]): Specifies the snapshot's target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.. [optional]
+                only_return_successful_copy_run (bool): If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored.. [optional]
+                filter_by_copy_task_end_time (bool): If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set.. [optional]
+                max_result_count (int): Identifies the max number of items to be returned. This is specifically to be used with pagination.. [optional]
+                pagination_cookie (str, none_type): Specifies the cookie to fetch the next page of results. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -876,11 +882,18 @@ class ProtectionGroupApi(object):
                     'exclude_non_restorable_runs',
                     'run_tags',
                     'use_cached_data',
+                    'filter_by_end_time',
+                    'snapshot_target_types',
+                    'only_return_successful_copy_run',
+                    'filter_by_copy_task_end_time',
+                    'max_result_count',
+                    'pagination_cookie',
                 ],
                 'required': [
                     'id',
                 ],
                 'nullable': [
+                    'pagination_cookie',
                 ],
                 'enum': [
                     'request_initiator_type',
@@ -889,14 +902,23 @@ class ProtectionGroupApi(object):
                     'replication_run_status',
                     'archival_run_status',
                     'cloud_spin_run_status',
+                    'snapshot_target_types',
                 ],
                 'validation': [
+                    'id',
                     'run_id',
                     'run_types',
+                    'snapshot_target_types',
                 ]
             },
             root_map={
                 'validations': {
+                    ('id',): {
+
+                        'regex': {
+                            'pattern': r'^\d+:\d+:\d+$',  # noqa: E501
+                        },
+                    },
                     ('run_id',): {
 
                         'regex': {
@@ -904,6 +926,9 @@ class ProtectionGroupApi(object):
                         },
                     },
                     ('run_types',): {
+
+                    },
+                    ('snapshot_target_types',): {
 
                     },
                 },
@@ -984,6 +1009,14 @@ class ProtectionGroupApi(object):
                         "SKIPPED": "Skipped",
                         "PAUSED": "Paused"
                     },
+                    ('snapshot_target_types',): {
+
+                        "LOCAL": "Local",
+                        "ARCHIVAL": "Archival",
+                        "RPAASARCHIVAL": "RpaasArchival",
+                        "STORAGEARRAYSNAPSHOT": "StorageArraySnapshot",
+                        "REMOTE": "Remote"
+                    },
                 },
                 'openapi_types': {
                     'id':
@@ -1020,6 +1053,18 @@ class ProtectionGroupApi(object):
                         ([str],),
                     'use_cached_data':
                         (bool,),
+                    'filter_by_end_time':
+                        (bool,),
+                    'snapshot_target_types':
+                        ([str],),
+                    'only_return_successful_copy_run':
+                        (bool,),
+                    'filter_by_copy_task_end_time':
+                        (bool,),
+                    'max_result_count':
+                        (int,),
+                    'pagination_cookie':
+                        (str, none_type,),
                 },
                 'attribute_map': {
                     'id': 'id',
@@ -1039,6 +1084,12 @@ class ProtectionGroupApi(object):
                     'exclude_non_restorable_runs': 'excludeNonRestorableRuns',
                     'run_tags': 'runTags',
                     'use_cached_data': 'useCachedData',
+                    'filter_by_end_time': 'filterByEndTime',
+                    'snapshot_target_types': 'snapshotTargetTypes',
+                    'only_return_successful_copy_run': 'onlyReturnSuccessfulCopyRun',
+                    'filter_by_copy_task_end_time': 'filterByCopyTaskEndTime',
+                    'max_result_count': 'maxResultCount',
+                    'pagination_cookie': 'paginationCookie',
                 },
                 'location_map': {
                     'id': 'path',
@@ -1058,6 +1109,12 @@ class ProtectionGroupApi(object):
                     'exclude_non_restorable_runs': 'query',
                     'run_tags': 'query',
                     'use_cached_data': 'query',
+                    'filter_by_end_time': 'query',
+                    'snapshot_target_types': 'query',
+                    'only_return_successful_copy_run': 'query',
+                    'filter_by_copy_task_end_time': 'query',
+                    'max_result_count': 'query',
+                    'pagination_cookie': 'query',
                 },
                 'collection_format_map': {
                     'tenant_ids': 'csv',
@@ -1067,6 +1124,7 @@ class ProtectionGroupApi(object):
                     'archival_run_status': 'csv',
                     'cloud_spin_run_status': 'csv',
                     'run_tags': 'csv',
+                    'snapshot_target_types': 'csv',
                 }
             },
             headers_map={
@@ -1117,6 +1175,9 @@ class ProtectionGroupApi(object):
                 prune_excluded_source_ids (bool): If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user.. [optional]
                 prune_source_ids (bool, none_type): If true, the response will exclude the list of source IDs within the group specified.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                source_ids ([int]): Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned.. [optional]
+                max_result_count (int): Identifies the max number of items to be returned. This is specifically to be used with pagination.. [optional]
+                pagination_cookie (str, none_type): Specifies the cookie to fetch the set page of results. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1201,10 +1262,14 @@ class ProtectionGroupApi(object):
                     'prune_excluded_source_ids',
                     'prune_source_ids',
                     'use_cached_data',
+                    'source_ids',
+                    'max_result_count',
+                    'pagination_cookie',
                 ],
                 'required': [],
                 'nullable': [
                     'prune_source_ids',
+                    'pagination_cookie',
                 ],
                 'enum': [
                     'request_initiator_type',
@@ -1240,9 +1305,14 @@ class ProtectionGroupApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -1252,6 +1322,7 @@ class ProtectionGroupApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -1407,6 +1478,12 @@ class ProtectionGroupApi(object):
                         (bool, none_type,),
                     'use_cached_data':
                         (bool,),
+                    'source_ids':
+                        ([int],),
+                    'max_result_count':
+                        (int,),
+                    'pagination_cookie':
+                        (str, none_type,),
                 },
                 'attribute_map': {
                     'request_initiator_type': 'requestInitiatorType',
@@ -1432,6 +1509,9 @@ class ProtectionGroupApi(object):
                     'prune_excluded_source_ids': 'pruneExcludedSourceIds',
                     'prune_source_ids': 'pruneSourceIds',
                     'use_cached_data': 'useCachedData',
+                    'source_ids': 'sourceIds',
+                    'max_result_count': 'maxResultCount',
+                    'pagination_cookie': 'paginationCookie',
                 },
                 'location_map': {
                     'request_initiator_type': 'header',
@@ -1457,6 +1537,9 @@ class ProtectionGroupApi(object):
                     'prune_excluded_source_ids': 'query',
                     'prune_source_ids': 'query',
                     'use_cached_data': 'query',
+                    'source_ids': 'query',
+                    'max_result_count': 'query',
+                    'pagination_cookie': 'query',
                 },
                 'collection_format_map': {
                     'ids': 'csv',
@@ -1470,6 +1553,7 @@ class ProtectionGroupApi(object):
                     'last_run_cloud_spin_status': 'csv',
                     'last_run_any_status': 'csv',
                     'tenant_ids': 'csv',
+                    'source_ids': 'csv',
                 }
             },
             headers_map={
@@ -1789,10 +1873,14 @@ class ProtectionGroupApi(object):
                 'enum': [
                 ],
                 'validation': [
+                    'run_id',
                 ]
             },
             root_map={
                 'validations': {
+                    ('run_id',): {
+                        'max_length': 255,
+                    },
                 },
                 'allowed_values': {
                 },
@@ -1877,8 +1965,8 @@ class ProtectionGroupApi(object):
 
 
             Keyword Args:
-                start_time_usecs (int): Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
-                end_time_usecs (int): Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
+                start_time_usecs (int): Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour.. [optional]
+                end_time_usecs (int): End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time.. [optional]
                 run_status ([str]): Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
@@ -2311,20 +2399,20 @@ class ProtectionGroupApi(object):
             callable=__get_run_debug_logs_for_object
         )
 
-        def __get_run_errors_report(
+        def __get_run_messages_report(
             self,
             id,
             run_id,
             object_id,
             **kwargs
         ):
-            """Get the CSV of errors/warnings for a given run and an object.  # noqa: E501
+            """Get the CSV of various Proto Messages for a given run and an object.  # noqa: E501
 
-            Get an CSV error report for given objectId and run id. Each row in CSV report contains the File Path, error/warning code and error/warning message.  # noqa: E501
+            Get an CSV report for given objectId and run id. Each row in CSV report contains the fields from correspoinding proto message.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.get_run_errors_report(id, run_id, object_id, async_req=True)
+            >>> thread = api.get_run_messages_report(id, run_id, object_id, async_req=True)
             >>> result = thread.get()
 
             Args:
@@ -2333,6 +2421,8 @@ class ProtectionGroupApi(object):
                 object_id (str): Specifies the id of the object for which errors/warnings are to be returned. 
 
             Keyword Args:
+                file_type (str): Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list. [optional]
+                name (str): Specifies the name of the source being backed up. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2385,7 +2475,7 @@ class ProtectionGroupApi(object):
                 object_id
             return self.call_with_http_info(**kwargs)
 
-        self.get_run_errors_report = _Endpoint(
+        self.get_run_messages_report = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -2394,7 +2484,7 @@ class ProtectionGroupApi(object):
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/download-messages',
-                'operation_id': 'get_run_errors_report',
+                'operation_id': 'get_run_messages_report',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -2403,6 +2493,8 @@ class ProtectionGroupApi(object):
                     'id',
                     'run_id',
                     'object_id',
+                    'file_type',
+                    'name',
                 ],
                 'required': [
                     'id',
@@ -2435,16 +2527,24 @@ class ProtectionGroupApi(object):
                         (str,),
                     'object_id':
                         (str,),
+                    'file_type':
+                        (str,),
+                    'name':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
                     'object_id': 'objectId',
+                    'file_type': 'fileType',
+                    'name': 'name',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
                     'object_id': 'path',
+                    'file_type': 'query',
+                    'name': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -2456,7 +2556,7 @@ class ProtectionGroupApi(object):
                 'content_type': [],
             },
             api_client=api_client,
-            callable=__get_run_errors_report
+            callable=__get_run_messages_report
         )
 
         def __get_runs_report(
@@ -2482,6 +2582,7 @@ class ProtectionGroupApi(object):
 
             Keyword Args:
                 file_type (str): Specifies the downloaded type, i.e: success_files_list, default: success_files_list. [optional]
+                name (str): Specifies the name of the source being backed up. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2553,6 +2654,7 @@ class ProtectionGroupApi(object):
                     'run_id',
                     'object_id',
                     'file_type',
+                    'name',
                 ],
                 'required': [
                     'id',
@@ -2594,18 +2696,22 @@ class ProtectionGroupApi(object):
                         (str,),
                     'file_type':
                         (str,),
+                    'name':
+                        (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'run_id': 'runId',
                     'object_id': 'objectId',
                     'file_type': 'fileType',
+                    'name': 'name',
                 },
                 'location_map': {
                     'id': 'path',
                     'run_id': 'path',
                     'object_id': 'path',
                     'file_type': 'query',
+                    'name': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -2769,7 +2875,7 @@ class ProtectionGroupApi(object):
 
             Args:
                 id (str): Specifies the id of the Protection Group.
-                body (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5): Specifies the parameters to update a Protection Group.
+                body (CreateOrUpdateProtectionGroupRequest): Specifies the parameters to update a Protection Group.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -2793,7 +2899,7 @@ class ProtectionGroupApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
+                ProtectionGroup
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -2824,7 +2930,7 @@ class ProtectionGroupApi(object):
 
         self.update_protection_group = _Endpoint(
             settings={
-                'response_type': (CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b,),
+                'response_type': (ProtectionGroup,),
                 'auth': [
                     'TokenHeader',
         
@@ -2860,7 +2966,7 @@ class ProtectionGroupApi(object):
                     'id':
                         (str,),
                     'body':
-                        (CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5,),
+                        (CreateOrUpdateProtectionGroupRequest,),
                 },
                 'attribute_map': {
                     'id': 'id',

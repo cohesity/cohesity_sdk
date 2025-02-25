@@ -28,7 +28,19 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+    from cohesity_sdk.cluster.model.recover_elastifile_to_elastifile_files_target_params import RecoverElastifileToElastifileFilesTargetParams
+    from cohesity_sdk.cluster.model.recover_other_nas_to_flashblade_files_target_params import RecoverOtherNasToFlashbladeFilesTargetParams
+    from cohesity_sdk.cluster.model.recover_other_nas_to_generic_nas_files_target_params import RecoverOtherNasToGenericNasFilesTargetParams
+    from cohesity_sdk.cluster.model.recover_other_nas_to_gpfs_files_target_params import RecoverOtherNasToGpfsFilesTargetParams
+    from cohesity_sdk.cluster.model.recover_other_nas_to_isilon_files_target_params import RecoverOtherNasToIsilonFilesTargetParams
+    from cohesity_sdk.cluster.model.recover_other_nas_to_netapp_files_target_params import RecoverOtherNasToNetappFilesTargetParams
     globals()['CommonRecoverFileAndFolderInfo'] = CommonRecoverFileAndFolderInfo
+    globals()['RecoverElastifileToElastifileFilesTargetParams'] = RecoverElastifileToElastifileFilesTargetParams
+    globals()['RecoverOtherNasToFlashbladeFilesTargetParams'] = RecoverOtherNasToFlashbladeFilesTargetParams
+    globals()['RecoverOtherNasToGenericNasFilesTargetParams'] = RecoverOtherNasToGenericNasFilesTargetParams
+    globals()['RecoverOtherNasToGpfsFilesTargetParams'] = RecoverOtherNasToGpfsFilesTargetParams
+    globals()['RecoverOtherNasToIsilonFilesTargetParams'] = RecoverOtherNasToIsilonFilesTargetParams
+    globals()['RecoverOtherNasToNetappFilesTargetParams'] = RecoverOtherNasToNetappFilesTargetParams
 
 
 class RecoverElastifileFilesParams(ModelNormal):
@@ -89,12 +101,12 @@ class RecoverElastifileFilesParams(ModelNormal):
         return {
             'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'elastifile_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'flashblade_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'generic_nas_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'gpfs_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'isilon_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'netapp_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'elastifile_target_params': (RecoverElastifileToElastifileFilesTargetParams,),  # noqa: E501
+            'flashblade_target_params': (RecoverOtherNasToFlashbladeFilesTargetParams,),  # noqa: E501
+            'generic_nas_target_params': (RecoverOtherNasToGenericNasFilesTargetParams,),  # noqa: E501
+            'gpfs_target_params': (RecoverOtherNasToGpfsFilesTargetParams,),  # noqa: E501
+            'isilon_target_params': (RecoverOtherNasToIsilonFilesTargetParams,),  # noqa: E501
+            'netapp_target_params': (RecoverOtherNasToNetappFilesTargetParams,),  # noqa: E501
         }
 
     @cached_property
@@ -165,12 +177,12 @@ class RecoverElastifileFilesParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            elastifile_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Elastifile recovery target.. [optional]  # noqa: E501
-            flashblade_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a Flashblade recovery target.. [optional]  # noqa: E501
-            generic_nas_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a generic NAS recovery target.. [optional]  # noqa: E501
-            gpfs_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for a GPFS recovery target.. [optional]  # noqa: E501
-            isilon_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Isilon recovery target.. [optional]  # noqa: E501
-            netapp_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the params for an Netapp recovery target.. [optional]  # noqa: E501
+            elastifile_target_params (RecoverElastifileToElastifileFilesTargetParams): [optional]  # noqa: E501
+            flashblade_target_params (RecoverOtherNasToFlashbladeFilesTargetParams): [optional]  # noqa: E501
+            generic_nas_target_params (RecoverOtherNasToGenericNasFilesTargetParams): [optional]  # noqa: E501
+            gpfs_target_params (RecoverOtherNasToGpfsFilesTargetParams): [optional]  # noqa: E501
+            isilon_target_params (RecoverOtherNasToIsilonFilesTargetParams): [optional]  # noqa: E501
+            netapp_target_params (RecoverOtherNasToNetappFilesTargetParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

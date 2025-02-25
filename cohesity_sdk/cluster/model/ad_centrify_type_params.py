@@ -29,8 +29,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.ad_centrify_type_params_all_of import AdCentrifyTypeParamsAllOf
     from cohesity_sdk.cluster.model.centrify_zone import CentrifyZone
+    from cohesity_sdk.cluster.model.fallback_user_id_mapping_params import FallbackUserIdMappingParams
     globals()['AdCentrifyTypeParamsAllOf'] = AdCentrifyTypeParamsAllOf
     globals()['CentrifyZone'] = CentrifyZone
+    globals()['FallbackUserIdMappingParams'] = FallbackUserIdMappingParams
 
 
 class AdCentrifyTypeParams(ModelComposed):
@@ -97,7 +99,7 @@ class AdCentrifyTypeParams(ModelComposed):
             'description': (str, none_type,),  # noqa: E501
             'distinguished_name': (str, none_type,),  # noqa: E501
             'schema': (str, none_type,),  # noqa: E501
-            'fallback_option': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'fallback_option': (FallbackUserIdMappingParams,),  # noqa: E501
             'zone_domain': (str, none_type,),  # noqa: E501
             'zone_name': (str, none_type,),  # noqa: E501
         }
@@ -137,7 +139,7 @@ class AdCentrifyTypeParams(ModelComposed):
             description (str, none_type): Specifies a description of the Centrify zone.
             distinguished_name (str, none_type): Specifies the distinguished name of the Centrify zone.
             schema (str, none_type): Specifies the schema of this Centrify zone.
-            fallback_option ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies a fallback user id mapping param in case the primary config does not work.
+            fallback_option (FallbackUserIdMappingParams):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

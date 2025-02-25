@@ -5,8 +5,8 @@ Specifies a set of filters for a file based Protection Group. These values are s
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**include_list** | **[str]** | Specifies the list of included files for this Protection Group. | [optional] 
 **exclude_list** | **[str]** | Specifies the list of excluded files for this protection Protection Group. Exclude filters have a higher priority than include filters. | [optional] 
+**include_list** | **[str]** | Specifies the list of included files for this Protection Group. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

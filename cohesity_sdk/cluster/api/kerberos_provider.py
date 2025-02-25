@@ -112,7 +112,7 @@ class KerberosProviderApi(object):
                 'response_type': (KerberosProvider,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/{id}',
@@ -239,7 +239,7 @@ class KerberosProviderApi(object):
                 'response_type': (KerberosProviders,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kerberos-providers',
@@ -377,7 +377,7 @@ class KerberosProviderApi(object):
                 'response_type': (KerberosProvider,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/register',
@@ -503,7 +503,7 @@ class KerberosProviderApi(object):
                 'response_type': (UnregisterKerberosProvider,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/{id}/unregister',
@@ -642,7 +642,7 @@ class KerberosProviderApi(object):
                 'response_type': (KerberosProvider,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kerberos-providers/{id}',

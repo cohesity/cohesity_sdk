@@ -27,8 +27,22 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_aws_aurora_params import RecoverAwsAuroraParams
+    from cohesity_sdk.cluster.model.recover_aws_file_and_folder_params import RecoverAwsFileAndFolderParams
+    from cohesity_sdk.cluster.model.recover_aws_rds_params import RecoverAwsRdsParams
+    from cohesity_sdk.cluster.model.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
+    from cohesity_sdk.cluster.model.recover_aws_vm_params import RecoverAwsVmParams
+    from cohesity_sdk.cluster.model.recover_rds_postgres_params import RecoverRDSPostgresParams
+    globals()['CommonDownloadFileAndFolderParams'] = CommonDownloadFileAndFolderParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverAwsAuroraParams'] = RecoverAwsAuroraParams
+    globals()['RecoverAwsFileAndFolderParams'] = RecoverAwsFileAndFolderParams
+    globals()['RecoverAwsRdsParams'] = RecoverAwsRdsParams
+    globals()['RecoverAwsS3BucketParams'] = RecoverAwsS3BucketParams
+    globals()['RecoverAwsVmParams'] = RecoverAwsVmParams
+    globals()['RecoverRDSPostgresParams'] = RecoverRDSPostgresParams
 
 
 class RecoverAwsParams(ModelNormal):
@@ -63,6 +77,8 @@ class RecoverAwsParams(ModelNormal):
             'RECOVERRDS': "RecoverRDS",
             'RECOVERAURORA': "RecoverAurora",
             'RECOVERFILES': "RecoverFiles",
+            'RECOVERS3BUCKETS': "RecoverS3Buckets",
+            'RECOVERRDSPOSTGRES': "RecoverRDSPostgres",
         },
     }
 
@@ -86,12 +102,14 @@ class RecoverAwsParams(ModelNormal):
         lazy_import()
         return {
             'recovery_action': (str,),  # noqa: E501
-            'download_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'download_file_and_folder_params': (CommonDownloadFileAndFolderParams,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
-            'recover_aurora_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_file_and_folder_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_rds_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'recover_vm_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_aurora_params': (RecoverAwsAuroraParams,),  # noqa: E501
+            'recover_file_and_folder_params': (RecoverAwsFileAndFolderParams,),  # noqa: E501
+            'recover_rds_ingest_params': (RecoverRDSPostgresParams,),  # noqa: E501
+            'recover_rds_params': (RecoverAwsRdsParams,),  # noqa: E501
+            'recover_s3_bucket_params': (RecoverAwsS3BucketParams,),  # noqa: E501
+            'recover_vm_params': (RecoverAwsVmParams,),  # noqa: E501
         }
 
     @cached_property
@@ -106,7 +124,9 @@ class RecoverAwsParams(ModelNormal):
         'objects': 'objects',  # noqa: E501
         'recover_aurora_params': 'recoverAuroraParams',  # noqa: E501
         'recover_file_and_folder_params': 'recoverFileAndFolderParams',  # noqa: E501
+        'recover_rds_ingest_params': 'recoverRdsIngestParams',  # noqa: E501
         'recover_rds_params': 'recoverRdsParams',  # noqa: E501
+        'recover_s3_bucket_params': 'recoverS3BucketParams',  # noqa: E501
         'recover_vm_params': 'recoverVmParams',  # noqa: E501
     }
 
@@ -160,12 +180,14 @@ class RecoverAwsParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            download_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to download files and folders.. [optional]  # noqa: E501
+            download_file_and_folder_params (CommonDownloadFileAndFolderParams): [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.. [optional]  # noqa: E501
-            recover_aurora_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS Aurora.. [optional]  # noqa: E501
-            recover_file_and_folder_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover files and folders.. [optional]  # noqa: E501
-            recover_rds_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS RDS.. [optional]  # noqa: E501
-            recover_vm_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover AWS VM.. [optional]  # noqa: E501
+            recover_aurora_params (RecoverAwsAuroraParams): [optional]  # noqa: E501
+            recover_file_and_folder_params (RecoverAwsFileAndFolderParams): [optional]  # noqa: E501
+            recover_rds_ingest_params (RecoverRDSPostgresParams): [optional]  # noqa: E501
+            recover_rds_params (RecoverAwsRdsParams): [optional]  # noqa: E501
+            recover_s3_bucket_params (RecoverAwsS3BucketParams): [optional]  # noqa: E501
+            recover_vm_params (RecoverAwsVmParams): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

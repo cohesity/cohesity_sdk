@@ -29,8 +29,10 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.create_ldap_params import CreateLdapParams
     from cohesity_sdk.cluster.model.ldap_all_of import LdapAllOf
+    from cohesity_sdk.cluster.model.simple_auth_params import SimpleAuthParams
     globals()['CreateLdapParams'] = CreateLdapParams
     globals()['LdapAllOf'] = LdapAllOf
+    globals()['SimpleAuthParams'] = SimpleAuthParams
 
 
 class Ldap(ModelComposed):
@@ -92,17 +94,19 @@ class Ldap(ModelComposed):
             'auth_type': (str,),  # noqa: E501
             'base_distinguished_name': (str, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'preferred_ldap_servers': ([str], none_type,),  # noqa: E501
-            'active_directory_id': (int, none_type,),  # noqa: E501
+            'active_directory_id': (int,),  # noqa: E501
+            'ad_domain_name': (str, none_type,),  # noqa: E501
             'attribute_common_name': (str, none_type,),  # noqa: E501
             'attribute_gid': (str, none_type,),  # noqa: E501
             'attribute_member_of': (str, none_type,),  # noqa: E501
             'attribute_uid': (str, none_type,),  # noqa: E501
             'attribute_username': (str, none_type,),  # noqa: E501
+            'domain_name': (str, none_type,),  # noqa: E501
             'object_class_group': (str, none_type,),  # noqa: E501
             'object_class_user': (str, none_type,),  # noqa: E501
             'port': (int, none_type,),  # noqa: E501
-            'simple_auth_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'preferred_ldap_servers': ([str], none_type,),  # noqa: E501
+            'simple_auth_params': (SimpleAuthParams,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'tenant_id': (str, none_type,),  # noqa: E501
         }
@@ -117,16 +121,18 @@ class Ldap(ModelComposed):
         'auth_type': 'authType',  # noqa: E501
         'base_distinguished_name': 'baseDistinguishedName',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'preferred_ldap_servers': 'preferredLdapServers',  # noqa: E501
         'active_directory_id': 'activeDirectoryId',  # noqa: E501
+        'ad_domain_name': 'adDomainName',  # noqa: E501
         'attribute_common_name': 'attributeCommonName',  # noqa: E501
         'attribute_gid': 'attributeGid',  # noqa: E501
         'attribute_member_of': 'attributeMemberOf',  # noqa: E501
         'attribute_uid': 'attributeUid',  # noqa: E501
         'attribute_username': 'attributeUsername',  # noqa: E501
+        'domain_name': 'domainName',  # noqa: E501
         'object_class_group': 'objectClassGroup',  # noqa: E501
         'object_class_user': 'objectClassUser',  # noqa: E501
         'port': 'port',  # noqa: E501
+        'preferred_ldap_servers': 'preferredLdapServers',  # noqa: E501
         'simple_auth_params': 'simpleAuthParams',  # noqa: E501
         'id': 'id',  # noqa: E501
         'tenant_id': 'tenantId',  # noqa: E501
@@ -145,14 +151,13 @@ class Ldap(ModelComposed):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, auth_type, base_distinguished_name, name, preferred_ldap_servers, *args, **kwargs):  # noqa: E501
+    def __init__(self, auth_type, base_distinguished_name, name, *args, **kwargs):  # noqa: E501
         """Ldap - a model defined in OpenAPI
 
         Args:
             auth_type (str): Specifies the LDAP authentication type.
             base_distinguished_name (str, none_type): Specifies the base distinguished name used as the base for LDAP search requests.
             name (str, none_type): Specifies the LDAP name.
-            preferred_ldap_servers ([str], none_type): Specifies a list of preferred LDAP servers. Servers should either be FQDNs or IP addresses.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -186,16 +191,19 @@ class Ldap(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            active_directory_id (int, none_type): Specifies the Active Directory id which is mapped to this LDAP.. [optional]  # noqa: E501
+            active_directory_id (int): Specifies the Active Directory id which is mapped to this LDAP.. [optional]  # noqa: E501
+            ad_domain_name (str, none_type): Specifies the domain name of an Active Directory which is mapped to this LDAP provider. [optional]  # noqa: E501
             attribute_common_name (str, none_type): Specifies name of the LDAP attribute used for common name of an object.. [optional]  # noqa: E501
             attribute_gid (str, none_type): Specifies name of the attribute used to lookup unix GID of an LDAP user.. [optional]  # noqa: E501
             attribute_member_of (str, none_type): Specifies name of the LDAP attribute used to lookup members of a group.. [optional]  # noqa: E501
             attribute_uid (str, none_type): Specifies name of the attribute used to lookup unix UID of an LDAP user.. [optional]  # noqa: E501
             attribute_username (str, none_type): Specifies name of the LDAP attribute used to lookup a user by user ID.. [optional]  # noqa: E501
+            domain_name (str, none_type): Specifies the name of the domain name to be used for querying LDAP servers from DNS.. [optional]  # noqa: E501
             object_class_group (str, none_type): Specifies name of the LDAP group object class for user accounts.. [optional]  # noqa: E501
             object_class_user (str, none_type): Specifies name of the LDAP user object class for user accounts.. [optional]  # noqa: E501
             port (int, none_type): Specifies the LDAP server port.. [optional]  # noqa: E501
-            simple_auth_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the parameters for LDAP with 'Simple' authentication type.. [optional]  # noqa: E501
+            preferred_ldap_servers ([str], none_type): Specifies a list of preferred LDAP servers. Servers should either be FQDNs or IP addresses.. [optional]  # noqa: E501
+            simple_auth_params (SimpleAuthParams): [optional]  # noqa: E501
             id (int, none_type): Specifies the LDAP id.. [optional]  # noqa: E501
             tenant_id (str, none_type): Specifies the LDAP tenant id.. [optional]  # noqa: E501
         """
@@ -235,7 +243,6 @@ class Ldap(ModelComposed):
             'auth_type': auth_type,
             'base_distinguished_name': base_distinguished_name,
             'name': name,
-            'preferred_ldap_servers': preferred_ldap_servers,
         }
         model_args = {}
         model_args.update(required_args)

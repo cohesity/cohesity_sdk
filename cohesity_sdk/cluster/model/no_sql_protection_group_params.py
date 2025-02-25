@@ -86,6 +86,7 @@ class NoSqlProtectionGroupParams(ModelNormal):
         """
         lazy_import()
         return {
+            'auto_scale_concurrency': (bool, none_type,),  # noqa: E501
             'bandwidth_mbps': (int, none_type,),  # noqa: E501
             'concurrency': (int, none_type,),  # noqa: E501
             'custom_source_name': (str, none_type,),  # noqa: E501
@@ -102,6 +103,7 @@ class NoSqlProtectionGroupParams(ModelNormal):
 
 
     attribute_map = {
+        'auto_scale_concurrency': 'autoScaleConcurrency',  # noqa: E501
         'bandwidth_mbps': 'bandwidthMBPS',  # noqa: E501
         'concurrency': 'concurrency',  # noqa: E501
         'custom_source_name': 'customSourceName',  # noqa: E501
@@ -158,6 +160,7 @@ class NoSqlProtectionGroupParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            auto_scale_concurrency (bool, none_type): Specifies the flag to automatically scale number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             bandwidth_mbps (int, none_type): Specifies the maximum network bandwidth that each concurrent IO Stream can use for exchanging data with the cluster.. [optional]  # noqa: E501
             concurrency (int, none_type): Specifies the maximum number of concurrent IO Streams that will be created to exchange data with the cluster.. [optional]  # noqa: E501
             custom_source_name (str, none_type): The user specified name for the Source on which this protection was run.. [optional]  # noqa: E501

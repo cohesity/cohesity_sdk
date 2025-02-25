@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_object_protection_response_params import AwsObjectProtectionResponseParams
-    from cohesity_sdk.cluster.model.common_object_protect_params import CommonObjectProtectParams
+    from cohesity_sdk.cluster.model.azure_object_protection_response_params import AzureObjectProtectionResponseParams
+    from cohesity_sdk.cluster.model.common_backup_params import CommonBackupParams
+    from cohesity_sdk.cluster.model.common_mssql_object_protection_params import CommonMssqlObjectProtectionParams
     from cohesity_sdk.cluster.model.elastifile_object_protection_response_params import ElastifileObjectProtectionResponseParams
     from cohesity_sdk.cluster.model.env_specific_object_protection_response_params import EnvSpecificObjectProtectionResponseParams
     from cohesity_sdk.cluster.model.flashblade_object_protection_response_params import FlashbladeObjectProtectionResponseParams
@@ -36,19 +38,21 @@ def lazy_import():
     from cohesity_sdk.cluster.model.gpfs_object_protection_response_params import GpfsObjectProtectionResponseParams
     from cohesity_sdk.cluster.model.hyper_v_object_protection_response_params import HyperVObjectProtectionResponseParams
     from cohesity_sdk.cluster.model.isilon_object_protection_response_params import IsilonObjectProtectionResponseParams
-    from cohesity_sdk.cluster.model.mssql_object_protection_response_params import MssqlObjectProtectionResponseParams
     from cohesity_sdk.cluster.model.netapp_object_protection_response_params import NetappObjectProtectionResponseParams
-    from cohesity_sdk.cluster.model.office365_object_protection_response_params import Office365ObjectProtectionResponseParams
-    from cohesity_sdk.cluster.model.oracle_object_protection_response_params import OracleObjectProtectionResponseParams
-    from cohesity_sdk.cluster.model.physical_object_protection_response_params import PhysicalObjectProtectionResponseParams
+    from cohesity_sdk.cluster.model.office365_object_protection_params import Office365ObjectProtectionParams
+    from cohesity_sdk.cluster.model.oracle_object_based_protection_params import OracleObjectBasedProtectionParams
+    from cohesity_sdk.cluster.model.physical_object_protection_params import PhysicalObjectProtectionParams
     from cohesity_sdk.cluster.model.policy_config import PolicyConfig
     from cohesity_sdk.cluster.model.protected_object_backup_config_all_of import ProtectedObjectBackupConfigAllOf
-    from cohesity_sdk.cluster.model.sfdc_object_protection_response_params import SfdcObjectProtectionResponseParams
+    from cohesity_sdk.cluster.model.sfdc_object_protection_params import SfdcObjectProtectionParams
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
+    from cohesity_sdk.cluster.model.uda_object_protection_params import UdaObjectProtectionParams
     from cohesity_sdk.cluster.model.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
     globals()['AwsObjectProtectionResponseParams'] = AwsObjectProtectionResponseParams
-    globals()['CommonObjectProtectParams'] = CommonObjectProtectParams
+    globals()['AzureObjectProtectionResponseParams'] = AzureObjectProtectionResponseParams
+    globals()['CommonBackupParams'] = CommonBackupParams
+    globals()['CommonMssqlObjectProtectionParams'] = CommonMssqlObjectProtectionParams
     globals()['ElastifileObjectProtectionResponseParams'] = ElastifileObjectProtectionResponseParams
     globals()['EnvSpecificObjectProtectionResponseParams'] = EnvSpecificObjectProtectionResponseParams
     globals()['FlashbladeObjectProtectionResponseParams'] = FlashbladeObjectProtectionResponseParams
@@ -56,16 +60,16 @@ def lazy_import():
     globals()['GpfsObjectProtectionResponseParams'] = GpfsObjectProtectionResponseParams
     globals()['HyperVObjectProtectionResponseParams'] = HyperVObjectProtectionResponseParams
     globals()['IsilonObjectProtectionResponseParams'] = IsilonObjectProtectionResponseParams
-    globals()['MssqlObjectProtectionResponseParams'] = MssqlObjectProtectionResponseParams
     globals()['NetappObjectProtectionResponseParams'] = NetappObjectProtectionResponseParams
-    globals()['Office365ObjectProtectionResponseParams'] = Office365ObjectProtectionResponseParams
-    globals()['OracleObjectProtectionResponseParams'] = OracleObjectProtectionResponseParams
-    globals()['PhysicalObjectProtectionResponseParams'] = PhysicalObjectProtectionResponseParams
+    globals()['Office365ObjectProtectionParams'] = Office365ObjectProtectionParams
+    globals()['OracleObjectBasedProtectionParams'] = OracleObjectBasedProtectionParams
+    globals()['PhysicalObjectProtectionParams'] = PhysicalObjectProtectionParams
     globals()['PolicyConfig'] = PolicyConfig
     globals()['ProtectedObjectBackupConfigAllOf'] = ProtectedObjectBackupConfigAllOf
-    globals()['SfdcObjectProtectionResponseParams'] = SfdcObjectProtectionResponseParams
+    globals()['SfdcObjectProtectionParams'] = SfdcObjectProtectionParams
     globals()['SlaRule'] = SlaRule
     globals()['TimeOfDay'] = TimeOfDay
+    globals()['UdaObjectProtectionParams'] = UdaObjectProtectionParams
     globals()['VmwareObjectProtectionResponseParams'] = VmwareObjectProtectionResponseParams
 
 
@@ -120,9 +124,14 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
             'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
@@ -132,6 +141,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -187,6 +197,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'start_time': (TimeOfDay,),  # noqa: E501
             'storage_domain_id': (int, none_type,),  # noqa: E501
             'aws_params': (AwsObjectProtectionResponseParams,),  # noqa: E501
+            'azure_params': (AzureObjectProtectionResponseParams,),  # noqa: E501
             'elastifile_params': (ElastifileObjectProtectionResponseParams,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'flashblade_params': (FlashbladeObjectProtectionResponseParams,),  # noqa: E501
@@ -194,12 +205,13 @@ class ProtectedObjectBackupConfig(ModelComposed):
             'gpfs_params': (GpfsObjectProtectionResponseParams,),  # noqa: E501
             'hyperv_params': (HyperVObjectProtectionResponseParams,),  # noqa: E501
             'isilon_params': (IsilonObjectProtectionResponseParams,),  # noqa: E501
-            'mssql_params': (MssqlObjectProtectionResponseParams,),  # noqa: E501
+            'mssql_params': (CommonMssqlObjectProtectionParams,),  # noqa: E501
             'netapp_params': (NetappObjectProtectionResponseParams,),  # noqa: E501
-            'office365_params': (Office365ObjectProtectionResponseParams,),  # noqa: E501
-            'oracle_params': (OracleObjectProtectionResponseParams,),  # noqa: E501
-            'physical_params': (PhysicalObjectProtectionResponseParams,),  # noqa: E501
-            'sfdc_params': (SfdcObjectProtectionResponseParams,),  # noqa: E501
+            'office365_params': (Office365ObjectProtectionParams,),  # noqa: E501
+            'oracle_params': (OracleObjectBasedProtectionParams,),  # noqa: E501
+            'physical_params': (PhysicalObjectProtectionParams,),  # noqa: E501
+            'sfdc_params': (SfdcObjectProtectionParams,),  # noqa: E501
+            'uda_params': (UdaObjectProtectionParams,),  # noqa: E501
             'vmware_params': (VmwareObjectProtectionResponseParams,),  # noqa: E501
             'auto_protect_parent_id': (int, none_type,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
@@ -225,6 +237,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
         'start_time': 'startTime',  # noqa: E501
         'storage_domain_id': 'storageDomainId',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
@@ -238,6 +251,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
         'oracle_params': 'oracleParams',  # noqa: E501
         'physical_params': 'physicalParams',  # noqa: E501
         'sfdc_params': 'sfdcParams',  # noqa: E501
+        'uda_params': 'udaParams',  # noqa: E501
         'vmware_params': 'vmwareParams',  # noqa: E501
         'auto_protect_parent_id': 'autoProtectParentId',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
@@ -304,6 +318,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
             start_time (TimeOfDay): [optional]  # noqa: E501
             storage_domain_id (int, none_type): Specifies the Storage Domain (View Box) ID where the object backup will be taken. This is not required if Cloud archive direct is benig used.. [optional]  # noqa: E501
             aws_params (AwsObjectProtectionResponseParams): [optional]  # noqa: E501
+            azure_params (AzureObjectProtectionResponseParams): [optional]  # noqa: E501
             elastifile_params (ElastifileObjectProtectionResponseParams): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment for current object.. [optional]  # noqa: E501
             flashblade_params (FlashbladeObjectProtectionResponseParams): [optional]  # noqa: E501
@@ -311,12 +326,13 @@ class ProtectedObjectBackupConfig(ModelComposed):
             gpfs_params (GpfsObjectProtectionResponseParams): [optional]  # noqa: E501
             hyperv_params (HyperVObjectProtectionResponseParams): [optional]  # noqa: E501
             isilon_params (IsilonObjectProtectionResponseParams): [optional]  # noqa: E501
-            mssql_params (MssqlObjectProtectionResponseParams): [optional]  # noqa: E501
+            mssql_params (CommonMssqlObjectProtectionParams): [optional]  # noqa: E501
             netapp_params (NetappObjectProtectionResponseParams): [optional]  # noqa: E501
-            office365_params (Office365ObjectProtectionResponseParams): [optional]  # noqa: E501
-            oracle_params (OracleObjectProtectionResponseParams): [optional]  # noqa: E501
-            physical_params (PhysicalObjectProtectionResponseParams): [optional]  # noqa: E501
-            sfdc_params (SfdcObjectProtectionResponseParams): [optional]  # noqa: E501
+            office365_params (Office365ObjectProtectionParams): [optional]  # noqa: E501
+            oracle_params (OracleObjectBasedProtectionParams): [optional]  # noqa: E501
+            physical_params (PhysicalObjectProtectionParams): [optional]  # noqa: E501
+            sfdc_params (SfdcObjectProtectionParams): [optional]  # noqa: E501
+            uda_params (UdaObjectProtectionParams): [optional]  # noqa: E501
             vmware_params (VmwareObjectProtectionResponseParams): [optional]  # noqa: E501
             auto_protect_parent_id (int, none_type): Specifies the parent ID of the object which the backup configuration is applied to if this is an auto protect config.. [optional]  # noqa: E501
             is_active (bool, none_type): Specifies whether or not protection has been deactivated on this object.. [optional]  # noqa: E501
@@ -393,7 +409,7 @@ class ProtectedObjectBackupConfig(ModelComposed):
           'anyOf': [
           ],
           'allOf': [
-              CommonObjectProtectParams,
+              CommonBackupParams,
               EnvSpecificObjectProtectionResponseParams,
               ProtectedObjectBackupConfigAllOf,
           ],

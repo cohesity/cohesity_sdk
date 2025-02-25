@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
     from cohesity_sdk.cluster.model.root_public_folder_param import RootPublicFolderParam
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
     globals()['RootPublicFolderParam'] = RootPublicFolderParam
 
 
@@ -86,7 +88,7 @@ class RecoverPublicFoldersParams(ModelNormal):
             'root_public_folders': ([RootPublicFolderParam], none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
             'target_folder_path': (str, none_type,),  # noqa: E501
-            'target_root_public_folder': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'target_root_public_folder': (RecoveryObjectIdentifier,),  # noqa: E501
         }
 
     @cached_property
@@ -154,7 +156,7 @@ class RecoverPublicFoldersParams(ModelNormal):
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering other Public Folders if one of Public Folder failed to recover. Default value is false.. [optional]  # noqa: E501
             target_folder_path (str, none_type): Specifies the path to the target folder.. [optional]  # noqa: E501
-            target_root_public_folder ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the target RootPublicFolder to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
+            target_root_public_folder (RecoveryObjectIdentifier): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

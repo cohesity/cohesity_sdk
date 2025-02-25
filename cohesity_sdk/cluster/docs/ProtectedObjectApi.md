@@ -17,6 +17,7 @@ Perform actions on Protected Objects.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.protectd_objects_action_request import ProtectdObjectsActionRequest
@@ -33,17 +34,22 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 body = ProtectdObjectsActionRequest(
         action="Pause",
         object_action_key="kVMware",
         pause_params=ProtectedObjectPauseActionParams(
             objects=[
-                PauseActionObjectLevelParams(),
+                ProtectionObjectInput(
+                    id=1,
+                ),
             ],
         ),
         resume_params=ProtectedObjectResumeActionParams(
             objects=[
-                ResumeActionObjectLevelParams(),
+                ProtectionObjectInput(
+                    id=1,
+                ),
             ],
         ),
         run_now_params=ProtectedObjectRunNowActionParams(
@@ -84,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -109,6 +115,7 @@ Create Protect Objects Backup.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.create_protected_objects_response import CreateProtectedObjectsResponse
@@ -124,6 +131,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = CreateProtectedObjectsRequest() # CreateProtectedObjectsRequest | Specifies the parameters to protect objects.
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
@@ -160,7 +168,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -185,6 +193,7 @@ Update Protected object backup configuration given a object id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -200,6 +209,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies the id of the Protected Object.
 body = UpdateProtectedObjectsRequest() # UpdateProtectedObjectsRequest | Specifies the parameters to perform an update on protected objects.
@@ -238,7 +248,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **hbase_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
 **hdfs_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
 **hive_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
-**mssql_connection_params** | [**MssqlConnectionParams**](MssqlConnectionParams.md) |  | [optional] 
+**mssql_connection_params** | [**MsSQLCommonConnectionParams**](MsSQLCommonConnectionParams.md) |  | [optional] 
 **oracle_connection_params** | [**OracleConnectionParams**](OracleConnectionParams.md) |  | [optional] 
 **vmware_connection_params** | [**VmwareConnectionParams**](VmwareConnectionParams.md) |  | [optional] 
 

@@ -111,7 +111,7 @@ class KeyManagementSystemApi(object):
                 'response_type': (KmsConfiguration,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kms',
@@ -233,7 +233,7 @@ class KeyManagementSystemApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kms/{id}',
@@ -351,7 +351,7 @@ class KeyManagementSystemApi(object):
                 'response_type': (KmsConfigurations,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kms',
@@ -481,7 +481,7 @@ class KeyManagementSystemApi(object):
                 'response_type': (KmsConfiguration,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/kms/{id}',

@@ -22,14 +22,13 @@ Method | HTTP request | Description
 [**get_user_api_key_by_id**](UserApi.md#get_user_api_key_by_id) | **GET** /users/{userSid}/api-keys/{id} | Get the API key by id.
 [**get_user_api_keys**](UserApi.md#get_user_api_keys) | **GET** /users/{userSid}/api-keys | Get the list of API keys owned by the user.
 [**get_user_by_sid**](UserApi.md#get_user_by_sid) | **GET** /users/{sid} | Get User by SID.
-[**get_user_ui_config**](UserApi.md#get_user_ui_config) | **GET** /users/ui-config | Get user UI config.
 [**get_users**](UserApi.md#get_users) | **GET** /users | Get Users.
+[**regenerate_s3_key**](UserApi.md#regenerate_s3_key) | **POST** /users/{sid}/s3-secret-key | Reset S3 secret access key
 [**rotate_user_api_key**](UserApi.md#rotate_user_api_key) | **POST** /users/{userSid}/api-keys/{id}/rotate | Refresh an existing user API key.
 [**update_group**](UserApi.md#update_group) | **PUT** /groups/{sid} | Update Group
 [**update_principal_sources**](UserApi.md#update_principal_sources) | **PUT** /security-principals/{sid}/sources | Update protection sources assigned to a user/group.
 [**update_user**](UserApi.md#update_user) | **PUT** /users/{sid} | Update User information.
 [**update_user_api_key_by_id**](UserApi.md#update_user_api_key_by_id) | **PUT** /users/{userSid}/api-keys/{id} | Update a user API key.
-[**update_user_ui_config**](UserApi.md#update_user_ui_config) | **PUT** /users/ui-config | Update user UI config.
 
 
 # **create_group**
@@ -61,14 +60,18 @@ client = ClusterClient(
 
 body = CreateGroupsParams([
         CreateGroupParams(
-            name="name_example",
-            domain="domain_example",
             description="description_example",
-            local_group_params={},
+            domain="domain_example",
+            local_group_params=LocalGroupParams(
+                user_sids=[
+                    "user_sids_example",
+                ],
+            ),
+            name="name_example",
+            restricted=True,
             roles=[
                 "roles_example",
             ],
-            restricted=True,
             tenant_ids=[
                 "tenant_ids_example",
             ],
@@ -141,13 +144,13 @@ client = ClusterClient(
 
 
 body = CreateUserSessionRequestParams(
-        username="username_example",
-        password="password_example",
-        domain="domain_example",
         certificate="certificate_example",
-        private_key="private_key_example",
+        domain="domain_example",
         otp_code="otp_code_example",
         otp_type="email",
+        password="password_example",
+        private_key="private_key_example",
+        username="username_example",
     ) # CreateUserSessionRequestParams | Specifies the parameters to create a user session
 
 # example passing only required values which don't have defaults set
@@ -217,9 +220,9 @@ client = ClusterClient(
 
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 body = CreateOrUpdateAPIKeyRequest(
-        name="name_example",
-        is_active=True,
         expiry_time_msecs=1,
+        is_active=True,
+        name="name_example",
     ) # CreateOrUpdateAPIKeyRequest | Request to create a new API Key
 
 # example passing only required values which don't have defaults set
@@ -274,8 +277,8 @@ Add one or more users to Cohesity Cluster.
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.users_list import UsersList
+from cohesity_sdk.cluster.model.create_users_parameters import CreateUsersParameters
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_users_params import CreateUsersParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -288,21 +291,22 @@ client = ClusterClient(
 )
 
 
-body = CreateUsersParams([
-        CreateUserParams(
-            username="username_example",
-            domain="domain_example",
+body = CreateUsersParameters([
+        CreateUserParameters(
+            allow_smb_access_token=True,
             description="description_example",
-            local_user_params={},
+            domain="domain_example",
+            effective_time_msecs=1,
+            expiry_time_msecs=1,
+            local_user_params=LocalUserParams(),
+            locked=True,
+            restricted=True,
             roles=[
                 "roles_example",
             ],
-            restricted=True,
-            effective_time_msecs=1,
-            expiry_time_msecs=1,
-            locked=True,
+            username="username_example",
         ),
-    ]) # CreateUsersParams | If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
+    ]) # CreateUsersParameters | If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
 
 # example passing only required values which don't have defaults set
 try:
@@ -318,7 +322,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateUsersParams**](CreateUsersParams.md)| If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster. |
+ **body** | [**CreateUsersParameters**](CreateUsersParameters.md)| If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster. |
 
 ### Return type
 
@@ -1389,68 +1393,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_user_ui_config**
-> UserUiConfig get_user_ui_config()
-
-Get user UI config.
-
-Get customized UI config for the logged in user.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.user_ui_config import UserUiConfig
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-
-# example, this endpoint has no required or optional parameters
-try:
-	# Get user UI config.
-	api_response = client.user.get_user_ui_config()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling UserApi->get_user_ui_config: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**UserUiConfig**](UserUiConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_users**
 > UsersList get_users()
 
@@ -1542,6 +1484,72 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **regenerate_s3_key**
+> SecretKeyEntity regenerate_s3_key(sid)
+
+Reset S3 secret access key
+
+Reset the S3 secret access key for the specified user on the Cohesity Cluster. Admin users who have the Manage Users privilege can generate keys for other users. When generating a new key, anyone using the old key will lose access until they retrieve and use the newly generated key. The user must have the following privilege to access this endpoint, 'Manage S3 Keys'.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.secret_key_entity import SecretKeyEntity
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+sid = "sid_example" # str | Specify the SID of the user.
+
+# example passing only required values which don't have defaults set
+try:
+	# Reset S3 secret access key
+	api_response = client.user.regenerate_s3_key(sid)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling UserApi->regenerate_s3_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **str**| Specify the SID of the user. |
+
+### Return type
+
+[**SecretKeyEntity**](SecretKeyEntity.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **rotate_user_api_key**
 > CreatedUserAPIKey rotate_user_api_key(user_sid, id)
 
@@ -1622,9 +1630,9 @@ Only group settings on the Cohesity Cluster are updated. No changes are made to 
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.update_group_params import UpdateGroupParams
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.group_params import GroupParams
+from cohesity_sdk.cluster.model.update_group_parameters import UpdateGroupParameters
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1638,17 +1646,21 @@ client = ClusterClient(
 
 
 sid = "sid_example" # str | Specify the SID of the group.
-body = UpdateGroupParams(
+body = UpdateGroupParameters(
         description="description_example",
-        local_group_params={},
+        local_group_params=LocalGroupParams(
+            user_sids=[
+                "user_sids_example",
+            ],
+        ),
+        restricted=True,
         roles=[
             "roles_example",
         ],
-        restricted=True,
         tenant_ids=[
             "tenant_ids_example",
         ],
-    ) # UpdateGroupParams | Specifies the group information.
+    ) # UpdateGroupParameters | Specifies the group information.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1665,7 +1677,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sid** | **str**| Specify the SID of the group. |
- **body** | [**UpdateGroupParams**](UpdateGroupParams.md)| Specifies the group information. |
+ **body** | [**UpdateGroupParameters**](UpdateGroupParameters.md)| Specifies the group information. |
 
 ### Return type
 
@@ -1776,9 +1788,9 @@ Update an existing user on the Cohesity Cluster. Only user settings on the Cohes
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.update_user_parameters import UpdateUserParameters
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.user_params import UserParams
-from cohesity_sdk.cluster.model.update_user_params import UpdateUserParams
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1792,7 +1804,7 @@ client = ClusterClient(
 
 
 sid = "sid_example" # str | Specify the SID of the user.
-body = UpdateUserParams() # UpdateUserParams | Specifies the user information.
+body = UpdateUserParameters() # UpdateUserParameters | Specifies the user information.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1809,7 +1821,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sid** | **str**| Specify the SID of the user. |
- **body** | [**UpdateUserParams**](UpdateUserParams.md)| Specifies the user information. |
+ **body** | [**UpdateUserParameters**](UpdateUserParameters.md)| Specifies the user information. |
 
 ### Return type
 
@@ -1863,9 +1875,9 @@ client = ClusterClient(
 id = "id_example" # str | Specify the id of the API key.
 user_sid = "userSid_example" # str | Specify the SID of the API key owner.
 body = CreateOrUpdateAPIKeyRequest(
-        name="name_example",
-        is_active=True,
         expiry_time_msecs=1,
+        is_active=True,
+        name="name_example",
     ) # CreateOrUpdateAPIKeyRequest | Request to update a user API key
 
 # example passing only required values which don't have defaults set
@@ -1904,75 +1916,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_user_ui_config**
-> UserUiConfig update_user_ui_config(body)
-
-Update user UI config.
-
-Update customized UI config for the logged in user.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.user_ui_config import UserUiConfig
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-
-body = UserUiConfig(
-        preferences="preferences_example",
-        locale="locale_example",
-    ) # UserUiConfig | Specifies the user UI config.
-
-# example passing only required values which don't have defaults set
-try:
-	# Update user UI config.
-	api_response = client.user.update_user_ui_config(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling UserApi->update_user_ui_config: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**UserUiConfig**](UserUiConfig.md)| Specifies the user UI config. |
-
-### Return type
-
-[**UserUiConfig**](UserUiConfig.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
 **0** | Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

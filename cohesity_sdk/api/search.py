@@ -21,11 +21,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.common_search_indexed_objects_request_params10ad3b2c_e8864d87_b3c05ce6605593f0 import CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0
-from cohesity_sdk.cluster.model.common_search_indexed_objects_response_params53dc35a6_c64f4952_a4482b9a1911cfe8 import CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.objects_search_response_body import ObjectsSearchResponseBody
 from cohesity_sdk.cluster.model.protected_objects_search_response_body import ProtectedObjectsSearchResponseBody
+from cohesity_sdk.cluster.model.search_indexed_objects_request import SearchIndexedObjectsRequest
+from cohesity_sdk.cluster.model.search_indexed_objects_response_body import SearchIndexedObjectsResponseBody
 
 
 class SearchApi(object):
@@ -55,7 +55,7 @@ class SearchApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0): Specifies the parameters to search for indexed objects.
+                body (SearchIndexedObjectsRequest): Specifies the parameters to search for indexed objects.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -79,7 +79,7 @@ class SearchApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8
+                SearchIndexedObjectsResponseBody
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -108,7 +108,7 @@ class SearchApi(object):
 
         self.search_indexed_objects = _Endpoint(
             settings={
-                'response_type': (CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8,),
+                'response_type': (SearchIndexedObjectsResponseBody,),
                 'auth': [
                     'TokenHeader',
         
@@ -140,7 +140,7 @@ class SearchApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0,),
+                        (SearchIndexedObjectsRequest,),
                 },
                 'attribute_map': {
                 },
@@ -187,6 +187,7 @@ class SearchApi(object):
                 object_ids ([int]): Specifies a list of Object ids to filter.. [optional]
                 os_types ([str]): Specifies the operating system types to filter objects on.. [optional]
                 o365_object_types ([str]): Specifies the object types to filter objects on. Only applicable if the environment is o365.. [optional]
+                azure_object_types ([str]): Specifies the object types to filter objects on. Only applicable if the environment is Azure.. [optional]
                 source_ids ([int]): Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 source_uuids ([str]): Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned.. [optional]
                 is_protected (bool): Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned.. [optional]
@@ -273,6 +274,7 @@ class SearchApi(object):
                     'object_ids',
                     'os_types',
                     'o365_object_types',
+                    'azure_object_types',
                     'source_ids',
                     'source_uuids',
                     'is_protected',
@@ -298,6 +300,7 @@ class SearchApi(object):
                     'protection_types',
                     'os_types',
                     'o365_object_types',
+                    'azure_object_types',
                     'last_run_status_list',
                 ],
                 'validation': [
@@ -344,6 +347,7 @@ class SearchApi(object):
                         "KAZURE": "kAzure",
                         "KKVM": "kKVM",
                         "KAWS": "kAWS",
+                        "KAZURESQL": "kAzureSQL",
                         "KACROPOLIS": "kAcropolis",
                         "KGCP": "kGCP",
                         "KPHYSICAL": "kPhysical",
@@ -355,6 +359,7 @@ class SearchApi(object):
                         "KELASTIFILE": "kElastifile",
                         "KGPFS": "kGPFS",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KNIMBLE": "kNimble",
                         "KSQL": "kSQL",
                         "KORACLE": "kOracle",
@@ -380,6 +385,9 @@ class SearchApi(object):
                         "KSNAPSHOTMANAGER": "kSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSS3": "kAwsS3",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURESQL": "kAzureSQL",
                         "KFILE": "kFile",
                         "KVOLUME": "kVolume"
                     },
@@ -391,7 +399,8 @@ class SearchApi(object):
                         "KSOLARIS": "kSolaris",
                         "KSAPHANA": "kSapHana",
                         "KOTHER": "kOther",
-                        "KHPUX": "kHPUX"
+                        "KHPUX": "kHPUX",
+                        "KVOS": "kVOS"
                     },
                     ('o365_object_types',): {
 
@@ -414,6 +423,27 @@ class SearchApi(object):
                         "KO365EXCHANGE": "kO365Exchange",
                         "KO365ONEDRIVE": "kO365OneDrive",
                         "KO365SHAREPOINT": "kO365Sharepoint"
+                    },
+                    ('azure_object_types',): {
+
+                        "KTENANT": "kTenant",
+                        "KSUBSCRIPTION": "kSubscription",
+                        "KRESOURCEGROUP": "kResourceGroup",
+                        "KVIRTUALMACHINE": "kVirtualMachine",
+                        "KSTORAGEACCOUNT": "kStorageAccount",
+                        "KSTORAGEKEY": "kStorageKey",
+                        "KSTORAGECONTAINER": "kStorageContainer",
+                        "KSTORAGEBLOB": "kStorageBlob",
+                        "KAPPLICATIONSECURITYGROUP": "kApplicationSecurityGroup",
+                        "KNETWORKSECURITYGROUP": "kNetworkSecurityGroup",
+                        "KVIRTUALNETWORK": "kVirtualNetwork",
+                        "KSUBNET": "kSubnet",
+                        "KCOMPUTEOPTIONS": "kComputeOptions",
+                        "KSNAPSHOTMANAGERPERMIT": "kSnapshotManagerPermit",
+                        "KTAG": "kTag",
+                        "KAVAILABILITYSET": "kAvailabilitySet",
+                        "KSQLSERVER": "kSQLServer",
+                        "KSQLDATABASE": "kSQLDatabase"
                     },
                     ('last_run_status_list',): {
 
@@ -450,6 +480,8 @@ class SearchApi(object):
                     'os_types':
                         ([str],),
                     'o365_object_types':
+                        ([str],),
+                    'azure_object_types':
                         ([str],),
                     'source_ids':
                         ([int],),
@@ -493,6 +525,7 @@ class SearchApi(object):
                     'object_ids': 'objectIds',
                     'os_types': 'osTypes',
                     'o365_object_types': 'o365ObjectTypes',
+                    'azure_object_types': 'azureObjectTypes',
                     'source_ids': 'sourceIds',
                     'source_uuids': 'sourceUuids',
                     'is_protected': 'isProtected',
@@ -520,6 +553,7 @@ class SearchApi(object):
                     'object_ids': 'query',
                     'os_types': 'query',
                     'o365_object_types': 'query',
+                    'azure_object_types': 'query',
                     'source_ids': 'query',
                     'source_uuids': 'query',
                     'is_protected': 'query',
@@ -544,6 +578,7 @@ class SearchApi(object):
                     'object_ids': 'csv',
                     'os_types': 'csv',
                     'o365_object_types': 'csv',
+                    'azure_object_types': 'csv',
                     'source_ids': 'csv',
                     'source_uuids': 'csv',
                     'last_run_status_list': 'csv',
@@ -720,6 +755,7 @@ class SearchApi(object):
                         "KAZURE": "kAzure",
                         "KKVM": "kKVM",
                         "KAWS": "kAWS",
+                        "KAZURESQL": "kAzureSQL",
                         "KACROPOLIS": "kAcropolis",
                         "KGCP": "kGCP",
                         "KPHYSICAL": "kPhysical",
@@ -731,6 +767,7 @@ class SearchApi(object):
                         "KELASTIFILE": "kElastifile",
                         "KGPFS": "kGPFS",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KNIMBLE": "kNimble",
                         "KSQL": "kSQL",
                         "KORACLE": "kOracle",
@@ -759,6 +796,7 @@ class SearchApi(object):
                         "RECOVERVAPPS": "RecoverVApps",
                         "RECOVERRDS": "RecoverRDS",
                         "RECOVERAURORA": "RecoverAurora",
+                        "RECOVERS3BUCKETS": "RecoverS3Buckets",
                         "RECOVERAPPS": "RecoverApps",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
                         "RECOVERPHYSICALVOLUMES": "RecoverPhysicalVolumes",
@@ -775,7 +813,10 @@ class SearchApi(object):
                         "RECOVERMSGROUP": "RecoverMsGroup",
                         "RECOVERSHAREPOINT": "RecoverSharePoint",
                         "CONVERTTOPST": "ConvertToPst",
-                        "RECOVERSFDCRECORDS": "RecoverSfdcRecords"
+                        "RECOVERSFDCRECORDS": "RecoverSfdcRecords",
+                        "RECOVERAZURESQL": "RecoverAzureSQL",
+                        "DOWNLOADCHATS": "DownloadChats",
+                        "RECOVERRDSPOSTGRES": "RecoverRDSPostgres"
                     },
                     ('object_action_key',): {
                         'None': None,
@@ -788,9 +829,14 @@ class SearchApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -800,6 +846,7 @@ class SearchApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -831,7 +878,8 @@ class SearchApi(object):
                         "KSOLARIS": "kSolaris",
                         "KSAPHANA": "kSapHana",
                         "KOTHER": "kOther",
-                        "KHPUX": "kHPUX"
+                        "KHPUX": "kHPUX",
+                        "KVOS": "kVOS"
                     },
                 },
                 'openapi_types': {

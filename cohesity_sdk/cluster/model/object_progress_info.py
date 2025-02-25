@@ -29,11 +29,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 def lazy_import():
     from cohesity_sdk.cluster.model.object_identifier import ObjectIdentifier
     from cohesity_sdk.cluster.model.object_progress_info_all_of import ObjectProgressInfoAllOf
+    from cohesity_sdk.cluster.model.object_string_identifier import ObjectStringIdentifier
     from cohesity_sdk.cluster.model.progress_stats import ProgressStats
     from cohesity_sdk.cluster.model.progress_task_event import ProgressTaskEvent
     from cohesity_sdk.cluster.model.progress_task_info import ProgressTaskInfo
     globals()['ObjectIdentifier'] = ObjectIdentifier
     globals()['ObjectProgressInfoAllOf'] = ObjectProgressInfoAllOf
+    globals()['ObjectStringIdentifier'] = ObjectStringIdentifier
     globals()['ProgressStats'] = ProgressStats
     globals()['ProgressTaskEvent'] = ProgressTaskEvent
     globals()['ProgressTaskInfo'] = ProgressTaskInfo
@@ -73,6 +75,7 @@ class ObjectProgressInfo(ModelComposed):
             'KAZURE': "kAzure",
             'KKVM': "kKVM",
             'KAWS': "kAWS",
+            'KAZURESQL': "kAzureSQL",
             'KACROPOLIS': "kAcropolis",
             'KGCP': "kGCP",
             'KPHYSICAL': "kPhysical",
@@ -84,6 +87,7 @@ class ObjectProgressInfo(ModelComposed):
             'KELASTIFILE': "kElastifile",
             'KGPFS': "kGPFS",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KSQL': "kSQL",
             'KORACLE': "kOracle",
@@ -131,6 +135,7 @@ class ObjectProgressInfo(ModelComposed):
         """
         lazy_import()
         return {
+            'entity_id': (ObjectStringIdentifier,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
@@ -153,6 +158,7 @@ class ObjectProgressInfo(ModelComposed):
 
 
     attribute_map = {
+        'entity_id': 'entityId',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -216,6 +222,7 @@ class ObjectProgressInfo(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            entity_id (ObjectStringIdentifier): [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the object.. [optional]  # noqa: E501
             id (int, none_type): Specifies object id.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the object.. [optional]  # noqa: E501

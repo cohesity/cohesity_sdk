@@ -27,17 +27,19 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.missing_entity_params import MissingEntityParams
     from cohesity_sdk.cluster.model.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
-    from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
     from cohesity_sdk.cluster.model.sla_rule import SlaRule
-    from cohesity_sdk.cluster.model.tenant import Tenant
+    from cohesity_sdk.cluster.model.tenant_info import TenantInfo
     from cohesity_sdk.cluster.model.time_of_day import TimeOfDay
+    globals()['CommonProtectionGroupRunResponseParameters'] = CommonProtectionGroupRunResponseParameters
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['MissingEntityParams'] = MissingEntityParams
     globals()['ProtectionGroupAlertingPolicy'] = ProtectionGroupAlertingPolicy
-    globals()['ProtectionGroupRun'] = ProtectionGroupRun
     globals()['SlaRule'] = SlaRule
-    globals()['Tenant'] = Tenant
+    globals()['TenantInfo'] = TenantInfo
     globals()['TimeOfDay'] = TimeOfDay
 
 
@@ -79,9 +81,14 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'KACROPOLIS': "kAcropolis",
             'KAWS': "kAWS",
             'KAWSNATIVE': "kAWSNative",
+            'KAWSS3': "kAwsS3",
             'KAWSSNAPSHOTMANAGER': "kAWSSnapshotManager",
             'KRDSSNAPSHOTMANAGER': "kRDSSnapshotManager",
             'KAURORASNAPSHOTMANAGER': "kAuroraSnapshotManager",
+            'KAWSRDSPOSTGRESBACKUP': "kAwsRDSPostgresBackup",
+            'KAZURENATIVE': "kAzureNative",
+            'KAZURESQL': "kAzureSQL",
+            'KAZURESNAPSHOTMANAGER': "kAzureSnapshotManager",
             'KPHYSICAL': "kPhysical",
             'KPHYSICALFILES': "kPhysicalFiles",
             'KGPFS': "kGPFS",
@@ -91,6 +98,7 @@ class CommonProtectionGroupResponseParams(ModelNormal):
             'KISILON': "kIsilon",
             'KFLASHBLADE': "kFlashBlade",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KSQL': "kSQL",
             'KEXCHANGE': "kExchange",
             'KAD': "kAD",
@@ -149,17 +157,20 @@ class CommonProtectionGroupResponseParams(ModelNormal):
         lazy_import()
         return {
             'abort_in_blackouts': (bool, none_type,),  # noqa: E501
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'alert_policy': (ProtectionGroupAlertingPolicy,),  # noqa: E501
             'cluster_id': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'end_time_usecs': (int, none_type,),  # noqa: E501
             'environment': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
+            'invalid_entities': ([MissingEntityParams], none_type,),  # noqa: E501
             'is_active': (bool, none_type,),  # noqa: E501
             'is_deleted': (bool, none_type,),  # noqa: E501
             'is_paused': (bool, none_type,),  # noqa: E501
             'is_protect_once': (bool, none_type,),  # noqa: E501
-            'last_run': (ProtectionGroupRun,),  # noqa: E501
+            'last_modified_timestamp_usecs': (int, none_type,),  # noqa: E501
+            'last_run': (CommonProtectionGroupRunResponseParameters,),  # noqa: E501
             'missing_entities': ([MissingEntityParams], none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'num_protected_objects': (int, none_type,),  # noqa: E501
@@ -182,16 +193,19 @@ class CommonProtectionGroupResponseParams(ModelNormal):
 
     attribute_map = {
         'abort_in_blackouts': 'abortInBlackouts',  # noqa: E501
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'alert_policy': 'alertPolicy',  # noqa: E501
         'cluster_id': 'clusterId',  # noqa: E501
         'description': 'description',  # noqa: E501
         'end_time_usecs': 'endTimeUsecs',  # noqa: E501
         'environment': 'environment',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'invalid_entities': 'invalidEntities',  # noqa: E501
         'is_active': 'isActive',  # noqa: E501
         'is_deleted': 'isDeleted',  # noqa: E501
         'is_paused': 'isPaused',  # noqa: E501
         'is_protect_once': 'isProtectOnce',  # noqa: E501
+        'last_modified_timestamp_usecs': 'lastModifiedTimestampUsecs',  # noqa: E501
         'last_run': 'lastRun',  # noqa: E501
         'missing_entities': 'missingEntities',  # noqa: E501
         'name': 'name',  # noqa: E501
@@ -255,17 +269,20 @@ class CommonProtectionGroupResponseParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             abort_in_blackouts (bool, none_type): Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false.. [optional]  # noqa: E501
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection job.. [optional]  # noqa: E501
             alert_policy (ProtectionGroupAlertingPolicy): [optional]  # noqa: E501
             cluster_id (str, none_type): Specifies the cluster ID.. [optional]  # noqa: E501
             description (str, none_type): Specifies a description of the Protection Group.. [optional]  # noqa: E501
             end_time_usecs (int, none_type): Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won't be ended.. [optional]  # noqa: E501
             environment (str, none_type): Specifies the environment of the Protection Group.. [optional]  # noqa: E501
             id (str, none_type): Specifies the ID of the Protection Group.. [optional]  # noqa: E501
+            invalid_entities ([MissingEntityParams], none_type): Specifies the Information about invalid entities. An entity will be considered invalid if it is part of an active protection group but has lost compatibility for the given backup type.. [optional]  # noqa: E501
             is_active (bool, none_type): Specifies if the Protection Group is active or not.. [optional]  # noqa: E501
             is_deleted (bool, none_type): Specifies if the Protection Group has been deleted.. [optional]  # noqa: E501
             is_paused (bool, none_type): Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.. [optional]  # noqa: E501
             is_protect_once (bool, none_type): Specifies if the the Protection Group is using a protect once type of policy. This field is helpful to identify run happen for this group.. [optional]  # noqa: E501
-            last_run (ProtectionGroupRun): [optional]  # noqa: E501
+            last_modified_timestamp_usecs (int, none_type): Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.. [optional]  # noqa: E501
+            last_run (CommonProtectionGroupRunResponseParameters): [optional]  # noqa: E501
             missing_entities ([MissingEntityParams], none_type): Specifies the Information about missing entities.. [optional]  # noqa: E501
             name (str, none_type): Specifies the name of the Protection Group.. [optional]  # noqa: E501
             num_protected_objects (int, none_type): Specifies the number of protected objects of the Protection Group.. [optional]  # noqa: E501

@@ -27,9 +27,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.quota_policy import QuotaPolicy
     from cohesity_sdk.cluster.model.user_quota import UserQuota
     from cohesity_sdk.cluster.model.user_quota_overrides import UserQuotaOverrides
     from cohesity_sdk.cluster.model.view_user_quota_settings import ViewUserQuotaSettings
+    globals()['QuotaPolicy'] = QuotaPolicy
     globals()['UserQuota'] = UserQuota
     globals()['UserQuotaOverrides'] = UserQuotaOverrides
     globals()['ViewUserQuotaSettings'] = ViewUserQuotaSettings
@@ -85,7 +87,7 @@ class ViewUserQuotas(ModelComposed):
         return {
             'enabled': (bool,),  # noqa: E501
             'user_quotas': ([UserQuota], none_type,),  # noqa: E501
-            'default_quota_policy': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'default_quota_policy': (QuotaPolicy,),  # noqa: E501
             'cookie': (str, none_type,),  # noqa: E501
             'override_existing_per_user_quotas': (bool, none_type,),  # noqa: E501
         }
@@ -156,7 +158,7 @@ class ViewUserQuotas(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            default_quota_policy ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the default user quota policy of the View.. [optional]  # noqa: E501
+            default_quota_policy (QuotaPolicy): [optional]  # noqa: E501
             cookie (str, none_type): Specifies the pagination cookie.. [optional]  # noqa: E501
             override_existing_per_user_quotas (bool, none_type): By default, the overrides specified in userQuotas is treated as delta and the existing overrides will be left untouched. Set this to true, if the existing overrides should be cleared before applying overrides specified in userQuotas.. [optional]  # noqa: E501
         """

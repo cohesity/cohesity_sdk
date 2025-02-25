@@ -5,10 +5,11 @@ Specifies the new destination Source configuration where the VMs will be recover
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network_config** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the networking configuration to be applied to the recovered VMs. | 
-**region** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the AWS region in which to deploy the VM. | 
-**source** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the id of the parent source to recover the VMs. | 
-**key_pair** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the pair of public and private key used to login into the VM | [optional] 
+**network_config** | [**RecoverAwsVmNewSourceNetworkConfig**](RecoverAwsVmNewSourceNetworkConfig.md) |  | 
+**region** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
+**source** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
+**encryption_config** | [**EncryptionConfig**](EncryptionConfig.md) |  | [optional] 
+**key_pair** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

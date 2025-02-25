@@ -104,7 +104,7 @@ class PrivilegeApi(object):
                 'response_type': (Privileges,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/privileges',

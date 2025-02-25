@@ -21,11 +21,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from cohesity_sdk.cluster.model.create_keystone_request import CreateKeystoneRequest
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.keystone import Keystone
 from cohesity_sdk.cluster.model.keystones import Keystones
-from cohesity_sdk.cluster.model.update_keystone_request import UpdateKeystoneRequest
 
 
 class KeystoneApi(object):
@@ -55,7 +53,7 @@ class KeystoneApi(object):
             >>> result = thread.get()
 
             Args:
-                body (CreateKeystoneRequest): Specifies the paremters to create a Keystone configuration.
+                body (Keystone): Specifies the paremters to create a Keystone configuration.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -140,7 +138,7 @@ class KeystoneApi(object):
                 },
                 'openapi_types': {
                     'body':
-                        (CreateKeystoneRequest,),
+                        (Keystone,),
                 },
                 'attribute_map': {
                 },
@@ -568,7 +566,7 @@ class KeystoneApi(object):
 
             Args:
                 id (int): Specifies the Keystone id.
-                body (UpdateKeystoneRequest): Specifies the paremters to update a Keystone configuration.
+                body (Keystone): Specifies the paremters to update a Keystone configuration.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -659,7 +657,7 @@ class KeystoneApi(object):
                     'id':
                         (int,),
                     'body':
-                        (UpdateKeystoneRequest,),
+                        (Keystone,),
                 },
                 'attribute_map': {
                     'id': 'id',

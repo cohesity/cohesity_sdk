@@ -21,28 +21,27 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from cohesity_sdk.cluster.model.associate_entity_metadata_request import AssociateEntityMetadataRequest
+from cohesity_sdk.cluster.model.associate_entity_metadata_result import AssociateEntityMetadataResult
 from cohesity_sdk.cluster.model.cancel_object_runs_request import CancelObjectRunsRequest
 from cohesity_sdk.cluster.model.cancel_object_runs_results import CancelObjectRunsResults
-from cohesity_sdk.cluster.model.construct_meta_info_params import ConstructMetaInfoParams
+from cohesity_sdk.cluster.model.common_object_snapshot_volume_params import CommonObjectSnapshotVolumeParams
+from cohesity_sdk.cluster.model.construct_meta_info_request import ConstructMetaInfoRequest
 from cohesity_sdk.cluster.model.construct_meta_info_result import ConstructMetaInfoResult
-from cohesity_sdk.cluster.model.deleted_protected_objects_response_body import DeletedProtectedObjectsResponseBody
 from cohesity_sdk.cluster.model.error import Error
 from cohesity_sdk.cluster.model.file_folder_info import FileFolderInfo
 from cohesity_sdk.cluster.model.filter_objects_request import FilterObjectsRequest
 from cohesity_sdk.cluster.model.filtered_objects_response_body import FilteredObjectsResponseBody
+from cohesity_sdk.cluster.model.get_entity_metadata_result import GetEntityMetadataResult
 from cohesity_sdk.cluster.model.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
 from cohesity_sdk.cluster.model.get_object_runs_response_body import GetObjectRunsResponseBody
 from cohesity_sdk.cluster.model.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
 from cohesity_sdk.cluster.model.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
 from cohesity_sdk.cluster.model.get_protected_objects_response import GetProtectedObjectsResponse
-from cohesity_sdk.cluster.model.local_global_object_id_list import LocalGlobalObjectIdList
 from cohesity_sdk.cluster.model.object_action_request import ObjectActionRequest
 from cohesity_sdk.cluster.model.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.cluster.model.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.cluster.model.object_snapshot import ObjectSnapshot
-from cohesity_sdk.cluster.model.object_snapshot_id_params import ObjectSnapshotIdParams
-from cohesity_sdk.cluster.model.object_snapshot_id_result import ObjectSnapshotIdResult
-from cohesity_sdk.cluster.model.object_snapshot_volume_info import ObjectSnapshotVolumeInfo
 from cohesity_sdk.cluster.model.object_stats import ObjectStats
 from cohesity_sdk.cluster.model.object_with_children import ObjectWithChildren
 from cohesity_sdk.cluster.model.objects_action_request import ObjectsActionRequest
@@ -65,6 +64,128 @@ class ObjectApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+
+        def __associate_entity_metadata(
+            self,
+            body,
+            **kwargs
+        ):
+            """Associate Metadata with Entity  # noqa: E501
+
+            Associates metadata with entities in the entity hierarchy. This metadata can be of various types (eg. Credentials). Returns a list of entity id and corresponding errors encountered (if any) while associating metadata with that entity. Note that a partial success response is possible where we succeed in associating metadata with some of the entities but fail for others. The API also expects the entities being updated belong to same source.  # noqa: E501
+            This method makes a synchronous HTTP request by default. To make an
+            asynchronous HTTP request, please pass async_req=True
+
+            >>> thread = api.associate_entity_metadata(body, async_req=True)
+            >>> result = thread.get()
+
+            Args:
+                body (AssociateEntityMetadataRequest): Specifies the parameters to associate metadata with entities in the entity hierarchy.
+
+            Keyword Args:
+                _return_http_data_only (bool): response data without head status
+                    code and headers. Default is True.
+                _preload_content (bool): if False, the urllib3.HTTPResponse object
+                    will be returned without reading/decoding response data.
+                    Default is True.
+                _request_timeout (float/tuple): timeout setting for this request. If one
+                    number provided, it will be total request timeout. It can also
+                    be a pair (tuple) of (connection, read) timeouts.
+                    Default is None.
+                _check_input_type (bool): specifies if type checking
+                    should be done one the data sent to the server.
+                    Default is True.
+                _check_return_type (bool): specifies if type checking
+                    should be done one the data received from the server.
+                    Default is True.
+                _host_index (int/None): specifies the index of the server
+                    that we want to use.
+                    Default is read from the configuration.
+                async_req (bool): execute request asynchronously
+
+            Returns:
+                AssociateEntityMetadataResult
+                    If the method is called asynchronously, returns the request
+                    thread.
+            """
+            kwargs['async_req'] = kwargs.get(
+                'async_req', False
+            )
+            kwargs['_return_http_data_only'] = kwargs.get(
+                '_return_http_data_only', True
+            )
+            kwargs['_preload_content'] = kwargs.get(
+                '_preload_content', True
+            )
+            kwargs['_request_timeout'] = kwargs.get(
+                '_request_timeout', None
+            )
+            kwargs['_check_input_type'] = kwargs.get(
+                '_check_input_type', True
+            )
+            kwargs['_check_return_type'] = kwargs.get(
+                '_check_return_type', True
+            )
+            kwargs['_host_index'] = kwargs.get('_host_index')
+            kwargs['body'] = \
+                body
+            return self.call_with_http_info(**kwargs)
+
+        self.associate_entity_metadata = _Endpoint(
+            settings={
+                'response_type': (AssociateEntityMetadataResult,),
+                'auth': [
+                    'TokenHeader',
+        
+                    'APIKeyHeader'
+                ],
+                'endpoint_path': '/data-protect/objects/metadata',
+                'operation_id': 'associate_entity_metadata',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'body',
+                ],
+                'required': [
+                    'body',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'body':
+                        (AssociateEntityMetadataRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'body': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client,
+            callable=__associate_entity_metadata
+        )
 
         def __browse_object_contents(
             self,
@@ -141,7 +262,7 @@ class ObjectApi(object):
                 'response_type': (FileFolderInfo,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/browse',
@@ -269,7 +390,7 @@ class ObjectApi(object):
                 'response_type': (CancelObjectRunsResults,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/runs/cancel',
@@ -337,7 +458,7 @@ class ObjectApi(object):
 
             Args:
                 snapshot_id (str): Specifies the snapshot id.
-                body (ConstructMetaInfoParams): Specifies the parameters to construct meta info for desired workflow.
+                body (ConstructMetaInfoRequest): Specifies the parameters to construct meta info for desired workflow.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -395,7 +516,7 @@ class ObjectApi(object):
                 'response_type': (ConstructMetaInfoResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/meta-info',
@@ -428,7 +549,7 @@ class ObjectApi(object):
                     'snapshot_id':
                         (str,),
                     'body':
-                        (ConstructMetaInfoParams,),
+                        (ConstructMetaInfoRequest,),
                 },
                 'attribute_map': {
                     'snapshot_id': 'snapshotId',
@@ -523,7 +644,7 @@ class ObjectApi(object):
                 'response_type': (FilteredObjectsResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/filter/objects',
@@ -600,6 +721,7 @@ class ObjectApi(object):
                 to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                object_action_key (str): Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -655,7 +777,7 @@ class ObjectApi(object):
                 'response_type': (GetIndexedObjectSnapshotsResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/indexed-objects/snapshots',
@@ -673,6 +795,7 @@ class ObjectApi(object):
                     'to_time_usecs',
                     'run_types',
                     'use_cached_data',
+                    'object_action_key',
                 ],
                 'required': [
                     'object_id',
@@ -682,6 +805,7 @@ class ObjectApi(object):
                 ],
                 'enum': [
                     'run_types',
+                    'object_action_key',
                 ],
                 'validation': [
                     'run_types',
@@ -703,6 +827,58 @@ class ObjectApi(object):
                         "KHYDRATECDP": "kHydrateCDP",
                         "KSTORAGEARRAYSNAPSHOT": "kStorageArraySnapshot"
                     },
+                    ('object_action_key',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KVCD": "kVCD",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KPHYSICALFILES": "kPhysicalFiles",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
                 },
                 'openapi_types': {
                     'object_id':
@@ -721,6 +897,8 @@ class ObjectApi(object):
                         ([str],),
                     'use_cached_data':
                         (bool,),
+                    'object_action_key':
+                        (str,),
                 },
                 'attribute_map': {
                     'object_id': 'objectId',
@@ -731,6 +909,7 @@ class ObjectApi(object):
                     'to_time_usecs': 'toTimeUsecs',
                     'run_types': 'runTypes',
                     'use_cached_data': 'useCachedData',
+                    'object_action_key': 'objectActionKey',
                 },
                 'location_map': {
                     'object_id': 'path',
@@ -741,6 +920,7 @@ class ObjectApi(object):
                     'to_time_usecs': 'query',
                     'run_types': 'query',
                     'use_cached_data': 'query',
+                    'object_action_key': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
@@ -756,28 +936,25 @@ class ObjectApi(object):
             callable=__get_all_indexed_object_snapshots
         )
 
-        def __get_deleted_protected_objects(
+        def __get_entity_metadata(
             self,
             source_id,
             **kwargs
         ):
-            """List deleted protected objects.  # noqa: E501
+            """Get Metadata of Entities  # noqa: E501
 
-            List of objects which are deleted but protected by object protection.  # noqa: E501
+            Gets entity metadata for entities. This can be used as a input for the PUT API.   # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
-            >>> thread = api.get_deleted_protected_objects(source_id, async_req=True)
+            >>> thread = api.get_entity_metadata(source_id, async_req=True)
             >>> result = thread.get()
 
             Args:
                 source_id (int): Specifies the source ID for which objects should be returned.
 
             Keyword Args:
-                tenant_ids ([str]): TenantIds contains ids of the tenants for which objects are to be returned.. [optional]
-                include_tenants (bool): If true, the response will include objects which were protected by all tenants which the current user has permission to see. If false, then only objects protected by the current user will be returned.. [optional]
-                max_count (int): Specifies the max number of objects to return.. [optional]
-                cookie (str): Specifies the pagination cookie.. [optional]
+                entity_ids ([int]): EntityIds contains ids of the entities for which objects are to be returned.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -799,7 +976,7 @@ class ObjectApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                DeletedProtectedObjectsResponseBody
+                GetEntityMetadataResult
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -826,26 +1003,23 @@ class ObjectApi(object):
                 source_id
             return self.call_with_http_info(**kwargs)
 
-        self.get_deleted_protected_objects = _Endpoint(
+        self.get_entity_metadata = _Endpoint(
             settings={
-                'response_type': (DeletedProtectedObjectsResponseBody,),
+                'response_type': (GetEntityMetadataResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
-                'endpoint_path': '/data-protect/sources/{sourceId}/deleted-protected-objects',
-                'operation_id': 'get_deleted_protected_objects',
+                'endpoint_path': '/data-protect/objects/{sourceId}/metadata',
+                'operation_id': 'get_entity_metadata',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'source_id',
-                    'tenant_ids',
-                    'include_tenants',
-                    'max_count',
-                    'cookie',
+                    'entity_ids',
                 ],
                 'required': [
                     'source_id',
@@ -865,31 +1039,19 @@ class ObjectApi(object):
                 'openapi_types': {
                     'source_id':
                         (int,),
-                    'tenant_ids':
-                        ([str],),
-                    'include_tenants':
-                        (bool,),
-                    'max_count':
-                        (int,),
-                    'cookie':
-                        (str,),
+                    'entity_ids':
+                        ([int],),
                 },
                 'attribute_map': {
                     'source_id': 'sourceId',
-                    'tenant_ids': 'tenantIds',
-                    'include_tenants': 'includeTenants',
-                    'max_count': 'maxCount',
-                    'cookie': 'cookie',
+                    'entity_ids': 'entityIds',
                 },
                 'location_map': {
                     'source_id': 'path',
-                    'tenant_ids': 'query',
-                    'include_tenants': 'query',
-                    'max_count': 'query',
-                    'cookie': 'query',
+                    'entity_ids': 'query',
                 },
                 'collection_format_map': {
-                    'tenant_ids': 'csv',
+                    'entity_ids': 'csv',
                 }
             },
             headers_map={
@@ -899,7 +1061,7 @@ class ObjectApi(object):
                 'content_type': [],
             },
             api_client=api_client,
-            callable=__get_deleted_protected_objects
+            callable=__get_entity_metadata
         )
 
         def __get_indexed_object_snapshots(
@@ -924,11 +1086,12 @@ class ObjectApi(object):
                 indexed_object_name (str): Specifies the indexed object name.
 
             Keyword Args:
-                include_indexed_snapshots_only (bool): Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteened to exist, while in a non-indexed snapshots file may not exist.. [optional] if omitted the server will use the default value of False
+                include_indexed_snapshots_only (bool): Specifies whether to only return snapshots which are indexed. In an indexed snapshots file are guaranteed to exist, while in a non-indexed snapshots file may not exist.. [optional] if omitted the server will use the default value of False
                 from_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken after this value.. [optional]
                 to_time_usecs (int): Specifies the timestamp in Unix time epoch in microseconds to filter indexed object's snapshots which are taken before this value.. [optional]
                 run_types ([str]): Filter by run type. Only protection run matching the specified types will be returned. By default, CDP hydration snapshots are not included, unless explicitly queried using this field.. [optional]
                 use_cached_data (bool): Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source.. [optional]
+                object_action_key (str): Filter by ObjectActionKey, which uniquely represents backup type for a given version. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey and ObjectId. When specified, only versions of given ObjectActionKey are returned for corresponding object id.. [optional]
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -986,7 +1149,7 @@ class ObjectApi(object):
                 'response_type': (GetIndexedObjectSnapshotsResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots',
@@ -1004,6 +1167,7 @@ class ObjectApi(object):
                     'to_time_usecs',
                     'run_types',
                     'use_cached_data',
+                    'object_action_key',
                 ],
                 'required': [
                     'protection_group_id',
@@ -1014,6 +1178,7 @@ class ObjectApi(object):
                 ],
                 'enum': [
                     'run_types',
+                    'object_action_key',
                 ],
                 'validation': [
                     'run_types',
@@ -1035,6 +1200,58 @@ class ObjectApi(object):
                         "KHYDRATECDP": "kHydrateCDP",
                         "KSTORAGEARRAYSNAPSHOT": "kStorageArraySnapshot"
                     },
+                    ('object_action_key',): {
+
+                        "KVMWARE": "kVMware",
+                        "KHYPERV": "kHyperV",
+                        "KVCD": "kVCD",
+                        "KAZURE": "kAzure",
+                        "KGCP": "kGCP",
+                        "KKVM": "kKVM",
+                        "KACROPOLIS": "kAcropolis",
+                        "KAWS": "kAWS",
+                        "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
+                        "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
+                        "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
+                        "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
+                        "KPHYSICAL": "kPhysical",
+                        "KPHYSICALFILES": "kPhysicalFiles",
+                        "KGPFS": "kGPFS",
+                        "KELASTIFILE": "kElastifile",
+                        "KNETAPP": "kNetapp",
+                        "KGENERICNAS": "kGenericNas",
+                        "KISILON": "kIsilon",
+                        "KFLASHBLADE": "kFlashBlade",
+                        "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
+                        "KSQL": "kSQL",
+                        "KEXCHANGE": "kExchange",
+                        "KAD": "kAD",
+                        "KORACLE": "kOracle",
+                        "KVIEW": "kView",
+                        "KREMOTEADAPTER": "kRemoteAdapter",
+                        "KO365": "kO365",
+                        "KO365PUBLICFOLDERS": "kO365PublicFolders",
+                        "KO365TEAMS": "kO365Teams",
+                        "KO365GROUP": "kO365Group",
+                        "KO365EXCHANGE": "kO365Exchange",
+                        "KO365ONEDRIVE": "kO365OneDrive",
+                        "KO365SHAREPOINT": "kO365Sharepoint",
+                        "KKUBERNETES": "kKubernetes",
+                        "KCASSANDRA": "kCassandra",
+                        "KMONGODB": "kMongoDB",
+                        "KCOUCHBASE": "kCouchbase",
+                        "KHDFS": "kHdfs",
+                        "KHIVE": "kHive",
+                        "KHBASE": "kHBase",
+                        "KUDA": "kUDA",
+                        "KSFDC": "kSfdc"
+                    },
                 },
                 'openapi_types': {
                     'protection_group_id':
@@ -1053,6 +1270,8 @@ class ObjectApi(object):
                         ([str],),
                     'use_cached_data':
                         (bool,),
+                    'object_action_key':
+                        (str,),
                 },
                 'attribute_map': {
                     'protection_group_id': 'protectionGroupId',
@@ -1063,6 +1282,7 @@ class ObjectApi(object):
                     'to_time_usecs': 'toTimeUsecs',
                     'run_types': 'runTypes',
                     'use_cached_data': 'useCachedData',
+                    'object_action_key': 'objectActionKey',
                 },
                 'location_map': {
                     'protection_group_id': 'path',
@@ -1073,6 +1293,7 @@ class ObjectApi(object):
                     'to_time_usecs': 'query',
                     'run_types': 'query',
                     'use_cached_data': 'query',
+                    'object_action_key': 'query',
                 },
                 'collection_format_map': {
                     'run_types': 'csv',
@@ -1086,129 +1307,6 @@ class ObjectApi(object):
             },
             api_client=api_client,
             callable=__get_indexed_object_snapshots
-        )
-
-        def __get_object_identifiers(
-            self,
-            **kwargs
-        ):
-            """Get Object Identifiers  # noqa: E501
-
-            Get Object Identifiers.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_object_identifiers(async_req=True)
-            >>> result = thread.get()
-
-
-            Keyword Args:
-                global_ids ([str]): Get the object identifier matching specified global IDs.. [optional]
-                local_ids ([int]): Get the object identifier matching specified local IDs.. [optional]
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                LocalGlobalObjectIdList
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            return self.call_with_http_info(**kwargs)
-
-        self.get_object_identifiers = _Endpoint(
-            settings={
-                'response_type': (LocalGlobalObjectIdList,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/objects/object-identifiers',
-                'operation_id': 'get_object_identifiers',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'global_ids',
-                    'local_ids',
-                ],
-                'required': [],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'global_ids':
-                        ([str],),
-                    'local_ids':
-                        ([int],),
-                },
-                'attribute_map': {
-                    'global_ids': 'globalIds',
-                    'local_ids': 'localIds',
-                },
-                'location_map': {
-                    'global_ids': 'query',
-                    'local_ids': 'query',
-                },
-                'collection_format_map': {
-                    'global_ids': 'ssv',
-                    'local_ids': 'csv',
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client,
-            callable=__get_object_identifiers
         )
 
         def __get_object_run_by_run_id(
@@ -1286,7 +1384,7 @@ class ObjectApi(object):
                 'response_type': (ObjectProtectionRunSummary,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/runs/{runId}',
@@ -1372,7 +1470,7 @@ class ObjectApi(object):
                 cloud_spin_run_status ([str]): Specifies a list of status for the object in the cloud spin run.. [optional]
                 num_runs (int): Specifies the max number of runs. If not specified, at most 100 runs will be returned.. [optional]
                 pagination_cookie (str): Specifies the pagination cookie with which subsequent parts of the response can be fetched. Users can use this to get next runs. [optional]
-                exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
+                exclude_non_restorable_runs (bool): Specifies whether to exclude non restorable runs. Run is treated restorable only if there is at least one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false.. [optional] if omitted the server will use the default value of False
                 _return_http_data_only (bool): response data without head status
                     code and headers. Default is True.
                 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1426,7 +1524,7 @@ class ObjectApi(object):
                 'response_type': (GetObjectRunsResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/runs',
@@ -1494,7 +1592,8 @@ class ObjectApi(object):
                         "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
                         "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
                         "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing",
-                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun"
+                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun",
+                        "KSKIPPED": "kSkipped"
                     },
                     ('replication_object_status',): {
 
@@ -1506,7 +1605,8 @@ class ObjectApi(object):
                         "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
                         "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
                         "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing",
-                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun"
+                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun",
+                        "KSKIPPED": "kSkipped"
                     },
                     ('archival_object_status',): {
 
@@ -1518,7 +1618,8 @@ class ObjectApi(object):
                         "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
                         "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
                         "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing",
-                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun"
+                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun",
+                        "KSKIPPED": "kSkipped"
                     },
                     ('cloud_spin_run_status',): {
 
@@ -1530,7 +1631,8 @@ class ObjectApi(object):
                         "KCURRENTATTEMPTPAUSED": "kCurrentAttemptPaused",
                         "KCURRENTATTEMPTRESUMING": "kCurrentAttemptResuming",
                         "KCURRENTATTEMPTPAUSING": "kCurrentAttemptPausing",
-                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun"
+                        "KWAITINGFOROLDERBACKUPRUN": "kWaitingForOlderBackupRun",
+                        "KSKIPPED": "kSkipped"
                     },
                 },
                 'openapi_types': {
@@ -1614,138 +1716,6 @@ class ObjectApi(object):
             callable=__get_object_runs
         )
 
-        def __get_object_snapshot_id(
-            self,
-            object_id,
-            body,
-            **kwargs
-        ):
-            """Get snapshot id for a given object.  # noqa: E501
-
-            Get snapshot id for object for given params.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.get_object_snapshot_id(object_id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                object_id (int): Specifies the object id.
-                body (ObjectSnapshotIdParams): Specifies the parameters to fetch snapshot id for object.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ObjectSnapshotIdResult
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['object_id'] = \
-                object_id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.get_object_snapshot_id = _Endpoint(
-            settings={
-                'response_type': (ObjectSnapshotIdResult,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/objects/{objectId}/snapshotId',
-                'operation_id': 'get_object_snapshot_id',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'object_id',
-                    'body',
-                ],
-                'required': [
-                    'object_id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'object_id':
-                        (int,),
-                    'body':
-                        (ObjectSnapshotIdParams,),
-                },
-                'attribute_map': {
-                    'object_id': 'objectId',
-                },
-                'location_map': {
-                    'object_id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__get_object_snapshot_id
-        )
-
         def __get_object_snapshot_info(
             self,
             snapshot_id,
@@ -1817,7 +1787,7 @@ class ObjectApi(object):
                 'response_type': (ObjectSnapshot,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}',
@@ -1909,7 +1879,7 @@ class ObjectApi(object):
                 async_req (bool): execute request asynchronously
 
             Returns:
-                ObjectSnapshotVolumeInfo
+                CommonObjectSnapshotVolumeParams
                     If the method is called asynchronously, returns the request
                     thread.
             """
@@ -1938,10 +1908,10 @@ class ObjectApi(object):
 
         self.get_object_snapshot_volume_info = _Endpoint(
             settings={
-                'response_type': (ObjectSnapshotVolumeInfo,),
+                'response_type': (CommonObjectSnapshotVolumeParams,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/snapshots/{snapshotId}/volume',
@@ -2087,7 +2057,7 @@ class ObjectApi(object):
                 'response_type': (GetObjectSnapshotsResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshots',
@@ -2144,6 +2114,7 @@ class ObjectApi(object):
                         "RECOVERVAPPS": "RecoverVApps",
                         "RECOVERRDS": "RecoverRDS",
                         "RECOVERAURORA": "RecoverAurora",
+                        "RECOVERS3BUCKETS": "RecoverS3Buckets",
                         "RECOVERAPPS": "RecoverApps",
                         "RECOVERNASVOLUME": "RecoverNasVolume",
                         "RECOVERPHYSICALVOLUMES": "RecoverPhysicalVolumes",
@@ -2160,7 +2131,10 @@ class ObjectApi(object):
                         "RECOVERMSGROUP": "RecoverMsGroup",
                         "RECOVERSHAREPOINT": "RecoverSharePoint",
                         "CONVERTTOPST": "ConvertToPst",
-                        "RECOVERSFDCRECORDS": "RecoverSfdcRecords"
+                        "RECOVERSFDCRECORDS": "RecoverSfdcRecords",
+                        "RECOVERAZURESQL": "RecoverAzureSQL",
+                        "DOWNLOADCHATS": "DownloadChats",
+                        "RECOVERRDSPOSTGRES": "RecoverRDSPostgres"
                     },
                     ('run_types',): {
 
@@ -2182,9 +2156,14 @@ class ObjectApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -2194,6 +2173,7 @@ class ObjectApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -2359,7 +2339,7 @@ class ObjectApi(object):
                 'response_type': (ObjectStats,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/stats',
@@ -2486,7 +2466,7 @@ class ObjectApi(object):
                 'response_type': (ObjectWithChildren,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/tree',
@@ -2607,7 +2587,7 @@ class ObjectApi(object):
                 'response_type': (ObjectsLastRun,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/last-run',
@@ -2751,7 +2731,7 @@ class ObjectApi(object):
                 'response_type': (GetPITRangesProtectedObjectResponseBody,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/pit-ranges',
@@ -2824,7 +2804,7 @@ class ObjectApi(object):
         ):
             """Get an Object.  # noqa: E501
 
-            Get Object configrations for given object id.  # noqa: E501
+            Get Object configurations for given object id.  # noqa: E501
             This method makes a synchronous HTTP request by default. To make an
             asynchronous HTTP request, please pass async_req=True
 
@@ -2898,7 +2878,7 @@ class ObjectApi(object):
                 'response_type': (ProtectedObjectInfo,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}',
@@ -2940,7 +2920,8 @@ class ObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                     ('object_action_key',): {
 
@@ -2953,9 +2934,14 @@ class ObjectApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -2965,6 +2951,7 @@ class ObjectApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -2999,9 +2986,14 @@ class ObjectApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -3011,6 +3003,7 @@ class ObjectApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -3183,7 +3176,7 @@ class ObjectApi(object):
                 'response_type': (GetProtectedObjectsResponse,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects',
@@ -3228,7 +3221,8 @@ class ObjectApi(object):
                     ('request_initiator_type',): {
 
                         "UIUSER": "UIUser",
-                        "UIAUTO": "UIAuto"
+                        "UIAUTO": "UIAuto",
+                        "HELIOS": "Helios"
                     },
                     ('object_action_keys',): {
 
@@ -3241,9 +3235,14 @@ class ObjectApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -3253,6 +3252,7 @@ class ObjectApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -3287,9 +3287,14 @@ class ObjectApi(object):
                         "KACROPOLIS": "kAcropolis",
                         "KAWS": "kAWS",
                         "KAWSNATIVE": "kAWSNative",
+                        "KAWSS3": "kAwsS3",
                         "KAWSSNAPSHOTMANAGER": "kAWSSnapshotManager",
                         "KRDSSNAPSHOTMANAGER": "kRDSSnapshotManager",
                         "KAURORASNAPSHOTMANAGER": "kAuroraSnapshotManager",
+                        "KAWSRDSPOSTGRESBACKUP": "kAwsRDSPostgresBackup",
+                        "KAZURENATIVE": "kAzureNative",
+                        "KAZURESQL": "kAzureSQL",
+                        "KAZURESNAPSHOTMANAGER": "kAzureSnapshotManager",
                         "KPHYSICAL": "kPhysical",
                         "KPHYSICALFILES": "kPhysicalFiles",
                         "KGPFS": "kGPFS",
@@ -3299,6 +3304,7 @@ class ObjectApi(object):
                         "KISILON": "kIsilon",
                         "KFLASHBLADE": "kFlashBlade",
                         "KPURE": "kPure",
+                        "KIBMFLASHSYSTEM": "kIbmFlashSystem",
                         "KSQL": "kSQL",
                         "KEXCHANGE": "kExchange",
                         "KAD": "kAD",
@@ -3487,7 +3493,7 @@ class ObjectApi(object):
                 'response_type': (SnapshotDiffResult,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshot-diff',
@@ -3647,7 +3653,7 @@ class ObjectApi(object):
                 'response_type': (SourceHierarchyObjectSummaries,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/sources/{sourceId}/objects',
@@ -3838,6 +3844,7 @@ class ObjectApi(object):
                     },
                     ('azure_object_types',): {
 
+                        "KTENANT": "kTenant",
                         "KSUBSCRIPTION": "kSubscription",
                         "KRESOURCEGROUP": "kResourceGroup",
                         "KVIRTUALMACHINE": "kVirtualMachine",
@@ -3845,13 +3852,16 @@ class ObjectApi(object):
                         "KSTORAGEKEY": "kStorageKey",
                         "KSTORAGECONTAINER": "kStorageContainer",
                         "KSTORAGEBLOB": "kStorageBlob",
+                        "KAPPLICATIONSECURITYGROUP": "kApplicationSecurityGroup",
                         "KNETWORKSECURITYGROUP": "kNetworkSecurityGroup",
                         "KVIRTUALNETWORK": "kVirtualNetwork",
                         "KSUBNET": "kSubnet",
                         "KCOMPUTEOPTIONS": "kComputeOptions",
                         "KSNAPSHOTMANAGERPERMIT": "kSnapshotManagerPermit",
                         "KTAG": "kTag",
-                        "KAVAILABILITYSET": "kAvailabilitySet"
+                        "KAVAILABILITYSET": "kAvailabilitySet",
+                        "KSQLSERVER": "kSQLServer",
+                        "KSQLDATABASE": "kSQLDatabase"
                     },
                     ('kvm_object_types',): {
 
@@ -3885,7 +3895,12 @@ class ObjectApi(object):
                         "KAURORATAG": "kAuroraTag",
                         "KAURORACLUSTER": "kAuroraCluster",
                         "KACCOUNT": "kAccount",
-                        "KSUBTASKPERMIT": "kSubTaskPermit"
+                        "KSUBTASKPERMIT": "kSubTaskPermit",
+                        "KS3BUCKET": "kS3Bucket",
+                        "KS3TAG": "kS3Tag",
+                        "KKMSKEY": "kKmsKey",
+                        "KRDSPOSTGRESDB": "kRDSPostgresDb",
+                        "KAURORACLUSTERPOSTGRESDB": "kAuroraClusterPostgresDb"
                     },
                     ('gcp_object_types',): {
 
@@ -3917,9 +3932,7 @@ class ObjectApi(object):
                     ('generic_nas_object_types',): {
 
                         "KGROUP": "kGroup",
-                        "KHOST": "kHost",
-                        "KDFSGROUP": "kDfsGroup",
-                        "KDFSTOPDIR": "kDfsTopDir"
+                        "KHOST": "kHost"
                     },
                     ('isilon_object_types',): {
 
@@ -3946,7 +3959,8 @@ class ObjectApi(object):
                     ('pure_object_types',): {
 
                         "KSTORAGEARRAY": "kStorageArray",
-                        "KVOLUME": "kVolume"
+                        "KVOLUME": "kVolume",
+                        "KPUREPROTECTIONGROUP": "kPureProtectionGroup"
                     },
                     ('nimble_object_types',): {
 
@@ -3992,7 +4006,8 @@ class ObjectApi(object):
                         "KDATABASE": "kDatabase",
                         "KAAG": "kAAG",
                         "KAAGROOTCONTAINER": "kAAGRootContainer",
-                        "KROOTCONTAINER": "kRootContainer"
+                        "KROOTCONTAINER": "kRootContainer",
+                        "KAAGDATABASE": "kAAGDatabase"
                     },
                     ('oracle_object_types',): {
 
@@ -4185,270 +4200,6 @@ class ObjectApi(object):
             callable=__get_source_hierarchy_objects
         )
 
-        def __internal_api_construct_meta_info(
-            self,
-            snapshot_id,
-            body,
-            **kwargs
-        ):
-            """Construct meta info for any workflow from object snapshot and some other information.  # noqa: E501
-
-            Construct meta info from object snapshot and some additional params.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.internal_api_construct_meta_info(snapshot_id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                snapshot_id (str): Specifies the snapshot id.
-                body (ConstructMetaInfoParams): Specifies the parameters to construct meta info for desired workflow.
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                ConstructMetaInfoResult
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['snapshot_id'] = \
-                snapshot_id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.internal_api_construct_meta_info = _Endpoint(
-            settings={
-                'response_type': (ConstructMetaInfoResult,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/snapshots/{snapshotId}/metaInfo',
-                'operation_id': 'internal_api_construct_meta_info',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'snapshot_id',
-                    'body',
-                ],
-                'required': [
-                    'snapshot_id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'snapshot_id':
-                        (str,),
-                    'body':
-                        (ConstructMetaInfoParams,),
-                },
-                'attribute_map': {
-                    'snapshot_id': 'snapshotId',
-                },
-                'location_map': {
-                    'snapshot_id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__internal_api_construct_meta_info
-        )
-
-        def __internal_api_get_snapshot_diff(
-            self,
-            id,
-            body,
-            **kwargs
-        ):
-            """Get diff between two snapshots of a given object.  # noqa: E501
-
-            Get diff (files added/deleted) between two snapshots of a given object.  # noqa: E501
-            This method makes a synchronous HTTP request by default. To make an
-            asynchronous HTTP request, please pass async_req=True
-
-            >>> thread = api.internal_api_get_snapshot_diff(id, body, async_req=True)
-            >>> result = thread.get()
-
-            Args:
-                id (int):
-                body (SnapshotDiffParams):
-
-            Keyword Args:
-                _return_http_data_only (bool): response data without head status
-                    code and headers. Default is True.
-                _preload_content (bool): if False, the urllib3.HTTPResponse object
-                    will be returned without reading/decoding response data.
-                    Default is True.
-                _request_timeout (float/tuple): timeout setting for this request. If one
-                    number provided, it will be total request timeout. It can also
-                    be a pair (tuple) of (connection, read) timeouts.
-                    Default is None.
-                _check_input_type (bool): specifies if type checking
-                    should be done one the data sent to the server.
-                    Default is True.
-                _check_return_type (bool): specifies if type checking
-                    should be done one the data received from the server.
-                    Default is True.
-                _host_index (int/None): specifies the index of the server
-                    that we want to use.
-                    Default is read from the configuration.
-                async_req (bool): execute request asynchronously
-
-            Returns:
-                SnapshotDiffResult
-                    If the method is called asynchronously, returns the request
-                    thread.
-            """
-            kwargs['async_req'] = kwargs.get(
-                'async_req', False
-            )
-            kwargs['_return_http_data_only'] = kwargs.get(
-                '_return_http_data_only', True
-            )
-            kwargs['_preload_content'] = kwargs.get(
-                '_preload_content', True
-            )
-            kwargs['_request_timeout'] = kwargs.get(
-                '_request_timeout', None
-            )
-            kwargs['_check_input_type'] = kwargs.get(
-                '_check_input_type', True
-            )
-            kwargs['_check_return_type'] = kwargs.get(
-                '_check_return_type', True
-            )
-            kwargs['_host_index'] = kwargs.get('_host_index')
-            kwargs['id'] = \
-                id
-            kwargs['body'] = \
-                body
-            return self.call_with_http_info(**kwargs)
-
-        self.internal_api_get_snapshot_diff = _Endpoint(
-            settings={
-                'response_type': (SnapshotDiffResult,),
-                'auth': [
-                    'TokenHeader',
-                    'ClusterId',
-                    'APIKeyHeader'
-                ],
-                'endpoint_path': '/data-protect/objects/{id}/snapshotDiff',
-                'operation_id': 'internal_api_get_snapshot_diff',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'id',
-                    'body',
-                ],
-                'required': [
-                    'id',
-                    'body',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'id':
-                        (int,),
-                    'body':
-                        (SnapshotDiffParams,),
-                },
-                'attribute_map': {
-                    'id': 'id',
-                },
-                'location_map': {
-                    'id': 'path',
-                    'body': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client,
-            callable=__internal_api_get_snapshot_diff
-        )
-
         def __objects_actions(
             self,
             body,
@@ -4464,7 +4215,7 @@ class ObjectApi(object):
             >>> result = thread.get()
 
             Args:
-                body (ObjectsActionRequest): Specifies the paramteres to execute actions on given list of objects.
+                body (ObjectsActionRequest): Specifies the parameters to execute actions on given list of objects.
 
             Keyword Args:
                 _return_http_data_only (bool): response data without head status
@@ -4520,7 +4271,7 @@ class ObjectApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/actions',
@@ -4646,7 +4397,7 @@ class ObjectApi(object):
                 'response_type': None,
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/actions',
@@ -4782,7 +4533,7 @@ class ObjectApi(object):
                 'response_type': (ObjectSnapshot,),
                 'auth': [
                     'TokenHeader',
-                    'ClusterId',
+        
                     'APIKeyHeader'
                 ],
                 'endpoint_path': '/data-protect/objects/{id}/snapshots/{snapshotId}',

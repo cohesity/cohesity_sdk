@@ -27,7 +27,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.alias_smb_config import AliasSmbConfig
     from cohesity_sdk.cluster.model.subnet import Subnet
+    globals()['AliasSmbConfig'] = AliasSmbConfig
     globals()['Subnet'] = Subnet
 
 
@@ -58,6 +60,12 @@ class UpdateShareParam(ModelNormal):
     """
 
     allowed_values = {
+        ('file_audit_logging_state',): {
+            'None': None,
+            'INHERITED': "Inherited",
+            'ENABLED': "Enabled",
+            'DISABLED': "Disabled",
+        },
     }
 
     validations = {
@@ -81,7 +89,8 @@ class UpdateShareParam(ModelNormal):
         return {
             'client_subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
             'enable_filer_audit_logging': (bool, none_type,),  # noqa: E501
-            'smb_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'file_audit_logging_state': (str, none_type,),  # noqa: E501
+            'smb_config': (AliasSmbConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -93,6 +102,7 @@ class UpdateShareParam(ModelNormal):
     attribute_map = {
         'client_subnet_whitelist': 'clientSubnetWhitelist',  # noqa: E501
         'enable_filer_audit_logging': 'enableFilerAuditLogging',  # noqa: E501
+        'file_audit_logging_state': 'fileAuditLoggingState',  # noqa: E501
         'smb_config': 'smbConfig',  # noqa: E501
     }
 
@@ -144,8 +154,9 @@ class UpdateShareParam(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             client_subnet_whitelist ([Subnet], none_type): List of external client subnet IPs that are allowed to access the share.. [optional]  # noqa: E501
-            enable_filer_audit_logging (bool, none_type): Specifies if Filer Audit Logging is enabled for this view.. [optional]  # noqa: E501
-            smb_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): SMB config for the alias (share).. [optional]  # noqa: E501
+            enable_filer_audit_logging (bool, none_type): This field is currently deprecated. Specifies if Filer Audit Logging is enabled for this Share.. [optional]  # noqa: E501
+            file_audit_logging_state (str, none_type): Specifies the state of File Audit logging for this Share. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share.. [optional]  # noqa: E501
+            smb_config (AliasSmbConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

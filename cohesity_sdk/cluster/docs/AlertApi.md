@@ -15,6 +15,7 @@ Get alerts summary grouped by category.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.alerts_summary_response import AlertsSummaryResponse
@@ -29,6 +30,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 start_time_usecs = 1 # int | Filter by start time. Specify the start time as a Unix epoch Timestamp (in microseconds). By default it is current time minus a day. (optional)
 end_time_usecs = 1 # int | Filter by end time. Specify the end time as a Unix epoch Timestamp (in microseconds). By default it is current time. (optional)
@@ -67,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

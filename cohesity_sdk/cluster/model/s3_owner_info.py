@@ -74,6 +74,7 @@ class S3OwnerInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'distinguished_name': (str, none_type,),  # noqa: E501
             'user_id': (str, none_type,),  # noqa: E501
         }
 
@@ -84,6 +85,7 @@ class S3OwnerInfo(ModelNormal):
 
 
     attribute_map = {
+        'distinguished_name': 'distinguishedName',  # noqa: E501
         'user_id': 'userId',  # noqa: E501
     }
 
@@ -99,11 +101,8 @@ class S3OwnerInfo(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, user_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """S3OwnerInfo - a model defined in OpenAPI
-
-        Args:
-            user_id (str, none_type): Specifies the user id of the owner.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -137,6 +136,8 @@ class S3OwnerInfo(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            distinguished_name (str, none_type): Specifies the distinguished name of the bucket owner for an ABAC enabled S3 Bucket.. [optional]  # noqa: E501
+            user_id (str, none_type): Specifies the user id of the owner.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -163,7 +164,6 @@ class S3OwnerInfo(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
 
-        self.user_id = user_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

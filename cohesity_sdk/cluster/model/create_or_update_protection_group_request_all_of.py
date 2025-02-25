@@ -40,6 +40,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.gpfs_protection_group_params import GpfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hdfs_protection_group_params import HdfsProtectionGroupParams
     from cohesity_sdk.cluster.model.hyper_v_protection_group_params import HyperVProtectionGroupParams
+    from cohesity_sdk.cluster.model.ibm_flash_system_protection_group_params import IbmFlashSystemProtectionGroupParams
     from cohesity_sdk.cluster.model.isilon_protection_group_params import IsilonProtectionGroupParams
     from cohesity_sdk.cluster.model.kubernetes_protection_group_params import KubernetesProtectionGroupParams
     from cohesity_sdk.cluster.model.kvm_protection_group_params import KvmProtectionGroupParams
@@ -70,6 +71,7 @@ def lazy_import():
     globals()['GpfsProtectionGroupParams'] = GpfsProtectionGroupParams
     globals()['HdfsProtectionGroupParams'] = HdfsProtectionGroupParams
     globals()['HyperVProtectionGroupParams'] = HyperVProtectionGroupParams
+    globals()['IbmFlashSystemProtectionGroupParams'] = IbmFlashSystemProtectionGroupParams
     globals()['IsilonProtectionGroupParams'] = IsilonProtectionGroupParams
     globals()['KubernetesProtectionGroupParams'] = KubernetesProtectionGroupParams
     globals()['KvmProtectionGroupParams'] = KvmProtectionGroupParams
@@ -153,6 +155,7 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
             'hdfs_params': (HdfsProtectionGroupParams,),  # noqa: E501
             'hive_params': (NoSqlProtectionGroupParams,),  # noqa: E501
             'hyperv_params': (HyperVProtectionGroupParams,),  # noqa: E501
+            'ibm_flash_system_params': (IbmFlashSystemProtectionGroupParams,),  # noqa: E501
             'isilon_params': (IsilonProtectionGroupParams,),  # noqa: E501
             'kubernetes_params': (KubernetesProtectionGroupParams,),  # noqa: E501
             'kvm_params': (KvmProtectionGroupParams,),  # noqa: E501
@@ -194,6 +197,7 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
         'hdfs_params': 'hdfsParams',  # noqa: E501
         'hive_params': 'hiveParams',  # noqa: E501
         'hyperv_params': 'hypervParams',  # noqa: E501
+        'ibm_flash_system_params': 'ibmFlashSystemParams',  # noqa: E501
         'isilon_params': 'isilonParams',  # noqa: E501
         'kubernetes_params': 'kubernetesParams',  # noqa: E501
         'kvm_params': 'kvmParams',  # noqa: E501
@@ -275,6 +279,7 @@ class CreateOrUpdateProtectionGroupRequestAllOf(ModelNormal):
             hdfs_params (HdfsProtectionGroupParams): [optional]  # noqa: E501
             hive_params (NoSqlProtectionGroupParams): [optional]  # noqa: E501
             hyperv_params (HyperVProtectionGroupParams): [optional]  # noqa: E501
+            ibm_flash_system_params (IbmFlashSystemProtectionGroupParams): [optional]  # noqa: E501
             isilon_params (IsilonProtectionGroupParams): [optional]  # noqa: E501
             kubernetes_params (KubernetesProtectionGroupParams): [optional]  # noqa: E501
             kvm_params (KvmProtectionGroupParams): [optional]  # noqa: E501

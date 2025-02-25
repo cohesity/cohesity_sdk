@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.object_one_drive_param import ObjectOneDriveParam
+    from cohesity_sdk.cluster.model.target_one_drive_param import TargetOneDriveParam
     globals()['ObjectOneDriveParam'] = ObjectOneDriveParam
+    globals()['TargetOneDriveParam'] = TargetOneDriveParam
 
 
 class RecoverOneDriveParams(ModelNormal):
@@ -81,7 +83,9 @@ class RecoverOneDriveParams(ModelNormal):
         return {
             'objects': ([ObjectOneDriveParam], none_type,),  # noqa: E501
             'continue_on_error': (bool, none_type,),  # noqa: E501
-            'target_drive': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'recover_preservation_hold_library': (bool, none_type,),  # noqa: E501
+            'recover_user_default_drive': (bool, none_type,),  # noqa: E501
+            'target_drive': (TargetOneDriveParam,),  # noqa: E501
         }
 
     @cached_property
@@ -93,6 +97,8 @@ class RecoverOneDriveParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'continue_on_error': 'continueOnError',  # noqa: E501
+        'recover_preservation_hold_library': 'recoverPreservationHoldLibrary',  # noqa: E501
+        'recover_user_default_drive': 'recoverUserDefaultDrive',  # noqa: E501
         'target_drive': 'targetDrive',  # noqa: E501
     }
 
@@ -112,7 +118,7 @@ class RecoverOneDriveParams(ModelNormal):
         """RecoverOneDriveParams - a model defined in OpenAPI
 
         Args:
-            objects ([ObjectOneDriveParam], none_type): Specifies a list of OneDrive params associated with the objects to recover.
+            objects ([ObjectOneDriveParam], none_type): Specifies a list of OneDrive params associated with the objects to recover. These parameters allow overriding the request level 'recoverUserDefaultDrive' parameter for each object specified here.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,7 +153,9 @@ class RecoverOneDriveParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
 
             continue_on_error (bool, none_type): Specifies whether to continue recovering other OneDrive items if one of items failed to recover. Default value is false.. [optional]  # noqa: E501
-            target_drive ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the target OneDrive to recover to. If not specified, the objects will be recovered to original location.. [optional]  # noqa: E501
+            recover_preservation_hold_library (bool, none_type): Specifies whether to recover Preservation Hold Library associated with the OneDrives selected for restore. Default value is false.. [optional]  # noqa: E501
+            recover_user_default_drive (bool, none_type): Specifies whether to recover default drives associated with the OneDrives selected for restore. Default value is true. This setting can be overridden for each object selected for recovery, by specifying 'recoverEntireDrive' for the desired drive within 'oneDriveParams'. Granular recovery is still allowed even if this value is set to true.. [optional]  # noqa: E501
+            target_drive (TargetOneDriveParam): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

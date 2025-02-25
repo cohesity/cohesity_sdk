@@ -5,7 +5,7 @@ Specifies the params of the Generic NAS recovery target.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**volume** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the id and name of the parent volume to recover to. This volume will be the target of the recovery. | 
+**volume** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
 **continue_on_error** | **bool, none_type** | Specifies whether to continue recovering other volumes if one of the volumes fails to recover. Default value is false. | [optional] 
 **encryption_enabled** | **bool, none_type** | Specifies whether encryption should be enabled during recovery. | [optional] 
 **overwrite_existing_file** | **bool, none_type** | Specifies whether to overwrite existing file/folder during recovery. | [optional] 

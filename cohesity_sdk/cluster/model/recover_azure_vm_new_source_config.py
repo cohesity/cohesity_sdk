@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.data_transfer_info import DataTransferInfo
+    from cohesity_sdk.cluster.model.recover_azure_vm_new_source_network_config import RecoverAzureVmNewSourceNetworkConfig
+    from cohesity_sdk.cluster.model.recovery_object_identifier import RecoveryObjectIdentifier
     globals()['DataTransferInfo'] = DataTransferInfo
+    globals()['RecoverAzureVmNewSourceNetworkConfig'] = RecoverAzureVmNewSourceNetworkConfig
+    globals()['RecoveryObjectIdentifier'] = RecoveryObjectIdentifier
 
 
 class RecoverAzureVmNewSourceConfig(ModelNormal):
@@ -79,15 +83,17 @@ class RecoverAzureVmNewSourceConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'network_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'resource_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'source': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'storage_account': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'storage_container': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'storage_resource_group': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'availability_set': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'compute_option': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'network_config': (RecoverAzureVmNewSourceNetworkConfig,),  # noqa: E501
+            'resource_group': (RecoveryObjectIdentifier,),  # noqa: E501
+            'source': (RecoveryObjectIdentifier,),  # noqa: E501
+            'availability_set': (RecoveryObjectIdentifier,),  # noqa: E501
+            'compute_option': (RecoveryObjectIdentifier,),  # noqa: E501
             'data_transfer_info': (DataTransferInfo,),  # noqa: E501
+            'region': (RecoveryObjectIdentifier,),  # noqa: E501
+            'storage_account': (RecoveryObjectIdentifier,),  # noqa: E501
+            'storage_container': (RecoveryObjectIdentifier,),  # noqa: E501
+            'storage_resource_group': (RecoveryObjectIdentifier,),  # noqa: E501
+            'subscription': (RecoveryObjectIdentifier,),  # noqa: E501
         }
 
     @cached_property
@@ -100,12 +106,14 @@ class RecoverAzureVmNewSourceConfig(ModelNormal):
         'network_config': 'networkConfig',  # noqa: E501
         'resource_group': 'resourceGroup',  # noqa: E501
         'source': 'source',  # noqa: E501
-        'storage_account': 'storageAccount',  # noqa: E501
-        'storage_container': 'storageContainer',  # noqa: E501
-        'storage_resource_group': 'storageResourceGroup',  # noqa: E501
         'availability_set': 'availabilitySet',  # noqa: E501
         'compute_option': 'computeOption',  # noqa: E501
         'data_transfer_info': 'dataTransferInfo',  # noqa: E501
+        'region': 'region',  # noqa: E501
+        'storage_account': 'storageAccount',  # noqa: E501
+        'storage_container': 'storageContainer',  # noqa: E501
+        'storage_resource_group': 'storageResourceGroup',  # noqa: E501
+        'subscription': 'subscription',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -120,16 +128,13 @@ class RecoverAzureVmNewSourceConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, network_config, resource_group, source, storage_account, storage_container, storage_resource_group, *args, **kwargs):  # noqa: E501
+    def __init__(self, network_config, resource_group, source, *args, **kwargs):  # noqa: E501
         """RecoverAzureVmNewSourceConfig - a model defined in OpenAPI
 
         Args:
-            network_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the networking configuration to be applied to the recovered VMs.
-            resource_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the Azure resource group.
-            source ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the id of the parent source to recover the VMs.
-            storage_account ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the storage account that will contain the storage container
-            storage_container ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the storage container within the above storage account.
-            storage_resource_group ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies id of the resource group for the selected storage account.
+            network_config (RecoverAzureVmNewSourceNetworkConfig):
+            resource_group (RecoveryObjectIdentifier):
+            source (RecoveryObjectIdentifier):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,9 +168,14 @@ class RecoverAzureVmNewSourceConfig(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            availability_set ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the availability set.. [optional]  # noqa: E501
-            compute_option ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the type of VM (e.g. small, medium, large) when cloning/restoring the VM in Azure.. [optional]  # noqa: E501
+            availability_set (RecoveryObjectIdentifier): [optional]  # noqa: E501
+            compute_option (RecoveryObjectIdentifier): [optional]  # noqa: E501
             data_transfer_info (DataTransferInfo): [optional]  # noqa: E501
+            region (RecoveryObjectIdentifier): [optional]  # noqa: E501
+            storage_account (RecoveryObjectIdentifier): [optional]  # noqa: E501
+            storage_container (RecoveryObjectIdentifier): [optional]  # noqa: E501
+            storage_resource_group (RecoveryObjectIdentifier): [optional]  # noqa: E501
+            subscription (RecoveryObjectIdentifier): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -195,9 +205,6 @@ class RecoverAzureVmNewSourceConfig(ModelNormal):
         self.network_config = network_config
         self.resource_group = resource_group
         self.source = source
-        self.storage_account = storage_account
-        self.storage_container = storage_container
-        self.storage_resource_group = storage_resource_group
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

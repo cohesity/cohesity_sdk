@@ -28,7 +28,9 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+    from cohesity_sdk.cluster.model.gcp_target_params_for_recover_file_and_folder import GcpTargetParamsForRecoverFileAndFolder
     globals()['CommonRecoverFileAndFolderInfo'] = CommonRecoverFileAndFolderInfo
+    globals()['GcpTargetParamsForRecoverFileAndFolder'] = GcpTargetParamsForRecoverFileAndFolder
 
 
 class RecoverGcpFileAndFolderParams(ModelNormal):
@@ -84,7 +86,7 @@ class RecoverGcpFileAndFolderParams(ModelNormal):
         return {
             'files_and_folders': ([CommonRecoverFileAndFolderInfo], none_type,),  # noqa: E501
             'target_environment': (str,),  # noqa: E501
-            'gcp_target_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'gcp_target_params': (GcpTargetParamsForRecoverFileAndFolder,),  # noqa: E501
         }
 
     @cached_property
@@ -150,7 +152,7 @@ class RecoverGcpFileAndFolderParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            gcp_target_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover to a GCP target.. [optional]  # noqa: E501
+            gcp_target_params (GcpTargetParamsForRecoverFileAndFolder): [optional]  # noqa: E501
         """
 
         target_environment = kwargs.get('target_environment', "kGCP")

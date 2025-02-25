@@ -28,11 +28,13 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.aws_source_registration_params import AwsSourceRegistrationParams
+    from cohesity_sdk.cluster.model.azure_source_registration_params import AzureSourceRegistrationParams
     from cohesity_sdk.cluster.model.cassandra_source_registration_params import CassandraSourceRegistrationParams
     from cohesity_sdk.cluster.model.common_source_registration_reponse_params import CommonSourceRegistrationReponseParams
     from cohesity_sdk.cluster.model.connection_config import ConnectionConfig
     from cohesity_sdk.cluster.model.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
     from cohesity_sdk.cluster.model.elastifile_registration_params import ElastifileRegistrationParams
+    from cohesity_sdk.cluster.model.entity_external_metadata import EntityExternalMetadata
     from cohesity_sdk.cluster.model.flashblade_registration_params import FlashbladeRegistrationParams
     from cohesity_sdk.cluster.model.generic_nas_registration_params import GenericNasRegistrationParams
     from cohesity_sdk.cluster.model.gpfs_registration_params import GpfsRegistrationParams
@@ -41,6 +43,7 @@ def lazy_import():
     from cohesity_sdk.cluster.model.hive_source_registration_params import HiveSourceRegistrationParams
     from cohesity_sdk.cluster.model.hyper_v_source_registration_params import HyperVSourceRegistrationParams
     from cohesity_sdk.cluster.model.isilon_registration_params import IsilonRegistrationParams
+    from cohesity_sdk.cluster.model.key_value_pair import KeyValuePair
     from cohesity_sdk.cluster.model.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
     from cohesity_sdk.cluster.model.netapp_registration_params import NetappRegistrationParams
     from cohesity_sdk.cluster.model.object import Object
@@ -51,11 +54,13 @@ def lazy_import():
     from cohesity_sdk.cluster.model.uda_source_registration_params import UdaSourceRegistrationParams
     from cohesity_sdk.cluster.model.vmware_source_registration_params import VmwareSourceRegistrationParams
     globals()['AwsSourceRegistrationParams'] = AwsSourceRegistrationParams
+    globals()['AzureSourceRegistrationParams'] = AzureSourceRegistrationParams
     globals()['CassandraSourceRegistrationParams'] = CassandraSourceRegistrationParams
     globals()['CommonSourceRegistrationReponseParams'] = CommonSourceRegistrationReponseParams
     globals()['ConnectionConfig'] = ConnectionConfig
     globals()['CouchbaseSourceRegistrationParams'] = CouchbaseSourceRegistrationParams
     globals()['ElastifileRegistrationParams'] = ElastifileRegistrationParams
+    globals()['EntityExternalMetadata'] = EntityExternalMetadata
     globals()['FlashbladeRegistrationParams'] = FlashbladeRegistrationParams
     globals()['GenericNasRegistrationParams'] = GenericNasRegistrationParams
     globals()['GpfsRegistrationParams'] = GpfsRegistrationParams
@@ -64,6 +69,7 @@ def lazy_import():
     globals()['HiveSourceRegistrationParams'] = HiveSourceRegistrationParams
     globals()['HyperVSourceRegistrationParams'] = HyperVSourceRegistrationParams
     globals()['IsilonRegistrationParams'] = IsilonRegistrationParams
+    globals()['KeyValuePair'] = KeyValuePair
     globals()['MongoDBSourceRegistrationParams'] = MongoDBSourceRegistrationParams
     globals()['NetappRegistrationParams'] = NetappRegistrationParams
     globals()['Object'] = Object
@@ -113,6 +119,7 @@ class SourceRegistration(ModelComposed):
             'KAZURE': "kAzure",
             'KPHYSICAL': "kPhysical",
             'KPURE': "kPure",
+            'KIBMFLASHSYSTEM': "kIbmFlashSystem",
             'KNIMBLE': "kNimble",
             'KNETAPP': "kNetapp",
             'KGENERICNAS': "kGenericNas",
@@ -162,6 +169,7 @@ class SourceRegistration(ModelComposed):
         """
         lazy_import()
         return {
+            'advanced_configs': ([KeyValuePair], none_type,),  # noqa: E501
             'connection_id': (int, none_type,),  # noqa: E501
             'connections': ([ConnectionConfig], none_type,),  # noqa: E501
             'connector_group_id': (int, none_type,),  # noqa: E501
@@ -174,9 +182,11 @@ class SourceRegistration(ModelComposed):
             'last_refreshed_time_msecs': (int, none_type,),  # noqa: E501
             'registration_time_msecs': (int, none_type,),  # noqa: E501
             'aws_params': (AwsSourceRegistrationParams,),  # noqa: E501
+            'azure_params': (AzureSourceRegistrationParams,),  # noqa: E501
             'cassandra_params': (CassandraSourceRegistrationParams,),  # noqa: E501
             'couchbase_params': (CouchbaseSourceRegistrationParams,),  # noqa: E501
             'elastifile_params': (ElastifileRegistrationParams,),  # noqa: E501
+            'external_metadata': (EntityExternalMetadata,),  # noqa: E501
             'flashblade_params': (FlashbladeRegistrationParams,),  # noqa: E501
             'generic_nas_params': (GenericNasRegistrationParams,),  # noqa: E501
             'gpfs_params': (GpfsRegistrationParams,),  # noqa: E501
@@ -201,6 +211,7 @@ class SourceRegistration(ModelComposed):
 
 
     attribute_map = {
+        'advanced_configs': 'advancedConfigs',  # noqa: E501
         'connection_id': 'connectionId',  # noqa: E501
         'connections': 'connections',  # noqa: E501
         'connector_group_id': 'connectorGroupId',  # noqa: E501
@@ -213,9 +224,11 @@ class SourceRegistration(ModelComposed):
         'last_refreshed_time_msecs': 'lastRefreshedTimeMsecs',  # noqa: E501
         'registration_time_msecs': 'registrationTimeMsecs',  # noqa: E501
         'aws_params': 'awsParams',  # noqa: E501
+        'azure_params': 'azureParams',  # noqa: E501
         'cassandra_params': 'cassandraParams',  # noqa: E501
         'couchbase_params': 'couchbaseParams',  # noqa: E501
         'elastifile_params': 'elastifileParams',  # noqa: E501
+        'external_metadata': 'externalMetadata',  # noqa: E501
         'flashblade_params': 'flashbladeParams',  # noqa: E501
         'generic_nas_params': 'genericNasParams',  # noqa: E501
         'gpfs_params': 'gpfsParams',  # noqa: E501
@@ -281,6 +294,7 @@ class SourceRegistration(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            advanced_configs ([KeyValuePair], none_type): Specifies the advanced configuration for a protection source.. [optional]  # noqa: E501
             connection_id (int, none_type): Specifies the id of the connection from where this source is reachable. This should only be set for a source being registered by a tenant user. This field will be depricated in future. Use connections field.. [optional]  # noqa: E501
             connections ([ConnectionConfig], none_type): Specfies the list of connections for the source.. [optional]  # noqa: E501
             connector_group_id (int, none_type): Specifies the connector group id of connector groups.. [optional]  # noqa: E501
@@ -293,9 +307,11 @@ class SourceRegistration(ModelComposed):
             last_refreshed_time_msecs (int, none_type): Specifies the time when the source was last refreshed in milliseconds.. [optional]  # noqa: E501
             registration_time_msecs (int, none_type): Specifies the time when the source was registered in milliseconds. [optional]  # noqa: E501
             aws_params (AwsSourceRegistrationParams): [optional]  # noqa: E501
+            azure_params (AzureSourceRegistrationParams): [optional]  # noqa: E501
             cassandra_params (CassandraSourceRegistrationParams): [optional]  # noqa: E501
             couchbase_params (CouchbaseSourceRegistrationParams): [optional]  # noqa: E501
             elastifile_params (ElastifileRegistrationParams): [optional]  # noqa: E501
+            external_metadata (EntityExternalMetadata): [optional]  # noqa: E501
             flashblade_params (FlashbladeRegistrationParams): [optional]  # noqa: E501
             generic_nas_params (GenericNasRegistrationParams): [optional]  # noqa: E501
             gpfs_params (GpfsRegistrationParams): [optional]  # noqa: E501

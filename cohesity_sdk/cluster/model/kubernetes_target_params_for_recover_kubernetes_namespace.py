@@ -28,9 +28,15 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.kubernetes_namespace_recovery_target_config import KubernetesNamespaceRecoveryTargetConfig
+    from cohesity_sdk.cluster.model.kubernetes_pvc_info import KubernetesPvcInfo
     from cohesity_sdk.cluster.model.recover_protection_group_run_params import RecoverProtectionGroupRunParams
+    from cohesity_sdk.cluster.model.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['KubernetesNamespaceRecoveryTargetConfig'] = KubernetesNamespaceRecoveryTargetConfig
+    globals()['KubernetesPvcInfo'] = KubernetesPvcInfo
     globals()['RecoverProtectionGroupRunParams'] = RecoverProtectionGroupRunParams
+    globals()['RecoveredOrClonedVmsRenameConfig'] = RecoveredOrClonedVmsRenameConfig
 
 
 class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
@@ -81,10 +87,11 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
         """
         lazy_import()
         return {
-            'recovery_target_config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recovery_target_config': (KubernetesNamespaceRecoveryTargetConfig,),  # noqa: E501
+            'excluded_pvcs': ([KubernetesPvcInfo], none_type,),  # noqa: E501
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recover_protection_group_runs_params': ([RecoverProtectionGroupRunParams], none_type,),  # noqa: E501
-            'rename_recovered_namespaces_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'rename_recovered_namespaces_params': (RecoveredOrClonedVmsRenameConfig,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +102,7 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
 
     attribute_map = {
         'recovery_target_config': 'recoveryTargetConfig',  # noqa: E501
+        'excluded_pvcs': 'excludedPvcs',  # noqa: E501
         'objects': 'objects',  # noqa: E501
         'recover_protection_group_runs_params': 'recoverProtectionGroupRunsParams',  # noqa: E501
         'rename_recovered_namespaces_params': 'renameRecoveredNamespacesParams',  # noqa: E501
@@ -116,7 +124,7 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
         """KubernetesTargetParamsForRecoverKubernetesNamespace - a model defined in OpenAPI
 
         Args:
-            recovery_target_config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the recovery target configuration of the Namespace recovery.
+            recovery_target_config (KubernetesNamespaceRecoveryTargetConfig):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -150,9 +158,10 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
+            excluded_pvcs ([KubernetesPvcInfo], none_type): Specifies the list of pvc to be excluded from recovery.. [optional]  # noqa: E501
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the objects to be recovered.. [optional]  # noqa: E501
             recover_protection_group_runs_params ([RecoverProtectionGroupRunParams], none_type): Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.. [optional]  # noqa: E501
-            rename_recovered_namespaces_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies params to rename the Namespaces that are recovered. If not specified, the original names of the Namespaces are preserved. If a name collision occurs then the Namespace being recovered will overwrite the Namespace already present on the source.. [optional]  # noqa: E501
+            rename_recovered_namespaces_params (RecoveredOrClonedVmsRenameConfig): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

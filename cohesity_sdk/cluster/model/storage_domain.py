@@ -27,11 +27,19 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 )
 
 def lazy_import():
+    from cohesity_sdk.cluster.model.cloud_down_water_fall_params import CloudDownWaterFallParams
+    from cohesity_sdk.cluster.model.data_usage_stats import DataUsageStats
     from cohesity_sdk.cluster.model.file_count import FileCount
+    from cohesity_sdk.cluster.model.quota_policy import QuotaPolicy
     from cohesity_sdk.cluster.model.schema import Schema
+    from cohesity_sdk.cluster.model.storage_policy import StoragePolicy
     from cohesity_sdk.cluster.model.subnet import Subnet
+    globals()['CloudDownWaterFallParams'] = CloudDownWaterFallParams
+    globals()['DataUsageStats'] = DataUsageStats
     globals()['FileCount'] = FileCount
+    globals()['QuotaPolicy'] = QuotaPolicy
     globals()['Schema'] = Schema
+    globals()['StoragePolicy'] = StoragePolicy
     globals()['Subnet'] = Subnet
 
 
@@ -62,6 +70,12 @@ class StorageDomain(ModelNormal):
     """
 
     allowed_values = {
+        ('removal_state',): {
+            'None': None,
+            'DONTREMOVE': "DontRemove",
+            'MARKEDFORREMOVAL': "MarkedForRemoval",
+            'OKTOREMOVE': "OkToRemove",
+        },
     }
 
     validations = {
@@ -88,24 +102,26 @@ class StorageDomain(ModelNormal):
             'ad_domain_name': (str, none_type,),  # noqa: E501
             'blob_brick_size_bytes': (int, none_type,),  # noqa: E501
             'cloud_domain_id': (int, none_type,),  # noqa: E501
-            'cloud_down_water_fall_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'cloud_down_water_fall_params': (CloudDownWaterFallParams,),  # noqa: E501
             'cluster_partition_name': (str, none_type,),  # noqa: E501
-            'default_user_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'default_view_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'default_user_quota': (QuotaPolicy,),  # noqa: E501
+            'default_view_quota': (QuotaPolicy,),  # noqa: E501
             'dek_rotation_enabled': (bool, none_type,),  # noqa: E501
             'direct_archive_enabled': (bool, none_type,),  # noqa: E501
             'file_count_by_size': ([FileCount], none_type,),  # noqa: E501
             'id': (int, none_type,),  # noqa: E501
             'kerberos_realm_name': (str, none_type,),  # noqa: E501
             'kms_server_id': (int, none_type,),  # noqa: E501
+            'last_key_rotation_timestamp_msecs': (int, none_type,),  # noqa: E501
             'ldap_provider_id': (int, none_type,),  # noqa: E501
             'nis_domain_names': ([str], none_type,),  # noqa: E501
-            'physical_quota': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'physical_quota': (QuotaPolicy,),  # noqa: E501
             'recommended': (bool, none_type,),  # noqa: E501
+            'removal_state': (str, none_type,),  # noqa: E501
             's3_buckets_enabled': (bool, none_type,),  # noqa: E501
             'schemas': ([Schema], none_type,),  # noqa: E501
-            'stats': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'storage_policy': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'stats': (DataUsageStats,),  # noqa: E501
+            'storage_policy': (StoragePolicy,),  # noqa: E501
             'subnet_whitelist': ([Subnet], none_type,),  # noqa: E501
             'tenant_ids': ([str], none_type,),  # noqa: E501
             'treat_file_sync_as_data_sync': (bool, none_type,),  # noqa: E501
@@ -134,10 +150,12 @@ class StorageDomain(ModelNormal):
         'id': 'id',  # noqa: E501
         'kerberos_realm_name': 'kerberosRealmName',  # noqa: E501
         'kms_server_id': 'kmsServerId',  # noqa: E501
+        'last_key_rotation_timestamp_msecs': 'lastKeyRotationTimestampMsecs',  # noqa: E501
         'ldap_provider_id': 'ldapProviderId',  # noqa: E501
         'nis_domain_names': 'nisDomainNames',  # noqa: E501
         'physical_quota': 'physicalQuota',  # noqa: E501
         'recommended': 'recommended',  # noqa: E501
+        'removal_state': 'removalState',  # noqa: E501
         's3_buckets_enabled': 's3BucketsEnabled',  # noqa: E501
         'schemas': 'schemas',  # noqa: E501
         'stats': 'stats',  # noqa: E501
@@ -202,24 +220,26 @@ class StorageDomain(ModelNormal):
             ad_domain_name (str, none_type): Specifies the Active Directory domain name that this Storage Domain is mapped to.. [optional]  # noqa: E501
             blob_brick_size_bytes (int, none_type): Specifies the brick size used for blobs in this Storage Domain.. [optional]  # noqa: E501
             cloud_domain_id (int, none_type): Specifies the cloud domain Id.. [optional]  # noqa: E501
-            cloud_down_water_fall_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the cloud down water fall parameters for this Storage Domain.. [optional]  # noqa: E501
+            cloud_down_water_fall_params (CloudDownWaterFallParams): [optional]  # noqa: E501
             cluster_partition_name (str, none_type): Specifies the cluster partition name of the Storage Domain.. [optional]  # noqa: E501
-            default_user_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies a default user quota limit for users within views in this Storage Domain.. [optional]  # noqa: E501
-            default_view_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies a default logical quota limit for all views in this Storage Domain. This quota can be overwritten by a view level quota.. [optional]  # noqa: E501
+            default_user_quota (QuotaPolicy): [optional]  # noqa: E501
+            default_view_quota (QuotaPolicy): [optional]  # noqa: E501
             dek_rotation_enabled (bool, none_type): Specifies whether DEK(Data Encryption Key) rotation is enabled for this Storage Domain. This is applicable only when the Storage Domain uses AWS or similar KMS in which the KEK (Key Encryption Key) is not created and maintained by Cohesity. For Internal KMS and keys stored in Safenet servers, DEK rotation will not be performed.. [optional]  # noqa: E501
             direct_archive_enabled (bool, none_type): Specifies whether to enable driect archive on this Storage Domain. If enabled, this Storage Domain can be used as a staging area while copying a large dataset that can't fit on the cluster to an external target.. [optional]  # noqa: E501
             file_count_by_size ([FileCount], none_type): Specifies the file count by size for the View.. [optional]  # noqa: E501
             id (int, none_type): Specifies the Storage Domain id.. [optional]  # noqa: E501
             kerberos_realm_name (str, none_type): Specifies the Kerberos realm name that this Storage Domain is mapped to.. [optional]  # noqa: E501
             kms_server_id (int, none_type): Specifies the associated KMS server id.. [optional]  # noqa: E501
+            last_key_rotation_timestamp_msecs (int, none_type): Last key rotation timestamp in msecs for storage domain.. [optional]  # noqa: E501
             ldap_provider_id (int, none_type): Specifies the LDAP provider id that this Storage Domain is mapped to.. [optional]  # noqa: E501
             nis_domain_names ([str], none_type): Specifies the NIS domain names that this Storage Domain is mapped to.. [optional]  # noqa: E501
-            physical_quota ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies a quota limit for physical usage of this Storage Domain. This quota defines a limit of data that can be physically (after data size is reduced by block tracking, compression and deduplication) stored on this storage domain. A new write will not be allowed when the storage domain usage will exceeds the specified quota. Due to the latency of calculating usage across all nodes, the actual storage domain usage may exceed the quota limit by a little bit.. [optional]  # noqa: E501
+            physical_quota (QuotaPolicy): [optional]  # noqa: E501
             recommended (bool, none_type): Specifies whether Storage Domain is recommended for the specified View template.. [optional]  # noqa: E501
+            removal_state (str, none_type): Specifies the current removal state of the Storage Domain. 'DontRemove' means the state of object is functional and it is not being removed. 'MarkedForRemoval' means the object is being removed. 'OkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.. [optional]  # noqa: E501
             s3_buckets_enabled (bool, none_type): Specifies whether to enable creation of S3 bucket on this Storage Domain.. [optional]  # noqa: E501
             schemas ([Schema], none_type): Specifies the Storage Domain schemas.. [optional]  # noqa: E501
-            stats ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the Storage Domain stats.. [optional]  # noqa: E501
-            storage_policy ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Specifies the storage policy for this Storage Domain.. [optional]  # noqa: E501
+            stats (DataUsageStats): [optional]  # noqa: E501
+            storage_policy (StoragePolicy): [optional]  # noqa: E501
             subnet_whitelist ([Subnet], none_type): Specifies a list of Subnets with IP addresses that have permissions to access the Storage Domain.. [optional]  # noqa: E501
             tenant_ids ([str], none_type): Specifies a list of tenant ids that that Storage Domain belongs. There can only be one tenant id in this field unless Storage Domain sharing between tenants is allowed on this cluster.. [optional]  # noqa: E501
             treat_file_sync_as_data_sync (bool, none_type): If 'true', when the Cohesity Cluster is writing to a file, the file modification time is not persisted synchronously during the file write, so the modification time may not be accurate. (Typically the file modification time is off by 30 seconds but it can be longer.). [optional]  # noqa: E501

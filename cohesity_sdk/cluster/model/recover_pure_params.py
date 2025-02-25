@@ -28,7 +28,11 @@ from cohesity_sdk.cluster.model_utils import (  # noqa: F401
 
 def lazy_import():
     from cohesity_sdk.cluster.model.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
+    from cohesity_sdk.cluster.model.recover_pure_san_group_params import RecoverPureSanGroupParams
+    from cohesity_sdk.cluster.model.recover_pure_san_volume_params import RecoverPureSanVolumeParams
     globals()['CommonRecoverObjectSnapshotParams'] = CommonRecoverObjectSnapshotParams
+    globals()['RecoverPureSanGroupParams'] = RecoverPureSanGroupParams
+    globals()['RecoverPureSanVolumeParams'] = RecoverPureSanVolumeParams
 
 
 class RecoverPureParams(ModelNormal):
@@ -60,6 +64,7 @@ class RecoverPureParams(ModelNormal):
     allowed_values = {
         ('recovery_action',): {
             'RECOVERSANVOLUMES': "RecoverSanVolumes",
+            'RECOVERSANGROUP': "RecoverSanGroup",
         },
     }
 
@@ -84,7 +89,8 @@ class RecoverPureParams(ModelNormal):
         return {
             'objects': ([CommonRecoverObjectSnapshotParams], none_type,),  # noqa: E501
             'recovery_action': (str,),  # noqa: E501
-            'recover_san_volume_params': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'recover_san_group_params': (RecoverPureSanGroupParams,),  # noqa: E501
+            'recover_san_volume_params': (RecoverPureSanVolumeParams,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +102,7 @@ class RecoverPureParams(ModelNormal):
     attribute_map = {
         'objects': 'objects',  # noqa: E501
         'recovery_action': 'recoveryAction',  # noqa: E501
+        'recover_san_group_params': 'recoverSanGroupParams',  # noqa: E501
         'recover_san_volume_params': 'recoverSanVolumeParams',  # noqa: E501
     }
 
@@ -111,14 +118,14 @@ class RecoverPureParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, objects, *args, **kwargs):  # noqa: E501
+    def __init__(self, objects, recovery_action, *args, **kwargs):  # noqa: E501
         """RecoverPureParams - a model defined in OpenAPI
 
         Args:
             objects ([CommonRecoverObjectSnapshotParams], none_type): Specifies the list of recover object parameters.
+            recovery_action (str): Specifies the type of recovery action to be performed. The corresponding recovery action params must be filled out.
 
         Keyword Args:
-            recovery_action (str): Specifies the type of recovery action to be performed. The corresponding recovery action params must be filled out.. defaults to "RecoverSanVolumes", must be one of ["RecoverSanVolumes", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -150,10 +157,10 @@ class RecoverPureParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
 
-            recover_san_volume_params ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Specifies the parameters to recover SAN Volume.. [optional]  # noqa: E501
+            recover_san_group_params (RecoverPureSanGroupParams): [optional]  # noqa: E501
+            recover_san_volume_params (RecoverPureSanVolumeParams): [optional]  # noqa: E501
         """
 
-        recovery_action = kwargs.get('recovery_action', "RecoverSanVolumes")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
