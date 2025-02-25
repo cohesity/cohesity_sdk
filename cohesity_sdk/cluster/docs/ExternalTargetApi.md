@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**delete_external_target**](ExternalTargetApi.md#delete_external_target) | **DELETE** /data-protect/external-targets/{id} | Delete a External Target.
 [**get_external_target_by_id**](ExternalTargetApi.md#get_external_target_by_id) | **GET** /data-protect/external-targets/{id} | List details about single External Target.
 [**get_external_target_encryption_key_info**](ExternalTargetApi.md#get_external_target_encryption_key_info) | **GET** /data-protect/external-targets/{id}/encryption-key | Get the encryption key info for an external target
+[**get_external_target_media_info**](ExternalTargetApi.md#get_external_target_media_info) | **GET** /data-protect/external-targets/media-info | List archive media information
 [**get_external_target_settings**](ExternalTargetApi.md#get_external_target_settings) | **GET** /data-protect/external-targets/settings | Get the list of External Target Settings.
 [**get_external_targets**](ExternalTargetApi.md#get_external_targets) | **GET** /data-protect/external-targets | Get the list of External Targets.
 [**update_external_target**](ExternalTargetApi.md#update_external_target) | **PUT** /data-protect/external-targets/{id} | Update a External Target.
@@ -22,6 +23,7 @@ Create a External Target.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -36,6 +38,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = ExternalTarget() # ExternalTarget | Specifies the parameters to create a External Target.
 
@@ -61,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -86,6 +89,7 @@ Returns Success if the External Target is deleted.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -99,6 +103,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies a unique id of the External Target.
 force_delete = True # bool | Specifies whether to force delete the External target. (optional)
@@ -133,7 +138,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -158,6 +163,7 @@ Returns the External Target corresponding to the specified Group id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -172,6 +178,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies a unique id of the External Target.
 
@@ -197,7 +204,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -222,6 +229,7 @@ Get the encryption key info for an external target
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -235,6 +243,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies the id of the External Target.
 
@@ -260,12 +269,97 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/octet-stream
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_external_target_media_info**
+> ArchivalMediaInfo get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id)
+
+List archive media information
+
+Returns the media information about the specified archive service uid (such as a QStar tape archive service).
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.archival_media_info import ArchivalMediaInfo
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+cluster_id = 1 # int | Specifies the id of the Cohesity cluster which archived to a QStart media target.
+cluster_incarnation_id = 1 # int | Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.
+archival_job_id = 1 # int | Specifies the id of the Job that archived to a QStar media Vault.
+restore_task_id = 1 # int | Specifies the id of the restore task to optionally filter by. (optional)
+entity_ids = [
+        1,
+    ] # [int] | Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster. (optional)
+
+# example passing only required values which don't have defaults set
+try:
+	# List archive media information
+	api_response = client.external_target.get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ExternalTargetApi->get_external_target_media_info: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# List archive media information
+	api_response = client.external_target.get_external_target_media_info(cluster_id, cluster_incarnation_id, archival_job_id, restore_task_id=restore_task_id, entity_ids=entity_ids)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling ExternalTargetApi->get_external_target_media_info: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | **int**| Specifies the id of the Cohesity cluster which archived to a QStart media target. |
+ **cluster_incarnation_id** | **int**| Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target. |
+ **archival_job_id** | **int**| Specifies the id of the Job that archived to a QStar media Vault. |
+ **restore_task_id** | **int**| Specifies the id of the restore task to optionally filter by. | [optional]
+ **entity_ids** | **[int]**| Specifies an array of entityIds to optionally filter by. An entityId is a unique id for a VM assigned by the Cohesity Cluster. | [optional]
+
+### Return type
+
+[**ArchivalMediaInfo**](ArchivalMediaInfo.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -285,6 +379,7 @@ Get the list of External Target Settings
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -299,6 +394,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 
 # example, this endpoint has no required or optional parameters
@@ -320,7 +416,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -345,6 +441,7 @@ Get the list of External Targets.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -360,6 +457,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 ids = [
         1,
     ] # [int] | Filter by a list of External Target ids. (optional)
@@ -374,7 +472,7 @@ purpose_types = [
     ] # [str] | Filter by a list of External Target purpose types. (optional)
 storage_types = [
         "Azure",
-    ] # [str] | Filter by a list of External Target storage types. (optional)
+    ] # [str] | Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. (optional)
 storage_classes = [
         "AmazonS3Standard",
     ] # [str] | Filter by a list of External Target storage classes. (optional)
@@ -401,7 +499,7 @@ Name | Type | Description  | Notes
  **global_ids** | **[str]**| Filter by a list of External Target global ids. | [optional]
  **names** | **[str]**| Filter by a list of External Target names. | [optional]
  **purpose_types** | **[str]**| Filter by a list of External Target purpose types. | [optional]
- **storage_types** | **[str]**| Filter by a list of External Target storage types. | [optional]
+ **storage_types** | **[str]**| Filter by a list of External Target storage types. Nas option in archival_target_storage_type will soon be deprecated. Please use NAS instead. | [optional]
  **storage_classes** | **[str]**| Filter by a list of External Target storage classes. | [optional]
  **ownership_contexts** | **[str]**| Specifies whether how this external target is being consumed either Local or FortKnox. | [optional]
 
@@ -411,7 +509,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -436,6 +534,7 @@ Update the specified External Target.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.external_target import ExternalTarget
@@ -450,6 +549,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = 1 # int | Specifies the id of the External Target.
 body = ExternalTarget() # ExternalTarget | Specifies the parameters to update a External Target.
@@ -477,7 +577,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -502,6 +602,7 @@ Update External Target Settings
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.global_bandwidth_settings import GlobalBandwidthSettings
@@ -517,9 +618,112 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 body = GlobalBandwidthSettings(
-        archival_params=ArchivalBandwidthSettings(),
-        tiering_params=TieringBandwidthSettings(),
+        archival_params=CommonBandwidthSettings(
+            download=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+            upload=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+        ),
+        tiering_params=CommonBandwidthSettings(
+            download=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+            upload=BandwidthThrottling(
+                rate_limit_bytes_per_sec=1,
+                bandwidth_limit_overrides=[
+                    BandwidthThrottlingOverride(
+                        bytes_per_second=1,
+                        time_periods=TimeOfAWeek(
+                            days=[
+                                "Sunday",
+                            ],
+                            end_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                            is_all_day=True,
+                            start_time=TimeOfDay(
+                                hour=0,
+                                minute=0,
+                                time_zone="America/Los_Angeles",
+                            ),
+                        ),
+                    ),
+                ],
+                timezone="timezone_example",
+            ),
+        ),
     ) # GlobalBandwidthSettings | Specifies the parameters to update a External Target Settings.
 
 # example passing only required values which don't have defaults set
@@ -544,7 +748,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

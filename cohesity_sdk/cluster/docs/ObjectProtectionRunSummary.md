@@ -5,6 +5,7 @@ Specifies the response body of the get object runs request.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**entity_id** | [**ObjectStringIdentifier**](ObjectStringIdentifier.md) |  | [optional] 
 **environment** | **str, none_type** | Specifies the environment of the object. | [optional] 
 **id** | **int, none_type** | Specifies object id. | [optional] 
 **name** | **str, none_type** | Specifies the name of the object. | [optional] 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 **origin_cluster_identifier** | [**ClusterIdentifier**](ClusterIdentifier.md) |  | [optional] 
 **origin_protection_group_id** | **str, none_type** | ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run. | [optional] 
 **original_backup_info** | [**BackupRun**](BackupRun.md) |  | [optional] 
-**permissions** | [**[Tenant], none_type**](Tenant.md) | Specifies the list of tenants that have permissions for this protection group run. | [optional] 
+**permissions** | [**[Tenant], none_type**](TenantInfo.md) | Specifies the list of tenants that have permissions for this protection group run. | [optional] 
 **policy_id** | **str, none_type** | Specifies the unique id of the Protection Policy associated with the Protection Run. The Policy provides retry settings Protection Schedules, Priority, SLA, etc. | [optional] 
 **policy_name** | **str, none_type** | Specifies Specifies the name of the Protection Policy. | [optional] 
 **protection_group_id** | **str, none_type** | ProtectionGroupId to which this run belongs. This will only be populated if the object is protected by a protection group. | [optional] 

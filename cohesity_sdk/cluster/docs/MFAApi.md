@@ -23,6 +23,7 @@ Creates a new One Time Password for the user email. This is used for API login.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -37,6 +38,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = CreateEmailOtpRequestBody(
         domain="domain_example",
@@ -66,7 +68,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -91,6 +93,7 @@ Create a TOTP key.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -106,6 +109,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = CreateTotpKeyRequestBody(
         totp_key_name="totp_key_name_example",
@@ -133,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -158,6 +162,7 @@ Returns the current MFA configuration for the cluster.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -172,6 +177,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 
 # example, this endpoint has no required or optional parameters
@@ -193,7 +199,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -218,6 +224,7 @@ Returns the current MFA configuration for support user.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -232,6 +239,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 
 # example, this endpoint has no required or optional parameters
@@ -253,7 +261,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -278,6 +286,7 @@ Creates a new One Time Password for the user email
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -291,6 +300,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 
 # example, this endpoint has no required or optional parameters
@@ -311,7 +321,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -336,6 +346,7 @@ Creates a new one time password for linux support user email
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -349,6 +360,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 
 # example, this endpoint has no required or optional parameters
@@ -369,7 +381,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -394,6 +406,7 @@ Stores the updated MFA configuration for the cluster.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -408,6 +421,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = MfaConfigInfo(
         authentication_types=[
@@ -439,7 +453,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -464,6 +478,7 @@ Update MFA configuration for support user.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.update_mfa_result import UpdateMFAResult
@@ -480,11 +495,13 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 body = SupportMfaConfigInfo(
         email="email_example",
         enabled=False,
         mfa_code="mfa_code_example",
         mfa_type="email",
+        otp_verification_state="kNotStarted",
     ) # SupportMfaConfigInfo | The update request for the MFA Settings
 
 # example passing only required values which don't have defaults set
@@ -509,7 +526,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -534,6 +551,7 @@ Verify totp code for support user.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.verify_totp_result import VerifyTotpResult
@@ -549,6 +567,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = VerifyTotpRequest(
         totp_code="totp_code_example",
@@ -576,7 +595,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

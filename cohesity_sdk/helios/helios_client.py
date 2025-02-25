@@ -1,7 +1,9 @@
 from cohesity_sdk.helios.configuration import Configuration
 from cohesity_sdk.helios.api_client import ApiClient
 from cohesity_sdk.helios.exceptions import ApiException
-from cohesity_sdk.helios.model.create_access_token_request_params import CreateAccessTokenRequestParams
+from cohesity_sdk.helios.model.create_access_token_request_params import (
+    CreateAccessTokenRequestParams,
+)
 
 
 from cohesity_sdk.helios.api.access_token import AccessTokenApi
@@ -28,7 +30,9 @@ from cohesity_sdk.helios.api.fort_knox import FortKnoxApi
 from cohesity_sdk.helios.api.helios_accounts import HeliosAccountsApi
 from cohesity_sdk.helios.api.helios_claim import HeliosClaimApi
 from cohesity_sdk.helios.api.helios_data_protect_stats import HeliosDataProtectStatsApi
-from cohesity_sdk.helios.api.helios_login_configuration import HeliosLoginConfigurationApi
+from cohesity_sdk.helios.api.helios_login_configuration import (
+    HeliosLoginConfigurationApi,
+)
 from cohesity_sdk.helios.api.helios_notifications import HeliosNotificationsApi
 from cohesity_sdk.helios.api.helios_on_prem import HeliosOnPremApi
 from cohesity_sdk.helios.api.helios_signup import HeliosSignupApi
@@ -42,7 +46,9 @@ from cohesity_sdk.helios.api.keystone import KeystoneApi
 from cohesity_sdk.helios.api.ldap import LDAPApi
 from cohesity_sdk.helios.api.mfa import MFAApi
 from cohesity_sdk.helios.api.marketplace_app import MarketplaceAppApi
-from cohesity_sdk.helios.api.network_information_service import NetworkInformationServiceApi
+from cohesity_sdk.helios.api.network_information_service import (
+    NetworkInformationServiceApi,
+)
 from cohesity_sdk.helios.api.node_group import NodeGroupApi
 from cohesity_sdk.helios.api.object import ObjectApi
 from cohesity_sdk.helios.api.patch_management import PatchManagementApi
@@ -78,8 +84,8 @@ from cohesity_sdk.helios.api.runbooks import RunbooksApi
 import re
 from urllib3.exceptions import MaxRetryError
 
-class lazy_property(object):
 
+class lazy_property(object):
     """A decorator class for lazy instantiation."""
 
     def __init__(self, fget):
@@ -95,12 +101,13 @@ class lazy_property(object):
 
 
 class HeliosClient:
-    def __init__(self,
-        api_key = None,
-        access_cluster_id = None,
-        cluster_vip = None,
-        region_id = None,
-        auth_timeout = 30
+    def __init__(
+        self,
+        api_key=None,
+        access_cluster_id=None,
+        cluster_vip=None,
+        region_id=None,
+        auth_timeout=30,
     ):
         # self.domain = domain
         # self.username = username
@@ -121,17 +128,19 @@ class HeliosClient:
             host = re.sub("http:", "https:", host)
             self.configuration.host = host
         else:
-            self.configuration.host = 'https://helios.cohesity.com/v2'
+            self.configuration.host = "https://helios.cohesity.com/v2"
 
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
         if api_key == None:
-            raise Exception('Fail to initialize a client. Please provide authentication info.')
+            raise Exception(
+                "Fail to initialize a client. Please provide authentication info."
+            )
 
         self.__authenticate()
 
-    '''
+    """
     def __get_token(self):
         # TODO: change the hard-coded host
 
@@ -171,20 +180,19 @@ class HeliosClient:
 
             except MaxRetryError as e:
                 raise ApiException(status=404, reason=str(e)) from None
-    '''
+    """
 
     def __authenticate(self):
-        '''
+        """
         if self.username and self.password and self.domain:
             token = self.__get_token()
             self.configuration.api_key['TokenHeader'] = token.token_type + ' ' + token.access_token
-        '''
+        """
         if self.api_key:
-            self.configuration.api_key['APIKeyHeader'] = self.api_key
+            self.configuration.api_key["APIKeyHeader"] = self.api_key
 
         if self.access_cluster_id:
-            self.configuration.api_key['ClusterId'] = self.access_cluster_id
-
+            self.configuration.api_key["ClusterId"] = self.access_cluster_id
 
     @lazy_property
     def access_token(self):

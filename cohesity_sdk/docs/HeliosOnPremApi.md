@@ -96,56 +96,57 @@ client = ClusterClient(
 
 
 body = HeliosOnPremConfig(
-        name="name_example",
-        nodes=[
-            HeliosOnPremVMNode(
-                node_ip="node_ip_example",
-                node_id=1,
-            ),
-        ],
         kubernetes_subnet_cidr="kubernetes_subnet_cidr_example",
+        name="name_example",
         network_config=ClusterCreateNetworkConfig(
-            ntp_servers=[
-                "ntp_servers_example",
-            ],
-            domain_names=[
-                "domain_names_example",
-            ],
-            vip_host_name="vip_host_name_example",
-            ip_preference="Ipv4",
-            use_dhcp=True,
             dhcp_network_config=ClusterDhcpNetworkConfig(
                 dns_servers=[
                     "dns_servers_example",
                 ],
             ),
+            domain_names=[
+                "domain_names_example",
+            ],
+            ip_preference="Ipv4",
             manual_network_config=ClusterManualNetworkConfig(
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
                 dns_servers=[
                     "dns_servers_example",
                 ],
+                gateway="gateway_example",
+                subnet_ip="subnet_ip_example",
+                subnet_mask="subnet_mask_example",
             ),
+            ntp_servers=[
+                "ntp_servers_example",
+            ],
             secondary_dhcp_network_config=ClusterDhcpNetworkConfig(
                 dns_servers=[
                     "dns_servers_example",
                 ],
             ),
             secondary_manual_network_config=ClusterManualNetworkConfig(
-                gateway="gateway_example",
-                subnet_ip="subnet_ip_example",
-                subnet_mask="subnet_mask_example",
                 dns_servers=[
                     "dns_servers_example",
                 ],
+                gateway="gateway_example",
+                subnet_ip="subnet_ip_example",
+                subnet_mask="subnet_mask_example",
             ),
+            use_dhcp=True,
+            vip_host_name="vip_host_name_example",
         ),
+        nodes=[
+            HeliosOnPremVMNode(
+                node_id=1,
+                node_ip="node_ip_example",
+            ),
+        ],
         proxy_server_config=ClusterProxyServerConfig(
             ip="ip_example",
+            is_disabled=True,
+            password="password_example",
             port=1,
             username="username_example",
-            password="password_example",
         ),
         ssh_config=HeliosOnPremSSHConfig(
         ),

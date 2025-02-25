@@ -36,12 +36,12 @@ client = ClusterClient(
 
 
 body = StaticRouteParams(
+        description="description_example",
+        destination_network="destination_network_example",
         interface="interface_example",
         interface_group="interface_group_example",
-        destination_network="destination_network_example",
-        next_hop="next_hop_example",
-        description="description_example",
         mtu=1,
+        next_hop="next_hop_example",
         node_group_name="node_group_name_example",
     ) # StaticRouteParams | Specifies the parameters to configure a static route on an interface.
 
@@ -244,12 +244,12 @@ client = ClusterClient(
 
 route_id = "routeId_example" # str | Specify the unique identifier for the route.
 body = StaticRouteParams(
+        description="description_example",
+        destination_network="destination_network_example",
         interface="interface_example",
         interface_group="interface_group_example",
-        destination_network="destination_network_example",
-        next_hop="next_hop_example",
-        description="description_example",
         mtu=1,
+        next_hop="next_hop_example",
         node_group_name="node_group_name_example",
     ) # StaticRouteParams | Specifies the update request parameters.
 

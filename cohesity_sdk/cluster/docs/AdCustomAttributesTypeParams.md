@@ -5,7 +5,7 @@ Specifies the properties accociated to a CustomAttributes type user id mapping.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fallback_option** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies a fallback user id mapping param in case the primary config does not work. | 
+**fallback_option** | [**FallbackUserIdMappingParams**](FallbackUserIdMappingParams.md) |  | 
 **gid_attr_name** | **str, none_type** | Specifies the custom field name in Active Directory user properties to get the GID. | 
 **uid_attr_name** | **str, none_type** | Specifies the custom field name in Active Directory user properties to get the UID. | 
 

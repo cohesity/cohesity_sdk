@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **archival_snapshots_info** | [**[ObjectArchivalSnapshotInfo], none_type**](ObjectArchivalSnapshotInfo.md) | Specifies the archival snapshots information. | [optional] 
 **indexing_status** | **str, none_type** | Specifies the indexing status of objects in this snapshot.&lt;br&gt; &#39;InProgress&#39; indicates the indexing is in progress.&lt;br&gt; &#39;Done&#39; indicates indexing is done.&lt;br&gt; &#39;NoIndex&#39; indicates indexing is not applicable.&lt;br&gt; &#39;Error&#39; indicates indexing failed with error. | [optional] 
-**local_snapshot_info** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the local snapshot information. | [optional] 
+**local_snapshot_info** | [**ObjectLocalSnapshotInfo**](ObjectLocalSnapshotInfo.md) |  | [optional] 
 **protection_group_id** | **str, none_type** | Specifies id of the Protection Group. | [optional] 
 **protection_group_name** | **str, none_type** | Specifies name of the Protection Group. | [optional] 
 **protection_run_end_time_usecs** | **int, none_type** | Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds. | [optional] 

@@ -1,6 +1,6 @@
 # CommonObjectsActionParams
 
-Specifies the comon action params needed for performing bulk actions on list of objects.
+Specifies the common action params needed for performing bulk actions on list of objects.
 
 ## Properties
 Name | Type | Description | Notes

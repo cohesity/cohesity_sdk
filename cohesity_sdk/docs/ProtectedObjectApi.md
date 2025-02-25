@@ -40,28 +40,32 @@ body = ProtectdObjectsActionRequest(
         object_action_key="kVMware",
         pause_params=ProtectedObjectPauseActionParams(
             objects=[
-                PauseActionObjectLevelParams(),
+                ProtectionObjectInput(
+                    id=1,
+                ),
             ],
         ),
         resume_params=ProtectedObjectResumeActionParams(
             objects=[
-                ResumeActionObjectLevelParams(),
+                ProtectionObjectInput(
+                    id=1,
+                ),
             ],
         ),
         run_now_params=ProtectedObjectRunNowActionParams(
-            run_label="run_label_example",
             objects=[
                 RunNowActionObjectLevelParams(),
             ],
+            run_label="run_label_example",
         ),
+        snapshot_backend_types=[
+            "kAWSNative",
+        ],
         un_protect_params=ProtectedObjectUnProtectActionParams(
             objects=[
                 UnprotectActionObjectLevelParams(),
             ],
         ),
-        snapshot_backend_types=[
-            "kAWSNative",
-        ],
     ) # ProtectdObjectsActionRequest | Specifies the parameters to perform an action on an already protected object.
 
 # example passing only required values which don't have defaults set

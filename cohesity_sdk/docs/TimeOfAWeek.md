@@ -6,9 +6,9 @@ Specifies a time period by specifying a single daily time period and one or more
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **days** | **[str], none_type** | Array of Week Days. Specifies a list of days of a week (such as &#39;Sunday&#39;) when the time period should be applied. If not set, the time range applies to all days of the week. Specifies a day in a week such as &#39;Sunday&#39;, &#39;Monday&#39;, etc. | [optional] 
-**start_time** | [**TimeOfDay**](TimeOfDay.md) |  | [optional] 
 **end_time** | [**TimeOfDay**](TimeOfDay.md) |  | [optional] 
 **is_all_day** | **bool, none_type** | All Day. Specifies that bandwidth limit is applied for entire day. | [optional] 
+**start_time** | [**TimeOfDay**](TimeOfDay.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

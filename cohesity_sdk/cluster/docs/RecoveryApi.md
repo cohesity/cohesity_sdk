@@ -13,9 +13,6 @@ Method | HTTP request | Description
 [**get_recovery_by_id**](RecoveryApi.md#get_recovery_by_id) | **GET** /data-protect/recoveries/{id} | Get Recovery for a given id.
 [**get_recovery_debug_logs**](RecoveryApi.md#get_recovery_debug_logs) | **GET** /data-protect/recoveries/{id}/debug-logs | Get the debug logs for a particular recovery operation.
 [**get_recovery_errors_report**](RecoveryApi.md#get_recovery_errors_report) | **GET** /data-protect/recoveries/{id}/download-messages | Get the CSV of errors/warnings for a given recovery operation.
-[**internal_api_create_download_files_and_folders_recovery**](RecoveryApi.md#internal_api_create_download_files_and_folders_recovery) | **POST** /data-protect/recoveries/downloadFilesAndFoldersRecovery | Create a download files and folders recovery.
-[**internal_api_download_files_from_recovery**](RecoveryApi.md#internal_api_download_files_from_recovery) | **GET** /data-protect/recoveries/{id}/downloadFiles | Download files from the given download file recovery.
-[**internal_api_download_indexed_file**](RecoveryApi.md#internal_api_download_indexed_file) | **GET** /data-protect/snapshots/{snapshotsId}/downloadFile | Download an indexed file.
 [**tear_down_recovery_by_id**](RecoveryApi.md#tear_down_recovery_by_id) | **POST** /data-protect/recoveries/{id}/tear-down | Tear down Recovery for a given id.
 
 
@@ -28,6 +25,7 @@ Cancel Recovery for a given id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -41,6 +39,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of a Recovery.
 
@@ -65,7 +64,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -90,6 +89,7 @@ Creates a download files and folders recovery.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.recovery import Recovery
@@ -106,6 +106,7 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 body = DownloadFilesAndFoldersRequestParams(
         files_and_folders=[
             FilesAndFoldersObject(
@@ -116,8 +117,16 @@ body = DownloadFilesAndFoldersRequestParams(
         glacier_retrieval_type="kStandard",
         name="name_example",
         object=CommonRecoverObjectSnapshotParams(
-            archival_target_info={},
-            object_info={},
+            archival_target_info=ArchivalTargetSummaryInfo(
+                archival_task_id="archival_task_id_example",
+                ownership_context="Local",
+                target_id=1,
+                target_name="target_name_example",
+                target_type="Tape",
+                tier_settings=ArchivalTargetTierInfo(),
+                usage_type="Archival",
+            ),
+            object_info=ObjectSummary(),
             point_in_time_usecs=1,
             protection_group_id="protection_group_id_example",
             protection_group_name="protection_group_name_example",
@@ -149,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -174,6 +183,7 @@ Performs a Recovery.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.recovery import Recovery
@@ -189,6 +199,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 body = CreateRecoveryRequest() # CreateRecoveryRequest | Specifies the parameters to create a Recovery.
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
@@ -225,7 +236,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -250,6 +261,7 @@ Download files from the given download file recovery.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -264,10 +276,13 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of a Recovery.
 start_offset = 1 # int | Specifies the start offset of file chunk to be downloaded. (optional)
 length = 1 # int | Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) (optional)
 file_type = "fileType_example" # str | Specifies the downloaded type, i.e: error, success_files_list (optional)
+source_name = "sourceName_example" # str | Specifies the name of the source on which restore is done (optional)
+start_time = "startTime_example" # str | Specifies the start time of restore task (optional)
 include_tenants = True # bool | Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned. (optional)
 
 # example passing only required values which don't have defaults set
@@ -281,7 +296,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Download files from the given download file recovery.
-	client.recovery.download_files_from_recovery(id, start_offset=start_offset, length=length, file_type=file_type, include_tenants=include_tenants)
+	client.recovery.download_files_from_recovery(id, start_offset=start_offset, length=length, file_type=file_type, source_name=source_name, start_time=start_time, include_tenants=include_tenants)
 except ApiException as e:
 	print("Exception when calling RecoveryApi->download_files_from_recovery: %s\n" % e)
 ```
@@ -295,6 +310,8 @@ Name | Type | Description  | Notes
  **start_offset** | **int**| Specifies the start offset of file chunk to be downloaded. | [optional]
  **length** | **int**| Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) | [optional]
  **file_type** | **str**| Specifies the downloaded type, i.e: error, success_files_list | [optional]
+ **source_name** | **str**| Specifies the name of the source on which restore is done | [optional]
+ **start_time** | **str**| Specifies the start time of restore task | [optional]
  **include_tenants** | **bool**| Specifies if objects of all the organizations under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
 
 ### Return type
@@ -303,7 +320,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -328,6 +345,7 @@ Download an indexed file from a snapshot.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -342,8 +360,10 @@ client = ClusterClient(
 	domain = "LOCAL"
 )
 
+
 snapshots_id = "snapshotsId_example" # str | Specifies the snapshot id to download from.
 file_path = "filePath_example" # str | Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified. (optional)
+nvram_file = True # bool | Specifies if NVRAM file for VMware should be downloaded. (optional)
 retry_attempt = 1 # int | Specifies the number of attempts the protection run took to create this file. (optional)
 start_offset = 1 # int | Specifies the start offset of file chunk to be downloaded. (optional)
 length = 1 # int | Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) (optional)
@@ -359,7 +379,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Download an indexed file.
-	client.recovery.download_indexed_file(snapshots_id, file_path=file_path, retry_attempt=retry_attempt, start_offset=start_offset, length=length)
+	client.recovery.download_indexed_file(snapshots_id, file_path=file_path, nvram_file=nvram_file, retry_attempt=retry_attempt, start_offset=start_offset, length=length)
 except ApiException as e:
 	print("Exception when calling RecoveryApi->download_indexed_file: %s\n" % e)
 ```
@@ -371,6 +391,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **snapshots_id** | **str**| Specifies the snapshot id to download from. |
  **file_path** | **str**| Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified. | [optional]
+ **nvram_file** | **bool**| Specifies if NVRAM file for VMware should be downloaded. | [optional]
  **retry_attempt** | **int**| Specifies the number of attempts the protection run took to create this file. | [optional]
  **start_offset** | **int**| Specifies the start offset of file chunk to be downloaded. | [optional]
  **length** | **int**| Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) | [optional]
@@ -381,7 +402,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -406,6 +427,7 @@ Fetches the uptier data for a restore job.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -420,6 +442,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 archive_uid = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Archive UID of the current restore.
 
@@ -445,7 +468,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -470,6 +493,7 @@ Lists the Recoveries.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -484,6 +508,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 ids = [
         "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
@@ -546,7 +571,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -571,6 +596,7 @@ Get Recovery for a given id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.recovery import Recovery
@@ -585,6 +611,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of a Recovery.
 include_tenants = True # bool | Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned. (optional)
@@ -621,7 +648,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -646,6 +673,7 @@ Get the debug logs for a particular recovery operation.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -659,6 +687,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of a Recovery job.
 
@@ -683,7 +712,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -708,6 +737,7 @@ Get a CSV error report for given recovery operation. Each row in CSV report cont
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -721,6 +751,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique ID of a Recovery.
 
@@ -745,245 +776,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **internal_api_create_download_files_and_folders_recovery**
-> Recovery internal_api_create_download_files_and_folders_recovery(body)
-
-Create a download files and folders recovery.
-
-Creates a download files and folders recovery.
-
-### Example
-
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.recovery import Recovery
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-body = DownloadFilesAndFoldersRequestParams(
-        files_and_folders=[
-            FilesAndFoldersObject(
-                absolute_path="absolute_path_example",
-                is_directory=True,
-            ),
-        ],
-        glacier_retrieval_type="kStandard",
-        name="name_example",
-        object=CommonRecoverObjectSnapshotParams(
-            archival_target_info={},
-            object_info={},
-            point_in_time_usecs=1,
-            protection_group_id="protection_group_id_example",
-            protection_group_name="protection_group_name_example",
-            recover_from_standby=True,
-            snapshot_id="snapshot_id_example",
-        ),
-        parent_recovery_id="4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-    ) # DownloadFilesAndFoldersRequestParams | Specifies the parameters to create a download files and folder recovery.
-
-# example passing only required values which don't have defaults set
-try:
-	# Create a download files and folders recovery.
-	api_response = client.recovery.internal_api_create_download_files_and_folders_recovery(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling RecoveryApi->internal_api_create_download_files_and_folders_recovery: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**DownloadFilesAndFoldersRequestParams**](DownloadFilesAndFoldersRequestParams.md)| Specifies the parameters to create a download files and folder recovery. |
-
-### Return type
-
-[**Recovery**](Recovery.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **internal_api_download_files_from_recovery**
-> internal_api_download_files_from_recovery(id)
-
-Download files from the given download file recovery.
-
-Download files from the given download file recovery.
-
-### Example
-
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of a Recovery.
-start_offset = 1 # int | Specifies the start offset of file chunk to be downloaded. (optional)
-length = 1 # int | Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) (optional)
-include_tenants = True # bool | Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned. (optional)
-
-# example passing only required values which don't have defaults set
-try:
-	# Download files from the given download file recovery.
-	client.recovery.internal_api_download_files_from_recovery(id)
-except ApiException as e:
-	print("Exception when calling RecoveryApi->internal_api_download_files_from_recovery: %s\n" % e)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Download files from the given download file recovery.
-	client.recovery.internal_api_download_files_from_recovery(id, start_offset=start_offset, length=length, include_tenants=include_tenants)
-except ApiException as e:
-	print("Exception when calling RecoveryApi->internal_api_download_files_from_recovery: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| Specifies the id of a Recovery. |
- **start_offset** | **int**| Specifies the start offset of file chunk to be downloaded. | [optional]
- **length** | **int**| Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) | [optional]
- **include_tenants** | **bool**| Specifies if objects of all the organizations under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | No Content |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **internal_api_download_indexed_file**
-> internal_api_download_indexed_file(snapshots_id)
-
-Download an indexed file.
-
-Download an indexed file from a snapshot.
-
-### Example
-
-```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
-from pprint import pprint
-
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
-)
-
-snapshots_id = "snapshotsId_example" # str | Specifies the snapshot id to download from.
-file_path = "filePath_example" # str | Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified. (optional)
-retry_attempt = 1 # int | Specifies the number of attempts the protection run took to create this file. (optional)
-start_offset = 1 # int | Specifies the start offset of file chunk to be downloaded. (optional)
-length = 1 # int | Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) (optional)
-
-# example passing only required values which don't have defaults set
-try:
-	# Download an indexed file.
-	client.recovery.internal_api_download_indexed_file(snapshots_id)
-except ApiException as e:
-	print("Exception when calling RecoveryApi->internal_api_download_indexed_file: %s\n" % e)
-
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# Download an indexed file.
-	client.recovery.internal_api_download_indexed_file(snapshots_id, file_path=file_path, retry_attempt=retry_attempt, start_offset=start_offset, length=length)
-except ApiException as e:
-	print("Exception when calling RecoveryApi->internal_api_download_indexed_file: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **snapshots_id** | **str**| Specifies the snapshot id to download from. |
- **file_path** | **str**| Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified. | [optional]
- **retry_attempt** | **int**| Specifies the number of attempts the protection run took to create this file. | [optional]
- **start_offset** | **int**| Specifies the start offset of file chunk to be downloaded. | [optional]
- **length** | **int**| Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) | [optional]
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
@@ -1008,6 +801,7 @@ Tear down Recovery for a given id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
@@ -1021,6 +815,7 @@ client = ClusterClient(
 	password = "password",
 	domain = "LOCAL"
 )
+
 
 id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies the id of a Recovery.
 
@@ -1045,7 +840,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 

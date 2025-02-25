@@ -34,6 +34,7 @@ client = ClusterClient(
 
 body = IPConfigParams(
         interface="interface_example",
+        ip_family=1,
         ips=[
             "ips_example",
         ],
@@ -43,7 +44,6 @@ body = IPConfigParams(
         role="role_example",
         subnet_gateway="subnet_gateway_example",
         subnet_mask_bits=1,
-        ip_family=1,
     ) # IPConfigParams | Specifies the parameters to configure a IP settings on a cluster.
 
 # example passing only required values which don't have defaults set

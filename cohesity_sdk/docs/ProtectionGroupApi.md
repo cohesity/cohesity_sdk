@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**get_protection_runs**](ProtectionGroupApi.md#get_protection_runs) | **GET** /data-protect/runs/summary | Get the list of runs.
 [**get_run_debug_logs**](ProtectionGroupApi.md#get_run_debug_logs) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/debug-logs | Get the debug logs for a run from a Protection Group.
 [**get_run_debug_logs_for_object**](ProtectionGroupApi.md#get_run_debug_logs_for_object) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/debug-logs | Get the debug logs for a particular object in a run from a Protection Group.
-[**get_run_errors_report**](ProtectionGroupApi.md#get_run_errors_report) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/download-messages | Get the CSV of errors/warnings for a given run and an object.
+[**get_run_messages_report**](ProtectionGroupApi.md#get_run_messages_report) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/download-messages | Get the CSV of various Proto Messages for a given run and an object.
 [**get_runs_report**](ProtectionGroupApi.md#get_runs_report) | **GET** /data-protect/protection-groups/{id}/runs/{runId}/objects/{objectId}/downloadFiles | Get the CSV of errors/warnings for a given run and an object.
 [**perform_action_on_protection_group_run**](ProtectionGroupApi.md#perform_action_on_protection_group_run) | **POST** /data-protect/protection-groups/{id}/runs/actions | Actions on protection group run.
 [**update_protection_group**](ProtectionGroupApi.md#update_protection_group) | **PUT** /data-protect/protection-groups/{id} | Update a Protection Group.
@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 
 # **create_protection_group**
-> CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b create_protection_group(body)
+> ProtectionGroup create_protection_group(body)
 
 Create a Protection Group.
 
@@ -35,9 +35,9 @@ Create a Protection Group.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
-from cohesity_sdk.cluster.model.common_protection_group_request_paramsdc3738211b78497f_a31b107b557906d5 import CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -50,42 +50,7 @@ client = ClusterClient(
 )
 
 
-body = CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5(
-        name="name_example",
-        policy_id="policy_id_example",
-        priority="kLow",
-        storage_domain_id=1,
-        description="description_example",
-        start_time=TimeOfDay(
-            hour=0,
-            minute=0,
-            time_zone="America/Los_Angeles",
-        ),
-        end_time_usecs=1,
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        sla=[
-            SlaRule(
-                backup_run_type="kIncremental",
-                sla_minutes=1,
-            ),
-        ],
-        qos_policy="kBackupHDD",
-        abort_in_blackouts=True,
-        pause_in_blackouts=True,
-        environment="kVMware",
-        is_paused=True,
-    ) # CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5 | Specifies the parameters to create a Protection Group.
+body = CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to create a Protection Group.
 
 # example passing only required values which don't have defaults set
 try:
@@ -101,11 +66,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5**](CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5.md)| Specifies the parameters to create a Protection Group. |
+ **body** | [**CreateOrUpdateProtectionGroupRequest**](CreateOrUpdateProtectionGroupRequest.md)| Specifies the parameters to create a Protection Group. |
 
 ### Return type
 
-[**CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b**](CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b.md)
+[**ProtectionGroup**](ProtectionGroup.md)
 
 ### Authorization
 
@@ -154,75 +119,89 @@ client = ClusterClient(
 
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 body = CreateProtectionGroupRunRequest(
-        run_type="kRegular",
+        cassandra_params=CassandraProtectionRunParams(
+            set_primary_for_log=False,
+        ),
         objects=[
             RunObject(
-                id=1,
                 app_ids=[
                     1,
                 ],
+                id=1,
                 physical_params=RunObjectPhysicalParams(
                     metadata_file_path="metadata_file_path_example",
                 ),
             ),
         ],
+        run_type="kRegular",
         targets_config=RunTargetsConfiguration(
-            use_policy_defaults=False,
-            replications=[
-                RunReplicationConfig(
-                    id=1,
-                    retention=Retention(
-                        unit="Days",
-                        duration=1,
-                        data_lock_config=DataLockConfig(
-                            mode="Compliance",
-                            unit="Days",
-                            duration=1,
-                            enable_worm_on_external_target=True,
-                        ),
-                    ),
-                ),
-            ],
             archivals=[
                 RunArchivalConfig(
-                    id=1,
                     archival_target_type="Tape",
+                    copy_only_fully_successful=True,
+                    id=1,
                     retention=Retention(
-                        unit="Days",
-                        duration=1,
                         data_lock_config=DataLockConfig(
-                            mode="Compliance",
-                            unit="Days",
                             duration=1,
                             enable_worm_on_external_target=True,
+                            mode="Compliance",
+                            unit="Days",
                         ),
+                        duration=1,
+                        unit="Days",
                     ),
-                    copy_only_fully_successful=True,
                 ),
             ],
             cloud_replications=[
                 RunCloudReplicationConfig(
-                    target_type="AWS",
                     aws_target=AWSTargetConfig(
-                        source_id=1,
                         region=1,
+                        source_id=1,
                     ),
                     azure_target=AzureTargetConfig(
-                        source_id=1,
                         resource_group=1,
+                        source_id=1,
                     ),
                     retention=Retention(
-                        unit="Days",
-                        duration=1,
                         data_lock_config=DataLockConfig(
-                            mode="Compliance",
-                            unit="Days",
                             duration=1,
                             enable_worm_on_external_target=True,
+                            mode="Compliance",
+                            unit="Days",
                         ),
+                        duration=1,
+                        unit="Days",
+                    ),
+                    target_type="AWS",
+                ),
+            ],
+            replications=[
+                RunReplicationConfig(
+                    id=1,
+                    retention=Retention(
+                        data_lock_config=DataLockConfig(
+                            duration=1,
+                            enable_worm_on_external_target=True,
+                            mode="Compliance",
+                            unit="Days",
+                        ),
+                        duration=1,
+                        unit="Days",
                     ),
                 ),
             ],
+            use_policy_defaults=False,
+        ),
+        uda_params=UdaProtectionRunParams(
+            externally_triggered_run_params=UdaExternallyTriggeredRunParams(
+                backup_args=[
+                    KeyValuePair(
+                        key="key_example",
+                        value="value_example",
+                    ),
+                ],
+                control_node="control_node_example",
+            ),
         ),
     ) # CreateProtectionGroupRunRequest | Specifies the parameters to start a protection run.
 
@@ -340,7 +319,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_group_by_id**
-> CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b get_protection_group_by_id(id)
+> ProtectionGroup get_protection_group_by_id(id)
 
 List details about single Protection Group.
 
@@ -351,8 +330,8 @@ Returns the Protection Group corresponding to the specified Group id.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -402,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b**](CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b.md)
+[**ProtectionGroup**](ProtectionGroup.md)
 
 ### Authorization
 
@@ -423,7 +402,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_protection_group_run**
-> ProtectionGroupRun get_protection_group_run(id, run_id)
+> CommonProtectionGroupRunResponseParameters get_protection_group_run(id, run_id)
 
 Get a run for a Protection Group.
 
@@ -435,7 +414,7 @@ Get a run for a particular Protection Group.
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.protection_group_run import ProtectionGroupRun
+from cohesity_sdk.cluster.model.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -491,7 +470,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProtectionGroupRun**](ProtectionGroupRun.md)
+[**CommonProtectionGroupRunResponseParameters**](CommonProtectionGroupRunResponseParameters.md)
 
 ### Authorization
 
@@ -537,11 +516,11 @@ client = ClusterClient(
 )
 
 
-id = "id_example" # str | Specifies a unique id of the Protection Group.
+id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026" # str | Specifies a unique id of the Protection Group.
 request_initiator_type = "UIUser" # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies the protection run id. (optional)
-start_time_usecs = 1 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
-end_time_usecs = 1 # int | Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
+start_time_usecs = 1 # int | Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. (optional)
+end_time_usecs = 1 # int | End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. (optional)
 tenant_ids = [
         "tenantIds_example",
     ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
@@ -568,6 +547,14 @@ run_tags = [
         "runTags_example",
     ] # [str] | Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
+filter_by_end_time = True # bool | If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned. (optional)
+snapshot_target_types = [
+        "Local",
+    ] # [str] | Specifies the snapshot's target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored. (optional)
+only_return_successful_copy_run = True # bool | If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored. (optional)
+filter_by_copy_task_end_time = True # bool | If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set. (optional)
+max_result_count = 1 # int | Identifies the max number of items to be returned. This is specifically to be used with pagination. (optional)
+pagination_cookie = "paginationCookie_example" # str, none_type | Specifies the cookie to fetch the next page of results (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -581,7 +568,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get the list of runs for a Protection Group.
-	api_response = client.protection_group.get_protection_group_runs(id, request_initiator_type=request_initiator_type, run_id=run_id, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, tenant_ids=tenant_ids, include_tenants=include_tenants, run_types=run_types, include_object_details=include_object_details, local_backup_run_status=local_backup_run_status, replication_run_status=replication_run_status, archival_run_status=archival_run_status, cloud_spin_run_status=cloud_spin_run_status, num_runs=num_runs, exclude_non_restorable_runs=exclude_non_restorable_runs, run_tags=run_tags, use_cached_data=use_cached_data)
+	api_response = client.protection_group.get_protection_group_runs(id, request_initiator_type=request_initiator_type, run_id=run_id, start_time_usecs=start_time_usecs, end_time_usecs=end_time_usecs, tenant_ids=tenant_ids, include_tenants=include_tenants, run_types=run_types, include_object_details=include_object_details, local_backup_run_status=local_backup_run_status, replication_run_status=replication_run_status, archival_run_status=archival_run_status, cloud_spin_run_status=cloud_spin_run_status, num_runs=num_runs, exclude_non_restorable_runs=exclude_non_restorable_runs, run_tags=run_tags, use_cached_data=use_cached_data, filter_by_end_time=filter_by_end_time, snapshot_target_types=snapshot_target_types, only_return_successful_copy_run=only_return_successful_copy_run, filter_by_copy_task_end_time=filter_by_copy_task_end_time, max_result_count=max_result_count, pagination_cookie=pagination_cookie)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionGroupApi->get_protection_group_runs: %s\n" % e)
@@ -595,8 +582,8 @@ Name | Type | Description  | Notes
  **id** | **str**| Specifies a unique id of the Protection Group. |
  **request_initiator_type** | **str**| Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. | [optional]
  **run_id** | **str**| Specifies the protection run id. | [optional]
- **start_time_usecs** | **int**| Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). | [optional]
- **end_time_usecs** | **int**| Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds). | [optional]
+ **start_time_usecs** | **int**| Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. | [optional]
+ **end_time_usecs** | **int**| End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. | [optional]
  **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
  **include_tenants** | **bool**| If true, the response will include Protection Group Runs which were created by all tenants which the current user has permission to see. If false, then only Protection Group Runs created by the current user will be returned. | [optional]
  **run_types** | **[str]**| Filter by run type. Only protection run matching the specified types will be returned. | [optional]
@@ -609,6 +596,12 @@ Name | Type | Description  | Notes
  **exclude_non_restorable_runs** | **bool**| Specifies whether to exclude non restorable runs. Run is treated restorable only if there is atleast one object snapshot (which may be either a local or an archival snapshot) which is not deleted or expired. Default value is false. | [optional] if omitted the server will use the default value of False
  **run_tags** | **[str]**| Specifies a list of tags for protection runs. If this is specified, only the runs which match these tags will be returned. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
+ **filter_by_end_time** | **bool**| If true, the runs with backup end time within the specified time range will be returned. Otherwise, the runs with start time in the time range are returned. | [optional]
+ **snapshot_target_types** | **[str]**| Specifies the snapshot&#39;s target type which should be filtered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored. | [optional]
+ **only_return_successful_copy_run** | **bool**| If set to false, all copy_tasks in any given valid state will be considered. If left empty or set to true, only successful copy_tasks would be considered. Note: this field is only considered when, filterByCopyTaskEndTime is set to true, or else it is ignored. | [optional]
+ **filter_by_copy_task_end_time** | **bool**| If true, then the details of the runs for which any copyTask completed in the given timerange will be returned. Only one of filterByEndTime and filterByCopyTaskEndTime can be set. | [optional]
+ **max_result_count** | **int**| Identifies the max number of items to be returned. This is specifically to be used with pagination. | [optional]
+ **pagination_cookie** | **str, none_type**| Specifies the cookie to fetch the next page of results | [optional]
 
 ### Return type
 
@@ -703,12 +696,17 @@ include_last_run_info = True # bool | If true, the response will include last ru
 prune_excluded_source_ids = True # bool | If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user. (optional)
 prune_source_ids = True # bool, none_type | If true, the response will exclude the list of source IDs within the group specified. (optional)
 use_cached_data = True # bool | Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
+source_ids = [
+        1,
+    ] # [int] | Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned. (optional)
+max_result_count = 1 # int | Identifies the max number of items to be returned. This is specifically to be used with pagination. (optional)
+pagination_cookie = "paginationCookie_example" # str, none_type | Specifies the cookie to fetch the set page of results (optional)
 
 # example passing only required values which don't have defaults set
 # and optional values
 try:
 	# Get the list of Protection Groups.
-	api_response = client.protection_group.get_protection_groups(request_initiator_type=request_initiator_type, ids=ids, names=names, policy_ids=policy_ids, storage_domain_id=storage_domain_id, include_groups_with_datalock_only=include_groups_with_datalock_only, environments=environments, office365_workloads=office365_workloads, is_active=is_active, is_deleted=is_deleted, is_paused=is_paused, last_run_local_backup_status=last_run_local_backup_status, last_run_replication_status=last_run_replication_status, last_run_archival_status=last_run_archival_status, last_run_cloud_spin_status=last_run_cloud_spin_status, last_run_any_status=last_run_any_status, is_last_run_sla_violated=is_last_run_sla_violated, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, prune_excluded_source_ids=prune_excluded_source_ids, prune_source_ids=prune_source_ids, use_cached_data=use_cached_data)
+	api_response = client.protection_group.get_protection_groups(request_initiator_type=request_initiator_type, ids=ids, names=names, policy_ids=policy_ids, storage_domain_id=storage_domain_id, include_groups_with_datalock_only=include_groups_with_datalock_only, environments=environments, office365_workloads=office365_workloads, is_active=is_active, is_deleted=is_deleted, is_paused=is_paused, last_run_local_backup_status=last_run_local_backup_status, last_run_replication_status=last_run_replication_status, last_run_archival_status=last_run_archival_status, last_run_cloud_spin_status=last_run_cloud_spin_status, last_run_any_status=last_run_any_status, is_last_run_sla_violated=is_last_run_sla_violated, tenant_ids=tenant_ids, include_tenants=include_tenants, include_last_run_info=include_last_run_info, prune_excluded_source_ids=prune_excluded_source_ids, prune_source_ids=prune_source_ids, use_cached_data=use_cached_data, source_ids=source_ids, max_result_count=max_result_count, pagination_cookie=pagination_cookie)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling ProtectionGroupApi->get_protection_groups: %s\n" % e)
@@ -742,6 +740,9 @@ Name | Type | Description  | Notes
  **prune_excluded_source_ids** | **bool**| If true, the response will not include the list of excluded source IDs in groups that contain this field. This can be set to true in order to improve performance if excluded source IDs are not needed by the user. | [optional]
  **prune_source_ids** | **bool, none_type**| If true, the response will exclude the list of source IDs within the group specified. | [optional]
  **use_cached_data** | **bool**| Specifies whether we can serve the GET request from the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. | [optional]
+ **source_ids** | **[int]**| Filter by Source ids that are associated with Protection Groups. Only Protection Groups associated with the specified Source ids, are returned. | [optional]
+ **max_result_count** | **int**| Identifies the max number of items to be returned. This is specifically to be used with pagination. | [optional]
+ **pagination_cookie** | **str, none_type**| Specifies the cookie to fetch the set page of results | [optional]
 
 ### Return type
 
@@ -997,8 +998,8 @@ client = ClusterClient(
 )
 
 
-start_time_usecs = 1 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. (optional)
-end_time_usecs = 1 # int | Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. (optional)
+start_time_usecs = 1 # int | Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. (optional)
+end_time_usecs = 1 # int | End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. (optional)
 run_status = [
         "Accepted",
     ] # [str] | Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped. (optional)
@@ -1018,8 +1019,8 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start_time_usecs** | **int**| Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. | [optional]
- **end_time_usecs** | **int**| Filter by a end time. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. | [optional]
+ **start_time_usecs** | **int**| Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. | [optional]
+ **end_time_usecs** | **int**| End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. | [optional]
  **run_status** | **[str]**| Specifies a list of status, runs matching the status will be returned.&lt;br&gt; &#39;Running&#39; indicates that the run is still running.&lt;br&gt; &#39;Canceled&#39; indicates that the run has been canceled.&lt;br&gt; &#39;Canceling&#39; indicates that the run is in the process of being canceled.&lt;br&gt; &#39;Failed&#39; indicates that the run has failed.&lt;br&gt; &#39;Missed&#39; indicates that the run was unable to take place at the scheduled time because the previous run was still happening.&lt;br&gt; &#39;Succeeded&#39; indicates that the run has finished successfully.&lt;br&gt; &#39;SucceededWithWarning&#39; indicates that the run finished successfully, but there were some warning messages.&lt;br&gt; &#39;Skipped&#39; indicates that the run was skipped. | [optional]
 
 ### Return type
@@ -1188,12 +1189,12 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_run_errors_report**
-> get_run_errors_report(id, run_id, object_id)
+# **get_run_messages_report**
+> get_run_messages_report(id, run_id, object_id)
 
-Get the CSV of errors/warnings for a given run and an object.
+Get the CSV of various Proto Messages for a given run and an object.
 
-Get an CSV error report for given objectId and run id. Each row in CSV report contains the File Path, error/warning code and error/warning message.
+Get an CSV report for given objectId and run id. Each row in CSV report contains the fields from correspoinding proto message.
 
 ### Example
 
@@ -1216,13 +1217,23 @@ client = ClusterClient(
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
 object_id = "objectId_example" # str | Specifies the id of the object for which errors/warnings are to be returned. 
+file_type = "fileType_example" # str | Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list (optional)
+name = "name_example" # str | Specifies the name of the source being backed up (optional)
 
 # example passing only required values which don't have defaults set
 try:
-	# Get the CSV of errors/warnings for a given run and an object.
-	client.protection_group.get_run_errors_report(id, run_id, object_id)
+	# Get the CSV of various Proto Messages for a given run and an object.
+	client.protection_group.get_run_messages_report(id, run_id, object_id)
 except ApiException as e:
-	print("Exception when calling ProtectionGroupApi->get_run_errors_report: %s\n" % e)
+	print("Exception when calling ProtectionGroupApi->get_run_messages_report: %s\n" % e)
+
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get the CSV of various Proto Messages for a given run and an object.
+	client.protection_group.get_run_messages_report(id, run_id, object_id, file_type=file_type, name=name)
+except ApiException as e:
+	print("Exception when calling ProtectionGroupApi->get_run_messages_report: %s\n" % e)
 ```
 
 
@@ -1233,6 +1244,8 @@ Name | Type | Description  | Notes
  **id** | **str**| Specifies a unique id of the Protection Group. |
  **run_id** | **str**| Specifies a unique run id of the Protection Group run. |
  **object_id** | **str**| Specifies the id of the object for which errors/warnings are to be returned.  |
+ **file_type** | **str**| Specifies the downloaded type, i.e: inclusion_exclusion_reports, error_files_list. default: error_files_list | [optional]
+ **name** | **str**| Specifies the name of the source being backed up | [optional]
 
 ### Return type
 
@@ -1285,6 +1298,7 @@ id = "4:072888001528021798096225500850762068629:39333975650685139102691291732729
 run_id = "4:072888001528021798096225500850762068629" # str | Specifies a unique run id of the Protection Group run.
 object_id = "objectId_example" # str | Specifies the id of the object for which errors/warnings are to be returned. 
 file_type = "fileType_example" # str | Specifies the downloaded type, i.e: success_files_list, default: success_files_list (optional)
+name = "name_example" # str | Specifies the name of the source being backed up (optional)
 
 # example passing only required values which don't have defaults set
 try:
@@ -1297,7 +1311,7 @@ except ApiException as e:
 # and optional values
 try:
 	# Get the CSV of errors/warnings for a given run and an object.
-	client.protection_group.get_runs_report(id, run_id, object_id, file_type=file_type)
+	client.protection_group.get_runs_report(id, run_id, object_id, file_type=file_type, name=name)
 except ApiException as e:
 	print("Exception when calling ProtectionGroupApi->get_runs_report: %s\n" % e)
 ```
@@ -1311,6 +1325,7 @@ Name | Type | Description  | Notes
  **run_id** | **str**| Specifies a unique run id of the Protection Group run. |
  **object_id** | **str**| Specifies the id of the object for which errors/warnings are to be returned.  |
  **file_type** | **str**| Specifies the downloaded type, i.e: success_files_list, default: success_files_list | [optional]
+ **name** | **str**| Specifies the name of the source being backed up | [optional]
 
 ### Return type
 
@@ -1364,6 +1379,24 @@ client = ClusterClient(
 id = "id_example" # str | Specifies a unique id of the Protection Group.
 body = PerformActionOnProtectionGroupRunRequest(
         action="Pause",
+        cancel_params=[
+            CancelProtectionGroupRunRequest(
+                archival_task_id=[
+                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                ],
+                cloud_spin_task_id=[
+                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                ],
+                local_task_id="4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                object_ids=[
+                    1,
+                ],
+                replication_task_id=[
+                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
+                ],
+                run_id="4:072888001528021798096225500850762068629",
+            ),
+        ],
         pause_params=[
             PauseProtectionRunActionParams(
                 run_id="4:072888001528021798096225500850762068629",
@@ -1372,24 +1405,6 @@ body = PerformActionOnProtectionGroupRunRequest(
         resume_params=[
             ResumeProtectionRunActionParams(
                 run_id="4:072888001528021798096225500850762068629",
-            ),
-        ],
-        cancel_params=[
-            CancelProtectionGroupRunRequest(
-                run_id="4:072888001528021798096225500850762068629",
-                local_task_id="4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                object_ids=[
-                    1,
-                ],
-                replication_task_id=[
-                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                ],
-                archival_task_id=[
-                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                ],
-                cloud_spin_task_id=[
-                    "4:072888001528021798096225500850762068629:39333975650685139102691291732729478601482026",
-                ],
             ),
         ],
     ) # PerformActionOnProtectionGroupRunRequest | Specifies the parameters to perform an action on a protection run.
@@ -1434,7 +1449,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_protection_group**
-> CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b update_protection_group(id, body)
+> ProtectionGroup update_protection_group(id, body)
 
 Update a Protection Group.
 
@@ -1445,9 +1460,9 @@ Update the specified Protection Group.
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_protection_group_response_params1adf5af12d9e4081_a117_de198444a79b import CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b
-from cohesity_sdk.cluster.model.common_protection_group_request_paramsdc3738211b78497f_a31b107b557906d5 import CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5
 from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.model.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -1461,42 +1476,7 @@ client = ClusterClient(
 
 
 id = "id_example" # str | Specifies the id of the Protection Group.
-body = CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5(
-        name="name_example",
-        policy_id="policy_id_example",
-        priority="kLow",
-        storage_domain_id=1,
-        description="description_example",
-        start_time=TimeOfDay(
-            hour=0,
-            minute=0,
-            time_zone="America/Los_Angeles",
-        ),
-        end_time_usecs=1,
-        alert_policy=ProtectionGroupAlertingPolicy(
-            backup_run_status=[
-                "kSuccess",
-            ],
-            alert_targets=[
-                AlertTarget(
-                    email_address="email_address_example",
-                    language="en-us",
-                    recipient_type="kTo",
-                ),
-            ],
-        ),
-        sla=[
-            SlaRule(
-                backup_run_type="kIncremental",
-                sla_minutes=1,
-            ),
-        ],
-        qos_policy="kBackupHDD",
-        abort_in_blackouts=True,
-        pause_in_blackouts=True,
-        environment="kVMware",
-        is_paused=True,
-    ) # CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5 | Specifies the parameters to update a Protection Group.
+body = CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to update a Protection Group.
 
 # example passing only required values which don't have defaults set
 try:
@@ -1513,11 +1493,11 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Specifies the id of the Protection Group. |
- **body** | [**CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5**](CommonProtectionGroupRequestParamsdc3738211b78497fA31b107b557906d5.md)| Specifies the parameters to update a Protection Group. |
+ **body** | [**CreateOrUpdateProtectionGroupRequest**](CreateOrUpdateProtectionGroupRequest.md)| Specifies the parameters to update a Protection Group. |
 
 ### Return type
 
-[**CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b**](CommonProtectionGroupResponseParams1adf5af12d9e4081A117De198444a79b.md)
+[**ProtectionGroup**](ProtectionGroup.md)
 
 ### Authorization
 
@@ -1568,70 +1548,72 @@ id = "id_example" # str | Specifies a unique id of the Protection Group.
 body = UpdateProtectionGroupRunRequestBody(
         update_protection_group_run_params=[
             UpdateProtectionGroupRunParams(
-                run_id="4:072888001528021798096225500850762068629",
+                archival_snapshot_config=UpdateArchivalSnapshotConfig(
+                    new_snapshot_config=[
+                        RunArchivalConfig(
+                            archival_target_type="Tape",
+                            copy_only_fully_successful=True,
+                            id=1,
+                            retention=Retention(
+                                data_lock_config=DataLockConfig(
+                                    duration=1,
+                                    enable_worm_on_external_target=True,
+                                    mode="Compliance",
+                                    unit="Days",
+                                ),
+                                duration=1,
+                                unit="Days",
+                            ),
+                        ),
+                    ],
+                    update_existing_snapshot_config=[
+                        UpdateExistingArchivalSnapshotConfig(
+                            archival_target_type="Tape",
+                            data_lock="Compliance",
+                            days_to_keep=1,
+                            delete_snapshot=True,
+                            enable_legal_hold=True,
+                            id=1,
+                            name="name_example",
+                            resync=True,
+                        ),
+                    ],
+                ),
                 local_snapshot_config=UpdateLocalSnapshotConfig(
-                    enable_legal_hold=True,
-                    delete_snapshot=True,
                     data_lock="Compliance",
                     days_to_keep=1,
+                    delete_snapshot=True,
+                    enable_legal_hold=True,
                 ),
                 replication_snapshot_config=UpdateReplicationSnapshotConfig(
                     new_snapshot_config=[
                         RunReplicationConfig(
                             id=1,
                             retention=Retention(
-                                unit="Days",
-                                duration=1,
                                 data_lock_config=DataLockConfig(
-                                    mode="Compliance",
-                                    unit="Days",
                                     duration=1,
                                     enable_worm_on_external_target=True,
+                                    mode="Compliance",
+                                    unit="Days",
                                 ),
+                                duration=1,
+                                unit="Days",
                             ),
                         ),
                     ],
                     update_existing_snapshot_config=[
                         UpdateExistingReplicationSnapshotConfig(
-                            id=1,
-                            enable_legal_hold=True,
-                            delete_snapshot=True,
-                            resync=True,
                             data_lock="Compliance",
                             days_to_keep=1,
+                            delete_snapshot=True,
+                            enable_legal_hold=True,
+                            id=1,
+                            name="name_example",
+                            resync=True,
                         ),
                     ],
                 ),
-                archival_snapshot_config=UpdateArchivalSnapshotConfig(
-                    new_snapshot_config=[
-                        RunArchivalConfig(
-                            id=1,
-                            archival_target_type="Tape",
-                            retention=Retention(
-                                unit="Days",
-                                duration=1,
-                                data_lock_config=DataLockConfig(
-                                    mode="Compliance",
-                                    unit="Days",
-                                    duration=1,
-                                    enable_worm_on_external_target=True,
-                                ),
-                            ),
-                            copy_only_fully_successful=True,
-                        ),
-                    ],
-                    update_existing_snapshot_config=[
-                        UpdateExistingArchivalSnapshotConfig(
-                            id=1,
-                            archival_target_type="Tape",
-                            enable_legal_hold=True,
-                            delete_snapshot=True,
-                            resync=True,
-                            data_lock="Compliance",
-                            days_to_keep=1,
-                        ),
-                    ],
-                ),
+                run_id="4:072888001528021798096225500850762068629",
             ),
         ],
     ) # UpdateProtectionGroupRunRequestBody | Specifies the parameters to update a Protection Group Run.

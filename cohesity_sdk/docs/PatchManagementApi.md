@@ -40,8 +40,8 @@ client = ClusterClient(
 
 
 body = ApplyPatchesRequest(
-        service="service_example",
         all=True,
+        service="service_example",
     ) # ApplyPatchesRequest | Request to apply patches.
 
 # example passing only required values which don't have defaults set

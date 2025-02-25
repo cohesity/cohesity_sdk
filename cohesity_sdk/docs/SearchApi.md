@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **search_indexed_objects**
-> CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8 search_indexed_objects(body)
+> SearchIndexedObjectsResponseBody search_indexed_objects(body)
 
 List indexed objects.
 
@@ -20,9 +20,9 @@ List all the indexed objects like files and folders, emails, mailboxes etc., tha
 * Api Key Authentication (APIKeyHeader):
 ```python
 from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.common_search_indexed_objects_response_params53dc35a6_c64f4952_a4482b9a1911cfe8 import CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8
+from cohesity_sdk.cluster.model.search_indexed_objects_request import SearchIndexedObjectsRequest
+from cohesity_sdk.cluster.model.search_indexed_objects_response_body import SearchIndexedObjectsResponseBody
 from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.common_search_indexed_objects_request_params10ad3b2c_e8864d87_b3c05ce6605593f0 import CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0
 from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
@@ -35,38 +35,7 @@ client = ClusterClient(
 )
 
 
-body = CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0(
-        protection_group_ids=[
-            "protection_group_ids_example",
-        ],
-        storage_domain_ids=[
-            1,
-        ],
-        tenant_id="tenant_id_example",
-        include_tenants=False,
-        tags=[
-            "tags_example",
-        ],
-        snapshot_tags=[
-            "snapshot_tags_example",
-        ],
-        must_have_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        might_have_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        must_have_snapshot_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        might_have_snapshot_tag_ids=[
-            "4:072888001528021798096225500850762068629:3OW2EG7P6QW9QKLP6L4Y010FOG5UGCAJVNH6NZN2YP6D",
-        ],
-        pagination_cookie="pagination_cookie_example",
-        count=1,
-        object_type="Emails",
-        use_cached_data=True,
-    ) # CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0 | Specifies the parameters to search for indexed objects.
+body = SearchIndexedObjectsRequest() # SearchIndexedObjectsRequest | Specifies the parameters to search for indexed objects.
 
 # example passing only required values which don't have defaults set
 try:
@@ -82,11 +51,11 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0**](CommonSearchIndexedObjectsRequestParams10ad3b2cE8864d87B3c05ce6605593f0.md)| Specifies the parameters to search for indexed objects. |
+ **body** | [**SearchIndexedObjectsRequest**](SearchIndexedObjectsRequest.md)| Specifies the parameters to search for indexed objects. |
 
 ### Return type
 
-[**CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8**](CommonSearchIndexedObjectsResponseParams53dc35a6C64f4952A4482b9a1911cfe8.md)
+[**SearchIndexedObjectsResponseBody**](SearchIndexedObjectsResponseBody.md)
 
 ### Authorization
 
@@ -156,6 +125,9 @@ os_types = [
 o365_object_types = [
         "kDomain",
     ] # [str] | Specifies the object types to filter objects on. Only applicable if the environment is o365. (optional)
+azure_object_types = [
+        "kTenant",
+    ] # [str] | Specifies the object types to filter objects on. Only applicable if the environment is Azure. (optional)
 source_ids = [
         1,
     ] # [int] | Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. (optional)
@@ -196,7 +168,7 @@ might_have_snapshot_tag_ids = [
 # and optional values
 try:
 	# List Objects.
-	api_response = client.search.search_objects(request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids)
+	api_response = client.search.search_objects(request_initiator_type=request_initiator_type, search_string=search_string, environments=environments, protection_types=protection_types, tenant_ids=tenant_ids, include_tenants=include_tenants, protection_group_ids=protection_group_ids, object_ids=object_ids, os_types=os_types, o365_object_types=o365_object_types, azure_object_types=azure_object_types, source_ids=source_ids, source_uuids=source_uuids, is_protected=is_protected, is_deleted=is_deleted, last_run_status_list=last_run_status_list, region_ids=region_ids, cluster_identifiers=cluster_identifiers, storage_domain_ids=storage_domain_ids, include_deleted_objects=include_deleted_objects, pagination_cookie=pagination_cookie, count=count, must_have_tag_ids=must_have_tag_ids, might_have_tag_ids=might_have_tag_ids, must_have_snapshot_tag_ids=must_have_snapshot_tag_ids, might_have_snapshot_tag_ids=might_have_snapshot_tag_ids)
 	pprint(api_response)
 except ApiException as e:
 	print("Exception when calling SearchApi->search_objects: %s\n" % e)
@@ -217,6 +189,7 @@ Name | Type | Description  | Notes
  **object_ids** | **[int]**| Specifies a list of Object ids to filter. | [optional]
  **os_types** | **[str]**| Specifies the operating system types to filter objects on. | [optional]
  **o365_object_types** | **[str]**| Specifies the object types to filter objects on. Only applicable if the environment is o365. | [optional]
+ **azure_object_types** | **[str]**| Specifies the object types to filter objects on. Only applicable if the environment is Azure. | [optional]
  **source_ids** | **[int]**| Specifies a list of Protection Source object ids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **source_uuids** | **[str]**| Specifies a list of Protection Source object uuids to filter the objects. If specified, the object which are present in those Sources will be returned. | [optional]
  **is_protected** | **bool**| Specifies the protection status of objects. If set to true, only protected objects will be returned. If set to false, only unprotected objects will be returned. If not specified, all objects will be returned. | [optional]

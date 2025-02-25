@@ -10,12 +10,12 @@ Name | Type | Description | Notes
 **create_new_team** | **bool, none_type** | Specifies to create new team in case the target team doesn&#39;t exists in case restoreToOriginal is false. | [optional] 
 **restore_original_owners** | **bool, none_type** | Specifies if the original members/owners should be part of the newly created target team or not. | [optional] 
 **restore_to_original** | **bool, none_type** | Specifies whether or not all Microsoft 365 Teams are restored to original location. | [optional] 
-**target_ms_team** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | This field is deprecated. Use targetTeamNickName and targetTeamFullName instead. | [optional] 
-**target_ms_team_param** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the ms team target parameters in case of restoreToOriginal is false. | [optional] 
+**target_ms_team** | [**TargetMsTeamParam**](TargetMsTeamParam.md) |  | [optional] 
+**target_ms_team_param** | [**TargetMsTeamParam**](TargetMsTeamParam.md) |  | [optional] 
 **target_team_full_name** | **str, none_type** | This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user). | [optional] 
 **target_team_name** | **str, none_type** | Specifies the target team name in case restoreToOriginal is false. | [optional] 
 **target_team_nick_name** | **str, none_type** | This field is deprecated. Specifies target team nickname in case restoreToOriginal is false. | [optional] 
-**target_team_owner** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the additional owner entity info for the selected target team. | [optional] 
+**target_team_owner** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,12 +3,96 @@
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_audit_logs**](AuditLogApi.md#create_audit_logs) | **POST** /create-audit-logs | Create cluster audit logs.
 [**get_audit_logs**](AuditLogApi.md#get_audit_logs) | **GET** /audit-logs | Get cluster audit logs.
 [**get_audit_logs_actions**](AuditLogApi.md#get_audit_logs_actions) | **GET** /audit-logs/actions | Get cluster audit logs actions.
 [**get_audit_logs_entity_types**](AuditLogApi.md#get_audit_logs_entity_types) | **GET** /audit-logs/entity-types | Get cluster audit logs entity types.
 [**get_filer_audit_log_configs**](AuditLogApi.md#get_filer_audit_log_configs) | **GET** /audit-logs/filer-configs | Get filer audit log configs.
 [**update_filer_audit_log_configs**](AuditLogApi.md#update_filer_audit_log_configs) | **PUT** /audit-logs/filer-configs | Update filer audit log configs.
 
+
+# **create_audit_logs**
+> AuditLogsEntityTypes create_audit_logs(body)
+
+Create cluster audit logs.
+
+Create a cluster audit logs.
+
+### Example
+
+* Api Key Authentication (APIKeyHeader):
+```python
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.audit_logs_entity_types import AuditLogsEntityTypes
+from cohesity_sdk.cluster.model.audit_log import AuditLog
+from cohesity_sdk.cluster.exceptions import ApiException
+from pprint import pprint
+
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
+)
+
+
+body = AuditLog(
+        action="action_example",
+        details="details_example",
+        domain="domain_example",
+        entity_name="entity_name_example",
+        entity_type="entity_type_example",
+        ip="ip_example",
+        is_impersonation=True,
+        new_record="new_record_example",
+        original_tenant_id="original_tenant_id_example",
+        original_tenant_name="original_tenant_name_example",
+        previous_record="previous_record_example",
+        tenant_id="tenant_id_example",
+        tenant_name="tenant_name_example",
+        timestamp_usecs=1,
+        username="username_example",
+    ) # AuditLog | Request to create a audit log.
+
+# example passing only required values which don't have defaults set
+try:
+	# Create cluster audit logs.
+	api_response = client.audit_log.create_audit_logs(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling AuditLogApi->create_audit_logs: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AuditLog**](AuditLog.md)| Request to create a audit log. |
+
+### Return type
+
+[**AuditLogsEntityTypes**](AuditLogsEntityTypes.md)
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**0** | Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_audit_logs**
 > AuditLogs get_audit_logs()
@@ -320,14 +404,15 @@ client = ClusterClient(
 
 
 body = FilerAuditLogConfigs(
+        override_global_subnet_whitelist=True,
         share_permissions=[
             SmbPermission(
-                type="Allow",
-                mode="FolderSubFoldersAndFiles",
                 access="ReadOnly",
+                mode="FolderSubFoldersAndFiles",
                 sid="sid_example",
-                special_type=1,
                 special_access_mask=1,
+                special_type=1,
+                type="Allow",
             ),
         ],
         subnet_whitelist=[
@@ -341,11 +426,10 @@ body = FilerAuditLogConfigs(
                 netmask_ip4="netmask_ip4_example",
                 nfs_access="kDisabled",
                 nfs_squash="kNone",
-                smb_access="kDisabled",
                 s3_access="kDisabled",
+                smb_access="kDisabled",
             ),
         ],
-        override_global_subnet_whitelist=True,
     ) # FilerAuditLogConfigs | Specifies the filer audit log config to update.
 
 # example passing only required values which don't have defaults set

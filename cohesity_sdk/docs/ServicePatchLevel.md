@@ -5,9 +5,9 @@ Patch level of a service. It is the number of patches applied for the service on
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service** | **str, none_type** | Specifies the name of the service. | [optional] 
 **patch_level** | **int, none_type** | Specifies patch level of the service after the patch operation. | [optional] 
 **patch_version** | **str, none_type** | Specifies the version of the service patch after the patch operation. | [optional] 
+**service** | **str, none_type** | Specifies the name of the service. | [optional] 
 **start_level** | **int, none_type** | Specifies patch level of the service before the patch operation. | [optional] 
 **start_version** | **str, none_type** | Specifies the version of the service running on the cluster before the patch operation. | [optional] 
 

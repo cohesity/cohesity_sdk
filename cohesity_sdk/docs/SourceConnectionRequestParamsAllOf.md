@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cassandra_connection_params** | [**CassandraConnectionParams**](CassandraConnectionParams.md) |  | [optional] 
-**hive_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
 **hbase_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
 **hdfs_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
-**mssql_connection_params** | [**MssqlConnectionParams**](MssqlConnectionParams.md) |  | [optional] 
+**hive_connection_params** | [**HadoopConnectionParams**](HadoopConnectionParams.md) |  | [optional] 
+**mssql_connection_params** | [**MsSQLCommonConnectionParams**](MsSQLCommonConnectionParams.md) |  | [optional] 
 **oracle_connection_params** | [**OracleConnectionParams**](OracleConnectionParams.md) |  | [optional] 
 **vmware_connection_params** | [**VmwareConnectionParams**](VmwareConnectionParams.md) |  | [optional] 
 

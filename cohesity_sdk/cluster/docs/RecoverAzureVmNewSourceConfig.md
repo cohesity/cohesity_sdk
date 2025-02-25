@@ -5,15 +5,17 @@ Specifies the new destination Source configuration where the VMs will be recover
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**network_config** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the networking configuration to be applied to the recovered VMs. | 
-**resource_group** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the Azure resource group. | 
-**source** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the id of the parent source to recover the VMs. | 
-**storage_account** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the storage account that will contain the storage container | 
-**storage_container** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the storage container within the above storage account. | 
-**storage_resource_group** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies id of the resource group for the selected storage account. | 
-**availability_set** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the availability set. | [optional] 
-**compute_option** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the type of VM (e.g. small, medium, large) when cloning/restoring the VM in Azure. | [optional] 
+**network_config** | [**RecoverAzureVmNewSourceNetworkConfig**](RecoverAzureVmNewSourceNetworkConfig.md) |  | 
+**resource_group** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
+**source** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
+**availability_set** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**compute_option** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 **data_transfer_info** | [**DataTransferInfo**](DataTransferInfo.md) |  | [optional] 
+**region** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**storage_account** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**storage_container** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**storage_resource_group** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
+**subscription** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

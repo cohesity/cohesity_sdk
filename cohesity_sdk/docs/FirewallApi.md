@@ -369,18 +369,18 @@ client = ClusterClient(
 
 
 body = FirewallProfileParams(
-        name="name_example",
+        action="allow",
+        description="description_example",
         direction="INPUT",
+        interface_groups=[
+            "interface_groups_example",
+        ],
+        name="name_example",
         ports=[
             "ports_example",
         ],
-        action="allow",
-        description="description_example",
         subnets=[
             "subnets_example",
-        ],
-        interface_groups=[
-            "interface_groups_example",
         ],
     ) # FirewallProfileParams | Specifies the parameters to configure firewall profiles and/or their attachments.
 
@@ -451,28 +451,28 @@ client = ClusterClient(
 body = FirewallProfiles(
         profiles=[
             FirewallProfile(
-                name="name_example",
-                gateway_params=[
-                    GatewayParams(
-                        port="port_example",
-                        direction="INPUT",
-                    ),
-                ],
                 attachments=[
                     Attachment(
-                        interfaces=[
-                            "interfaces_example",
-                        ],
+                        action="allow",
+                        description="description_example",
                         interface_groups=[
                             "interface_groups_example",
+                        ],
+                        interfaces=[
+                            "interfaces_example",
                         ],
                         ipset_names=[
                             "ipset_names_example",
                         ],
-                        description="description_example",
-                        action="allow",
                     ),
                 ],
+                gateway_params=[
+                    GatewayParams(
+                        direction="INPUT",
+                        port="port_example",
+                    ),
+                ],
+                name="name_example",
             ),
         ],
     ) # FirewallProfiles | Specifies the parameters to configure firewall profiles and/or their attachments.

@@ -6,7 +6,7 @@ Specifies the params of the GPFS recovery target.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **alternate_path** | **str, none_type** | Specifies the path location to recover files to. | 
-**volume** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the id and name of the parent NAS to recover to. This volume will be the target of the recovery. | 
+**volume** | [**RecoverTarget**](RecoverTarget.md) |  | 
 **continue_on_error** | **bool, none_type** | Specifies whether to continue recovering other files if one of the files fails to recover. Default value is false. | [optional] 
 **encryption_enabled** | **bool, none_type** | Specifies whether encryption should be enabled during recovery. | [optional] 
 **filter_ip_config** | [**FilterIpConfig**](FilterIpConfig.md) |  | [optional] 
