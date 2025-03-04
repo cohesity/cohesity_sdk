@@ -3,15 +3,33 @@
 Specifies the new destination Source configuration where the VMs will be recovered for vCloudDirector sources.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**source** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the id of the parent source to recover the VMs. | 
-**vdc** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the VDC object where the recovered objects will be attached. | 
-**datastores** | [**[RecoveryObjectIdentifier], none_type**](RecoveryObjectIdentifier.md) | Specifies the datastore objects where the object&#39;s files should be recovered to. | [optional] 
-**network_config** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type** | Specifies the networking configuration to be applied to the recovered VMs. | [optional] 
+**datastores** | [**List[RecoveryObjectIdentifier]**](RecoveryObjectIdentifier.md) | Specifies the datastore objects where the object&#39;s files should be recovered to. | [optional] 
+**network_config** | [**RecoverVmwareVmNewSourceNetworkConfig**](RecoverVmwareVmNewSourceNetworkConfig.md) |  | [optional] 
 **org_vdc_network** | [**OrgVDCNetwork**](OrgVDCNetwork.md) |  | [optional] 
-**storage_profile** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the storage profile to which the objects should be recovered. This should only be specified if datastores are not specified. | [optional] 
+**source** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
+**storage_profile** | [**VcdStorageProfileParams**](VcdStorageProfileParams.md) |  | [optional] 
+**vdc** | [**RecoveryObjectIdentifier**](RecoveryObjectIdentifier.md) |  | 
 
+## Example
+
+```python
+from cohesity_sdk.models.recover_vmware_v_app_vcd_source_config import RecoverVmwareVAppVCDSourceConfig
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of RecoverVmwareVAppVCDSourceConfig from a JSON string
+recover_vmware_v_app_vcd_source_config_instance = RecoverVmwareVAppVCDSourceConfig.from_json(json)
+# print the JSON string representation of the object
+print(RecoverVmwareVAppVCDSourceConfig.to_json())
+
+# convert the object into a dict
+recover_vmware_v_app_vcd_source_config_dict = recover_vmware_v_app_vcd_source_config_instance.to_dict()
+# create an instance of RecoverVmwareVAppVCDSourceConfig from a dict
+recover_vmware_v_app_vcd_source_config_from_dict = RecoverVmwareVAppVCDSourceConfig.from_dict(recover_vmware_v_app_vcd_source_config_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

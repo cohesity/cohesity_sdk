@@ -3,17 +3,35 @@
 Specifies the parameters which are specific to Flashblade object protection.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**continue_on_error** | **bool, none_type** | Specifies whether or not the backup should continue regardless of whether or not an error was encountered. | [optional] 
-**encryption_enabled** | **bool, none_type** | Specifies whether the encryption should be used while backup or not. | [optional] 
+**continue_on_error** | **bool** | Specifies whether or not the backup should continue regardless of whether or not an error was encountered. | [optional] 
+**encryption_enabled** | **bool** | Specifies whether the encryption should be used while backup or not. | [optional] 
 **file_filters** | [**FileFilteringPolicy**](FileFilteringPolicy.md) |  | [optional] 
 **file_lock_config** | [**FileLevelDataLockConfig**](FileLevelDataLockConfig.md) |  | [optional] 
 **indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
 **pre_post_script** | [**HostBasedBackupScriptParams**](HostBasedBackupScriptParams.md) |  | [optional] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
-**protocol** | **str, none_type** | Specifies the protocol of the NAS device being backed up. | [optional] 
+**protocol** | **str** | Specifies the protocol of the NAS device being backed up. | [optional] 
 
+## Example
+
+```python
+from cohesity_sdk.models.flashblade_object_protection_response_params import FlashbladeObjectProtectionResponseParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of FlashbladeObjectProtectionResponseParams from a JSON string
+flashblade_object_protection_response_params_instance = FlashbladeObjectProtectionResponseParams.from_json(json)
+# print the JSON string representation of the object
+print(FlashbladeObjectProtectionResponseParams.to_json())
+
+# convert the object into a dict
+flashblade_object_protection_response_params_dict = flashblade_object_protection_response_params_instance.to_dict()
+# create an instance of FlashbladeObjectProtectionResponseParams from a dict
+flashblade_object_protection_response_params_from_dict = FlashbladeObjectProtectionResponseParams.from_dict(flashblade_object_protection_response_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
