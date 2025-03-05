@@ -1,66 +1,55 @@
-from cohesity_sdk.cluster.configuration import Configuration
-from cohesity_sdk.cluster.api_client import ApiClient
-from cohesity_sdk.cluster.exceptions import ApiException
-from cohesity_sdk.cluster.model.create_access_token_request_params import CreateAccessTokenRequestParams
+from cohesity_sdk.configuration import Configuration
+from cohesity_sdk.api_client import ApiClient
+from cohesity_sdk.exceptions import ApiException
+from cohesity_sdk.models.create_access_token_request_params import CreateAccessTokenRequestParams
 
 
-from cohesity_sdk.cluster.api.access_token import AccessTokenApi
-from cohesity_sdk.cluster.api.active_directory import ActiveDirectoryApi
-from cohesity_sdk.cluster.api.agent import AgentApi
-from cohesity_sdk.cluster.api.alert import AlertApi
-from cohesity_sdk.cluster.api.antivirus_service import AntivirusServiceApi
-from cohesity_sdk.cluster.api.audit_log import AuditLogApi
-from cohesity_sdk.cluster.api.cloud_retrieve_task import CloudRetrieveTaskApi
-from cohesity_sdk.cluster.api.connectors import ConnectorsApi
-from cohesity_sdk.cluster.api.d_maa_s_tenant_certificate import DMaaSTenantCertificateApi
-from cohesity_sdk.cluster.api.data_tiering import DataTieringApi
-from cohesity_sdk.cluster.api.external_connection import ExternalConnectionApi
-from cohesity_sdk.cluster.api.external_target import ExternalTargetApi
-from cohesity_sdk.cluster.api.failover import FailoverApi
-from cohesity_sdk.cluster.api.firewall import FirewallApi
-from cohesity_sdk.cluster.api.fleet_instance import FleetInstanceApi
-from cohesity_sdk.cluster.api.helios_on_prem import HeliosOnPremApi
-from cohesity_sdk.cluster.api.ips import IPsApi
-from cohesity_sdk.cluster.api.identity_provider import IdentityProviderApi
-from cohesity_sdk.cluster.api.indexing_cloud_config import IndexingCloudConfigApi
-from cohesity_sdk.cluster.api.internal import InternalApi
-from cohesity_sdk.cluster.api.kerberos_provider import KerberosProviderApi
-from cohesity_sdk.cluster.api.key_management_system import KeyManagementSystemApi
-from cohesity_sdk.cluster.api.keystone import KeystoneApi
-from cohesity_sdk.cluster.api.ldap import LDAPApi
-from cohesity_sdk.cluster.api.mfa import MFAApi
-from cohesity_sdk.cluster.api.marketplace_app import MarketplaceAppApi
-from cohesity_sdk.cluster.api.network_information_service import NetworkInformationServiceApi
-from cohesity_sdk.cluster.api.node_group import NodeGroupApi
-from cohesity_sdk.cluster.api.object import ObjectApi
-from cohesity_sdk.cluster.api.patch_management import PatchManagementApi
-from cohesity_sdk.cluster.api.platform import PlatformApi
-from cohesity_sdk.cluster.api.policy import PolicyApi
-from cohesity_sdk.cluster.api.privilege import PrivilegeApi
-from cohesity_sdk.cluster.api.protected_object import ProtectedObjectApi
-from cohesity_sdk.cluster.api.protection_group import ProtectionGroupApi
-from cohesity_sdk.cluster.api.recovery import RecoveryApi
-from cohesity_sdk.cluster.api.registration import RegistrationApi
-from cohesity_sdk.cluster.api.remote_clusters import RemoteClustersApi
-from cohesity_sdk.cluster.api.remote_storage import RemoteStorageApi
-from cohesity_sdk.cluster.api.role import RoleApi
-from cohesity_sdk.cluster.api.routes import RoutesApi
-from cohesity_sdk.cluster.api.search import SearchApi
-from cohesity_sdk.cluster.api.security import SecurityApi
-from cohesity_sdk.cluster.api.source import SourceApi
-from cohesity_sdk.cluster.api.stats import StatsApi
-from cohesity_sdk.cluster.api.storage_domain import StorageDomainApi
-from cohesity_sdk.cluster.api.syslog import SyslogApi
-from cohesity_sdk.cluster.api.tag import TagApi
-from cohesity_sdk.cluster.api.tasks import TasksApi
-from cohesity_sdk.cluster.api.templates import TemplatesApi
-from cohesity_sdk.cluster.api.tenant import TenantApi
-from cohesity_sdk.cluster.api.test_data_management import TestDataManagementApi
-from cohesity_sdk.cluster.api.uda_connector_config import UdaConnectorConfigApi
-from cohesity_sdk.cluster.api.user import UserApi
-from cohesity_sdk.cluster.api.view import ViewApi
-from cohesity_sdk.cluster.api.network_reset import NetworkResetApi
-from cohesity_sdk.cluster.api.runbooks import RunbooksApi
+from cohesity_sdk.api.access_token_api import AccessTokenApi
+from cohesity_sdk.api.active_directory_api import ActiveDirectoryApi
+from cohesity_sdk.api.agent_api import AgentApi
+from cohesity_sdk.api.alert_api import AlertApi
+from cohesity_sdk.api.antivirus_service_api import AntivirusServiceApi
+from cohesity_sdk.api.audit_log_api import AuditLogApi
+from cohesity_sdk.api.baseos_patch_management_api import BaseosPatchManagementApi
+from cohesity_sdk.api.cloud_retrieve_task_api import CloudRetrieveTaskApi
+from cohesity_sdk.api.data_tiering_api import DataTieringApi
+from cohesity_sdk.api.external_target_api import ExternalTargetApi
+from cohesity_sdk.api.failover_api import FailoverApi
+from cohesity_sdk.api.firewall_api import FirewallApi
+from cohesity_sdk.api.helios_on_prem_api import HeliosOnPremApi
+from cohesity_sdk.api.ips_api import IPsApi
+from cohesity_sdk.api.identity_provider_api import IdentityProviderApi
+from cohesity_sdk.api.kerberos_provider_api import KerberosProviderApi
+from cohesity_sdk.api.key_management_system_api import KeyManagementSystemApi
+from cohesity_sdk.api.keystone_api import KeystoneApi
+from cohesity_sdk.api.ldap_api import LDAPApi
+from cohesity_sdk.api.mfa_api import MFAApi
+from cohesity_sdk.api.node_group_api import NodeGroupApi
+from cohesity_sdk.api.object_api import ObjectApi
+from cohesity_sdk.api.patch_management_api import PatchManagementApi
+from cohesity_sdk.api.platform_api import PlatformApi
+from cohesity_sdk.api.policy_api import PolicyApi
+from cohesity_sdk.api.privilege_api import PrivilegeApi
+from cohesity_sdk.api.protected_object_api import ProtectedObjectApi
+from cohesity_sdk.api.protection_group_api import ProtectionGroupApi
+from cohesity_sdk.api.recovery_api import RecoveryApi
+from cohesity_sdk.api.registration_api import RegistrationApi
+from cohesity_sdk.api.remote_clusters_api import RemoteClustersApi
+from cohesity_sdk.api.remote_storage_api import RemoteStorageApi
+from cohesity_sdk.api.role_api import RoleApi
+from cohesity_sdk.api.routes_api import RoutesApi
+from cohesity_sdk.api.search_api import SearchApi
+from cohesity_sdk.api.security_api import SecurityApi
+from cohesity_sdk.api.source_api import SourceApi
+from cohesity_sdk.api.stats_api import StatsApi
+from cohesity_sdk.api.storage_domain_api import StorageDomainApi
+from cohesity_sdk.api.support_api import SupportApi
+from cohesity_sdk.api.syslog_api import SyslogApi
+from cohesity_sdk.api.tag_api import TagApi
+from cohesity_sdk.api.templates_api import TemplatesApi
+from cohesity_sdk.api.tenant_api import TenantApi
+from cohesity_sdk.api.user_api import UserApi
+from cohesity_sdk.api.view_api import ViewApi
 
 import re
 from urllib3.exceptions import MaxRetryError
@@ -81,7 +70,7 @@ class lazy_property(object):
         return value
 
 
-# class ClusterClient:
+# class Client:
 class ClusterClient:
     def __init__(self,
         cluster_vip = None,
@@ -100,9 +89,7 @@ class ClusterClient:
 
         self.configuration = Configuration()
         if cluster_vip != None:
-            host = re.sub("localhost", cluster_vip, self.configuration._base_path)
-            host = re.sub("http:", "https:", host)
-            self.configuration.host = host
+            self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
             # for potential use case
@@ -139,350 +126,284 @@ class ClusterClient:
     def __authenticate(self):
         if self.username and self.password and self.domain:
             token = self.__get_token()
-            self.configuration.api_key['TokenHeader'] = token.token_type + ' ' + token.access_token
+            self.configuration.api_key['Bearer'] = token.token_type + ' ' + token.access_token
         elif self.api_key:
             self.configuration.api_key['APIKeyHeader'] = self.api_key
 
 
 
     @lazy_property
-    def access_token(self):
+    def access_token_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AccessTokenApi(api_client)
 
     @lazy_property
-    def active_directory(self):
+    def active_directory_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ActiveDirectoryApi(api_client)
 
     @lazy_property
-    def agent(self):
+    def agent_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AgentApi(api_client)
 
     @lazy_property
-    def alert(self):
+    def alert_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AlertApi(api_client)
 
     @lazy_property
-    def antivirus_service(self):
+    def antivirus_service_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AntivirusServiceApi(api_client)
 
     @lazy_property
-    def audit_log(self):
+    def audit_log_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return AuditLogApi(api_client)
 
     @lazy_property
-    def cloud_retrieve_task(self):
+    def baseos_patch_management_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return BaseosPatchManagementApi(api_client)
+
+    @lazy_property
+    def cloud_retrieve_task_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return CloudRetrieveTaskApi(api_client)
 
     @lazy_property
-    def connectors(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return ConnectorsApi(api_client)
-
-    @lazy_property
-    def d_maa_s_tenant_certificate(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return DMaaSTenantCertificateApi(api_client)
-
-    @lazy_property
-    def data_tiering(self):
+    def data_tiering_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return DataTieringApi(api_client)
 
     @lazy_property
-    def external_connection(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return ExternalConnectionApi(api_client)
-
-    @lazy_property
-    def external_target(self):
+    def external_target_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ExternalTargetApi(api_client)
 
     @lazy_property
-    def failover(self):
+    def failover_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return FailoverApi(api_client)
 
     @lazy_property
-    def firewall(self):
+    def firewall_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return FirewallApi(api_client)
 
     @lazy_property
-    def fleet_instance(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return FleetInstanceApi(api_client)
-
-    @lazy_property
-    def helios_on_prem(self):
+    def helios_on_prem_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return HeliosOnPremApi(api_client)
 
     @lazy_property
-    def ips(self):
+    def ips_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return IPsApi(api_client)
 
     @lazy_property
-    def identity_provider(self):
+    def identity_provider_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return IdentityProviderApi(api_client)
 
     @lazy_property
-    def indexing_cloud_config(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return IndexingCloudConfigApi(api_client)
-
-    @lazy_property
-    def internal(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return InternalApi(api_client)
-
-    @lazy_property
-    def kerberos_provider(self):
+    def kerberos_provider_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return KerberosProviderApi(api_client)
 
     @lazy_property
-    def key_management_system(self):
+    def key_management_system_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return KeyManagementSystemApi(api_client)
 
     @lazy_property
-    def keystone(self):
+    def keystone_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return KeystoneApi(api_client)
 
     @lazy_property
-    def ldap(self):
+    def ldap_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return LDAPApi(api_client)
 
     @lazy_property
-    def mfa(self):
+    def mfa_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return MFAApi(api_client)
 
     @lazy_property
-    def marketplace_app(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return MarketplaceAppApi(api_client)
-
-    @lazy_property
-    def network_information_service(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return NetworkInformationServiceApi(api_client)
-
-    @lazy_property
-    def node_group(self):
+    def node_group_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return NodeGroupApi(api_client)
 
     @lazy_property
-    def object(self):
+    def object_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ObjectApi(api_client)
 
     @lazy_property
-    def patch_management(self):
+    def patch_management_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return PatchManagementApi(api_client)
 
     @lazy_property
-    def platform(self):
+    def platform_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return PlatformApi(api_client)
 
     @lazy_property
-    def policy(self):
+    def policy_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return PolicyApi(api_client)
 
     @lazy_property
-    def privilege(self):
+    def privilege_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return PrivilegeApi(api_client)
 
     @lazy_property
-    def protected_object(self):
+    def protected_object_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ProtectedObjectApi(api_client)
 
     @lazy_property
-    def protection_group(self):
+    def protection_group_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ProtectionGroupApi(api_client)
 
     @lazy_property
-    def recovery(self):
+    def recovery_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RecoveryApi(api_client)
 
     @lazy_property
-    def registration(self):
+    def registration_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RegistrationApi(api_client)
 
     @lazy_property
-    def remote_clusters(self):
+    def remote_clusters_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RemoteClustersApi(api_client)
 
     @lazy_property
-    def remote_storage(self):
+    def remote_storage_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RemoteStorageApi(api_client)
 
     @lazy_property
-    def role(self):
+    def role_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RoleApi(api_client)
 
     @lazy_property
-    def routes(self):
+    def routes_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return RoutesApi(api_client)
 
     @lazy_property
-    def search(self):
+    def search_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return SearchApi(api_client)
 
     @lazy_property
-    def security(self):
+    def security_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return SecurityApi(api_client)
 
     @lazy_property
-    def source(self):
+    def source_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return SourceApi(api_client)
 
     @lazy_property
-    def stats(self):
+    def stats_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return StatsApi(api_client)
 
     @lazy_property
-    def storage_domain(self):
+    def storage_domain_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return StorageDomainApi(api_client)
 
     @lazy_property
-    def syslog(self):
+    def support_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return SupportApi(api_client)
+
+    @lazy_property
+    def syslog_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return SyslogApi(api_client)
 
     @lazy_property
-    def tag(self):
+    def tag_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return TagApi(api_client)
 
     @lazy_property
-    def tasks(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return TasksApi(api_client)
-
-    @lazy_property
-    def templates(self):
+    def templates_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return TemplatesApi(api_client)
 
     @lazy_property
-    def tenant(self):
+    def tenant_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return TenantApi(api_client)
 
     @lazy_property
-    def test_data_management(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return TestDataManagementApi(api_client)
-
-    @lazy_property
-    def uda_connector_config(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return UdaConnectorConfigApi(api_client)
-
-    @lazy_property
-    def user(self):
+    def user_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return UserApi(api_client)
 
     @lazy_property
-    def view(self):
+    def view_api(self):
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return ViewApi(api_client)
-
-    @lazy_property
-    def network_reset(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return NetworkResetApi(api_client)
-
-    @lazy_property
-    def runbooks(self):
-        self.__authenticate()
-        with ApiClient(self.configuration) as api_client:
-            return RunbooksApi(api_client)

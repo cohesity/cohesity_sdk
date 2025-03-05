@@ -1,5 +1,6 @@
 # cohesity_sdk.CloudRetrieveTaskApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,50 +18,62 @@ Create a cloud retrieve task.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_cloud_retrieve_task_resp_body import CreateCloudRetrieveTaskRespBody
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk
+from cohesity_sdk.models.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
+from cohesity_sdk.models.create_cloud_retrieve_task_resp_body import CreateCloudRetrieveTaskRespBody
+from cohesity_sdk.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.Configuration(
+    host = "/v2"
 )
 
-body = CreateCloudRetrieveTaskRequest(
-        cluster_id=1,
-        end_time_usecs=1,
-        job_ids=[
-            "job_ids_example",
-        ],
-        retrieve_all_jobs=True,
-        start_time_usecs=1,
-        vault_ids=[
-            1,
-        ],
-    ) # CreateCloudRetrieveTaskRequest | Specifies the parameters to create a cloud retrieve.
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a cloud retrieve task.
-	api_response = client.cloud_retrieve_task.create_cloud_retrieve_task(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling CloudRetrieveTaskApi->create_cloud_retrieve_task: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.CloudRetrieveTaskApi(api_client)
+    body = cohesity_sdk.CreateCloudRetrieveTaskRequest() # CreateCloudRetrieveTaskRequest | Specifies the parameters to create a cloud retrieve.
+
+    try:
+        # Create a cloud retrieve task.
+        api_response = api_instance.create_cloud_retrieve_task(body)
+        print("The response of CloudRetrieveTaskApi->create_cloud_retrieve_task:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CloudRetrieveTaskApi->create_cloud_retrieve_task: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateCloudRetrieveTaskRequest**](CreateCloudRetrieveTaskRequest.md)| Specifies the parameters to create a cloud retrieve. |
+ **body** | [**CreateCloudRetrieveTaskRequest**](CreateCloudRetrieveTaskRequest.md)| Specifies the parameters to create a cloud retrieve. | 
 
 ### Return type
 
@@ -68,15 +81,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -93,38 +106,61 @@ Returns the cloud retrieve task corresponding to the job id.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.cloud_retrieve_task import CloudRetrieveTask
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk
+from cohesity_sdk.models.cloud_retrieve_task import CloudRetrieveTask
+from cohesity_sdk.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.Configuration(
+    host = "/v2"
 )
 
-job_id = 1 # int | Specifies a job id of the cloud retrieve task.
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-try:
-	# List details about the cloud retrieve task with the specific job id.
-	api_response = client.cloud_retrieve_task.get_cloud_retrieve_task_by_job_id(job_id)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling CloudRetrieveTaskApi->get_cloud_retrieve_task_by_job_id: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.CloudRetrieveTaskApi(api_client)
+    job_id = 56 # int | Specifies a job id of the cloud retrieve task.
+
+    try:
+        # List details about the cloud retrieve task with the specific job id.
+        api_response = api_instance.get_cloud_retrieve_task_by_job_id(job_id)
+        print("The response of CloudRetrieveTaskApi->get_cloud_retrieve_task_by_job_id:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CloudRetrieveTaskApi->get_cloud_retrieve_task_by_job_id: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **job_id** | **int**| Specifies a job id of the cloud retrieve task. |
+ **job_id** | **int**| Specifies a job id of the cloud retrieve task. | 
 
 ### Return type
 
@@ -132,15 +168,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -157,33 +193,56 @@ Get the list of cloud retrieve tasks.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.cloud_retrieve_tasks import CloudRetrieveTasks
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk
+from cohesity_sdk.models.cloud_retrieve_tasks import CloudRetrieveTasks
+from cohesity_sdk.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example, this endpoint has no required or optional parameters
-try:
-	# Get the list of cloud retrieve tasks.
-	api_response = client.cloud_retrieve_task.get_cloud_retrieve_tasks()
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling CloudRetrieveTaskApi->get_cloud_retrieve_tasks: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.CloudRetrieveTaskApi(api_client)
+
+    try:
+        # Get the list of cloud retrieve tasks.
+        api_response = api_instance.get_cloud_retrieve_tasks()
+        print("The response of CloudRetrieveTaskApi->get_cloud_retrieve_tasks:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CloudRetrieveTaskApi->get_cloud_retrieve_tasks: %s\n" % e)
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -192,15 +251,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
