@@ -3,26 +3,44 @@
 Specifies the parameters which are specific to Isilon related Protection Groups.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**objects** | [**[IsilonProtectionGroupObjectParams]**](IsilonProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | 
-**continue_on_error** | **bool, none_type** | Specifies whether or not the Protection Group should continue regardless of whether or not an error was encountered during protection group run. | [optional] 
+**continue_on_error** | **bool** | Specifies whether or not the Protection Group should continue regardless of whether or not an error was encountered during protection group run. | [optional] 
 **continuous_snapshots** | [**ContinuousSnapshotParams**](ContinuousSnapshotParams.md) |  | [optional] 
-**direct_cloud_archive** | **bool, none_type** | Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is &#39;false&#39;. | [optional] 
-**encryption_enabled** | **bool, none_type** | Specifies whether the protection group should use encryption while backup or not. | [optional] 
+**direct_cloud_archive** | **bool** | Specifies whether or not to store the snapshots in this run directly in an Archive Target instead of on the Cluster. If this is set to true, the associated policy must have exactly one Archive Target associated with it and the policy must be set up to archive after every run. Also, a Storage Domain cannot be specified. Default behavior is &#39;false&#39;. | [optional] 
+**encryption_enabled** | **bool** | Specifies whether the protection group should use encryption while backup or not. | [optional] 
 **file_filters** | [**FileFilteringPolicy**](FileFilteringPolicy.md) |  | [optional] 
 **file_lock_config** | [**FileLevelDataLockConfig**](FileLevelDataLockConfig.md) |  | [optional] 
 **filter_ip_config** | [**FilterIpConfig**](FilterIpConfig.md) |  | [optional] 
 **indexing_policy** | [**IndexingPolicy**](IndexingPolicy.md) |  | [optional] 
-**modify_source_permissions** | **bool, none_type** | Specifies if the Isilon source permissions should be modified internally to allow backups. | [optional] 
-**native_format** | **bool, none_type** | Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving. | [optional] 
+**modify_source_permissions** | **bool** | Specifies if the Isilon source permissions should be modified internally to allow backups. | [optional] 
+**native_format** | **bool** | Specifies whether or not to enable native format for direct archive job. This field is set to true if native format should be used for archiving. | [optional] 
+**objects** | [**List[IsilonProtectionGroupObjectParams]**](IsilonProtectionGroupObjectParams.md) | Specifies the objects to be included in the Protection Group. | 
 **pre_post_script** | [**HostBasedBackupScriptParams**](HostBasedBackupScriptParams.md) |  | [optional] 
-**protocol** | **str, none_type** | Specifies the preferred protocol to use if this device supports multiple protocols. | [optional] 
-**source_id** | **int, none_type** | Specifies the id of the parent of the objects. | [optional] [readonly] 
-**source_name** | **str, none_type** | Specifies the name of the parent of the objects. | [optional] [readonly] 
+**protocol** | **str** | Specifies the preferred protocol to use if this device supports multiple protocols. | [optional] 
+**source_id** | **int** | Specifies the id of the parent of the objects. | [optional] [readonly] 
+**source_name** | **str** | Specifies the name of the parent of the objects. | [optional] [readonly] 
 **throttling_config** | [**NasThrottlingConfig**](NasThrottlingConfig.md) |  | [optional] 
-**use_changelist** | **bool, none_type** | Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup. | [optional] 
+**use_changelist** | **bool** | Specify whether to use the Isilon Changelist API to directly discover changed files/directories for faster incremental backup. Cohesity will keep an extra snapshot which will be deleted by the next successful backup. | [optional] 
 
+## Example
+
+```python
+from cohesity_sdk.cluster.models.isilon_protection_group_params import IsilonProtectionGroupParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of IsilonProtectionGroupParams from a JSON string
+isilon_protection_group_params_instance = IsilonProtectionGroupParams.from_json(json)
+# print the JSON string representation of the object
+print(IsilonProtectionGroupParams.to_json())
+
+# convert the object into a dict
+isilon_protection_group_params_dict = isilon_protection_group_params_instance.to_dict()
+# create an instance of IsilonProtectionGroupParams from a dict
+isilon_protection_group_params_from_dict = IsilonProtectionGroupParams.from_dict(isilon_protection_group_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 
