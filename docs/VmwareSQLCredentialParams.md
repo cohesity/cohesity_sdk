@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_sql_credential_params import VmwareSQLCredentialParams
+from cohesity_sdk.cluster.models.vmware_sql_credential_params import VmwareSQLCredentialParams
 
 # TODO update the JSON string below
 json = "{}"

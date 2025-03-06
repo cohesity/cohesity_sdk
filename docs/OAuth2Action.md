@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.o_auth2_action import OAuth2Action
+from cohesity_sdk.cluster.models.o_auth2_action import OAuth2Action
 
 # TODO update the JSON string below
 json = "{}"

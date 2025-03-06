@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sfdc_object_field_exclusion import SfdcObjectFieldExclusion
+from cohesity_sdk.cluster.models.sfdc_object_field_exclusion import SfdcObjectFieldExclusion
 
 # TODO update the JSON string below
 json = "{}"

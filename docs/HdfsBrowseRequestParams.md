@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hdfs_browse_request_params import HdfsBrowseRequestParams
+from cohesity_sdk.cluster.models.hdfs_browse_request_params import HdfsBrowseRequestParams
 
 # TODO update the JSON string below
 json = "{}"

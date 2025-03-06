@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_preservation_hold_library_params import Office365PreservationHoldLibraryParams
+from cohesity_sdk.cluster.models.office365_preservation_hold_library_params import Office365PreservationHoldLibraryParams
 
 # TODO update the JSON string below
 json = "{}"

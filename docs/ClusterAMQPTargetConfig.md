@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_amqp_target_config import ClusterAMQPTargetConfig
+from cohesity_sdk.cluster.models.cluster_amqp_target_config import ClusterAMQPTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

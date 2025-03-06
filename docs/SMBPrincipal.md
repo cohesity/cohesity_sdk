@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.smb_principal import SMBPrincipal
+from cohesity_sdk.cluster.models.smb_principal import SMBPrincipal
 
 # TODO update the JSON string below
 json = "{}"

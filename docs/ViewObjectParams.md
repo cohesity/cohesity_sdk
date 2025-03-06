@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_object_params import ViewObjectParams
+from cohesity_sdk.cluster.models.view_object_params import ViewObjectParams
 
 # TODO update the JSON string below
 json = "{}"

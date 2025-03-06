@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_db_channel import OracleDbChannel
+from cohesity_sdk.cluster.models.oracle_db_channel import OracleDbChannel
 
 # TODO update the JSON string below
 json = "{}"

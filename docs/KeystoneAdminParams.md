@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.keystone_admin_params import KeystoneAdminParams
+from cohesity_sdk.cluster.models.keystone_admin_params import KeystoneAdminParams
 
 # TODO update the JSON string below
 json = "{}"

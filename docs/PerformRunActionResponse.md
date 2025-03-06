@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.perform_run_action_response import PerformRunActionResponse
+from cohesity_sdk.cluster.models.perform_run_action_response import PerformRunActionResponse
 
 # TODO update the JSON string below
 json = "{}"

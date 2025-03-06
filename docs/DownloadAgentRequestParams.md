@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.download_agent_request_params import DownloadAgentRequestParams
+from cohesity_sdk.cluster.models.download_agent_request_params import DownloadAgentRequestParams
 
 # TODO update the JSON string below
 json = "{}"

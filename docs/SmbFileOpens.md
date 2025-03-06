@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.smb_file_opens import SmbFileOpens
+from cohesity_sdk.cluster.models.smb_file_opens import SmbFileOpens
 
 # TODO update the JSON string below
 json = "{}"

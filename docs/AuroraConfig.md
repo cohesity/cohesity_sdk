@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aurora_config import AuroraConfig
+from cohesity_sdk.cluster.models.aurora_config import AuroraConfig
 
 # TODO update the JSON string below
 json = "{}"

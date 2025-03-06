@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.fci_cluster import FCICluster
+from cohesity_sdk.cluster.models.fci_cluster import FCICluster
 
 # TODO update the JSON string below
 json = "{}"

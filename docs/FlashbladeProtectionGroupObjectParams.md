@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.flashblade_protection_group_object_params import FlashbladeProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.flashblade_protection_group_object_params import FlashbladeProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

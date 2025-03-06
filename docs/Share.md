@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.share import Share
+from cohesity_sdk.cluster.models.share import Share
 
 # TODO update the JSON string below
 json = "{}"

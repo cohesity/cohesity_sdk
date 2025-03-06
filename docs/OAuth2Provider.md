@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.o_auth2_provider import OAuth2Provider
+from cohesity_sdk.cluster.models.o_auth2_provider import OAuth2Provider
 
 # TODO update the JSON string below
 json = "{}"

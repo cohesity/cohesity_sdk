@@ -1,4 +1,4 @@
-# cohesity_sdk.RoutesApi
+# cohesity_sdk.cluster.RoutesApi
 
 All URIs are relative to */v2*
 
@@ -23,14 +23,14 @@ Configure a static route on an interface.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.static_route_params import StaticRouteParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.static_route_params import StaticRouteParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -52,10 +52,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RoutesApi(api_client)
-    body = cohesity_sdk.StaticRouteParams() # StaticRouteParams | Specifies the parameters to configure a static route on an interface.
+    api_instance = cohesity_sdk.cluster.RoutesApi(api_client)
+    body = cohesity_sdk.cluster.StaticRouteParams() # StaticRouteParams | Specifies the parameters to configure a static route on an interface.
 
     try:
         # Configure a static route
@@ -110,13 +110,13 @@ Delete a static route on a network interface.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -138,9 +138,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RoutesApi(api_client)
+    api_instance = cohesity_sdk.cluster.RoutesApi(api_client)
     route_id = 'route_id_example' # str | Specify the unique identifier for the route.
 
     try:
@@ -194,14 +194,14 @@ List the static routes for the Cohesity Cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.static_routes import StaticRoutes
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.static_routes import StaticRoutes
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -223,9 +223,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RoutesApi(api_client)
+    api_instance = cohesity_sdk.cluster.RoutesApi(api_client)
     interface_groups = ['interface_groups_example'] # List[str] | Specifies the network interfaces name to filter. (optional)
 
     try:
@@ -281,14 +281,14 @@ Update static route details.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.static_route_params import StaticRouteParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.static_route_params import StaticRouteParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -310,11 +310,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RoutesApi(api_client)
+    api_instance = cohesity_sdk.cluster.RoutesApi(api_client)
     route_id = 'route_id_example' # str | Specify the unique identifier for the route.
-    body = cohesity_sdk.StaticRouteParams() # StaticRouteParams | Specifies the update request parameters.
+    body = cohesity_sdk.cluster.StaticRouteParams() # StaticRouteParams | Specifies the update request parameters.
 
     try:
         # Update a static route

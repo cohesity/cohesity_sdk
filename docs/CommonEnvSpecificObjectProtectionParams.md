@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_env_specific_object_protection_params import CommonEnvSpecificObjectProtectionParams
+from cohesity_sdk.cluster.models.common_env_specific_object_protection_params import CommonEnvSpecificObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

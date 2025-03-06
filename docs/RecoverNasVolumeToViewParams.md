@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_nas_volume_to_view_params import RecoverNasVolumeToViewParams
+from cohesity_sdk.cluster.models.recover_nas_volume_to_view_params import RecoverNasVolumeToViewParams
 
 # TODO update the JSON string below
 json = "{}"

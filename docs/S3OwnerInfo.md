@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.s3_owner_info import S3OwnerInfo
+from cohesity_sdk.cluster.models.s3_owner_info import S3OwnerInfo
 
 # TODO update the JSON string below
 json = "{}"

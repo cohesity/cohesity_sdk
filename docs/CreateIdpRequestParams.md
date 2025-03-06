@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_idp_request_params import CreateIdpRequestParams
+from cohesity_sdk.cluster.models.create_idp_request_params import CreateIdpRequestParams
 
 # TODO update the JSON string below
 json = "{}"

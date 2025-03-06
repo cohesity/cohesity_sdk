@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.syslog_audit_tag import SyslogAuditTag
+from cohesity_sdk.cluster.models.syslog_audit_tag import SyslogAuditTag
 
 # TODO update the JSON string below
 json = "{}"

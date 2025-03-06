@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_source_connection_request_params import CommonSourceConnectionRequestParams
+from cohesity_sdk.cluster.models.common_source_connection_request_params import CommonSourceConnectionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

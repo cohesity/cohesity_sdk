@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_standby_object import VmwareStandbyObject
+from cohesity_sdk.cluster.models.vmware_standby_object import VmwareStandbyObject
 
 # TODO update the JSON string below
 json = "{}"

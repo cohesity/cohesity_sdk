@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kubernetes_namespace_recovery_target_config import KubernetesNamespaceRecoveryTargetConfig
+from cohesity_sdk.cluster.models.kubernetes_namespace_recovery_target_config import KubernetesNamespaceRecoveryTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

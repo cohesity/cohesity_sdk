@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
+from cohesity_sdk.cluster.models.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
 
 # TODO update the JSON string below
 json = "{}"

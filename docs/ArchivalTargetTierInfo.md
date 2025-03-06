@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_target_tier_info import ArchivalTargetTierInfo
+from cohesity_sdk.cluster.models.archival_target_tier_info import ArchivalTargetTierInfo
 
 # TODO update the JSON string below
 json = "{}"

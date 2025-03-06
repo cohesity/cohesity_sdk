@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.system_app_status_params import SystemAppStatusParams
+from cohesity_sdk.cluster.models.system_app_status_params import SystemAppStatusParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_target_params_for_recover_file_and_folder import PhysicalTargetParamsForRecoverFileAndFolder
+from cohesity_sdk.cluster.models.physical_target_params_for_recover_file_and_folder import PhysicalTargetParamsForRecoverFileAndFolder
 
 # TODO update the JSON string below
 json = "{}"

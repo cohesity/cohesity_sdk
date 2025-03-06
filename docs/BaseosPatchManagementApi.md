@@ -1,4 +1,4 @@
-# cohesity_sdk.BaseosPatchManagementApi
+# cohesity_sdk.cluster.BaseosPatchManagementApi
 
 All URIs are relative to */v2*
 
@@ -24,14 +24,14 @@ Applies the given baseos patch.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.apply_baseos_patch_request import ApplyBaseosPatchRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.apply_baseos_patch_request import ApplyBaseosPatchRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,10 +53,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.BaseosPatchManagementApi(api_client)
-    body = cohesity_sdk.ApplyBaseosPatchRequest() # ApplyBaseosPatchRequest | Request to apply a baseos patch.
+    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
+    body = cohesity_sdk.cluster.ApplyBaseosPatchRequest() # ApplyBaseosPatchRequest | Request to apply a baseos patch.
 
     try:
         # Applies the given baseos patch.
@@ -109,14 +109,14 @@ Downloads the given baseos patch.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.download_baseos_patch_request import DownloadBaseosPatchRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.download_baseos_patch_request import DownloadBaseosPatchRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -138,10 +138,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.BaseosPatchManagementApi(api_client)
-    body = cohesity_sdk.DownloadBaseosPatchRequest() # DownloadBaseosPatchRequest | Request to download a new baseos patch.
+    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
+    body = cohesity_sdk.cluster.DownloadBaseosPatchRequest() # DownloadBaseosPatchRequest | Request to download a new baseos patch.
 
     try:
         # Downloads the given baseos patch.
@@ -194,14 +194,14 @@ Returns the available baseos patches
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.baseos_patch_list_item import BaseosPatchListItem
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.baseos_patch_list_item import BaseosPatchListItem
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -223,9 +223,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.BaseosPatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
 
     try:
         # Get available baseos patches
@@ -277,14 +277,14 @@ Returns the log and status of the mentioned patch.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.baseos_patch_log import BaseosPatchLog
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.baseos_patch_log import BaseosPatchLog
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -306,9 +306,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.BaseosPatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
     patch_name = 'patch_name_example' # str | Name of the hotfix with security patch
 
     try:
@@ -364,14 +364,14 @@ Cleans up the given baseos patch files.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.remove_baseos_patch_request import RemoveBaseosPatchRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remove_baseos_patch_request import RemoveBaseosPatchRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -393,10 +393,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.BaseosPatchManagementApi(api_client)
-    body = cohesity_sdk.RemoveBaseosPatchRequest() # RemoveBaseosPatchRequest | Request to remove baseos patch files.
+    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
+    body = cohesity_sdk.cluster.RemoveBaseosPatchRequest() # RemoveBaseosPatchRequest | Request to remove baseos patch files.
 
     try:
         # Cleans up the given baseos patch files.

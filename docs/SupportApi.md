@@ -1,4 +1,4 @@
-# cohesity_sdk.SupportApi
+# cohesity_sdk.cluster.SupportApi
 
 All URIs are relative to */v2*
 
@@ -22,14 +22,14 @@ Cohesity provides a support user account for improved security and you need to u
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.support_user_config import SupportUserConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.support_user_config import SupportUserConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -51,9 +51,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SupportApi(api_client)
+    api_instance = cohesity_sdk.cluster.SupportApi(api_client)
 
     try:
         # Get support user configuration.
@@ -105,15 +105,15 @@ Update support user's configuration. This allows you to update the support user'
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.success_resp import SuccessResp
-from cohesity_sdk.models.update_support_user_params import UpdateSupportUserParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.success_resp import SuccessResp
+from cohesity_sdk.cluster.models.update_support_user_params import UpdateSupportUserParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -135,10 +135,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SupportApi(api_client)
-    body = cohesity_sdk.UpdateSupportUserParams() # UpdateSupportUserParams | Specifies the support user configuration.
+    api_instance = cohesity_sdk.cluster.SupportApi(api_client)
+    body = cohesity_sdk.cluster.UpdateSupportUserParams() # UpdateSupportUserParams | Specifies the support user configuration.
 
     try:
         # Update support user configuration.
@@ -193,15 +193,15 @@ Validates the support user credentials.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.success_resp import SuccessResp
-from cohesity_sdk.models.validate_support_user_cred_params import ValidateSupportUserCredParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.success_resp import SuccessResp
+from cohesity_sdk.cluster.models.validate_support_user_cred_params import ValidateSupportUserCredParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -223,10 +223,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SupportApi(api_client)
-    body = cohesity_sdk.ValidateSupportUserCredParams() # ValidateSupportUserCredParams | Specifies the support user credentials.
+    api_instance = cohesity_sdk.cluster.SupportApi(api_client)
+    body = cohesity_sdk.cluster.ValidateSupportUserCredParams() # ValidateSupportUserCredParams | Specifies the support user credentials.
 
     try:
         # Validates the support user credentials.

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.endpoint_only_registration_params import EndpointOnlyRegistrationParams
+from cohesity_sdk.cluster.models.endpoint_only_registration_params import EndpointOnlyRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

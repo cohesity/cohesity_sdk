@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.replicated_view_name_config import ReplicatedViewNameConfig
+from cohesity_sdk.cluster.models.replicated_view_name_config import ReplicatedViewNameConfig
 
 # TODO update the JSON string below
 json = "{}"

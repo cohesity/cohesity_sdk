@@ -45,7 +45,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_with_children import ObjectWithChildren
+from cohesity_sdk.cluster.models.object_with_children import ObjectWithChildren
 
 # TODO update the JSON string below
 json = "{}"

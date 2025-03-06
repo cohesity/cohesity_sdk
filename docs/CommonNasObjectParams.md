@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_nas_object_params import CommonNasObjectParams
+from cohesity_sdk.cluster.models.common_nas_object_params import CommonNasObjectParams
 
 # TODO update the JSON string below
 json = "{}"

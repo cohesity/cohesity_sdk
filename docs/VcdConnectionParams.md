@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vcd_connection_params import VcdConnectionParams
+from cohesity_sdk.cluster.models.vcd_connection_params import VcdConnectionParams
 
 # TODO update the JSON string below
 json = "{}"

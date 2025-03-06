@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.system_recovery_params import SystemRecoveryParams
+from cohesity_sdk.cluster.models.system_recovery_params import SystemRecoveryParams
 
 # TODO update the JSON string below
 json = "{}"

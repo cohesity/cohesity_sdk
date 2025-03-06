@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_sql_app_params import RecoverSqlAppParams
+from cohesity_sdk.cluster.models.recover_sql_app_params import RecoverSqlAppParams
 
 # TODO update the JSON string below
 json = "{}"

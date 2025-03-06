@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.user_quota_overrides import UserQuotaOverrides
+from cohesity_sdk.cluster.models.user_quota_overrides import UserQuotaOverrides
 
 # TODO update the JSON string below
 json = "{}"

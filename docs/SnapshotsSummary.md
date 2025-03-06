@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.snapshots_summary import SnapshotsSummary
+from cohesity_sdk.cluster.models.snapshots_summary import SnapshotsSummary
 
 # TODO update the JSON string below
 json = "{}"

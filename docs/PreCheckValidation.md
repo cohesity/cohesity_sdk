@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.pre_check_validation import PreCheckValidation
+from cohesity_sdk.cluster.models.pre_check_validation import PreCheckValidation
 
 # TODO update the JSON string below
 json = "{}"

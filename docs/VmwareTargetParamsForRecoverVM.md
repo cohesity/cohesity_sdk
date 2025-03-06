@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_target_params_for_recover_vm import VmwareTargetParamsForRecoverVM
+from cohesity_sdk.cluster.models.vmware_target_params_for_recover_vm import VmwareTargetParamsForRecoverVM
 
 # TODO update the JSON string below
 json = "{}"

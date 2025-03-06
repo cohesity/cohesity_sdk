@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_aurora_protection_group_params import AwsAuroraProtectionGroupParams
+from cohesity_sdk.cluster.models.aws_aurora_protection_group_params import AwsAuroraProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

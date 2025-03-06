@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_no_sql_recovery_options import CommonNoSqlRecoveryOptions
+from cohesity_sdk.cluster.models.common_no_sql_recovery_options import CommonNoSqlRecoveryOptions
 
 # TODO update the JSON string below
 json = "{}"

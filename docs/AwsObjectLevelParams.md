@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_object_level_params import AwsObjectLevelParams
+from cohesity_sdk.cluster.models.aws_object_level_params import AwsObjectLevelParams
 
 # TODO update the JSON string below
 json = "{}"

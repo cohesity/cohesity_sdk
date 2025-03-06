@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.list_trusted_cas_result import ListTrustedCasResult
+from cohesity_sdk.cluster.models.list_trusted_cas_result import ListTrustedCasResult
 
 # TODO update the JSON string below
 json = "{}"

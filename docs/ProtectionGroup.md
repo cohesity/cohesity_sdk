@@ -70,7 +70,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.models.protection_group import ProtectionGroup
 
 # TODO update the JSON string below
 json = "{}"

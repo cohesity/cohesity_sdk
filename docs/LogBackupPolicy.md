@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.log_backup_policy import LogBackupPolicy
+from cohesity_sdk.cluster.models.log_backup_policy import LogBackupPolicy
 
 # TODO update the JSON string below
 json = "{}"

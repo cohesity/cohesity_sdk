@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
+from cohesity_sdk.cluster.models.mongo_db_source_registration_params import MongoDBSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

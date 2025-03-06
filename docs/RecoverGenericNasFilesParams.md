@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_generic_nas_files_params import RecoverGenericNasFilesParams
+from cohesity_sdk.cluster.models.recover_generic_nas_files_params import RecoverGenericNasFilesParams
 
 # TODO update the JSON string below
 json = "{}"

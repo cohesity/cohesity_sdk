@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.firewall_ip_sets import FirewallIPSets
+from cohesity_sdk.cluster.models.firewall_ip_sets import FirewallIPSets
 
 # TODO update the JSON string below
 json = "{}"

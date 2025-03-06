@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.replication_run_summary import ReplicationRunSummary
+from cohesity_sdk.cluster.models.replication_run_summary import ReplicationRunSummary
 
 # TODO update the JSON string below
 json = "{}"

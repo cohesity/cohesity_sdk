@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyper_v_protection_group_params import HyperVProtectionGroupParams
+from cohesity_sdk.cluster.models.hyper_v_protection_group_params import HyperVProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

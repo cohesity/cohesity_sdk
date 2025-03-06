@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recovery_vlan_config import RecoveryVlanConfig
+from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
 
 # TODO update the JSON string below
 json = "{}"

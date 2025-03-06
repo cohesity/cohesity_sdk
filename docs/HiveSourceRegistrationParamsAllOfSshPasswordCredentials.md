@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hive_source_registration_params_all_of_ssh_password_credentials import HiveSourceRegistrationParamsAllOfSshPasswordCredentials
+from cohesity_sdk.cluster.models.hive_source_registration_params_all_of_ssh_password_credentials import HiveSourceRegistrationParamsAllOfSshPasswordCredentials
 
 # TODO update the JSON string below
 json = "{}"

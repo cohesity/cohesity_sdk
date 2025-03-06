@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cancel_object_runs_params import CancelObjectRunsParams
+from cohesity_sdk.cluster.models.cancel_object_runs_params import CancelObjectRunsParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.download_baseos_patch_request import DownloadBaseosPatchRequest
+from cohesity_sdk.cluster.models.download_baseos_patch_request import DownloadBaseosPatchRequest
 
 # TODO update the JSON string below
 json = "{}"

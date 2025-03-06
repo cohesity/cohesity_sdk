@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gcp_target_params_for_recover_file_and_folder import GcpTargetParamsForRecoverFileAndFolder
+from cohesity_sdk.cluster.models.gcp_target_params_for_recover_file_and_folder import GcpTargetParamsForRecoverFileAndFolder
 
 # TODO update the JSON string below
 json = "{}"

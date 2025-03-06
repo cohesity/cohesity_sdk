@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_attribute_filter import SourceAttributeFilter
+from cohesity_sdk.cluster.models.source_attribute_filter import SourceAttributeFilter
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bgp_peer import BgpPeer
+from cohesity_sdk.cluster.models.bgp_peer import BgpPeer
 
 # TODO update the JSON string below
 json = "{}"

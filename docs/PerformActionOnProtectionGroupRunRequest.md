@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
+from cohesity_sdk.cluster.models.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.acropolis_disk_info import AcropolisDiskInfo
+from cohesity_sdk.cluster.models.acropolis_disk_info import AcropolisDiskInfo
 
 # TODO update the JSON string below
 json = "{}"

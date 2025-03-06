@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_salesforce_params import RecoverSalesforceParams
+from cohesity_sdk.cluster.models.recover_salesforce_params import RecoverSalesforceParams
 
 # TODO update the JSON string below
 json = "{}"

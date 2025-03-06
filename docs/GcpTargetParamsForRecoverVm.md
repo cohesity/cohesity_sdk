@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gcp_target_params_for_recover_vm import GcpTargetParamsForRecoverVm
+from cohesity_sdk.cluster.models.gcp_target_params_for_recover_vm import GcpTargetParamsForRecoverVm
 
 # TODO update the JSON string below
 json = "{}"

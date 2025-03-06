@@ -1,4 +1,4 @@
-# cohesity_sdk.LDAPApi
+# cohesity_sdk.cluster.LDAPApi
 
 All URIs are relative to */v2*
 
@@ -24,14 +24,14 @@ Create Ldap provider with given parameters.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.ldap import Ldap
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ldap import Ldap
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,10 +53,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.LDAPApi(api_client)
-    body = cohesity_sdk.Ldap() # Ldap | Specifies the parameters to create Ldap provider.
+    api_instance = cohesity_sdk.cluster.LDAPApi(api_client)
+    body = cohesity_sdk.cluster.Ldap() # Ldap | Specifies the parameters to create Ldap provider.
 
     try:
         # Create Ldap provider.
@@ -111,13 +111,13 @@ Delete LDAP provider which will be identified by given Id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -139,9 +139,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.LDAPApi(api_client)
+    api_instance = cohesity_sdk.cluster.LDAPApi(api_client)
     id = 56 # int | Specifies the LDAP Id.
 
     try:
@@ -195,14 +195,14 @@ Get LDAP connection status.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.ldap_status import LdapStatus
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ldap_status import LdapStatus
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -224,9 +224,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.LDAPApi(api_client)
+    api_instance = cohesity_sdk.cluster.LDAPApi(api_client)
     id = 56 # int | Specifies the LDAP id.
 
     try:
@@ -282,14 +282,14 @@ Get LDAPs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.ldaps import Ldaps
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ldaps import Ldaps
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -311,9 +311,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.LDAPApi(api_client)
+    api_instance = cohesity_sdk.cluster.LDAPApi(api_client)
     ids = [56] # List[int] | Specifies a list of ids to filter. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which LDAPs are to be returned. (optional)
     include_tenants = True # bool | IncludeTenants specifies if LDAPs of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
@@ -373,14 +373,14 @@ Modify Ldap provider with given parameters.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.ldap import Ldap
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ldap import Ldap
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -402,10 +402,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.LDAPApi(api_client)
-    body = cohesity_sdk.Ldap() # Ldap | Specifies the parameters to update Ldap provider.
+    api_instance = cohesity_sdk.cluster.LDAPApi(api_client)
+    body = cohesity_sdk.cluster.Ldap() # Ldap | Specifies the parameters to update Ldap provider.
 
     try:
         # Update Ldap provider.

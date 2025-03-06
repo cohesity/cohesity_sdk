@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.nfs_config import NfsConfig
+from cohesity_sdk.cluster.models.nfs_config import NfsConfig
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.smb_permissions_info import SmbPermissionsInfo
+from cohesity_sdk.cluster.models.smb_permissions_info import SmbPermissionsInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sap_oracle_agent_params import SapOracleAgentParams
+from cohesity_sdk.cluster.models.sap_oracle_agent_params import SapOracleAgentParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cassandra_source_config_params import CassandraSourceConfigParams
+from cohesity_sdk.cluster.models.cassandra_source_config_params import CassandraSourceConfigParams
 
 # TODO update the JSON string below
 json = "{}"

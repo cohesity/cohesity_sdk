@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_create_run_response_params import UdaCreateRunResponseParams
+from cohesity_sdk.cluster.models.uda_create_run_response_params import UdaCreateRunResponseParams
 
 # TODO update the JSON string below
 json = "{}"

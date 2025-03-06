@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.esxi_registration_params import EsxiRegistrationParams
+from cohesity_sdk.cluster.models.esxi_registration_params import EsxiRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

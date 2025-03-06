@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.agent_upgrade_task_action_object import AgentUpgradeTaskActionObject
+from cohesity_sdk.cluster.models.agent_upgrade_task_action_object import AgentUpgradeTaskActionObject
 
 # TODO update the JSON string below
 json = "{}"

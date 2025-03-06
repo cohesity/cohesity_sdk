@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_aws_category_params import CommonAWSCategoryParams
+from cohesity_sdk.cluster.models.common_aws_category_params import CommonAWSCategoryParams
 
 # TODO update the JSON string below
 json = "{}"

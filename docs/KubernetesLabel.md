@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kubernetes_label import KubernetesLabel
+from cohesity_sdk.cluster.models.kubernetes_label import KubernetesLabel
 
 # TODO update the JSON string below
 json = "{}"

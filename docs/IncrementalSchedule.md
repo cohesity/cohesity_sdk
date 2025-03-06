@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.incremental_schedule import IncrementalSchedule
+from cohesity_sdk.cluster.models.incremental_schedule import IncrementalSchedule
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_sfu30_type_params import AdSfu30TypeParams
+from cohesity_sdk.cluster.models.ad_sfu30_type_params import AdSfu30TypeParams
 
 # TODO update the JSON string below
 json = "{}"

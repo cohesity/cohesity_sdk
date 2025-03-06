@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.new_group_param import NewGroupParam
+from cohesity_sdk.cluster.models.new_group_param import NewGroupParam
 
 # TODO update the JSON string below
 json = "{}"

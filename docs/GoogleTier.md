@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.google_tier import GoogleTier
+from cohesity_sdk.cluster.models.google_tier import GoogleTier
 
 # TODO update the JSON string below
 json = "{}"

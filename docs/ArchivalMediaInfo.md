@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_media_info import ArchivalMediaInfo
+from cohesity_sdk.cluster.models.archival_media_info import ArchivalMediaInfo
 
 # TODO update the JSON string below
 json = "{}"

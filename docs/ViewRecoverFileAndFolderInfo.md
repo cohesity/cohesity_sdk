@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_recover_file_and_folder_info import ViewRecoverFileAndFolderInfo
+from cohesity_sdk.cluster.models.view_recover_file_and_folder_info import ViewRecoverFileAndFolderInfo
 
 # TODO update the JSON string below
 json = "{}"

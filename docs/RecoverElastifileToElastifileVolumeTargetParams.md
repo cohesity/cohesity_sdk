@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_elastifile_to_elastifile_volume_target_params import RecoverElastifileToElastifileVolumeTargetParams
+from cohesity_sdk.cluster.models.recover_elastifile_to_elastifile_volume_target_params import RecoverElastifileToElastifileVolumeTargetParams
 
 # TODO update the JSON string below
 json = "{}"

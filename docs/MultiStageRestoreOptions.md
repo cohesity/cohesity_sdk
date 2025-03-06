@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.multi_stage_restore_options import MultiStageRestoreOptions
+from cohesity_sdk.cluster.models.multi_stage_restore_options import MultiStageRestoreOptions
 
 # TODO update the JSON string below
 json = "{}"

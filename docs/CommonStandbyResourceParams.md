@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_standby_resource_params import CommonStandbyResourceParams
+from cohesity_sdk.cluster.models.common_standby_resource_params import CommonStandbyResourceParams
 
 # TODO update the JSON string below
 json = "{}"

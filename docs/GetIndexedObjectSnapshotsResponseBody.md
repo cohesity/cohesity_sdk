@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
+from cohesity_sdk.cluster.models.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
 
 # TODO update the JSON string below
 json = "{}"

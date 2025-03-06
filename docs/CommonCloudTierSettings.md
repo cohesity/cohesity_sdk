@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_cloud_tier_settings import CommonCloudTierSettings
+from cohesity_sdk.cluster.models.common_cloud_tier_settings import CommonCloudTierSettings
 
 # TODO update the JSON string below
 json = "{}"

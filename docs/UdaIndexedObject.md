@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_indexed_object import UdaIndexedObject
+from cohesity_sdk.cluster.models.uda_indexed_object import UdaIndexedObject
 
 # TODO update the JSON string below
 json = "{}"

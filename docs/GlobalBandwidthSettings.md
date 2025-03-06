@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.global_bandwidth_settings import GlobalBandwidthSettings
+from cohesity_sdk.cluster.models.global_bandwidth_settings import GlobalBandwidthSettings
 
 # TODO update the JSON string below
 json = "{}"

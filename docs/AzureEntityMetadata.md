@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_entity_metadata import AzureEntityMetadata
+from cohesity_sdk.cluster.models.azure_entity_metadata import AzureEntityMetadata
 
 # TODO update the JSON string below
 json = "{}"

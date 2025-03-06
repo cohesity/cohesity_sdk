@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
+from cohesity_sdk.cluster.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
 
 # TODO update the JSON string below
 json = "{}"

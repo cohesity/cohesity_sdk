@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.rigel_cluster_config_params import RigelClusterConfigParams
+from cohesity_sdk.cluster.models.rigel_cluster_config_params import RigelClusterConfigParams
 
 # TODO update the JSON string below
 json = "{}"

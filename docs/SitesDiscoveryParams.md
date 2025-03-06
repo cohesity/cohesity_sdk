@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sites_discovery_params import SitesDiscoveryParams
+from cohesity_sdk.cluster.models.sites_discovery_params import SitesDiscoveryParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.pagination_info import PaginationInfo
+from cohesity_sdk.cluster.models.pagination_info import PaginationInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_connection_params import VmwareConnectionParams
+from cohesity_sdk.cluster.models.vmware_connection_params import VmwareConnectionParams
 
 # TODO update the JSON string below
 json = "{}"

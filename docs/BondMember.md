@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bond_member import BondMember
+from cohesity_sdk.cluster.models.bond_member import BondMember
 
 # TODO update the JSON string below
 json = "{}"

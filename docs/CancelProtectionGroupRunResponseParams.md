@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cancel_protection_group_run_response_params import CancelProtectionGroupRunResponseParams
+from cohesity_sdk.cluster.models.cancel_protection_group_run_response_params import CancelProtectionGroupRunResponseParams
 
 # TODO update the JSON string below
 json = "{}"

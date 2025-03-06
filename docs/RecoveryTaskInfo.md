@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recovery_task_info import RecoveryTaskInfo
+from cohesity_sdk.cluster.models.recovery_task_info import RecoveryTaskInfo
 
 # TODO update the JSON string below
 json = "{}"

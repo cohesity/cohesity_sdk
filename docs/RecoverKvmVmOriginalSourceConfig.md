@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_kvm_vm_original_source_config import RecoverKvmVmOriginalSourceConfig
+from cohesity_sdk.cluster.models.recover_kvm_vm_original_source_config import RecoverKvmVmOriginalSourceConfig
 
 # TODO update the JSON string below
 json = "{}"

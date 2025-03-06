@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_pure_san_group_params import RecoverPureSanGroupParams
+from cohesity_sdk.cluster.models.recover_pure_san_group_params import RecoverPureSanGroupParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.teams_item import TeamsItem
+from cohesity_sdk.cluster.models.teams_item import TeamsItem
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.free_disk import FreeDisk
+from cohesity_sdk.cluster.models.free_disk import FreeDisk
 
 # TODO update the JSON string below
 json = "{}"

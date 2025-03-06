@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.nas_throttling_config import NasThrottlingConfig
+from cohesity_sdk.cluster.models.nas_throttling_config import NasThrottlingConfig
 
 # TODO update the JSON string below
 json = "{}"

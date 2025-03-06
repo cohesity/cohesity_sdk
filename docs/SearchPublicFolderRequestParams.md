@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_public_folder_request_params import SearchPublicFolderRequestParams
+from cohesity_sdk.cluster.models.search_public_folder_request_params import SearchPublicFolderRequestParams
 
 # TODO update the JSON string below
 json = "{}"

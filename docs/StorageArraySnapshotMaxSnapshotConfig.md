@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_array_snapshot_max_snapshot_config import StorageArraySnapshotMaxSnapshotConfig
+from cohesity_sdk.cluster.models.storage_array_snapshot_max_snapshot_config import StorageArraySnapshotMaxSnapshotConfig
 
 # TODO update the JSON string below
 json = "{}"

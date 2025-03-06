@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cancel_object_runs_results import CancelObjectRunsResults
+from cohesity_sdk.cluster.models.cancel_object_runs_results import CancelObjectRunsResults
 
 # TODO update the JSON string below
 json = "{}"

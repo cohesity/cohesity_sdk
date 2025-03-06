@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_site_param import ObjectSiteParam
+from cohesity_sdk.cluster.models.object_site_param import ObjectSiteParam
 
 # TODO update the JSON string below
 json = "{}"

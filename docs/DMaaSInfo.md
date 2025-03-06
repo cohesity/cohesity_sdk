@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.d_maa_s_info import DMaaSInfo
+from cohesity_sdk.cluster.models.d_maa_s_info import DMaaSInfo
 
 # TODO update the JSON string below
 json = "{}"

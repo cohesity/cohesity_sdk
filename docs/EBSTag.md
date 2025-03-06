@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ebs_tag import EBSTag
+from cohesity_sdk.cluster.models.ebs_tag import EBSTag
 
 # TODO update the JSON string below
 json = "{}"

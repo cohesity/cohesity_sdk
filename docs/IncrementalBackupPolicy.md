@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.incremental_backup_policy import IncrementalBackupPolicy
+from cohesity_sdk.cluster.models.incremental_backup_policy import IncrementalBackupPolicy
 
 # TODO update the JSON string below
 json = "{}"

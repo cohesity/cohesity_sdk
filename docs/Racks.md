@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.racks import Racks
+from cohesity_sdk.cluster.models.racks import Racks
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.delete_hosts_parameters import DeleteHostsParameters
+from cohesity_sdk.cluster.models.delete_hosts_parameters import DeleteHostsParameters
 
 # TODO update the JSON string below
 json = "{}"

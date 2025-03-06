@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_email_otp_request_body import CreateEmailOtpRequestBody
+from cohesity_sdk.cluster.models.create_email_otp_request_body import CreateEmailOtpRequestBody
 
 # TODO update the JSON string below
 json = "{}"

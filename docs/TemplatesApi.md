@@ -1,4 +1,4 @@
-# cohesity_sdk.TemplatesApi
+# cohesity_sdk.cluster.TemplatesApi
 
 All URIs are relative to */v2*
 
@@ -20,13 +20,13 @@ Download the azure resource template.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -48,9 +48,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TemplatesApi(api_client)
+    api_instance = cohesity_sdk.cluster.TemplatesApi(api_client)
 
     try:
         # Download the azure resource template.

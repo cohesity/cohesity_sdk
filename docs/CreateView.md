@@ -74,7 +74,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_view import CreateView
+from cohesity_sdk.cluster.models.create_view import CreateView
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mssql_volume_protection_group_object_params import MSSQLVolumeProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.mssql_volume_protection_group_object_params import MSSQLVolumeProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

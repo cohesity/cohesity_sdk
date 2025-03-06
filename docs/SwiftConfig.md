@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.swift_config import SwiftConfig
+from cohesity_sdk.cluster.models.swift_config import SwiftConfig
 
 # TODO update the JSON string below
 json = "{}"

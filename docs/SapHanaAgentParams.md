@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sap_hana_agent_params import SapHanaAgentParams
+from cohesity_sdk.cluster.models.sap_hana_agent_params import SapHanaAgentParams
 
 # TODO update the JSON string below
 json = "{}"

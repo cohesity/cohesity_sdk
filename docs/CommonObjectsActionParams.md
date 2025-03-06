@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_objects_action_params import CommonObjectsActionParams
+from cohesity_sdk.cluster.models.common_objects_action_params import CommonObjectsActionParams
 
 # TODO update the JSON string below
 json = "{}"

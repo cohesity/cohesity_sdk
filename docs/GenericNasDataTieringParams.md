@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.generic_nas_data_tiering_params import GenericNasDataTieringParams
+from cohesity_sdk.cluster.models.generic_nas_data_tiering_params import GenericNasDataTieringParams
 
 # TODO update the JSON string below
 json = "{}"

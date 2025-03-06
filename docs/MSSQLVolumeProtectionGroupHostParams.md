@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mssql_volume_protection_group_host_params import MSSQLVolumeProtectionGroupHostParams
+from cohesity_sdk.cluster.models.mssql_volume_protection_group_host_params import MSSQLVolumeProtectionGroupHostParams
 
 # TODO update the JSON string below
 json = "{}"

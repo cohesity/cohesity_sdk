@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hbase_search_params import HbaseSearchParams
+from cohesity_sdk.cluster.models.hbase_search_params import HbaseSearchParams
 
 # TODO update the JSON string below
 json = "{}"

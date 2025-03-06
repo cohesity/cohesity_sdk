@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.unregister_kerberos_provider import UnregisterKerberosProvider
+from cohesity_sdk.cluster.models.unregister_kerberos_provider import UnregisterKerberosProvider
 
 # TODO update the JSON string below
 json = "{}"

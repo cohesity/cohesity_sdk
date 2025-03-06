@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kubernetes_filter_params import KubernetesFilterParams
+from cohesity_sdk.cluster.models.kubernetes_filter_params import KubernetesFilterParams
 
 # TODO update the JSON string below
 json = "{}"

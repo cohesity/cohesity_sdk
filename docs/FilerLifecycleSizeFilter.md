@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.filer_lifecycle_size_filter import FilerLifecycleSizeFilter
+from cohesity_sdk.cluster.models.filer_lifecycle_size_filter import FilerLifecycleSizeFilter
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_object_action_params import VmwareObjectActionParams
+from cohesity_sdk.cluster.models.vmware_object_action_params import VmwareObjectActionParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_recover_files_original_target_config import VmwareRecoverFilesOriginalTargetConfig
+from cohesity_sdk.cluster.models.vmware_recover_files_original_target_config import VmwareRecoverFilesOriginalTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

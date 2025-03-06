@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.security_config import SecurityConfig
+from cohesity_sdk.cluster.models.security_config import SecurityConfig
 
 # TODO update the JSON string below
 json = "{}"

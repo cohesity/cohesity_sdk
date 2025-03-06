@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.exchange_app_params import ExchangeAppParams
+from cohesity_sdk.cluster.models.exchange_app_params import ExchangeAppParams
 
 # TODO update the JSON string below
 json = "{}"

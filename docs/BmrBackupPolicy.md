@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bmr_backup_policy import BmrBackupPolicy
+from cohesity_sdk.cluster.models.bmr_backup_policy import BmrBackupPolicy
 
 # TODO update the JSON string below
 json = "{}"

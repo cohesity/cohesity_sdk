@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
+from cohesity_sdk.cluster.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
 
 # TODO update the JSON string below
 json = "{}"

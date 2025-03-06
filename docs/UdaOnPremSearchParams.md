@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_on_prem_search_params import UdaOnPremSearchParams
+from cohesity_sdk.cluster.models.uda_on_prem_search_params import UdaOnPremSearchParams
 
 # TODO update the JSON string below
 json = "{}"

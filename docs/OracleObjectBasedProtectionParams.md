@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_object_based_protection_params import OracleObjectBasedProtectionParams
+from cohesity_sdk.cluster.models.oracle_object_based_protection_params import OracleObjectBasedProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

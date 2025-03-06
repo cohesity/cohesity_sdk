@@ -1,4 +1,4 @@
-# cohesity_sdk.NodeGroupApi
+# cohesity_sdk.cluster.NodeGroupApi
 
 All URIs are relative to */v2*
 
@@ -24,15 +24,15 @@ Create the Node Group and returns the newly created node group object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.node_group_request import NodeGroupRequest
-from cohesity_sdk.models.node_group_response import NodeGroupResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_request import NodeGroupRequest
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -54,10 +54,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.NodeGroupApi(api_client)
-    body = cohesity_sdk.NodeGroupRequest() # NodeGroupRequest | Request to create a Node Group.
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
+    body = cohesity_sdk.cluster.NodeGroupRequest() # NodeGroupRequest | Request to create a Node Group.
 
     try:
         # Create a Node Group.
@@ -112,13 +112,13 @@ Deletes a Node Group based on given node group name.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -140,9 +140,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.NodeGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
     group_name = 'group_name_example' # str | Specifies a unique name of the Node Group to delete.
 
     try:
@@ -196,14 +196,14 @@ Returns Node Group for given Group Name.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.node_group_response import NodeGroupResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -225,9 +225,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.NodeGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
     group_name = 'group_name_example' # str | Specifies a unique id of Node Group to return.
 
     try:
@@ -283,14 +283,14 @@ List node groups.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.node_group_response import NodeGroupResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -312,9 +312,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.NodeGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
     group_names = ['group_names_example'] # List[str] | Filter node groups by a list of node group names. (optional)
     group_type = 56 # int | Filter node groups by a node group type. (optional)
 
@@ -372,15 +372,15 @@ Specifies the request to update the existing Node Group. On successful update, r
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.node_group_request import NodeGroupRequest
-from cohesity_sdk.models.node_group_response import NodeGroupResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_request import NodeGroupRequest
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -402,11 +402,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.NodeGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
     group_name = 'group_name_example' # str | Specifies a unique name of the Node Group to update.
-    body = cohesity_sdk.NodeGroupRequest() # NodeGroupRequest | Request to update a Node Group.
+    body = cohesity_sdk.cluster.NodeGroupRequest() # NodeGroupRequest | Request to update a Node Group.
 
     try:
         # Update a Node Group.

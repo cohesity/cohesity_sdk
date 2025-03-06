@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
+from cohesity_sdk.cluster.models.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
 
 # TODO update the JSON string below
 json = "{}"

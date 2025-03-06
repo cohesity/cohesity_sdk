@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_snapshot_policy_params import UpdateSnapshotPolicyParams
+from cohesity_sdk.cluster.models.update_snapshot_policy_params import UpdateSnapshotPolicyParams
 
 # TODO update the JSON string below
 json = "{}"

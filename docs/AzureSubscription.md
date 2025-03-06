@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_subscription import AzureSubscription
+from cohesity_sdk.cluster.models.azure_subscription import AzureSubscription
 
 # TODO update the JSON string below
 json = "{}"

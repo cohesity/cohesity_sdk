@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
+from cohesity_sdk.cluster.models.couchbase_source_registration_params import CouchbaseSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

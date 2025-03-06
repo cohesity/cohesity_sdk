@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_protection_group_db_params import OracleProtectionGroupDbParams
+from cohesity_sdk.cluster.models.oracle_protection_group_db_params import OracleProtectionGroupDbParams
 
 # TODO update the JSON string below
 json = "{}"

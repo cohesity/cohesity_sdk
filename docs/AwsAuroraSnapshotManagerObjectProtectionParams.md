@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_aurora_snapshot_manager_object_protection_params import AwsAuroraSnapshotManagerObjectProtectionParams
+from cohesity_sdk.cluster.models.aws_aurora_snapshot_manager_object_protection_params import AwsAuroraSnapshotManagerObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

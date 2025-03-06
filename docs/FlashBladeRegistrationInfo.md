@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.flash_blade_registration_info import FlashBladeRegistrationInfo
+from cohesity_sdk.cluster.models.flash_blade_registration_info import FlashBladeRegistrationInfo
 
 # TODO update the JSON string below
 json = "{}"

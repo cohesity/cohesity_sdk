@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.resume_protection_run_action_params import ResumeProtectionRunActionParams
+from cohesity_sdk.cluster.models.resume_protection_run_action_params import ResumeProtectionRunActionParams
 
 # TODO update the JSON string below
 json = "{}"

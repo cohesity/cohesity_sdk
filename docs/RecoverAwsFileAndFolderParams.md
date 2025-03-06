@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_aws_file_and_folder_params import RecoverAwsFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_aws_file_and_folder_params import RecoverAwsFileAndFolderParams
 
 # TODO update the JSON string below
 json = "{}"

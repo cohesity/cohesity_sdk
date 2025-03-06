@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_gpfs_params import RecoverGpfsParams
+from cohesity_sdk.cluster.models.recover_gpfs_params import RecoverGpfsParams
 
 # TODO update the JSON string below
 json = "{}"

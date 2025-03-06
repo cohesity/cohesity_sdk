@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_s3_comp_external_target_params import CommonS3CompExternalTargetParams
+from cohesity_sdk.cluster.models.common_s3_comp_external_target_params import CommonS3CompExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

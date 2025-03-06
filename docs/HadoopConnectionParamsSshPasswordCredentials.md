@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hadoop_connection_params_ssh_password_credentials import HadoopConnectionParamsSshPasswordCredentials
+from cohesity_sdk.cluster.models.hadoop_connection_params_ssh_password_credentials import HadoopConnectionParamsSshPasswordCredentials
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# cohesity_sdk.SourceApi
+# cohesity_sdk.cluster.SourceApi
 
 All URIs are relative to */v2*
 
@@ -35,15 +35,15 @@ Creates Microsoft 365 Azure Applications
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
-from cohesity_sdk.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
+from cohesity_sdk.cluster.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -65,10 +65,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
-    body = cohesity_sdk.CreateAzureApplicationRequestParams() # CreateAzureApplicationRequestParams | Specifies the parameters to create Azure applications within a given Microsoft365 source.
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.CreateAzureApplicationRequestParams() # CreateAzureApplicationRequestParams | Specifies the parameters to create Azure applications within a given Microsoft365 source.
 
     try:
         # Create Microsoft 365 Azure Applications for a given domain.
@@ -123,15 +123,15 @@ Creates/Updates Microsoft 365 Azure Applications
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
-from cohesity_sdk.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
+from cohesity_sdk.cluster.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -153,10 +153,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
-    body = cohesity_sdk.CreateAzureApplicationRequestParams() # CreateAzureApplicationRequestParams | Specifies the parameters to create/update Azure applications within a given Microsoft365 source.
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.CreateAzureApplicationRequestParams() # CreateAzureApplicationRequestParams | Specifies the parameters to create/update Azure applications within a given Microsoft365 source.
 
     try:
         # Create/Update Microsoft 365 Azure Applications for a given domain.
@@ -211,13 +211,13 @@ Delete Protection Source Registration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -239,9 +239,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the ID of the Protection Source Registration.
 
     try:
@@ -295,15 +295,15 @@ Generates the access token if the device code has been granted authorization as 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
-from cohesity_sdk.models.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
+from cohesity_sdk.cluster.models.generate_m365_device_access_token_response_params import GenerateM365DeviceAccessTokenResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -325,10 +325,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
-    body = cohesity_sdk.GenerateM365DeviceAccessTokenRequestParams() # GenerateM365DeviceAccessTokenRequestParams | Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.GenerateM365DeviceAccessTokenRequestParams() # GenerateM365DeviceAccessTokenRequestParams | Specifies the parameters to validate and generate access token for authorizing the client within Microsoft365.
 
     try:
         # Generate access token for Microsoft365 Device Authorization Grant flow.
@@ -383,15 +383,15 @@ Generates User and Device code for Microsoft365 Device Authorization Grant for a
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
-from cohesity_sdk.models.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
+from cohesity_sdk.cluster.models.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -413,10 +413,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
-    body = cohesity_sdk.GenerateM365DeviceCodeRequestParams() # GenerateM365DeviceCodeRequestParams | Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.GenerateM365DeviceCodeRequestParams() # GenerateM365DeviceCodeRequestParams | Specifies the parameters to generate the user and device code to initiate authentication with Microsoft365.
 
     try:
         # Generate device code for Microsoft365 Device Authorization Grant flow.
@@ -471,14 +471,14 @@ Get a Protection Source registration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_registration import SourceRegistration
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -500,9 +500,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the id of the Protection Source registration.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 
@@ -560,14 +560,14 @@ Get a List of Protection Sources.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.sources import Sources
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.sources import Sources
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -589,9 +589,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which Sources are to be returned. (optional)
     include_tenants = True # bool | If true, the response will include Sources which belong belong to all tenants which the current user has permission to see. If false, then only Sources for the current user will be returned. (optional)
@@ -655,14 +655,14 @@ Get a List of attribute filters for leaf entities within a a source
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -684,9 +684,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     source_uuid = 'source_uuid_example' # str | Specifies the source UUID of the parent entity.
     environment = 'environment_example' # str | Specifies the environment type of the Protection Source. (optional)
 
@@ -744,14 +744,14 @@ Get the list of Protection Source registrations.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_registrations import SourceRegistrations
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registrations import SourceRegistrations
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -773,9 +773,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     ids = [56] # List[int] | Ids specifies the list of source registration ids to return. If left empty, every source registration will be returned by default. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
     include_tenants = True # bool | If true, the response will include Registrations which were created by all tenants which the current user has permission to see. If false, then only Registrations created by the current user will be returned. (optional)
@@ -843,14 +843,14 @@ Get the details such as catelogs, Org networks associated with a VMware virtual 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.vdc_object import VdcObject
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.vdc_object import VdcObject
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -872,9 +872,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the ID of the VMware virtual datacenter.
 
     try:
@@ -930,15 +930,15 @@ Patches a Protection Source.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_registration import SourceRegistration
-from cohesity_sdk.models.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.models.source_registration_patch_request_params import SourceRegistrationPatchRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -960,11 +960,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the id of the Protection Source registration.
-    body = cohesity_sdk.SourceRegistrationPatchRequestParams() # SourceRegistrationPatchRequestParams | Specifies the parameters to partially update the registration.
+    body = cohesity_sdk.cluster.SourceRegistrationPatchRequestParams() # SourceRegistrationPatchRequestParams | Specifies the parameters to partially update the registration.
 
     try:
         # Perform Partial Update on Protection Source registration. Currently this API is supported only for Cassandra
@@ -1020,14 +1020,14 @@ Get a Protection Source.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source import Source
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source import Source
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1049,9 +1049,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the id of the Protection Source.
 
     try:
@@ -1107,13 +1107,13 @@ Refresh a Protection Source.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1135,9 +1135,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the id of the Protection Source.
 
     try:
@@ -1191,15 +1191,15 @@ Register a Protection Source.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_registration import SourceRegistration
-from cohesity_sdk.models.source_registration_request_params import SourceRegistrationRequestParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.models.source_registration_request_params import SourceRegistrationRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1221,10 +1221,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
-    body = cohesity_sdk.SourceRegistrationRequestParams() # SourceRegistrationRequestParams | Specifies the parameters to register a Protection Source.
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.SourceRegistrationRequestParams() # SourceRegistrationRequestParams | Specifies the parameters to register a Protection Source.
 
     try:
         # Register a Protection Source.
@@ -1279,15 +1279,15 @@ Test connection to a source.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_connection_request_params import SourceConnectionRequestParams
-from cohesity_sdk.models.source_connection_response_params import SourceConnectionResponseParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_connection_request_params import SourceConnectionRequestParams
+from cohesity_sdk.cluster.models.source_connection_response_params import SourceConnectionResponseParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1309,10 +1309,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
-    body = cohesity_sdk.SourceConnectionRequestParams() # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
+    body = cohesity_sdk.cluster.SourceConnectionRequestParams() # SourceConnectionRequestParams | Specifies the parameters to test connectivity with a source.
 
     try:
         # Test connection to a source.
@@ -1367,15 +1367,15 @@ Update Protection Source registration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_registration import SourceRegistration
-from cohesity_sdk.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_registration import SourceRegistration
+from cohesity_sdk.cluster.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1397,11 +1397,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.SourceApi(api_client)
+    api_instance = cohesity_sdk.cluster.SourceApi(api_client)
     id = 56 # int | Specifies the id of the Protection Source registration.
-    body = cohesity_sdk.SourceRegistrationUpdateRequestParams() # SourceRegistrationUpdateRequestParams | Specifies the parameters to update the registration.
+    body = cohesity_sdk.cluster.SourceRegistrationUpdateRequestParams() # SourceRegistrationUpdateRequestParams | Specifies the parameters to update the registration.
 
     try:
         # Update Protection Source registration.

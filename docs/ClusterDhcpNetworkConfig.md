@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_dhcp_network_config import ClusterDhcpNetworkConfig
+from cohesity_sdk.cluster.models.cluster_dhcp_network_config import ClusterDhcpNetworkConfig
 
 # TODO update the JSON string below
 json = "{}"

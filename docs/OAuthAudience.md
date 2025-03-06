@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.o_auth_audience import OAuthAudience
+from cohesity_sdk.cluster.models.o_auth_audience import OAuthAudience
 
 # TODO update the JSON string below
 json = "{}"

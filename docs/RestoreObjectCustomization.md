@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.restore_object_customization import RestoreObjectCustomization
+from cohesity_sdk.cluster.models.restore_object_customization import RestoreObjectCustomization
 
 # TODO update the JSON string below
 json = "{}"

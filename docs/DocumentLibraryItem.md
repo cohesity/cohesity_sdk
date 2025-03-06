@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.document_library_item import DocumentLibraryItem
+from cohesity_sdk.cluster.models.document_library_item import DocumentLibraryItem
 
 # TODO update the JSON string below
 json = "{}"

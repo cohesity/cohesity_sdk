@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_azure_external_target_params import ArchivalAzureExternalTargetParams
+from cohesity_sdk.cluster.models.archival_azure_external_target_params import ArchivalAzureExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

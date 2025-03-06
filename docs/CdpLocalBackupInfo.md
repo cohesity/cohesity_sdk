@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cdp_local_backup_info import CdpLocalBackupInfo
+from cohesity_sdk.cluster.models.cdp_local_backup_info import CdpLocalBackupInfo
 
 # TODO update the JSON string below
 json = "{}"

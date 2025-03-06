@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.standalone_cluster_registration_params import StandaloneClusterRegistrationParams
+from cohesity_sdk.cluster.models.standalone_cluster_registration_params import StandaloneClusterRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

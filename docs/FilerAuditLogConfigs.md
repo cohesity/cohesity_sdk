@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.filer_audit_log_configs import FilerAuditLogConfigs
+from cohesity_sdk.cluster.models.filer_audit_log_configs import FilerAuditLogConfigs
 
 # TODO update the JSON string below
 json = "{}"

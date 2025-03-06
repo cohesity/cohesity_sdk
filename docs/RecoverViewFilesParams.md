@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_view_files_params import RecoverViewFilesParams
+from cohesity_sdk.cluster.models.recover_view_files_params import RecoverViewFilesParams
 
 # TODO update the JSON string below
 json = "{}"

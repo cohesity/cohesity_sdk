@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.active_directory_admin_params import ActiveDirectoryAdminParams
+from cohesity_sdk.cluster.models.active_directory_admin_params import ActiveDirectoryAdminParams
 
 # TODO update the JSON string below
 json = "{}"

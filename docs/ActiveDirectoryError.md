@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.active_directory_error import ActiveDirectoryError
+from cohesity_sdk.cluster.models.active_directory_error import ActiveDirectoryError
 
 # TODO update the JSON string below
 json = "{}"

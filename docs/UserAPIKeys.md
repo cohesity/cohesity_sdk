@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.user_api_keys import UserAPIKeys
+from cohesity_sdk.cluster.models.user_api_keys import UserAPIKeys
 
 # TODO update the JSON string below
 json = "{}"

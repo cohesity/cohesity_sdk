@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bgp_timers import BgpTimers
+from cohesity_sdk.cluster.models.bgp_timers import BgpTimers
 
 # TODO update the JSON string below
 json = "{}"

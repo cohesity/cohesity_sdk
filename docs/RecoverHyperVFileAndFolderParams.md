@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hyper_v_file_and_folder_params import RecoverHyperVFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_hyper_v_file_and_folder_params import RecoverHyperVFileAndFolderParams
 
 # TODO update the JSON string below
 json = "{}"

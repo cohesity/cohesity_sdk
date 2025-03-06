@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_local_snapshot_config import UpdateLocalSnapshotConfig
+from cohesity_sdk.cluster.models.update_local_snapshot_config import UpdateLocalSnapshotConfig
 
 # TODO update the JSON string below
 json = "{}"

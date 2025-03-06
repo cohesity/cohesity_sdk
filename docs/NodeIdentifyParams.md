@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.node_identify_params import NodeIdentifyParams
+from cohesity_sdk.cluster.models.node_identify_params import NodeIdentifyParams
 
 # TODO update the JSON string below
 json = "{}"

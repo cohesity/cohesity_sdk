@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tier_level_settings import TierLevelSettings
+from cohesity_sdk.cluster.models.tier_level_settings import TierLevelSettings
 
 # TODO update the JSON string below
 json = "{}"

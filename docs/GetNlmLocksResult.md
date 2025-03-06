@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.get_nlm_locks_result import GetNlmLocksResult
+from cohesity_sdk.cluster.models.get_nlm_locks_result import GetNlmLocksResult
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cassandra_source_registration_params_all_of_cassandra_credentials import CassandraSourceRegistrationParamsAllOfCassandraCredentials
+from cohesity_sdk.cluster.models.cassandra_source_registration_params_all_of_cassandra_credentials import CassandraSourceRegistrationParamsAllOfCassandraCredentials
 
 # TODO update the JSON string below
 json = "{}"

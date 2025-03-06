@@ -43,7 +43,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_usage_stats import DataUsageStats
+from cohesity_sdk.cluster.models.data_usage_stats import DataUsageStats
 
 # TODO update the JSON string below
 json = "{}"

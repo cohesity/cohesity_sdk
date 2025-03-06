@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.couchbase_indexed_object import CouchbaseIndexedObject
+from cohesity_sdk.cluster.models.couchbase_indexed_object import CouchbaseIndexedObject
 
 # TODO update the JSON string below
 json = "{}"

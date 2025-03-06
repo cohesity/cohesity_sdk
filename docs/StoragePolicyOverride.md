@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_policy_override import StoragePolicyOverride
+from cohesity_sdk.cluster.models.storage_policy_override import StoragePolicyOverride
 
 # TODO update the JSON string below
 json = "{}"

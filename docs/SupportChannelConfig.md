@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.support_channel_config import SupportChannelConfig
+from cohesity_sdk.cluster.models.support_channel_config import SupportChannelConfig
 
 # TODO update the JSON string below
 json = "{}"

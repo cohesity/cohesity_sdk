@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_throttling_params import VmwareThrottlingParams
+from cohesity_sdk.cluster.models.vmware_throttling_params import VmwareThrottlingParams
 
 # TODO update the JSON string below
 json = "{}"

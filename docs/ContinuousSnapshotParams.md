@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.continuous_snapshot_params import ContinuousSnapshotParams
+from cohesity_sdk.cluster.models.continuous_snapshot_params import ContinuousSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

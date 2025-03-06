@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.on_prem_source_ids import OnPremSourceIds
+from cohesity_sdk.cluster.models.on_prem_source_ids import OnPremSourceIds
 
 # TODO update the JSON string below
 json = "{}"

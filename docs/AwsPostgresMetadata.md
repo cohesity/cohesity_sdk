@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_postgres_metadata import AwsPostgresMetadata
+from cohesity_sdk.cluster.models.aws_postgres_metadata import AwsPostgresMetadata
 
 # TODO update the JSON string below
 json = "{}"

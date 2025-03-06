@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.remove_node import RemoveNode
+from cohesity_sdk.cluster.models.remove_node import RemoveNode
 
 # TODO update the JSON string below
 json = "{}"

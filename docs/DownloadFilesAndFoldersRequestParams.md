@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
+from cohesity_sdk.cluster.models.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
 
 # TODO update the JSON string below
 json = "{}"

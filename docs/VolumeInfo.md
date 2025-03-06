@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.volume_info import VolumeInfo
+from cohesity_sdk.cluster.models.volume_info import VolumeInfo
 
 # TODO update the JSON string below
 json = "{}"

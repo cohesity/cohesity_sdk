@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_qstar_tape_external_target_params import ArchivalQstarTapeExternalTargetParams
+from cohesity_sdk.cluster.models.archival_qstar_tape_external_target_params import ArchivalQstarTapeExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

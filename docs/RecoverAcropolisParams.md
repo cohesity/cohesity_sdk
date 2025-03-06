@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_acropolis_params import RecoverAcropolisParams
+from cohesity_sdk.cluster.models.recover_acropolis_params import RecoverAcropolisParams
 
 # TODO update the JSON string below
 json = "{}"

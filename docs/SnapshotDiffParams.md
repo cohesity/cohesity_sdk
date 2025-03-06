@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.snapshot_diff_params import SnapshotDiffParams
+from cohesity_sdk.cluster.models.snapshot_diff_params import SnapshotDiffParams
 
 # TODO update the JSON string below
 json = "{}"

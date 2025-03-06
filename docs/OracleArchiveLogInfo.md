@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_archive_log_info import OracleArchiveLogInfo
+from cohesity_sdk.cluster.models.oracle_archive_log_info import OracleArchiveLogInfo
 
 # TODO update the JSON string below
 json = "{}"

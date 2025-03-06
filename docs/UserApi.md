@@ -1,4 +1,4 @@
-# cohesity_sdk.UserApi
+# cohesity_sdk.cluster.UserApi
 
 All URIs are relative to */v2*
 
@@ -45,15 +45,15 @@ If an Active Directory/IdP domain is specified, a new group is added to the Cohe
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_group_params import CreateGroupParams
-from cohesity_sdk.models.groups import Groups
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_group_params import CreateGroupParams
+from cohesity_sdk.cluster.models.groups import Groups
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -75,10 +75,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
-    body = [cohesity_sdk.CreateGroupParams()] # List[CreateGroupParams] | Specifies the new group parameters.
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
+    body = [cohesity_sdk.cluster.CreateGroupParams()] # List[CreateGroupParams] | Specifies the new group parameters.
 
     try:
         # Create Groups
@@ -133,15 +133,15 @@ Create a user session
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_user_session_request_params import CreateUserSessionRequestParams
-from cohesity_sdk.models.user_session import UserSession
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_user_session_request_params import CreateUserSessionRequestParams
+from cohesity_sdk.cluster.models.user_session import UserSession
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -163,10 +163,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
-    body = cohesity_sdk.CreateUserSessionRequestParams() # CreateUserSessionRequestParams | Specifies the parameters to create a user session
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
+    body = cohesity_sdk.cluster.CreateUserSessionRequestParams() # CreateUserSessionRequestParams | Specifies the parameters to create a user session
 
     try:
         # Create a user session
@@ -221,15 +221,15 @@ Create a new user API key.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
-from cohesity_sdk.models.created_user_api_key import CreatedUserAPIKey
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
+from cohesity_sdk.cluster.models.created_user_api_key import CreatedUserAPIKey
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -251,11 +251,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     user_sid = 'user_sid_example' # str | Specify the SID of the API key owner.
-    body = cohesity_sdk.CreateOrUpdateAPIKeyRequest() # CreateOrUpdateAPIKeyRequest | Request to create a new API Key
+    body = cohesity_sdk.cluster.CreateOrUpdateAPIKeyRequest() # CreateOrUpdateAPIKeyRequest | Request to create a new API Key
 
     try:
         # Create a new user API key.
@@ -311,15 +311,15 @@ Add one or more users to Cohesity Cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_user_parameters import CreateUserParameters
-from cohesity_sdk.models.users_list import UsersList
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_user_parameters import CreateUserParameters
+from cohesity_sdk.cluster.models.users_list import UsersList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -341,10 +341,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
-    body = [cohesity_sdk.CreateUserParameters()] # List[CreateUserParameters] | If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
+    body = [cohesity_sdk.cluster.CreateUserParameters()] # List[CreateUserParameters] | If an Active Directory or an IdP domain is specified, a new user is added to the Cohesity Cluster against the specified Active Directory/IdP user principal. If the LOCAL domain is specified, a new user is created directly in the default LOCAL domain on the Cohesity Cluster.
 
     try:
         # Add one or more users to Cohesity Cluster.
@@ -399,13 +399,13 @@ If the group on the Cohesity Cluster was added for an Active Directory/IdP group
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -427,9 +427,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the group.
 
     try:
@@ -483,14 +483,14 @@ If the Cohesity group was created against an Active Directory/IdP, the reference
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.delete_groups_request import DeleteGroupsRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.delete_groups_request import DeleteGroupsRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -512,10 +512,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
-    body = cohesity_sdk.DeleteGroupsRequest() # DeleteGroupsRequest | Specifies the delete request payload.
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
+    body = cohesity_sdk.cluster.DeleteGroupsRequest() # DeleteGroupsRequest | Specifies the delete request payload.
 
     try:
         # Delete Groups
@@ -568,13 +568,13 @@ Deletes all sessions for given user sid or system wide sessions
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -596,9 +596,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specifies a user sid. If sid is not given system wide sessions are deleted. (optional)
 
     try:
@@ -652,13 +652,13 @@ Delete a Cohesity user.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -680,9 +680,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the user.
 
     try:
@@ -736,13 +736,13 @@ Delete a user API key.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -764,9 +764,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     user_sid = 'user_sid_example' # str | Specify the SID of the API key owner.
     id = 'id_example' # str | Specify the id of the API key.
 
@@ -822,14 +822,14 @@ Delete one or more Cohesity users.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.delete_users_request import DeleteUsersRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.delete_users_request import DeleteUsersRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -851,10 +851,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
-    body = cohesity_sdk.DeleteUsersRequest() # DeleteUsersRequest | If the Cohesity user was created against an Active Directory/IdP user, the referenced principal user on the Active Directory/IdP domain is NOT deleted. Only the user on the Cohesity Cluster is deleted.
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
+    body = cohesity_sdk.cluster.DeleteUsersRequest() # DeleteUsersRequest | If the Cohesity user was created against an Active Directory/IdP user, the referenced principal user on the Active Directory/IdP domain is NOT deleted. Only the user on the Cohesity Cluster is deleted.
 
     try:
         # Delete one or more Cohesity users.
@@ -907,14 +907,14 @@ Get the number of user sessions.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.active_sessions_count_params import ActiveSessionsCountParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_sessions_count_params import ActiveSessionsCountParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -936,9 +936,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sids = ['sids_example'] # List[str] | Filter sessions based on user sids. (optional)
 
     try:
@@ -994,14 +994,14 @@ Get the list of all API keys which are created or owned by the user.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.user_api_keys import UserAPIKeys
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.user_api_keys import UserAPIKeys
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1023,9 +1023,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     ids = ['ids_example'] # List[str] | Filter by API Key Ids (optional)
     owner_sids = ['owner_sids_example'] # List[str] | Filter by list of owner (user) SIDs (optional)
     is_active = True # bool | If true, the response will only include API keys which are active. Returns all keys if the query param is not set. (optional)
@@ -1087,14 +1087,14 @@ Get Group by SID.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.group_params import GroupParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.group_params import GroupParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1116,9 +1116,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the group.
 
     try:
@@ -1174,14 +1174,14 @@ Get groups on the Cohesity cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.groups import Groups
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.groups import Groups
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1203,9 +1203,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     names = ['names_example'] # List[str] | Specifies a list of group names to filter. (optional)
     roles = ['roles_example'] # List[str] | Specifies a list of roles to filter. (optional)
     domain = 'domain_example' # str | Specifies the group domain to filter. (optional)
@@ -1273,14 +1273,14 @@ Fetches all the sources assigned to a principal.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.assigned_sources import AssignedSources
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.assigned_sources import AssignedSources
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1302,9 +1302,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the principal.
 
     try:
@@ -1360,14 +1360,14 @@ Get Security Principals
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.security_principals import SecurityPrincipals
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.security_principals import SecurityPrincipals
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1389,9 +1389,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sids = ['sids_example'] # List[str] | Specifies a list of SIDs.
 
     try:
@@ -1447,14 +1447,14 @@ Get the API key by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.user_api_key import UserAPIKey
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.user_api_key import UserAPIKey
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1476,9 +1476,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     id = 'id_example' # str | Specify the id of the API key.
     user_sid = 'user_sid_example' # str | Specify the SID of the API key owner.
 
@@ -1536,14 +1536,14 @@ Returns the list of API keys owned by the user. For security reasons there is no
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.user_api_keys import UserAPIKeys
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.user_api_keys import UserAPIKeys
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1565,9 +1565,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     user_sid = 'user_sid_example' # str | Specify the SID of the API key owner.
     ids = ['ids_example'] # List[str] | Filter by API Key Ids (optional)
     is_active = True # bool | If true, the response will only include API keys which are active. Returns all keys if the query param is not set. (optional)
@@ -1629,14 +1629,14 @@ Get User by SID.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.user_params import UserParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.user_params import UserParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1658,9 +1658,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the user.
 
     try:
@@ -1716,14 +1716,14 @@ Get Users.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.users_list import UsersList
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.users_list import UsersList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1745,9 +1745,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     domain = 'domain_example' # str | Specifies the user domain to filter. (optional)
     sids = ['sids_example'] # List[str] | Specifies a list of sids to filter. (optional)
     usernames = ['usernames_example'] # List[str] | Specifies a list of usernames to filter. (optional)
@@ -1817,14 +1817,14 @@ Reset the S3 secret access key for the specified user on the Cohesity Cluster. A
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.secret_key_entity import SecretKeyEntity
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.secret_key_entity import SecretKeyEntity
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1846,9 +1846,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the user.
 
     try:
@@ -1904,14 +1904,14 @@ Refresh an existing user API key.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.created_user_api_key import CreatedUserAPIKey
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.created_user_api_key import CreatedUserAPIKey
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1933,9 +1933,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     user_sid = 'user_sid_example' # str | Specify the SID of the API key owner.
     id = 'id_example' # str | Specify the id of the API key.
 
@@ -1993,15 +1993,15 @@ Only group settings on the Cohesity Cluster are updated. No changes are made to 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.group_params import GroupParams
-from cohesity_sdk.models.update_group_parameters import UpdateGroupParameters
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.group_params import GroupParams
+from cohesity_sdk.cluster.models.update_group_parameters import UpdateGroupParameters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2023,11 +2023,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the group.
-    body = cohesity_sdk.UpdateGroupParameters() # UpdateGroupParameters | Specifies the group information.
+    body = cohesity_sdk.cluster.UpdateGroupParameters() # UpdateGroupParameters | Specifies the group information.
 
     try:
         # Update Group
@@ -2083,14 +2083,14 @@ Update protection sources assigned to a user/group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.assigned_sources import AssignedSources
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.assigned_sources import AssignedSources
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2112,11 +2112,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the principal.
-    body = cohesity_sdk.AssignedSources() # AssignedSources | Specify the sources to be assigned to a principal.
+    body = cohesity_sdk.cluster.AssignedSources() # AssignedSources | Specify the sources to be assigned to a principal.
 
     try:
         # Update protection sources assigned to a user/group.
@@ -2172,15 +2172,15 @@ Update an existing user on the Cohesity Cluster. Only user settings on the Cohes
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_user_parameters import UpdateUserParameters
-from cohesity_sdk.models.user_params import UserParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_user_parameters import UpdateUserParameters
+from cohesity_sdk.cluster.models.user_params import UserParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2202,11 +2202,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     sid = 'sid_example' # str | Specify the SID of the user.
-    body = cohesity_sdk.UpdateUserParameters() # UpdateUserParameters | Specifies the user information.
+    body = cohesity_sdk.cluster.UpdateUserParameters() # UpdateUserParameters | Specifies the user information.
 
     try:
         # Update User information.
@@ -2262,15 +2262,15 @@ Update a user API key.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
-from cohesity_sdk.models.user_api_key import UserAPIKey
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
+from cohesity_sdk.cluster.models.user_api_key import UserAPIKey
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2292,12 +2292,12 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.UserApi(api_client)
+    api_instance = cohesity_sdk.cluster.UserApi(api_client)
     id = 'id_example' # str | Specify the id of the API key.
     user_sid = 'user_sid_example' # str | Specify the SID of the API key owner.
-    body = cohesity_sdk.CreateOrUpdateAPIKeyRequest() # CreateOrUpdateAPIKeyRequest | Request to update a user API key
+    body = cohesity_sdk.cluster.CreateOrUpdateAPIKeyRequest() # CreateOrUpdateAPIKeyRequest | Request to update a user API key
 
     try:
         # Update a user API key.

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.abort_incomplete_multipart_upload_action import AbortIncompleteMultipartUploadAction
+from cohesity_sdk.cluster.models.abort_incomplete_multipart_upload_action import AbortIncompleteMultipartUploadAction
 
 # TODO update the JSON string below
 json = "{}"

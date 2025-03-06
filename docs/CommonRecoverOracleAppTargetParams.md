@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_recover_oracle_app_target_params import CommonRecoverOracleAppTargetParams
+from cohesity_sdk.cluster.models.common_recover_oracle_app_target_params import CommonRecoverOracleAppTargetParams
 
 # TODO update the JSON string below
 json = "{}"

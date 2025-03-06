@@ -1,4 +1,4 @@
-# cohesity_sdk.RemoteStorageApi
+# cohesity_sdk.cluster.RemoteStorageApi
 
 All URIs are relative to */v2*
 
@@ -24,13 +24,13 @@ Delete remote storage registration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -52,9 +52,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteStorageApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteStorageApi(api_client)
     id = 56 # int | Specifies the registration id of the registered remote storage.
 
     try:
@@ -108,14 +108,14 @@ Get summary about list of registered remote storage servers.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.registered_remote_storage_list import RegisteredRemoteStorageList
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.registered_remote_storage_list import RegisteredRemoteStorageList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -137,9 +137,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteStorageApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteStorageApi(api_client)
 
     try:
         # Get Registered Remote Storage Servers List
@@ -191,14 +191,14 @@ Get details of remote storage given by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.remote_storage_info import RemoteStorageInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remote_storage_info import RemoteStorageInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -220,9 +220,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteStorageApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteStorageApi(api_client)
     id = 56 # int | Specifies the id of the registered remote storage.
     include_available_space = False # bool | Specifies whether to include available capacity on remote storage. (optional) (default to False)
     include_available_data_vips = False # bool | Specifies whether to include available data vips on remote storage. (optional) (default to False)
@@ -284,14 +284,14 @@ Register a remote storage to be used for disaggregated storage.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.remote_storage_info import RemoteStorageInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remote_storage_info import RemoteStorageInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -313,10 +313,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteStorageApi(api_client)
-    body = cohesity_sdk.RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to register a remote storage management server.
+    api_instance = cohesity_sdk.cluster.RemoteStorageApi(api_client)
+    body = cohesity_sdk.cluster.RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to register a remote storage management server.
 
     try:
         # Register Remote Storage
@@ -371,14 +371,14 @@ Update Registered Remote Storage Config.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.remote_storage_info import RemoteStorageInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remote_storage_info import RemoteStorageInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -400,11 +400,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteStorageApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteStorageApi(api_client)
     id = 56 # int | Specifies the registration id of the registered remote storage.
-    body = cohesity_sdk.RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to update the registration.
+    body = cohesity_sdk.cluster.RemoteStorageInfo() # RemoteStorageInfo | Specifies the parameters to update the registration.
 
     try:
         # Update Remote Storage Config

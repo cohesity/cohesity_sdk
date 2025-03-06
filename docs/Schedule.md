@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.schedule import Schedule
+from cohesity_sdk.cluster.models.schedule import Schedule
 
 # TODO update the JSON string below
 json = "{}"

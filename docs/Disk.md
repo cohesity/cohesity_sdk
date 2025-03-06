@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.disk import Disk
+from cohesity_sdk.cluster.models.disk import Disk
 
 # TODO update the JSON string below
 json = "{}"

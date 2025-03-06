@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
+from cohesity_sdk.cluster.models.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_external_target_params import CommonExternalTargetParams
+from cohesity_sdk.cluster.models.common_external_target_params import CommonExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

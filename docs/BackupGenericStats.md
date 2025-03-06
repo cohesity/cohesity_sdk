@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.backup_generic_stats import BackupGenericStats
+from cohesity_sdk.cluster.models.backup_generic_stats import BackupGenericStats
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
+from cohesity_sdk.cluster.models.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
 
 # TODO update the JSON string below
 json = "{}"

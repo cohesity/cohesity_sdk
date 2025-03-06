@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hdfs_additional_params import HdfsAdditionalParams
+from cohesity_sdk.cluster.models.hdfs_additional_params import HdfsAdditionalParams
 
 # TODO update the JSON string below
 json = "{}"

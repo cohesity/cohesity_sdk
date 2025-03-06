@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_ms_teams_request_params import SearchMsTeamsRequestParams
+from cohesity_sdk.cluster.models.search_ms_teams_request_params import SearchMsTeamsRequestParams
 
 # TODO update the JSON string below
 json = "{}"

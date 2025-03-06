@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_config import ArchivalConfig
+from cohesity_sdk.cluster.models.archival_config import ArchivalConfig
 
 # TODO update the JSON string below
 json = "{}"

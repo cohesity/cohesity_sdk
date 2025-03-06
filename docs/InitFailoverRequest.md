@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.init_failover_request import InitFailoverRequest
+from cohesity_sdk.cluster.models.init_failover_request import InitFailoverRequest
 
 # TODO update the JSON string below
 json = "{}"

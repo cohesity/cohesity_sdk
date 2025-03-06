@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_object_protection_request_params import AzureObjectProtectionRequestParams
+from cohesity_sdk.cluster.models.azure_object_protection_request_params import AzureObjectProtectionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

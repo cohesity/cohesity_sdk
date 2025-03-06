@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.file_level_data_lock_config import FileLevelDataLockConfig
+from cohesity_sdk.cluster.models.file_level_data_lock_config import FileLevelDataLockConfig
 
 # TODO update the JSON string below
 json = "{}"

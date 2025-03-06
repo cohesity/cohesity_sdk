@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vcd_registration_params import VcdRegistrationParams
+from cohesity_sdk.cluster.models.vcd_registration_params import VcdRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

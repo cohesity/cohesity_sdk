@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.netapp_data_tiering_params import NetappDataTieringParams
+from cohesity_sdk.cluster.models.netapp_data_tiering_params import NetappDataTieringParams
 
 # TODO update the JSON string below
 json = "{}"

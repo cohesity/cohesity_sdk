@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.downtiering_policy import DowntieringPolicy
+from cohesity_sdk.cluster.models.downtiering_policy import DowntieringPolicy
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.lifecycle_rule_filter_tag import LifecycleRuleFilterTag
+from cohesity_sdk.cluster.models.lifecycle_rule_filter_tag import LifecycleRuleFilterTag
 
 # TODO update the JSON string below
 json = "{}"

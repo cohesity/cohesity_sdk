@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_updatable_user_params import CommonUpdatableUserParams
+from cohesity_sdk.cluster.models.common_updatable_user_params import CommonUpdatableUserParams
 
 # TODO update the JSON string below
 json = "{}"

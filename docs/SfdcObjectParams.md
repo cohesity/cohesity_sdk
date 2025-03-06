@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sfdc_object_params import SfdcObjectParams
+from cohesity_sdk.cluster.models.sfdc_object_params import SfdcObjectParams
 
 # TODO update the JSON string below
 json = "{}"

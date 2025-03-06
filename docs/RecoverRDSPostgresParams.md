@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_rds_postgres_params import RecoverRDSPostgresParams
+from cohesity_sdk.cluster.models.recover_rds_postgres_params import RecoverRDSPostgresParams
 
 # TODO update the JSON string below
 json = "{}"

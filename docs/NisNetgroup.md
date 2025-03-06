@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.nis_netgroup import NisNetgroup
+from cohesity_sdk.cluster.models.nis_netgroup import NisNetgroup
 
 # TODO update the JSON string below
 json = "{}"

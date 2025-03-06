@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_azure_vm_params import RecoverAzureVmParams
+from cohesity_sdk.cluster.models.recover_azure_vm_params import RecoverAzureVmParams
 
 # TODO update the JSON string below
 json = "{}"

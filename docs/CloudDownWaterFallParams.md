@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cloud_down_water_fall_params import CloudDownWaterFallParams
+from cohesity_sdk.cluster.models.cloud_down_water_fall_params import CloudDownWaterFallParams
 
 # TODO update the JSON string below
 json = "{}"

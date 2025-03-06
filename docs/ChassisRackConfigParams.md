@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.chassis_rack_config_params import ChassisRackConfigParams
+from cohesity_sdk.cluster.models.chassis_rack_config_params import ChassisRackConfigParams
 
 # TODO update the JSON string below
 json = "{}"

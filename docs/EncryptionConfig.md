@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.encryption_config import EncryptionConfig
+from cohesity_sdk.cluster.models.encryption_config import EncryptionConfig
 
 # TODO update the JSON string below
 json = "{}"

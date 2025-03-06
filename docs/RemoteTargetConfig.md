@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.remote_target_config import RemoteTargetConfig
+from cohesity_sdk.cluster.models.remote_target_config import RemoteTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

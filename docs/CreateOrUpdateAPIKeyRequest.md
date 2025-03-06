@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
+from cohesity_sdk.cluster.models.create_or_update_api_key_request import CreateOrUpdateAPIKeyRequest
 
 # TODO update the JSON string below
 json = "{}"

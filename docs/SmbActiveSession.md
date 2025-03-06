@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.smb_active_session import SmbActiveSession
+from cohesity_sdk.cluster.models.smb_active_session import SmbActiveSession
 
 # TODO update the JSON string below
 json = "{}"

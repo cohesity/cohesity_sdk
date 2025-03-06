@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_archival_external_target_params import CommonArchivalExternalTargetParams
+from cohesity_sdk.cluster.models.common_archival_external_target_params import CommonArchivalExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

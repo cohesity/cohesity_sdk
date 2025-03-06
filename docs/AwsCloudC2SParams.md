@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_cloud_c2_s_params import AwsCloudC2SParams
+from cohesity_sdk.cluster.models.aws_cloud_c2_s_params import AwsCloudC2SParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# cohesity_sdk.ProtectionGroupApi
+# cohesity_sdk.cluster.ProtectionGroupApi
 
 All URIs are relative to */v2*
 
@@ -37,15 +37,15 @@ Create a Protection Group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
-from cohesity_sdk.models.protection_group import ProtectionGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
+from cohesity_sdk.cluster.models.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -67,10 +67,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
-    body = cohesity_sdk.CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to create a Protection Group.
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
+    body = cohesity_sdk.cluster.CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to create a Protection Group.
 
     try:
         # Create a Protection Group.
@@ -125,15 +125,15 @@ Create a new protection run. This can be used to start a run for a Protection Gr
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_protection_group_run_request import CreateProtectionGroupRunRequest
-from cohesity_sdk.models.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_protection_group_run_request import CreateProtectionGroupRunRequest
+from cohesity_sdk.cluster.models.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -155,11 +155,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
-    body = cohesity_sdk.CreateProtectionGroupRunRequest() # CreateProtectionGroupRunRequest | Specifies the parameters to start a protection run.
+    body = cohesity_sdk.cluster.CreateProtectionGroupRunRequest() # CreateProtectionGroupRunRequest | Specifies the parameters to start a protection run.
 
     try:
         # Create a new protection run.
@@ -215,13 +215,13 @@ Returns Success if the Protection Group is deleted.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -243,9 +243,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     delete_snapshots = True # bool | Specifies if Snapshots generated by the Protection Group should also be deleted when the Protection Group is deleted. (optional)
 
@@ -301,14 +301,14 @@ Returns the Protection Group corresponding to the specified Group id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_group import ProtectionGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -330,9 +330,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     include_last_run_info = True # bool | If true, the response will include last run info. If it is false or not specified, the last run info won't be returned. (optional)
@@ -396,14 +396,14 @@ Get a run for a particular Protection Group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -425,9 +425,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Group run.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
@@ -495,14 +495,14 @@ Get the runs for a particular Protection Group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_group_runs import ProtectionGroupRuns
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_group_runs import ProtectionGroupRuns
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -524,9 +524,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     run_id = 'run_id_example' # str | Specifies the protection run id. (optional)
@@ -626,14 +626,14 @@ Get the list of Protection Groups.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_groups import ProtectionGroups
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_groups import ProtectionGroups
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -655,9 +655,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     ids = ['ids_example'] # List[str] | Filter by a list of Protection Group ids. (optional)
     names = ['names_example'] # List[str] | Filter by a list of Protection Group names. (optional)
@@ -763,14 +763,14 @@ Get the progress of a run.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_protection_run_progress_body import GetProtectionRunProgressBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_protection_run_progress_body import GetProtectionRunProgressBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -792,9 +792,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Run.
     objects = [56] # List[int] | Specifies the objects whose progress will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run progress will not be returned and only the progress of the specified objects will be returned. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which the run is to be returned. (optional)
@@ -874,14 +874,14 @@ Get the stats for a run.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_protection_run_stats_body import GetProtectionRunStatsBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_protection_run_stats_body import GetProtectionRunStatsBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -903,9 +903,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Run.
     objects = [56] # List[int] | Specifies the objects whose stats will be returned. This only applies to protection group runs and will be ignored for object runs. If the objects are specified, the run stats will not be returned and only the stats of the specified objects will be returned. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which the run is to be returned. (optional)
@@ -981,14 +981,14 @@ Get a list of protection runs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_runs_summary import ProtectionRunsSummary
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_runs_summary import ProtectionRunsSummary
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1010,9 +1010,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     start_time_usecs = 56 # int | Start time for time range filter. Specify the start time as a Unix epoch Timestamp (in microseconds), only runs executing after this time will be returned. By default it is endTimeUsecs minus an hour. (optional)
     end_time_usecs = 56 # int | End time for time range filter. Specify the end time as a Unix epoch Timestamp (in microseconds), only runs executing before this time will be returned. By default it is current time. (optional)
     run_status = ['run_status_example'] # List[str] | Specifies a list of status, runs matching the status will be returned.<br> 'Running' indicates that the run is still running.<br> 'Canceled' indicates that the run has been canceled.<br> 'Canceling' indicates that the run is in the process of being canceled.<br> 'Failed' indicates that the run has failed.<br> 'Missed' indicates that the run was unable to take place at the scheduled time because the previous run was still happening.<br> 'Succeeded' indicates that the run has finished successfully.<br> 'SucceededWithWarning' indicates that the run finished successfully, but there were some warning messages.<br> 'Skipped' indicates that the run was skipped. (optional)
@@ -1072,13 +1072,13 @@ Get the debug logs for all objects of a run for a particular Protection Group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1100,9 +1100,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Group run.
     object_id = 'object_id_example' # str | Specifies the id of the object for which debug logs are to be returned.  (optional)
@@ -1160,13 +1160,13 @@ Get the debug logs for a particular object of a run for a particular Protection 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1188,9 +1188,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Group run.
     object_id = 'object_id_example' # str | Specifies the id of the object for which debug logs are to be returned. 
@@ -1248,13 +1248,13 @@ Get an CSV report for given objectId and run id. Each row in CSV report contains
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1276,9 +1276,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Group run.
     object_id = 'object_id_example' # str | Specifies the id of the object for which errors/warnings are to be returned. 
@@ -1340,13 +1340,13 @@ Get an CSV report for given objectId and run id. Report will depend on the query
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1368,9 +1368,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
     run_id = 'run_id_example' # str | Specifies a unique run id of the Protection Group run.
     object_id = 'object_id_example' # str | Specifies the id of the object for which errors/warnings are to be returned. 
@@ -1432,15 +1432,15 @@ Perform various actions on a Protection Group run.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
-from cohesity_sdk.models.perform_run_action_response import PerformRunActionResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
+from cohesity_sdk.cluster.models.perform_run_action_response import PerformRunActionResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1462,11 +1462,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
-    body = cohesity_sdk.PerformActionOnProtectionGroupRunRequest() # PerformActionOnProtectionGroupRunRequest | Specifies the parameters to perform an action on a protection run.
+    body = cohesity_sdk.cluster.PerformActionOnProtectionGroupRunRequest() # PerformActionOnProtectionGroupRunRequest | Specifies the parameters to perform an action on a protection run.
 
     try:
         # Actions on protection group run.
@@ -1522,15 +1522,15 @@ Update the specified Protection Group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
-from cohesity_sdk.models.protection_group import ProtectionGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
+from cohesity_sdk.cluster.models.protection_group import ProtectionGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1552,11 +1552,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies the id of the Protection Group.
-    body = cohesity_sdk.CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to update a Protection Group.
+    body = cohesity_sdk.cluster.CreateOrUpdateProtectionGroupRequest() # CreateOrUpdateProtectionGroupRequest | Specifies the parameters to update a Protection Group.
 
     try:
         # Update a Protection Group.
@@ -1612,15 +1612,15 @@ Update runs for a particular Protection Group. A user can perform the following 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_protection_group_run_request_body import UpdateProtectionGroupRunRequestBody
-from cohesity_sdk.models.update_protection_group_run_response_body import UpdateProtectionGroupRunResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_protection_group_run_request_body import UpdateProtectionGroupRunRequestBody
+from cohesity_sdk.cluster.models.update_protection_group_run_response_body import UpdateProtectionGroupRunResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1642,11 +1642,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Group.
-    body = cohesity_sdk.UpdateProtectionGroupRunRequestBody() # UpdateProtectionGroupRunRequestBody | Specifies the parameters to update a Protection Group Run.
+    body = cohesity_sdk.cluster.UpdateProtectionGroupRunRequestBody() # UpdateProtectionGroupRunRequestBody | Specifies the parameters to update a Protection Group Run.
 
     try:
         # Update runs for a particular Protection Group.
@@ -1702,15 +1702,15 @@ Perform an action like pause, resume, active, deactivate on all specified Protec
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_protection_groups_state import UpdateProtectionGroupsState
-from cohesity_sdk.models.update_protection_groups_state_request import UpdateProtectionGroupsStateRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_protection_groups_state import UpdateProtectionGroupsState
+from cohesity_sdk.cluster.models.update_protection_groups_state_request import UpdateProtectionGroupsStateRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1732,10 +1732,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectionGroupApi(api_client)
-    body = cohesity_sdk.UpdateProtectionGroupsStateRequest() # UpdateProtectionGroupsStateRequest | Specifies the parameters to perform an action of list of Protection Groups.
+    api_instance = cohesity_sdk.cluster.ProtectionGroupApi(api_client)
+    body = cohesity_sdk.cluster.UpdateProtectionGroupsStateRequest() # UpdateProtectionGroupsStateRequest | Specifies the parameters to perform an action of list of Protection Groups.
 
     try:
         # Perform an action like pause, resume, active, deactivate on all specified Protection Groups.

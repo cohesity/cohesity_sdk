@@ -1,4 +1,4 @@
-# cohesity_sdk.ActiveDirectoryApi
+# cohesity_sdk.cluster.ActiveDirectoryApi
 
 All URIs are relative to */v2*
 
@@ -23,8 +23,7 @@ Method | HTTP request | Description
 
 Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.
 
-After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc.
-NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
+After a group or user has been added to a Cohesity Cluster, the referenced Active Directory principal can be used by the Cohesity Cluster. In addition, this operation maps Cohesity roles with a group or user and this mapping defines the privileges allowed on the Cohesity Cluster for the group or user. For example if an 'management' group is created on the Cohesity Cluster for the Active Directory 'management' principal group and is associated with the Cohesity 'View' role, all users in the referenced Active Directory 'management' principal group can log in to the Cohesity Dashboard but will only have view-only privileges. These users cannot create new Protection Jobs, Policies, Views, etc. NOTE: Local Cohesity users and groups cannot be created by this operation. Local Cohesity users or groups do not have an associated Active Directory principals and are created directly in the default LOCAL domain.
 
 ### Example
 
@@ -32,15 +31,15 @@ NOTE: Local Cohesity users and groups cannot be created by this operation. Local
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.add_active_directory_principals_parameters import AddActiveDirectoryPrincipalsParameters
-from cohesity_sdk.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.add_active_directory_principals_parameters import AddActiveDirectoryPrincipalsParameters
+from cohesity_sdk.cluster.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -62,10 +61,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
-    body = [cohesity_sdk.AddActiveDirectoryPrincipalsParameters()] # List[AddActiveDirectoryPrincipalsParameters] | 
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
+    body = [cohesity_sdk.cluster.AddActiveDirectoryPrincipalsParameters()] # List[AddActiveDirectoryPrincipalsParameters] | 
 
     try:
         # Add multiple groups or users on the Cohesity Cluster for the specified Active Directory principals. In addition, assign Cohesity roles to the users or groups to define their Cohesity privileges.
@@ -120,15 +119,15 @@ Create an Active Directory.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.active_directory import ActiveDirectory
-from cohesity_sdk.models.create_active_directory_request import CreateActiveDirectoryRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_directory import ActiveDirectory
+from cohesity_sdk.cluster.models.create_active_directory_request import CreateActiveDirectoryRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -150,10 +149,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
-    body = cohesity_sdk.CreateActiveDirectoryRequest() # CreateActiveDirectoryRequest | Specifies the parameters to create an Active Directory.
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
+    body = cohesity_sdk.cluster.CreateActiveDirectoryRequest() # CreateActiveDirectoryRequest | Specifies the parameters to create an Active Directory.
 
     try:
         # Create an Active Directory.
@@ -208,13 +207,13 @@ Delete an Active Directory.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -236,9 +235,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     id = 56 # int | Specifies id of an Active Directory.
     active_directory_admin_username = 'active_directory_admin_username_example' # str | Specifies the username of the Active Directory Admin.
     active_directory_admin_password = 'active_directory_admin_password_example' # str | Specifies the password of the Active Directory Admin.
@@ -298,14 +297,14 @@ Get the list of Active Directories.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.active_directories import ActiveDirectories
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_directories import ActiveDirectories
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -327,9 +326,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_names = ['domain_names_example'] # List[str] | Filter by a list of Active Directory domain names. (optional)
     ids = [56] # List[int] | Filter by a list of Active Directory Ids. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which Active Directories are to be returned. (optional)
@@ -391,14 +390,14 @@ Get an Active Directory by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.active_directory import ActiveDirectory
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_directory import ActiveDirectory
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -420,9 +419,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     id = 56 # int | Specifies id of an Active Directory.
     include_centrify_zones = True # bool | Specifies whether to include Centrify Zones of the Active Directory in response. (optional)
     include_domain_controllers = True # bool | Specifies whether to include Domain Controllers of the Active Directory in response. (optional)
@@ -488,14 +487,14 @@ Get the list of user and group principals from the Active Directory that match t
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.active_directory_principals import ActiveDirectoryPrincipals
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_directory_principals import ActiveDirectoryPrincipals
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -517,9 +516,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_name = 'domain_name_example' # str | Specifies the domain name of the principals to search. If specified the principals in that domain are searched. Domain could be an Active Directory domain joined by the Cluster or any one of the trusted domains of the Active Directory domain or the LOCAL domain. If not specified, all the domains are searched. (optional)
     sids = ['sids_example'] # List[str] | Optionally filter by a list of security identifiers (SIDs) found in the specified domain. Only principals matching the specified SIDs are returned. If specified, a 'searchTerm' parameter should not be specified. Note: Duplicate SIDs will be ignored. (optional)
     search_term = 'search_term_example' # str | Optionally filter by matching a substring. Only principals with a name or sAMAccountName that matches part or all of the specified substring are returned. If specified, a 'sids' parameter should not be specified (optional)
@@ -585,14 +584,14 @@ Get Centrify zones for a specified domain.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.centrify_zones import CentrifyZones
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.centrify_zones import CentrifyZones
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -614,9 +613,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_name = 'domain_name_example' # str | Specifies the FQDN of the domain name.
 
     try:
@@ -672,14 +671,14 @@ Get Domain Controllers of specified domains.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.domain_controllers_response import DomainControllersResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.domain_controllers_response import DomainControllersResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -701,9 +700,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_names = ['domain_names_example'] # List[str] | Specifies a list of domain names.
     connection_id = 56 # int | Specifies the Id of the connection which the connector belongs to. (optional)
 
@@ -761,14 +760,14 @@ Get Trusted Domains for a specified domain.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.trusted_domain_params import TrustedDomainParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.trusted_domain_params import TrustedDomainParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -790,9 +789,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_name = 'domain_name_example' # str | Specifies the FQDN of an Active directory domain.
 
     try:
@@ -848,13 +847,13 @@ Re-trigger the trusted domains of an Active Directory.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -876,9 +875,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_name = 'domain_name_example' # str | Specifies the FQDN of an Active directory domain.
     rediscover = True # bool | Specifies if trusted domains should be rediscovered.
 
@@ -934,15 +933,15 @@ Update an Active Directory.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.active_directory import ActiveDirectory
-from cohesity_sdk.models.update_active_directory_request import UpdateActiveDirectoryRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.active_directory import ActiveDirectory
+from cohesity_sdk.cluster.models.update_active_directory_request import UpdateActiveDirectoryRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -964,11 +963,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     id = 56 # int | Specifies id of an Active Directory.
-    body = cohesity_sdk.UpdateActiveDirectoryRequest() # UpdateActiveDirectoryRequest | Request to update an Active Directory.
+    body = cohesity_sdk.cluster.UpdateActiveDirectoryRequest() # UpdateActiveDirectoryRequest | Request to update an Active Directory.
 
     try:
         # Update an Active Directory.
@@ -1024,14 +1023,14 @@ To update trusted domains of an Active Directory.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.trusted_domain_params import TrustedDomainParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.trusted_domain_params import TrustedDomainParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1053,11 +1052,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ActiveDirectoryApi(api_client)
+    api_instance = cohesity_sdk.cluster.ActiveDirectoryApi(api_client)
     domain_name = 'domain_name_example' # str | Specifies the FQDN of an Active directory domain.
-    body = cohesity_sdk.TrustedDomainParams() # TrustedDomainParams | Specifies the trusted domains params.
+    body = cohesity_sdk.cluster.TrustedDomainParams() # TrustedDomainParams | Specifies the trusted domains params.
 
     try:
         # Update trusted domains.

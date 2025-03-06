@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_lock_config import DataLockConfig
+from cohesity_sdk.cluster.models.data_lock_config import DataLockConfig
 
 # TODO update the JSON string below
 json = "{}"

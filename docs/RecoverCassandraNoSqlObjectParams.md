@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_cassandra_no_sql_object_params import RecoverCassandraNoSqlObjectParams
+from cohesity_sdk.cluster.models.recover_cassandra_no_sql_object_params import RecoverCassandraNoSqlObjectParams
 
 # TODO update the JSON string below
 json = "{}"

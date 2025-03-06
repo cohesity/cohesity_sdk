@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mounted_volume_mapping import MountedVolumeMapping
+from cohesity_sdk.cluster.models.mounted_volume_mapping import MountedVolumeMapping
 
 # TODO update the JSON string below
 json = "{}"

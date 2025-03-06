@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_transfer_info import DataTransferInfo
+from cohesity_sdk.cluster.models.data_transfer_info import DataTransferInfo
 
 # TODO update the JSON string below
 json = "{}"

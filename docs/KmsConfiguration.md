@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kms_configuration import KmsConfiguration
+from cohesity_sdk.cluster.models.kms_configuration import KmsConfiguration
 
 # TODO update the JSON string below
 json = "{}"

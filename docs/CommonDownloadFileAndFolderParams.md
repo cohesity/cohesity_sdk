@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
+from cohesity_sdk.cluster.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 
 # TODO update the JSON string below
 json = "{}"

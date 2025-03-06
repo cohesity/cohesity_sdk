@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.s3_config import S3Config
+from cohesity_sdk.cluster.models.s3_config import S3Config
 
 # TODO update the JSON string below
 json = "{}"

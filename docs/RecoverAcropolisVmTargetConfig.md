@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_acropolis_vm_target_config import RecoverAcropolisVmTargetConfig
+from cohesity_sdk.cluster.models.recover_acropolis_vm_target_config import RecoverAcropolisVmTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

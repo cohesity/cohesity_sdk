@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongodb_search_params import MongodbSearchParams
+from cohesity_sdk.cluster.models.mongodb_search_params import MongodbSearchParams
 
 # TODO update the JSON string below
 json = "{}"

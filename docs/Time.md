@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.time import Time
+from cohesity_sdk.cluster.models.time import Time
 
 # TODO update the JSON string below
 json = "{}"

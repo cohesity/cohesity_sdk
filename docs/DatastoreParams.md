@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.datastore_params import DatastoreParams
+from cohesity_sdk.cluster.models.datastore_params import DatastoreParams
 
 # TODO update the JSON string below
 json = "{}"

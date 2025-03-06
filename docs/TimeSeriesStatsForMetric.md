@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.time_series_stats_for_metric import TimeSeriesStatsForMetric
+from cohesity_sdk.cluster.models.time_series_stats_for_metric import TimeSeriesStatsForMetric
 
 # TODO update the JSON string below
 json = "{}"

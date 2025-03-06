@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
+from cohesity_sdk.cluster.models.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
 
 # TODO update the JSON string below
 json = "{}"

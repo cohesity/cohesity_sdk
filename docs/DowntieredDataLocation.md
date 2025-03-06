@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.downtiered_data_location import DowntieredDataLocation
+from cohesity_sdk.cluster.models.downtiered_data_location import DowntieredDataLocation
 
 # TODO update the JSON string below
 json = "{}"

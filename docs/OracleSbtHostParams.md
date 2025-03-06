@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_sbt_host_params import OracleSbtHostParams
+from cohesity_sdk.cluster.models.oracle_sbt_host_params import OracleSbtHostParams
 
 # TODO update the JSON string below
 json = "{}"

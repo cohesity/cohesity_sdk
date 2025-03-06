@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tiering_gcp_external_target_params import TieringGcpExternalTargetParams
+from cohesity_sdk.cluster.models.tiering_gcp_external_target_params import TieringGcpExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kms_configuration_create_params import KmsConfigurationCreateParams
+from cohesity_sdk.cluster.models.kms_configuration_create_params import KmsConfigurationCreateParams
 
 # TODO update the JSON string below
 json = "{}"

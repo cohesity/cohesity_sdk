@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.s3_lifecycle_management import S3LifecycleManagement
+from cohesity_sdk.cluster.models.s3_lifecycle_management import S3LifecycleManagement
 
 # TODO update the JSON string below
 json = "{}"

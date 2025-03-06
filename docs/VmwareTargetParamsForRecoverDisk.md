@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_target_params_for_recover_disk import VmwareTargetParamsForRecoverDisk
+from cohesity_sdk.cluster.models.vmware_target_params_for_recover_disk import VmwareTargetParamsForRecoverDisk
 
 # TODO update the JSON string below
 json = "{}"

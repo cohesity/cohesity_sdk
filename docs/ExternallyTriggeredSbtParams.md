@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.externally_triggered_sbt_params import ExternallyTriggeredSbtParams
+from cohesity_sdk.cluster.models.externally_triggered_sbt_params import ExternallyTriggeredSbtParams
 
 # TODO update the JSON string below
 json = "{}"

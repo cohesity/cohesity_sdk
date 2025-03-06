@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_sql_object_protection_params import AzureSqlObjectProtectionParams
+from cohesity_sdk.cluster.models.azure_sql_object_protection_params import AzureSqlObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

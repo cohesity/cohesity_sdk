@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.o365_search_request_params import O365SearchRequestParams
+from cohesity_sdk.cluster.models.o365_search_request_params import O365SearchRequestParams
 
 # TODO update the JSON string below
 json = "{}"

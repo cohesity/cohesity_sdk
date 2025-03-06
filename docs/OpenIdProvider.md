@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.open_id_provider import OpenIdProvider
+from cohesity_sdk.cluster.models.open_id_provider import OpenIdProvider
 
 # TODO update the JSON string below
 json = "{}"

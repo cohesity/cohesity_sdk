@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.created_user_api_key import CreatedUserAPIKey
+from cohesity_sdk.cluster.models.created_user_api_key import CreatedUserAPIKey
 
 # TODO update the JSON string below
 json = "{}"

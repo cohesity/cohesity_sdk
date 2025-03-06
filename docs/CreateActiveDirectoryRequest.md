@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_active_directory_request import CreateActiveDirectoryRequest
+from cohesity_sdk.cluster.models.create_active_directory_request import CreateActiveDirectoryRequest
 
 # TODO update the JSON string below
 json = "{}"

@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.replication_target_result import ReplicationTargetResult
+from cohesity_sdk.cluster.models.replication_target_result import ReplicationTargetResult
 
 # TODO update the JSON string below
 json = "{}"

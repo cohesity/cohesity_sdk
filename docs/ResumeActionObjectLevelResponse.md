@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.resume_action_object_level_response import ResumeActionObjectLevelResponse
+from cohesity_sdk.cluster.models.resume_action_object_level_response import ResumeActionObjectLevelResponse
 
 # TODO update the JSON string below
 json = "{}"

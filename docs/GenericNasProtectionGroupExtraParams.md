@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.generic_nas_protection_group_extra_params import GenericNasProtectionGroupExtraParams
+from cohesity_sdk.cluster.models.generic_nas_protection_group_extra_params import GenericNasProtectionGroupExtraParams
 
 # TODO update the JSON string below
 json = "{}"

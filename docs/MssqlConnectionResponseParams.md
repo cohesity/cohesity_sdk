@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mssql_connection_response_params import MssqlConnectionResponseParams
+from cohesity_sdk.cluster.models.mssql_connection_response_params import MssqlConnectionResponseParams
 
 # TODO update the JSON string below
 json = "{}"

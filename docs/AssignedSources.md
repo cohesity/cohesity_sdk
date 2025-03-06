@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.assigned_sources import AssignedSources
+from cohesity_sdk.cluster.models.assigned_sources import AssignedSources
 
 # TODO update the JSON string below
 json = "{}"

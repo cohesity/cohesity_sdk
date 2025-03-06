@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.secret_key_entity import SecretKeyEntity
+from cohesity_sdk.cluster.models.secret_key_entity import SecretKeyEntity
 
 # TODO update the JSON string below
 json = "{}"

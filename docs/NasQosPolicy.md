@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.nas_qos_policy import NasQosPolicy
+from cohesity_sdk.cluster.models.nas_qos_policy import NasQosPolicy
 
 # TODO update the JSON string below
 json = "{}"

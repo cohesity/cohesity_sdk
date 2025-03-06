@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.prepare_planned_failver_params import PreparePlannedFailverParams
+from cohesity_sdk.cluster.models.prepare_planned_failver_params import PreparePlannedFailverParams
 
 # TODO update the JSON string below
 json = "{}"

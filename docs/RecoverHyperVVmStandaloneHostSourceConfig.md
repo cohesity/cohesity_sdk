@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hyper_vvm_standalone_host_source_config import RecoverHyperVVmStandaloneHostSourceConfig
+from cohesity_sdk.cluster.models.recover_hyper_vvm_standalone_host_source_config import RecoverHyperVVmStandaloneHostSourceConfig
 
 # TODO update the JSON string below
 json = "{}"

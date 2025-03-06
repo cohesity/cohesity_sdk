@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_linking_request import ObjectLinkingRequest
+from cohesity_sdk.cluster.models.object_linking_request import ObjectLinkingRequest
 
 # TODO update the JSON string below
 json = "{}"

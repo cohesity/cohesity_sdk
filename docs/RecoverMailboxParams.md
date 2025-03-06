@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_mailbox_params import RecoverMailboxParams
+from cohesity_sdk.cluster.models.recover_mailbox_params import RecoverMailboxParams
 
 # TODO update the JSON string below
 json = "{}"

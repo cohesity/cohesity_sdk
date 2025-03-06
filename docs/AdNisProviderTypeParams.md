@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_nis_provider_type_params import AdNisProviderTypeParams
+from cohesity_sdk.cluster.models.ad_nis_provider_type_params import AdNisProviderTypeParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_elastifile_files_params import RecoverElastifileFilesParams
+from cohesity_sdk.cluster.models.recover_elastifile_files_params import RecoverElastifileFilesParams
 
 # TODO update the JSON string below
 json = "{}"

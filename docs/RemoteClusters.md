@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.remote_clusters import RemoteClusters
+from cohesity_sdk.cluster.models.remote_clusters import RemoteClusters
 
 # TODO update the JSON string below
 json = "{}"

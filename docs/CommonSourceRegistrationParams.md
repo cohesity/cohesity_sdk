@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_source_registration_params import CommonSourceRegistrationParams
+from cohesity_sdk.cluster.models.common_source_registration_params import CommonSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

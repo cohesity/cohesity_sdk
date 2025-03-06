@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.support_mfa_config_info import SupportMfaConfigInfo
+from cohesity_sdk.cluster.models.support_mfa_config_info import SupportMfaConfigInfo
 
 # TODO update the JSON string below
 json = "{}"

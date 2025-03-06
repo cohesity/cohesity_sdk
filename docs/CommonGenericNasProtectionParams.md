@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_generic_nas_protection_params import CommonGenericNasProtectionParams
+from cohesity_sdk.cluster.models.common_generic_nas_protection_params import CommonGenericNasProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

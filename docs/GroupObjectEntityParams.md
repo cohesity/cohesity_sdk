@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.group_object_entity_params import GroupObjectEntityParams
+from cohesity_sdk.cluster.models.group_object_entity_params import GroupObjectEntityParams
 
 # TODO update the JSON string below
 json = "{}"

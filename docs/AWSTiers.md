@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_tiers import AWSTiers
+from cohesity_sdk.cluster.models.aws_tiers import AWSTiers
 
 # TODO update the JSON string below
 json = "{}"

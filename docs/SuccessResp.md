@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.success_resp import SuccessResp
+from cohesity_sdk.cluster.models.success_resp import SuccessResp
 
 # TODO update the JSON string below
 json = "{}"

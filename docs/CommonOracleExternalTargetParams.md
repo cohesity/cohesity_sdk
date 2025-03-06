@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_oracle_external_target_params import CommonOracleExternalTargetParams
+from cohesity_sdk.cluster.models.common_oracle_external_target_params import CommonOracleExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

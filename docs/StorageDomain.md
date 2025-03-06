@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_domain import StorageDomain
+from cohesity_sdk.cluster.models.storage_domain import StorageDomain
 
 # TODO update the JSON string below
 json = "{}"

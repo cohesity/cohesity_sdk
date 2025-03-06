@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.swift_params import SwiftParams
+from cohesity_sdk.cluster.models.swift_params import SwiftParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_pre_backup_script_params import CommonPreBackupScriptParams
+from cohesity_sdk.cluster.models.common_pre_backup_script_params import CommonPreBackupScriptParams
 
 # TODO update the JSON string below
 json = "{}"

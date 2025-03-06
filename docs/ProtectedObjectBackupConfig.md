@@ -41,7 +41,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protected_object_backup_config import ProtectedObjectBackupConfig
+from cohesity_sdk.cluster.models.protected_object_backup_config import ProtectedObjectBackupConfig
 
 # TODO update the JSON string below
 json = "{}"

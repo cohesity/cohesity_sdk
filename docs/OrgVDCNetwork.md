@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.org_vdc_network import OrgVDCNetwork
+from cohesity_sdk.cluster.models.org_vdc_network import OrgVDCNetwork
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongodb_params import MongodbParams
+from cohesity_sdk.cluster.models.mongodb_params import MongodbParams
 
 # TODO update the JSON string below
 json = "{}"

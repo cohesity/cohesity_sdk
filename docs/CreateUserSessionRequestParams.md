@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_user_session_request_params import CreateUserSessionRequestParams
+from cohesity_sdk.cluster.models.create_user_session_request_params import CreateUserSessionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

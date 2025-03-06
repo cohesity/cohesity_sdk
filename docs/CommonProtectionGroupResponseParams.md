@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_protection_group_response_params import CommonProtectionGroupResponseParams
+from cohesity_sdk.cluster.models.common_protection_group_response_params import CommonProtectionGroupResponseParams
 
 # TODO update the JSON string below
 json = "{}"

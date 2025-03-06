@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.original_view_files_target_params import OriginalViewFilesTargetParams
+from cohesity_sdk.cluster.models.original_view_files_target_params import OriginalViewFilesTargetParams
 
 # TODO update the JSON string below
 json = "{}"

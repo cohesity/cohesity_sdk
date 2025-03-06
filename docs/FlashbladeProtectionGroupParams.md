@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.flashblade_protection_group_params import FlashbladeProtectionGroupParams
+from cohesity_sdk.cluster.models.flashblade_protection_group_params import FlashbladeProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

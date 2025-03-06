@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sfdc_protection_group_object_params import SfdcProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.sfdc_protection_group_object_params import SfdcProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

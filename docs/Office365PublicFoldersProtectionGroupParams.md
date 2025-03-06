@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_public_folders_protection_group_params import Office365PublicFoldersProtectionGroupParams
+from cohesity_sdk.cluster.models.office365_public_folders_protection_group_params import Office365PublicFoldersProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

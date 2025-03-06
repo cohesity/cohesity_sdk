@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.netapp_protection_group_object_params import NetappProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.netapp_protection_group_object_params import NetappProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

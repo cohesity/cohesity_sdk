@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_flashblade_params import RecoverFlashbladeParams
+from cohesity_sdk.cluster.models.recover_flashblade_params import RecoverFlashbladeParams
 
 # TODO update the JSON string below
 json = "{}"

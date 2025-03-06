@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.flashblade_object_protection_request_params import FlashbladeObjectProtectionRequestParams
+from cohesity_sdk.cluster.models.flashblade_object_protection_request_params import FlashbladeObjectProtectionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

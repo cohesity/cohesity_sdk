@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_view_params import RecoverViewParams
+from cohesity_sdk.cluster.models.recover_view_params import RecoverViewParams
 
 # TODO update the JSON string below
 json = "{}"

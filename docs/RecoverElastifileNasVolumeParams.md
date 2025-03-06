@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_elastifile_nas_volume_params import RecoverElastifileNasVolumeParams
+from cohesity_sdk.cluster.models.recover_elastifile_nas_volume_params import RecoverElastifileNasVolumeParams
 
 # TODO update the JSON string below
 json = "{}"

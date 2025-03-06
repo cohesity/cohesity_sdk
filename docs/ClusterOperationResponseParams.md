@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_operation_response_params import ClusterOperationResponseParams
+from cohesity_sdk.cluster.models.cluster_operation_response_params import ClusterOperationResponseParams
 
 # TODO update the JSON string below
 json = "{}"

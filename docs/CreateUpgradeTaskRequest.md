@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_upgrade_task_request import CreateUpgradeTaskRequest
+from cohesity_sdk.cluster.models.create_upgrade_task_request import CreateUpgradeTaskRequest
 
 # TODO update the JSON string below
 json = "{}"

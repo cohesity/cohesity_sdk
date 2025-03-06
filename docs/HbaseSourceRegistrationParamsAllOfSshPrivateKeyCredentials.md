@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hbase_source_registration_params_all_of_ssh_private_key_credentials import HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials
+from cohesity_sdk.cluster.models.hbase_source_registration_params_all_of_ssh_private_key_credentials import HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials
 
 # TODO update the JSON string below
 json = "{}"

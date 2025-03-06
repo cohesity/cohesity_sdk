@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_azure_params import RecoverAzureParams
+from cohesity_sdk.cluster.models.recover_azure_params import RecoverAzureParams
 
 # TODO update the JSON string below
 json = "{}"

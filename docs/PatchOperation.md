@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.patch_operation import PatchOperation
+from cohesity_sdk.cluster.models.patch_operation import PatchOperation
 
 # TODO update the JSON string below
 json = "{}"

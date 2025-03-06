@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hive_search_params import HiveSearchParams
+from cohesity_sdk.cluster.models.hive_search_params import HiveSearchParams
 
 # TODO update the JSON string below
 json = "{}"

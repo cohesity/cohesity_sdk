@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.views_summary import ViewsSummary
+from cohesity_sdk.cluster.models.views_summary import ViewsSummary
 
 # TODO update the JSON string below
 json = "{}"

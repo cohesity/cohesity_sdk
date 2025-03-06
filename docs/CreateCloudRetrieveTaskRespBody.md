@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_cloud_retrieve_task_resp_body import CreateCloudRetrieveTaskRespBody
+from cohesity_sdk.cluster.models.create_cloud_retrieve_task_resp_body import CreateCloudRetrieveTaskRespBody
 
 # TODO update the JSON string below
 json = "{}"

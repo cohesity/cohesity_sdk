@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_agent_protection_group_params import AzureAgentProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_agent_protection_group_params import AzureAgentProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

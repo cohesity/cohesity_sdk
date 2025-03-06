@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_kubernetes_namespace_params import RecoverKubernetesNamespaceParams
+from cohesity_sdk.cluster.models.recover_kubernetes_namespace_params import RecoverKubernetesNamespaceParams
 
 # TODO update the JSON string below
 json = "{}"

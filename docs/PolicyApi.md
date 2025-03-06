@@ -1,4 +1,4 @@
-# cohesity_sdk.PolicyApi
+# cohesity_sdk.cluster.PolicyApi
 
 All URIs are relative to */v2*
 
@@ -26,15 +26,15 @@ Create the Protection Policy and returns the newly created policy object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_policy_request import ProtectionPolicyRequest
-from cohesity_sdk.models.protection_policy_response import ProtectionPolicyResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_policy_request import ProtectionPolicyRequest
+from cohesity_sdk.cluster.models.protection_policy_response import ProtectionPolicyResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -56,10 +56,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
-    body = cohesity_sdk.ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to create a Protection Policy.
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
+    body = cohesity_sdk.cluster.ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to create a Protection Policy.
 
     try:
         # Create a Protection Policy.
@@ -114,13 +114,13 @@ Deletes a Protection Policy based on given policy id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -142,9 +142,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Policy to delete.
 
     try:
@@ -198,14 +198,14 @@ Returns the Policy Template corresponding to the specified Policy Id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.policy_template_response import PolicyTemplateResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.policy_template_response import PolicyTemplateResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -227,9 +227,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Policy Template to return.
 
     try:
@@ -285,14 +285,14 @@ Returns the policy templates based on the filtering parameters. If no parameters
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -314,9 +314,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     ids = ['ids_example'] # List[str] | Filter policies by a list of policy template ids. (optional)
     policy_names = ['policy_names_example'] # List[str] | Filter policies by a list of policy names. (optional)
@@ -380,14 +380,14 @@ Lists protection policies based on filtering query parameters.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_policy_response_with_pagination import ProtectionPolicyResponseWithPagination
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_policy_response_with_pagination import ProtectionPolicyResponseWithPagination
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -409,9 +409,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     ids = ['ids_example'] # List[str] | Filter policies by a list of policy ids. (optional)
     policy_names = ['policy_names_example'] # List[str] | Filter policies by a list of policy names. (optional)
@@ -483,14 +483,14 @@ Returns the Protection Policy details based on provided Policy Id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_policy_response import ProtectionPolicyResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_policy_response import ProtectionPolicyResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -512,9 +512,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Policy to return.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 
@@ -572,15 +572,15 @@ Specifies the request to update the existing Protection Policy. On successful up
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protection_policy_request import ProtectionPolicyRequest
-from cohesity_sdk.models.protection_policy_response import ProtectionPolicyResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protection_policy_request import ProtectionPolicyRequest
+from cohesity_sdk.cluster.models.protection_policy_response import ProtectionPolicyResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -602,11 +602,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PolicyApi(api_client)
+    api_instance = cohesity_sdk.cluster.PolicyApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the Protection Policy to update.
-    body = cohesity_sdk.ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to update a Protection Policy.
+    body = cohesity_sdk.cluster.ProtectionPolicyRequest() # ProtectionPolicyRequest | Request to update a Protection Policy.
 
     try:
         # Update a Protection Policy.

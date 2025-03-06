@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.pst_param import PstParam
+from cohesity_sdk.cluster.models.pst_param import PstParam
 
 # TODO update the JSON string below
 json = "{}"

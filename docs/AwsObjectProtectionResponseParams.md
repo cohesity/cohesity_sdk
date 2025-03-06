@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_object_protection_response_params import AwsObjectProtectionResponseParams
+from cohesity_sdk.cluster.models.aws_object_protection_response_params import AwsObjectProtectionResponseParams
 
 # TODO update the JSON string below
 json = "{}"

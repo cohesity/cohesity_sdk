@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_clientcsr_response_body import CreateClientcsrResponseBody
+from cohesity_sdk.cluster.models.create_clientcsr_response_body import CreateClientcsrResponseBody
 
 # TODO update the JSON string below
 json = "{}"

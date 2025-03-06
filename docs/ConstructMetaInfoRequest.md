@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.construct_meta_info_request import ConstructMetaInfoRequest
+from cohesity_sdk.cluster.models.construct_meta_info_request import ConstructMetaInfoRequest
 
 # TODO update the JSON string below
 json = "{}"

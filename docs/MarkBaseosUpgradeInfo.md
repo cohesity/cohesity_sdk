@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
+from cohesity_sdk.cluster.models.mark_baseos_upgrade_info import MarkBaseosUpgradeInfo
 
 # TODO update the JSON string below
 json = "{}"

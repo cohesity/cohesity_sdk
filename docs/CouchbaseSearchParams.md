@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.couchbase_search_params import CouchbaseSearchParams
+from cohesity_sdk.cluster.models.couchbase_search_params import CouchbaseSearchParams
 
 # TODO update the JSON string below
 json = "{}"

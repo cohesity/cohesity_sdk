@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_centrify_type_params import AdCentrifyTypeParams
+from cohesity_sdk.cluster.models.ad_centrify_type_params import AdCentrifyTypeParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_v_mware_file_and_folder_params import RecoverVMwareFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_v_mware_file_and_folder_params import RecoverVMwareFileAndFolderParams
 
 # TODO update the JSON string below
 json = "{}"

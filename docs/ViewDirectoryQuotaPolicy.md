@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_directory_quota_policy import ViewDirectoryQuotaPolicy
+from cohesity_sdk.cluster.models.view_directory_quota_policy import ViewDirectoryQuotaPolicy
 
 # TODO update the JSON string below
 json = "{}"

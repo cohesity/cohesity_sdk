@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_file_backup_path_params import PhysicalFileBackupPathParams
+from cohesity_sdk.cluster.models.physical_file_backup_path_params import PhysicalFileBackupPathParams
 
 # TODO update the JSON string below
 json = "{}"

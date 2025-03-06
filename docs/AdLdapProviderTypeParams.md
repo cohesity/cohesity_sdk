@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_ldap_provider_type_params import AdLdapProviderTypeParams
+from cohesity_sdk.cluster.models.ad_ldap_provider_type_params import AdLdapProviderTypeParams
 
 # TODO update the JSON string below
 json = "{}"

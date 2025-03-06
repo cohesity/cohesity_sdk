@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.remove_baseos_patch_request import RemoveBaseosPatchRequest
+from cohesity_sdk.cluster.models.remove_baseos_patch_request import RemoveBaseosPatchRequest
 
 # TODO update the JSON string below
 json = "{}"

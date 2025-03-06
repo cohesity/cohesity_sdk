@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.exchange_target_params_for_recover_exchange_app import ExchangeTargetParamsForRecoverExchangeApp
+from cohesity_sdk.cluster.models.exchange_target_params_for_recover_exchange_app import ExchangeTargetParamsForRecoverExchangeApp
 
 # TODO update the JSON string below
 json = "{}"

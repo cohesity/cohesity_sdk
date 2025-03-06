@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_cluster_expand_params import PhysicalClusterExpandParams
+from cohesity_sdk.cluster.models.physical_cluster_expand_params import PhysicalClusterExpandParams
 
 # TODO update the JSON string below
 json = "{}"

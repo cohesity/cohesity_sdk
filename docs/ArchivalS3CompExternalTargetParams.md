@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_s3_comp_external_target_params import ArchivalS3CompExternalTargetParams
+from cohesity_sdk.cluster.models.archival_s3_comp_external_target_params import ArchivalS3CompExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

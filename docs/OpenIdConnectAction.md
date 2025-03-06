@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.open_id_connect_action import OpenIdConnectAction
+from cohesity_sdk.cluster.models.open_id_connect_action import OpenIdConnectAction
 
 # TODO update the JSON string below
 json = "{}"

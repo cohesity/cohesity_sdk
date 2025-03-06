@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.security_config_account_lockout import SecurityConfigAccountLockout
+from cohesity_sdk.cluster.models.security_config_account_lockout import SecurityConfigAccountLockout
 
 # TODO update the JSON string below
 json = "{}"

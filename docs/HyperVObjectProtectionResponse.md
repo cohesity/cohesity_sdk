@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyper_v_object_protection_response import HyperVObjectProtectionResponse
+from cohesity_sdk.cluster.models.hyper_v_object_protection_response import HyperVObjectProtectionResponse
 
 # TODO update the JSON string below
 json = "{}"

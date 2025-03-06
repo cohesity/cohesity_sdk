@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.v_mware_mount_volumes_original_target_config import VMwareMountVolumesOriginalTargetConfig
+from cohesity_sdk.cluster.models.v_mware_mount_volumes_original_target_config import VMwareMountVolumesOriginalTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

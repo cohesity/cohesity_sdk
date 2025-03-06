@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.teams_file_item import TeamsFileItem
+from cohesity_sdk.cluster.models.teams_file_item import TeamsFileItem
 
 # TODO update the JSON string below
 json = "{}"

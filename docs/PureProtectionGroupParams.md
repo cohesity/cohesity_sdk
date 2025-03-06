@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.pure_protection_group_params import PureProtectionGroupParams
+from cohesity_sdk.cluster.models.pure_protection_group_params import PureProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

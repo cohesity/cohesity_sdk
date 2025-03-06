@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.active_directory_principals import ActiveDirectoryPrincipals
+from cohesity_sdk.cluster.models.active_directory_principals import ActiveDirectoryPrincipals
 
 # TODO update the JSON string below
 json = "{}"

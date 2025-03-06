@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hyper_vvm_scvmm_source_config import RecoverHyperVVmSCVMMSourceConfig
+from cohesity_sdk.cluster.models.recover_hyper_vvm_scvmm_source_config import RecoverHyperVVmSCVMMSourceConfig
 
 # TODO update the JSON string below
 json = "{}"

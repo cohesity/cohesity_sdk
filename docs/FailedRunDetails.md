@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.failed_run_details import FailedRunDetails
+from cohesity_sdk.cluster.models.failed_run_details import FailedRunDetails
 
 # TODO update the JSON string below
 json = "{}"

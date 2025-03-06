@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_cassandra_snapshot_params import RecoverCassandraSnapshotParams
+from cohesity_sdk.cluster.models.recover_cassandra_snapshot_params import RecoverCassandraSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

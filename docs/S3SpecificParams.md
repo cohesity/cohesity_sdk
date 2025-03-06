@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.s3_specific_params import S3SpecificParams
+from cohesity_sdk.cluster.models.s3_specific_params import S3SpecificParams
 
 # TODO update the JSON string below
 json = "{}"

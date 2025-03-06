@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
+from cohesity_sdk.cluster.models.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
 
 # TODO update the JSON string below
 json = "{}"

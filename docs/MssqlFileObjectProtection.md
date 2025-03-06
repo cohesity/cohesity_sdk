@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mssql_file_object_protection import MssqlFileObjectProtection
+from cohesity_sdk.cluster.models.mssql_file_object_protection import MssqlFileObjectProtection
 
 # TODO update the JSON string below
 json = "{}"

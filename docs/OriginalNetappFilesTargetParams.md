@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.original_netapp_files_target_params import OriginalNetappFilesTargetParams
+from cohesity_sdk.cluster.models.original_netapp_files_target_params import OriginalNetappFilesTargetParams
 
 # TODO update the JSON string below
 json = "{}"

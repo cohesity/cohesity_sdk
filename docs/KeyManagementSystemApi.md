@@ -1,4 +1,4 @@
-# cohesity_sdk.KeyManagementSystemApi
+# cohesity_sdk.cluster.KeyManagementSystemApi
 
 All URIs are relative to */v2*
 
@@ -23,15 +23,15 @@ Add a key management system(KMS) to the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kms_configuration import KmsConfiguration
-from cohesity_sdk.models.kms_configuration_create_params import KmsConfigurationCreateParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kms_configuration import KmsConfiguration
+from cohesity_sdk.cluster.models.kms_configuration_create_params import KmsConfigurationCreateParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,10 +53,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KeyManagementSystemApi(api_client)
-    body = cohesity_sdk.KmsConfigurationCreateParams() # KmsConfigurationCreateParams | Parameters to add KMS on the cluster.
+    api_instance = cohesity_sdk.cluster.KeyManagementSystemApi(api_client)
+    body = cohesity_sdk.cluster.KmsConfigurationCreateParams() # KmsConfigurationCreateParams | Parameters to add KMS on the cluster.
 
     try:
         # Add KMS
@@ -111,13 +111,13 @@ Delete KMS configued on the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -139,9 +139,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KeyManagementSystemApi(api_client)
+    api_instance = cohesity_sdk.cluster.KeyManagementSystemApi(api_client)
     id = 56 # int | ID of the KMS configured on the cluster.
 
     try:
@@ -195,14 +195,14 @@ Get key management systems(KMS) configured on the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kms_configurations import KmsConfigurations
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kms_configurations import KmsConfigurations
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -224,9 +224,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KeyManagementSystemApi(api_client)
+    api_instance = cohesity_sdk.cluster.KeyManagementSystemApi(api_client)
     ids = [56] # List[int] | Ids of KMS configured on the cluster. (optional)
     include_rpaas_kms = True # bool | If true, returns KMS that are configured by FortKnox. (optional)
 
@@ -284,15 +284,15 @@ Update KMS on the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kms_configuration import KmsConfiguration
-from cohesity_sdk.models.kms_configuration_update_params import KmsConfigurationUpdateParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kms_configuration import KmsConfiguration
+from cohesity_sdk.cluster.models.kms_configuration_update_params import KmsConfigurationUpdateParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -314,11 +314,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KeyManagementSystemApi(api_client)
+    api_instance = cohesity_sdk.cluster.KeyManagementSystemApi(api_client)
     id = 56 # int | ID of the KMS configured on the cluster.
-    body = cohesity_sdk.KmsConfigurationUpdateParams() # KmsConfigurationUpdateParams | Parameters to update KMS on the cluster.
+    body = cohesity_sdk.cluster.KmsConfigurationUpdateParams() # KmsConfigurationUpdateParams | Parameters to update KMS on the cluster.
 
     try:
         # Update KMS

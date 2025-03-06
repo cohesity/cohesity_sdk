@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.subnet import Subnet
+from cohesity_sdk.cluster.models.subnet import Subnet
 
 # TODO update the JSON string below
 json = "{}"

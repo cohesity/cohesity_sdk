@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kvm_vm_recovery_target_config import KvmVmRecoveryTargetConfig
+from cohesity_sdk.cluster.models.kvm_vm_recovery_target_config import KvmVmRecoveryTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

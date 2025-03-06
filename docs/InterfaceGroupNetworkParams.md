@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.interface_group_network_params import InterfaceGroupNetworkParams
+from cohesity_sdk.cluster.models.interface_group_network_params import InterfaceGroupNetworkParams
 
 # TODO update the JSON string below
 json = "{}"

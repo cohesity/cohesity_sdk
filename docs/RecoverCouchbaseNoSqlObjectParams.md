@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_couchbase_no_sql_object_params import RecoverCouchbaseNoSqlObjectParams
+from cohesity_sdk.cluster.models.recover_couchbase_no_sql_object_params import RecoverCouchbaseNoSqlObjectParams
 
 # TODO update the JSON string below
 json = "{}"

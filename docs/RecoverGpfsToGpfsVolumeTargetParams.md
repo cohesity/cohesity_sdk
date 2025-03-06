@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_gpfs_to_gpfs_volume_target_params import RecoverGpfsToGpfsVolumeTargetParams
+from cohesity_sdk.cluster.models.recover_gpfs_to_gpfs_volume_target_params import RecoverGpfsToGpfsVolumeTargetParams
 
 # TODO update the JSON string below
 json = "{}"

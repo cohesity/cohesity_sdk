@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_snapshot_manager_protection_group_object_params import AwsSnapshotManagerProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.aws_snapshot_manager_protection_group_object_params import AwsSnapshotManagerProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protected_object_run_now_action_params import ProtectedObjectRunNowActionParams
+from cohesity_sdk.cluster.models.protected_object_run_now_action_params import ProtectedObjectRunNowActionParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_tiering_share_info import DataTieringShareInfo
+from cohesity_sdk.cluster.models.data_tiering_share_info import DataTieringShareInfo
 
 # TODO update the JSON string below
 json = "{}"

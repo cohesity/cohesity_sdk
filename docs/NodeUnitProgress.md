@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.node_unit_progress import NodeUnitProgress
+from cohesity_sdk.cluster.models.node_unit_progress import NodeUnitProgress
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_role_parameters import UpdateRoleParameters
+from cohesity_sdk.cluster.models.update_role_parameters import UpdateRoleParameters
 
 # TODO update the JSON string below
 json = "{}"

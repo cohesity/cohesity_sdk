@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_source_registration_params import Office365SourceRegistrationParams
+from cohesity_sdk.cluster.models.office365_source_registration_params import Office365SourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

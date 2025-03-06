@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_cool_blob_params import AzureCoolBlobParams
+from cohesity_sdk.cluster.models.azure_cool_blob_params import AzureCoolBlobParams
 
 # TODO update the JSON string below
 json = "{}"

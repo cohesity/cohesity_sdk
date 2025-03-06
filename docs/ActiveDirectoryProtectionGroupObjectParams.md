@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.active_directory_protection_group_object_params import ActiveDirectoryProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.active_directory_protection_group_object_params import ActiveDirectoryProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

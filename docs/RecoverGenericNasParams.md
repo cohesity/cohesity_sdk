@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_generic_nas_params import RecoverGenericNasParams
+from cohesity_sdk.cluster.models.recover_generic_nas_params import RecoverGenericNasParams
 
 # TODO update the JSON string below
 json = "{}"

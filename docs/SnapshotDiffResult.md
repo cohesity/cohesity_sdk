@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.snapshot_diff_result import SnapshotDiffResult
+from cohesity_sdk.cluster.models.snapshot_diff_result import SnapshotDiffResult
 
 # TODO update the JSON string below
 json = "{}"

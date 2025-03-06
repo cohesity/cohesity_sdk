@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_pdb_restore_params import OraclePdbRestoreParams
+from cohesity_sdk.cluster.models.oracle_pdb_restore_params import OraclePdbRestoreParams
 
 # TODO update the JSON string below
 json = "{}"

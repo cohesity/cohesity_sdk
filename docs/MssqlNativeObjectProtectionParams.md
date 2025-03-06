@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mssql_native_object_protection_params import MssqlNativeObjectProtectionParams
+from cohesity_sdk.cluster.models.mssql_native_object_protection_params import MssqlNativeObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

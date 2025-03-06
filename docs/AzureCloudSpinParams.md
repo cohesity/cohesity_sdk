@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_cloud_spin_params import AzureCloudSpinParams
+from cohesity_sdk.cluster.models.azure_cloud_spin_params import AzureCloudSpinParams
 
 # TODO update the JSON string below
 json = "{}"

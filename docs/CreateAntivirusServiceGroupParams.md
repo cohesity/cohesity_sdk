@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_antivirus_service_group_params import CreateAntivirusServiceGroupParams
+from cohesity_sdk.cluster.models.create_antivirus_service_group_params import CreateAntivirusServiceGroupParams
 
 # TODO update the JSON string below
 json = "{}"

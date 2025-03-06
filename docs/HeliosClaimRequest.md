@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.helios_claim_request import HeliosClaimRequest
+from cohesity_sdk.cluster.models.helios_claim_request import HeliosClaimRequest
 
 # TODO update the JSON string below
 json = "{}"

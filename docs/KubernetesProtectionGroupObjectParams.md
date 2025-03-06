@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kubernetes_protection_group_object_params import KubernetesProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.kubernetes_protection_group_object_params import KubernetesProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

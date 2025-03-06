@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.redo_log_group_config import RedoLogGroupConfig
+from cohesity_sdk.cluster.models.redo_log_group_config import RedoLogGroupConfig
 
 # TODO update the JSON string below
 json = "{}"

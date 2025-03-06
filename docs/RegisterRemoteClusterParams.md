@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.cluster.models.register_remote_cluster_params import RegisterRemoteClusterParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_rds_postgres_protection_params import AwsRdsPostgresProtectionParams
+from cohesity_sdk.cluster.models.aws_rds_postgres_protection_params import AwsRdsPostgresProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

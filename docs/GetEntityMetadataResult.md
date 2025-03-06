@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.get_entity_metadata_result import GetEntityMetadataResult
+from cohesity_sdk.cluster.models.get_entity_metadata_result import GetEntityMetadataResult
 
 # TODO update the JSON string below
 json = "{}"

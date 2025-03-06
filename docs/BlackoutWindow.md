@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.blackout_window import BlackoutWindow
+from cohesity_sdk.cluster.models.blackout_window import BlackoutWindow
 
 # TODO update the JSON string below
 json = "{}"

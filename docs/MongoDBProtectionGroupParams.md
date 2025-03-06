@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongo_db_protection_group_params import MongoDBProtectionGroupParams
+from cohesity_sdk.cluster.models.mongo_db_protection_group_params import MongoDBProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

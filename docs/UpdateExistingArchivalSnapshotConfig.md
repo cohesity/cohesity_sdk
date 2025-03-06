@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_existing_archival_snapshot_config import UpdateExistingArchivalSnapshotConfig
+from cohesity_sdk.cluster.models.update_existing_archival_snapshot_config import UpdateExistingArchivalSnapshotConfig
 
 # TODO update the JSON string below
 json = "{}"

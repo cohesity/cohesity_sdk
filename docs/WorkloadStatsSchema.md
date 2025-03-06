@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.workload_stats_schema import WorkloadStatsSchema
+from cohesity_sdk.cluster.models.workload_stats_schema import WorkloadStatsSchema
 
 # TODO update the JSON string below
 json = "{}"

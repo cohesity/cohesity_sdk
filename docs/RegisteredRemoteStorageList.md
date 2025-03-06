@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.registered_remote_storage_list import RegisteredRemoteStorageList
+from cohesity_sdk.cluster.models.registered_remote_storage_list import RegisteredRemoteStorageList
 
 # TODO update the JSON string below
 json = "{}"

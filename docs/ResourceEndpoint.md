@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.resource_endpoint import ResourceEndpoint
+from cohesity_sdk.cluster.models.resource_endpoint import ResourceEndpoint
 
 # TODO update the JSON string below
 json = "{}"

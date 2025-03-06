@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_object_entity_params import OracleObjectEntityParams
+from cohesity_sdk.cluster.models.oracle_object_entity_params import OracleObjectEntityParams
 
 # TODO update the JSON string below
 json = "{}"

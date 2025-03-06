@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ssh_private_key_credentials import SshPrivateKeyCredentials
+from cohesity_sdk.cluster.models.ssh_private_key_credentials import SshPrivateKeyCredentials
 
 # TODO update the JSON string below
 json = "{}"

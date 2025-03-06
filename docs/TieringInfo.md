@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tiering_info import TieringInfo
+from cohesity_sdk.cluster.models.tiering_info import TieringInfo
 
 # TODO update the JSON string below
 json = "{}"

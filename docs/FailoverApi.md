@@ -1,4 +1,4 @@
-# cohesity_sdk.FailoverApi
+# cohesity_sdk.cluster.FailoverApi
 
 All URIs are relative to */v2*
 
@@ -31,13 +31,13 @@ Specifies the request to cancel failover workflow. The cancellation request shou
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -59,9 +59,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the id of the failover workflow.
 
     try:
@@ -115,13 +115,13 @@ Cancel an in progress view failover task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -143,9 +143,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 56 # int | Specifies a view id to cancel it's failover.
 
     try:
@@ -199,15 +199,15 @@ Specifies the configuration required for executing a special run as a part of fa
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.failover_create_run_response import FailoverCreateRunResponse
-from cohesity_sdk.models.failover_run_configuration import FailoverRunConfiguration
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.failover_create_run_response import FailoverCreateRunResponse
+from cohesity_sdk.cluster.models.failover_run_configuration import FailoverRunConfiguration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -229,11 +229,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the id of the failover workflow.
-    body = cohesity_sdk.FailoverRunConfiguration() # FailoverRunConfiguration | Specifies the paramteres to create a planned run while failover workflow.
+    body = cohesity_sdk.cluster.FailoverRunConfiguration() # FailoverRunConfiguration | Specifies the paramteres to create a planned run while failover workflow.
 
     try:
         # Create a planned run for backup and replication.
@@ -289,15 +289,15 @@ Create a view failover task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_view_failover_request import CreateViewFailoverRequest
-from cohesity_sdk.models.failover import Failover
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_view_failover_request import CreateViewFailoverRequest
+from cohesity_sdk.cluster.models.failover import Failover
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -319,11 +319,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 56 # int | Specifies a view id to create an failover task.
-    body = cohesity_sdk.CreateViewFailoverRequest() # CreateViewFailoverRequest | Specifies the request body to create failover task.
+    body = cohesity_sdk.cluster.CreateViewFailoverRequest() # CreateViewFailoverRequest | Specifies the request body to create failover task.
 
     try:
         # Create View Failover Task.
@@ -379,14 +379,14 @@ Gets all the failover operations which can be performed on this view.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_failover_ops_response import GetFailoverOpsResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_failover_ops_response import GetFailoverOpsResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -408,9 +408,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 56 # int | Specifies the view id.
 
     try:
@@ -466,14 +466,14 @@ Get tracking View Id
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_tracking_view_id_response import GetTrackingViewIdResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_tracking_view_id_response import GetTrackingViewIdResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -495,9 +495,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the view_uid of the source view.
     is_forwarded = True # bool | Indicates whether the request is forwarded (optional)
 
@@ -555,14 +555,14 @@ Get failover tasks of a View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_view_failover_response_body import GetViewFailoverResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_view_failover_response_body import GetViewFailoverResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -584,9 +584,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 56 # int | Specifies a view id to create an failover task.
 
     try:
@@ -642,15 +642,15 @@ Initiate a failover request.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.init_failover_request import InitFailoverRequest
-from cohesity_sdk.models.init_failover_response import InitFailoverResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.init_failover_request import InitFailoverRequest
+from cohesity_sdk.cluster.models.init_failover_response import InitFailoverResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -672,11 +672,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the id of the failover workflow.
-    body = cohesity_sdk.InitFailoverRequest() # InitFailoverRequest | Specifies the parameters to initiate a failover. This failover request should be intiaited from replication cluster.
+    body = cohesity_sdk.cluster.InitFailoverRequest() # InitFailoverRequest | Specifies the parameters to initiate a failover. This failover request should be intiaited from replication cluster.
 
     try:
         # Initiate a failover request.
@@ -732,14 +732,14 @@ Specifies the request to link failover objects on replication cluster to the rep
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_linking_request import ObjectLinkingRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_linking_request import ObjectLinkingRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -761,11 +761,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the id of the failover workflow.
-    body = cohesity_sdk.ObjectLinkingRequest() # ObjectLinkingRequest | Specifies the paramteres to create links between replicated objects and failover objects.
+    body = cohesity_sdk.cluster.ObjectLinkingRequest() # ObjectLinkingRequest | Specifies the paramteres to create links between replicated objects and failover objects.
 
     try:
         # Linking between replicated objects and failover objects
@@ -819,14 +819,14 @@ Poll to see whether planned run has been scheduled or not.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.failover_runs_response import FailoverRunsResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.failover_runs_response import FailoverRunsResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -848,9 +848,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     failover_ids = ['failover_ids_example'] # List[str] | Get runs for specific failover workflows.
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
     include_tenants = True # bool | If true, the response will include Protection Groups which were created by all tenants which the current user has permission to see. If false, then only Protection Groups created by the current user will be returned. (optional)
@@ -910,15 +910,15 @@ Specifies the configuration required for activating backup for failover objects 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.replication_backup_activation import ReplicationBackupActivation
-from cohesity_sdk.models.replication_backup_activation_result import ReplicationBackupActivationResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.replication_backup_activation import ReplicationBackupActivation
+from cohesity_sdk.cluster.models.replication_backup_activation_result import ReplicationBackupActivationResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -940,11 +940,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the id of the failover workflow.
-    body = cohesity_sdk.ReplicationBackupActivation() # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
+    body = cohesity_sdk.cluster.ReplicationBackupActivation() # ReplicationBackupActivation | Specifies the paramteres to activate the backup of failover entities.
 
     try:
         # Activate failover entity backup on replication clsuter.
@@ -1000,14 +1000,14 @@ Specifies the configuration required for deactivating backup for failover entiti
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_backup_deactivation import SourceBackupDeactivation
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_backup_deactivation import SourceBackupDeactivation
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1029,11 +1029,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FailoverApi(api_client)
+    api_instance = cohesity_sdk.cluster.FailoverApi(api_client)
     id = 'id_example' # str | Specifies the id of the failover workflow.
-    body = cohesity_sdk.SourceBackupDeactivation() # SourceBackupDeactivation | Specifies the paramteres to deactivate the backup of failover entities.
+    body = cohesity_sdk.cluster.SourceBackupDeactivation() # SourceBackupDeactivation | Specifies the paramteres to deactivate the backup of failover entities.
 
     try:
         # Deactivate failover entity backup on source clsuter.

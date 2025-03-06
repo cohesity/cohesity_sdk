@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_mongodb_no_sql_object_params import RecoverMongodbNoSqlObjectParams
+from cohesity_sdk.cluster.models.recover_mongodb_no_sql_object_params import RecoverMongodbNoSqlObjectParams
 
 # TODO update the JSON string below
 json = "{}"

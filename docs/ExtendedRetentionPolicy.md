@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.extended_retention_policy import ExtendedRetentionPolicy
+from cohesity_sdk.cluster.models.extended_retention_policy import ExtendedRetentionPolicy
 
 # TODO update the JSON string below
 json = "{}"

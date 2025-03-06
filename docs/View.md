@@ -89,7 +89,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view import View
+from cohesity_sdk.cluster.models.view import View
 
 # TODO update the JSON string below
 json = "{}"

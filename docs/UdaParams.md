@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_params import UdaParams
+from cohesity_sdk.cluster.models.uda_params import UdaParams
 
 # TODO update the JSON string below
 json = "{}"

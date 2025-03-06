@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.run_cloud_replication_config import RunCloudReplicationConfig
+from cohesity_sdk.cluster.models.run_cloud_replication_config import RunCloudReplicationConfig
 
 # TODO update the JSON string below
 json = "{}"

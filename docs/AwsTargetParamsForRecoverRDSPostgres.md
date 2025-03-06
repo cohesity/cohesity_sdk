@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_target_params_for_recover_rds_postgres import AwsTargetParamsForRecoverRDSPostgres
+from cohesity_sdk.cluster.models.aws_target_params_for_recover_rds_postgres import AwsTargetParamsForRecoverRDSPostgres
 
 # TODO update the JSON string below
 json = "{}"

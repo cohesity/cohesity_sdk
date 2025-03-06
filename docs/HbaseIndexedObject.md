@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hbase_indexed_object import HbaseIndexedObject
+from cohesity_sdk.cluster.models.hbase_indexed_object import HbaseIndexedObject
 
 # TODO update the JSON string below
 json = "{}"

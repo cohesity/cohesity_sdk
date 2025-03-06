@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cassandra_on_prem_search_params import CassandraOnPremSearchParams
+from cohesity_sdk.cluster.models.cassandra_on_prem_search_params import CassandraOnPremSearchParams
 
 # TODO update the JSON string below
 json = "{}"

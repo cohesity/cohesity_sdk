@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_active_directory_request import UpdateActiveDirectoryRequest
+from cohesity_sdk.cluster.models.update_active_directory_request import UpdateActiveDirectoryRequest
 
 # TODO update the JSON string below
 json = "{}"

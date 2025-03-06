@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_protection_group_object_params import Office365ProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.office365_protection_group_object_params import Office365ProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

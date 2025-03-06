@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.public_key_response import PublicKeyResponse
+from cohesity_sdk.cluster.models.public_key_response import PublicKeyResponse
 
 # TODO update the JSON string below
 json = "{}"

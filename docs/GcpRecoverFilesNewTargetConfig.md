@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gcp_recover_files_new_target_config import GcpRecoverFilesNewTargetConfig
+from cohesity_sdk.cluster.models.gcp_recover_files_new_target_config import GcpRecoverFilesNewTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

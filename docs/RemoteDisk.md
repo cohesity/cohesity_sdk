@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.remote_disk import RemoteDisk
+from cohesity_sdk.cluster.models.remote_disk import RemoteDisk
 
 # TODO update the JSON string below
 json = "{}"

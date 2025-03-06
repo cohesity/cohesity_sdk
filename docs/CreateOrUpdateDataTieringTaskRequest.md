@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
+from cohesity_sdk.cluster.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
 
 # TODO update the JSON string below
 json = "{}"

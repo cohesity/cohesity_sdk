@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_file_protection_group_object_params import PhysicalFileProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.physical_file_protection_group_object_params import PhysicalFileProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

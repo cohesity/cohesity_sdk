@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.target_one_drive_param import TargetOneDriveParam
+from cohesity_sdk.cluster.models.target_one_drive_param import TargetOneDriveParam
 
 # TODO update the JSON string below
 json = "{}"

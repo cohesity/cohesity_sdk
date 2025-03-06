@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.full_backup_policy import FullBackupPolicy
+from cohesity_sdk.cluster.models.full_backup_policy import FullBackupPolicy
 
 # TODO update the JSON string below
 json = "{}"

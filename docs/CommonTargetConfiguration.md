@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_target_configuration import CommonTargetConfiguration
+from cohesity_sdk.cluster.models.common_target_configuration import CommonTargetConfiguration
 
 # TODO update the JSON string below
 json = "{}"

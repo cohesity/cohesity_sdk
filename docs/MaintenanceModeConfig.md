@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.maintenance_mode_config import MaintenanceModeConfig
+from cohesity_sdk.cluster.models.maintenance_mode_config import MaintenanceModeConfig
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.exchange_recover_database_params import ExchangeRecoverDatabaseParams
+from cohesity_sdk.cluster.models.exchange_recover_database_params import ExchangeRecoverDatabaseParams
 
 # TODO update the JSON string below
 json = "{}"

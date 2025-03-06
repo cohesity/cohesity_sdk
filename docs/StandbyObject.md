@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.standby_object import StandbyObject
+from cohesity_sdk.cluster.models.standby_object import StandbyObject
 
 # TODO update the JSON string below
 json = "{}"

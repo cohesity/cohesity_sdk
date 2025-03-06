@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.exchange_indexed_object import ExchangeIndexedObject
+from cohesity_sdk.cluster.models.exchange_indexed_object import ExchangeIndexedObject
 
 # TODO update the JSON string below
 json = "{}"

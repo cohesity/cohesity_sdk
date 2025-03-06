@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vm_ware_cdp_filter_params import VMWareCDPFilterParams
+from cohesity_sdk.cluster.models.vm_ware_cdp_filter_params import VMWareCDPFilterParams
 
 # TODO update the JSON string below
 json = "{}"

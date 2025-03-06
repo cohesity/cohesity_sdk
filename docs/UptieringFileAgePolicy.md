@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uptiering_file_age_policy import UptieringFileAgePolicy
+from cohesity_sdk.cluster.models.uptiering_file_age_policy import UptieringFileAgePolicy
 
 # TODO update the JSON string below
 json = "{}"

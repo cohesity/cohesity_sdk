@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
+from cohesity_sdk.cluster.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
 
 # TODO update the JSON string below
 json = "{}"

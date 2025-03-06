@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gpfs_registration_params import GpfsRegistrationParams
+from cohesity_sdk.cluster.models.gpfs_registration_params import GpfsRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

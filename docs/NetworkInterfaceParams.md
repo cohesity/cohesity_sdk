@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.network_interface_params import NetworkInterfaceParams
+from cohesity_sdk.cluster.models.network_interface_params import NetworkInterfaceParams
 
 # TODO update the JSON string below
 json = "{}"

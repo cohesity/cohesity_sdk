@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object import Object
+from cohesity_sdk.cluster.models.object import Object
 
 # TODO update the JSON string below
 json = "{}"

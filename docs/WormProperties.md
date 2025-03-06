@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.worm_properties import WormProperties
+from cohesity_sdk.cluster.models.worm_properties import WormProperties
 
 # TODO update the JSON string below
 json = "{}"

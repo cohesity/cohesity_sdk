@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.filer_lifecycle_rule import FilerLifecycleRule
+from cohesity_sdk.cluster.models.filer_lifecycle_rule import FilerLifecycleRule
 
 # TODO update the JSON string below
 json = "{}"

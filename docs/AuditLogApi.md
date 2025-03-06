@@ -1,4 +1,4 @@
-# cohesity_sdk.AuditLogApi
+# cohesity_sdk.cluster.AuditLogApi
 
 All URIs are relative to */v2*
 
@@ -25,15 +25,15 @@ Create a cluster audit logs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.audit_log import AuditLog
-from cohesity_sdk.models.audit_logs_entity_types import AuditLogsEntityTypes
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.audit_log import AuditLog
+from cohesity_sdk.cluster.models.audit_logs_entity_types import AuditLogsEntityTypes
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -55,10 +55,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AuditLogApi(api_client)
-    body = cohesity_sdk.AuditLog() # AuditLog | Request to create a audit log.
+    api_instance = cohesity_sdk.cluster.AuditLogApi(api_client)
+    body = cohesity_sdk.cluster.AuditLog() # AuditLog | Request to create a audit log.
 
     try:
         # Create cluster audit logs.
@@ -113,14 +113,14 @@ Get a cluster audit logs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.audit_logs import AuditLogs
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.audit_logs import AuditLogs
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -142,9 +142,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AuditLogApi(api_client)
+    api_instance = cohesity_sdk.cluster.AuditLogApi(api_client)
     search_string = 'search_string_example' # str | Search audit logs by 'entityName' or 'details'. (optional)
     usernames = ['usernames_example'] # List[str] | Specifies a list of usernames, only audit logs made by these users will be returned. (optional)
     domains = ['domains_example'] # List[str] | Specifies a list of domains, only audit logs made by user in these domains will be returned. (optional)
@@ -220,14 +220,14 @@ Get all actions of cluster audit logs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.audit_logs_actions import AuditLogsActions
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.audit_logs_actions import AuditLogsActions
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -249,9 +249,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AuditLogApi(api_client)
+    api_instance = cohesity_sdk.cluster.AuditLogApi(api_client)
 
     try:
         # Get cluster audit logs actions.
@@ -303,14 +303,14 @@ Get all entity types of cluster audit logs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.audit_logs_entity_types import AuditLogsEntityTypes
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.audit_logs_entity_types import AuditLogsEntityTypes
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -332,9 +332,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AuditLogApi(api_client)
+    api_instance = cohesity_sdk.cluster.AuditLogApi(api_client)
 
     try:
         # Get cluster audit logs entity types.
@@ -386,14 +386,14 @@ Get filer audit log configs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.filer_audit_log_configs import FilerAuditLogConfigs
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.filer_audit_log_configs import FilerAuditLogConfigs
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -415,9 +415,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AuditLogApi(api_client)
+    api_instance = cohesity_sdk.cluster.AuditLogApi(api_client)
 
     try:
         # Get filer audit log configs.
@@ -469,14 +469,14 @@ Update filer audit log configs.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.filer_audit_log_configs import FilerAuditLogConfigs
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.filer_audit_log_configs import FilerAuditLogConfigs
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -498,10 +498,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AuditLogApi(api_client)
-    body = cohesity_sdk.FilerAuditLogConfigs() # FilerAuditLogConfigs | Specifies the filer audit log config to update.
+    api_instance = cohesity_sdk.cluster.AuditLogApi(api_client)
+    body = cohesity_sdk.cluster.FilerAuditLogConfigs() # FilerAuditLogConfigs | Specifies the filer audit log config to update.
 
     try:
         # Update filer audit log configs.

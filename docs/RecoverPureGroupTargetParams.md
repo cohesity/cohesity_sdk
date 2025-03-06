@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_pure_group_target_params import RecoverPureGroupTargetParams
+from cohesity_sdk.cluster.models.recover_pure_group_target_params import RecoverPureGroupTargetParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_user_one_drive_object_protection_params import Office365UserOneDriveObjectProtectionParams
+from cohesity_sdk.cluster.models.office365_user_one_drive_object_protection_params import Office365UserOneDriveObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

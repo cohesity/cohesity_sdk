@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.component_removal_progress import ComponentRemovalProgress
+from cohesity_sdk.cluster.models.component_removal_progress import ComponentRemovalProgress
 
 # TODO update the JSON string below
 json = "{}"

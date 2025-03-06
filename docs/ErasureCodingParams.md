@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.erasure_coding_params import ErasureCodingParams
+from cohesity_sdk.cluster.models.erasure_coding_params import ErasureCodingParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.identity_config import IdentityConfig
+from cohesity_sdk.cluster.models.identity_config import IdentityConfig
 
 # TODO update the JSON string below
 json = "{}"

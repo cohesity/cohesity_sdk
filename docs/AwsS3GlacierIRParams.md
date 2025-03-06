@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_s3_glacier_ir_params import AwsS3GlacierIRParams
+from cohesity_sdk.cluster.models.aws_s3_glacier_ir_params import AwsS3GlacierIRParams
 
 # TODO update the JSON string below
 json = "{}"

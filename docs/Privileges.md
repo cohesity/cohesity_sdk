@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.privileges import Privileges
+from cohesity_sdk.cluster.models.privileges import Privileges
 
 # TODO update the JSON string below
 json = "{}"

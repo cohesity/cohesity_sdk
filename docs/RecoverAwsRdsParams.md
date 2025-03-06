@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_aws_rds_params import RecoverAwsRdsParams
+from cohesity_sdk.cluster.models.recover_aws_rds_params import RecoverAwsRdsParams
 
 # TODO update the JSON string below
 json = "{}"
