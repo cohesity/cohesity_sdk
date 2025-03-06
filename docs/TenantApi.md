@@ -1,4 +1,4 @@
-# cohesity_sdk.TenantApi
+# cohesity_sdk.cluster.TenantApi
 
 All URIs are relative to */v2*
 
@@ -25,14 +25,7 @@ Method | HTTP request | Description
 
 Update assginment of properties for a tenant.
 
-Assign/Unassign properties like storage domain, entities, policies etc.
-to the tenant.
-The API expects a list of all the assignments (policies etc.) that are
-supposed to be associated to the Tenant. The list of assignments passed
-get assigned to the Tenant and anything else that was already assigned
-gets unassigned.
-In case a few objects fail the assignment and some objects get assigned,
-error is returned for all assignments except for policies.
+Assign/Unassign properties like storage domain, entities, policies etc. to the tenant. The API expects a list of all the assignments (policies etc.) that are supposed to be associated to the Tenant. The list of assignments passed get assigned to the Tenant and anything else that was already assigned gets unassigned. In case a few objects fail the assignment and some objects get assigned, error is returned for all assignments except for policies.
 
 ### Example
 
@@ -40,15 +33,15 @@ error is returned for all assignments except for policies.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.tenant_assignments import TenantAssignments
-from cohesity_sdk.models.tenant_assignments_params import TenantAssignmentsParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.tenant_assignments import TenantAssignments
+from cohesity_sdk.cluster.models.tenant_assignments_params import TenantAssignmentsParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -70,11 +63,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     id = 'id_example' # str | The Tenant id.
-    body = cohesity_sdk.TenantAssignmentsParams() # TenantAssignmentsParams | 
+    body = cohesity_sdk.cluster.TenantAssignmentsParams() # TenantAssignmentsParams | 
 
     try:
         # Update assginment of properties for a tenant.
@@ -128,15 +121,15 @@ Create a new Tenant.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_tenant_request import CreateTenantRequest
-from cohesity_sdk.models.tenant_info import TenantInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_tenant_request import CreateTenantRequest
+from cohesity_sdk.cluster.models.tenant_info import TenantInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -158,10 +151,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
-    body = cohesity_sdk.CreateTenantRequest() # CreateTenantRequest | 
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
+    body = cohesity_sdk.cluster.CreateTenantRequest() # CreateTenantRequest | 
 
     try:
         # Create a new Tenant.
@@ -214,13 +207,13 @@ Delete Tenant with given ID.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -242,9 +235,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     id = 'id_example' # str | The Tenant id.
 
     try:
@@ -290,8 +283,7 @@ void (empty response body)
 
 Get tenant assignments.
 
-Get all assigned properties like storage domain, entities, policies,
-objects, views etc for a given tenant.
+Get all assigned properties like storage domain, entities, policies, objects, views etc for a given tenant.
 
 ### Example
 
@@ -299,14 +291,14 @@ objects, views etc for a given tenant.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.tenant_assignment_properties import TenantAssignmentProperties
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.tenant_assignment_properties import TenantAssignmentProperties
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -328,9 +320,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     id = 'id_example' # str | The Tenant id.
 
     try:
@@ -386,14 +378,14 @@ Get Tenant related configurations for the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.on_prem_tenant_config import OnPremTenantConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.on_prem_tenant_config import OnPremTenantConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -415,9 +407,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
 
     try:
         # Get Tenants Config.
@@ -467,14 +459,14 @@ Get Tenant by ID.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.tenant_info import TenantInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.tenant_info import TenantInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -496,9 +488,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     id = 'id_example' # str | The Tenant id.
 
     try:
@@ -554,14 +546,14 @@ Get a Swift configuration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.swift_params import SwiftParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.swift_params import SwiftParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -583,9 +575,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     tenant_id = 'tenant_id_example' # str | Specifies the tenant Id. (optional)
 
     try:
@@ -639,14 +631,14 @@ Get a list of Tenants.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.tenant_info import TenantInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.tenant_info import TenantInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -668,9 +660,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     ids = ['ids_example'] # List[Optional[str]] | List of tenantIds to filter. (optional)
     statuses = ['statuses_example'] # List[Optional[str]] | Filter by current status of tenant. If left blank, only active and inactive tenants are returned. (optional)
 
@@ -728,15 +720,15 @@ Perform actions like activate and deactivate on a given Tenant.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.tenant_action_body import TenantActionBody
-from cohesity_sdk.models.tenant_info import TenantInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.tenant_action_body import TenantActionBody
+from cohesity_sdk.cluster.models.tenant_info import TenantInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -758,11 +750,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     id = 'id_example' # str | The Tenant id.
-    body = cohesity_sdk.TenantActionBody() # TenantActionBody | Specifies the parameters to perform an action on a Tenant.
+    body = cohesity_sdk.cluster.TenantActionBody() # TenantActionBody | Specifies the parameters to perform an action on a Tenant.
 
     try:
         # Perform actions on a Tenant.
@@ -818,14 +810,14 @@ Register Swift service on Keystone server.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.register_swift_params import RegisterSwiftParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.register_swift_params import RegisterSwiftParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -847,10 +839,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
-    body = cohesity_sdk.RegisterSwiftParams() # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
+    body = cohesity_sdk.cluster.RegisterSwiftParams() # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
 
     try:
         # Register Swift service on a Keystone server.
@@ -903,14 +895,14 @@ Unregister Swift service from Keystone server.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.unregister_swift_params import UnregisterSwiftParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.unregister_swift_params import UnregisterSwiftParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -932,10 +924,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
-    body = cohesity_sdk.UnregisterSwiftParams() # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
+    body = cohesity_sdk.cluster.UnregisterSwiftParams() # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
 
     try:
         # Unregister Swift service from a Keystone server.
@@ -988,14 +980,14 @@ Update Tenant related configurations for the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.on_prem_tenant_config import OnPremTenantConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.on_prem_tenant_config import OnPremTenantConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1017,10 +1009,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
-    body = cohesity_sdk.OnPremTenantConfig() # OnPremTenantConfig | 
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
+    body = cohesity_sdk.cluster.OnPremTenantConfig() # OnPremTenantConfig | 
 
     try:
         # Update Tenants Config.
@@ -1075,15 +1067,15 @@ Update Tenant's properties.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.tenant_info import TenantInfo
-from cohesity_sdk.models.update_tenant_body import UpdateTenantBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.tenant_info import TenantInfo
+from cohesity_sdk.cluster.models.update_tenant_body import UpdateTenantBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1105,11 +1097,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
     id = 'id_example' # str | 
-    body = cohesity_sdk.UpdateTenantBody() # UpdateTenantBody | 
+    body = cohesity_sdk.cluster.UpdateTenantBody() # UpdateTenantBody | 
 
     try:
         # Update Tenant.
@@ -1165,14 +1157,14 @@ Update a Swift configuration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.swift_params import SwiftParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.swift_params import SwiftParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1194,10 +1186,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.TenantApi(api_client)
-    body = cohesity_sdk.SwiftParams() # SwiftParams | Specifies the parameters to update a Swift configuration.
+    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
+    body = cohesity_sdk.cluster.SwiftParams() # SwiftParams | Specifies the parameters to update a Swift configuration.
 
     try:
         # Update a Swift configuration.

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.on_prem_deploy_run import OnPremDeployRun
+from cohesity_sdk.cluster.models.on_prem_deploy_run import OnPremDeployRun
 
 # TODO update the JSON string below
 json = "{}"

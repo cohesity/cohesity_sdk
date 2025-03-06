@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
+from cohesity_sdk.cluster.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
 
 # TODO update the JSON string below
 json = "{}"

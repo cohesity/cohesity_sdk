@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_recover_target_source_disk_params import VmwareRecoverTargetSourceDiskParams
+from cohesity_sdk.cluster.models.vmware_recover_target_source_disk_params import VmwareRecoverTargetSourceDiskParams
 
 # TODO update the JSON string below
 json = "{}"

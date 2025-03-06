@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ebs_volume_exclusion_params import EbsVolumeExclusionParams
+from cohesity_sdk.cluster.models.ebs_volume_exclusion_params import EbsVolumeExclusionParams
 
 # TODO update the JSON string below
 json = "{}"

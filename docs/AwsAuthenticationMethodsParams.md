@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_authentication_methods_params import AwsAuthenticationMethodsParams
+from cohesity_sdk.cluster.models.aws_authentication_methods_params import AwsAuthenticationMethodsParams
 
 # TODO update the JSON string below
 json = "{}"

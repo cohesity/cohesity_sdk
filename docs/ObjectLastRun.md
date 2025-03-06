@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_last_run import ObjectLastRun
+from cohesity_sdk.cluster.models.object_last_run import ObjectLastRun
 
 # TODO update the JSON string below
 json = "{}"

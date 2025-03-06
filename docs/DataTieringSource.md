@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_tiering_source import DataTieringSource
+from cohesity_sdk.cluster.models.data_tiering_source import DataTieringSource
 
 # TODO update the JSON string below
 json = "{}"

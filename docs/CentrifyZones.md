@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.centrify_zones import CentrifyZones
+from cohesity_sdk.cluster.models.centrify_zones import CentrifyZones
 
 # TODO update the JSON string below
 json = "{}"

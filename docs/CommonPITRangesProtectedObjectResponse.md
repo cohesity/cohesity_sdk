@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_pit_ranges_protected_object_response import CommonPITRangesProtectedObjectResponse
+from cohesity_sdk.cluster.models.common_pit_ranges_protected_object_response import CommonPITRangesProtectedObjectResponse
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ipmi_text_response import IpmiTextResponse
+from cohesity_sdk.cluster.models.ipmi_text_response import IpmiTextResponse
 
 # TODO update the JSON string below
 json = "{}"

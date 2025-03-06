@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cloud_backup_script_params import CloudBackupScriptParams
+from cohesity_sdk.cluster.models.cloud_backup_script_params import CloudBackupScriptParams
 
 # TODO update the JSON string below
 json = "{}"

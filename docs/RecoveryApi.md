@@ -1,4 +1,4 @@
-# cohesity_sdk.RecoveryApi
+# cohesity_sdk.cluster.RecoveryApi
 
 All URIs are relative to */v2*
 
@@ -30,13 +30,13 @@ Cancel Recovery for a given id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -58,9 +58,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies the id of a Recovery.
 
     try:
@@ -114,15 +114,15 @@ Creates a download files and folders recovery.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
-from cohesity_sdk.models.recovery import Recovery
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.download_files_and_folders_request_params import DownloadFilesAndFoldersRequestParams
+from cohesity_sdk.cluster.models.recovery import Recovery
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -144,10 +144,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
-    body = cohesity_sdk.DownloadFilesAndFoldersRequestParams() # DownloadFilesAndFoldersRequestParams | Specifies the parameters to create a download files and folder recovery.
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
+    body = cohesity_sdk.cluster.DownloadFilesAndFoldersRequestParams() # DownloadFilesAndFoldersRequestParams | Specifies the parameters to create a download files and folder recovery.
 
     try:
         # Create a download files and folders recovery.
@@ -202,15 +202,15 @@ Performs a Recovery.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_recovery_request import CreateRecoveryRequest
-from cohesity_sdk.models.recovery import Recovery
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_recovery_request import CreateRecoveryRequest
+from cohesity_sdk.cluster.models.recovery import Recovery
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -232,10 +232,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
-    body = cohesity_sdk.CreateRecoveryRequest() # CreateRecoveryRequest | Specifies the parameters to create a Recovery.
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
+    body = cohesity_sdk.cluster.CreateRecoveryRequest() # CreateRecoveryRequest | Specifies the parameters to create a Recovery.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 
     try:
@@ -292,13 +292,13 @@ Download files from the given download file recovery.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -320,9 +320,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies the id of a Recovery.
     start_offset = 56 # int | Specifies the start offset of file chunk to be downloaded. (optional)
     length = 56 # int | Specifies the length of bytes to download. This can not be greater than 8MB (8388608 byets) (optional)
@@ -388,13 +388,13 @@ Download an indexed file from a snapshot.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -416,9 +416,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     snapshots_id = 'snapshots_id_example' # str | Specifies the snapshot id to download from.
     file_path = 'file_path_example' # str | Specifies the path to the file to download. If no path is specified and snapshot environment is kVMWare, VMX file for VMware will be downloaded. For other snapshot environments, this field must be specified. (optional)
     nvram_file = True # bool | Specifies if NVRAM file for VMware should be downloaded. (optional)
@@ -482,14 +482,14 @@ Fetches the uptier data for a restore job.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.fetch_uptier_data_response import FetchUptierDataResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.fetch_uptier_data_response import FetchUptierDataResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -511,9 +511,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     archive_uid = 'archive_uid_example' # str | Archive UID of the current restore.
 
     try:
@@ -569,14 +569,14 @@ Lists the Recoveries.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.recoveries import Recoveries
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.recoveries import Recoveries
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -598,9 +598,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     ids = ['ids_example'] # List[str] | Filter Recoveries for given ids. (optional)
     return_only_child_recoveries = True # bool | Returns only child recoveries if passed as true. This filter should always be used along with 'ids' filter.  (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the organizations for which recoveries are to be returned. (optional)
@@ -678,14 +678,14 @@ Get Recovery for a given id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.recovery import Recovery
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.recovery import Recovery
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -707,9 +707,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies the id of a Recovery.
     include_tenants = True # bool | Specifies if objects of all the organizations under the hierarchy of the logged in user's organization should be returned. (optional)
 
@@ -767,13 +767,13 @@ Get the debug logs for a particular recovery operation.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -795,9 +795,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies the id of a Recovery job.
 
     try:
@@ -851,13 +851,13 @@ Get a CSV error report for given recovery operation. Each row in CSV report cont
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -879,9 +879,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies a unique ID of a Recovery.
 
     try:
@@ -935,13 +935,13 @@ Tear down Recovery for a given id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -963,9 +963,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RecoveryApi(api_client)
+    api_instance = cohesity_sdk.cluster.RecoveryApi(api_client)
     id = 'id_example' # str | Specifies the id of a Recovery.
 
     try:

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.nfs_root_permissions import NfsRootPermissions
+from cohesity_sdk.cluster.models.nfs_root_permissions import NfsRootPermissions
 
 # TODO update the JSON string below
 json = "{}"

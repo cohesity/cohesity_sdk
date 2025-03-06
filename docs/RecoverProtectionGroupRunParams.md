@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
+from cohesity_sdk.cluster.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_custom_attributes_type_params import AdCustomAttributesTypeParams
+from cohesity_sdk.cluster.models.ad_custom_attributes_type_params import AdCustomAttributesTypeParams
 
 # TODO update the JSON string below
 json = "{}"

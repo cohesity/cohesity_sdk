@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_run_result import ObjectRunResult
+from cohesity_sdk.cluster.models.object_run_result import ObjectRunResult
 
 # TODO update the JSON string below
 json = "{}"

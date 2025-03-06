@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.expiration_action import ExpirationAction
+from cohesity_sdk.cluster.models.expiration_action import ExpirationAction
 
 # TODO update the JSON string below
 json = "{}"

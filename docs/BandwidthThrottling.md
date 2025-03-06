@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bandwidth_throttling import BandwidthThrottling
+from cohesity_sdk.cluster.models.bandwidth_throttling import BandwidthThrottling
 
 # TODO update the JSON string below
 json = "{}"

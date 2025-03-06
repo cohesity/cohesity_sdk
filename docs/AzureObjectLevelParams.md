@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_object_level_params import AzureObjectLevelParams
+from cohesity_sdk.cluster.models.azure_object_level_params import AzureObjectLevelParams
 
 # TODO update the JSON string below
 json = "{}"

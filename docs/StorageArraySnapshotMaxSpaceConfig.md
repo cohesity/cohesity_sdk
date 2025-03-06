@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_array_snapshot_max_space_config import StorageArraySnapshotMaxSpaceConfig
+from cohesity_sdk.cluster.models.storage_array_snapshot_max_space_config import StorageArraySnapshotMaxSpaceConfig
 
 # TODO update the JSON string below
 json = "{}"

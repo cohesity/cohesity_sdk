@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.dns_servers_info import DnsServersInfo
+from cohesity_sdk.cluster.models.dns_servers_info import DnsServersInfo
 
 # TODO update the JSON string below
 json = "{}"

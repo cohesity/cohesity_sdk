@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_oracle_granular_restore_info import RecoverOracleGranularRestoreInfo
+from cohesity_sdk.cluster.models.recover_oracle_granular_restore_info import RecoverOracleGranularRestoreInfo
 
 # TODO update the JSON string below
 json = "{}"

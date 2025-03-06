@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_mailbox_param import ObjectMailboxParam
+from cohesity_sdk.cluster.models.object_mailbox_param import ObjectMailboxParam
 
 # TODO update the JSON string below
 json = "{}"

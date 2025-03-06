@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.lifecycle_rule import LifecycleRule
+from cohesity_sdk.cluster.models.lifecycle_rule import LifecycleRule
 
 # TODO update the JSON string below
 json = "{}"

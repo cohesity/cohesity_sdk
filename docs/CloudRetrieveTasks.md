@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cloud_retrieve_tasks import CloudRetrieveTasks
+from cohesity_sdk.cluster.models.cloud_retrieve_tasks import CloudRetrieveTasks
 
 # TODO update the JSON string below
 json = "{}"

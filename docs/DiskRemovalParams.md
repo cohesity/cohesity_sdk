@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.disk_removal_params import DiskRemovalParams
+from cohesity_sdk.cluster.models.disk_removal_params import DiskRemovalParams
 
 # TODO update the JSON string below
 json = "{}"

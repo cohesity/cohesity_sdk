@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.snapshot_schedule_policy import SnapshotSchedulePolicy
+from cohesity_sdk.cluster.models.snapshot_schedule_policy import SnapshotSchedulePolicy
 
 # TODO update the JSON string below
 json = "{}"

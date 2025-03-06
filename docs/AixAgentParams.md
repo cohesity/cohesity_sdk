@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aix_agent_params import AixAgentParams
+from cohesity_sdk.cluster.models.aix_agent_params import AixAgentParams
 
 # TODO update the JSON string below
 json = "{}"

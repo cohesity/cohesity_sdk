@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.device_tree_node import DeviceTreeNode
+from cohesity_sdk.cluster.models.device_tree_node import DeviceTreeNode
 
 # TODO update the JSON string below
 json = "{}"

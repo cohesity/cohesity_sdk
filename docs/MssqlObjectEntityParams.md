@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mssql_object_entity_params import MssqlObjectEntityParams
+from cohesity_sdk.cluster.models.mssql_object_entity_params import MssqlObjectEntityParams
 
 # TODO update the JSON string below
 json = "{}"

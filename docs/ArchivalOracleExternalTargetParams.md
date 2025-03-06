@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_oracle_external_target_params import ArchivalOracleExternalTargetParams
+from cohesity_sdk.cluster.models.archival_oracle_external_target_params import ArchivalOracleExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

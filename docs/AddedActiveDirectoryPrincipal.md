@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
+from cohesity_sdk.cluster.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
 
 # TODO update the JSON string below
 json = "{}"

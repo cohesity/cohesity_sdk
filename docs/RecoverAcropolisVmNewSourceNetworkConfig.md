@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_acropolis_vm_new_source_network_config import RecoverAcropolisVmNewSourceNetworkConfig
+from cohesity_sdk.cluster.models.recover_acropolis_vm_new_source_network_config import RecoverAcropolisVmNewSourceNetworkConfig
 
 # TODO update the JSON string below
 json = "{}"

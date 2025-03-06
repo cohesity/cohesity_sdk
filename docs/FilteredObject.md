@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.filtered_object import FilteredObject
+from cohesity_sdk.cluster.models.filtered_object import FilteredObject
 
 # TODO update the JSON string below
 json = "{}"

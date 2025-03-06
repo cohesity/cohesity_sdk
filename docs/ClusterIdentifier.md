@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_identifier import ClusterIdentifier
+from cohesity_sdk.cluster.models.cluster_identifier import ClusterIdentifier
 
 # TODO update the JSON string below
 json = "{}"

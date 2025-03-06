@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gateway_params import GatewayParams
+from cohesity_sdk.cluster.models.gateway_params import GatewayParams
 
 # TODO update the JSON string below
 json = "{}"

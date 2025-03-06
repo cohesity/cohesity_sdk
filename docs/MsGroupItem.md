@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ms_group_item import MsGroupItem
+from cohesity_sdk.cluster.models.ms_group_item import MsGroupItem
 
 # TODO update the JSON string below
 json = "{}"

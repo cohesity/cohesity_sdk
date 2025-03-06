@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.netapp_object_protection_request_params import NetappObjectProtectionRequestParams
+from cohesity_sdk.cluster.models.netapp_object_protection_request_params import NetappObjectProtectionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_pinning_config import ViewPinningConfig
+from cohesity_sdk.cluster.models.view_pinning_config import ViewPinningConfig
 
 # TODO update the JSON string below
 json = "{}"

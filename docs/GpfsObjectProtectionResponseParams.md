@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gpfs_object_protection_response_params import GpfsObjectProtectionResponseParams
+from cohesity_sdk.cluster.models.gpfs_object_protection_response_params import GpfsObjectProtectionResponseParams
 
 # TODO update the JSON string below
 json = "{}"

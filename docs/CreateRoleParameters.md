@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_role_parameters import CreateRoleParameters
+from cohesity_sdk.cluster.models.create_role_parameters import CreateRoleParameters
 
 # TODO update the JSON string below
 json = "{}"

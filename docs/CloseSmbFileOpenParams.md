@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.close_smb_file_open_params import CloseSmbFileOpenParams
+from cohesity_sdk.cluster.models.close_smb_file_open_params import CloseSmbFileOpenParams
 
 # TODO update the JSON string below
 json = "{}"

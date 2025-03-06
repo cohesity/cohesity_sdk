@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.acl_grantee import AclGrantee
+from cohesity_sdk.cluster.models.acl_grantee import AclGrantee
 
 # TODO update the JSON string below
 json = "{}"

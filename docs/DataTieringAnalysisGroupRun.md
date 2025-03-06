@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
+from cohesity_sdk.cluster.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
 
 # TODO update the JSON string below
 json = "{}"

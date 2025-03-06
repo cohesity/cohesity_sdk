@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.linux_agent_params import LinuxAgentParams
+from cohesity_sdk.cluster.models.linux_agent_params import LinuxAgentParams
 
 # TODO update the JSON string below
 json = "{}"

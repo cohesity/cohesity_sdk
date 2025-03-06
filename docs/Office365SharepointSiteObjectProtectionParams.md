@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_sharepoint_site_object_protection_params import Office365SharepointSiteObjectProtectionParams
+from cohesity_sdk.cluster.models.office365_sharepoint_site_object_protection_params import Office365SharepointSiteObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

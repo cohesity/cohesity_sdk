@@ -1,4 +1,4 @@
-# cohesity_sdk.CloudRetrieveTaskApi
+# cohesity_sdk.cluster.CloudRetrieveTaskApi
 
 All URIs are relative to */v2*
 
@@ -22,15 +22,15 @@ Create a cloud retrieve task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
-from cohesity_sdk.models.create_cloud_retrieve_task_resp_body import CreateCloudRetrieveTaskRespBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
+from cohesity_sdk.cluster.models.create_cloud_retrieve_task_resp_body import CreateCloudRetrieveTaskRespBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -52,10 +52,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.CloudRetrieveTaskApi(api_client)
-    body = cohesity_sdk.CreateCloudRetrieveTaskRequest() # CreateCloudRetrieveTaskRequest | Specifies the parameters to create a cloud retrieve.
+    api_instance = cohesity_sdk.cluster.CloudRetrieveTaskApi(api_client)
+    body = cohesity_sdk.cluster.CreateCloudRetrieveTaskRequest() # CreateCloudRetrieveTaskRequest | Specifies the parameters to create a cloud retrieve.
 
     try:
         # Create a cloud retrieve task.
@@ -110,14 +110,14 @@ Returns the cloud retrieve task corresponding to the job id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.cloud_retrieve_task import CloudRetrieveTask
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cloud_retrieve_task import CloudRetrieveTask
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -139,9 +139,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.CloudRetrieveTaskApi(api_client)
+    api_instance = cohesity_sdk.cluster.CloudRetrieveTaskApi(api_client)
     job_id = 56 # int | Specifies a job id of the cloud retrieve task.
 
     try:
@@ -197,14 +197,14 @@ Get the list of cloud retrieve tasks.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.cloud_retrieve_tasks import CloudRetrieveTasks
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cloud_retrieve_tasks import CloudRetrieveTasks
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -226,9 +226,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.CloudRetrieveTaskApi(api_client)
+    api_instance = cohesity_sdk.cluster.CloudRetrieveTaskApi(api_client)
 
     try:
         # Get the list of cloud retrieve tasks.

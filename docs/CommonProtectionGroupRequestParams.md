@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_protection_group_request_params import CommonProtectionGroupRequestParams
+from cohesity_sdk.cluster.models.common_protection_group_request_params import CommonProtectionGroupRequestParams
 
 # TODO update the JSON string below
 json = "{}"

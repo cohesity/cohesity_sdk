@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_recover_files_original_target_config import AwsRecoverFilesOriginalTargetConfig
+from cohesity_sdk.cluster.models.aws_recover_files_original_target_config import AwsRecoverFilesOriginalTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

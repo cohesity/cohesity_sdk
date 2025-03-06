@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.syslog_server import SyslogServer
+from cohesity_sdk.cluster.models.syslog_server import SyslogServer
 
 # TODO update the JSON string below
 json = "{}"

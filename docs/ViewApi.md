@@ -1,4 +1,4 @@
-# cohesity_sdk.ViewApi
+# cohesity_sdk.cluster.ViewApi
 
 All URIs are relative to */v2*
 
@@ -54,14 +54,14 @@ Specifies the parameters to override the user quota on the view. User quota on t
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.user_quota_overrides import UserQuotaOverrides
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.user_quota_overrides import UserQuotaOverrides
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -83,11 +83,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_id = 56 # int | Specifies the id of a view.
-    body = cohesity_sdk.UserQuotaOverrides() # UserQuotaOverrides | Specifies the parameters to override the default user quota on the view.
+    body = cohesity_sdk.cluster.UserQuotaOverrides() # UserQuotaOverrides | Specifies the parameters to override the default user quota on the view.
 
     try:
         # Add User Quota overrides.
@@ -143,14 +143,14 @@ Clear NLM locks that match the filter criteria specified using parameters
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.clear_nlm_lock_request import ClearNlmLockRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.clear_nlm_lock_request import ClearNlmLockRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -172,10 +172,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
-    body = cohesity_sdk.ClearNlmLockRequest() # ClearNlmLockRequest | Request to clear NLM lock.
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
+    body = cohesity_sdk.cluster.ClearNlmLockRequest() # ClearNlmLockRequest | Request to clear NLM lock.
 
     try:
         # Clear NLM locks.
@@ -228,15 +228,15 @@ Clone View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.clone_view_params import CloneViewParams
-from cohesity_sdk.models.view import View
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.clone_view_params import CloneViewParams
+from cohesity_sdk.cluster.models.view import View
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -258,11 +258,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the View id to clone.
-    body = cohesity_sdk.CloneViewParams() # CloneViewParams | Specifies the request to clone the View.
+    body = cohesity_sdk.cluster.CloneViewParams() # CloneViewParams | Specifies the request to clone the View.
 
     try:
         # Clone View.
@@ -318,14 +318,14 @@ Clone View Directory.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.clone_view_directory_params import CloneViewDirectoryParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.clone_view_directory_params import CloneViewDirectoryParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -347,10 +347,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
-    body = cohesity_sdk.CloneViewDirectoryParams() # CloneViewDirectoryParams | Specifies the request to clone View directory.
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
+    body = cohesity_sdk.cluster.CloneViewDirectoryParams() # CloneViewDirectoryParams | Specifies the request to clone View directory.
 
     try:
         # Clone View Directory.
@@ -403,14 +403,14 @@ Close an active SMB file open.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.close_smb_file_open_params import CloseSmbFileOpenParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.close_smb_file_open_params import CloseSmbFileOpenParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -432,10 +432,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
-    body = cohesity_sdk.CloseSmbFileOpenParams() # CloseSmbFileOpenParams | Specifies parameters to close active  SMB file open. (optional)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
+    body = cohesity_sdk.cluster.CloseSmbFileOpenParams() # CloseSmbFileOpenParams | Specifies parameters to close active  SMB file open. (optional)
 
     try:
         # Close SMB File open.
@@ -488,14 +488,14 @@ Create a Share.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.share import Share
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.share import Share
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -517,10 +517,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
-    body = cohesity_sdk.Share() # Share | Specifies the request to create a Share.
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
+    body = cohesity_sdk.cluster.Share() # Share | Specifies the request to create a Share.
 
     try:
         # Create a Share.
@@ -575,15 +575,15 @@ Creates a View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_view_request import CreateViewRequest
-from cohesity_sdk.models.view import View
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_view_request import CreateViewRequest
+from cohesity_sdk.cluster.models.view import View
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -605,10 +605,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
-    body = cohesity_sdk.CreateViewRequest() # CreateViewRequest | Request to create a View.
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
+    body = cohesity_sdk.cluster.CreateViewRequest() # CreateViewRequest | Request to create a View.
 
     try:
         # Create a View
@@ -663,14 +663,14 @@ Creates a View Template.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.template import Template
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.template import Template
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -692,10 +692,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
-    body = cohesity_sdk.Template() # Template | Request to create a view template.
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
+    body = cohesity_sdk.cluster.Template() # Template | Request to create a view template.
 
     try:
         # Create a View Template
@@ -750,13 +750,13 @@ Delete a Share.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -778,9 +778,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     name = 'name_example' # str | Specifies the Share name to delete.
 
     try:
@@ -834,13 +834,13 @@ Deletes a View based on given id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -862,9 +862,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies a unique id of the View to delete.
 
     try:
@@ -918,13 +918,13 @@ Delete directory quota for the View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -946,9 +946,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the View id.
     directory_path = 'directory_path_example' # str | Specifies the directory path to delete. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided. (optional)
     delete_all_directory_quotas = True # bool | Specifies whether to delete all directory quotas for this view. Exactly one of 'directoryPath' and 'deleteAllDirectoryQuotas' should be provided. (optional)
@@ -1006,13 +1006,13 @@ Deletes a view template based on given template id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1034,9 +1034,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies a unique id of the view template to delete.
 
     try:
@@ -1090,14 +1090,14 @@ Specifies the parameters to delete user quotas on the view.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.user_quota_delete_params import UserQuotaDeleteParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.user_quota_delete_params import UserQuotaDeleteParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1119,11 +1119,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_id = 56 # int | Specifies the id of a view.
-    body = cohesity_sdk.UserQuotaDeleteParams() # UserQuotaDeleteParams | Specifies parameters to delete user quotas.
+    body = cohesity_sdk.cluster.UserQuotaDeleteParams() # UserQuotaDeleteParams | Specifies parameters to delete user quotas.
 
     try:
         # Delete user quota overrides.
@@ -1177,14 +1177,14 @@ Get the lock status of a file in a view.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.file_lock_status import FileLockStatus
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.file_lock_status import FileLockStatus
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1206,9 +1206,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the id of a view.
     path = 'path_example' # str | Specifies the request file path in a view.
 
@@ -1266,14 +1266,14 @@ Get the list of NLM locks in the views.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_nlm_locks_result import GetNlmLocksResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_nlm_locks_result import GetNlmLocksResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1295,9 +1295,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     file_path = 'file_path_example' # str | Specifies the filepath in the view relative to the root filesystem. If this field is specified, viewName field must also be specified. (optional)
     view_name = 'view_name_example' # str | Specifies the name of the View in which to search. If a view name is not specified, all the views in the Cluster is searched. This field is mandatory if filePath field is specified. (optional)
     max_count = 56 # int | Specifies the maximum number of NLM locks to return in the response. By default, maxCount is set to 1000. At any given instance, maxCount value cannot be set to more than 1000. (optional)
@@ -1359,14 +1359,14 @@ Get the list of QoS policies on the Cohesity cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.qos_policies_result import QosPoliciesResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.qos_policies_result import QosPoliciesResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1388,9 +1388,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
 
     try:
         # Get QoS Policies.
@@ -1442,14 +1442,14 @@ If no parameters are specified, all shares on the Cohesity Cluster are returned.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.shares import Shares
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.shares import Shares
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1471,9 +1471,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     name = 'name_example' # str | Specifies the Share name. (optional)
     match_partial_name = True # bool | If true, the share name is matched by any partial rather than exactly matched. (optional)
     max_count = 56 # int | Specifies a limit on the number of Shares returned. If maxCount is not specified, the first 2000 Shares. (optional)
@@ -1539,14 +1539,14 @@ Get a View based on given Id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view import View
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view import View
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1568,9 +1568,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies a unique id of the View to fetch.
 
     try:
@@ -1626,14 +1626,14 @@ Get View Clients.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view_clients import ViewClients
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_clients import ViewClients
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1655,9 +1655,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     protocols = ['protocols_example'] # List[str] | Specifies a list of protocols to filter the clients. (optional)
     view_ids = [56] # List[int] | Specifies a list of View ids. Only clients connected to these Views will be returned. (optional)
     node_ip = 'node_ip_example' # str | Specifies a node ip. Only clients connected to this node will be returned. (optional)
@@ -1719,14 +1719,14 @@ Get View Clients Summary.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view_clients_summary import ViewClientsSummary
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_clients_summary import ViewClientsSummary
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1748,9 +1748,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_ids = [56] # List[int] | Specifies a list of View ids. Only clients connected to these Views will be included in the summary. (optional)
 
     try:
@@ -1806,14 +1806,14 @@ Get directory quotas for the View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view_directory_quotas import ViewDirectoryQuotas
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_directory_quotas import ViewDirectoryQuotas
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1835,9 +1835,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the View id.
     max_count = 56 # int | Specifies a limit on the number of quotas returned. (optional)
     cookie = 56 # int | Specifies the cookie. (optional)
@@ -1897,14 +1897,14 @@ Get user quotas for the View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view_user_quotas import ViewUserQuotas
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_user_quotas import ViewUserQuotas
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1926,9 +1926,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_id = 56 # int | Specifies the View id.
     max_count = 56 # int | Specifies a limit on the number of quotas returned. If maxCount is not set, response will have a maximum of 100 results. (optional)
     cookie = 'cookie_example' # str | Specifies the cookie. If there are more results than maxCount, response will include a cookie with has to be set as part of the next GET request. (optional)
@@ -1984,12 +1984,7 @@ Name | Type | Description  | Notes
 
 List Views
 
-If no parameters are specified, all Views on the Cohesity Cluster are returned.
-Specifying parameters filters the results that are returned.
-NOTE: If maxCount is set and the number of Views returned exceeds the maxCount,
-there are more Views to return.
-To get the next set of Views, send another request and specify the id of the
-last View returned in viewList from the previous response.
+If no parameters are specified, all Views on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned. NOTE: If maxCount is set and the number of Views returned exceeds the maxCount, there are more Views to return. To get the next set of Views, send another request and specify the id of the last View returned in viewList from the previous response.
 
 ### Example
 
@@ -1997,14 +1992,14 @@ last View returned in viewList from the previous response.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_views_result import GetViewsResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_views_result import GetViewsResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2026,9 +2021,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_names = ['view_names_example'] # List[str] | Filter by a list of View names. (optional)
     view_ids = [56] # List[int] | Filter by a list of View ids. (optional)
     storage_domain_ids = [56] # List[int] | Filter by a list of Storage Domains (View Boxes) specified by id. (optional)
@@ -2152,14 +2147,14 @@ Get Views summary.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.views_summary import ViewsSummary
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.views_summary import ViewsSummary
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2181,9 +2176,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     msecs_before_current_time_to_compare = 56 # int | Specifies the time in msecs before current time to compare with. (optional)
     use_cached_data = True # bool | Specifies whether we can serve the GET request to the read replica cache. There is a lag of 15 seconds between the read replica and primary data source. (optional)
     include_internal_views = True # bool | Specifies if internal Views created by the Cohesity Cluster are also returned. In addition, regular Views are returned. (optional)
@@ -2249,14 +2244,14 @@ Get SMB active file opens on a Cohesity View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.smb_file_opens import SmbFileOpens
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.smb_file_opens import SmbFileOpens
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2278,9 +2273,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     file_path = 'file_path_example' # str | Specifies the filepath in the Cohesity View relative to the root filesystem. If this field is specified, viewName field must also be specified. (optional)
     view_name = 'view_name_example' # str | Specifies the name of the Cohesity View in which to search. If a view name is not specified, all the views in the Cluster are searched. This field is mandatory if filePath field is specified. (optional)
     max_count = 56 # int | Specifies the maximum number of active file opens to return in the response. This field cannot be set above 1000. If this is not set, maximum of 1000 entries are returned. (optional)
@@ -2342,15 +2337,15 @@ Locks a file in a view and returns the lock status of the file.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.file_lock_status import FileLockStatus
-from cohesity_sdk.models.lock_file_params import LockFileParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.file_lock_status import FileLockStatus
+from cohesity_sdk.cluster.models.lock_file_params import LockFileParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2372,11 +2367,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the id of a view.
-    body = cohesity_sdk.LockFileParams() # LockFileParams | Specifies the request params to lock a file
+    body = cohesity_sdk.cluster.LockFileParams() # LockFileParams | Specifies the request params to lock a file
 
     try:
         # Create a file-lock
@@ -2432,14 +2427,14 @@ Overwrite View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.overwrite_view_params import OverwriteViewParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.overwrite_view_params import OverwriteViewParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2461,11 +2456,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the View id to be overwritten.
-    body = cohesity_sdk.OverwriteViewParams() # OverwriteViewParams | Specifies the request to overwrite the View.
+    body = cohesity_sdk.cluster.OverwriteViewParams() # OverwriteViewParams | Specifies the request to overwrite the View.
 
     try:
         # Overwrite View.
@@ -2519,14 +2514,14 @@ Reads a view template based on given template id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.template import Template
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.template import Template
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2548,9 +2543,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies a unique id of the view template.
 
     try:
@@ -2598,8 +2593,7 @@ Name | Type | Description  | Notes
 
 List View Templates
 
-All view templates on the Cohesity Cluster are returned.
-Specifying parameters filters the results that are returned.
+All view templates on the Cohesity Cluster are returned. Specifying parameters filters the results that are returned.
 
 ### Example
 
@@ -2607,14 +2601,14 @@ Specifying parameters filters the results that are returned.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_view_templates_result import GetViewTemplatesResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_view_templates_result import GetViewTemplatesResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2636,9 +2630,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
 
     try:
         # List View Templates
@@ -2690,15 +2684,15 @@ Update a Share.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.share import Share
-from cohesity_sdk.models.update_share_param import UpdateShareParam
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.share import Share
+from cohesity_sdk.cluster.models.update_share_param import UpdateShareParam
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2720,11 +2714,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     name = 'name_example' # str | Specifies the Share name to update.
-    body = cohesity_sdk.UpdateShareParam() # UpdateShareParam | Specifies the request to update a Share.
+    body = cohesity_sdk.cluster.UpdateShareParam() # UpdateShareParam | Specifies the request to update a Share.
 
     try:
         # Update a Share.
@@ -2780,14 +2774,14 @@ Updates a View based on given id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view import View
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view import View
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2809,11 +2803,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies a unique id of the View to update.
-    body = cohesity_sdk.View() # View | Request to update a view.
+    body = cohesity_sdk.cluster.View() # View | Request to update a view.
 
     try:
         # Update a View
@@ -2869,14 +2863,14 @@ Update directory quota for the View.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view_directory_quota import ViewDirectoryQuota
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_directory_quota import ViewDirectoryQuota
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2898,11 +2892,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies the View id.
-    body = cohesity_sdk.ViewDirectoryQuota() # ViewDirectoryQuota | Specifies the request to update directory quota.
+    body = cohesity_sdk.cluster.ViewDirectoryQuota() # ViewDirectoryQuota | Specifies the request to update directory quota.
 
     try:
         # Update directory quota for the View.
@@ -2958,14 +2952,14 @@ Updates a View Template.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.template import Template
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.template import Template
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2987,11 +2981,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     id = 56 # int | Specifies a unique id of the view template.
-    body = cohesity_sdk.Template() # Template | Request to update a view template.
+    body = cohesity_sdk.cluster.Template() # Template | Request to update a view template.
 
     try:
         # Update a View Template
@@ -3047,15 +3041,15 @@ Update user quota. To use this API, User quota settings should be enabled on the
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.quota_policy import QuotaPolicy
-from cohesity_sdk.models.user_quota import UserQuota
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.quota_policy import QuotaPolicy
+from cohesity_sdk.cluster.models.user_quota import UserQuota
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -3077,12 +3071,12 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_id = 56 # int | Specifies the View id.
     user_id = 'user_id_example' # str | Specifies the unixUid or sid or an user.
-    body = cohesity_sdk.QuotaPolicy() # QuotaPolicy | Specifies the user quota policy of the user.
+    body = cohesity_sdk.cluster.QuotaPolicy() # QuotaPolicy | Specifies the user quota policy of the user.
 
     try:
         # Update user quota override.
@@ -3139,15 +3133,15 @@ Specifies parameters to update View user quota settings.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.view_user_quota_settings import ViewUserQuotaSettings
-from cohesity_sdk.models.view_user_quotas import ViewUserQuotas
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.view_user_quota_settings import ViewUserQuotaSettings
+from cohesity_sdk.cluster.models.view_user_quotas import ViewUserQuotas
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -3169,11 +3163,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ViewApi(api_client)
+    api_instance = cohesity_sdk.cluster.ViewApi(api_client)
     view_id = 56 # int | Specifies the View id.
-    body = cohesity_sdk.ViewUserQuotaSettings() # ViewUserQuotaSettings | Specifies the parameters to enable/disable or update the default quota config on the view.
+    body = cohesity_sdk.cluster.ViewUserQuotaSettings() # ViewUserQuotaSettings | Specifies the parameters to enable/disable or update the default quota config on the view.
 
     try:
         # Update View user quota settings.

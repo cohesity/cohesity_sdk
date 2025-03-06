@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hyper_v_params import RecoverHyperVParams
+from cohesity_sdk.cluster.models.recover_hyper_v_params import RecoverHyperVParams
 
 # TODO update the JSON string below
 json = "{}"

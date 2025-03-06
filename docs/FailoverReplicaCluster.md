@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.failover_replica_cluster import FailoverReplicaCluster
+from cohesity_sdk.cluster.models.failover_replica_cluster import FailoverReplicaCluster
 
 # TODO update the JSON string below
 json = "{}"

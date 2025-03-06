@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.externally_triggered_job_params import ExternallyTriggeredJobParams
+from cohesity_sdk.cluster.models.externally_triggered_job_params import ExternallyTriggeredJobParams
 
 # TODO update the JSON string below
 json = "{}"

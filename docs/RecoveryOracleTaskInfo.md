@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recovery_oracle_task_info import RecoveryOracleTaskInfo
+from cohesity_sdk.cluster.models.recovery_oracle_task_info import RecoveryOracleTaskInfo
 
 # TODO update the JSON string below
 json = "{}"

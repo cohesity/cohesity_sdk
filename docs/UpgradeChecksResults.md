@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.upgrade_checks_results import UpgradeChecksResults
+from cohesity_sdk.cluster.models.upgrade_checks_results import UpgradeChecksResults
 
 # TODO update the JSON string below
 json = "{}"

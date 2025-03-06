@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_manual_network_config import ClusterManualNetworkConfig
+from cohesity_sdk.cluster.models.cluster_manual_network_config import ClusterManualNetworkConfig
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_isilon_files_params import RecoverIsilonFilesParams
+from cohesity_sdk.cluster.models.recover_isilon_files_params import RecoverIsilonFilesParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# cohesity_sdk.PrivilegeApi
+# cohesity_sdk.cluster.PrivilegeApi
 
 All URIs are relative to */v2*
 
@@ -20,14 +20,14 @@ Get Privileges.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.privileges import Privileges
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.privileges import Privileges
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -49,9 +49,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PrivilegeApi(api_client)
+    api_instance = cohesity_sdk.cluster.PrivilegeApi(api_client)
     names = ['names_example'] # List[str] | Filter by a list of Privilege names. (optional)
 
     try:

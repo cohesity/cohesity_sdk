@@ -1,4 +1,4 @@
-# cohesity_sdk.KerberosProviderApi
+# cohesity_sdk.cluster.KerberosProviderApi
 
 All URIs are relative to */v2*
 
@@ -24,14 +24,14 @@ Get the Registered Kerberos Provider by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kerberos_provider import KerberosProvider
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kerberos_provider import KerberosProvider
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,9 +53,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KerberosProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.KerberosProviderApi(api_client)
     id = 'id_example' # str | Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.
 
     try:
@@ -111,14 +111,14 @@ Get the list of Kerberos Authentication Providers.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kerberos_providers import KerberosProviders
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kerberos_providers import KerberosProviders
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -140,9 +140,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KerberosProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.KerberosProviderApi(api_client)
     realm_names = ['realm_names_example'] # List[str] | Filter by a list of realm names. (optional)
     has_ldap = True # bool | Filter by whether LDAP is associated with the provider. (optional)
     ids = [56] # List[int] | Filter by a list of Kerberos Provider Ids. (optional)
@@ -204,15 +204,15 @@ Register a Kerberos Authentication Provider.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kerberos_provider import KerberosProvider
-from cohesity_sdk.models.register_or_update_kerberos_provider_request import RegisterOrUpdateKerberosProviderRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kerberos_provider import KerberosProvider
+from cohesity_sdk.cluster.models.register_or_update_kerberos_provider_request import RegisterOrUpdateKerberosProviderRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -234,10 +234,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KerberosProviderApi(api_client)
-    body = cohesity_sdk.RegisterOrUpdateKerberosProviderRequest() # RegisterOrUpdateKerberosProviderRequest | Specifies the parameters to Register a Kerberos Provider.
+    api_instance = cohesity_sdk.cluster.KerberosProviderApi(api_client)
+    body = cohesity_sdk.cluster.RegisterOrUpdateKerberosProviderRequest() # RegisterOrUpdateKerberosProviderRequest | Specifies the parameters to Register a Kerberos Provider.
 
     try:
         # Register a Kerberos Authentication Provider.
@@ -292,15 +292,15 @@ Unregister a Kerberos Provider.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.unregister_kerberos_provider import UnregisterKerberosProvider
-from cohesity_sdk.models.unregister_kerberos_request import UnregisterKerberosRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.unregister_kerberos_provider import UnregisterKerberosProvider
+from cohesity_sdk.cluster.models.unregister_kerberos_request import UnregisterKerberosRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -322,11 +322,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KerberosProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.KerberosProviderApi(api_client)
     id = 'id_example' # str | Specifies the id.
-    body = cohesity_sdk.UnregisterKerberosRequest() # UnregisterKerberosRequest | Request to unregister a Kerberos Provider.
+    body = cohesity_sdk.cluster.UnregisterKerberosRequest() # UnregisterKerberosRequest | Request to unregister a Kerberos Provider.
 
     try:
         # Unregister a Kerberos Provider.
@@ -382,15 +382,15 @@ Update the Kerberos Provider Registration.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.kerberos_provider import KerberosProvider
-from cohesity_sdk.models.register_or_update_kerberos_provider_request import RegisterOrUpdateKerberosProviderRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.kerberos_provider import KerberosProvider
+from cohesity_sdk.cluster.models.register_or_update_kerberos_provider_request import RegisterOrUpdateKerberosProviderRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -412,11 +412,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.KerberosProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.KerberosProviderApi(api_client)
     id = 'id_example' # str | Specifies the id which will be of the pattern cluster_id:clusterincarnation_id:resource_id.
-    body = cohesity_sdk.RegisterOrUpdateKerberosProviderRequest() # RegisterOrUpdateKerberosProviderRequest | Request to update a Kerberos Provider.
+    body = cohesity_sdk.cluster.RegisterOrUpdateKerberosProviderRequest() # RegisterOrUpdateKerberosProviderRequest | Request to update a Kerberos Provider.
 
     try:
         # Update the Kerberos Provider Registration.

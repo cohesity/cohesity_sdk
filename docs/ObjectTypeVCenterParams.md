@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_type_v_center_params import ObjectTypeVCenterParams
+from cohesity_sdk.cluster.models.object_type_v_center_params import ObjectTypeVCenterParams
 
 # TODO update the JSON string below
 json = "{}"

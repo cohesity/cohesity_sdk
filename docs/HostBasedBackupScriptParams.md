@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.host_based_backup_script_params import HostBasedBackupScriptParams
+from cohesity_sdk.cluster.models.host_based_backup_script_params import HostBasedBackupScriptParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tiering_aws_external_target_params import TieringAwsExternalTargetParams
+from cohesity_sdk.cluster.models.tiering_aws_external_target_params import TieringAwsExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

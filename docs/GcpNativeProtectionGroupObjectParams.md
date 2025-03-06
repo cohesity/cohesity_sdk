@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gcp_native_protection_group_object_params import GcpNativeProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.gcp_native_protection_group_object_params import GcpNativeProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

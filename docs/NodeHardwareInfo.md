@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.node_hardware_info import NodeHardwareInfo
+from cohesity_sdk.cluster.models.node_hardware_info import NodeHardwareInfo
 
 # TODO update the JSON string below
 json = "{}"

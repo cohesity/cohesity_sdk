@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.dse_solr_info import DSESolrInfo
+from cohesity_sdk.cluster.models.dse_solr_info import DSESolrInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_create_network_config import ClusterCreateNetworkConfig
+from cohesity_sdk.cluster.models.cluster_create_network_config import ClusterCreateNetworkConfig
 
 # TODO update the JSON string below
 json = "{}"

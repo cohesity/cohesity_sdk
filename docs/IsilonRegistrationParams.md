@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.isilon_registration_params import IsilonRegistrationParams
+from cohesity_sdk.cluster.models.isilon_registration_params import IsilonRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

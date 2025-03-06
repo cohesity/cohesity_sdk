@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_tier import OracleTier
+from cohesity_sdk.cluster.models.oracle_tier import OracleTier
 
 # TODO update the JSON string below
 json = "{}"

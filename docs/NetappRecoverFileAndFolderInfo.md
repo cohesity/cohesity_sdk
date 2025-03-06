@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.netapp_recover_file_and_folder_info import NetappRecoverFileAndFolderInfo
+from cohesity_sdk.cluster.models.netapp_recover_file_and_folder_info import NetappRecoverFileAndFolderInfo
 
 # TODO update the JSON string below
 json = "{}"

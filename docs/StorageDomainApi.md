@@ -1,4 +1,4 @@
-# cohesity_sdk.StorageDomainApi
+# cohesity_sdk.cluster.StorageDomainApi
 
 All URIs are relative to */v2*
 
@@ -24,14 +24,14 @@ Create a Storage Domain.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.storage_domain import StorageDomain
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.storage_domain import StorageDomain
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,10 +53,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.StorageDomainApi(api_client)
-    body = cohesity_sdk.StorageDomain() # StorageDomain | Specified the request to create a Storage Domain.
+    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
+    body = cohesity_sdk.cluster.StorageDomain() # StorageDomain | Specified the request to create a Storage Domain.
 
     try:
         # Create a Storage Domain.
@@ -111,13 +111,13 @@ Delete a Storage Domain.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -139,9 +139,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.StorageDomainApi(api_client)
+    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
     id = 56 # int | Specified the Storage Domain id to delete.
 
     try:
@@ -195,14 +195,14 @@ Get a Storage Domain by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.storage_domain import StorageDomain
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.storage_domain import StorageDomain
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -224,9 +224,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.StorageDomainApi(api_client)
+    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
     id = 56 # int | Specified the Storage Domain id to fetch.
     include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
     include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
@@ -290,14 +290,14 @@ Get Storage Domains.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.storage_domains import StorageDomains
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.storage_domains import StorageDomains
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -319,9 +319,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.StorageDomainApi(api_client)
+    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
     ids = [56] # List[int] | Filter by a list of Storage Domain ids. (optional)
     names = ['names_example'] # List[str] | Filter by a list of Storage Domain names. (optional)
     cluster_partition_ids = [56] # List[int] | Filter by a list of cluster partition ids. (optional)
@@ -395,14 +395,14 @@ Update a Storage Domain.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.storage_domain import StorageDomain
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.storage_domain import StorageDomain
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -424,11 +424,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.StorageDomainApi(api_client)
+    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
     id = 56 # int | Specified the Storage Domain id to update.
-    body = cohesity_sdk.StorageDomain() # StorageDomain | Specified the request to update a Storage Domain.
+    body = cohesity_sdk.cluster.StorageDomain() # StorageDomain | Specified the request to update a Storage Domain.
 
     try:
         # Update a Storage Domain.

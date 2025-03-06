@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.container_database_info import ContainerDatabaseInfo
+from cohesity_sdk.cluster.models.container_database_info import ContainerDatabaseInfo
 
 # TODO update the JSON string below
 json = "{}"

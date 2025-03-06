@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.unprotect_action_object_level_params import UnprotectActionObjectLevelParams
+from cohesity_sdk.cluster.models.unprotect_action_object_level_params import UnprotectActionObjectLevelParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -59,7 +59,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
+from cohesity_sdk.cluster.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 
 # TODO update the JSON string below
 json = "{}"

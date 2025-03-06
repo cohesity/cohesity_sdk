@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_search_indexed_objects_request_params import CommonSearchIndexedObjectsRequestParams
+from cohesity_sdk.cluster.models.common_search_indexed_objects_request_params import CommonSearchIndexedObjectsRequestParams
 
 # TODO update the JSON string below
 json = "{}"

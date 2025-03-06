@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.original_gpfs_files_target_params import OriginalGpfsFilesTargetParams
+from cohesity_sdk.cluster.models.original_gpfs_files_target_params import OriginalGpfsFilesTargetParams
 
 # TODO update the JSON string below
 json = "{}"

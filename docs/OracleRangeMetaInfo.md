@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_range_meta_info import OracleRangeMetaInfo
+from cohesity_sdk.cluster.models.oracle_range_meta_info import OracleRangeMetaInfo
 
 # TODO update the JSON string below
 json = "{}"

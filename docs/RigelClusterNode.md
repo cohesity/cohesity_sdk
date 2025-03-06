@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.rigel_cluster_node import RigelClusterNode
+from cohesity_sdk.cluster.models.rigel_cluster_node import RigelClusterNode
 
 # TODO update the JSON string below
 json = "{}"

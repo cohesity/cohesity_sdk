@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_store_ciphers_resp import ObjectStoreCiphersResp
+from cohesity_sdk.cluster.models.object_store_ciphers_resp import ObjectStoreCiphersResp
 
 # TODO update the JSON string below
 json = "{}"

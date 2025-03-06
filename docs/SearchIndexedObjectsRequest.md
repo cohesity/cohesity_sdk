@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_indexed_objects_request import SearchIndexedObjectsRequest
+from cohesity_sdk.cluster.models.search_indexed_objects_request import SearchIndexedObjectsRequest
 
 # TODO update the JSON string below
 json = "{}"

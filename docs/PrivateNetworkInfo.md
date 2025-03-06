@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.private_network_info import PrivateNetworkInfo
+from cohesity_sdk.cluster.models.private_network_info import PrivateNetworkInfo
 
 # TODO update the JSON string below
 json = "{}"

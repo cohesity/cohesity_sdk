@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_array_snapshot_backup_policy import StorageArraySnapshotBackupPolicy
+from cohesity_sdk.cluster.models.storage_array_snapshot_backup_policy import StorageArraySnapshotBackupPolicy
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hdfs_protection_group_params import HdfsProtectionGroupParams
+from cohesity_sdk.cluster.models.hdfs_protection_group_params import HdfsProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

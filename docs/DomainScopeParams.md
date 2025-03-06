@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.domain_scope_params import DomainScopeParams
+from cohesity_sdk.cluster.models.domain_scope_params import DomainScopeParams
 
 # TODO update the JSON string below
 json = "{}"

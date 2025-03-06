@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_proxy_server_config import ClusterProxyServerConfig
+from cohesity_sdk.cluster.models.cluster_proxy_server_config import ClusterProxyServerConfig
 
 # TODO update the JSON string below
 json = "{}"

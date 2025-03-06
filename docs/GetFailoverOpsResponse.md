@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.get_failover_ops_response import GetFailoverOpsResponse
+from cohesity_sdk.cluster.models.get_failover_ops_response import GetFailoverOpsResponse
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_generic_nas_to_generic_nas_volume_target_params import RecoverGenericNasToGenericNasVolumeTargetParams
+from cohesity_sdk.cluster.models.recover_generic_nas_to_generic_nas_volume_target_params import RecoverGenericNasToGenericNasVolumeTargetParams
 
 # TODO update the JSON string below
 json = "{}"

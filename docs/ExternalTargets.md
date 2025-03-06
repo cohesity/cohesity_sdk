@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.external_targets import ExternalTargets
+from cohesity_sdk.cluster.models.external_targets import ExternalTargets
 
 # TODO update the JSON string below
 json = "{}"

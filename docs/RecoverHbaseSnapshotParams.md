@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hbase_snapshot_params import RecoverHbaseSnapshotParams
+from cohesity_sdk.cluster.models.recover_hbase_snapshot_params import RecoverHbaseSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

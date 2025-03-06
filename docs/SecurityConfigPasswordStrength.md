@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.security_config_password_strength import SecurityConfigPasswordStrength
+from cohesity_sdk.cluster.models.security_config_password_strength import SecurityConfigPasswordStrength
 
 # TODO update the JSON string below
 json = "{}"

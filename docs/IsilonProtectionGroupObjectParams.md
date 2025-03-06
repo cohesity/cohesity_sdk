@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.isilon_protection_group_object_params import IsilonProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.isilon_protection_group_object_params import IsilonProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_connection_params import OracleConnectionParams
+from cohesity_sdk.cluster.models.oracle_connection_params import OracleConnectionParams
 
 # TODO update the JSON string below
 json = "{}"

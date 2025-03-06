@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.get_tracking_view_id_response import GetTrackingViewIdResponse
+from cohesity_sdk.cluster.models.get_tracking_view_id_response import GetTrackingViewIdResponse
 
 # TODO update the JSON string below
 json = "{}"

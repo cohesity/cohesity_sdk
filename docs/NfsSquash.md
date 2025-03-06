@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.nfs_squash import NfsSquash
+from cohesity_sdk.cluster.models.nfs_squash import NfsSquash
 
 # TODO update the JSON string below
 json = "{}"

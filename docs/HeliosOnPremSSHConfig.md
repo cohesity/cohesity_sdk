@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.helios_on_prem_ssh_config import HeliosOnPremSSHConfig
+from cohesity_sdk.cluster.models.helios_on_prem_ssh_config import HeliosOnPremSSHConfig
 
 # TODO update the JSON string below
 json = "{}"

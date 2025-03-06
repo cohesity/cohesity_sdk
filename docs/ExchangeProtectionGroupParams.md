@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.exchange_protection_group_params import ExchangeProtectionGroupParams
+from cohesity_sdk.cluster.models.exchange_protection_group_params import ExchangeProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

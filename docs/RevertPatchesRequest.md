@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.revert_patches_request import RevertPatchesRequest
+from cohesity_sdk.cluster.models.revert_patches_request import RevertPatchesRequest
 
 # TODO update the JSON string below
 json = "{}"

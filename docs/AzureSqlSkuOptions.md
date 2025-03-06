@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_sql_sku_options import AzureSqlSkuOptions
+from cohesity_sdk.cluster.models.azure_sql_sku_options import AzureSqlSkuOptions
 
 # TODO update the JSON string below
 json = "{}"

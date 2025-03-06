@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_flashblade_to_flashblade_files_target_params import RecoverFlashbladeToFlashbladeFilesTargetParams
+from cohesity_sdk.cluster.models.recover_flashblade_to_flashblade_files_target_params import RecoverFlashbladeToFlashbladeFilesTargetParams
 
 # TODO update the JSON string below
 json = "{}"

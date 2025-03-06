@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_aws_params import RecoverAwsParams
+from cohesity_sdk.cluster.models.recover_aws_params import RecoverAwsParams
 
 # TODO update the JSON string below
 json = "{}"

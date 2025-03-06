@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
+from cohesity_sdk.cluster.models.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# cohesity_sdk.ExternalTargetApi
+# cohesity_sdk.cluster.ExternalTargetApi
 
 All URIs are relative to */v2*
 
@@ -28,14 +28,14 @@ Create a External Target.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.external_target import ExternalTarget
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.external_target import ExternalTarget
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -57,10 +57,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
-    body = cohesity_sdk.ExternalTarget() # ExternalTarget | Specifies the parameters to create a External Target.
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
+    body = cohesity_sdk.cluster.ExternalTarget() # ExternalTarget | Specifies the parameters to create a External Target.
 
     try:
         # Create a External Target.
@@ -115,13 +115,13 @@ Returns Success if the External Target is deleted.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -143,9 +143,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
     id = 56 # int | Specifies a unique id of the External Target.
     force_delete = True # bool | Specifies whether to force delete the External target. (optional)
 
@@ -201,14 +201,14 @@ Returns the External Target corresponding to the specified Group id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.external_target import ExternalTarget
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.external_target import ExternalTarget
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -230,9 +230,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
     id = 56 # int | Specifies a unique id of the External Target.
 
     try:
@@ -288,13 +288,13 @@ Get the encryption key info for an external target
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -316,9 +316,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
     id = 56 # int | Specifies the id of the External Target.
 
     try:
@@ -374,14 +374,14 @@ Returns the media information about the specified archive service uid (such as a
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.archival_media_info import ArchivalMediaInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.archival_media_info import ArchivalMediaInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -403,9 +403,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
     cluster_id = 56 # int | Specifies the id of the Cohesity cluster which archived to a QStart media target.
     cluster_incarnation_id = 56 # int | Specifies the incarnation Id of the Cohesity cluster which archived to a QStart media target.
     archival_job_id = 56 # int | Specifies the id of the Job that archived to a QStar media Vault.
@@ -469,14 +469,14 @@ Get the list of External Target Settings
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.external_target import ExternalTarget
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.external_target import ExternalTarget
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -498,9 +498,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
 
     try:
         # Get the list of External Target Settings.
@@ -552,14 +552,14 @@ Get the list of External Targets.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.external_targets import ExternalTargets
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.external_targets import ExternalTargets
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -581,9 +581,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
     ids = [56] # List[int] | Filter by a list of External Target ids. (optional)
     global_ids = ['global_ids_example'] # List[str] | Filter by a list of External Target global ids. (optional)
     names = ['names_example'] # List[str] | Filter by a list of External Target names. (optional)
@@ -651,14 +651,14 @@ Update the specified External Target.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.external_target import ExternalTarget
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.external_target import ExternalTarget
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -680,11 +680,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
     id = 56 # int | Specifies the id of the External Target.
-    body = cohesity_sdk.ExternalTarget() # ExternalTarget | Specifies the parameters to update a External Target.
+    body = cohesity_sdk.cluster.ExternalTarget() # ExternalTarget | Specifies the parameters to update a External Target.
 
     try:
         # Update a External Target.
@@ -740,14 +740,14 @@ Update External Target Settings
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.global_bandwidth_settings import GlobalBandwidthSettings
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.global_bandwidth_settings import GlobalBandwidthSettings
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -769,10 +769,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ExternalTargetApi(api_client)
-    body = cohesity_sdk.GlobalBandwidthSettings() # GlobalBandwidthSettings | Specifies the parameters to update a External Target Settings.
+    api_instance = cohesity_sdk.cluster.ExternalTargetApi(api_client)
+    body = cohesity_sdk.cluster.GlobalBandwidthSettings() # GlobalBandwidthSettings | Specifies the parameters to update a External Target Settings.
 
     try:
         # Update External Target Settings

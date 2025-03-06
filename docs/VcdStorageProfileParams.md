@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vcd_storage_profile_params import VcdStorageProfileParams
+from cohesity_sdk.cluster.models.vcd_storage_profile_params import VcdStorageProfileParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.id_mapping_params import IdMappingParams
+from cohesity_sdk.cluster.models.id_mapping_params import IdMappingParams
 
 # TODO update the JSON string below
 json = "{}"

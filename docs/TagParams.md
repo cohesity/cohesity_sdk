@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tag_params import TagParams
+from cohesity_sdk.cluster.models.tag_params import TagParams
 
 # TODO update the JSON string below
 json = "{}"

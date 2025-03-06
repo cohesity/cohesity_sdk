@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.keystone_scope_params import KeystoneScopeParams
+from cohesity_sdk.cluster.models.keystone_scope_params import KeystoneScopeParams
 
 # TODO update the JSON string below
 json = "{}"

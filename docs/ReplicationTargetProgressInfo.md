@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.replication_target_progress_info import ReplicationTargetProgressInfo
+from cohesity_sdk.cluster.models.replication_target_progress_info import ReplicationTargetProgressInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cassandra_source_registration_patch_params import CassandraSourceRegistrationPatchParams
+from cohesity_sdk.cluster.models.cassandra_source_registration_patch_params import CassandraSourceRegistrationPatchParams
 
 # TODO update the JSON string below
 json = "{}"

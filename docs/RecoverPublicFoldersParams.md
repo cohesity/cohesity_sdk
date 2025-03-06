@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_public_folders_params import RecoverPublicFoldersParams
+from cohesity_sdk.cluster.models.recover_public_folders_params import RecoverPublicFoldersParams
 
 # TODO update the JSON string below
 json = "{}"

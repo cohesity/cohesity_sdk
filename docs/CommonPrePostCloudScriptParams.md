@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_pre_post_cloud_script_params import CommonPrePostCloudScriptParams
+from cohesity_sdk.cluster.models.common_pre_post_cloud_script_params import CommonPrePostCloudScriptParams
 
 # TODO update the JSON string below
 json = "{}"

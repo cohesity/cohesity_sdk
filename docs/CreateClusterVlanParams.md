@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_cluster_vlan_params import CreateClusterVlanParams
+from cohesity_sdk.cluster.models.create_cluster_vlan_params import CreateClusterVlanParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gcp_disk_exclusion_params import GcpDiskExclusionParams
+from cohesity_sdk.cluster.models.gcp_disk_exclusion_params import GcpDiskExclusionParams
 
 # TODO update the JSON string below
 json = "{}"

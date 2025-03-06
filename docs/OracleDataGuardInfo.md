@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_data_guard_info import OracleDataGuardInfo
+from cohesity_sdk.cluster.models.oracle_data_guard_info import OracleDataGuardInfo
 
 # TODO update the JSON string below
 json = "{}"

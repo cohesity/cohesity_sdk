@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_protection_group_object_params import UdaProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.uda_protection_group_object_params import UdaProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

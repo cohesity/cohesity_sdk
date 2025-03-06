@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_hyper_v_protection_params import CommonHyperVProtectionParams
+from cohesity_sdk.cluster.models.common_hyper_v_protection_params import CommonHyperVProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

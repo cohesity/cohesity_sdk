@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.restore_spfile_or_pfile_info import RestoreSpfileOrPfileInfo
+from cohesity_sdk.cluster.models.restore_spfile_or_pfile_info import RestoreSpfileOrPfileInfo
 
 # TODO update the JSON string below
 json = "{}"

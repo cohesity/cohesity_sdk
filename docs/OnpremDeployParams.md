@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.onprem_deploy_params import OnpremDeployParams
+from cohesity_sdk.cluster.models.onprem_deploy_params import OnpremDeployParams
 
 # TODO update the JSON string below
 json = "{}"

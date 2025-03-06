@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.indexing_policy import IndexingPolicy
+from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 
 # TODO update the JSON string below
 json = "{}"

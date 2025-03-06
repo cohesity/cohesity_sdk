@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protected_object_pause_action_params import ProtectedObjectPauseActionParams
+from cohesity_sdk.cluster.models.protected_object_pause_action_params import ProtectedObjectPauseActionParams
 
 # TODO update the JSON string below
 json = "{}"

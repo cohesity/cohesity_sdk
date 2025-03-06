@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_restore_meta_info_result import OracleRestoreMetaInfoResult
+from cohesity_sdk.cluster.models.oracle_restore_meta_info_result import OracleRestoreMetaInfoResult
 
 # TODO update the JSON string below
 json = "{}"

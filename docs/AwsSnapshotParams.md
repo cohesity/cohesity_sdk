@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_snapshot_params import AwsSnapshotParams
+from cohesity_sdk.cluster.models.aws_snapshot_params import AwsSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

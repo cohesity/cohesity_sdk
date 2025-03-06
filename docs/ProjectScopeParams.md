@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.project_scope_params import ProjectScopeParams
+from cohesity_sdk.cluster.models.project_scope_params import ProjectScopeParams
 
 # TODO update the JSON string below
 json = "{}"

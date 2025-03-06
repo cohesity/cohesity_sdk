@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protectd_objects_action_request import ProtectdObjectsActionRequest
+from cohesity_sdk.cluster.models.protectd_objects_action_request import ProtectdObjectsActionRequest
 
 # TODO update the JSON string below
 json = "{}"

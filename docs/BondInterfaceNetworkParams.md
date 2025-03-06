@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bond_interface_network_params import BondInterfaceNetworkParams
+from cohesity_sdk.cluster.models.bond_interface_network_params import BondInterfaceNetworkParams
 
 # TODO update the JSON string below
 json = "{}"

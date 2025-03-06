@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.one_drive_item import OneDriveItem
+from cohesity_sdk.cluster.models.one_drive_item import OneDriveItem
 
 # TODO update the JSON string below
 json = "{}"

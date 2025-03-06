@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_use_sts_params import AwsUseSTSParams
+from cohesity_sdk.cluster.models.aws_use_sts_params import AwsUseSTSParams
 
 # TODO update the JSON string below
 json = "{}"

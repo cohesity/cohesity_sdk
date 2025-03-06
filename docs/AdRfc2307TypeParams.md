@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_rfc2307_type_params import AdRfc2307TypeParams
+from cohesity_sdk.cluster.models.ad_rfc2307_type_params import AdRfc2307TypeParams
 
 # TODO update the JSON string below
 json = "{}"

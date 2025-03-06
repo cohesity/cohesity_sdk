@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_uda_snapshot_params import RecoverUdaSnapshotParams
+from cohesity_sdk.cluster.models.recover_uda_snapshot_params import RecoverUdaSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

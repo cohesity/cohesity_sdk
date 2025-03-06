@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.isilon_object_params import IsilonObjectParams
+from cohesity_sdk.cluster.models.isilon_object_params import IsilonObjectParams
 
 # TODO update the JSON string below
 json = "{}"

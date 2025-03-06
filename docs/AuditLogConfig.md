@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.audit_log_config import AuditLogConfig
+from cohesity_sdk.cluster.models.audit_log_config import AuditLogConfig
 
 # TODO update the JSON string below
 json = "{}"

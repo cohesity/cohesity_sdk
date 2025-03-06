@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.archival_gcp_external_target_params import ArchivalGcpExternalTargetParams
+from cohesity_sdk.cluster.models.archival_gcp_external_target_params import ArchivalGcpExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

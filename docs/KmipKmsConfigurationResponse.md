@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kmip_kms_configuration_response import KmipKmsConfigurationResponse
+from cohesity_sdk.cluster.models.kmip_kms_configuration_response import KmipKmsConfigurationResponse
 
 # TODO update the JSON string below
 json = "{}"

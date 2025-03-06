@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.extended_retention_schedule import ExtendedRetentionSchedule
+from cohesity_sdk.cluster.models.extended_retention_schedule import ExtendedRetentionSchedule
 
 # TODO update the JSON string below
 json = "{}"

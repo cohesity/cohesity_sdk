@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_node_config_params import PhysicalNodeConfigParams
+from cohesity_sdk.cluster.models.physical_node_config_params import PhysicalNodeConfigParams
 
 # TODO update the JSON string below
 json = "{}"

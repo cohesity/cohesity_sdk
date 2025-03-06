@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_sql_app_source_config import CommonSqlAppSourceConfig
+from cohesity_sdk.cluster.models.common_sql_app_source_config import CommonSqlAppSourceConfig
 
 # TODO update the JSON string below
 json = "{}"

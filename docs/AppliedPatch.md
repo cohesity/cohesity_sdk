@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.applied_patch import AppliedPatch
+from cohesity_sdk.cluster.models.applied_patch import AppliedPatch
 
 # TODO update the JSON string below
 json = "{}"

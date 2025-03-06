@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_tiers import OracleTiers
+from cohesity_sdk.cluster.models.oracle_tiers import OracleTiers
 
 # TODO update the JSON string below
 json = "{}"

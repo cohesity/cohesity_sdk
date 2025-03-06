@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongo_db_cdp_job_info import MongoDBCdpJobInfo
+from cohesity_sdk.cluster.models.mongo_db_cdp_job_info import MongoDBCdpJobInfo
 
 # TODO update the JSON string below
 json = "{}"

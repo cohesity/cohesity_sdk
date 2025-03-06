@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyperv_snapshot_params import HypervSnapshotParams
+from cohesity_sdk.cluster.models.hyperv_snapshot_params import HypervSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

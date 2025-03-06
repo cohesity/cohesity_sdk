@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tenant_assignment_properties import TenantAssignmentProperties
+from cohesity_sdk.cluster.models.tenant_assignment_properties import TenantAssignmentProperties
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.missing_entity_params import MissingEntityParams
+from cohesity_sdk.cluster.models.missing_entity_params import MissingEntityParams
 
 # TODO update the JSON string below
 json = "{}"

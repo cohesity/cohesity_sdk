@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.fetch_uptier_data_response import FetchUptierDataResponse
+from cohesity_sdk.cluster.models.fetch_uptier_data_response import FetchUptierDataResponse
 
 # TODO update the JSON string below
 json = "{}"

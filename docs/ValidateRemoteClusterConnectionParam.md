@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
+from cohesity_sdk.cluster.models.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
 
 # TODO update the JSON string below
 json = "{}"

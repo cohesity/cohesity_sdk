@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_protection_group_params import ADProtectionGroupParams
+from cohesity_sdk.cluster.models.ad_protection_group_params import ADProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

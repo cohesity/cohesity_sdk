@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_volume_protection_group_object_params import PhysicalVolumeProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.physical_volume_protection_group_object_params import PhysicalVolumeProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_archive_blob_params import AzureArchiveBlobParams
+from cohesity_sdk.cluster.models.azure_archive_blob_params import AzureArchiveBlobParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.target_site_param import TargetSiteParam
+from cohesity_sdk.cluster.models.target_site_param import TargetSiteParam
 
 # TODO update the JSON string below
 json = "{}"

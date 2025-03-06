@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.filter_documents_params import FilterDocumentsParams
+from cohesity_sdk.cluster.models.filter_documents_params import FilterDocumentsParams
 
 # TODO update the JSON string below
 json = "{}"

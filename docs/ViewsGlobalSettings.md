@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.views_global_settings import ViewsGlobalSettings
+from cohesity_sdk.cluster.models.views_global_settings import ViewsGlobalSettings
 
 # TODO update the JSON string below
 json = "{}"

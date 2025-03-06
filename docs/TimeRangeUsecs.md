@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.time_range_usecs import TimeRangeUsecs
+from cohesity_sdk.cluster.models.time_range_usecs import TimeRangeUsecs
 
 # TODO update the JSON string below
 json = "{}"

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
+from cohesity_sdk.cluster.models.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
 
 # TODO update the JSON string below
 json = "{}"

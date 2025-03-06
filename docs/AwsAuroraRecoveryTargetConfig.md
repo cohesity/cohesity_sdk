@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_aurora_recovery_target_config import AwsAuroraRecoveryTargetConfig
+from cohesity_sdk.cluster.models.aws_aurora_recovery_target_config import AwsAuroraRecoveryTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

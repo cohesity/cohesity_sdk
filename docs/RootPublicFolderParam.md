@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.root_public_folder_param import RootPublicFolderParam
+from cohesity_sdk.cluster.models.root_public_folder_param import RootPublicFolderParam
 
 # TODO update the JSON string below
 json = "{}"

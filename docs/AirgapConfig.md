@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.airgap_config import AirgapConfig
+from cohesity_sdk.cluster.models.airgap_config import AirgapConfig
 
 # TODO update the JSON string below
 json = "{}"

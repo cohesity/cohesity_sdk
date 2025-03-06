@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hdfson_prem_search_params import HDFSOnPremSearchParams
+from cohesity_sdk.cluster.models.hdfson_prem_search_params import HDFSOnPremSearchParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_storage_stats import ClusterStorageStats
+from cohesity_sdk.cluster.models.cluster_storage_stats import ClusterStorageStats
 
 # TODO update the JSON string below
 json = "{}"

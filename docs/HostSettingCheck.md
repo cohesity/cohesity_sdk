@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.host_setting_check import HostSettingCheck
+from cohesity_sdk.cluster.models.host_setting_check import HostSettingCheck
 
 # TODO update the JSON string below
 json = "{}"

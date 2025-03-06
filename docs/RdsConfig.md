@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.rds_config import RdsConfig
+from cohesity_sdk.cluster.models.rds_config import RdsConfig
 
 # TODO update the JSON string below
 json = "{}"

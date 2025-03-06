@@ -1,4 +1,4 @@
-# cohesity_sdk.FirewallApi
+# cohesity_sdk.cluster.FirewallApi
 
 All URIs are relative to */v2*
 
@@ -26,14 +26,14 @@ List all firewall IP sets.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.firewall_ip_sets import FirewallIPSets
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.firewall_ip_sets import FirewallIPSets
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -55,9 +55,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
 
     try:
         # List all firewall IP sets
@@ -109,14 +109,14 @@ List the firewall profiles & their attachments.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.firewall_profiles import FirewallProfiles
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.firewall_profiles import FirewallProfiles
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -138,9 +138,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
 
     try:
         # List all firewall profiles.
@@ -192,15 +192,15 @@ Remove firewall profiles and their attachments.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.firewall_profile_names_params import FirewallProfileNamesParams
-from cohesity_sdk.models.success_resp import SuccessResp
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.firewall_profile_names_params import FirewallProfileNamesParams
+from cohesity_sdk.cluster.models.success_resp import SuccessResp
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -222,10 +222,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
-    body = cohesity_sdk.FirewallProfileNamesParams() # FirewallProfileNamesParams | Specifies the parameters to remove firewall profiles and their attachments.
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
+    body = cohesity_sdk.cluster.FirewallProfileNamesParams() # FirewallProfileNamesParams | Specifies the parameters to remove firewall profiles and their attachments.
 
     try:
         # Remove firewall profiles.
@@ -280,13 +280,13 @@ Reset firewall profiles, ip-sets & their attachments.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -308,9 +308,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
 
     try:
         # Reset firewall profiles.
@@ -360,14 +360,14 @@ Update firewall IP sets.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.firewall_ip_sets import FirewallIPSets
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.firewall_ip_sets import FirewallIPSets
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -389,10 +389,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
-    body = cohesity_sdk.FirewallIPSets() # FirewallIPSets | Specifies the update request parameters.
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
+    body = cohesity_sdk.cluster.FirewallIPSets() # FirewallIPSets | Specifies the update request parameters.
 
     try:
         # Update firewall IP sets
@@ -447,14 +447,14 @@ Update the firewall profiles and/or their attachments.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.firewall_profile_params import FirewallProfileParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.firewall_profile_params import FirewallProfileParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -476,10 +476,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
-    body = cohesity_sdk.FirewallProfileParams() # FirewallProfileParams | Specifies the parameters to configure firewall profiles and/or their attachments.
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
+    body = cohesity_sdk.cluster.FirewallProfileParams() # FirewallProfileParams | Specifies the parameters to configure firewall profiles and/or their attachments.
 
     try:
         # Update firewall profiles & their attachments.
@@ -534,14 +534,14 @@ Update the firewall profiles and/or their attachments.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.firewall_profiles import FirewallProfiles
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.firewall_profiles import FirewallProfiles
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -563,10 +563,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.FirewallApi(api_client)
-    body = cohesity_sdk.FirewallProfiles() # FirewallProfiles | Specifies the parameters to configure firewall profiles and/or their attachments.
+    api_instance = cohesity_sdk.cluster.FirewallApi(api_client)
+    body = cohesity_sdk.cluster.FirewallProfiles() # FirewallProfiles | Specifies the parameters to configure firewall profiles and/or their attachments.
 
     try:
         # Update firewall profiles & their attachments.

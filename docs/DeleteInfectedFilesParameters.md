@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.delete_infected_files_parameters import DeleteInfectedFilesParameters
+from cohesity_sdk.cluster.models.delete_infected_files_parameters import DeleteInfectedFilesParameters
 
 # TODO update the JSON string below
 json = "{}"

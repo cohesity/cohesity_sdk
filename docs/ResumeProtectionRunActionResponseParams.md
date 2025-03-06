@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.resume_protection_run_action_response_params import ResumeProtectionRunActionResponseParams
+from cohesity_sdk.cluster.models.resume_protection_run_action_response_params import ResumeProtectionRunActionResponseParams
 
 # TODO update the JSON string below
 json = "{}"

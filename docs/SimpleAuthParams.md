@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.simple_auth_params import SimpleAuthParams
+from cohesity_sdk.cluster.models.simple_auth_params import SimpleAuthParams
 
 # TODO update the JSON string below
 json = "{}"

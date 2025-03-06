@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.netapp_registration_params import NetappRegistrationParams
+from cohesity_sdk.cluster.models.netapp_registration_params import NetappRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

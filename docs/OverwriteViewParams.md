@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.overwrite_view_params import OverwriteViewParams
+from cohesity_sdk.cluster.models.overwrite_view_params import OverwriteViewParams
 
 # TODO update the JSON string below
 json = "{}"

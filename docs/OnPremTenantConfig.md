@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.on_prem_tenant_config import OnPremTenantConfig
+from cohesity_sdk.cluster.models.on_prem_tenant_config import OnPremTenantConfig
 
 # TODO update the JSON string below
 json = "{}"

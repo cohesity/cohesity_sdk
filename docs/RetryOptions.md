@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.retry_options import RetryOptions
+from cohesity_sdk.cluster.models.retry_options import RetryOptions
 
 # TODO update the JSON string below
 json = "{}"

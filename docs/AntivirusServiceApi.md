@@ -1,4 +1,4 @@
-# cohesity_sdk.AntivirusServiceApi
+# cohesity_sdk.cluster.AntivirusServiceApi
 
 All URIs are relative to */v2*
 
@@ -27,15 +27,15 @@ Create Antivirus Service group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.antivirus_service_group import AntivirusServiceGroup
-from cohesity_sdk.models.create_antivirus_service_group_params import CreateAntivirusServiceGroupParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.antivirus_service_group import AntivirusServiceGroup
+from cohesity_sdk.cluster.models.create_antivirus_service_group_params import CreateAntivirusServiceGroupParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -57,10 +57,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
-    body = cohesity_sdk.CreateAntivirusServiceGroupParams() # CreateAntivirusServiceGroupParams | Specifies the parameters to create antivirus service group.
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
+    body = cohesity_sdk.cluster.CreateAntivirusServiceGroupParams() # CreateAntivirusServiceGroupParams | Specifies the parameters to create antivirus service group.
 
     try:
         # Create an Antivirus Service group.
@@ -115,13 +115,13 @@ Deletes an Antivirus service group based on given id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -143,9 +143,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
     id = 56 # int | Specifies a unique id of the Antivirus Group to delete.
 
     try:
@@ -199,15 +199,15 @@ Delete infected files.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.delete_infected_files import DeleteInfectedFiles
-from cohesity_sdk.models.delete_infected_files_parameters import DeleteInfectedFilesParameters
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.delete_infected_files import DeleteInfectedFiles
+from cohesity_sdk.cluster.models.delete_infected_files_parameters import DeleteInfectedFilesParameters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -229,10 +229,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
-    body = cohesity_sdk.DeleteInfectedFilesParameters() # DeleteInfectedFilesParameters | Specifies the parameters of infected files to be deleted.
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
+    body = cohesity_sdk.cluster.DeleteInfectedFilesParameters() # DeleteInfectedFilesParameters | Specifies the parameters of infected files to be deleted.
 
     try:
         # Delete infected files.
@@ -287,14 +287,14 @@ Get Antivirus Service groups.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.antivirus_service_groups import AntivirusServiceGroups
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.antivirus_service_groups import AntivirusServiceGroups
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -316,9 +316,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
 
     try:
         # Get Antivirus Service groups.
@@ -370,14 +370,14 @@ Get ICAP Uri connection status.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.icap_uri_connection_status_list import IcapUriConnectionStatusList
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.icap_uri_connection_status_list import IcapUriConnectionStatusList
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -399,9 +399,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
     uris = ['uris_example'] # List[str] | Specifies a list of URIs to check connection status. (optional)
 
     try:
@@ -457,14 +457,14 @@ Get infected files.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.infected_files import InfectedFiles
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.infected_files import InfectedFiles
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -486,9 +486,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
     view_ids = [56] # List[int] | Specifies a list of view ids. Only infected files from these views will be returned. (optional)
     path = 'path_example' # str | Specifies the file path. (optional)
     states = ['states_example'] # List[str] | Specifies the file states. (optional)
@@ -552,14 +552,14 @@ Update an Antivirus Service group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.antivirus_service_group import AntivirusServiceGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.antivirus_service_group import AntivirusServiceGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -581,11 +581,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
     id = 56 # int | Specifies a unique id of the Antivirus Group to update.
-    body = cohesity_sdk.AntivirusServiceGroup() # AntivirusServiceGroup | Specifies the parameters to update antivirus service group.
+    body = cohesity_sdk.cluster.AntivirusServiceGroup() # AntivirusServiceGroup | Specifies the parameters to update antivirus service group.
 
     try:
         # Update an Antivirus Service group with given parameters or if state is specified, enable or disable given group.
@@ -641,15 +641,15 @@ Update infected files state.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_infected_files_list import UpdateInfectedFilesList
-from cohesity_sdk.models.update_infected_files_parameters import UpdateInfectedFilesParameters
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_infected_files_list import UpdateInfectedFilesList
+from cohesity_sdk.cluster.models.update_infected_files_parameters import UpdateInfectedFilesParameters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -671,10 +671,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AntivirusServiceApi(api_client)
-    body = cohesity_sdk.UpdateInfectedFilesParameters() # UpdateInfectedFilesParameters | Specifies the parameters of infected files to be updated.
+    api_instance = cohesity_sdk.cluster.AntivirusServiceApi(api_client)
+    body = cohesity_sdk.cluster.UpdateInfectedFilesParameters() # UpdateInfectedFilesParameters | Specifies the parameters of infected files to be updated.
 
     try:
         # Update infected files state.

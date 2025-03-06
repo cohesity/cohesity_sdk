@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_alias_info import ViewAliasInfo
+from cohesity_sdk.cluster.models.view_alias_info import ViewAliasInfo
 
 # TODO update the JSON string below
 json = "{}"

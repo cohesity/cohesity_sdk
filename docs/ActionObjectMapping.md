@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.action_object_mapping import ActionObjectMapping
+from cohesity_sdk.cluster.models.action_object_mapping import ActionObjectMapping
 
 # TODO update the JSON string below
 json = "{}"

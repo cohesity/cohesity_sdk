@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.workflow_intervention_spec import WorkflowInterventionSpec
+from cohesity_sdk.cluster.models.workflow_intervention_spec import WorkflowInterventionSpec
 
 # TODO update the JSON string below
 json = "{}"

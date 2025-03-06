@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_flashblade_nas_volume_params import RecoverFlashbladeNasVolumeParams
+from cohesity_sdk.cluster.models.recover_flashblade_nas_volume_params import RecoverFlashbladeNasVolumeParams
 
 # TODO update the JSON string below
 json = "{}"

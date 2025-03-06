@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tenant_action_body import TenantActionBody
+from cohesity_sdk.cluster.models.tenant_action_body import TenantActionBody
 
 # TODO update the JSON string below
 json = "{}"

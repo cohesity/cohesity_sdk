@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.replication_params import ReplicationParams
+from cohesity_sdk.cluster.models.replication_params import ReplicationParams
 
 # TODO update the JSON string below
 json = "{}"

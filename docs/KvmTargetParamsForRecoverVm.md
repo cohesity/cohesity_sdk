@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kvm_target_params_for_recover_vm import KvmTargetParamsForRecoverVm
+from cohesity_sdk.cluster.models.kvm_target_params_for_recover_vm import KvmTargetParamsForRecoverVm
 
 # TODO update the JSON string below
 json = "{}"

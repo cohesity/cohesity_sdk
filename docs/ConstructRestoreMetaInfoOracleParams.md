@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.construct_restore_meta_info_oracle_params import ConstructRestoreMetaInfoOracleParams
+from cohesity_sdk.cluster.models.construct_restore_meta_info_oracle_params import ConstructRestoreMetaInfoOracleParams
 
 # TODO update the JSON string below
 json = "{}"

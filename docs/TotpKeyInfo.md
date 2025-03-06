@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.totp_key_info import TotpKeyInfo
+from cohesity_sdk.cluster.models.totp_key_info import TotpKeyInfo
 
 # TODO update the JSON string below
 json = "{}"

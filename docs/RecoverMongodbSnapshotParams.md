@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_mongodb_snapshot_params import RecoverMongodbSnapshotParams
+from cohesity_sdk.cluster.models.recover_mongodb_snapshot_params import RecoverMongodbSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

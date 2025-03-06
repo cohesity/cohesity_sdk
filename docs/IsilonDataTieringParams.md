@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.isilon_data_tiering_params import IsilonDataTieringParams
+from cohesity_sdk.cluster.models.isilon_data_tiering_params import IsilonDataTieringParams
 
 # TODO update the JSON string below
 json = "{}"

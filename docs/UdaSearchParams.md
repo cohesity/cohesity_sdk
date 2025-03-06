@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_search_params import UdaSearchParams
+from cohesity_sdk.cluster.models.uda_search_params import UdaSearchParams
 
 # TODO update the JSON string below
 json = "{}"

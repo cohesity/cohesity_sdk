@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_backup_params import CommonBackupParams
+from cohesity_sdk.cluster.models.common_backup_params import CommonBackupParams
 
 # TODO update the JSON string below
 json = "{}"

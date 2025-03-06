@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.active_sessions_count_params import ActiveSessionsCountParams
+from cohesity_sdk.cluster.models.active_sessions_count_params import ActiveSessionsCountParams
 
 # TODO update the JSON string below
 json = "{}"

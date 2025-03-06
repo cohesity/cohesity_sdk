@@ -48,7 +48,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_object import SearchObject
+from cohesity_sdk.cluster.models.search_object import SearchObject
 
 # TODO update the JSON string below
 json = "{}"

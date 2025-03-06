@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.acropolis_target_params_for_recover_file_and_folder import AcropolisTargetParamsForRecoverFileAndFolder
+from cohesity_sdk.cluster.models.acropolis_target_params_for_recover_file_and_folder import AcropolisTargetParamsForRecoverFileAndFolder
 
 # TODO update the JSON string below
 json = "{}"

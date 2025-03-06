@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.host_mappings import HostMappings
+from cohesity_sdk.cluster.models.host_mappings import HostMappings
 
 # TODO update the JSON string below
 json = "{}"

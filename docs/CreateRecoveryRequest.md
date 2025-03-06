@@ -42,7 +42,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_recovery_request import CreateRecoveryRequest
+from cohesity_sdk.cluster.models.create_recovery_request import CreateRecoveryRequest
 
 # TODO update the JSON string below
 json = "{}"

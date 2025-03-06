@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.service_patch_level import ServicePatchLevel
+from cohesity_sdk.cluster.models.service_patch_level import ServicePatchLevel
 
 # TODO update the JSON string below
 json = "{}"

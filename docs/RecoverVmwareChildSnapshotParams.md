@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_vmware_child_snapshot_params import RecoverVmwareChildSnapshotParams
+from cohesity_sdk.cluster.models.recover_vmware_child_snapshot_params import RecoverVmwareChildSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_data_tiering_task_response import CommonDataTieringTaskResponse
+from cohesity_sdk.cluster.models.common_data_tiering_task_response import CommonDataTieringTaskResponse
 
 # TODO update the JSON string below
 json = "{}"

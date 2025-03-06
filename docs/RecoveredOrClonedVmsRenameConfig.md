@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
+from cohesity_sdk.cluster.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 
 # TODO update the JSON string below
 json = "{}"

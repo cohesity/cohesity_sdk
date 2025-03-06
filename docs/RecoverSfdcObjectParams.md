@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_sfdc_object_params import RecoverSfdcObjectParams
+from cohesity_sdk.cluster.models.recover_sfdc_object_params import RecoverSfdcObjectParams
 
 # TODO update the JSON string below
 json = "{}"

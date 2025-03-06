@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.tag import Tag
+from cohesity_sdk.cluster.models.tag import Tag
 
 # TODO update the JSON string below
 json = "{}"

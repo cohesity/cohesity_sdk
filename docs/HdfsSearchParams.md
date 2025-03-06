@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hdfs_search_params import HdfsSearchParams
+from cohesity_sdk.cluster.models.hdfs_search_params import HdfsSearchParams
 
 # TODO update the JSON string below
 json = "{}"

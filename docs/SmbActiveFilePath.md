@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.smb_active_file_path import SmbActiveFilePath
+from cohesity_sdk.cluster.models.smb_active_file_path import SmbActiveFilePath
 
 # TODO update the JSON string below
 json = "{}"

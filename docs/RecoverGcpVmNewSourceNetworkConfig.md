@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_gcp_vm_new_source_network_config import RecoverGcpVmNewSourceNetworkConfig
+from cohesity_sdk.cluster.models.recover_gcp_vm_new_source_network_config import RecoverGcpVmNewSourceNetworkConfig
 
 # TODO update the JSON string below
 json = "{}"

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.clone_view_params import CloneViewParams
+from cohesity_sdk.cluster.models.clone_view_params import CloneViewParams
 
 # TODO update the JSON string below
 json = "{}"

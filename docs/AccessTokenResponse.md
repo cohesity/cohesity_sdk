@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.access_token_response import AccessTokenResponse
+from cohesity_sdk.cluster.models.access_token_response import AccessTokenResponse
 
 # TODO update the JSON string below
 json = "{}"

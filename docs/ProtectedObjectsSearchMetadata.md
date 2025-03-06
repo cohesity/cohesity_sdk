@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protected_objects_search_metadata import ProtectedObjectsSearchMetadata
+from cohesity_sdk.cluster.models.protected_objects_search_metadata import ProtectedObjectsSearchMetadata
 
 # TODO update the JSON string below
 json = "{}"

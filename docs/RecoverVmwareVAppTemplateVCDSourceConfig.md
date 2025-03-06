@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_vmware_v_app_template_vcd_source_config import RecoverVmwareVAppTemplateVCDSourceConfig
+from cohesity_sdk.cluster.models.recover_vmware_v_app_template_vcd_source_config import RecoverVmwareVAppTemplateVCDSourceConfig
 
 # TODO update the JSON string below
 json = "{}"

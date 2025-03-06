@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.run_archival_config import RunArchivalConfig
+from cohesity_sdk.cluster.models.run_archival_config import RunArchivalConfig
 
 # TODO update the JSON string below
 json = "{}"

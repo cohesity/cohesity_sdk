@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
+from cohesity_sdk.cluster.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_object_protection_params import UdaObjectProtectionParams
+from cohesity_sdk.cluster.models.uda_object_protection_params import UdaObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

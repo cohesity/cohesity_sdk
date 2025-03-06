@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.static_routes import StaticRoutes
+from cohesity_sdk.cluster.models.static_routes import StaticRoutes
 
 # TODO update the JSON string below
 json = "{}"

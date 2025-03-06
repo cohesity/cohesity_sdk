@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.migrate_clone_params import MigrateCloneParams
+from cohesity_sdk.cluster.models.migrate_clone_params import MigrateCloneParams
 
 # TODO update the JSON string below
 json = "{}"

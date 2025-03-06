@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.network_interface import NetworkInterface
+from cohesity_sdk.cluster.models.network_interface import NetworkInterface
 
 # TODO update the JSON string below
 json = "{}"

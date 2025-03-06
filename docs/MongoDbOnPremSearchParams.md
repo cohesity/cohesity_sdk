@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongo_db_on_prem_search_params import MongoDbOnPremSearchParams
+from cohesity_sdk.cluster.models.mongo_db_on_prem_search_params import MongoDbOnPremSearchParams
 
 # TODO update the JSON string below
 json = "{}"

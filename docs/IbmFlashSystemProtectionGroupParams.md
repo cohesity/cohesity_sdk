@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ibm_flash_system_protection_group_params import IbmFlashSystemProtectionGroupParams
+from cohesity_sdk.cluster.models.ibm_flash_system_protection_group_params import IbmFlashSystemProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

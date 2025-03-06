@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.alerts_summary_response import AlertsSummaryResponse
+from cohesity_sdk.cluster.models.alerts_summary_response import AlertsSummaryResponse
 
 # TODO update the JSON string below
 json = "{}"

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.interface_stats import InterfaceStats
+from cohesity_sdk.cluster.models.interface_stats import InterfaceStats
 
 # TODO update the JSON string below
 json = "{}"

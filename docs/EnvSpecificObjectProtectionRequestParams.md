@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
+from cohesity_sdk.cluster.models.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

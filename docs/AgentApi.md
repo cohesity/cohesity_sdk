@@ -1,4 +1,4 @@
-# cohesity_sdk.AgentApi
+# cohesity_sdk.cluster.AgentApi
 
 All URIs are relative to */v2*
 
@@ -23,15 +23,15 @@ Create a schedule based agent upgrade task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.agent_upgrade_task_state import AgentUpgradeTaskState
-from cohesity_sdk.models.create_upgrade_task_request import CreateUpgradeTaskRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.agent_upgrade_task_state import AgentUpgradeTaskState
+from cohesity_sdk.cluster.models.create_upgrade_task_request import CreateUpgradeTaskRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,10 +53,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AgentApi(api_client)
-    body = cohesity_sdk.CreateUpgradeTaskRequest() # CreateUpgradeTaskRequest | Specifies parameters to create a schedule based agent upgrade task.
+    api_instance = cohesity_sdk.cluster.AgentApi(api_client)
+    body = cohesity_sdk.cluster.CreateUpgradeTaskRequest() # CreateUpgradeTaskRequest | Specifies parameters to create a schedule based agent upgrade task.
 
     try:
         # Create an upgrade task
@@ -111,14 +111,14 @@ Download agent for different hosts.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.download_agent_request_params import DownloadAgentRequestParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.download_agent_request_params import DownloadAgentRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -140,10 +140,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AgentApi(api_client)
-    body = cohesity_sdk.DownloadAgentRequestParams() # DownloadAgentRequestParams | Specifies agent details.
+    api_instance = cohesity_sdk.cluster.AgentApi(api_client)
+    body = cohesity_sdk.cluster.DownloadAgentRequestParams() # DownloadAgentRequestParams | Specifies agent details.
 
     try:
         # Download agent
@@ -198,14 +198,14 @@ Get the list of agent upgrade tasks.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.agent_upgrade_task_states import AgentUpgradeTaskStates
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.agent_upgrade_task_states import AgentUpgradeTaskStates
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -227,9 +227,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AgentApi(api_client)
+    api_instance = cohesity_sdk.cluster.AgentApi(api_client)
     ids = [56] # List[int] | Specifies IDs of tasks to be fetched. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
     include_tenants = True # bool | If true, the response will include upgrade tasks which were created by all tenants which the current user has permission to see. If false, then only upgrade tasks created by the current user will be returned. (optional)
@@ -289,15 +289,15 @@ Perform actions on an agent upgrade task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.agent_upgrade_task_action_object import AgentUpgradeTaskActionObject
-from cohesity_sdk.models.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.agent_upgrade_task_action_object import AgentUpgradeTaskActionObject
+from cohesity_sdk.cluster.models.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -319,10 +319,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.AgentApi(api_client)
-    body = cohesity_sdk.AgentUpgradeTaskActionRequest() # AgentUpgradeTaskActionRequest | Specifies the parameters to perform an action on an agent upgrade task.
+    api_instance = cohesity_sdk.cluster.AgentApi(api_client)
+    body = cohesity_sdk.cluster.AgentUpgradeTaskActionRequest() # AgentUpgradeTaskActionRequest | Specifies the parameters to perform an action on an agent upgrade task.
 
     try:
         # Perform action on an upgrade task.

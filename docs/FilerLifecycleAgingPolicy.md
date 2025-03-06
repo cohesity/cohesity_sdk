@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.filer_lifecycle_aging_policy import FilerLifecycleAgingPolicy
+from cohesity_sdk.cluster.models.filer_lifecycle_aging_policy import FilerLifecycleAgingPolicy
 
 # TODO update the JSON string below
 json = "{}"

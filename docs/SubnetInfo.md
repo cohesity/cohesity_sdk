@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.subnet_info import SubnetInfo
+from cohesity_sdk.cluster.models.subnet_info import SubnetInfo
 
 # TODO update the JSON string below
 json = "{}"

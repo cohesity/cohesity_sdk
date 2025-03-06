@@ -1,4 +1,4 @@
-# cohesity_sdk.IdentityProviderApi
+# cohesity_sdk.cluster.IdentityProviderApi
 
 All URIs are relative to */v2*
 
@@ -29,14 +29,14 @@ Configure Identity Provider on the cluster. Currently this API is only for Open 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.identity_config import IdentityConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_config import IdentityConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -58,10 +58,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
-    body = cohesity_sdk.IdentityConfig() # IdentityConfig | Specifies parameters to configure Identity
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    body = cohesity_sdk.cluster.IdentityConfig() # IdentityConfig | Specifies parameters to configure Identity
 
     try:
         # Configure Identity Provider
@@ -116,15 +116,15 @@ Configure SAML based identity provider on the cluster
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_idp_request_params import CreateIdpRequestParams
-from cohesity_sdk.models.identity_provider_configuration import IdentityProviderConfiguration
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_idp_request_params import CreateIdpRequestParams
+from cohesity_sdk.cluster.models.identity_provider_configuration import IdentityProviderConfiguration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -146,10 +146,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
-    body = cohesity_sdk.CreateIdpRequestParams() # CreateIdpRequestParams | Specifies parameters to configure identity provider
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    body = cohesity_sdk.cluster.CreateIdpRequestParams() # CreateIdpRequestParams | Specifies parameters to configure identity provider
 
     try:
         # Configure identity provider
@@ -204,13 +204,13 @@ Delete identity provider configuration on the cluster. Currently this API only s
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -232,9 +232,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     id = 56 # int | Specifies id of identity provider configuration
 
     try:
@@ -288,13 +288,13 @@ Delete SAML based identity provider configuration on the cluster
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -316,9 +316,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     id = 56 # int | Specifies id of idp configuration
 
     try:
@@ -372,14 +372,14 @@ Get Identity Providers configured on the cluster. Currently this API only suppor
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.identity_configs import IdentityConfigs
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_configs import IdentityConfigs
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -401,9 +401,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     ids = [56] # List[int] | Specifies IDs of configured identity providers (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | Specifies the tenant id's to get IDPs configured on tenants (optional)
     domains = ['domains_example'] # List[str] | Specifies domains of the IDP configurations (optional)
@@ -465,14 +465,14 @@ Get SAML based identity providers configured on the cluster
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.identity_provider_configurations import IdentityProviderConfigurations
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_provider_configurations import IdentityProviderConfigurations
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -494,9 +494,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     ids = [56] # List[int] | Specifies ids of configured identity providers (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | Specifies the tenant id's to get idps configured on tenants (optional)
     names = ['names_example'] # List[str] | Specifies the names of the identity providers (optional)
@@ -560,14 +560,14 @@ Redirects the client to the idp site with the URI to login
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.error import Error
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.error import Error
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -589,9 +589,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     tenant_id = 'tenant_id_example' # str | Specifies an optional tenantId for which the SSO login should be done. If this is not specified, cluster SSO login is done. (optional)
 
     try:
@@ -647,14 +647,14 @@ Perform an action on an Identity Provider. Currently this API only supports Open
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.identity_action import IdentityAction
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_action import IdentityAction
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -676,10 +676,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
-    body = cohesity_sdk.IdentityAction() # IdentityAction | Specifies parameters perform an identity action.
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
+    body = cohesity_sdk.cluster.IdentityAction() # IdentityAction | Specifies parameters perform an identity action.
 
     try:
         # Perform Identity Action
@@ -734,14 +734,14 @@ Update Identity Provider on the cluster. Currently this API only supports Open I
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.identity_config import IdentityConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.identity_config import IdentityConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -763,11 +763,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     id = 56 # int | Specifies id of identity provider configuration
-    body = cohesity_sdk.IdentityConfig() # IdentityConfig | Specifies parameters to update identity provider configuration
+    body = cohesity_sdk.cluster.IdentityConfig() # IdentityConfig | Specifies parameters to update identity provider configuration
 
     try:
         # Update Identity Provider
@@ -823,15 +823,15 @@ Update SAML based identity provider configurartion on the cluster
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.common_identity_provider_configuration import CommonIdentityProviderConfiguration
-from cohesity_sdk.models.identity_provider_configuration import IdentityProviderConfiguration
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_identity_provider_configuration import CommonIdentityProviderConfiguration
+from cohesity_sdk.cluster.models.identity_provider_configuration import IdentityProviderConfiguration
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -853,11 +853,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IdentityProviderApi(api_client)
+    api_instance = cohesity_sdk.cluster.IdentityProviderApi(api_client)
     id = 56 # int | Specifies id of idp configuration
-    body = cohesity_sdk.CommonIdentityProviderConfiguration() # CommonIdentityProviderConfiguration | Specifies parameters to update identity provider configuration
+    body = cohesity_sdk.cluster.CommonIdentityProviderConfiguration() # CommonIdentityProviderConfiguration | Specifies parameters to update identity provider configuration
 
     try:
         # Update identity provider

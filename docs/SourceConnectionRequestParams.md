@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_connection_request_params import SourceConnectionRequestParams
+from cohesity_sdk.cluster.models.source_connection_request_params import SourceConnectionRequestParams
 
 # TODO update the JSON string below
 json = "{}"

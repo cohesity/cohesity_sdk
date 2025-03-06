@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_physical_file_and_folder_params import RecoverPhysicalFileAndFolderParams
+from cohesity_sdk.cluster.models.recover_physical_file_and_folder_params import RecoverPhysicalFileAndFolderParams
 
 # TODO update the JSON string below
 json = "{}"

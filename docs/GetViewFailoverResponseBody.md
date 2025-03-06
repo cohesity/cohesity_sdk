@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.get_view_failover_response_body import GetViewFailoverResponseBody
+from cohesity_sdk.cluster.models.get_view_failover_response_body import GetViewFailoverResponseBody
 
 # TODO update the JSON string below
 json = "{}"

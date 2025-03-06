@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.local_user_params import LocalUserParams
+from cohesity_sdk.cluster.models.local_user_params import LocalUserParams
 
 # TODO update the JSON string below
 json = "{}"

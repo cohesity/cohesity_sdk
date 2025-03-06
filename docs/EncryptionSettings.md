@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.encryption_settings import EncryptionSettings
+from cohesity_sdk.cluster.models.encryption_settings import EncryptionSettings
 
 # TODO update the JSON string below
 json = "{}"

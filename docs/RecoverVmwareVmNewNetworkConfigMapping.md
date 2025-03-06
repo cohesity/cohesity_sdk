@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_vmware_vm_new_network_config_mapping import RecoverVmwareVmNewNetworkConfigMapping
+from cohesity_sdk.cluster.models.recover_vmware_vm_new_network_config_mapping import RecoverVmwareVmNewNetworkConfigMapping
 
 # TODO update the JSON string below
 json = "{}"

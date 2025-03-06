@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_tenant_params import CreateTenantParams
+from cohesity_sdk.cluster.models.create_tenant_params import CreateTenantParams
 
 # TODO update the JSON string below
 json = "{}"

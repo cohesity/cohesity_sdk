@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.security_config_password_reuse import SecurityConfigPasswordReuse
+from cohesity_sdk.cluster.models.security_config_password_reuse import SecurityConfigPasswordReuse
 
 # TODO update the JSON string below
 json = "{}"

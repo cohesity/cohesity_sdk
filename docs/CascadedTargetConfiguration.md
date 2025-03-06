@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cascaded_target_configuration import CascadedTargetConfiguration
+from cohesity_sdk.cluster.models.cascaded_target_configuration import CascadedTargetConfiguration
 
 # TODO update the JSON string below
 json = "{}"

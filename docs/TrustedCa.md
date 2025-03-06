@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.trusted_ca import TrustedCa
+from cohesity_sdk.cluster.models.trusted_ca import TrustedCa
 
 # TODO update the JSON string below
 json = "{}"

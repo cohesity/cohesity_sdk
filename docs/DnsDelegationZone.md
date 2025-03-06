@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.dns_delegation_zone import DnsDelegationZone
+from cohesity_sdk.cluster.models.dns_delegation_zone import DnsDelegationZone
 
 # TODO update the JSON string below
 json = "{}"

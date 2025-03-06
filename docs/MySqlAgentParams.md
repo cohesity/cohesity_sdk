@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.my_sql_agent_params import MySqlAgentParams
+from cohesity_sdk.cluster.models.my_sql_agent_params import MySqlAgentParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.trusted_domain_params import TrustedDomainParams
+from cohesity_sdk.cluster.models.trusted_domain_params import TrustedDomainParams
 
 # TODO update the JSON string below
 json = "{}"

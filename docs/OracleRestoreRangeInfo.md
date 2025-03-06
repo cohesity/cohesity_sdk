@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_restore_range_info import OracleRestoreRangeInfo
+from cohesity_sdk.cluster.models.oracle_restore_range_info import OracleRestoreRangeInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.delete_ipmi_user import DeleteIpmiUser
+from cohesity_sdk.cluster.models.delete_ipmi_user import DeleteIpmiUser
 
 # TODO update the JSON string below
 json = "{}"

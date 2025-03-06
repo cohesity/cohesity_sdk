@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uptiering_policy import UptieringPolicy
+from cohesity_sdk.cluster.models.uptiering_policy import UptieringPolicy
 
 # TODO update the JSON string below
 json = "{}"

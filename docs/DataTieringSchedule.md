@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.data_tiering_schedule import DataTieringSchedule
+from cohesity_sdk.cluster.models.data_tiering_schedule import DataTieringSchedule
 
 # TODO update the JSON string below
 json = "{}"

@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_protection_group_params import VmwareProtectionGroupParams
+from cohesity_sdk.cluster.models.vmware_protection_group_params import VmwareProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.verify_totp_result import VerifyTotpResult
+from cohesity_sdk.cluster.models.verify_totp_result import VerifyTotpResult
 
 # TODO update the JSON string below
 json = "{}"

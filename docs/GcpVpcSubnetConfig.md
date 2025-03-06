@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.gcp_vpc_subnet_config import GcpVpcSubnetConfig
+from cohesity_sdk.cluster.models.gcp_vpc_subnet_config import GcpVpcSubnetConfig
 
 # TODO update the JSON string below
 json = "{}"

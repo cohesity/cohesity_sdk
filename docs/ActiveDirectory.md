@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.active_directory import ActiveDirectory
+from cohesity_sdk.cluster.models.active_directory import ActiveDirectory
 
 # TODO update the JSON string below
 json = "{}"

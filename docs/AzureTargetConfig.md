@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_target_config import AzureTargetConfig
+from cohesity_sdk.cluster.models.azure_target_config import AzureTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# cohesity_sdk.RemoteClustersApi
+# cohesity_sdk.cluster.RemoteClustersApi
 
 All URIs are relative to */v2*
 
@@ -25,13 +25,13 @@ Unregister an external Remote Cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -53,9 +53,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteClustersApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
     cluster_id = 56 # int | Specifies the cluster id of the Remote Cluster to unregister.
 
     try:
@@ -109,14 +109,14 @@ Get Remote Cluster config by cluster id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_remote_cluster_params import UpdateRemoteClusterParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_remote_cluster_params import UpdateRemoteClusterParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -138,9 +138,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteClustersApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
     cluster_id = 56 # int | Specifies the cluster id of Remote Cluster to fetch.
 
     try:
@@ -196,14 +196,14 @@ List the Remote Clusters that are registered on this local Cluster and that matc
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.remote_clusters import RemoteClusters
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remote_clusters import RemoteClusters
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -225,9 +225,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteClustersApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
     cluster_ids = [56] # List[int] | Specifies a list of Remote Cluster ids to filter. (optional)
     cluster_names = ['cluster_names_example'] # List[str] | Specifies a list of Remote Cluster names to filter. (optional)
     node_addresses = ['node_addresses_example'] # List[str] | Specifies a list of Remote Cluster IPs to filter. (optional)
@@ -291,15 +291,15 @@ Register a Remote Cluster on this local cluster for remote access and/or replica
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.register_remote_cluster_params import RegisterRemoteClusterParams
-from cohesity_sdk.models.update_remote_cluster_params import UpdateRemoteClusterParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.cluster.models.update_remote_cluster_params import UpdateRemoteClusterParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -321,10 +321,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteClustersApi(api_client)
-    body = cohesity_sdk.RegisterRemoteClusterParams() # RegisterRemoteClusterParams | Specifies the request to register Remote Cluster.
+    api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
+    body = cohesity_sdk.cluster.RegisterRemoteClusterParams() # RegisterRemoteClusterParams | Specifies the request to register Remote Cluster.
 
     try:
         # Register a Remote Cluster.
@@ -379,14 +379,14 @@ Update the connection settings of the specified Remote Cluster that is registere
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_remote_cluster_params import UpdateRemoteClusterParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_remote_cluster_params import UpdateRemoteClusterParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -408,11 +408,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteClustersApi(api_client)
+    api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
     cluster_id = 56 # int | Specifies the cluster id of the Remote Cluster to update.
-    body = cohesity_sdk.UpdateRemoteClusterParams() # UpdateRemoteClusterParams | Specifies the request to update Remote Cluster config.
+    body = cohesity_sdk.cluster.UpdateRemoteClusterParams() # UpdateRemoteClusterParams | Specifies the request to update Remote Cluster config.
 
     try:
         # Update a Remote Cluster config.
@@ -468,15 +468,15 @@ Validate a Remote Cluster credentials. If includeRemoteClusterMetadata is true, 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.remote_cluster_params import RemoteClusterParams
-from cohesity_sdk.models.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.remote_cluster_params import RemoteClusterParams
+from cohesity_sdk.cluster.models.validate_remote_cluster_connection_param import ValidateRemoteClusterConnectionParam
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -498,10 +498,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RemoteClustersApi(api_client)
-    body = cohesity_sdk.ValidateRemoteClusterConnectionParam() # ValidateRemoteClusterConnectionParam | Specifies the request to validate Remote Cluster.
+    api_instance = cohesity_sdk.cluster.RemoteClustersApi(api_client)
+    body = cohesity_sdk.cluster.ValidateRemoteClusterConnectionParam() # ValidateRemoteClusterConnectionParam | Specifies the request to validate Remote Cluster.
     include_metadata = True # bool | Specifies if Remote Cluster metadata should be included in the response. (optional)
 
     try:

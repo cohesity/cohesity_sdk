@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.non_current_version_expiration_action import NonCurrentVersionExpirationAction
+from cohesity_sdk.cluster.models.non_current_version_expiration_action import NonCurrentVersionExpirationAction
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cdp_object_last_run_info import CdpObjectLastRunInfo
+from cohesity_sdk.cluster.models.cdp_object_last_run_info import CdpObjectLastRunInfo
 
 # TODO update the JSON string below
 json = "{}"

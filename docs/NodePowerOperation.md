@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.node_power_operation import NodePowerOperation
+from cohesity_sdk.cluster.models.node_power_operation import NodePowerOperation
 
 # TODO update the JSON string below
 json = "{}"

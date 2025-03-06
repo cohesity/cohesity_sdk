@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_entity_metadata import AwsEntityMetadata
+from cohesity_sdk.cluster.models.aws_entity_metadata import AwsEntityMetadata
 
 # TODO update the JSON string below
 json = "{}"

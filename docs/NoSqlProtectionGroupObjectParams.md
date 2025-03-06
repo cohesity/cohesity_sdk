@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.no_sql_protection_group_object_params import NoSqlProtectionGroupObjectParams
+from cohesity_sdk.cluster.models.no_sql_protection_group_object_params import NoSqlProtectionGroupObjectParams
 
 # TODO update the JSON string below
 json = "{}"

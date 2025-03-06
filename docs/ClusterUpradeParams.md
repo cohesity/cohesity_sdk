@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_uprade_params import ClusterUpradeParams
+from cohesity_sdk.cluster.models.cluster_uprade_params import ClusterUpradeParams
 
 # TODO update the JSON string below
 json = "{}"

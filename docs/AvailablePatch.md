@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.available_patch import AvailablePatch
+from cohesity_sdk.cluster.models.available_patch import AvailablePatch
 
 # TODO update the JSON string below
 json = "{}"

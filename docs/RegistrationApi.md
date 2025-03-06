@@ -1,4 +1,4 @@
-# cohesity_sdk.RegistrationApi
+# cohesity_sdk.cluster.RegistrationApi
 
 All URIs are relative to */v2*
 
@@ -21,14 +21,14 @@ Lists the Helios Registration Config.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.helios_reg_config import HeliosRegConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.helios_reg_config import HeliosRegConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -50,9 +50,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RegistrationApi(api_client)
+    api_instance = cohesity_sdk.cluster.RegistrationApi(api_client)
 
     try:
         # Lists the Helios Registration Config.
@@ -104,14 +104,14 @@ Claim to Helios.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.helios_claim_request import HeliosClaimRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.helios_claim_request import HeliosClaimRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -133,10 +133,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.RegistrationApi(api_client)
-    body = cohesity_sdk.HeliosClaimRequest() # HeliosClaimRequest | Specifies the parameters to claim to Helios.
+    api_instance = cohesity_sdk.cluster.RegistrationApi(api_client)
+    body = cohesity_sdk.cluster.HeliosClaimRequest() # HeliosClaimRequest | Specifies the parameters to claim to Helios.
 
     try:
         # Register to Helios.

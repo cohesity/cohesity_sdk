@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
+from cohesity_sdk.cluster.models.source_registration_update_request_params import SourceRegistrationUpdateRequestParams
 
 # TODO update the JSON string below
 json = "{}"

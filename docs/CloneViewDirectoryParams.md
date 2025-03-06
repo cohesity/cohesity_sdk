@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.clone_view_directory_params import CloneViewDirectoryParams
+from cohesity_sdk.cluster.models.clone_view_directory_params import CloneViewDirectoryParams
 
 # TODO update the JSON string below
 json = "{}"

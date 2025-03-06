@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.interface_params import InterfaceParams
+from cohesity_sdk.cluster.models.interface_params import InterfaceParams
 
 # TODO update the JSON string below
 json = "{}"

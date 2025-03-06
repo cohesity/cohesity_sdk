@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.no_sql_object_property import NoSqlObjectProperty
+from cohesity_sdk.cluster.models.no_sql_object_property import NoSqlObjectProperty
 
 # TODO update the JSON string below
 json = "{}"

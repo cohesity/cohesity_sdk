@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_target_params_for_mount_volume import VmwareTargetParamsForMountVolume
+from cohesity_sdk.cluster.models.vmware_target_params_for_mount_volume import VmwareTargetParamsForMountVolume
 
 # TODO update the JSON string below
 json = "{}"

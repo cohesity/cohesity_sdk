@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
+from cohesity_sdk.cluster.models.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
 
 # TODO update the JSON string below
 json = "{}"

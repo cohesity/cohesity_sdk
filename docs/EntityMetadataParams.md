@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.entity_metadata_params import EntityMetadataParams
+from cohesity_sdk.cluster.models.entity_metadata_params import EntityMetadataParams
 
 # TODO update the JSON string below
 json = "{}"

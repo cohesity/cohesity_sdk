@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.advanced_settings import AdvancedSettings
+from cohesity_sdk.cluster.models.advanced_settings import AdvancedSettings
 
 # TODO update the JSON string below
 json = "{}"

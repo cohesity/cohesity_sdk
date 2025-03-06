@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sharepoint_item import SharepointItem
+from cohesity_sdk.cluster.models.sharepoint_item import SharepointItem
 
 # TODO update the JSON string below
 json = "{}"

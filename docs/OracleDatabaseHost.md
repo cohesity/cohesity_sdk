@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.oracle_database_host import OracleDatabaseHost
+from cohesity_sdk.cluster.models.oracle_database_host import OracleDatabaseHost
 
 # TODO update the JSON string below
 json = "{}"

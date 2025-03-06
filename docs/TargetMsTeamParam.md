@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.target_ms_team_param import TargetMsTeamParam
+from cohesity_sdk.cluster.models.target_ms_team_param import TargetMsTeamParam
 
 # TODO update the JSON string below
 json = "{}"

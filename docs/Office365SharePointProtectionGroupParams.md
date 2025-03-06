@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.office365_share_point_protection_group_params import Office365SharePointProtectionGroupParams
+from cohesity_sdk.cluster.models.office365_share_point_protection_group_params import Office365SharePointProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

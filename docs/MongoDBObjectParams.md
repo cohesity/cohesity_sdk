@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mongo_db_object_params import MongoDBObjectParams
+from cohesity_sdk.cluster.models.mongo_db_object_params import MongoDBObjectParams
 
 # TODO update the JSON string below
 json = "{}"

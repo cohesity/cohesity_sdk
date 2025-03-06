@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_netapp_params import RecoverNetappParams
+from cohesity_sdk.cluster.models.recover_netapp_params import RecoverNetappParams
 
 # TODO update the JSON string below
 json = "{}"

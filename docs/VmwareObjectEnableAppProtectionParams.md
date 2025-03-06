@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_object_enable_app_protection_params import VmwareObjectEnableAppProtectionParams
+from cohesity_sdk.cluster.models.vmware_object_enable_app_protection_params import VmwareObjectEnableAppProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

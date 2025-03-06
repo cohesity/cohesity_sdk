@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.security_config_session_configuration import SecurityConfigSessionConfiguration
+from cohesity_sdk.cluster.models.security_config_session_configuration import SecurityConfigSessionConfiguration
 
 # TODO update the JSON string below
 json = "{}"

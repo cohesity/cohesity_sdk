@@ -1,4 +1,4 @@
-# cohesity_sdk.IPsApi
+# cohesity_sdk.cluster.IPsApi
 
 All URIs are relative to */v2*
 
@@ -20,14 +20,14 @@ Configure an IP setting on Cohesity Cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.ip_config_params import IPConfigParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.ip_config_params import IPConfigParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -49,10 +49,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.IPsApi(api_client)
-    body = cohesity_sdk.IPConfigParams() # IPConfigParams | Specifies the parameters to configure a IP settings on a cluster.
+    api_instance = cohesity_sdk.cluster.IPsApi(api_client)
+    body = cohesity_sdk.cluster.IPConfigParams() # IPConfigParams | Specifies the parameters to configure a IP settings on a cluster.
 
     try:
         # Configure an IP setting.

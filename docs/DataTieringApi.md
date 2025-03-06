@@ -1,4 +1,4 @@
-# cohesity_sdk.DataTieringApi
+# cohesity_sdk.cluster.DataTieringApi
 
 All URIs are relative to */v2*
 
@@ -31,8 +31,7 @@ Method | HTTP request | Description
 
 Cancel data tiering analysis run.
 
-Cancel data tiering analysis run for given analysis group ID
-and run ID
+Cancel data tiering analysis run for given analysis group ID and run ID
 
 ### Example
 
@@ -40,13 +39,13 @@ and run ID
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -68,9 +67,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of data tiering group.
     run_id = 'run_id_example' # str | Specifies a unique run id of data tiering group run.
 
@@ -126,13 +125,13 @@ Cancel data tiering task run for given data tiering task id and run id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -154,9 +153,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of data tiering task.
     run_id = 'run_id_example' # str | Specifies a unique run id of data tiering task.
 
@@ -212,15 +211,15 @@ Create a data tiering analysis group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
-from cohesity_sdk.models.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
+from cohesity_sdk.cluster.models.data_tiering_analysis_group import DataTieringAnalysisGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -242,10 +241,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
-    body = cohesity_sdk.CommonDataTieringAnalysisGroupParams() # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
+    body = cohesity_sdk.cluster.CommonDataTieringAnalysisGroupParams() # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
 
     try:
         # Create a data tiering analysis group.
@@ -300,14 +299,14 @@ Create a data tiering analysis group run.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_analysis_run_request import DataTieringAnalysisRunRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -329,11 +328,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies the id of the data tiering analysis group.
-    body = cohesity_sdk.DataTieringAnalysisRunRequest() # DataTieringAnalysisRunRequest | Specifies the request to run analysis group once. (optional)
+    body = cohesity_sdk.cluster.DataTieringAnalysisRunRequest() # DataTieringAnalysisRunRequest | Specifies the request to run analysis group once. (optional)
 
     try:
         # Create a data tiering analysis group run.
@@ -387,15 +386,15 @@ Create a data tiering task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
-from cohesity_sdk.models.data_tiering_task import DataTieringTask
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
+from cohesity_sdk.cluster.models.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -417,10 +416,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
-    body = cohesity_sdk.CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
+    body = cohesity_sdk.cluster.CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to create a data tiering task.
 
     try:
         # Create a data tiering task.
@@ -475,14 +474,14 @@ Create a data tiering tasks run.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_task_run_request import DataTieringTaskRunRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_task_run_request import DataTieringTaskRunRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -504,11 +503,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies the id of the data tiering tasks.
-    body = cohesity_sdk.DataTieringTaskRunRequest() # DataTieringTaskRunRequest | Specifies the request to run tiering task once. (optional)
+    body = cohesity_sdk.cluster.DataTieringTaskRunRequest() # DataTieringTaskRunRequest | Specifies the request to run tiering task once. (optional)
 
     try:
         # Create a data tiering tasks run.
@@ -554,8 +553,7 @@ void (empty response body)
 
 Delete data tiering analysis group.
 
-Returns NoContentResponse if the data tiering analysis group is
-deleted.
+Returns NoContentResponse if the data tiering analysis group is deleted.
 
 ### Example
 
@@ -563,13 +561,13 @@ deleted.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -591,9 +589,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the data tiering analysis group.
 
     try:
@@ -647,13 +645,13 @@ Returns Success if the data tiering task is deleted.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -675,9 +673,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies the id of the data tiering task.
 
     try:
@@ -723,8 +721,7 @@ void (empty response body)
 
 Get capacity trend analysis for all sources or a specific source.
 
-Get capacity trend analysis for the given time range, and for the given
-source or set of sources.
+Get capacity trend analysis for the given time range, and for the given source or set of sources.
 
 ### Example
 
@@ -732,14 +729,14 @@ source or set of sources.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.capacity_trend_analysis import CapacityTrendAnalysis
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.capacity_trend_analysis import CapacityTrendAnalysis
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -761,9 +758,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     start_time_usecs = 56 # int | Filter by a start time. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
     end_time_usecs = 56 # int | Filter by a end time. Specify the end time as a Unix epoch Timestamp (in microseconds). (optional)
     source_id = 56 # int | Filter by source id. If specified, this will only return the capacity trend analysis of the specific source. (optional)
@@ -823,14 +820,14 @@ Get data tiering analysis group by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_analysis_group import DataTieringAnalysisGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -852,9 +849,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the data tiering analysis group.
 
     try:
@@ -910,14 +907,14 @@ Get data tiering analysis group runs for an analysis group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_analysis_group_run import DataTieringAnalysisGroupRun
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -939,9 +936,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the data tiering analysis group.
     run_ids = ['run_ids_example'] # List[str] | Filter by a list of analysis group run ids. (optional)
 
@@ -999,14 +996,14 @@ Get list of all data tiering analysis groups.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_analysis_group import DataTieringAnalysisGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1028,9 +1025,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     ids = ['ids_example'] # List[str] | Filter by a list of Analysis Group IDs. (optional)
     include_last_run_stats = True # bool | If true, the response will include last run info. If it is false or not specified, the last run info won't be returned. (optional)
 
@@ -1080,8 +1077,7 @@ Name | Type | Description  | Notes
 
 Get the default config of data tiering analysis groups.
 
-Get default grouping configuration for data tiering
-analysis groups.
+Get default grouping configuration for data tiering analysis groups.
 
 ### Example
 
@@ -1089,14 +1085,14 @@ analysis groups.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_tag_config import DataTieringTagConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_tag_config import DataTieringTagConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1118,9 +1114,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
 
     try:
         # Get the default config of data tiering analysis groups.
@@ -1172,14 +1168,14 @@ Get data tiering task by id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_task import DataTieringTask
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1201,9 +1197,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies the id of the data tiering task.
 
     try:
@@ -1259,14 +1255,14 @@ Get the list of data tiering tasks.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_task import DataTieringTask
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1288,9 +1284,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     ids = ['ids_example'] # List[str] | Filter by a list of data tiering task ids. (optional)
     include_downtiered_data_location = True # bool | If true, it will also return a list of downtiered data locations for downtiered tasks. (optional)
 
@@ -1348,15 +1344,15 @@ Update a data tiering analysis group.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
-from cohesity_sdk.models.data_tiering_analysis_group import DataTieringAnalysisGroup
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
+from cohesity_sdk.cluster.models.data_tiering_analysis_group import DataTieringAnalysisGroup
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1378,11 +1374,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the data tiering analysis group.
-    body = cohesity_sdk.CommonDataTieringAnalysisGroupParams() # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
+    body = cohesity_sdk.cluster.CommonDataTieringAnalysisGroupParams() # CommonDataTieringAnalysisGroupParams | Specifies the data tiering analysis group.
 
     try:
         # Update a data tiering analysis group. Currently, it supports updating sources and schedule only.
@@ -1438,14 +1434,14 @@ Update data tiering analysis group config.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.data_tiering_tag_config import DataTieringTagConfig
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.data_tiering_tag_config import DataTieringTagConfig
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1467,11 +1463,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies a unique id of the data tiering analysis group.
-    body = cohesity_sdk.DataTieringTagConfig() # DataTieringTagConfig | Specifies the data tiering analysis Tags Config.
+    body = cohesity_sdk.cluster.DataTieringTagConfig() # DataTieringTagConfig | Specifies the data tiering analysis Tags Config.
 
     try:
         # Update data tiering analysis group config.
@@ -1519,8 +1515,7 @@ Name | Type | Description  | Notes
 
 Update data tiering analysis groups state.
 
-Perform actions like pause or resume on the data tiering analysis
-groups for the specified sources.
+Perform actions like pause or resume on the data tiering analysis groups for the specified sources.
 
 ### Example
 
@@ -1528,15 +1523,15 @@ groups for the specified sources.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_data_tiering_state import UpdateDataTieringState
-from cohesity_sdk.models.update_data_tiering_state_request import UpdateDataTieringStateRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_data_tiering_state import UpdateDataTieringState
+from cohesity_sdk.cluster.models.update_data_tiering_state_request import UpdateDataTieringStateRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1558,10 +1553,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
-    body = cohesity_sdk.UpdateDataTieringStateRequest() # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering analysis groups.
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
+    body = cohesity_sdk.cluster.UpdateDataTieringStateRequest() # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering analysis groups.
 
     try:
         # Update data tiering analysis groups state.
@@ -1616,15 +1611,15 @@ Update a data tiering task.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
-from cohesity_sdk.models.data_tiering_task import DataTieringTask
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_or_update_data_tiering_task_request import CreateOrUpdateDataTieringTaskRequest
+from cohesity_sdk.cluster.models.data_tiering_task import DataTieringTask
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1646,11 +1641,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
     id = 'id_example' # str | Specifies the id of the data tiering task.
-    body = cohesity_sdk.CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
+    body = cohesity_sdk.cluster.CreateOrUpdateDataTieringTaskRequest() # CreateOrUpdateDataTieringTaskRequest | Specifies the parameters to update a data tiering task.
 
     try:
         # Update a data tiering task.
@@ -1706,15 +1701,15 @@ Perform actions like pause or resume on the data tiering tasks.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.update_data_tiering_state import UpdateDataTieringState
-from cohesity_sdk.models.update_data_tiering_state_request import UpdateDataTieringStateRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.update_data_tiering_state import UpdateDataTieringState
+from cohesity_sdk.cluster.models.update_data_tiering_state_request import UpdateDataTieringStateRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1736,10 +1731,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.DataTieringApi(api_client)
-    body = cohesity_sdk.UpdateDataTieringStateRequest() # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering tasks.
+    api_instance = cohesity_sdk.cluster.DataTieringApi(api_client)
+    body = cohesity_sdk.cluster.UpdateDataTieringStateRequest() # UpdateDataTieringStateRequest | Specifies the parameters to perform an action of list of data tiering tasks.
 
     try:
         # Update data tiering source analysis tasks state.

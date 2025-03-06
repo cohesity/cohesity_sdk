@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.logical_volume_info import LogicalVolumeInfo
+from cohesity_sdk.cluster.models.logical_volume_info import LogicalVolumeInfo
 
 # TODO update the JSON string below
 json = "{}"

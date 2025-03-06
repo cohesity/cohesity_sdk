@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_exchange_objects_request_params import SearchExchangeObjectsRequestParams
+from cohesity_sdk.cluster.models.search_exchange_objects_request_params import SearchExchangeObjectsRequestParams
 
 # TODO update the JSON string below
 json = "{}"

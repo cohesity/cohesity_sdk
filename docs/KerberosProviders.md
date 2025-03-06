@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kerberos_providers import KerberosProviders
+from cohesity_sdk.cluster.models.kerberos_providers import KerberosProviders
 
 # TODO update the JSON string below
 json = "{}"

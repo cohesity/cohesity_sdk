@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.user_quota_delete_params import UserQuotaDeleteParams
+from cohesity_sdk.cluster.models.user_quota_delete_params import UserQuotaDeleteParams
 
 # TODO update the JSON string below
 json = "{}"

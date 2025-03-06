@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_file_request_params import SearchFileRequestParams
+from cohesity_sdk.cluster.models.search_file_request_params import SearchFileRequestParams
 
 # TODO update the JSON string below
 json = "{}"

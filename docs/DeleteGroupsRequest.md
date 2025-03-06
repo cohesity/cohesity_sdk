@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.delete_groups_request import DeleteGroupsRequest
+from cohesity_sdk.cluster.models.delete_groups_request import DeleteGroupsRequest
 
 # TODO update the JSON string below
 json = "{}"

@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hdfs_snapshot_params import RecoverHdfsSnapshotParams
+from cohesity_sdk.cluster.models.recover_hdfs_snapshot_params import RecoverHdfsSnapshotParams
 
 # TODO update the JSON string below
 json = "{}"

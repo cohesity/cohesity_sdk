@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyper_v_source_registration_params import HyperVSourceRegistrationParams
+from cohesity_sdk.cluster.models.hyper_v_source_registration_params import HyperVSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

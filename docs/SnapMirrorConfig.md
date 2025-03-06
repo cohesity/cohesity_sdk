@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.snap_mirror_config import SnapMirrorConfig
+from cohesity_sdk.cluster.models.snap_mirror_config import SnapMirrorConfig
 
 # TODO update the JSON string below
 json = "{}"

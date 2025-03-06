@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_object_protection_response import VmwareObjectProtectionResponse
+from cohesity_sdk.cluster.models.vmware_object_protection_response import VmwareObjectProtectionResponse
 
 # TODO update the JSON string below
 json = "{}"

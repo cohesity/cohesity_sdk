@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.capacity_by_tier import CapacityByTier
+from cohesity_sdk.cluster.models.capacity_by_tier import CapacityByTier
 
 # TODO update the JSON string below
 json = "{}"

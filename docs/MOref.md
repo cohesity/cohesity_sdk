@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.m_oref import MOref
+from cohesity_sdk.cluster.models.m_oref import MOref
 
 # TODO update the JSON string below
 json = "{}"

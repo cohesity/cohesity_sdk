@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_policy import ObjectPolicy
+from cohesity_sdk.cluster.models.object_policy import ObjectPolicy
 
 # TODO update the JSON string below
 json = "{}"

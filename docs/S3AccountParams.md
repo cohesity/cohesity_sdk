@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.s3_account_params import S3AccountParams
+from cohesity_sdk.cluster.models.s3_account_params import S3AccountParams
 
 # TODO update the JSON string below
 json = "{}"

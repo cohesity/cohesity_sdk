@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.verify_totp_request import VerifyTotpRequest
+from cohesity_sdk.cluster.models.verify_totp_request import VerifyTotpRequest
 
 # TODO update the JSON string below
 json = "{}"

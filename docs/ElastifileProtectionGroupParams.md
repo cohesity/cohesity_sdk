@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.elastifile_protection_group_params import ElastifileProtectionGroupParams
+from cohesity_sdk.cluster.models.elastifile_protection_group_params import ElastifileProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

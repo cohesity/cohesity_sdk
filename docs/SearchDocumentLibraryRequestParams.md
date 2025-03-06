@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.search_document_library_request_params import SearchDocumentLibraryRequestParams
+from cohesity_sdk.cluster.models.search_document_library_request_params import SearchDocumentLibraryRequestParams
 
 # TODO update the JSON string below
 json = "{}"

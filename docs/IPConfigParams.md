@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ip_config_params import IPConfigParams
+from cohesity_sdk.cluster.models.ip_config_params import IPConfigParams
 
 # TODO update the JSON string below
 json = "{}"

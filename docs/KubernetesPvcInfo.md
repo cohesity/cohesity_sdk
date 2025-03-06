@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.kubernetes_pvc_info import KubernetesPvcInfo
+from cohesity_sdk.cluster.models.kubernetes_pvc_info import KubernetesPvcInfo
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mount_hyper_v_volume_params import MountHyperVVolumeParams
+from cohesity_sdk.cluster.models.mount_hyper_v_volume_params import MountHyperVVolumeParams
 
 # TODO update the JSON string below
 json = "{}"

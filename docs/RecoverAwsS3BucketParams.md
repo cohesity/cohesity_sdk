@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
+from cohesity_sdk.cluster.models.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_share_param import UpdateShareParam
+from cohesity_sdk.cluster.models.update_share_param import UpdateShareParam
 
 # TODO update the JSON string below
 json = "{}"

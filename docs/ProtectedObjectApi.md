@@ -1,4 +1,4 @@
-# cohesity_sdk.ProtectedObjectApi
+# cohesity_sdk.cluster.ProtectedObjectApi
 
 All URIs are relative to */v2*
 
@@ -22,15 +22,15 @@ Perform actions on Protected Objects.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protectd_objects_action_request import ProtectdObjectsActionRequest
-from cohesity_sdk.models.protected_object_action_response import ProtectedObjectActionResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protectd_objects_action_request import ProtectdObjectsActionRequest
+from cohesity_sdk.cluster.models.protected_object_action_response import ProtectedObjectActionResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -52,10 +52,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectedObjectApi(api_client)
-    body = cohesity_sdk.ProtectdObjectsActionRequest() # ProtectdObjectsActionRequest | Specifies the parameters to perform an action on an already protected object.
+    api_instance = cohesity_sdk.cluster.ProtectedObjectApi(api_client)
+    body = cohesity_sdk.cluster.ProtectdObjectsActionRequest() # ProtectdObjectsActionRequest | Specifies the parameters to perform an action on an already protected object.
 
     try:
         # Perform Actions on Protect Objects.
@@ -110,15 +110,15 @@ Create Protect Objects Backup.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_protected_objects_request import CreateProtectedObjectsRequest
-from cohesity_sdk.models.create_protected_objects_response import CreateProtectedObjectsResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_protected_objects_request import CreateProtectedObjectsRequest
+from cohesity_sdk.cluster.models.create_protected_objects_response import CreateProtectedObjectsResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -140,10 +140,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectedObjectApi(api_client)
-    body = cohesity_sdk.CreateProtectedObjectsRequest() # CreateProtectedObjectsRequest | Specifies the parameters to protect objects.
+    api_instance = cohesity_sdk.cluster.ProtectedObjectApi(api_client)
+    body = cohesity_sdk.cluster.CreateProtectedObjectsRequest() # CreateProtectedObjectsRequest | Specifies the parameters to protect objects.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 
     try:
@@ -200,15 +200,15 @@ Update Protected object backup configuration given a object id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_protected_object_response import GetProtectedObjectResponse
-from cohesity_sdk.models.update_protected_objects_request import UpdateProtectedObjectsRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_protected_object_response import GetProtectedObjectResponse
+from cohesity_sdk.cluster.models.update_protected_objects_request import UpdateProtectedObjectsRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -230,11 +230,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ProtectedObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ProtectedObjectApi(api_client)
     id = 56 # int | Specifies the id of the Protected Object.
-    body = cohesity_sdk.UpdateProtectedObjectsRequest() # UpdateProtectedObjectsRequest | Specifies the parameters to perform an update on protected objects.
+    body = cohesity_sdk.cluster.UpdateProtectedObjectsRequest() # UpdateProtectedObjectsRequest | Specifies the parameters to perform an update on protected objects.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
 
     try:

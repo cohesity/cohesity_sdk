@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bgp_instance import BgpInstance
+from cohesity_sdk.cluster.models.bgp_instance import BgpInstance
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bucket_policy import BucketPolicy
+from cohesity_sdk.cluster.models.bucket_policy import BucketPolicy
 
 # TODO update the JSON string below
 json = "{}"

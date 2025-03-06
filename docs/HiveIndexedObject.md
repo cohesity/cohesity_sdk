@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hive_indexed_object import HiveIndexedObject
+from cohesity_sdk.cluster.models.hive_indexed_object import HiveIndexedObject
 
 # TODO update the JSON string below
 json = "{}"

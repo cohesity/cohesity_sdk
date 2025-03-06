@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_s3_standard_ia_params import AwsS3StandardIAParams
+from cohesity_sdk.cluster.models.aws_s3_standard_ia_params import AwsS3StandardIAParams
 
 # TODO update the JSON string below
 json = "{}"

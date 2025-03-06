@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sla_rule import SlaRule
+from cohesity_sdk.cluster.models.sla_rule import SlaRule
 
 # TODO update the JSON string below
 json = "{}"

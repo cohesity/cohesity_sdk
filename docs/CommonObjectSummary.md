@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_object_summary import CommonObjectSummary
+from cohesity_sdk.cluster.models.common_object_summary import CommonObjectSummary
 
 # TODO update the JSON string below
 json = "{}"

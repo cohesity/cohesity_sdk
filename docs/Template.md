@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.template import Template
+from cohesity_sdk.cluster.models.template import Template
 
 # TODO update the JSON string below
 json = "{}"

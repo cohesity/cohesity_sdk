@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_domain_pair import StorageDomainPair
+from cohesity_sdk.cluster.models.storage_domain_pair import StorageDomainPair
 
 # TODO update the JSON string below
 json = "{}"

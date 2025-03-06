@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_pure_volume_target_params import RecoverPureVolumeTargetParams
+from cohesity_sdk.cluster.models.recover_pure_volume_target_params import RecoverPureVolumeTargetParams
 
 # TODO update the JSON string below
 json = "{}"

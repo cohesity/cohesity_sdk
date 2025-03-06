@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_share_permissions import ViewSharePermissions
+from cohesity_sdk.cluster.models.view_share_permissions import ViewSharePermissions
 
 # TODO update the JSON string below
 json = "{}"

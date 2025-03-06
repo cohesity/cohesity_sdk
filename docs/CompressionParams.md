@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.compression_params import CompressionParams
+from cohesity_sdk.cluster.models.compression_params import CompressionParams
 
 # TODO update the JSON string below
 json = "{}"

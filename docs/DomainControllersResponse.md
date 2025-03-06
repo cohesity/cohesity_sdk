@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.domain_controllers_response import DomainControllersResponse
+from cohesity_sdk.cluster.models.domain_controllers_response import DomainControllersResponse
 
 # TODO update the JSON string below
 json = "{}"

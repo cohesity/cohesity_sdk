@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.planned_run_poll_status import PlannedRunPollStatus
+from cohesity_sdk.cluster.models.planned_run_poll_status import PlannedRunPollStatus
 
 # TODO update the JSON string below
 json = "{}"

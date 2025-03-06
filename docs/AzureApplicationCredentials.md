@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_application_credentials import AzureApplicationCredentials
+from cohesity_sdk.cluster.models.azure_application_credentials import AzureApplicationCredentials
 
 # TODO update the JSON string below
 json = "{}"

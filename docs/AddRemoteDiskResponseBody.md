@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.add_remote_disk_response_body import AddRemoteDiskResponseBody
+from cohesity_sdk.cluster.models.add_remote_disk_response_body import AddRemoteDiskResponseBody
 
 # TODO update the JSON string below
 json = "{}"

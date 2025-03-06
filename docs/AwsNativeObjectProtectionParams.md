@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_native_object_protection_params import AwsNativeObjectProtectionParams
+from cohesity_sdk.cluster.models.aws_native_object_protection_params import AwsNativeObjectProtectionParams
 
 # TODO update the JSON string below
 json = "{}"

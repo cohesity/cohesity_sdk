@@ -58,7 +58,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recovery import Recovery
+from cohesity_sdk.cluster.models.recovery import Recovery
 
 # TODO update the JSON string below
 json = "{}"

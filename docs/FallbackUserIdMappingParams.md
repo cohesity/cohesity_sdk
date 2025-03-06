@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.fallback_user_id_mapping_params import FallbackUserIdMappingParams
+from cohesity_sdk.cluster.models.fallback_user_id_mapping_params import FallbackUserIdMappingParams
 
 # TODO update the JSON string below
 json = "{}"

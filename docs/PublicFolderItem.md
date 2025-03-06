@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.public_folder_item import PublicFolderItem
+from cohesity_sdk.cluster.models.public_folder_item import PublicFolderItem
 
 # TODO update the JSON string below
 json = "{}"

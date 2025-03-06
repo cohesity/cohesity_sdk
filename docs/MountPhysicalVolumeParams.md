@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.mount_physical_volume_params import MountPhysicalVolumeParams
+from cohesity_sdk.cluster.models.mount_physical_volume_params import MountPhysicalVolumeParams
 
 # TODO update the JSON string below
 json = "{}"

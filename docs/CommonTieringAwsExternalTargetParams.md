@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_tiering_aws_external_target_params import CommonTieringAwsExternalTargetParams
+from cohesity_sdk.cluster.models.common_tiering_aws_external_target_params import CommonTieringAwsExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# cohesity_sdk.PatchManagementApi
+# cohesity_sdk.cluster.PatchManagementApi
 
 All URIs are relative to */v2*
 
@@ -26,15 +26,15 @@ Apply a service patch and its dependencies.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.apply_patches_request import ApplyPatchesRequest
-from cohesity_sdk.models.service_patch_level import ServicePatchLevel
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.apply_patches_request import ApplyPatchesRequest
+from cohesity_sdk.cluster.models.service_patch_level import ServicePatchLevel
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -56,10 +56,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
-    body = cohesity_sdk.ApplyPatchesRequest() # ApplyPatchesRequest | Request to apply patches.
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
+    body = cohesity_sdk.cluster.ApplyPatchesRequest() # ApplyPatchesRequest | Request to apply patches.
 
     try:
         # Apply patches
@@ -114,14 +114,14 @@ Returns a list of currently applied patches that are running on the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.applied_patch import AppliedPatch
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.applied_patch import AppliedPatch
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -143,9 +143,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
     service = 'service_example' # str | Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. (optional)
     include_details = True # bool | Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
 
@@ -203,14 +203,14 @@ Returns a list of patches that are available and ready to apply on the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.available_patch import AvailablePatch
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.available_patch import AvailablePatch
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -232,9 +232,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
     service = 'service_example' # str | Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. (optional)
     include_details = True # bool | Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
 
@@ -292,14 +292,14 @@ Returns the status of the current or the last patch operation. There can be only
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.patch_operation_status import PatchOperationStatus
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.patch_operation_status import PatchOperationStatus
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -321,9 +321,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
     include_details = True # bool | Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. (optional)
 
     try:
@@ -379,14 +379,14 @@ Get the history of all the patch management operations.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.patch_operation import PatchOperation
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.patch_operation import PatchOperation
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -408,9 +408,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
     service = 'service_example' # str | Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. (optional)
 
     try:
@@ -466,14 +466,14 @@ Import a patch or a hotfix to the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.patch_detail import PatchDetail
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.patch_detail import PatchDetail
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -495,9 +495,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
     file_name = 'file_name_example' # str | 
     checksum = 'checksum_example' # str | 
     patch = None # bytearray | 
@@ -557,15 +557,15 @@ Revert an applied service patch and its dependencies.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.revert_patches_request import RevertPatchesRequest
-from cohesity_sdk.models.service_patch_level import ServicePatchLevel
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.revert_patches_request import RevertPatchesRequest
+from cohesity_sdk.cluster.models.service_patch_level import ServicePatchLevel
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -587,10 +587,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.PatchManagementApi(api_client)
-    body = cohesity_sdk.RevertPatchesRequest() # RevertPatchesRequest | Request to revert patches.
+    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
+    body = cohesity_sdk.cluster.RevertPatchesRequest() # RevertPatchesRequest | Request to revert patches.
 
     try:
         # Revert patches

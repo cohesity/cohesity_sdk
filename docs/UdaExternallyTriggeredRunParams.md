@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_externally_triggered_run_params import UdaExternallyTriggeredRunParams
+from cohesity_sdk.cluster.models.uda_externally_triggered_run_params import UdaExternallyTriggeredRunParams
 
 # TODO update the JSON string below
 json = "{}"

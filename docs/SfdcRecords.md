@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sfdc_records import SfdcRecords
+from cohesity_sdk.cluster.models.sfdc_records import SfdcRecords
 
 # TODO update the JSON string below
 json = "{}"

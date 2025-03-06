@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_recover_files_original_target_config import AzureRecoverFilesOriginalTargetConfig
+from cohesity_sdk.cluster.models.azure_recover_files_original_target_config import AzureRecoverFilesOriginalTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

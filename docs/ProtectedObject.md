@@ -46,7 +46,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protected_object import ProtectedObject
+from cohesity_sdk.cluster.models.protected_object import ProtectedObject
 
 # TODO update the JSON string below
 json = "{}"

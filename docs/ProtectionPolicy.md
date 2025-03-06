@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protection_policy import ProtectionPolicy
+from cohesity_sdk.cluster.models.protection_policy import ProtectionPolicy
 
 # TODO update the JSON string below
 json = "{}"

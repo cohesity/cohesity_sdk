@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_tiering_azure_external_target_params import CommonTieringAzureExternalTargetParams
+from cohesity_sdk.cluster.models.common_tiering_azure_external_target_params import CommonTieringAzureExternalTargetParams
 
 # TODO update the JSON string below
 json = "{}"

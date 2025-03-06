@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.o365_teams_channels_search_request_params import O365TeamsChannelsSearchRequestParams
+from cohesity_sdk.cluster.models.o365_teams_channels_search_request_params import O365TeamsChannelsSearchRequestParams
 
 # TODO update the JSON string below
 json = "{}"

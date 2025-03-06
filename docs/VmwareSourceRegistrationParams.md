@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vmware_source_registration_params import VmwareSourceRegistrationParams
+from cohesity_sdk.cluster.models.vmware_source_registration_params import VmwareSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

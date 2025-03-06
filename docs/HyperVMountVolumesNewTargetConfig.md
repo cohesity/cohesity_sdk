@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyper_v_mount_volumes_new_target_config import HyperVMountVolumesNewTargetConfig
+from cohesity_sdk.cluster.models.hyper_v_mount_volumes_new_target_config import HyperVMountVolumesNewTargetConfig
 
 # TODO update the JSON string below
 json = "{}"

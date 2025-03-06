@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cdp_retention import CdpRetention
+from cohesity_sdk.cluster.models.cdp_retention import CdpRetention
 
 # TODO update the JSON string below
 json = "{}"

@@ -68,7 +68,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_view_param import UpdateViewParam
+from cohesity_sdk.cluster.models.update_view_param import UpdateViewParam
 
 # TODO update the JSON string below
 json = "{}"

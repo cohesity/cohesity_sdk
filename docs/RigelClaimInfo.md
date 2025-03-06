@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.rigel_claim_info import RigelClaimInfo
+from cohesity_sdk.cluster.models.rigel_claim_info import RigelClaimInfo
 
 # TODO update the JSON string below
 json = "{}"

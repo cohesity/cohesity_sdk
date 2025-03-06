@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_local_domain_sid import ClusterLocalDomainSID
+from cohesity_sdk.cluster.models.cluster_local_domain_sid import ClusterLocalDomainSID
 
 # TODO update the JSON string below
 json = "{}"

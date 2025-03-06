@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.group_params import GroupParams
+from cohesity_sdk.cluster.models.group_params import GroupParams
 
 # TODO update the JSON string below
 json = "{}"

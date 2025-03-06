@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ldap_status import LdapStatus
+from cohesity_sdk.cluster.models.ldap_status import LdapStatus
 
 # TODO update the JSON string below
 json = "{}"

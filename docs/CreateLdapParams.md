@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_ldap_params import CreateLdapParams
+from cohesity_sdk.cluster.models.create_ldap_params import CreateLdapParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.alias_smb_config import AliasSmbConfig
+from cohesity_sdk.cluster.models.alias_smb_config import AliasSmbConfig
 
 # TODO update the JSON string below
 json = "{}"

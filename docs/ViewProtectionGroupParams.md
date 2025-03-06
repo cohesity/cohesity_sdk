@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.view_protection_group_params import ViewProtectionGroupParams
+from cohesity_sdk.cluster.models.view_protection_group_params import ViewProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

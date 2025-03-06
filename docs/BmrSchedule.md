@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.bmr_schedule import BmrSchedule
+from cohesity_sdk.cluster.models.bmr_schedule import BmrSchedule
 
 # TODO update the JSON string below
 json = "{}"

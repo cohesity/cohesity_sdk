@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.feature_flag import FeatureFlag
+from cohesity_sdk.cluster.models.feature_flag import FeatureFlag
 
 # TODO update the JSON string below
 json = "{}"

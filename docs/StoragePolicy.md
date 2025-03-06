@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.storage_policy import StoragePolicy
+from cohesity_sdk.cluster.models.storage_policy import StoragePolicy
 
 # TODO update the JSON string below
 json = "{}"

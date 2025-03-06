@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_oracle_app_new_source_config import RecoverOracleAppNewSourceConfig
+from cohesity_sdk.cluster.models.recover_oracle_app_new_source_config import RecoverOracleAppNewSourceConfig
 
 # TODO update the JSON string below
 json = "{}"

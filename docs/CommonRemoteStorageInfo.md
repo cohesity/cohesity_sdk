@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_remote_storage_info import CommonRemoteStorageInfo
+from cohesity_sdk.cluster.models.common_remote_storage_info import CommonRemoteStorageInfo
 
 # TODO update the JSON string below
 json = "{}"

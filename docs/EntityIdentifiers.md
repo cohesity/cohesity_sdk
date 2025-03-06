@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.entity_identifiers import EntityIdentifiers
+from cohesity_sdk.cluster.models.entity_identifiers import EntityIdentifiers
 
 # TODO update the JSON string below
 json = "{}"

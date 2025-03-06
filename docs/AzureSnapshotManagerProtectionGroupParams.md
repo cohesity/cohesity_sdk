@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.azure_snapshot_manager_protection_group_params import AzureSnapshotManagerProtectionGroupParams
+from cohesity_sdk.cluster.models.azure_snapshot_manager_protection_group_params import AzureSnapshotManagerProtectionGroupParams
 
 # TODO update the JSON string below
 json = "{}"

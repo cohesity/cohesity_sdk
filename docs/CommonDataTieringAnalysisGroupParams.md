@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
+from cohesity_sdk.cluster.models.common_data_tiering_analysis_group_params import CommonDataTieringAnalysisGroupParams
 
 # TODO update the JSON string below
 json = "{}"

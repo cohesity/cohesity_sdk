@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.source_backup_deactivation import SourceBackupDeactivation
+from cohesity_sdk.cluster.models.source_backup_deactivation import SourceBackupDeactivation
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.upload_package_url_params import UploadPackageUrlParams
+from cohesity_sdk.cluster.models.upload_package_url_params import UploadPackageUrlParams
 
 # TODO update the JSON string below
 json = "{}"

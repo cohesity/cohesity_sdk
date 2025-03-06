@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_target_params_for_recover_vm import AwsTargetParamsForRecoverVm
+from cohesity_sdk.cluster.models.aws_target_params_for_recover_vm import AwsTargetParamsForRecoverVm
 
 # TODO update the JSON string below
 json = "{}"

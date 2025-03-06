@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cloud_spin_target import CloudSpinTarget
+from cohesity_sdk.cluster.models.cloud_spin_target import CloudSpinTarget
 
 # TODO update the JSON string below
 json = "{}"

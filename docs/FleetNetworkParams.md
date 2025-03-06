@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.fleet_network_params import FleetNetworkParams
+from cohesity_sdk.cluster.models.fleet_network_params import FleetNetworkParams
 
 # TODO update the JSON string below
 json = "{}"

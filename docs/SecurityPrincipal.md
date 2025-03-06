@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.security_principal import SecurityPrincipal
+from cohesity_sdk.cluster.models.security_principal import SecurityPrincipal
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.snapshot_retention_policy import SnapshotRetentionPolicy
+from cohesity_sdk.cluster.models.snapshot_retention_policy import SnapshotRetentionPolicy
 
 # TODO update the JSON string below
 json = "{}"

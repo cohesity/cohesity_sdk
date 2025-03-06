@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.audit_logs_entity_types import AuditLogsEntityTypes
+from cohesity_sdk.cluster.models.audit_logs_entity_types import AuditLogsEntityTypes
 
 # TODO update the JSON string below
 json = "{}"

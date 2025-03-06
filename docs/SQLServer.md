@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sql_server import SQLServer
+from cohesity_sdk.cluster.models.sql_server import SQLServer
 
 # TODO update the JSON string below
 json = "{}"

@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyper_v_target_params_for_recover_file_and_folder import HyperVTargetParamsForRecoverFileAndFolder
+from cohesity_sdk.cluster.models.hyper_v_target_params_for_recover_file_and_folder import HyperVTargetParamsForRecoverFileAndFolder
 
 # TODO update the JSON string below
 json = "{}"

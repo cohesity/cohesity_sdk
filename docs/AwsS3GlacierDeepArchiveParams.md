@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.aws_s3_glacier_deep_archive_params import AwsS3GlacierDeepArchiveParams
+from cohesity_sdk.cluster.models.aws_s3_glacier_deep_archive_params import AwsS3GlacierDeepArchiveParams
 
 # TODO update the JSON string below
 json = "{}"

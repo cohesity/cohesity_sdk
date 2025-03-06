@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.update_mfa_result import UpdateMFAResult
+from cohesity_sdk.cluster.models.update_mfa_result import UpdateMFAResult
 
 # TODO update the JSON string below
 json = "{}"

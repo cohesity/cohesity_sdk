@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uplink_switch import UplinkSwitch
+from cohesity_sdk.cluster.models.uplink_switch import UplinkSwitch
 
 # TODO update the JSON string below
 json = "{}"

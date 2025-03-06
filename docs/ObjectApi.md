@@ -1,4 +1,4 @@
-# cohesity_sdk.ObjectApi
+# cohesity_sdk.cluster.ObjectApi
 
 All URIs are relative to */v2*
 
@@ -43,15 +43,15 @@ Associates metadata with entities in the entity hierarchy. This metadata can be 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.associate_entity_metadata_request import AssociateEntityMetadataRequest
-from cohesity_sdk.models.associate_entity_metadata_result import AssociateEntityMetadataResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.associate_entity_metadata_request import AssociateEntityMetadataRequest
+from cohesity_sdk.cluster.models.associate_entity_metadata_result import AssociateEntityMetadataResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -73,10 +73,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
-    body = cohesity_sdk.AssociateEntityMetadataRequest() # AssociateEntityMetadataRequest | Specifies the parameters to associate metadata with entities in the entity hierarchy.
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
+    body = cohesity_sdk.cluster.AssociateEntityMetadataRequest() # AssociateEntityMetadataRequest | Specifies the parameters to associate metadata with entities in the entity hierarchy.
 
     try:
         # Associate Metadata with Entity
@@ -131,15 +131,15 @@ Fetch the contents (files & folders) of the specified path inside the specified 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.file_folder_info import FileFolderInfo
-from cohesity_sdk.models.object_browse_request import ObjectBrowseRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.file_folder_info import FileFolderInfo
+from cohesity_sdk.cluster.models.object_browse_request import ObjectBrowseRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -161,11 +161,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
-    body = cohesity_sdk.ObjectBrowseRequest() # ObjectBrowseRequest | Specifies the parameters to fetch contents of an object.
+    body = cohesity_sdk.cluster.ObjectBrowseRequest() # ObjectBrowseRequest | Specifies the parameters to fetch contents of an object.
 
     try:
         # Fetch the contents (files & folders) for the specified object.
@@ -221,15 +221,15 @@ Cancel object runs for object based protection. This does not apply to Group bas
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.cancel_object_runs_request import CancelObjectRunsRequest
-from cohesity_sdk.models.cancel_object_runs_results import CancelObjectRunsResults
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.cancel_object_runs_request import CancelObjectRunsRequest
+from cohesity_sdk.cluster.models.cancel_object_runs_results import CancelObjectRunsResults
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -251,10 +251,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
-    body = cohesity_sdk.CancelObjectRunsRequest() # CancelObjectRunsRequest | Specifies the parameters to cancel object runs.
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
+    body = cohesity_sdk.cluster.CancelObjectRunsRequest() # CancelObjectRunsRequest | Specifies the parameters to cancel object runs.
 
     try:
         # Cancel object runs.
@@ -309,15 +309,15 @@ Construct meta info from object snapshot and some additional params.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.construct_meta_info_request import ConstructMetaInfoRequest
-from cohesity_sdk.models.construct_meta_info_result import ConstructMetaInfoResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.construct_meta_info_request import ConstructMetaInfoRequest
+from cohesity_sdk.cluster.models.construct_meta_info_result import ConstructMetaInfoResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -339,11 +339,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     snapshot_id = 'snapshot_id_example' # str | Specifies the snapshot id.
-    body = cohesity_sdk.ConstructMetaInfoRequest() # ConstructMetaInfoRequest | Specifies the parameters to construct meta info for desired workflow.
+    body = cohesity_sdk.cluster.ConstructMetaInfoRequest() # ConstructMetaInfoRequest | Specifies the parameters to construct meta info for desired workflow.
 
     try:
         # Construct meta info for any workflow from object snapshot and some other information.
@@ -399,15 +399,15 @@ List all the filtered objects using given regular expressions and wildcard suppo
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.filter_objects_request import FilterObjectsRequest
-from cohesity_sdk.models.filtered_objects_response_body import FilteredObjectsResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.filter_objects_request import FilterObjectsRequest
+from cohesity_sdk.cluster.models.filtered_objects_response_body import FilteredObjectsResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -429,10 +429,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
-    body = cohesity_sdk.FilterObjectsRequest() # FilterObjectsRequest | Specifies the parameters to filter objects.
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
+    body = cohesity_sdk.cluster.FilterObjectsRequest() # FilterObjectsRequest | Specifies the parameters to filter objects.
 
     try:
         # List all the filtered objects.
@@ -487,14 +487,14 @@ Get snapshots of indexed object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -516,9 +516,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     object_id = 56 # int | Specifies the object id.
     indexed_object_name = 'indexed_object_name_example' # str | Specifies the indexed object name.
     protection_group_id = 'protection_group_id_example' # str | Specifies the protection group id. (optional)
@@ -590,14 +590,14 @@ Gets entity metadata for entities. This can be used as a input for the PUT API.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_entity_metadata_result import GetEntityMetadataResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_entity_metadata_result import GetEntityMetadataResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -619,9 +619,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     source_id = 56 # int | Specifies the source ID for which objects should be returned.
     entity_ids = [56] # List[int] | EntityIds contains ids of the entities for which objects are to be returned. (optional)
 
@@ -679,14 +679,14 @@ Get snapshots of indexed object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_indexed_object_snapshots_response_body import GetIndexedObjectSnapshotsResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -708,9 +708,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     protection_group_id = 'protection_group_id_example' # str | Specifies the protection group id.
     object_id = 56 # int | Specifies the object id.
     indexed_object_name = 'indexed_object_name_example' # str | Specifies the indexed object name.
@@ -782,14 +782,14 @@ Get a run for an object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_protection_run_summary import ObjectProtectionRunSummary
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_protection_run_summary import ObjectProtectionRunSummary
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -811,9 +811,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies a unique id of the object.
     run_id = 'run_id_example' # str | Specifies the id of the run.
 
@@ -871,14 +871,14 @@ Get the runs for a particular object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_object_runs_response_body import GetObjectRunsResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_object_runs_response_body import GetObjectRunsResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -900,9 +900,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies a unique id of the object.
     run_id = 'run_id_example' # str | Specifies a unique id of the run. (optional)
     start_time_usecs = 56 # int | Filter by a start time when the run starts. Specify the start time as a Unix epoch Timestamp (in microseconds). (optional)
@@ -984,14 +984,14 @@ Get details of object snapshot.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_snapshot import ObjectSnapshot
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_snapshot import ObjectSnapshot
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1013,9 +1013,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     snapshot_id = 'snapshot_id_example' # str | Specifies the snapshot id.
 
     try:
@@ -1071,14 +1071,14 @@ Get volume info of object snapshot.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.common_object_snapshot_volume_params import CommonObjectSnapshotVolumeParams
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.common_object_snapshot_volume_params import CommonObjectSnapshotVolumeParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1100,9 +1100,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     snapshot_id = 'snapshot_id_example' # str | Specifies the snapshot id.
     include_supported_only = True # bool | Specifies whether to only return supported volumes. (optional)
     point_in_time_usecs = 3.4 # float | Specifies the point-in-time timestamp (in usecs from epoch) between snapshots for which the volume info is to be returned. (optional)
@@ -1164,14 +1164,14 @@ List the snapshots for a given object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_object_snapshots_response_body import GetObjectSnapshotsResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1193,9 +1193,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
     from_time_usecs = 56 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken after this value. (optional)
     to_time_usecs = 56 # int | Specifies the timestamp in Unix time epoch in microseconds to filter Object's snapshots which were taken before this value. (optional)
@@ -1271,14 +1271,14 @@ Get stats for a given object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_stats import ObjectStats
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_stats import ObjectStats
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1300,9 +1300,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
     region_ids = ['region_ids_example'] # List[str] | Filter by a list of region ids. (optional)
 
@@ -1360,14 +1360,14 @@ Get the objects tree hierarchy for for an Object. If the object does not have a 
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_with_children import ObjectWithChildren
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_with_children import ObjectWithChildren
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1389,9 +1389,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
 
     try:
@@ -1447,14 +1447,14 @@ Get last protection run of objects.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.objects_last_run import ObjectsLastRun
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.objects_last_run import ObjectsLastRun
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1476,9 +1476,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     ids = [56] # List[int] | Specifies a list of object ids, only last runs for these objects will be returned. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
     include_tenants = True # bool | If true, the response will include Objects which belongs to all tenants which the current user has permission to see. (optional)
@@ -1542,14 +1542,14 @@ Returns the ranges in various types like time, SCN etc. within which the specifi
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_pit_ranges_protected_object_response_body import GetPITRangesProtectedObjectResponseBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1571,9 +1571,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the ID of the protected object.
     from_time_usecs = 56 # int | If specified, return the restore ranges that lie after this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
     to_time_usecs = 56 # int | If specified, return the restore ranges that lie before this timestamp. This parameter is specified as the timestamp in Unix time epoch in microseconds. (optional)
@@ -1635,14 +1635,14 @@ Get Object configurations for given object id.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.protected_object_info import ProtectedObjectInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.protected_object_info import ProtectedObjectInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1664,9 +1664,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     object_action_key = ['object_action_key_example'] # List[str] | Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id and this vec's size needs to be same as 'id'. (optional)
@@ -1742,14 +1742,14 @@ Get Objects Configurations.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.get_protected_objects_response import GetProtectedObjectsResponse
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.get_protected_objects_response import GetProtectedObjectsResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1771,9 +1771,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     request_initiator_type = 'request_initiator_type_example' # str | Specifies the type of request from UI, which is used for services like magneto to determine the priority of requests. (optional)
     ids = [56] # List[int] | Filter by a list of Object ids. (optional)
     object_action_keys = ['object_action_keys_example'] # List[str] | Filter by ObjectActionKey, uniquely represent protection of an object. An object can be protected in multiple ways but atmost once for a given combination of ObjectActionKey, when specified Only objects of given action_key are returned for corresponding object id. The vec's size needs to be of either length one or same as the length of 'ids'. If the length of objectActionKey is one, it will be repeated as many number of times equal to the length of objectIds, as mandated by backend validation. If the length of objectActionKey and object ids are same then it will be passed as it is. (optional)
@@ -1859,15 +1859,15 @@ Get diff (files added/deleted) between two snapshots of a given object.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.snapshot_diff_params import SnapshotDiffParams
-from cohesity_sdk.models.snapshot_diff_result import SnapshotDiffResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.snapshot_diff_params import SnapshotDiffParams
+from cohesity_sdk.cluster.models.snapshot_diff_result import SnapshotDiffResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1889,11 +1889,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | 
-    body = cohesity_sdk.SnapshotDiffParams() # SnapshotDiffParams | 
+    body = cohesity_sdk.cluster.SnapshotDiffParams() # SnapshotDiffParams | 
 
     try:
         # Get diff between two snapshots of a given object.
@@ -1949,14 +1949,14 @@ List objects which can be used for data protection.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.source_hierarchy_object_summaries import SourceHierarchyObjectSummaries
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -1978,9 +1978,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     source_id = 56 # int | Specifies the source ID for which objects should be returned.
     parent_id = 56 # int | Specifies the parent ID under which objects should be returned. (optional)
     tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
@@ -2100,14 +2100,14 @@ Specifies the request to perform various actions on multiple objects.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.objects_action_request import ObjectsActionRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.objects_action_request import ObjectsActionRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2129,10 +2129,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
-    body = cohesity_sdk.ObjectsActionRequest() # ObjectsActionRequest | Specifies the parameters to execute actions on given list of objects.
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
+    body = cohesity_sdk.cluster.ObjectsActionRequest() # ObjectsActionRequest | Specifies the parameters to execute actions on given list of objects.
 
     try:
         # Actions on Objects
@@ -2185,14 +2185,14 @@ Perform an action on an object. Depending on the object environment type, differ
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_action_request import ObjectActionRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_action_request import ObjectActionRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2214,11 +2214,11 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
-    body = cohesity_sdk.ObjectActionRequest() # ObjectActionRequest | Specifies the parameters to perform an action on an object.
+    body = cohesity_sdk.cluster.ObjectActionRequest() # ObjectActionRequest | Specifies the parameters to perform an action on an object.
 
     try:
         # Perform an action on an object.
@@ -2272,15 +2272,15 @@ Update an object snapshot.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.object_snapshot import ObjectSnapshot
-from cohesity_sdk.models.update_object_snapshot_request import UpdateObjectSnapshotRequest
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.object_snapshot import ObjectSnapshot
+from cohesity_sdk.cluster.models.update_object_snapshot_request import UpdateObjectSnapshotRequest
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -2302,12 +2302,12 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.ObjectApi(api_client)
+    api_instance = cohesity_sdk.cluster.ObjectApi(api_client)
     id = 56 # int | Specifies the id of the Object.
     snapshot_id = 'snapshot_id_example' # str | Specifies the id of the snapshot.<br> Note: 1. If the snapshotid of one of the apps is specified, it applies for all the databases in the Protection Run.<br> 2. In case of volume based jobs, please specify the snapshotid of the source not the database. if source snapshot is specified, applied to source snapshot. if database snapshotid is specified in case of volume based jobs, then it is applicable for host's snapshot.
-    body = cohesity_sdk.UpdateObjectSnapshotRequest() # UpdateObjectSnapshotRequest | Specifies the parameters update an object snapshot.
+    body = cohesity_sdk.cluster.UpdateObjectSnapshotRequest() # UpdateObjectSnapshotRequest | Specifies the parameters update an object snapshot.
 
     try:
         # Update an object snapshot.

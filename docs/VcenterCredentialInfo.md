@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.vcenter_credential_info import VcenterCredentialInfo
+from cohesity_sdk.cluster.models.vcenter_credential_info import VcenterCredentialInfo
 
 # TODO update the JSON string below
 json = "{}"

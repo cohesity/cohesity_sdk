@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.sfdc_source_registration_params import SfdcSourceRegistrationParams
+from cohesity_sdk.cluster.models.sfdc_source_registration_params import SfdcSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

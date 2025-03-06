@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.hyper_v_object_protection_response_params import HyperVObjectProtectionResponseParams
+from cohesity_sdk.cluster.models.hyper_v_object_protection_response_params import HyperVObjectProtectionResponseParams
 
 # TODO update the JSON string below
 json = "{}"

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.uda_source_registration_params import UdaSourceRegistrationParams
+from cohesity_sdk.cluster.models.uda_source_registration_params import UdaSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

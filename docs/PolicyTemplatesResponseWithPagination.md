@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
+from cohesity_sdk.cluster.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
 
 # TODO update the JSON string below
 json = "{}"

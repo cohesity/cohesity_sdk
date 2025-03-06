@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.cluster_create_cloud_params import ClusterCreateCloudParams
+from cohesity_sdk.cluster.models.cluster_create_cloud_params import ClusterCreateCloudParams
 
 # TODO update the JSON string below
 json = "{}"

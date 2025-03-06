@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.custom_tag_params import CustomTagParams
+from cohesity_sdk.cluster.models.custom_tag_params import CustomTagParams
 
 # TODO update the JSON string below
 json = "{}"

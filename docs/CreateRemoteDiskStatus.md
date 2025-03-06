@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_remote_disk_status import CreateRemoteDiskStatus
+from cohesity_sdk.cluster.models.create_remote_disk_status import CreateRemoteDiskStatus
 
 # TODO update the JSON string below
 json = "{}"

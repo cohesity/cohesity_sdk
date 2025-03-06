@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_aws_aurora_params import RecoverAwsAuroraParams
+from cohesity_sdk.cluster.models.recover_aws_aurora_params import RecoverAwsAuroraParams
 
 # TODO update the JSON string below
 json = "{}"

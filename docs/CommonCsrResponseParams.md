@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_csr_response_params import CommonCsrResponseParams
+from cohesity_sdk.cluster.models.common_csr_response_params import CommonCsrResponseParams
 
 # TODO update the JSON string below
 json = "{}"

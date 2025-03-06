@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.object_protection_run_summary import ObjectProtectionRunSummary
+from cohesity_sdk.cluster.models.object_protection_run_summary import ObjectProtectionRunSummary
 
 # TODO update the JSON string below
 json = "{}"

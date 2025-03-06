@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.icap_uri_connection_status import IcapUriConnectionStatus
+from cohesity_sdk.cluster.models.icap_uri_connection_status import IcapUriConnectionStatus
 
 # TODO update the JSON string below
 json = "{}"

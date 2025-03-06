@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.ad_fixed_type_params import AdFixedTypeParams
+from cohesity_sdk.cluster.models.ad_fixed_type_params import AdFixedTypeParams
 
 # TODO update the JSON string below
 json = "{}"

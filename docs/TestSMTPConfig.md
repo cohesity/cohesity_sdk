@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.test_smtp_config import TestSMTPConfig
+from cohesity_sdk.cluster.models.test_smtp_config import TestSMTPConfig
 
 # TODO update the JSON string below
 json = "{}"

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.create_user_parameters import CreateUserParameters
+from cohesity_sdk.cluster.models.create_user_parameters import CreateUserParameters
 
 # TODO update the JSON string below
 json = "{}"

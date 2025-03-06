@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
+from cohesity_sdk.cluster.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
 
 # TODO update the JSON string below
 json = "{}"

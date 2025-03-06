@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.self_service_snapshot_config import SelfServiceSnapshotConfig
+from cohesity_sdk.cluster.models.self_service_snapshot_config import SelfServiceSnapshotConfig
 
 # TODO update the JSON string below
 json = "{}"

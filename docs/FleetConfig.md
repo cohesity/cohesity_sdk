@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.fleet_config import FleetConfig
+from cohesity_sdk.cluster.models.fleet_config import FleetConfig
 
 # TODO update the JSON string below
 json = "{}"

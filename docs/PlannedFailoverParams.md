@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.planned_failover_params import PlannedFailoverParams
+from cohesity_sdk.cluster.models.planned_failover_params import PlannedFailoverParams
 
 # TODO update the JSON string below
 json = "{}"

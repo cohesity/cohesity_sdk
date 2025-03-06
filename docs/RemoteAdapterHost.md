@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.remote_adapter_host import RemoteAdapterHost
+from cohesity_sdk.cluster.models.remote_adapter_host import RemoteAdapterHost
 
 # TODO update the JSON string below
 json = "{}"

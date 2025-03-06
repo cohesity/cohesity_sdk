@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.scvmm_registration_params import ScvmmRegistrationParams
+from cohesity_sdk.cluster.models.scvmm_registration_params import ScvmmRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

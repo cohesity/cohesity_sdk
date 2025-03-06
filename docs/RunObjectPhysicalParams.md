@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.run_object_physical_params import RunObjectPhysicalParams
+from cohesity_sdk.cluster.models.run_object_physical_params import RunObjectPhysicalParams
 
 # TODO update the JSON string below
 json = "{}"

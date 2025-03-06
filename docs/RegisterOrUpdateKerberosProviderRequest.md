@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.register_or_update_kerberos_provider_request import RegisterOrUpdateKerberosProviderRequest
+from cohesity_sdk.cluster.models.register_or_update_kerberos_provider_request import RegisterOrUpdateKerberosProviderRequest
 
 # TODO update the JSON string below
 json = "{}"

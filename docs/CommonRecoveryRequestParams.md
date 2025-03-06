@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.common_recovery_request_params import CommonRecoveryRequestParams
+from cohesity_sdk.cluster.models.common_recovery_request_params import CommonRecoveryRequestParams
 
 # TODO update the JSON string below
 json = "{}"

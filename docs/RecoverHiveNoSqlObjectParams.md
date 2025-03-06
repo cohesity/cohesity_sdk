@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.recover_hive_no_sql_object_params import RecoverHiveNoSqlObjectParams
+from cohesity_sdk.cluster.models.recover_hive_no_sql_object_params import RecoverHiveNoSqlObjectParams
 
 # TODO update the JSON string below
 json = "{}"

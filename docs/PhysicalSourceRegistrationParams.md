@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cohesity_sdk.models.physical_source_registration_params import PhysicalSourceRegistrationParams
+from cohesity_sdk.cluster.models.physical_source_registration_params import PhysicalSourceRegistrationParams
 
 # TODO update the JSON string below
 json = "{}"

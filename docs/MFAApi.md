@@ -1,4 +1,4 @@
-# cohesity_sdk.MFAApi
+# cohesity_sdk.cluster.MFAApi
 
 All URIs are relative to */v2*
 
@@ -28,14 +28,14 @@ Creates a new One Time Password for the user email. This is used for API login.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_email_otp_request_body import CreateEmailOtpRequestBody
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_email_otp_request_body import CreateEmailOtpRequestBody
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -57,10 +57,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
-    body = cohesity_sdk.CreateEmailOtpRequestBody() # CreateEmailOtpRequestBody | Specifies the parameters to send email OTP. (optional)
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
+    body = cohesity_sdk.cluster.CreateEmailOtpRequestBody() # CreateEmailOtpRequestBody | Specifies the parameters to send email OTP. (optional)
 
     try:
         # Creates a new OTP to be sent to the user email.
@@ -113,15 +113,15 @@ Create a TOTP key.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.create_totp_key_request_body import CreateTotpKeyRequestBody
-from cohesity_sdk.models.totp_key_info import TotpKeyInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.create_totp_key_request_body import CreateTotpKeyRequestBody
+from cohesity_sdk.cluster.models.totp_key_info import TotpKeyInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -143,10 +143,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
-    body = cohesity_sdk.CreateTotpKeyRequestBody() # CreateTotpKeyRequestBody | Specifies the key id for creating the TOTP key.
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
+    body = cohesity_sdk.cluster.CreateTotpKeyRequestBody() # CreateTotpKeyRequestBody | Specifies the key id for creating the TOTP key.
 
     try:
         # Create a new TOTP secret URI and store the secret key.
@@ -201,14 +201,14 @@ Returns the current MFA configuration for the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.mfa_config_info import MfaConfigInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.mfa_config_info import MfaConfigInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -230,9 +230,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
 
     try:
         # Returns the current MFA configuration.
@@ -284,14 +284,14 @@ Returns the current MFA configuration for support user.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.support_mfa_config_info import SupportMfaConfigInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.support_mfa_config_info import SupportMfaConfigInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -313,9 +313,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
 
     try:
         # Returns the current MFA configuration.
@@ -367,13 +367,13 @@ Creates a new One Time Password for the user email
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -395,9 +395,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
 
     try:
         # Creates a new OTP to be sent to the user email.
@@ -447,13 +447,13 @@ Creates a new one time password for linux support user email
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -475,9 +475,9 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
 
     try:
         # Creates a new OTP to be sent to the linux support user email.
@@ -527,14 +527,14 @@ Stores the updated MFA configuration for the cluster.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.mfa_config_info import MfaConfigInfo
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.mfa_config_info import MfaConfigInfo
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -556,10 +556,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
-    body = cohesity_sdk.MfaConfigInfo() # MfaConfigInfo | The update request for the MFA Settings
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
+    body = cohesity_sdk.cluster.MfaConfigInfo() # MfaConfigInfo | The update request for the MFA Settings
 
     try:
         # Stores the updated MFA configuration.
@@ -614,15 +614,15 @@ Update MFA configuration for support user.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.support_mfa_config_info import SupportMfaConfigInfo
-from cohesity_sdk.models.update_mfa_result import UpdateMFAResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.support_mfa_config_info import SupportMfaConfigInfo
+from cohesity_sdk.cluster.models.update_mfa_result import UpdateMFAResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -644,10 +644,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
-    body = cohesity_sdk.SupportMfaConfigInfo() # SupportMfaConfigInfo | The update request for the MFA Settings
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
+    body = cohesity_sdk.cluster.SupportMfaConfigInfo() # SupportMfaConfigInfo | The update request for the MFA Settings
 
     try:
         # Stores the updated MFA configuration.
@@ -702,15 +702,15 @@ Verify totp code for support user.
 * Api Key Authentication (Bearer):
 
 ```python
-import cohesity_sdk
-from cohesity_sdk.models.verify_totp_request import VerifyTotpRequest
-from cohesity_sdk.models.verify_totp_result import VerifyTotpResult
-from cohesity_sdk.rest import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.verify_totp_request import VerifyTotpRequest
+from cohesity_sdk.cluster.models.verify_totp_result import VerifyTotpResult
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to /v2
 # See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.Configuration(
+configuration = cohesity_sdk.cluster.Configuration(
     host = "/v2"
 )
 
@@ -732,10 +732,10 @@ configuration.api_key['Bearer'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['Bearer'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with cohesity_sdk.ApiClient(configuration) as api_client:
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cohesity_sdk.MFAApi(api_client)
-    body = cohesity_sdk.VerifyTotpRequest() # VerifyTotpRequest | Totp code to be verified.
+    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
+    body = cohesity_sdk.cluster.VerifyTotpRequest() # VerifyTotpRequest | Totp code to be verified.
 
     try:
         # Verify the totp code for support user.
