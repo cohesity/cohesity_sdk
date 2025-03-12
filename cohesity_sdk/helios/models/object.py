@@ -39,7 +39,7 @@ from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObject
 from cohesity_sdk.helios.models.uda_object_params import UdaObjectParams
 from cohesity_sdk.helios.models.view_object_params import ViewObjectParams
 from cohesity_sdk.helios.models.vmware_object_entity_params import VmwareObjectEntityParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Object(BaseModel):

@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.aag_group import AAGGroup
 from cohesity_sdk.cluster.models.error import Error
 from cohesity_sdk.cluster.models.fci_cluster import FCICluster
 from cohesity_sdk.cluster.models.sql_server import SQLServer
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MssqlConnectionResponseParams(BaseModel):

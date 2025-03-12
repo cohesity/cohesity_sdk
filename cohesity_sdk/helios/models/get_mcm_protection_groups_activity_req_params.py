@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.protection_group_archival_run_filter_params import ProtectionGroupArchivalRunFilterParams
 from cohesity_sdk.helios.models.protection_group_backup_run_filter_params import ProtectionGroupBackupRunFilterParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GetMcmProtectionGroupsActivityReqParams(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.nas_full_throttling_config import NasFullThrottlingConfig
 from cohesity_sdk.cluster.models.nas_incremental_throttling_config import NasIncrementalThrottlingConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class NasThrottlingConfig(BaseModel):

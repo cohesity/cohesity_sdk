@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_cloud_spin_params import AwsCloudSpinParams
 from cohesity_sdk.cluster.models.azure_cloud_spin_params import AzureCloudSpinParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CloudSpinTarget(BaseModel):

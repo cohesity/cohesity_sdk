@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_sfdc_object_params import RecoverSfdcObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverSalesforceParams(BaseModel):

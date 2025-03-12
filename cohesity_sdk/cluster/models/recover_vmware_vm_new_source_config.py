@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_vmware_vm_esxi_source_config import RecoverVmwareVmEsxiSourceConfig
 from cohesity_sdk.cluster.models.recover_vmware_vm_v_center_source_config import RecoverVmwareVmVCenterSourceConfig
 from cohesity_sdk.cluster.models.recover_vmware_vm_vcd_source_config import RecoverVmwareVmVCDSourceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareVmNewSourceConfig(BaseModel):

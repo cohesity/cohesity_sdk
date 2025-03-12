@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.kubernetes_filter_params import KubernetesFilterParams
 from cohesity_sdk.cluster.models.kubernetes_protection_group_object_params import KubernetesProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.vlan_params import VlanParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class KubernetesProtectionGroupParams(BaseModel):

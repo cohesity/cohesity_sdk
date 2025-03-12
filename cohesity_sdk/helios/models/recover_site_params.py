@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_site_param import ObjectSiteParam
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.target_site_param import TargetSiteParam
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverSiteParams(BaseModel):

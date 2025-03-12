@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
 from cohesity_sdk.helios.models.restore_object_customization import RestoreObjectCustomization
 from cohesity_sdk.helios.models.vmware_target_params_for_recover_vm import VmwareTargetParamsForRecoverVM
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareVmParams(BaseModel):

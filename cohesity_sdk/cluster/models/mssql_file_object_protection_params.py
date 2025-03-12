@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.advanced_settings import AdvancedSettings
 from cohesity_sdk.cluster.models.filter import Filter
 from cohesity_sdk.cluster.models.mssql_file_object_protection import MssqlFileObjectProtection
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MssqlFileObjectProtectionParams(BaseModel):

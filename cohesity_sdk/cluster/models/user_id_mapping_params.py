@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.ad_ldap_provider_type_params import AdLdapProvi
 from cohesity_sdk.cluster.models.ad_nis_provider_type_params import AdNisProviderTypeParams
 from cohesity_sdk.cluster.models.ad_rfc2307_type_params import AdRfc2307TypeParams
 from cohesity_sdk.cluster.models.ad_sfu30_type_params import AdSfu30TypeParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UserIdMappingParams(BaseModel):

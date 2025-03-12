@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.continuous_snapshot_params import ContinuousSnapshotParams
 from cohesity_sdk.cluster.models.snapshot_label import SnapshotLabel
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class NetappObjectProtectionParams(BaseModel):

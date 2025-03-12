@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.nfs_root_permissions import NfsRootPermissions
 from cohesity_sdk.helios.models.nfs_squash import NfsSquash
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class NfsConfig(BaseModel):

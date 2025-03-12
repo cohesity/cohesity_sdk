@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.time_series_stats_for_metric import TimeSeriesStatsForMetric
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class TimeSeriesStats(BaseModel):

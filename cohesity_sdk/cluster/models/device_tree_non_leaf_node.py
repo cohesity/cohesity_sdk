@@ -19,9 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
+from cohesity_sdk.cluster.models.device_tree_node import DeviceTreeNode
 class DeviceTreeNonLeafNode(BaseModel):
     """
     Specifies the parameters of a non leaf node in device tree.
@@ -127,7 +128,6 @@ class DeviceTreeNonLeafNode(BaseModel):
         })
         return _obj
 
-from cohesity_sdk.cluster.models.device_tree_node import DeviceTreeNode
+
 # TODO: Rewrite to not use raise_errors
 DeviceTreeNonLeafNode.model_rebuild(raise_errors=False)
-

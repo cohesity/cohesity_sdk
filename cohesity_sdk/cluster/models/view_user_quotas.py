@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.quota_policy import QuotaPolicy
 from cohesity_sdk.cluster.models.user_quota import UserQuota
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ViewUserQuotas(BaseModel):

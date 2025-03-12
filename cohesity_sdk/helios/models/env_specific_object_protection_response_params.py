@@ -35,7 +35,7 @@ from cohesity_sdk.helios.models.physical_object_protection_params import Physica
 from cohesity_sdk.helios.models.sfdc_object_protection_params import SfdcObjectProtectionParams
 from cohesity_sdk.helios.models.uda_object_protection_params import UdaObjectProtectionParams
 from cohesity_sdk.helios.models.vmware_object_protection_response_params import VmwareObjectProtectionResponseParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class EnvSpecificObjectProtectionResponseParams(BaseModel):

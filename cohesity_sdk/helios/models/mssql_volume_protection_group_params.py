@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.mssql_volume_protection_group_host_params import MSSQLVolumeProtectionGroupHostParams
 from cohesity_sdk.helios.models.mssql_volume_protection_group_object_params import MSSQLVolumeProtectionGroupObjectParams
 from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MSSQLVolumeProtectionGroupParams(BaseModel):

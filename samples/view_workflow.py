@@ -19,6 +19,8 @@ v2_client = ClusterClient(
     "x.x.x.x", username="admin", password="admin", domain="LOCAL"
 )
 
+policy_id = ""
+
 # Fetch list of views available in the cluster.
 objects = list()
 for view in v2_client.view.get_views().views:

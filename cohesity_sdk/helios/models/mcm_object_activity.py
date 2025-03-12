@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.mcm_object_archival_run_activity_params import M
 from cohesity_sdk.helios.models.mcm_object_backup_run_activity_params import McmObjectBackupRunActivityParams
 from cohesity_sdk.helios.models.mcm_object_recover_activity_params import McmObjectRecoverActivityParams
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class McmObjectActivity(BaseModel):

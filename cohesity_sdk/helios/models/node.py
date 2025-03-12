@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.node_hardware_info import NodeHardwareInfo
 from cohesity_sdk.helios.models.node_stats import NodeStats
 from cohesity_sdk.helios.models.node_system_disk_info import NodeSystemDiskInfo
 from cohesity_sdk.helios.models.pre_check_validation import PreCheckValidation
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Node(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_frequency_schedule import HeliosFrequencySchedule
 from cohesity_sdk.helios.models.helios_month_schedule import HeliosMonthSchedule
 from cohesity_sdk.helios.models.helios_week_schedule import HeliosWeekSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosFullSchedule(BaseModel):

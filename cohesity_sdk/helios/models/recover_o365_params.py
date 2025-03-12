@@ -28,7 +28,7 @@ from cohesity_sdk.helios.models.recover_ms_team_params import RecoverMsTeamParam
 from cohesity_sdk.helios.models.recover_one_drive_params import RecoverOneDriveParams
 from cohesity_sdk.helios.models.recover_public_folders_params import RecoverPublicFoldersParams
 from cohesity_sdk.helios.models.recover_site_params import RecoverSiteParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverO365Params(BaseModel):

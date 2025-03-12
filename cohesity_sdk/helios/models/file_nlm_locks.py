@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.file_id import FileId
 from cohesity_sdk.helios.models.nlm_lock import NlmLock
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class FileNlmLocks(BaseModel):

@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.full_schedule_and_retention import FullSchedule
 from cohesity_sdk.cluster.models.incremental_backup_policy import IncrementalBackupPolicy
 from cohesity_sdk.cluster.models.primary_backup_target import PrimaryBackupTarget
 from cohesity_sdk.cluster.models.retention import Retention
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RegularBackupPolicy(BaseModel):

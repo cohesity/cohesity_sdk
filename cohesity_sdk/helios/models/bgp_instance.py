@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.bgp_peer import BgpPeer
 from cohesity_sdk.helios.models.bgp_timers import BgpTimers
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class BgpInstance(BaseModel):

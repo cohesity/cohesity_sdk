@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.recover_sql_app_params import RecoverSqlAppParams
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverSqlParams(BaseModel):

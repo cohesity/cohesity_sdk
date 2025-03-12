@@ -45,7 +45,7 @@ from cohesity_sdk.helios.models.view_protection import ViewProtection
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
 from cohesity_sdk.helios.models.view_share_permissions import ViewSharePermissions
 from cohesity_sdk.helios.models.view_stats import ViewStats
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class View(BaseModel):

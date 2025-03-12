@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.protection_runs_stats_list import ProtectionRunsStatsList
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GetProtectionRunsStatusResponseBody(BaseModel):

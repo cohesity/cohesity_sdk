@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_recover_s3_new_target_config import AwsRecoverS3NewTargetConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverS3(BaseModel):

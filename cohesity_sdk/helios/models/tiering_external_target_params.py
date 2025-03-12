@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.tiering_aws_external_target_params import Tierin
 from cohesity_sdk.helios.models.tiering_azure_external_target_params import TieringAzureExternalTargetParams
 from cohesity_sdk.helios.models.tiering_gcp_external_target_params import TieringGcpExternalTargetParams
 from cohesity_sdk.helios.models.tiering_oracle_external_target_params import TieringOracleExternalTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class TieringExternalTargetParams(BaseModel):

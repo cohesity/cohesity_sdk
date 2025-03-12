@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.log_retention import LogRetention
 from cohesity_sdk.cluster.models.onprem_deploy_params import OnpremDeployParams
 from cohesity_sdk.cluster.models.retention import Retention
 from cohesity_sdk.cluster.models.target_schedule import TargetSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class OnpremDeployConfig(BaseModel):

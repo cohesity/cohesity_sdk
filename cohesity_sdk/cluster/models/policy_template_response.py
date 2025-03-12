@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.cascaded_target_configuration import CascadedTa
 from cohesity_sdk.cluster.models.extended_retention_policy import ExtendedRetentionPolicy
 from cohesity_sdk.cluster.models.retry_options import RetryOptions
 from cohesity_sdk.cluster.models.targets_configuration import TargetsConfiguration
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PolicyTemplateResponse(BaseModel):

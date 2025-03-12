@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.uda_protection_group_object_params import UdaProtectionGroupObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UdaProtectionGroupParams(BaseModel):

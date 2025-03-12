@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.transfer_time_of_the_day import TransferTimeOfTheDay
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class TransferTimeConfigurationParams(BaseModel):

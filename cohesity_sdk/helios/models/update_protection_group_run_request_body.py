@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.update_protection_group_run_params import UpdateProtectionGroupRunParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateProtectionGroupRunRequestBody(BaseModel):

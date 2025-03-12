@@ -34,7 +34,7 @@ from cohesity_sdk.helios.models.search_ms_teams_request_params import SearchMsTe
 from cohesity_sdk.helios.models.search_public_folder_request_params import SearchPublicFolderRequestParams
 from cohesity_sdk.helios.models.search_sfdc_records_request_params import SearchSfdcRecordsRequestParams
 from cohesity_sdk.helios.models.uda_search_params import UdaSearchParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosSearchIndexedObjectsRequest(BaseModel):

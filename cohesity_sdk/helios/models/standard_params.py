@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.iam_role_aws_credentials import IamRoleAwsCredentials
 from cohesity_sdk.helios.models.iam_user_aws_credentials import IamUserAwsCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class StandardParams(BaseModel):

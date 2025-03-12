@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.esxi_registration_params import EsxiRegistrationParams
 from cohesity_sdk.helios.models.vcd_registration_params import VcdRegistrationParams
 from cohesity_sdk.helios.models.vcenter_registration_params import VcenterRegistrationParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareSourceRegistrationParams(BaseModel):

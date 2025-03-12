@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_object_level_params import AwsObjectLevelParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsRdsSnapshotManagerObjectProtectionParams(BaseModel):

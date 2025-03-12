@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.common_download_file_and_folder_params import Co
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_generic_nas_files_params import RecoverGenericNasFilesParams
 from cohesity_sdk.helios.models.recover_generic_nas_nas_volume_params import RecoverGenericNasNasVolumeParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverGenericNasParams(BaseModel):

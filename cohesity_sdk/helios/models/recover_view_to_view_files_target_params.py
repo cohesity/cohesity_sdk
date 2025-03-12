@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.new_view_files_target_params import NewViewFilesTargetParams
 from cohesity_sdk.helios.models.original_view_files_target_params import OriginalViewFilesTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverViewToViewFilesTargetParams(BaseModel):

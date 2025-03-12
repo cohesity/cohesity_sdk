@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_native_protection_group_object_params import AwsNativeProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.ebs_volume_exclusion_params import EbsVolumeExclusionParams
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsNativeProtectionGroupParams(BaseModel):

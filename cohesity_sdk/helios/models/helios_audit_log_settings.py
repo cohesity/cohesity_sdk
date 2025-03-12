@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_audit_log_role_setting import HeliosAuditLogRoleSetting
 from cohesity_sdk.helios.models.helios_audit_log_user_setting import HeliosAuditLogUserSetting
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosAuditLogSettings(BaseModel):

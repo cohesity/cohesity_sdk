@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.frequency_schedule import FrequencySchedule
 from cohesity_sdk.helios.models.month_schedule import MonthSchedule
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
 from cohesity_sdk.helios.models.week_schedule import WeekSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTieringSchedule(BaseModel):

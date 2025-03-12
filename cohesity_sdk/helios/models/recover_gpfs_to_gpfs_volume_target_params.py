@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.original_gpfs_target_params import OriginalGpfsTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_gpfs_volume_target_params import RecoverOtherNasToGpfsVolumeTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverGpfsToGpfsVolumeTargetParams(BaseModel):

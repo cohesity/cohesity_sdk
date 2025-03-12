@@ -30,7 +30,7 @@ from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.helios.models.netapp_protection_group_object_params import NetappProtectionGroupObjectParams
 from cohesity_sdk.helios.models.snap_mirror_config import SnapMirrorConfig
 from cohesity_sdk.helios.models.snapshot_label import SnapshotLabel
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class NetappProtectionGroupParams(BaseModel):

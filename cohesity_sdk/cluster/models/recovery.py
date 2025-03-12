@@ -52,7 +52,7 @@ from cohesity_sdk.cluster.models.recover_vmware_params import RecoverVmwareParam
 from cohesity_sdk.cluster.models.retrieve_archive_task import RetrieveArchiveTask
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
 from cohesity_sdk.cluster.models.uda_params import UdaParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Recovery(BaseModel):

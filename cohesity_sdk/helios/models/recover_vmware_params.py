@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.recover_vmware_snapshot_params import RecoverVmw
 from cohesity_sdk.helios.models.recover_vmware_v_app_params import RecoverVmwareVAppParams
 from cohesity_sdk.helios.models.recover_vmware_v_app_template_params import RecoverVmwareVAppTemplateParams
 from cohesity_sdk.helios.models.recover_vmware_vm_params import RecoverVmwareVmParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareParams(BaseModel):

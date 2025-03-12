@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_kubernetes_namespace_params import RecoverKubernetesNamespaceParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverKubernetesParams(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.error import Error
 from cohesity_sdk.cluster.models.failover_object import FailoverObject
 from cohesity_sdk.cluster.models.reverse_replication_result import ReverseReplicationResult
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ReplicationBackupActivationResult(BaseModel):

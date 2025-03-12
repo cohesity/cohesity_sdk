@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.recover_cassandra_no_sql_object_params import RecoverCassandraNoSqlObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverCassandraSnapshotParams(BaseModel):

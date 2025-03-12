@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.original_generic_nas_target_params import OriginalGenericNasTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_generic_nas_volume_target_params import RecoverOtherNasToGenericNasVolumeTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverGenericNasToGenericNasVolumeTargetParams(BaseModel):

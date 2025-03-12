@@ -51,7 +51,6 @@ from cohesity_sdk.cluster.api.tenant_api import TenantApi
 from cohesity_sdk.cluster.api.user_api import UserApi
 from cohesity_sdk.cluster.api.view_api import ViewApi
 
-import re
 from urllib3.exceptions import MaxRetryError
 
 class lazy_property(object):
@@ -88,7 +87,7 @@ class ClusterClient:
         self.auth_timeout = auth_timeout
 
         self.configuration = Configuration()
-        if cluster_vip != None:
+        if cluster_vip is not None :
             self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
@@ -101,7 +100,7 @@ class ClusterClient:
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
-        if username == None and password == None and api_key == None:
+        if username is None and password is None and api_key is None :
             raise Exception('Missing authentication info to initialize a client. \
                 Please provide authentication info.')
 

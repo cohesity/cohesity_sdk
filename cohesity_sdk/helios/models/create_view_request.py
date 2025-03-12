@@ -41,7 +41,7 @@ from cohesity_sdk.helios.models.view_pinning_config import ViewPinningConfig
 from cohesity_sdk.helios.models.view_protection_config import ViewProtectionConfig
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
 from cohesity_sdk.helios.models.view_share_permissions import ViewSharePermissions
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateViewRequest(BaseModel):

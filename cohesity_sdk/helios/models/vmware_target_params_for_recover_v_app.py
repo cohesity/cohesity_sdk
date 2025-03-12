@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.helios.models.vmware_v_app_recovery_target_config import VmwareVAppRecoveryTargetConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForRecoverVApp(BaseModel):

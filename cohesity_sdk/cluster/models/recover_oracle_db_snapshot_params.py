@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.recovery_oracle_task_info import RecoveryOracleTaskInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverOracleDbSnapshotParams(BaseModel):

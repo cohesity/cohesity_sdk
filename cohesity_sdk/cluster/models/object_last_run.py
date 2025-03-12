@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.object_type_v_center_params import ObjectTypeVCenterParams
 from cohesity_sdk.cluster.models.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
 from cohesity_sdk.cluster.models.sharepoint_object_params import SharepointObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectLastRun(BaseModel):

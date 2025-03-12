@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.objects_discovery_params import ObjectsDiscoveryParams
 from cohesity_sdk.helios.models.office365_app_credentials import Office365AppCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Office365SourceRegistrationParams(BaseModel):

@@ -57,7 +57,7 @@ from cohesity_sdk.helios.models.time_of_day import TimeOfDay
 from cohesity_sdk.helios.models.uda_protection_group_params import UdaProtectionGroupParams
 from cohesity_sdk.helios.models.view_protection_group_params import ViewProtectionGroupParams
 from cohesity_sdk.helios.models.vmware_protection_group_params import VmwareProtectionGroupParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ProtectionGroup(BaseModel):

@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.remote_adapter_host import RemoteAdapterHost
 from cohesity_sdk.helios.models.remote_adapter_protection_group_replication_params import RemoteAdapterProtectionGroupReplicationParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RemoteAdapterProtectionGroupParams(BaseModel):

@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.pause_action_object_level_response import PauseA
 from cohesity_sdk.helios.models.resume_action_object_level_response import ResumeActionObjectLevelResponse
 from cohesity_sdk.helios.models.run_now_action_object_level_response import RunNowActionObjectLevelResponse
 from cohesity_sdk.helios.models.unprotect_action_object_level_response import UnprotectActionObjectLevelResponse
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ActionObjectLevelResponse(BaseModel):

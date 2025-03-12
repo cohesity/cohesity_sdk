@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.group import Group
 from cohesity_sdk.helios.models.tenant_info import TenantInfo
 from cohesity_sdk.helios.models.user import User
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PermissionInfo(BaseModel):

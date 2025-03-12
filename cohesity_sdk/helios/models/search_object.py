@@ -43,7 +43,7 @@ from cohesity_sdk.helios.models.tag_info import TagInfo
 from cohesity_sdk.helios.models.uda_object_params import UdaObjectParams
 from cohesity_sdk.helios.models.view_object_params import ViewObjectParams
 from cohesity_sdk.helios.models.vmware_object_entity_params import VmwareObjectEntityParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SearchObject(BaseModel):

@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTarg
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
 from cohesity_sdk.helios.models.recover_vmware_child_snapshot_params import RecoverVmwareChildSnapshotParams
 from cohesity_sdk.helios.models.recovery_task_info import RecoveryTaskInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareSnapshotParams(BaseModel):

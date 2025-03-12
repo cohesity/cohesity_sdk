@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_aws_rds_new_source_config import RecoverAwsRdsNewSourceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsRdsRecoveryTargetConfig(BaseModel):

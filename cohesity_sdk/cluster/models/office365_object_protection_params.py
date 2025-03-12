@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.office365_object_protection_common_params impor
 from cohesity_sdk.cluster.models.office365_sharepoint_site_object_protection_params import Office365SharepointSiteObjectProtectionParams
 from cohesity_sdk.cluster.models.office365_user_mailbox_object_protection_params import Office365UserMailboxObjectProtectionParams
 from cohesity_sdk.cluster.models.office365_user_one_drive_object_protection_params import Office365UserOneDriveObjectProtectionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Office365ObjectProtectionParams(BaseModel):

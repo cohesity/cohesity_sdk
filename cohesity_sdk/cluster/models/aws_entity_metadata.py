@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_postgres_entity_metadata import AwsPostgresEntityMetadata
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsEntityMetadata(BaseModel):

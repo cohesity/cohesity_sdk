@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.uda_source_registration_params_credentials import UdaSourceRegistrationParamsCredentials
 from cohesity_sdk.helios.models.uda_source_registration_params_view_params import UdaSourceRegistrationParamsViewParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UdaSourceRegistrationParams(BaseModel):

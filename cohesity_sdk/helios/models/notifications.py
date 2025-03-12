@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_cluster_cert_expiry_notification import McmClusterCertExpiryNotification
 from cohesity_sdk.helios.models.upgrade_notification import UpgradeNotification
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Notifications(BaseModel):

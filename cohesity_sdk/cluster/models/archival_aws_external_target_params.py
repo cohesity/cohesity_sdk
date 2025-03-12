@@ -27,7 +27,7 @@ from cohesity_sdk.cluster.models.aws_s3_intelligent_params import AwsS3Intellige
 from cohesity_sdk.cluster.models.aws_s3_one_zone_ia_params import AwsS3OneZoneIAParams
 from cohesity_sdk.cluster.models.aws_s3_standard_ia_params import AwsS3StandardIAParams
 from cohesity_sdk.cluster.models.aws_s3_standard_params import AwsS3StandardParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ArchivalAwsExternalTargetParams(BaseModel):

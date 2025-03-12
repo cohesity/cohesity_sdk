@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.simple_auth_params import SimpleAuthParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateLdapParams(BaseModel):

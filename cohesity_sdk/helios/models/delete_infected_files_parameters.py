@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.infected_file import InfectedFile
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DeleteInfectedFilesParameters(BaseModel):

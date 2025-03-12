@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.aws_vm_recovery_target_config import AwsVmRecove
 from cohesity_sdk.helios.models.fleet_config import FleetConfig
 from cohesity_sdk.helios.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 from cohesity_sdk.helios.models.simple_tags import SimpleTags
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverVm(BaseModel):

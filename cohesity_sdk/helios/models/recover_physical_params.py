@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.mount_physical_volume_params import MountPhysica
 from cohesity_sdk.helios.models.recover_physical_file_and_folder_params import RecoverPhysicalFileAndFolderParams
 from cohesity_sdk.helios.models.recover_physical_volume_params import RecoverPhysicalVolumeParams
 from cohesity_sdk.helios.models.system_recovery_params import SystemRecoveryParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverPhysicalParams(BaseModel):

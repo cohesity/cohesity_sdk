@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.cassandra_protection_run_params import Cassandr
 from cohesity_sdk.cluster.models.run_object import RunObject
 from cohesity_sdk.cluster.models.run_targets_configuration import RunTargetsConfiguration
 from cohesity_sdk.cluster.models.uda_protection_run_params import UdaProtectionRunParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateProtectionGroupRunRequest(BaseModel):

@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.recover_other_nas_to_flashblade_volume_target_pa
 from cohesity_sdk.helios.models.recover_other_nas_to_generic_nas_volume_target_params import RecoverOtherNasToGenericNasVolumeTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_gpfs_volume_target_params import RecoverOtherNasToGpfsVolumeTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_isilon_volume_target_params import RecoverOtherNasToIsilonVolumeTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverNetappNasVolumeParams(BaseModel):

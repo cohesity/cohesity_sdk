@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.log_retention import LogRetention
 from cohesity_sdk.cluster.models.remote_target_config import RemoteTargetConfig
 from cohesity_sdk.cluster.models.retention import Retention
 from cohesity_sdk.cluster.models.target_schedule import TargetSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ReplicationConfig(BaseModel):

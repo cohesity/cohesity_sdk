@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.snapshot_retention_policy import SnapshotRetentionPolicy
 from cohesity_sdk.cluster.models.snapshot_schedule_policy import SnapshotSchedulePolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ClusterSnapshotPolicy(BaseModel):

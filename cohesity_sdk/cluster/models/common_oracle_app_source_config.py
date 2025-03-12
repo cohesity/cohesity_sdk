@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.oracle_recovery_validation_info import OracleRe
 from cohesity_sdk.cluster.models.recover_oracle_granular_restore_info import RecoverOracleGranularRestoreInfo
 from cohesity_sdk.cluster.models.restore_spfile_or_pfile_info import RestoreSpfileOrPfileInfo
 from cohesity_sdk.cluster.models.shell_key_value_pair import ShellKeyValuePair
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonOracleAppSourceConfig(BaseModel):

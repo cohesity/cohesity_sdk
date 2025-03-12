@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.cluster.models.one_drive_param import OneDriveParam
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectSiteParam(BaseModel):

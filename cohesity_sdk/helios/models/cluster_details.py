@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.cluster_info import ClusterInfo
 from cohesity_sdk.helios.models.sp_cluster_info import SPClusterInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ClusterDetails(BaseModel):

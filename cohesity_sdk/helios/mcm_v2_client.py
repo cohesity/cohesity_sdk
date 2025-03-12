@@ -1,7 +1,5 @@
 from cohesity_sdk.helios.configuration import Configuration
 from cohesity_sdk.helios.api_client import ApiClient
-from cohesity_sdk.helios.exceptions import ApiException
-from cohesity_sdk.helios.models.create_access_token_request_params import CreateAccessTokenRequestParams
 
 
 from cohesity_sdk.helios.api.access_token_api import AccessTokenApi
@@ -61,8 +59,6 @@ from cohesity_sdk.helios.api.user_api import UserApi
 from cohesity_sdk.helios.api.user_preferences_api import UserPreferencesApi
 from cohesity_sdk.helios.api.view_api import ViewApi
 
-import re
-from urllib3.exceptions import MaxRetryError
 
 class lazy_property(object):
 
@@ -102,7 +98,7 @@ class McmV2Client:
         # TODO: remove this once the backend has ssl certificate setup
         self.configuration.verify_ssl = False
 
-        if cluster_vip != None:
+        if cluster_vip is not None :
             self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
@@ -110,7 +106,7 @@ class McmV2Client:
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
-        if api_key == None:
+        if api_key is None :
             raise Exception('Fail to initialize a client. Please provide authentication info.')
 
         self.__authenticate()

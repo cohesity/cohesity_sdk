@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.active_directory_admin_params import ActiveDirec
 from cohesity_sdk.helios.models.domain_controller import DomainController
 from cohesity_sdk.helios.models.machine_account import MachineAccount
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateActiveDirectoryRequest(BaseModel):

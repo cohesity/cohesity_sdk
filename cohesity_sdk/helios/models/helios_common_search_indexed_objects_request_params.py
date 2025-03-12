@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosCommonSearchIndexedObjectsRequestParams(BaseModel):

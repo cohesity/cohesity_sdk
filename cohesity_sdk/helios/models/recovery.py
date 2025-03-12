@@ -52,7 +52,7 @@ from cohesity_sdk.helios.models.recover_vmware_params import RecoverVmwareParams
 from cohesity_sdk.helios.models.retrieve_archive_task import RetrieveArchiveTask
 from cohesity_sdk.helios.models.tenant_info import TenantInfo
 from cohesity_sdk.helios.models.uda_params import UdaParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Recovery(BaseModel):

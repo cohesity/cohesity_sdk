@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.recover_mongodb_snapshot_params import RecoverMongodbSnapshotParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverMongodbParams(BaseModel):

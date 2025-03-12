@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.object_string_identifier import ObjectStringIden
 from cohesity_sdk.helios.models.on_prem_deploy_run import OnPremDeployRun
 from cohesity_sdk.helios.models.replication_run import ReplicationRun
 from cohesity_sdk.helios.models.tenant_info import TenantInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectProtectionRunSummary(BaseModel):

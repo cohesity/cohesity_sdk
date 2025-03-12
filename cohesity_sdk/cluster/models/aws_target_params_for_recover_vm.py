@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.aws_vm_recovery_target_config import AwsVmRecov
 from cohesity_sdk.cluster.models.fleet_config import FleetConfig
 from cohesity_sdk.cluster.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 from cohesity_sdk.cluster.models.simple_tags import SimpleTags
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverVm(BaseModel):

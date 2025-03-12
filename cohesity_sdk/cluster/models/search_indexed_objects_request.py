@@ -35,7 +35,7 @@ from cohesity_sdk.cluster.models.search_ms_teams_request_params import SearchMsT
 from cohesity_sdk.cluster.models.search_public_folder_request_params import SearchPublicFolderRequestParams
 from cohesity_sdk.cluster.models.search_sfdc_records_request_params import SearchSfdcRecordsRequestParams
 from cohesity_sdk.cluster.models.uda_on_prem_search_params import UdaOnPremSearchParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SearchIndexedObjectsRequest(BaseModel):

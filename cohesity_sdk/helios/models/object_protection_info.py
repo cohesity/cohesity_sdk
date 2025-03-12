@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_protection_group_summary import ObjectProtectionGroupSummary
 from cohesity_sdk.helios.models.protection_summary import ProtectionSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectProtectionInfo(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.entity_identifiers import EntityIdentifiers
 from cohesity_sdk.helios.models.version_info import VersionInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class StringEntityIds(BaseModel):

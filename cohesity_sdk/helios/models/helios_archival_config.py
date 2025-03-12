@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.helios_extended_retention_policy import HeliosEx
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
 from cohesity_sdk.helios.models.helios_target_schedule import HeliosTargetSchedule
 from cohesity_sdk.helios.models.helios_tier_level_settings import HeliosTierLevelSettings
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosArchivalConfig(BaseModel):

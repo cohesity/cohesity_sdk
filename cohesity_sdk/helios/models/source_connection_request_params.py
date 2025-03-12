@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.hadoop_connection_params import HadoopConnection
 from cohesity_sdk.helios.models.ms_sql_common_connection_params import MsSQLCommonConnectionParams
 from cohesity_sdk.helios.models.oracle_connection_params import OracleConnectionParams
 from cohesity_sdk.helios.models.vmware_connection_params import VmwareConnectionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SourceConnectionRequestParams(BaseModel):

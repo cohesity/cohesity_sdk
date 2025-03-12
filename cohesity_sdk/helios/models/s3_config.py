@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.acl_config import AclConfig
 from cohesity_sdk.helios.models.bucket_policy import BucketPolicy
 from cohesity_sdk.helios.models.s3_config_owner_info import S3ConfigOwnerInfo
 from cohesity_sdk.helios.models.s3_lifecycle_management import S3LifecycleManagement
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class S3Config(BaseModel):

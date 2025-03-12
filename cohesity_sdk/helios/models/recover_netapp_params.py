@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.common_download_file_and_folder_params import Co
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_netapp_files_params import RecoverNetappFilesParams
 from cohesity_sdk.helios.models.recover_netapp_nas_volume_params import RecoverNetappNasVolumeParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverNetappParams(BaseModel):

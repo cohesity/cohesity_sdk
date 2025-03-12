@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.compression_params import CompressionParams
 from cohesity_sdk.helios.models.deduplication_params import DeduplicationParams
 from cohesity_sdk.helios.models.erasure_coding_params import ErasureCodingParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class StoragePolicy(BaseModel):

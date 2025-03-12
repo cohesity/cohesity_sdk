@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.pre_check_validation import PreCheckValidation
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RemoveDisk(BaseModel):

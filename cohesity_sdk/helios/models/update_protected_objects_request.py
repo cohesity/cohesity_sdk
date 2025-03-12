@@ -38,7 +38,7 @@ from cohesity_sdk.helios.models.sla_rule import SlaRule
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
 from cohesity_sdk.helios.models.uda_object_protection_params import UdaObjectProtectionParams
 from cohesity_sdk.helios.models.vmware_object_protection_update_request_params import VmwareObjectProtectionUpdateRequestParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateProtectedObjectsRequest(BaseModel):

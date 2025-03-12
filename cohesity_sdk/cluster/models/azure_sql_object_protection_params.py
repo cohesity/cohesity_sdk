@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.azure_object_level_params import AzureObjectLevelParams
 from cohesity_sdk.cluster.models.azure_sql_package_options import AzureSqlPackageOptions
 from cohesity_sdk.cluster.models.azure_sql_sku_options import AzureSqlSkuOptions
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AzureSqlObjectProtectionParams(BaseModel):

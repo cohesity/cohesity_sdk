@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.hbase_source_registration_params_all_of_ssh_password_credentials import HbaseSourceRegistrationParamsAllOfSshPasswordCredentials
 from cohesity_sdk.helios.models.hbase_source_registration_params_all_of_ssh_private_key_credentials import HbaseSourceRegistrationParamsAllOfSshPrivateKeyCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HbaseSourceRegistrationParams(BaseModel):

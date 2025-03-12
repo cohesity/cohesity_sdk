@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.file_filtering_policy import FileFilteringPolic
 from cohesity_sdk.cluster.models.file_size_policy import FileSizePolicy
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.retention import Retention
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DowntieringPolicy(BaseModel):

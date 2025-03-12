@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.common_download_file_and_folder_params import C
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.cluster.models.recover_flashblade_files_params import RecoverFlashbladeFilesParams
 from cohesity_sdk.cluster.models.recover_flashblade_nas_volume_params import RecoverFlashbladeNasVolumeParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverFlashbladeParams(BaseModel):

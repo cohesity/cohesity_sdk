@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_pre_backup_script_params import CommonPreBackupScriptParams
 from cohesity_sdk.helios.models.common_pre_post_script_params import CommonPrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PrePostScriptParams(BaseModel):

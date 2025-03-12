@@ -38,7 +38,7 @@ from cohesity_sdk.cluster.models.sla_rule import SlaRule
 from cohesity_sdk.cluster.models.time_of_day import TimeOfDay
 from cohesity_sdk.cluster.models.uda_object_protection_params import UdaObjectProtectionParams
 from cohesity_sdk.cluster.models.vmware_object_protection_update_request_params import VmwareObjectProtectionUpdateRequestParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateProtectedObjectsRequest(BaseModel):

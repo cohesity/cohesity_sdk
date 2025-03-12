@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.lifecycle_rule_filter_and import LifecycleRuleFilterAnd
 from cohesity_sdk.cluster.models.lifecycle_rule_filter_tag import LifecycleRuleFilterTag
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class LifecycleRuleFilter(BaseModel):

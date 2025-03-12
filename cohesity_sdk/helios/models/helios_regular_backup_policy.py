@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.helios_full_backup_policy import HeliosFullBacku
 from cohesity_sdk.helios.models.helios_incremental_backup_policy import HeliosIncrementalBackupPolicy
 from cohesity_sdk.helios.models.helios_primary_backup_target import HeliosPrimaryBackupTarget
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosRegularBackupPolicy(BaseModel):

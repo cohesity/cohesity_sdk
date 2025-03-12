@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.backup_data_stats import BackupDataStats
 from cohesity_sdk.cluster.models.data_lock_constraints import DataLockConstraints
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class BackupRunSummary(BaseModel):

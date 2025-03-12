@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.local_user_response_params import LocalUserResponseParams
 from cohesity_sdk.helios.models.s3_account_params import S3AccountParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UserParams(BaseModel):

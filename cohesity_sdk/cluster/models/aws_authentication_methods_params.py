@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_iam_role_params import AwsIAmRoleParams
 from cohesity_sdk.cluster.models.aws_iam_user_params import AwsIAmUserParams
 from cohesity_sdk.cluster.models.aws_use_sts_params import AwsUseSTSParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsAuthenticationMethodsParams(BaseModel):

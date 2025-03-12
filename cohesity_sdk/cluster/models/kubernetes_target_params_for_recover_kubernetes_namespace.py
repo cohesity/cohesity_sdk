@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.kubernetes_namespace_recovery_target_config imp
 from cohesity_sdk.cluster.models.kubernetes_pvc_info import KubernetesPvcInfo
 from cohesity_sdk.cluster.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
 from cohesity_sdk.cluster.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class KubernetesTargetParamsForRecoverKubernetesNamespace(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.interface_group_network_params import InterfaceGroupNetworkParams
 from cohesity_sdk.helios.models.node_interface_params import NodeInterfaceParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class InterfaceGroupParams(BaseModel):

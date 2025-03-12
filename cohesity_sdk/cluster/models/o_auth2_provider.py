@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.o_auth_audience import OAuthAudience
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class OAuth2Provider(BaseModel):

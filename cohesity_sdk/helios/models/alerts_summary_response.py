@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.alert_group_summary import AlertGroupSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AlertsSummaryResponse(BaseModel):

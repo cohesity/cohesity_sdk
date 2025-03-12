@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.cancellation_timeout_params import Cancellation
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.physical_file_protection_group_object_params import PhysicalFileProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PhysicalFileProtectionGroupParams(BaseModel):

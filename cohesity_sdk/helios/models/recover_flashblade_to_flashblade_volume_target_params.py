@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.original_flashblade_target_params import OriginalFlashbladeTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_flashblade_volume_target_params import RecoverOtherNasToFlashbladeVolumeTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverFlashbladeToFlashbladeVolumeTargetParams(BaseModel):

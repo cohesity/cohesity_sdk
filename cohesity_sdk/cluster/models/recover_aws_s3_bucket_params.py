@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_s3_bucket_restore_filter_policy import AwsS3BucketRestoreFilterPolicy
 from cohesity_sdk.cluster.models.aws_target_params_for_recover_s3 import AwsTargetParamsForRecoverS3
 from cohesity_sdk.cluster.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverAwsS3BucketParams(BaseModel):

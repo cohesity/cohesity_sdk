@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.associate_entity_metadata_result_params import AssociateEntityMetadataResultParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AssociateEntityMetadataResult(BaseModel):

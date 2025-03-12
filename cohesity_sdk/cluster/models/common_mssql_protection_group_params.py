@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.advanced_settings import AdvancedSettings
 from cohesity_sdk.cluster.models.filter import Filter
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonMSSQLProtectionGroupParams(BaseModel):

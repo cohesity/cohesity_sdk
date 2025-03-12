@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.oracle_protection_group_object_params import OracleProtectionGroupObjectParams
 from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParams
 from cohesity_sdk.helios.models.vlan_params import VlanParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class OracleProtectionGroupParams(BaseModel):

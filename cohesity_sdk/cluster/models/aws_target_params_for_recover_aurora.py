@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aurora_config import AuroraConfig
 from cohesity_sdk.cluster.models.aws_aurora_recovery_target_config import AwsAuroraRecoveryTargetConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverAurora(BaseModel):

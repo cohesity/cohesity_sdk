@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.data_tiering_share_stats import DataTieringShareStats
 from cohesity_sdk.cluster.models.data_tiering_tag_object import DataTieringTagObject
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTieringObjectAnalysisInfo(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.protection_group import ProtectionGroup
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ProtectionGroups(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.global_cluster_identifier import GlobalClusterIdentifier
 from cohesity_sdk.helios.models.helios_search_indexed_objects_cluster_error import HeliosSearchIndexedObjectsClusterError
 from cohesity_sdk.helios.models.sfdc_records import SfdcRecords
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosSearchIndexedObjectsResponseBody(BaseModel):

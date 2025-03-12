@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.azure_native_protection_group_object_params imp
 from cohesity_sdk.cluster.models.cloud_backup_script_params import CloudBackupScriptParams
 from cohesity_sdk.cluster.models.data_transfer_info import DataTransferInfo
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AzureNativeProtectionGroupParams(BaseModel):

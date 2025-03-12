@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.abort_incomplete_multipart_upload_action import 
 from cohesity_sdk.helios.models.expiration_action import ExpirationAction
 from cohesity_sdk.helios.models.lifecycle_rule_filter import LifecycleRuleFilter
 from cohesity_sdk.helios.models.non_current_version_expiration_action import NonCurrentVersionExpirationAction
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class LifecycleRule(BaseModel):

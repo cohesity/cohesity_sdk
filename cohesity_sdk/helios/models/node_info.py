@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.end_point import EndPoint
 from cohesity_sdk.helios.models.service_version_info import ServiceVersionInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class NodeInfo(BaseModel):

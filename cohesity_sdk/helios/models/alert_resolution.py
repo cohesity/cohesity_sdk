@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.resolved_alert_info import ResolvedAlertInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AlertResolution(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.original_flashblade_files_target_params import OriginalFlashbladeFilesTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_flashblade_files_target_params import RecoverOtherNasToFlashbladeFilesTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverFlashbladeToFlashbladeFilesTargetParams(BaseModel):

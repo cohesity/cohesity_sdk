@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.vault_transfer_time_config import VaultTransferTimeConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VaultTransferTimeConfigs(BaseModel):

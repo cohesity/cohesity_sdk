@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.active_directory_protection_group_object_params import ActiveDirectoryProtectionGroupObjectParams
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ADProtectionGroupParams(BaseModel):

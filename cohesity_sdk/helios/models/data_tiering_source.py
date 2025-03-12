@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.generic_nas_data_tiering_params import GenericNasDataTieringParams
 from cohesity_sdk.helios.models.isilon_data_tiering_params import IsilonDataTieringParams
 from cohesity_sdk.helios.models.netapp_data_tiering_params import NetappDataTieringParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTieringSource(BaseModel):

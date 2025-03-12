@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.backup_generic_stats import BackupGenericStats
 from cohesity_sdk.cluster.models.backup_nas_stats import BackupNasStats
 from cohesity_sdk.cluster.models.object_string_identifier import ObjectStringIdentifier
 from cohesity_sdk.cluster.models.stats_task_info import StatsTaskInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectStatsInfo(BaseModel):

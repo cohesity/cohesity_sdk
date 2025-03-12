@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.construct_meta_info_sfdc_params import ConstructMetaInfoSfdcParams
 from cohesity_sdk.helios.models.construct_restore_meta_info_oracle_params import ConstructRestoreMetaInfoOracleParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ConstructMetaInfoRequest(BaseModel):

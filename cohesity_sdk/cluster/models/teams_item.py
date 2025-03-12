@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.cluster.models.tag_info import TagInfo
 from cohesity_sdk.cluster.models.teams_file_item import TeamsFileItem
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class TeamsItem(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_hyper_vvm_scvmm_source_config import RecoverHyperVVmSCVMMSourceConfig
 from cohesity_sdk.helios.models.recover_hyper_vvm_standalone_cluster_source_config import RecoverHyperVVmStandaloneClusterSourceConfig
 from cohesity_sdk.helios.models.recover_hyper_vvm_standalone_host_source_config import RecoverHyperVVmStandaloneHostSourceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverHyperVVmNewSourceConfig(BaseModel):
