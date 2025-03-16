@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.replication_params import ReplicationParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RegisterRemoteClusterParams(BaseModel):
@@ -42,7 +42,7 @@ class RegisterRemoteClusterParams(BaseModel):
     multi_tenancy_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if the Remote Cluster has Multi-Tenancy enabled.", alias="multiTenancyEnabled")
     network_interface: Optional[StrictStr] = Field(default=None, description="Specifies the name of the network interfaces to use for communicating with the Remote Cluster.", alias="networkInterface")
     purpose: Optional[List[StrictStr]] = Field(default=None, description="Specifies the purpose for which the remote cluster is being registered.")
-    replication_params: Optional[ReplicationParams] = Field(default=None, alias="replicationParams")
+    replication_params: Optional[ReplicationParams] = Field(default=None, description="Specifies the replication config for a Remote Cluster. Required when usedForReplication is set to true.", alias="replicationParams")
     supported_aes_encryption_mode: Optional[StrictStr] = Field(default=None, description="Specifies the AES Encryption mode of the remote cluster.", alias="supportedAesEncryptionMode")
     tenant_storage_domain_sharing_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if Tenant Storage Domain sharing is enabled on the Remote Cluster.", alias="tenantStorageDomainSharingEnabled")
     tls_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if TLS is enabled on the Remote Cluster.", alias="tlsEnabled")

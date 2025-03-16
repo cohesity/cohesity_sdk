@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.helios.models.vmware_recover_disks_original_source_config import VmwareRecoverDisksOriginalSourceConfig
 from cohesity_sdk.helios.models.vmware_recover_disks_target_source_config import VmwareRecoverDisksTargetSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForRecoverDisk(BaseModel):
@@ -34,7 +34,7 @@ class VmwareTargetParamsForRecoverDisk(BaseModel):
     power_off_vms: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to power off VMs before performing the recovery.", alias="powerOffVms")
     power_on_vms: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to power on VMs after performing the recovery.", alias="powerOnVms")
     target_source_config: Optional[VmwareRecoverDisksTargetSourceConfig] = Field(default=None, alias="targetSourceConfig")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["continueOnError", "originalSourceConfig", "powerOffVms", "powerOnVms", "targetSourceConfig", "vlanConfig"]
 
     model_config = ConfigDict(
@@ -99,6 +99,11 @@ class VmwareTargetParamsForRecoverDisk(BaseModel):
         # and model_fields_set contains the field
         if self.power_on_vms is None and "power_on_vms" in self.model_fields_set:
             _dict['powerOnVms'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         return _dict
 

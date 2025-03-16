@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.abort_incomplete_multipart_upload_action import
 from cohesity_sdk.cluster.models.expiration_action import ExpirationAction
 from cohesity_sdk.cluster.models.lifecycle_rule_filter import LifecycleRuleFilter
 from cohesity_sdk.cluster.models.non_current_version_expiration_action import NonCurrentVersionExpirationAction
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class LifecycleRule(BaseModel):

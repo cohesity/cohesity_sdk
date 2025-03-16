@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.data_usage_stats import DataUsageStats
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewStats(BaseModel):
     """
     Provides statistics about the View.
     """ # noqa: E501
-    data_usage_stats: Optional[DataUsageStats] = Field(default=None, alias="dataUsageStats")
+    data_usage_stats: Optional[DataUsageStats] = Field(default=None, description="Specifies the data usage metric of the data stored in this View.", alias="dataUsageStats")
     id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the View.")
     __properties: ClassVar[List[str]] = ["dataUsageStats", "id"]
 

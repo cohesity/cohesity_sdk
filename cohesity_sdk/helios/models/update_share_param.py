@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.alias_smb_config import AliasSmbConfig
 from cohesity_sdk.helios.models.subnet import Subnet
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateShareParam(BaseModel):
@@ -31,7 +31,7 @@ class UpdateShareParam(BaseModel):
     client_subnet_whitelist: Optional[List[Subnet]] = Field(default=None, description="List of external client subnet IPs that are allowed to access the share.", alias="clientSubnetWhitelist")
     enable_filer_audit_logging: Optional[StrictBool] = Field(default=None, description="This field is currently deprecated. Specifies if Filer Audit Logging is enabled for this Share.", alias="enableFilerAuditLogging")
     file_audit_logging_state: Optional[StrictStr] = Field(default=None, description="Specifies the state of File Audit logging for this Share. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share.", alias="fileAuditLoggingState")
-    smb_config: Optional[AliasSmbConfig] = Field(default=None, alias="smbConfig")
+    smb_config: Optional[AliasSmbConfig] = Field(default=None, description="SMB config for the alias (share).", alias="smbConfig")
     __properties: ClassVar[List[str]] = ["clientSubnetWhitelist", "enableFilerAuditLogging", "fileAuditLoggingState", "smbConfig"]
 
     @field_validator('file_audit_logging_state')

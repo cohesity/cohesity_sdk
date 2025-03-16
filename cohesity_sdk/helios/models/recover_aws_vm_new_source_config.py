@@ -22,18 +22,18 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.encryption_config import EncryptionConfig
 from cohesity_sdk.helios.models.recover_aws_vm_new_source_network_config import RecoverAwsVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAwsVmNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the VMs will be recovered.
     """ # noqa: E501
-    encryption_config: Optional[EncryptionConfig] = Field(default=None, alias="encryptionConfig")
-    key_pair: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="keyPair")
-    network_config: RecoverAwsVmNewSourceNetworkConfig = Field(alias="networkConfig")
-    region: RecoveryObjectIdentifier
-    source: RecoveryObjectIdentifier
+    encryption_config: Optional[EncryptionConfig] = Field(default=None, description="Specifies the encryption configuration.", alias="encryptionConfig")
+    key_pair: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the pair of public and private key used to login into the VM", alias="keyPair")
+    network_config: Optional[RecoverAwsVmNewSourceNetworkConfig] = Field(description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    region: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the AWS region in which to deploy the VM.")
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the VMs.")
     __properties: ClassVar[List[str]] = ["encryptionConfig", "keyPair", "networkConfig", "region", "source"]
 
     model_config = ConfigDict(
@@ -90,6 +90,31 @@ class RecoverAwsVmNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
+        # set to None if encryption_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.encryption_config is None and "encryption_config" in self.model_fields_set:
+            _dict['encryptionConfig'] = None
+
+        # set to None if key_pair (nullable) is None
+        # and model_fields_set contains the field
+        if self.key_pair is None and "key_pair" in self.model_fields_set:
+            _dict['keyPair'] = None
+
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
         return _dict
 
     @classmethod

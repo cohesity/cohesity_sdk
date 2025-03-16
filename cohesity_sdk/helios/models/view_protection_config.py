@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.existing_group_param import ExistingGroupParam
 from cohesity_sdk.helios.models.new_group_param import NewGroupParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewProtectionConfig(BaseModel):
     """
     Specifies the View protection config.
     """ # noqa: E501
-    existing_group_param: Optional[ExistingGroupParam] = Field(default=None, alias="existingGroupParam")
-    new_group_param: Optional[NewGroupParam] = Field(default=None, alias="newGroupParam")
+    existing_group_param: Optional[ExistingGroupParam] = Field(default=None, description="Specifies the parameters used for existing protection group.", alias="existingGroupParam")
+    new_group_param: Optional[NewGroupParam] = Field(default=None, description="Specifies the parameters used for new protection group.", alias="newGroupParam")
     protection_group_type: Optional[StrictStr] = Field(description="Specifies the View protection group type.", alias="protectionGroupType")
     __properties: ClassVar[List[str]] = ["existingGroupParam", "newGroupParam", "protectionGroupType"]
 

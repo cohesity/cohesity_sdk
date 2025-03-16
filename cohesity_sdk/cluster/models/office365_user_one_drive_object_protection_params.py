@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.office365_object_protection_object_params import Office365ObjectProtectionObjectParams
 from cohesity_sdk.cluster.models.office365_preservation_hold_library_params import Office365PreservationHoldLibraryParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Office365UserOneDriveObjectProtectionParams(BaseModel):

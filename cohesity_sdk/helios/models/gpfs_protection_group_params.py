@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.gpfs_protection_group_object_params import GpfsP
 from cohesity_sdk.helios.models.host_based_backup_script_params import HostBasedBackupScriptParams
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GpfsProtectionGroupParams(BaseModel):

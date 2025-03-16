@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.creation_info import CreationInfo
 from cohesity_sdk.cluster.models.retrieve_archive_task import RetrieveArchiveTask
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonRecoveryResponseParams(BaseModel):

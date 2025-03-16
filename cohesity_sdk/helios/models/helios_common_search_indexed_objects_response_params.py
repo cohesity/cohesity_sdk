@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_search_indexed_objects_cluster_error import HeliosSearchIndexedObjectsClusterError
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosCommonSearchIndexedObjectsResponseParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_target_params_for_recover_rds_postgres import AwsTargetParamsForRecoverRDSPostgres
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverRDSPostgresParams(BaseModel):

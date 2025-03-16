@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.host_based_backup_script_params import HostBase
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.cluster.models.snapshot_label import SnapshotLabel
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NetappObjectProtectionUpdateRequestParams(BaseModel):

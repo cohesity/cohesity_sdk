@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.azure_native_protection_group_object_params impo
 from cohesity_sdk.helios.models.cloud_backup_script_params import CloudBackupScriptParams
 from cohesity_sdk.helios.models.data_transfer_info import DataTransferInfo
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureNativeProtectionGroupParams(BaseModel):

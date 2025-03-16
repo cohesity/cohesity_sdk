@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.env_specific_object_protection_request_params i
 from cohesity_sdk.cluster.models.policy_config import PolicyConfig
 from cohesity_sdk.cluster.models.sla_rule import SlaRule
 from cohesity_sdk.cluster.models.time_of_day import TimeOfDay
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateProtectedObjectsRequest(BaseModel):

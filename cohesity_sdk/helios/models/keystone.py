@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.keystone_admin_params import KeystoneAdminParams
 from cohesity_sdk.helios.models.keystone_scope_params import KeystoneScopeParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Keystone(BaseModel):
     """
     Specifies a Keystone.
     """ # noqa: E501
-    admin_creds: KeystoneAdminParams = Field(alias="adminCreds")
-    scope: KeystoneScopeParams
+    admin_creds: KeystoneAdminParams = Field(description="Specifies parameters related to Keystone administrator.", alias="adminCreds")
+    scope: KeystoneScopeParams = Field(description="Specifies parameters related to Keystone scope.")
     auth_url: Optional[StrictStr] = Field(description="Specifies the url points to the Keystone service.", alias="authUrl")
     id: Optional[StrictInt] = Field(default=None, description="Specifies the Keystone configuration id.")
     name: Optional[StrictStr] = Field(description="Specifies the Keystone configuration name.")

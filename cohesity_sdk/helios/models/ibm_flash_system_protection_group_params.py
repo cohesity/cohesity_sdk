@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.host_based_backup_script_params import HostBasedBackupScriptParams
 from cohesity_sdk.helios.models.ibm_flash_system_protection_group_object_params import IbmFlashSystemProtectionGroupObjectParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IbmFlashSystemProtectionGroupParams(BaseModel):

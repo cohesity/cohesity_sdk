@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.filter_documents_params import FilterDocumentsParams
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.recover_couchbase_snapshot_params import RecoverCouchbaseSnapshotParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverCouchbaseParams(BaseModel):

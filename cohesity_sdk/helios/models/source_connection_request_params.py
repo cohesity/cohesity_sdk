@@ -21,10 +21,10 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.cassandra_connection_params import CassandraConnectionParams
 from cohesity_sdk.helios.models.hadoop_connection_params import HadoopConnectionParams
-from cohesity_sdk.helios.models.ms_sql_common_connection_params import MsSQLCommonConnectionParams
+from cohesity_sdk.helios.models.mssql_connection_params import MssqlConnectionParams
 from cohesity_sdk.helios.models.oracle_connection_params import OracleConnectionParams
 from cohesity_sdk.helios.models.vmware_connection_params import VmwareConnectionParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SourceConnectionRequestParams(BaseModel):
@@ -37,7 +37,7 @@ class SourceConnectionRequestParams(BaseModel):
     hbase_connection_params: Optional[HadoopConnectionParams] = Field(default=None, alias="hbaseConnectionParams")
     hdfs_connection_params: Optional[HadoopConnectionParams] = Field(default=None, alias="hdfsConnectionParams")
     hive_connection_params: Optional[HadoopConnectionParams] = Field(default=None, alias="hiveConnectionParams")
-    mssql_connection_params: Optional[MsSQLCommonConnectionParams] = Field(default=None, alias="mssqlConnectionParams")
+    mssql_connection_params: Optional[MssqlConnectionParams] = Field(default=None, alias="mssqlConnectionParams")
     oracle_connection_params: Optional[OracleConnectionParams] = Field(default=None, alias="oracleConnectionParams")
     vmware_connection_params: Optional[VmwareConnectionParams] = Field(default=None, alias="vmwareConnectionParams")
     __properties: ClassVar[List[str]] = ["connectionId", "environment", "cassandraConnectionParams", "hbaseConnectionParams", "hdfsConnectionParams", "hiveConnectionParams", "mssqlConnectionParams", "oracleConnectionParams", "vmwareConnectionParams"]
@@ -140,7 +140,7 @@ class SourceConnectionRequestParams(BaseModel):
             "hbaseConnectionParams": HadoopConnectionParams.from_dict(obj["hbaseConnectionParams"]) if obj.get("hbaseConnectionParams") is not None else None,
             "hdfsConnectionParams": HadoopConnectionParams.from_dict(obj["hdfsConnectionParams"]) if obj.get("hdfsConnectionParams") is not None else None,
             "hiveConnectionParams": HadoopConnectionParams.from_dict(obj["hiveConnectionParams"]) if obj.get("hiveConnectionParams") is not None else None,
-            "mssqlConnectionParams": MsSQLCommonConnectionParams.from_dict(obj["mssqlConnectionParams"]) if obj.get("mssqlConnectionParams") is not None else None,
+            "mssqlConnectionParams": MssqlConnectionParams.from_dict(obj["mssqlConnectionParams"]) if obj.get("mssqlConnectionParams") is not None else None,
             "oracleConnectionParams": OracleConnectionParams.from_dict(obj["oracleConnectionParams"]) if obj.get("oracleConnectionParams") is not None else None,
             "vmwareConnectionParams": VmwareConnectionParams.from_dict(obj["vmwareConnectionParams"]) if obj.get("vmwareConnectionParams") is not None else None
         })

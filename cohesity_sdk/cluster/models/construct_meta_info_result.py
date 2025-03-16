@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.oracle_restore_meta_info_result import OracleRestoreMetaInfoResult
 from cohesity_sdk.cluster.models.sfdc_meta_info_result import SfdcMetaInfoResult
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ConstructMetaInfoResult(BaseModel):

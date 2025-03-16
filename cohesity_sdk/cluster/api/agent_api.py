@@ -11,11 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr
+from typing import List, Optional, Tuple, Union
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.agent_upgrade_task_action_object import AgentUpgradeTaskActionObject
 from cohesity_sdk.cluster.models.agent_upgrade_task_action_request import AgentUpgradeTaskActionRequest
 from cohesity_sdk.cluster.models.agent_upgrade_task_state import AgentUpgradeTaskState
@@ -295,6 +298,7 @@ class AgentApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -570,6 +574,7 @@ class AgentApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -870,6 +875,7 @@ class AgentApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1145,6 +1151,7 @@ class AgentApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

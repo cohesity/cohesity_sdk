@@ -19,8 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UserQuota(BaseModel):
@@ -29,7 +28,7 @@ class UserQuota(BaseModel):
     """ # noqa: E501
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the user sid.")
     unix_uid: Optional[StrictInt] = Field(default=None, description="Specifies the unix Uid.", alias="unixUid")
-    quota_policy: Optional[QuotaPolicy] = Field(default=None, alias="quotaPolicy")
+    quota_policy: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the quota policy for the given user.", alias="quotaPolicy")
     usage_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the user usage in bytes.", alias="usageBytes")
     __properties: ClassVar[List[str]] = ["sid", "unixUid", "quotaPolicy", "usageBytes"]
 
@@ -74,9 +73,6 @@ class UserQuota(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of quota_policy
-        if self.quota_policy:
-            _dict['quotaPolicy'] = self.quota_policy.to_dict()
         # set to None if sid (nullable) is None
         # and model_fields_set contains the field
         if self.sid is None and "sid" in self.model_fields_set:
@@ -106,7 +102,7 @@ class UserQuota(BaseModel):
         _obj = cls.model_validate({
             "sid": obj.get("sid"),
             "unixUid": obj.get("unixUid"),
-            "quotaPolicy": QuotaPolicy.from_dict(obj["quotaPolicy"]) if obj.get("quotaPolicy") is not None else None,
+            "quotaPolicy": obj.get("quotaPolicy"),
             "usageBytes": obj.get("usageBytes")
         })
         return _obj

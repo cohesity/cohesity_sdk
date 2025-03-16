@@ -22,17 +22,17 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.mailbox_param import MailboxParam
 from cohesity_sdk.helios.models.one_drive_param import OneDriveParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MsGroupParam(BaseModel):
     """
     Specifies parameters to recover MS group.
     """ # noqa: E501
-    mailbox_restore_params: Optional[MailboxParam] = Field(default=None, alias="mailboxRestoreParams")
+    mailbox_restore_params: Optional[MailboxParam] = Field(default=None, description="Specifies parameters to recover a MSGroup Mailbox.", alias="mailboxRestoreParams")
     mailbox_restore_type: Optional[StrictStr] = Field(default=None, description="Specifies whether mailbox restore is full or granular.", alias="mailboxRestoreType")
     recover_entire_group: Optional[StrictBool] = Field(default=None, description="Specifies if the entire Group (mailbox + site) is to be restored.", alias="recoverEntireGroup")
-    recover_object: CommonRecoverObjectSnapshotParams = Field(alias="recoverObject")
+    recover_object: CommonRecoverObjectSnapshotParams = Field(description="Specifies the MS group recover Object info.", alias="recoverObject")
     site_restore_params: Optional[List[OneDriveParam]] = Field(default=None, description="Specifies the parameters to recover a MSGroup site document.", alias="siteRestoreParams")
     site_restore_type: Optional[StrictStr] = Field(default=None, description="Specifies whether site restore is full or granular.", alias="siteRestoreType")
     __properties: ClassVar[List[str]] = ["mailboxRestoreParams", "mailboxRestoreType", "recoverEntireGroup", "recoverObject", "siteRestoreParams", "siteRestoreType"]

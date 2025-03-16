@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_recover_files_new_target_config import AwsRecoverFilesNewTargetConfig
 from cohesity_sdk.helios.models.aws_recover_files_original_target_config import AwsRecoverFilesOriginalTargetConfig
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverFileAndFolder(BaseModel):
@@ -30,12 +30,12 @@ class AwsTargetParamsForRecoverFileAndFolder(BaseModel):
     Specifies the parameters for an AWS recovery target.
     """ # noqa: E501
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering other files if one of files or folders failed to recover. Default value is false.", alias="continueOnError")
-    new_target_config: Optional[AwsRecoverFilesNewTargetConfig] = Field(default=None, alias="newTargetConfig")
-    original_target_config: Optional[AwsRecoverFilesOriginalTargetConfig] = Field(default=None, alias="originalTargetConfig")
+    new_target_config: Optional[AwsRecoverFilesNewTargetConfig] = Field(default=None, description="Specifies the configuration for recovering to a new target.", alias="newTargetConfig")
+    original_target_config: Optional[AwsRecoverFilesOriginalTargetConfig] = Field(default=None, description="Specifies the configuration for recovering to the original target.", alias="originalTargetConfig")
     overwrite_existing: Optional[StrictBool] = Field(default=None, description="Specifies whether to override the existing files. Default is true.", alias="overwriteExisting")
     preserve_attributes: Optional[StrictBool] = Field(default=None, description="Specifies whether to preserve original attributes. Default is true.", alias="preserveAttributes")
     recover_to_original_target: Optional[StrictBool] = Field(description="Specifies whether to recover to the original target. If true, originalTargetConfig must be specified. If false, newTargetConfig must be specified.", alias="recoverToOriginalTarget")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered files and folders. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["continueOnError", "newTargetConfig", "originalTargetConfig", "overwriteExisting", "preserveAttributes", "recoverToOriginalTarget", "vlanConfig"]
 
     model_config = ConfigDict(
@@ -91,6 +91,16 @@ class AwsTargetParamsForRecoverFileAndFolder(BaseModel):
         if self.continue_on_error is None and "continue_on_error" in self.model_fields_set:
             _dict['continueOnError'] = None
 
+        # set to None if new_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_target_config is None and "new_target_config" in self.model_fields_set:
+            _dict['newTargetConfig'] = None
+
+        # set to None if original_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_target_config is None and "original_target_config" in self.model_fields_set:
+            _dict['originalTargetConfig'] = None
+
         # set to None if overwrite_existing (nullable) is None
         # and model_fields_set contains the field
         if self.overwrite_existing is None and "overwrite_existing" in self.model_fields_set:
@@ -105,6 +115,11 @@ class AwsTargetParamsForRecoverFileAndFolder(BaseModel):
         # and model_fields_set contains the field
         if self.recover_to_original_target is None and "recover_to_original_target" in self.model_fields_set:
             _dict['recoverToOriginalTarget'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         return _dict
 

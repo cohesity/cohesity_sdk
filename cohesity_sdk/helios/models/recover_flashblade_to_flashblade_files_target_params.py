@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.original_flashblade_files_target_params import OriginalFlashbladeFilesTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_flashblade_files_target_params import RecoverOtherNasToFlashbladeFilesTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverFlashbladeToFlashbladeFilesTargetParams(BaseModel):
     """
     Specifies the params of the Flashblade recovery target.
     """ # noqa: E501
-    new_source_config: Optional[RecoverOtherNasToFlashbladeFilesTargetParams] = Field(default=None, alias="newSourceConfig")
-    original_source_config: Optional[OriginalFlashbladeFilesTargetParams] = Field(default=None, alias="originalSourceConfig")
+    new_source_config: Optional[RecoverOtherNasToFlashbladeFilesTargetParams] = Field(default=None, description="Specifies the new destination Source configuration parameters where the files will be recovered. This is mandatory if recoverToNewSource is set to true.", alias="newSourceConfig")
+    original_source_config: Optional[OriginalFlashbladeFilesTargetParams] = Field(default=None, description="Specifies the Source configuration if files are being recovered to original Source. If not specified, all the configuration parameters will be retained.", alias="originalSourceConfig")
     recover_to_new_source: StrictBool = Field(description="Specifies the parameter whether the recovery should be performed to a new or the original Flashblade target.", alias="recoverToNewSource")
     __properties: ClassVar[List[str]] = ["newSourceConfig", "originalSourceConfig", "recoverToNewSource"]
 
@@ -78,6 +78,16 @@ class RecoverFlashbladeToFlashbladeFilesTargetParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of original_source_config
         if self.original_source_config:
             _dict['originalSourceConfig'] = self.original_source_config.to_dict()
+        # set to None if new_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_source_config is None and "new_source_config" in self.model_fields_set:
+            _dict['newSourceConfig'] = None
+
+        # set to None if original_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_source_config is None and "original_source_config" in self.model_fields_set:
+            _dict['originalSourceConfig'] = None
+
         return _dict
 
     @classmethod

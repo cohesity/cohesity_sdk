@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.file_filtering_policy import FileFilteringPolic
 from cohesity_sdk.cluster.models.file_size_policy import FileSizePolicy
 from cohesity_sdk.cluster.models.uptiering_file_age_policy import UptieringFileAgePolicy
 from cohesity_sdk.cluster.models.uptiering_target import UptieringTarget
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UptieringPolicy(BaseModel):

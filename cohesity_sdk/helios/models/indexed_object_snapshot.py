@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IndexedObjectSnapshot(BaseModel):
@@ -28,7 +28,7 @@ class IndexedObjectSnapshot(BaseModel):
     Specifies a snapshot containing the indexed object.
     """ # noqa: E501
     attempts: Optional[StrictInt] = Field(default=None, description="Specifies the number of runs have been executed before the run completed successfully.")
-    external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="externalTargetInfo")
+    external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the external target information if this is an archival snapshot.", alias="externalTargetInfo")
     indexed_object_name: Optional[StrictStr] = Field(default=None, description="Specifies the indexed object name.", alias="indexedObjectName")
     indexed_object_source_uuid: Optional[StrictStr] = Field(default=None, description="Specifies the unique identifier from the source of the item associated with this particular snapshot. It can get changed between the snapshots and therefore will be required for recovery.", alias="indexedObjectSourceUuid")
     inode_id: Optional[StrictInt] = Field(default=None, description="Specifies the source inode number of the file being recovered.", alias="inodeId")
@@ -100,6 +100,11 @@ class IndexedObjectSnapshot(BaseModel):
         # and model_fields_set contains the field
         if self.attempts is None and "attempts" in self.model_fields_set:
             _dict['attempts'] = None
+
+        # set to None if external_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.external_target_info is None and "external_target_info" in self.model_fields_set:
+            _dict['externalTargetInfo'] = None
 
         # set to None if indexed_object_name (nullable) is None
         # and model_fields_set contains the field

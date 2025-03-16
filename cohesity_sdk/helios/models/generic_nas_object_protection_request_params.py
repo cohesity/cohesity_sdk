@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.host_based_backup_script_params import HostBased
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.helios.models.protection_object_input import ProtectionObjectInput
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GenericNasObjectProtectionRequestParams(BaseModel):

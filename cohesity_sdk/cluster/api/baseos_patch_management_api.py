@@ -11,10 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field, StrictStr
+from typing import List
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.apply_baseos_patch_request import ApplyBaseosPatchRequest
 from cohesity_sdk.cluster.models.baseos_patch_list_item import BaseosPatchListItem
 from cohesity_sdk.cluster.models.baseos_patch_log import BaseosPatchLog
@@ -293,6 +297,7 @@ class BaseosPatchManagementApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -568,6 +573,7 @@ class BaseosPatchManagementApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -815,6 +821,7 @@ class BaseosPatchManagementApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1079,6 +1086,7 @@ class BaseosPatchManagementApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1354,6 +1362,7 @@ class BaseosPatchManagementApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

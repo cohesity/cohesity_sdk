@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HdfsProtectionGroupParams(BaseModel):

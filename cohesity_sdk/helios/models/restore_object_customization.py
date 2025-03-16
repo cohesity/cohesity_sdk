@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RestoreObjectCustomization(BaseModel):
     """
     Specifies the customization for the VMware VMs being restored. Example: When recovering multiple VMs, users can customize network configuration for one or more VMs.
     """ # noqa: E501
-    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
+    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, description="Specifies the customized network configuration for the VM being recovered.", alias="networkConfig")
     object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id of the VM.", alias="objectId")
     __properties: ClassVar[List[str]] = ["networkConfig", "objectId"]
 
@@ -73,6 +73,11 @@ class RestoreObjectCustomization(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network_config
         if self.network_config:
             _dict['networkConfig'] = self.network_config.to_dict()
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
         # set to None if object_id (nullable) is None
         # and model_fields_set contains the field
         if self.object_id is None and "object_id" in self.model_fields_set:

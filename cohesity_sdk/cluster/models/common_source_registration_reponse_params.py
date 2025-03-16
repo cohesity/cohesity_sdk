@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.connection_config import ConnectionConfig
 from cohesity_sdk.cluster.models.key_value_pair import KeyValuePair
 from cohesity_sdk.cluster.models.object import Object
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonSourceRegistrationReponseParams(BaseModel):

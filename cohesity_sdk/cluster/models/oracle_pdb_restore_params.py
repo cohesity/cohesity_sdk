@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.key_value_pair import KeyValuePair
 from cohesity_sdk.cluster.models.oracle_pdb_object_info import OraclePdbObjectInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class OraclePdbRestoreParams(BaseModel):

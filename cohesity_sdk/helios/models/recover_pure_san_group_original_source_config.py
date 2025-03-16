@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPureSanGroupOriginalSourceConfig(BaseModel):
     """
     Specifies the network config parameters to be applied for Pure group if recovering to original Source.
     """ # noqa: E501
-    rename_recovered_group_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, alias="renameRecoveredGroupParams")
-    resource_pool: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="resourcePool")
+    rename_recovered_group_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, description="Specifies params to rename the recovered SAN group. If not specified, the original names of the group are preserved.", alias="renameRecoveredGroupParams")
+    resource_pool: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the id of the resource pool to recover the SAN Volume to. This field can be specified for cases where the resource pool can be altered on the original source.", alias="resourcePool")
     __properties: ClassVar[List[str]] = ["renameRecoveredGroupParams", "resourcePool"]
 
     model_config = ConfigDict(
@@ -77,6 +77,16 @@ class RecoverPureSanGroupOriginalSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of resource_pool
         if self.resource_pool:
             _dict['resourcePool'] = self.resource_pool.to_dict()
+        # set to None if rename_recovered_group_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.rename_recovered_group_params is None and "rename_recovered_group_params" in self.model_fields_set:
+            _dict['renameRecoveredGroupParams'] = None
+
+        # set to None if resource_pool (nullable) is None
+        # and model_fields_set contains the field
+        if self.resource_pool is None and "resource_pool" in self.model_fields_set:
+            _dict['resourcePool'] = None
+
         return _dict
 
     @classmethod

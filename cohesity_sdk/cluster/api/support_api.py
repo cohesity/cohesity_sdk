@@ -11,10 +11,13 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.success_resp import SuccessResp
 from cohesity_sdk.cluster.models.support_user_config import SupportUserConfig
 from cohesity_sdk.cluster.models.update_support_user_params import UpdateSupportUserParams
@@ -264,6 +267,7 @@ class SupportApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -539,6 +543,7 @@ class SupportApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -814,6 +819,7 @@ class SupportApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

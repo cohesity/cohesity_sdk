@@ -21,21 +21,21 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aag_info import AAGInfo
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
-from cohesity_sdk.helios.models.common_recover_sql_app_target_params import CommonRecoverSqlAppTargetParams
 from cohesity_sdk.helios.models.host_information import HostInformation
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
-from typing import Set
+from cohesity_sdk.helios.models.sql_target_params_for_recover_sql_app import SqlTargetParamsForRecoverSqlApp
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverSqlAppParams(BaseModel):
     """
     Specifies the parameters to recover Sql databases.
     """ # noqa: E501
-    archival_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="archivalTargetInfo")
+    archival_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the archival target information if the snapshot is an archival snapshot.", alias="archivalTargetInfo")
     bytes_restored: Optional[StrictInt] = Field(default=None, description="Specify the total bytes restored.", alias="bytesRestored")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.", alias="endTimeUsecs")
     messages: Optional[List[StrictStr]] = Field(default=None, description="Specify error messages about the object.")
-    object_info: Optional[ObjectSummary] = Field(default=None, alias="objectInfo")
+    object_info: Optional[ObjectSummary] = Field(default=None, description="Specifies the information about the object for which the snapshot is taken.", alias="objectInfo")
     point_in_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past.", alias="pointInTimeUsecs")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for Recovery of VM.", alias="progressTaskId")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id of the object snapshot.", alias="protectionGroupId")
@@ -50,7 +50,7 @@ class RecoverSqlAppParams(BaseModel):
     aag_info: Optional[AAGInfo] = Field(default=None, alias="aagInfo")
     host_info: Optional[HostInformation] = Field(default=None, alias="hostInfo")
     is_encrypted: Optional[StrictBool] = Field(default=None, description="Specifies whether the database is TDE enabled.", alias="isEncrypted")
-    sql_target_params: Optional[CommonRecoverSqlAppTargetParams] = Field(default=None, alias="sqlTargetParams")
+    sql_target_params: Optional[SqlTargetParamsForRecoverSqlApp] = Field(default=None, alias="sqlTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "aagInfo", "hostInfo", "isEncrypted", "sqlTargetParams", "targetEnvironment"]
 
@@ -153,6 +153,11 @@ class RecoverSqlAppParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of sql_target_params
         if self.sql_target_params:
             _dict['sqlTargetParams'] = self.sql_target_params.to_dict()
+        # set to None if archival_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.archival_target_info is None and "archival_target_info" in self.model_fields_set:
+            _dict['archivalTargetInfo'] = None
+
         # set to None if bytes_restored (nullable) is None
         # and model_fields_set contains the field
         if self.bytes_restored is None and "bytes_restored" in self.model_fields_set:
@@ -167,6 +172,11 @@ class RecoverSqlAppParams(BaseModel):
         # and model_fields_set contains the field
         if self.messages is None and "messages" in self.model_fields_set:
             _dict['messages'] = None
+
+        # set to None if object_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_info is None and "object_info" in self.model_fields_set:
+            _dict['objectInfo'] = None
 
         # set to None if point_in_time_usecs (nullable) is None
         # and model_fields_set contains the field
@@ -254,7 +264,7 @@ class RecoverSqlAppParams(BaseModel):
             "aagInfo": AAGInfo.from_dict(obj["aagInfo"]) if obj.get("aagInfo") is not None else None,
             "hostInfo": HostInformation.from_dict(obj["hostInfo"]) if obj.get("hostInfo") is not None else None,
             "isEncrypted": obj.get("isEncrypted"),
-            "sqlTargetParams": CommonRecoverSqlAppTargetParams.from_dict(obj["sqlTargetParams"]) if obj.get("sqlTargetParams") is not None else None,
+            "sqlTargetParams": SqlTargetParamsForRecoverSqlApp.from_dict(obj["sqlTargetParams"]) if obj.get("sqlTargetParams") is not None else None,
             "targetEnvironment": obj.get("targetEnvironment")
         })
         return _obj

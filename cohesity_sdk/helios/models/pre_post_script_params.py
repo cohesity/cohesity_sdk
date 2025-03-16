@@ -19,16 +19,16 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.common_post_backup_script_params import CommonPostBackupScriptParams
 from cohesity_sdk.helios.models.common_pre_backup_script_params import CommonPreBackupScriptParams
-from cohesity_sdk.helios.models.common_pre_post_script_params import CommonPrePostScriptParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PrePostScriptParams(BaseModel):
     """
     Specifies the params for pre and post scripts.
     """ # noqa: E501
-    post_script: Optional[CommonPrePostScriptParams] = Field(default=None, alias="postScript")
+    post_script: Optional[CommonPostBackupScriptParams] = Field(default=None, alias="postScript")
     pre_script: Optional[CommonPreBackupScriptParams] = Field(default=None, alias="preScript")
     __properties: ClassVar[List[str]] = ["postScript", "preScript"]
 
@@ -89,7 +89,7 @@ class PrePostScriptParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "postScript": CommonPrePostScriptParams.from_dict(obj["postScript"]) if obj.get("postScript") is not None else None,
+            "postScript": CommonPostBackupScriptParams.from_dict(obj["postScript"]) if obj.get("postScript") is not None else None,
             "preScript": CommonPreBackupScriptParams.from_dict(obj["preScript"]) if obj.get("preScript") is not None else None
         })
         return _obj

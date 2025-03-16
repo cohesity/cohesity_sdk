@@ -27,21 +27,21 @@ from cohesity_sdk.helios.models.recover_aws_rds_params import RecoverAwsRdsParam
 from cohesity_sdk.helios.models.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
 from cohesity_sdk.helios.models.recover_aws_vm_params import RecoverAwsVmParams
 from cohesity_sdk.helios.models.recover_rds_postgres_params import RecoverRDSPostgresParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAwsParams(BaseModel):
     """
     Specifies the recovery options specific to AWS environment.
     """ # noqa: E501
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.")
-    recover_aurora_params: Optional[RecoverAwsAuroraParams] = Field(default=None, alias="recoverAuroraParams")
-    recover_file_and_folder_params: Optional[RecoverAwsFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
-    recover_rds_ingest_params: Optional[RecoverRDSPostgresParams] = Field(default=None, alias="recoverRdsIngestParams")
-    recover_rds_params: Optional[RecoverAwsRdsParams] = Field(default=None, alias="recoverRdsParams")
-    recover_s3_bucket_params: Optional[RecoverAwsS3BucketParams] = Field(default=None, alias="recoverS3BucketParams")
-    recover_vm_params: Optional[RecoverAwsVmParams] = Field(default=None, alias="recoverVmParams")
+    recover_aurora_params: Optional[RecoverAwsAuroraParams] = Field(default=None, description="Specifies the parameters to recover AWS Aurora.", alias="recoverAuroraParams")
+    recover_file_and_folder_params: Optional[RecoverAwsFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover files and folders.", alias="recoverFileAndFolderParams")
+    recover_rds_ingest_params: Optional[RecoverRDSPostgresParams] = Field(default=None, description="Specifies the parameters to recover AWS RDS Ingest.", alias="recoverRdsIngestParams")
+    recover_rds_params: Optional[RecoverAwsRdsParams] = Field(default=None, description="Specifies the parameters to recover AWS RDS.", alias="recoverRdsParams")
+    recover_s3_bucket_params: Optional[RecoverAwsS3BucketParams] = Field(default=None, description="Specifies the parameters to recover AWS S3 Buckets.", alias="recoverS3BucketParams")
+    recover_vm_params: Optional[RecoverAwsVmParams] = Field(default=None, description="Specifies the parameters to recover AWS VM.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverAuroraParams", "recoverFileAndFolderParams", "recoverRdsIngestParams", "recoverRdsParams", "recoverS3BucketParams", "recoverVmParams", "recoveryAction"]
 
@@ -119,10 +119,45 @@ class RecoverAwsParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_vm_params
         if self.recover_vm_params:
             _dict['recoverVmParams'] = self.recover_vm_params.to_dict()
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_aurora_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_aurora_params is None and "recover_aurora_params" in self.model_fields_set:
+            _dict['recoverAuroraParams'] = None
+
+        # set to None if recover_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_file_and_folder_params is None and "recover_file_and_folder_params" in self.model_fields_set:
+            _dict['recoverFileAndFolderParams'] = None
+
+        # set to None if recover_rds_ingest_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_rds_ingest_params is None and "recover_rds_ingest_params" in self.model_fields_set:
+            _dict['recoverRdsIngestParams'] = None
+
+        # set to None if recover_rds_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_rds_params is None and "recover_rds_params" in self.model_fields_set:
+            _dict['recoverRdsParams'] = None
+
+        # set to None if recover_s3_bucket_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_s3_bucket_params is None and "recover_s3_bucket_params" in self.model_fields_set:
+            _dict['recoverS3BucketParams'] = None
+
+        # set to None if recover_vm_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_vm_params is None and "recover_vm_params" in self.model_fields_set:
+            _dict['recoverVmParams'] = None
 
         return _dict
 

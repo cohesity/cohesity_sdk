@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.aws_rds_postgres_protection_group_params import
 from cohesity_sdk.cluster.models.aws_rds_protection_group_params import AwsRdsProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_s3_protection_group_params import AwsS3ProtectionGroupParams
 from cohesity_sdk.cluster.models.aws_snapshot_manager_protection_group_params import AwsSnapshotManagerProtectionGroupParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsProtectionGroupParams(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.recover_target import RecoverTarget
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsRecoverFilesNewTargetConfig(BaseModel):
@@ -29,8 +29,8 @@ class AwsRecoverFilesNewTargetConfig(BaseModel):
     Specifies the configuration for recovering files and folders to a new target.
     """ # noqa: E501
     absolute_path: Optional[StrictStr] = Field(description="Specifies the path location to recover files to.", alias="absolutePath")
-    target_vm: RecoverTarget = Field(alias="targetVm")
-    target_vm_credentials: Optional[Credentials] = Field(default=None, alias="targetVmCredentials")
+    target_vm: Optional[RecoverTarget] = Field(description="Specifies the target VM to recover files and folders to.", alias="targetVm")
+    target_vm_credentials: Optional[Credentials] = Field(default=None, description="Specifies the credentials for the target VM.", alias="targetVmCredentials")
     __properties: ClassVar[List[str]] = ["absolutePath", "targetVm", "targetVmCredentials"]
 
     model_config = ConfigDict(
@@ -82,6 +82,16 @@ class AwsRecoverFilesNewTargetConfig(BaseModel):
         # and model_fields_set contains the field
         if self.absolute_path is None and "absolute_path" in self.model_fields_set:
             _dict['absolutePath'] = None
+
+        # set to None if target_vm (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_vm is None and "target_vm" in self.model_fields_set:
+            _dict['targetVm'] = None
+
+        # set to None if target_vm_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_vm_credentials is None and "target_vm_credentials" in self.model_fields_set:
+            _dict['targetVmCredentials'] = None
 
         return _dict
 

@@ -11,14 +11,16 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
-from cohesity_sdk.helios.models.common_identity_provider_configuration import CommonIdentityProviderConfiguration
-from cohesity_sdk.helios.models.common_idp_params import CommonIdpParams
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.create_idp_request_params import CreateIdpRequestParams
+from cohesity_sdk.helios.models.create_or_update_idp_request import CreateOrUpdateIdpRequest
 from cohesity_sdk.helios.models.error import Error
 from cohesity_sdk.helios.models.identity_action import IdentityAction
 from cohesity_sdk.helios.models.identity_config import IdentityConfig
@@ -29,6 +31,7 @@ from cohesity_sdk.helios.models.idp import Idp
 from cohesity_sdk.helios.models.idp_principal import IdpPrincipal
 from cohesity_sdk.helios.models.idp_principals import IdpPrincipals
 from cohesity_sdk.helios.models.idps import Idps
+from cohesity_sdk.helios.models.update_idp_request_params import UpdateIdpRequestParams
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -937,7 +940,7 @@ class IdentityProviderApi:
     @validate_call
     def create_idp(
         self,
-        body: Annotated[CommonIdpParams, Field(description="Specifies the parameters to create an Identity Provider.")],
+        body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to create an Identity Provider.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -957,7 +960,7 @@ class IdentityProviderApi:
         Create Identity Provider (IDP) Configuration.
 
         :param body: Specifies the parameters to create an Identity Provider. (required)
-        :type body: CommonIdpParams
+        :type body: CreateOrUpdateIdpRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1008,7 +1011,7 @@ class IdentityProviderApi:
     @validate_call
     def create_idp_with_http_info(
         self,
-        body: Annotated[CommonIdpParams, Field(description="Specifies the parameters to create an Identity Provider.")],
+        body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to create an Identity Provider.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -1028,7 +1031,7 @@ class IdentityProviderApi:
         Create Identity Provider (IDP) Configuration.
 
         :param body: Specifies the parameters to create an Identity Provider. (required)
-        :type body: CommonIdpParams
+        :type body: CreateOrUpdateIdpRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1079,7 +1082,7 @@ class IdentityProviderApi:
     @validate_call
     def create_idp_without_preload_content(
         self,
-        body: Annotated[CommonIdpParams, Field(description="Specifies the parameters to create an Identity Provider.")],
+        body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to create an Identity Provider.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -1099,7 +1102,7 @@ class IdentityProviderApi:
         Create Identity Provider (IDP) Configuration.
 
         :param body: Specifies the parameters to create an Identity Provider. (required)
-        :type body: CommonIdpParams
+        :type body: CreateOrUpdateIdpRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -5422,7 +5425,7 @@ class IdentityProviderApi:
     def update_identity_provider(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
-        body: Annotated[CommonIdentityProviderConfiguration, Field(description="Specifies parameters to update identity provider configuration")],
+        body: Annotated[UpdateIdpRequestParams, Field(description="Specifies parameters to update identity provider configuration")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -5445,7 +5448,7 @@ class IdentityProviderApi:
         :param id: Specifies id of idp configuration (required)
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
-        :type body: CommonIdentityProviderConfiguration
+        :type body: UpdateIdpRequestParams
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -5501,7 +5504,7 @@ class IdentityProviderApi:
     def update_identity_provider_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
-        body: Annotated[CommonIdentityProviderConfiguration, Field(description="Specifies parameters to update identity provider configuration")],
+        body: Annotated[UpdateIdpRequestParams, Field(description="Specifies parameters to update identity provider configuration")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -5524,7 +5527,7 @@ class IdentityProviderApi:
         :param id: Specifies id of idp configuration (required)
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
-        :type body: CommonIdentityProviderConfiguration
+        :type body: UpdateIdpRequestParams
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -5580,7 +5583,7 @@ class IdentityProviderApi:
     def update_identity_provider_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies id of idp configuration")],
-        body: Annotated[CommonIdentityProviderConfiguration, Field(description="Specifies parameters to update identity provider configuration")],
+        body: Annotated[UpdateIdpRequestParams, Field(description="Specifies parameters to update identity provider configuration")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -5603,7 +5606,7 @@ class IdentityProviderApi:
         :param id: Specifies id of idp configuration (required)
         :type id: int
         :param body: Specifies parameters to update identity provider configuration (required)
-        :type body: CommonIdentityProviderConfiguration
+        :type body: UpdateIdpRequestParams
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -5741,7 +5744,7 @@ class IdentityProviderApi:
     def update_idp(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the IDP configuration.")],
-        body: Annotated[CommonIdpParams, Field(description="Specifies the parameters to update IDP configuration.")],
+        body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to update IDP configuration.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -5763,7 +5766,7 @@ class IdentityProviderApi:
         :param id: Specifies the id of the IDP configuration. (required)
         :type id: int
         :param body: Specifies the parameters to update IDP configuration. (required)
-        :type body: CommonIdpParams
+        :type body: CreateOrUpdateIdpRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -5816,7 +5819,7 @@ class IdentityProviderApi:
     def update_idp_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the IDP configuration.")],
-        body: Annotated[CommonIdpParams, Field(description="Specifies the parameters to update IDP configuration.")],
+        body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to update IDP configuration.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -5838,7 +5841,7 @@ class IdentityProviderApi:
         :param id: Specifies the id of the IDP configuration. (required)
         :type id: int
         :param body: Specifies the parameters to update IDP configuration. (required)
-        :type body: CommonIdpParams
+        :type body: CreateOrUpdateIdpRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -5891,7 +5894,7 @@ class IdentityProviderApi:
     def update_idp_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the id of the IDP configuration.")],
-        body: Annotated[CommonIdpParams, Field(description="Specifies the parameters to update IDP configuration.")],
+        body: Annotated[CreateOrUpdateIdpRequest, Field(description="Specifies the parameters to update IDP configuration.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -5913,7 +5916,7 @@ class IdentityProviderApi:
         :param id: Specifies the id of the IDP configuration. (required)
         :type id: int
         :param body: Specifies the parameters to update IDP configuration. (required)
-        :type body: CommonIdpParams
+        :type body: CreateOrUpdateIdpRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one

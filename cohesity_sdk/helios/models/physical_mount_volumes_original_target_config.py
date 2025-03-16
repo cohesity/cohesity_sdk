@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalMountVolumesOriginalTargetConfig(BaseModel):
     """
     Specifies the configuration for mounting volumes to the original target.
     """ # noqa: E501
-    server_credentials: Optional[Credentials] = Field(default=None, alias="serverCredentials")
+    server_credentials: Optional[Credentials] = Field(default=None, description="Specifies credentials to access the target server. This is required if the server is of Linux OS.", alias="serverCredentials")
     __properties: ClassVar[List[str]] = ["serverCredentials"]
 
     model_config = ConfigDict(
@@ -72,6 +72,11 @@ class PhysicalMountVolumesOriginalTargetConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of server_credentials
         if self.server_credentials:
             _dict['serverCredentials'] = self.server_credentials.to_dict()
+        # set to None if server_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.server_credentials is None and "server_credentials" in self.model_fields_set:
+            _dict['serverCredentials'] = None
+
         return _dict
 
     @classmethod

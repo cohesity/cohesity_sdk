@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.externally_triggered_sbt_params import ExternallyTriggeredSbtParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ExternallyTriggeredJobParams(BaseModel):
@@ -28,7 +28,7 @@ class ExternallyTriggeredJobParams(BaseModel):
     Specifies the externally triggered job paramters.
     """ # noqa: E501
     client_type: Optional[StrictStr] = Field(default=None, description="Specifies the client type of the externally triggered backup job.", alias="clientType")
-    sbt_params: Optional[ExternallyTriggeredSbtParams] = Field(default=None, alias="sbtParams")
+    sbt_params: Optional[ExternallyTriggeredSbtParams] = Field(default=None, description="Specifies the SBT parameters for the externally triggered backup job.", alias="sbtParams")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Specifies all the tags of the externally triggered job.")
     __properties: ClassVar[List[str]] = ["clientType", "sbtParams", "tags"]
 

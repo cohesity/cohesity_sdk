@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import Co
 from cohesity_sdk.cluster.models.mount_hyper_v_volume_params import MountHyperVVolumeParams
 from cohesity_sdk.cluster.models.recover_hyper_v_file_and_folder_params import RecoverHyperVFileAndFolderParams
 from cohesity_sdk.cluster.models.recover_hyper_vvm_params import RecoverHyperVVmParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverHyperVParams(BaseModel):

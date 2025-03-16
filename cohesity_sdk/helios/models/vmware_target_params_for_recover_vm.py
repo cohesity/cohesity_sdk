@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.helios.models.vmware_vm_recovery_target_config import VmwareVmRecoveryTargetConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForRecoverVM(BaseModel):
@@ -39,9 +39,9 @@ class VmwareTargetParamsForRecoverVM(BaseModel):
     power_off_and_rename_existing_vm: Optional[StrictBool] = Field(default=None, description="Specifies whether to power off and mark the VM at the target location as deprecated. As an example, <vm_name> will be renamed to deprecated::<vm_name>, and a new VM with the name <vm_name> in place of the now deprecated VM. Both deprecated::<vm_name> and <vm_name> will exist on the primary, but the corresponding protection job will only backup <vm_name> on its next run. Only applicable if renameRecoveredVmParams is null and overwriteExistingVm is false. This option is not supported for vApp or vApp template recoveries. Default value is false.", alias="powerOffAndRenameExistingVm")
     power_on_vms: Optional[StrictBool] = Field(default=None, description="Specifies whether to power on vms after recovery. If not specified, or false, recovered vms will be in powered off state.", alias="powerOnVms")
     recovery_process_type: Optional[StrictStr] = Field(default=None, description="Specifies type of Recovery Process to be used. InstantRecovery/CopyRecovery etc... Default value is InstantRecovery.", alias="recoveryProcessType")
-    recovery_target_config: Optional[VmwareVmRecoveryTargetConfig] = Field(default=None, alias="recoveryTargetConfig")
-    rename_recovered_vms_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, alias="renameRecoveredVmsParams")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    recovery_target_config: Optional[VmwareVmRecoveryTargetConfig] = Field(default=None, description="Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.", alias="recoveryTargetConfig")
+    rename_recovered_vms_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, description="Specifies params to rename the VMs that are recovered. If not specified, the original names of the VMs are preserved.", alias="renameRecoveredVmsParams")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["attemptDifferentialRestore", "continueOnError", "diskProvisionType", "enableNBDSSLFallback", "isMultiStageRestore", "leverageSanTransport", "overwriteExistingVm", "powerOffAndRenameExistingVm", "powerOnVms", "recoveryProcessType", "recoveryTargetConfig", "renameRecoveredVmsParams", "vlanConfig"]
 
     @field_validator('disk_provision_type')
@@ -156,6 +156,21 @@ class VmwareTargetParamsForRecoverVM(BaseModel):
         # and model_fields_set contains the field
         if self.power_on_vms is None and "power_on_vms" in self.model_fields_set:
             _dict['powerOnVms'] = None
+
+        # set to None if recovery_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.recovery_target_config is None and "recovery_target_config" in self.model_fields_set:
+            _dict['recoveryTargetConfig'] = None
+
+        # set to None if rename_recovered_vms_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.rename_recovered_vms_params is None and "rename_recovered_vms_params" in self.model_fields_set:
+            _dict['renameRecoveredVmsParams'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         return _dict
 

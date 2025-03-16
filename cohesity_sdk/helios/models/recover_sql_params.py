@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.recover_sql_app_params import RecoverSqlAppParams
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverSqlParams(BaseModel):
@@ -31,7 +31,7 @@ class RecoverSqlParams(BaseModel):
     """ # noqa: E501
     recover_app_params: Optional[Annotated[List[RecoverSqlAppParams], Field(min_length=1)]] = Field(default=None, description="Specifies the parameters to recover Sql databases.", alias="recoverAppParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["recoverAppParams", "recoveryAction", "vlanConfig"]
 
     @field_validator('recovery_action')
@@ -94,6 +94,11 @@ class RecoverSqlParams(BaseModel):
         # and model_fields_set contains the field
         if self.recover_app_params is None and "recover_app_params" in self.model_fields_set:
             _dict['recoverAppParams'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         return _dict
 

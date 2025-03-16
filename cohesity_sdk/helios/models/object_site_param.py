@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.one_drive_param import OneDriveParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectSiteParam(BaseModel):
@@ -29,7 +29,7 @@ class ObjectSiteParam(BaseModel):
     Specifies Site recovery parameters.
     """ # noqa: E501
     document_library_params: Optional[List[OneDriveParam]] = Field(default=None, description="Specifies the parameters to recover a document library", alias="documentLibraryParams")
-    owner_info: CommonRecoverObjectSnapshotParams = Field(alias="ownerInfo")
+    owner_info: CommonRecoverObjectSnapshotParams = Field(description="Specifies the Site owner info.", alias="ownerInfo")
     __properties: ClassVar[List[str]] = ["documentLibraryParams", "ownerInfo"]
 
     model_config = ConfigDict(

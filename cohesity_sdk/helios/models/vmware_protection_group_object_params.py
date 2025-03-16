@@ -20,9 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.disk_info import DiskInfo
-from cohesity_sdk.helios.models.vmware_cdp_object import VmwareCdpObject
-from cohesity_sdk.helios.models.vmware_standby_object import VmwareStandbyObject
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareProtectionGroupObjectParams(BaseModel):
@@ -31,11 +29,11 @@ class VmwareProtectionGroupObjectParams(BaseModel):
     """ # noqa: E501
     exclude_disks: Optional[List[DiskInfo]] = Field(default=None, description="Specifies a list of disks to exclude from being protected. This is only applicable to VM objects.", alias="excludeDisks")
     truncate_exchange_logs: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to truncate MS Exchange logs while taking an app consistent snapshot of this object. This is only applicable to objects which have a registered MS Exchange app.", alias="truncateExchangeLogs")
-    cdp_info: Optional[VmwareCdpObject] = Field(default=None, alias="cdpInfo")
+    cdp_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the CDP related information for a given object. This field will only be populated when protection group is configured with policy having CDP retnetion settings.", alias="cdpInfo")
     id: Optional[StrictInt] = Field(description="Specifies the id of the object being protected. This can be a leaf level or non leaf level object.")
     is_autoprotected: Optional[StrictBool] = Field(default=None, description="Specifies whether the vm is part of an Autoprotection and there is at least one object-specific setting applied to this vm. True implies that the vm or its parent directory is autoprotected and will remain part of the autoprotection with additional settings specified here. False implies the object is not part of an Autoprotection and will remain protected and its individual settings here even if a parent directory's Autoprotection setting is altered. Default is false.", alias="isAutoprotected")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the virtual machine.")
-    standby_info: Optional[VmwareStandbyObject] = Field(default=None, alias="standbyInfo")
+    standby_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the standby related information for a given object. This field will only be populated when standby is configured in backup job settings.", alias="standbyInfo")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the VMware object.")
     __properties: ClassVar[List[str]] = ["excludeDisks", "truncateExchangeLogs", "cdpInfo", "id", "isAutoprotected", "name", "standbyInfo", "type"]
 
@@ -97,12 +95,6 @@ class VmwareProtectionGroupObjectParams(BaseModel):
                 if _item_exclude_disks:
                     _items.append(_item_exclude_disks.to_dict())
             _dict['excludeDisks'] = _items
-        # override the default output from pydantic by calling `to_dict()` of cdp_info
-        if self.cdp_info:
-            _dict['cdpInfo'] = self.cdp_info.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of standby_info
-        if self.standby_info:
-            _dict['standbyInfo'] = self.standby_info.to_dict()
         # set to None if truncate_exchange_logs (nullable) is None
         # and model_fields_set contains the field
         if self.truncate_exchange_logs is None and "truncate_exchange_logs" in self.model_fields_set:
@@ -142,11 +134,11 @@ class VmwareProtectionGroupObjectParams(BaseModel):
         _obj = cls.model_validate({
             "excludeDisks": [DiskInfo.from_dict(_item) for _item in obj["excludeDisks"]] if obj.get("excludeDisks") is not None else None,
             "truncateExchangeLogs": obj.get("truncateExchangeLogs"),
-            "cdpInfo": VmwareCdpObject.from_dict(obj["cdpInfo"]) if obj.get("cdpInfo") is not None else None,
+            "cdpInfo": obj.get("cdpInfo"),
             "id": obj.get("id"),
             "isAutoprotected": obj.get("isAutoprotected"),
             "name": obj.get("name"),
-            "standbyInfo": VmwareStandbyObject.from_dict(obj["standbyInfo"]) if obj.get("standbyInfo") is not None else None,
+            "standbyInfo": obj.get("standbyInfo"),
             "type": obj.get("type")
         })
         return _obj

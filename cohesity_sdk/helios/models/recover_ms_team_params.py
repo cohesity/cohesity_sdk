@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_ms_team_param import ObjectMsTeamParam
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.target_ms_team_param import TargetMsTeamParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverMsTeamParams(BaseModel):
@@ -34,12 +34,12 @@ class RecoverMsTeamParams(BaseModel):
     objects: Optional[List[ObjectMsTeamParam]] = Field(description="Specifies a list of Microsoft 365 Teams params associated with objects to recover.")
     restore_original_owners: Optional[StrictBool] = Field(default=None, description="Specifies if the original members/owners should be part of the newly created target team or not.", alias="restoreOriginalOwners")
     restore_to_original: Optional[StrictBool] = Field(default=None, description="Specifies whether or not all Microsoft 365 Teams are restored to original location.", alias="restoreToOriginal")
-    target_ms_team: Optional[TargetMsTeamParam] = Field(default=None, alias="targetMsTeam")
-    target_ms_team_param: Optional[TargetMsTeamParam] = Field(default=None, alias="targetMsTeamParam")
+    target_ms_team: Optional[TargetMsTeamParam] = Field(default=None, description="This field is deprecated. Use targetTeamNickName and targetTeamFullName instead.", alias="targetMsTeam")
+    target_ms_team_param: Optional[TargetMsTeamParam] = Field(default=None, description="Specifies the ms team target parameters in case of restoreToOriginal is false.", alias="targetMsTeamParam")
     target_team_full_name: Optional[StrictStr] = Field(default=None, description="This field is deprecated. Specifies target team name in case restoreToOriginal is false. This will be ignored if restoring to alternate existing team (i.e. to a team the nickname of which is same as the one supplied by the end user).", alias="targetTeamFullName")
     target_team_name: Optional[StrictStr] = Field(default=None, description="Specifies the target team name in case restoreToOriginal is false.", alias="targetTeamName")
     target_team_nick_name: Optional[StrictStr] = Field(default=None, description="This field is deprecated. Specifies target team nickname in case restoreToOriginal is false.", alias="targetTeamNickName")
-    target_team_owner: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="targetTeamOwner")
+    target_team_owner: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the additional owner entity info for the selected target team.", alias="targetTeamOwner")
     __properties: ClassVar[List[str]] = ["continueOnError", "createNewTeam", "objects", "restoreOriginalOwners", "restoreToOriginal", "targetMsTeam", "targetMsTeamParam", "targetTeamFullName", "targetTeamName", "targetTeamNickName", "targetTeamOwner"]
 
     model_config = ConfigDict(
@@ -136,6 +136,11 @@ class RecoverMsTeamParams(BaseModel):
         # and model_fields_set contains the field
         if self.target_team_nick_name is None and "target_team_nick_name" in self.model_fields_set:
             _dict['targetTeamNickName'] = None
+
+        # set to None if target_team_owner (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_team_owner is None and "target_team_owner" in self.model_fields_set:
+            _dict['targetTeamOwner'] = None
 
         return _dict
 

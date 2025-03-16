@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_azure_sql_new_source_config import RecoverAzureSqlNewSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureTargetParamsForRecoverAzureSql(BaseModel):

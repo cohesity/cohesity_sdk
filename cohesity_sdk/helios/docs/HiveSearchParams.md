@@ -1,0 +1,31 @@
+# HiveSearchParams
+
+Specifies the parameters which are specific for searching Hive objects.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**hive_object_types** | **List[str]** | Specifies one or more Hive object types be searched. | 
+**search_string** | **str** | Specifies the search string to search the Hive Objects | 
+
+## Example
+
+```python
+from cohesity_sdk.helios.models.hive_search_params import HiveSearchParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of HiveSearchParams from a JSON string
+hive_search_params_instance = HiveSearchParams.from_json(json)
+# print the JSON string representation of the object
+print(HiveSearchParams.to_json())
+
+# convert the object into a dict
+hive_search_params_dict = hive_search_params_instance.to_dict()
+# create an instance of HiveSearchParams from a dict
+hive_search_params_from_dict = HiveSearchParams.from_dict(hive_search_params_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

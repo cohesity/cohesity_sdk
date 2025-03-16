@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.cancellation_timeout_params import Cancellation
 from cohesity_sdk.cluster.models.log_retention import LogRetention
 from cohesity_sdk.cluster.models.retention import Retention
 from cohesity_sdk.cluster.models.target_schedule import TargetSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RpaasConfig(BaseModel):

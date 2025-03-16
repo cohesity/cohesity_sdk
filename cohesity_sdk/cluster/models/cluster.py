@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.cluster_create_network_config import ClusterCre
 from cohesity_sdk.cluster.models.cluster_proxy_server_config import ClusterProxyServerConfig
 from cohesity_sdk.cluster.models.rigel_cluster_config_params import RigelClusterConfigParams
 from cohesity_sdk.cluster.models.views_global_settings import ViewsGlobalSettings
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Cluster(BaseModel):

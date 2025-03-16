@@ -19,10 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.object import Object
 from cohesity_sdk.helios.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.helios.models.tag_info import TagInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class File(BaseModel):
@@ -37,7 +36,7 @@ class File(BaseModel):
     policy_name: Optional[StrictStr] = Field(default=None, description="Specifies the protection policy name for this file.", alias="policyName")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="\"Specifies the protection group id which contains this file.\"", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="\"Specifies the protection group name which contains this file.\"", alias="protectionGroupName")
-    source_info: Optional[Object] = Field(default=None, alias="sourceInfo")
+    source_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the Source Object information.", alias="sourceInfo")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="\"Specifies the Storage Domain id where the backup data of Object is present.\"", alias="storageDomainId")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the file type.")
     __properties: ClassVar[List[str]] = ["snapshotTags", "tags", "name", "path", "policyId", "policyName", "protectionGroupId", "protectionGroupName", "sourceInfo", "storageDomainId", "type"]
@@ -105,9 +104,6 @@ class File(BaseModel):
                 if _item_tags:
                     _items.append(_item_tags.to_dict())
             _dict['tags'] = _items
-        # override the default output from pydantic by calling `to_dict()` of source_info
-        if self.source_info:
-            _dict['sourceInfo'] = self.source_info.to_dict()
         # set to None if snapshot_tags (nullable) is None
         # and model_fields_set contains the field
         if self.snapshot_tags is None and "snapshot_tags" in self.model_fields_set:
@@ -178,7 +174,7 @@ class File(BaseModel):
             "policyName": obj.get("policyName"),
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupName": obj.get("protectionGroupName"),
-            "sourceInfo": Object.from_dict(obj["sourceInfo"]) if obj.get("sourceInfo") is not None else None,
+            "sourceInfo": obj.get("sourceInfo"),
             "storageDomainId": obj.get("storageDomainId"),
             "type": obj.get("type")
         })

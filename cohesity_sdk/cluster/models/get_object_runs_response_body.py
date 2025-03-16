@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.cluster.models.pagination_info import PaginationInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GetObjectRunsResponseBody(BaseModel):

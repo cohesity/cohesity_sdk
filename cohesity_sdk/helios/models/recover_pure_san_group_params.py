@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_pure_group_target_params import RecoverPureGroupTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPureSanGroupParams(BaseModel):
     """
     Specifies the parameters to recover Pure SAN group.
     """ # noqa: E501
-    pure_target_params: Optional[RecoverPureGroupTargetParams] = Field(default=None, alias="pureTargetParams")
+    pure_target_params: Optional[RecoverPureGroupTargetParams] = Field(default=None, description="Specifies the parameters of the Pure SAN group to recover to.", alias="pureTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding target params must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["pureTargetParams", "targetEnvironment"]
 
@@ -80,6 +80,11 @@ class RecoverPureSanGroupParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of pure_target_params
         if self.pure_target_params:
             _dict['pureTargetParams'] = self.pure_target_params.to_dict()
+        # set to None if pure_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.pure_target_params is None and "pure_target_params" in self.model_fields_set:
+            _dict['pureTargetParams'] = None
+
         return _dict
 
     @classmethod

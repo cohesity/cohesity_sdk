@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mssql_file_protection_group_params import MSSQLFileProtectionGroupParams
 from cohesity_sdk.helios.models.mssql_native_protection_group_params import MSSQLNativeProtectionGroupParams
 from cohesity_sdk.helios.models.mssql_volume_protection_group_params import MSSQLVolumeProtectionGroupParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MSSQLProtectionGroupParams(BaseModel):

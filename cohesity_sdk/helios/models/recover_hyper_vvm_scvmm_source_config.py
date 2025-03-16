@@ -21,17 +21,17 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_hyper_vvm_new_source_network_config import RecoverHyperVVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverHyperVVmSCVMMSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the VMs will be recovered.
     """ # noqa: E501
-    host: RecoveryObjectIdentifier
-    network_config: Optional[RecoverHyperVVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
-    source: RecoveryObjectIdentifier
-    volume: RecoveryObjectIdentifier
+    host: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the HyperV host where the recovered VMs will be attached. For standalone host targets, the host must be the same as the source.")
+    network_config: Optional[RecoverHyperVVmNewSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the VMs.")
+    volume: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the datastore object where the VMs' files should be recovered to.")
     __properties: ClassVar[List[str]] = ["host", "networkConfig", "source", "volume"]
 
     model_config = ConfigDict(
@@ -85,6 +85,26 @@ class RecoverHyperVVmSCVMMSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of volume
         if self.volume:
             _dict['volume'] = self.volume.to_dict()
+        # set to None if host (nullable) is None
+        # and model_fields_set contains the field
+        if self.host is None and "host" in self.model_fields_set:
+            _dict['host'] = None
+
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
+        # set to None if volume (nullable) is None
+        # and model_fields_set contains the field
+        if self.volume is None and "volume" in self.model_fields_set:
+            _dict['volume'] = None
+
         return _dict
 
     @classmethod

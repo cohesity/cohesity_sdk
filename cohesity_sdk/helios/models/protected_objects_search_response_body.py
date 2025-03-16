@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.protected_object import ProtectedObject
 from cohesity_sdk.helios.models.protected_objects_search_metadata import ProtectedObjectsSearchMetadata
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectedObjectsSearchResponseBody(BaseModel):
     """
     Specifies the Protected Objects search result.
     """ # noqa: E501
-    metadata: Optional[ProtectedObjectsSearchMetadata] = None
+    metadata: Optional[ProtectedObjectsSearchMetadata] = Field(default=None, description="Specifies the metadata information about the Protection Groups, Protection Policy etc., for search result.")
     num_results: Optional[StrictInt] = Field(default=None, description="Specifies the total number of search results which matches the search criteria.", alias="numResults")
     objects: Optional[List[ProtectedObject]] = Field(default=None, description="Specifies the list of Protected Objects.")
     __properties: ClassVar[List[str]] = ["metadata", "numResults", "objects"]

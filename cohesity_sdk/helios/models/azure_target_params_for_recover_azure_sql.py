@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_azure_sql_new_source_config import RecoverAzureSqlNewSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureTargetParamsForRecoverAzureSql(BaseModel):
     """
     Specifies the recovery target params for Azure SQL target config.
     """ # noqa: E501
-    new_source_config: Optional[RecoverAzureSqlNewSourceConfig] = Field(default=None, alias="newSourceConfig")
+    new_source_config: Optional[RecoverAzureSqlNewSourceConfig] = Field(default=None, description="Specifies the new destination Source configuration parameters where the Azure SQL instances will be recovered. This is mandatory if recoverToNewSource is set to true.", alias="newSourceConfig")
     recover_to_new_source: Optional[StrictBool] = Field(description="Specifies the parameter whether the recovery should be performed to a new or an existing target.", alias="recoverToNewSource")
     __properties: ClassVar[List[str]] = ["newSourceConfig", "recoverToNewSource"]
 
@@ -73,6 +73,11 @@ class AzureTargetParamsForRecoverAzureSql(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of new_source_config
         if self.new_source_config:
             _dict['newSourceConfig'] = self.new_source_config.to_dict()
+        # set to None if new_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_source_config is None and "new_source_config" in self.model_fields_set:
+            _dict['newSourceConfig'] = None
+
         # set to None if recover_to_new_source (nullable) is None
         # and model_fields_set contains the field
         if self.recover_to_new_source is None and "recover_to_new_source" in self.model_fields_set:

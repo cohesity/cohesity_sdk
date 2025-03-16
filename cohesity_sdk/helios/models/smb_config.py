@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.smb_permissions_info import SmbPermissionsInfo
 from cohesity_sdk.helios.models.view_share_permissions import ViewSharePermissions
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SmbConfig(BaseModel):
@@ -34,8 +34,8 @@ class SmbConfig(BaseModel):
     enable_smb_oplock: Optional[StrictBool] = Field(default=None, description="Specifies whether SMB opportunistic lock is enabled.", alias="enableSmbOplock")
     enable_smb_view_discovery: Optional[StrictBool] = Field(default=None, description="If set, it enables discovery of view for SMB.", alias="enableSmbViewDiscovery")
     enforce_smb_encryption: Optional[StrictBool] = Field(default=None, description="Specifies the SMB encryption for all the sessions for the View. If set, encryption is enforced for all the sessions for the View. When enabled all future and existing unencrypted sessions are disallowed.", alias="enforceSmbEncryption")
-    share_permissions: Optional[ViewSharePermissions] = Field(default=None, alias="sharePermissions")
-    smb_permissions_info: Optional[SmbPermissionsInfo] = Field(default=None, alias="smbPermissionsInfo")
+    share_permissions: Optional[ViewSharePermissions] = Field(default=None, description="Specifies share level permissions of the view.", alias="sharePermissions")
+    smb_permissions_info: Optional[SmbPermissionsInfo] = Field(default=None, description="Specifies the SMB permissions for the View.", alias="smbPermissionsInfo")
     __properties: ClassVar[List[str]] = ["enableFastDurableHandle", "enableSmbAccessBasedEnumeration", "enableSmbEncryption", "enableSmbOplock", "enableSmbViewDiscovery", "enforceSmbEncryption", "sharePermissions", "smbPermissionsInfo"]
 
     model_config = ConfigDict(

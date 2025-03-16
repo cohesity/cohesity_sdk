@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.vmware_target_params_for_recover_disk import VmwareTargetParamsForRecoverDisk
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareDiskParams(BaseModel):

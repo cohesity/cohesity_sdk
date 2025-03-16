@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.mongo_db_cdp_job_info import MongoDBCdpJobInfo
 from cohesity_sdk.cluster.models.no_sql_protection_group_object_params import NoSqlProtectionGroupObjectParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MongoDBProtectionGroupParams(BaseModel):

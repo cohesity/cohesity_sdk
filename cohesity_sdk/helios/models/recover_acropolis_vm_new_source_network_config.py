@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAcropolisVmNewSourceNetworkConfig(BaseModel):
@@ -28,7 +28,7 @@ class RecoverAcropolisVmNewSourceNetworkConfig(BaseModel):
     Specifies the network config parameters to applied for Acropolis VMs.
     """ # noqa: E501
     detach_network: Optional[StrictBool] = Field(default=None, description="If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false.", alias="detachNetwork")
-    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="networkPortGroup")
+    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the network port group (i.e, either a standard switch port group or a distributed port group) that will attached to the recovered Object. This parameter is mandatory if detach network is specified as false.", alias="networkPortGroup")
     __properties: ClassVar[List[str]] = ["detachNetwork", "networkPortGroup"]
 
     model_config = ConfigDict(
@@ -77,6 +77,11 @@ class RecoverAcropolisVmNewSourceNetworkConfig(BaseModel):
         # and model_fields_set contains the field
         if self.detach_network is None and "detach_network" in self.model_fields_set:
             _dict['detachNetwork'] = None
+
+        # set to None if network_port_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_port_group is None and "network_port_group" in self.model_fields_set:
+            _dict['networkPortGroup'] = None
 
         return _dict
 

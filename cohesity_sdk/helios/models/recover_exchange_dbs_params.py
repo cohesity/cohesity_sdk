@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.exchange_target_params_for_recover_exchange_dbs import ExchangeTargetParamsForRecoverExchangeDbs
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverExchangeDbsParams(BaseModel):
     """
     Specifies the parameters to recover Exchange databases.
     """ # noqa: E501
-    exchange_target_params: Optional[ExchangeTargetParamsForRecoverExchangeDbs] = Field(default=None, alias="exchangeTargetParams")
+    exchange_target_params: Optional[ExchangeTargetParamsForRecoverExchangeDbs] = Field(default=None, description="Specifies the params for recovering to an Exchange host.", alias="exchangeTargetParams")
     recover_to_new_source: StrictBool = Field(description="Specifies the parameter whether the recovery should be performed to a new or an existing target.", alias="recoverToNewSource")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["exchangeTargetParams", "recoverToNewSource", "targetEnvironment"]
@@ -81,6 +81,11 @@ class RecoverExchangeDbsParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of exchange_target_params
         if self.exchange_target_params:
             _dict['exchangeTargetParams'] = self.exchange_target_params.to_dict()
+        # set to None if exchange_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.exchange_target_params is None and "exchange_target_params" in self.model_fields_set:
+            _dict['exchangeTargetParams'] = None
+
         return _dict
 
     @classmethod

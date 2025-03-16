@@ -43,7 +43,7 @@ from cohesity_sdk.helios.models.physical_source_registration_params import Physi
 from cohesity_sdk.helios.models.sfdc_source_registration_params import SfdcSourceRegistrationParams
 from cohesity_sdk.helios.models.uda_source_registration_params import UdaSourceRegistrationParams
 from cohesity_sdk.helios.models.vmware_source_registration_params import VmwareSourceRegistrationParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SourceRegistration(BaseModel):

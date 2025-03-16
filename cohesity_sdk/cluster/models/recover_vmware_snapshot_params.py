@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTar
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.recover_vmware_child_snapshot_params import RecoverVmwareChildSnapshotParams
 from cohesity_sdk.cluster.models.recovery_task_info import RecoveryTaskInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareSnapshotParams(BaseModel):

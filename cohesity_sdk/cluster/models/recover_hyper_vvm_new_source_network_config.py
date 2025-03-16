@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverHyperVVmNewSourceNetworkConfig(BaseModel):

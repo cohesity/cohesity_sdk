@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
 from cohesity_sdk.helios.models.vmware_target_params_for_recover_file_and_folder import VmwareTargetParamsForRecoverFileAndFolder
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVMwareFileAndFolderParams(BaseModel):
@@ -33,7 +33,7 @@ class RecoverVMwareFileAndFolderParams(BaseModel):
     glacier_retrieval_type: Optional[StrictStr] = Field(default=None, description="Specifies the glacier retrieval type when restoring or downloding files or folders from a Glacier-based cloud snapshot.", alias="glacierRetrievalType")
     parent_recovery_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="If current recovery is child task triggered through another parent recovery operation, then this field will specify the id of the parent recovery.", alias="parentRecoveryId")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    vmware_target_params: Optional[VmwareTargetParamsForRecoverFileAndFolder] = Field(default=None, alias="vmwareTargetParams")
+    vmware_target_params: Optional[VmwareTargetParamsForRecoverFileAndFolder] = Field(default=None, description="Specifies the parameters to recover to a VMware target.", alias="vmwareTargetParams")
     __properties: ClassVar[List[str]] = ["filesAndFolders", "glacierRetrievalType", "parentRecoveryId", "targetEnvironment", "vmwareTargetParams"]
 
     @field_validator('glacier_retrieval_type')
@@ -126,6 +126,11 @@ class RecoverVMwareFileAndFolderParams(BaseModel):
         # and model_fields_set contains the field
         if self.parent_recovery_id is None and "parent_recovery_id" in self.model_fields_set:
             _dict['parentRecoveryId'] = None
+
+        # set to None if vmware_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.vmware_target_params is None and "vmware_target_params" in self.model_fields_set:
+            _dict['vmwareTargetParams'] = None
 
         return _dict
 

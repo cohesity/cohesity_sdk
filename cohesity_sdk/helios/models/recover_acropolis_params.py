@@ -23,17 +23,17 @@ from cohesity_sdk.helios.models.common_download_file_and_folder_params import Co
 from cohesity_sdk.helios.models.recover_acropolis_file_and_folder_params import RecoverAcropolisFileAndFolderParams
 from cohesity_sdk.helios.models.recover_acropolis_snapshot_params import RecoverAcropolisSnapshotParams
 from cohesity_sdk.helios.models.recover_acropolis_vm_params import RecoverAcropolisVmParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAcropolisParams(BaseModel):
     """
     Specifies Acropolis related recovery options.
     """ # noqa: E501
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
     objects: Optional[List[RecoverAcropolisSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.")
-    recover_file_and_folder_params: Optional[RecoverAcropolisFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
-    recover_vm_params: Optional[RecoverAcropolisVmParams] = Field(default=None, alias="recoverVmParams")
+    recover_file_and_folder_params: Optional[RecoverAcropolisFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover Acropolis files and folders.", alias="recoverFileAndFolderParams")
+    recover_vm_params: Optional[RecoverAcropolisVmParams] = Field(default=None, description="Specifies the parameters to recover Acropolis VMs.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recovery action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
 
@@ -99,10 +99,25 @@ class RecoverAcropolisParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_vm_params
         if self.recover_vm_params:
             _dict['recoverVmParams'] = self.recover_vm_params.to_dict()
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_file_and_folder_params is None and "recover_file_and_folder_params" in self.model_fields_set:
+            _dict['recoverFileAndFolderParams'] = None
+
+        # set to None if recover_vm_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_vm_params is None and "recover_vm_params" in self.model_fields_set:
+            _dict['recoverVmParams'] = None
 
         return _dict
 

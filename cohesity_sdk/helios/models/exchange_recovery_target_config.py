@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ExchangeRecoveryTargetConfig(BaseModel):
@@ -33,7 +33,7 @@ class ExchangeRecoveryTargetConfig(BaseModel):
     mount_database: Optional[StrictBool] = Field(default=None, description="Specifies whether to mount the database after successful recovery.", alias="mountDatabase")
     restore_as_recovery_db: Optional[StrictBool] = Field(default=None, description="Specifies whether to restore the Database as Recovery database.", alias="restoreAsRecoveryDB")
     roll_forward_recovery: Optional[StrictBool] = Field(default=None, description="Specifies whether to use the latest logs on Exchange Server to perform roll-forward recovery.", alias="rollForwardRecovery")
-    source: Optional[RecoveryObjectIdentifier] = None
+    source: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the id of the source to which the Exchange database will be recovered.")
     __properties: ClassVar[List[str]] = ["databaseDirectoryLocation", "databaseName", "logDirectoryLocation", "mountDatabase", "restoreAsRecoveryDB", "rollForwardRecovery", "source"]
 
     model_config = ConfigDict(
@@ -107,6 +107,11 @@ class ExchangeRecoveryTargetConfig(BaseModel):
         # and model_fields_set contains the field
         if self.roll_forward_recovery is None and "roll_forward_recovery" in self.model_fields_set:
             _dict['rollForwardRecovery'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
 
         return _dict
 

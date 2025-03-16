@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.oracle_range_meta_info import OracleRangeMetaInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class OracleArchiveLogInfo(BaseModel):

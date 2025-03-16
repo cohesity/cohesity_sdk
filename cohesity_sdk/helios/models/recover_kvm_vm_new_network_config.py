@@ -20,15 +20,15 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverKvmVmNewNetworkConfig(BaseModel):
     """
     Specifies the network config parameters to be applied for KVM VMs if recovering to a new source with a new network.
     """ # noqa: E501
-    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="networkPortGroup")
-    vnic_profile: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="vnicProfile")
+    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the network port group (i.e, either a standard switch port group or a distributed port group) that will attached to the recovered Object. This parameter is mandatory if detach network is specified as false.", alias="networkPortGroup")
+    vnic_profile: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies VNic profile that will be attached to the restored object.", alias="vnicProfile")
     __properties: ClassVar[List[str]] = ["networkPortGroup", "vnicProfile"]
 
     model_config = ConfigDict(

@@ -23,17 +23,17 @@ from cohesity_sdk.helios.models.common_download_file_and_folder_params import Co
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_gcp_file_and_folder_params import RecoverGcpFileAndFolderParams
 from cohesity_sdk.helios.models.recover_gcp_vm_params import RecoverGcpVmParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverGcpParams(BaseModel):
     """
     Specifies the recovery options specific to GCP environment.
     """ # noqa: E501
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run.")
-    recover_file_and_folder_params: Optional[RecoverGcpFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
-    recover_vm_params: Optional[RecoverGcpVmParams] = Field(default=None, alias="recoverVmParams")
+    recover_file_and_folder_params: Optional[RecoverGcpFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover files and folders.", alias="recoverFileAndFolderParams")
+    recover_vm_params: Optional[RecoverGcpVmParams] = Field(default=None, description="Specifies the parameters to recover GCP VM.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoverVmParams", "recoveryAction"]
 
@@ -99,10 +99,25 @@ class RecoverGcpParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_vm_params
         if self.recover_vm_params:
             _dict['recoverVmParams'] = self.recover_vm_params.to_dict()
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_file_and_folder_params is None and "recover_file_and_folder_params" in self.model_fields_set:
+            _dict['recoverFileAndFolderParams'] = None
+
+        # set to None if recover_vm_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_vm_params is None and "recover_vm_params" in self.model_fields_set:
+            _dict['recoverVmParams'] = None
 
         return _dict
 

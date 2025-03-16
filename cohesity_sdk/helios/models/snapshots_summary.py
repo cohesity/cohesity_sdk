@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SnapshotsSummary(BaseModel):
@@ -29,7 +29,7 @@ class SnapshotsSummary(BaseModel):
     """ # noqa: E501
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster id where the snapshots is stored.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster incarnation id where the snapshots is stored.", alias="clusterIncarnationId")
-    external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="externalTargetInfo")
+    external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the external target information if this is an archival snapshot.", alias="externalTargetInfo")
     latest_run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds when the latest run started.", alias="latestRunStartTimeUsecs")
     latest_run_status: Optional[StrictStr] = Field(default=None, description="Specifies the status of latest run.", alias="latestRunStatus")
     latest_snapshot_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds when the latest snapshot is taken.", alias="latestSnapshotTimestampUsecs")
@@ -120,6 +120,11 @@ class SnapshotsSummary(BaseModel):
         # and model_fields_set contains the field
         if self.cluster_incarnation_id is None and "cluster_incarnation_id" in self.model_fields_set:
             _dict['clusterIncarnationId'] = None
+
+        # set to None if external_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.external_target_info is None and "external_target_info" in self.model_fields_set:
+            _dict['externalTargetInfo'] = None
 
         # set to None if latest_run_start_time_usecs (nullable) is None
         # and model_fields_set contains the field

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.fallback_user_id_mapping_params import FallbackUserIdMappingParams
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class AdRfc2307TypeParams(BaseModel):
     """
     Specifies the properties associated to a Rfc2307 type user id mapping.
     """ # noqa: E501
-    fallback_option: FallbackUserIdMappingParams = Field(alias="fallbackOption")
+    fallback_option: Optional[FallbackUserIdMappingParams] = Field(description="Specifies a fallback user id mapping param in case the primary config does not work.", alias="fallbackOption")
     __properties: ClassVar[List[str]] = ["fallbackOption"]
 
     model_config = ConfigDict(
@@ -72,6 +72,11 @@ class AdRfc2307TypeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fallback_option
         if self.fallback_option:
             _dict['fallbackOption'] = self.fallback_option.to_dict()
+        # set to None if fallback_option (nullable) is None
+        # and model_fields_set contains the field
+        if self.fallback_option is None and "fallback_option" in self.model_fields_set:
+            _dict['fallbackOption'] = None
+
         return _dict
 
     @classmethod

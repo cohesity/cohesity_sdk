@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.file_filtering_policy import FileFilteringPolicy
 from cohesity_sdk.helios.models.file_size_policy import FileSizePolicy
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.retention import Retention
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class DowntieringPolicy(BaseModel):

@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.azure_target_params_for_recover_azure_sql import AzureTargetParamsForRecoverAzureSql
 from cohesity_sdk.helios.models.recover_azure_sql_snapshot_params import RecoverAzureSqlSnapshotParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAzureSqlParams(BaseModel):
     """
     Specifies the parameters to recover Azure SQL.
     """ # noqa: E501
-    azure_target_params: Optional[AzureTargetParamsForRecoverAzureSql] = Field(default=None, alias="azureTargetParams")
+    azure_target_params: Optional[AzureTargetParamsForRecoverAzureSql] = Field(default=None, description="Specifies the params for recovering to an Azure target.", alias="azureTargetParams")
     snapshots: Optional[List[RecoverAzureSqlSnapshotParams]] = Field(description="Specifies the details of the azure sql objects to be recovered.")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["azureTargetParams", "snapshots", "targetEnvironment"]
@@ -89,6 +89,11 @@ class RecoverAzureSqlParams(BaseModel):
                 if _item_snapshots:
                     _items.append(_item_snapshots.to_dict())
             _dict['snapshots'] = _items
+        # set to None if azure_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.azure_target_params is None and "azure_target_params" in self.model_fields_set:
+            _dict['azureTargetParams'] = None
+
         # set to None if snapshots (nullable) is None
         # and model_fields_set contains the field
         if self.snapshots is None and "snapshots" in self.model_fields_set:

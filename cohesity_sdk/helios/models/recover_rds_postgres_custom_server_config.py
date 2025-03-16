@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverRDSPostgresCustomServerConfig(BaseModel):
@@ -30,7 +30,7 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
     """ # noqa: E501
     ip: StrictStr = Field(description="Specifies the Ip in which to deploy the Rds instance.")
     port: Optional[StrictInt] = Field(description="Specifies the port to use to connect to the server.")
-    region: RecoveryObjectIdentifier
+    region: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the region in which to deploy the Rds instance.")
     standard_credentials: Credentials = Field(alias="standardCredentials")
     __properties: ClassVar[List[str]] = ["ip", "port", "region", "standardCredentials"]
 
@@ -83,6 +83,11 @@ class RecoverRDSPostgresCustomServerConfig(BaseModel):
         # and model_fields_set contains the field
         if self.port is None and "port" in self.model_fields_set:
             _dict['port'] = None
+
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
 
         return _dict
 

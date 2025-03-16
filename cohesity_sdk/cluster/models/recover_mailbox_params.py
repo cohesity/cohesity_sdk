@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.object_mailbox_param import ObjectMailboxParam
 from cohesity_sdk.cluster.models.pst_param import PstParam
 from cohesity_sdk.cluster.models.target_mailbox_param import TargetMailboxParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverMailboxParams(BaseModel):

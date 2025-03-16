@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.physical_target_params_for_recover_volume import PhysicalTargetParamsForRecoverVolume
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPhysicalVolumeParams(BaseModel):
     """
     Specifies the parameters to recover Physical Volumes.
     """ # noqa: E501
-    physical_target_params: Optional[PhysicalTargetParamsForRecoverVolume] = Field(default=None, alias="physicalTargetParams")
+    physical_target_params: Optional[PhysicalTargetParamsForRecoverVolume] = Field(default=None, description="Specifies the params for recovering to a physical target.", alias="physicalTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["physicalTargetParams", "targetEnvironment"]
 
@@ -80,6 +80,11 @@ class RecoverPhysicalVolumeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of physical_target_params
         if self.physical_target_params:
             _dict['physicalTargetParams'] = self.physical_target_params.to_dict()
+        # set to None if physical_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.physical_target_params is None and "physical_target_params" in self.model_fields_set:
+            _dict['physicalTargetParams'] = None
+
         return _dict
 
     @classmethod

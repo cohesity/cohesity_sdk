@@ -30,7 +30,7 @@ from cohesity_sdk.cluster.models.isilon_object_params import IsilonObjectParams
 from cohesity_sdk.cluster.models.netapp_object_params import NetappObjectParams
 from cohesity_sdk.cluster.models.physical_snapshot_params import PhysicalSnapshotParams
 from cohesity_sdk.cluster.models.sfdc_object_params import SfdcObjectParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectSnapshot(BaseModel):

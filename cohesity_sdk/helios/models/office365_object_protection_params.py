@@ -19,21 +19,22 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.office365_object_protection_common_params import Office365ObjectProtectionCommonParams
+from cohesity_sdk.helios.models.office365_groups_object_protection_params import Office365GroupsObjectProtectionParams
 from cohesity_sdk.helios.models.office365_sharepoint_site_object_protection_params import Office365SharepointSiteObjectProtectionParams
+from cohesity_sdk.helios.models.office365_teams_object_protection_params import Office365TeamsObjectProtectionParams
 from cohesity_sdk.helios.models.office365_user_mailbox_object_protection_params import Office365UserMailboxObjectProtectionParams
 from cohesity_sdk.helios.models.office365_user_one_drive_object_protection_params import Office365UserOneDriveObjectProtectionParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Office365ObjectProtectionParams(BaseModel):
     """
     Specifies the parameters which are specific to Microsoft 365 Object Protection.
     """ # noqa: E501
-    groups_object_protection_params: Optional[Office365ObjectProtectionCommonParams] = Field(default=None, alias="groupsObjectProtectionParams")
+    groups_object_protection_params: Optional[Office365GroupsObjectProtectionParams] = Field(default=None, alias="groupsObjectProtectionParams")
     object_protection_type: StrictStr = Field(description="Specifies the Microsoft 365 Object Protection type.", alias="objectProtectionType")
     sharepoint_site_object_protection_params: Optional[Office365SharepointSiteObjectProtectionParams] = Field(default=None, alias="sharepointSiteObjectProtectionParams")
-    teams_object_protection_params: Optional[Office365ObjectProtectionCommonParams] = Field(default=None, alias="teamsObjectProtectionParams")
+    teams_object_protection_params: Optional[Office365TeamsObjectProtectionParams] = Field(default=None, alias="teamsObjectProtectionParams")
     user_mailbox_object_protection_params: Optional[Office365UserMailboxObjectProtectionParams] = Field(default=None, alias="userMailboxObjectProtectionParams")
     user_one_drive_object_protection_params: Optional[Office365UserOneDriveObjectProtectionParams] = Field(default=None, alias="userOneDriveObjectProtectionParams")
     __properties: ClassVar[List[str]] = ["groupsObjectProtectionParams", "objectProtectionType", "sharepointSiteObjectProtectionParams", "teamsObjectProtectionParams", "userMailboxObjectProtectionParams", "userOneDriveObjectProtectionParams"]
@@ -111,10 +112,10 @@ class Office365ObjectProtectionParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "groupsObjectProtectionParams": Office365ObjectProtectionCommonParams.from_dict(obj["groupsObjectProtectionParams"]) if obj.get("groupsObjectProtectionParams") is not None else None,
+            "groupsObjectProtectionParams": Office365GroupsObjectProtectionParams.from_dict(obj["groupsObjectProtectionParams"]) if obj.get("groupsObjectProtectionParams") is not None else None,
             "objectProtectionType": obj.get("objectProtectionType"),
             "sharepointSiteObjectProtectionParams": Office365SharepointSiteObjectProtectionParams.from_dict(obj["sharepointSiteObjectProtectionParams"]) if obj.get("sharepointSiteObjectProtectionParams") is not None else None,
-            "teamsObjectProtectionParams": Office365ObjectProtectionCommonParams.from_dict(obj["teamsObjectProtectionParams"]) if obj.get("teamsObjectProtectionParams") is not None else None,
+            "teamsObjectProtectionParams": Office365TeamsObjectProtectionParams.from_dict(obj["teamsObjectProtectionParams"]) if obj.get("teamsObjectProtectionParams") is not None else None,
             "userMailboxObjectProtectionParams": Office365UserMailboxObjectProtectionParams.from_dict(obj["userMailboxObjectProtectionParams"]) if obj.get("userMailboxObjectProtectionParams") is not None else None,
             "userOneDriveObjectProtectionParams": Office365UserOneDriveObjectProtectionParams.from_dict(obj["userOneDriveObjectProtectionParams"]) if obj.get("userOneDriveObjectProtectionParams") is not None else None
         })

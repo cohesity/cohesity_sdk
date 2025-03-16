@@ -28,7 +28,7 @@ from cohesity_sdk.cluster.models.host_based_backup_script_params import HostBase
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.isilon_protection_group_object_params import IsilonProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.nas_throttling_config import NasThrottlingConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IsilonProtectionGroupParams(BaseModel):

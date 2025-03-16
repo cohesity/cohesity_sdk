@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.cluster.models.vmware_recover_disks_original_source_config import VmwareRecoverDisksOriginalSourceConfig
 from cohesity_sdk.cluster.models.vmware_recover_disks_target_source_config import VmwareRecoverDisksTargetSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForRecoverDisk(BaseModel):

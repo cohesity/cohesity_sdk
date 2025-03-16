@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.recover_vmware_vm_new_source_network_config imp
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.cluster.models.vcd_storage_profile_params import VcdStorageProfileParams
 from cohesity_sdk.cluster.models.vdc_catalog import VdcCatalog
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVAppTemplateVCDSourceConfig(BaseModel):

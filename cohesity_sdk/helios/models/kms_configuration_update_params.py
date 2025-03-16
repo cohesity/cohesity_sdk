@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_kms_configuration_update_params import AwsKmsConfigurationUpdateParams
 from cohesity_sdk.helios.models.kmip_kms_configuration import KmipKmsConfiguration
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class KmsConfigurationUpdateParams(BaseModel):

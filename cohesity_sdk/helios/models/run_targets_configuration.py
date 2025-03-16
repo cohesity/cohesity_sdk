@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.run_archival_config import RunArchivalConfig
 from cohesity_sdk.helios.models.run_cloud_replication_config import RunCloudReplicationConfig
 from cohesity_sdk.helios.models.run_replication_config import RunReplicationConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RunTargetsConfiguration(BaseModel):

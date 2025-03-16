@@ -11,10 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.ciphers_resp import CiphersResp
 from cohesity_sdk.cluster.models.common_csr_request_params import CommonCsrRequestParams
 from cohesity_sdk.cluster.models.common_csr_response_params import CommonCsrResponseParams
@@ -303,6 +307,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -578,6 +583,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -840,6 +846,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1087,6 +1094,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1349,6 +1357,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1631,6 +1640,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1878,6 +1888,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -2125,6 +2136,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -2400,6 +2412,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -2662,6 +2675,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -2945,6 +2959,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -3220,6 +3235,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -3495,6 +3511,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -3770,6 +3787,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -4032,6 +4050,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -4307,6 +4326,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -4582,6 +4602,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -4844,6 +4865,7 @@ class SecurityApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HyperVMountVolumesOriginalTargetConfig(BaseModel):
@@ -28,7 +28,7 @@ class HyperVMountVolumesOriginalTargetConfig(BaseModel):
     Specifies the configuration for mounting volumes to the original target.
     """ # noqa: E501
     bring_disks_online: Optional[StrictBool] = Field(description="Specifies whether the volumes need to be online within the target environment after attaching the disks. For linux VMs, this should always be set to false because bring disks online is only supported for Windows VM. For Windows, this is optional. If this is set to true, HyperV Integration Services must be installed on the VM.", alias="bringDisksOnline")
-    target_vm_credentials: Optional[Credentials] = Field(default=None, alias="targetVmCredentials")
+    target_vm_credentials: Optional[Credentials] = Field(default=None, description="Specifies credentials to access the target VM.", alias="targetVmCredentials")
     __properties: ClassVar[List[str]] = ["bringDisksOnline", "targetVmCredentials"]
 
     model_config = ConfigDict(
@@ -77,6 +77,11 @@ class HyperVMountVolumesOriginalTargetConfig(BaseModel):
         # and model_fields_set contains the field
         if self.bring_disks_online is None and "bring_disks_online" in self.model_fields_set:
             _dict['bringDisksOnline'] = None
+
+        # set to None if target_vm_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_vm_credentials is None and "target_vm_credentials" in self.model_fields_set:
+            _dict['targetVmCredentials'] = None
 
         return _dict
 

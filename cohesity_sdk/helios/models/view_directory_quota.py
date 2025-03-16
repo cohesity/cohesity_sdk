@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.view_directory_quota_policy import ViewDirectoryQuotaPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewDirectoryQuota(BaseModel):
@@ -29,7 +29,7 @@ class ViewDirectoryQuota(BaseModel):
     """ # noqa: E501
     directory_path: Optional[StrictStr] = Field(description="Specifies the directory path.", alias="directoryPath")
     directory_walk_pending: Optional[StrictBool] = Field(default=None, description="Specifies whether directory quota walk is pending.", alias="directoryWalkPending")
-    quota_policy: ViewDirectoryQuotaPolicy = Field(alias="quotaPolicy")
+    quota_policy: ViewDirectoryQuotaPolicy = Field(description="Specifies the directory quota policy.", alias="quotaPolicy")
     usage_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the directory usage in bytes.", alias="usageBytes")
     __properties: ClassVar[List[str]] = ["directoryPath", "directoryWalkPending", "quotaPolicy", "usageBytes"]
 

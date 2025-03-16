@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.datastore_params import DatastoreParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class EsxiRegistrationParams(BaseModel):

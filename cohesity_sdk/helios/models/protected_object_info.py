@@ -27,8 +27,8 @@ from cohesity_sdk.helios.models.object_type_windows_cluster_params import Object
 from cohesity_sdk.helios.models.protected_object_backup_config import ProtectedObjectBackupConfig
 from cohesity_sdk.helios.models.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
 from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObjectParams
-from cohesity_sdk.helios.models.tenant_info import TenantInfo
-from typing import Set
+from cohesity_sdk.helios.models.tenant import Tenant
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectedObjectInfo(BaseModel):
@@ -54,7 +54,7 @@ class ProtectedObjectInfo(BaseModel):
     windows_cluster_summary: Optional[ObjectTypeWindowsClusterParams] = Field(default=None, alias="windowsClusterSummary")
     last_run: Optional[ObjectProtectionRunSummary] = Field(default=None, alias="lastRun")
     object_backup_configuration: Optional[ProtectedObjectBackupConfig] = Field(default=None, alias="objectBackupConfiguration")
-    permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this accessing given protected object.")
+    permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this accessing given protected object.")
     protection_group_configurations: Optional[List[ProtectedObjectGroupBackupConfig]] = Field(default=None, description="Specifies the protection info associated with every object. There can be multiple instances of protection info since the same object can be protected in multiple protection groups.", alias="protectionGroupConfigurations")
     __properties: ClassVar[List[str]] = ["entityId", "environment", "id", "name", "sourceId", "sourceName", "childObjects", "globalId", "logicalSizeBytes", "objectHash", "objectType", "osType", "protectionType", "sharepointSiteSummary", "uuid", "vCenterSummary", "windowsClusterSummary", "lastRun", "objectBackupConfiguration", "permissions", "protectionGroupConfigurations"]
 
@@ -282,7 +282,7 @@ class ProtectedObjectInfo(BaseModel):
             "windowsClusterSummary": ObjectTypeWindowsClusterParams.from_dict(obj["windowsClusterSummary"]) if obj.get("windowsClusterSummary") is not None else None,
             "lastRun": ObjectProtectionRunSummary.from_dict(obj["lastRun"]) if obj.get("lastRun") is not None else None,
             "objectBackupConfiguration": ProtectedObjectBackupConfig.from_dict(obj["objectBackupConfiguration"]) if obj.get("objectBackupConfiguration") is not None else None,
-            "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
+            "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "protectionGroupConfigurations": [ProtectedObjectGroupBackupConfig.from_dict(_item) for _item in obj["protectionGroupConfigurations"]] if obj.get("protectionGroupConfigurations") is not None else None
         })
         return _obj

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAwsVmNewSourceNetworkConfig(BaseModel):
@@ -28,8 +28,8 @@ class RecoverAwsVmNewSourceNetworkConfig(BaseModel):
     Specifies the network config parameters to be applied for AWS VMs if recovering to new Source.
     """ # noqa: E501
     security_groups: Optional[List[RecoveryObjectIdentifier]] = Field(description="Specifies the network security groups within above VPC.", alias="securityGroups")
-    subnet: RecoveryObjectIdentifier
-    vpc: RecoveryObjectIdentifier
+    subnet: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the subnet within above VPC.")
+    vpc: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the Virtual Private Cloud to choose for the instance type.")
     __properties: ClassVar[List[str]] = ["securityGroups", "subnet", "vpc"]
 
     model_config = ConfigDict(
@@ -88,6 +88,16 @@ class RecoverAwsVmNewSourceNetworkConfig(BaseModel):
         # and model_fields_set contains the field
         if self.security_groups is None and "security_groups" in self.model_fields_set:
             _dict['securityGroups'] = None
+
+        # set to None if subnet (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet is None and "subnet" in self.model_fields_set:
+            _dict['subnet'] = None
+
+        # set to None if vpc (nullable) is None
+        # and model_fields_set contains the field
+        if self.vpc is None and "vpc" in self.model_fields_set:
+            _dict['vpc'] = None
 
         return _dict
 

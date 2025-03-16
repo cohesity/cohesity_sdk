@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_vmware_vm_original_source_network_config import RecoverVmwareVmOriginalSourceNetworkConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmOriginalSourceConfig(BaseModel):

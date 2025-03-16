@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonDownloadFileAndFolderParams(BaseModel):

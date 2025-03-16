@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_s3_object_level_params import AwsS3ObjectLevelParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsS3ProtectionParams(BaseModel):

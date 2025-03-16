@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.backup_generic_stats import BackupGenericStats
 from cohesity_sdk.helios.models.backup_nas_stats import BackupNasStats
 from cohesity_sdk.helios.models.object_string_identifier import ObjectStringIdentifier
 from cohesity_sdk.helios.models.stats_task_info import StatsTaskInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectStatsInfo(BaseModel):

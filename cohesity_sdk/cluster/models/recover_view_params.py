@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 from cohesity_sdk.cluster.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.cluster.models.recover_view_files_params import RecoverViewFilesParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverViewParams(BaseModel):

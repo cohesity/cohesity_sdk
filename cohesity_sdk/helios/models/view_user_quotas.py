@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
 from cohesity_sdk.helios.models.user_quota import UserQuota
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewUserQuotas(BaseModel):
     """
     Specifies the default logical user quota on the View along with the list of logical quota overrides for each user.
     """ # noqa: E501
-    default_quota_policy: Optional[QuotaPolicy] = Field(default=None, alias="defaultQuotaPolicy")
+    default_quota_policy: Optional[QuotaPolicy] = Field(default=None, description="Specifies the default user quota policy of the View.", alias="defaultQuotaPolicy")
     enabled: StrictBool = Field(description="Specifies whether user quota is enabled for the View.")
     cookie: Optional[StrictStr] = Field(default=None, description="Specifies the pagination cookie.")
     override_existing_per_user_quotas: Optional[StrictBool] = Field(default=None, description="By default, the overrides specified in userQuotas is treated as delta and the existing overrides will be left untouched. Set this to true, if the existing overrides should be cleared before applying overrides specified in userQuotas.", alias="overrideExistingPerUserQuotas")

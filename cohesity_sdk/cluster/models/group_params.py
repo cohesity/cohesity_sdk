@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.local_group_params import LocalGroupParams
 from cohesity_sdk.cluster.models.smb_principal import SMBPrincipal
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GroupParams(BaseModel):

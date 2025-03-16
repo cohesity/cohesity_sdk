@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.mount_physical_volume_params import MountPhysic
 from cohesity_sdk.cluster.models.recover_physical_file_and_folder_params import RecoverPhysicalFileAndFolderParams
 from cohesity_sdk.cluster.models.recover_physical_volume_params import RecoverPhysicalVolumeParams
 from cohesity_sdk.cluster.models.system_recovery_params import SystemRecoveryParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPhysicalParams(BaseModel):

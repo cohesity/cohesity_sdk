@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_rds_protection_group_object_params import AwsRdsProtectionGroupObjectParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsRdsProtectionGroupParams(BaseModel):

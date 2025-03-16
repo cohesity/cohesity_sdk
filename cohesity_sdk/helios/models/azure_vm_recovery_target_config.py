@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_azure_vm_new_source_config import RecoverAzureVmNewSourceConfig
 from cohesity_sdk.helios.models.recover_azure_vm_original_source_config import RecoverAzureVmOriginalSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureVmRecoveryTargetConfig(BaseModel):
     """
     Specifies the target object parameters to recover Azure vms.
     """ # noqa: E501
-    new_source_config: Optional[RecoverAzureVmNewSourceConfig] = Field(default=None, alias="newSourceConfig")
-    original_source_config: Optional[RecoverAzureVmOriginalSourceConfig] = Field(default=None, alias="originalSourceConfig")
+    new_source_config: Optional[RecoverAzureVmNewSourceConfig] = Field(default=None, description="Specifies the new destination Source configuration parameters where the VMs will be recovered. This is mandatory if recoverToNewSource is set to true.", alias="newSourceConfig")
+    original_source_config: Optional[RecoverAzureVmOriginalSourceConfig] = Field(default=None, description="Specifies the Source configuration if VM's are being recovered to Original Source.", alias="originalSourceConfig")
     recover_to_new_source: StrictBool = Field(description="Specifies the parameter whether the recovery should be performed to a new or an existing Source Target.", alias="recoverToNewSource")
     __properties: ClassVar[List[str]] = ["newSourceConfig", "originalSourceConfig", "recoverToNewSource"]
 
@@ -78,6 +78,16 @@ class AzureVmRecoveryTargetConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of original_source_config
         if self.original_source_config:
             _dict['originalSourceConfig'] = self.original_source_config.to_dict()
+        # set to None if new_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_source_config is None and "new_source_config" in self.model_fields_set:
+            _dict['newSourceConfig'] = None
+
+        # set to None if original_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_source_config is None and "original_source_config" in self.model_fields_set:
+            _dict['originalSourceConfig'] = None
+
         return _dict
 
     @classmethod

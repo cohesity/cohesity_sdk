@@ -20,17 +20,17 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverRDSPostgresToKnownSourceConfig(BaseModel):
     """
     Specifies the configuration for recovering RDS Postgres instance to the known target.
     """ # noqa: E501
-    instance: Optional[RecoveryObjectIdentifier] = None
+    instance: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the instance in which to deploy the Rds instance.")
     recover_to_new_source: Optional[StrictBool] = Field(default=None, description="Specifies the parameter whether the recovery should be performed to a new target.", alias="recoverToNewSource")
-    region: Optional[RecoveryObjectIdentifier] = None
-    source: Optional[RecoveryObjectIdentifier] = None
+    region: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the AWS region in which to deploy the Rds instance.")
+    source: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the target source details where RDS Postgres database will be recovered. This source id should be a RDS Postgres target instance id were databases could be restored.")
     __properties: ClassVar[List[str]] = ["instance", "recoverToNewSource", "region", "source"]
 
     model_config = ConfigDict(
@@ -81,10 +81,25 @@ class RecoverRDSPostgresToKnownSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
+        # set to None if instance (nullable) is None
+        # and model_fields_set contains the field
+        if self.instance is None and "instance" in self.model_fields_set:
+            _dict['instance'] = None
+
         # set to None if recover_to_new_source (nullable) is None
         # and model_fields_set contains the field
         if self.recover_to_new_source is None and "recover_to_new_source" in self.model_fields_set:
             _dict['recoverToNewSource'] = None
+
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
 
         return _dict
 

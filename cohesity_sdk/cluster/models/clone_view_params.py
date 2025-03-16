@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.qo_s import QoS
 from cohesity_sdk.cluster.models.storage_policy_override import StoragePolicyOverride
 from cohesity_sdk.cluster.models.subnet import Subnet
 from cohesity_sdk.cluster.models.view_protocol import ViewProtocol
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CloneViewParams(BaseModel):

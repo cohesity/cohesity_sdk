@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.view_directory_quota_policy import ViewDirectoryQuotaPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewDirectoryQuota(BaseModel):

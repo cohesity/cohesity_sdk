@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.draa_sfetb_usage import DraaSFETBUsage
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FrontendUsage(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.bond_interface_network_params import BondInterfaceNetworkParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class InterfaceGroupNetworkParams(BaseModel):

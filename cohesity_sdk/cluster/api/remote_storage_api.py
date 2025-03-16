@@ -11,11 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictInt
+from typing import Optional
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.registered_remote_storage_list import RegisteredRemoteStorageList
 from cohesity_sdk.cluster.models.remote_storage_info import RemoteStorageInfo
 
@@ -278,6 +281,7 @@ class RemoteStorageApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -525,6 +529,7 @@ class RemoteStorageApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -838,6 +843,7 @@ class RemoteStorageApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1113,6 +1119,7 @@ class RemoteStorageApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -1403,6 +1410,7 @@ class RemoteStorageApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

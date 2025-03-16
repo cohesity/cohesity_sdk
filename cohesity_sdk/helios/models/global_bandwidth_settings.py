@@ -19,16 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_bandwidth_settings import CommonBandwidthSettings
-from typing import Set
+from cohesity_sdk.helios.models.archival_bandwidth_settings import ArchivalBandwidthSettings
+from cohesity_sdk.helios.models.tiering_bandwidth_settings import TieringBandwidthSettings
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GlobalBandwidthSettings(BaseModel):
     """
     Specifies the bandwidth setting of the External Target.
     """ # noqa: E501
-    archival_params: Optional[CommonBandwidthSettings] = Field(default=None, alias="archivalParams")
-    tiering_params: Optional[CommonBandwidthSettings] = Field(default=None, alias="tieringParams")
+    archival_params: Optional[ArchivalBandwidthSettings] = Field(default=None, alias="archivalParams")
+    tiering_params: Optional[TieringBandwidthSettings] = Field(default=None, alias="tieringParams")
     __properties: ClassVar[List[str]] = ["archivalParams", "tieringParams"]
 
     model_config = ConfigDict(
@@ -88,8 +89,8 @@ class GlobalBandwidthSettings(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "archivalParams": CommonBandwidthSettings.from_dict(obj["archivalParams"]) if obj.get("archivalParams") is not None else None,
-            "tieringParams": CommonBandwidthSettings.from_dict(obj["tieringParams"]) if obj.get("tieringParams") is not None else None
+            "archivalParams": ArchivalBandwidthSettings.from_dict(obj["archivalParams"]) if obj.get("archivalParams") is not None else None,
+            "tieringParams": TieringBandwidthSettings.from_dict(obj["tieringParams"]) if obj.get("tieringParams") is not None else None
         })
         return _obj
 

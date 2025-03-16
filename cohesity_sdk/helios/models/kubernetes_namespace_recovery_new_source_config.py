@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class KubernetesNamespaceRecoveryNewSourceConfig(BaseModel):
     """
     Specifies the new source configuration if a Kubernetes Namespace is being restored to a different source than the one from which it was protected.
     """ # noqa: E501
-    source: RecoveryObjectIdentifier
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the Namespaces.")
     __properties: ClassVar[List[str]] = ["source"]
 
     model_config = ConfigDict(
@@ -72,6 +72,11 @@ class KubernetesNamespaceRecoveryNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
         return _dict
 
     @classmethod

@@ -21,24 +21,24 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_object_protection_update_request_params import AwsObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.azure_object_protection_update_request_params import AzureObjectProtectionUpdateRequestParams
-from cohesity_sdk.helios.models.common_mssql_object_protection_params import CommonMssqlObjectProtectionParams
 from cohesity_sdk.helios.models.elastifile_object_protection_update_request_params import ElastifileObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.flashblade_object_protection_update_request_params import FlashbladeObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.generic_nas_object_protection_update_request_params import GenericNasObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.gpfs_object_protection_update_request_params import GpfsObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.hyper_v_object_protection_update_request_params import HyperVObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.isilon_object_protection_update_request_params import IsilonObjectProtectionUpdateRequestParams
+from cohesity_sdk.helios.models.mssql_object_protection_update_request_params import MssqlObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.netapp_object_protection_update_request_params import NetappObjectProtectionUpdateRequestParams
-from cohesity_sdk.helios.models.office365_object_protection_params import Office365ObjectProtectionParams
-from cohesity_sdk.helios.models.oracle_object_based_protection_params import OracleObjectBasedProtectionParams
-from cohesity_sdk.helios.models.physical_object_protection_params import PhysicalObjectProtectionParams
+from cohesity_sdk.helios.models.office365_object_protection_update_request_params import Office365ObjectProtectionUpdateRequestParams
+from cohesity_sdk.helios.models.oracle_object_protection_update_request_params import OracleObjectProtectionUpdateRequestParams
+from cohesity_sdk.helios.models.physical_object_protection_update_request_params import PhysicalObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.policy_config import PolicyConfig
-from cohesity_sdk.helios.models.sfdc_object_protection_params import SfdcObjectProtectionParams
+from cohesity_sdk.helios.models.sfdc_object_protection_update_request_params import SfdcObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.sla_rule import SlaRule
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
-from cohesity_sdk.helios.models.uda_object_protection_params import UdaObjectProtectionParams
+from cohesity_sdk.helios.models.uda_object_protection_update_request_params import UdaObjectProtectionUpdateRequestParams
 from cohesity_sdk.helios.models.vmware_object_protection_update_request_params import VmwareObjectProtectionUpdateRequestParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateProtectedObjectsRequest(BaseModel):
@@ -64,13 +64,13 @@ class UpdateProtectedObjectsRequest(BaseModel):
     gpfs_params: Optional[GpfsObjectProtectionUpdateRequestParams] = Field(default=None, alias="gpfsParams")
     hyperv_params: Optional[HyperVObjectProtectionUpdateRequestParams] = Field(default=None, alias="hypervParams")
     isilon_params: Optional[IsilonObjectProtectionUpdateRequestParams] = Field(default=None, alias="isilonParams")
-    mssql_params: Optional[CommonMssqlObjectProtectionParams] = Field(default=None, alias="mssqlParams")
+    mssql_params: Optional[MssqlObjectProtectionUpdateRequestParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[NetappObjectProtectionUpdateRequestParams] = Field(default=None, alias="netappParams")
-    office365_params: Optional[Office365ObjectProtectionParams] = Field(default=None, alias="office365Params")
-    oracle_params: Optional[OracleObjectBasedProtectionParams] = Field(default=None, alias="oracleParams")
-    physical_params: Optional[PhysicalObjectProtectionParams] = Field(default=None, alias="physicalParams")
-    sfdc_params: Optional[SfdcObjectProtectionParams] = Field(default=None, alias="sfdcParams")
-    uda_params: Optional[UdaObjectProtectionParams] = Field(default=None, alias="udaParams")
+    office365_params: Optional[Office365ObjectProtectionUpdateRequestParams] = Field(default=None, alias="office365Params")
+    oracle_params: Optional[OracleObjectProtectionUpdateRequestParams] = Field(default=None, alias="oracleParams")
+    physical_params: Optional[PhysicalObjectProtectionUpdateRequestParams] = Field(default=None, alias="physicalParams")
+    sfdc_params: Optional[SfdcObjectProtectionUpdateRequestParams] = Field(default=None, alias="sfdcParams")
+    uda_params: Optional[UdaObjectProtectionUpdateRequestParams] = Field(default=None, alias="udaParams")
     vmware_params: Optional[VmwareObjectProtectionUpdateRequestParams] = Field(default=None, alias="vmwareParams")
     __properties: ClassVar[List[str]] = ["abortInBlackouts", "endTimeUsecs", "policyConfig", "policyId", "priority", "qosPolicy", "skipRigelForBackup", "sla", "startTime", "storageDomainId", "awsParams", "azureParams", "elastifileParams", "environment", "flashbladeParams", "genericNasParams", "gpfsParams", "hypervParams", "isilonParams", "mssqlParams", "netappParams", "office365Params", "oracleParams", "physicalParams", "sfdcParams", "udaParams", "vmwareParams"]
 
@@ -280,13 +280,13 @@ class UpdateProtectedObjectsRequest(BaseModel):
             "gpfsParams": GpfsObjectProtectionUpdateRequestParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hypervParams": HyperVObjectProtectionUpdateRequestParams.from_dict(obj["hypervParams"]) if obj.get("hypervParams") is not None else None,
             "isilonParams": IsilonObjectProtectionUpdateRequestParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
-            "mssqlParams": CommonMssqlObjectProtectionParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
+            "mssqlParams": MssqlObjectProtectionUpdateRequestParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": NetappObjectProtectionUpdateRequestParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
-            "office365Params": Office365ObjectProtectionParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
-            "oracleParams": OracleObjectBasedProtectionParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
-            "physicalParams": PhysicalObjectProtectionParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
-            "sfdcParams": SfdcObjectProtectionParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
-            "udaParams": UdaObjectProtectionParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
+            "office365Params": Office365ObjectProtectionUpdateRequestParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
+            "oracleParams": OracleObjectProtectionUpdateRequestParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
+            "physicalParams": PhysicalObjectProtectionUpdateRequestParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
+            "sfdcParams": SfdcObjectProtectionUpdateRequestParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
+            "udaParams": UdaObjectProtectionUpdateRequestParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "vmwareParams": VmwareObjectProtectionUpdateRequestParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None
         })
         return _obj

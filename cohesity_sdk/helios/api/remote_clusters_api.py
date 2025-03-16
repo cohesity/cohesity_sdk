@@ -11,12 +11,16 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.register_remote_cluster_params import RegisterRemoteClusterParams
+from cohesity_sdk.helios.models.remote_cluster import RemoteCluster
 from cohesity_sdk.helios.models.remote_cluster_params import RemoteClusterParams
 from cohesity_sdk.helios.models.remote_clusters import RemoteClusters
 from cohesity_sdk.helios.models.update_remote_cluster_params import UpdateRemoteClusterParams
@@ -349,7 +353,7 @@ class RemoteClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateRemoteClusterParams:
+    ) -> RemoteCluster:
         """Get Remote Cluster config by id.
 
         Get Remote Cluster config by cluster id.
@@ -393,7 +397,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateRemoteClusterParams",
+            '200': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -424,7 +428,7 @@ class RemoteClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateRemoteClusterParams]:
+    ) -> ApiResponse[RemoteCluster]:
         """Get Remote Cluster config by id.
 
         Get Remote Cluster config by cluster id.
@@ -468,7 +472,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateRemoteClusterParams",
+            '200': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -543,7 +547,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateRemoteClusterParams",
+            '200': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1005,7 +1009,7 @@ class RemoteClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateRemoteClusterParams:
+    ) -> RemoteCluster:
         """Register a Remote Cluster.
 
         Register a Remote Cluster on this local cluster for remote access and/or replication.
@@ -1049,7 +1053,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "UpdateRemoteClusterParams",
+            '201': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1080,7 +1084,7 @@ class RemoteClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateRemoteClusterParams]:
+    ) -> ApiResponse[RemoteCluster]:
         """Register a Remote Cluster.
 
         Register a Remote Cluster on this local cluster for remote access and/or replication.
@@ -1124,7 +1128,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "UpdateRemoteClusterParams",
+            '201': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1199,7 +1203,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "UpdateRemoteClusterParams",
+            '201': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1310,7 +1314,7 @@ class RemoteClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateRemoteClusterParams:
+    ) -> RemoteCluster:
         """Update a Remote Cluster config.
 
         Update the connection settings of the specified Remote Cluster that is registered on this Cluster.
@@ -1357,7 +1361,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateRemoteClusterParams",
+            '200': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1389,7 +1393,7 @@ class RemoteClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateRemoteClusterParams]:
+    ) -> ApiResponse[RemoteCluster]:
         """Update a Remote Cluster config.
 
         Update the connection settings of the specified Remote Cluster that is registered on this Cluster.
@@ -1436,7 +1440,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateRemoteClusterParams",
+            '200': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1515,7 +1519,7 @@ class RemoteClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateRemoteClusterParams",
+            '200': "RemoteCluster",
         }
         response_data = self.api_client.call_api(
             *_param,

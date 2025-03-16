@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_other_nas_to_elastifile_files_target_params_parent_source import RecoverOtherNasToElastifileFilesTargetParamsParentSource
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOtherNasToGenericNasVolumeTargetParams(BaseModel):
@@ -35,7 +35,7 @@ class RecoverOtherNasToGenericNasVolumeTargetParams(BaseModel):
     parent_source: Optional[RecoverOtherNasToElastifileFilesTargetParamsParentSource] = Field(default=None, alias="parentSource")
     preserve_file_attributes: Optional[StrictBool] = Field(default=None, description="Specifies whether to preserve file/folder attributes during recovery.", alias="preserveFileAttributes")
     vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
-    volume: RecoveryObjectIdentifier
+    volume: RecoveryObjectIdentifier = Field(description="Specifies the id and name of the parent volume to recover to. This volume will be the target of the recovery.")
     __properties: ClassVar[List[str]] = ["continueOnError", "encryptionEnabled", "overwriteExistingFile", "parentSource", "preserveFileAttributes", "vlanConfig", "volume"]
 
     model_config = ConfigDict(

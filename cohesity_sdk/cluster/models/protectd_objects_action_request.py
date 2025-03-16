@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.protected_object_pause_action_params import Pro
 from cohesity_sdk.cluster.models.protected_object_resume_action_params import ProtectedObjectResumeActionParams
 from cohesity_sdk.cluster.models.protected_object_run_now_action_params import ProtectedObjectRunNowActionParams
 from cohesity_sdk.cluster.models.protected_object_un_protect_action_params import ProtectedObjectUnProtectActionParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectdObjectsActionRequest(BaseModel):

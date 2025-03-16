@@ -23,18 +23,18 @@ from cohesity_sdk.helios.models.abort_incomplete_multipart_upload_action import 
 from cohesity_sdk.helios.models.expiration_action import ExpirationAction
 from cohesity_sdk.helios.models.lifecycle_rule_filter import LifecycleRuleFilter
 from cohesity_sdk.helios.models.non_current_version_expiration_action import NonCurrentVersionExpirationAction
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class LifecycleRule(BaseModel):
     """
     Specifies the Lifecycle configuration rule.
     """ # noqa: E501
-    abort_incomplete_multipart_upload_action: Optional[AbortIncompleteMultipartUploadAction] = Field(default=None, alias="abortIncompleteMultipartUploadAction")
-    expiration: Optional[ExpirationAction] = None
-    filter: Optional[LifecycleRuleFilter] = None
+    abort_incomplete_multipart_upload_action: Optional[AbortIncompleteMultipartUploadAction] = Field(default=None, description="Specifies the days since the initiation of an incomplete multipart upload before permanently removing all parts of the upload.", alias="abortIncompleteMultipartUploadAction")
+    expiration: Optional[ExpirationAction] = Field(default=None, description="Specifies the expiration for the lifecycle of the object in the form of date, days and whether the object has a delete marker.")
+    filter: Optional[LifecycleRuleFilter] = Field(default=None, description="Specifies the filter used to identify objects that a Lifecycle Rule applies to.")
     id: Optional[StrictStr] = Field(description="Specifies the Unique identifier for the rule. The value cannot be longer than 255 characters.")
-    non_current_version_expiration_action: Optional[NonCurrentVersionExpirationAction] = Field(default=None, alias="nonCurrentVersionExpirationAction")
+    non_current_version_expiration_action: Optional[NonCurrentVersionExpirationAction] = Field(default=None, description="Specifies when non-current object versions expire. Upon expiration, non-current object versions are permanently deleted. The action can be specified only in versioning enabled or suspended buckets.", alias="nonCurrentVersionExpirationAction")
     prefix: Optional[StrictStr] = Field(default=None, description="Specifies the prefix used to identify objects that a lifecycle rule applies to.")
     status: Optional[StrictBool] = Field(description="Specifies if the rule is currently being applied.")
     __properties: ClassVar[List[str]] = ["abortIncompleteMultipartUploadAction", "expiration", "filter", "id", "nonCurrentVersionExpirationAction", "prefix", "status"]

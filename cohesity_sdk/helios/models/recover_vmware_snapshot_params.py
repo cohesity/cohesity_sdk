@@ -22,19 +22,18 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
 from cohesity_sdk.helios.models.recover_vmware_child_snapshot_params import RecoverVmwareChildSnapshotParams
-from cohesity_sdk.helios.models.recovery_task_info import RecoveryTaskInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareSnapshotParams(BaseModel):
     """
     Specifies the snapshot parameters for VMware recovery.
     """ # noqa: E501
-    archival_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="archivalTargetInfo")
+    archival_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the archival target information if the snapshot is an archival snapshot.", alias="archivalTargetInfo")
     bytes_restored: Optional[StrictInt] = Field(default=None, description="Specify the total bytes restored.", alias="bytesRestored")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.", alias="endTimeUsecs")
     messages: Optional[List[StrictStr]] = Field(default=None, description="Specify error messages about the object.")
-    object_info: Optional[ObjectSummary] = Field(default=None, alias="objectInfo")
+    object_info: Optional[ObjectSummary] = Field(default=None, description="Specifies the information about the object for which the snapshot is taken.", alias="objectInfo")
     point_in_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past.", alias="pointInTimeUsecs")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for Recovery of VM.", alias="progressTaskId")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id of the object snapshot.", alias="protectionGroupId")
@@ -46,8 +45,8 @@ class RecoverVmwareSnapshotParams(BaseModel):
     start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of the Recovery in Unix timestamp epoch in microseconds.", alias="startTimeUsecs")
     status: Optional[StrictStr] = Field(default=None, description="Status of the Recovery. 'Running' indicates that the Recovery is still running. 'Canceled' indicates that the Recovery has been cancelled. 'Canceling' indicates that the Recovery is in the process of being cancelled. 'Failed' indicates that the Recovery has failed. 'Succeeded' indicates that the Recovery has finished successfully. 'SucceededWithWarning' indicates that the Recovery finished successfully, but there were some warning messages. 'Skipped' indicates that the Recovery task was skipped.")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the Storage Domain where this snapshot is stored.", alias="storageDomainId")
-    datastore_migration_info: Optional[RecoveryTaskInfo] = Field(default=None, alias="datastoreMigrationInfo")
-    instant_recovery_info: Optional[RecoveryTaskInfo] = Field(default=None, alias="instantRecoveryInfo")
+    datastore_migration_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about datastore migration. This is only applicable for RecoverVm.", alias="datastoreMigrationInfo")
+    instant_recovery_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the info about instant recovery. This is only applicable for RecoverVm.", alias="instantRecoveryInfo")
     child_snapshots: Optional[List[RecoverVmwareChildSnapshotParams]] = Field(default=None, description="Specifies optional information about any child snapshots of this object. For example a VCD snapshot may have child VM information populated here.", alias="childSnapshots")
     __properties: ClassVar[List[str]] = ["archivalTargetInfo", "bytesRestored", "endTimeUsecs", "messages", "objectInfo", "pointInTimeUsecs", "progressTaskId", "protectionGroupId", "protectionGroupName", "recoverFromStandby", "snapshotCreationTimeUsecs", "snapshotId", "snapshotTargetType", "startTimeUsecs", "status", "storageDomainId", "datastoreMigrationInfo", "instantRecoveryInfo", "childSnapshots"]
 
@@ -134,12 +133,6 @@ class RecoverVmwareSnapshotParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object_info
         if self.object_info:
             _dict['objectInfo'] = self.object_info.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of datastore_migration_info
-        if self.datastore_migration_info:
-            _dict['datastoreMigrationInfo'] = self.datastore_migration_info.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of instant_recovery_info
-        if self.instant_recovery_info:
-            _dict['instantRecoveryInfo'] = self.instant_recovery_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in child_snapshots (list)
         _items = []
         if self.child_snapshots:
@@ -147,6 +140,11 @@ class RecoverVmwareSnapshotParams(BaseModel):
                 if _item_child_snapshots:
                     _items.append(_item_child_snapshots.to_dict())
             _dict['childSnapshots'] = _items
+        # set to None if archival_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.archival_target_info is None and "archival_target_info" in self.model_fields_set:
+            _dict['archivalTargetInfo'] = None
+
         # set to None if bytes_restored (nullable) is None
         # and model_fields_set contains the field
         if self.bytes_restored is None and "bytes_restored" in self.model_fields_set:
@@ -161,6 +159,11 @@ class RecoverVmwareSnapshotParams(BaseModel):
         # and model_fields_set contains the field
         if self.messages is None and "messages" in self.model_fields_set:
             _dict['messages'] = None
+
+        # set to None if object_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_info is None and "object_info" in self.model_fields_set:
+            _dict['objectInfo'] = None
 
         # set to None if point_in_time_usecs (nullable) is None
         # and model_fields_set contains the field
@@ -212,6 +215,16 @@ class RecoverVmwareSnapshotParams(BaseModel):
         if self.storage_domain_id is None and "storage_domain_id" in self.model_fields_set:
             _dict['storageDomainId'] = None
 
+        # set to None if datastore_migration_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.datastore_migration_info is None and "datastore_migration_info" in self.model_fields_set:
+            _dict['datastoreMigrationInfo'] = None
+
+        # set to None if instant_recovery_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.instant_recovery_info is None and "instant_recovery_info" in self.model_fields_set:
+            _dict['instantRecoveryInfo'] = None
+
         return _dict
 
     @classmethod
@@ -240,8 +253,8 @@ class RecoverVmwareSnapshotParams(BaseModel):
             "startTimeUsecs": obj.get("startTimeUsecs"),
             "status": obj.get("status"),
             "storageDomainId": obj.get("storageDomainId"),
-            "datastoreMigrationInfo": RecoveryTaskInfo.from_dict(obj["datastoreMigrationInfo"]) if obj.get("datastoreMigrationInfo") is not None else None,
-            "instantRecoveryInfo": RecoveryTaskInfo.from_dict(obj["instantRecoveryInfo"]) if obj.get("instantRecoveryInfo") is not None else None,
+            "datastoreMigrationInfo": obj.get("datastoreMigrationInfo"),
+            "instantRecoveryInfo": obj.get("instantRecoveryInfo"),
             "childSnapshots": [RecoverVmwareChildSnapshotParams.from_dict(_item) for _item in obj["childSnapshots"]] if obj.get("childSnapshots") is not None else None
         })
         return _obj

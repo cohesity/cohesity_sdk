@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmEsxiSourceConfig(BaseModel):
@@ -29,10 +29,10 @@ class RecoverVmwareVmEsxiSourceConfig(BaseModel):
     Specifies the new destination Source configuration where the VMs will be recovered for ESXi sources.
     """ # noqa: E501
     datastores: Optional[List[RecoveryObjectIdentifier]] = Field(default=None, description="Specifies the datastore objects where the object's files should be recovered to.")
-    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
-    resource_pool: RecoveryObjectIdentifier = Field(alias="resourcePool")
-    source: RecoveryObjectIdentifier
-    vm_folder: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="vmFolder")
+    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    resource_pool: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the resource pool object where the recovered objects will be attached.", alias="resourcePool")
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the VMs.")
+    vm_folder: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Folder where the VMs should be created.", alias="vmFolder")
     __properties: ClassVar[List[str]] = ["datastores", "networkConfig", "resourcePool", "source", "vmFolder"]
 
     model_config = ConfigDict(
@@ -97,6 +97,26 @@ class RecoverVmwareVmEsxiSourceConfig(BaseModel):
         # and model_fields_set contains the field
         if self.datastores is None and "datastores" in self.model_fields_set:
             _dict['datastores'] = None
+
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if resource_pool (nullable) is None
+        # and model_fields_set contains the field
+        if self.resource_pool is None and "resource_pool" in self.model_fields_set:
+            _dict['resourcePool'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
+        # set to None if vm_folder (nullable) is None
+        # and model_fields_set contains the field
+        if self.vm_folder is None and "vm_folder" in self.model_fields_set:
+            _dict['vmFolder'] = None
 
         return _dict
 

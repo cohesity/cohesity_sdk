@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_pure_volume_target_params import RecoverPureVolumeTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPureSanVolumeParams(BaseModel):
     """
     Specifies the parameters to recover Pure SAN Volume.
     """ # noqa: E501
-    pure_target_params: Optional[RecoverPureVolumeTargetParams] = Field(default=None, alias="pureTargetParams")
+    pure_target_params: Optional[RecoverPureVolumeTargetParams] = Field(default=None, description="Specifies the parameters of the Pure SAN volume to recover to.", alias="pureTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding target params must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["pureTargetParams", "targetEnvironment"]
 
@@ -80,6 +80,11 @@ class RecoverPureSanVolumeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of pure_target_params
         if self.pure_target_params:
             _dict['pureTargetParams'] = self.pure_target_params.to_dict()
+        # set to None if pure_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.pure_target_params is None and "pure_target_params" in self.model_fields_set:
+            _dict['pureTargetParams'] = None
+
         return _dict
 
     @classmethod

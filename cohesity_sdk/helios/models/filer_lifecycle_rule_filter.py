@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.filer_lifecycle_size_filter import FilerLifecycleSizeFilter
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FilerLifecycleRuleFilter(BaseModel):
@@ -28,7 +28,7 @@ class FilerLifecycleRuleFilter(BaseModel):
     Specifies the filter used to identify files that a Lifecycle Rule applies to.
     """ # noqa: E501
     file_extensions: Optional[List[StrictStr]] = Field(default=None, description="Specifies the file's selection based on their extension. Eg: .pdf, .txt, etc. Note: Provide extensions here with the initial '.' character, example .pdf and not pdf. Extensions are case-insensitive, i.e. .pdf extension in filter will delete all files have .pdf, .PDF, .pDF, etc.", alias="fileExtensions")
-    file_size: Optional[FilerLifecycleSizeFilter] = Field(default=None, alias="fileSize")
+    file_size: Optional[FilerLifecycleSizeFilter] = Field(default=None, description="Specifies the file's selection based on their size.", alias="fileSize")
     __properties: ClassVar[List[str]] = ["fileExtensions", "fileSize"]
 
     model_config = ConfigDict(

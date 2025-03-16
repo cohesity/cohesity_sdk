@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.active_directory_admin_params import ActiveDire
 from cohesity_sdk.cluster.models.domain_controller import DomainController
 from cohesity_sdk.cluster.models.machine_account import MachineAccount
 from cohesity_sdk.cluster.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateActiveDirectoryRequest(BaseModel):

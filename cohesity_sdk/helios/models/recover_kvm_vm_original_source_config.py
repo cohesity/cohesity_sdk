@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_kvm_vm_original_source_network_config import RecoverKvmVmOriginalSourceNetworkConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverKvmVmOriginalSourceConfig(BaseModel):
     """
     Specifies the Source configuration if VM's are being recovered to Original Source.
     """ # noqa: E501
-    network_config: Optional[RecoverKvmVmOriginalSourceNetworkConfig] = Field(default=None, alias="networkConfig")
+    network_config: Optional[RecoverKvmVmOriginalSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
     __properties: ClassVar[List[str]] = ["networkConfig"]
 
     model_config = ConfigDict(
@@ -72,6 +72,11 @@ class RecoverKvmVmOriginalSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of network_config
         if self.network_config:
             _dict['networkConfig'] = self.network_config.to_dict()
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
         return _dict
 
     @classmethod

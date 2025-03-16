@@ -19,18 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.frequency_schedule import FrequencySchedule
+from cohesity_sdk.helios.models.day_schedule import DaySchedule
 from cohesity_sdk.helios.models.month_schedule import MonthSchedule
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
 from cohesity_sdk.helios.models.week_schedule import WeekSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class DataTieringSchedule(BaseModel):
     """
     Specifies the data tiering schedule.
     """ # noqa: E501
-    day_schedule: Optional[FrequencySchedule] = Field(default=None, alias="daySchedule")
+    day_schedule: Optional[DaySchedule] = Field(default=None, alias="daySchedule")
     month_schedule: Optional[MonthSchedule] = Field(default=None, alias="monthSchedule")
     start_time: Optional[TimeOfDay] = Field(default=None, alias="startTime")
     unit: Optional[StrictStr] = Field(default=None, description="Specifies how often to migrate data from source to target")
@@ -115,7 +115,7 @@ class DataTieringSchedule(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "daySchedule": FrequencySchedule.from_dict(obj["daySchedule"]) if obj.get("daySchedule") is not None else None,
+            "daySchedule": DaySchedule.from_dict(obj["daySchedule"]) if obj.get("daySchedule") is not None else None,
             "monthSchedule": MonthSchedule.from_dict(obj["monthSchedule"]) if obj.get("monthSchedule") is not None else None,
             "startTime": TimeOfDay.from_dict(obj["startTime"]) if obj.get("startTime") is not None else None,
             "unit": obj.get("unit"),

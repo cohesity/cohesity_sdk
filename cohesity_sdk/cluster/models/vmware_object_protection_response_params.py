@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
 from cohesity_sdk.cluster.models.vmware_cdp_object import VmwareCdpObject
 from cohesity_sdk.cluster.models.vmware_standby_object import VmwareStandbyObject
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareObjectProtectionResponseParams(BaseModel):

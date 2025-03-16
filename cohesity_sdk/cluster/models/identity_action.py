@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.o_auth2_action import OAuth2Action
 from cohesity_sdk.cluster.models.open_id_connect_action import OpenIdConnectAction
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IdentityAction(BaseModel):

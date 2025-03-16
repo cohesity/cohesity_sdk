@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.cluster_dhcp_network_config import ClusterDhcpNetworkConfig
 from cohesity_sdk.cluster.models.cluster_manual_network_config import ClusterManualNetworkConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ClusterCreateNetworkConfig(BaseModel):

@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.azure_target_params_for_recover_vm import AzureTargetParamsForRecoverVm
 from cohesity_sdk.helios.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAzureVmParams(BaseModel):
     """
     Specifies the parameters to recover Azure VM.
     """ # noqa: E501
-    azure_target_params: Optional[AzureTargetParamsForRecoverVm] = Field(default=None, alias="azureTargetParams")
+    azure_target_params: Optional[AzureTargetParamsForRecoverVm] = Field(default=None, description="Specifies the params for recovering to an Azure target.", alias="azureTargetParams")
     recover_protection_group_runs_params: Optional[List[RecoverProtectionGroupRunParams]] = Field(default=None, description="Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.", alias="recoverProtectionGroupRunsParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["azureTargetParams", "recoverProtectionGroupRunsParams", "targetEnvironment"]
@@ -89,6 +89,11 @@ class RecoverAzureVmParams(BaseModel):
                 if _item_recover_protection_group_runs_params:
                     _items.append(_item_recover_protection_group_runs_params.to_dict())
             _dict['recoverProtectionGroupRunsParams'] = _items
+        # set to None if azure_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.azure_target_params is None and "azure_target_params" in self.model_fields_set:
+            _dict['azureTargetParams'] = None
+
         # set to None if recover_protection_group_runs_params (nullable) is None
         # and model_fields_set contains the field
         if self.recover_protection_group_runs_params is None and "recover_protection_group_runs_params" in self.model_fields_set:

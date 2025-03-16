@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.helios_azure_target_config import HeliosAzureTar
 from cohesity_sdk.helios.models.helios_remote_target_config import HeliosRemoteTargetConfig
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
 from cohesity_sdk.helios.models.helios_target_schedule import HeliosTargetSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosReplicationConfig(BaseModel):

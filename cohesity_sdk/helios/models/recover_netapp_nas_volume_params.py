@@ -26,22 +26,22 @@ from cohesity_sdk.helios.models.recover_other_nas_to_flashblade_volume_target_pa
 from cohesity_sdk.helios.models.recover_other_nas_to_generic_nas_volume_target_params import RecoverOtherNasToGenericNasVolumeTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_gpfs_volume_target_params import RecoverOtherNasToGpfsVolumeTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_isilon_volume_target_params import RecoverOtherNasToIsilonVolumeTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverNetappNasVolumeParams(BaseModel):
     """
     Specifies the parameters to recover Netapp NAS volumes.
     """ # noqa: E501
-    elastifile_target_params: Optional[RecoverOtherNasToElastifileVolumeTargetParams] = Field(default=None, alias="elastifileTargetParams")
-    flashblade_target_params: Optional[RecoverOtherNasToFlashbladeVolumeTargetParams] = Field(default=None, alias="flashbladeTargetParams")
-    generic_nas_target_params: Optional[RecoverOtherNasToGenericNasVolumeTargetParams] = Field(default=None, alias="genericNasTargetParams")
-    gpfs_target_params: Optional[RecoverOtherNasToGpfsVolumeTargetParams] = Field(default=None, alias="gpfsTargetParams")
+    elastifile_target_params: Optional[RecoverOtherNasToElastifileVolumeTargetParams] = Field(default=None, description="Specifies the params for an Elastifile recovery target.", alias="elastifileTargetParams")
+    flashblade_target_params: Optional[RecoverOtherNasToFlashbladeVolumeTargetParams] = Field(default=None, description="Specifies the params for a Flashblade recovery target.", alias="flashbladeTargetParams")
+    generic_nas_target_params: Optional[RecoverOtherNasToGenericNasVolumeTargetParams] = Field(default=None, description="Specifies the params for a generic NAS recovery target.", alias="genericNasTargetParams")
+    gpfs_target_params: Optional[RecoverOtherNasToGpfsVolumeTargetParams] = Field(default=None, description="Specifies the params for a GPFS recovery target.", alias="gpfsTargetParams")
     is_from_source_initiated_protection: Optional[StrictBool] = Field(default=None, description="Specifies if the snapshot trying to recover is from a source initiated protection.", alias="isFromSourceInitiatedProtection")
-    isilon_target_params: Optional[RecoverOtherNasToIsilonVolumeTargetParams] = Field(default=None, alias="isilonTargetParams")
-    netapp_target_params: Optional[RecoverNetappToNetappVolumeTargetParams] = Field(default=None, alias="netappTargetParams")
+    isilon_target_params: Optional[RecoverOtherNasToIsilonVolumeTargetParams] = Field(default=None, description="Specifies the params for an Isilon recovery target.", alias="isilonTargetParams")
+    netapp_target_params: Optional[RecoverNetappToNetappVolumeTargetParams] = Field(default=None, description="Specifies the params for a Netapp recovery target.", alias="netappTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    view_target_params: Optional[RecoverNasVolumeToViewParams] = Field(default=None, alias="viewTargetParams")
+    view_target_params: Optional[RecoverNasVolumeToViewParams] = Field(default=None, description="Specifies the params for a Cohesity view recovery target.", alias="viewTargetParams")
     __properties: ClassVar[List[str]] = ["elastifileTargetParams", "flashbladeTargetParams", "genericNasTargetParams", "gpfsTargetParams", "isFromSourceInitiatedProtection", "isilonTargetParams", "netappTargetParams", "targetEnvironment", "viewTargetParams"]
 
     @field_validator('target_environment')
@@ -111,10 +111,45 @@ class RecoverNetappNasVolumeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of view_target_params
         if self.view_target_params:
             _dict['viewTargetParams'] = self.view_target_params.to_dict()
+        # set to None if elastifile_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.elastifile_target_params is None and "elastifile_target_params" in self.model_fields_set:
+            _dict['elastifileTargetParams'] = None
+
+        # set to None if flashblade_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.flashblade_target_params is None and "flashblade_target_params" in self.model_fields_set:
+            _dict['flashbladeTargetParams'] = None
+
+        # set to None if generic_nas_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.generic_nas_target_params is None and "generic_nas_target_params" in self.model_fields_set:
+            _dict['genericNasTargetParams'] = None
+
+        # set to None if gpfs_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.gpfs_target_params is None and "gpfs_target_params" in self.model_fields_set:
+            _dict['gpfsTargetParams'] = None
+
         # set to None if is_from_source_initiated_protection (nullable) is None
         # and model_fields_set contains the field
         if self.is_from_source_initiated_protection is None and "is_from_source_initiated_protection" in self.model_fields_set:
             _dict['isFromSourceInitiatedProtection'] = None
+
+        # set to None if isilon_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.isilon_target_params is None and "isilon_target_params" in self.model_fields_set:
+            _dict['isilonTargetParams'] = None
+
+        # set to None if netapp_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.netapp_target_params is None and "netapp_target_params" in self.model_fields_set:
+            _dict['netappTargetParams'] = None
+
+        # set to None if view_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.view_target_params is None and "view_target_params" in self.model_fields_set:
+            _dict['viewTargetParams'] = None
 
         return _dict
 

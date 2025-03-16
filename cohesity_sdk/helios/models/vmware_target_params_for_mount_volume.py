@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.mounted_volume_mapping import MountedVolumeMappi
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.helios.models.v_mware_mount_volumes_new_target_config import VMwareMountVolumesNewTargetConfig
 from cohesity_sdk.helios.models.v_mware_mount_volumes_original_target_config import VMwareMountVolumesOriginalTargetConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForMountVolume(BaseModel):
@@ -32,10 +32,10 @@ class VmwareTargetParamsForMountVolume(BaseModel):
     """ # noqa: E501
     mount_to_original_target: Optional[StrictBool] = Field(description="Specifies whether to mount to the original target. If true, originalTargetConfig must be specified. If false, newTargetConfig must be specified.", alias="mountToOriginalTarget")
     mounted_volume_mapping: Optional[List[MountedVolumeMapping]] = Field(default=None, description="Specifies the mapping of original volumes and mounted volumes", alias="mountedVolumeMapping")
-    new_target_config: Optional[VMwareMountVolumesNewTargetConfig] = Field(default=None, alias="newTargetConfig")
-    original_target_config: Optional[VMwareMountVolumesOriginalTargetConfig] = Field(default=None, alias="originalTargetConfig")
+    new_target_config: Optional[VMwareMountVolumesNewTargetConfig] = Field(default=None, description="Specifies the configuration for mounting to a new target.", alias="newTargetConfig")
+    original_target_config: Optional[VMwareMountVolumesOriginalTargetConfig] = Field(default=None, description="Specifies the configuration for mounting to the original target.", alias="originalTargetConfig")
     read_only_mount: Optional[StrictBool] = Field(default=None, description="Specifies whether to perform a read-only mount. Default is false.", alias="readOnlyMount")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     volume_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies the names of volumes that need to be mounted. If this is not specified then all volumes that are part of the source VM will be mounted on the target VM.", alias="volumeNames")
     __properties: ClassVar[List[str]] = ["mountToOriginalTarget", "mountedVolumeMapping", "newTargetConfig", "originalTargetConfig", "readOnlyMount", "vlanConfig", "volumeNames"]
 
@@ -106,10 +106,25 @@ class VmwareTargetParamsForMountVolume(BaseModel):
         if self.mounted_volume_mapping is None and "mounted_volume_mapping" in self.model_fields_set:
             _dict['mountedVolumeMapping'] = None
 
+        # set to None if new_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_target_config is None and "new_target_config" in self.model_fields_set:
+            _dict['newTargetConfig'] = None
+
+        # set to None if original_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_target_config is None and "original_target_config" in self.model_fields_set:
+            _dict['originalTargetConfig'] = None
+
         # set to None if read_only_mount (nullable) is None
         # and model_fields_set contains the field
         if self.read_only_mount is None and "read_only_mount" in self.model_fields_set:
             _dict['readOnlyMount'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         # set to None if volume_names (nullable) is None
         # and model_fields_set contains the field

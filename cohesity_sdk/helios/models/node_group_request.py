@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.bgp_instance import BgpInstance
 from cohesity_sdk.helios.models.dns_servers_info import DnsServersInfo
 from cohesity_sdk.helios.models.subnet_info import SubnetInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NodeGroupRequest(BaseModel):

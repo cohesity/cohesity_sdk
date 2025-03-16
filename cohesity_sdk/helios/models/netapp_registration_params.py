@@ -22,8 +22,9 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
+from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
 from cohesity_sdk.helios.models.storage_array_snapshot_config import StorageArraySnapshotConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NetappRegistrationParams(BaseModel):
@@ -34,7 +35,7 @@ class NetappRegistrationParams(BaseModel):
     credentials: Credentials
     endpoint: Optional[StrictStr] = Field(description="Specifies the Hostname or IP Address Endpoint for the Netapp Source.")
     filter_ip_config: Optional[FilterIpConfig] = Field(default=None, alias="filterIpConfig")
-    smb_credentials: Optional[Credentials] = Field(default=None, alias="smbCredentials")
+    smb_credentials: Optional[SmbMountCredentials] = Field(default=None, alias="smbCredentials")
     source_type: Optional[StrictStr] = Field(description="Specifies the Netapp source type. Can be either kCluster or kVServer (SVM).", alias="sourceType")
     storage_array_snapshot_config: Optional[StorageArraySnapshotConfig] = Field(default=None, alias="storageArraySnapshotConfig")
     storage_array_snapshot_enabled: Optional[StrictBool] = Field(default=None, description="Specifies if storage array snapshot is enabled or not in the Source.", alias="storageArraySnapshotEnabled")
@@ -141,7 +142,7 @@ class NetappRegistrationParams(BaseModel):
             "credentials": Credentials.from_dict(obj["credentials"]) if obj.get("credentials") is not None else None,
             "endpoint": obj.get("endpoint"),
             "filterIpConfig": FilterIpConfig.from_dict(obj["filterIpConfig"]) if obj.get("filterIpConfig") is not None else None,
-            "smbCredentials": Credentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
+            "smbCredentials": SmbMountCredentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
             "sourceType": obj.get("sourceType"),
             "storageArraySnapshotConfig": StorageArraySnapshotConfig.from_dict(obj["storageArraySnapshotConfig"]) if obj.get("storageArraySnapshotConfig") is not None else None,
             "storageArraySnapshotEnabled": obj.get("storageArraySnapshotEnabled"),

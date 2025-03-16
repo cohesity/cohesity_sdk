@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.component_removal_progress import ComponentRemovalProgress
 from cohesity_sdk.cluster.models.pre_check_validation import PreCheckValidation
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Disk(BaseModel):

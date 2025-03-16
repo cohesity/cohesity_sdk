@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.cluster.models.recover_other_nas_to_elastifile_files_target_params_parent_source import RecoverOtherNasToElastifileFilesTargetParamsParentSource
 from cohesity_sdk.cluster.models.recover_target import RecoverTarget
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOtherNasToIsilonFilesTargetParams(BaseModel):

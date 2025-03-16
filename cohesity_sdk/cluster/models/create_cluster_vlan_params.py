@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.dns_delegation_zone import DnsDelegationZone
 from cohesity_sdk.cluster.models.ip_pool import IpPool
 from cohesity_sdk.cluster.models.ip_range import IpRange
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateClusterVlanParams(BaseModel):

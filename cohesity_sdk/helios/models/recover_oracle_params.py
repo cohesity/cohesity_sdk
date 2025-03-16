@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_oracle_app_params import RecoverOracleAppParams
 from cohesity_sdk.helios.models.recover_oracle_db_snapshot_params import RecoverOracleDbSnapshotParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOracleParams(BaseModel):
@@ -29,7 +29,7 @@ class RecoverOracleParams(BaseModel):
     Specifies the recovery options specific to oracle environment.
     """ # noqa: E501
     objects: Optional[List[RecoverOracleDbSnapshotParams]] = Field(description="Specifies the list of parameters for list of objects to be recovered.")
-    recover_app_params: Optional[RecoverOracleAppParams] = Field(default=None, alias="recoverAppParams")
+    recover_app_params: Optional[RecoverOracleAppParams] = Field(default=None, description="Specifies the parameters to recover Oracle databases.", alias="recoverAppParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["objects", "recoverAppParams", "recoveryAction"]
 
@@ -93,6 +93,11 @@ class RecoverOracleParams(BaseModel):
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_app_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_app_params is None and "recover_app_params" in self.model_fields_set:
+            _dict['recoverAppParams'] = None
 
         return _dict
 

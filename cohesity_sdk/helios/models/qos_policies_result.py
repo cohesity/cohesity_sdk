@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.qo_s import QoS
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class QosPoliciesResult(BaseModel):

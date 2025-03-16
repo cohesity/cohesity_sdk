@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.helios_bmr_backup_policy import HeliosBmrBackupP
 from cohesity_sdk.helios.models.helios_cdp_backup_policy import HeliosCdpBackupPolicy
 from cohesity_sdk.helios.models.helios_log_backup_policy import HeliosLogBackupPolicy
 from cohesity_sdk.helios.models.helios_regular_backup_policy import HeliosRegularBackupPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosBackupPolicy(BaseModel):

@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.activity_stats_params import ActivityStatsParams
 from cohesity_sdk.helios.models.archival_run_filter_params import ArchivalRunFilterParams
 from cohesity_sdk.helios.models.backup_run_filter_params import BackupRunFilterParams
 from cohesity_sdk.helios.models.mcm_object_identifier import McmObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GetMcmObjectsLastRunReqParams(BaseModel):
@@ -32,7 +32,7 @@ class GetMcmObjectsLastRunReqParams(BaseModel):
     """ # noqa: E501
     activity_types: Optional[List[StrictStr]] = Field(default=None, description="Specifies the activity types.", alias="activityTypes")
     archival_run_params: Optional[ArchivalRunFilterParams] = Field(default=None, alias="archivalRunParams")
-    backup_run_params: Optional[BackupRunFilterParams] = Field(default=None, alias="backupRunParams")
+    backup_run_params: Optional[BackupRunFilterParams] = Field(default=None, description="Specifies the additional filters in case activity type is set to 'BackupRun'.", alias="backupRunParams")
     environments: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of environments.")
     exclude_data: Optional[StrictBool] = Field(default=None, description="Specifies whether to exclude activity information from the response. If not specified or false, activity information will be included.", alias="excludeData")
     exclude_stats: Optional[StrictBool] = Field(default=None, description="Specifies whether to exclude stats information from the response. If not specified or false, stats information will be included.", alias="excludeStats")
@@ -140,6 +140,11 @@ class GetMcmObjectsLastRunReqParams(BaseModel):
         # and model_fields_set contains the field
         if self.activity_types is None and "activity_types" in self.model_fields_set:
             _dict['activityTypes'] = None
+
+        # set to None if backup_run_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_run_params is None and "backup_run_params" in self.model_fields_set:
+            _dict['backupRunParams'] = None
 
         # set to None if environments (nullable) is None
         # and model_fields_set contains the field

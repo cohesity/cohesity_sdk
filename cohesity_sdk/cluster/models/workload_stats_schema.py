@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.entity_identifier import EntityIdentifier
 from cohesity_sdk.cluster.models.workload_sub_type import WorkloadSubType
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class WorkloadStatsSchema(BaseModel):

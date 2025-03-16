@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.prepare_planned_failver_params import PreparePlannedFailverParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PlannedFailoverParams(BaseModel):
     """
     Specifies parameters of a planned failover.
     """ # noqa: E501
-    prepare_planned_failver_params: Optional[PreparePlannedFailverParams] = Field(default=None, alias="preparePlannedFailverParams")
+    prepare_planned_failver_params: Optional[PreparePlannedFailverParams] = Field(default=None, description="Specifies parameters of preparation of a planned failover.", alias="preparePlannedFailverParams")
     type: Optional[StrictStr] = Field(description="Spcifies the planned failover type.<br> 'Prepare' indicates this is a preparation for failover.<br> 'Finalize' indicates this is finalization of failover. After this is done, the view can be used as source view.")
     __properties: ClassVar[List[str]] = ["preparePlannedFailverParams", "type"]
 

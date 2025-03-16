@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_pure_san_group_new_source_config import RecoverPureSanGroupNewSourceConfig
 from cohesity_sdk.helios.models.recover_pure_san_group_original_source_config import RecoverPureSanGroupOriginalSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPureGroupTargetParams(BaseModel):
     """
     Specifies the target object parameters to recover the Pure San group.
     """ # noqa: E501
-    new_source_config: Optional[RecoverPureSanGroupNewSourceConfig] = Field(default=None, alias="newSourceConfig")
-    original_source_config: Optional[RecoverPureSanGroupOriginalSourceConfig] = Field(default=None, alias="originalSourceConfig")
+    new_source_config: Optional[RecoverPureSanGroupNewSourceConfig] = Field(default=None, description="Specifies the new destination Source configuration parameters where the Pure group will be recovered. This is mandatory if recoverToNewSource is set to true.", alias="newSourceConfig")
+    original_source_config: Optional[RecoverPureSanGroupOriginalSourceConfig] = Field(default=None, description="Specifies the Source configuration if Pure group is being recovered to Original Source. If not specified, all the configuration parameters will be retained.", alias="originalSourceConfig")
     recover_to_new_source: StrictBool = Field(description="Specifies whether to recover to a new source.", alias="recoverToNewSource")
     use_thin_clone: Optional[StrictBool] = Field(default=None, description="Specifies whether to use thin clone to restore storage array snapshots.", alias="useThinClone")
     __properties: ClassVar[List[str]] = ["newSourceConfig", "originalSourceConfig", "recoverToNewSource", "useThinClone"]
@@ -79,6 +79,16 @@ class RecoverPureGroupTargetParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of original_source_config
         if self.original_source_config:
             _dict['originalSourceConfig'] = self.original_source_config.to_dict()
+        # set to None if new_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_source_config is None and "new_source_config" in self.model_fields_set:
+            _dict['newSourceConfig'] = None
+
+        # set to None if original_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_source_config is None and "original_source_config" in self.model_fields_set:
+            _dict['originalSourceConfig'] = None
+
         # set to None if use_thin_clone (nullable) is None
         # and model_fields_set contains the field
         if self.use_thin_clone is None and "use_thin_clone" in self.model_fields_set:

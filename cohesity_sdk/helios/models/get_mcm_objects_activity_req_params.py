@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.archival_run_filter_params import ArchivalRunFil
 from cohesity_sdk.helios.models.backup_run_filter_params import BackupRunFilterParams
 from cohesity_sdk.helios.models.mcm_object_identifier import McmObjectIdentifier
 from cohesity_sdk.helios.models.restore_filter_params import RestoreFilterParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GetMcmObjectsActivityReqParams(BaseModel):
@@ -33,7 +33,7 @@ class GetMcmObjectsActivityReqParams(BaseModel):
     """ # noqa: E501
     activity_types: Optional[List[StrictStr]] = Field(default=None, description="Specifies the activity types.", alias="activityTypes")
     archival_run_params: Optional[ArchivalRunFilterParams] = Field(default=None, alias="archivalRunParams")
-    backup_run_params: Optional[BackupRunFilterParams] = Field(default=None, alias="backupRunParams")
+    backup_run_params: Optional[BackupRunFilterParams] = Field(default=None, description="Specifies the additional filters in case activity type is set to 'BackupRun'.", alias="backupRunParams")
     environments: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of environments.")
     exclude_data: Optional[StrictBool] = Field(default=None, description="Specifies whether to exclude activity information from the response. If not specified or false, activity information will be included.", alias="excludeData")
     exclude_stats: Optional[StrictBool] = Field(default=None, description="Specifies whether to exclude stats information from the response. If not specified or false, stats information will be included.", alias="excludeStats")
@@ -41,7 +41,7 @@ class GetMcmObjectsActivityReqParams(BaseModel):
     is_sla_violated: Optional[StrictBool] = Field(default=None, description="Specifies whether to only return activities which violated SLA. Default is false.", alias="isSlaViolated")
     message_codes: Optional[List[StrictStr]] = Field(default=None, description="Specifies the error codes to filter backup runs.", alias="messageCodes")
     object_identifiers: Optional[List[McmObjectIdentifier]] = Field(default=None, description="Specifies the list of object identifiers to filter the activity.", alias="objectIdentifiers")
-    restore_params: Optional[RestoreFilterParams] = Field(default=None, alias="restoreParams")
+    restore_params: Optional[RestoreFilterParams] = Field(default=None, description="Specifies the additional filters in case activity type is set to 'Restore'.", alias="restoreParams")
     stats_params: Optional[ActivityStatsParams] = Field(default=None, alias="statsParams")
     statuses: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of statuses to filter activity events.")
     to_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in Unix timestamp epoch in microsecond which filters all the activity started before this value.", alias="toTimeUsecs")
@@ -143,6 +143,11 @@ class GetMcmObjectsActivityReqParams(BaseModel):
         if self.activity_types is None and "activity_types" in self.model_fields_set:
             _dict['activityTypes'] = None
 
+        # set to None if backup_run_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_run_params is None and "backup_run_params" in self.model_fields_set:
+            _dict['backupRunParams'] = None
+
         # set to None if environments (nullable) is None
         # and model_fields_set contains the field
         if self.environments is None and "environments" in self.model_fields_set:
@@ -177,6 +182,11 @@ class GetMcmObjectsActivityReqParams(BaseModel):
         # and model_fields_set contains the field
         if self.object_identifiers is None and "object_identifiers" in self.model_fields_set:
             _dict['objectIdentifiers'] = None
+
+        # set to None if restore_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.restore_params is None and "restore_params" in self.model_fields_set:
+            _dict['restoreParams'] = None
 
         # set to None if statuses (nullable) is None
         # and model_fields_set contains the field

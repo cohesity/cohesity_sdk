@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.azure_recover_files_new_target_config import AzureRecoverFilesNewTargetConfig
 from cohesity_sdk.cluster.models.azure_recover_files_original_target_config import AzureRecoverFilesOriginalTargetConfig
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureTargetParamsForRecoverFileAndFolder(BaseModel):

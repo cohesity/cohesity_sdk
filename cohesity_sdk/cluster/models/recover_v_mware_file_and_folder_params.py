@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
 from cohesity_sdk.cluster.models.vmware_target_params_for_recover_file_and_folder import VmwareTargetParamsForRecoverFileAndFolder
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVMwareFileAndFolderParams(BaseModel):

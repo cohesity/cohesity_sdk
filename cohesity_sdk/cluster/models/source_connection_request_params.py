@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.hadoop_connection_params import HadoopConnectio
 from cohesity_sdk.cluster.models.ms_sql_common_connection_params import MsSQLCommonConnectionParams
 from cohesity_sdk.cluster.models.oracle_connection_params import OracleConnectionParams
 from cohesity_sdk.cluster.models.vmware_connection_params import VmwareConnectionParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SourceConnectionRequestParams(BaseModel):

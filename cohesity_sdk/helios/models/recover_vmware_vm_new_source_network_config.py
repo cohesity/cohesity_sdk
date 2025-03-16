@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_vmware_vm_new_network_config import RecoverVmwareVmNewNetworkConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmNewSourceNetworkConfig(BaseModel):
@@ -28,7 +28,7 @@ class RecoverVmwareVmNewSourceNetworkConfig(BaseModel):
     Specifies the network config parameters to be applied to VMware VMs if recovering to new Source.
     """ # noqa: E501
     detach_network: Optional[StrictBool] = Field(default=None, description="If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false.", alias="detachNetwork")
-    new_network_config: Optional[RecoverVmwareVmNewNetworkConfig] = Field(default=None, alias="newNetworkConfig")
+    new_network_config: Optional[RecoverVmwareVmNewNetworkConfig] = Field(default=None, description="Specifies a new network configuration for the VM recovery.", alias="newNetworkConfig")
     __properties: ClassVar[List[str]] = ["detachNetwork", "newNetworkConfig"]
 
     model_config = ConfigDict(
@@ -77,6 +77,11 @@ class RecoverVmwareVmNewSourceNetworkConfig(BaseModel):
         # and model_fields_set contains the field
         if self.detach_network is None and "detach_network" in self.model_fields_set:
             _dict['detachNetwork'] = None
+
+        # set to None if new_network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_network_config is None and "new_network_config" in self.model_fields_set:
+            _dict['newNetworkConfig'] = None
 
         return _dict
 

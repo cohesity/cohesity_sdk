@@ -11,10 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field, StrictInt, StrictStr, field_validator
+from typing import Optional
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.create_protected_objects_request import CreateProtectedObjectsRequest
 from cohesity_sdk.cluster.models.create_protected_objects_response import CreateProtectedObjectsResponse
 from cohesity_sdk.cluster.models.get_protected_object_response import GetProtectedObjectResponse
@@ -294,6 +298,7 @@ class ProtectedObjectApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -584,6 +589,7 @@ class ProtectedObjectApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -889,6 +895,7 @@ class ProtectedObjectApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

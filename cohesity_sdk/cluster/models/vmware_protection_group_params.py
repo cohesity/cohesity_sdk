@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptPara
 from cohesity_sdk.cluster.models.vm_filter import VMFilter
 from cohesity_sdk.cluster.models.vmware_protection_group_object_params import VmwareProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.vmware_protection_group_standby_resource_params import VmwareProtectionGroupStandbyResourceParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareProtectionGroupParams(BaseModel):

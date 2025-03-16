@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.azure_sql_package_options import AzureSqlPackageOptions
 from cohesity_sdk.helios.models.azure_sql_sku_options import AzureSqlSkuOptions
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAzureSqlObjectParams(BaseModel):

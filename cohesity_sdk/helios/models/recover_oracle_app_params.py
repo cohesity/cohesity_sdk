@@ -19,18 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_recover_oracle_app_target_params import CommonRecoverOracleAppTargetParams
+from cohesity_sdk.helios.models.oracle_target_params_for_recover_oracle_app import OracleTargetParamsForRecoverOracleApp
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOracleAppParams(BaseModel):
     """
     Specifies the parameters to recover Oracle databases.
     """ # noqa: E501
-    oracle_target_params: Optional[CommonRecoverOracleAppTargetParams] = Field(default=None, alias="oracleTargetParams")
+    oracle_target_params: Optional[OracleTargetParamsForRecoverOracleApp] = Field(default=None, description="Specifies the params for recovering to a oracle host. Provided oracle backup should be recovered to same type of target host. For Example: If you have oracle backup taken from a physical host then that should be recovered to physical host only.", alias="oracleTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["oracleTargetParams", "targetEnvironment", "vlanConfig"]
 
     @field_validator('target_environment')
@@ -85,6 +85,16 @@ class RecoverOracleAppParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of vlan_config
         if self.vlan_config:
             _dict['vlanConfig'] = self.vlan_config.to_dict()
+        # set to None if oracle_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.oracle_target_params is None and "oracle_target_params" in self.model_fields_set:
+            _dict['oracleTargetParams'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
+
         return _dict
 
     @classmethod
@@ -97,7 +107,7 @@ class RecoverOracleAppParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "oracleTargetParams": CommonRecoverOracleAppTargetParams.from_dict(obj["oracleTargetParams"]) if obj.get("oracleTargetParams") is not None else None,
+            "oracleTargetParams": OracleTargetParamsForRecoverOracleApp.from_dict(obj["oracleTargetParams"]) if obj.get("oracleTargetParams") is not None else None,
             "targetEnvironment": obj.get("targetEnvironment"),
             "vlanConfig": RecoveryVlanConfig.from_dict(obj["vlanConfig"]) if obj.get("vlanConfig") is not None else None
         })

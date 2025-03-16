@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.local_user_params import LocalUserParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateUserParameters(BaseModel):
@@ -32,7 +32,7 @@ class CreateUserParameters(BaseModel):
     domain: StrictStr = Field(description="Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain.")
     effective_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds since when the user can login.", alias="effectiveTimeMsecs")
     expiry_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user expires. Post expiry the user cannot access Cohesity cluster.", alias="expiryTimeMsecs")
-    local_user_params: Optional[LocalUserParams] = Field(default=None, alias="localUserParams")
+    local_user_params: Optional[LocalUserParams] = Field(default=None, description="Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.", alias="localUserParams")
     locked: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is locked.")
     other_groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.", alias="otherGroups")
     primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")

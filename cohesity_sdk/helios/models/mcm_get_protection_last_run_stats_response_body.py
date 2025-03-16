@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_last_run_env_specific_status_stats import McmLastRunEnvSpecificStatusStats
 from cohesity_sdk.helios.models.mcm_last_run_status_stats import McmLastRunStatusStats
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class McmGetProtectionLastRunStatsResponseBody(BaseModel):

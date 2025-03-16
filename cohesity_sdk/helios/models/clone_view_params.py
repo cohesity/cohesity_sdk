@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.qo_s import QoS
 from cohesity_sdk.helios.models.storage_policy_override import StoragePolicyOverride
 from cohesity_sdk.helios.models.subnet import Subnet
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CloneViewParams(BaseModel):
@@ -35,10 +35,10 @@ class CloneViewParams(BaseModel):
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the cloned View.")
     is_read_only: Optional[StrictBool] = Field(default=None, description="Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.", alias="isReadOnly")
     name: Optional[StrictStr] = Field(description="Specifies the name of the cloned View.")
-    netgroup_whitelist: Optional[NisNetgroups] = Field(default=None, alias="netgroupWhitelist")
+    netgroup_whitelist: Optional[NisNetgroups] = Field(default=None, description="Array of Netgroups. Specifies a list of netgroups with domains that have permissions to access the View. (Overrides or extends the Netgroup specified at the global Cohesity Cluster level.)", alias="netgroupWhitelist")
     protocol_access: Optional[List[ViewProtocol]] = Field(default=None, description="Specifies the supported Protocols for the View.", alias="protocolAccess")
-    qos: Optional[QoS] = None
-    storage_policy_override: Optional[StoragePolicyOverride] = Field(default=None, alias="storagePolicyOverride")
+    qos: Optional[QoS] = Field(default=None, description="Specifies the Quality of Service (QoS) Policy for the View.")
+    storage_policy_override: Optional[StoragePolicyOverride] = Field(default=None, description="Specifies if inline deduplication and compression settings inherited from the Storage Domain (View Box) should be disabled for this View.", alias="storagePolicyOverride")
     subnet_whitelist: Optional[List[Subnet]] = Field(default=None, description="Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.)", alias="subnetWhitelist")
     __properties: ClassVar[List[str]] = ["dataLockExpiryUsecs", "description", "isReadOnly", "name", "netgroupWhitelist", "protocolAccess", "qos", "storagePolicyOverride", "subnetWhitelist"]
 

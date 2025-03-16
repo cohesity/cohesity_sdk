@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.time_of_a_week import TimeOfAWeek
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class BandwidthThrottlingOverride(BaseModel):

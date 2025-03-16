@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.file_filtering_policy import FileFilteringPolicy
 from cohesity_sdk.helios.models.file_size_policy import FileSizePolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonTieringPolicy(BaseModel):

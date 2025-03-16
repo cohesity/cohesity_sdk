@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
-from typing import Set
+from cohesity_sdk.helios.models.protection_group_run import ProtectionGroupRun
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectionGroupInfo(BaseModel):
@@ -30,7 +30,7 @@ class ProtectionGroupInfo(BaseModel):
     group_id: Optional[StrictInt] = Field(default=None, description="This field is deprecated. 'protectionGroupId' should be used instead. Specifies the id of the Protection Group.", alias="groupId")
     group_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Protection Group.", alias="groupName")
     is_paused: Optional[StrictBool] = Field(default=None, description="Specifies if the Protection Group's run is paused.", alias="isPaused")
-    last_run: Optional[CommonProtectionGroupRunResponseParameters] = Field(default=None, alias="lastRun")
+    last_run: Optional[ProtectionGroupRun] = Field(default=None, alias="lastRun")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id.", alias="protectionGroupId")
     type: Optional[StrictStr] = Field(default=None, description="Specifies the type of the Protection Group such as View or Puppeteer. 'Puppeteer' refers to a Remote Adapter Group. Supported environment types such as 'View', 'SQL', 'VMware', etc. NOTE: 'Puppeteer' refers to Cohesity's Remote Adapter. 'VMware' indicates the VMware Protection Source environment. 'HyperV' indicates the HyperV Protection Source environment. 'SQL' indicates the SQL Protection Source environment. 'View' indicates the View Protection Source environment. 'Puppeteer' indicates the Cohesity's Remote Adapter. 'Physical' indicates the physical Protection Source environment. 'Pure' indicates the Pure Storage Protection Source environment. 'Nimble' indicates the Nimble Storage Protection Source environment. 'Azure' indicates the Microsoft's Azure Protection Source environment. 'Netapp' indicates the Netapp Protection Source environment. 'Agent' indicates the Agent Protection Source environment. 'GenericNas' indicates the Generic Network Attached Storage Protection Source environment. 'Acropolis' indicates the Acropolis Protection Source environment. 'PhsicalFiles' indicates the Physical Files Protection Source environment. 'Isilon' indicates the Dell EMC's Isilon Protection Source environment. 'GPFS' indicates IBM's GPFS Protection Source environment. 'KVM' indicates the KVM Protection Source environment. 'AWS' indicates the AWS Protection Source environment. 'Exchange' indicates the Exchange Protection Source environment. 'HyperVVSS' indicates the HyperV VSS Protection Source environment. 'Oracle' indicates the Oracle Protection Source environment. 'GCP' indicates the Google Cloud Platform Protection Source environment. 'FlashBlade' indicates the Flash Blade Protection Source environment. 'AWSNative' indicates the AWS Native Protection Source environment. 'O365' indicates the Office 365 Protection Source environment. 'O365Outlook' indicates Office 365 outlook Protection Source environment. 'HyperFlex' indicates the Hyper Flex Protection Source environment. 'GCPNative' indicates the GCP Native Protection Source environment. 'AzureNative' indicates the Azure Native Protection Source environment. 'Kubernetes' indicates a Kubernetes Protection Source environment. 'Elastifile' indicates Elastifile Protection Source environment. 'AD' indicates Active Directory Protection Source environment.")
     __properties: ClassVar[List[str]] = ["groupId", "groupName", "isPaused", "lastRun", "protectionGroupId", "type"]
@@ -127,7 +127,7 @@ class ProtectionGroupInfo(BaseModel):
             "groupId": obj.get("groupId"),
             "groupName": obj.get("groupName"),
             "isPaused": obj.get("isPaused"),
-            "lastRun": CommonProtectionGroupRunResponseParameters.from_dict(obj["lastRun"]) if obj.get("lastRun") is not None else None,
+            "lastRun": ProtectionGroupRun.from_dict(obj["lastRun"]) if obj.get("lastRun") is not None else None,
             "protectionGroupId": obj.get("protectionGroupId"),
             "type": obj.get("type")
         })

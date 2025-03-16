@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_one_drive_param import ObjectOneDriveParam
 from cohesity_sdk.helios.models.target_one_drive_param import TargetOneDriveParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOneDriveParams(BaseModel):
@@ -32,7 +32,7 @@ class RecoverOneDriveParams(BaseModel):
     objects: Optional[List[ObjectOneDriveParam]] = Field(description="Specifies a list of OneDrive params associated with the objects to recover. These parameters allow overriding the request level 'recoverUserDefaultDrive' parameter for each object specified here.")
     recover_preservation_hold_library: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover Preservation Hold Library associated with the OneDrives selected for restore. Default value is false.", alias="recoverPreservationHoldLibrary")
     recover_user_default_drive: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover default drives associated with the OneDrives selected for restore. Default value is true. This setting can be overridden for each object selected for recovery, by specifying 'recoverEntireDrive' for the desired drive within 'oneDriveParams'. Granular recovery is still allowed even if this value is set to true.", alias="recoverUserDefaultDrive")
-    target_drive: Optional[TargetOneDriveParam] = Field(default=None, alias="targetDrive")
+    target_drive: Optional[TargetOneDriveParam] = Field(default=None, description="Specifies the target OneDrive to recover to. If not specified, the objects will be recovered to original location.", alias="targetDrive")
     __properties: ClassVar[List[str]] = ["continueOnError", "objects", "recoverPreservationHoldLibrary", "recoverUserDefaultDrive", "targetDrive"]
 
     model_config = ConfigDict(

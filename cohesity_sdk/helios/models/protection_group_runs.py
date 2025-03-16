@@ -19,8 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
-from typing import Set
+from cohesity_sdk.helios.models.protection_group_run import ProtectionGroupRun
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectionGroupRuns(BaseModel):
@@ -28,7 +28,7 @@ class ProtectionGroupRuns(BaseModel):
     Protection runs.
     """ # noqa: E501
     pagination_cookie: Optional[StrictStr] = Field(default=None, description="Specifies the information needed in order to support pagination. This will not be included for the last page of results.", alias="paginationCookie")
-    runs: Optional[List[CommonProtectionGroupRunResponseParameters]] = Field(default=None, description="Specifies the list of Protection Group runs.")
+    runs: Optional[List[ProtectionGroupRun]] = Field(default=None, description="Specifies the list of Protection Group runs.")
     total_runs: Optional[StrictInt] = Field(default=None, description="Specifies the count of total runs exist for the given set of filters. The number of runs in single API call are limited and this count can be used to estimate query filter values to get next set of remaining runs. Please note that this field will only be populated if startTimeUsecs or endTimeUsecs or both are specified in query parameters.", alias="totalRuns")
     __properties: ClassVar[List[str]] = ["paginationCookie", "runs", "totalRuns"]
 
@@ -106,7 +106,7 @@ class ProtectionGroupRuns(BaseModel):
 
         _obj = cls.model_validate({
             "paginationCookie": obj.get("paginationCookie"),
-            "runs": [CommonProtectionGroupRunResponseParameters.from_dict(_item) for _item in obj["runs"]] if obj.get("runs") is not None else None,
+            "runs": [ProtectionGroupRun.from_dict(_item) for _item in obj["runs"]] if obj.get("runs") is not None else None,
             "totalRuns": obj.get("totalRuns")
         })
         return _obj

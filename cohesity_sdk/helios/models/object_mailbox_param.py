@@ -28,8 +28,8 @@ class ObjectMailboxParam(BaseModel):
     """
     Specifies Mailbox recovery parameters associated with a user.
     """ # noqa: E501
-    mailbox_params: MailboxParam = Field(alias="mailboxParams")
-    owner_info: CommonRecoverObjectSnapshotParams = Field(alias="ownerInfo")
+    mailbox_params: MailboxParam = Field(description="Specifies parameters to recover a Mailbox.", alias="mailboxParams")
+    owner_info: CommonRecoverObjectSnapshotParams = Field(description="Specifies the Mailbox owner info.", alias="ownerInfo")
     __properties: ClassVar[List[str]] = ["mailboxParams", "ownerInfo"]
 
     model_config = ConfigDict(

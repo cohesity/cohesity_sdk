@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.cassandra_port_info import CassandraPortInfo
 from cohesity_sdk.helios.models.cassandra_security_info import CassandraSecurityInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CassandraSourceConfigParams(BaseModel):

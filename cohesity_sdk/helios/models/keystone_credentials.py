@@ -28,8 +28,8 @@ class KeystoneCredentials(BaseModel):
     """
     Specifies user credentials of a Keystone server.
     """ # noqa: E501
-    admin_creds: KeystoneAdminParams = Field(alias="adminCreds")
-    scope: KeystoneScopeParams
+    admin_creds: KeystoneAdminParams = Field(description="Specifies parameters related to Keystone administrator.", alias="adminCreds")
+    scope: KeystoneScopeParams = Field(description="Specifies parameters related to Keystone scope.")
     __properties: ClassVar[List[str]] = ["adminCreds", "scope"]
 
     model_config = ConfigDict(

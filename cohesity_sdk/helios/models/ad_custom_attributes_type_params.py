@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.fallback_user_id_mapping_params import FallbackUserIdMappingParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AdCustomAttributesTypeParams(BaseModel):
     """
     Specifies the properties accociated to a CustomAttributes type user id mapping.
     """ # noqa: E501
-    fallback_option: FallbackUserIdMappingParams = Field(alias="fallbackOption")
+    fallback_option: Optional[FallbackUserIdMappingParams] = Field(description="Specifies a fallback user id mapping param in case the primary config does not work.", alias="fallbackOption")
     gid_attr_name: Optional[StrictStr] = Field(description="Specifies the custom field name in Active Directory user properties to get the GID.", alias="gidAttrName")
     uid_attr_name: Optional[StrictStr] = Field(description="Specifies the custom field name in Active Directory user properties to get the UID.", alias="uidAttrName")
     __properties: ClassVar[List[str]] = ["fallbackOption", "gidAttrName", "uidAttrName"]
@@ -74,6 +74,11 @@ class AdCustomAttributesTypeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fallback_option
         if self.fallback_option:
             _dict['fallbackOption'] = self.fallback_option.to_dict()
+        # set to None if fallback_option (nullable) is None
+        # and model_fields_set contains the field
+        if self.fallback_option is None and "fallback_option" in self.model_fields_set:
+            _dict['fallbackOption'] = None
+
         # set to None if gid_attr_name (nullable) is None
         # and model_fields_set contains the field
         if self.gid_attr_name is None and "gid_attr_name" in self.model_fields_set:

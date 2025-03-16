@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
 from cohesity_sdk.cluster.models.physical_target_params_for_recover_file_and_folder import PhysicalTargetParamsForRecoverFileAndFolder
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPhysicalFileAndFolderParams(BaseModel):

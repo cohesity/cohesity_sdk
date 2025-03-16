@@ -28,7 +28,7 @@ from cohesity_sdk.helios.models.archival_qstar_tape_external_target_params impor
 from cohesity_sdk.helios.models.archival_s3_comp_external_target_params import ArchivalS3CompExternalTargetParams
 from cohesity_sdk.helios.models.encryption_settings import EncryptionSettings
 from cohesity_sdk.helios.models.target_bandwidth_throttlings import TargetBandwidthThrottlings
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalExternalTargetParams(BaseModel):

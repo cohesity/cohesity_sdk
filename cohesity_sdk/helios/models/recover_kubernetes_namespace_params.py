@@ -21,16 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.kubernetes_target_params_for_recover_kubernetes_namespace import KubernetesTargetParamsForRecoverKubernetesNamespace
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverKubernetesNamespaceParams(BaseModel):
     """
     Specifies the parameters to recover Kubernetes Namespaces.
     """ # noqa: E501
-    kubernetes_target_params: Optional[KubernetesTargetParamsForRecoverKubernetesNamespace] = Field(default=None, alias="kubernetesTargetParams")
+    kubernetes_target_params: Optional[KubernetesTargetParamsForRecoverKubernetesNamespace] = Field(default=None, description="Specifies the params for recovering to a Kubernetes host.", alias="kubernetesTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["kubernetesTargetParams", "targetEnvironment", "vlanConfig"]
 
     @field_validator('target_environment')
@@ -85,6 +85,16 @@ class RecoverKubernetesNamespaceParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of vlan_config
         if self.vlan_config:
             _dict['vlanConfig'] = self.vlan_config.to_dict()
+        # set to None if kubernetes_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.kubernetes_target_params is None and "kubernetes_target_params" in self.model_fields_set:
+            _dict['kubernetesTargetParams'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
+
         return _dict
 
     @classmethod

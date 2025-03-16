@@ -27,7 +27,7 @@ class DeleteMcmActiveDirectoryParams(BaseModel):
     """
     Specifies the request to delete an Active Directory.
     """ # noqa: E501
-    admin_params: AdminParams = Field(alias="adminParams")
+    admin_params: AdminParams = Field(description="Specifies the params of a user with administrative privilege of this Active Directory.", alias="adminParams")
     __properties: ClassVar[List[str]] = ["adminParams"]
 
     model_config = ConfigDict(

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.vmware_target_params_for_mount_volume import VmwareTargetParamsForMountVolume
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MountVmwareVolumeParams(BaseModel):
@@ -28,7 +28,7 @@ class MountVmwareVolumeParams(BaseModel):
     Specifies the parameters to mount VMware Volumes.
     """ # noqa: E501
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    vmware_target_params: Optional[VmwareTargetParamsForMountVolume] = Field(default=None, alias="vmwareTargetParams")
+    vmware_target_params: Optional[VmwareTargetParamsForMountVolume] = Field(default=None, description="Specifies the params for recovering to a VMware target..", alias="vmwareTargetParams")
     __properties: ClassVar[List[str]] = ["targetEnvironment", "vmwareTargetParams"]
 
     @field_validator('target_environment')
@@ -80,6 +80,11 @@ class MountVmwareVolumeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of vmware_target_params
         if self.vmware_target_params:
             _dict['vmwareTargetParams'] = self.vmware_target_params.to_dict()
+        # set to None if vmware_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.vmware_target_params is None and "vmware_target_params" in self.model_fields_set:
+            _dict['vmwareTargetParams'] = None
+
         return _dict
 
     @classmethod

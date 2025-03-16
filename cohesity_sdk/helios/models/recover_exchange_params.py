@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_exchange_app_params import RecoverExchangeAppParams
 from cohesity_sdk.helios.models.recover_exchange_dbs_params import RecoverExchangeDbsParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverExchangeParams(BaseModel):
     """
     Specifies the recovery options specific to Exchange environment.
     """ # noqa: E501
-    recover_app_params: Optional[RecoverExchangeAppParams] = Field(default=None, alias="recoverAppParams")
-    recover_exchange_dbs_params: Optional[RecoverExchangeDbsParams] = Field(default=None, alias="recoverExchangeDbsParams")
+    recover_app_params: Optional[RecoverExchangeAppParams] = Field(default=None, description="Specifies the parameters to recover Exchange databases using SMB share.", alias="recoverAppParams")
+    recover_exchange_dbs_params: Optional[RecoverExchangeDbsParams] = Field(default=None, description="Specifies the parameters to recover Exchange databases.", alias="recoverExchangeDbsParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["recoverAppParams", "recoverExchangeDbsParams", "recoveryAction"]
 
@@ -85,6 +85,16 @@ class RecoverExchangeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_exchange_dbs_params
         if self.recover_exchange_dbs_params:
             _dict['recoverExchangeDbsParams'] = self.recover_exchange_dbs_params.to_dict()
+        # set to None if recover_app_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_app_params is None and "recover_app_params" in self.model_fields_set:
+            _dict['recoverAppParams'] = None
+
+        # set to None if recover_exchange_dbs_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_exchange_dbs_params is None and "recover_exchange_dbs_params" in self.model_fields_set:
+            _dict['recoverExchangeDbsParams'] = None
+
         return _dict
 
     @classmethod

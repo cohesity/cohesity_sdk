@@ -19,18 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.frequency_schedule import FrequencySchedule
+from cohesity_sdk.helios.models.day_schedule import DaySchedule
 from cohesity_sdk.helios.models.month_schedule import MonthSchedule
 from cohesity_sdk.helios.models.week_schedule import WeekSchedule
 from cohesity_sdk.helios.models.year_schedule import YearSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FullSchedule(BaseModel):
     """
     Specifies settings that defines how frequent full backup will be performed for a Protection Group.
     """ # noqa: E501
-    day_schedule: Optional[FrequencySchedule] = Field(default=None, alias="daySchedule")
+    day_schedule: Optional[DaySchedule] = Field(default=None, alias="daySchedule")
     month_schedule: Optional[MonthSchedule] = Field(default=None, alias="monthSchedule")
     unit: Optional[StrictStr] = Field(description="Specifies how often to start new runs of a Protection Group. <br>'Days' specifies that Protection Group run starts periodically on every day. For full backup schedule, currently we only support frequecny of 1 which indicates that full backup will be performed daily. <br>'Weeks' specifies that new Protection Group runs start weekly on certain days specified using 'dayOfWeek' field. <br>'Months' specifies that new Protection Group runs start monthly on certain day of specific week. This schedule needs 'weekOfMonth' and 'dayOfWeek' fields to be set. <br>'ProtectOnce' specifies that groups using this policy option will run only once and after that group will permanently be disabled. <br> Example: To run the Protection Group on Second Sunday of Every Month, following schedule need to be set: <br> unit: 'Month' <br> dayOfWeek: 'Sunday' <br> weekOfMonth: 'Second'")
     week_schedule: Optional[WeekSchedule] = Field(default=None, alias="weekSchedule")
@@ -115,7 +115,7 @@ class FullSchedule(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "daySchedule": FrequencySchedule.from_dict(obj["daySchedule"]) if obj.get("daySchedule") is not None else None,
+            "daySchedule": DaySchedule.from_dict(obj["daySchedule"]) if obj.get("daySchedule") is not None else None,
             "monthSchedule": MonthSchedule.from_dict(obj["monthSchedule"]) if obj.get("monthSchedule") is not None else None,
             "unit": obj.get("unit"),
             "weekSchedule": WeekSchedule.from_dict(obj["weekSchedule"]) if obj.get("weekSchedule") is not None else None,

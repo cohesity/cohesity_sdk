@@ -20,15 +20,15 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from cohesity_sdk.helios.models.protection_object_input import ProtectionObjectInput
-from typing import Set
+from cohesity_sdk.helios.models.pause_action_object_level_params import PauseActionObjectLevelParams
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectedObjectPauseActionParams(BaseModel):
     """
     Specifies the request parameters for Pause action on Protected objects.
     """ # noqa: E501
-    objects: Optional[Annotated[List[ProtectionObjectInput], Field(min_length=1)]] = Field(default=None, description="Specifies the list of objects to perform an action. If provided object id is not explicitly protected by object protection, then given action will not be performed on that.")
+    objects: Optional[Annotated[List[PauseActionObjectLevelParams], Field(min_length=1)]] = Field(default=None, description="Specifies the list of objects to perform an action. If provided object id is not explicitly protected by object protection, then given action will not be performed on that.")
     __properties: ClassVar[List[str]] = ["objects"]
 
     model_config = ConfigDict(
@@ -89,7 +89,7 @@ class ProtectedObjectPauseActionParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "objects": [ProtectionObjectInput.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None
+            "objects": [PauseActionObjectLevelParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None
         })
         return _obj
 

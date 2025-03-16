@@ -1,0 +1,32 @@
+# HyperVRecoverFilesNewTargetConfig
+
+Specifies the configuration for recovering files and folders to a new target.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**absolute_path** | **str** | Specifies the path location to recover files to. | 
+**target_vm** | [**RecoverTarget**](RecoverTarget.md) | Specifies the target VM to recover files and folders to. | 
+**target_vm_credentials** | [**Credentials**](Credentials.md) | Specifies the credentials for the target VM. | 
+
+## Example
+
+```python
+from cohesity_sdk.helios.models.hyper_v_recover_files_new_target_config import HyperVRecoverFilesNewTargetConfig
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of HyperVRecoverFilesNewTargetConfig from a JSON string
+hyper_v_recover_files_new_target_config_instance = HyperVRecoverFilesNewTargetConfig.from_json(json)
+# print the JSON string representation of the object
+print(HyperVRecoverFilesNewTargetConfig.to_json())
+
+# convert the object into a dict
+hyper_v_recover_files_new_target_config_dict = hyper_v_recover_files_new_target_config_instance.to_dict()
+# create an instance of HyperVRecoverFilesNewTargetConfig from a dict
+hyper_v_recover_files_new_target_config_from_dict = HyperVRecoverFilesNewTargetConfig.from_dict(hyper_v_recover_files_new_target_config_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

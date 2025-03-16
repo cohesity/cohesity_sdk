@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_target_params_for_recover_file_and_folder import AwsTargetParamsForRecoverFileAndFolder
 from cohesity_sdk.helios.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAwsFileAndFolderParams(BaseModel):
     """
     Specifies the parameters to recover files and folders.
     """ # noqa: E501
-    aws_target_params: Optional[AwsTargetParamsForRecoverFileAndFolder] = Field(default=None, alias="awsTargetParams")
+    aws_target_params: Optional[AwsTargetParamsForRecoverFileAndFolder] = Field(default=None, description="Specifies the parameters to recover to an AWS target.", alias="awsTargetParams")
     files_and_folders: Optional[List[CommonRecoverFileAndFolderInfo]] = Field(description="Specifies the info about the files and folders to be recovered.", alias="filesAndFolders")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["awsTargetParams", "filesAndFolders", "targetEnvironment"]
@@ -89,6 +89,11 @@ class RecoverAwsFileAndFolderParams(BaseModel):
                 if _item_files_and_folders:
                     _items.append(_item_files_and_folders.to_dict())
             _dict['filesAndFolders'] = _items
+        # set to None if aws_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.aws_target_params is None and "aws_target_params" in self.model_fields_set:
+            _dict['awsTargetParams'] = None
+
         # set to None if files_and_folders (nullable) is None
         # and model_fields_set contains the field
         if self.files_and_folders is None and "files_and_folders" in self.model_fields_set:

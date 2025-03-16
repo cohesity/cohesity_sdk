@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.credentials import Credentials
 from cohesity_sdk.cluster.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.cluster.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.cluster.models.storage_array_snapshot_config import StorageArraySnapshotConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NetappRegistrationParams(BaseModel):

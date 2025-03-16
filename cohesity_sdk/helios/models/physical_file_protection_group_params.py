@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.cancellation_timeout_params import CancellationT
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.physical_file_protection_group_object_params import PhysicalFileProtectionGroupObjectParams
 from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalFileProtectionGroupParams(BaseModel):

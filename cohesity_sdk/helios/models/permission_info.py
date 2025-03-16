@@ -20,9 +20,9 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.group import Group
-from cohesity_sdk.helios.models.tenant_info import TenantInfo
+from cohesity_sdk.helios.models.tenant import Tenant
 from cohesity_sdk.helios.models.user import User
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PermissionInfo(BaseModel):
@@ -31,7 +31,7 @@ class PermissionInfo(BaseModel):
     """ # noqa: E501
     groups: Optional[List[Group]] = Field(default=None, description="Specifies the list of user groups which has permissions to the object.")
     object_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the object.", alias="objectId")
-    tenant: Optional[TenantInfo] = None
+    tenant: Optional[Tenant] = None
     users: Optional[List[User]] = Field(default=None, description="Specifies the list of users which has the permissions to the object.")
     __properties: ClassVar[List[str]] = ["groups", "objectId", "tenant", "users"]
 
@@ -120,7 +120,7 @@ class PermissionInfo(BaseModel):
         _obj = cls.model_validate({
             "groups": [Group.from_dict(_item) for _item in obj["groups"]] if obj.get("groups") is not None else None,
             "objectId": obj.get("objectId"),
-            "tenant": TenantInfo.from_dict(obj["tenant"]) if obj.get("tenant") is not None else None,
+            "tenant": Tenant.from_dict(obj["tenant"]) if obj.get("tenant") is not None else None,
             "users": [User.from_dict(_item) for _item in obj["users"]] if obj.get("users") is not None else None
         })
         return _obj

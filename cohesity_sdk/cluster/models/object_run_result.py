@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.backup_run import BackupRun
 from cohesity_sdk.cluster.models.cloud_spin_run import CloudSpinRun
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
 from cohesity_sdk.cluster.models.replication_run import ReplicationRun
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectRunResult(BaseModel):

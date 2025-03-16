@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.bond_member import BondMember
 from cohesity_sdk.cluster.models.interface_stats import InterfaceStats
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Interface(BaseModel):

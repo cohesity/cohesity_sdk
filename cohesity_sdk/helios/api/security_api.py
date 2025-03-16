@@ -11,15 +11,20 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field, StrictInt, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.anomaly_alert import AnomalyAlert
 from cohesity_sdk.helios.models.ciphers_resp import CiphersResp
-from cohesity_sdk.helios.models.common_csr_request_params import CommonCsrRequestParams
 from cohesity_sdk.helios.models.common_csr_response_params import CommonCsrResponseParams
 from cohesity_sdk.helios.models.create_clientcsr_response_body import CreateClientcsrResponseBody
+from cohesity_sdk.helios.models.create_csr_request import CreateCsrRequest
+from cohesity_sdk.helios.models.create_csr_response_body import CreateCsrResponseBody
 from cohesity_sdk.helios.models.import_certificate_by_clientcsr_request import ImportCertificateByClientcsrRequest
 from cohesity_sdk.helios.models.import_certificate_by_clientcsr_response_body import ImportCertificateByClientcsrResponseBody
 from cohesity_sdk.helios.models.list_trusted_cas_result import ListTrustedCasResult
@@ -27,10 +32,11 @@ from cohesity_sdk.helios.models.modify_ciphers_request_body import ModifyCiphers
 from cohesity_sdk.helios.models.modify_object_store_ciphers_request_body import ModifyObjectStoreCiphersRequestBody
 from cohesity_sdk.helios.models.object_store_ciphers_resp import ObjectStoreCiphersResp
 from cohesity_sdk.helios.models.register_trusted_cas import RegisterTrustedCas
-from cohesity_sdk.helios.models.security_config import SecurityConfig
+from cohesity_sdk.helios.models.security_config_response import SecurityConfigResponse
 from cohesity_sdk.helios.models.trusted_ca import TrustedCa
 from cohesity_sdk.helios.models.update_certificate_by_csr_request import UpdateCertificateByCsrRequest
 from cohesity_sdk.helios.models.update_certificate_by_csr_response_body import UpdateCertificateByCsrResponseBody
+from cohesity_sdk.helios.models.update_security_config_request import UpdateSecurityConfigRequest
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -53,7 +59,7 @@ class SecurityApi:
     @validate_call
     def create_clientcsr(
         self,
-        body: Annotated[CommonCsrRequestParams, Field(description="Specifies the parameters to create the Certificate Signing Requests.")],
+        body: Annotated[CreateCsrRequest, Field(description="Specifies the parameters to create the Certificate Signing Requests.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -74,7 +80,7 @@ class SecurityApi:
         Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
         :param body: Specifies the parameters to create the Certificate Signing Requests. (required)
-        :type body: CommonCsrRequestParams
+        :type body: CreateCsrRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -128,7 +134,7 @@ class SecurityApi:
     @validate_call
     def create_clientcsr_with_http_info(
         self,
-        body: Annotated[CommonCsrRequestParams, Field(description="Specifies the parameters to create the Certificate Signing Requests.")],
+        body: Annotated[CreateCsrRequest, Field(description="Specifies the parameters to create the Certificate Signing Requests.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -149,7 +155,7 @@ class SecurityApi:
         Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
         :param body: Specifies the parameters to create the Certificate Signing Requests. (required)
-        :type body: CommonCsrRequestParams
+        :type body: CreateCsrRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -203,7 +209,7 @@ class SecurityApi:
     @validate_call
     def create_clientcsr_without_preload_content(
         self,
-        body: Annotated[CommonCsrRequestParams, Field(description="Specifies the parameters to create the Certificate Signing Requests.")],
+        body: Annotated[CreateCsrRequest, Field(description="Specifies the parameters to create the Certificate Signing Requests.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -224,7 +230,7 @@ class SecurityApi:
         Create two Certificate Signing Request on the cluster with the given details one each for client and server. Each service can have at most one outstanding pair of CSR.
 
         :param body: Specifies the parameters to create the Certificate Signing Requests. (required)
-        :type body: CommonCsrRequestParams
+        :type body: CreateCsrRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -357,7 +363,7 @@ class SecurityApi:
     @validate_call
     def create_csr(
         self,
-        body: Annotated[CommonCsrRequestParams, Field(description="Specifies the parameters to create a Certificate Signing Request.")],
+        body: Annotated[CreateCsrRequest, Field(description="Specifies the parameters to create a Certificate Signing Request.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -372,13 +378,13 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CommonCsrResponseParams:
+    ) -> CreateCsrResponseBody:
         """Create a Certificate Signing Request on the cluster.
 
         Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
         :param body: Specifies the parameters to create a Certificate Signing Request. (required)
-        :type body: CommonCsrRequestParams
+        :type body: CreateCsrRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -416,7 +422,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "CommonCsrResponseParams",
+            '201': "CreateCsrResponseBody",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -432,7 +438,7 @@ class SecurityApi:
     @validate_call
     def create_csr_with_http_info(
         self,
-        body: Annotated[CommonCsrRequestParams, Field(description="Specifies the parameters to create a Certificate Signing Request.")],
+        body: Annotated[CreateCsrRequest, Field(description="Specifies the parameters to create a Certificate Signing Request.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -447,13 +453,13 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CommonCsrResponseParams]:
+    ) -> ApiResponse[CreateCsrResponseBody]:
         """Create a Certificate Signing Request on the cluster.
 
         Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
         :param body: Specifies the parameters to create a Certificate Signing Request. (required)
-        :type body: CommonCsrRequestParams
+        :type body: CreateCsrRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -491,7 +497,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "CommonCsrResponseParams",
+            '201': "CreateCsrResponseBody",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -507,7 +513,7 @@ class SecurityApi:
     @validate_call
     def create_csr_without_preload_content(
         self,
-        body: Annotated[CommonCsrRequestParams, Field(description="Specifies the parameters to create a Certificate Signing Request.")],
+        body: Annotated[CreateCsrRequest, Field(description="Specifies the parameters to create a Certificate Signing Request.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -528,7 +534,7 @@ class SecurityApi:
         Create a Certificate Signing Request on the cluster with the given details. Each service has at most one outstanding CSR.
 
         :param body: Specifies the parameters to create a Certificate Signing Request. (required)
-        :type body: CommonCsrRequestParams
+        :type body: CreateCsrRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -566,7 +572,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "CommonCsrResponseParams",
+            '201': "CreateCsrResponseBody",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2381,7 +2387,7 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SecurityConfig:
+    ) -> SecurityConfigResponse:
         """Get cluster security settings.
 
         Get cluster security settings.
@@ -2422,7 +2428,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2452,7 +2458,7 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SecurityConfig]:
+    ) -> ApiResponse[SecurityConfigResponse]:
         """Get cluster security settings.
 
         Get cluster security settings.
@@ -2493,7 +2499,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -2564,7 +2570,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5346,7 +5352,7 @@ class SecurityApi:
     @validate_call
     def update_security_config(
         self,
-        body: Annotated[SecurityConfig, Field(description="Specifies the parameters to update security config.")],
+        body: Annotated[UpdateSecurityConfigRequest, Field(description="Specifies the parameters to update security config.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -5361,13 +5367,13 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SecurityConfig:
+    ) -> SecurityConfigResponse:
         """Update cluster security settings.
 
         Update cluster security settings.
 
         :param body: Specifies the parameters to update security config. (required)
-        :type body: SecurityConfig
+        :type body: UpdateSecurityConfigRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -5405,7 +5411,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5421,7 +5427,7 @@ class SecurityApi:
     @validate_call
     def update_security_config_with_http_info(
         self,
-        body: Annotated[SecurityConfig, Field(description="Specifies the parameters to update security config.")],
+        body: Annotated[UpdateSecurityConfigRequest, Field(description="Specifies the parameters to update security config.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -5436,13 +5442,13 @@ class SecurityApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SecurityConfig]:
+    ) -> ApiResponse[SecurityConfigResponse]:
         """Update cluster security settings.
 
         Update cluster security settings.
 
         :param body: Specifies the parameters to update security config. (required)
-        :type body: SecurityConfig
+        :type body: UpdateSecurityConfigRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -5480,7 +5486,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5496,7 +5502,7 @@ class SecurityApi:
     @validate_call
     def update_security_config_without_preload_content(
         self,
-        body: Annotated[SecurityConfig, Field(description="Specifies the parameters to update security config.")],
+        body: Annotated[UpdateSecurityConfigRequest, Field(description="Specifies the parameters to update security config.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -5517,7 +5523,7 @@ class SecurityApi:
         Update cluster security settings.
 
         :param body: Specifies the parameters to update security config. (required)
-        :type body: SecurityConfig
+        :type body: UpdateSecurityConfigRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -5555,7 +5561,7 @@ class SecurityApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SecurityConfig",
+            '200': "SecurityConfigResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

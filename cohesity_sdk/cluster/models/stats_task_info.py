@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.backup_generic_stats import BackupGenericStats
 from cohesity_sdk.cluster.models.backup_nas_stats import BackupNasStats
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class StatsTaskInfo(BaseModel):

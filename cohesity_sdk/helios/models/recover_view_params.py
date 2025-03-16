@@ -22,16 +22,16 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_download_file_and_folder_params import CommonDownloadFileAndFolderParams
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_view_files_params import RecoverViewFilesParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverViewParams(BaseModel):
     """
     Specifies the recovery options specific to View environment.
     """ # noqa: E501
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters.")
-    recover_file_and_folder_params: Optional[RecoverViewFilesParams] = Field(default=None, alias="recoverFileAndFolderParams")
+    recover_file_and_folder_params: Optional[RecoverViewFilesParams] = Field(default=None, description="Specifies the parameters to recover files.", alias="recoverFileAndFolderParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recovery action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "objects", "recoverFileAndFolderParams", "recoveryAction"]
 
@@ -94,10 +94,20 @@ class RecoverViewParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_file_and_folder_params
         if self.recover_file_and_folder_params:
             _dict['recoverFileAndFolderParams'] = self.recover_file_and_folder_params.to_dict()
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_file_and_folder_params is None and "recover_file_and_folder_params" in self.model_fields_set:
+            _dict['recoverFileAndFolderParams'] = None
 
         return _dict
 

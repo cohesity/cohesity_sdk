@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.on_prem_deploy_target_result import OnPremDeployTargetResult
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class OnPremDeployRun(BaseModel):

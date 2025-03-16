@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.firewall_ip_set import FirewallIPSet
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FirewallIPSets(BaseModel):

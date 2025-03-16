@@ -11,12 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
-from cohesity_sdk.helios.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
 from cohesity_sdk.helios.models.create_protection_group_run_request import CreateProtectionGroupRunRequest
 from cohesity_sdk.helios.models.create_protection_group_run_response_body import CreateProtectionGroupRunResponseBody
@@ -27,6 +29,7 @@ from cohesity_sdk.helios.models.mcm_protection_groups_activity import McmProtect
 from cohesity_sdk.helios.models.perform_action_on_protection_group_run_request import PerformActionOnProtectionGroupRunRequest
 from cohesity_sdk.helios.models.perform_run_action_response import PerformRunActionResponse
 from cohesity_sdk.helios.models.protection_group import ProtectionGroup
+from cohesity_sdk.helios.models.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.helios.models.protection_group_runs import ProtectionGroupRuns
 from cohesity_sdk.helios.models.protection_groups import ProtectionGroups
 from cohesity_sdk.helios.models.protection_runs_summary import ProtectionRunsSummary
@@ -3052,7 +3055,7 @@ class ProtectionGroupApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CommonProtectionGroupRunResponseParameters:
+    ) -> ProtectionGroupRun:
         """Get a run for a Protection Group.
 
         Get a run for a particular Protection Group.
@@ -3114,7 +3117,7 @@ class ProtectionGroupApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CommonProtectionGroupRunResponseParameters",
+            '200': "ProtectionGroupRun",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3151,7 +3154,7 @@ class ProtectionGroupApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CommonProtectionGroupRunResponseParameters]:
+    ) -> ApiResponse[ProtectionGroupRun]:
         """Get a run for a Protection Group.
 
         Get a run for a particular Protection Group.
@@ -3213,7 +3216,7 @@ class ProtectionGroupApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CommonProtectionGroupRunResponseParameters",
+            '200': "ProtectionGroupRun",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -3312,7 +3315,7 @@ class ProtectionGroupApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CommonProtectionGroupRunResponseParameters",
+            '200': "ProtectionGroupRun",
         }
         response_data = self.api_client.call_api(
             *_param,

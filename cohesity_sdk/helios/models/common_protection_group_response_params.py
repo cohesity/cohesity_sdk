@@ -19,14 +19,14 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_protection_group_run_response_parameters import CommonProtectionGroupRunResponseParameters
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
 from cohesity_sdk.helios.models.missing_entity_params import MissingEntityParams
 from cohesity_sdk.helios.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
+from cohesity_sdk.helios.models.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.helios.models.sla_rule import SlaRule
-from cohesity_sdk.helios.models.tenant_info import TenantInfo
+from cohesity_sdk.helios.models.tenant import Tenant
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonProtectionGroupResponseParams(BaseModel):
@@ -47,12 +47,12 @@ class CommonProtectionGroupResponseParams(BaseModel):
     is_paused: Optional[StrictBool] = Field(default=None, description="Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted.", alias="isPaused")
     is_protect_once: Optional[StrictBool] = Field(default=None, description="Specifies if the the Protection Group is using a protect once type of policy. This field is helpful to identify run happen for this group.", alias="isProtectOnce")
     last_modified_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error.", alias="lastModifiedTimestampUsecs")
-    last_run: Optional[CommonProtectionGroupRunResponseParameters] = Field(default=None, alias="lastRun")
+    last_run: Optional[ProtectionGroupRun] = Field(default=None, alias="lastRun")
     missing_entities: Optional[List[MissingEntityParams]] = Field(default=None, description="Specifies the Information about missing entities.", alias="missingEntities")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Protection Group.")
     num_protected_objects: Optional[StrictInt] = Field(default=None, description="Specifies the number of protected objects of the Protection Group.", alias="numProtectedObjects")
     pause_in_blackouts: Optional[StrictBool] = Field(default=None, description="Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if 'abortInBlackouts' is sent as true.", alias="pauseInBlackouts")
-    permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this protection group.")
+    permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this protection group.")
     policy_id: Optional[StrictStr] = Field(default=None, description="Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc.", alias="policyId")
     priority: Optional[StrictStr] = Field(default=None, description="Specifies the priority of the Protection Group.")
     qos_policy: Optional[StrictStr] = Field(default=None, description="Specifies whether the Protection Group will be written to HDD or SSD.", alias="qosPolicy")
@@ -321,12 +321,12 @@ class CommonProtectionGroupResponseParams(BaseModel):
             "isPaused": obj.get("isPaused"),
             "isProtectOnce": obj.get("isProtectOnce"),
             "lastModifiedTimestampUsecs": obj.get("lastModifiedTimestampUsecs"),
-            "lastRun": CommonProtectionGroupRunResponseParameters.from_dict(obj["lastRun"]) if obj.get("lastRun") is not None else None,
+            "lastRun": ProtectionGroupRun.from_dict(obj["lastRun"]) if obj.get("lastRun") is not None else None,
             "missingEntities": [MissingEntityParams.from_dict(_item) for _item in obj["missingEntities"]] if obj.get("missingEntities") is not None else None,
             "name": obj.get("name"),
             "numProtectedObjects": obj.get("numProtectedObjects"),
             "pauseInBlackouts": obj.get("pauseInBlackouts"),
-            "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
+            "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "policyId": obj.get("policyId"),
             "priority": obj.get("priority"),
             "qosPolicy": obj.get("qosPolicy"),

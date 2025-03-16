@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_aws_aurora_new_source_network_config import RecoverAwsAuroraNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from typing import Optional, Set
@@ -28,9 +28,9 @@ class RecoverAwsAuroraNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the Aurora instances will be recovered.
     """ # noqa: E501
-    network_config: RecoverAwsAuroraNewSourceNetworkConfig = Field(alias="networkConfig")
-    region: RecoveryObjectIdentifier
-    source: RecoveryObjectIdentifier
+    network_config: Optional[RecoverAwsAuroraNewSourceNetworkConfig] = Field(description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    region: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the AWS region in which to deploy the Aurora instance.")
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the Aurora.")
     __properties: ClassVar[List[str]] = ["networkConfig", "region", "source"]
 
     model_config = ConfigDict(
@@ -81,6 +81,21 @@ class RecoverAwsAuroraNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
         return _dict
 
     @classmethod

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_object_activity import McmObjectActivity
 from cohesity_sdk.helios.models.mcm_object_activity_stats import McmObjectActivityStats
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class McmObjectsActivity(BaseModel):

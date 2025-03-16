@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.public_folder import PublicFolder
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RootPublicFolderParam(BaseModel):
@@ -30,7 +30,7 @@ class RootPublicFolderParam(BaseModel):
     """ # noqa: E501
     recover_entire_root_public_folder: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover the whole RootPublicFolder.", alias="recoverEntireRootPublicFolder")
     recover_folders: Optional[List[PublicFolder]] = Field(default=None, description="Specifies a list of Public Folders to recover. This field is applicable only if 'recoverEntireRootPublicFolder' is false.", alias="recoverFolders")
-    recover_object: CommonRecoverObjectSnapshotParams = Field(alias="recoverObject")
+    recover_object: CommonRecoverObjectSnapshotParams = Field(description="Specifies the RootPublicFolder recover Object info.", alias="recoverObject")
     __properties: ClassVar[List[str]] = ["recoverEntireRootPublicFolder", "recoverFolders", "recoverObject"]
 
     model_config = ConfigDict(

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.logical_volume_info import LogicalVolumeInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VolumeInfo(BaseModel):
@@ -31,7 +31,7 @@ class VolumeInfo(BaseModel):
     filesystem_uuid: Optional[StrictStr] = Field(default=None, description="Specifies the filesystem uuid.", alias="filesystemUuid")
     is_dedupe: Optional[StrictBool] = Field(default=None, description="Specifies if this is NTFS dedupe volume", alias="isDedupe")
     is_supported: Optional[StrictBool] = Field(default=None, description="Specifies if this volume is supported.", alias="isSupported")
-    logical_volume_info: Optional[LogicalVolumeInfo] = Field(default=None, alias="logicalVolumeInfo")
+    logical_volume_info: Optional[LogicalVolumeInfo] = Field(default=None, description="Specifies the logical volume info. This fields is for 'LVM' and 'LDM' volume type only.", alias="logicalVolumeInfo")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the volume name.")
     volume_guid: Optional[StrictStr] = Field(default=None, description="Specifies the volume guid.", alias="volumeGuid")
     volume_size_in_bytes: Optional[StrictInt] = Field(default=None, description="Specifies volume size in bytes.", alias="volumeSizeInBytes")

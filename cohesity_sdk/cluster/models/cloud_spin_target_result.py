@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.aws_cloud_spin_params import AwsCloudSpinParams
 from cohesity_sdk.cluster.models.azure_cloud_spin_params import AzureCloudSpinParams
 from cohesity_sdk.cluster.models.cloud_spin_data_stats import CloudSpinDataStats
 from cohesity_sdk.cluster.models.data_lock_constraints import DataLockConstraints
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CloudSpinTargetResult(BaseModel):

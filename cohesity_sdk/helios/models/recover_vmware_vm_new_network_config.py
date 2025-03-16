@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.recover_vmware_vm_new_network_config_mapping import RecoverVmwareVmNewNetworkConfigMapping
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmNewNetworkConfig(BaseModel):
@@ -31,7 +31,7 @@ class RecoverVmwareVmNewNetworkConfig(BaseModel):
     """ # noqa: E501
     disable_network: Optional[StrictBool] = Field(default=None, description="Specifies whether the attached network should be left in disabled state. Default is false", alias="disableNetwork")
     mappings: Optional[Annotated[List[RecoverVmwareVmNewNetworkConfigMapping], Field(min_length=0)]] = Field(default=None, description="Specifies the target network mapping for each VM's network adapter.")
-    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="networkPortGroup")
+    network_port_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the network port group (i.e, either a standard switch port group or a distributed port group) that will attached to the recovered Object. This parameter is mandatory if detach network is specified as false.", alias="networkPortGroup")
     preserve_mac_address: Optional[StrictBool] = Field(default=None, description="If this is true and we are attaching to a new network entity, then the VM's MAC address will be preserved on the new network. Default value is false.", alias="preserveMacAddress")
     __properties: ClassVar[List[str]] = ["disableNetwork", "mappings", "networkPortGroup", "preserveMacAddress"]
 
@@ -93,6 +93,11 @@ class RecoverVmwareVmNewNetworkConfig(BaseModel):
         # and model_fields_set contains the field
         if self.mappings is None and "mappings" in self.model_fields_set:
             _dict['mappings'] = None
+
+        # set to None if network_port_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_port_group is None and "network_port_group" in self.model_fields_set:
+            _dict['networkPortGroup'] = None
 
         # set to None if preserve_mac_address (nullable) is None
         # and model_fields_set contains the field

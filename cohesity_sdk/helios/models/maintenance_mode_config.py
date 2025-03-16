@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.schedule import Schedule
 from cohesity_sdk.helios.models.time_range_usecs import TimeRangeUsecs
 from cohesity_sdk.helios.models.workflow_intervention_spec import WorkflowInterventionSpec
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MaintenanceModeConfig(BaseModel):

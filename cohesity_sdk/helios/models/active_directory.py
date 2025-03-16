@@ -24,13 +24,12 @@ from cohesity_sdk.helios.models.active_directory_error import ActiveDirectoryErr
 from cohesity_sdk.helios.models.centrify_zones import CentrifyZones
 from cohesity_sdk.helios.models.domain_controller import DomainController
 from cohesity_sdk.helios.models.domain_controllers import DomainControllers
-from cohesity_sdk.helios.models.id_mapping_params import IdMappingParams
 from cohesity_sdk.helios.models.machine_account import MachineAccount
 from cohesity_sdk.helios.models.security_principal import SecurityPrincipal
 from cohesity_sdk.helios.models.task_logs import TaskLogs
-from cohesity_sdk.helios.models.tenant_info import TenantInfo
+from cohesity_sdk.helios.models.tenant import Tenant
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ActiveDirectory(BaseModel):
@@ -45,14 +44,14 @@ class ActiveDirectory(BaseModel):
     nis_provider_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the NIS Provider which is mapped to this Active Directory.", alias="nisProviderDomainName")
     organizational_unit_name: Optional[StrictStr] = Field(default=None, description="Specifies an optional organizational unit name.", alias="organizationalUnitName")
     preferred_domain_controllers: Optional[List[DomainController]] = Field(default=None, description="Specifies a list of preferred domain controllers of this Active Directory.", alias="preferredDomainControllers")
-    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, alias="trustedDomainParams")
+    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, description="Specifies the params of trusted domain info of an Active Directory.", alias="trustedDomainParams")
     work_group_name: Optional[StrictStr] = Field(default=None, description="Specifies a work group name.", alias="workGroupName")
     centrify_zones: Optional[List[CentrifyZones]] = Field(default=None, description="Specifies a list of Centrify zones.", alias="centrifyZones")
     domain_controllers: Optional[List[DomainControllers]] = Field(default=None, description="A list of domain names with a list of it's domain controllers.", alias="domainControllers")
     domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the domain name of the Active Directory.", alias="domainName")
     error: Optional[ActiveDirectoryError] = None
-    id_mapping_params: Optional[IdMappingParams] = Field(default=None, alias="idMappingParams")
-    permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this Active Directory.")
+    id_mapping_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the params of the user id mapping info of an Active Directory.", alias="idMappingParams")
+    permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this Active Directory.")
     security_principals: Optional[List[SecurityPrincipal]] = Field(default=None, description="Specifies a list of security principals.", alias="securityPrincipals")
     task_logs: Optional[TaskLogs] = Field(default=None, alias="taskLogs")
     transitive_ad_trust_level_limit: Optional[StrictInt] = Field(default=None, description="Specifies level of transitive Active Directory trust domains to be used.", alias="transitiveAdTrustLevelLimit")
@@ -133,9 +132,6 @@ class ActiveDirectory(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of error
         if self.error:
             _dict['error'] = self.error.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of id_mapping_params
-        if self.id_mapping_params:
-            _dict['idMappingParams'] = self.id_mapping_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in permissions (list)
         _items = []
         if self.permissions:
@@ -188,6 +184,11 @@ class ActiveDirectory(BaseModel):
         if self.preferred_domain_controllers is None and "preferred_domain_controllers" in self.model_fields_set:
             _dict['preferredDomainControllers'] = None
 
+        # set to None if trusted_domain_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.trusted_domain_params is None and "trusted_domain_params" in self.model_fields_set:
+            _dict['trustedDomainParams'] = None
+
         # set to None if work_group_name (nullable) is None
         # and model_fields_set contains the field
         if self.work_group_name is None and "work_group_name" in self.model_fields_set:
@@ -207,6 +208,11 @@ class ActiveDirectory(BaseModel):
         # and model_fields_set contains the field
         if self.domain_name is None and "domain_name" in self.model_fields_set:
             _dict['domainName'] = None
+
+        # set to None if id_mapping_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.id_mapping_params is None and "id_mapping_params" in self.model_fields_set:
+            _dict['idMappingParams'] = None
 
         # set to None if permissions (nullable) is None
         # and model_fields_set contains the field
@@ -249,8 +255,8 @@ class ActiveDirectory(BaseModel):
             "domainControllers": [DomainControllers.from_dict(_item) for _item in obj["domainControllers"]] if obj.get("domainControllers") is not None else None,
             "domainName": obj.get("domainName"),
             "error": ActiveDirectoryError.from_dict(obj["error"]) if obj.get("error") is not None else None,
-            "idMappingParams": IdMappingParams.from_dict(obj["idMappingParams"]) if obj.get("idMappingParams") is not None else None,
-            "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
+            "idMappingParams": obj.get("idMappingParams"),
+            "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "securityPrincipals": [SecurityPrincipal.from_dict(_item) for _item in obj["securityPrincipals"]] if obj.get("securityPrincipals") is not None else None,
             "taskLogs": TaskLogs.from_dict(obj["taskLogs"]) if obj.get("taskLogs") is not None else None,
             "transitiveAdTrustLevelLimit": obj.get("transitiveAdTrustLevelLimit")

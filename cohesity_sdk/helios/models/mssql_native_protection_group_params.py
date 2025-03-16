@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.advanced_settings import AdvancedSettings
 from cohesity_sdk.helios.models.filter import Filter
 from cohesity_sdk.helios.models.mssql_native_protection_group_object_params import MSSQLNativeProtectionGroupObjectParams
 from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MSSQLNativeProtectionGroupParams(BaseModel):

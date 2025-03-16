@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.gcp_disk_exclusion_params import GcpDiskExclusionParams
 from cohesity_sdk.cluster.models.gcp_native_protection_group_object_params import GcpNativeProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GcpNativeProtectionGroupParams(BaseModel):

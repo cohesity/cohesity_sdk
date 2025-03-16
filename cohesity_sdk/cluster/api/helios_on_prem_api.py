@@ -11,10 +11,13 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.helios_on_prem_config import HeliosOnPremConfig
 
 from cohesity_sdk.cluster.api_client import ApiClient, RequestSerialized
@@ -261,6 +264,7 @@ class HeliosOnPremApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -536,6 +540,7 @@ class HeliosOnPremApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

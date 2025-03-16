@@ -27,15 +27,15 @@ from cohesity_sdk.helios.models.generic_nas_object_protection_request_params imp
 from cohesity_sdk.helios.models.gpfs_object_protection_request_params import GpfsObjectProtectionRequestParams
 from cohesity_sdk.helios.models.hyper_v_object_protection_request_params import HyperVObjectProtectionRequestParams
 from cohesity_sdk.helios.models.isilon_object_protection_request_params import IsilonObjectProtectionRequestParams
-from cohesity_sdk.helios.models.mssql_object_protection_params import MssqlObjectProtectionParams
+from cohesity_sdk.helios.models.mssql_object_protection_request_params import MssqlObjectProtectionRequestParams
 from cohesity_sdk.helios.models.netapp_object_protection_request_params import NetappObjectProtectionRequestParams
-from cohesity_sdk.helios.models.office365_object_protection_params import Office365ObjectProtectionParams
-from cohesity_sdk.helios.models.oracle_object_based_protection_params import OracleObjectBasedProtectionParams
-from cohesity_sdk.helios.models.physical_object_protection_params import PhysicalObjectProtectionParams
-from cohesity_sdk.helios.models.sfdc_object_protection_params import SfdcObjectProtectionParams
-from cohesity_sdk.helios.models.uda_object_protection_params import UdaObjectProtectionParams
+from cohesity_sdk.helios.models.office365_object_protection_request_params import Office365ObjectProtectionRequestParams
+from cohesity_sdk.helios.models.oracle_object_protection_request_params import OracleObjectProtectionRequestParams
+from cohesity_sdk.helios.models.physical_object_protection_request_params import PhysicalObjectProtectionRequestParams
+from cohesity_sdk.helios.models.sfdc_object_protection_request_params import SfdcObjectProtectionRequestParams
+from cohesity_sdk.helios.models.uda_object_protection_request_params import UdaObjectProtectionRequestParams
 from cohesity_sdk.helios.models.vmware_object_protection_request_params import VmwareObjectProtectionRequestParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class EnvSpecificObjectProtectionRequestParams(BaseModel):
@@ -51,13 +51,13 @@ class EnvSpecificObjectProtectionRequestParams(BaseModel):
     gpfs_params: Optional[GpfsObjectProtectionRequestParams] = Field(default=None, alias="gpfsParams")
     hyperv_params: Optional[HyperVObjectProtectionRequestParams] = Field(default=None, alias="hypervParams")
     isilon_params: Optional[IsilonObjectProtectionRequestParams] = Field(default=None, alias="isilonParams")
-    mssql_params: Optional[MssqlObjectProtectionParams] = Field(default=None, alias="mssqlParams")
+    mssql_params: Optional[MssqlObjectProtectionRequestParams] = Field(default=None, alias="mssqlParams")
     netapp_params: Optional[NetappObjectProtectionRequestParams] = Field(default=None, alias="netappParams")
-    office365_params: Optional[Office365ObjectProtectionParams] = Field(default=None, alias="office365Params")
-    oracle_params: Optional[OracleObjectBasedProtectionParams] = Field(default=None, alias="oracleParams")
-    physical_params: Optional[PhysicalObjectProtectionParams] = Field(default=None, alias="physicalParams")
-    sfdc_params: Optional[SfdcObjectProtectionParams] = Field(default=None, alias="sfdcParams")
-    uda_params: Optional[UdaObjectProtectionParams] = Field(default=None, alias="udaParams")
+    office365_params: Optional[Office365ObjectProtectionRequestParams] = Field(default=None, alias="office365Params")
+    oracle_params: Optional[OracleObjectProtectionRequestParams] = Field(default=None, alias="oracleParams")
+    physical_params: Optional[PhysicalObjectProtectionRequestParams] = Field(default=None, alias="physicalParams")
+    sfdc_params: Optional[SfdcObjectProtectionRequestParams] = Field(default=None, alias="sfdcParams")
+    uda_params: Optional[UdaObjectProtectionRequestParams] = Field(default=None, alias="udaParams")
     vmware_params: Optional[VmwareObjectProtectionRequestParams] = Field(default=None, alias="vmwareParams")
     __properties: ClassVar[List[str]] = ["environment", "awsParams", "azureParams", "elastifileParams", "flashbladeParams", "genericNasParams", "gpfsParams", "hypervParams", "isilonParams", "mssqlParams", "netappParams", "office365Params", "oracleParams", "physicalParams", "sfdcParams", "udaParams", "vmwareParams"]
 
@@ -184,13 +184,13 @@ class EnvSpecificObjectProtectionRequestParams(BaseModel):
             "gpfsParams": GpfsObjectProtectionRequestParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
             "hypervParams": HyperVObjectProtectionRequestParams.from_dict(obj["hypervParams"]) if obj.get("hypervParams") is not None else None,
             "isilonParams": IsilonObjectProtectionRequestParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
-            "mssqlParams": MssqlObjectProtectionParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
+            "mssqlParams": MssqlObjectProtectionRequestParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
             "netappParams": NetappObjectProtectionRequestParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
-            "office365Params": Office365ObjectProtectionParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
-            "oracleParams": OracleObjectBasedProtectionParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
-            "physicalParams": PhysicalObjectProtectionParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
-            "sfdcParams": SfdcObjectProtectionParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
-            "udaParams": UdaObjectProtectionParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
+            "office365Params": Office365ObjectProtectionRequestParams.from_dict(obj["office365Params"]) if obj.get("office365Params") is not None else None,
+            "oracleParams": OracleObjectProtectionRequestParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
+            "physicalParams": PhysicalObjectProtectionRequestParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
+            "sfdcParams": SfdcObjectProtectionRequestParams.from_dict(obj["sfdcParams"]) if obj.get("sfdcParams") is not None else None,
+            "udaParams": UdaObjectProtectionRequestParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
             "vmwareParams": VmwareObjectProtectionRequestParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None
         })
         return _obj

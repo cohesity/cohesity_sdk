@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_pure_san_group_params import RecoverPureSanGroupParams
 from cohesity_sdk.helios.models.recover_pure_san_volume_params import RecoverPureSanVolumeParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPureParams(BaseModel):
@@ -30,8 +30,8 @@ class RecoverPureParams(BaseModel):
     Specifies the recovery options specific to Pure environment.
     """ # noqa: E501
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(description="Specifies the list of recover object parameters.")
-    recover_san_group_params: Optional[RecoverPureSanGroupParams] = Field(default=None, alias="recoverSanGroupParams")
-    recover_san_volume_params: Optional[RecoverPureSanVolumeParams] = Field(default=None, alias="recoverSanVolumeParams")
+    recover_san_group_params: Optional[RecoverPureSanGroupParams] = Field(default=None, description="Specifies the parameters to recover SAN Pure Protection Group.", alias="recoverSanGroupParams")
+    recover_san_volume_params: Optional[RecoverPureSanVolumeParams] = Field(default=None, description="Specifies the parameters to recover SAN Volume.", alias="recoverSanVolumeParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recovery action to be performed. The corresponding recovery action params must be filled out.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["objects", "recoverSanGroupParams", "recoverSanVolumeParams", "recoveryAction"]
 
@@ -98,6 +98,16 @@ class RecoverPureParams(BaseModel):
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_san_group_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_san_group_params is None and "recover_san_group_params" in self.model_fields_set:
+            _dict['recoverSanGroupParams'] = None
+
+        # set to None if recover_san_volume_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_san_volume_params is None and "recover_san_volume_params" in self.model_fields_set:
+            _dict['recoverSanVolumeParams'] = None
 
         return _dict
 

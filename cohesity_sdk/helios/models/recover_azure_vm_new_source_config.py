@@ -22,24 +22,24 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.data_transfer_info import DataTransferInfo
 from cohesity_sdk.helios.models.recover_azure_vm_new_source_network_config import RecoverAzureVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAzureVmNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the VMs will be recovered.
     """ # noqa: E501
-    availability_set: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="availabilitySet")
-    compute_option: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="computeOption")
+    availability_set: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the availability set.", alias="availabilitySet")
+    compute_option: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the type of VM (e.g. small, medium, large) when cloning/restoring the VM in Azure.", alias="computeOption")
     data_transfer_info: Optional[DataTransferInfo] = Field(default=None, alias="dataTransferInfo")
-    network_config: RecoverAzureVmNewSourceNetworkConfig = Field(alias="networkConfig")
-    region: Optional[RecoveryObjectIdentifier] = None
-    resource_group: RecoveryObjectIdentifier = Field(alias="resourceGroup")
-    source: RecoveryObjectIdentifier
-    storage_account: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="storageAccount")
-    storage_container: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="storageContainer")
-    storage_resource_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="storageResourceGroup")
-    subscription: Optional[RecoveryObjectIdentifier] = None
+    network_config: Optional[RecoverAzureVmNewSourceNetworkConfig] = Field(description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    region: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the region to recover the VMs. Applicable for Tenant based registration on DMaaS.")
+    resource_group: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the Azure resource group.", alias="resourceGroup")
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the VMs.")
+    storage_account: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the storage account that will contain the storage container", alias="storageAccount")
+    storage_container: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the storage container within the above storage account.", alias="storageContainer")
+    storage_resource_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies id of the resource group for the selected storage account.", alias="storageResourceGroup")
+    subscription: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the subscription id to recover the VMs. Applicable for Tenant based registration on DMaaS.")
     __properties: ClassVar[List[str]] = ["availabilitySet", "computeOption", "dataTransferInfo", "networkConfig", "region", "resourceGroup", "source", "storageAccount", "storageContainer", "storageResourceGroup", "subscription"]
 
     model_config = ConfigDict(
@@ -114,6 +114,56 @@ class RecoverAzureVmNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of subscription
         if self.subscription:
             _dict['subscription'] = self.subscription.to_dict()
+        # set to None if availability_set (nullable) is None
+        # and model_fields_set contains the field
+        if self.availability_set is None and "availability_set" in self.model_fields_set:
+            _dict['availabilitySet'] = None
+
+        # set to None if compute_option (nullable) is None
+        # and model_fields_set contains the field
+        if self.compute_option is None and "compute_option" in self.model_fields_set:
+            _dict['computeOption'] = None
+
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
+
+        # set to None if resource_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.resource_group is None and "resource_group" in self.model_fields_set:
+            _dict['resourceGroup'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
+        # set to None if storage_account (nullable) is None
+        # and model_fields_set contains the field
+        if self.storage_account is None and "storage_account" in self.model_fields_set:
+            _dict['storageAccount'] = None
+
+        # set to None if storage_container (nullable) is None
+        # and model_fields_set contains the field
+        if self.storage_container is None and "storage_container" in self.model_fields_set:
+            _dict['storageContainer'] = None
+
+        # set to None if storage_resource_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.storage_resource_group is None and "storage_resource_group" in self.model_fields_set:
+            _dict['storageResourceGroup'] = None
+
+        # set to None if subscription (nullable) is None
+        # and model_fields_set contains the field
+        if self.subscription is None and "subscription" in self.model_fields_set:
+            _dict['subscription'] = None
+
         return _dict
 
     @classmethod

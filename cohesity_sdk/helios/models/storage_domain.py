@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.model_schema import ModelSchema
 from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
 from cohesity_sdk.helios.models.storage_policy import StoragePolicy
 from cohesity_sdk.helios.models.subnet import Subnet
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class StorageDomain(BaseModel):
@@ -36,11 +36,11 @@ class StorageDomain(BaseModel):
     ad_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the Active Directory domain name that this Storage Domain is mapped to.", alias="adDomainName")
     blob_brick_size_bytes: Optional[StrictInt] = Field(default=None, description="Specifies the brick size used for blobs in this Storage Domain.", alias="blobBrickSizeBytes")
     cloud_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the cloud domain Id.", alias="cloudDomainId")
-    cloud_down_water_fall_params: Optional[CloudDownWaterFallParams] = Field(default=None, alias="cloudDownWaterFallParams")
+    cloud_down_water_fall_params: Optional[CloudDownWaterFallParams] = Field(default=None, description="Specifies the cloud down water fall parameters for this Storage Domain.", alias="cloudDownWaterFallParams")
     cluster_partition_id: Optional[StrictInt] = Field(description="Specifies the cluster partition id of the Storage Domain.", alias="clusterPartitionId")
     cluster_partition_name: Optional[StrictStr] = Field(default=None, description="Specifies the cluster partition name of the Storage Domain.", alias="clusterPartitionName")
-    default_user_quota: Optional[QuotaPolicy] = Field(default=None, alias="defaultUserQuota")
-    default_view_quota: Optional[QuotaPolicy] = Field(default=None, alias="defaultViewQuota")
+    default_user_quota: Optional[QuotaPolicy] = Field(default=None, description="Specifies a default user quota limit for users within views in this Storage Domain.", alias="defaultUserQuota")
+    default_view_quota: Optional[QuotaPolicy] = Field(default=None, description="Specifies a default logical quota limit for all views in this Storage Domain. This quota can be overwritten by a view level quota.", alias="defaultViewQuota")
     dek_rotation_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether DEK(Data Encryption Key) rotation is enabled for this Storage Domain. This is applicable only when the Storage Domain uses AWS or similar KMS in which the KEK (Key Encryption Key) is not created and maintained by Cohesity. For Internal KMS and keys stored in Safenet servers, DEK rotation will not be performed.", alias="dekRotationEnabled")
     direct_archive_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether to enable driect archive on this Storage Domain. If enabled, this Storage Domain can be used as a staging area while copying a large dataset that can't fit on the cluster to an external target.", alias="directArchiveEnabled")
     file_count_by_size: Optional[List[FileCount]] = Field(default=None, description="Specifies the file count by size for the View.", alias="fileCountBySize")
@@ -51,13 +51,13 @@ class StorageDomain(BaseModel):
     ldap_provider_id: Optional[StrictInt] = Field(default=None, description="Specifies the LDAP provider id that this Storage Domain is mapped to.", alias="ldapProviderId")
     name: Optional[StrictStr] = Field(description="Specifies the Storage Domain name.")
     nis_domain_names: Optional[List[StrictStr]] = Field(default=None, description="Specifies the NIS domain names that this Storage Domain is mapped to.", alias="nisDomainNames")
-    physical_quota: Optional[QuotaPolicy] = Field(default=None, alias="physicalQuota")
+    physical_quota: Optional[QuotaPolicy] = Field(default=None, description="Specifies a quota limit for physical usage of this Storage Domain. This quota defines a limit of data that can be physically (after data size is reduced by block tracking, compression and deduplication) stored on this storage domain. A new write will not be allowed when the storage domain usage will exceeds the specified quota. Due to the latency of calculating usage across all nodes, the actual storage domain usage may exceed the quota limit by a little bit.", alias="physicalQuota")
     recommended: Optional[StrictBool] = Field(default=None, description="Specifies whether Storage Domain is recommended for the specified View template.")
     removal_state: Optional[StrictStr] = Field(default=None, description="Specifies the current removal state of the Storage Domain. 'DontRemove' means the state of object is functional and it is not being removed. 'MarkedForRemoval' means the object is being removed. 'OkToRemove' means the object has been removed on the Cohesity Cluster and if the object is physical, it can be removed from the Cohesity Cluster.", alias="removalState")
     s3_buckets_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether to enable creation of S3 bucket on this Storage Domain.", alias="s3BucketsEnabled")
     schemas: Optional[List[ModelSchema]] = Field(default=None, description="Specifies the Storage Domain schemas.")
-    stats: Optional[DataUsageStats] = None
-    storage_policy: Optional[StoragePolicy] = Field(default=None, alias="storagePolicy")
+    stats: Optional[DataUsageStats] = Field(default=None, description="Specifies the Storage Domain stats.")
+    storage_policy: Optional[StoragePolicy] = Field(default=None, description="Specifies the storage policy for this Storage Domain.", alias="storagePolicy")
     subnet_whitelist: Optional[List[Subnet]] = Field(default=None, description="Specifies a list of Subnets with IP addresses that have permissions to access the Storage Domain.", alias="subnetWhitelist")
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of tenant ids that that Storage Domain belongs. There can only be one tenant id in this field unless Storage Domain sharing between tenants is allowed on this cluster.", alias="tenantIds")
     treat_file_sync_as_data_sync: Optional[StrictBool] = Field(default=None, description="If 'true', when the Cohesity Cluster is writing to a file, the file modification time is not persisted synchronously during the file write, so the modification time may not be accurate. (Typically the file modification time is off by 30 seconds but it can be longer.)", alias="treatFileSyncAsDataSync")

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.trusted_domain import TrustedDomain
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TrustedDomainParams(BaseModel):

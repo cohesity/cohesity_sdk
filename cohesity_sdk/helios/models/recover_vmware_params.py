@@ -27,21 +27,21 @@ from cohesity_sdk.helios.models.recover_vmware_snapshot_params import RecoverVmw
 from cohesity_sdk.helios.models.recover_vmware_v_app_params import RecoverVmwareVAppParams
 from cohesity_sdk.helios.models.recover_vmware_v_app_template_params import RecoverVmwareVAppTemplateParams
 from cohesity_sdk.helios.models.recover_vmware_vm_params import RecoverVmwareVmParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareParams(BaseModel):
     """
     Specifies the recovery options specific to VMware environment.
     """ # noqa: E501
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
-    mount_volume_params: Optional[MountVmwareVolumeParams] = Field(default=None, alias="mountVolumeParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
+    mount_volume_params: Optional[MountVmwareVolumeParams] = Field(default=None, description="Specifies the parameters to mount VMware Volumes.", alias="mountVolumeParams")
     objects: Optional[List[RecoverVmwareSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters. This property is mandatory for all recovery action types except recover vms. While recovering VMs, a user can specify snapshots of VM's or a Protection Group Run details to recover all the VM's that are backed up by that Run. For recovering files, specifies the object contains the file to recover.")
-    recover_file_and_folder_params: Optional[RecoverVMwareFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
-    recover_v_app_params: Optional[RecoverVmwareVAppParams] = Field(default=None, alias="recoverVAppParams")
-    recover_v_app_template_params: Optional[RecoverVmwareVAppTemplateParams] = Field(default=None, alias="recoverVAppTemplateParams")
-    recover_vm_disk_params: Optional[RecoverVmwareDiskParams] = Field(default=None, alias="recoverVmDiskParams")
-    recover_vm_params: Optional[RecoverVmwareVmParams] = Field(default=None, alias="recoverVmParams")
+    recover_file_and_folder_params: Optional[RecoverVMwareFileAndFolderParams] = Field(default=None, description="Specifies the parameters to recover files and folders.", alias="recoverFileAndFolderParams")
+    recover_v_app_params: Optional[RecoverVmwareVAppParams] = Field(default=None, description="Specifies the parameters to recover a VMware vApp.", alias="recoverVAppParams")
+    recover_v_app_template_params: Optional[RecoverVmwareVAppTemplateParams] = Field(default=None, description="Specifies the parameters to recover a VMware vApp template.", alias="recoverVAppTemplateParams")
+    recover_vm_disk_params: Optional[RecoverVmwareDiskParams] = Field(default=None, description="Specifies the parameters to recover VMware Disks.", alias="recoverVmDiskParams")
+    recover_vm_params: Optional[RecoverVmwareVmParams] = Field(default=None, description="Specifies the parameters to recover VMware VM.", alias="recoverVmParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recovery action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "mountVolumeParams", "objects", "recoverFileAndFolderParams", "recoverVAppParams", "recoverVAppTemplateParams", "recoverVmDiskParams", "recoverVmParams", "recoveryAction"]
 
@@ -119,10 +119,45 @@ class RecoverVmwareParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_vm_params
         if self.recover_vm_params:
             _dict['recoverVmParams'] = self.recover_vm_params.to_dict()
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
+        # set to None if mount_volume_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.mount_volume_params is None and "mount_volume_params" in self.model_fields_set:
+            _dict['mountVolumeParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_file_and_folder_params is None and "recover_file_and_folder_params" in self.model_fields_set:
+            _dict['recoverFileAndFolderParams'] = None
+
+        # set to None if recover_v_app_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_v_app_params is None and "recover_v_app_params" in self.model_fields_set:
+            _dict['recoverVAppParams'] = None
+
+        # set to None if recover_v_app_template_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_v_app_template_params is None and "recover_v_app_template_params" in self.model_fields_set:
+            _dict['recoverVAppTemplateParams'] = None
+
+        # set to None if recover_vm_disk_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_vm_disk_params is None and "recover_vm_disk_params" in self.model_fields_set:
+            _dict['recoverVmDiskParams'] = None
+
+        # set to None if recover_vm_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_vm_params is None and "recover_vm_params" in self.model_fields_set:
+            _dict['recoverVmParams'] = None
 
         return _dict
 

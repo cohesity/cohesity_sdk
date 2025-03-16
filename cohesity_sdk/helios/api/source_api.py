@@ -11,11 +11,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.create_azure_application_request_params import CreateAzureApplicationRequestParams
 from cohesity_sdk.helios.models.create_azure_application_response_params import CreateAzureApplicationResponseParams
 from cohesity_sdk.helios.models.generate_m365_device_access_token_request_params import GenerateM365DeviceAccessTokenRequestParams
@@ -23,6 +26,8 @@ from cohesity_sdk.helios.models.generate_m365_device_access_token_response_param
 from cohesity_sdk.helios.models.generate_m365_device_code_request_params import GenerateM365DeviceCodeRequestParams
 from cohesity_sdk.helios.models.generate_m365_device_code_response_params import GenerateM365DeviceCodeResponseParams
 from cohesity_sdk.helios.models.mcm_source_registration import McmSourceRegistration
+from cohesity_sdk.helios.models.mcm_source_registration_request_params import McmSourceRegistrationRequestParams
+from cohesity_sdk.helios.models.mcm_source_registration_update_request_params import McmSourceRegistrationUpdateRequestParams
 from cohesity_sdk.helios.models.mcm_sources import McmSources
 from cohesity_sdk.helios.models.source import Source
 from cohesity_sdk.helios.models.source_attribute_filters_response_params import SourceAttributeFiltersResponseParams
@@ -4130,7 +4135,7 @@ class SourceApi:
     @validate_call
     def mcm_register_protection_source(
         self,
-        body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
+        body: Annotated[McmSourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
         _request_timeout: Union[
@@ -4151,7 +4156,7 @@ class SourceApi:
         Register a Protection Source.
 
         :param body: Specifies the parameters to register a Protection Source. (required)
-        :type body: SourceRegistrationRequestParams
+        :type body: McmSourceRegistrationRequestParams
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
@@ -4205,7 +4210,7 @@ class SourceApi:
     @validate_call
     def mcm_register_protection_source_with_http_info(
         self,
-        body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
+        body: Annotated[McmSourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
         _request_timeout: Union[
@@ -4226,7 +4231,7 @@ class SourceApi:
         Register a Protection Source.
 
         :param body: Specifies the parameters to register a Protection Source. (required)
-        :type body: SourceRegistrationRequestParams
+        :type body: McmSourceRegistrationRequestParams
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
@@ -4280,7 +4285,7 @@ class SourceApi:
     @validate_call
     def mcm_register_protection_source_without_preload_content(
         self,
-        body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
+        body: Annotated[McmSourceRegistrationRequestParams, Field(description="Specifies the parameters to register a Protection Source.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="Specifies the destination cluster id on which this Source needs to be registered.")] = None,
         _request_timeout: Union[
@@ -4301,7 +4306,7 @@ class SourceApi:
         Register a Protection Source.
 
         :param body: Specifies the parameters to register a Protection Source. (required)
-        :type body: SourceRegistrationRequestParams
+        :type body: McmSourceRegistrationRequestParams
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param access_cluster_id: Specifies the destination cluster id on which this Source needs to be registered.
@@ -6567,7 +6572,7 @@ class SourceApi:
     def update_protection_source_registration_mixin1(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
-        body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to update the registration.")],
+        body: Annotated[McmSourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -6589,7 +6594,7 @@ class SourceApi:
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: str
         :param body: Specifies the parameters to update the registration. (required)
-        :type body: SourceRegistrationRequestParams
+        :type body: McmSourceRegistrationUpdateRequestParams
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6642,7 +6647,7 @@ class SourceApi:
     def update_protection_source_registration_mixin1_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
-        body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to update the registration.")],
+        body: Annotated[McmSourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -6664,7 +6669,7 @@ class SourceApi:
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: str
         :param body: Specifies the parameters to update the registration. (required)
-        :type body: SourceRegistrationRequestParams
+        :type body: McmSourceRegistrationUpdateRequestParams
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -6717,7 +6722,7 @@ class SourceApi:
     def update_protection_source_registration_mixin1_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies the id of the Protection Source registration.")],
-        body: Annotated[SourceRegistrationRequestParams, Field(description="Specifies the parameters to update the registration.")],
+        body: Annotated[McmSourceRegistrationUpdateRequestParams, Field(description="Specifies the parameters to update the registration.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -6739,7 +6744,7 @@ class SourceApi:
         :param id: Specifies the id of the Protection Source registration. (required)
         :type id: str
         :param body: Specifies the parameters to update the registration. (required)
-        :type body: SourceRegistrationRequestParams
+        :type body: McmSourceRegistrationUpdateRequestParams
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one

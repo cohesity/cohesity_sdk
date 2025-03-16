@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.cluster.models.target_teams_channel_param import TargetTeamsChannelParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TargetMsTeamParam(BaseModel):

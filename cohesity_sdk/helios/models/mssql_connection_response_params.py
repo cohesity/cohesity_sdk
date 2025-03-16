@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.aag_group import AAGGroup
 from cohesity_sdk.helios.models.error import Error
 from cohesity_sdk.helios.models.fci_cluster import FCICluster
 from cohesity_sdk.helios.models.sql_server import SQLServer
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MssqlConnectionResponseParams(BaseModel):

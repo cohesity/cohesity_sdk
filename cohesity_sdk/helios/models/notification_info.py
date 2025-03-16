@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.email_config import EmailConfig
 from cohesity_sdk.helios.models.webhook_config import WebhookConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NotificationInfo(BaseModel):

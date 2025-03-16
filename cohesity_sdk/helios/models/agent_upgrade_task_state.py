@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.agent_upgrade_info_object import AgentUpgradeInfoObject
 from cohesity_sdk.helios.models.error import Error
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AgentUpgradeTaskState(BaseModel):

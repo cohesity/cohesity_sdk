@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.upgrade_check_test_result import UpgradeCheckTestResult
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpgradeCheckNodeResult(BaseModel):

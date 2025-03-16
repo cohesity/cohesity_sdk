@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.log_retention import LogRetention
 from cohesity_sdk.helios.models.retention import Retention
 from cohesity_sdk.helios.models.target_schedule import TargetSchedule
 from cohesity_sdk.helios.models.tier_level_settings import TierLevelSettings
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalConfig(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_view_to_view_files_target_params import RecoverViewToViewFilesTargetParams
 from cohesity_sdk.helios.models.view_recover_file_and_folder_info import ViewRecoverFileAndFolderInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverViewFilesParams(BaseModel):
@@ -29,7 +29,7 @@ class RecoverViewFilesParams(BaseModel):
     Specifies the parameters to recover View files.
     """ # noqa: E501
     files_and_folders: Optional[List[ViewRecoverFileAndFolderInfo]] = Field(description="Specifies the list of info about the view files and folders to be recovered.", alias="filesAndFolders")
-    view_target_params: Optional[RecoverViewToViewFilesTargetParams] = Field(default=None, alias="viewTargetParams")
+    view_target_params: Optional[RecoverViewToViewFilesTargetParams] = Field(default=None, description="Specifies configuration of the target view to which the files and folders are to be recovered.", alias="viewTargetParams")
     __properties: ClassVar[List[str]] = ["filesAndFolders", "viewTargetParams"]
 
     model_config = ConfigDict(
@@ -85,6 +85,11 @@ class RecoverViewFilesParams(BaseModel):
         # and model_fields_set contains the field
         if self.files_and_folders is None and "files_and_folders" in self.model_fields_set:
             _dict['filesAndFolders'] = None
+
+        # set to None if view_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.view_target_params is None and "view_target_params" in self.model_fields_set:
+            _dict['viewTargetParams'] = None
 
         return _dict
 

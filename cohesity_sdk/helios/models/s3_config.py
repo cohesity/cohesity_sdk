@@ -23,17 +23,17 @@ from cohesity_sdk.helios.models.acl_config import AclConfig
 from cohesity_sdk.helios.models.bucket_policy import BucketPolicy
 from cohesity_sdk.helios.models.s3_config_owner_info import S3ConfigOwnerInfo
 from cohesity_sdk.helios.models.s3_lifecycle_management import S3LifecycleManagement
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class S3Config(BaseModel):
     """
     Specifies the S3 config settings for this View.
     """ # noqa: E501
-    acl_config: Optional[AclConfig] = Field(default=None, alias="aclConfig")
-    bucket_policy: Optional[BucketPolicy] = Field(default=None, alias="bucketPolicy")
+    acl_config: Optional[AclConfig] = Field(default=None, description="Specifies the ACL config of the View as an S3 bucket.", alias="aclConfig")
+    bucket_policy: Optional[BucketPolicy] = Field(default=None, description="Specifies the policy in effect for this bucket.", alias="bucketPolicy")
     enable_abac: Optional[StrictBool] = Field(default=None, description="Specifies if this View has S3 ABAC enabled. This can only be set while creating a view. The ABAC server corresponding the tenant will be used for authentication and authorization checks. ", alias="enableAbac")
-    lifecycle_management: Optional[S3LifecycleManagement] = Field(default=None, alias="lifecycleManagement")
+    lifecycle_management: Optional[S3LifecycleManagement] = Field(default=None, description="Specifies the S3 Lifecycle policy of the bucket", alias="lifecycleManagement")
     owner_info: Optional[S3ConfigOwnerInfo] = Field(default=None, alias="ownerInfo")
     s3_access_path: Optional[StrictStr] = Field(default=None, description="Specifies the path to access this View as an S3 share.", alias="s3AccessPath")
     versioning: Optional[StrictStr] = Field(default=None, description="Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.")

@@ -19,16 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.frequency_schedule import FrequencySchedule
-from typing import Set
+from cohesity_sdk.helios.models.hour_schedule import HourSchedule
+from cohesity_sdk.helios.models.minute_schedule import MinuteSchedule
+from typing import Optional, Set
 from typing_extensions import Self
 
 class LogSchedule(BaseModel):
     """
     Specifies settings that defines how frequent log backup will be performed for a Protection Group.
     """ # noqa: E501
-    hour_schedule: Optional[FrequencySchedule] = Field(default=None, alias="hourSchedule")
-    minute_schedule: Optional[FrequencySchedule] = Field(default=None, alias="minuteSchedule")
+    hour_schedule: Optional[HourSchedule] = Field(default=None, alias="hourSchedule")
+    minute_schedule: Optional[MinuteSchedule] = Field(default=None, alias="minuteSchedule")
     unit: Optional[StrictStr] = Field(description="Specifies how often to start new Protection Group Runs of a Protection Group. <br>'Minutes' specifies that Protection Group run starts periodically after certain number of minutes specified in 'frequency' field. <br>'Hours' specifies that Protection Group run starts periodically after certain number of hours specified in 'frequency' field.")
     __properties: ClassVar[List[str]] = ["hourSchedule", "minuteSchedule", "unit"]
 
@@ -104,8 +105,8 @@ class LogSchedule(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "hourSchedule": FrequencySchedule.from_dict(obj["hourSchedule"]) if obj.get("hourSchedule") is not None else None,
-            "minuteSchedule": FrequencySchedule.from_dict(obj["minuteSchedule"]) if obj.get("minuteSchedule") is not None else None,
+            "hourSchedule": HourSchedule.from_dict(obj["hourSchedule"]) if obj.get("hourSchedule") is not None else None,
+            "minuteSchedule": MinuteSchedule.from_dict(obj["minuteSchedule"]) if obj.get("minuteSchedule") is not None else None,
             "unit": obj.get("unit")
         })
         return _obj

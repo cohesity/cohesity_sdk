@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.o365_search_request_params import O365SearchRequestParams
 from cohesity_sdk.cluster.models.o365_teams_channels_search_request_params import O365TeamsChannelsSearchRequestParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SearchMsTeamsRequestParams(BaseModel):

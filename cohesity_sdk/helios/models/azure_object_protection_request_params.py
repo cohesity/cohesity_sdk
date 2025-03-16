@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.azure_native_object_protection_params import AzureNativeObjectProtectionParams
 from cohesity_sdk.helios.models.azure_sql_object_protection_params import AzureSqlObjectProtectionParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureObjectProtectionRequestParams(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_vmware_vm_new_source_config import RecoverVmwareVmNewSourceConfig
 from cohesity_sdk.cluster.models.recover_vmware_vm_original_source_config import RecoverVmwareVmOriginalSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareVmRecoveryTargetConfig(BaseModel):

@@ -21,16 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.planned_failover_params import PlannedFailoverParams
 from cohesity_sdk.helios.models.unplanned_failover_params import UnplannedFailoverParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateViewFailoverRequest(BaseModel):
     """
     Specifies the request parameters to create a view failover task.
     """ # noqa: E501
-    planned_failover_params: Optional[PlannedFailoverParams] = Field(default=None, alias="plannedFailoverParams")
+    planned_failover_params: Optional[PlannedFailoverParams] = Field(default=None, description="Specifies parameters to create a planned failover.", alias="plannedFailoverParams")
     type: Optional[StrictStr] = Field(description="Specifies the failover type.<br> 'Planned' indicates this is a planned failover.<br> 'Unplanned' indicates this is an unplanned failover, which is used when source cluster is down.")
-    unplanned_failover_params: Optional[UnplannedFailoverParams] = Field(default=None, alias="unplannedFailoverParams")
+    unplanned_failover_params: Optional[UnplannedFailoverParams] = Field(default=None, description="Specifies parameters to create an unplanned failover.", alias="unplannedFailoverParams")
     __properties: ClassVar[List[str]] = ["plannedFailoverParams", "type", "unplannedFailoverParams"]
 
     @field_validator('type')

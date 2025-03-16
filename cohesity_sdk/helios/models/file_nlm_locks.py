@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.file_id import FileId
 from cohesity_sdk.helios.models.nlm_lock import NlmLock
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FileNlmLocks(BaseModel):
     """
     Specifies NLM locks per file.
     """ # noqa: E501
-    file_id: Optional[FileId] = Field(default=None, alias="fileId")
+    file_id: Optional[FileId] = Field(default=None, description="File identitfiers.", alias="fileId")
     nlm_locks: Optional[List[NlmLock]] = Field(default=None, description="Specifies the list of NLM locks.", alias="nlmLocks")
     __properties: ClassVar[List[str]] = ["fileId", "nlmLocks"]
 
@@ -81,6 +81,11 @@ class FileNlmLocks(BaseModel):
                 if _item_nlm_locks:
                     _items.append(_item_nlm_locks.to_dict())
             _dict['nlmLocks'] = _items
+        # set to None if file_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.file_id is None and "file_id" in self.model_fields_set:
+            _dict['fileId'] = None
+
         # set to None if nlm_locks (nullable) is None
         # and model_fields_set contains the field
         if self.nlm_locks is None and "nlm_locks" in self.model_fields_set:

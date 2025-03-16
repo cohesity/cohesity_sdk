@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.bandwidth_throttling import BandwidthThrottling
 from cohesity_sdk.cluster.models.storage_domain_pair import StorageDomainPair
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ReplicationParams(BaseModel):

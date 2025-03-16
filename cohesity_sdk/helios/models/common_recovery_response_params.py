@@ -22,8 +22,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.creation_info import CreationInfo
 from cohesity_sdk.helios.models.retrieve_archive_task import RetrieveArchiveTask
-from cohesity_sdk.helios.models.tenant_info import TenantInfo
-from typing import Set
+from cohesity_sdk.helios.models.tenant import Tenant
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonRecoveryResponseParams(BaseModel):
@@ -39,7 +39,7 @@ class CommonRecoveryResponseParams(BaseModel):
     messages: Optional[List[StrictStr]] = Field(default=None, description="Specifies messages about the recovery.")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Recovery.")
     parent_recovery_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="If current recovery is child recovery triggered by another parent recovery operation, then this field willt specify the id of the parent recovery.", alias="parentRecoveryId")
-    permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this recovery.")
+    permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this recovery.")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for Recovery.", alias="progressTaskId")
     recovery_action: Optional[StrictStr] = Field(default=None, description="Specifies the type of recover action.", alias="recoveryAction")
     retrieve_archive_tasks: Optional[List[RetrieveArchiveTask]] = Field(default=None, description="Specifies the list of persistent state of a retrieve of an archive task.", alias="retrieveArchiveTasks")
@@ -262,7 +262,7 @@ class CommonRecoveryResponseParams(BaseModel):
             "messages": obj.get("messages"),
             "name": obj.get("name"),
             "parentRecoveryId": obj.get("parentRecoveryId"),
-            "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
+            "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "progressTaskId": obj.get("progressTaskId"),
             "recoveryAction": obj.get("recoveryAction"),
             "retrieveArchiveTasks": [RetrieveArchiveTask.from_dict(_item) for _item in obj["retrieveArchiveTasks"]] if obj.get("retrieveArchiveTasks") is not None else None,

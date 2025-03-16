@@ -20,9 +20,8 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from cohesity_sdk.helios.models.mongo_db_cdp_job_info import MongoDBCdpJobInfo
 from cohesity_sdk.helios.models.no_sql_protection_group_object_params import NoSqlProtectionGroupObjectParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MongoDBProtectionGroupParams(BaseModel):
@@ -37,7 +36,7 @@ class MongoDBProtectionGroupParams(BaseModel):
     objects: Optional[Annotated[List[NoSqlProtectionGroupObjectParams], Field(min_length=1)]] = Field(default=None, description="Specifies the objects to be included in the Protection Group.")
     source_id: Optional[StrictInt] = Field(default=None, description="Object ID of the Source on which this protection was run .", alias="sourceId")
     source_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the Source on which this protection was run.", alias="sourceName")
-    cdp_info: Optional[MongoDBCdpJobInfo] = Field(default=None, alias="cdpInfo")
+    cdp_info: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the CDP related information for a given protection group. This field will only be populated when protection group is configured with a CDP policy.", alias="cdpInfo")
     __properties: ClassVar[List[str]] = ["autoScaleConcurrency", "bandwidthMBPS", "concurrency", "customSourceName", "excludeObjectIds", "objects", "sourceId", "sourceName", "cdpInfo"]
 
     model_config = ConfigDict(
@@ -92,9 +91,6 @@ class MongoDBProtectionGroupParams(BaseModel):
                 if _item_objects:
                     _items.append(_item_objects.to_dict())
             _dict['objects'] = _items
-        # override the default output from pydantic by calling `to_dict()` of cdp_info
-        if self.cdp_info:
-            _dict['cdpInfo'] = self.cdp_info.to_dict()
         # set to None if auto_scale_concurrency (nullable) is None
         # and model_fields_set contains the field
         if self.auto_scale_concurrency is None and "auto_scale_concurrency" in self.model_fields_set:
@@ -150,7 +146,7 @@ class MongoDBProtectionGroupParams(BaseModel):
             "objects": [NoSqlProtectionGroupObjectParams.from_dict(_item) for _item in obj["objects"]] if obj.get("objects") is not None else None,
             "sourceId": obj.get("sourceId"),
             "sourceName": obj.get("sourceName"),
-            "cdpInfo": MongoDBCdpJobInfo.from_dict(obj["cdpInfo"]) if obj.get("cdpInfo") is not None else None
+            "cdpInfo": obj.get("cdpInfo")
         })
         return _obj
 

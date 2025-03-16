@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.original_netapp_target_params import OriginalNetappTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_netapp_volume_target_params import RecoverOtherNasToNetappVolumeTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverNetappToNetappVolumeTargetParams(BaseModel):

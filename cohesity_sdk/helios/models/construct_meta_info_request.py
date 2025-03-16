@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.construct_meta_info_sfdc_params import ConstructMetaInfoSfdcParams
 from cohesity_sdk.helios.models.construct_restore_meta_info_oracle_params import ConstructRestoreMetaInfoOracleParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ConstructMetaInfoRequest(BaseModel):
@@ -29,8 +29,8 @@ class ConstructMetaInfoRequest(BaseModel):
     Params to construct meta info
     """ # noqa: E501
     environment: Optional[StrictStr] = Field(description="Specifies the environment type of the Protection group")
-    oracle_params: Optional[ConstructRestoreMetaInfoOracleParams] = Field(default=None, alias="oracleParams")
-    sfdc_params: Optional[ConstructMetaInfoSfdcParams] = Field(default=None, alias="sfdcParams")
+    oracle_params: Optional[ConstructRestoreMetaInfoOracleParams] = Field(default=None, description="Oracle Params to construct meta info for alternate restore or clone.", alias="oracleParams")
+    sfdc_params: Optional[ConstructMetaInfoSfdcParams] = Field(default=None, description="Specifies params to construct list of dependent objects.", alias="sfdcParams")
     __properties: ClassVar[List[str]] = ["environment", "oracleParams", "sfdcParams"]
 
     model_config = ConfigDict(

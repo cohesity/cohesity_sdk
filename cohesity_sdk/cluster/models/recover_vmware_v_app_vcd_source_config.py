@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.org_vdc_network import OrgVDCNetwork
 from cohesity_sdk.cluster.models.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.cluster.models.vcd_storage_profile_params import VcdStorageProfileParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVAppVCDSourceConfig(BaseModel):

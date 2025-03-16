@@ -11,14 +11,17 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.helios_policies_response_with_pagination import HeliosPoliciesResponseWithPagination
+from cohesity_sdk.helios.models.helios_policy_request import HeliosPolicyRequest
 from cohesity_sdk.helios.models.helios_policy_response import HeliosPolicyResponse
-from cohesity_sdk.helios.models.helios_protection_policy import HeliosProtectionPolicy
 from cohesity_sdk.helios.models.policy_template_response import PolicyTemplateResponse
 from cohesity_sdk.helios.models.policy_templates_response_with_pagination import PolicyTemplatesResponseWithPagination
 from cohesity_sdk.helios.models.protection_policy_request import ProtectionPolicyRequest
@@ -46,7 +49,7 @@ class PolicyApi:
     @validate_call
     def create_helios_policy(
         self,
-        body: Annotated[HeliosProtectionPolicy, Field(description="Request to create a Helios Policy.")],
+        body: Annotated[HeliosPolicyRequest, Field(description="Request to create a Helios Policy.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -66,7 +69,7 @@ class PolicyApi:
         Create a Global policy or a DMaaS on Helios.
 
         :param body: Request to create a Helios Policy. (required)
-        :type body: HeliosProtectionPolicy
+        :type body: HeliosPolicyRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -117,7 +120,7 @@ class PolicyApi:
     @validate_call
     def create_helios_policy_with_http_info(
         self,
-        body: Annotated[HeliosProtectionPolicy, Field(description="Request to create a Helios Policy.")],
+        body: Annotated[HeliosPolicyRequest, Field(description="Request to create a Helios Policy.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -137,7 +140,7 @@ class PolicyApi:
         Create a Global policy or a DMaaS on Helios.
 
         :param body: Request to create a Helios Policy. (required)
-        :type body: HeliosProtectionPolicy
+        :type body: HeliosPolicyRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -188,7 +191,7 @@ class PolicyApi:
     @validate_call
     def create_helios_policy_without_preload_content(
         self,
-        body: Annotated[HeliosProtectionPolicy, Field(description="Request to create a Helios Policy.")],
+        body: Annotated[HeliosPolicyRequest, Field(description="Request to create a Helios Policy.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -208,7 +211,7 @@ class PolicyApi:
         Create a Global policy or a DMaaS on Helios.
 
         :param body: Request to create a Helios Policy. (required)
-        :type body: HeliosProtectionPolicy
+        :type body: HeliosPolicyRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3224,7 +3227,7 @@ class PolicyApi:
     def update_helios_policy(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
-        body: Annotated[HeliosProtectionPolicy, Field(description="Request to update a Protection Policy.")],
+        body: Annotated[HeliosPolicyRequest, Field(description="Request to update a Protection Policy.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -3246,7 +3249,7 @@ class PolicyApi:
         :param id: Specifies a unique id of the Protection Policy to update. (required)
         :type id: str
         :param body: Request to update a Protection Policy. (required)
-        :type body: HeliosProtectionPolicy
+        :type body: HeliosPolicyRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3299,7 +3302,7 @@ class PolicyApi:
     def update_helios_policy_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
-        body: Annotated[HeliosProtectionPolicy, Field(description="Request to update a Protection Policy.")],
+        body: Annotated[HeliosPolicyRequest, Field(description="Request to update a Protection Policy.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -3321,7 +3324,7 @@ class PolicyApi:
         :param id: Specifies a unique id of the Protection Policy to update. (required)
         :type id: str
         :param body: Request to update a Protection Policy. (required)
-        :type body: HeliosProtectionPolicy
+        :type body: HeliosPolicyRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one
@@ -3374,7 +3377,7 @@ class PolicyApi:
     def update_helios_policy_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Specifies a unique id of the Protection Policy to update.")],
-        body: Annotated[HeliosProtectionPolicy, Field(description="Request to update a Protection Policy.")],
+        body: Annotated[HeliosPolicyRequest, Field(description="Request to update a Protection Policy.")],
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
             None,
@@ -3396,7 +3399,7 @@ class PolicyApi:
         :param id: Specifies a unique id of the Protection Policy to update. (required)
         :type id: str
         :param body: Request to update a Protection Policy. (required)
-        :type body: HeliosProtectionPolicy
+        :type body: HeliosPolicyRequest
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
         :type region_id: str
         :param _request_timeout: timeout setting for this request. If one

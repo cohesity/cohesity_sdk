@@ -11,13 +11,18 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictInt, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
+from cohesity_sdk.helios.models.create_keystone_request import CreateKeystoneRequest
 from cohesity_sdk.helios.models.keystone import Keystone
 from cohesity_sdk.helios.models.keystones import Keystones
+from cohesity_sdk.helios.models.update_keystone_request import UpdateKeystoneRequest
 
 from cohesity_sdk.helios.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.helios.api_response import ApiResponse
@@ -40,7 +45,7 @@ class KeystoneApi:
     @validate_call
     def create_keystone(
         self,
-        body: Annotated[Keystone, Field(description="Specifies the paremters to create a Keystone configuration.")],
+        body: Annotated[CreateKeystoneRequest, Field(description="Specifies the paremters to create a Keystone configuration.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -61,7 +66,7 @@ class KeystoneApi:
         Create a Keystone configuration.
 
         :param body: Specifies the paremters to create a Keystone configuration. (required)
-        :type body: Keystone
+        :type body: CreateKeystoneRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -115,7 +120,7 @@ class KeystoneApi:
     @validate_call
     def create_keystone_with_http_info(
         self,
-        body: Annotated[Keystone, Field(description="Specifies the paremters to create a Keystone configuration.")],
+        body: Annotated[CreateKeystoneRequest, Field(description="Specifies the paremters to create a Keystone configuration.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -136,7 +141,7 @@ class KeystoneApi:
         Create a Keystone configuration.
 
         :param body: Specifies the paremters to create a Keystone configuration. (required)
-        :type body: Keystone
+        :type body: CreateKeystoneRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -190,7 +195,7 @@ class KeystoneApi:
     @validate_call
     def create_keystone_without_preload_content(
         self,
-        body: Annotated[Keystone, Field(description="Specifies the paremters to create a Keystone configuration.")],
+        body: Annotated[CreateKeystoneRequest, Field(description="Specifies the paremters to create a Keystone configuration.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -211,7 +216,7 @@ class KeystoneApi:
         Create a Keystone configuration.
 
         :param body: Specifies the paremters to create a Keystone configuration. (required)
-        :type body: Keystone
+        :type body: CreateKeystoneRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -1271,7 +1276,7 @@ class KeystoneApi:
     def update_keystone(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the Keystone id.")],
-        body: Annotated[Keystone, Field(description="Specifies the paremters to update a Keystone configuration.")],
+        body: Annotated[UpdateKeystoneRequest, Field(description="Specifies the paremters to update a Keystone configuration.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -1294,7 +1299,7 @@ class KeystoneApi:
         :param id: Specifies the Keystone id. (required)
         :type id: int
         :param body: Specifies the paremters to update a Keystone configuration. (required)
-        :type body: Keystone
+        :type body: UpdateKeystoneRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -1350,7 +1355,7 @@ class KeystoneApi:
     def update_keystone_with_http_info(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the Keystone id.")],
-        body: Annotated[Keystone, Field(description="Specifies the paremters to update a Keystone configuration.")],
+        body: Annotated[UpdateKeystoneRequest, Field(description="Specifies the paremters to update a Keystone configuration.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -1373,7 +1378,7 @@ class KeystoneApi:
         :param id: Specifies the Keystone id. (required)
         :type id: int
         :param body: Specifies the paremters to update a Keystone configuration. (required)
-        :type body: Keystone
+        :type body: UpdateKeystoneRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.
@@ -1429,7 +1434,7 @@ class KeystoneApi:
     def update_keystone_without_preload_content(
         self,
         id: Annotated[StrictInt, Field(description="Specifies the Keystone id.")],
-        body: Annotated[Keystone, Field(description="Specifies the paremters to update a Keystone configuration.")],
+        body: Annotated[UpdateKeystoneRequest, Field(description="Specifies the paremters to update a Keystone configuration.")],
         access_cluster_id: Annotated[Optional[StrictInt], Field(description="This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.")] = None,
         region_id: Annotated[Optional[StrictStr], Field(description="This field uniquely represents a region and is used for making Helios calls to a specific region.")] = None,
         _request_timeout: Union[
@@ -1452,7 +1457,7 @@ class KeystoneApi:
         :param id: Specifies the Keystone id. (required)
         :type id: int
         :param body: Specifies the paremters to update a Keystone configuration. (required)
-        :type body: Keystone
+        :type body: UpdateKeystoneRequest
         :param access_cluster_id: This field uniquely represents a Cohesity Cluster and is used for making on-prem calls from Helios.
         :type access_cluster_id: int
         :param region_id: This field uniquely represents a region and is used for making Helios calls to a specific region.

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.vmware_recover_target_source_disk_params import VmwareRecoverTargetSourceDiskParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareRecoverDisksTargetSourceConfig(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_cloud_spin_target import HeliosCloudSpinTarget
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
 from cohesity_sdk.helios.models.helios_target_schedule import HeliosTargetSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosCloudSpinConfig(BaseModel):

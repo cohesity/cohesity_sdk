@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.physical_file_backup_path_params import PhysicalFileBackupPathParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalFileProtectionGroupObjectParams(BaseModel):

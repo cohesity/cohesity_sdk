@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_s3_intelligent_params import AwsS3IntelligentParams
 from cohesity_sdk.cluster.models.aws_s3_standard_params import AwsS3StandardParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TieringAwsExternalTargetParams(BaseModel):

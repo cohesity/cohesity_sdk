@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_base_tenant_assignments_result import HeliosBaseTenantAssignmentsResult
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosTenantAssignmentsResult(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_acropolis_vm_new_source_config import RecoverAcropolisVmNewSourceConfig
 from cohesity_sdk.cluster.models.recover_acropolis_vm_original_source_config import RecoverAcropolisVmOriginalSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAcropolisVmTargetConfig(BaseModel):

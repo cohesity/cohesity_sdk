@@ -19,15 +19,15 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.update_remote_cluster_params import UpdateRemoteClusterParams
-from typing import Set
+from cohesity_sdk.helios.models.remote_cluster import RemoteCluster
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RemoteClusters(BaseModel):
     """
     Specifies a list of Remote Cluster registered with the cluster.
     """ # noqa: E501
-    remote_clusters: Optional[List[UpdateRemoteClusterParams]] = Field(default=None, description="Specifies the list of Remote Clusters.", alias="remoteClusters")
+    remote_clusters: Optional[List[RemoteCluster]] = Field(default=None, description="Specifies the list of Remote Clusters.", alias="remoteClusters")
     __properties: ClassVar[List[str]] = ["remoteClusters"]
 
     model_config = ConfigDict(
@@ -88,7 +88,7 @@ class RemoteClusters(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "remoteClusters": [UpdateRemoteClusterParams.from_dict(_item) for _item in obj["remoteClusters"]] if obj.get("remoteClusters") is not None else None
+            "remoteClusters": [RemoteCluster.from_dict(_item) for _item in obj["remoteClusters"]] if obj.get("remoteClusters") is not None else None
         })
         return _obj
 

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_mailbox_param import ObjectMailboxParam
 from cohesity_sdk.helios.models.pst_param import PstParam
 from cohesity_sdk.helios.models.target_mailbox_param import TargetMailboxParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverMailboxParams(BaseModel):
@@ -31,11 +31,11 @@ class RecoverMailboxParams(BaseModel):
     """ # noqa: E501
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering other Mailboxes if one of Mailbox failed to recover. Default value is false.", alias="continueOnError")
     objects: Optional[List[ObjectMailboxParam]] = Field(description="Specifies a list of Mailbox params associated with the objects to recover.")
-    pst_params: Optional[PstParam] = Field(default=None, alias="pstParams")
+    pst_params: Optional[PstParam] = Field(default=None, description="Specifies the PST conversion specific parameters. This should always be specified when need to convert selected items to PST.", alias="pstParams")
     skip_recover_archive_mailbox: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of the archive mailbox and/or items present in the archive mailbox. Default value is true", alias="skipRecoverArchiveMailbox")
     skip_recover_archive_recoverable_items: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of the Archive Recoverable Items present in the selected snapshot. Default value is true", alias="skipRecoverArchiveRecoverableItems")
     skip_recover_recoverable_items: Optional[StrictBool] = Field(default=None, description="Specifies whether to skip the recovery of the Recoverable Items present in the selected snapshot. Default value is true", alias="skipRecoverRecoverableItems")
-    target_mailbox: Optional[TargetMailboxParam] = Field(default=None, alias="targetMailbox")
+    target_mailbox: Optional[TargetMailboxParam] = Field(default=None, description="Specifies the target Mailbox to recover to. If not specified, the objects will be recovered to original location.", alias="targetMailbox")
     __properties: ClassVar[List[str]] = ["continueOnError", "objects", "pstParams", "skipRecoverArchiveMailbox", "skipRecoverArchiveRecoverableItems", "skipRecoverRecoverableItems", "targetMailbox"]
 
     model_config = ConfigDict(

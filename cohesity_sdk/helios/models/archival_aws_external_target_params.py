@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.aws_s3_intelligent_params import AwsS3Intelligen
 from cohesity_sdk.helios.models.aws_s3_one_zone_ia_params import AwsS3OneZoneIAParams
 from cohesity_sdk.helios.models.aws_s3_standard_ia_params import AwsS3StandardIAParams
 from cohesity_sdk.helios.models.aws_s3_standard_params import AwsS3StandardParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalAwsExternalTargetParams(BaseModel):

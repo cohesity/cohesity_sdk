@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.add_fortknox_vault_aws_params import AddFortknoxVaultAwsParams
 from cohesity_sdk.helios.models.add_fortknox_vault_azure_params import AddFortknoxVaultAzureParams
 from cohesity_sdk.helios.models.fortknox_cloud_provider import FortknoxCloudProvider
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AddFortknoxVaultParams(BaseModel):

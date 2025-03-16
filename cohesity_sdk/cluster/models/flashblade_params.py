@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.flash_blade_registration_info import FlashBladeRegistrationInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FlashbladeParams(BaseModel):

@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.helios.models.host_based_backup_script_params import HostBasedBackupScriptParams
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ElastifileProtectionGroupParams(BaseModel):

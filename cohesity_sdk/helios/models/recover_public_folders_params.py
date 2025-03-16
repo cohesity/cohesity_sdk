@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.root_public_folder_param import RootPublicFolderParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPublicFoldersParams(BaseModel):
@@ -32,7 +32,7 @@ class RecoverPublicFoldersParams(BaseModel):
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering other Public Folders if one of Public Folder failed to recover. Default value is false.", alias="continueOnError")
     root_public_folders: Optional[Annotated[List[RootPublicFolderParam], Field(min_length=1)]] = Field(description="Specifies a list of RootPublicFolder params associated with the objects to recover.", alias="rootPublicFolders")
     target_folder_path: Optional[StrictStr] = Field(default=None, description="Specifies the path to the target folder.", alias="targetFolderPath")
-    target_root_public_folder: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="targetRootPublicFolder")
+    target_root_public_folder: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the target RootPublicFolder to recover to. If not specified, the objects will be recovered to original location.", alias="targetRootPublicFolder")
     __properties: ClassVar[List[str]] = ["continueOnError", "rootPublicFolders", "targetFolderPath", "targetRootPublicFolder"]
 
     model_config = ConfigDict(
@@ -98,6 +98,11 @@ class RecoverPublicFoldersParams(BaseModel):
         # and model_fields_set contains the field
         if self.target_folder_path is None and "target_folder_path" in self.model_fields_set:
             _dict['targetFolderPath'] = None
+
+        # set to None if target_root_public_folder (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_root_public_folder is None and "target_root_public_folder" in self.model_fields_set:
+            _dict['targetRootPublicFolder'] = None
 
         return _dict
 

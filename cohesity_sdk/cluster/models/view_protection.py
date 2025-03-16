@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.protection_group_info import ProtectionGroupInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewProtection(BaseModel):

@@ -19,9 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.local_user_response_params import LocalUserResponseParams
-from cohesity_sdk.helios.models.s3_account_params import S3AccountParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UserParams(BaseModel):
@@ -39,11 +37,11 @@ class UserParams(BaseModel):
     force_password_change: Optional[StrictBool] = Field(default=None, description="Specifies if the user must change password.", alias="forcePasswordChange")
     last_login_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user last logged in successfully.", alias="lastLoginTimeMsecs")
     last_updated_time_msecs: Optional[StrictInt] = Field(default=None, description="Specifies the epoch time in milliseconds when the user account was last modified.", alias="lastUpdatedTimeMsecs")
-    local_user_params: Optional[LocalUserResponseParams] = Field(default=None, alias="localUserParams")
+    local_user_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the LOCAL user properties. This field is required when adding a new LOCAL Cohesity User.", alias="localUserParams")
     locked_reason: Optional[StrictStr] = Field(default=None, description="Specifies the reason for locking the User.", alias="lockedReason")
     other_groups: Optional[List[StrictStr]] = Field(default=None, description="Specifies additional groups the User may belong to.", alias="otherGroups")
     primary_group: Optional[StrictStr] = Field(default=None, description="Specifies the primary group of the User. Primary group is used for file access.", alias="primaryGroup")
-    s3_account_params: Optional[S3AccountParams] = Field(default=None, alias="s3AccountParams")
+    s3_account_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the S3 Account parameters of the User.", alias="s3AccountParams")
     sid: Optional[StrictStr] = Field(default=None, description="Specifies the sid of the User.")
     tenant_id: Optional[StrictStr] = Field(default=None, description="Specifies the tenant id of the User.", alias="tenantId")
     username: Optional[StrictStr] = Field(default=None, description="Specifies the username.")
@@ -118,12 +116,6 @@ class UserParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of local_user_params
-        if self.local_user_params:
-            _dict['localUserParams'] = self.local_user_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of s3_account_params
-        if self.s3_account_params:
-            _dict['s3AccountParams'] = self.s3_account_params.to_dict()
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -217,11 +209,11 @@ class UserParams(BaseModel):
             "forcePasswordChange": obj.get("forcePasswordChange"),
             "lastLoginTimeMsecs": obj.get("lastLoginTimeMsecs"),
             "lastUpdatedTimeMsecs": obj.get("lastUpdatedTimeMsecs"),
-            "localUserParams": LocalUserResponseParams.from_dict(obj["localUserParams"]) if obj.get("localUserParams") is not None else None,
+            "localUserParams": obj.get("localUserParams"),
             "lockedReason": obj.get("lockedReason"),
             "otherGroups": obj.get("otherGroups"),
             "primaryGroup": obj.get("primaryGroup"),
-            "s3AccountParams": S3AccountParams.from_dict(obj["s3AccountParams"]) if obj.get("s3AccountParams") is not None else None,
+            "s3AccountParams": obj.get("s3AccountParams"),
             "sid": obj.get("sid"),
             "tenantId": obj.get("tenantId"),
             "username": obj.get("username")

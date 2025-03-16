@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.tiering_aws_external_target_params import Tieri
 from cohesity_sdk.cluster.models.tiering_azure_external_target_params import TieringAzureExternalTargetParams
 from cohesity_sdk.cluster.models.tiering_gcp_external_target_params import TieringGcpExternalTargetParams
 from cohesity_sdk.cluster.models.tiering_oracle_external_target_params import TieringOracleExternalTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TieringExternalTargetParams(BaseModel):

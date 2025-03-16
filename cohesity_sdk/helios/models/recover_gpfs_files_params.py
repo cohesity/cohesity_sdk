@@ -26,20 +26,20 @@ from cohesity_sdk.helios.models.recover_other_nas_to_flashblade_files_target_par
 from cohesity_sdk.helios.models.recover_other_nas_to_generic_nas_files_target_params import RecoverOtherNasToGenericNasFilesTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_isilon_files_target_params import RecoverOtherNasToIsilonFilesTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_netapp_files_target_params import RecoverOtherNasToNetappFilesTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverGpfsFilesParams(BaseModel):
     """
     Specifies the parameters to recover Gpfs files.
     """ # noqa: E501
-    elastifile_target_params: Optional[RecoverOtherNasToElastifileFilesTargetParams] = Field(default=None, alias="elastifileTargetParams")
+    elastifile_target_params: Optional[RecoverOtherNasToElastifileFilesTargetParams] = Field(default=None, description="Specifies the params for an Elastifile recovery target.", alias="elastifileTargetParams")
     files_and_folders: Optional[List[CommonRecoverFileAndFolderInfo]] = Field(description="Specifies the info about the files and folders to be recovered.", alias="filesAndFolders")
-    flashblade_target_params: Optional[RecoverOtherNasToFlashbladeFilesTargetParams] = Field(default=None, alias="flashbladeTargetParams")
-    generic_nas_target_params: Optional[RecoverOtherNasToGenericNasFilesTargetParams] = Field(default=None, alias="genericNasTargetParams")
-    gpfs_target_params: Optional[RecoverGpfsToGpfsFilesTargetParams] = Field(default=None, alias="gpfsTargetParams")
-    isilon_target_params: Optional[RecoverOtherNasToIsilonFilesTargetParams] = Field(default=None, alias="isilonTargetParams")
-    netapp_target_params: Optional[RecoverOtherNasToNetappFilesTargetParams] = Field(default=None, alias="netappTargetParams")
+    flashblade_target_params: Optional[RecoverOtherNasToFlashbladeFilesTargetParams] = Field(default=None, description="Specifies the params for a Flashblade recovery target.", alias="flashbladeTargetParams")
+    generic_nas_target_params: Optional[RecoverOtherNasToGenericNasFilesTargetParams] = Field(default=None, description="Specifies the params for a generic NAS recovery target.", alias="genericNasTargetParams")
+    gpfs_target_params: Optional[RecoverGpfsToGpfsFilesTargetParams] = Field(default=None, description="Specifies the params for a GPFS recovery target.", alias="gpfsTargetParams")
+    isilon_target_params: Optional[RecoverOtherNasToIsilonFilesTargetParams] = Field(default=None, description="Specifies the params for a Isilon recovery target.", alias="isilonTargetParams")
+    netapp_target_params: Optional[RecoverOtherNasToNetappFilesTargetParams] = Field(default=None, description="Specifies the params for an Netapp recovery target.", alias="netappTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["elastifileTargetParams", "filesAndFolders", "flashbladeTargetParams", "genericNasTargetParams", "gpfsTargetParams", "isilonTargetParams", "netappTargetParams", "targetEnvironment"]
 
@@ -114,10 +114,40 @@ class RecoverGpfsFilesParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of netapp_target_params
         if self.netapp_target_params:
             _dict['netappTargetParams'] = self.netapp_target_params.to_dict()
+        # set to None if elastifile_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.elastifile_target_params is None and "elastifile_target_params" in self.model_fields_set:
+            _dict['elastifileTargetParams'] = None
+
         # set to None if files_and_folders (nullable) is None
         # and model_fields_set contains the field
         if self.files_and_folders is None and "files_and_folders" in self.model_fields_set:
             _dict['filesAndFolders'] = None
+
+        # set to None if flashblade_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.flashblade_target_params is None and "flashblade_target_params" in self.model_fields_set:
+            _dict['flashbladeTargetParams'] = None
+
+        # set to None if generic_nas_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.generic_nas_target_params is None and "generic_nas_target_params" in self.model_fields_set:
+            _dict['genericNasTargetParams'] = None
+
+        # set to None if gpfs_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.gpfs_target_params is None and "gpfs_target_params" in self.model_fields_set:
+            _dict['gpfsTargetParams'] = None
+
+        # set to None if isilon_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.isilon_target_params is None and "isilon_target_params" in self.model_fields_set:
+            _dict['isilonTargetParams'] = None
+
+        # set to None if netapp_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.netapp_target_params is None and "netapp_target_params" in self.model_fields_set:
+            _dict['netappTargetParams'] = None
 
         return _dict
 

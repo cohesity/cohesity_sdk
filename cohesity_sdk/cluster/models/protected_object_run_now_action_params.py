@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.run_now_action_object_level_params import RunNowActionObjectLevelParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ProtectedObjectRunNowActionParams(BaseModel):

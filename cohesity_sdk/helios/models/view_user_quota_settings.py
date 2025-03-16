@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewUserQuotaSettings(BaseModel):
     """
     Specifies the user quota config on the View.
     """ # noqa: E501
-    default_quota_policy: Optional[QuotaPolicy] = Field(default=None, alias="defaultQuotaPolicy")
+    default_quota_policy: Optional[QuotaPolicy] = Field(default=None, description="Specifies the default user quota policy of the View.", alias="defaultQuotaPolicy")
     enabled: StrictBool = Field(description="Specifies whether user quota is enabled for the View.")
     __properties: ClassVar[List[str]] = ["defaultQuotaPolicy", "enabled"]
 

@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.object_string_identifier import ObjectStringIde
 from cohesity_sdk.cluster.models.progress_stats import ProgressStats
 from cohesity_sdk.cluster.models.progress_task_event import ProgressTaskEvent
 from cohesity_sdk.cluster.models.progress_task_info import ProgressTaskInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectProgressInfo(BaseModel):

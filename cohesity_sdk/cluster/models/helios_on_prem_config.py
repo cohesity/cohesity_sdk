@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.cluster_create_network_config import ClusterCre
 from cohesity_sdk.cluster.models.cluster_proxy_server_config import ClusterProxyServerConfig
 from cohesity_sdk.cluster.models.helios_on_prem_ssh_config import HeliosOnPremSSHConfig
 from cohesity_sdk.cluster.models.helios_on_prem_vm_node import HeliosOnPremVMNode
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosOnPremConfig(BaseModel):

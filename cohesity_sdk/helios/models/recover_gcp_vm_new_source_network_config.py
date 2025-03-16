@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.gcp_vpc_subnet_config import GcpVpcSubnetConfig
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class RecoverGcpVmNewSourceNetworkConfig(BaseModel):
     """
     Specifies the network config parameters to be applied for GCP VMs if recovering to new Source.
     """ # noqa: E501
-    subnet: GcpVpcSubnetConfig
+    subnet: Optional[GcpVpcSubnetConfig] = Field(description="Specifies the subnet.")
     __properties: ClassVar[List[str]] = ["subnet"]
 
     model_config = ConfigDict(
@@ -72,6 +72,11 @@ class RecoverGcpVmNewSourceNetworkConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of subnet
         if self.subnet:
             _dict['subnet'] = self.subnet.to_dict()
+        # set to None if subnet (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet is None and "subnet" in self.model_fields_set:
+            _dict['subnet'] = None
+
         return _dict
 
     @classmethod

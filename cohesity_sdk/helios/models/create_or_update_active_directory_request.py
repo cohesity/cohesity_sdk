@@ -20,12 +20,11 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from cohesity_sdk.helios.models.admin_params import AdminParams
 from cohesity_sdk.helios.models.domain_controller import DomainController
 from cohesity_sdk.helios.models.mcm_machine_account import McmMachineAccount
 from cohesity_sdk.helios.models.trusted_domain_info import TrustedDomainInfo
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateOrUpdateActiveDirectoryRequest(BaseModel):
@@ -36,9 +35,9 @@ class CreateOrUpdateActiveDirectoryRequest(BaseModel):
     machine_accounts: Optional[Annotated[List[McmMachineAccount], Field(min_length=1)]] = Field(description="Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. The first machine account is used as primary machine account and it can not be modified.", alias="machineAccounts")
     organizational_unit_name: Optional[StrictStr] = Field(default=None, description="Specifies an optional organizational unit name.", alias="organizationalUnitName")
     preferred_domain_controllers: Optional[List[DomainController]] = Field(default=None, description="Specifies a list of preferred domain controllers of this Active Directory.", alias="preferredDomainControllers")
-    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, alias="trustedDomainParams")
+    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, description="Specifies the params of trusted domain info of an Active Directory.", alias="trustedDomainParams")
     work_group_name: Optional[StrictStr] = Field(default=None, description="Specifies a work group name.", alias="workGroupName")
-    admin_params: AdminParams = Field(alias="adminParams")
+    admin_params: Optional[Dict[str, Any]] = Field(description="Specifies the params of a user with administrative privilege of this Active Directory.", alias="adminParams")
     overwrite_machine_accounts: Optional[StrictBool] = Field(default=None, description="Specifies if specified machine accounts should overwrite existing machine accounts.", alias="overwriteMachineAccounts")
     trusted_domain_list: Optional[List[TrustedDomainInfo]] = Field(default=None, description="A list of domains which this domain trusts.", alias="trustedDomainList")
     __properties: ClassVar[List[str]] = ["domainName", "machineAccounts", "organizationalUnitName", "preferredDomainControllers", "trustedDomainParams", "workGroupName", "adminParams", "overwriteMachineAccounts", "trustedDomainList"]
@@ -109,9 +108,6 @@ class CreateOrUpdateActiveDirectoryRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of trusted_domain_params
         if self.trusted_domain_params:
             _dict['trustedDomainParams'] = self.trusted_domain_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of admin_params
-        if self.admin_params:
-            _dict['adminParams'] = self.admin_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in trusted_domain_list (list)
         _items = []
         if self.trusted_domain_list:
@@ -139,10 +135,20 @@ class CreateOrUpdateActiveDirectoryRequest(BaseModel):
         if self.preferred_domain_controllers is None and "preferred_domain_controllers" in self.model_fields_set:
             _dict['preferredDomainControllers'] = None
 
+        # set to None if trusted_domain_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.trusted_domain_params is None and "trusted_domain_params" in self.model_fields_set:
+            _dict['trustedDomainParams'] = None
+
         # set to None if work_group_name (nullable) is None
         # and model_fields_set contains the field
         if self.work_group_name is None and "work_group_name" in self.model_fields_set:
             _dict['workGroupName'] = None
+
+        # set to None if admin_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.admin_params is None and "admin_params" in self.model_fields_set:
+            _dict['adminParams'] = None
 
         # set to None if overwrite_machine_accounts (nullable) is None
         # and model_fields_set contains the field
@@ -172,7 +178,7 @@ class CreateOrUpdateActiveDirectoryRequest(BaseModel):
             "preferredDomainControllers": [DomainController.from_dict(_item) for _item in obj["preferredDomainControllers"]] if obj.get("preferredDomainControllers") is not None else None,
             "trustedDomainParams": TrustedDomainParams.from_dict(obj["trustedDomainParams"]) if obj.get("trustedDomainParams") is not None else None,
             "workGroupName": obj.get("workGroupName"),
-            "adminParams": AdminParams.from_dict(obj["adminParams"]) if obj.get("adminParams") is not None else None,
+            "adminParams": obj.get("adminParams"),
             "overwriteMachineAccounts": obj.get("overwriteMachineAccounts"),
             "trustedDomainList": [TrustedDomainInfo.from_dict(_item) for _item in obj["trustedDomainList"]] if obj.get("trustedDomainList") is not None else None
         })

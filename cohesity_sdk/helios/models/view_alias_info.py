@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.alias_smb_config import AliasSmbConfig
 from cohesity_sdk.helios.models.subnet import Subnet
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewAliasInfo(BaseModel):
@@ -32,7 +32,7 @@ class ViewAliasInfo(BaseModel):
     client_subnet_whitelist: Optional[List[Subnet]] = Field(default=None, description="List of external client subnet IPs that are allowed to access the share.", alias="clientSubnetWhitelist")
     enable_filer_audit_log: Optional[StrictBool] = Field(default=None, description="This field is currently deprecated. Specifies whether to enable filer audit log on this view alias. This is only used if filer audit logging is enabled in cluster config.", alias="enableFilerAuditLog")
     file_audit_logging_state: Optional[StrictStr] = Field(default=None, description="Specifies the state of File Audit logging for this Share. Supported types: [Inherited, Enabled, Disabled]. Inherited: Audit log setting is inherited from the  View. Enabled: Audit log is enabled for this Share. Disabled: Audit log is disabled for this Share.", alias="fileAuditLoggingState")
-    smb_config: Optional[AliasSmbConfig] = Field(default=None, alias="smbConfig")
+    smb_config: Optional[AliasSmbConfig] = Field(default=None, description="SMB config for the alias (share).", alias="smbConfig")
     view_path: Optional[StrictStr] = Field(default=None, description="View path for the alias.", alias="viewPath")
     __properties: ClassVar[List[str]] = ["aliasName", "clientSubnetWhitelist", "enableFilerAuditLog", "fileAuditLoggingState", "smbConfig", "viewPath"]
 

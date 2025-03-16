@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.file_extension_filter import FileExtensionFilter
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AntivirusScanConfig(BaseModel):
@@ -30,7 +30,7 @@ class AntivirusScanConfig(BaseModel):
     block_access_on_scan_failure: Optional[StrictBool] = Field(default=None, description="Specifies whether block access to the file when antivirus scan fails.", alias="blockAccessOnScanFailure")
     is_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether the antivirus service is enabled or not.", alias="isEnabled")
     maximum_scan_file_size: Optional[StrictInt] = Field(default=None, description="Specifies maximum file size that will be sent to antivirus server for scanning. if greater than zero, the file size that exceeds this size would be skipped from virus scan.", alias="maximumScanFileSize")
-    scan_filter: Optional[FileExtensionFilter] = Field(default=None, alias="scanFilter")
+    scan_filter: Optional[FileExtensionFilter] = Field(default=None, description="Files extension that meets these filter criteria will be sent to antivirus server for the scan.", alias="scanFilter")
     scan_on_access: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a file when it is opened.", alias="scanOnAccess")
     scan_on_close: Optional[StrictBool] = Field(default=None, description="Specifies whether to scan a file when it is closed after modify.", alias="scanOnClose")
     scan_timeout_usecs: Optional[StrictInt] = Field(description="Specifies the maximum amount of time that a scan can take before timing out.", alias="scanTimeoutUsecs")

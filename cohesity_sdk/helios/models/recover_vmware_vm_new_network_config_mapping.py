@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.org_vdc_network import OrgVDCNetwork
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmNewNetworkConfigMapping(BaseModel):
@@ -32,8 +32,8 @@ class RecoverVmwareVmNewNetworkConfigMapping(BaseModel):
     network_adapter_name: Optional[StrictStr] = Field(default=None, description="Name of the VM's network adapter name.", alias="networkAdapterName")
     org_vdc_network: Optional[OrgVDCNetwork] = Field(default=None, alias="orgVdcNetwork")
     preserve_mac_address: Optional[StrictBool] = Field(default=None, description="Specifies whether to preserve the MAC address of the source network entity while attaching to the new target network. Default is false.", alias="preserveMacAddress")
-    source_network_entity: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="sourceNetworkEntity")
-    target_network_entity: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="targetNetworkEntity")
+    source_network_entity: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the source VM's network port group (i.e, either a standard switch port group or a distributed port group or an opaque network) which is associated with specified network adapter name for which mapping is selected.", alias="sourceNetworkEntity")
+    target_network_entity: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the network port group (i.e, either a standard switch port group or a distributed port group or an opaque network) that will attached as backing device on the recovered object for the given network adapter name and source network entity.", alias="targetNetworkEntity")
     __properties: ClassVar[List[str]] = ["disableNetwork", "networkAdapterName", "orgVdcNetwork", "preserveMacAddress", "sourceNetworkEntity", "targetNetworkEntity"]
 
     model_config = ConfigDict(
@@ -98,6 +98,16 @@ class RecoverVmwareVmNewNetworkConfigMapping(BaseModel):
         # and model_fields_set contains the field
         if self.preserve_mac_address is None and "preserve_mac_address" in self.model_fields_set:
             _dict['preserveMacAddress'] = None
+
+        # set to None if source_network_entity (nullable) is None
+        # and model_fields_set contains the field
+        if self.source_network_entity is None and "source_network_entity" in self.model_fields_set:
+            _dict['sourceNetworkEntity'] = None
+
+        # set to None if target_network_entity (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_network_entity is None and "target_network_entity" in self.model_fields_set:
+            _dict['targetNetworkEntity'] = None
 
         return _dict
 

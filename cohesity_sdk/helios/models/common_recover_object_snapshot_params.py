@@ -21,18 +21,18 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonRecoverObjectSnapshotParams(BaseModel):
     """
     Specifies the common snapshot parameters for a protected object.
     """ # noqa: E501
-    archival_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="archivalTargetInfo")
+    archival_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the archival target information if the snapshot is an archival snapshot.", alias="archivalTargetInfo")
     bytes_restored: Optional[StrictInt] = Field(default=None, description="Specify the total bytes restored.", alias="bytesRestored")
     end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of the Recovery in Unix timestamp epoch in microseconds. This field will be populated only after Recovery is finished.", alias="endTimeUsecs")
     messages: Optional[List[StrictStr]] = Field(default=None, description="Specify error messages about the object.")
-    object_info: Optional[ObjectSummary] = Field(default=None, alias="objectInfo")
+    object_info: Optional[ObjectSummary] = Field(default=None, description="Specifies the information about the object for which the snapshot is taken.", alias="objectInfo")
     point_in_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp (in microseconds. from epoch) for recovering to a point-in-time in the past.", alias="pointInTimeUsecs")
     progress_task_id: Optional[StrictStr] = Field(default=None, description="Progress monitor task id for Recovery of VM.", alias="progressTaskId")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the protection group id of the object snapshot.", alias="protectionGroupId")
@@ -129,6 +129,11 @@ class CommonRecoverObjectSnapshotParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object_info
         if self.object_info:
             _dict['objectInfo'] = self.object_info.to_dict()
+        # set to None if archival_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.archival_target_info is None and "archival_target_info" in self.model_fields_set:
+            _dict['archivalTargetInfo'] = None
+
         # set to None if bytes_restored (nullable) is None
         # and model_fields_set contains the field
         if self.bytes_restored is None and "bytes_restored" in self.model_fields_set:
@@ -143,6 +148,11 @@ class CommonRecoverObjectSnapshotParams(BaseModel):
         # and model_fields_set contains the field
         if self.messages is None and "messages" in self.model_fields_set:
             _dict['messages'] = None
+
+        # set to None if object_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_info is None and "object_info" in self.model_fields_set:
+            _dict['objectInfo'] = None
 
         # set to None if point_in_time_usecs (nullable) is None
         # and model_fields_set contains the field

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.cluster.models.vmware_recover_files_new_target_config import VmwareRecoverFilesNewTargetConfig
 from cohesity_sdk.cluster.models.vmware_recover_files_original_target_config import VmwareRecoverFilesOriginalTargetConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForRecoverFileAndFolder(BaseModel):

@@ -35,7 +35,7 @@ from cohesity_sdk.cluster.models.sfdc_records import SfdcRecords
 from cohesity_sdk.cluster.models.sharepoint_item import SharepointItem
 from cohesity_sdk.cluster.models.teams_item import TeamsItem
 from cohesity_sdk.cluster.models.uda_indexed_object import UdaIndexedObject
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SearchIndexedObjectsResponseBody(BaseModel):

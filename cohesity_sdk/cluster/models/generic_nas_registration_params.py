@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.credentials import Credentials
 from cohesity_sdk.cluster.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.cluster.models.universal_id import UniversalId
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GenericNasRegistrationParams(BaseModel):

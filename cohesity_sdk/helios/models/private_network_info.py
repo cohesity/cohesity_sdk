@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PrivateNetworkInfo(BaseModel):
@@ -28,9 +28,9 @@ class PrivateNetworkInfo(BaseModel):
     Specifies the object parameters to create Azure Snapshot Manager Protection Group.
     """ # noqa: E501
     location: Optional[StrictStr] = Field(default=None, description="Specifies the subnet for creating a private endpoint.")
-    region: Optional[RecoveryObjectIdentifier] = None
-    subnet: Optional[RecoveryObjectIdentifier] = None
-    vpn: Optional[RecoveryObjectIdentifier] = None
+    region: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the region of the virtual network.")
+    subnet: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the subnet for creating a private endpoint.")
+    vpn: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the virtual network for creating a private end point.")
     __properties: ClassVar[List[str]] = ["location", "region", "subnet", "vpn"]
 
     model_config = ConfigDict(
@@ -85,6 +85,21 @@ class PrivateNetworkInfo(BaseModel):
         # and model_fields_set contains the field
         if self.location is None and "location" in self.model_fields_set:
             _dict['location'] = None
+
+        # set to None if region (nullable) is None
+        # and model_fields_set contains the field
+        if self.region is None and "region" in self.model_fields_set:
+            _dict['region'] = None
+
+        # set to None if subnet (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet is None and "subnet" in self.model_fields_set:
+            _dict['subnet'] = None
+
+        # set to None if vpn (nullable) is None
+        # and model_fields_set contains the field
+        if self.vpn is None and "vpn" in self.model_fields_set:
+            _dict['vpn'] = None
 
         return _dict
 

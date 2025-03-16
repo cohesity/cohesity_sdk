@@ -30,35 +30,35 @@ from cohesity_sdk.helios.models.isilon_object_params import IsilonObjectParams
 from cohesity_sdk.helios.models.netapp_object_params import NetappObjectParams
 from cohesity_sdk.helios.models.physical_snapshot_params import PhysicalSnapshotParams
 from cohesity_sdk.helios.models.sfdc_object_params import SfdcObjectParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectSnapshot(BaseModel):
     """
     Specifies an Object Snapshot.
     """ # noqa: E501
-    aws_params: Optional[AwsSnapshotParams] = Field(default=None, alias="awsParams")
-    azure_params: Optional[AzureSnapshotParams] = Field(default=None, alias="azureParams")
+    aws_params: Optional[AwsSnapshotParams] = Field(default=None, description="Specifies the parameters specific to AWS type snapshot.", alias="awsParams")
+    azure_params: Optional[AzureSnapshotParams] = Field(default=None, description="Specifies the parameters specific to Azure type snapshot.", alias="azureParams")
     cluster_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster id where this snapshot belongs to.", alias="clusterId")
     cluster_incarnation_id: Optional[StrictInt] = Field(default=None, description="Specifies the cluster incarnation id where this snapshot belongs to.", alias="clusterIncarnationId")
-    elastifile_params: Optional[CommonNasObjectParams] = Field(default=None, alias="elastifileParams")
+    elastifile_params: Optional[CommonNasObjectParams] = Field(default=None, description="Specifies the parameters specific to NetApp type snapshot.", alias="elastifileParams")
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the snapshot environment.")
     expiry_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the expiry time of the snapshot in Unix timestamp epoch in microseconds. If the snapshot has no expiry, this property will not be set.", alias="expiryTimeUsecs")
-    external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, alias="externalTargetInfo")
-    flashblade_params: Optional[FlashbladeObjectParams] = Field(default=None, alias="flashbladeParams")
-    generic_nas_params: Optional[CommonNasObjectParams] = Field(default=None, alias="genericNasParams")
-    gpfs_params: Optional[CommonNasObjectParams] = Field(default=None, alias="gpfsParams")
+    external_target_info: Optional[ArchivalTargetSummaryInfo] = Field(default=None, description="Specifies the external target information if this is an archival snapshot.", alias="externalTargetInfo")
+    flashblade_params: Optional[FlashbladeObjectParams] = Field(default=None, description="Specifies the parameters specific to Flashblade type snapshot.", alias="flashbladeParams")
+    generic_nas_params: Optional[CommonNasObjectParams] = Field(default=None, description="Specifies the parameters specific to Generic NAS type snapshot.", alias="genericNasParams")
+    gpfs_params: Optional[CommonNasObjectParams] = Field(default=None, description="Specifies the parameters specific to GPFS type snapshot.", alias="gpfsParams")
     has_data_lock: Optional[StrictBool] = Field(default=None, description="Specifies if this snapshot has datalock.", alias="hasDataLock")
-    hyperv_params: Optional[HypervSnapshotParams] = Field(default=None, alias="hypervParams")
+    hyperv_params: Optional[HypervSnapshotParams] = Field(default=None, description="Specifies the parameters specific to HyperV type snapshot.", alias="hypervParams")
     id: Optional[StrictStr] = Field(default=None, description="Specifies the id of the snapshot.")
     indexing_status: Optional[StrictStr] = Field(default=None, description="Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.", alias="indexingStatus")
-    isilon_params: Optional[IsilonObjectParams] = Field(default=None, alias="isilonParams")
-    netapp_params: Optional[NetappObjectParams] = Field(default=None, alias="netappParams")
+    isilon_params: Optional[IsilonObjectParams] = Field(default=None, description="Specifies the parameters specific to Isilon type snapshot.", alias="isilonParams")
+    netapp_params: Optional[NetappObjectParams] = Field(default=None, description="Specifies the parameters specific to NetApp type snapshot.", alias="netappParams")
     object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id which the snapshot is taken from.", alias="objectId")
     object_name: Optional[StrictStr] = Field(default=None, description="Specifies the object name which the snapshot is taken from.", alias="objectName")
     on_legal_hold: Optional[StrictBool] = Field(default=None, description="Specifies if this snapshot is on legalhold.", alias="onLegalHold")
     ownership_context: Optional[StrictStr] = Field(default=None, description="Specifies the ownership context for the target.", alias="ownershipContext")
-    physical_params: Optional[PhysicalSnapshotParams] = Field(default=None, alias="physicalParams")
+    physical_params: Optional[PhysicalSnapshotParams] = Field(default=None, description="Specifies the parameters specific to Physical type snapshot.", alias="physicalParams")
     protection_group_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies id of the Protection Group.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies name of the Protection Group.", alias="protectionGroupName")
     protection_group_run_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="Specifies id of the Protection Group Run.", alias="protectionGroupRunId")
@@ -66,7 +66,7 @@ class ObjectSnapshot(BaseModel):
     run_instance_id: Optional[StrictInt] = Field(default=None, description="Specifies the instance id of the protection run which create the snapshot.", alias="runInstanceId")
     run_start_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the start time of the run in micro seconds.", alias="runStartTimeUsecs")
     run_type: Optional[StrictStr] = Field(default=None, description="Specifies the type of protection run created this snapshot.", alias="runType")
-    sfdc_params: Optional[SfdcObjectParams] = Field(default=None, alias="sfdcParams")
+    sfdc_params: Optional[SfdcObjectParams] = Field(default=None, description="Specifies the parameters specific to Salesforce type snapshot.", alias="sfdcParams")
     snapshot_target_type: Optional[StrictStr] = Field(default=None, description="Specifies the target type where the Object's snapshot resides.", alias="snapshotTargetType")
     snapshot_timestamp_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in Unix time epoch in microseconds when the snapshot is taken for the specified Object.", alias="snapshotTimestampUsecs")
     source_group_id: Optional[StrictStr] = Field(default=None, description="Specifies the source protection group id in case of replication.", alias="sourceGroupId")
@@ -238,6 +238,11 @@ class ObjectSnapshot(BaseModel):
         # and model_fields_set contains the field
         if self.expiry_time_usecs is None and "expiry_time_usecs" in self.model_fields_set:
             _dict['expiryTimeUsecs'] = None
+
+        # set to None if external_target_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.external_target_info is None and "external_target_info" in self.model_fields_set:
+            _dict['externalTargetInfo'] = None
 
         # set to None if has_data_lock (nullable) is None
         # and model_fields_set contains the field

@@ -30,7 +30,7 @@ from cohesity_sdk.cluster.models.nas_throttling_config import NasThrottlingConfi
 from cohesity_sdk.cluster.models.netapp_protection_group_object_params import NetappProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.snap_mirror_config import SnapMirrorConfig
 from cohesity_sdk.cluster.models.snapshot_label import SnapshotLabel
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NetappProtectionGroupParams(BaseModel):

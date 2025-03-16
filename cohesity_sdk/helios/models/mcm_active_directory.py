@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.domain_controllers import DomainControllers
 from cohesity_sdk.helios.models.mcm_machine_account import McmMachineAccount
 from cohesity_sdk.helios.models.trusted_domain_info import TrustedDomainInfo
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class McmActiveDirectory(BaseModel):
@@ -37,7 +37,7 @@ class McmActiveDirectory(BaseModel):
     machine_accounts: Optional[Annotated[List[McmMachineAccount], Field(min_length=1)]] = Field(description="Specifies a list of computer names used to identify the Cohesity Cluster on the Active Directory domain. The first machine account is used as primary machine account and it can not be modified.", alias="machineAccounts")
     organizational_unit_name: Optional[StrictStr] = Field(default=None, description="Specifies an optional organizational unit name.", alias="organizationalUnitName")
     preferred_domain_controllers: Optional[List[DomainController]] = Field(default=None, description="Specifies a list of preferred domain controllers of this Active Directory.", alias="preferredDomainControllers")
-    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, alias="trustedDomainParams")
+    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, description="Specifies the params of trusted domain info of an Active Directory.", alias="trustedDomainParams")
     work_group_name: Optional[StrictStr] = Field(default=None, description="Specifies a work group name.", alias="workGroupName")
     domain_controllers: Optional[List[DomainControllers]] = Field(default=None, description="A list of domain names with a list of it's domain controllers.", alias="domainControllers")
     error: Optional[ActiveDirectoryError] = None
@@ -147,6 +147,11 @@ class McmActiveDirectory(BaseModel):
         # and model_fields_set contains the field
         if self.preferred_domain_controllers is None and "preferred_domain_controllers" in self.model_fields_set:
             _dict['preferredDomainControllers'] = None
+
+        # set to None if trusted_domain_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.trusted_domain_params is None and "trusted_domain_params" in self.model_fields_set:
+            _dict['trustedDomainParams'] = None
 
         # set to None if work_group_name (nullable) is None
         # and model_fields_set contains the field

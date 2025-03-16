@@ -20,17 +20,17 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAwsRdsNewSourceNetworkConfig(BaseModel):
     """
     Specifies the network config parameters to be applied for AWS RDS if recovering to new Source.
     """ # noqa: E501
-    availability_zone: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="availabilityZone")
+    availability_zone: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the entity representing the availability zone to use while restoring the DB.", alias="availabilityZone")
     security_groups: Optional[List[RecoveryObjectIdentifier]] = Field(default=None, description="Specifies the network security groups within above VPC.", alias="securityGroups")
-    subnet: RecoveryObjectIdentifier
-    vpc: RecoveryObjectIdentifier
+    subnet: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the subnet within above VPC.")
+    vpc: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the Virtual Private Cloud to choose for the instance type.")
     __properties: ClassVar[List[str]] = ["availabilityZone", "securityGroups", "subnet", "vpc"]
 
     model_config = ConfigDict(
@@ -88,10 +88,25 @@ class RecoverAwsRdsNewSourceNetworkConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of vpc
         if self.vpc:
             _dict['vpc'] = self.vpc.to_dict()
+        # set to None if availability_zone (nullable) is None
+        # and model_fields_set contains the field
+        if self.availability_zone is None and "availability_zone" in self.model_fields_set:
+            _dict['availabilityZone'] = None
+
         # set to None if security_groups (nullable) is None
         # and model_fields_set contains the field
         if self.security_groups is None and "security_groups" in self.model_fields_set:
             _dict['securityGroups'] = None
+
+        # set to None if subnet (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet is None and "subnet" in self.model_fields_set:
+            _dict['subnet'] = None
+
+        # set to None if vpc (nullable) is None
+        # and model_fields_set contains the field
+        if self.vpc is None and "vpc" in self.model_fields_set:
+            _dict['vpc'] = None
 
         return _dict
 

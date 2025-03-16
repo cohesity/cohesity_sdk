@@ -20,28 +20,16 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.acl_config import AclConfig
-from cohesity_sdk.helios.models.antivirus_scan_config import AntivirusScanConfig
 from cohesity_sdk.helios.models.bucket_policy import BucketPolicy
-from cohesity_sdk.helios.models.file_extension_filter import FileExtensionFilter
-from cohesity_sdk.helios.models.file_level_data_lock_config import FileLevelDataLockConfig
-from cohesity_sdk.helios.models.filer_lifecycle_management import FilerLifecycleManagement
 from cohesity_sdk.helios.models.nfs_root_permissions import NfsRootPermissions
 from cohesity_sdk.helios.models.nfs_squash import NfsSquash
-from cohesity_sdk.helios.models.nis_netgroups import NisNetgroups
-from cohesity_sdk.helios.models.qo_s import QoS
-from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
 from cohesity_sdk.helios.models.s3_config_owner_info import S3ConfigOwnerInfo
 from cohesity_sdk.helios.models.s3_lifecycle_management import S3LifecycleManagement
-from cohesity_sdk.helios.models.self_service_snapshot_config import SelfServiceSnapshotConfig
 from cohesity_sdk.helios.models.smb_permissions_info import SmbPermissionsInfo
-from cohesity_sdk.helios.models.storage_policy_override import StoragePolicyOverride
 from cohesity_sdk.helios.models.subnet import Subnet
-from cohesity_sdk.helios.models.view_intent import ViewIntent
-from cohesity_sdk.helios.models.view_pinning_config import ViewPinningConfig
-from cohesity_sdk.helios.models.view_protection_config import ViewProtectionConfig
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
 from cohesity_sdk.helios.models.view_share_permissions import ViewSharePermissions
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateView(BaseModel):
@@ -50,7 +38,7 @@ class CreateView(BaseModel):
     """ # noqa: E501
     access_sids: Optional[List[StrictStr]] = Field(default=None, description="Array of Security Identifiers (SIDs) Specifies the list of security identifiers (SIDs) for the restricted Principals who have access to this View.", alias="accessSids")
     allow_mount_on_windows: Optional[StrictBool] = Field(default=None, description="Specifies if this View can be mounted using the NFS protocol on Windows systems. If true, this View can be NFS mounted on Windows systems.", alias="allowMountOnWindows")
-    antivirus_scan_config: Optional[AntivirusScanConfig] = Field(default=None, alias="antivirusScanConfig")
+    antivirus_scan_config: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the antivirus scan config settings for this View.", alias="antivirusScanConfig")
     category: Optional[StrictStr] = Field(default=None, description="Specifies the category of the View.")
     description: Optional[StrictStr] = Field(default=None, description="Specifies an optional text description about the View.")
     enable_filer_audit_logging: Optional[StrictBool] = Field(default=None, description="Specifies if Filer Audit Logging is enabled for this view.", alias="enableFilerAuditLogging")
@@ -58,47 +46,47 @@ class CreateView(BaseModel):
     enable_metadata_accelerator: Optional[StrictBool] = Field(default=None, description="Specifies if metadata accelerator is enabled for this view. Only supported while creating a view.", alias="enableMetadataAccelerator")
     enable_minion: Optional[StrictBool] = Field(default=None, description="Specifies if this view should allow minion or not. If true, this will allow minion.", alias="enableMinion")
     enable_offline_caching: Optional[StrictBool] = Field(default=None, description="Specifies whether to enable offline file caching of the view.", alias="enableOfflineCaching")
-    file_extension_filter: Optional[FileExtensionFilter] = Field(default=None, alias="fileExtensionFilter")
-    file_lock_config: Optional[FileLevelDataLockConfig] = Field(default=None, alias="fileLockConfig")
-    filer_lifecycle_management: Optional[FilerLifecycleManagement] = Field(default=None, alias="filerLifecycleManagement")
+    file_extension_filter: Optional[Dict[str, Any]] = Field(default=None, description="Optional filtering criteria that should be satisfied by all the files created in this view. It does not affect existing files.", alias="fileExtensionFilter")
+    file_lock_config: Optional[Dict[str, Any]] = Field(default=None, description="Optional config that enables file locking for this view. It cannot be disabled during the edit of a view, if it has been enabled during the creation of the view. Also, it cannot be enabled if it was disabled during the creation of the view.", alias="fileLockConfig")
+    filer_lifecycle_management: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the Lifecycle policy of this filer (NFS/SMB) view.", alias="filerLifecycleManagement")
     is_externally_triggered_backup_target: Optional[StrictBool] = Field(default=None, description="Specifies whether the view is for externally triggered backup target. If so, Magneto will ignore the backup schedule for the view protection job of this view. By default it is disabled.", alias="isExternallyTriggeredBackupTarget")
     is_read_only: Optional[StrictBool] = Field(default=None, description="Specifies if the view is a read only view. User will no longer be able to write to this view if this is set to true.", alias="isReadOnly")
     lexicographic_prefetch: Optional[StrictBool] = Field(default=None, description="If small files are accessed sequentially from a client, this specifies whether to detect and prefetch files based on the lexicographic index to improve file read performance.", alias="lexicographicPrefetch")
-    logical_quota: Optional[QuotaPolicy] = Field(default=None, alias="logicalQuota")
+    logical_quota: Optional[Dict[str, Any]] = Field(default=None, description="Specifies an optional logical quota limit (in bytes) for the usage allowed on this View. (Logical data is when the data is fully hydrated and expanded.) This limit overrides the limit inherited from the Storage Domain (View Box) (if set). If logicalQuota is nil, the limit is inherited from the Storage Domain (View Box) (if set). A new write is not allowed if the Storage Domain (View Box) will exceed the specified quota. However, it takes time for the Cohesity Cluster to calculate the usage across Nodes, so the limit may be exceeded by a small amount. In addition, if the limit is increased or data is removed, there may be a delay before the Cohesity Cluster allows more data to be written to the View, as the Cluster is calculating the usage across Nodes.", alias="logicalQuota")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the View.")
-    netgroup_whitelist: Optional[NisNetgroups] = Field(default=None, alias="netgroupWhitelist")
+    netgroup_whitelist: Optional[Dict[str, Any]] = Field(default=None, description="Array of Netgroups. Specifies a list of netgroups with domains that have permissions to access the View. (Overrides or extends the Netgroup specified at the global Cohesity Cluster level.)", alias="netgroupWhitelist")
     override_global_netgroup_whitelist: Optional[StrictBool] = Field(default=None, description="Specifies whether view level client netgroup whitelist overrides cluster and global setting.", alias="overrideGlobalNetgroupWhitelist")
     override_global_subnet_whitelist: Optional[StrictBool] = Field(default=None, description="Specifies whether view level client subnet whitelist overrides cluster and global setting.", alias="overrideGlobalSubnetWhitelist")
     protocol_access: Optional[List[ViewProtocol]] = Field(default=None, description="Specifies the supported Protocols for the View.", alias="protocolAccess")
-    qos: Optional[QoS] = None
+    qos: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the Quality of Service (QoS) Policy for the View.")
     security_mode: Optional[StrictStr] = Field(default=None, description="Specifies the security mode used for this view. Currently we support the following modes: Native, Unified and NTFS style. 'NativeMode' indicates a native security mode. 'UnifiedMode' indicates a unified security mode. 'NtfsMode' indicates a NTFS style security mode.", alias="securityMode")
-    self_service_snapshot_config: Optional[SelfServiceSnapshotConfig] = Field(default=None, alias="selfServiceSnapshotConfig")
-    storage_policy_override: Optional[StoragePolicyOverride] = Field(default=None, alias="storagePolicyOverride")
+    self_service_snapshot_config: Optional[Dict[str, Any]] = Field(default=None, description="Specifies self service config of this view.", alias="selfServiceSnapshotConfig")
+    storage_policy_override: Optional[Dict[str, Any]] = Field(default=None, description="Specifies if inline deduplication and compression settings inherited from the Storage Domain (View Box) should be disabled for this View.", alias="storagePolicyOverride")
     subnet_whitelist: Optional[List[Subnet]] = Field(default=None, description="Array of Subnets. Specifies a list of Subnets with IP addresses that have permissions to access the View. (Overrides or extends the Subnets specified at the global Cohesity Cluster level.)", alias="subnetWhitelist")
     tenant_id: Optional[StrictStr] = Field(default=None, description="Optional tenant id who has access to this View.", alias="tenantId")
     view_lock_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether view lock is enabled. If enabled the view cannot be modified or deleted until unlock. By default it is disabled.", alias="viewLockEnabled")
-    view_pinning_config: Optional[ViewPinningConfig] = Field(default=None, alias="viewPinningConfig")
+    view_pinning_config: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the pinning config of this view.", alias="viewPinningConfig")
     enable_nfs_kerberos_authentication: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS Kerberos Authentication", alias="enableNfsKerberosAuthentication")
     enable_nfs_kerberos_integrity: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS Kerberos Integrity", alias="enableNfsKerberosIntegrity")
     enable_nfs_kerberos_privacy: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS Kerberos Privacy", alias="enableNfsKerberosPrivacy")
     enable_nfs_unix_authentication: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS UNIX Authentication", alias="enableNfsUnixAuthentication")
     enable_nfs_view_discovery: Optional[StrictBool] = Field(default=None, description="If set, it enables discovery of view for NFS.", alias="enableNfsViewDiscovery")
     enable_nfs_wcc: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS weak cache consistency.", alias="enableNfsWcc")
-    nfs_all_squash: Optional[NfsSquash] = Field(default=None, alias="nfsAllSquash")
-    nfs_root_permissions: Optional[NfsRootPermissions] = Field(default=None, alias="nfsRootPermissions")
-    nfs_root_squash: Optional[NfsSquash] = Field(default=None, alias="nfsRootSquash")
+    nfs_all_squash: Optional[NfsSquash] = Field(default=None, description="Specifies the NFS all squash config.", alias="nfsAllSquash")
+    nfs_root_permissions: Optional[NfsRootPermissions] = Field(default=None, description="Specifies the NFS root permission config of the view file system.", alias="nfsRootPermissions")
+    nfs_root_squash: Optional[NfsSquash] = Field(default=None, description="Specifies the NFS root squash config.", alias="nfsRootSquash")
     enable_fast_durable_handle: Optional[StrictBool] = Field(default=None, description="Specifies whether fast durable handle is enabled. If enabled, view open handle will be kept in memory, which results in a higher performance. But the handles cannot be recovered if node or service crashes.", alias="enableFastDurableHandle")
     enable_smb_access_based_enumeration: Optional[StrictBool] = Field(default=None, description="Specifies if access-based enumeration should be enabled. If 'true', only files and folders that the user has permissions to access are visible on the SMB share for that user.", alias="enableSmbAccessBasedEnumeration")
     enable_smb_encryption: Optional[StrictBool] = Field(default=None, description="Specifies the SMB encryption for the View. If set, it enables the SMB encryption for the View. Encryption is supported only by SMB 3.x dialects. Dialects that do not support would still access data in unencrypted format.", alias="enableSmbEncryption")
     enable_smb_oplock: Optional[StrictBool] = Field(default=None, description="Specifies whether SMB opportunistic lock is enabled.", alias="enableSmbOplock")
     enable_smb_view_discovery: Optional[StrictBool] = Field(default=None, description="If set, it enables discovery of view for SMB.", alias="enableSmbViewDiscovery")
     enforce_smb_encryption: Optional[StrictBool] = Field(default=None, description="Specifies the SMB encryption for all the sessions for the View. If set, encryption is enforced for all the sessions for the View. When enabled all future and existing unencrypted sessions are disallowed.", alias="enforceSmbEncryption")
-    share_permissions: Optional[ViewSharePermissions] = Field(default=None, alias="sharePermissions")
-    smb_permissions_info: Optional[SmbPermissionsInfo] = Field(default=None, alias="smbPermissionsInfo")
-    acl_config: Optional[AclConfig] = Field(default=None, alias="aclConfig")
-    bucket_policy: Optional[BucketPolicy] = Field(default=None, alias="bucketPolicy")
+    share_permissions: Optional[ViewSharePermissions] = Field(default=None, description="Specifies share level permissions of the view.", alias="sharePermissions")
+    smb_permissions_info: Optional[SmbPermissionsInfo] = Field(default=None, description="Specifies the SMB permissions for the View.", alias="smbPermissionsInfo")
+    acl_config: Optional[AclConfig] = Field(default=None, description="Specifies the ACL config of the View as an S3 bucket.", alias="aclConfig")
+    bucket_policy: Optional[BucketPolicy] = Field(default=None, description="Specifies the policy in effect for this bucket.", alias="bucketPolicy")
     enable_abac: Optional[StrictBool] = Field(default=None, description="Specifies if this View has S3 ABAC enabled. This can only be set while creating a view. The ABAC server corresponding the tenant will be used for authentication and authorization checks. ", alias="enableAbac")
-    lifecycle_management: Optional[S3LifecycleManagement] = Field(default=None, alias="lifecycleManagement")
+    lifecycle_management: Optional[S3LifecycleManagement] = Field(default=None, description="Specifies the S3 Lifecycle policy of the bucket", alias="lifecycleManagement")
     owner_info: Optional[S3ConfigOwnerInfo] = Field(default=None, alias="ownerInfo")
     s3_access_path: Optional[StrictStr] = Field(default=None, description="Specifies the path to access this View as an S3 share.", alias="s3AccessPath")
     versioning: Optional[StrictStr] = Field(default=None, description="Specifies the versioning state of S3 bucket. Buckets can be in one of three states: UnVersioned (default), VersioningEnabled, or VersioningSuspended. Once versioning is enabled for a bucket, it can never return to an UnVersioned state. However, versioning on the bucket can be suspended.")
@@ -107,11 +95,11 @@ class CreateView(BaseModel):
     swift_user_domain: Optional[StrictStr] = Field(default=None, description="Specifies the Keystone user domain.", alias="swiftUserDomain")
     swift_username: Optional[StrictStr] = Field(default=None, description="Specifies the Keystone username.", alias="swiftUsername")
     case_insensitive_names_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether to support case insensitive file/folder names. This parameter can only be set during create and cannot be changed.", alias="caseInsensitiveNamesEnabled")
-    intent: Optional[ViewIntent] = None
+    intent: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the intent of the View.")
     object_services_mapping_config: Optional[StrictStr] = Field(default=None, description="Specifies the Object Services key mapping config of the view. This parameter can only be set during create and cannot be changed. Configuration of Object Services key mapping. Specifies the type of Object Services key mapping config.", alias="objectServicesMappingConfig")
     s3_folder_support_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether to support s3 folder support feature. This parameter can only be set during create and cannot be changed.", alias="s3FolderSupportEnabled")
     storage_domain_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the Storage Domain (View Box) where the View will be created.", alias="storageDomainId")
-    view_protection_config: Optional[ViewProtectionConfig] = Field(default=None, alias="viewProtectionConfig")
+    view_protection_config: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the protection config of the View.", alias="viewProtectionConfig")
     __properties: ClassVar[List[str]] = ["accessSids", "allowMountOnWindows", "antivirusScanConfig", "category", "description", "enableFilerAuditLogging", "enableLiveIndexing", "enableMetadataAccelerator", "enableMinion", "enableOfflineCaching", "fileExtensionFilter", "fileLockConfig", "filerLifecycleManagement", "isExternallyTriggeredBackupTarget", "isReadOnly", "lexicographicPrefetch", "logicalQuota", "name", "netgroupWhitelist", "overrideGlobalNetgroupWhitelist", "overrideGlobalSubnetWhitelist", "protocolAccess", "qos", "securityMode", "selfServiceSnapshotConfig", "storagePolicyOverride", "subnetWhitelist", "tenantId", "viewLockEnabled", "viewPinningConfig", "enableNfsKerberosAuthentication", "enableNfsKerberosIntegrity", "enableNfsKerberosPrivacy", "enableNfsUnixAuthentication", "enableNfsViewDiscovery", "enableNfsWcc", "nfsAllSquash", "nfsRootPermissions", "nfsRootSquash", "enableFastDurableHandle", "enableSmbAccessBasedEnumeration", "enableSmbEncryption", "enableSmbOplock", "enableSmbViewDiscovery", "enforceSmbEncryption", "sharePermissions", "smbPermissionsInfo", "aclConfig", "bucketPolicy", "enableAbac", "lifecycleManagement", "ownerInfo", "s3AccessPath", "versioning", "swiftProjectDomain", "swiftProjectName", "swiftUserDomain", "swiftUsername", "caseInsensitiveNamesEnabled", "intent", "objectServicesMappingConfig", "s3FolderSupportEnabled", "storageDomainId", "viewProtectionConfig"]
 
     @field_validator('category')
@@ -195,24 +183,6 @@ class CreateView(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of antivirus_scan_config
-        if self.antivirus_scan_config:
-            _dict['antivirusScanConfig'] = self.antivirus_scan_config.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of file_extension_filter
-        if self.file_extension_filter:
-            _dict['fileExtensionFilter'] = self.file_extension_filter.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of file_lock_config
-        if self.file_lock_config:
-            _dict['fileLockConfig'] = self.file_lock_config.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of filer_lifecycle_management
-        if self.filer_lifecycle_management:
-            _dict['filerLifecycleManagement'] = self.filer_lifecycle_management.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of logical_quota
-        if self.logical_quota:
-            _dict['logicalQuota'] = self.logical_quota.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of netgroup_whitelist
-        if self.netgroup_whitelist:
-            _dict['netgroupWhitelist'] = self.netgroup_whitelist.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in protocol_access (list)
         _items = []
         if self.protocol_access:
@@ -220,15 +190,6 @@ class CreateView(BaseModel):
                 if _item_protocol_access:
                     _items.append(_item_protocol_access.to_dict())
             _dict['protocolAccess'] = _items
-        # override the default output from pydantic by calling `to_dict()` of qos
-        if self.qos:
-            _dict['qos'] = self.qos.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of self_service_snapshot_config
-        if self.self_service_snapshot_config:
-            _dict['selfServiceSnapshotConfig'] = self.self_service_snapshot_config.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of storage_policy_override
-        if self.storage_policy_override:
-            _dict['storagePolicyOverride'] = self.storage_policy_override.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in subnet_whitelist (list)
         _items = []
         if self.subnet_whitelist:
@@ -236,9 +197,6 @@ class CreateView(BaseModel):
                 if _item_subnet_whitelist:
                     _items.append(_item_subnet_whitelist.to_dict())
             _dict['subnetWhitelist'] = _items
-        # override the default output from pydantic by calling `to_dict()` of view_pinning_config
-        if self.view_pinning_config:
-            _dict['viewPinningConfig'] = self.view_pinning_config.to_dict()
         # override the default output from pydantic by calling `to_dict()` of nfs_all_squash
         if self.nfs_all_squash:
             _dict['nfsAllSquash'] = self.nfs_all_squash.to_dict()
@@ -266,12 +224,6 @@ class CreateView(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of owner_info
         if self.owner_info:
             _dict['ownerInfo'] = self.owner_info.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of intent
-        if self.intent:
-            _dict['intent'] = self.intent.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of view_protection_config
-        if self.view_protection_config:
-            _dict['viewProtectionConfig'] = self.view_protection_config.to_dict()
         # set to None if access_sids (nullable) is None
         # and model_fields_set contains the field
         if self.access_sids is None and "access_sids" in self.model_fields_set:
@@ -356,11 +308,6 @@ class CreateView(BaseModel):
         # and model_fields_set contains the field
         if self.security_mode is None and "security_mode" in self.model_fields_set:
             _dict['securityMode'] = None
-
-        # set to None if storage_policy_override (nullable) is None
-        # and model_fields_set contains the field
-        if self.storage_policy_override is None and "storage_policy_override" in self.model_fields_set:
-            _dict['storagePolicyOverride'] = None
 
         # set to None if subnet_whitelist (nullable) is None
         # and model_fields_set contains the field
@@ -506,7 +453,7 @@ class CreateView(BaseModel):
         _obj = cls.model_validate({
             "accessSids": obj.get("accessSids"),
             "allowMountOnWindows": obj.get("allowMountOnWindows"),
-            "antivirusScanConfig": AntivirusScanConfig.from_dict(obj["antivirusScanConfig"]) if obj.get("antivirusScanConfig") is not None else None,
+            "antivirusScanConfig": obj.get("antivirusScanConfig"),
             "category": obj.get("category"),
             "description": obj.get("description"),
             "enableFilerAuditLogging": obj.get("enableFilerAuditLogging"),
@@ -514,26 +461,26 @@ class CreateView(BaseModel):
             "enableMetadataAccelerator": obj.get("enableMetadataAccelerator"),
             "enableMinion": obj.get("enableMinion"),
             "enableOfflineCaching": obj.get("enableOfflineCaching"),
-            "fileExtensionFilter": FileExtensionFilter.from_dict(obj["fileExtensionFilter"]) if obj.get("fileExtensionFilter") is not None else None,
-            "fileLockConfig": FileLevelDataLockConfig.from_dict(obj["fileLockConfig"]) if obj.get("fileLockConfig") is not None else None,
-            "filerLifecycleManagement": FilerLifecycleManagement.from_dict(obj["filerLifecycleManagement"]) if obj.get("filerLifecycleManagement") is not None else None,
+            "fileExtensionFilter": obj.get("fileExtensionFilter"),
+            "fileLockConfig": obj.get("fileLockConfig"),
+            "filerLifecycleManagement": obj.get("filerLifecycleManagement"),
             "isExternallyTriggeredBackupTarget": obj.get("isExternallyTriggeredBackupTarget"),
             "isReadOnly": obj.get("isReadOnly"),
             "lexicographicPrefetch": obj.get("lexicographicPrefetch"),
-            "logicalQuota": QuotaPolicy.from_dict(obj["logicalQuota"]) if obj.get("logicalQuota") is not None else None,
+            "logicalQuota": obj.get("logicalQuota"),
             "name": obj.get("name"),
-            "netgroupWhitelist": NisNetgroups.from_dict(obj["netgroupWhitelist"]) if obj.get("netgroupWhitelist") is not None else None,
+            "netgroupWhitelist": obj.get("netgroupWhitelist"),
             "overrideGlobalNetgroupWhitelist": obj.get("overrideGlobalNetgroupWhitelist"),
             "overrideGlobalSubnetWhitelist": obj.get("overrideGlobalSubnetWhitelist"),
             "protocolAccess": [ViewProtocol.from_dict(_item) for _item in obj["protocolAccess"]] if obj.get("protocolAccess") is not None else None,
-            "qos": QoS.from_dict(obj["qos"]) if obj.get("qos") is not None else None,
+            "qos": obj.get("qos"),
             "securityMode": obj.get("securityMode"),
-            "selfServiceSnapshotConfig": SelfServiceSnapshotConfig.from_dict(obj["selfServiceSnapshotConfig"]) if obj.get("selfServiceSnapshotConfig") is not None else None,
-            "storagePolicyOverride": StoragePolicyOverride.from_dict(obj["storagePolicyOverride"]) if obj.get("storagePolicyOverride") is not None else None,
+            "selfServiceSnapshotConfig": obj.get("selfServiceSnapshotConfig"),
+            "storagePolicyOverride": obj.get("storagePolicyOverride"),
             "subnetWhitelist": [Subnet.from_dict(_item) for _item in obj["subnetWhitelist"]] if obj.get("subnetWhitelist") is not None else None,
             "tenantId": obj.get("tenantId"),
             "viewLockEnabled": obj.get("viewLockEnabled"),
-            "viewPinningConfig": ViewPinningConfig.from_dict(obj["viewPinningConfig"]) if obj.get("viewPinningConfig") is not None else None,
+            "viewPinningConfig": obj.get("viewPinningConfig"),
             "enableNfsKerberosAuthentication": obj.get("enableNfsKerberosAuthentication"),
             "enableNfsKerberosIntegrity": obj.get("enableNfsKerberosIntegrity"),
             "enableNfsKerberosPrivacy": obj.get("enableNfsKerberosPrivacy"),
@@ -563,11 +510,11 @@ class CreateView(BaseModel):
             "swiftUserDomain": obj.get("swiftUserDomain"),
             "swiftUsername": obj.get("swiftUsername"),
             "caseInsensitiveNamesEnabled": obj.get("caseInsensitiveNamesEnabled"),
-            "intent": ViewIntent.from_dict(obj["intent"]) if obj.get("intent") is not None else None,
+            "intent": obj.get("intent"),
             "objectServicesMappingConfig": obj.get("objectServicesMappingConfig"),
             "s3FolderSupportEnabled": obj.get("s3FolderSupportEnabled"),
             "storageDomainId": obj.get("storageDomainId"),
-            "viewProtectionConfig": ViewProtectionConfig.from_dict(obj["viewProtectionConfig"]) if obj.get("viewProtectionConfig") is not None else None
+            "viewProtectionConfig": obj.get("viewProtectionConfig")
         })
         return _obj
 

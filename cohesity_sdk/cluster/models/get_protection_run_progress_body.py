@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_target_progress_info import ArchivalTargetProgressInfo
 from cohesity_sdk.cluster.models.backup_run_progress_info import BackupRunProgressInfo
 from cohesity_sdk.cluster.models.replication_target_progress_info import ReplicationTargetProgressInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GetProtectionRunProgressBody(BaseModel):

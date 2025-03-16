@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.cluster.models.exchange_recover_database_params import ExchangeRecoverDatabaseParams
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverExchangeAppSnapshotParams(BaseModel):

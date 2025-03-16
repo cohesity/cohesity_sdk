@@ -19,8 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.fallback_user_id_mapping_params import FallbackUserIdMappingParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AdCentrifyTypeParams(BaseModel):
@@ -32,7 +31,7 @@ class AdCentrifyTypeParams(BaseModel):
     var_schema: Optional[StrictStr] = Field(description="Specifies the schema of this Centrify zone.", alias="schema")
     zone_domain: Optional[StrictStr] = Field(default=None, description="Specifies the zone domain of the Centrify zone.", alias="zoneDomain")
     zone_name: Optional[StrictStr] = Field(default=None, description="Specifies the zone name of the Centrify zone.", alias="zoneName")
-    fallback_option: FallbackUserIdMappingParams = Field(alias="fallbackOption")
+    fallback_option: Optional[Dict[str, Any]] = Field(description="Specifies a fallback user id mapping param in case the primary config does not work.", alias="fallbackOption")
     __properties: ClassVar[List[str]] = ["description", "distinguishedName", "schema", "zoneDomain", "zoneName", "fallbackOption"]
 
     @field_validator('var_schema')
@@ -88,9 +87,6 @@ class AdCentrifyTypeParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of fallback_option
-        if self.fallback_option:
-            _dict['fallbackOption'] = self.fallback_option.to_dict()
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -116,6 +112,11 @@ class AdCentrifyTypeParams(BaseModel):
         if self.zone_name is None and "zone_name" in self.model_fields_set:
             _dict['zoneName'] = None
 
+        # set to None if fallback_option (nullable) is None
+        # and model_fields_set contains the field
+        if self.fallback_option is None and "fallback_option" in self.model_fields_set:
+            _dict['fallbackOption'] = None
+
         return _dict
 
     @classmethod
@@ -133,7 +134,7 @@ class AdCentrifyTypeParams(BaseModel):
             "schema": obj.get("schema"),
             "zoneDomain": obj.get("zoneDomain"),
             "zoneName": obj.get("zoneName"),
-            "fallbackOption": FallbackUserIdMappingParams.from_dict(obj["fallbackOption"]) if obj.get("fallbackOption") is not None else None
+            "fallbackOption": obj.get("fallbackOption")
         })
         return _obj
 

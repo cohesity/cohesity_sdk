@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.object_ms_team_param import ObjectMsTeamParam
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.cluster.models.target_ms_team_param import TargetMsTeamParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverMsTeamParams(BaseModel):

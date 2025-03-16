@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_target import RecoverTarget
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalTargetParamsForRecoverFileAndFolder(BaseModel):

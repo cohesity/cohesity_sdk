@@ -19,9 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
-from cohesity_sdk.helios.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareProtectionGroupStandbyResourceParams(BaseModel):
@@ -30,9 +28,9 @@ class VmwareProtectionGroupStandbyResourceParams(BaseModel):
     """ # noqa: E501
     recovery_point_objective_secs: Optional[StrictInt] = Field(default=None, description="Specifies the recovery point objective time user expects for this standby resource.", alias="recoveryPointObjectiveSecs")
     datastore_object_ids: Optional[List[Optional[StrictInt]]] = Field(default=None, description="Specifies the list of IDs of the datastore objects where this standby resource should be created.", alias="datastoreObjectIds")
-    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
+    network_config: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the networking configuration to be applied to this standby resource.", alias="networkConfig")
     parent_object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id for parent vCenter source where this standby resource should be created.", alias="parentObjectId")
-    rename_restored_object_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, alias="renameRestoredObjectParams")
+    rename_restored_object_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies params to rename the standby resource.", alias="renameRestoredObjectParams")
     resource_pool_object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id for resource pool where this standby resource should be created.", alias="resourcePoolObjectId")
     target_datastore_folder_object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id for target datastore folder where disks for this standby resource should be placed.", alias="targetDatastoreFolderObjectId")
     target_folder_object_id: Optional[StrictInt] = Field(default=None, description="Specifies the object id for target vm folder where this standby resource should be created.", alias="targetFolderObjectId")
@@ -77,21 +75,25 @@ class VmwareProtectionGroupStandbyResourceParams(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of network_config
-        if self.network_config:
-            _dict['networkConfig'] = self.network_config.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of rename_restored_object_params
-        if self.rename_restored_object_params:
-            _dict['renameRestoredObjectParams'] = self.rename_restored_object_params.to_dict()
         # set to None if recovery_point_objective_secs (nullable) is None
         # and model_fields_set contains the field
         if self.recovery_point_objective_secs is None and "recovery_point_objective_secs" in self.model_fields_set:
             _dict['recoveryPointObjectiveSecs'] = None
 
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
         # set to None if parent_object_id (nullable) is None
         # and model_fields_set contains the field
         if self.parent_object_id is None and "parent_object_id" in self.model_fields_set:
             _dict['parentObjectId'] = None
+
+        # set to None if rename_restored_object_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.rename_restored_object_params is None and "rename_restored_object_params" in self.model_fields_set:
+            _dict['renameRestoredObjectParams'] = None
 
         # set to None if resource_pool_object_id (nullable) is None
         # and model_fields_set contains the field
@@ -122,9 +124,9 @@ class VmwareProtectionGroupStandbyResourceParams(BaseModel):
         _obj = cls.model_validate({
             "recoveryPointObjectiveSecs": obj.get("recoveryPointObjectiveSecs"),
             "datastoreObjectIds": obj.get("datastoreObjectIds"),
-            "networkConfig": RecoverVmwareVmNewSourceNetworkConfig.from_dict(obj["networkConfig"]) if obj.get("networkConfig") is not None else None,
+            "networkConfig": obj.get("networkConfig"),
             "parentObjectId": obj.get("parentObjectId"),
-            "renameRestoredObjectParams": RecoveredOrClonedVmsRenameConfig.from_dict(obj["renameRestoredObjectParams"]) if obj.get("renameRestoredObjectParams") is not None else None,
+            "renameRestoredObjectParams": obj.get("renameRestoredObjectParams"),
             "resourcePoolObjectId": obj.get("resourcePoolObjectId"),
             "targetDatastoreFolderObjectId": obj.get("targetDatastoreFolderObjectId"),
             "targetFolderObjectId": obj.get("targetFolderObjectId")

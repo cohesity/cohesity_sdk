@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class EncryptionConfig(BaseModel):
@@ -28,7 +28,7 @@ class EncryptionConfig(BaseModel):
     Specifies the encryption configuration.
     """ # noqa: E501
     custom_kms_key_arn: Optional[StrictStr] = Field(default=None, description="Specifies custom KMS key arn. It will be of form arn:aws:kms:<region>:<account_id>:key/<key_id>", alias="customKmsKeyArn")
-    kms_key: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="kmsKey")
+    kms_key: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies AWS KMS key to use for encryption of restored volumes. This is only populated for selection from dropdown.", alias="kmsKey")
     should_encrypt: Optional[StrictBool] = Field(description="Specifies whether to encrypt recovered volumes or not. Default value is true.", alias="shouldEncrypt")
     __properties: ClassVar[List[str]] = ["customKmsKeyArn", "kmsKey", "shouldEncrypt"]
 
@@ -78,6 +78,11 @@ class EncryptionConfig(BaseModel):
         # and model_fields_set contains the field
         if self.custom_kms_key_arn is None and "custom_kms_key_arn" in self.model_fields_set:
             _dict['customKmsKeyArn'] = None
+
+        # set to None if kms_key (nullable) is None
+        # and model_fields_set contains the field
+        if self.kms_key is None and "kms_key" in self.model_fields_set:
+            _dict['kmsKey'] = None
 
         # set to None if should_encrypt (nullable) is None
         # and model_fields_set contains the field

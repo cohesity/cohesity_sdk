@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_other_nas_to_elastifile_files_target_params_parent_source import RecoverOtherNasToElastifileFilesTargetParamsParentSource
 from cohesity_sdk.cluster.models.recover_target import RecoverTarget
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOtherNasToGenericNasFilesTargetParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VmwareRecoverFilesOriginalTargetConfig(BaseModel):
@@ -30,7 +30,7 @@ class VmwareRecoverFilesOriginalTargetConfig(BaseModel):
     alternate_path: Optional[StrictStr] = Field(default=None, description="Specifies the alternate path location to recover files to.", alias="alternatePath")
     recover_method: StrictStr = Field(description="Specifies the method to recover files and folders.", alias="recoverMethod")
     recover_to_original_path: Optional[StrictBool] = Field(description="Specifies whether to recover files and folders to the original path location. If false, alternatePath must be specified.", alias="recoverToOriginalPath")
-    target_vm_credentials: Optional[Credentials] = Field(default=None, alias="targetVmCredentials")
+    target_vm_credentials: Optional[Credentials] = Field(default=None, description="Specifies the credentials for the target VM. This is mandatory if the recoverMethod is AutoDeploy or UseHypervisorApis.", alias="targetVmCredentials")
     __properties: ClassVar[List[str]] = ["alternatePath", "recoverMethod", "recoverToOriginalPath", "targetVmCredentials"]
 
     @field_validator('recover_method')
@@ -91,6 +91,11 @@ class VmwareRecoverFilesOriginalTargetConfig(BaseModel):
         # and model_fields_set contains the field
         if self.recover_to_original_path is None and "recover_to_original_path" in self.model_fields_set:
             _dict['recoverToOriginalPath'] = None
+
+        # set to None if target_vm_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_vm_credentials is None and "target_vm_credentials" in self.model_fields_set:
+            _dict['targetVmCredentials'] = None
 
         return _dict
 

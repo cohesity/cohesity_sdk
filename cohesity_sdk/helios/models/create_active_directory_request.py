@@ -20,11 +20,10 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from cohesity_sdk.helios.models.active_directory_admin_params import ActiveDirectoryAdminParams
 from cohesity_sdk.helios.models.domain_controller import DomainController
 from cohesity_sdk.helios.models.machine_account import MachineAccount
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateActiveDirectoryRequest(BaseModel):
@@ -39,9 +38,9 @@ class CreateActiveDirectoryRequest(BaseModel):
     nis_provider_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the NIS Provider which is mapped to this Active Directory.", alias="nisProviderDomainName")
     organizational_unit_name: Optional[StrictStr] = Field(default=None, description="Specifies an optional organizational unit name.", alias="organizationalUnitName")
     preferred_domain_controllers: Optional[List[DomainController]] = Field(default=None, description="Specifies a list of preferred domain controllers of this Active Directory.", alias="preferredDomainControllers")
-    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, alias="trustedDomainParams")
+    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, description="Specifies the params of trusted domain info of an Active Directory.", alias="trustedDomainParams")
     work_group_name: Optional[StrictStr] = Field(default=None, description="Specifies a work group name.", alias="workGroupName")
-    active_directory_admin_params: ActiveDirectoryAdminParams = Field(alias="activeDirectoryAdminParams")
+    active_directory_admin_params: Optional[Dict[str, Any]] = Field(description="Specifies the params of a user with administrative privilege of this Active Directory.", alias="activeDirectoryAdminParams")
     domain_name: Optional[Annotated[str, Field(strict=True)]] = Field(description="Specifies the domain name of the Active Directory.", alias="domainName")
     overwrite_machine_accounts: Optional[StrictBool] = Field(default=None, description="Specifies if specified machine accounts should overwrite existing machine accounts.", alias="overwriteMachineAccounts")
     __properties: ClassVar[List[str]] = ["connectionId", "domainControllersDenyList", "id", "ldapProviderId", "machineAccounts", "nisProviderDomainName", "organizationalUnitName", "preferredDomainControllers", "trustedDomainParams", "workGroupName", "activeDirectoryAdminParams", "domainName", "overwriteMachineAccounts"]
@@ -114,9 +113,6 @@ class CreateActiveDirectoryRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of trusted_domain_params
         if self.trusted_domain_params:
             _dict['trustedDomainParams'] = self.trusted_domain_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of active_directory_admin_params
-        if self.active_directory_admin_params:
-            _dict['activeDirectoryAdminParams'] = self.active_directory_admin_params.to_dict()
         # set to None if connection_id (nullable) is None
         # and model_fields_set contains the field
         if self.connection_id is None and "connection_id" in self.model_fields_set:
@@ -152,10 +148,20 @@ class CreateActiveDirectoryRequest(BaseModel):
         if self.preferred_domain_controllers is None and "preferred_domain_controllers" in self.model_fields_set:
             _dict['preferredDomainControllers'] = None
 
+        # set to None if trusted_domain_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.trusted_domain_params is None and "trusted_domain_params" in self.model_fields_set:
+            _dict['trustedDomainParams'] = None
+
         # set to None if work_group_name (nullable) is None
         # and model_fields_set contains the field
         if self.work_group_name is None and "work_group_name" in self.model_fields_set:
             _dict['workGroupName'] = None
+
+        # set to None if active_directory_admin_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_directory_admin_params is None and "active_directory_admin_params" in self.model_fields_set:
+            _dict['activeDirectoryAdminParams'] = None
 
         # set to None if domain_name (nullable) is None
         # and model_fields_set contains the field
@@ -189,7 +195,7 @@ class CreateActiveDirectoryRequest(BaseModel):
             "preferredDomainControllers": [DomainController.from_dict(_item) for _item in obj["preferredDomainControllers"]] if obj.get("preferredDomainControllers") is not None else None,
             "trustedDomainParams": TrustedDomainParams.from_dict(obj["trustedDomainParams"]) if obj.get("trustedDomainParams") is not None else None,
             "workGroupName": obj.get("workGroupName"),
-            "activeDirectoryAdminParams": ActiveDirectoryAdminParams.from_dict(obj["activeDirectoryAdminParams"]) if obj.get("activeDirectoryAdminParams") is not None else None,
+            "activeDirectoryAdminParams": obj.get("activeDirectoryAdminParams"),
             "domainName": obj.get("domainName"),
             "overwriteMachineAccounts": obj.get("overwriteMachineAccounts")
         })

@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.physical_volume_protection_group_object_params import PhysicalVolumeProtectionGroupObjectParams
 from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalVolumeProtectionGroupParams(BaseModel):

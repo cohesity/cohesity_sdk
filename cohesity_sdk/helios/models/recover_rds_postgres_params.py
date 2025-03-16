@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_target_params_for_recover_rds_postgres import AwsTargetParamsForRecoverRDSPostgres
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverRDSPostgresParams(BaseModel):
     """
     Specifies the parameters to recover RDS Postgres.
     """ # noqa: E501
-    aws_target_params: Optional[AwsTargetParamsForRecoverRDSPostgres] = Field(default=None, alias="awsTargetParams")
+    aws_target_params: Optional[AwsTargetParamsForRecoverRDSPostgres] = Field(default=None, description="Specifies the params for recovering to an Aws target.", alias="awsTargetParams")
     overwrite_database: Optional[StrictBool] = Field(default=None, description="Set to true to overwrite an existing object at the destination. If set to false, and the same object exists at the destination, then recovery will fail for that object.", alias="overwriteDatabase")
     prefix: Optional[StrictStr] = Field(default=None, description="Specifies the prefix to be prepended to the object name after the recovery.")
     suffix: Optional[StrictStr] = Field(default=None, description="Specifies the suffix to be appended to the object name after the recovery.")
@@ -83,6 +83,11 @@ class RecoverRDSPostgresParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of aws_target_params
         if self.aws_target_params:
             _dict['awsTargetParams'] = self.aws_target_params.to_dict()
+        # set to None if aws_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.aws_target_params is None and "aws_target_params" in self.model_fields_set:
+            _dict['awsTargetParams'] = None
+
         # set to None if overwrite_database (nullable) is None
         # and model_fields_set contains the field
         if self.overwrite_database is None and "overwrite_database" in self.model_fields_set:

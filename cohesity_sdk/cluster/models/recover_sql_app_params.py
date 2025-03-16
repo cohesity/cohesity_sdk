@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.archival_target_summary_info import ArchivalTar
 from cohesity_sdk.cluster.models.common_recover_sql_app_target_params import CommonRecoverSqlAppTargetParams
 from cohesity_sdk.cluster.models.host_information import HostInformation
 from cohesity_sdk.cluster.models.object_summary import ObjectSummary
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverSqlAppParams(BaseModel):

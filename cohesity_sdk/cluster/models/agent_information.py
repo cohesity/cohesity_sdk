@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.host_setting_check import HostSettingCheck
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AgentInformation(BaseModel):

@@ -115,6 +115,7 @@ AuthSettings = TypedDict(
     {
         "APIKeyHeader": APIKeyAuthSetting,
         "Bearer": APIKeyAuthSetting,
+        "SessionIdHeader": APIKeyAuthSetting,
     },
     total=False,
 )
@@ -521,6 +522,15 @@ conf = cohesity_sdk.cluster.Configuration(
                 'key': 'Authorization',
                 'value': self.get_api_key_with_prefix(
                     'Bearer',
+                ),
+            }
+        if 'SessionIdHeader' in self.api_key:
+            auth['SessionIdHeader'] = {
+                'type': 'api_key',
+                'in': 'header',
+                'key': 'session-id',
+                'value': self.get_api_key_with_prefix(
+                    'SessionIdHeader',
                 ),
             }
         return auth

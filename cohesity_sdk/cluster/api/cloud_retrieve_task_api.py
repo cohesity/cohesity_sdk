@@ -11,10 +11,13 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
+from pydantic import Field, StrictInt
+from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.cloud_retrieve_task import CloudRetrieveTask
 from cohesity_sdk.cluster.models.cloud_retrieve_tasks import CloudRetrieveTasks
 from cohesity_sdk.cluster.models.create_cloud_retrieve_task_request import CreateCloudRetrieveTaskRequest
@@ -292,6 +295,7 @@ class CloudRetrieveTaskApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -554,6 +558,7 @@ class CloudRetrieveTaskApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 
@@ -801,6 +806,7 @@ class CloudRetrieveTaskApi:
         # authentication setting
         _auth_settings: List[str] = [
             'APIKeyHeader', 
+            'SessionIdHeader', 
             'Bearer'
         ]
 

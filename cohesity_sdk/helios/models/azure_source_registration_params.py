@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.azure_application_credentials import AzureApplicationCredentials
 from cohesity_sdk.helios.models.azure_subscription import AzureSubscription
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AzureSourceRegistrationParams(BaseModel):

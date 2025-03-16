@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.get_views_result import GetViewsResult
 from cohesity_sdk.helios.models.protection_policy_response_with_pagination import ProtectionPolicyResponseWithPagination
 from cohesity_sdk.helios.models.storage_domains import StorageDomains
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TenantAssignmentProperties(BaseModel):

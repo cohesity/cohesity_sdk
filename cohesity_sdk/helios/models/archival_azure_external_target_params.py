@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.azure_archive_blob_params import AzureArchiveBlo
 from cohesity_sdk.helios.models.azure_cool_blob_params import AzureCoolBlobParams
 from cohesity_sdk.helios.models.azure_hot_blob_params import AzureHotBlobParams
 from cohesity_sdk.helios.models.worm_specific_target_params import WormSpecificTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalAzureExternalTargetParams(BaseModel):

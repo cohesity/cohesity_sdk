@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AcropolisRecoverFilesOriginalTargetConfig(BaseModel):
@@ -29,7 +29,7 @@ class AcropolisRecoverFilesOriginalTargetConfig(BaseModel):
     """ # noqa: E501
     alternate_path: Optional[StrictStr] = Field(default=None, description="Specifies the alternate path location to recover files to.", alias="alternatePath")
     recover_to_original_path: Optional[StrictBool] = Field(description="Specifies whether to recover files and folders to the original path location. If false, alternatePath must be specified.", alias="recoverToOriginalPath")
-    target_vm_credentials: Optional[Credentials] = Field(default=None, alias="targetVmCredentials")
+    target_vm_credentials: Optional[Credentials] = Field(default=None, description="Specifies the credentials for the target VM.", alias="targetVmCredentials")
     __properties: ClassVar[List[str]] = ["alternatePath", "recoverToOriginalPath", "targetVmCredentials"]
 
     model_config = ConfigDict(
@@ -83,6 +83,11 @@ class AcropolisRecoverFilesOriginalTargetConfig(BaseModel):
         # and model_fields_set contains the field
         if self.recover_to_original_path is None and "recover_to_original_path" in self.model_fields_set:
             _dict['recoverToOriginalPath'] = None
+
+        # set to None if target_vm_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_vm_credentials is None and "target_vm_credentials" in self.model_fields_set:
+            _dict['targetVmCredentials'] = None
 
         return _dict
 

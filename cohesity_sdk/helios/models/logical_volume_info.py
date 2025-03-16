@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.device_tree_node import DeviceTreeNode
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class LogicalVolumeInfo(BaseModel):
     """
     Specifies the logical volume info for LVM or LDM volume.
     """ # noqa: E501
-    device_tree: Optional[DeviceTreeNode] = Field(default=None, alias="deviceTree")
+    device_tree: Optional[DeviceTreeNode] = Field(default=None, description="Specifies the tree structure of the logical volume.", alias="deviceTree")
     logical_volume_name: Optional[StrictStr] = Field(default=None, description="Specifies the logical volume name.", alias="logicalVolumeName")
     logical_volume_uuid: Optional[StrictStr] = Field(default=None, description="Specifies the logical volume uuid.", alias="logicalVolumeUuid")
     volume_group_name: Optional[StrictStr] = Field(default=None, description="Specifies the volume group name.", alias="volumeGroupName")

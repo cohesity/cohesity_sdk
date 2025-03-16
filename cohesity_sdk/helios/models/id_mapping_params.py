@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.user_id_mapping_params import UserIdMappingParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IdMappingParams(BaseModel):
@@ -28,7 +28,7 @@ class IdMappingParams(BaseModel):
     Specifies the params of the user id mapping info of an Active Directory.
     """ # noqa: E501
     sid_mapped_to_unix_root_user: Optional[StrictStr] = Field(description="Specifies the sid of an Active Directory domain user mapping to unix root user.", alias="sidMappedToUnixRootUser")
-    user_id_mapping_params: UserIdMappingParams = Field(alias="userIdMappingParams")
+    user_id_mapping_params: Optional[UserIdMappingParams] = Field(description="Specifies the information about how the Unix and Windows users are mapped for this domain.", alias="userIdMappingParams")
     __properties: ClassVar[List[str]] = ["sidMappedToUnixRootUser", "userIdMappingParams"]
 
     model_config = ConfigDict(
@@ -77,6 +77,11 @@ class IdMappingParams(BaseModel):
         # and model_fields_set contains the field
         if self.sid_mapped_to_unix_root_user is None and "sid_mapped_to_unix_root_user" in self.model_fields_set:
             _dict['sidMappedToUnixRootUser'] = None
+
+        # set to None if user_id_mapping_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_id_mapping_params is None and "user_id_mapping_params" in self.model_fields_set:
+            _dict['userIdMappingParams'] = None
 
         return _dict
 

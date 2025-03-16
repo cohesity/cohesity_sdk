@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
 from cohesity_sdk.helios.models.restore_object_customization import RestoreObjectCustomization
 from cohesity_sdk.helios.models.vmware_target_params_for_recover_vm import VmwareTargetParamsForRecoverVM
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmParams(BaseModel):
@@ -32,7 +32,7 @@ class RecoverVmwareVmParams(BaseModel):
     recover_protection_group_runs_params: Optional[List[RecoverProtectionGroupRunParams]] = Field(default=None, description="Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.", alias="recoverProtectionGroupRunsParams")
     restore_object_customizations: Optional[List[RestoreObjectCustomization]] = Field(default=None, description="Specifies the customization for the VMs being restored.", alias="restoreObjectCustomizations")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
-    vmware_target_params: Optional[VmwareTargetParamsForRecoverVM] = Field(default=None, alias="vmwareTargetParams")
+    vmware_target_params: Optional[VmwareTargetParamsForRecoverVM] = Field(default=None, description="Specifies the params for recovering to a VMware target.", alias="vmwareTargetParams")
     __properties: ClassVar[List[str]] = ["recoverProtectionGroupRunsParams", "restoreObjectCustomizations", "targetEnvironment", "vmwareTargetParams"]
 
     @field_validator('target_environment')
@@ -107,6 +107,11 @@ class RecoverVmwareVmParams(BaseModel):
         # and model_fields_set contains the field
         if self.restore_object_customizations is None and "restore_object_customizations" in self.model_fields_set:
             _dict['restoreObjectCustomizations'] = None
+
+        # set to None if vmware_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.vmware_target_params is None and "vmware_target_params" in self.model_fields_set:
+            _dict['vmwareTargetParams'] = None
 
         return _dict
 

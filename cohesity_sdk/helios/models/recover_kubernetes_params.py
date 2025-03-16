@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_kubernetes_namespace_params import RecoverKubernetesNamespaceParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverKubernetesParams(BaseModel):
     """
     Specifies the recovery options specific to Kubernetes environment.
     """ # noqa: E501
-    recover_namespace_params: Optional[RecoverKubernetesNamespaceParams] = Field(default=None, alias="recoverNamespaceParams")
+    recover_namespace_params: Optional[RecoverKubernetesNamespaceParams] = Field(default=None, description="Specifies the parameters to recover Kubernetes Namespaces.", alias="recoverNamespaceParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["recoverNamespaceParams", "recoveryAction"]
 
@@ -80,6 +80,11 @@ class RecoverKubernetesParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_namespace_params
         if self.recover_namespace_params:
             _dict['recoverNamespaceParams'] = self.recover_namespace_params.to_dict()
+        # set to None if recover_namespace_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_namespace_params is None and "recover_namespace_params" in self.model_fields_set:
+            _dict['recoverNamespaceParams'] = None
+
         return _dict
 
     @classmethod

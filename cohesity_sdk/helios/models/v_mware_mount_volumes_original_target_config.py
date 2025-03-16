@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VMwareMountVolumesOriginalTargetConfig(BaseModel):
@@ -28,7 +28,7 @@ class VMwareMountVolumesOriginalTargetConfig(BaseModel):
     Specifies the configuration for mounting volumes to the original target.
     """ # noqa: E501
     bring_disks_online: Optional[StrictBool] = Field(description="Specifies whether the volumes need to be online within the target environment after attaching the disks. For linux VMs, this should always be set to true. For Windows, this is optional. If this is set to true, VMware tools must be installed on the VM. If this is set to false, useExistingAgent and targetCredentials are not needed.", alias="bringDisksOnline")
-    target_vm_credentials: Optional[Credentials] = Field(default=None, alias="targetVmCredentials")
+    target_vm_credentials: Optional[Credentials] = Field(default=None, description="Specifies credentials to access the target VM. This is required if bringDisksOnline is set to true and useExistingAgent set to false.", alias="targetVmCredentials")
     use_existing_agent: Optional[StrictBool] = Field(default=None, description="Specifies whether this will use an existing agent on the target vm or will deploy a new agent. This is required if bringDisksOnline is set to true.", alias="useExistingAgent")
     __properties: ClassVar[List[str]] = ["bringDisksOnline", "targetVmCredentials", "useExistingAgent"]
 
@@ -78,6 +78,11 @@ class VMwareMountVolumesOriginalTargetConfig(BaseModel):
         # and model_fields_set contains the field
         if self.bring_disks_online is None and "bring_disks_online" in self.model_fields_set:
             _dict['bringDisksOnline'] = None
+
+        # set to None if target_vm_credentials (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_vm_credentials is None and "target_vm_credentials" in self.model_fields_set:
+            _dict['targetVmCredentials'] = None
 
         # set to None if use_existing_agent (nullable) is None
         # and model_fields_set contains the field

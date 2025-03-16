@@ -32,7 +32,12 @@ import cohesity_sdk.cluster.models
 from cohesity_sdk.cluster import rest
 from cohesity_sdk.cluster.exceptions import (
     ApiValueError,
-    ApiException
+    ApiException,
+    BadRequestException,
+    UnauthorizedException,
+    ForbiddenException,
+    NotFoundException,
+    ServiceException
 )
 
 RequestSerialized = Tuple[str, str, Dict[str, str], Optional[str], List[str]]
@@ -448,13 +453,13 @@ class ApiClient:
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
-        elif klass is object:
+        elif klass == object:
             return self.__deserialize_object(data)
-        elif klass is datetime.date:
+        elif klass == datetime.date:
             return self.__deserialize_date(data)
-        elif klass is datetime.datetime:
+        elif klass == datetime.datetime:
             return self.__deserialize_datetime(data)
-        elif klass is decimal.Decimal:
+        elif klass == decimal.Decimal:
             return decimal.Decimal(data)
         elif issubclass(klass, Enum):
             return self.__deserialize_enum(data, klass)

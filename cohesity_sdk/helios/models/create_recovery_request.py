@@ -48,7 +48,7 @@ from cohesity_sdk.helios.models.recover_sql_params import RecoverSqlParams
 from cohesity_sdk.helios.models.recover_view_params import RecoverViewParams
 from cohesity_sdk.helios.models.recover_vmware_params import RecoverVmwareParams
 from cohesity_sdk.helios.models.uda_params import UdaParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateRecoveryRequest(BaseModel):

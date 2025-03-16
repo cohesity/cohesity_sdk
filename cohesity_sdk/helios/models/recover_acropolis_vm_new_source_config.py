@@ -21,16 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_acropolis_vm_new_source_network_config import RecoverAcropolisVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAcropolisVmNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the VMs will be recovered.
     """ # noqa: E501
-    network_config: Optional[RecoverAcropolisVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
-    source: RecoveryObjectIdentifier
-    storage_container: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="storageContainer")
+    network_config: Optional[RecoverAcropolisVmNewSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the VMs.")
+    storage_container: Optional[RecoveryObjectIdentifier] = Field(default=None, description="A storage container where the VM's files should be restored to.", alias="storageContainer")
     __properties: ClassVar[List[str]] = ["networkConfig", "source", "storageContainer"]
 
     model_config = ConfigDict(
@@ -81,6 +81,21 @@ class RecoverAcropolisVmNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of storage_container
         if self.storage_container:
             _dict['storageContainer'] = self.storage_container.to_dict()
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
+        # set to None if storage_container (nullable) is None
+        # and model_fields_set contains the field
+        if self.storage_container is None and "storage_container" in self.model_fields_set:
+            _dict['storageContainer'] = None
+
         return _dict
 
     @classmethod

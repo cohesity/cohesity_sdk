@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.key_value_pair import KeyValuePair
 from cohesity_sdk.cluster.models.recover_cassandra_snapshot_params import RecoverCassandraSnapshotParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverCassandraParams(BaseModel):

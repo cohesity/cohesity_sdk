@@ -19,16 +19,16 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.common_mssql_file_object_protection_params import CommonMssqlFileObjectProtectionParams
 from cohesity_sdk.helios.models.common_mssql_native_object_protection_params import CommonMssqlNativeObjectProtectionParams
-from cohesity_sdk.helios.models.common_mssql_protection_group_params import CommonMSSQLProtectionGroupParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonMssqlObjectProtectionParams(BaseModel):
     """
     Specifies the common parameters for MSSQL Object Protection.
     """ # noqa: E501
-    common_file_object_protection_type_params: Optional[CommonMSSQLProtectionGroupParams] = Field(default=None, alias="commonFileObjectProtectionTypeParams")
+    common_file_object_protection_type_params: Optional[CommonMssqlFileObjectProtectionParams] = Field(default=None, alias="commonFileObjectProtectionTypeParams")
     common_native_object_protection_type_params: Optional[CommonMssqlNativeObjectProtectionParams] = Field(default=None, alias="commonNativeObjectProtectionTypeParams")
     object_protection_type: StrictStr = Field(description="Specifies the MSSQL Object Protection type.", alias="objectProtectionType")
     __properties: ClassVar[List[str]] = ["commonFileObjectProtectionTypeParams", "commonNativeObjectProtectionTypeParams", "objectProtectionType"]
@@ -97,7 +97,7 @@ class CommonMssqlObjectProtectionParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "commonFileObjectProtectionTypeParams": CommonMSSQLProtectionGroupParams.from_dict(obj["commonFileObjectProtectionTypeParams"]) if obj.get("commonFileObjectProtectionTypeParams") is not None else None,
+            "commonFileObjectProtectionTypeParams": CommonMssqlFileObjectProtectionParams.from_dict(obj["commonFileObjectProtectionTypeParams"]) if obj.get("commonFileObjectProtectionTypeParams") is not None else None,
             "commonNativeObjectProtectionTypeParams": CommonMssqlNativeObjectProtectionParams.from_dict(obj["commonNativeObjectProtectionTypeParams"]) if obj.get("commonNativeObjectProtectionTypeParams") is not None else None,
             "objectProtectionType": obj.get("objectProtectionType")
         })

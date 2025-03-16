@@ -25,20 +25,20 @@ from cohesity_sdk.helios.models.mount_physical_volume_params import MountPhysica
 from cohesity_sdk.helios.models.recover_physical_file_and_folder_params import RecoverPhysicalFileAndFolderParams
 from cohesity_sdk.helios.models.recover_physical_volume_params import RecoverPhysicalVolumeParams
 from cohesity_sdk.helios.models.system_recovery_params import SystemRecoveryParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPhysicalParams(BaseModel):
     """
     Specifies the recovery options specific to Physical environment.
     """ # noqa: E501
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
-    mount_volume_params: Optional[MountPhysicalVolumeParams] = Field(default=None, alias="mountVolumeParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the parameters to download files and folders.", alias="downloadFileAndFolderParams")
+    mount_volume_params: Optional[MountPhysicalVolumeParams] = Field(default=None, description="Specifies the parameters to mount Physical Volumes.", alias="mountVolumeParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(description="Specifies the list of Recover Object parameters. For recovering files, specifies the object contains the file to recover.")
-    recover_file_and_folder_params: Optional[RecoverPhysicalFileAndFolderParams] = Field(default=None, alias="recoverFileAndFolderParams")
-    recover_volume_params: Optional[RecoverPhysicalVolumeParams] = Field(default=None, alias="recoverVolumeParams")
+    recover_file_and_folder_params: Optional[RecoverPhysicalFileAndFolderParams] = Field(default=None, description="Specifies the parameters to perform a file and folder recovery.", alias="recoverFileAndFolderParams")
+    recover_volume_params: Optional[RecoverPhysicalVolumeParams] = Field(default=None, description="Specifies the parameters to recover Physical Volumes.", alias="recoverVolumeParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recover action to be performed.", alias="recoveryAction")
-    system_recovery_params: Optional[SystemRecoveryParams] = Field(default=None, alias="systemRecoveryParams")
+    system_recovery_params: Optional[SystemRecoveryParams] = Field(default=None, description="Specifies the parameters to perform a system recovery.", alias="systemRecoveryParams")
     __properties: ClassVar[List[str]] = ["downloadFileAndFolderParams", "mountVolumeParams", "objects", "recoverFileAndFolderParams", "recoverVolumeParams", "recoveryAction", "systemRecoveryParams"]
 
     @field_validator('recovery_action')
@@ -109,10 +109,35 @@ class RecoverPhysicalParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of system_recovery_params
         if self.system_recovery_params:
             _dict['systemRecoveryParams'] = self.system_recovery_params.to_dict()
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
+        # set to None if mount_volume_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.mount_volume_params is None and "mount_volume_params" in self.model_fields_set:
+            _dict['mountVolumeParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:
             _dict['objects'] = None
+
+        # set to None if recover_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_file_and_folder_params is None and "recover_file_and_folder_params" in self.model_fields_set:
+            _dict['recoverFileAndFolderParams'] = None
+
+        # set to None if recover_volume_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_volume_params is None and "recover_volume_params" in self.model_fields_set:
+            _dict['recoverVolumeParams'] = None
+
+        # set to None if system_recovery_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.system_recovery_params is None and "system_recovery_params" in self.model_fields_set:
+            _dict['systemRecoveryParams'] = None
 
         return _dict
 

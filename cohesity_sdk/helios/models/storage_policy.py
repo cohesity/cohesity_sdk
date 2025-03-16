@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.compression_params import CompressionParams
 from cohesity_sdk.helios.models.deduplication_params import DeduplicationParams
 from cohesity_sdk.helios.models.erasure_coding_params import ErasureCodingParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class StoragePolicy(BaseModel):
@@ -32,11 +32,11 @@ class StoragePolicy(BaseModel):
     aes_encryption_mode: Optional[StrictStr] = Field(default=None, description="Specifies the encryption mode for a Storage Domain.", alias="aesEncryptionMode")
     app_marker_detection_enabled: Optional[StrictBool] = Field(default=None, description="Specifies whether app marker detection is enabled. When enabled, app markers will be removed from data and put in separate chunks.", alias="appMarkerDetectionEnabled")
     cloud_spill_vault_id: Optional[StrictInt] = Field(default=None, description="Specifies the vault id assigned for cloud spill for a Storage Domain.", alias="cloudSpillVaultId")
-    compression_params: Optional[CompressionParams] = Field(default=None, alias="compressionParams")
+    compression_params: Optional[CompressionParams] = Field(default=None, description="Specifies compression settings for a Storage Domain.", alias="compressionParams")
     deduplication_compression_delay_secs: Optional[StrictInt] = Field(default=None, description="Specifies the time in seconds when deduplication and compression of the Storage Domain starts.", alias="deduplicationCompressionDelaySecs")
-    deduplication_params: Optional[DeduplicationParams] = Field(default=None, alias="deduplicationParams")
+    deduplication_params: Optional[DeduplicationParams] = Field(default=None, description="Specifies deduplication settings for a Storage Domain.", alias="deduplicationParams")
     encryption_type: Optional[StrictStr] = Field(default=None, description="Specifies the encryption type for a Storage Domain.", alias="encryptionType")
-    erasure_coding_params: Optional[ErasureCodingParams] = Field(default=None, alias="erasureCodingParams")
+    erasure_coding_params: Optional[ErasureCodingParams] = Field(default=None, description="Specifies the erasure coding parameters for a Storage Domain.", alias="erasureCodingParams")
     num_disk_failures_tolerated: Optional[StrictInt] = Field(default=None, description="Specifies the number of disk failures to tolerate for a Storage Domain. By default, this field is 1 for cluster with three or more nodes. If erasure coding is enabled, this field will be the same as numCodedStripes.", alias="numDiskFailuresTolerated")
     num_node_failures_tolerated: Optional[StrictInt] = Field(default=None, description="Specifies the number of node failures to tolerate for a Storage Domain. By default this field is replication factor minus 1 for replication chunk files and is the same as numCodedStripes for erasure coding chunk files.", alias="numNodeFailuresTolerated")
     __properties: ClassVar[List[str]] = ["aesEncryptionMode", "appMarkerDetectionEnabled", "cloudSpillVaultId", "compressionParams", "deduplicationCompressionDelaySecs", "deduplicationParams", "encryptionType", "erasureCodingParams", "numDiskFailuresTolerated", "numNodeFailuresTolerated"]

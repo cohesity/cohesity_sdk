@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.o_auth2_provider import OAuth2Provider
 from cohesity_sdk.cluster.models.open_id_provider import OpenIdProvider
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IdentityConfig(BaseModel):

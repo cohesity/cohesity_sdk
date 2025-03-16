@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RdsConfig(BaseModel):
@@ -28,8 +28,8 @@ class RdsConfig(BaseModel):
     Specifies the parameters to recover AWS RDS.
     """ # noqa: E501
     db_instance_id: Optional[StrictStr] = Field(description="Specifies the DB instance identifier to use for the restored DB.", alias="dbInstanceId")
-    db_option_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="dbOptionGroup")
-    db_parameter_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="dbParameterGroup")
+    db_option_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies entity representing the RDS option group to use while restoring the DB.", alias="dbOptionGroup")
+    db_parameter_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the entity representing the RDS parameter group to use while restoring the DB.", alias="dbParameterGroup")
     db_port: Optional[StrictInt] = Field(description="Specifies the port to use for the DB in the restored RDS instance.", alias="dbPort")
     enable_auto_minor_version_upgrade: Optional[StrictBool] = Field(description="Specifies whether to enable auto minor version upgrade in the restored DB.", alias="enableAutoMinorVersionUpgrade")
     enable_copy_tags_to_snapshots: Optional[StrictBool] = Field(description="Specifies whether to enable copying of tags to snapshots of the DB.", alias="enableCopyTagsToSnapshots")
@@ -88,6 +88,16 @@ class RdsConfig(BaseModel):
         # and model_fields_set contains the field
         if self.db_instance_id is None and "db_instance_id" in self.model_fields_set:
             _dict['dbInstanceId'] = None
+
+        # set to None if db_option_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.db_option_group is None and "db_option_group" in self.model_fields_set:
+            _dict['dbOptionGroup'] = None
+
+        # set to None if db_parameter_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.db_parameter_group is None and "db_parameter_group" in self.model_fields_set:
+            _dict['dbParameterGroup'] = None
 
         # set to None if db_port (nullable) is None
         # and model_fields_set contains the field

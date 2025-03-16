@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.helios_blackout_window import HeliosBlackoutWind
 from cohesity_sdk.helios.models.helios_extended_retention_policy import HeliosExtendedRetentionPolicy
 from cohesity_sdk.helios.models.helios_retry_options import HeliosRetryOptions
 from cohesity_sdk.helios.models.helios_targets_configuration import HeliosTargetsConfiguration
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosPolicyResponse(BaseModel):

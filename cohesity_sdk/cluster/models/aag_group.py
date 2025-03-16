@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.app_resource import AppResource
 from cohesity_sdk.cluster.models.fci_cluster import FCICluster
 from cohesity_sdk.cluster.models.sql_server import SQLServer
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AAGGroup(BaseModel):

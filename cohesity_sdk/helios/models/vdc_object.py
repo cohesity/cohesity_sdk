@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.org_vdc_network import OrgVDCNetwork
 from cohesity_sdk.helios.models.vdc_catalog import VdcCatalog
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class VdcObject(BaseModel):

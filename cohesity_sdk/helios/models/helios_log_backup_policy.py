@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_log_schedule import HeliosLogSchedule
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosLogBackupPolicy(BaseModel):

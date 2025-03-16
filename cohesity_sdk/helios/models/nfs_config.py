@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.nfs_root_permissions import NfsRootPermissions
 from cohesity_sdk.helios.models.nfs_squash import NfsSquash
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NfsConfig(BaseModel):
@@ -34,9 +34,9 @@ class NfsConfig(BaseModel):
     enable_nfs_unix_authentication: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS UNIX Authentication", alias="enableNfsUnixAuthentication")
     enable_nfs_view_discovery: Optional[StrictBool] = Field(default=None, description="If set, it enables discovery of view for NFS.", alias="enableNfsViewDiscovery")
     enable_nfs_wcc: Optional[StrictBool] = Field(default=None, description="If set, it enables NFS weak cache consistency.", alias="enableNfsWcc")
-    nfs_all_squash: Optional[NfsSquash] = Field(default=None, alias="nfsAllSquash")
-    nfs_root_permissions: Optional[NfsRootPermissions] = Field(default=None, alias="nfsRootPermissions")
-    nfs_root_squash: Optional[NfsSquash] = Field(default=None, alias="nfsRootSquash")
+    nfs_all_squash: Optional[NfsSquash] = Field(default=None, description="Specifies the NFS all squash config.", alias="nfsAllSquash")
+    nfs_root_permissions: Optional[NfsRootPermissions] = Field(default=None, description="Specifies the NFS root permission config of the view file system.", alias="nfsRootPermissions")
+    nfs_root_squash: Optional[NfsSquash] = Field(default=None, description="Specifies the NFS root squash config.", alias="nfsRootSquash")
     __properties: ClassVar[List[str]] = ["enableNfsKerberosAuthentication", "enableNfsKerberosIntegrity", "enableNfsKerberosPrivacy", "enableNfsUnixAuthentication", "enableNfsViewDiscovery", "enableNfsWcc", "nfsAllSquash", "nfsRootPermissions", "nfsRootSquash"]
 
     model_config = ConfigDict(

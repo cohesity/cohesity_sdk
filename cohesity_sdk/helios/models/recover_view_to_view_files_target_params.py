@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.new_view_files_target_params import NewViewFilesTargetParams
 from cohesity_sdk.helios.models.original_view_files_target_params import OriginalViewFilesTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverViewToViewFilesTargetParams(BaseModel):
     """
     Specifies the params of the View recovery target.
     """ # noqa: E501
-    new_view_config: Optional[NewViewFilesTargetParams] = Field(default=None, alias="newViewConfig")
-    original_view_config: Optional[OriginalViewFilesTargetParams] = Field(default=None, alias="originalViewConfig")
+    new_view_config: Optional[NewViewFilesTargetParams] = Field(default=None, description="Specifies the new destination View configuration parameters where the files will be recovered. This is mandatory if recoverToNewView is set to true.", alias="newViewConfig")
+    original_view_config: Optional[OriginalViewFilesTargetParams] = Field(default=None, description="Specifies the View configuration if files are being recovered to original View. If not specified, all the configuration parameters will be retained.", alias="originalViewConfig")
     recover_to_new_view: StrictBool = Field(description="Specifies the parameter whether the recovery should be performed to a new or the original View target.", alias="recoverToNewView")
     view_id: Optional[StrictInt] = Field(default=None, description="Specifies the ID of the view.", alias="viewId")
     view_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the new view that's the target for recovery.", alias="viewName")
@@ -80,6 +80,16 @@ class RecoverViewToViewFilesTargetParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of original_view_config
         if self.original_view_config:
             _dict['originalViewConfig'] = self.original_view_config.to_dict()
+        # set to None if new_view_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_view_config is None and "new_view_config" in self.model_fields_set:
+            _dict['newViewConfig'] = None
+
+        # set to None if original_view_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.original_view_config is None and "original_view_config" in self.model_fields_set:
+            _dict['originalViewConfig'] = None
+
         # set to None if view_id (nullable) is None
         # and model_fields_set contains the field
         if self.view_id is None and "view_id" in self.model_fields_set:

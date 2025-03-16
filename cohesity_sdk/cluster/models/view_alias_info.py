@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.alias_smb_config import AliasSmbConfig
 from cohesity_sdk.cluster.models.subnet import Subnet
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ViewAliasInfo(BaseModel):

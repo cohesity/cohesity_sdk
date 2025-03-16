@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.ad_fixed_type_params import AdFixedTypeParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FallbackUserIdMappingParams(BaseModel):
     """
     Specifies a fallback param for Unix and Windows users mapping.
     """ # noqa: E501
-    fixed_type_params: Optional[AdFixedTypeParams] = Field(default=None, alias="fixedTypeParams")
+    fixed_type_params: Optional[AdFixedTypeParams] = Field(default=None, description="Specifies the params for Fixed mapping type mapping.", alias="fixedTypeParams")
     type: StrictStr = Field(description="Specifies the type of the mapping.")
     __properties: ClassVar[List[str]] = ["fixedTypeParams", "type"]
 
@@ -80,6 +80,11 @@ class FallbackUserIdMappingParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of fixed_type_params
         if self.fixed_type_params:
             _dict['fixedTypeParams'] = self.fixed_type_params.to_dict()
+        # set to None if fixed_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.fixed_type_params is None and "fixed_type_params" in self.model_fields_set:
+            _dict['fixedTypeParams'] = None
+
         return _dict
 
     @classmethod

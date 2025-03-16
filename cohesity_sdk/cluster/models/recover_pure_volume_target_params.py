@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_pure_san_volume_new_source_config import RecoverPureSanVolumeNewSourceConfig
 from cohesity_sdk.cluster.models.recover_pure_san_volume_original_source_config import RecoverPureSanVolumeOriginalSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverPureVolumeTargetParams(BaseModel):

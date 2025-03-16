@@ -30,7 +30,7 @@ from cohesity_sdk.cluster.models.security_principal import SecurityPrincipal
 from cohesity_sdk.cluster.models.task_logs import TaskLogs
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
 from cohesity_sdk.cluster.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ActiveDirectory(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.recover_vmware_vm_new_network_config_mapping import RecoverVmwareVmNewNetworkConfigMapping
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmNewNetworkConfig(BaseModel):

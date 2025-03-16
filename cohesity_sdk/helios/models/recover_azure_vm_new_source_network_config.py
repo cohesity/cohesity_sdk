@@ -20,16 +20,16 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAzureVmNewSourceNetworkConfig(BaseModel):
     """
     Specifies the network config parameters to be applied for Azure VMs if recovering to new Source.
     """ # noqa: E501
-    network_resource_group: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="networkResourceGroup")
-    subnet: RecoveryObjectIdentifier
-    virtual_network: RecoveryObjectIdentifier = Field(alias="virtualNetwork")
+    network_resource_group: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies id of the resource group for the selected virtual network.", alias="networkResourceGroup")
+    subnet: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the subnet within the above virtual network.")
+    virtual_network: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the Virtual Network.", alias="virtualNetwork")
     __properties: ClassVar[List[str]] = ["networkResourceGroup", "subnet", "virtualNetwork"]
 
     model_config = ConfigDict(
@@ -80,6 +80,21 @@ class RecoverAzureVmNewSourceNetworkConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of virtual_network
         if self.virtual_network:
             _dict['virtualNetwork'] = self.virtual_network.to_dict()
+        # set to None if network_resource_group (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_resource_group is None and "network_resource_group" in self.model_fields_set:
+            _dict['networkResourceGroup'] = None
+
+        # set to None if subnet (nullable) is None
+        # and model_fields_set contains the field
+        if self.subnet is None and "subnet" in self.model_fields_set:
+            _dict['subnet'] = None
+
+        # set to None if virtual_network (nullable) is None
+        # and model_fields_set contains the field
+        if self.virtual_network is None and "virtual_network" in self.model_fields_set:
+            _dict['virtualNetwork'] = None
+
         return _dict
 
     @classmethod

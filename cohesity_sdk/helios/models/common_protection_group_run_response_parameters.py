@@ -25,8 +25,8 @@ from cohesity_sdk.helios.models.cloud_spin_run_summary import CloudSpinRunSummar
 from cohesity_sdk.helios.models.cluster_identifier import ClusterIdentifier
 from cohesity_sdk.helios.models.object_run_result import ObjectRunResult
 from cohesity_sdk.helios.models.replication_run_summary import ReplicationRunSummary
-from cohesity_sdk.helios.models.tenant_info import TenantInfo
-from typing import Set
+from cohesity_sdk.helios.models.tenant import Tenant
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonProtectionGroupRunResponseParameters(BaseModel):
@@ -49,7 +49,7 @@ class CommonProtectionGroupRunResponseParameters(BaseModel):
     origin_cluster_identifier: Optional[ClusterIdentifier] = Field(default=None, alias="originClusterIdentifier")
     origin_protection_group_id: Optional[StrictStr] = Field(default=None, description="ProtectionGroupId to which this run belongs on the primary cluster if this run is a replication run.", alias="originProtectionGroupId")
     original_backup_info: Optional[BackupRunSummary] = Field(default=None, alias="originalBackupInfo")
-    permissions: Optional[List[TenantInfo]] = Field(default=None, description="Specifies the list of tenants that have permissions for this protection group run.")
+    permissions: Optional[List[Tenant]] = Field(default=None, description="Specifies the list of tenants that have permissions for this protection group run.")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="ProtectionGroupId to which this run belongs.", alias="protectionGroupId")
     protection_group_instance_id: Optional[StrictInt] = Field(default=None, description="Protection Group instance Id. This field will be removed later.", alias="protectionGroupInstanceId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Name of the Protection Group to which this run belongs.", alias="protectionGroupName")
@@ -225,7 +225,7 @@ class CommonProtectionGroupRunResponseParameters(BaseModel):
             "originClusterIdentifier": ClusterIdentifier.from_dict(obj["originClusterIdentifier"]) if obj.get("originClusterIdentifier") is not None else None,
             "originProtectionGroupId": obj.get("originProtectionGroupId"),
             "originalBackupInfo": BackupRunSummary.from_dict(obj["originalBackupInfo"]) if obj.get("originalBackupInfo") is not None else None,
-            "permissions": [TenantInfo.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
+            "permissions": [Tenant.from_dict(_item) for _item in obj["permissions"]] if obj.get("permissions") is not None else None,
             "protectionGroupId": obj.get("protectionGroupId"),
             "protectionGroupInstanceId": obj.get("protectionGroupInstanceId"),
             "protectionGroupName": obj.get("protectionGroupName"),

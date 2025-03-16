@@ -28,7 +28,7 @@ from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.helios.models.protection_object_input import ProtectionObjectInput
 from cohesity_sdk.helios.models.snapshot_label import SnapshotLabel
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class NetappObjectProtectionRequestParams(BaseModel):

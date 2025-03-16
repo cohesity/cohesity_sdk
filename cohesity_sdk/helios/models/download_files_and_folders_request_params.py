@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.files_and_folders_object import FilesAndFoldersObject
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class DownloadFilesAndFoldersRequestParams(BaseModel):

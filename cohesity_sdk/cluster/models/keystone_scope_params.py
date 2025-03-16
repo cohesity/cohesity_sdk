@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.domain_scope_params import DomainScopeParams
 from cohesity_sdk.cluster.models.project_scope_params import ProjectScopeParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class KeystoneScopeParams(BaseModel):

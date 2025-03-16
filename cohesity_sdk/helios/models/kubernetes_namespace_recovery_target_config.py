@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.kubernetes_namespace_recovery_new_source_config import KubernetesNamespaceRecoveryNewSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class KubernetesNamespaceRecoveryTargetConfig(BaseModel):
     """
     Specifies the recovery target configuration of the Namespace recovery.
     """ # noqa: E501
-    new_source_config: Optional[KubernetesNamespaceRecoveryNewSourceConfig] = Field(default=None, alias="newSourceConfig")
+    new_source_config: Optional[KubernetesNamespaceRecoveryNewSourceConfig] = Field(default=None, description="Specifies the new source configuration if a Kubernetes Namespace is being restored to a different source than the one from which it was protected.", alias="newSourceConfig")
     recover_to_new_source: Optional[StrictBool] = Field(description="Specifies whether or not to recover the Namespaces to a different source than they were backed up from.", alias="recoverToNewSource")
     __properties: ClassVar[List[str]] = ["newSourceConfig", "recoverToNewSource"]
 
@@ -73,6 +73,11 @@ class KubernetesNamespaceRecoveryTargetConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of new_source_config
         if self.new_source_config:
             _dict['newSourceConfig'] = self.new_source_config.to_dict()
+        # set to None if new_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_source_config is None and "new_source_config" in self.model_fields_set:
+            _dict['newSourceConfig'] = None
+
         # set to None if recover_to_new_source (nullable) is None
         # and model_fields_set contains the field
         if self.recover_to_new_source is None and "recover_to_new_source" in self.model_fields_set:

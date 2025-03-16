@@ -19,9 +19,8 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode
 from cohesity_sdk.helios.models.device_tree_leaf_node import DeviceTreeLeafNode
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class DeviceTreeNode(BaseModel):
@@ -29,8 +28,8 @@ class DeviceTreeNode(BaseModel):
     Specifies the tree structure of a logical volume. The leaves are slices of partitions and the other nodes are assemled by combining nodes in some mode.
     """ # noqa: E501
     is_leaf: Optional[StrictBool] = Field(default=None, description="Specifies if the node is a leaf node.", alias="isLeaf")
-    leaf_node_params: Optional[DeviceTreeLeafNode] = Field(default=None, alias="leafNodeParams")
-    non_leaf_node_params: Optional[DeviceTreeNonLeafNode] = Field(default=None, alias="nonLeafNodeParams")
+    leaf_node_params: Optional[DeviceTreeLeafNode] = Field(default=None, description="Specifies the parameters for a leaf node.", alias="leafNodeParams")
+    non_leaf_node_params: Optional[DeviceTreeNonLeafNode] = Field(default=None, description="Specifies the parameters for a non leaf node.", alias="nonLeafNodeParams")
     __properties: ClassVar[List[str]] = ["isLeaf", "leafNodeParams", "nonLeafNodeParams"]
 
     model_config = ConfigDict(
@@ -101,6 +100,7 @@ class DeviceTreeNode(BaseModel):
         })
         return _obj
 
-
+from cohesity_sdk.helios.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode
 # TODO: Rewrite to not use raise_errors
 DeviceTreeNode.model_rebuild(raise_errors=False)
+

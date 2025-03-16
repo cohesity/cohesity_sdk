@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.create_view import CreateView
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Template(BaseModel):
@@ -33,7 +33,7 @@ class Template(BaseModel):
     id: Optional[StrictInt] = Field(default=None, description="Specifies an id of the view template.")
     is_default: Optional[StrictBool] = Field(default=None, description="Specifies if the tempate is custom or static.", alias="isDefault")
     name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the view template.")
-    view_params: Optional[CreateView] = Field(default=None, alias="viewParams")
+    view_params: Optional[CreateView] = Field(default=None, description="Specifies the parameters which is used to create the view. No field is required.", alias="viewParams")
     __properties: ClassVar[List[str]] = ["compress", "dedup", "defaultTemplateName", "id", "isDefault", "name", "viewParams"]
 
     @field_validator('default_template_name')

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.cloud_cluster_expand_params import CloudClusterExpandParams
 from cohesity_sdk.helios.models.physical_cluster_expand_params import PhysicalClusterExpandParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ClusterExpandParams(BaseModel):

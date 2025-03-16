@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverHyperVVmNewSourceNetworkConfig(BaseModel):
@@ -28,7 +28,7 @@ class RecoverHyperVVmNewSourceNetworkConfig(BaseModel):
     Specifies the network config parameters to be applied for HyperV VMs if recovering to new Source.
     """ # noqa: E501
     detach_network: Optional[StrictBool] = Field(default=None, description="If this is set to true, then the network will be detached from the recovered VMs. All the other networking parameters set will be ignored if set to true. Default value is false.", alias="detachNetwork")
-    virtual_switch: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="virtualSwitch")
+    virtual_switch: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the virtual switch that will attached to all the network interfaces of the VMs being recovered. This parameter is mandatory if detach network is specified as false.", alias="virtualSwitch")
     __properties: ClassVar[List[str]] = ["detachNetwork", "virtualSwitch"]
 
     model_config = ConfigDict(
@@ -77,6 +77,11 @@ class RecoverHyperVVmNewSourceNetworkConfig(BaseModel):
         # and model_fields_set contains the field
         if self.detach_network is None and "detach_network" in self.model_fields_set:
             _dict['detachNetwork'] = None
+
+        # set to None if virtual_switch (nullable) is None
+        # and model_fields_set contains the field
+        if self.virtual_switch is None and "virtual_switch" in self.model_fields_set:
+            _dict['virtualSwitch'] = None
 
         return _dict
 

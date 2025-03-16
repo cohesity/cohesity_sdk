@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.office365_outlook_protection_group_params import
 from cohesity_sdk.helios.models.office365_protection_group_object_params import Office365ProtectionGroupObjectParams
 from cohesity_sdk.helios.models.office365_public_folders_protection_group_params import Office365PublicFoldersProtectionGroupParams
 from cohesity_sdk.helios.models.office365_share_point_protection_group_params import Office365SharePointProtectionGroupParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Office365ProtectionGroupParams(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.o365_search_request_params import O365SearchRequestParams
 from cohesity_sdk.cluster.models.search_document_library_request_params import SearchDocumentLibraryRequestParams
 from cohesity_sdk.cluster.models.search_email_request_params_base import SearchEmailRequestParamsBase
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SearchMsGroupsRequestParams(BaseModel):

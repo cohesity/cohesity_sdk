@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.recover_other_nas_to_flashblade_files_target_pa
 from cohesity_sdk.cluster.models.recover_other_nas_to_gpfs_files_target_params import RecoverOtherNasToGpfsFilesTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_isilon_files_target_params import RecoverOtherNasToIsilonFilesTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_netapp_files_target_params import RecoverOtherNasToNetappFilesTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverGenericNasFilesParams(BaseModel):

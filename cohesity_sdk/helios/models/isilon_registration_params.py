@@ -22,7 +22,8 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
-from typing import Set
+from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IsilonRegistrationParams(BaseModel):
@@ -33,7 +34,7 @@ class IsilonRegistrationParams(BaseModel):
     credentials: Credentials
     endpoint: Optional[StrictStr] = Field(description="Specifies the IP Address Endpoint for the Isilon Source.")
     filter_ip_config: Optional[FilterIpConfig] = Field(default=None, alias="filterIpConfig")
-    smb_credentials: Optional[Credentials] = Field(default=None, alias="smbCredentials")
+    smb_credentials: Optional[SmbMountCredentials] = Field(default=None, alias="smbCredentials")
     throttling_config: Optional[NasThrottlingConfig] = Field(default=None, alias="throttlingConfig")
     __properties: ClassVar[List[str]] = ["backUpSMBVolumes", "credentials", "endpoint", "filterIpConfig", "smbCredentials", "throttlingConfig"]
 
@@ -114,7 +115,7 @@ class IsilonRegistrationParams(BaseModel):
             "credentials": Credentials.from_dict(obj["credentials"]) if obj.get("credentials") is not None else None,
             "endpoint": obj.get("endpoint"),
             "filterIpConfig": FilterIpConfig.from_dict(obj["filterIpConfig"]) if obj.get("filterIpConfig") is not None else None,
-            "smbCredentials": Credentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
+            "smbCredentials": SmbMountCredentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
             "throttlingConfig": NasThrottlingConfig.from_dict(obj["throttlingConfig"]) if obj.get("throttlingConfig") is not None else None
         })
         return _obj

@@ -19,19 +19,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.cassandra_source_registration_params_all_of_cassandra_credentials import CassandraSourceRegistrationParamsAllOfCassandraCredentials
-from cohesity_sdk.helios.models.cassandra_source_registration_params_all_of_jmx_credentials import CassandraSourceRegistrationParamsAllOfJmxCredentials
+from cohesity_sdk.helios.models.cassandra_source_registration_patch_params_cassandra_credentials import CassandraSourceRegistrationPatchParamsCassandraCredentials
+from cohesity_sdk.helios.models.cassandra_source_registration_patch_params_jmx_credentials import CassandraSourceRegistrationPatchParamsJmxCredentials
 from cohesity_sdk.helios.models.dse_solr_info import DSESolrInfo
 from cohesity_sdk.helios.models.ssh_password_credentials import SshPasswordCredentials
 from cohesity_sdk.helios.models.ssh_private_key_credentials import SshPrivateKeyCredentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CassandraSourceRegistrationPatchParams(BaseModel):
     """
     Specifies parameters to update cassandra source.
     """ # noqa: E501
-    cassandra_credentials: Optional[CassandraSourceRegistrationParamsAllOfCassandraCredentials] = Field(default=None, alias="cassandraCredentials")
+    cassandra_credentials: Optional[CassandraSourceRegistrationPatchParamsCassandraCredentials] = Field(default=None, alias="cassandraCredentials")
     commit_log_backup_location: Optional[StrictStr] = Field(default=None, description="Commit Logs backup location on cassandra nodes", alias="commitLogBackupLocation")
     config_directory: Optional[StrictStr] = Field(default=None, description="Directory path containing Cassandra configuration YAML file.", alias="configDirectory")
     data_center_names: Optional[List[StrictStr]] = Field(default=None, description="Data centers for this cluster.", alias="dataCenterNames")
@@ -39,7 +39,7 @@ class CassandraSourceRegistrationPatchParams(BaseModel):
     dse_solr_info: Optional[DSESolrInfo] = Field(default=None, alias="dseSolrInfo")
     is_dse_authenticator: Optional[StrictBool] = Field(default=None, description="Set to true if this cluster has DSE Authenticator.", alias="isDseAuthenticator")
     is_dse_tiered_storage: Optional[StrictBool] = Field(default=None, description="Set to true if this cluster has DSE tiered storage.", alias="isDseTieredStorage")
-    jmx_credentials: Optional[CassandraSourceRegistrationParamsAllOfJmxCredentials] = Field(default=None, alias="jmxCredentials")
+    jmx_credentials: Optional[CassandraSourceRegistrationPatchParamsJmxCredentials] = Field(default=None, alias="jmxCredentials")
     kerberos_principal: Optional[StrictStr] = Field(default=None, description="Principal for the kerberos connection. (This is required only if your Cassandra has Kerberos authentication. Please refer to the user guide.)", alias="kerberosPrincipal")
     seed_node: Optional[StrictStr] = Field(default=None, description="Any one seed node of the Cassandra cluster.", alias="seedNode")
     ssh_password_credentials: Optional[SshPasswordCredentials] = Field(default=None, alias="sshPasswordCredentials")
@@ -167,7 +167,7 @@ class CassandraSourceRegistrationPatchParams(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "cassandraCredentials": CassandraSourceRegistrationParamsAllOfCassandraCredentials.from_dict(obj["cassandraCredentials"]) if obj.get("cassandraCredentials") is not None else None,
+            "cassandraCredentials": CassandraSourceRegistrationPatchParamsCassandraCredentials.from_dict(obj["cassandraCredentials"]) if obj.get("cassandraCredentials") is not None else None,
             "commitLogBackupLocation": obj.get("commitLogBackupLocation"),
             "configDirectory": obj.get("configDirectory"),
             "dataCenterNames": obj.get("dataCenterNames"),
@@ -175,7 +175,7 @@ class CassandraSourceRegistrationPatchParams(BaseModel):
             "dseSolrInfo": DSESolrInfo.from_dict(obj["dseSolrInfo"]) if obj.get("dseSolrInfo") is not None else None,
             "isDseAuthenticator": obj.get("isDseAuthenticator"),
             "isDseTieredStorage": obj.get("isDseTieredStorage"),
-            "jmxCredentials": CassandraSourceRegistrationParamsAllOfJmxCredentials.from_dict(obj["jmxCredentials"]) if obj.get("jmxCredentials") is not None else None,
+            "jmxCredentials": CassandraSourceRegistrationPatchParamsJmxCredentials.from_dict(obj["jmxCredentials"]) if obj.get("jmxCredentials") is not None else None,
             "kerberosPrincipal": obj.get("kerberosPrincipal"),
             "seedNode": obj.get("seedNode"),
             "sshPasswordCredentials": SshPasswordCredentials.from_dict(obj["sshPasswordCredentials"]) if obj.get("sshPasswordCredentials") is not None else None,

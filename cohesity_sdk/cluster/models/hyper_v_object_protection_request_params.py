@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.hyper_v_object_protection_request import HyperVObjectProtectionRequest
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HyperVObjectProtectionRequestParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.local_group_params import LocalGroupParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateGroupParameters(BaseModel):
@@ -28,7 +28,7 @@ class UpdateGroupParameters(BaseModel):
     Specifies group properties to update.
     """ # noqa: E501
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the group.")
-    local_group_params: Optional[LocalGroupParams] = Field(default=None, alias="localGroupParams")
+    local_group_params: Optional[LocalGroupParams] = Field(default=None, description="Specifies the LOCAL group properties.", alias="localGroupParams")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.")
     tenant_ids: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of tenant ids who can access this group.", alias="tenantIds")

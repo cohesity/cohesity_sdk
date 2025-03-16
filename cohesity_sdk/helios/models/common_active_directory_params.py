@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.domain_controller import DomainController
 from cohesity_sdk.helios.models.machine_account import MachineAccount
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CommonActiveDirectoryParams(BaseModel):
@@ -38,7 +38,7 @@ class CommonActiveDirectoryParams(BaseModel):
     nis_provider_domain_name: Optional[StrictStr] = Field(default=None, description="Specifies the name of the NIS Provider which is mapped to this Active Directory.", alias="nisProviderDomainName")
     organizational_unit_name: Optional[StrictStr] = Field(default=None, description="Specifies an optional organizational unit name.", alias="organizationalUnitName")
     preferred_domain_controllers: Optional[List[DomainController]] = Field(default=None, description="Specifies a list of preferred domain controllers of this Active Directory.", alias="preferredDomainControllers")
-    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, alias="trustedDomainParams")
+    trusted_domain_params: Optional[TrustedDomainParams] = Field(default=None, description="Specifies the params of trusted domain info of an Active Directory.", alias="trustedDomainParams")
     work_group_name: Optional[StrictStr] = Field(default=None, description="Specifies a work group name.", alias="workGroupName")
     __properties: ClassVar[List[str]] = ["connectionId", "domainControllersDenyList", "id", "ldapProviderId", "machineAccounts", "nisProviderDomainName", "organizationalUnitName", "preferredDomainControllers", "trustedDomainParams", "workGroupName"]
 
@@ -134,6 +134,11 @@ class CommonActiveDirectoryParams(BaseModel):
         # and model_fields_set contains the field
         if self.preferred_domain_controllers is None and "preferred_domain_controllers" in self.model_fields_set:
             _dict['preferredDomainControllers'] = None
+
+        # set to None if trusted_domain_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.trusted_domain_params is None and "trusted_domain_params" in self.model_fields_set:
+            _dict['trustedDomainParams'] = None
 
         # set to None if work_group_name (nullable) is None
         # and model_fields_set contains the field

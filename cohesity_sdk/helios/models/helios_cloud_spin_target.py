@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_aws_cloud_spin_params import HeliosAwsCloudSpinParams
 from cohesity_sdk.helios.models.helios_azure_cloud_spin_params import HeliosAzureCloudSpinParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosCloudSpinTarget(BaseModel):

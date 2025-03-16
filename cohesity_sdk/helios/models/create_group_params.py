@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.local_group_params import LocalGroupParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateGroupParams(BaseModel):
@@ -29,7 +29,7 @@ class CreateGroupParams(BaseModel):
     """ # noqa: E501
     description: Optional[StrictStr] = Field(default=None, description="Specifies the description of the group.")
     domain: StrictStr = Field(description="Specifies the domain of the group. For active directories, this is the fully qualified domain name (FQDN). It is 'LOCAL' for local groups on the Cohesity Cluster. A group is uniquely identified by combination of the name and the domain.")
-    local_group_params: Optional[LocalGroupParams] = Field(default=None, alias="localGroupParams")
+    local_group_params: Optional[LocalGroupParams] = Field(default=None, description="Specifies the LOCAL group properties.", alias="localGroupParams")
     name: StrictStr = Field(description="Specifies the name of the group.")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the Group is restricted. A restricted group can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the group. The Cohesity roles determine privileges on the Cohesity Cluster for this group.")

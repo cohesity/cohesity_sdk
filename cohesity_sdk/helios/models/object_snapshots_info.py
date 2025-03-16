@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_archival_snapshot_info import ObjectArchivalSnapshotInfo
 from cohesity_sdk.helios.models.object_local_snapshot_info import ObjectLocalSnapshotInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectSnapshotsInfo(BaseModel):
@@ -30,7 +30,7 @@ class ObjectSnapshotsInfo(BaseModel):
     """ # noqa: E501
     archival_snapshots_info: Optional[List[ObjectArchivalSnapshotInfo]] = Field(default=None, description="Specifies the archival snapshots information.", alias="archivalSnapshotsInfo")
     indexing_status: Optional[StrictStr] = Field(default=None, description="Specifies the indexing status of objects in this snapshot.<br> 'InProgress' indicates the indexing is in progress.<br> 'Done' indicates indexing is done.<br> 'NoIndex' indicates indexing is not applicable.<br> 'Error' indicates indexing failed with error.", alias="indexingStatus")
-    local_snapshot_info: Optional[ObjectLocalSnapshotInfo] = Field(default=None, alias="localSnapshotInfo")
+    local_snapshot_info: Optional[ObjectLocalSnapshotInfo] = Field(default=None, description="Specifies the local snapshot information.", alias="localSnapshotInfo")
     protection_group_id: Optional[StrictStr] = Field(default=None, description="Specifies id of the Protection Group.", alias="protectionGroupId")
     protection_group_name: Optional[StrictStr] = Field(default=None, description="Specifies name of the Protection Group.", alias="protectionGroupName")
     protection_run_end_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the end time of Protection Group Run in Unix timestamp epoch in microseconds.", alias="protectionRunEndTimeUsecs")
@@ -121,6 +121,11 @@ class ObjectSnapshotsInfo(BaseModel):
         # and model_fields_set contains the field
         if self.indexing_status is None and "indexing_status" in self.model_fields_set:
             _dict['indexingStatus'] = None
+
+        # set to None if local_snapshot_info (nullable) is None
+        # and model_fields_set contains the field
+        if self.local_snapshot_info is None and "local_snapshot_info" in self.model_fields_set:
+            _dict['localSnapshotInfo'] = None
 
         # set to None if protection_group_id (nullable) is None
         # and model_fields_set contains the field

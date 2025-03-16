@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.hyper_v_target_params_for_mount_volume import HyperVTargetParamsForMountVolume
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MountHyperVVolumeParams(BaseModel):
     """
     Specifies the parameters to mount volumes.
     """ # noqa: E501
-    hyperv_target_params: Optional[HyperVTargetParamsForMountVolume] = Field(default=None, alias="hypervTargetParams")
+    hyperv_target_params: Optional[HyperVTargetParamsForMountVolume] = Field(default=None, description="Specifies the params for recovering to a HyperV target.", alias="hypervTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["hypervTargetParams", "targetEnvironment"]
 
@@ -80,6 +80,11 @@ class MountHyperVVolumeParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of hyperv_target_params
         if self.hyperv_target_params:
             _dict['hypervTargetParams'] = self.hyperv_target_params.to_dict()
+        # set to None if hyperv_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.hyperv_target_params is None and "hyperv_target_params" in self.model_fields_set:
+            _dict['hypervTargetParams'] = None
+
         return _dict
 
     @classmethod

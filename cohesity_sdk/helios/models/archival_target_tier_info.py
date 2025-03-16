@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.aws_tiers import AWSTiers
 from cohesity_sdk.helios.models.azure_tiers import AzureTiers
 from cohesity_sdk.helios.models.google_tiers import GoogleTiers
 from cohesity_sdk.helios.models.oracle_tiers import OracleTiers
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalTargetTierInfo(BaseModel):

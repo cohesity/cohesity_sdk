@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.common_download_file_and_folder_params import C
 from cohesity_sdk.cluster.models.recover_acropolis_file_and_folder_params import RecoverAcropolisFileAndFolderParams
 from cohesity_sdk.cluster.models.recover_acropolis_snapshot_params import RecoverAcropolisSnapshotParams
 from cohesity_sdk.cluster.models.recover_acropolis_vm_params import RecoverAcropolisVmParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAcropolisParams(BaseModel):

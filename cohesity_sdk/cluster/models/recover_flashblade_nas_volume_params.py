@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.recover_other_nas_to_generic_nas_volume_target_
 from cohesity_sdk.cluster.models.recover_other_nas_to_gpfs_volume_target_params import RecoverOtherNasToGpfsVolumeTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_isilon_volume_target_params import RecoverOtherNasToIsilonVolumeTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_netapp_volume_target_params import RecoverOtherNasToNetappVolumeTargetParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverFlashbladeNasVolumeParams(BaseModel):

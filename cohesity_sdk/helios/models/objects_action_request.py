@@ -19,8 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_objects_action_params import CommonObjectsActionParams
-from typing import Set
+from cohesity_sdk.helios.models.object_linking_params import ObjectLinkingParams
+from cohesity_sdk.helios.models.object_un_linking_params import ObjectUnLinkingParams
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectsActionRequest(BaseModel):
@@ -28,9 +29,9 @@ class ObjectsActionRequest(BaseModel):
     Specifies the type of the action need to be performed on given set of objects.
     """ # noqa: E501
     action: Optional[StrictStr] = Field(default=None, description="Specifies the action type that need to be performed.")
-    link_params: Optional[CommonObjectsActionParams] = Field(default=None, alias="linkParams")
+    link_params: Optional[ObjectLinkingParams] = Field(default=None, alias="linkParams")
     link_type: Optional[StrictStr] = Field(default=None, description="Specifies the link type for the link/unlink action.", alias="linkType")
-    un_link_params: Optional[CommonObjectsActionParams] = Field(default=None, alias="unLinkParams")
+    un_link_params: Optional[ObjectUnLinkingParams] = Field(default=None, alias="unLinkParams")
     __properties: ClassVar[List[str]] = ["action", "linkParams", "linkType", "unLinkParams"]
 
     @field_validator('action')
@@ -121,9 +122,9 @@ class ObjectsActionRequest(BaseModel):
 
         _obj = cls.model_validate({
             "action": obj.get("action"),
-            "linkParams": CommonObjectsActionParams.from_dict(obj["linkParams"]) if obj.get("linkParams") is not None else None,
+            "linkParams": ObjectLinkingParams.from_dict(obj["linkParams"]) if obj.get("linkParams") is not None else None,
             "linkType": obj.get("linkType"),
-            "unLinkParams": CommonObjectsActionParams.from_dict(obj["unLinkParams"]) if obj.get("unLinkParams") is not None else None
+            "unLinkParams": ObjectUnLinkingParams.from_dict(obj["unLinkParams"]) if obj.get("unLinkParams") is not None else None
         })
         return _obj
 

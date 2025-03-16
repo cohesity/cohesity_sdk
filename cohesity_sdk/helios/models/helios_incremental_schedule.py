@@ -19,19 +19,21 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.helios_frequency_schedule import HeliosFrequencySchedule
+from cohesity_sdk.helios.models.helios_day_schedule import HeliosDaySchedule
+from cohesity_sdk.helios.models.helios_hour_schedule import HeliosHourSchedule
+from cohesity_sdk.helios.models.helios_minute_schedule import HeliosMinuteSchedule
 from cohesity_sdk.helios.models.helios_month_schedule import HeliosMonthSchedule
 from cohesity_sdk.helios.models.helios_week_schedule import HeliosWeekSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosIncrementalSchedule(BaseModel):
     """
     Specifies settings that defines how frequent backup will be performed for a Protection Group.
     """ # noqa: E501
-    day_schedule: Optional[HeliosFrequencySchedule] = Field(default=None, alias="daySchedule")
-    hour_schedule: Optional[HeliosFrequencySchedule] = Field(default=None, alias="hourSchedule")
-    minute_schedule: Optional[HeliosFrequencySchedule] = Field(default=None, alias="minuteSchedule")
+    day_schedule: Optional[HeliosDaySchedule] = Field(default=None, alias="daySchedule")
+    hour_schedule: Optional[HeliosHourSchedule] = Field(default=None, alias="hourSchedule")
+    minute_schedule: Optional[HeliosMinuteSchedule] = Field(default=None, alias="minuteSchedule")
     month_schedule: Optional[HeliosMonthSchedule] = Field(default=None, alias="monthSchedule")
     unit: Optional[StrictStr] = Field(description="Specifies how often to start new runs of a Protection Group. <br>'Minutes' specifies that Protection Group run starts periodically after certain number of minutes specified in 'frequency' field. <br>'Hours' specifies that Protection Group run starts periodically after certain number of hours specified in 'frequency' field. <br>'Days' specifies that Protection Group run starts periodically after certain number of days specified in 'frequency' field. <br>'Week' specifies that new Protection Group runs start weekly on certain days specified using 'dayOfWeek' field. <br>'Month' specifies that new Protection Group runs start monthly on certain day of specific week. This schedule needs 'weekOfMonth' and 'dayOfWeek' fields to be set. <br> Example: To run the Protection Group on Second Sunday of Every Month, following schedule need to be set: <br> unit: 'Month' <br> dayOfWeek: 'Sunday' <br> weekOfMonth: 'Second'")
     week_schedule: Optional[HeliosWeekSchedule] = Field(default=None, alias="weekSchedule")
@@ -118,9 +120,9 @@ class HeliosIncrementalSchedule(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "daySchedule": HeliosFrequencySchedule.from_dict(obj["daySchedule"]) if obj.get("daySchedule") is not None else None,
-            "hourSchedule": HeliosFrequencySchedule.from_dict(obj["hourSchedule"]) if obj.get("hourSchedule") is not None else None,
-            "minuteSchedule": HeliosFrequencySchedule.from_dict(obj["minuteSchedule"]) if obj.get("minuteSchedule") is not None else None,
+            "daySchedule": HeliosDaySchedule.from_dict(obj["daySchedule"]) if obj.get("daySchedule") is not None else None,
+            "hourSchedule": HeliosHourSchedule.from_dict(obj["hourSchedule"]) if obj.get("hourSchedule") is not None else None,
+            "minuteSchedule": HeliosMinuteSchedule.from_dict(obj["minuteSchedule"]) if obj.get("minuteSchedule") is not None else None,
             "monthSchedule": HeliosMonthSchedule.from_dict(obj["monthSchedule"]) if obj.get("monthSchedule") is not None else None,
             "unit": obj.get("unit"),
             "weekSchedule": HeliosWeekSchedule.from_dict(obj["weekSchedule"]) if obj.get("weekSchedule") is not None else None

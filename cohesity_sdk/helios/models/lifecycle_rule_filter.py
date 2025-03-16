@@ -21,16 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.lifecycle_rule_filter_and import LifecycleRuleFilterAnd
 from cohesity_sdk.helios.models.lifecycle_rule_filter_tag import LifecycleRuleFilterTag
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class LifecycleRuleFilter(BaseModel):
     """
     Specifies the filter used to identify objects that a Lifecycle Rule applies to. Note: All three properties are mutually exclusive.
     """ # noqa: E501
-    var_and: Optional[LifecycleRuleFilterAnd] = Field(default=None, alias="and")
+    var_and: Optional[LifecycleRuleFilterAnd] = Field(default=None, description="Specifies the Lifecycle Rule Filter to apply a logical AND to two or more predicates. The Lifecycle Rule will apply to any object matching all of the predicates configured inside the AND operator.", alias="and")
     prefix: Optional[StrictStr] = Field(default=None, description="Specifies the Prefix identifying one or more objects to which the rule applies.")
-    tag: Optional[LifecycleRuleFilterTag] = None
+    tag: Optional[LifecycleRuleFilterTag] = Field(default=None, description="Specifies the tag in the object's tag set to which the rule applies.")
     __properties: ClassVar[List[str]] = ["and", "prefix", "tag"]
 
     model_config = ConfigDict(

@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.org_vdc_network import OrgVDCNetwork
 from cohesity_sdk.helios.models.recover_vmware_vm_new_source_network_config import RecoverVmwareVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.vcd_storage_profile_params import VcdStorageProfileParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverVmwareVmVCDSourceConfig(BaseModel):
@@ -31,12 +31,12 @@ class RecoverVmwareVmVCDSourceConfig(BaseModel):
     Specifies the new destination Source configuration where the VMs will be recovered for vCloudDirector sources.
     """ # noqa: E501
     datastores: Optional[List[RecoveryObjectIdentifier]] = Field(default=None, description="Specifies the datastore objects where the object's files should be recovered to. This should only be specified if storageProfile is not specified.")
-    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
+    network_config: Optional[RecoverVmwareVmNewSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
     org_vdc_network: Optional[OrgVDCNetwork] = Field(default=None, alias="orgVdcNetwork")
-    source: RecoveryObjectIdentifier
-    storage_profile: Optional[VcdStorageProfileParams] = Field(default=None, alias="storageProfile")
-    v_app: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="vApp")
-    vdc: RecoveryObjectIdentifier
+    source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the id of the parent source to recover the VMs.")
+    storage_profile: Optional[VcdStorageProfileParams] = Field(default=None, description="Specifies the storage profile to which the objects should be recovered. This should only be specified if datastores are not specified.", alias="storageProfile")
+    v_app: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the vApp object where the recovered objects will be attached.", alias="vApp")
+    vdc: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the VDC object where the recovered objects will be attached.")
     __properties: ClassVar[List[str]] = ["datastores", "networkConfig", "orgVdcNetwork", "source", "storageProfile", "vApp", "vdc"]
 
     model_config = ConfigDict(
@@ -107,6 +107,26 @@ class RecoverVmwareVmVCDSourceConfig(BaseModel):
         # and model_fields_set contains the field
         if self.datastores is None and "datastores" in self.model_fields_set:
             _dict['datastores'] = None
+
+        # set to None if network_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.network_config is None and "network_config" in self.model_fields_set:
+            _dict['networkConfig'] = None
+
+        # set to None if source (nullable) is None
+        # and model_fields_set contains the field
+        if self.source is None and "source" in self.model_fields_set:
+            _dict['source'] = None
+
+        # set to None if v_app (nullable) is None
+        # and model_fields_set contains the field
+        if self.v_app is None and "v_app" in self.model_fields_set:
+            _dict['vApp'] = None
+
+        # set to None if vdc (nullable) is None
+        # and model_fields_set contains the field
+        if self.vdc is None and "vdc" in self.model_fields_set:
+            _dict['vdc'] = None
 
         return _dict
 

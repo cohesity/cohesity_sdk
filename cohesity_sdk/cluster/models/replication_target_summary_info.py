@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_target_config import AWSTargetConfig
 from cohesity_sdk.cluster.models.azure_target_config import AzureTargetConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ReplicationTargetSummaryInfo(BaseModel):

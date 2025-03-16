@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.bandwidth_throttling import BandwidthThrottling
 from cohesity_sdk.helios.models.storage_domain_pair import StorageDomainPair
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ReplicationParams(BaseModel):
@@ -29,7 +29,7 @@ class ReplicationParams(BaseModel):
     Specifies the replication config for a Remote Cluster.
     """ # noqa: E501
     all_endpoints_reachable: Optional[StrictBool] = Field(default=False, description="Specifies if all endpoints on Remote Cluster are reachable.", alias="allEndpointsReachable")
-    bandwidth_limit: Optional[BandwidthThrottling] = Field(default=None, alias="bandwidthLimit")
+    bandwidth_limit: Optional[BandwidthThrottling] = Field(default=None, description="Specifies settings for limiting the data transfer rate between the local and Remote Clusters.", alias="bandwidthLimit")
     compression_enabled: Optional[StrictBool] = Field(default=True, description="Specifies whether to compress the outbound data when transferring the replication data over the network to the Remote Cluster.", alias="compressionEnabled")
     encryption_key: Optional[StrictStr] = Field(default=None, description="Specifies the encryption key used for encrypting the replication data from a local Cluster to a Remote Cluster. If a key is not specified, replication traffic encryption is disabled. When Snapshots are replicated from a local Cluster to a Remote Cluster, the encryption key specified on the local Cluster must be the same as the key specified on the Remote Cluster.", alias="encryptionKey")
     storage_domain_pairs: Optional[List[StorageDomainPair]] = Field(default=None, description="Specifies a list of Storage Domain pairs.", alias="storageDomainPairs")

@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.acropolis_disk_info import AcropolisDiskInfo
 from cohesity_sdk.helios.models.acropolis_protection_group_object_params import AcropolisProtectionGroupObjectParams
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AcropolisProtectionGroupParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.uda_create_run_response_params import UdaCreateRunResponseParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateProtectionGroupRunResponseBody(BaseModel):

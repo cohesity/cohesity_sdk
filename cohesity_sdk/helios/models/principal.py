@@ -20,14 +20,14 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.active_directory_principal_params import ActiveDirectoryPrincipalParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Principal(BaseModel):
     """
     Specifies a principal details.
     """ # noqa: E501
-    active_directory_params: Optional[ActiveDirectoryPrincipalParams] = Field(default=None, alias="activeDirectoryParams")
+    active_directory_params: Optional[ActiveDirectoryPrincipalParams] = Field(default=None, description="Specifies active directory details of its active directory if the principal if from active directory.", alias="activeDirectoryParams")
     clusters: Optional[List[StrictStr]] = Field(default=None, description="Specifies a list of clusters associated with this Principal. They should be in a string with the format '{cluster ID}:{cluster incarnation ID}'.")
     created_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the timestamp in microseconds since the epoch when this Principal was created.", alias="createdTimeUsecs")
     description: Optional[StrictStr] = Field(default=None, description="Specifies the desciption of the principal.")
@@ -99,6 +99,11 @@ class Principal(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of active_directory_params
         if self.active_directory_params:
             _dict['activeDirectoryParams'] = self.active_directory_params.to_dict()
+        # set to None if active_directory_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_directory_params is None and "active_directory_params" in self.model_fields_set:
+            _dict['activeDirectoryParams'] = None
+
         # set to None if created_time_usecs (nullable) is None
         # and model_fields_set contains the field
         if self.created_time_usecs is None and "created_time_usecs" in self.model_fields_set:

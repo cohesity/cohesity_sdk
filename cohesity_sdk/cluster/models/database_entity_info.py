@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.container_database_info import ContainerDatabaseInfo
 from cohesity_sdk.cluster.models.oracle_data_guard_info import OracleDataGuardInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class DatabaseEntityInfo(BaseModel):

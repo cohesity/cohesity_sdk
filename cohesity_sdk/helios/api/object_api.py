@@ -11,16 +11,18 @@
     Do not edit the class manually.
 """  # noqa: E501
 
+import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBool
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import List, Optional, Union
+from typing_extensions import Annotated
 from cohesity_sdk.helios.models.associate_entity_metadata_request import AssociateEntityMetadataRequest
 from cohesity_sdk.helios.models.associate_entity_metadata_result import AssociateEntityMetadataResult
 from cohesity_sdk.helios.models.cancel_object_runs_request import CancelObjectRunsRequest
 from cohesity_sdk.helios.models.cancel_object_runs_results import CancelObjectRunsResults
-from cohesity_sdk.helios.models.common_object_snapshot_volume_params import CommonObjectSnapshotVolumeParams
 from cohesity_sdk.helios.models.construct_meta_info_request import ConstructMetaInfoRequest
 from cohesity_sdk.helios.models.construct_meta_info_result import ConstructMetaInfoResult
 from cohesity_sdk.helios.models.file_folder_info import FileFolderInfo
@@ -45,6 +47,7 @@ from cohesity_sdk.helios.models.object_archival_run_stats import ObjectArchivalR
 from cohesity_sdk.helios.models.object_browse_request import ObjectBrowseRequest
 from cohesity_sdk.helios.models.object_protection_run_summary import ObjectProtectionRunSummary
 from cohesity_sdk.helios.models.object_snapshot import ObjectSnapshot
+from cohesity_sdk.helios.models.object_snapshot_volume_info import ObjectSnapshotVolumeInfo
 from cohesity_sdk.helios.models.object_stats import ObjectStats
 from cohesity_sdk.helios.models.object_with_children import ObjectWithChildren
 from cohesity_sdk.helios.models.objects_action_request import ObjectsActionRequest
@@ -6171,7 +6174,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> CommonObjectSnapshotVolumeParams:
+    ) -> ObjectSnapshotVolumeInfo:
         """Get volume info of object snapshot.
 
         Get volume info of object snapshot.
@@ -6224,7 +6227,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CommonObjectSnapshotVolumeParams",
+            '200': "ObjectSnapshotVolumeInfo",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6258,7 +6261,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[CommonObjectSnapshotVolumeParams]:
+    ) -> ApiResponse[ObjectSnapshotVolumeInfo]:
         """Get volume info of object snapshot.
 
         Get volume info of object snapshot.
@@ -6311,7 +6314,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CommonObjectSnapshotVolumeParams",
+            '200': "ObjectSnapshotVolumeInfo",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -6398,7 +6401,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "CommonObjectSnapshotVolumeParams",
+            '200': "ObjectSnapshotVolumeInfo",
         }
         response_data = self.api_client.call_api(
             *_param,

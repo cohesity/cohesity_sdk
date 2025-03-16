@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_volume_mapping import RecoverVolumeMapping
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalTargetParamsForRecoverVolume(BaseModel):
@@ -30,8 +30,8 @@ class PhysicalTargetParamsForRecoverVolume(BaseModel):
     Specifies the parameters for a physical recovery target.
     """ # noqa: E501
     force_unmount_volume: Optional[StrictBool] = Field(default=None, description="Specifies whether volume would be dismounted first during LockVolume failure. If not specified, default is false.", alias="forceUnmountVolume")
-    mount_target: RecoveryObjectIdentifier = Field(alias="mountTarget")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    mount_target: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the target entity where the volumes are being mounted.", alias="mountTarget")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     volume_mapping: Optional[List[RecoverVolumeMapping]] = Field(description="Specifies the mapping from source volumes to destination volumes.", alias="volumeMapping")
     __properties: ClassVar[List[str]] = ["forceUnmountVolume", "mountTarget", "vlanConfig", "volumeMapping"]
 
@@ -91,6 +91,16 @@ class PhysicalTargetParamsForRecoverVolume(BaseModel):
         # and model_fields_set contains the field
         if self.force_unmount_volume is None and "force_unmount_volume" in self.model_fields_set:
             _dict['forceUnmountVolume'] = None
+
+        # set to None if mount_target (nullable) is None
+        # and model_fields_set contains the field
+        if self.mount_target is None and "mount_target" in self.model_fields_set:
+            _dict['mountTarget'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         # set to None if volume_mapping (nullable) is None
         # and model_fields_set contains the field

@@ -19,15 +19,15 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.cluster_tenant_config import ClusterTenantConfig
-from typing import Set
+from cohesity_sdk.helios.models.update_clusters_tenant_configs_response_clusters_inner import UpdateClustersTenantConfigsResponseClustersInner
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateClustersTenantConfigsResponse(BaseModel):
     """
     Updated configurations related to tenants for all clusters.
     """ # noqa: E501
-    clusters: Optional[List[ClusterTenantConfig]] = Field(default=None, description="The list of clusters updated, with errors if any.")
+    clusters: Optional[List[UpdateClustersTenantConfigsResponseClustersInner]] = Field(default=None, description="The list of clusters updated, with errors if any.")
     __properties: ClassVar[List[str]] = ["clusters"]
 
     model_config = ConfigDict(
@@ -88,7 +88,7 @@ class UpdateClustersTenantConfigsResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "clusters": [ClusterTenantConfig.from_dict(_item) for _item in obj["clusters"]] if obj.get("clusters") is not None else None
+            "clusters": [UpdateClustersTenantConfigsResponseClustersInner.from_dict(_item) for _item in obj["clusters"]] if obj.get("clusters") is not None else None
         })
         return _obj
 

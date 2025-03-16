@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.acl_grantee import AclGrantee
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AclGrant(BaseModel):
     """
     Specifies an ACL grant.
     """ # noqa: E501
-    grantee: AclGrantee
+    grantee: AclGrantee = Field(description="Specifies the grantee.")
     permissions: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(description="Specifies a list of permissions granted to the grantees.")
     __properties: ClassVar[List[str]] = ["grantee", "permissions"]
 

@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.kubernetes_namespace_recovery_target_config impo
 from cohesity_sdk.helios.models.kubernetes_pvc_info import KubernetesPvcInfo
 from cohesity_sdk.helios.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
 from cohesity_sdk.helios.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class KubernetesTargetParamsForRecoverKubernetesNamespace(BaseModel):
@@ -34,8 +34,8 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(BaseModel):
     excluded_pvcs: Optional[List[Optional[KubernetesPvcInfo]]] = Field(default=None, description="Specifies the list of pvc to be excluded from recovery.", alias="excludedPvcs")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the objects to be recovered.")
     recover_protection_group_runs_params: Optional[List[RecoverProtectionGroupRunParams]] = Field(default=None, description="Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.", alias="recoverProtectionGroupRunsParams")
-    recovery_target_config: KubernetesNamespaceRecoveryTargetConfig = Field(alias="recoveryTargetConfig")
-    rename_recovered_namespaces_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, alias="renameRecoveredNamespacesParams")
+    recovery_target_config: Optional[KubernetesNamespaceRecoveryTargetConfig] = Field(description="Specifies the recovery target configuration of the Namespace recovery.", alias="recoveryTargetConfig")
+    rename_recovered_namespaces_params: Optional[RecoveredOrClonedVmsRenameConfig] = Field(default=None, description="Specifies params to rename the Namespaces that are recovered. If not specified, the original names of the Namespaces are preserved. If a name collision occurs then the Namespace being recovered will overwrite the Namespace already present on the source.", alias="renameRecoveredNamespacesParams")
     __properties: ClassVar[List[str]] = ["excludedPvcs", "objects", "recoverProtectionGroupRunsParams", "recoveryTargetConfig", "renameRecoveredNamespacesParams"]
 
     model_config = ConfigDict(
@@ -118,6 +118,16 @@ class KubernetesTargetParamsForRecoverKubernetesNamespace(BaseModel):
         # and model_fields_set contains the field
         if self.recover_protection_group_runs_params is None and "recover_protection_group_runs_params" in self.model_fields_set:
             _dict['recoverProtectionGroupRunsParams'] = None
+
+        # set to None if recovery_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.recovery_target_config is None and "recovery_target_config" in self.model_fields_set:
+            _dict['recoveryTargetConfig'] = None
+
+        # set to None if rename_recovered_namespaces_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.rename_recovered_namespaces_params is None and "rename_recovered_namespaces_params" in self.model_fields_set:
+            _dict['renameRecoveredNamespacesParams'] = None
 
         return _dict
 

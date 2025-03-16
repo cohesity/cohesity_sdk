@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.protection_group_archival_run_filter_params import ProtectionGroupArchivalRunFilterParams
 from cohesity_sdk.helios.models.protection_group_backup_run_filter_params import ProtectionGroupBackupRunFilterParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GetMcmProtectionGroupsActivityReqParams(BaseModel):
@@ -30,7 +30,7 @@ class GetMcmProtectionGroupsActivityReqParams(BaseModel):
     """ # noqa: E501
     activity_types: Optional[List[StrictStr]] = Field(default=None, description="Specifies the activity types.", alias="activityTypes")
     archival_run_params: Optional[ProtectionGroupArchivalRunFilterParams] = Field(default=None, alias="archivalRunParams")
-    backup_run_params: Optional[ProtectionGroupBackupRunFilterParams] = Field(default=None, alias="backupRunParams")
+    backup_run_params: Optional[ProtectionGroupBackupRunFilterParams] = Field(default=None, description="Specifies the additional filters in case activity type is set to 'BackupRun'. This does not apply to RPaaS.", alias="backupRunParams")
     environments: Optional[List[StrictStr]] = Field(default=None, description="Specifies the list of environments.")
     from_time_usecs: Optional[StrictInt] = Field(default=None, description="Specifies the time in Unix timestamp epoch in microsecond which filters all the activity started after this value.", alias="fromTimeUsecs")
     include_object_details: Optional[StrictBool] = Field(default=None, description="Specifies whether to include details for objects in response. By default this is false.", alias="includeObjectDetails")
@@ -122,6 +122,11 @@ class GetMcmProtectionGroupsActivityReqParams(BaseModel):
         # and model_fields_set contains the field
         if self.activity_types is None and "activity_types" in self.model_fields_set:
             _dict['activityTypes'] = None
+
+        # set to None if backup_run_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.backup_run_params is None and "backup_run_params" in self.model_fields_set:
+            _dict['backupRunParams'] = None
 
         # set to None if environments (nullable) is None
         # and model_fields_set contains the field

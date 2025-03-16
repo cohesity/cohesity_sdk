@@ -19,18 +19,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_oracle_app_source_config import CommonOracleAppSourceConfig
+from cohesity_sdk.helios.models.recover_oracle_new_target_database_config import RecoverOracleNewTargetDatabaseConfig
+from cohesity_sdk.helios.models.recover_oracle_new_target_view_config import RecoverOracleNewTargetViewConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverOracleAppNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the databases will be recovered.
     """ # noqa: E501
-    host: RecoveryObjectIdentifier
-    recover_database_params: Optional[CommonOracleAppSourceConfig] = Field(default=None, alias="recoverDatabaseParams")
-    recover_view_params: Optional[CommonOracleAppSourceConfig] = Field(default=None, alias="recoverViewParams")
+    host: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the source id of target host where databases will be recovered. This source id can be a physical host or virtual machine.")
+    recover_database_params: Optional[RecoverOracleNewTargetDatabaseConfig] = Field(default=None, description="Specifies recovery parameters when recovering to a database", alias="recoverDatabaseParams")
+    recover_view_params: Optional[RecoverOracleNewTargetViewConfig] = Field(default=None, description="Specifies recovery parameters when recovering to a view.", alias="recoverViewParams")
     recovery_target: Optional[StrictStr] = Field(default=None, description="Specifies if recovery target is a database or a view.", alias="recoveryTarget")
     __properties: ClassVar[List[str]] = ["host", "recoverDatabaseParams", "recoverViewParams", "recoveryTarget"]
 
@@ -92,6 +93,21 @@ class RecoverOracleAppNewSourceConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_view_params
         if self.recover_view_params:
             _dict['recoverViewParams'] = self.recover_view_params.to_dict()
+        # set to None if host (nullable) is None
+        # and model_fields_set contains the field
+        if self.host is None and "host" in self.model_fields_set:
+            _dict['host'] = None
+
+        # set to None if recover_database_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_database_params is None and "recover_database_params" in self.model_fields_set:
+            _dict['recoverDatabaseParams'] = None
+
+        # set to None if recover_view_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.recover_view_params is None and "recover_view_params" in self.model_fields_set:
+            _dict['recoverViewParams'] = None
+
         # set to None if recovery_target (nullable) is None
         # and model_fields_set contains the field
         if self.recovery_target is None and "recovery_target" in self.model_fields_set:
@@ -110,8 +126,8 @@ class RecoverOracleAppNewSourceConfig(BaseModel):
 
         _obj = cls.model_validate({
             "host": RecoveryObjectIdentifier.from_dict(obj["host"]) if obj.get("host") is not None else None,
-            "recoverDatabaseParams": CommonOracleAppSourceConfig.from_dict(obj["recoverDatabaseParams"]) if obj.get("recoverDatabaseParams") is not None else None,
-            "recoverViewParams": CommonOracleAppSourceConfig.from_dict(obj["recoverViewParams"]) if obj.get("recoverViewParams") is not None else None,
+            "recoverDatabaseParams": RecoverOracleNewTargetDatabaseConfig.from_dict(obj["recoverDatabaseParams"]) if obj.get("recoverDatabaseParams") is not None else None,
+            "recoverViewParams": RecoverOracleNewTargetViewConfig.from_dict(obj["recoverViewParams"]) if obj.get("recoverViewParams") is not None else None,
             "recoveryTarget": obj.get("recoveryTarget")
         })
         return _obj

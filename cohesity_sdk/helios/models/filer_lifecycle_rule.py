@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.filer_lifecycle_aging_policy import FilerLifecycleAgingPolicy
 from cohesity_sdk.helios.models.filer_lifecycle_rule_filter import FilerLifecycleRuleFilter
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FilerLifecycleRule(BaseModel):
     """
     Specifies the Lifecycle configuration rule.
     """ # noqa: E501
-    aging_policy: Optional[FilerLifecycleAgingPolicy] = Field(default=None, alias="agingPolicy")
-    file_filter: Optional[FilerLifecycleRuleFilter] = Field(default=None, alias="fileFilter")
+    aging_policy: Optional[FilerLifecycleAgingPolicy] = Field(default=None, description="Specifies the file's selection based on of the following: last modification time, creation time or last access time. This filed is mandatory for rules that are Allow type. Note: Both the fields days and dateInUsecs are mutually exclusive to each other.", alias="agingPolicy")
+    file_filter: Optional[FilerLifecycleRuleFilter] = Field(default=None, description="Specifies the filter used to identify files that a Lifecycle Rule applies to.", alias="fileFilter")
     name: Optional[StrictStr] = Field(description="Specifies the Unique identifier for the rule. No 2 rules in a policy should have the same name. The value cannot be longer than 255 characters.")
     status: Optional[StrictStr] = Field(description="Specifies if the rule is currently being applied.")
     type: Optional[StrictStr] = Field(description="Specifies if the rule is Allow or Deny type.")

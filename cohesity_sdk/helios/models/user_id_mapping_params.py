@@ -26,20 +26,20 @@ from cohesity_sdk.helios.models.ad_ldap_provider_type_params import AdLdapProvid
 from cohesity_sdk.helios.models.ad_nis_provider_type_params import AdNisProviderTypeParams
 from cohesity_sdk.helios.models.ad_rfc2307_type_params import AdRfc2307TypeParams
 from cohesity_sdk.helios.models.ad_sfu30_type_params import AdSfu30TypeParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UserIdMappingParams(BaseModel):
     """
     Specifies how the Unix and Windows users are mapped in an Active Directory.
     """ # noqa: E501
-    centrify_type_params: Optional[AdCentrifyTypeParams] = Field(default=None, alias="centrifyTypeParams")
-    custom_attributes_type_params: Optional[AdCustomAttributesTypeParams] = Field(default=None, alias="customAttributesTypeParams")
-    fixed_type_params: Optional[AdFixedTypeParams] = Field(default=None, alias="fixedTypeParams")
-    ldap_provider_type_params: Optional[AdLdapProviderTypeParams] = Field(default=None, alias="ldapProviderTypeParams")
-    nis_provider_type_params: Optional[AdNisProviderTypeParams] = Field(default=None, alias="nisProviderTypeParams")
-    rfc2307_type_params: Optional[AdRfc2307TypeParams] = Field(default=None, alias="rfc2307TypeParams")
-    sfu30_type_params: Optional[AdSfu30TypeParams] = Field(default=None, alias="sfu30TypeParams")
+    centrify_type_params: Optional[AdCentrifyTypeParams] = Field(default=None, description="Specifies the params for Centrify mapping type mapping.", alias="centrifyTypeParams")
+    custom_attributes_type_params: Optional[AdCustomAttributesTypeParams] = Field(default=None, description="Specifies the params for CustomAttributes mapping type mapping.", alias="customAttributesTypeParams")
+    fixed_type_params: Optional[AdFixedTypeParams] = Field(default=None, description="Specifies the params for Fixed mapping type mapping.", alias="fixedTypeParams")
+    ldap_provider_type_params: Optional[AdLdapProviderTypeParams] = Field(default=None, description="Specifies the params for LdapProvider mapping type mapping.", alias="ldapProviderTypeParams")
+    nis_provider_type_params: Optional[AdNisProviderTypeParams] = Field(default=None, description="Specifies the params for NisProvider mapping type mapping.", alias="nisProviderTypeParams")
+    rfc2307_type_params: Optional[AdRfc2307TypeParams] = Field(default=None, description="Specifies the params for Rfc2307 mapping type mapping.", alias="rfc2307TypeParams")
+    sfu30_type_params: Optional[AdSfu30TypeParams] = Field(default=None, description="Specifies the params for Sfu30 mapping type mapping.", alias="sfu30TypeParams")
     type: StrictStr = Field(description="Specifies the type of the mapping.")
     __properties: ClassVar[List[str]] = ["centrifyTypeParams", "customAttributesTypeParams", "fixedTypeParams", "ldapProviderTypeParams", "nisProviderTypeParams", "rfc2307TypeParams", "sfu30TypeParams", "type"]
 
@@ -110,6 +110,41 @@ class UserIdMappingParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of sfu30_type_params
         if self.sfu30_type_params:
             _dict['sfu30TypeParams'] = self.sfu30_type_params.to_dict()
+        # set to None if centrify_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.centrify_type_params is None and "centrify_type_params" in self.model_fields_set:
+            _dict['centrifyTypeParams'] = None
+
+        # set to None if custom_attributes_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_attributes_type_params is None and "custom_attributes_type_params" in self.model_fields_set:
+            _dict['customAttributesTypeParams'] = None
+
+        # set to None if fixed_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.fixed_type_params is None and "fixed_type_params" in self.model_fields_set:
+            _dict['fixedTypeParams'] = None
+
+        # set to None if ldap_provider_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.ldap_provider_type_params is None and "ldap_provider_type_params" in self.model_fields_set:
+            _dict['ldapProviderTypeParams'] = None
+
+        # set to None if nis_provider_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.nis_provider_type_params is None and "nis_provider_type_params" in self.model_fields_set:
+            _dict['nisProviderTypeParams'] = None
+
+        # set to None if rfc2307_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.rfc2307_type_params is None and "rfc2307_type_params" in self.model_fields_set:
+            _dict['rfc2307TypeParams'] = None
+
+        # set to None if sfu30_type_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.sfu30_type_params is None and "sfu30_type_params" in self.model_fields_set:
+            _dict['sfu30TypeParams'] = None
+
         return _dict
 
     @classmethod

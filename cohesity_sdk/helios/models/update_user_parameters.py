@@ -19,8 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.local_user_update_params import LocalUserUpdateParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateUserParameters(BaseModel):
@@ -33,7 +32,7 @@ class UpdateUserParameters(BaseModel):
     locked: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is locked.")
     restricted: Optional[StrictBool] = Field(default=None, description="Specifies whether the User is restricted. A restricted user can only view & manage the objects it has permissions to.")
     roles: Optional[List[StrictStr]] = Field(default=None, description="Specifies the Cohesity roles to associate with the user. The Cohesity roles determine privileges on the Cohesity Cluster for this user.")
-    local_user_params: Optional[LocalUserUpdateParams] = Field(default=None, alias="localUserParams")
+    local_user_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the LOCAL user properties. This field is required when updating LOCAL Cohesity User params.", alias="localUserParams")
     __properties: ClassVar[List[str]] = ["description", "effectiveTimeMsecs", "expiryTimeMsecs", "locked", "restricted", "roles", "localUserParams"]
 
     model_config = ConfigDict(
@@ -75,9 +74,6 @@ class UpdateUserParameters(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of local_user_params
-        if self.local_user_params:
-            _dict['localUserParams'] = self.local_user_params.to_dict()
         # set to None if description (nullable) is None
         # and model_fields_set contains the field
         if self.description is None and "description" in self.model_fields_set:
@@ -126,7 +122,7 @@ class UpdateUserParameters(BaseModel):
             "locked": obj.get("locked"),
             "restricted": obj.get("restricted"),
             "roles": obj.get("roles"),
-            "localUserParams": LocalUserUpdateParams.from_dict(obj["localUserParams"]) if obj.get("localUserParams") is not None else None
+            "localUserParams": obj.get("localUserParams")
         })
         return _obj
 

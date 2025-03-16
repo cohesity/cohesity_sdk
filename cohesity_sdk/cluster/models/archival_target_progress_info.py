@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.archival_target_tier_info import ArchivalTarget
 from cohesity_sdk.cluster.models.object_progress_info import ObjectProgressInfo
 from cohesity_sdk.cluster.models.progress_stats import ProgressStats
 from cohesity_sdk.cluster.models.progress_task_event import ProgressTaskEvent
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalTargetProgressInfo(BaseModel):

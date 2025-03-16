@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_rds_postgres_custom_server_config import RecoverRDSPostgresCustomServerConfig
 from cohesity_sdk.cluster.models.recover_rds_postgres_to_known_source_config import RecoverRDSPostgresToKnownSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverRDSPostgres(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.hdfs_browse_request_params import HdfsBrowseRequestParams
 from cohesity_sdk.helios.models.pagination_info import PaginationInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectBrowseRequest(BaseModel):

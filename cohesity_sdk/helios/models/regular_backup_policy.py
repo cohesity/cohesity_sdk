@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.full_schedule_and_retention import FullScheduleA
 from cohesity_sdk.helios.models.incremental_backup_policy import IncrementalBackupPolicy
 from cohesity_sdk.helios.models.primary_backup_target import PrimaryBackupTarget
 from cohesity_sdk.helios.models.retention import Retention
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RegularBackupPolicy(BaseModel):

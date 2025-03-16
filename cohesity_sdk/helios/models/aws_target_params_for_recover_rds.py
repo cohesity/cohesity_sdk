@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_rds_recovery_target_config import AwsRdsRecoveryTargetConfig
 from cohesity_sdk.helios.models.rds_config import RdsConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverRds(BaseModel):
     """
     Specifies the parameters for an AWS recovery target.
     """ # noqa: E501
-    rds_config: Optional[RdsConfig] = Field(default=None, alias="rdsConfig")
-    recovery_target_config: Optional[AwsRdsRecoveryTargetConfig] = Field(default=None, alias="recoveryTargetConfig")
+    rds_config: Optional[RdsConfig] = Field(default=None, description="Specifies the RDS params.", alias="rdsConfig")
+    recovery_target_config: Optional[AwsRdsRecoveryTargetConfig] = Field(default=None, description="Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source or to original Source with different configuration. If not specified, then the recovery of the vms will be performed to original location with all configuration parameters retained.", alias="recoveryTargetConfig")
     __properties: ClassVar[List[str]] = ["rdsConfig", "recoveryTargetConfig"]
 
     model_config = ConfigDict(
@@ -77,6 +77,16 @@ class AwsTargetParamsForRecoverRds(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recovery_target_config
         if self.recovery_target_config:
             _dict['recoveryTargetConfig'] = self.recovery_target_config.to_dict()
+        # set to None if rds_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.rds_config is None and "rds_config" in self.model_fields_set:
+            _dict['rdsConfig'] = None
+
+        # set to None if recovery_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.recovery_target_config is None and "recovery_target_config" in self.model_fields_set:
+            _dict['recoveryTargetConfig'] = None
+
         return _dict
 
     @classmethod

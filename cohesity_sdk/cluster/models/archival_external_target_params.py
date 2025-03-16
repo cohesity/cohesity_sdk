@@ -28,7 +28,7 @@ from cohesity_sdk.cluster.models.archival_qstar_tape_external_target_params impo
 from cohesity_sdk.cluster.models.archival_s3_comp_external_target_params import ArchivalS3CompExternalTargetParams
 from cohesity_sdk.cluster.models.encryption_settings import EncryptionSettings
 from cohesity_sdk.cluster.models.target_bandwidth_throttlings import TargetBandwidthThrottlings
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalExternalTargetParams(BaseModel):

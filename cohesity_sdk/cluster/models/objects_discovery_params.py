@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.sites_discovery_params import SitesDiscoveryParams
 from cohesity_sdk.cluster.models.teams_additional_params import TeamsAdditionalParams
 from cohesity_sdk.cluster.models.users_discovery_params import UsersDiscoveryParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ObjectsDiscoveryParams(BaseModel):

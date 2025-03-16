@@ -19,12 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_s3_comp_external_target_params import CommonS3CompExternalTargetParams
 from cohesity_sdk.helios.models.tiering_aws_external_target_params import TieringAwsExternalTargetParams
 from cohesity_sdk.helios.models.tiering_azure_external_target_params import TieringAzureExternalTargetParams
 from cohesity_sdk.helios.models.tiering_gcp_external_target_params import TieringGcpExternalTargetParams
 from cohesity_sdk.helios.models.tiering_oracle_external_target_params import TieringOracleExternalTargetParams
-from typing import Set
+from cohesity_sdk.helios.models.tiering_s3_comp_external_target_params import TieringS3CompExternalTargetParams
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TieringExternalTargetParams(BaseModel):
@@ -37,7 +37,7 @@ class TieringExternalTargetParams(BaseModel):
     azure_params: Optional[TieringAzureExternalTargetParams] = Field(default=None, alias="azureParams")
     gcp_params: Optional[TieringGcpExternalTargetParams] = Field(default=None, alias="gcpParams")
     oracle_params: Optional[TieringOracleExternalTargetParams] = Field(default=None, alias="oracleParams")
-    s3_comp_params: Optional[CommonS3CompExternalTargetParams] = Field(default=None, alias="s3CompParams")
+    s3_comp_params: Optional[TieringS3CompExternalTargetParams] = Field(default=None, alias="s3CompParams")
     __properties: ClassVar[List[str]] = ["encryptionLevel", "storageType", "awsParams", "azureParams", "gcpParams", "oracleParams", "s3CompParams"]
 
     @field_validator('encryption_level')
@@ -142,7 +142,7 @@ class TieringExternalTargetParams(BaseModel):
             "azureParams": TieringAzureExternalTargetParams.from_dict(obj["azureParams"]) if obj.get("azureParams") is not None else None,
             "gcpParams": TieringGcpExternalTargetParams.from_dict(obj["gcpParams"]) if obj.get("gcpParams") is not None else None,
             "oracleParams": TieringOracleExternalTargetParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
-            "s3CompParams": CommonS3CompExternalTargetParams.from_dict(obj["s3CompParams"]) if obj.get("s3CompParams") is not None else None
+            "s3CompParams": TieringS3CompExternalTargetParams.from_dict(obj["s3CompParams"]) if obj.get("s3CompParams") is not None else None
         })
         return _obj
 

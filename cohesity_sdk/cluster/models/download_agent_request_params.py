@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.my_sql_agent_params import MySqlAgentParams
 from cohesity_sdk.cluster.models.sap_hana_agent_params import SapHanaAgentParams
 from cohesity_sdk.cluster.models.sap_oracle_agent_params import SapOracleAgentParams
 from cohesity_sdk.cluster.models.vm_ware_cdp_filter_params import VMWareCDPFilterParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class DownloadAgentRequestParams(BaseModel):

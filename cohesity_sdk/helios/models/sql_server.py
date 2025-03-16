@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.agent_information import AgentInformation
 from cohesity_sdk.helios.models.app_resource import AppResource
 from cohesity_sdk.helios.models.error import Error
 from cohesity_sdk.helios.models.sql_server_instance import SQLServerInstance
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class SQLServer(BaseModel):

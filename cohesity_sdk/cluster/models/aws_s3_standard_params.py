@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_cloud_c2_s_params import AwsCloudC2SParams
 from cohesity_sdk.cluster.models.aws_cloud_gov_params import AwsCloudGovParams
 from cohesity_sdk.cluster.models.aws_cloud_standard_params import AwsCloudStandardParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsS3StandardParams(BaseModel):

@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.log_retention import LogRetention
 from cohesity_sdk.helios.models.onprem_deploy_params import OnpremDeployParams
 from cohesity_sdk.helios.models.retention import Retention
 from cohesity_sdk.helios.models.target_schedule import TargetSchedule
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class OnpremDeployConfig(BaseModel):

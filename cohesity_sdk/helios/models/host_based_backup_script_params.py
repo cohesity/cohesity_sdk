@@ -19,10 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from cohesity_sdk.helios.models.common_post_backup_script_params import CommonPostBackupScriptParams
 from cohesity_sdk.helios.models.common_pre_backup_script_params import CommonPreBackupScriptParams
-from cohesity_sdk.helios.models.common_pre_post_script_params import CommonPrePostScriptParams
 from cohesity_sdk.helios.models.script_host import ScriptHost
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HostBasedBackupScriptParams(BaseModel):
@@ -30,9 +30,9 @@ class HostBasedBackupScriptParams(BaseModel):
     Specifies params of a pre/post scripts to be executed before and after a backup run.
     """ # noqa: E501
     host: ScriptHost
-    post_backup_script: Optional[CommonPrePostScriptParams] = Field(default=None, alias="postBackupScript")
-    post_script: Optional[CommonPrePostScriptParams] = Field(default=None, alias="postScript")
-    post_snapshot_script: Optional[CommonPrePostScriptParams] = Field(default=None, alias="postSnapshotScript")
+    post_backup_script: Optional[CommonPostBackupScriptParams] = Field(default=None, alias="postBackupScript")
+    post_script: Optional[CommonPostBackupScriptParams] = Field(default=None, alias="postScript")
+    post_snapshot_script: Optional[CommonPostBackupScriptParams] = Field(default=None, alias="postSnapshotScript")
     pre_script: Optional[CommonPreBackupScriptParams] = Field(default=None, alias="preScript")
     __properties: ClassVar[List[str]] = ["host", "postBackupScript", "postScript", "postSnapshotScript", "preScript"]
 
@@ -103,9 +103,9 @@ class HostBasedBackupScriptParams(BaseModel):
 
         _obj = cls.model_validate({
             "host": ScriptHost.from_dict(obj["host"]) if obj.get("host") is not None else None,
-            "postBackupScript": CommonPrePostScriptParams.from_dict(obj["postBackupScript"]) if obj.get("postBackupScript") is not None else None,
-            "postScript": CommonPrePostScriptParams.from_dict(obj["postScript"]) if obj.get("postScript") is not None else None,
-            "postSnapshotScript": CommonPrePostScriptParams.from_dict(obj["postSnapshotScript"]) if obj.get("postSnapshotScript") is not None else None,
+            "postBackupScript": CommonPostBackupScriptParams.from_dict(obj["postBackupScript"]) if obj.get("postBackupScript") is not None else None,
+            "postScript": CommonPostBackupScriptParams.from_dict(obj["postScript"]) if obj.get("postScript") is not None else None,
+            "postSnapshotScript": CommonPostBackupScriptParams.from_dict(obj["postSnapshotScript"]) if obj.get("postSnapshotScript") is not None else None,
             "preScript": CommonPreBackupScriptParams.from_dict(obj["preScript"]) if obj.get("preScript") is not None else None
         })
         return _obj

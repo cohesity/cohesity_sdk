@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.scvmm_registration_params import ScvmmRegistrationParams
 from cohesity_sdk.helios.models.standalone_cluster_registration_params import StandaloneClusterRegistrationParams
 from cohesity_sdk.helios.models.standalone_host_registration_params import StandaloneHostRegistrationParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HyperVSourceRegistrationParams(BaseModel):

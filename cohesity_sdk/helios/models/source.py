@@ -19,27 +19,15 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.common_nas_object_params import CommonNasObjectParams
-from cohesity_sdk.helios.models.flashblade_object_params import FlashbladeObjectParams
-from cohesity_sdk.helios.models.group_object_entity_params import GroupObjectEntityParams
-from cohesity_sdk.helios.models.isilon_object_params import IsilonObjectParams
-from cohesity_sdk.helios.models.mongo_db_object_params import MongoDBObjectParams
-from cohesity_sdk.helios.models.mssql_object_entity_params import MssqlObjectEntityParams
-from cohesity_sdk.helios.models.netapp_object_params import NetappObjectParams
 from cohesity_sdk.helios.models.object_protection_stats_summary import ObjectProtectionStatsSummary
 from cohesity_sdk.helios.models.object_string_identifier import ObjectStringIdentifier
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
 from cohesity_sdk.helios.models.object_type_v_center_params import ObjectTypeVCenterParams
 from cohesity_sdk.helios.models.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
-from cohesity_sdk.helios.models.oracle_object_entity_params import OracleObjectEntityParams
 from cohesity_sdk.helios.models.permission_info import PermissionInfo
-from cohesity_sdk.helios.models.physical_object_entity_params import PhysicalObjectEntityParams
-from cohesity_sdk.helios.models.sharepoint_object_entity_params import SharepointObjectEntityParams
 from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObjectParams
-from cohesity_sdk.helios.models.uda_object_params import UdaObjectParams
-from cohesity_sdk.helios.models.view_object_params import ViewObjectParams
 from cohesity_sdk.helios.models.vmware_object_entity_params import VmwareObjectEntityParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class Source(BaseModel):
@@ -65,20 +53,20 @@ class Source(BaseModel):
     windows_cluster_summary: Optional[ObjectTypeWindowsClusterParams] = Field(default=None, alias="windowsClusterSummary")
     permissions: Optional[PermissionInfo] = None
     protection_stats: Optional[List[ObjectProtectionStatsSummary]] = Field(default=None, description="Specifies the count and size of protected and unprotected objects for the size.", alias="protectionStats")
-    elastifile_params: Optional[CommonNasObjectParams] = Field(default=None, alias="elastifileParams")
-    flashblade_params: Optional[FlashbladeObjectParams] = Field(default=None, alias="flashbladeParams")
-    generic_nas_params: Optional[CommonNasObjectParams] = Field(default=None, alias="genericNasParams")
-    gpfs_params: Optional[CommonNasObjectParams] = Field(default=None, alias="gpfsParams")
-    group_params: Optional[GroupObjectEntityParams] = Field(default=None, alias="groupParams")
-    isilon_params: Optional[IsilonObjectParams] = Field(default=None, alias="isilonParams")
-    mongo_db_params: Optional[MongoDBObjectParams] = Field(default=None, alias="mongoDBParams")
-    mssql_params: Optional[MssqlObjectEntityParams] = Field(default=None, alias="mssqlParams")
-    netapp_params: Optional[NetappObjectParams] = Field(default=None, alias="netappParams")
-    oracle_params: Optional[OracleObjectEntityParams] = Field(default=None, alias="oracleParams")
-    physical_params: Optional[PhysicalObjectEntityParams] = Field(default=None, alias="physicalParams")
-    sharepoint_params: Optional[SharepointObjectEntityParams] = Field(default=None, alias="sharepointParams")
-    uda_params: Optional[UdaObjectParams] = Field(default=None, alias="udaParams")
-    view_params: Optional[ViewObjectParams] = Field(default=None, alias="viewParams")
+    elastifile_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Elastifile object.", alias="elastifileParams")
+    flashblade_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Flashblade object.", alias="flashbladeParams")
+    generic_nas_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for GenericNas object.", alias="genericNasParams")
+    gpfs_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for GPFS object.", alias="gpfsParams")
+    group_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for M365 Group object.", alias="groupParams")
+    isilon_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Isilon object.", alias="isilonParams")
+    mongo_db_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for MongoDB object.", alias="mongoDBParams")
+    mssql_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Msssql object.", alias="mssqlParams")
+    netapp_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for NetApp object.", alias="netappParams")
+    oracle_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Oracle object.", alias="oracleParams")
+    physical_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Physical object.", alias="physicalParams")
+    sharepoint_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for Sharepoint object.", alias="sharepointParams")
+    uda_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for UDA object.", alias="udaParams")
+    view_params: Optional[Dict[str, Any]] = Field(default=None, description="Specifies the parameters for a View.", alias="viewParams")
     vmware_params: Optional[VmwareObjectEntityParams] = Field(default=None, alias="vmwareParams")
     last_refreshed_time: Optional[StrictInt] = Field(default=None, description="Time at which the data about this protection source was last refreshed.", alias="lastRefreshedTime")
     registration_id: Optional[StrictInt] = Field(default=None, description="Id of the registration as part of which this source was discovered.", alias="registrationId")
@@ -192,48 +180,6 @@ class Source(BaseModel):
                 if _item_protection_stats:
                     _items.append(_item_protection_stats.to_dict())
             _dict['protectionStats'] = _items
-        # override the default output from pydantic by calling `to_dict()` of elastifile_params
-        if self.elastifile_params:
-            _dict['elastifileParams'] = self.elastifile_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of flashblade_params
-        if self.flashblade_params:
-            _dict['flashbladeParams'] = self.flashblade_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of generic_nas_params
-        if self.generic_nas_params:
-            _dict['genericNasParams'] = self.generic_nas_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of gpfs_params
-        if self.gpfs_params:
-            _dict['gpfsParams'] = self.gpfs_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of group_params
-        if self.group_params:
-            _dict['groupParams'] = self.group_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of isilon_params
-        if self.isilon_params:
-            _dict['isilonParams'] = self.isilon_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of mongo_db_params
-        if self.mongo_db_params:
-            _dict['mongoDBParams'] = self.mongo_db_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of mssql_params
-        if self.mssql_params:
-            _dict['mssqlParams'] = self.mssql_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of netapp_params
-        if self.netapp_params:
-            _dict['netappParams'] = self.netapp_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of oracle_params
-        if self.oracle_params:
-            _dict['oracleParams'] = self.oracle_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of physical_params
-        if self.physical_params:
-            _dict['physicalParams'] = self.physical_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sharepoint_params
-        if self.sharepoint_params:
-            _dict['sharepointParams'] = self.sharepoint_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of uda_params
-        if self.uda_params:
-            _dict['udaParams'] = self.uda_params.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of view_params
-        if self.view_params:
-            _dict['viewParams'] = self.view_params.to_dict()
         # override the default output from pydantic by calling `to_dict()` of vmware_params
         if self.vmware_params:
             _dict['vmwareParams'] = self.vmware_params.to_dict()
@@ -307,11 +253,6 @@ class Source(BaseModel):
         if self.protection_stats is None and "protection_stats" in self.model_fields_set:
             _dict['protectionStats'] = None
 
-        # set to None if view_params (nullable) is None
-        # and model_fields_set contains the field
-        if self.view_params is None and "view_params" in self.model_fields_set:
-            _dict['viewParams'] = None
-
         # set to None if last_refreshed_time (nullable) is None
         # and model_fields_set contains the field
         if self.last_refreshed_time is None and "last_refreshed_time" in self.model_fields_set:
@@ -353,20 +294,20 @@ class Source(BaseModel):
             "windowsClusterSummary": ObjectTypeWindowsClusterParams.from_dict(obj["windowsClusterSummary"]) if obj.get("windowsClusterSummary") is not None else None,
             "permissions": PermissionInfo.from_dict(obj["permissions"]) if obj.get("permissions") is not None else None,
             "protectionStats": [ObjectProtectionStatsSummary.from_dict(_item) for _item in obj["protectionStats"]] if obj.get("protectionStats") is not None else None,
-            "elastifileParams": CommonNasObjectParams.from_dict(obj["elastifileParams"]) if obj.get("elastifileParams") is not None else None,
-            "flashbladeParams": FlashbladeObjectParams.from_dict(obj["flashbladeParams"]) if obj.get("flashbladeParams") is not None else None,
-            "genericNasParams": CommonNasObjectParams.from_dict(obj["genericNasParams"]) if obj.get("genericNasParams") is not None else None,
-            "gpfsParams": CommonNasObjectParams.from_dict(obj["gpfsParams"]) if obj.get("gpfsParams") is not None else None,
-            "groupParams": GroupObjectEntityParams.from_dict(obj["groupParams"]) if obj.get("groupParams") is not None else None,
-            "isilonParams": IsilonObjectParams.from_dict(obj["isilonParams"]) if obj.get("isilonParams") is not None else None,
-            "mongoDBParams": MongoDBObjectParams.from_dict(obj["mongoDBParams"]) if obj.get("mongoDBParams") is not None else None,
-            "mssqlParams": MssqlObjectEntityParams.from_dict(obj["mssqlParams"]) if obj.get("mssqlParams") is not None else None,
-            "netappParams": NetappObjectParams.from_dict(obj["netappParams"]) if obj.get("netappParams") is not None else None,
-            "oracleParams": OracleObjectEntityParams.from_dict(obj["oracleParams"]) if obj.get("oracleParams") is not None else None,
-            "physicalParams": PhysicalObjectEntityParams.from_dict(obj["physicalParams"]) if obj.get("physicalParams") is not None else None,
-            "sharepointParams": SharepointObjectEntityParams.from_dict(obj["sharepointParams"]) if obj.get("sharepointParams") is not None else None,
-            "udaParams": UdaObjectParams.from_dict(obj["udaParams"]) if obj.get("udaParams") is not None else None,
-            "viewParams": ViewObjectParams.from_dict(obj["viewParams"]) if obj.get("viewParams") is not None else None,
+            "elastifileParams": obj.get("elastifileParams"),
+            "flashbladeParams": obj.get("flashbladeParams"),
+            "genericNasParams": obj.get("genericNasParams"),
+            "gpfsParams": obj.get("gpfsParams"),
+            "groupParams": obj.get("groupParams"),
+            "isilonParams": obj.get("isilonParams"),
+            "mongoDBParams": obj.get("mongoDBParams"),
+            "mssqlParams": obj.get("mssqlParams"),
+            "netappParams": obj.get("netappParams"),
+            "oracleParams": obj.get("oracleParams"),
+            "physicalParams": obj.get("physicalParams"),
+            "sharepointParams": obj.get("sharepointParams"),
+            "udaParams": obj.get("udaParams"),
+            "viewParams": obj.get("viewParams"),
             "vmwareParams": VmwareObjectEntityParams.from_dict(obj["vmwareParams"]) if obj.get("vmwareParams") is not None else None,
             "lastRefreshedTime": obj.get("lastRefreshedTime"),
             "registrationId": obj.get("registrationId")

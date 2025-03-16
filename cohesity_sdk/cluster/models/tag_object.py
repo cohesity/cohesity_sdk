@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.cluster.models.tag_info import TagInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TagObject(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_file_and_folder_info import CommonRecoverFileAndFolderInfo
 from cohesity_sdk.helios.models.hyper_v_target_params_for_recover_file_and_folder import HyperVTargetParamsForRecoverFileAndFolder
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverHyperVFileAndFolderParams(BaseModel):
@@ -29,7 +29,7 @@ class RecoverHyperVFileAndFolderParams(BaseModel):
     Specifies the parameters to recover files and folders.
     """ # noqa: E501
     files_and_folders: Optional[List[CommonRecoverFileAndFolderInfo]] = Field(description="Specifies the info about the files and folders to be recovered.", alias="filesAndFolders")
-    hyperv_target_params: Optional[HyperVTargetParamsForRecoverFileAndFolder] = Field(default=None, alias="hypervTargetParams")
+    hyperv_target_params: Optional[HyperVTargetParamsForRecoverFileAndFolder] = Field(default=None, description="Specifies the parameters to recover to a HyperV target.", alias="hypervTargetParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["filesAndFolders", "hypervTargetParams", "targetEnvironment"]
 
@@ -93,6 +93,11 @@ class RecoverHyperVFileAndFolderParams(BaseModel):
         # and model_fields_set contains the field
         if self.files_and_folders is None and "files_and_folders" in self.model_fields_set:
             _dict['filesAndFolders'] = None
+
+        # set to None if hyperv_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.hyperv_target_params is None and "hyperv_target_params" in self.model_fields_set:
+            _dict['hypervTargetParams'] = None
 
         return _dict
 

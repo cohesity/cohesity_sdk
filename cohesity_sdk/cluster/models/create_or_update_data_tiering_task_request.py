@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.data_tiering_target import DataTieringTarget
 from cohesity_sdk.cluster.models.downtiering_policy import DowntieringPolicy
 from cohesity_sdk.cluster.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
 from cohesity_sdk.cluster.models.uptiering_policy import UptieringPolicy
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateOrUpdateDataTieringTaskRequest(BaseModel):

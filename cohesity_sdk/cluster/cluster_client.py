@@ -51,6 +51,7 @@ from cohesity_sdk.cluster.api.tenant_api import TenantApi
 from cohesity_sdk.cluster.api.user_api import UserApi
 from cohesity_sdk.cluster.api.view_api import ViewApi
 
+import re
 from urllib3.exceptions import MaxRetryError
 
 class lazy_property(object):
@@ -87,12 +88,10 @@ class ClusterClient:
         self.auth_timeout = auth_timeout
 
         self.configuration = Configuration()
-        if cluster_vip is not None :
+        if cluster_vip != None:
             self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
-            # for potential use case
-            # self.configuration.host = 'https://xxx.cohesity.com/v2'
 
         # TODO: remove this later, python in MacOS Catalina has a problem in verify SSL
         self.configuration.verify_ssl = False
@@ -100,7 +99,7 @@ class ClusterClient:
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
-        if username is None and password is None and api_key is None :
+        if username == None and password == None and api_key == None:
             raise Exception('Missing authentication info to initialize a client. \
                 Please provide authentication info.')
 

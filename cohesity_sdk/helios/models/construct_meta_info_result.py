@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.oracle_restore_meta_info_result import OracleRestoreMetaInfoResult
 from cohesity_sdk.helios.models.sfdc_meta_info_result import SfdcMetaInfoResult
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ConstructMetaInfoResult(BaseModel):
@@ -29,8 +29,8 @@ class ConstructMetaInfoResult(BaseModel):
     Result to store meta-info from an object snapshot and additional information.
     """ # noqa: E501
     environment: Optional[StrictStr] = Field(default=None, description="Specifies the environment type for fetching the meta Info.")
-    oracle_params: Optional[OracleRestoreMetaInfoResult] = Field(default=None, alias="oracleParams")
-    sfdc_params: Optional[SfdcMetaInfoResult] = Field(default=None, alias="sfdcParams")
+    oracle_params: Optional[OracleRestoreMetaInfoResult] = Field(default=None, description="Specifies 3 Maps required to fill pfile text box.", alias="oracleParams")
+    sfdc_params: Optional[SfdcMetaInfoResult] = Field(default=None, description="Specifies the meta info params for salesforce object.", alias="sfdcParams")
     __properties: ClassVar[List[str]] = ["environment", "oracleParams", "sfdcParams"]
 
     @field_validator('environment')

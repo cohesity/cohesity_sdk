@@ -19,9 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
-from typing import Set
+from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FlashbladeRegistrationParams(BaseModel):
@@ -31,7 +31,7 @@ class FlashbladeRegistrationParams(BaseModel):
     api_token: Optional[StrictStr] = Field(description="Specifies the API Token of the Flashblade Source", alias="apiToken")
     back_up_smb_volumes: Optional[StrictBool] = Field(default=None, description="Specifies whether or not to back up SMB Volumes.", alias="backUpSMBVolumes")
     endpoint: Optional[StrictStr] = Field(description="Specifies the Hostname or IP Address Endpoint for the Flashblade Source.")
-    smb_credentials: Optional[Credentials] = Field(default=None, alias="smbCredentials")
+    smb_credentials: Optional[SmbMountCredentials] = Field(default=None, alias="smbCredentials")
     throttling_config: Optional[NasThrottlingConfig] = Field(default=None, alias="throttlingConfig")
     __properties: ClassVar[List[str]] = ["apiToken", "backUpSMBVolumes", "endpoint", "smbCredentials", "throttlingConfig"]
 
@@ -110,7 +110,7 @@ class FlashbladeRegistrationParams(BaseModel):
             "apiToken": obj.get("apiToken"),
             "backUpSMBVolumes": obj.get("backUpSMBVolumes"),
             "endpoint": obj.get("endpoint"),
-            "smbCredentials": Credentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
+            "smbCredentials": SmbMountCredentials.from_dict(obj["smbCredentials"]) if obj.get("smbCredentials") is not None else None,
             "throttlingConfig": NasThrottlingConfig.from_dict(obj["throttlingConfig"]) if obj.get("throttlingConfig") is not None else None
         })
         return _obj

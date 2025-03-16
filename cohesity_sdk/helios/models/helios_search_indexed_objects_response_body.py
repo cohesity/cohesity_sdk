@@ -19,10 +19,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.global_cluster_identifier import GlobalClusterIdentifier
+from cohesity_sdk.helios.models.helios_cassandra_objects_inner import HeliosCassandraObjectsInner
+from cohesity_sdk.helios.models.helios_couchbase_objects_inner import HeliosCouchbaseObjectsInner
+from cohesity_sdk.helios.models.helios_emails_inner import HeliosEmailsInner
+from cohesity_sdk.helios.models.helios_exchange_objects_inner import HeliosExchangeObjectsInner
+from cohesity_sdk.helios.models.helios_files_inner import HeliosFilesInner
+from cohesity_sdk.helios.models.helios_hbase_objects_inner import HeliosHbaseObjectsInner
+from cohesity_sdk.helios.models.helios_hdfs_objects_inner import HeliosHdfsObjectsInner
+from cohesity_sdk.helios.models.helios_hive_objects_inner import HeliosHiveObjectsInner
+from cohesity_sdk.helios.models.helios_mongo_objects_inner import HeliosMongoObjectsInner
+from cohesity_sdk.helios.models.helios_public_folder_items_inner import HeliosPublicFolderItemsInner
 from cohesity_sdk.helios.models.helios_search_indexed_objects_cluster_error import HeliosSearchIndexedObjectsClusterError
 from cohesity_sdk.helios.models.sfdc_records import SfdcRecords
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosSearchIndexedObjectsResponseBody(BaseModel):
@@ -32,16 +41,16 @@ class HeliosSearchIndexedObjectsResponseBody(BaseModel):
     cluster_errors: Optional[List[HeliosSearchIndexedObjectsClusterError]] = Field(default=None, description="A List of errors that occured on a subset of clusters.", alias="clusterErrors")
     count: Optional[StrictInt] = Field(default=None, description="Specifies the total number of indexed objects that match the filter and search criteria. Use this value to determine how many additional requests are required to get the full result.")
     object_type: Optional[StrictStr] = Field(default=None, description="Specifies the object type.", alias="objectType")
-    cassandra_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed Cassandra objects.", alias="cassandraObjects")
-    couchbase_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed Couchbase objects.", alias="couchbaseObjects")
-    emails: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed emails and email folders.")
-    exchange_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed HDFS objects.", alias="exchangeObjects")
-    files: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed files and file folders.")
-    hbase_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed Hbase objects.", alias="hbaseObjects")
-    hdfs_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed HDFS objects.", alias="hdfsObjects")
-    hive_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed Hive objects.", alias="hiveObjects")
-    mongo_objects: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed Mongo objects.", alias="mongoObjects")
-    public_folder_items: Optional[List[GlobalClusterIdentifier]] = Field(default=None, description="Specifies the indexed Public folder items.", alias="publicFolderItems")
+    cassandra_objects: Optional[List[HeliosCassandraObjectsInner]] = Field(default=None, description="Specifies the indexed Cassandra objects.", alias="cassandraObjects")
+    couchbase_objects: Optional[List[HeliosCouchbaseObjectsInner]] = Field(default=None, description="Specifies the indexed Couchbase objects.", alias="couchbaseObjects")
+    emails: Optional[List[HeliosEmailsInner]] = Field(default=None, description="Specifies the indexed emails and email folders.")
+    exchange_objects: Optional[List[HeliosExchangeObjectsInner]] = Field(default=None, description="Specifies the indexed HDFS objects.", alias="exchangeObjects")
+    files: Optional[List[HeliosFilesInner]] = Field(default=None, description="Specifies the indexed files and file folders.")
+    hbase_objects: Optional[List[HeliosHbaseObjectsInner]] = Field(default=None, description="Specifies the indexed Hbase objects.", alias="hbaseObjects")
+    hdfs_objects: Optional[List[HeliosHdfsObjectsInner]] = Field(default=None, description="Specifies the indexed HDFS objects.", alias="hdfsObjects")
+    hive_objects: Optional[List[HeliosHiveObjectsInner]] = Field(default=None, description="Specifies the indexed Hive objects.", alias="hiveObjects")
+    mongo_objects: Optional[List[HeliosMongoObjectsInner]] = Field(default=None, description="Specifies the indexed Mongo objects.", alias="mongoObjects")
+    public_folder_items: Optional[List[HeliosPublicFolderItemsInner]] = Field(default=None, description="Specifies the indexed Public folder items.", alias="publicFolderItems")
     sfdc_records: Optional[SfdcRecords] = Field(default=None, alias="sfdcRecords")
     __properties: ClassVar[List[str]] = ["clusterErrors", "count", "objectType", "cassandraObjects", "couchbaseObjects", "emails", "exchangeObjects", "files", "hbaseObjects", "hdfsObjects", "hiveObjects", "mongoObjects", "publicFolderItems", "sfdcRecords"]
 
@@ -199,16 +208,16 @@ class HeliosSearchIndexedObjectsResponseBody(BaseModel):
             "clusterErrors": [HeliosSearchIndexedObjectsClusterError.from_dict(_item) for _item in obj["clusterErrors"]] if obj.get("clusterErrors") is not None else None,
             "count": obj.get("count"),
             "objectType": obj.get("objectType"),
-            "cassandraObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["cassandraObjects"]] if obj.get("cassandraObjects") is not None else None,
-            "couchbaseObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["couchbaseObjects"]] if obj.get("couchbaseObjects") is not None else None,
-            "emails": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["emails"]] if obj.get("emails") is not None else None,
-            "exchangeObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["exchangeObjects"]] if obj.get("exchangeObjects") is not None else None,
-            "files": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["files"]] if obj.get("files") is not None else None,
-            "hbaseObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["hbaseObjects"]] if obj.get("hbaseObjects") is not None else None,
-            "hdfsObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["hdfsObjects"]] if obj.get("hdfsObjects") is not None else None,
-            "hiveObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["hiveObjects"]] if obj.get("hiveObjects") is not None else None,
-            "mongoObjects": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["mongoObjects"]] if obj.get("mongoObjects") is not None else None,
-            "publicFolderItems": [GlobalClusterIdentifier.from_dict(_item) for _item in obj["publicFolderItems"]] if obj.get("publicFolderItems") is not None else None,
+            "cassandraObjects": [HeliosCassandraObjectsInner.from_dict(_item) for _item in obj["cassandraObjects"]] if obj.get("cassandraObjects") is not None else None,
+            "couchbaseObjects": [HeliosCouchbaseObjectsInner.from_dict(_item) for _item in obj["couchbaseObjects"]] if obj.get("couchbaseObjects") is not None else None,
+            "emails": [HeliosEmailsInner.from_dict(_item) for _item in obj["emails"]] if obj.get("emails") is not None else None,
+            "exchangeObjects": [HeliosExchangeObjectsInner.from_dict(_item) for _item in obj["exchangeObjects"]] if obj.get("exchangeObjects") is not None else None,
+            "files": [HeliosFilesInner.from_dict(_item) for _item in obj["files"]] if obj.get("files") is not None else None,
+            "hbaseObjects": [HeliosHbaseObjectsInner.from_dict(_item) for _item in obj["hbaseObjects"]] if obj.get("hbaseObjects") is not None else None,
+            "hdfsObjects": [HeliosHdfsObjectsInner.from_dict(_item) for _item in obj["hdfsObjects"]] if obj.get("hdfsObjects") is not None else None,
+            "hiveObjects": [HeliosHiveObjectsInner.from_dict(_item) for _item in obj["hiveObjects"]] if obj.get("hiveObjects") is not None else None,
+            "mongoObjects": [HeliosMongoObjectsInner.from_dict(_item) for _item in obj["mongoObjects"]] if obj.get("mongoObjects") is not None else None,
+            "publicFolderItems": [HeliosPublicFolderItemsInner.from_dict(_item) for _item in obj["publicFolderItems"]] if obj.get("publicFolderItems") is not None else None,
             "sfdcRecords": SfdcRecords.from_dict(obj["sfdcRecords"]) if obj.get("sfdcRecords") is not None else None
         })
         return _obj

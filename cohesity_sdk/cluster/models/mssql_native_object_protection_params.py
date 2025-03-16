@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.advanced_settings import AdvancedSettings
 from cohesity_sdk.cluster.models.filter import Filter
 from cohesity_sdk.cluster.models.mssql_native_object_protection import MssqlNativeObjectProtection
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class MssqlNativeObjectProtectionParams(BaseModel):

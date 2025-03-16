@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_target import RecoverTarget
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class PhysicalTargetParamsForRecoverFileAndFolder(BaseModel):
@@ -34,11 +34,11 @@ class PhysicalTargetParamsForRecoverFileAndFolder(BaseModel):
     preserve_acls: Optional[StrictBool] = Field(default=None, description="Whether to preserve the ACLs of the original file.", alias="preserveAcls")
     preserve_attributes: Optional[StrictBool] = Field(default=None, description="Specifies whether to preserve file/folder attributes during recovery.", alias="preserveAttributes")
     preserve_timestamps: Optional[StrictBool] = Field(default=None, description="Whether to preserve the original time stamps.", alias="preserveTimestamps")
-    recover_target: RecoverTarget = Field(alias="recoverTarget")
+    recover_target: RecoverTarget = Field(description="Specifies the target entity where the volumes are being mounted.", alias="recoverTarget")
     restore_entity_type: Optional[StrictStr] = Field(default=None, description="Specifies the restore type (restore everything or ACLs only) when restoring or downloading files or folders from a Physical file based or block based backup snapshot.", alias="restoreEntityType")
     restore_to_original_paths: Optional[StrictBool] = Field(default=None, description="If this is true, then files will be restored to original paths.", alias="restoreToOriginalPaths")
     save_success_files: Optional[StrictBool] = Field(default=None, description="Specifies whether to save success files or not. Default value is false", alias="saveSuccessFiles")
-    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, alias="vlanConfig")
+    vlan_config: Optional[RecoveryVlanConfig] = Field(default=None, description="Specifies VLAN Params associated with the recovered. If this is not specified, then the VLAN settings will be automatically selected from one of the below options: a. If VLANs are configured on Cohesity, then the VLAN host/VIP will be automatically based on the client's (e.g. ESXI host) IP address. b. If VLANs are not configured on Cohesity, then the partition hostname or VIPs will be used for Recovery.", alias="vlanConfig")
     __properties: ClassVar[List[str]] = ["alternateRestoreDirectory", "continueOnError", "overwriteExisting", "preserveAcls", "preserveAttributes", "preserveTimestamps", "recoverTarget", "restoreEntityType", "restoreToOriginalPaths", "saveSuccessFiles", "vlanConfig"]
 
     @field_validator('restore_entity_type')
@@ -140,6 +140,11 @@ class PhysicalTargetParamsForRecoverFileAndFolder(BaseModel):
         # and model_fields_set contains the field
         if self.save_success_files is None and "save_success_files" in self.model_fields_set:
             _dict['saveSuccessFiles'] = None
+
+        # set to None if vlan_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.vlan_config is None and "vlan_config" in self.model_fields_set:
+            _dict['vlanConfig'] = None
 
         return _dict
 

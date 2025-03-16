@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.backup_attempt import BackupAttempt
 from cohesity_sdk.cluster.models.snapshot_info import SnapshotInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class BackupRun(BaseModel):

@@ -1,5 +1,7 @@
 from cohesity_sdk.helios.configuration import Configuration
 from cohesity_sdk.helios.api_client import ApiClient
+from cohesity_sdk.helios.exceptions import ApiException
+from cohesity_sdk.helios.models.create_access_token_request_params import CreateAccessTokenRequestParams
 
 
 from cohesity_sdk.helios.api.access_token_api import AccessTokenApi
@@ -17,6 +19,7 @@ from cohesity_sdk.helios.api.data_tiering_api import DataTieringApi
 from cohesity_sdk.helios.api.external_target_api import ExternalTargetApi
 from cohesity_sdk.helios.api.failover_api import FailoverApi
 from cohesity_sdk.helios.api.firewall_api import FirewallApi
+from cohesity_sdk.helios.api.fort_knox_api import FortKnoxApi
 from cohesity_sdk.helios.api.fortknox_api import FortknoxApi
 from cohesity_sdk.helios.api.helios_data_protect_stats_api import HeliosDataProtectStatsApi
 from cohesity_sdk.helios.api.helios_notifications_api import HeliosNotificationsApi
@@ -59,6 +62,8 @@ from cohesity_sdk.helios.api.user_api import UserApi
 from cohesity_sdk.helios.api.user_preferences_api import UserPreferencesApi
 from cohesity_sdk.helios.api.view_api import ViewApi
 
+import re
+from urllib3.exceptions import MaxRetryError
 
 class lazy_property(object):
 
@@ -98,7 +103,7 @@ class McmV2Client:
         # TODO: remove this once the backend has ssl certificate setup
         self.configuration.verify_ssl = False
 
-        if cluster_vip is not None :
+        if cluster_vip != None:
             self.configuration.host = f"https://{cluster_vip}/v2"
         else:
             raise Exception('Missing cluster_vip info to initialize a client.')
@@ -106,7 +111,7 @@ class McmV2Client:
         # This fixes the response type conflict between the backend and Swagger spec file
         self.configuration.discard_unknown_keys = True
 
-        if api_key is None :
+        if api_key == None:
             raise Exception('Fail to initialize a client. Please provide authentication info.')
 
         self.__authenticate()
@@ -209,6 +214,12 @@ class McmV2Client:
         self.__authenticate()
         with ApiClient(self.configuration) as api_client:
             return FirewallApi(api_client)
+
+    @lazy_property
+    def fort_knox_api(self):
+        self.__authenticate()
+        with ApiClient(self.configuration) as api_client:
+            return FortKnoxApi(api_client)
 
     @lazy_property
     def fortknox_api(self):

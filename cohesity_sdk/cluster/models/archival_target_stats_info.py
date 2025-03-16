@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.archival_target_tier_info import ArchivalTarget
 from cohesity_sdk.cluster.models.backup_generic_stats import BackupGenericStats
 from cohesity_sdk.cluster.models.backup_nas_stats import BackupNasStats
 from cohesity_sdk.cluster.models.object_stats_info import ObjectStatsInfo
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ArchivalTargetStatsInfo(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.target_teams_channel_param import TargetTeamsChannelParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class TargetMsTeamParam(BaseModel):
@@ -29,8 +29,8 @@ class TargetMsTeamParam(BaseModel):
     Specifies the target Microsoft 365 Team to recover to.
     """ # noqa: E501
     parent_source_id: Optional[StrictInt] = Field(default=None, description="Specifies the id of the domain during alternate domain recovery.", alias="parentSourceId")
-    target_team: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="targetTeam")
-    target_teams_channel_param: Optional[TargetTeamsChannelParam] = Field(default=None, alias="targetTeamsChannelParam")
+    target_team: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the selected existing target team info.", alias="targetTeam")
+    target_teams_channel_param: Optional[TargetTeamsChannelParam] = Field(default=None, description="Specifies the ms team target channel parameters in case of granular restore to alternate location.", alias="targetTeamsChannelParam")
     __properties: ClassVar[List[str]] = ["parentSourceId", "targetTeam", "targetTeamsChannelParam"]
 
     model_config = ConfigDict(
@@ -82,6 +82,11 @@ class TargetMsTeamParam(BaseModel):
         # and model_fields_set contains the field
         if self.parent_source_id is None and "parent_source_id" in self.model_fields_set:
             _dict['parentSourceId'] = None
+
+        # set to None if target_team (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_team is None and "target_team" in self.model_fields_set:
+            _dict['targetTeam'] = None
 
         return _dict
 

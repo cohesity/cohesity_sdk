@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_tenant_profile import McmTenantProfile
 from cohesity_sdk.helios.models.tenant_access import TenantAccess
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class IdpPrincipal(BaseModel):

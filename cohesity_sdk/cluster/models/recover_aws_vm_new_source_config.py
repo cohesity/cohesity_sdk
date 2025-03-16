@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.encryption_config import EncryptionConfig
 from cohesity_sdk.cluster.models.recover_aws_vm_new_source_network_config import RecoverAwsVmNewSourceNetworkConfig
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverAwsVmNewSourceConfig(BaseModel):

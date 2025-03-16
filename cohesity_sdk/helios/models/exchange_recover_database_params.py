@@ -22,16 +22,16 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.exchange_database_recovery_target_config import ExchangeDatabaseRecoveryTargetConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.view_options import ViewOptions
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class ExchangeRecoverDatabaseParams(BaseModel):
     """
     Specifies the parameters to recover an Exchange database. database.
     """ # noqa: E501
-    database_source: RecoveryObjectIdentifier = Field(alias="databaseSource")
+    database_source: Optional[RecoveryObjectIdentifier] = Field(description="Specifies the source id of Exchange database which has to be recovered.", alias="databaseSource")
     recover_to_new_source: StrictBool = Field(description="Specifies the parameter whether the recovery should be performed to a new or an existing Source Target.", alias="recoverToNewSource")
-    recovery_target_config: Optional[ExchangeDatabaseRecoveryTargetConfig] = Field(default=None, alias="recoveryTargetConfig")
+    recovery_target_config: Optional[ExchangeDatabaseRecoveryTargetConfig] = Field(default=None, description="Specifies the recovery target configuration if recovery has to be done to a different location which is different from original source.", alias="recoveryTargetConfig")
     restore_type: Optional[StrictStr] = Field(description="Specifies the type of exchange restore.", alias="restoreType")
     view_options: Optional[ViewOptions] = Field(default=None, alias="viewOptions")
     __properties: ClassVar[List[str]] = ["databaseSource", "recoverToNewSource", "recoveryTargetConfig", "restoreType", "viewOptions"]
@@ -94,6 +94,16 @@ class ExchangeRecoverDatabaseParams(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of view_options
         if self.view_options:
             _dict['viewOptions'] = self.view_options.to_dict()
+        # set to None if database_source (nullable) is None
+        # and model_fields_set contains the field
+        if self.database_source is None and "database_source" in self.model_fields_set:
+            _dict['databaseSource'] = None
+
+        # set to None if recovery_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.recovery_target_config is None and "recovery_target_config" in self.model_fields_set:
+            _dict['recoveryTargetConfig'] = None
+
         # set to None if restore_type (nullable) is None
         # and model_fields_set contains the field
         if self.restore_type is None and "restore_type" in self.model_fields_set:

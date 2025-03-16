@@ -21,18 +21,18 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_kvm_vm_new_source_network_config import RecoverKvmVmNewSourceNetworkConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverKvmVmNewSourceConfig(BaseModel):
     """
     Specifies the new destination Source configuration where the VMs will be recovered.
     """ # noqa: E501
-    cluster: RecoveryObjectIdentifier
-    data_center: RecoveryObjectIdentifier = Field(alias="dataCenter")
-    network_config: Optional[RecoverKvmVmNewSourceNetworkConfig] = Field(default=None, alias="networkConfig")
-    source: RecoveryObjectIdentifier
-    storage_domain: RecoveryObjectIdentifier = Field(alias="storageDomain")
+    cluster: RecoveryObjectIdentifier = Field(description="Specifies the resource (KVMH host) to which the restored VM will be attached")
+    data_center: RecoveryObjectIdentifier = Field(description="Specifies the datacenter where the VM's files should be restored to.", alias="dataCenter")
+    network_config: Optional[RecoverKvmVmNewSourceNetworkConfig] = Field(default=None, description="Specifies the networking configuration to be applied to the recovered VMs.", alias="networkConfig")
+    source: RecoveryObjectIdentifier = Field(description="Specifies the id of the parent source to recover the VMs.")
+    storage_domain: RecoveryObjectIdentifier = Field(description="Specifies the Storage Domain where the VM's disk should be restored to.", alias="storageDomain")
     __properties: ClassVar[List[str]] = ["cluster", "dataCenter", "networkConfig", "source", "storageDomain"]
 
     model_config = ConfigDict(

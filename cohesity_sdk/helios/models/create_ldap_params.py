@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.simple_auth_params import SimpleAuthParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class CreateLdapParams(BaseModel):
@@ -43,7 +43,7 @@ class CreateLdapParams(BaseModel):
     object_class_user: Optional[StrictStr] = Field(default=None, description="Specifies name of the LDAP user object class for user accounts.", alias="objectClassUser")
     port: Optional[StrictInt] = Field(default=None, description="Specifies the LDAP server port.")
     preferred_ldap_servers: Optional[Annotated[List[StrictStr], Field(min_length=1)]] = Field(default=None, description="Specifies a list of preferred LDAP servers. Servers should either be FQDNs or IP addresses.", alias="preferredLdapServers")
-    simple_auth_params: Optional[SimpleAuthParams] = Field(default=None, alias="simpleAuthParams")
+    simple_auth_params: Optional[SimpleAuthParams] = Field(default=None, description="Specifies the parameters for LDAP with 'Simple' authentication type.", alias="simpleAuthParams")
     __properties: ClassVar[List[str]] = ["activeDirectoryId", "adDomainName", "attributeCommonName", "attributeGid", "attributeMemberOf", "attributeUid", "attributeUsername", "authType", "baseDistinguishedName", "domainName", "name", "objectClassGroup", "objectClassUser", "port", "preferredLdapServers", "simpleAuthParams"]
 
     @field_validator('auth_type')

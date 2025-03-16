@@ -19,10 +19,10 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
+from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
 from cohesity_sdk.helios.models.universal_id import UniversalId
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class GenericNasRegistrationParams(BaseModel):
@@ -33,7 +33,7 @@ class GenericNasRegistrationParams(BaseModel):
     mode: Optional[StrictStr] = Field(description="Specifies the mode of the source. 'kNfs3' indicates NFS3 mode. 'kNfs4_1' indicates NFS4.1 mode. 'kCifs1' indicates SMB mode.")
     mount_point: Optional[StrictStr] = Field(description="Specifies the MountPoint for Generic NAS Source.", alias="mountPoint")
     skip_validation: Optional[StrictBool] = Field(default=None, description="Specifies if validation has to be skipped while registering the mount point.", alias="skipValidation")
-    smb_mount_credentials: Optional[Credentials] = Field(default=None, alias="smbMountCredentials")
+    smb_mount_credentials: Optional[SmbMountCredentials] = Field(default=None, alias="smbMountCredentials")
     throttling_config: Optional[NasThrottlingConfig] = Field(default=None, alias="throttlingConfig")
     uid: Optional[UniversalId] = None
     __properties: ClassVar[List[str]] = ["description", "mode", "mountPoint", "skipValidation", "smbMountCredentials", "throttlingConfig", "uid"]
@@ -132,7 +132,7 @@ class GenericNasRegistrationParams(BaseModel):
             "mode": obj.get("mode"),
             "mountPoint": obj.get("mountPoint"),
             "skipValidation": obj.get("skipValidation"),
-            "smbMountCredentials": Credentials.from_dict(obj["smbMountCredentials"]) if obj.get("smbMountCredentials") is not None else None,
+            "smbMountCredentials": SmbMountCredentials.from_dict(obj["smbMountCredentials"]) if obj.get("smbMountCredentials") is not None else None,
             "throttlingConfig": NasThrottlingConfig.from_dict(obj["throttlingConfig"]) if obj.get("throttlingConfig") is not None else None,
             "uid": UniversalId.from_dict(obj["uid"]) if obj.get("uid") is not None else None
         })

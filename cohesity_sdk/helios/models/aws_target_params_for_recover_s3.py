@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_recover_s3_new_target_config import AwsRecoverS3NewTargetConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverS3(BaseModel):
@@ -28,7 +28,7 @@ class AwsTargetParamsForRecoverS3(BaseModel):
     Specifies the parameters for an AWS recovery target.
     """ # noqa: E501
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue restore on receiving error or not. Default is true.", alias="continueOnError")
-    new_target_config: Optional[AwsRecoverS3NewTargetConfig] = Field(default=None, alias="newTargetConfig")
+    new_target_config: Optional[AwsRecoverS3NewTargetConfig] = Field(default=None, description="Specifies the configuration for recovering to a new target.", alias="newTargetConfig")
     object_prefix: Optional[StrictStr] = Field(default=None, description="Specifies the prefix to be added to all the objects being recovered.", alias="objectPrefix")
     overwrite_existing: Optional[StrictBool] = Field(default=None, description="Specifies whether to override the existing objects. Default is false.", alias="overwriteExisting")
     preserve_attributes: Optional[StrictBool] = Field(default=None, description="Specifies whether to preserve the objects attributes at the time of restore. Default is true.", alias="preserveAttributes")
@@ -81,6 +81,11 @@ class AwsTargetParamsForRecoverS3(BaseModel):
         # and model_fields_set contains the field
         if self.continue_on_error is None and "continue_on_error" in self.model_fields_set:
             _dict['continueOnError'] = None
+
+        # set to None if new_target_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.new_target_config is None and "new_target_config" in self.model_fields_set:
+            _dict['newTargetConfig'] = None
 
         # set to None if object_prefix (nullable) is None
         # and model_fields_set contains the field

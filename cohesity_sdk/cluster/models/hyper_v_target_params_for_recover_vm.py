@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.hyper_vvm_recovery_target_config import HyperVVmRecoveryTargetConfig
 from cohesity_sdk.cluster.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
 from cohesity_sdk.cluster.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HyperVTargetParamsForRecoverVm(BaseModel):

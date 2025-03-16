@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.hadoop_connection_params_ssh_password_credentials import HadoopConnectionParamsSshPasswordCredentials
 from cohesity_sdk.helios.models.hadoop_connection_params_ssh_private_key_credentials import HadoopConnectionParamsSshPrivateKeyCredentials
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HadoopConnectionParams(BaseModel):

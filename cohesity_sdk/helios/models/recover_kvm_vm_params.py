@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.kvm_target_params_for_recover_vm import KvmTargetParamsForRecoverVm
 from cohesity_sdk.helios.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverKvmVmParams(BaseModel):
     """
     Specifies the parameters to recover VMs.
     """ # noqa: E501
-    kvm_target_params: Optional[KvmTargetParamsForRecoverVm] = Field(default=None, alias="kvmTargetParams")
+    kvm_target_params: Optional[KvmTargetParamsForRecoverVm] = Field(default=None, description="Specifies the params for recovering to a KVM target.", alias="kvmTargetParams")
     recover_protection_group_runs_params: Optional[List[RecoverProtectionGroupRunParams]] = Field(default=None, description="Specifies the Protection Group Runs params to recover. All the VM's that are successfully backed up by specified Runs will be recovered. This can be specified along with individual snapshots of VMs. User has to make sure that specified Object snapshots and Protection Group Runs should not have any intersection. For example, user cannot specify multiple Runs which has same Object or an Object snapshot and a Run which has same Object's snapshot.", alias="recoverProtectionGroupRunsParams")
     target_environment: StrictStr = Field(description="Specifies the environment of the recovery target. The corresponding params below must be filled out.", alias="targetEnvironment")
     __properties: ClassVar[List[str]] = ["kvmTargetParams", "recoverProtectionGroupRunsParams", "targetEnvironment"]
@@ -89,6 +89,11 @@ class RecoverKvmVmParams(BaseModel):
                 if _item_recover_protection_group_runs_params:
                     _items.append(_item_recover_protection_group_runs_params.to_dict())
             _dict['recoverProtectionGroupRunsParams'] = _items
+        # set to None if kvm_target_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.kvm_target_params is None and "kvm_target_params" in self.model_fields_set:
+            _dict['kvmTargetParams'] = None
+
         # set to None if recover_protection_group_runs_params (nullable) is None
         # and model_fields_set contains the field
         if self.recover_protection_group_runs_params is None and "recover_protection_group_runs_params" in self.model_fields_set:

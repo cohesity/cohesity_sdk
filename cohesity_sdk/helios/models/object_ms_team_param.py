@@ -28,8 +28,8 @@ class ObjectMsTeamParam(BaseModel):
     """
     Specifies recovery parameters associated with a Microsoft 365 Team.
     """ # noqa: E501
-    ms_team_param: MsTeamParam = Field(alias="msTeamParam")
-    recover_object: CommonRecoverObjectSnapshotParams = Field(alias="recoverObject")
+    ms_team_param: MsTeamParam = Field(description="Specifies parameters to recover a Microsoft 365 Team.", alias="msTeamParam")
+    recover_object: CommonRecoverObjectSnapshotParams = Field(description="Specifies the Microsoft 365 Team recover object info.", alias="recoverObject")
     __properties: ClassVar[List[str]] = ["msTeamParam", "recoverObject"]
 
     model_config = ConfigDict(

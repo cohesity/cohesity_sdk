@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_site_param import ObjectSiteParam
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.target_site_param import TargetSiteParam
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverSiteParams(BaseModel):
@@ -32,8 +32,8 @@ class RecoverSiteParams(BaseModel):
     continue_on_error: Optional[StrictBool] = Field(default=None, description="Specifies whether to continue recovering the doc libs of a site, if one or more of doc libs failed to recover. Default value is false.", alias="continueOnError")
     objects: Optional[List[ObjectSiteParam]] = Field(description="Specifies a list of site params associated with the objects to recover.")
     recover_preservation_hold_library: Optional[StrictBool] = Field(default=None, description="Specifies whether to recover Preservation Hold Library associated with the Sites selected for restore. Default value is false.", alias="recoverPreservationHoldLibrary")
-    target_domain_object_id: Optional[RecoveryObjectIdentifier] = Field(default=None, alias="targetDomainObjectId")
-    target_site: Optional[TargetSiteParam] = Field(default=None, alias="targetSite")
+    target_domain_object_id: Optional[RecoveryObjectIdentifier] = Field(default=None, description="Specifies the object id of the target domain in case of full recovery of a site to a target domain.", alias="targetDomainObjectId")
+    target_site: Optional[TargetSiteParam] = Field(default=None, description="Specifies the target Site to recover to. If not specified, the objects will be recovered to original location.", alias="targetSite")
     __properties: ClassVar[List[str]] = ["continueOnError", "objects", "recoverPreservationHoldLibrary", "targetDomainObjectId", "targetSite"]
 
     model_config = ConfigDict(
@@ -102,6 +102,11 @@ class RecoverSiteParams(BaseModel):
         # and model_fields_set contains the field
         if self.recover_preservation_hold_library is None and "recover_preservation_hold_library" in self.model_fields_set:
             _dict['recoverPreservationHoldLibrary'] = None
+
+        # set to None if target_domain_object_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.target_domain_object_id is None and "target_domain_object_id" in self.model_fields_set:
+            _dict['targetDomainObjectId'] = None
 
         return _dict
 

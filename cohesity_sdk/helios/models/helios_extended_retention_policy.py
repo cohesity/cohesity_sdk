@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_extended_retention_schedule import HeliosExtendedRetentionSchedule
 from cohesity_sdk.helios.models.helios_retention import HeliosRetention
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class HeliosExtendedRetentionPolicy(BaseModel):

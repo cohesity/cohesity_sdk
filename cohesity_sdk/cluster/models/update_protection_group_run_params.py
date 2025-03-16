@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.update_archival_snapshot_config import UpdateArchivalSnapshotConfig
 from cohesity_sdk.cluster.models.update_local_snapshot_config import UpdateLocalSnapshotConfig
 from cohesity_sdk.cluster.models.update_replication_snapshot_config import UpdateReplicationSnapshotConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class UpdateProtectionGroupRunParams(BaseModel):

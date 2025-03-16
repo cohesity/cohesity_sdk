@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.domain_scope_params import DomainScopeParams
 from cohesity_sdk.helios.models.project_scope_params import ProjectScopeParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class KeystoneScopeParams(BaseModel):
     """
     Specifies scope paramteres of a Keystone.
     """ # noqa: E501
-    domain_scope_params: Optional[DomainScopeParams] = Field(default=None, alias="domainScopeParams")
-    project_scope_params: Optional[ProjectScopeParams] = Field(default=None, alias="projectScopeParams")
+    domain_scope_params: Optional[DomainScopeParams] = Field(default=None, description="Specifies the parameters for domain type scope.", alias="domainScopeParams")
+    project_scope_params: Optional[ProjectScopeParams] = Field(default=None, description="Specifies the parameter for project type scope.", alias="projectScopeParams")
     type: Optional[StrictStr] = Field(description="Specifies the scope type.")
     __properties: ClassVar[List[str]] = ["domainScopeParams", "projectScopeParams", "type"]
 

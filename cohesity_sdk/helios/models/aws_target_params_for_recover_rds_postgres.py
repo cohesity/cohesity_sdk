@@ -21,15 +21,15 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_rds_postgres_custom_server_config import RecoverRDSPostgresCustomServerConfig
 from cohesity_sdk.helios.models.recover_rds_postgres_to_known_source_config import RecoverRDSPostgresToKnownSourceConfig
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverRDSPostgres(BaseModel):
     """
     Specifies the recovery target params for RDS Postgres target config.
     """ # noqa: E501
-    custom_server_config: Optional[RecoverRDSPostgresCustomServerConfig] = Field(default=None, alias="customServerConfig")
-    known_source_config: Optional[RecoverRDSPostgresToKnownSourceConfig] = Field(default=None, alias="knownSourceConfig")
+    custom_server_config: Optional[RecoverRDSPostgresCustomServerConfig] = Field(default=None, description="Specifies the custom destination Server configuration parameters where the RDS Postgres instances will be recovered.", alias="customServerConfig")
+    known_source_config: Optional[RecoverRDSPostgresToKnownSourceConfig] = Field(default=None, description="Specifies the destination Source configuration parameters where the RDS Postgres instances will be recovered. This is mandatory if recoverToKnownSource is set to true.", alias="knownSourceConfig")
     recover_to_known_source: Optional[StrictBool] = Field(description="Specifies whether the recovery should be performed to a known or a custom target.", alias="recoverToKnownSource")
     __properties: ClassVar[List[str]] = ["customServerConfig", "knownSourceConfig", "recoverToKnownSource"]
 
@@ -78,6 +78,16 @@ class AwsTargetParamsForRecoverRDSPostgres(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of known_source_config
         if self.known_source_config:
             _dict['knownSourceConfig'] = self.known_source_config.to_dict()
+        # set to None if custom_server_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.custom_server_config is None and "custom_server_config" in self.model_fields_set:
+            _dict['customServerConfig'] = None
+
+        # set to None if known_source_config (nullable) is None
+        # and model_fields_set contains the field
+        if self.known_source_config is None and "known_source_config" in self.model_fields_set:
+            _dict['knownSourceConfig'] = None
+
         # set to None if recover_to_known_source (nullable) is None
         # and model_fields_set contains the field
         if self.recover_to_known_source is None and "recover_to_known_source" in self.model_fields_set:

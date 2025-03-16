@@ -28,22 +28,22 @@ from cohesity_sdk.helios.models.recover_ms_team_params import RecoverMsTeamParam
 from cohesity_sdk.helios.models.recover_one_drive_params import RecoverOneDriveParams
 from cohesity_sdk.helios.models.recover_public_folders_params import RecoverPublicFoldersParams
 from cohesity_sdk.helios.models.recover_site_params import RecoverSiteParams
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class RecoverO365Params(BaseModel):
     """
     Specifies the recovery options specific to Office 365 environment.
     """ # noqa: E501
-    download_chats_params: Optional[DownloadChatsParams] = Field(default=None, alias="downloadChatsParams")
-    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, alias="downloadFileAndFolderParams")
+    download_chats_params: Optional[DownloadChatsParams] = Field(default=None, description="Specifies the download chats specific parameters for downloading posts for a team/channel or downloading private chats for a user.", alias="downloadChatsParams")
+    download_file_and_folder_params: Optional[CommonDownloadFileAndFolderParams] = Field(default=None, description="Specifies the recovery information to download files and folders. For instance, downloading mailbox items as PST.", alias="downloadFileAndFolderParams")
     objects: Optional[List[CommonRecoverObjectSnapshotParams]] = Field(default=None, description="Specifies the list of recover Object parameters.")
-    recover_mailbox_params: Optional[RecoverMailboxParams] = Field(default=None, alias="recoverMailboxParams")
-    recover_ms_group_params: Optional[RecoverMsGroupParams] = Field(default=None, alias="recoverMsGroupParams")
-    recover_ms_team_params: Optional[RecoverMsTeamParams] = Field(default=None, alias="recoverMsTeamParams")
-    recover_one_drive_params: Optional[RecoverOneDriveParams] = Field(default=None, alias="recoverOneDriveParams")
-    recover_public_folders_params: Optional[RecoverPublicFoldersParams] = Field(default=None, alias="recoverPublicFoldersParams")
-    recover_site_params: Optional[RecoverSiteParams] = Field(default=None, alias="recoverSiteParams")
+    recover_mailbox_params: Optional[RecoverMailboxParams] = Field(default=None, description="Specifies the parameters to recover Office 365 Mailbox.", alias="recoverMailboxParams")
+    recover_ms_group_params: Optional[RecoverMsGroupParams] = Field(default=None, description="Specifies the parameters to recover Microsoft 365 Group.", alias="recoverMsGroupParams")
+    recover_ms_team_params: Optional[RecoverMsTeamParams] = Field(default=None, description="Specifies the parameters to recover Microsoft 365 Teams.", alias="recoverMsTeamParams")
+    recover_one_drive_params: Optional[RecoverOneDriveParams] = Field(default=None, description="Specifies the parameters to recover Office 365 One Drive.", alias="recoverOneDriveParams")
+    recover_public_folders_params: Optional[RecoverPublicFoldersParams] = Field(default=None, description="Specifies the parameters to recover Office 365 Public Folders.", alias="recoverPublicFoldersParams")
+    recover_site_params: Optional[RecoverSiteParams] = Field(default=None, description="Specifies the parameters to recover Microsoft Office 365 Sharepoint Site.", alias="recoverSiteParams")
     recovery_action: StrictStr = Field(description="Specifies the type of recovery action to be performed.", alias="recoveryAction")
     __properties: ClassVar[List[str]] = ["downloadChatsParams", "downloadFileAndFolderParams", "objects", "recoverMailboxParams", "recoverMsGroupParams", "recoverMsTeamParams", "recoverOneDriveParams", "recoverPublicFoldersParams", "recoverSiteParams", "recoveryAction"]
 
@@ -124,6 +124,16 @@ class RecoverO365Params(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of recover_site_params
         if self.recover_site_params:
             _dict['recoverSiteParams'] = self.recover_site_params.to_dict()
+        # set to None if download_chats_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_chats_params is None and "download_chats_params" in self.model_fields_set:
+            _dict['downloadChatsParams'] = None
+
+        # set to None if download_file_and_folder_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.download_file_and_folder_params is None and "download_file_and_folder_params" in self.model_fields_set:
+            _dict['downloadFileAndFolderParams'] = None
+
         # set to None if objects (nullable) is None
         # and model_fields_set contains the field
         if self.objects is None and "objects" in self.model_fields_set:

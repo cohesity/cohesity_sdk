@@ -21,14 +21,14 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.fleet_network_params import FleetNetworkParams
 from cohesity_sdk.helios.models.fleet_tags import FleetTags
-from typing import Set
+from typing import Optional, Set
 from typing_extensions import Self
 
 class FleetConfig(BaseModel):
     """
     Specifies various resources while deploying fleet params.
     """ # noqa: E501
-    fleet_network_params: Optional[FleetNetworkParams] = Field(default=None, alias="fleetNetworkParams")
+    fleet_network_params: Optional[FleetNetworkParams] = Field(default=None, description="Specifies the network security groups within above VPC.", alias="fleetNetworkParams")
     fleet_subnet_type: Optional[StrictStr] = Field(default=None, description="Specifies the subnet type of the fleet.", alias="fleetSubnetType")
     fleet_tags: Optional[List[FleetTags]] = Field(default=None, description="Specifies the network security groups within above VPC.", alias="fleetTags")
     __properties: ClassVar[List[str]] = ["fleetNetworkParams", "fleetSubnetType", "fleetTags"]
@@ -92,6 +92,11 @@ class FleetConfig(BaseModel):
                 if _item_fleet_tags:
                     _items.append(_item_fleet_tags.to_dict())
             _dict['fleetTags'] = _items
+        # set to None if fleet_network_params (nullable) is None
+        # and model_fields_set contains the field
+        if self.fleet_network_params is None and "fleet_network_params" in self.model_fields_set:
+            _dict['fleetNetworkParams'] = None
+
         # set to None if fleet_subnet_type (nullable) is None
         # and model_fields_set contains the field
         if self.fleet_subnet_type is None and "fleet_subnet_type" in self.model_fields_set:
