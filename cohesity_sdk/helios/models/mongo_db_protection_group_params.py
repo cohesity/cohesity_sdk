@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.no_sql_protection_group_object_params import NoSqlProtectionGroupObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MongoDBProtectionGroupParams(BaseModel):

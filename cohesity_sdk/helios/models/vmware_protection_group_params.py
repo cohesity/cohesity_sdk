@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParam
 from cohesity_sdk.helios.models.vm_filter import VMFilter
 from cohesity_sdk.helios.models.vmware_protection_group_object_params import VmwareProtectionGroupObjectParams
 from cohesity_sdk.helios.models.vmware_protection_group_standby_resource_params import VmwareProtectionGroupStandbyResourceParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareProtectionGroupParams(BaseModel):

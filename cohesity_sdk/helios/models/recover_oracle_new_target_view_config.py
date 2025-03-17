@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.oracle_recovery_validation_info import OracleRec
 from cohesity_sdk.helios.models.recover_oracle_granular_restore_info import RecoverOracleGranularRestoreInfo
 from cohesity_sdk.helios.models.restore_spfile_or_pfile_info import RestoreSpfileOrPfileInfo
 from cohesity_sdk.helios.models.shell_key_value_pair import ShellKeyValuePair
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverOracleNewTargetViewConfig(BaseModel):

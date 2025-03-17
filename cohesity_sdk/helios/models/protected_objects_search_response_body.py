@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.protected_object import ProtectedObject
 from cohesity_sdk.helios.models.protected_objects_search_metadata import ProtectedObjectsSearchMetadata
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ProtectedObjectsSearchResponseBody(BaseModel):

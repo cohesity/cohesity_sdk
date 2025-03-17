@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.azure_snapshot_manager_protection_group_object_params import AzureSnapshotManagerProtectionGroupObjectParams
 from cohesity_sdk.helios.models.cloud_backup_script_params import CloudBackupScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AzureSnapshotManagerProtectionGroupParams(BaseModel):

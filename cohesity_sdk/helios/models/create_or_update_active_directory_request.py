@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.domain_controller import DomainController
 from cohesity_sdk.helios.models.mcm_machine_account import McmMachineAccount
 from cohesity_sdk.helios.models.trusted_domain_info import TrustedDomainInfo
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateOrUpdateActiveDirectoryRequest(BaseModel):

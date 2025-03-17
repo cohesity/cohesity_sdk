@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.keystone_admin_params import KeystoneAdminParams
 from cohesity_sdk.helios.models.keystone_scope_params import KeystoneScopeParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Keystone(BaseModel):

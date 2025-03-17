@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.resource_endpoint import ResourceEndpoint
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AppResource(BaseModel):

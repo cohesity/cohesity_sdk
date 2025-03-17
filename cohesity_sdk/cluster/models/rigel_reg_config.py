@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.rigel_claim_info import RigelClaimInfo
 from cohesity_sdk.cluster.models.rigel_connection_info import RigelConnectionInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RigelRegConfig(BaseModel):

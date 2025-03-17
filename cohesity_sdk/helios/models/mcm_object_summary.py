@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.view_object_summary import ViewObjectSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class McmObjectSummary(BaseModel):

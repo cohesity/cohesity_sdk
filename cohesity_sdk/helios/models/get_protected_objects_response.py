@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.pagination_info import PaginationInfo
 from cohesity_sdk.helios.models.protected_object_info import ProtectedObjectInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GetProtectedObjectsResponse(BaseModel):

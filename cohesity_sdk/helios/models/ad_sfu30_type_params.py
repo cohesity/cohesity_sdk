@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.fallback_user_id_mapping_params import FallbackUserIdMappingParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AdSfu30TypeParams(BaseModel):

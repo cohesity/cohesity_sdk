@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.data_tiering_analysis_info import DataTieringAnalysisInfo
 from cohesity_sdk.cluster.models.data_tiering_object_info import DataTieringObjectInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTieringAnalysisGroupRun(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.disk_info import DiskInfo
 from cohesity_sdk.cluster.models.vmware_cdp_object import VmwareCdpObject
 from cohesity_sdk.cluster.models.vmware_standby_object import VmwareStandbyObject
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareProtectionGroupObjectParams(BaseModel):

@@ -27,7 +27,7 @@ from cohesity_sdk.cluster.models.object_string_identifier import ObjectStringIde
 from cohesity_sdk.cluster.models.on_prem_deploy_run import OnPremDeployRun
 from cohesity_sdk.cluster.models.replication_run import ReplicationRun
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectProtectionRunSummary(BaseModel):

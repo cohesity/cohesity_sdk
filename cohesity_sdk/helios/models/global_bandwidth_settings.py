@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_bandwidth_settings import ArchivalBandwidthSettings
 from cohesity_sdk.helios.models.tiering_bandwidth_settings import TieringBandwidthSettings
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GlobalBandwidthSettings(BaseModel):

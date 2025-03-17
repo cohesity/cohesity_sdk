@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_full_schedule import HeliosFullSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosFullBackupPolicy(BaseModel):

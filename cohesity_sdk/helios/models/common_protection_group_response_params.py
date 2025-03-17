@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.protection_group_run import ProtectionGroupRun
 from cohesity_sdk.helios.models.sla_rule import SlaRule
 from cohesity_sdk.helios.models.tenant import Tenant
 from cohesity_sdk.helios.models.time_of_day import TimeOfDay
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonProtectionGroupResponseParams(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.original_generic_nas_files_target_params import OriginalGenericNasFilesTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_generic_nas_files_target_params import RecoverOtherNasToGenericNasFilesTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverGenericNasToGenericNasFilesTargetParams(BaseModel):

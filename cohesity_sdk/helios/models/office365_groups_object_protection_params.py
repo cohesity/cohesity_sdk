@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.office365_object_protection_object_params import Office365ObjectProtectionObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Office365GroupsObjectProtectionParams(BaseModel):

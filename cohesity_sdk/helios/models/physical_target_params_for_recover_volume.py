@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_volume_mapping import RecoverVolumeMapping
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PhysicalTargetParamsForRecoverVolume(BaseModel):

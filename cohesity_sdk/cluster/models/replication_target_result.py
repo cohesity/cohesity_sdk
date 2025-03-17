@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.aws_target_config import AWSTargetConfig
 from cohesity_sdk.cluster.models.azure_target_config import AzureTargetConfig
 from cohesity_sdk.cluster.models.data_lock_constraints import DataLockConstraints
 from cohesity_sdk.cluster.models.replication_data_stats import ReplicationDataStats
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ReplicationTargetResult(BaseModel):

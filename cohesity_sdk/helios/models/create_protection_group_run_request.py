@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.cassandra_protection_run_params import Cassandra
 from cohesity_sdk.helios.models.run_object import RunObject
 from cohesity_sdk.helios.models.run_targets_configuration import RunTargetsConfiguration
 from cohesity_sdk.helios.models.uda_protection_run_params import UdaProtectionRunParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateProtectionGroupRunRequest(BaseModel):

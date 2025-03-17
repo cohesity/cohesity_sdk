@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.externally_triggered_job_params import External
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.view_protection_group_object_params import ViewProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.view_protection_group_replication_params import ViewProtectionGroupReplicationParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ViewProtectionGroupParams(BaseModel):

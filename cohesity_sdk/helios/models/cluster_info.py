@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.available_release_version import AvailableReleaseVersion
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ClusterInfo(BaseModel):

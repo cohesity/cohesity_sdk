@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.datastore_params import DatastoreParams
 from cohesity_sdk.cluster.models.vmware_throttling_params import VmwareThrottlingParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VcenterRegistrationParams(BaseModel):

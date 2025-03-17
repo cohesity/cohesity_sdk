@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.run_replication_config import RunReplicationConfig
 from cohesity_sdk.cluster.models.update_existing_replication_snapshot_config import UpdateExistingReplicationSnapshotConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateReplicationSnapshotConfig(BaseModel):

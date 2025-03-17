@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.object_type_v_center_params import ObjectTypeVCe
 from cohesity_sdk.helios.models.object_type_windows_cluster_params import ObjectTypeWindowsClusterParams
 from cohesity_sdk.helios.models.permission_info import PermissionInfo
 from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonObjectSummary(BaseModel):

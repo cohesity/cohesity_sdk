@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.exchange_database_recovery_target_config import ExchangeDatabaseRecoveryTargetConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.view_options import ViewOptions
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ExchangeRecoverDatabaseParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_exchange_dbs_snapshot_params import RecoverExchangeDbsSnapshotParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ExchangeTargetParamsForRecoverExchangeDbs(BaseModel):

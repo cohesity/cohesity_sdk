@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.credentials import Credentials
 from cohesity_sdk.helios.models.filter_ip_config import FilterIpConfig
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class IsilonRegistrationParams(BaseModel):

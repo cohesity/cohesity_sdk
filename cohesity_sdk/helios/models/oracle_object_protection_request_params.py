@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.oracle_object_protection_info import OracleObjectProtectionInfo
 from cohesity_sdk.helios.models.vlan_params import VlanParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class OracleObjectProtectionRequestParams(BaseModel):

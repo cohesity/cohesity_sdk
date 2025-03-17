@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.archival_data_stats import ArchivalDataStats
 from cohesity_sdk.helios.models.archival_target_tier_info import ArchivalTargetTierInfo
 from cohesity_sdk.helios.models.data_lock_constraints import DataLockConstraints
 from cohesity_sdk.helios.models.worm_properties import WormProperties
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ArchivalTargetResult(BaseModel):

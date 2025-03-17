@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.hyper_v_target_params_for_recover_vm import HyperVTargetParamsForRecoverVm
 from cohesity_sdk.helios.models.recover_protection_group_run_params import RecoverProtectionGroupRunParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverHyperVVmParams(BaseModel):

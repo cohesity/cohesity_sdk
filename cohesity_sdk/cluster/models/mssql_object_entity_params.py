@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aag_info import AAGInfo
 from cohesity_sdk.cluster.models.host_information import HostInformation
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MssqlObjectEntityParams(BaseModel):

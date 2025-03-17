@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.mounted_volume_mapping import MountedVolumeMappi
 from cohesity_sdk.helios.models.physical_mount_volumes_new_target_config import PhysicalMountVolumesNewTargetConfig
 from cohesity_sdk.helios.models.physical_mount_volumes_original_target_config import PhysicalMountVolumesOriginalTargetConfig
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PhysicalTargetParamsForMountVolume(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.smb_permission import SmbPermission
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SmbPermissionsInfo(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.cdp_object_last_run_info import CdpObjectLastRunInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareCdpObject(BaseModel):

@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.aws_tiers import AWSTiers
 from cohesity_sdk.cluster.models.azure_tiers import AzureTiers
 from cohesity_sdk.cluster.models.google_tiers import GoogleTiers
 from cohesity_sdk.cluster.models.oracle_tiers import OracleTiers
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class TierLevelSettings(BaseModel):

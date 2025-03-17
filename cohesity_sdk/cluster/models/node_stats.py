@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.usage_and_performance_stats import UsageAndPerformanceStats
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class NodeStats(BaseModel):

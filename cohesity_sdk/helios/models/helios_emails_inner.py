@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
 from cohesity_sdk.helios.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.helios.models.tag_info import TagInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosEmailsInner(BaseModel):

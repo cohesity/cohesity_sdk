@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.fortknox_provision_status import FortknoxProvisi
 from cohesity_sdk.helios.models.fortknox_vault_aws_resp import FortknoxVaultAwsResp
 from cohesity_sdk.helios.models.fortknox_vault_azure_resp import FortknoxVaultAzureResp
 from cohesity_sdk.helios.models.transfer_time_config_params_list import TransferTimeConfigParamsList
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class FortknoxVaultInfo(BaseModel):

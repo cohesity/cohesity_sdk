@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.recover_other_nas_to_flashblade_files_target_par
 from cohesity_sdk.helios.models.recover_other_nas_to_generic_nas_files_target_params import RecoverOtherNasToGenericNasFilesTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_isilon_files_target_params import RecoverOtherNasToIsilonFilesTargetParams
 from cohesity_sdk.helios.models.recover_other_nas_to_netapp_files_target_params import RecoverOtherNasToNetappFilesTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverGpfsFilesParams(BaseModel):

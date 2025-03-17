@@ -39,7 +39,7 @@ from cohesity_sdk.cluster.models.sharepoint_object_params import SharepointObjec
 from cohesity_sdk.cluster.models.uda_object_params import UdaObjectParams
 from cohesity_sdk.cluster.models.view_object_params import ViewObjectParams
 from cohesity_sdk.cluster.models.vmware_object_entity_params import VmwareObjectEntityParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectWithChildren(BaseModel):

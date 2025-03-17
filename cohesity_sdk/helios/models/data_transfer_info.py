@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.private_network_info import PrivateNetworkInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTransferInfo(BaseModel):

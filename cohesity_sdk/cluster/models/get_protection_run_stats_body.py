@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.archival_target_stats_info import ArchivalTargetStatsInfo
 from cohesity_sdk.cluster.models.backup_run_stats_info import BackupRunStatsInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GetProtectionRunStatsBody(BaseModel):

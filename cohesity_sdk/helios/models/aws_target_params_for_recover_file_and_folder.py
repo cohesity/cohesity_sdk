@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_recover_files_new_target_config import AwsRecoverFilesNewTargetConfig
 from cohesity_sdk.helios.models.aws_recover_files_original_target_config import AwsRecoverFilesOriginalTargetConfig
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverFileAndFolder(BaseModel):

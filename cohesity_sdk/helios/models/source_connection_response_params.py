@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.hdfs_additional_params import HdfsAdditionalPara
 from cohesity_sdk.helios.models.hive_additional_params import HiveAdditionalParams
 from cohesity_sdk.helios.models.mssql_connection_response_params import MssqlConnectionResponseParams
 from cohesity_sdk.helios.models.vmware_additional_params import VmwareAdditionalParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SourceConnectionResponseParams(BaseModel):

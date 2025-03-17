@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.root_public_folder_param import RootPublicFolderParam
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverPublicFoldersParams(BaseModel):

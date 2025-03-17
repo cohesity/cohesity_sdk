@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.common_download_file_and_folder_params import Co
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_gcp_file_and_folder_params import RecoverGcpFileAndFolderParams
 from cohesity_sdk.helios.models.recover_gcp_vm_params import RecoverGcpVmParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverGcpParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_pure_volume_target_params import RecoverPureVolumeTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverPureSanVolumeParams(BaseModel):

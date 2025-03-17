@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.cluster_create_physical_params import ClusterCr
 from cohesity_sdk.cluster.models.cluster_create_rigel_params import ClusterCreateRigelParams
 from cohesity_sdk.cluster.models.cluster_create_virtual_params import ClusterCreateVirtualParams
 from cohesity_sdk.cluster.models.cluster_proxy_server_config import ClusterProxyServerConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateClusterParams(BaseModel):

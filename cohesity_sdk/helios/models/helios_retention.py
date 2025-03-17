@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.data_lock_config import DataLockConfig
 from cohesity_sdk.helios.models.helios_tier import HeliosTier
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosRetention(BaseModel):

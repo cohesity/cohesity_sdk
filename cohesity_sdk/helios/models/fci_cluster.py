@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.app_resource import AppResource
 from cohesity_sdk.helios.models.error import Error
 from cohesity_sdk.helios.models.sql_server import SQLServer
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class FCICluster(BaseModel):

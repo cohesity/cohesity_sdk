@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTargetSummaryInfo
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
 from cohesity_sdk.helios.models.recover_vmware_child_snapshot_params import RecoverVmwareChildSnapshotParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareSnapshotParams(BaseModel):

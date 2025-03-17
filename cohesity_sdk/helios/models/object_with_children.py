@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.object_type_windows_cluster_params import Object
 from cohesity_sdk.helios.models.permission_info import PermissionInfo
 from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObjectParams
 from cohesity_sdk.helios.models.vmware_object_entity_params import VmwareObjectEntityParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectWithChildren(BaseModel):

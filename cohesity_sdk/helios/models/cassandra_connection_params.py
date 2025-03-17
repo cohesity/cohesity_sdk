@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.ssh_password_credentials import SshPasswordCredentials
 from cohesity_sdk.helios.models.ssh_private_key_credentials import SshPrivateKeyCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CassandraConnectionParams(BaseModel):

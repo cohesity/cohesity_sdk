@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.disk_info import DiskInfo
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.helios.models.pre_post_script_params import PrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareObjectProtectionUpdateRequestParams(BaseModel):

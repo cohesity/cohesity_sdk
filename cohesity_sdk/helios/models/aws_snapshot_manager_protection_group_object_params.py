@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.ebs_volume_exclusion_params import EbsVolumeExclusionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsSnapshotManagerProtectionGroupObjectParams(BaseModel):

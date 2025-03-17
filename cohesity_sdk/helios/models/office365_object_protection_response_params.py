@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.office365_sharepoint_site_object_protection_para
 from cohesity_sdk.helios.models.office365_teams_object_protection_params import Office365TeamsObjectProtectionParams
 from cohesity_sdk.helios.models.office365_user_mailbox_object_protection_params import Office365UserMailboxObjectProtectionParams
 from cohesity_sdk.helios.models.office365_user_one_drive_object_protection_params import Office365UserOneDriveObjectProtectionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Office365ObjectProtectionResponseParams(BaseModel):

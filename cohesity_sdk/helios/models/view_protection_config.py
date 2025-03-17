@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.existing_group_param import ExistingGroupParam
 from cohesity_sdk.helios.models.new_group_param import NewGroupParam
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ViewProtectionConfig(BaseModel):

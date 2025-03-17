@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_pure_san_group_new_source_config import RecoverPureSanGroupNewSourceConfig
 from cohesity_sdk.helios.models.recover_pure_san_group_original_source_config import RecoverPureSanGroupOriginalSourceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverPureGroupTargetParams(BaseModel):

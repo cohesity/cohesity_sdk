@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.object_string_identifier import ObjectStringIden
 from cohesity_sdk.helios.models.progress_stats import ProgressStats
 from cohesity_sdk.helios.models.progress_task_event import ProgressTaskEvent
 from cohesity_sdk.helios.models.progress_task_info import ProgressTaskInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectProgressInfo(BaseModel):

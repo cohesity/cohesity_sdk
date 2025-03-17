@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.archival_target_summary_info import ArchivalTarg
 from cohesity_sdk.helios.models.host_information import HostInformation
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
 from cohesity_sdk.helios.models.sql_target_params_for_recover_sql_app import SqlTargetParamsForRecoverSqlApp
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverSqlAppParams(BaseModel):

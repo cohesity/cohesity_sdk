@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.frequency_schedule import FrequencySchedule
 from cohesity_sdk.cluster.models.month_schedule import MonthSchedule
 from cohesity_sdk.cluster.models.time_of_day import TimeOfDay
 from cohesity_sdk.cluster.models.week_schedule import WeekSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTieringSchedule(BaseModel):

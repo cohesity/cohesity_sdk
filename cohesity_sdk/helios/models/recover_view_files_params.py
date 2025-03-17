@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_view_to_view_files_target_params import RecoverViewToViewFilesTargetParams
 from cohesity_sdk.helios.models.view_recover_file_and_folder_info import ViewRecoverFileAndFolderInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverViewFilesParams(BaseModel):

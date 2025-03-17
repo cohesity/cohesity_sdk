@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.storage_array_snapshot_max_snapshot_config import StorageArraySnapshotMaxSnapshotConfig
 from cohesity_sdk.cluster.models.storage_array_snapshot_max_space_config import StorageArraySnapshotMaxSpaceConfig
 from cohesity_sdk.cluster.models.storage_array_snapshot_throttling_policy import StorageArraySnapshotThrottlingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class StorageArraySnapshotConfig(BaseModel):

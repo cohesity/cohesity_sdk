@@ -29,7 +29,7 @@ from cohesity_sdk.helios.models.smb_permissions_info import SmbPermissionsInfo
 from cohesity_sdk.helios.models.subnet import Subnet
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
 from cohesity_sdk.helios.models.view_share_permissions import ViewSharePermissions
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CreateView(BaseModel):

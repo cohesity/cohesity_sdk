@@ -24,7 +24,7 @@ from cohesity_sdk.cluster.models.cassandra_source_registration_params_all_of_jmx
 from cohesity_sdk.cluster.models.dse_solr_info import DSESolrInfo
 from cohesity_sdk.cluster.models.ssh_password_credentials import SshPasswordCredentials
 from cohesity_sdk.cluster.models.ssh_private_key_credentials import SshPrivateKeyCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CassandraSourceRegistrationParams(BaseModel):

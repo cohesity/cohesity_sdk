@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.local_copy import LocalCopy
 from cohesity_sdk.helios.models.replication_copy import ReplicationCopy
 from cohesity_sdk.helios.models.storage_metrics import StorageMetrics
 from cohesity_sdk.helios.models.tags import Tags
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CopyStats(BaseModel):

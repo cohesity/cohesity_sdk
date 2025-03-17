@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.recover_vmware_vm_new_source_network_config impo
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.vcd_storage_profile_params import VcdStorageProfileParams
 from cohesity_sdk.helios.models.vdc_catalog import VdcCatalog
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareVAppTemplateVCDSourceConfig(BaseModel):

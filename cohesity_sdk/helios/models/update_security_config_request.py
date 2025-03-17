@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.security_config_password_reuse import SecurityCo
 from cohesity_sdk.helios.models.security_config_password_strength import SecurityConfigPasswordStrength
 from cohesity_sdk.helios.models.security_config_session_configuration import SecurityConfigSessionConfiguration
 from cohesity_sdk.helios.models.security_config_ssh_configuration import SecurityConfigSshConfiguration
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateSecurityConfigRequest(BaseModel):

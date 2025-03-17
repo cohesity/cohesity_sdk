@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.data_tiering_source import DataTieringSource
 from cohesity_sdk.helios.models.data_tiering_target import DataTieringTarget
 from cohesity_sdk.helios.models.data_tiering_task_run import DataTieringTaskRun
 from cohesity_sdk.helios.models.protection_group_alerting_policy import ProtectionGroupAlertingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonDataTieringTaskResponse(BaseModel):

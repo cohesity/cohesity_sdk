@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.cluster.models.exchange_protection_group_object_params import ExchangeProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ExchangeProtectionGroupParams(BaseModel):

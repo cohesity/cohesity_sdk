@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.disk_info import DiskInfo
 from cohesity_sdk.cluster.models.indexing_policy import IndexingPolicy
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
 from cohesity_sdk.cluster.models.vmware_object_protection_request import VmwareObjectProtectionRequest
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareObjectProtectionRequestParams(BaseModel):

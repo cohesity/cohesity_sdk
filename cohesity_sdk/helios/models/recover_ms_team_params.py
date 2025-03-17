@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_ms_team_param import ObjectMsTeamParam
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
 from cohesity_sdk.helios.models.target_ms_team_param import TargetMsTeamParam
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverMsTeamParams(BaseModel):

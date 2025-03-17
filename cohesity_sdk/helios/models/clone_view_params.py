@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.qo_s import QoS
 from cohesity_sdk.helios.models.storage_policy_override import StoragePolicyOverride
 from cohesity_sdk.helios.models.subnet import Subnet
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CloneViewParams(BaseModel):

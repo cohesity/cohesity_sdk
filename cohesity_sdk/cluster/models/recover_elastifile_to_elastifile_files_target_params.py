@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.original_elastifile_files_target_params import OriginalElastifileFilesTargetParams
 from cohesity_sdk.cluster.models.recover_other_nas_to_elastifile_files_target_params import RecoverOtherNasToElastifileFilesTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverElastifileToElastifileFilesTargetParams(BaseModel):

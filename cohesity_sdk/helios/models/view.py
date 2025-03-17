@@ -31,7 +31,7 @@ from cohesity_sdk.helios.models.subnet import Subnet
 from cohesity_sdk.helios.models.view_alias_info import ViewAliasInfo
 from cohesity_sdk.helios.models.view_protocol import ViewProtocol
 from cohesity_sdk.helios.models.view_share_permissions import ViewSharePermissions
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class View(BaseModel):

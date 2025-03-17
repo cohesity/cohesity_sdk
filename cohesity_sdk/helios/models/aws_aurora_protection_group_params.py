@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_aurora_protection_group_object_params import AwsAuroraProtectionGroupObjectParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsAuroraProtectionGroupParams(BaseModel):

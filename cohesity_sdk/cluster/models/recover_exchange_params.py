@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_exchange_app_params import RecoverExchangeAppParams
 from cohesity_sdk.cluster.models.recover_exchange_dbs_params import RecoverExchangeDbsParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverExchangeParams(BaseModel):

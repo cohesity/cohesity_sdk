@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.gcp_vm_recovery_target_config import GcpVmRecoveryTargetConfig
 from cohesity_sdk.cluster.models.recovered_or_cloned_vms_rename_config import RecoveredOrClonedVmsRenameConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GcpTargetParamsForRecoverVm(BaseModel):

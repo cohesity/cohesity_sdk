@@ -28,7 +28,7 @@ from cohesity_sdk.helios.models.protected_object_backup_config import ProtectedO
 from cohesity_sdk.helios.models.protected_object_group_backup_config import ProtectedObjectGroupBackupConfig
 from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObjectParams
 from cohesity_sdk.helios.models.tenant import Tenant
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ProtectedObjectInfo(BaseModel):

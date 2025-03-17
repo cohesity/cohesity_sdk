@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.nas_throttling_config import NasThrottlingConfig
 from cohesity_sdk.helios.models.smb_mount_credentials import SmbMountCredentials
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class FlashbladeRegistrationParams(BaseModel):

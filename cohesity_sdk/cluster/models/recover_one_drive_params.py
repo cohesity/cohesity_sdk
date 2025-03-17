@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.object_one_drive_param import ObjectOneDriveParam
 from cohesity_sdk.cluster.models.target_one_drive_param import TargetOneDriveParam
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverOneDriveParams(BaseModel):

@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.data_tiering_object_analysis_info import DataTieringObjectAnalysisInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataTieringObjectInfo(BaseModel):

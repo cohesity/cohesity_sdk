@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.hyper_v_disk_info import HyperVDiskInfo
 from cohesity_sdk.helios.models.hyper_v_protection_group_object_params import HyperVProtectionGroupObjectParams
 from cohesity_sdk.helios.models.indexing_policy import IndexingPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HyperVProtectionGroupParams(BaseModel):

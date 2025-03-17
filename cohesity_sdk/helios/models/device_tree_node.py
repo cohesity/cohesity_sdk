@@ -20,8 +20,10 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.device_tree_leaf_node import DeviceTreeLeafNode
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
+
+from cohesity_sdk.helios.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode
 
 class DeviceTreeNode(BaseModel):
     """
@@ -100,7 +102,6 @@ class DeviceTreeNode(BaseModel):
         })
         return _obj
 
-from cohesity_sdk.helios.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode
+
 # TODO: Rewrite to not use raise_errors
 DeviceTreeNode.model_rebuild(raise_errors=False)
-

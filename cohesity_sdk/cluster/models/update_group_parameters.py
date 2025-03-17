@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.local_group_params import LocalGroupParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateGroupParameters(BaseModel):

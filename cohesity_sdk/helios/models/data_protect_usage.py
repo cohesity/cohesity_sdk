@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.backend_consumption import BackendConsumption
 from cohesity_sdk.helios.models.frontend_consumption import FrontendConsumption
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class DataProtectUsage(BaseModel):

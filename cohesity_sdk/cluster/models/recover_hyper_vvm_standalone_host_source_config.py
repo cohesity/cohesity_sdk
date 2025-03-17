@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_hyper_vvm_new_source_network_config import RecoverHyperVVmNewSourceNetworkConfig
 from cohesity_sdk.cluster.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverHyperVVmStandaloneHostSourceConfig(BaseModel):

@@ -23,7 +23,7 @@ from cohesity_sdk.cluster.models.agent_information import AgentInformation
 from cohesity_sdk.cluster.models.app_resource import AppResource
 from cohesity_sdk.cluster.models.error import Error
 from cohesity_sdk.cluster.models.sql_server_instance import SQLServerInstance
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SQLServer(BaseModel):

@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.minute_schedule import MinuteSchedule
 from cohesity_sdk.helios.models.month_schedule import MonthSchedule
 from cohesity_sdk.helios.models.week_schedule import WeekSchedule
 from cohesity_sdk.helios.models.year_schedule import YearSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class IncrementalSchedule(BaseModel):

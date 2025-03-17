@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.interface_stats import InterfaceStats
 from cohesity_sdk.helios.models.uplink_switch import UplinkSwitch
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class BondMember(BaseModel):

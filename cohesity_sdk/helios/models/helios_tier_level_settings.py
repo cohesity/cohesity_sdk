@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.helios_aws_tiers import HeliosAWSTiers
 from cohesity_sdk.helios.models.helios_azure_tiers import HeliosAzureTiers
 from cohesity_sdk.helios.models.helios_google_tiers import HeliosGoogleTiers
 from cohesity_sdk.helios.models.helios_oracle_tiers import HeliosOracleTiers
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosTierLevelSettings(BaseModel):

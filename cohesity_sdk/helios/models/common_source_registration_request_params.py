@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.connection_config import ConnectionConfig
 from cohesity_sdk.helios.models.key_value_pair import KeyValuePair
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonSourceRegistrationRequestParams(BaseModel):

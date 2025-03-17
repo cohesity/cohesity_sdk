@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.aws_rds_postgres_protection_params import AwsRds
 from cohesity_sdk.helios.models.aws_rds_snapshot_manager_object_protection_params import AwsRdsSnapshotManagerObjectProtectionParams
 from cohesity_sdk.helios.models.aws_s3_protection_params import AwsS3ProtectionParams
 from cohesity_sdk.helios.models.aws_snapshot_manager_object_protection_params import AwsSnapshotManagerObjectProtectionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsObjectProtectionUpdateRequestParams(BaseModel):

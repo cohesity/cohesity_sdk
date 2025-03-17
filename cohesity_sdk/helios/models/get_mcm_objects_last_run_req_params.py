@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.activity_stats_params import ActivityStatsParams
 from cohesity_sdk.helios.models.archival_run_filter_params import ArchivalRunFilterParams
 from cohesity_sdk.helios.models.backup_run_filter_params import BackupRunFilterParams
 from cohesity_sdk.helios.models.mcm_object_identifier import McmObjectIdentifier
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GetMcmObjectsLastRunReqParams(BaseModel):

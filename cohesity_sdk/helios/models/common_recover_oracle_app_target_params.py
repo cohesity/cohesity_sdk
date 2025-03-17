@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_oracle_app_new_source_config import RecoverOracleAppNewSourceConfig
 from cohesity_sdk.helios.models.recover_oracle_app_original_source_config import RecoverOracleAppOriginalSourceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonRecoverOracleAppTargetParams(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_post_backup_script_params import CommonPostBackupScriptParams
 from cohesity_sdk.helios.models.common_pre_backup_script_params import CommonPreBackupScriptParams
 from cohesity_sdk.helios.models.script_host import ScriptHost
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HostBasedBackupScriptParams(BaseModel):

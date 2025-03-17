@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.azure_agent_protection_group_params import AzureAgentProtectionGroupParams
 from cohesity_sdk.cluster.models.azure_native_protection_group_params import AzureNativeProtectionGroupParams
 from cohesity_sdk.cluster.models.azure_snapshot_manager_protection_group_params import AzureSnapshotManagerProtectionGroupParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AzureProtectionGroupParams(BaseModel):

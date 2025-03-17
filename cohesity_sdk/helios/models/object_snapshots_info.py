@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.object_archival_snapshot_info import ObjectArchivalSnapshotInfo
 from cohesity_sdk.helios.models.object_local_snapshot_info import ObjectLocalSnapshotInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectSnapshotsInfo(BaseModel):

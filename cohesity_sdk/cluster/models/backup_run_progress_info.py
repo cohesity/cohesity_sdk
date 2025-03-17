@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Union
 from cohesity_sdk.cluster.models.object_progress_info import ObjectProgressInfo
 from cohesity_sdk.cluster.models.progress_stats import ProgressStats
 from cohesity_sdk.cluster.models.progress_task_event import ProgressTaskEvent
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class BackupRunProgressInfo(BaseModel):

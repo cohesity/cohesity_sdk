@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.archival_run_filter_params import ArchivalRunFil
 from cohesity_sdk.helios.models.backup_run_filter_params import BackupRunFilterParams
 from cohesity_sdk.helios.models.mcm_object_identifier import McmObjectIdentifier
 from cohesity_sdk.helios.models.restore_filter_params import RestoreFilterParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class GetMcmObjectsActivityReqParams(BaseModel):

@@ -29,7 +29,7 @@ from cohesity_sdk.helios.models.security_principal import SecurityPrincipal
 from cohesity_sdk.helios.models.task_logs import TaskLogs
 from cohesity_sdk.helios.models.tenant import Tenant
 from cohesity_sdk.helios.models.trusted_domain_params import TrustedDomainParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ActiveDirectory(BaseModel):

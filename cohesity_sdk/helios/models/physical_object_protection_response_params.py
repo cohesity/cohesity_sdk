@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.physical_file_protection_group_params import PhysicalFileProtectionGroupParams
 from cohesity_sdk.helios.models.physical_volume_protection_group_params import PhysicalVolumeProtectionGroupParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PhysicalObjectProtectionResponseParams(BaseModel):

@@ -11,13 +11,10 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictBytes, StrictStr
-from typing import Tuple, Union
 
 from cohesity_sdk.cluster.api_client import ApiClient, RequestSerialized
 from cohesity_sdk.cluster.api_response import ApiResponse

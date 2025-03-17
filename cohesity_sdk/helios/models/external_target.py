@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.archival_external_target_params import ArchivalExternalTargetParams
 from cohesity_sdk.helios.models.cloud_domain import CloudDomain
 from cohesity_sdk.helios.models.tiering_external_target_params import TieringExternalTargetParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ExternalTarget(BaseModel):

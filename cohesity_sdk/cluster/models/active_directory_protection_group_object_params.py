@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.active_directory_app_params import ActiveDirectoryAppParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ActiveDirectoryProtectionGroupObjectParams(BaseModel):

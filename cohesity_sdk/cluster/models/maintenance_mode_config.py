@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.schedule import Schedule
 from cohesity_sdk.cluster.models.time_range_usecs import TimeRangeUsecs
 from cohesity_sdk.cluster.models.workflow_intervention_spec import WorkflowInterventionSpec
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MaintenanceModeConfig(BaseModel):

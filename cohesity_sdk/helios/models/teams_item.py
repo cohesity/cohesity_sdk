@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.channel_item import ChannelItem
 from cohesity_sdk.helios.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.helios.models.tag_info import TagInfo
 from cohesity_sdk.helios.models.teams_file_item import TeamsFileItem
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class TeamsItem(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cohesity_sdk.helios.models.pause_action_object_level_params import PauseActionObjectLevelParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ProtectedObjectPauseActionParams(BaseModel):

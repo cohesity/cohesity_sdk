@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.recover_oracle_new_target_database_config import RecoverOracleNewTargetDatabaseConfig
 from cohesity_sdk.helios.models.recover_oracle_new_target_view_config import RecoverOracleNewTargetViewConfig
 from cohesity_sdk.helios.models.recovery_object_identifier import RecoveryObjectIdentifier
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverOracleAppNewSourceConfig(BaseModel):

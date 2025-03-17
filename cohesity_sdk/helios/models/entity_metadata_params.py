@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.aws_entity_metadata import AwsEntityMetadata
 from cohesity_sdk.helios.models.azure_entity_metadata import AzureEntityMetadata
 from cohesity_sdk.helios.models.maintenance_mode_config import MaintenanceModeConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class EntityMetadataParams(BaseModel):

@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.cdp_backup_policy import CdpBackupPolicy
 from cohesity_sdk.cluster.models.log_backup_policy import LogBackupPolicy
 from cohesity_sdk.cluster.models.regular_backup_policy import RegularBackupPolicy
 from cohesity_sdk.cluster.models.storage_array_snapshot_backup_policy import StorageArraySnapshotBackupPolicy
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class BackupPolicy(BaseModel):

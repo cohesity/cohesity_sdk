@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_snapshot_manager_protection_group_object_params import AwsSnapshotManagerProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.ebs_volume_exclusion_params import EbsVolumeExclusionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsSnapshotManagerProtectionGroupParams(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.alert_document import AlertDocument
 from cohesity_sdk.helios.models.vault import Vault
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class Alert(BaseModel):

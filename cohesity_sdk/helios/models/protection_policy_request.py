@@ -25,7 +25,7 @@ from cohesity_sdk.helios.models.cascaded_target_configuration import CascadedTar
 from cohesity_sdk.helios.models.extended_retention_policy import ExtendedRetentionPolicy
 from cohesity_sdk.helios.models.retry_options import RetryOptions
 from cohesity_sdk.helios.models.targets_configuration import TargetsConfiguration
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ProtectionPolicyRequest(BaseModel):

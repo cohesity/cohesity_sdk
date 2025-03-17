@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.aws_rds_recovery_target_config import AwsRdsRecoveryTargetConfig
 from cohesity_sdk.cluster.models.rds_config import RdsConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class AwsTargetParamsForRecoverRds(BaseModel):

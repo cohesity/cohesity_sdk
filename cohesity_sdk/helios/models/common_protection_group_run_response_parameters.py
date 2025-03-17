@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.cluster_identifier import ClusterIdentifier
 from cohesity_sdk.helios.models.object_run_result import ObjectRunResult
 from cohesity_sdk.helios.models.replication_run_summary import ReplicationRunSummary
 from cohesity_sdk.helios.models.tenant import Tenant
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonProtectionGroupRunResponseParameters(BaseModel):

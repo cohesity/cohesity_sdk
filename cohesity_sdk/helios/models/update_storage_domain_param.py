@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.model_schema import ModelSchema
 from cohesity_sdk.helios.models.quota_policy import QuotaPolicy
 from cohesity_sdk.helios.models.storage_policy import StoragePolicy
 from cohesity_sdk.helios.models.subnet import Subnet
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class UpdateStorageDomainParam(BaseModel):

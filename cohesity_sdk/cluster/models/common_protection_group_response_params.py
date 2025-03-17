@@ -26,7 +26,7 @@ from cohesity_sdk.cluster.models.protection_group_alerting_policy import Protect
 from cohesity_sdk.cluster.models.sla_rule import SlaRule
 from cohesity_sdk.cluster.models.tenant_info import TenantInfo
 from cohesity_sdk.cluster.models.time_of_day import TimeOfDay
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonProtectionGroupResponseParams(BaseModel):

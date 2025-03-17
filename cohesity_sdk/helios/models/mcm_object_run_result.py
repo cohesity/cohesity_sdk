@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.backup_run import BackupRun
 from cohesity_sdk.helios.models.object_summary import ObjectSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class McmObjectRunResult(BaseModel):

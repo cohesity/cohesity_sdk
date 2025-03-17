@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_physical_source_info import McmPhysicalSourceInfo
 from cohesity_sdk.helios.models.mcm_source_registration_info import McmSourceRegistrationInfo
 from cohesity_sdk.helios.models.object_protection_stats_summary import ObjectProtectionStatsSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class McmSourceInfo(BaseModel):

@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.helios_hour_schedule import HeliosHourSchedule
 from cohesity_sdk.helios.models.helios_minute_schedule import HeliosMinuteSchedule
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosLogSchedule(BaseModel):

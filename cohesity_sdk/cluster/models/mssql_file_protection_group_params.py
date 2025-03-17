@@ -25,7 +25,7 @@ from cohesity_sdk.cluster.models.filter import Filter
 from cohesity_sdk.cluster.models.mssql_file_protection_group_host_params import MSSQLFileProtectionGroupHostParams
 from cohesity_sdk.cluster.models.mssql_file_protection_group_object_params import MSSQLFileProtectionGroupObjectParams
 from cohesity_sdk.cluster.models.pre_post_script_params import PrePostScriptParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MSSQLFileProtectionGroupParams(BaseModel):

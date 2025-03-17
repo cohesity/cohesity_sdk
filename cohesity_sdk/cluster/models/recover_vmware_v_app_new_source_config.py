@@ -20,7 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.recover_vmware_v_app_vcd_source_config import RecoverVmwareVAppVCDSourceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverVmwareVAppNewSourceConfig(BaseModel):

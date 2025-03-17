@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_mssql_file_object_protection_params import CommonMssqlFileObjectProtectionParams
 from cohesity_sdk.helios.models.common_mssql_native_object_protection_params import CommonMssqlNativeObjectProtectionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class MssqlObjectProtectionResponseParams(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.common_recover_object_snapshot_params import CommonRecoverObjectSnapshotParams
 from cohesity_sdk.helios.models.recover_pure_san_group_params import RecoverPureSanGroupParams
 from cohesity_sdk.helios.models.recover_pure_san_volume_params import RecoverPureSanVolumeParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverPureParams(BaseModel):

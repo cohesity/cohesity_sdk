@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.kms_key_basic_info import KmsKeyBasicInfo
 from cohesity_sdk.helios.models.provision_status import ProvisionStatus
 from cohesity_sdk.helios.models.rpaas_pairing_info import RpaasPairingInfo
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RpaasRegionInfo(BaseModel):

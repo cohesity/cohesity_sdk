@@ -27,7 +27,7 @@ from cohesity_sdk.helios.models.recover_aws_rds_params import RecoverAwsRdsParam
 from cohesity_sdk.helios.models.recover_aws_s3_bucket_params import RecoverAwsS3BucketParams
 from cohesity_sdk.helios.models.recover_aws_vm_params import RecoverAwsVmParams
 from cohesity_sdk.helios.models.recover_rds_postgres_params import RecoverRDSPostgresParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverAwsParams(BaseModel):

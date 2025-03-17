@@ -23,7 +23,7 @@ from cohesity_sdk.helios.models.mounted_volume_mapping import MountedVolumeMappi
 from cohesity_sdk.helios.models.recovery_vlan_config import RecoveryVlanConfig
 from cohesity_sdk.helios.models.v_mware_mount_volumes_new_target_config import VMwareMountVolumesNewTargetConfig
 from cohesity_sdk.helios.models.v_mware_mount_volumes_original_target_config import VMwareMountVolumesOriginalTargetConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class VmwareTargetParamsForMountVolume(BaseModel):

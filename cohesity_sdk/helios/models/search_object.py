@@ -30,7 +30,7 @@ from cohesity_sdk.helios.models.sharepoint_object_params import SharepointObject
 from cohesity_sdk.helios.models.snapshot_tag_info import SnapshotTagInfo
 from cohesity_sdk.helios.models.tag_info import TagInfo
 from cohesity_sdk.helios.models.vmware_object_entity_params import VmwareObjectEntityParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class SearchObject(BaseModel):

@@ -26,7 +26,7 @@ from cohesity_sdk.helios.models.cluster_identifier import ClusterIdentifier
 from cohesity_sdk.helios.models.on_prem_deploy_run import OnPremDeployRun
 from cohesity_sdk.helios.models.replication_run import ReplicationRun
 from cohesity_sdk.helios.models.tenant import Tenant
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class ObjectProtectionRunInfo(BaseModel):

@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.cancel_protection_group_run_request import CancelProtectionGroupRunRequest
 from cohesity_sdk.helios.models.pause_protection_run_action_params import PauseProtectionRunActionParams
 from cohesity_sdk.helios.models.resume_protection_run_action_params import ResumeProtectionRunActionParams
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class PerformActionOnProtectionGroupRunRequest(BaseModel):

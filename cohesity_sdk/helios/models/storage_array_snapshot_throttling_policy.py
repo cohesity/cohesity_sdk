@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.storage_array_snapshot_max_snapshot_config import StorageArraySnapshotMaxSnapshotConfig
 from cohesity_sdk.helios.models.storage_array_snapshot_max_space_config import StorageArraySnapshotMaxSpaceConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class StorageArraySnapshotThrottlingPolicy(BaseModel):

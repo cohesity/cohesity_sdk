@@ -23,7 +23,7 @@ from typing_extensions import Annotated
 from cohesity_sdk.helios.models.creation_info import CreationInfo
 from cohesity_sdk.helios.models.retrieve_archive_task import RetrieveArchiveTask
 from cohesity_sdk.helios.models.tenant import Tenant
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class CommonRecoveryResponseParams(BaseModel):

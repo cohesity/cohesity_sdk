@@ -29,7 +29,7 @@ from cohesity_sdk.helios.models.recover_oracle_granular_restore_info import Reco
 from cohesity_sdk.helios.models.redo_log_group_config import RedoLogGroupConfig
 from cohesity_sdk.helios.models.restore_spfile_or_pfile_info import RestoreSpfileOrPfileInfo
 from cohesity_sdk.helios.models.shell_key_value_pair import ShellKeyValuePair
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class RecoverOracleNewTargetDatabaseConfig(BaseModel):

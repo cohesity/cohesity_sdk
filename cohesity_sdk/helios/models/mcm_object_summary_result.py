@@ -21,7 +21,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.helios.models.mcm_cluster_object_summary import McmClusterObjectSummary
 from cohesity_sdk.helios.models.mcm_object_summary import McmObjectSummary
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class McmObjectSummaryResult(BaseModel):

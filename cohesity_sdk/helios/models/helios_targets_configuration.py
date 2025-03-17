@@ -24,7 +24,7 @@ from cohesity_sdk.helios.models.helios_cloud_spin_config import HeliosCloudSpinC
 from cohesity_sdk.helios.models.helios_onprem_deploy_config import HeliosOnpremDeployConfig
 from cohesity_sdk.helios.models.helios_replication_config import HeliosReplicationConfig
 from cohesity_sdk.helios.models.helios_rpaas_config import HeliosRpaasConfig
-from typing import Optional, Set
+from typing import Set
 from typing_extensions import Self
 
 class HeliosTargetsConfiguration(BaseModel):
