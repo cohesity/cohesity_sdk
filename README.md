@@ -77,16 +77,21 @@ Initializing the Client:
 
 from cohesity_sdk.helios.mcm_v2_client import McmV2Client
 
-cluster_vip = 'ccs-integration.cohesity.com'
-api_key='2a8a7aad-911c-4bb0-4b66-50ebe3fb3618'
+access_cluster_id='x.x.x.x'
+api_key='xxxxxxx'
+cluster_vip='helios.cohesity.com'
 
 helious_client = McmV2Client(
-    cluster_vip=cluster_vip, api_key=api_key)
+    cluster_vip=cluster_vip, access_cluster_id=access_cluster_id, api_key=api_key)
 
-print(helious_client.view_api.get_views().view_id)
+print(helious_client.view_api.get_views())
 
 #OUTPUT
-504659
+{
+    "views": [],
+    "lastResult": true,
+    "count": 0
+}
 ```
 
 ## <a name="sample"></a> More sample code to get going: :bulb:
