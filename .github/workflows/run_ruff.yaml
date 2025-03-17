@@ -1,0 +1,24 @@
+name: Run ruff checks on the python files
+on: [push]
+jobs:
+  run_ruff_file:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+    steps:
+      - name: Checkout to the repository.
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install ruff
+        run: pip install ruff==0.8.6
+
+      - name: Run ruff checks
+        run: |
+          ruff check ./cohesity_sdk/
+      - run: ls
