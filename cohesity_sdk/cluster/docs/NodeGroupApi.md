@@ -1,5 +1,6 @@
-# cohesity_sdk.NodeGroupApi
+# cohesity_sdk.cluster.NodeGroupApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -19,39 +20,69 @@ Create the Node Group and returns the newly created node group object.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_group_request import NodeGroupRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_request import NodeGroupRequest
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
-body = NodeGroupRequest() # NodeGroupRequest | Request to create a Node Group.
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a Node Group.
-	api_response = client.node_group.create_node_group(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling NodeGroupApi->create_node_group: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
+    body = cohesity_sdk.cluster.NodeGroupRequest() # NodeGroupRequest | Request to create a Node Group.
+
+    try:
+        # Create a Node Group.
+        api_response = api_instance.create_node_group(body)
+        print("The response of NodeGroupApi->create_node_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NodeGroupApi->create_node_group: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NodeGroupRequest**](NodeGroupRequest.md)| Request to create a Node Group. |
+ **body** | [**NodeGroupRequest**](NodeGroupRequest.md)| Request to create a Node Group. | 
 
 ### Return type
 
@@ -59,15 +90,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -84,36 +115,65 @@ Deletes a Node Group based on given node group name.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
-group_name = "groupName_example" # str | Specifies a unique name of the Node Group to delete.
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-try:
-	# Delete a Node Group.
-	client.node_group.delete_node_group(group_name)
-except ApiException as e:
-	print("Exception when calling NodeGroupApi->delete_node_group: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
+    group_name = 'group_name_example' # str | Specifies a unique name of the Node Group to delete.
+
+    try:
+        # Delete a Node Group.
+        api_instance.delete_node_group(group_name)
+    except Exception as e:
+        print("Exception when calling NodeGroupApi->delete_node_group: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_name** | **str**| Specifies a unique name of the Node Group to delete. |
+ **group_name** | **str**| Specifies a unique name of the Node Group to delete. | 
 
 ### Return type
 
@@ -121,15 +181,15 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -146,38 +206,68 @@ Returns Node Group for given Group Name.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
-group_name = "groupName_example" # str | Specifies a unique id of Node Group to return.
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-try:
-	# List Node Groups for a given Group Name.
-	api_response = client.node_group.get_node_group_by_name(group_name)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling NodeGroupApi->get_node_group_by_name: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
+    group_name = 'group_name_example' # str | Specifies a unique id of Node Group to return.
+
+    try:
+        # List Node Groups for a given Group Name.
+        api_response = api_instance.get_node_group_by_name(group_name)
+        print("The response of NodeGroupApi->get_node_group_by_name:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NodeGroupApi->get_node_group_by_name: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_name** | **str**| Specifies a unique id of Node Group to return. |
+ **group_name** | **str**| Specifies a unique id of Node Group to return. | 
 
 ### Return type
 
@@ -185,15 +275,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -202,7 +292,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_node_groups**
-> NodeGroupResponse get_node_groups()
+> NodeGroupResponse get_node_groups(group_names=group_names, group_type=group_type)
 
 List Node Groups based on provided filtering parameters.
 
@@ -210,43 +300,70 @@ List node groups.
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
-group_names = [
-        "groupNames_example",
-    ] # [str] | Filter node groups by a list of node group names. (optional)
-group_type = 1 # int | Filter node groups by a node group type. (optional)
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-# and optional values
-try:
-	# List Node Groups based on provided filtering parameters.
-	api_response = client.node_group.get_node_groups(group_names=group_names, group_type=group_type)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling NodeGroupApi->get_node_groups: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
+    group_names = ['group_names_example'] # List[str] | Filter node groups by a list of node group names. (optional)
+    group_type = 56 # int | Filter node groups by a node group type. (optional)
+
+    try:
+        # List Node Groups based on provided filtering parameters.
+        api_response = api_instance.get_node_groups(group_names=group_names, group_type=group_type)
+        print("The response of NodeGroupApi->get_node_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NodeGroupApi->get_node_groups: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_names** | **[str]**| Filter node groups by a list of node group names. | [optional]
- **group_type** | **int**| Filter node groups by a node group type. | [optional]
+ **group_names** | [**List[str]**](str.md)| Filter node groups by a list of node group names. | [optional] 
+ **group_type** | **int**| Filter node groups by a node group type. | [optional] 
 
 ### Return type
 
@@ -254,15 +371,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -279,41 +396,71 @@ Specifies the request to update the existing Node Group. On successful update, r
 
 ### Example
 
+* Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.node_group_response import NodeGroupResponse
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.node_group_request import NodeGroupRequest
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.node_group_request import NodeGroupRequest
+from cohesity_sdk.cluster.models.node_group_response import NodeGroupResponse
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
-group_name = "groupName_example" # str | Specifies a unique name of the Node Group to update.
-body = NodeGroupRequest() # NodeGroupRequest | Request to update a Node Group.
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-# example passing only required values which don't have defaults set
-try:
-	# Update a Node Group.
-	api_response = client.node_group.update_node_group(group_name, body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling NodeGroupApi->update_node_group: %s\n" % e)
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.NodeGroupApi(api_client)
+    group_name = 'group_name_example' # str | Specifies a unique name of the Node Group to update.
+    body = cohesity_sdk.cluster.NodeGroupRequest() # NodeGroupRequest | Request to update a Node Group.
+
+    try:
+        # Update a Node Group.
+        api_response = api_instance.update_node_group(group_name, body)
+        print("The response of NodeGroupApi->update_node_group:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NodeGroupApi->update_node_group: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group_name** | **str**| Specifies a unique name of the Node Group to update. |
- **body** | [**NodeGroupRequest**](NodeGroupRequest.md)| Request to update a Node Group. |
+ **group_name** | **str**| Specifies a unique name of the Node Group to update. | 
+ **body** | [**NodeGroupRequest**](NodeGroupRequest.md)| Request to update a Node Group. | 
 
 ### Return type
 
@@ -321,15 +468,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

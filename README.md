@@ -36,10 +36,17 @@ python setup.py install
 ## <a name="matrix"></a> Version Matrix
 Cluster-SDK support Matrix
 
-|Cluster Version	| SDK version|
-|----------------|------------|
-|6.6.0d_ent(V2) | 1.1.0|
-|6.8.1(V2) | 1.2.0|
+| Cluster Version	 | SDK version|
+|------------------|------------|
+| 6.6.0d_ent(V2)   | 1.1.0|
+| 6.8.1(V2)        | 1.2.0|
+| 7.1.2_u3(V2)     | 1.3.0 |
+
+Helios-SDK support Matrix
+
+| Helios Version	 | SDK version |
+|-----------------|-------------|
+| 7.1.2_u3(V2)    | 1.3.0       |
 
 ## <a name="howto"></a> How to Use: :mag_right:
 
@@ -62,6 +69,29 @@ print(client.platform.get_cluster().sw_version)
 
 #OUTPUT
 6.6.0d_ent_release-20220621_a04bcd28
+```
+
+
+```
+# Helious client Initialization
+
+from cohesity_sdk.helios.mcm_v2_client import McmV2Client
+
+access_cluster_id=xxxxxx
+api_key='xxxxxxx'
+cluster_vip='helios.cohesity.com'
+
+helious_client = McmV2Client(
+    cluster_vip=cluster_vip, api_key=api_key)
+
+print(helious_client.view_api.get_views(access_cluster_id=access_cluster_id)
+
+#OUTPUT
+{
+    "views": [],
+    "lastResult": true,
+    "count": 0
+}
 ```
 
 ## <a name="sample"></a> More sample code to get going: :bulb:

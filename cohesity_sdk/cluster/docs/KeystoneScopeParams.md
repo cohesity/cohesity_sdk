@@ -3,12 +3,30 @@
 Specifies scope paramteres of a Keystone.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str, none_type** | Specifies the scope type. | 
-**domain_scope_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameters for domain type scope. | [optional] 
-**project_scope_params** | **{str: (bool, date, datetime, dict, float, int, list, str, none_type)}** | Specifies the parameter for project type scope. | [optional] 
+**domain_scope_params** | [**DomainScopeParams**](DomainScopeParams.md) |  | [optional] 
+**project_scope_params** | [**ProjectScopeParams**](ProjectScopeParams.md) |  | [optional] 
+**type** | **str** | Specifies the scope type. | 
 
+## Example
+
+```python
+from cohesity_sdk.cluster.models.keystone_scope_params import KeystoneScopeParams
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of KeystoneScopeParams from a JSON string
+keystone_scope_params_instance = KeystoneScopeParams.from_json(json)
+# print the JSON string representation of the object
+print(KeystoneScopeParams.to_json())
+
+# convert the object into a dict
+keystone_scope_params_dict = keystone_scope_params_instance.to_dict()
+# create an instance of KeystoneScopeParams from a dict
+keystone_scope_params_from_dict = KeystoneScopeParams.from_dict(keystone_scope_params_dict)
+```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

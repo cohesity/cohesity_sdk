@@ -1,5 +1,6 @@
-# cohesity_sdk.AccessTokenApi
+# cohesity_sdk.cluster.AccessTokenApi
 
+All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,44 +17,68 @@ Before making other REST API requests, your REST client must make a an access to
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
+* Api Key Authentication (SessionIdHeader):
+* Api Key Authentication (Bearer):
+
 ```python
-from cohesity_sdk.cluster.cluster_client import ClusterClient
-from cohesity_sdk.cluster.model.error import Error
-from cohesity_sdk.cluster.model.create_access_token_request_params import CreateAccessTokenRequestParams
-from cohesity_sdk.cluster.model.access_token_response import AccessTokenResponse
-from cohesity_sdk.cluster.exceptions import ApiException
+import cohesity_sdk.cluster
+from cohesity_sdk.cluster.models.access_token_response import AccessTokenResponse
+from cohesity_sdk.cluster.models.create_access_token_request_params import CreateAccessTokenRequestParams
+from cohesity_sdk.cluster.rest import ApiException
 from pprint import pprint
 
-
-client = ClusterClient(
-	cluster_vip = "0.0.0.0",
-	username = "username",
-	password = "password",
-	domain = "LOCAL"
+# Defining the host is optional and defaults to /v2
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cohesity_sdk.cluster.Configuration(
+    host = "/v2"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
 
-body = CreateAccessTokenRequestParams(
-        domain="domain_example",
-        password="password_example",
-        username="username_example",
-    ) # CreateAccessTokenRequestParams | Specifies the parameters to generate an access token
+# Configure API key authorization: APIKeyHeader
+configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# example passing only required values which don't have defaults set
-try:
-	# Create a new API access token
-	api_response = client.access_token.create_access_token(body)
-	pprint(api_response)
-except ApiException as e:
-	print("Exception when calling AccessTokenApi->create_access_token: %s\n" % e)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+
+# Configure API key authorization: SessionIdHeader
+configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
+
+# Configure API key authorization: Bearer
+configuration.api_key['Bearer'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Bearer'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cohesity_sdk.cluster.AccessTokenApi(api_client)
+    body = cohesity_sdk.cluster.CreateAccessTokenRequestParams() # CreateAccessTokenRequestParams | Specifies the parameters to generate an access token
+
+    try:
+        # Create a new API access token
+        api_response = api_instance.create_access_token(body)
+        print("The response of AccessTokenApi->create_access_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AccessTokenApi->create_access_token: %s\n" % e)
 ```
+
 
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateAccessTokenRequestParams**](CreateAccessTokenRequestParams.md)| Specifies the parameters to generate an access token |
+ **body** | [**CreateAccessTokenRequestParams**](CreateAccessTokenRequestParams.md)| Specifies the parameters to generate an access token | 
 
 ### Return type
 
@@ -61,15 +86,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader)
+[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
