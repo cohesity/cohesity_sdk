@@ -113,7 +113,7 @@ HTTPSignatureAuthSetting = TypedDict(
 AuthSettings = TypedDict(
     "AuthSettings",
     {
-        "APIKeyHeader": APIKeyAuthSetting,
+        "APIKeyHeader": APIKeyAuthSetting
     },
     total=False,
 )

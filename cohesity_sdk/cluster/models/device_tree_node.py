@@ -22,7 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cohesity_sdk.cluster.models.device_tree_leaf_node import DeviceTreeLeafNode
 from typing import Set
 from typing_extensions import Self
-from cohesity_sdk.cluster.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode
+
 class DeviceTreeNode(BaseModel):
     """
     Specifies the tree structure of a logical volume. The leaves are slices of partitions and the other nodes are assemled by combining nodes in some mode.
@@ -100,6 +100,6 @@ class DeviceTreeNode(BaseModel):
         })
         return _obj
 
-
+from cohesity_sdk.cluster.models.device_tree_non_leaf_node import DeviceTreeNonLeafNode # noqa: E402
 # TODO: Rewrite to not use raise_errors
 DeviceTreeNode.model_rebuild(raise_errors=False)

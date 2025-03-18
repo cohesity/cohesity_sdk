@@ -71,20 +71,20 @@ print(client.platform.get_cluster().sw_version)
 6.6.0d_ent_release-20220621_a04bcd28
 ```
 
-Initializing the Client:
+
 ```
 # Helious client Initialization
 
 from cohesity_sdk.helios.mcm_v2_client import McmV2Client
 
-access_cluster_id='x.x.x.x'
+access_cluster_id=xxxxxx
 api_key='xxxxxxx'
 cluster_vip='helios.cohesity.com'
 
 helious_client = McmV2Client(
-    cluster_vip=cluster_vip, access_cluster_id=access_cluster_id, api_key=api_key)
+    cluster_vip=cluster_vip, api_key=api_key)
 
-print(helious_client.view_api.get_views())
+print(helious_client.view_api.get_views(access_cluster_id=access_cluster_id)
 
 #OUTPUT
 {

@@ -32,7 +32,6 @@ from cohesity_sdk.helios.api.data_tiering_api import DataTieringApi
 from cohesity_sdk.helios.api.external_target_api import ExternalTargetApi
 from cohesity_sdk.helios.api.failover_api import FailoverApi
 from cohesity_sdk.helios.api.firewall_api import FirewallApi
-from cohesity_sdk.helios.api.fort_knox_api import FortKnoxApi
 from cohesity_sdk.helios.api.fortknox_api import FortknoxApi
 from cohesity_sdk.helios.api.helios_data_protect_stats_api import HeliosDataProtectStatsApi
 from cohesity_sdk.helios.api.helios_notifications_api import HeliosNotificationsApi
