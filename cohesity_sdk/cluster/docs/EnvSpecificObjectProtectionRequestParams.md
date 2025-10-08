@@ -3,44 +3,31 @@
 Specifies the parameters which are specific to adapter identified by environment.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**environment** | **str** | Specifies the environment for current object. | [optional] 
+**environment** | **str, none_type** | Specifies the environment for current object. | [optional] 
 **aws_params** | [**AwsObjectProtectionRequestParams**](AwsObjectProtectionRequestParams.md) |  | [optional] 
 **azure_params** | [**AzureObjectProtectionRequestParams**](AzureObjectProtectionRequestParams.md) |  | [optional] 
 **elastifile_params** | [**ElastifileObjectProtectionRequestParams**](ElastifileObjectProtectionRequestParams.md) |  | [optional] 
+**experimental_adapter_params** | [**ExperimentalAdapterObjectProtectionParams**](ExperimentalAdapterObjectProtectionParams.md) |  | [optional] 
 **flashblade_params** | [**FlashbladeObjectProtectionRequestParams**](FlashbladeObjectProtectionRequestParams.md) |  | [optional] 
 **generic_nas_params** | [**GenericNasObjectProtectionRequestParams**](GenericNasObjectProtectionRequestParams.md) |  | [optional] 
+**google_workspace_params** | [**GoogleWorkspaceObjectProtectionParams**](GoogleWorkspaceObjectProtectionParams.md) |  | [optional] 
 **gpfs_params** | [**GpfsObjectProtectionRequestParams**](GpfsObjectProtectionRequestParams.md) |  | [optional] 
 **hyperv_params** | [**HyperVObjectProtectionRequestParams**](HyperVObjectProtectionRequestParams.md) |  | [optional] 
 **isilon_params** | [**IsilonObjectProtectionRequestParams**](IsilonObjectProtectionRequestParams.md) |  | [optional] 
+**kubernetes_params** | [**KubernetesObjectProtectionParams**](KubernetesObjectProtectionParams.md) |  | [optional] 
 **mssql_params** | [**MssqlObjectProtectionParams**](MssqlObjectProtectionParams.md) |  | [optional] 
 **netapp_params** | [**NetappObjectProtectionRequestParams**](NetappObjectProtectionRequestParams.md) |  | [optional] 
 **office365_params** | [**Office365ObjectProtectionParams**](Office365ObjectProtectionParams.md) |  | [optional] 
 **oracle_params** | [**OracleObjectBasedProtectionParams**](OracleObjectBasedProtectionParams.md) |  | [optional] 
 **physical_params** | [**PhysicalObjectProtectionParams**](PhysicalObjectProtectionParams.md) |  | [optional] 
+**sap_hana_params** | [**SapHanaObjectProtectionParams**](SapHanaObjectProtectionParams.md) |  | [optional] 
+**service_now_params** | [**ServiceNowObjectProtectionParams**](ServiceNowObjectProtectionParams.md) |  | [optional] 
 **sfdc_params** | [**SfdcObjectProtectionParams**](SfdcObjectProtectionParams.md) |  | [optional] 
 **uda_params** | [**UdaObjectProtectionParams**](UdaObjectProtectionParams.md) |  | [optional] 
 **vmware_params** | [**VmwareObjectProtectionRequestParams**](VmwareObjectProtectionRequestParams.md) |  | [optional] 
 
-## Example
-
-```python
-from cohesity_sdk.cluster.models.env_specific_object_protection_request_params import EnvSpecificObjectProtectionRequestParams
-
-# TODO update the JSON string below
-json = "{}"
-# create an instance of EnvSpecificObjectProtectionRequestParams from a JSON string
-env_specific_object_protection_request_params_instance = EnvSpecificObjectProtectionRequestParams.from_json(json)
-# print the JSON string representation of the object
-print(EnvSpecificObjectProtectionRequestParams.to_json())
-
-# convert the object into a dict
-env_specific_object_protection_request_params_dict = env_specific_object_protection_request_params_instance.to_dict()
-# create an instance of EnvSpecificObjectProtectionRequestParams from a dict
-env_specific_object_protection_request_params_from_dict = EnvSpecificObjectProtectionRequestParams.from_dict(env_specific_object_protection_request_params_dict)
-```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

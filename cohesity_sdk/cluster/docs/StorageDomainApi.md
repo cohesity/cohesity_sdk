@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.StorageDomainApi
+# cohesity_sdk.StorageDomainApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,72 +15,161 @@ Method | HTTP request | Description
 
 Create a Storage Domain.
 
-Create a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Create a Storage Domain.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.storage_domain import StorageDomain
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.storage_domain import StorageDomain
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = StorageDomain(
+        ad_domain_name="ad_domain_name_example",
+        blob_brick_size_bytes=1,
+        cloud_domain_id=1,
+        cloud_down_water_fall_params=CloudDownWaterFallParams(
+            threshold_percentage=1,
+            threshold_secs=1,
+        ),
+        cluster_partition_id=1,
+        default_user_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        default_view_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        dek_rotation_enabled=True,
+        direct_archive_enabled=True,
+        kerberos_realm_name="kerberos_realm_name_example",
+        kms_server_id=1,
+        last_key_rotation_timestamp_msecs=1,
+        ldap_provider_id=1,
+        name="name_example",
+        nis_domain_names=[
+            "nis_domain_names_example",
+        ],
+        optimize_throughput_settings=True,
+        physical_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        s3_buckets_enabled=True,
+        stats=DataUsageStats(
+            cloud_data_written_bytes=1,
+            cloud_data_written_bytes_timestamp_usec=1,
+            cloud_total_physical_usage_bytes=1,
+            cloud_total_physical_usage_bytes_timestamp_usec=1,
+            data_in_bytes=1,
+            data_in_bytes_after_dedup=1,
+            data_in_bytes_after_dedup_timestamp_usec=1,
+            data_in_bytes_timestamp_usec=1,
+            data_protect_logical_usage_bytes=1,
+            data_protect_logical_usage_bytes_timestamp_usec=1,
+            data_protect_physical_usage_bytes=1,
+            data_protect_physical_usage_bytes_timestamp_usec=1,
+            data_written_bytes=1,
+            data_written_bytes_timestamp_usec=1,
+            file_services_logical_usage_bytes=1,
+            file_services_logical_usage_bytes_timestamp_usec=1,
+            file_services_physical_usage_bytes=1,
+            file_services_physical_usage_bytes_timestamp_usec=1,
+            local_data_written_bytes=1,
+            local_data_written_bytes_timestamp_usec=1,
+            local_tier_resiliency_impact_bytes=1,
+            local_tier_resiliency_impact_bytes_timestamp_usec=1,
+            local_total_physical_usage_bytes=1,
+            local_total_physical_usage_bytes_timestamp_usec=1,
+            num_directories=1,
+            num_files=1,
+            outdated_logical_usage_bytes=1,
+            outdated_logical_usage_bytes_timestamp_usec=1,
+            storage_consumed_bytes=1,
+            storage_consumed_bytes_timestamp_usec=1,
+            total_logical_usage_bytes=1,
+            total_logical_usage_bytes_timestamp_usec=1,
+            unique_physical_data_bytes=1,
+        ),
+        storage_policy=StoragePolicy(
+            aes_encryption_mode="CBC",
+            app_marker_detection_enabled=True,
+            cloud_spill_vault_id=1,
+            compression_params=CompressionParams(
+                inline_enabled=True,
+                type="None",
+            ),
+            deduplication_compression_delay_secs=1,
+            deduplication_params=DeduplicationParams(
+                enabled=True,
+                inline_enabled=True,
+            ),
+            encryption_type="None",
+            erasure_coding_params=ErasureCodingParams(
+                delay_secs=1,
+                enabled=True,
+                inline_enabled=True,
+                num_coded_stripes=1,
+                num_data_stripes=1,
+            ),
+            num_disk_failures_tolerated=1,
+            num_node_failures_tolerated=1,
+        ),
+        subnet_whitelist=[
+            Subnet(
+                component="component_example",
+                description="description_example",
+                gateway="gateway_example",
+                id=1,
+                ip="ip_example",
+                netmask_bits=1,
+                netmask_ip4="netmask_ip4_example",
+                nfs_access="kDisabled",
+                nfs_squash="kNone",
+                s3_access="kDisabled",
+                smb_access="kDisabled",
+            ),
+        ],
+        tenant_ids=[
+            "tenant_ids_example",
+        ],
+        treat_file_sync_as_data_sync=True,
+        vault_id=1,
+    ) # StorageDomain | Specified the request to create a Storage Domain.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
-    body = cohesity_sdk.cluster.StorageDomain() # StorageDomain | Specified the request to create a Storage Domain.
-
-    try:
-        # Create a Storage Domain.
-        api_response = api_instance.create_storage_domain(body)
-        print("The response of StorageDomainApi->create_storage_domain:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StorageDomainApi->create_storage_domain: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Create a Storage Domain.
+	api_response = client.storage_domain.create_storage_domain(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->create_storage_domain: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **StorageDomain**| Specified the request to create a Storage Domain. | 
+ **body** | [**StorageDomain**](StorageDomain.md)| Specified the request to create a Storage Domain. |
 
 ### Return type
 
@@ -89,15 +177,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -110,69 +198,54 @@ Name | Type | Description  | Notes
 
 Delete a Storage Domain.
 
-Delete a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Delete a Storage Domain.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = 1 # int | Specified the Storage Domain id to delete.
+force = True # bool | If `true`, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+# example passing only required values which don't have defaults set
+try:
+	# Delete a Storage Domain.
+	client.storage_domain.delete_storage_domain(id)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->delete_storage_domain: %s\n" % e)
 
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
-    id = 56 # int | Specified the Storage Domain id to delete.
-
-    try:
-        # Delete a Storage Domain.
-        api_instance.delete_storage_domain(id)
-    except Exception as e:
-        print("Exception when calling StorageDomainApi->delete_storage_domain: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Delete a Storage Domain.
+	client.storage_domain.delete_storage_domain(id, force=force)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->delete_storage_domain: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specified the Storage Domain id to delete. | 
+ **id** | **int**| Specified the Storage Domain id to delete. |
+ **force** | **bool**| If &#x60;true&#x60;, the Storage Domain can be deleted even if it contains LSUs that are paired with remote LSUs. | [optional]
 
 ### Return type
 
@@ -180,15 +253,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -197,84 +270,67 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_storage_domain_by_id**
-> StorageDomain get_storage_domain_by_id(id, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, include_tenants=include_tenants)
+> StorageDomain get_storage_domain_by_id(id)
 
 Get a Storage Domain by id.
 
-Get a Storage Domain by id.
+**Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get a Storage Domain by id.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.storage_domain import StorageDomain
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.storage_domain import StorageDomain
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = 1 # int | Specified the Storage Domain id to fetch.
+include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
+include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
+include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
+include_tenants = True # bool | Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
+# example passing only required values which don't have defaults set
+try:
+	# Get a Storage Domain by id.
+	api_response = client.storage_domain.get_storage_domain_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->get_storage_domain_by_id: %s\n" % e)
 
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
-    id = 56 # int | Specified the Storage Domain id to fetch.
-    include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
-    include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
-    include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
-    include_tenants = True # bool | Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant. (optional)
-
-    try:
-        # Get a Storage Domain by id.
-        api_response = api_instance.get_storage_domain_by_id(id, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, include_tenants=include_tenants)
-        print("The response of StorageDomainApi->get_storage_domain_by_id:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StorageDomainApi->get_storage_domain_by_id: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a Storage Domain by id.
+	api_response = client.storage_domain.get_storage_domain_by_id(id, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, include_tenants=include_tenants)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->get_storage_domain_by_id: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specified the Storage Domain id to fetch. | 
- **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional] 
- **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional] 
- **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional] 
- **include_tenants** | **bool**| Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant. | [optional] 
+ **id** | **int**| Specified the Storage Domain id to fetch. |
+ **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional]
+ **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional]
+ **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional]
+ **include_tenants** | **bool**| Whether to include Storage Domains that belong to Tenants. This param is only effective when the User has privilege to view Storage Domain details of a tenant. | [optional]
 
 ### Return type
 
@@ -282,15 +338,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -299,94 +355,77 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_storage_domains**
-> StorageDomains get_storage_domains(ids=ids, names=names, cluster_partition_ids=cluster_partition_ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, match_partial_names=match_partial_names, view_template_id=view_template_id)
+> StorageDomains get_storage_domains()
 
 Get Storage Domains.
 
-Get Storage Domains.
+**Privileges:** ```STORAGE_DOMAIN_VIEW``` <br><br>Get Storage Domains.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.storage_domains import StorageDomains
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.storage_domains import StorageDomains
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+ids = [
+        1,
+    ] # [int] | Filter by a list of Storage Domain ids. (optional)
+names = [
+        "names_example",
+    ] # [str] | Filter by a list of Storage Domain names. (optional)
+cluster_partition_ids = [
+        1,
+    ] # [int] | Filter by a list of cluster partition ids. (optional)
+tenant_ids = [
+        "tenantIds_example",
+    ] # [str] | TenantIds contains ids of the tenants for which Storage Domains are to be returned. (optional)
+include_tenants = True # bool | IncludeTenants specifies if Storage Domains of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
+include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
+include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
+include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
+match_partial_names = True # bool | If set to true, names in the 'names' parameter will be matched partially instead of exactly. (optional)
+view_template_id = 1 # int | Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
-    ids = [56] # List[int] | Filter by a list of Storage Domain ids. (optional)
-    names = ['names_example'] # List[str] | Filter by a list of Storage Domain names. (optional)
-    cluster_partition_ids = [56] # List[int] | Filter by a list of cluster partition ids. (optional)
-    tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which Storage Domains are to be returned. (optional)
-    include_tenants = True # bool | IncludeTenants specifies if Storage Domains of all the tenants under the hierarchy of the logged in user's organization should be returned. (optional)
-    include_stats = True # bool | Whether to include Storage Domain stats in response. (optional)
-    include_time_series_schema = True # bool | Whether to include Storage Domain time series schema in response. (optional)
-    include_file_count_by_size = True # bool | Whether to include Storage Domain file count by size. (optional)
-    match_partial_names = True # bool | If true, the names in viewNames are matched by any partial rather than exactly matched. (optional)
-    view_template_id = 56 # int | Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. (optional)
-
-    try:
-        # Get Storage Domains.
-        api_response = api_instance.get_storage_domains(ids=ids, names=names, cluster_partition_ids=cluster_partition_ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, match_partial_names=match_partial_names, view_template_id=view_template_id)
-        print("The response of StorageDomainApi->get_storage_domains:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StorageDomainApi->get_storage_domains: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get Storage Domains.
+	api_response = client.storage_domain.get_storage_domains(ids=ids, names=names, cluster_partition_ids=cluster_partition_ids, tenant_ids=tenant_ids, include_tenants=include_tenants, include_stats=include_stats, include_time_series_schema=include_time_series_schema, include_file_count_by_size=include_file_count_by_size, match_partial_names=match_partial_names, view_template_id=view_template_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->get_storage_domains: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | [**List[int]**](int.md)| Filter by a list of Storage Domain ids. | [optional] 
- **names** | [**List[str]**](str.md)| Filter by a list of Storage Domain names. | [optional] 
- **cluster_partition_ids** | [**List[int]**](int.md)| Filter by a list of cluster partition ids. | [optional] 
- **tenant_ids** | [**List[str]**](str.md)| TenantIds contains ids of the tenants for which Storage Domains are to be returned. | [optional] 
- **include_tenants** | **bool**| IncludeTenants specifies if Storage Domains of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional] 
- **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional] 
- **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional] 
- **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional] 
- **match_partial_names** | **bool**| If true, the names in viewNames are matched by any partial rather than exactly matched. | [optional] 
- **view_template_id** | **int**| Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. | [optional] 
+ **ids** | **[int]**| Filter by a list of Storage Domain ids. | [optional]
+ **names** | **[str]**| Filter by a list of Storage Domain names. | [optional]
+ **cluster_partition_ids** | **[int]**| Filter by a list of cluster partition ids. | [optional]
+ **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which Storage Domains are to be returned. | [optional]
+ **include_tenants** | **bool**| IncludeTenants specifies if Storage Domains of all the tenants under the hierarchy of the logged in user&#39;s organization should be returned. | [optional]
+ **include_stats** | **bool**| Whether to include Storage Domain stats in response. | [optional]
+ **include_time_series_schema** | **bool**| Whether to include Storage Domain time series schema in response. | [optional]
+ **include_file_count_by_size** | **bool**| Whether to include Storage Domain file count by size. | [optional]
+ **match_partial_names** | **bool**| If set to true, names in the &#39;names&#39; parameter will be matched partially instead of exactly. | [optional]
+ **view_template_id** | **int**| Specifies a view template id for Storage Domain. Storage Domains with same deduplication and compression settings will be recommended. | [optional]
 
 ### Return type
 
@@ -394,15 +433,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -415,74 +454,163 @@ Name | Type | Description  | Notes
 
 Update a Storage Domain.
 
-Update a Storage Domain.
+**Privileges:** ```STORAGE_DOMAIN_MODIFY``` <br><br>Update a Storage Domain.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.storage_domain import StorageDomain
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.storage_domain import StorageDomain
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = 1 # int | Specified the Storage Domain id to update.
+body = StorageDomain(
+        ad_domain_name="ad_domain_name_example",
+        blob_brick_size_bytes=1,
+        cloud_domain_id=1,
+        cloud_down_water_fall_params=CloudDownWaterFallParams(
+            threshold_percentage=1,
+            threshold_secs=1,
+        ),
+        cluster_partition_id=1,
+        default_user_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        default_view_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        dek_rotation_enabled=True,
+        direct_archive_enabled=True,
+        kerberos_realm_name="kerberos_realm_name_example",
+        kms_server_id=1,
+        last_key_rotation_timestamp_msecs=1,
+        ldap_provider_id=1,
+        name="name_example",
+        nis_domain_names=[
+            "nis_domain_names_example",
+        ],
+        optimize_throughput_settings=True,
+        physical_quota=QuotaPolicy(
+            alert_limit_bytes=1,
+            alert_threshold_percentage=1,
+            hard_limit_bytes=1,
+        ),
+        s3_buckets_enabled=True,
+        stats=DataUsageStats(
+            cloud_data_written_bytes=1,
+            cloud_data_written_bytes_timestamp_usec=1,
+            cloud_total_physical_usage_bytes=1,
+            cloud_total_physical_usage_bytes_timestamp_usec=1,
+            data_in_bytes=1,
+            data_in_bytes_after_dedup=1,
+            data_in_bytes_after_dedup_timestamp_usec=1,
+            data_in_bytes_timestamp_usec=1,
+            data_protect_logical_usage_bytes=1,
+            data_protect_logical_usage_bytes_timestamp_usec=1,
+            data_protect_physical_usage_bytes=1,
+            data_protect_physical_usage_bytes_timestamp_usec=1,
+            data_written_bytes=1,
+            data_written_bytes_timestamp_usec=1,
+            file_services_logical_usage_bytes=1,
+            file_services_logical_usage_bytes_timestamp_usec=1,
+            file_services_physical_usage_bytes=1,
+            file_services_physical_usage_bytes_timestamp_usec=1,
+            local_data_written_bytes=1,
+            local_data_written_bytes_timestamp_usec=1,
+            local_tier_resiliency_impact_bytes=1,
+            local_tier_resiliency_impact_bytes_timestamp_usec=1,
+            local_total_physical_usage_bytes=1,
+            local_total_physical_usage_bytes_timestamp_usec=1,
+            num_directories=1,
+            num_files=1,
+            outdated_logical_usage_bytes=1,
+            outdated_logical_usage_bytes_timestamp_usec=1,
+            storage_consumed_bytes=1,
+            storage_consumed_bytes_timestamp_usec=1,
+            total_logical_usage_bytes=1,
+            total_logical_usage_bytes_timestamp_usec=1,
+            unique_physical_data_bytes=1,
+        ),
+        storage_policy=StoragePolicy(
+            aes_encryption_mode="CBC",
+            app_marker_detection_enabled=True,
+            cloud_spill_vault_id=1,
+            compression_params=CompressionParams(
+                inline_enabled=True,
+                type="None",
+            ),
+            deduplication_compression_delay_secs=1,
+            deduplication_params=DeduplicationParams(
+                enabled=True,
+                inline_enabled=True,
+            ),
+            encryption_type="None",
+            erasure_coding_params=ErasureCodingParams(
+                delay_secs=1,
+                enabled=True,
+                inline_enabled=True,
+                num_coded_stripes=1,
+                num_data_stripes=1,
+            ),
+            num_disk_failures_tolerated=1,
+            num_node_failures_tolerated=1,
+        ),
+        subnet_whitelist=[
+            Subnet(
+                component="component_example",
+                description="description_example",
+                gateway="gateway_example",
+                id=1,
+                ip="ip_example",
+                netmask_bits=1,
+                netmask_ip4="netmask_ip4_example",
+                nfs_access="kDisabled",
+                nfs_squash="kNone",
+                s3_access="kDisabled",
+                smb_access="kDisabled",
+            ),
+        ],
+        tenant_ids=[
+            "tenant_ids_example",
+        ],
+        treat_file_sync_as_data_sync=True,
+        vault_id=1,
+    ) # StorageDomain | Specified the request to update a Storage Domain.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.StorageDomainApi(api_client)
-    id = 56 # int | Specified the Storage Domain id to update.
-    body = cohesity_sdk.cluster.StorageDomain() # StorageDomain | Specified the request to update a Storage Domain.
-
-    try:
-        # Update a Storage Domain.
-        api_response = api_instance.update_storage_domain(id, body)
-        print("The response of StorageDomainApi->update_storage_domain:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling StorageDomainApi->update_storage_domain: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update a Storage Domain.
+	api_response = client.storage_domain.update_storage_domain(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling StorageDomainApi->update_storage_domain: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specified the Storage Domain id to update. | 
- **body** | **StorageDomain**| Specified the request to update a Storage Domain. | 
+ **id** | **int**| Specified the Storage Domain id to update. |
+ **body** | [**StorageDomain**](StorageDomain.md)| Specified the request to update a Storage Domain. |
 
 ### Return type
 
@@ -490,15 +618,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

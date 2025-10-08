@@ -1,0 +1,11 @@
+# RecoverAzureMySQLSnapshotParamsAllOf
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**recover_azure_mysql_object_params** | [**RecoverAzureMySQLObjectParams**](RecoverAzureMySQLObjectParams.md) |  | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

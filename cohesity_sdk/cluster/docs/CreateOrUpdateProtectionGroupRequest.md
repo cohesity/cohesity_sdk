@@ -3,36 +3,39 @@
 Specifies the request to create or update a Protection Group.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**abort_in_blackouts** | **bool** | Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if &#39;pauseInBlackouts&#39; is set to true. | [optional] 
-**advanced_configs** | [**List[KeyValuePair]**](KeyValuePair.md) | Specifies the advanced configuration for a protection job. | [optional] 
+**environment** | **str, none_type** | Specifies the environment type of the Protection Group. | 
+**name** | **str, none_type** | Specifies the name of the Protection Group. | 
+**policy_id** | **str, none_type** | Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc. | 
+**abort_in_blackouts** | **bool, none_type** | Specifies whether currently executing jobs should abort if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if &#39;pauseInBlackouts&#39; is set to true. | [optional] 
+**advanced_configs** | [**[KeyValuePair], none_type**](KeyValuePair.md) | Specifies the advanced configuration for a protection job. | [optional] 
 **alert_policy** | [**ProtectionGroupAlertingPolicy**](ProtectionGroupAlertingPolicy.md) |  | [optional] 
-**description** | **str** | Specifies a description of the Protection Group. | [optional] 
-**end_time_usecs** | **int** | Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won&#39;t be ended. | [optional] 
-**environment** | **str** | Specifies the environment type of the Protection Group. | 
-**is_paused** | **bool** | Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted. | [optional] 
-**last_modified_timestamp_usecs** | **int** | Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error. | [optional] 
-**name** | **str** | Specifies the name of the Protection Group. | 
-**pause_in_blackouts** | **bool** | Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if &#39;abortInBlackouts&#39; is sent as true. | [optional] 
-**policy_id** | **str** | Specifies the unique id of the Protection Policy associated with the Protection Group. The Policy provides retry settings Protection Schedules, Priority, SLA, etc. | 
-**priority** | **str** | Specifies the priority of the Protection Group. | [optional] 
-**qos_policy** | **str** | Specifies whether the Protection Group will be written to HDD or SSD. | [optional] 
-**sla** | [**List[SlaRule]**](SlaRule.md) | Specifies the SLA parameters for this Protection Group. | [optional] 
+**description** | **str, none_type** | Specifies a description of the Protection Group. | [optional] 
+**end_time_usecs** | **int, none_type** | Specifies the end time in micro seconds for this Protection Group. If this is not specified, the Protection Group won&#39;t be ended. | [optional] 
+**is_paused** | **bool, none_type** | Specifies if the the Protection Group is paused. New runs are not scheduled for the paused Protection Groups. Active run if any is not impacted. | [optional] 
+**last_modified_timestamp_usecs** | **int, none_type** | Specifies the last time this protection group was updated. If this is passed into a PUT request, then the backend will validate that the timestamp passed in matches the time that the protection group was actually last modified. If the two timestamps do not match, then the request will be rejected with a stale error. | [optional] 
+**pause_in_blackouts** | **bool, none_type** | Specifies whether currently executing jobs should be paused if a blackout period specified by a policy starts. Available only if the selected policy has at least one blackout period. Default value is false. This field should not be set to true if &#39;abortInBlackouts&#39; is sent as true. | [optional] 
+**paused_note** | **str, none_type** | A note from the current user explaining the reason for pausing future runs, if applicable. | [optional] 
+**priority** | **str, none_type** | Specifies the priority of the Protection Group. | [optional] 
+**qos_policy** | **str, none_type** | Specifies whether the Protection Group will be written to HDD or SSD. | [optional] 
+**sla** | [**[SlaRule], none_type**](SlaRule.md) | Specifies the SLA parameters for this Protection Group. | [optional] 
 **start_time** | [**TimeOfDay**](TimeOfDay.md) |  | [optional] 
-**storage_domain_id** | **int** | Specifies the Storage Domain (View Box) ID where this Protection Group writes data. | [optional] 
+**storage_domain_id** | **int, none_type** | Specifies the Storage Domain (View Box) ID where this Protection Group writes data. | [optional] 
 **acropolis_params** | [**AcropolisProtectionGroupParams**](AcropolisProtectionGroupParams.md) |  | [optional] 
 **ad_params** | [**ADProtectionGroupParams**](ADProtectionGroupParams.md) |  | [optional] 
 **aws_params** | [**AwsProtectionGroupParams**](AwsProtectionGroupParams.md) |  | [optional] 
 **azure_params** | [**AzureProtectionGroupParams**](AzureProtectionGroupParams.md) |  | [optional] 
 **cassandra_params** | [**CassandraProtectionGroupParams**](CassandraProtectionGroupParams.md) |  | [optional] 
 **couchbase_params** | [**NoSqlProtectionGroupParams**](NoSqlProtectionGroupParams.md) |  | [optional] 
+**db2_params** | [**DB2ProtectionGroupParams**](DB2ProtectionGroupParams.md) |  | [optional] 
 **elastifile_params** | [**ElastifileProtectionGroupParams**](ElastifileProtectionGroupParams.md) |  | [optional] 
 **exchange_params** | [**ExchangeProtectionGroupParams**](ExchangeProtectionGroupParams.md) |  | [optional] 
+**experimental_adapter_params** | [**ExperimentalAdapterProtectionGroupParams**](ExperimentalAdapterProtectionGroupParams.md) |  | [optional] 
 **flashblade_params** | [**FlashbladeProtectionGroupParams**](FlashbladeProtectionGroupParams.md) |  | [optional] 
 **gcp_params** | [**GcpProtectionGroupParams**](GcpProtectionGroupParams.md) |  | [optional] 
 **generic_nas_params** | [**GenericNasProtectionGroupParams**](GenericNasProtectionGroupParams.md) |  | [optional] 
+**google_workspace_params** | [**GoogleWorkspaceProtectionGroupParams**](GoogleWorkspaceProtectionGroupParams.md) |  | [optional] 
 **gpfs_params** | [**GpfsProtectionGroupParams**](GpfsProtectionGroupParams.md) |  | [optional] 
 **hbase_params** | [**NoSqlProtectionGroupParams**](NoSqlProtectionGroupParams.md) |  | [optional] 
 **hdfs_params** | [**HdfsProtectionGroupParams**](HdfsProtectionGroupParams.md) |  | [optional] 
@@ -42,6 +45,7 @@ Name | Type | Description | Notes
 **isilon_params** | [**IsilonProtectionGroupParams**](IsilonProtectionGroupParams.md) |  | [optional] 
 **kubernetes_params** | [**KubernetesProtectionGroupParams**](KubernetesProtectionGroupParams.md) |  | [optional] 
 **kvm_params** | [**KvmProtectionGroupParams**](KvmProtectionGroupParams.md) |  | [optional] 
+**mongodb_ops_params** | [**MongoDBOpsManagerProtectionGroupParams**](MongoDBOpsManagerProtectionGroupParams.md) |  | [optional] 
 **mongodb_params** | [**MongoDBProtectionGroupParams**](MongoDBProtectionGroupParams.md) |  | [optional] 
 **mssql_params** | [**MSSQLProtectionGroupParams**](MSSQLProtectionGroupParams.md) |  | [optional] 
 **netapp_params** | [**NetappProtectionGroupParams**](NetappProtectionGroupParams.md) |  | [optional] 
@@ -51,28 +55,13 @@ Name | Type | Description | Notes
 **physical_params** | [**PhysicalProtectionGroupParams**](PhysicalProtectionGroupParams.md) |  | [optional] 
 **pure_params** | [**PureProtectionGroupParams**](PureProtectionGroupParams.md) |  | [optional] 
 **remote_adapter_params** | [**RemoteAdapterProtectionGroupParams**](RemoteAdapterProtectionGroupParams.md) |  | [optional] 
+**s3_compatible_params** | [**S3CompatibleProtectionGroupParams**](S3CompatibleProtectionGroupParams.md) |  | [optional] 
+**sap_hana_params** | [**SapHanaProtectionGroupParams**](SapHanaProtectionGroupParams.md) |  | [optional] 
 **sfdc_params** | [**SfdcProtectionGroupParams**](SfdcProtectionGroupParams.md) |  | [optional] 
 **uda_params** | [**UdaProtectionGroupParams**](UdaProtectionGroupParams.md) |  | [optional] 
 **view_params** | [**ViewProtectionGroupParams**](ViewProtectionGroupParams.md) |  | [optional] 
 **vmware_params** | [**VmwareProtectionGroupParams**](VmwareProtectionGroupParams.md) |  | [optional] 
 
-## Example
-
-```python
-from cohesity_sdk.cluster.models.create_or_update_protection_group_request import CreateOrUpdateProtectionGroupRequest
-
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateOrUpdateProtectionGroupRequest from a JSON string
-create_or_update_protection_group_request_instance = CreateOrUpdateProtectionGroupRequest.from_json(json)
-# print the JSON string representation of the object
-print(CreateOrUpdateProtectionGroupRequest.to_json())
-
-# convert the object into a dict
-create_or_update_protection_group_request_dict = create_or_update_protection_group_request_instance.to_dict()
-# create an instance of CreateOrUpdateProtectionGroupRequest from a dict
-create_or_update_protection_group_request_from_dict = CreateOrUpdateProtectionGroupRequest.from_dict(create_or_update_protection_group_request_dict)
-```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

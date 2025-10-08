@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.MFAApi
+# cohesity_sdk.MFAApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,74 +15,54 @@ Method | HTTP request | Description
 
 
 # **create_email_otp**
-> create_email_otp(body=body)
+> create_email_otp()
 
 Creates a new OTP to be sent to the user email.
 
-Creates a new One Time Password for the user email. This is used for API login.
+```No Privileges Required``` <br><br>Creates a new One Time Password for the user email. This is used for API login.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.create_email_otp_request_body import CreateEmailOtpRequestBody
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.create_email_otp_request_body import CreateEmailOtpRequestBody
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = CreateEmailOtpRequestBody(
+        domain="domain_example",
+        password="password_example",
+        username="username_example",
+    ) # CreateEmailOtpRequestBody | Specifies the parameters to send email OTP. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-    body = cohesity_sdk.cluster.CreateEmailOtpRequestBody() # CreateEmailOtpRequestBody | Specifies the parameters to send email OTP. (optional)
-
-    try:
-        # Creates a new OTP to be sent to the user email.
-        api_instance.create_email_otp(body=body)
-    except Exception as e:
-        print("Exception when calling MFAApi->create_email_otp: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Creates a new OTP to be sent to the user email.
+	client.mfa.create_email_otp(body=body)
+except ApiException as e:
+	print("Exception when calling MFAApi->create_email_otp: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateEmailOtpRequestBody**](CreateEmailOtpRequestBody.md)| Specifies the parameters to send email OTP. | [optional] 
+ **body** | [**CreateEmailOtpRequestBody**](CreateEmailOtpRequestBody.md)| Specifies the parameters to send email OTP. | [optional]
 
 ### Return type
 
@@ -91,15 +70,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Successfully sent an email to the configured address |  -  |
@@ -112,73 +91,49 @@ void (empty response body)
 
 Create a new TOTP secret URI and store the secret key.
 
-Create a TOTP key.
+```No Privileges Required``` <br><br>Create a TOTP key.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.create_totp_key_request_body import CreateTotpKeyRequestBody
-from cohesity_sdk.cluster.models.totp_key_info import TotpKeyInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.create_totp_key_request_body import CreateTotpKeyRequestBody
+from cohesity_sdk.cluster.model.totp_key_info import TotpKeyInfo
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = CreateTotpKeyRequestBody(
+        totp_key_name="totp_key_name_example",
+    ) # CreateTotpKeyRequestBody | Specifies the key id for creating the TOTP key.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-    body = cohesity_sdk.cluster.CreateTotpKeyRequestBody() # CreateTotpKeyRequestBody | Specifies the key id for creating the TOTP key.
-
-    try:
-        # Create a new TOTP secret URI and store the secret key.
-        api_response = api_instance.create_totp_key(body)
-        print("The response of MFAApi->create_totp_key:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MFAApi->create_totp_key: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Create a new TOTP secret URI and store the secret key.
+	api_response = client.mfa.create_totp_key(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->create_totp_key: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateTotpKeyRequestBody**](CreateTotpKeyRequestBody.md)| Specifies the key id for creating the TOTP key. | 
+ **body** | [**CreateTotpKeyRequestBody**](CreateTotpKeyRequestBody.md)| Specifies the key id for creating the TOTP key. |
 
 ### Return type
 
@@ -186,15 +141,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -207,67 +162,41 @@ Name | Type | Description  | Notes
 
 Returns the current MFA configuration.
 
-Returns the current MFA configuration for the cluster.
+```No Privileges Required``` <br><br>Returns the current MFA configuration for the cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.mfa_config_info import MfaConfigInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.mfa_config_info import MfaConfigInfo
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-
-    try:
-        # Returns the current MFA configuration.
-        api_response = api_instance.get_mfa_config()
-        print("The response of MFAApi->get_mfa_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MFAApi->get_mfa_config: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Returns the current MFA configuration.
+	api_response = client.mfa.get_mfa_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->get_mfa_config: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -276,15 +205,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -297,67 +226,41 @@ This endpoint does not need any parameter.
 
 Returns the current MFA configuration.
 
-Returns the current MFA configuration for support user.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Returns the current MFA configuration for support user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.support_mfa_config_info import SupportMfaConfigInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.support_mfa_config_info import SupportMfaConfigInfo
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-
-    try:
-        # Returns the current MFA configuration.
-        api_response = api_instance.get_support_mfa_config()
-        print("The response of MFAApi->get_support_mfa_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MFAApi->get_support_mfa_config: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Returns the current MFA configuration.
+	api_response = client.mfa.get_support_mfa_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->get_support_mfa_config: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -366,15 +269,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -387,64 +290,39 @@ This endpoint does not need any parameter.
 
 Creates a new OTP to be sent to the user email.
 
-Creates a new One Time Password for the user email
+```No Privileges Required``` <br><br>Creates a new One Time Password for the user email
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-
-    try:
-        # Creates a new OTP to be sent to the user email.
-        api_instance.send_email_otp()
-    except Exception as e:
-        print("Exception when calling MFAApi->send_email_otp: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Creates a new OTP to be sent to the user email.
+	client.mfa.send_email_otp()
+except ApiException as e:
+	print("Exception when calling MFAApi->send_email_otp: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -453,15 +331,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Successfully sent an email to the configured address |  -  |
@@ -474,64 +352,39 @@ void (empty response body)
 
 Creates a new OTP to be sent to the linux support user email.
 
-Creates a new one time password for linux support user email
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Creates a new one time password for linux support user email
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-
-    try:
-        # Creates a new OTP to be sent to the linux support user email.
-        api_instance.send_support_email_otp()
-    except Exception as e:
-        print("Exception when calling MFAApi->send_support_email_otp: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Creates a new OTP to be sent to the linux support user email.
+	client.mfa.send_support_email_otp()
+except ApiException as e:
+	print("Exception when calling MFAApi->send_support_email_otp: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -540,15 +393,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Successfully sent an email to the configured address |  -  |
@@ -561,72 +414,52 @@ void (empty response body)
 
 Stores the updated MFA configuration.
 
-Stores the updated MFA configuration for the cluster.
+**Privileges:** ```MFA_MODIFY``` <br><br>Stores the updated MFA configuration for the cluster.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.mfa_config_info import MfaConfigInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.mfa_config_info import MfaConfigInfo
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = MfaConfigInfo(
+        authentication_types=[
+            "email",
+        ],
+        enabled=False,
+        retain_user_mfa_settings=True,
+    ) # MfaConfigInfo | The update request for the MFA Settings
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-    body = cohesity_sdk.cluster.MfaConfigInfo() # MfaConfigInfo | The update request for the MFA Settings
-
-    try:
-        # Stores the updated MFA configuration.
-        api_response = api_instance.update_mfa_config(body)
-        print("The response of MFAApi->update_mfa_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MFAApi->update_mfa_config: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Stores the updated MFA configuration.
+	api_response = client.mfa.update_mfa_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->update_mfa_config: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**MfaConfigInfo**](MfaConfigInfo.md)| The update request for the MFA Settings | 
+ **body** | [**MfaConfigInfo**](MfaConfigInfo.md)| The update request for the MFA Settings |
 
 ### Return type
 
@@ -634,15 +467,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | Success |  -  |
@@ -655,73 +488,54 @@ Name | Type | Description  | Notes
 
 Stores the updated MFA configuration.
 
-Update MFA configuration for support user.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Update MFA configuration for support user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.support_mfa_config_info import SupportMfaConfigInfo
-from cohesity_sdk.cluster.models.update_mfa_result import UpdateMFAResult
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.update_mfa_result import UpdateMFAResult
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.support_mfa_config_info import SupportMfaConfigInfo
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = SupportMfaConfigInfo(
+        current_password="current_password_example",
+        email="email_example",
+        enabled=False,
+        mfa_code="mfa_code_example",
+        mfa_type="email",
+        otp_verification_state="kNotStarted",
+    ) # SupportMfaConfigInfo | The update request for the MFA Settings
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-    body = cohesity_sdk.cluster.SupportMfaConfigInfo() # SupportMfaConfigInfo | The update request for the MFA Settings
-
-    try:
-        # Stores the updated MFA configuration.
-        api_response = api_instance.update_support_mfa_config(body)
-        print("The response of MFAApi->update_support_mfa_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MFAApi->update_support_mfa_config: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Stores the updated MFA configuration.
+	api_response = client.mfa.update_support_mfa_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->update_support_mfa_config: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SupportMfaConfigInfo**](SupportMfaConfigInfo.md)| The update request for the MFA Settings | 
+ **body** | [**SupportMfaConfigInfo**](SupportMfaConfigInfo.md)| The update request for the MFA Settings |
 
 ### Return type
 
@@ -729,15 +543,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -750,73 +564,49 @@ Name | Type | Description  | Notes
 
 Verify the totp code for support user.
 
-Verify totp code for support user.
+**Privileges:** ```CLUSTER_MODIFY``` <br><br>Verify totp code for support user.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.verify_totp_request import VerifyTotpRequest
-from cohesity_sdk.cluster.models.verify_totp_result import VerifyTotpResult
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.verify_totp_result import VerifyTotpResult
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.verify_totp_request import VerifyTotpRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = VerifyTotpRequest(
+        totp_code="totp_code_example",
+    ) # VerifyTotpRequest | Totp code to be verified.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.MFAApi(api_client)
-    body = cohesity_sdk.cluster.VerifyTotpRequest() # VerifyTotpRequest | Totp code to be verified.
-
-    try:
-        # Verify the totp code for support user.
-        api_response = api_instance.verify_support_user_totp(body)
-        print("The response of MFAApi->verify_support_user_totp:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling MFAApi->verify_support_user_totp: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Verify the totp code for support user.
+	api_response = client.mfa.verify_support_user_totp(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling MFAApi->verify_support_user_totp: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**VerifyTotpRequest**](VerifyTotpRequest.md)| Totp code to be verified. | 
+ **body** | [**VerifyTotpRequest**](VerifyTotpRequest.md)| Totp code to be verified. |
 
 ### Return type
 
@@ -824,15 +614,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

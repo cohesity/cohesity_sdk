@@ -3,21 +3,25 @@
 Specifies the request parameters to create a Recovery.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Specifies the name of the Recovery. | 
+**name** | **str, none_type** | Specifies the name of the Recovery. | 
 **snapshot_environment** | **str** | Specifies the type of environment of snapshots for which the Recovery has to be performed. | 
+**filter_params** | [**CommonFilterExpression**](CommonFilterExpression.md) |  | [optional] 
+**nfs_protocol** | **str, none_type** | Specifies NFS protocol version. This protocol will be employed if the recovery request mounts the Cohesity storage via NFS on the primary source. | [optional] 
 **acropolis_params** | [**RecoverAcropolisParams**](RecoverAcropolisParams.md) |  | [optional] 
 **aws_params** | [**RecoverAwsParams**](RecoverAwsParams.md) |  | [optional] 
 **azure_params** | [**RecoverAzureParams**](RecoverAzureParams.md) |  | [optional] 
 **cassandra_params** | [**CassandraParams**](CassandraParams.md) |  | [optional] 
 **couchbase_params** | [**CouchbaseParams**](CouchbaseParams.md) |  | [optional] 
+**db2_params** | [**DB2Params**](DB2Params.md) |  | [optional] 
 **elastifile_params** | [**RecoverElastifileParams**](RecoverElastifileParams.md) |  | [optional] 
 **exchange_params** | [**RecoverExchangeParams**](RecoverExchangeParams.md) |  | [optional] 
+**experimental_adapter_params** | [**ExperimentalAdapterParams**](ExperimentalAdapterParams.md) |  | [optional] 
 **flashblade_params** | [**RecoverFlashbladeParams**](RecoverFlashbladeParams.md) |  | [optional] 
 **gcp_params** | [**RecoverGcpParams**](RecoverGcpParams.md) |  | [optional] 
 **generic_nas_params** | [**RecoverGenericNasParams**](RecoverGenericNasParams.md) |  | [optional] 
+**google_workspace_params** | [**RecoverGoogleWorkspaceParams**](RecoverGoogleWorkspaceParams.md) |  | [optional] 
 **gpfs_params** | [**RecoverGpfsParams**](RecoverGpfsParams.md) |  | [optional] 
 **hbase_params** | [**HbaseParams**](HbaseParams.md) |  | [optional] 
 **hdfs_params** | [**HdfsParams**](HdfsParams.md) |  | [optional] 
@@ -27,6 +31,7 @@ Name | Type | Description | Notes
 **isilon_params** | [**RecoverIsilonParams**](RecoverIsilonParams.md) |  | [optional] 
 **kubernetes_params** | [**RecoverKubernetesParams**](RecoverKubernetesParams.md) |  | [optional] 
 **kvm_params** | [**RecoverKvmParams**](RecoverKvmParams.md) |  | [optional] 
+**mongodb_ops_params** | [**MongodbOpsManagerParams**](MongodbOpsManagerParams.md) |  | [optional] 
 **mongodb_params** | [**MongodbParams**](MongodbParams.md) |  | [optional] 
 **mssql_params** | [**RecoverSqlParams**](RecoverSqlParams.md) |  | [optional] 
 **netapp_params** | [**RecoverNetappParams**](RecoverNetappParams.md) |  | [optional] 
@@ -34,28 +39,14 @@ Name | Type | Description | Notes
 **oracle_params** | [**RecoverOracleParams**](RecoverOracleParams.md) |  | [optional] 
 **physical_params** | [**RecoverPhysicalParams**](RecoverPhysicalParams.md) |  | [optional] 
 **pure_params** | [**RecoverPureParams**](RecoverPureParams.md) |  | [optional] 
+**s3_compatible_params** | [**RecoverS3CompatibleParams**](RecoverS3CompatibleParams.md) |  | [optional] 
+**sap_hana_params** | [**SapHanaParams**](SapHanaParams.md) |  | [optional] 
+**service_now_params** | [**RecoverServiceNowParams**](RecoverServiceNowParams.md) |  | [optional] 
 **sfdc_params** | [**RecoverSalesforceParams**](RecoverSalesforceParams.md) |  | [optional] 
 **uda_params** | [**UdaParams**](UdaParams.md) |  | [optional] 
 **view_params** | [**RecoverViewParams**](RecoverViewParams.md) |  | [optional] 
 **vmware_params** | [**RecoverVmwareParams**](RecoverVmwareParams.md) |  | [optional] 
 
-## Example
-
-```python
-from cohesity_sdk.cluster.models.create_recovery_request import CreateRecoveryRequest
-
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateRecoveryRequest from a JSON string
-create_recovery_request_instance = CreateRecoveryRequest.from_json(json)
-# print the JSON string representation of the object
-print(CreateRecoveryRequest.to_json())
-
-# convert the object into a dict
-create_recovery_request_dict = create_recovery_request_instance.to_dict()
-# create an instance of CreateRecoveryRequest from a dict
-create_recovery_request_from_dict = CreateRecoveryRequest.from_dict(create_recovery_request_dict)
-```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

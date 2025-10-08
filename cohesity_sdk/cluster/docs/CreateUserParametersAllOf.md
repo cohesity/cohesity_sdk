@@ -1,0 +1,15 @@
+# CreateUserParametersAllOf
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**s3_access_keys** | [**S3Keys**](S3Keys.md) |  | [optional] 
+**allow_smb_access_token** | **bool, none_type** | Specifies whether the SMB access token is to be set for the user. | [optional] 
+**domain** | **str** | Specifies the domain of the user. For active directories, this is the fully qualified domain name (FQDN). It is &#39;LOCAL&#39; for local users on the Cohesity Cluster. A user is uniquely identified by combination of the username and the domain. | [optional] 
+**local_user_params** | [**LocalUserParams**](LocalUserParams.md) |  | [optional] 
+**username** | **str** | Specifies the username. | [optional] 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

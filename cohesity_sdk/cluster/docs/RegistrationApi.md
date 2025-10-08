@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.RegistrationApi
+# cohesity_sdk.RegistrationApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,67 +12,41 @@ Method | HTTP request | Description
 
 Lists the Helios Registration Config.
 
-Lists the Helios Registration Config.
+**Privileges:** ```CLUSTER_VIEW``` <br><br>Lists the Helios Registration Config.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.helios_reg_config import HeliosRegConfig
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.helios_reg_config import HeliosRegConfig
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.RegistrationApi(api_client)
-
-    try:
-        # Lists the Helios Registration Config.
-        api_response = api_instance.get_helios_reg_config()
-        print("The response of RegistrationApi->get_helios_reg_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling RegistrationApi->get_helios_reg_config: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Lists the Helios Registration Config.
+	api_response = client.registration.get_helios_reg_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling RegistrationApi->get_helios_reg_config: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -82,15 +55,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -103,70 +76,48 @@ This endpoint does not need any parameter.
 
 Register to Helios.
 
-Claim to Helios.
+**Privileges:** ```MCM_MODIFY``` <br><br>Claim to Helios.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
 * Api Key Authentication (Bearer):
-
+* Api Key Authentication (SessionIdHeader):
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.helios_claim_request import HeliosClaimRequest
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.helios_claim_request import HeliosClaimRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = HeliosClaimRequest(
+        registration_token="registration_token_example",
+        rigel_guid=1,
+    ) # HeliosClaimRequest | Specifies the parameters to claim to Helios.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.RegistrationApi(api_client)
-    body = cohesity_sdk.cluster.HeliosClaimRequest() # HeliosClaimRequest | Specifies the parameters to claim to Helios.
-
-    try:
-        # Register to Helios.
-        api_instance.helios_claim(body)
-    except Exception as e:
-        print("Exception when calling RegistrationApi->helios_claim: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Register to Helios.
+	client.registration.helios_claim(body)
+except ApiException as e:
+	print("Exception when calling RegistrationApi->helios_claim: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**HeliosClaimRequest**](HeliosClaimRequest.md)| Specifies the parameters to claim to Helios. | 
+ **body** | [**HeliosClaimRequest**](HeliosClaimRequest.md)| Specifies the parameters to claim to Helios. |
 
 ### Return type
 
@@ -174,15 +125,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [Bearer](../README.md#Bearer), [SessionIdHeader](../README.md#SessionIdHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
