@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.BaseosPatchManagementApi
+# cohesity_sdk.BaseosPatchManagementApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,65 +20,40 @@ Applies the given baseos patch.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.apply_baseos_patch_request import ApplyBaseosPatchRequest
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.apply_baseos_patch_request import ApplyBaseosPatchRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = ApplyBaseosPatchRequest(
+        patch_name="patch_name_example",
+    ) # ApplyBaseosPatchRequest | Request to apply a baseos patch.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
-    body = cohesity_sdk.cluster.ApplyBaseosPatchRequest() # ApplyBaseosPatchRequest | Request to apply a baseos patch.
-
-    try:
-        # Applies the given baseos patch.
-        api_instance.apply_baseos_patch(body)
-    except Exception as e:
-        print("Exception when calling BaseosPatchManagementApi->apply_baseos_patch: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Applies the given baseos patch.
+	client.baseos_patch_management.apply_baseos_patch(body)
+except ApiException as e:
+	print("Exception when calling BaseosPatchManagementApi->apply_baseos_patch: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ApplyBaseosPatchRequest**](ApplyBaseosPatchRequest.md)| Request to apply a baseos patch. | 
+ **body** | [**ApplyBaseosPatchRequest**](ApplyBaseosPatchRequest.md)| Request to apply a baseos patch. |
 
 ### Return type
 
@@ -87,15 +61,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | No Content |  -  |
@@ -113,65 +87,40 @@ Downloads the given baseos patch.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.download_baseos_patch_request import DownloadBaseosPatchRequest
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.download_baseos_patch_request import DownloadBaseosPatchRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = DownloadBaseosPatchRequest(
+        patch_url="patch_url_example",
+    ) # DownloadBaseosPatchRequest | Request to download a new baseos patch.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
-    body = cohesity_sdk.cluster.DownloadBaseosPatchRequest() # DownloadBaseosPatchRequest | Request to download a new baseos patch.
-
-    try:
-        # Downloads the given baseos patch.
-        api_instance.download_baseos_patch(body)
-    except Exception as e:
-        print("Exception when calling BaseosPatchManagementApi->download_baseos_patch: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Downloads the given baseos patch.
+	client.baseos_patch_management.download_baseos_patch(body)
+except ApiException as e:
+	print("Exception when calling BaseosPatchManagementApi->download_baseos_patch: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**DownloadBaseosPatchRequest**](DownloadBaseosPatchRequest.md)| Request to download a new baseos patch. | 
+ **body** | [**DownloadBaseosPatchRequest**](DownloadBaseosPatchRequest.md)| Request to download a new baseos patch. |
 
 ### Return type
 
@@ -179,15 +128,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | No Content |  -  |
@@ -196,7 +145,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_baseos_patch_list**
-> List[BaseosPatchListItem] get_baseos_patch_list()
+> BaseosPatchList get_baseos_patch_list()
 
 Get available baseos patches
 
@@ -205,79 +154,51 @@ Returns the available baseos patches
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.baseos_patch_list_item import BaseosPatchListItem
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.baseos_patch_list import BaseosPatchList
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
-
-    try:
-        # Get available baseos patches
-        api_response = api_instance.get_baseos_patch_list()
-        print("The response of BaseosPatchManagementApi->get_baseos_patch_list:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling BaseosPatchManagementApi->get_baseos_patch_list: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Get available baseos patches
+	api_response = client.baseos_patch_management.get_baseos_patch_list()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling BaseosPatchManagementApi->get_baseos_patch_list: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**List[BaseosPatchListItem]**](BaseosPatchListItem.md)
+[**BaseosPatchList**](BaseosPatchList.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -295,67 +216,39 @@ Returns the log and status of the mentioned patch.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.baseos_patch_log import BaseosPatchLog
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.baseos_patch_log import BaseosPatchLog
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+patch_name = "patchName_example" # str | Name of the hotfix with security patch
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
-    patch_name = 'patch_name_example' # str | Name of the hotfix with security patch
-
-    try:
-        # Get Baseos patch application log
-        api_response = api_instance.get_baseos_patch_log(patch_name)
-        print("The response of BaseosPatchManagementApi->get_baseos_patch_log:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling BaseosPatchManagementApi->get_baseos_patch_log: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Get Baseos patch application log
+	api_response = client.baseos_patch_management.get_baseos_patch_log(patch_name)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling BaseosPatchManagementApi->get_baseos_patch_log: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **patch_name** | **str**| Name of the hotfix with security patch | 
+ **patch_name** | **str**| Name of the hotfix with security patch |
 
 ### Return type
 
@@ -363,15 +256,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -389,65 +282,41 @@ Cleans up the given baseos patch files.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.remove_baseos_patch_request import RemoveBaseosPatchRequest
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.remove_baseos_patch_request import RemoveBaseosPatchRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = RemoveBaseosPatchRequest(
+        force_remove=True,
+        patch_name="patch_name_example",
+    ) # RemoveBaseosPatchRequest | Request to remove baseos patch files.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.BaseosPatchManagementApi(api_client)
-    body = cohesity_sdk.cluster.RemoveBaseosPatchRequest() # RemoveBaseosPatchRequest | Request to remove baseos patch files.
-
-    try:
-        # Cleans up the given baseos patch files.
-        api_instance.remove_baseos_patch(body)
-    except Exception as e:
-        print("Exception when calling BaseosPatchManagementApi->remove_baseos_patch: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Cleans up the given baseos patch files.
+	client.baseos_patch_management.remove_baseos_patch(body)
+except ApiException as e:
+	print("Exception when calling BaseosPatchManagementApi->remove_baseos_patch: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RemoveBaseosPatchRequest**](RemoveBaseosPatchRequest.md)| Request to remove baseos patch files. | 
+ **body** | [**RemoveBaseosPatchRequest**](RemoveBaseosPatchRequest.md)| Request to remove baseos patch files. |
 
 ### Return type
 
@@ -455,15 +324,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | No Content |  -  |

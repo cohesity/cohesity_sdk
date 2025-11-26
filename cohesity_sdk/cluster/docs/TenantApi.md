@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.TenantApi
+# cohesity_sdk.TenantApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +8,6 @@ Method | HTTP request | Description
 [**delete_tenant**](TenantApi.md#delete_tenant) | **DELETE** /tenants/{id} | Delete Tenant with given ID.
 [**get_assigned_properties_for_tenant**](TenantApi.md#get_assigned_properties_for_tenant) | **GET** /tenants/{id}/assignments | Get tenant assignments.
 [**get_on_prem_tenant_config**](TenantApi.md#get_on_prem_tenant_config) | **GET** /clusters/tenant-config | Get Tenants Config.
-[**get_tenant_by_id**](TenantApi.md#get_tenant_by_id) | **GET** /tenants/{id} | Get Tenant by ID.
 [**get_tenant_swift**](TenantApi.md#get_tenant_swift) | **GET** /tenants/swift | Get a Swift configuration.
 [**list_tenants**](TenantApi.md#list_tenants) | **GET** /tenants | Get a list of Tenants.
 [**perform_tenant_action**](TenantApi.md#perform_tenant_action) | **POST** /tenants/{id}/actions | Perform actions on a Tenant.
@@ -30,70 +28,58 @@ Assign/Unassign properties like storage domain, entities, policies etc. to the t
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.tenant_assignments import TenantAssignments
-from cohesity_sdk.cluster.models.tenant_assignments_params import TenantAssignmentsParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.tenant_assignments import TenantAssignments
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.tenant_assignments_params import TenantAssignmentsParams
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = "C/" # str | The Tenant id.
+body = TenantAssignmentsParams(
+        object_ids=[
+            1,
+        ],
+        policy_ids=[
+            "policy_ids_example",
+        ],
+        storage_domain_ids=[
+            1,
+        ],
+        view_ids=[
+            1,
+        ],
+        vlan_iface_names=[
+            "vlan_iface_names_example",
+        ],
+    ) # TenantAssignmentsParams | 
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    id = 'id_example' # str | The Tenant id.
-    body = cohesity_sdk.cluster.TenantAssignmentsParams() # TenantAssignmentsParams | 
-
-    try:
-        # Update assginment of properties for a tenant.
-        api_response = api_instance.assign_properties_to_tenant(id, body)
-        print("The response of TenantApi->assign_properties_to_tenant:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->assign_properties_to_tenant: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update assginment of properties for a tenant.
+	api_response = client.tenant.assign_properties_to_tenant(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->assign_properties_to_tenant: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Tenant id. | 
- **body** | [**TenantAssignmentsParams**](TenantAssignmentsParams.md)|  | 
+ **id** | **str**| The Tenant id. |
+ **body** | [**TenantAssignmentsParams**](TenantAssignmentsParams.md)|  |
 
 ### Return type
 
@@ -101,15 +87,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -125,68 +111,40 @@ Create a new Tenant.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.create_tenant_request import CreateTenantRequest
-from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.tenant_info import TenantInfo
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.unknownbasetype import UNKNOWNBASETYPE
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body =  # UNKNOWN_BASE_TYPE | 
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    body = cohesity_sdk.cluster.CreateTenantRequest() # CreateTenantRequest | 
-
-    try:
-        # Create a new Tenant.
-        api_response = api_instance.create_tenant(body)
-        print("The response of TenantApi->create_tenant:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->create_tenant: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Create a new Tenant.
+	api_response = client.tenant.create_tenant(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->create_tenant: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateTenantRequest**](CreateTenantRequest.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  |
 
 ### Return type
 
@@ -194,15 +152,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -218,64 +176,37 @@ Delete Tenant with given ID.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = "C/" # str | The Tenant id.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    id = 'id_example' # str | The Tenant id.
-
-    try:
-        # Delete Tenant with given ID.
-        api_instance.delete_tenant(id)
-    except Exception as e:
-        print("Exception when calling TenantApi->delete_tenant: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Delete Tenant with given ID.
+	client.tenant.delete_tenant(id)
+except ApiException as e:
+	print("Exception when calling TenantApi->delete_tenant: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Tenant id. | 
+ **id** | **str**| The Tenant id. |
 
 ### Return type
 
@@ -283,15 +214,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -309,67 +240,39 @@ Get all assigned properties like storage domain, entities, policies, objects, vi
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.tenant_assignment_properties import TenantAssignmentProperties
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.tenant_assignment_properties import TenantAssignmentProperties
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = "C/" # str | The Tenant id.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    id = 'id_example' # str | The Tenant id.
-
-    try:
-        # Get tenant assignments.
-        api_response = api_instance.get_assigned_properties_for_tenant(id)
-        print("The response of TenantApi->get_assigned_properties_for_tenant:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->get_assigned_properties_for_tenant: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Get tenant assignments.
+	api_response = client.tenant.get_assigned_properties_for_tenant(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->get_assigned_properties_for_tenant: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Tenant id. | 
+ **id** | **str**| The Tenant id. |
 
 ### Return type
 
@@ -377,15 +280,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -403,62 +306,34 @@ Get Tenant related configurations for the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.on_prem_tenant_config import OnPremTenantConfig
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-
-    try:
-        # Get Tenants Config.
-        api_response = api_instance.get_on_prem_tenant_config()
-        print("The response of TenantApi->get_on_prem_tenant_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->get_on_prem_tenant_config: %s\n" % e)
+# example, this endpoint has no required or optional parameters
+try:
+	# Get Tenants Config.
+	api_response = client.tenant.get_on_prem_tenant_config()
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->get_on_prem_tenant_config: %s\n" % e)
 ```
 
 
-
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -467,107 +342,15 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Success |  -  |
-**0** | Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_tenant_by_id**
-> TenantInfo get_tenant_by_id(id)
-
-Get Tenant by ID.
-
-### Example
-
-* Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
-```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from cohesity_sdk.cluster.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    id = 'id_example' # str | The Tenant id.
-
-    try:
-        # Get Tenant by ID.
-        api_response = api_instance.get_tenant_by_id(id)
-        print("The response of TenantApi->get_tenant_by_id:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->get_tenant_by_id: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| The Tenant id. | 
-
-### Return type
-
-[**TenantInfo**](TenantInfo.md)
-
-### Authorization
-
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 ### HTTP response details
-
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -576,7 +359,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_tenant_swift**
-> SwiftParams get_tenant_swift(tenant_id=tenant_id)
+> SwiftParams get_tenant_swift()
 
 Get a Swift configuration.
 
@@ -585,67 +368,40 @@ Get a Swift configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.swift_params import SwiftParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.swift_params import SwiftParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+tenant_id = "tenantId_example" # str | Specifies the tenant Id. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    tenant_id = 'tenant_id_example' # str | Specifies the tenant Id. (optional)
-
-    try:
-        # Get a Swift configuration.
-        api_response = api_instance.get_tenant_swift(tenant_id=tenant_id)
-        print("The response of TenantApi->get_tenant_swift:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->get_tenant_swift: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a Swift configuration.
+	api_response = client.tenant.get_tenant_swift(tenant_id=tenant_id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->get_tenant_swift: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tenant_id** | **str**| Specifies the tenant Id. | [optional] 
+ **tenant_id** | **str**| Specifies the tenant Id. | [optional]
 
 ### Return type
 
@@ -653,15 +409,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -670,92 +426,69 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_tenants**
-> List[TenantInfo] list_tenants(ids=ids, statuses=statuses)
+> TenantsInfo list_tenants()
 
 Get a list of Tenants.
 
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.tenants_info import TenantsInfo
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+ids = [
+        "ids_example",
+    ] # [str, none_type] | List of tenantIds to filter. (optional)
+statuses = [
+        "Active",
+    ] # [str, none_type] | Filter by current status of tenant. If left blank, only active and inactive tenants are returned. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    ids = ['ids_example'] # List[Optional[str]] | List of tenantIds to filter. (optional)
-    statuses = ['statuses_example'] # List[Optional[str]] | Filter by current status of tenant. If left blank, only active and inactive tenants are returned. (optional)
-
-    try:
-        # Get a list of Tenants.
-        api_response = api_instance.list_tenants(ids=ids, statuses=statuses)
-        print("The response of TenantApi->list_tenants:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->list_tenants: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get a list of Tenants.
+	api_response = client.tenant.list_tenants(ids=ids, statuses=statuses)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->list_tenants: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | [**List[Optional[str]]**](str.md)| List of tenantIds to filter. | [optional] 
- **statuses** | [**List[Optional[str]]**](str.md)| Filter by current status of tenant. If left blank, only active and inactive tenants are returned. | [optional] 
+ **ids** | [**[str, none_type]**](str, none_type.md)| List of tenantIds to filter. | [optional]
+ **statuses** | [**[str, none_type]**](str, none_type.md)| Filter by current status of tenant. If left blank, only active and inactive tenants are returned. | [optional]
 
 ### Return type
 
-[**List[TenantInfo]**](TenantInfo.md)
+[**TenantsInfo**](TenantsInfo.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -773,70 +506,44 @@ Perform actions like activate and deactivate on a given Tenant.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.tenant_action_body import TenantActionBody
-from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.tenant_info import TenantInfo
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.tenant_action_body import TenantActionBody
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = "C/" # str | The Tenant id.
+body = TenantActionBody(
+        action="Activate",
+    ) # TenantActionBody | Specifies the parameters to perform an action on a Tenant.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    id = 'id_example' # str | The Tenant id.
-    body = cohesity_sdk.cluster.TenantActionBody() # TenantActionBody | Specifies the parameters to perform an action on a Tenant.
-
-    try:
-        # Perform actions on a Tenant.
-        api_response = api_instance.perform_tenant_action(id, body)
-        print("The response of TenantApi->perform_tenant_action:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->perform_tenant_action: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Perform actions on a Tenant.
+	api_response = client.tenant.perform_tenant_action(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->perform_tenant_action: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**| The Tenant id. | 
- **body** | [**TenantActionBody**](TenantActionBody.md)| Specifies the parameters to perform an action on a Tenant. | 
+ **id** | **str**| The Tenant id. |
+ **body** | [**TenantActionBody**](TenantActionBody.md)| Specifies the parameters to perform an action on a Tenant. |
 
 ### Return type
 
@@ -844,15 +551,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -870,65 +577,44 @@ Register Swift service on Keystone server.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.register_swift_params import RegisterSwiftParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.register_swift_params import RegisterSwiftParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = RegisterSwiftParams(
+        keystone_credentials=KeystoneCredentials(
+            admin_creds={},
+            scope={},
+        ),
+        tenant_id="tenant_id_example",
+    ) # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    body = cohesity_sdk.cluster.RegisterSwiftParams() # RegisterSwiftParams | Specifies the parameters to register a Swift service on Keystone server.
-
-    try:
-        # Register Swift service on a Keystone server.
-        api_instance.register_swift(body)
-    except Exception as e:
-        print("Exception when calling TenantApi->register_swift: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Register Swift service on a Keystone server.
+	client.tenant.register_swift(body)
+except ApiException as e:
+	print("Exception when calling TenantApi->register_swift: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RegisterSwiftParams**](RegisterSwiftParams.md)| Specifies the parameters to register a Swift service on Keystone server. | 
+ **body** | [**RegisterSwiftParams**](RegisterSwiftParams.md)| Specifies the parameters to register a Swift service on Keystone server. |
 
 ### Return type
 
@@ -936,15 +622,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -962,65 +648,44 @@ Unregister Swift service from Keystone server.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.unregister_swift_params import UnregisterSwiftParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.unregister_swift_params import UnregisterSwiftParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = UnregisterSwiftParams(
+        keystone_credentials=KeystoneCredentials(
+            admin_creds={},
+            scope={},
+        ),
+        tenant_id="tenant_id_example",
+    ) # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    body = cohesity_sdk.cluster.UnregisterSwiftParams() # UnregisterSwiftParams | Specifies the parameters to unregister a Swift service from Keystone server.
-
-    try:
-        # Unregister Swift service from a Keystone server.
-        api_instance.unregister_swift(body)
-    except Exception as e:
-        print("Exception when calling TenantApi->unregister_swift: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Unregister Swift service from a Keystone server.
+	client.tenant.unregister_swift(body)
+except ApiException as e:
+	print("Exception when calling TenantApi->unregister_swift: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UnregisterSwiftParams**](UnregisterSwiftParams.md)| Specifies the parameters to unregister a Swift service from Keystone server. | 
+ **body** | [**UnregisterSwiftParams**](UnregisterSwiftParams.md)| Specifies the parameters to unregister a Swift service from Keystone server. |
 
 ### Return type
 
@@ -1028,15 +693,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -1054,67 +719,42 @@ Update Tenant related configurations for the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.on_prem_tenant_config import OnPremTenantConfig
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.on_prem_tenant_config import OnPremTenantConfig
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = OnPremTenantConfig(
+        organizations_enabled=True,
+        organizations_storage_domain_sharing_enabled=True,
+    ) # OnPremTenantConfig | 
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    body = cohesity_sdk.cluster.OnPremTenantConfig() # OnPremTenantConfig | 
-
-    try:
-        # Update Tenants Config.
-        api_response = api_instance.update_on_prem_tenant_config(body)
-        print("The response of TenantApi->update_on_prem_tenant_config:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->update_on_prem_tenant_config: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update Tenants Config.
+	api_response = client.tenant.update_on_prem_tenant_config(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->update_on_prem_tenant_config: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**OnPremTenantConfig**](OnPremTenantConfig.md)|  | 
+ **body** | [**OnPremTenantConfig**](OnPremTenantConfig.md)|  |
 
 ### Return type
 
@@ -1122,15 +762,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1148,70 +788,42 @@ Update Tenant's properties.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.tenant_info import TenantInfo
-from cohesity_sdk.cluster.models.update_tenant_body import UpdateTenantBody
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.tenant_info import TenantInfo
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.update_tenant_body import UpdateTenantBody
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = "C/" # str, none_type | 
+body = UpdateTenantBody() # UpdateTenantBody | 
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    id = 'id_example' # str | 
-    body = cohesity_sdk.cluster.UpdateTenantBody() # UpdateTenantBody | 
-
-    try:
-        # Update Tenant.
-        api_response = api_instance.update_tenant(id, body)
-        print("The response of TenantApi->update_tenant:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->update_tenant: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update Tenant.
+	api_response = client.tenant.update_tenant(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->update_tenant: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **str**|  | 
- **body** | [**UpdateTenantBody**](UpdateTenantBody.md)|  | 
+ **id** | **str, none_type**|  |
+ **body** | [**UpdateTenantBody**](UpdateTenantBody.md)|  |
 
 ### Return type
 
@@ -1219,15 +831,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -1245,67 +857,45 @@ Update a Swift configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.swift_params import SwiftParams
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.swift_params import SwiftParams
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = SwiftParams(
+        keystone_id=1,
+        operator_roles=[
+            "operator_roles_example",
+        ],
+        tenant_id="tenant_id_example",
+    ) # SwiftParams | Specifies the parameters to update a Swift configuration.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.TenantApi(api_client)
-    body = cohesity_sdk.cluster.SwiftParams() # SwiftParams | Specifies the parameters to update a Swift configuration.
-
-    try:
-        # Update a Swift configuration.
-        api_response = api_instance.update_tenant_swift(body)
-        print("The response of TenantApi->update_tenant_swift:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TenantApi->update_tenant_swift: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update a Swift configuration.
+	api_response = client.tenant.update_tenant_swift(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling TenantApi->update_tenant_swift: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**SwiftParams**](SwiftParams.md)| Specifies the parameters to update a Swift configuration. | 
+ **body** | [**SwiftParams**](SwiftParams.md)| Specifies the parameters to update a Swift configuration. |
 
 ### Return type
 
@@ -1313,15 +903,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.KeystoneApi
+# cohesity_sdk.KeystoneApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,67 +20,40 @@ Create a Keystone configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.keystone import Keystone
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.keystone import Keystone
+from cohesity_sdk.cluster.model.create_keystone_request import CreateKeystoneRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = CreateKeystoneRequest() # CreateKeystoneRequest | Specifies the paremters to create a Keystone configuration.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.KeystoneApi(api_client)
-    body = cohesity_sdk.cluster.Keystone() # Keystone | Specifies the paremters to create a Keystone configuration.
-
-    try:
-        # Create a Keystone configuration.
-        api_response = api_instance.create_keystone(body)
-        print("The response of KeystoneApi->create_keystone:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling KeystoneApi->create_keystone: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Create a Keystone configuration.
+	api_response = client.keystone.create_keystone(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->create_keystone: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **Keystone**| Specifies the paremters to create a Keystone configuration. | 
+ **body** | [**CreateKeystoneRequest**](CreateKeystoneRequest.md)| Specifies the paremters to create a Keystone configuration. |
 
 ### Return type
 
@@ -89,15 +61,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -115,66 +87,39 @@ Delete a Keystone configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = 1 # int | Specifies the Keystone id.
+admin_password = "adminPassword_example" # str | Specifies the password of Keystone administrator.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.KeystoneApi(api_client)
-    id = 56 # int | Specifies the Keystone id.
-    admin_password = 'admin_password_example' # str | Specifies the password of Keystone administrator.
-
-    try:
-        # Delete a Keystone configuration.
-        api_instance.delete_keystone(id, admin_password)
-    except Exception as e:
-        print("Exception when calling KeystoneApi->delete_keystone: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Delete a Keystone configuration.
+	client.keystone.delete_keystone(id, admin_password)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->delete_keystone: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the Keystone id. | 
- **admin_password** | **str**| Specifies the password of Keystone administrator. | 
+ **id** | **int**| Specifies the Keystone id. |
+ **admin_password** | **str**| Specifies the password of Keystone administrator. |
 
 ### Return type
 
@@ -182,15 +127,15 @@ void (empty response body)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | No Content |  -  |
@@ -199,7 +144,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_keystones**
-> Keystones get_keystones(names=names, tenant_ids=tenant_ids, include_tenants=include_tenants)
+> Keystones get_keystones()
 
 Get Keystones.
 
@@ -208,71 +153,48 @@ Get Keystones.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.keystones import Keystones
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.keystones import Keystones
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+names = [
+        "names_example",
+    ] # [str] | Specifies a list of Keystone names. (optional)
+tenant_ids = [
+        "tenantIds_example",
+    ] # [str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
+include_tenants = True # bool | If true, the response will include Keystones which were created by all tenants which the current user has permission to see. If false, then only Keystones created by the current user will be returned. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.KeystoneApi(api_client)
-    names = ['names_example'] # List[str] | Specifies a list of Keystone names. (optional)
-    tenant_ids = ['tenant_ids_example'] # List[str] | TenantIds contains ids of the tenants for which objects are to be returned. (optional)
-    include_tenants = True # bool | If true, the response will include Keystones which were created by all tenants which the current user has permission to see. If false, then only Keystones created by the current user will be returned. (optional)
-
-    try:
-        # Get Keystones.
-        api_response = api_instance.get_keystones(names=names, tenant_ids=tenant_ids, include_tenants=include_tenants)
-        print("The response of KeystoneApi->get_keystones:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling KeystoneApi->get_keystones: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get Keystones.
+	api_response = client.keystone.get_keystones(names=names, tenant_ids=tenant_ids, include_tenants=include_tenants)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->get_keystones: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **names** | [**List[str]**](str.md)| Specifies a list of Keystone names. | [optional] 
- **tenant_ids** | [**List[str]**](str.md)| TenantIds contains ids of the tenants for which objects are to be returned. | [optional] 
- **include_tenants** | **bool**| If true, the response will include Keystones which were created by all tenants which the current user has permission to see. If false, then only Keystones created by the current user will be returned. | [optional] 
+ **names** | **[str]**| Specifies a list of Keystone names. | [optional]
+ **tenant_ids** | **[str]**| TenantIds contains ids of the tenants for which objects are to be returned. | [optional]
+ **include_tenants** | **bool**| If true, the response will include Keystones which were created by all tenants which the current user has permission to see. If false, then only Keystones created by the current user will be returned. | [optional]
 
 ### Return type
 
@@ -280,15 +202,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -306,67 +228,39 @@ Get a Keystone by its id.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.keystone import Keystone
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.keystone import Keystone
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = 1 # int | Specifies the Keystone id.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.KeystoneApi(api_client)
-    id = 56 # int | Specifies the Keystone id.
-
-    try:
-        # Get a Keystone by its id.
-        api_response = api_instance.get_keystones_by_id(id)
-        print("The response of KeystoneApi->get_keystones_by_id:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling KeystoneApi->get_keystones_by_id: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Get a Keystone by its id.
+	api_response = client.keystone.get_keystones_by_id(id)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->get_keystones_by_id: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the Keystone id. | 
+ **id** | **int**| Specifies the Keystone id. |
 
 ### Return type
 
@@ -374,15 +268,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -400,69 +294,42 @@ Update a Keystone configuration.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.keystone import Keystone
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.keystone import Keystone
+from cohesity_sdk.cluster.model.update_keystone_request import UpdateKeystoneRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+id = 1 # int | Specifies the Keystone id.
+body = UpdateKeystoneRequest() # UpdateKeystoneRequest | Specifies the paremters to update a Keystone configuration.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.KeystoneApi(api_client)
-    id = 56 # int | Specifies the Keystone id.
-    body = cohesity_sdk.cluster.Keystone() # Keystone | Specifies the paremters to update a Keystone configuration.
-
-    try:
-        # Update a Keystone configuration.
-        api_response = api_instance.update_keystone(id, body)
-        print("The response of KeystoneApi->update_keystone:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling KeystoneApi->update_keystone: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Update a Keystone configuration.
+	api_response = client.keystone.update_keystone(id, body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling KeystoneApi->update_keystone: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| Specifies the Keystone id. | 
- **body** | **Keystone**| Specifies the paremters to update a Keystone configuration. | 
+ **id** | **int**| Specifies the Keystone id. |
+ **body** | [**UpdateKeystoneRequest**](UpdateKeystoneRequest.md)| Specifies the paremters to update a Keystone configuration. |
 
 ### Return type
 
@@ -470,15 +337,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |

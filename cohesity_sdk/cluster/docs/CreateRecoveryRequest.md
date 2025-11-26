@@ -3,10 +3,9 @@
 Specifies the request parameters to create a Recovery.
 
 ## Properties
-
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **str** | Specifies the name of the Recovery. | 
+**name** | **str, none_type** | Specifies the name of the Recovery. | 
 **snapshot_environment** | **str** | Specifies the type of environment of snapshots for which the Recovery has to be performed. | 
 **acropolis_params** | [**RecoverAcropolisParams**](RecoverAcropolisParams.md) |  | [optional] 
 **aws_params** | [**RecoverAwsParams**](RecoverAwsParams.md) |  | [optional] 
@@ -39,23 +38,6 @@ Name | Type | Description | Notes
 **view_params** | [**RecoverViewParams**](RecoverViewParams.md) |  | [optional] 
 **vmware_params** | [**RecoverVmwareParams**](RecoverVmwareParams.md) |  | [optional] 
 
-## Example
-
-```python
-from cohesity_sdk.cluster.models.create_recovery_request import CreateRecoveryRequest
-
-# TODO update the JSON string below
-json = "{}"
-# create an instance of CreateRecoveryRequest from a JSON string
-create_recovery_request_instance = CreateRecoveryRequest.from_json(json)
-# print the JSON string representation of the object
-print(CreateRecoveryRequest.to_json())
-
-# convert the object into a dict
-create_recovery_request_dict = create_recovery_request_instance.to_dict()
-# create an instance of CreateRecoveryRequest from a dict
-create_recovery_request_from_dict = CreateRecoveryRequest.from_dict(create_recovery_request_dict)
-```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
 

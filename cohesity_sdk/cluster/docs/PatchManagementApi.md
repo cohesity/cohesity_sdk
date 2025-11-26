@@ -1,6 +1,5 @@
-# cohesity_sdk.cluster.PatchManagementApi
+# cohesity_sdk.PatchManagementApi
 
-All URIs are relative to */v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **apply_patches**
-> List[ServicePatchLevel] apply_patches(body)
+> ServicePatchLevels apply_patches(body)
 
 Apply patches
 
@@ -23,84 +22,59 @@ Apply a service patch and its dependencies.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.apply_patches_request import ApplyPatchesRequest
-from cohesity_sdk.cluster.models.service_patch_level import ServicePatchLevel
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.service_patch_levels import ServicePatchLevels
+from cohesity_sdk.cluster.model.apply_patches_request import ApplyPatchesRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = ApplyPatchesRequest(
+        all=True,
+        service="service_example",
+    ) # ApplyPatchesRequest | Request to apply patches.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    body = cohesity_sdk.cluster.ApplyPatchesRequest() # ApplyPatchesRequest | Request to apply patches.
-
-    try:
-        # Apply patches
-        api_response = api_instance.apply_patches(body)
-        print("The response of PatchManagementApi->apply_patches:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->apply_patches: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Apply patches
+	api_response = client.patch_management.apply_patches(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->apply_patches: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ApplyPatchesRequest**](ApplyPatchesRequest.md)| Request to apply patches. | 
+ **body** | [**ApplyPatchesRequest**](ApplyPatchesRequest.md)| Request to apply patches. |
 
 ### Return type
 
-[**List[ServicePatchLevel]**](ServicePatchLevel.md)
+[**ServicePatchLevels**](ServicePatchLevels.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -109,7 +83,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_applied_patches**
-> List[AppliedPatch] get_applied_patches(service=service, include_details=include_details)
+> AppliedPatches get_applied_patches()
 
 Get applied patches
 
@@ -118,85 +92,58 @@ Returns a list of currently applied patches that are running on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.applied_patch import AppliedPatch
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.applied_patches import AppliedPatches
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+service = "service_example" # str | Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. (optional)
+include_details = True # bool | Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    service = 'service_example' # str | Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. (optional)
-    include_details = True # bool | Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
-
-    try:
-        # Get applied patches
-        api_response = api_instance.get_applied_patches(service=service, include_details=include_details)
-        print("The response of PatchManagementApi->get_applied_patches:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->get_applied_patches: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get applied patches
+	api_response = client.patch_management.get_applied_patches(service=service, include_details=include_details)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->get_applied_patches: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **service** | **str**| Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. | [optional] 
- **include_details** | **bool**| Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. | [optional] 
+ **service** | **str**| Specifies optional service name whose current patch is returned. If it is not specified, all the applied patches are returned. | [optional]
+ **include_details** | **bool**| Specifies whether to return the details of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. | [optional]
 
 ### Return type
 
-[**List[AppliedPatch]**](AppliedPatch.md)
+[**AppliedPatches**](AppliedPatches.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -205,7 +152,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_available_patches**
-> List[AvailablePatch] get_available_patches(service=service, include_details=include_details)
+> AvailablePatches get_available_patches()
 
 Get available patches
 
@@ -214,85 +161,58 @@ Returns a list of patches that are available and ready to apply on the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.available_patch import AvailablePatch
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.available_patches import AvailablePatches
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+service = "service_example" # str | Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. (optional)
+include_details = True # bool | Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    service = 'service_example' # str | Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. (optional)
-    include_details = True # bool | Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. (optional)
-
-    try:
-        # Get available patches
-        api_response = api_instance.get_available_patches(service=service, include_details=include_details)
-        print("The response of PatchManagementApi->get_available_patches:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->get_available_patches: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get available patches
+	api_response = client.patch_management.get_available_patches(service=service, include_details=include_details)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->get_available_patches: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **service** | **str**| Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. | [optional] 
- **include_details** | **bool**| Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. | [optional] 
+ **service** | **str**| Specifies optional service name whose available patch is returned. If it is not specified, available patches for all the serivces are returned. | [optional]
+ **include_details** | **bool**| Specifies whether to return the description of all the fixes in the patch. By default, returns only the most recent fix made for the service in the patch. | [optional]
 
 ### Return type
 
-[**List[AvailablePatch]**](AvailablePatch.md)
+[**AvailablePatches**](AvailablePatches.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -301,7 +221,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_patch_operation_status**
-> PatchOperationStatus get_patch_operation_status(include_details=include_details)
+> PatchOperationStatus get_patch_operation_status()
 
 Get patch operation status
 
@@ -310,67 +230,40 @@ Returns the status of the current or the last patch operation. There can be only
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.patch_operation_status import PatchOperationStatus
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.patch_operation_status import PatchOperationStatus
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+include_details = True # bool | Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    include_details = True # bool | Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. (optional)
-
-    try:
-        # Get patch operation status
-        api_response = api_instance.get_patch_operation_status(include_details=include_details)
-        print("The response of PatchManagementApi->get_patch_operation_status:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->get_patch_operation_status: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get patch operation status
+	api_response = client.patch_management.get_patch_operation_status(include_details=include_details)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->get_patch_operation_status: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_details** | **bool**| Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. | [optional] 
+ **include_details** | **bool**| Specifies whether to return details of all service patch opertions on all nodes. By default, returns whether there is a patch operation in progress or not. | [optional]
 
 ### Return type
 
@@ -378,15 +271,15 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -395,7 +288,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_patches_history**
-> List[PatchOperation] get_patches_history(service=service)
+> PatchesHistory get_patches_history()
 
 Get patches history
 
@@ -404,83 +297,56 @@ Get the history of all the patch management operations.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.patch_operation import PatchOperation
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.patches_history import PatchesHistory
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+service = "service_example" # str | Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. (optional)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    service = 'service_example' # str | Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. (optional)
-
-    try:
-        # Get patches history
-        api_response = api_instance.get_patches_history(service=service)
-        print("The response of PatchManagementApi->get_patches_history:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->get_patches_history: %s\n" % e)
+# example passing only required values which don't have defaults set
+# and optional values
+try:
+	# Get patches history
+	api_response = client.patch_management.get_patches_history(service=service)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->get_patches_history: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **service** | **str**| Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. | [optional] 
+ **service** | **str**| Specifies optional service name whose patch operation history is returned. If it is not specified, patch operations of all the serivces are returned. | [optional]
 
 ### Return type
 
-[**List[PatchOperation]**](PatchOperation.md)
+[**PatchesHistory**](PatchesHistory.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success |  -  |
@@ -489,7 +355,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **import_patches**
-> List[PatchDetail] import_patches(file_name, checksum, patch)
+> PatchesDetails import_patches(file_name, checksum, patch)
 
 Import patches
 
@@ -498,87 +364,59 @@ Import a patch or a hotfix to the cluster.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.patch_detail import PatchDetail
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.patches_details import PatchesDetails
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+file_name = "file_name_example" # str | 
+checksum = "checksum_example" # str | 
+patch = open('/path/to/file', 'rb') # file_type | 
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    file_name = 'file_name_example' # str | 
-    checksum = 'checksum_example' # str | 
-    patch = None # bytearray | 
-
-    try:
-        # Import patches
-        api_response = api_instance.import_patches(file_name, checksum, patch)
-        print("The response of PatchManagementApi->import_patches:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->import_patches: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Import patches
+	api_response = client.patch_management.import_patches(file_name, checksum, patch)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->import_patches: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file_name** | **str**|  | 
- **checksum** | **str**|  | 
- **patch** | **bytearray**|  | 
+ **file_name** | **str**|  |
+ **checksum** | **str**|  |
+ **patch** | **file_type**|  |
 
 ### Return type
 
-[**List[PatchDetail]**](PatchDetail.md)
+[**PatchesDetails**](PatchesDetails.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
@@ -587,7 +425,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revert_patches**
-> List[ServicePatchLevel] revert_patches(body)
+> ServicePatchLevels revert_patches(body)
 
 Revert patches
 
@@ -596,84 +434,58 @@ Revert an applied service patch and its dependencies.
 ### Example
 
 * Api Key Authentication (APIKeyHeader):
-* Api Key Authentication (SessionIdHeader):
-* Api Key Authentication (Bearer):
-
 ```python
-import cohesity_sdk.cluster
-from cohesity_sdk.cluster.models.revert_patches_request import RevertPatchesRequest
-from cohesity_sdk.cluster.models.service_patch_level import ServicePatchLevel
-from cohesity_sdk.cluster.rest import ApiException
+from cohesity_sdk.cluster.cluster_client import ClusterClient
+from cohesity_sdk.cluster.model.error import Error
+from cohesity_sdk.cluster.model.service_patch_levels import ServicePatchLevels
+from cohesity_sdk.cluster.model.revert_patches_request import RevertPatchesRequest
+from cohesity_sdk.cluster.exceptions import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to /v2
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cohesity_sdk.cluster.Configuration(
-    host = "/v2"
+
+client = ClusterClient(
+	cluster_vip = "0.0.0.0",
+	username = "username",
+	password = "password",
+	domain = "LOCAL"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
 
-# Configure API key authorization: APIKeyHeader
-configuration.api_key['APIKeyHeader'] = os.environ["API_KEY"]
+body = RevertPatchesRequest(
+        service="service_example",
+    ) # RevertPatchesRequest | Request to revert patches.
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['APIKeyHeader'] = 'Bearer'
-
-# Configure API key authorization: SessionIdHeader
-configuration.api_key['SessionIdHeader'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SessionIdHeader'] = 'Bearer'
-
-# Configure API key authorization: Bearer
-configuration.api_key['Bearer'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Bearer'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with cohesity_sdk.cluster.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cohesity_sdk.cluster.PatchManagementApi(api_client)
-    body = cohesity_sdk.cluster.RevertPatchesRequest() # RevertPatchesRequest | Request to revert patches.
-
-    try:
-        # Revert patches
-        api_response = api_instance.revert_patches(body)
-        print("The response of PatchManagementApi->revert_patches:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling PatchManagementApi->revert_patches: %s\n" % e)
+# example passing only required values which don't have defaults set
+try:
+	# Revert patches
+	api_response = client.patch_management.revert_patches(body)
+	pprint(api_response)
+except ApiException as e:
+	print("Exception when calling PatchManagementApi->revert_patches: %s\n" % e)
 ```
-
 
 
 ### Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**RevertPatchesRequest**](RevertPatchesRequest.md)| Request to revert patches. | 
+ **body** | [**RevertPatchesRequest**](RevertPatchesRequest.md)| Request to revert patches. |
 
 ### Return type
 
-[**List[ServicePatchLevel]**](ServicePatchLevel.md)
+[**ServicePatchLevels**](ServicePatchLevels.md)
 
 ### Authorization
 
-[APIKeyHeader](../README.md#APIKeyHeader), [SessionIdHeader](../README.md#SessionIdHeader), [Bearer](../README.md#Bearer)
+[APIKeyHeader](../README.md#APIKeyHeader)
 
 ### HTTP request headers
 
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-### HTTP response details
 
+### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Success |  -  |
